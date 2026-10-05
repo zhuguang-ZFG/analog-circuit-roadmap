@@ -915,8 +915,8 @@ def make_analog_switch():
             sh_pts.append(f"{x:.0f},{y:.0f}")
             hv = y
         x0 = x_start + seg*per + 40
-        sh_pts.append(f"{x0:.0f},{hv-9:.0f}")
-        sh_pts.append(f"{x_start+seg*per+160:.0f},{hv-9:.0f}")
+        sh_pts.append(f"{x0:.0f},{hv+9:.0f}")
+        sh_pts.append(f"{x_start+seg*per+160:.0f},{hv+9:.0f}")
     sh_d = "M" + " L".join(sh_pts)
     sin_d = sine_path(430, 750, 330, 42, n=96)
     svg = svg_open('模拟开关的暗伤：关断瞬间，沟道电荷被「挤」进电容（CD4066）', h=480)
@@ -975,19 +975,78 @@ def make_analog_switch():
 <path d="{sh_d}" fill="none" stroke="#2563eb" stroke-width="2.8"/>
 <text x="436" y="252" font-size="10.5" font-weight="bold" fill="#2563eb">保持电容电压（实线）</text>
 <line x1="430" y1="330" x2="752" y2="330" stroke="#64748b" stroke-width="1.4"/>
-<line x1="470" y1="306" x2="470" y2="292" stroke="#dc2626" stroke-width="2.5" opacity="0">
+<line x1="470" y1="284" x2="470" y2="300" stroke="#dc2626" stroke-width="2.5" opacity="0">
 <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.64;0.68;1" dur="{DA}s" repeatCount="indefinite"/></line>
-<text x="478" y="282" font-size="11" font-weight="bold" fill="#dc2626" opacity="0">跳变 ΔV≈10mV
+<text x="478" y="314" font-size="11" font-weight="bold" fill="#dc2626" opacity="0">电子注入→电压下陷 ΔV≈10mV
 <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.64;0.68;1" dur="{DA}s" repeatCount="indefinite"/></text>
 '''
     svg += caption("① 导通：NMOS+PMOS 互补——低走高走全摆幅无损通过（R_ON≈125Ω）", "#059669", DA,
                    "0;1;1;0;0", "0;0.03;0.28;0.32;1", y=420)
     svg += caption("② 跟随期：电容贴着输入走——采样就是把波形「复印」到电容上", "#2563eb", DA,
                    "0;0;1;1;0;0", "0;0.32;0.36;0.58;0.62;1", y=420)
-    svg += caption("③ 关断瞬间：沟道电荷 Q≈1pC 涌入 100pF 电容 → ΔV=Q/C≈10mV！", "#dc2626", DA,
+    svg += caption("③ 关断瞬间：沟道电子 Q≈1pC 涌入 100pF 电容 → 电压下陷 ΔV=Q/C≈10mV！", "#dc2626", DA,
                    "0;0;1;1", "0;0.62;0.66;1", y=420)
     svg += note_box("12 位 ADC 的 1 LSB@3.3V 仅 0.8mV——10mV 注入误差=12 LSB！对策：加大保持电容/低注入开关/差分抵消", 458, DA, "0;0.7;0.75;1", w=740)
     save('analog-switch.svg', svg + '</svg>')
+
+
+# ======================= 图 12：回流路径 =======================
+def make_pcb_return_path():
+    DR = 5
+    svg = svg_open('回流路径：信号的「回家路」，永远贴着它脚下走', h=490)
+    svg += f'''
+<text x="210" y="52" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">场景 A：完整地平面——回流紧贴信号正下方</text>
+<rect x="50" y="76" width="42" height="26" rx="4" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="71" y="93" text-anchor="middle" font-size="10" fill="#2563eb">驱动</text>
+<rect x="330" y="76" width="42" height="26" rx="4" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="351" y="93" text-anchor="middle" font-size="10" fill="#2563eb">负载</text>
+<line x1="92" y1="89" x2="330" y2="89" stroke="#dc2626" stroke-width="3.5"/>
+<text x="200" y="72" font-size="10.5" font-weight="bold" fill="#dc2626">信号（顶层走线）</text>
+<rect x="60" y="140" width="300" height="24" fill="#cbd5e1" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="366" y="156" font-size="10.5" fill="#475569">地平面</text>
+<line x1="330" y1="152" x2="92" y2="152" stroke="#059669" stroke-width="2.5" stroke-dasharray="6,4"/>
+<text x="120" y="178" font-size="10.5" font-weight="bold" fill="#059669">回流（镜像电流，紧贴脚下）</text>
+<rect x="92" y="89" width="238" height="63" fill="#059669" opacity="0.07"/>
+<text x="200" y="132" font-size="10" fill="#059669" text-anchor="middle" opacity="0">环路面积≈0
+<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.3;0.36;1" dur="{DR}s" repeatCount="indefinite"/></text>
+{flow("M94,86 H328", DR/2, n=5, color="#dc2626", r=4.5)}
+<g><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.12;0.18;0.85;0.92;1" dur="{DR}s" repeatCount="indefinite"/>
+{flow("M328,152 H94", DR/2, n=5, color="#059669", r=4.5)}
+</g>
+'''
+    svg += f'''
+<text x="590" y="52" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#dc2626">场景 B：地平面开槽——回流被迫绕大圈</text>
+<rect x="430" y="76" width="42" height="26" rx="4" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="451" y="93" text-anchor="middle" font-size="10" fill="#2563eb">驱动</text>
+<rect x="710" y="76" width="42" height="26" rx="4" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="731" y="93" text-anchor="middle" font-size="10" fill="#2563eb">负载</text>
+<line x1="472" y1="89" x2="710" y2="89" stroke="#dc2626" stroke-width="3.5"/>
+<rect x="440" y="140" width="120" height="24" fill="#cbd5e1" stroke="#94a3b8" stroke-width="1.5"/>
+<rect x="620" y="140" width="140" height="24" fill="#cbd5e1" stroke="#94a3b8" stroke-width="1.5"/>
+<rect x="560" y="138" width="60" height="28" fill="#ffffff" stroke="#dc2626" stroke-width="2" stroke-dasharray="5,3"/>
+<text x="590" y="132" font-size="10.5" font-weight="bold" fill="#dc2626" text-anchor="middle">开槽！</text>
+<polygon points="472,89 710,89 710,152 620,152 620,232 560,232 560,152 472,152" fill="#7c3aed" opacity="0.08">
+<animate attributeName="opacity" values="0.08;0.08;0.22;0.22;0.08;0.08" keyTimes="0;0.42;0.5;0.85;0.92;1" dur="{DR}s" repeatCount="indefinite"/></polygon>
+<path d="M710,152 H620 V232 H560 V152 H472" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-dasharray="6,4"/>
+<text x="560" y="258" font-size="10.5" font-weight="bold" fill="#7c3aed" text-anchor="middle">回流绕槽大圈 = 环路面积暴增</text>
+{flow("M474,86 H708", DR/2, n=5, color="#dc2626", r=4.5)}
+<g><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.42;0.5;0.9;0.96;1" dur="{DR}s" repeatCount="indefinite"/>
+{flow("M708,152 H620 V228 H560 V152 H474", DR/2, n=6, color="#7c3aed", r=4.5)}
+</g>
+<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.6;0.66;0.9;0.96;1" dur="{DR}s" repeatCount="indefinite"/>
+<path d="M590,190 q14,-16 28,0 q14,16 28,0" fill="none" stroke="#dc2626" stroke-width="2" transform="translate(-40,-20)"/>
+<path d="M590,190 q14,-16 28,0 q14,16 28,0" fill="none" stroke="#dc2626" stroke-width="1.4" opacity="0.6" transform="translate(-52,-40)"/>
+<text x="640" y="200" font-size="10.5" font-weight="bold" fill="#dc2626">辐射 EMI</text>
+</g>
+'''
+    svg += caption("① 高频回流不走「几何最短」，走「电感最小」——永远贴着信号正下方（镜像电流）", "#059669", DR,
+                   "0;1;1;0;0", "0;0.03;0.3;0.36;1", y=420)
+    svg += caption("② 地平面一开槽：回流被断桥逼得绕大圈，环路面积从≈0 暴增几十倍", "#7c3aed", DR,
+                   "0;0;1;1;0;0", "0;0.38;0.44;0.62;0.68;1", y=420)
+    svg += caption("③ 环路=环形天线：向外辐射 EMI 认证翻车，向内拾取干扰=莫名串扰", "#dc2626", DR,
+                   "0;0;1;1", "0;0.68;0.74;1", y=420)
+    svg += note_box("军规：任何信号线不许跨分割/开槽！换层时回流地过孔必须贴着信号过孔——「让回流贴着脚下回家」", 462, DR, "0;0.78;0.84;1", w=730)
+    save('pcb-return-path.svg', svg + '</svg>')
 
 
 # ======================= 图 11：去耦电容 =======================
@@ -1077,4 +1136,5 @@ if __name__ == '__main__':
     make_ldo_feedback()
     make_analog_switch()
     make_cap_decoupling()
-    print('all 11 SVGs regenerated into', os.path.abspath(OUT))
+    make_pcb_return_path()
+    print('all 12 SVGs regenerated into', os.path.abspath(OUT))

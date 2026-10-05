@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="490" viewBox="0 0 800 490">
+<title>回流路径：信号的「回家路」，永远贴着它脚下走</title>
+<rect width="800" height="490" fill="#f8fafc"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+@media (prefers-color-scheme: dark){
+rect[fill="#f8fafc"]{fill:#0f172a}
+[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
+[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
+[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
+[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
+[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
+[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
+[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
+[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
+[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
+}
+</style>
+<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">回流路径：信号的「回家路」，永远贴着它脚下走</text>
+
+<text x="210" y="52" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">场景 A：完整地平面——回流紧贴信号正下方</text>
+<rect x="50" y="76" width="42" height="26" rx="4" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="71" y="93" text-anchor="middle" font-size="10" fill="#2563eb">驱动</text>
+<rect x="330" y="76" width="42" height="26" rx="4" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="351" y="93" text-anchor="middle" font-size="10" fill="#2563eb">负载</text>
+<line x1="92" y1="89" x2="330" y2="89" stroke="#dc2626" stroke-width="3.5"/>
+<text x="200" y="72" font-size="10.5" font-weight="bold" fill="#dc2626">信号（顶层走线）</text>
+<rect x="60" y="140" width="300" height="24" fill="#cbd5e1" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="366" y="156" font-size="10.5" fill="#475569">地平面</text>
+<line x1="330" y1="152" x2="92" y2="152" stroke="#059669" stroke-width="2.5" stroke-dasharray="6,4"/>
+<text x="120" y="178" font-size="10.5" font-weight="bold" fill="#059669">回流（镜像电流，紧贴脚下）</text>
+<rect x="92" y="89" width="238" height="63" fill="#059669" opacity="0.07"/>
+<text x="200" y="132" font-size="10" fill="#059669" text-anchor="middle" opacity="0">环路面积≈0
+<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.3;0.36;1" dur="5s" repeatCount="indefinite"/></text>
+<circle r="4.5" fill="#dc2626"><animateMotion dur="2.5s" begin="-0.50s" repeatCount="indefinite" path="M94,86 H328"/></circle>
+<circle r="4.5" fill="#dc2626"><animateMotion dur="2.5s" begin="0.00s" repeatCount="indefinite" path="M94,86 H328"/></circle>
+<circle r="4.5" fill="#dc2626"><animateMotion dur="2.5s" begin="0.50s" repeatCount="indefinite" path="M94,86 H328"/></circle>
+<circle r="4.5" fill="#dc2626"><animateMotion dur="2.5s" begin="1.00s" repeatCount="indefinite" path="M94,86 H328"/></circle>
+<circle r="4.5" fill="#dc2626"><animateMotion dur="2.5s" begin="1.50s" repeatCount="indefinite" path="M94,86 H328"/></circle>
+<g><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.12;0.18;0.85;0.92;1" dur="5s" repeatCount="indefinite"/>
+<circle r="4.5" fill="#059669"><animateMotion dur="2.5s" begin="-0.50s" repeatCount="indefinite" path="M328,152 H94"/></circle>
+<circle r="4.5" fill="#059669"><animateMotion dur="2.5s" begin="0.00s" repeatCount="indefinite" path="M328,152 H94"/></circle>
+<circle r="4.5" fill="#059669"><animateMotion dur="2.5s" begin="0.50s" repeatCount="indefinite" path="M328,152 H94"/></circle>
+<circle r="4.5" fill="#059669"><animateMotion dur="2.5s" begin="1.00s" repeatCount="indefinite" path="M328,152 H94"/></circle>
+<circle r="4.5" fill="#059669"><animateMotion dur="2.5s" begin="1.50s" repeatCount="indefinite" path="M328,152 H94"/></circle>
+</g>
+
+<text x="590" y="52" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#dc2626">场景 B：地平面开槽——回流被迫绕大圈</text>
+<rect x="430" y="76" width="42" height="26" rx="4" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="451" y="93" text-anchor="middle" font-size="10" fill="#2563eb">驱动</text>
+<rect x="710" y="76" width="42" height="26" rx="4" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="731" y="93" text-anchor="middle" font-size="10" fill="#2563eb">负载</text>
+<line x1="472" y1="89" x2="710" y2="89" stroke="#dc2626" stroke-width="3.5"/>
+<rect x="440" y="140" width="120" height="24" fill="#cbd5e1" stroke="#94a3b8" stroke-width="1.5"/>
+<rect x="620" y="140" width="140" height="24" fill="#cbd5e1" stroke="#94a3b8" stroke-width="1.5"/>
+<rect x="560" y="138" width="60" height="28" fill="#ffffff" stroke="#dc2626" stroke-width="2" stroke-dasharray="5,3"/>
+<text x="590" y="132" font-size="10.5" font-weight="bold" fill="#dc2626" text-anchor="middle">开槽！</text>
+<polygon points="472,89 710,89 710,152 620,152 620,232 560,232 560,152 472,152" fill="#7c3aed" opacity="0.08">
+<animate attributeName="opacity" values="0.08;0.08;0.22;0.22;0.08;0.08" keyTimes="0;0.42;0.5;0.85;0.92;1" dur="5s" repeatCount="indefinite"/></polygon>
+<path d="M710,152 H620 V232 H560 V152 H472" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-dasharray="6,4"/>
+<text x="560" y="258" font-size="10.5" font-weight="bold" fill="#7c3aed" text-anchor="middle">回流绕槽大圈 = 环路面积暴增</text>
+<circle r="4.5" fill="#dc2626"><animateMotion dur="2.5s" begin="-0.50s" repeatCount="indefinite" path="M474,86 H708"/></circle>
+<circle r="4.5" fill="#dc2626"><animateMotion dur="2.5s" begin="0.00s" repeatCount="indefinite" path="M474,86 H708"/></circle>
+<circle r="4.5" fill="#dc2626"><animateMotion dur="2.5s" begin="0.50s" repeatCount="indefinite" path="M474,86 H708"/></circle>
+<circle r="4.5" fill="#dc2626"><animateMotion dur="2.5s" begin="1.00s" repeatCount="indefinite" path="M474,86 H708"/></circle>
+<circle r="4.5" fill="#dc2626"><animateMotion dur="2.5s" begin="1.50s" repeatCount="indefinite" path="M474,86 H708"/></circle>
+<g><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.42;0.5;0.9;0.96;1" dur="5s" repeatCount="indefinite"/>
+<circle r="4.5" fill="#7c3aed"><animateMotion dur="2.5s" begin="-0.50s" repeatCount="indefinite" path="M708,152 H620 V228 H560 V152 H474"/></circle>
+<circle r="4.5" fill="#7c3aed"><animateMotion dur="2.5s" begin="-0.08s" repeatCount="indefinite" path="M708,152 H620 V228 H560 V152 H474"/></circle>
+<circle r="4.5" fill="#7c3aed"><animateMotion dur="2.5s" begin="0.33s" repeatCount="indefinite" path="M708,152 H620 V228 H560 V152 H474"/></circle>
+<circle r="4.5" fill="#7c3aed"><animateMotion dur="2.5s" begin="0.75s" repeatCount="indefinite" path="M708,152 H620 V228 H560 V152 H474"/></circle>
+<circle r="4.5" fill="#7c3aed"><animateMotion dur="2.5s" begin="1.17s" repeatCount="indefinite" path="M708,152 H620 V228 H560 V152 H474"/></circle>
+<circle r="4.5" fill="#7c3aed"><animateMotion dur="2.5s" begin="1.58s" repeatCount="indefinite" path="M708,152 H620 V228 H560 V152 H474"/></circle>
+</g>
+<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.6;0.66;0.9;0.96;1" dur="5s" repeatCount="indefinite"/>
+<path d="M590,190 q14,-16 28,0 q14,16 28,0" fill="none" stroke="#dc2626" stroke-width="2" transform="translate(-40,-20)"/>
+<path d="M590,190 q14,-16 28,0 q14,16 28,0" fill="none" stroke="#dc2626" stroke-width="1.4" opacity="0.6" transform="translate(-52,-40)"/>
+<text x="640" y="200" font-size="10.5" font-weight="bold" fill="#dc2626">辐射 EMI</text>
+</g>
+<text x="400" y="420" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">① 高频回流不走「几何最短」，走「电感最小」——永远贴着信号正下方（镜像电流）<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.3;0.36;1" dur="5s" repeatCount="indefinite"/></text><text x="400" y="420" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">② 地平面一开槽：回流被断桥逼得绕大圈，环路面积从≈0 暴增几十倍<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.38;0.44;0.62;0.68;1" dur="5s" repeatCount="indefinite"/></text><text x="400" y="420" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">③ 环路=环形天线：向外辐射 EMI 认证翻车，向内拾取干扰=莫名串扰<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.68;0.74;1" dur="5s" repeatCount="indefinite"/></text><g opacity="0">
+<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.78;0.84;1" dur="5s" repeatCount="indefinite"/>
+<rect x="35" y="438" width="730" height="34" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+<text x="400" y="460" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">军规：任何信号线不许跨分割/开槽！换层时回流地过孔必须贴着信号过孔——「让回流贴着脚下回家」</text>
+</g></svg>
