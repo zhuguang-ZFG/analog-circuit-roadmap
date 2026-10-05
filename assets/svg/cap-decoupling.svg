@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="480" viewBox="0 0 800 480">
+<title>去耦电容为什么要「贴脸」放？——走线电感 vs 本地水库</title>
+<rect width="800" height="480" fill="#f8fafc"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+@media (prefers-color-scheme: dark){
+rect[fill="#f8fafc"]{fill:#0f172a}
+[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
+[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
+[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
+[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
+[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
+[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
+[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
+[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
+[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
+}
+</style>
+<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">去耦电容为什么要「贴脸」放？——走线电感 vs 本地水库</text>
+
+<text x="200" y="50" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#dc2626">场景 A：电容太远（或没有）</text>
+<text x="46" y="102" font-size="12" font-weight="bold" fill="#b45309">5V 源</text>
+<line x1="90" y1="96" x2="150" y2="96" stroke="#334155" stroke-width="2.5"/>
+<path d="M150,96 q6,-14 12,0 q6,14 12,0 q6,-14 12,0 q6,14 12,0 q6,-14 12,0" fill="none" stroke="#7c3aed" stroke-width="2.5"/>
+<line x1="210" y1="96" x2="260" y2="96" stroke="#334155" stroke-width="2.5"/>
+<text x="148" y="76" font-size="11" font-weight="bold" fill="#7c3aed">走线电感 ~10nH</text>
+<text x="148" y="64" font-size="10" fill="#475569">10cm 长走线</text>
+<rect x="260" y="76" width="90" height="40" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="305" y="100" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">IC</text>
+<line x1="305" y1="116" x2="305" y2="146" stroke="#334155" stroke-width="2"/>
+<line x1="305" y1="146" x2="305" y2="160" stroke="#334155" stroke-width="2.5"/><line x1="289" y1="160" x2="321" y2="160" stroke="#334155" stroke-width="3"/><line x1="295" y1="166" x2="315" y2="166" stroke="#334155" stroke-width="3"/><line x1="301" y1="172" x2="309" y2="172" stroke="#334155" stroke-width="3"/>
+<text x="130" y="136" font-size="11" font-weight="bold" fill="#dc2626" opacity="0">尖峰来了，电感「顶住」不给过！
+<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.42;0.46;0.62;0.66;1" dur="5s" repeatCount="indefinite"/></text>
+<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.4;0.44;0.6;0.64;1" dur="5s" repeatCount="indefinite"/>
+<circle r="4" fill="#dc2626"><animateMotion dur="1.0s" begin="-0.50s" repeatCount="indefinite" path="M262,92 H300"/></circle>
+<circle r="4" fill="#dc2626"><animateMotion dur="1.0s" begin="0.00s" repeatCount="indefinite" path="M262,92 H300"/></circle>
+</g>
+<text x="590" y="50" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">场景 B：100nF 贴脸（&lt;3mm）</text>
+<text x="436" y="102" font-size="12" font-weight="bold" fill="#b45309">5V 源</text>
+<line x1="480" y1="96" x2="540" y2="96" stroke="#334155" stroke-width="2.5"/>
+<path d="M540,96 q6,-14 12,0 q6,14 12,0 q6,-14 12,0 q6,14 12,0 q6,-14 12,0" fill="none" stroke="#7c3aed" stroke-width="2.5" opacity="0.45"/>
+<line x1="600" y1="96" x2="650" y2="96" stroke="#334155" stroke-width="2.5"/>
+<text x="540" y="76" font-size="11" fill="#94a3b8">走线电感（远，无所谓）</text>
+<rect x="650" y="76" width="90" height="40" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="695" y="100" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">IC</text>
+<line x1="695" y1="116" x2="695" y2="146" stroke="#334155" stroke-width="2"/>
+<line x1="695" y1="146" x2="695" y2="160" stroke="#334155" stroke-width="2.5"/><line x1="679" y1="160" x2="711" y2="160" stroke="#334155" stroke-width="3"/><line x1="685" y1="166" x2="705" y2="166" stroke="#334155" stroke-width="3"/><line x1="691" y1="172" x2="699" y2="172" stroke="#334155" stroke-width="3"/>
+<line x1="650" y1="96" x2="630" y2="96" stroke="#334155" stroke-width="2.5"/>
+<circle cx="650" cy="96" r="3.5" fill="#334155"/>
+<line x1="630" y1="96" x2="630" y2="120" stroke="#334155" stroke-width="2.5"/>
+<line x1="612" y1="120" x2="648" y2="120" stroke="#059669" stroke-width="3.5"/>
+<line x1="612" y1="132" x2="648" y2="132" stroke="#059669" stroke-width="3.5"/>
+<line x1="630" y1="132" x2="630" y2="146" stroke="#334155" stroke-width="2"/>
+<line x1="630" y1="146" x2="630" y2="160" stroke="#334155" stroke-width="2.5"/><line x1="614" y1="160" x2="646" y2="160" stroke="#334155" stroke-width="3"/><line x1="620" y1="166" x2="640" y2="166" stroke="#334155" stroke-width="3"/><line x1="626" y1="172" x2="634" y2="172" stroke="#334155" stroke-width="3"/>
+<text x="584" y="130" font-size="11" font-weight="bold" fill="#059669">100nF</text>
+<text x="560" y="146" font-size="9.5" fill="#475569">本地水库</text>
+<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.4;0.44;0.6;0.64;1" dur="5s" repeatCount="indefinite"/>
+<circle r="4.5" fill="#059669"><animateMotion dur="1.0s" begin="-0.50s" repeatCount="indefinite" path="M634,126 V100 H648 M654,96 H688"/></circle>
+<circle r="4.5" fill="#059669"><animateMotion dur="1.0s" begin="-0.25s" repeatCount="indefinite" path="M634,126 V100 H648 M654,96 H688"/></circle>
+<circle r="4.5" fill="#059669"><animateMotion dur="1.0s" begin="0.00s" repeatCount="indefinite" path="M634,126 V100 H648 M654,96 H688"/></circle>
+<circle r="4.5" fill="#059669"><animateMotion dur="1.0s" begin="0.25s" repeatCount="indefinite" path="M634,126 V100 H648 M654,96 H688"/></circle>
+</g>
+<text x="470" y="136" font-size="11" font-weight="bold" fill="#059669" opacity="0">本地水库瞬时放水，电压纹丝不动
+<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.42;0.46;0.62;0.66;1" dur="5s" repeatCount="indefinite"/></text>
+
+<text x="64" y="290" font-size="11.5" font-weight="bold" fill="#dc2626">A：电源脚电压塌陷 0.5V+（复位/误触发温床）</text>
+<path d="M60,340.0 L64,340.0 L68,340.0 L72,340.0 L76,340.0 L80,340.0 L84,340.0 L88,340.0 L92,340.0 L96,340.0 L100,340.0 L104,340.0 L108,340.0 L112,340.0 L116,340.0 L120,340.0 L124,340.0 L128,340.0 L132,340.0 L136,340.0 L140,340.0 L144,340.0 L148,340.0 L152,340.1 L156,340.2 L160,340.4 L164,340.8 L168,341.4 L172,342.4 L176,344.0 L180,346.3 L184,349.5 L188,353.7 L192,359.0 L196,365.2 L200,372.0 L204,378.9 L208,385.2 L212,390.4 L216,393.8 L220,395.0 L224,393.8 L228,390.4 L232,385.2 L236,378.9 L240,372.0 L244,365.2 L248,359.0 L252,353.7 L256,349.5 L260,346.3 L264,344.0 L268,342.4 L272,341.4 L276,340.8 L280,340.4 L284,340.2 L288,340.1 L292,340.0 L296,340.0 L300,340.0 L304,340.0 L308,340.0 L312,340.0 L316,340.0 L320,340.0 L324,340.0 L328,340.0 L332,340.0 L336,340.0 L340,340.0 L344,340.0 L348,340.0 L352,340.0 L356,340.0 L360,340.0 L364,340.0 L368,340.0 L372,340.0 L376,340.0 L380,340.0" fill="none" stroke="#dc2626" stroke-width="3"/>
+<line x1="60" y1="340" x2="384" y2="340" stroke="#64748b" stroke-width="1.5"/>
+<text x="424" y="290" font-size="11.5" font-weight="bold" fill="#059669">B：微纹波（&lt;50mV），电路安心工作</text>
+<path d="M420,340.0 L424,340.0 L428,340.0 L432,340.0 L436,340.0 L440,340.0 L444,340.0 L448,340.0 L452,340.0 L456,340.0 L460,340.0 L464,340.0 L468,340.0 L472,340.0 L476,340.0 L480,340.0 L484,340.0 L488,340.0 L492,340.0 L496,340.0 L500,340.0 L504,340.0 L508,340.0 L512,340.0 L516,340.0 L520,340.1 L524,340.1 L528,340.3 L532,340.4 L536,340.7 L540,341.1 L544,341.7 L548,342.5 L552,343.5 L556,344.6 L560,345.8 L564,347.1 L568,348.2 L572,349.2 L576,349.8 L580,350.0 L584,349.8 L588,349.2 L592,348.2 L596,347.1 L600,345.8 L604,344.6 L608,343.5 L612,342.5 L616,341.7 L620,341.1 L624,340.7 L628,340.4 L632,340.3 L636,340.1 L640,340.1 L644,340.0 L648,340.0 L652,340.0 L656,340.0 L660,340.0 L664,340.0 L668,340.0 L672,340.0 L676,340.0 L680,340.0 L684,340.0 L688,340.0 L692,340.0 L696,340.0 L700,340.0 L704,340.0 L708,340.0 L712,340.0 L716,340.0 L720,340.0 L724,340.0 L728,340.0 L732,340.0 L736,340.0 L740,340.0" fill="none" stroke="#059669" stroke-width="3"/>
+<line x1="420" y1="340" x2="744" y2="340" stroke="#64748b" stroke-width="1.5"/>
+<text x="400" y="400" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">① IC 翻转瞬间要 100mA 尖峰电流，但只持续几 ns<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.24;1" dur="5s" repeatCount="indefinite"/></text><text x="400" y="400" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">② 走线电感：直流随便过，ns 尖峰面前=断路（V=L·di/dt）<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.24;0.28;0.42;0.46;1" dur="5s" repeatCount="indefinite"/></text><text x="400" y="400" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">③ 100nF 贴脸=本地水库：它距离近、电感小，尖峰由它顶上<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.46;0.5;0.68;0.72;1" dur="5s" repeatCount="indefinite"/></text><text x="400" y="400" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">④ 所以记住：距离&lt;3mm、先过电容再到 IC、电容回路越短越好<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.72;0.76;1" dur="5s" repeatCount="indefinite"/></text><g opacity="0">
+<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.8;0.84;1" dur="5s" repeatCount="indefinite"/>
+<rect x="80" y="434" width="640" height="34" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+<text x="400" y="456" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">100nF 管高频（ns 尖峰）· 10µF 管中频 · 大电解管低频——三级去耦，各司其职</text>
+</g></svg>

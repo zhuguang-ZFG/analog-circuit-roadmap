@@ -68,6 +68,14 @@ graph TD
 
 ### 1.2 真实电容：ESR 与 ESL
 
+<p>
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/86/Photo-SMDcapacitors.jpg" width="300" alt="SMD 电容与毫米尺（公有领域）">
+<img src="https://upload.wikimedia.org/wikipedia/commons/f/f8/Soldering_a_0805.jpg" width="300" alt="0805 贴片焊接（Wikimedia Commons）">
+</p>
+
+> 📷 贴片元件有多小：0805 = 2.0×1.25mm（左图与毫米尺对比）。手焊 0805（右图）是模拟工程师的成年礼——烙铁尖+镊子+放大镜，一个周末就能练出来。
+
+
 电容的完整模型是 **C 串联 ESR（等效串联电阻）再串联 ESL（等效串联电感）**：
 
 - **电解电容**：容量大（µF~mF），ESR 大（0.1~10Ω），寿命随温度指数下降（每升 10°C 寿命减半），反接会爆炸
@@ -85,6 +93,11 @@ graph TD
 ---
 
 ## 第 2 章 二极管：单向导电的物理本质
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Diode-closeup.jpg" width="260" alt="二极管特写（Wikimedia Commons）">
+
+> 📷 二极管实物：玻璃壳里那截 tiny 的 PN 结，阳极进阴极出——阴极一端有**色环**标记。接反了？轻则不工作，重则放烟花。
+
 
 ### 2.1 PN 结的形成
 
@@ -190,6 +203,9 @@ NPN 管 = 两块 N 型夹一块**极薄**的 P 型基区：
 ### 3.4 偏置电路：为什么必须用分压偏置
 
 <p align="center"><img src="assets/svg/bjt-amplify.svg" width="720" alt="共射放大器动画：偏置核算与放大原理"></p>
+
+> 💎 **精髓**：上图用**固定偏置**讲清放大的本质（结构最简、计算最透）。但请注意——固定偏置依赖 β 的准确值，而 β 离散 3 倍！它恰恰是本小节要"批判"的对象：看完它怎么工作，再看为什么工程上必须用分压偏置。
+
 
 
 固定偏置（单电阻从 Vcc 到基极）：$I_B=(V_{CC}-0.7)/R_B$，$I_C=\beta I_B$ —— **β 离散导致工作点完全不可控**。
@@ -318,6 +334,11 @@ MOSFET 栅极充电时 $V_{GS}$ 波形出现的"平台"：此时 $V_{DS}$ 正在
 **典型应用**：MCU GPIO 默认模式、74HC 逻辑输出、B 类/AB 类音频功放的输出级（NPN+PNP 互补对管，会有**交越失真**——两管都未导通的死区造成波形过零畸变，AB 类用二极管偏置消除）。
 
 ### 5.2 开漏输出（Open-Drain）
+
+<p align="center"><img src="assets/svg/pushpull-opendrain.svg" width="720" alt="推挽vs开漏动画：为什么I2C选慢的"></p>
+
+> 💎 **精髓**：推挽是"两个人抢着开车"——独享时最快，共享时互撞；开漏+上拉是"大家都能踩刹车"——慢，但永不冲突。I2C 用速度换来了多主仲裁的能力。
+
 
 ```
                     VDD
@@ -586,6 +607,11 @@ IN ─────┤          ├───── OUT
 
 ### 8.3 关键参数解析 📋
 
+<p align="center"><img src="assets/svg/analog-switch.svg" width="720" alt="模拟开关动画：电荷注入"></p>
+
+> 💎 **精髓**：模拟开关不是理想开关——关断瞬间沟道里攒的电荷"无家可归"，被挤进保持电容。ΔV=Q/C，这是采样电路里最隐蔽的误差源，数据手册里叫 Charge Injection。
+
+
 **① 导通电阻 $R_{ON}$**
 - CD4066：典型 80~250Ω（随电源电压升高而降低）；74HC4066：约 30Ω；专用低阻开关 <1Ω
 - **$R_{ON}$ 平坦度**：$R_{ON}$ 随输入电压变化的幅度——造成**信号失真**（THD 元凶）
@@ -639,6 +665,11 @@ $$V_{KA} = 2.5 \times \left(1 + \frac{R_1}{R_2}\right)$$
 
 ### 9.3 LDO 线性稳压器剖析
 
+<p align="center"><img src="assets/svg/ldo-feedback.svg" width="720" alt="LDO负反馈动画"></p>
+
+> 💎 **精髓**：LDO 不是"稳压元件"，而是一个**闭环控制系统**——误差放大器每秒钟纠正几千次。理解这一点，你就理解了为什么输出电容的 ESR 能把它逼疯（环路稳定性）。
+
+
 ```
 VIN ──[调整管 PMOS/PNP]── VOUT
            ▲                │
@@ -662,6 +693,10 @@ VIN ──[调整管 PMOS/PNP]── VOUT
 | 输出噪声 | µV RMS（10Hz~100kHz） | 给 ADC/PLL 供电必须用低噪 LDO（如 LT3042 0.8µV RMS） |
 
 **稳定性大坑** 🔧：老式 LDO（LM1117 等 NPN 准 LDO）**依赖输出电容的 ESR 造零点**——要求 ESR 在 0.3~22Ω 区间。全贴陶瓷电容（ESR≈5mΩ）反而**振荡**！现代"陶瓷电容稳定"（ceramic-stable）LDO 才可以用 MLCC。→ 换料必查此项。
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/d/d8/TS7805_voltage_regulator.JPG" width="240" alt="7805 TO-220 实物（Wikimedia Commons，CC BY-SA）">
+
+> 📷 7805 实物（TO-220 封装）：金属背板是散热片安装面——还记得吗，$(V_{IN}-5V) \times I$ 全变成热，大电流必须上散热片。
 
 ### 9.4 7805/AMS1117 故障案例
 
@@ -705,6 +740,14 @@ $$f = \frac{1.44}{(R_1 + 2R_2)\,C}, \qquad 占空比 = \frac{R_1+R_2}{R_1+2R_2} 
 🎬 **动画演示**：见第四篇 [555 振荡 GIF](#demo6)
 
 ### 10.2 三种模式
+
+<p>
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/64/NE555_DIP_%26_SOIC.jpg" width="330" alt="NE555 DIP 与 SOIC 封装实物（Wikimedia Commons，CC BY-SA 3.0）">
+<img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Die_of_the_first_555_chip.jpg" width="300" alt="555 芯片晶圆 die 照片（公有领域）">
+</p>
+
+> 📷 左：NE555 的 DIP-8（插件）与 SOIC-8（贴片）封装——同一颗芯，两种外衣。右：第一颗 555 的晶圆照片——你看到的分压电阻、比较器、放电管，全在这几平方毫米里。
+
 
 | 模式 | 接法要点 | 用途 |
 |---|---|---|
@@ -767,6 +810,11 @@ $$f = \frac{1.44}{(R_1 + 2R_2)\,C}, \qquad 占空比 = \frac{R_1+R_2}{R_1+2R_2} 
 
 ### 12.1 布局（Placement）——决定 80% 的成败
 
+<p align="center"><img src="assets/svg/cap-decoupling.svg" width="720" alt="去耦电容动画：贴脸放的真正原因"></p>
+
+> 💎 **精髓**：去耦电容不是"滤波"，是**本地水库**——ns 级电流尖峰面前，10cm 走线电感就是断路。所以"100nF 贴脸 &lt;3mm"不是建议，是铁律。
+
+
 1. **功能分区**：模拟区 / 数字区 / 电源区 / 射频区，物理隔开；**混合信号芯片（ADC）骑跨分界线**，单点连接两地
 2. **信号流向直线化**：输入→放大→滤波→ADC 一字排开，避免信号来回穿插
 3. **去耦电容贴脸放**：与 IC 电源脚的距离 <3mm，电容→过孔→地平面的回路越短越好。**放远了等于没放**（走线电感抵消高频去耦）
@@ -820,6 +868,14 @@ $$f = \frac{1.44}{(R_1 + 2R_2)\,C}, \qquad 占空比 = \frac{R_1+R_2}{R_1+2R_2} 
 
 ## 第 13 章 排故五步法
 
+<p>
+<img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Digital_Multimeter_Aka.jpg" width="240" alt="数字万用表（Wikimedia Commons，CC BY-SA）">
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Digital_oscilloscope_in_use.jpg" width="360" alt="数字示波器实战（Wikimedia Commons）">
+</p>
+
+> 📷 排故两大神器：万用表管"静态"（电压/通断/二极管档），示波器管"动态"（纹波/振荡/时序）。**先静后动**——80% 的故障万用表就够了。
+
+
 ```
 ① 症状确认 → ② 二分定位 → ③ 假设验证 → ④ 修复 → ⑤ 回归测试
 ```
@@ -856,6 +912,11 @@ $$f = \frac{1.44}{(R_1 + 2R_2)\,C}, \qquad 占空比 = \frac{R_1+R_2}{R_1+2R_2} 
 - 冷冻喷剂/热风枪：温度敏感的漂移故障定位神器
 
 ### 14.5 焊接与连接类（占比最高的真实故障）
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Electronics-White-Breadboard.jpg" width="340" alt="面包板实物（Wikimedia Commons，CC BY-SA）">
+
+> 📷 面包板：入门神器，也是"随机故障发生器"——老化插孔接触不良会让你怀疑人生。**验证性电路请上焊接板。**
+
 - **虚焊**：肉眼难辨，摇动元件测通断；贴片件侧光检查
 - **冷焊**：焊点发灰不亮 → 重熔加助焊剂
 - **锡桥**：相邻引脚连锡 → 吸锡带清理

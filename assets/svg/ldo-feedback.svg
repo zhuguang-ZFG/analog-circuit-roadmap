@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="470" viewBox="0 0 800 470">
+<title>LDO 的本质：一个会「自我调节」的分压器（负反馈环路）</title>
+<rect width="800" height="470" fill="#f8fafc"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+@media (prefers-color-scheme: dark){
+rect[fill="#f8fafc"]{fill:#0f172a}
+[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
+[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
+[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
+[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
+[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
+[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
+[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
+[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
+[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
+}
+</style>
+<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">LDO 的本质：一个会「自我调节」的分压器（负反馈环路）</text>
+
+<text x="330" y="62" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">LDO 内部负反馈环路（AMS1117 同款结构）</text>
+<text x="56" y="96" font-size="13" font-weight="bold" fill="#b45309">VIN 8V</text>
+<line x1="100" y1="90" x2="180" y2="90" stroke="#334155" stroke-width="2.5"/>
+<rect x="180" y="78" width="80" height="26" fill="#fffbeb" stroke="#b45309" stroke-width="2.5"/>
+<text x="220" y="95" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#b45309">调整管</text>
+<text x="220" y="118" text-anchor="middle" font-size="10" fill="#475569">≈ 自动可变电阻</text>
+<line x1="260" y1="90" x2="330" y2="90" stroke="#334155" stroke-width="2.5"/>
+<circle cx="330" cy="90" r="4" fill="#334155"/>
+<line x1="330" y1="90" x2="400" y2="90" stroke="#334155" stroke-width="2.5"/>
+<text x="408" y="95" font-size="13" font-weight="bold" fill="#059669">VOUT 5V</text>
+<line x1="400" y1="90" x2="400" y2="110" stroke="#334155" stroke-width="2.5"/>
+<rect x="389" y="110" width="22" height="46" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<line x1="400" y1="156" x2="400" y2="176" stroke="#334155" stroke-width="2.5"/>
+<text x="420" y="137.0" font-size="12.5" font-weight="bold" fill="#b45309">负载</text>
+<line x1="400" y1="156" x2="400" y2="186" stroke="#334155" stroke-width="2.5"/>
+<line x1="400" y1="186" x2="400" y2="200" stroke="#334155" stroke-width="2.5"/><line x1="384" y1="200" x2="416" y2="200" stroke="#334155" stroke-width="3"/><line x1="390" y1="206" x2="410" y2="206" stroke="#334155" stroke-width="3"/><line x1="396" y1="212" x2="404" y2="212" stroke="#334155" stroke-width="3"/>
+<line x1="350" y1="90" x2="350" y2="130" stroke="#334155" stroke-width="2" stroke-dasharray="4,3"/>
+<circle cx="350" cy="130" r="3" fill="#334155"/>
+<line x1="350" y1="130" x2="368" y2="148" stroke="#dc2626" stroke-width="2.5">
+<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.28;0.32;1" dur="5s" repeatCount="indefinite"/></line>
+<circle cx="350" cy="152" r="3" fill="#334155"/>
+<line x1="350" y1="146" x2="350" y2="166" stroke="#334155" stroke-width="2.5"/>
+<rect x="339" y="166" width="22" height="34" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<line x1="350" y1="200" x2="350" y2="220" stroke="#334155" stroke-width="2.5"/>
+<text x="370" y="187.0" font-size="12.5" font-weight="bold" fill="#b45309">突加</text>
+<line x1="350" y1="200" x2="350" y2="214" stroke="#334155" stroke-width="2"/>
+<line x1="350" y1="214" x2="350" y2="228" stroke="#334155" stroke-width="2.5"/><line x1="334" y1="228" x2="366" y2="228" stroke="#334155" stroke-width="3"/><line x1="340" y1="234" x2="360" y2="234" stroke="#334155" stroke-width="3"/><line x1="346" y1="240" x2="354" y2="240" stroke="#334155" stroke-width="3"/>
+<text x="356" y="118" font-size="10" fill="#dc2626" text-anchor="middle">30%处加重</text>
+<line x1="330" y1="90" x2="330" y2="130" stroke="#334155" stroke-width="2.5"/>
+<line x1="330" y1="110" x2="330" y2="130" stroke="#334155" stroke-width="2.5"/>
+<rect x="319" y="130" width="22" height="34" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<line x1="330" y1="164" x2="330" y2="184" stroke="#334155" stroke-width="2.5"/>
+<text x="318" y="151" text-anchor="end" font-size="12.5" font-weight="bold" fill="#b45309">R1</text>
+<circle cx="330" cy="186" r="3.5" fill="#334155"/>
+<line x1="330" y1="164" x2="330" y2="206" stroke="#334155" stroke-width="2.5"/>
+<line x1="330" y1="186" x2="330" y2="206" stroke="#334155" stroke-width="2.5"/>
+<rect x="319" y="206" width="22" height="34" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<line x1="330" y1="240" x2="330" y2="260" stroke="#334155" stroke-width="2.5"/>
+<text x="318" y="227" text-anchor="end" font-size="12.5" font-weight="bold" fill="#b45309">R2</text>
+<line x1="330" y1="240" x2="330" y2="252" stroke="#334155" stroke-width="2"/>
+<line x1="330" y1="252" x2="330" y2="266" stroke="#334155" stroke-width="2.5"/><line x1="314" y1="266" x2="346" y2="266" stroke="#334155" stroke-width="3"/><line x1="320" y1="272" x2="340" y2="272" stroke="#334155" stroke-width="3"/><line x1="326" y1="278" x2="334" y2="278" stroke="#334155" stroke-width="3"/>
+<polygon points="180,170 180,222 240,196" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="188" y="196" font-size="13" font-weight="bold" fill="#dc2626">−</text>
+<text x="188" y="216" font-size="13" font-weight="bold" fill="#059669">+</text>
+<text x="168" y="240" font-size="10.5" fill="#475569">误差放大器</text>
+<line x1="330" y1="186" x2="240" y2="186" stroke="#334155" stroke-width="2"/>
+<text x="262" y="178" font-size="10" fill="#7c3aed">采样 1.25V</text>
+<rect x="150" y="230" width="70" height="24" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="185" y="246" text-anchor="middle" font-size="11" font-weight="bold" fill="#2563eb">基准 1.25V</text>
+<line x1="185" y1="230" x2="185" y2="222" stroke="#334155" stroke-width="2"/>
+<line x1="240" y1="196" x2="220" y2="196" stroke="#334155" stroke-width="2"/>
+<line x1="220" y1="196" x2="220" y2="104" stroke="#334155" stroke-width="2"/>
+<text x="226" y="152" font-size="10" fill="#475569">驱动</text>
+<path d="M120,240 C80,240 80,120 130,104" fill="none" stroke="#7c3aed" stroke-width="2" stroke-dasharray="5,4">
+<animate attributeName="opacity" values="0.3;1;0.3" dur="1.6s" repeatCount="indefinite"/></path>
+<text x="70" y="180" font-size="10.5" font-weight="bold" fill="#7c3aed">反馈环</text>
+
+<text x="64" y="300" font-size="11.5" font-weight="bold" fill="#059669">有反馈：跌落→拉回（振铃后稳定）</text>
+<path d="M60,340.0 L64,340.0 L68,340.0 L72,340.0 L76,340.0 L80,340.0 L84,340.0 L88,340.0 L92,340.0 L96,340.0 L100,340.0 L104,340.0 L108,340.0 L112,340.0 L116,340.0 L120,340.0 L124,340.0 L128,340.0 L132,340.0 L136,340.0 L140,340.0 L144,340.0 L148,340.0 L152,340.0 L156,360.0 L160,357.5 L164,353.6 L168,348.9 L172,343.8 L176,338.8 L180,334.2 L184,330.4 L188,327.6 L192,325.8 L196,325.0 L200,325.2 L204,326.3 L208,328.0 L212,330.1 L216,332.5 L220,334.9 L224,337.2 L228,339.1 L232,340.7 L236,341.9 L240,342.6 L244,342.9 L248,342.7 L252,342.3 L256,341.6 L260,340.8 L264,339.9 L268,339.0 L272,338.2 L276,337.6 L280,337.1 L284,336.9 L288,336.8 L292,336.9 L296,337.1 L300,337.5 L304,337.9 L308,338.3 L312,338.8 L316,339.2 L320,339.6 L324,339.9 L328,340.1 L332,340.2 L336,340.2 L340,340.2 L344,340.1 L348,340.0 L352,339.9 L356,339.7 L360,339.6 L364,339.5 L368,339.4 L372,339.3 L376,339.3 L380,339.3" fill="none" stroke="#059669" stroke-width="3"/>
+<line x1="60" y1="340" x2="384" y2="340" stroke="#64748b" stroke-width="1.5"/>
+<line x1="156" y1="320" x2="156" y2="366" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="424" y="300" font-size="11.5" font-weight="bold" fill="#dc2626">若无反馈：一跌不起（负载调整率灾难）</text>
+<path d="M420,340.0 L424,340.0 L428,340.0 L432,340.0 L436,340.0 L440,340.0 L444,340.0 L448,340.0 L452,340.0 L456,340.0 L460,340.0 L464,340.0 L468,340.0 L472,340.0 L476,340.0 L480,340.0 L484,340.0 L488,340.0 L492,340.0 L496,340.0 L500,340.0 L504,340.0 L508,340.0 L512,340.0 L516,340.0 L520,342.3 L524,344.4 L528,346.3 L532,348.0 L536,349.5 L540,350.8 L544,352.0 L548,353.1 L552,354.0 L556,354.9 L560,355.6 L564,356.3 L568,356.9 L572,357.4 L576,357.9 L580,358.4 L584,358.8 L588,359.1 L592,359.4 L596,359.7 L600,359.9 L604,360.1 L608,360.3 L612,360.5 L616,360.7 L620,360.8 L624,360.9 L628,361.1 L632,361.2 L636,361.2 L640,361.3 L644,361.4 L648,361.5 L652,361.5 L656,361.6 L660,361.6 L664,361.7 L668,361.7 L672,361.7 L676,361.8 L680,361.8 L684,361.8 L688,361.8 L692,361.8 L696,361.9 L700,361.9 L704,361.9 L708,361.9 L712,361.9 L716,361.9 L720,361.9 L724,361.9 L728,361.9 L732,361.9 L736,362.0 L740,362.0" fill="none" stroke="#dc2626" stroke-width="3"/>
+<line x1="420" y1="340" x2="744" y2="340" stroke="#64748b" stroke-width="1.5"/>
+<line x1="516" y1="320" x2="516" y2="366" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="400" y="410" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">① 分压器 R1/R2 把 VOUT 采样回误差放大器，与 1.25V 基准比<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.04;0.24;0.28;1" dur="5s" repeatCount="indefinite"/></text><text x="400" y="410" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">② 负载突然加重 → VOUT 一跌 → 采样低于基准 → 误差放大器喊「不够！」<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.28;0.32;0.55;0.6;1" dur="5s" repeatCount="indefinite"/></text><text x="400" y="410" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">③ 调整管立刻「调小自己的电阻」→ VOUT 拉回 5V——全自动，无需人管<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.6;0.65;1" dur="5s" repeatCount="indefinite"/></text><g opacity="0">
+<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.68;0.73;1" dur="5s" repeatCount="indefinite"/>
+<rect x="60" y="428" width="680" height="34" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+<text x="400" y="450" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">VOUT = 1.25×(1+R1/R2) · 发热 = (VIN−VOUT)×I 全变成热——LDO 效率低的根因</text>
+</g></svg>

@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="480" viewBox="0 0 800 480">
+<title>模拟开关的暗伤：关断瞬间，沟道电荷被「挤」进电容（CD4066）</title>
+<rect width="800" height="480" fill="#f8fafc"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+@media (prefers-color-scheme: dark){
+rect[fill="#f8fafc"]{fill:#0f172a}
+[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
+[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
+[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
+[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
+[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
+[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
+[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
+[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
+[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
+}
+</style>
+<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">模拟开关的暗伤：关断瞬间，沟道电荷被「挤」进电容（CD4066）</text>
+
+<text x="215" y="60" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">采样保持电路（传输门 + 保持电容）</text>
+<circle cx="60" cy="160" r="20" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+<path d="M50,160 q5,-13 10,0 q5,13 10,0" fill="none" stroke="#2563eb" stroke-width="2"/>
+<text x="30" y="196" font-size="11" font-weight="bold" fill="#2563eb">输入</text>
+<line x1="80" y1="160" x2="130" y2="160" stroke="#334155" stroke-width="2.5"/>
+<circle cx="140" cy="160" r="3.5" fill="#334155"/>
+<line x1="140" y1="160" x2="168" y2="136" stroke="#059669" stroke-width="3">
+<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.6;0.64;1" dur="6s" repeatCount="indefinite"/></line>
+<circle cx="176" cy="160" r="3.5" fill="#334155"/>
+<text x="118" y="128" font-size="11" font-weight="bold" fill="#334155">NMOS</text>
+<text x="118" y="118" font-size="9.5" fill="#475569">传低电平好手</text>
+<line x1="176" y1="160" x2="210" y2="160" stroke="#334155" stroke-width="2.5"/>
+<line x1="140" y1="160" x2="140" y2="210" stroke="#334155" stroke-width="2.5"/>
+<line x1="210" y1="160" x2="210" y2="210" stroke="#334155" stroke-width="2.5"/>
+<circle cx="140" cy="210" r="3.5" fill="#334155"/>
+<line x1="140" y1="210" x2="168" y2="186" stroke="#059669" stroke-width="3">
+<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.6;0.64;1" dur="6s" repeatCount="indefinite"/></line>
+<circle cx="176" cy="210" r="3.5" fill="#334155"/>
+<text x="96" y="240" font-size="11" font-weight="bold" fill="#334155">PMOS</text>
+<text x="96" y="252" font-size="9.5" fill="#475569">传高电平好手</text>
+<text x="226" y="130" font-size="10.5" fill="#7c3aed">EN/EN̅ 互补控制</text>
+<text x="226" y="144" font-size="10" fill="#475569">两管同开同关</text>
+<line x1="210" y1="160" x2="280" y2="160" stroke="#334155" stroke-width="2.5"/>
+<line x1="210" y1="210" x2="280" y2="210" stroke="#334155" stroke-width="2.5"/>
+<line x1="280" y1="160" x2="280" y2="210" stroke="#334155" stroke-width="2.5"/>
+<circle cx="280" cy="185" r="4" fill="#334155"/>
+<line x1="280" y1="185" x2="330" y2="185" stroke="#334155" stroke-width="2.5"/>
+<line x1="330" y1="185" x2="330" y2="205" stroke="#334155" stroke-width="2.5"/>
+<line x1="300" y1="205" x2="360" y2="205" stroke="#334155" stroke-width="3"/>
+<line x1="300" y1="221" x2="360" y2="221" stroke="#334155" stroke-width="3"/>
+<line x1="330" y1="221" x2="330" y2="250" stroke="#334155" stroke-width="2.5"/>
+<line x1="330" y1="250" x2="330" y2="264" stroke="#334155" stroke-width="2.5"/><line x1="314" y1="264" x2="346" y2="264" stroke="#334155" stroke-width="3"/><line x1="320" y1="270" x2="340" y2="270" stroke="#334155" stroke-width="3"/><line x1="326" y1="276" x2="334" y2="276" stroke="#334155" stroke-width="3"/>
+<text x="370" y="217" font-size="12" font-weight="bold" fill="#2563eb">C 保持 100pF</text>
+<g fill="#f59e0b" opacity="0">
+<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.3;0.36;0.6;0.66;1" dur="6s" repeatCount="indefinite"/>
+<circle cx="150" cy="172" r="2.6"/><circle cx="158" cy="168" r="2.6"/><circle cx="163" cy="174" r="2.6"/>
+<circle cx="152" cy="222" r="2.6"/><circle cx="160" cy="218" r="2.6"/><circle cx="165" cy="224" r="2.6"/>
+</g>
+<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.62;0.66;0.9;0.94;1" dur="6s" repeatCount="indefinite"/>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="1.6s" begin="-0.50s" repeatCount="indefinite" path="M170,166 H272 V181 H324"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="1.6s" begin="-0.10s" repeatCount="indefinite" path="M170,166 H272 V181 H324"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="1.6s" begin="0.30s" repeatCount="indefinite" path="M170,166 H272 V181 H324"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="1.6s" begin="0.70s" repeatCount="indefinite" path="M170,166 H272 V181 H324"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="1.6s" begin="-0.50s" repeatCount="indefinite" path="M170,214 H272 V189 H324"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="1.6s" begin="-0.10s" repeatCount="indefinite" path="M170,214 H272 V189 H324"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="1.6s" begin="0.30s" repeatCount="indefinite" path="M170,214 H272 V189 H324"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="1.6s" begin="0.70s" repeatCount="indefinite" path="M170,214 H272 V189 H324"/></circle>
+</g>
+<text x="150" y="285" font-size="11.5" font-weight="bold" fill="#b45309" opacity="0">关断瞬间：沟道电子「无家可归」，被挤进 C！
+<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.64;0.68;0.9;0.94;1" dur="6s" repeatCount="indefinite"/></text>
+<g><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.58;0.62;1" dur="6s" repeatCount="indefinite"/><circle r="5" fill="#059669"><animateMotion dur="3.5999999999999996s" begin="-0.50s" repeatCount="indefinite" path="M84,156 H126 M184,156 H272 V181 H324"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="3.5999999999999996s" begin="0.10s" repeatCount="indefinite" path="M84,156 H126 M184,156 H272 V181 H324"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="3.5999999999999996s" begin="0.70s" repeatCount="indefinite" path="M84,156 H126 M184,156 H272 V181 H324"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="3.5999999999999996s" begin="1.30s" repeatCount="indefinite" path="M84,156 H126 M184,156 H272 V181 H324"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="3.5999999999999996s" begin="1.90s" repeatCount="indefinite" path="M84,156 H126 M184,156 H272 V181 H324"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="3.5999999999999996s" begin="2.50s" repeatCount="indefinite" path="M84,156 H126 M184,156 H272 V181 H324"/></circle></g>
+<text x="590" y="60" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">采样保持波形（注入跳变放大）</text>
+<path d="M430,330 L433,333 L437,335 L440,338 L443,341 L447,344 L450,346 L453,349 L457,351 L460,353 L463,356 L467,358 L470,360 L473,362 L477,363 L480,365 L483,366 L487,368 L490,369 L493,370 L497,371 L500,371 L503,372 L507,372 L510,372 L513,372 L517,372 L520,371 L523,371 L527,370 L530,369 L533,368 L537,366 L540,365 L543,363 L547,362 L550,360 L553,358 L557,356 L560,353 L563,351 L567,349 L570,346 L573,344 L577,341 L580,338 L583,335 L587,333 L590,330 L593,327 L597,325 L600,322 L603,319 L607,316 L610,314 L613,311 L617,309 L620,307 L623,304 L627,302 L630,300 L633,298 L637,297 L640,295 L643,294 L647,292 L650,291 L653,290 L657,289 L660,289 L663,288 L667,288 L670,288 L673,288 L677,288 L680,289 L683,289 L687,290 L690,291 L693,292 L697,294 L700,295 L703,297 L707,298 L710,300 L713,302 L717,304 L720,307 L723,309 L727,311 L730,314 L733,316 L737,319 L740,322 L743,325 L747,327 L750,330" fill="none" stroke="#94a3b8" stroke-width="1.8" stroke-dasharray="5,4"/>
+<text x="436" y="272" font-size="10.5" fill="#64748b">输入（虚线）</text>
+<path d="M430,330 L432,326 L435,322 L438,318 L440,314 L442,310 L445,307 L448,303 L450,300 L452,298 L455,295 L458,293 L460,291 L462,290 L465,289 L468,288 L470,288 L470,279 L590,279 L590,330 L592,326 L595,322 L598,318 L600,314 L602,310 L605,307 L608,303 L610,300 L612,298 L615,295 L618,293 L620,291 L622,290 L625,289 L628,288 L630,288 L630,279 L750,279" fill="none" stroke="#2563eb" stroke-width="2.8"/>
+<text x="436" y="252" font-size="10.5" font-weight="bold" fill="#2563eb">保持电容电压（实线）</text>
+<line x1="430" y1="330" x2="752" y2="330" stroke="#64748b" stroke-width="1.4"/>
+<line x1="470" y1="306" x2="470" y2="292" stroke="#dc2626" stroke-width="2.5" opacity="0">
+<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.64;0.68;1" dur="6s" repeatCount="indefinite"/></line>
+<text x="478" y="282" font-size="11" font-weight="bold" fill="#dc2626" opacity="0">跳变 ΔV≈10mV
+<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.64;0.68;1" dur="6s" repeatCount="indefinite"/></text>
+<text x="400" y="420" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">① 导通：NMOS+PMOS 互补——低走高走全摆幅无损通过（R_ON≈125Ω）<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.28;0.32;1" dur="6s" repeatCount="indefinite"/></text><text x="400" y="420" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">② 跟随期：电容贴着输入走——采样就是把波形「复印」到电容上<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.32;0.36;0.58;0.62;1" dur="6s" repeatCount="indefinite"/></text><text x="400" y="420" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">③ 关断瞬间：沟道电荷 Q≈1pC 涌入 100pF 电容 → ΔV=Q/C≈10mV！<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.62;0.66;1" dur="6s" repeatCount="indefinite"/></text><g opacity="0">
+<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.7;0.75;1" dur="6s" repeatCount="indefinite"/>
+<rect x="30" y="434" width="740" height="34" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+<text x="400" y="456" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">12 位 ADC 的 1 LSB@3.3V 仅 0.8mV——10mV 注入误差=12 LSB！对策：加大保持电容/低注入开关/差分抵消</text>
+</g></svg>

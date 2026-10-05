@@ -95,10 +95,12 @@ def resistor_h(x, y, w=56, label='', sub='', color="#334155", lcolor="#b45309"):
 
 
 def resistor_v(x, y, h=56, label='', color="#334155", lcolor="#b45309"):
-    return f'''<line x1="{x}" y1="{y-20}" x2="{x}" y2="{y}" stroke="{color}" stroke-width="2.5"/>
+    body = f'''<line x1="{x}" y1="{y-20}" x2="{x}" y2="{y}" stroke="{color}" stroke-width="2.5"/>
 <rect x="{x-11}" y="{y}" width="22" height="{h}" fill="#f8fafc" stroke="{color}" stroke-width="2.5"/>
-<line x1="{x}" y1="{y+h}" x2="{x}" y2="{y+h+20}" stroke="{color}" stroke-width="2.5"/>
-<text x="{x+20}" y="{y+h/2+4}" font-size="12.5" font-weight="bold" fill="{lcolor}">{label}</text>'''
+<line x1="{x}" y1="{y+h}" x2="{x}" y2="{y+h+20}" stroke="{color}" stroke-width="2.5"/>'''
+    if label:
+        body += f'\n<text x="{x+20}" y="{y+h/2+4}" font-size="12.5" font-weight="bold" fill="{lcolor}">{label}</text>'
+    return body
 
 
 def npn_svg(x, y, color="#334155"):
@@ -436,9 +438,8 @@ def make_mosfet_switch():
 <line x1="300" y1="196" x2="300" y2="212" stroke="#334155" stroke-width="2.5"/>
 <text x="322" y="186" font-size="12" font-weight="bold" fill="#dc2626">LED 2V</text>
 <g stroke="#f59e0b" stroke-width="2.5" opacity="0">
-<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.56;1" dur="{D4}s" repeatCount="indefinite"/>
+<animate attributeName="opacity" values="0;0;0.3;1;1" keyTimes="0;0.5;0.56;0.75;1" dur="{D4}s" repeatCount="indefinite"/>
 <line x1="312" y1="168" x2="328" y2="152"/><line x1="320" y1="176" x2="338" y2="162"/>
-<animate attributeName="opacity" values="0.3;0.3;1;1" keyTimes="0;0.5;0.75;1" dur="{D4}s" repeatCount="indefinite"/>
 </g>
 <line x1="300" y1="212" x2="300" y2="228" stroke="#334155" stroke-width="2.5"/>
 <line x1="300" y1="228" x2="280" y2="228" stroke="#334155" stroke-width="2.5"/>
@@ -726,6 +727,344 @@ def make_ne555_astable():
     save('ne555-astable.svg', svg + '</svg>')
 
 
+# ======================= 图 8：推挽 vs 开漏 =======================
+def make_pushpull_opendrain():
+    DP = 4
+    rc_pts = []
+    for i in range(41):
+        u = i/40
+        x = 380 + 180*u
+        y = 380 - 50*(1-np.exp(-3*u))
+        rc_pts.append(f"{x:.0f},{y:.0f}")
+    rc_edge = "M" + " L".join(rc_pts)
+    svg = svg_open('推挽 vs 开漏：为什么 I2C 偏偏选「慢」的那个？', h=460)
+    svg += f'''
+<text x="200" y="62" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">推挽：两个开关轮流推</text>
+<text x="56" y="76" font-size="12.5" font-weight="bold" fill="#b45309">VDD</text>
+<line x1="90" y1="70" x2="200" y2="70" stroke="#334155" stroke-width="2.5"/>
+<line x1="200" y1="70" x2="200" y2="92" stroke="#334155" stroke-width="2.5"/>
+<circle cx="200" cy="96" r="3.5" fill="#334155"/>
+<line x1="200" y1="96" x2="226" y2="122" stroke="#059669" stroke-width="3">
+<animate attributeName="opacity" values="1;1;0;0;0;1;1" keyTimes="0;0.22;0.26;0.72;0.76;0.98;1" dur="{DP}s" repeatCount="indefinite"/></line>
+<circle cx="200" cy="126" r="3.5" fill="#334155"/>
+<text x="232" y="106" font-size="11" font-weight="bold" fill="#059669">上管（推高）</text>
+<line x1="200" y1="126" x2="200" y2="150" stroke="#334155" stroke-width="2.5"/>
+<circle cx="200" cy="150" r="4" fill="#334155"/>
+<line x1="200" y1="150" x2="330" y2="150" stroke="#334155" stroke-width="2.5"/>
+<text x="336" y="146" font-size="12" font-weight="bold" fill="#2563eb">OUT</text>
+<line x1="200" y1="150" x2="200" y2="174" stroke="#334155" stroke-width="2.5"/>
+<circle cx="200" cy="174" r="3.5" fill="#334155"/>
+<line x1="200" y1="174" x2="226" y2="200" stroke="#dc2626" stroke-width="3">
+<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.24;0.28;0.7;0.74;1" dur="{DP}s" repeatCount="indefinite"/></line>
+<circle cx="200" cy="204" r="3.5" fill="#334155"/>
+<text x="232" y="196" font-size="11" font-weight="bold" fill="#dc2626">下管（拉低）</text>
+<line x1="200" y1="204" x2="200" y2="230" stroke="#334155" stroke-width="2.5"/>
+{gnd_sym(200, 244)}
+<text x="120" y="270" font-size="11" fill="#475569">两管交替导通：双向都有劲</text>
+'''
+    svg += f'<g><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.22;0.26;1" dur="{DP}s" repeatCount="indefinite"/>'
+    svg += flow("M94,66 H196 V146 H326", DP/4, n=6, color="#059669", r=5) + '</g>'
+    svg += f'<g><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.26;0.3;0.68;0.72;1" dur="{DP}s" repeatCount="indefinite"/>'
+    svg += flow("M326,146 H204 V236", DP/4, n=6, color="#dc2626", r=5) + '</g>'
+    svg += f'''
+<text x="590" y="62" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">开漏：只有下管，靠电阻回高</text>
+<text x="446" y="76" font-size="12.5" font-weight="bold" fill="#b45309">VDD</text>
+<line x1="480" y1="70" x2="560" y2="70" stroke="#334155" stroke-width="2.5"/>
+{resistor_v(560, 90, 50, '上拉 Rp')}
+<line x1="560" y1="140" x2="560" y2="150" stroke="#334155" stroke-width="2.5"/>
+<circle cx="560" cy="150" r="4" fill="#334155"/>
+<line x1="560" y1="150" x2="700" y2="150" stroke="#334155" stroke-width="2.5"/>
+<text x="706" y="146" font-size="12" font-weight="bold" fill="#2563eb">OUT</text>
+<line x1="560" y1="150" x2="560" y2="174" stroke="#334155" stroke-width="2.5"/>
+<circle cx="560" cy="174" r="3.5" fill="#334155"/>
+<line x1="560" y1="174" x2="586" y2="200" stroke="#dc2626" stroke-width="3">
+<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.24;0.28;0.7;0.74;1" dur="{DP}s" repeatCount="indefinite"/></line>
+<circle cx="560" cy="204" r="3.5" fill="#334155"/>
+<text x="592" y="196" font-size="11" font-weight="bold" fill="#dc2626">下管（唯一开关）</text>
+<line x1="560" y1="204" x2="560" y2="230" stroke="#334155" stroke-width="2.5"/>
+{gnd_sym(560, 244)}
+<text x="480" y="270" font-size="11" fill="#475569">下管断开时：Rp 慢慢把总线「充」回高电平</text>
+'''
+    svg += f'<g><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.22;0.26;1" dur="{DP}s" repeatCount="indefinite"/>'
+    svg += flow("M484,66 H556 V146 H696", DP/2, n=3, color="#b45309", r=5, keypoints="0;0.55;0.82;1", keytimes="0;0.2;0.5;1") + '</g>'
+    svg += f'<g><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.26;0.3;0.68;0.72;1" dur="{DP}s" repeatCount="indefinite"/>'
+    svg += flow("M696,146 H564 V236", DP/4, n=6, color="#dc2626", r=5) + '</g>'
+    svg += f'''
+<text x="64" y="316" font-size="11.5" font-weight="bold" fill="#059669">推挽沿：陡（ns 级）</text>
+<path d="M80,380 V330 H180 V380" fill="none" stroke="#059669" stroke-width="3"/>
+<line x1="80" y1="380" x2="270" y2="380" stroke="#64748b" stroke-width="1.5"/>
+<text x="360" y="316" font-size="11.5" font-weight="bold" fill="#b45309">开漏沿：RC 缓升（上拉×总线电容）</text>
+<path d="{rc_edge}" fill="none" stroke="#b45309" stroke-width="3"/>
+<line x1="380" y1="380" x2="580" y2="380" stroke="#64748b" stroke-width="1.5"/>
+<text x="600" y="355" font-size="11" fill="#475569">I2C 上拉 2.2~4.7kΩ：阻小快但费电</text>
+'''
+    svg += caption("① 推挽输出高：上管合上，VDD 直推——又快又有劲（粒子密集）", "#059669", DP,
+                   "0;1;1;0;0", "0;0.03;0.2;0.24;1", y=410)
+    svg += caption("② 开漏输出高：只能靠上拉电阻慢慢充电——沿是 RC 曲线（粒子稀疏）", "#b45309", DP,
+                   "0;0;1;1;0;0", "0;0.24;0.28;0.46;0.5;1", y=410)
+    svg += caption("③ 那为什么 I2C 还选开漏？——多设备共享总线时，两个推挽互怼=短路烧IO！", "#dc2626", DP,
+                   "0;0;1;1", "0;0.52;0.56;1", y=410)
+    svg += note_box("开漏+上拉=「线与」：任何一个设备都能拉低总线——仲裁、中断共享、电平转换全靠它", 448, DP, "0;0.6;0.65;1", w=700)
+    save('pushpull-opendrain.svg', svg + '</svg>')
+
+
+
+# ======================= 图 9：LDO 负反馈 =======================
+def make_ldo_feedback():
+    DL = 5
+    t_pts = []
+    for i in range(81):
+        u = i/80
+        x = 60 + 320*u
+        if u < 0.3:
+            y = 340
+        else:
+            du = u - 0.3
+            y = 340 + 26*np.exp(-du*6)*np.cos(du*22) - 6*np.exp(-du*4)
+        t_pts.append(f"{x:.0f},{y:.1f}")
+    fb_d = "M" + " L".join(t_pts)
+    ol_pts = []
+    for i in range(81):
+        u = i/80
+        x = 420 + 320*u
+        y = 340 if u < 0.3 else 340 + 22*(1-np.exp(-(u-0.3)*9))
+        ol_pts.append(f"{x:.0f},{y:.1f}")
+    ol_d = "M" + " L".join(ol_pts)
+    svg = svg_open('LDO 的本质：一个会「自我调节」的分压器（负反馈环路）', h=470)
+    svg += f'''
+<text x="330" y="62" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">LDO 内部负反馈环路（AMS1117 同款结构）</text>
+<text x="56" y="96" font-size="13" font-weight="bold" fill="#b45309">VIN 8V</text>
+<line x1="100" y1="90" x2="180" y2="90" stroke="#334155" stroke-width="2.5"/>
+<rect x="180" y="78" width="80" height="26" fill="#fffbeb" stroke="#b45309" stroke-width="2.5"/>
+<text x="220" y="95" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#b45309">调整管</text>
+<text x="220" y="118" text-anchor="middle" font-size="10" fill="#475569">≈ 自动可变电阻</text>
+<line x1="260" y1="90" x2="330" y2="90" stroke="#334155" stroke-width="2.5"/>
+<circle cx="330" cy="90" r="4" fill="#334155"/>
+<line x1="330" y1="90" x2="400" y2="90" stroke="#334155" stroke-width="2.5"/>
+<text x="408" y="95" font-size="13" font-weight="bold" fill="#059669">VOUT 5V</text>
+{resistor_v(400, 110, 46, '负载')}
+<line x1="400" y1="156" x2="400" y2="186" stroke="#334155" stroke-width="2.5"/>
+{gnd_sym(400, 200)}
+<line x1="350" y1="90" x2="350" y2="130" stroke="#334155" stroke-width="2" stroke-dasharray="4,3"/>
+<circle cx="350" cy="130" r="3" fill="#334155"/>
+<line x1="350" y1="130" x2="368" y2="148" stroke="#dc2626" stroke-width="2.5">
+<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.28;0.32;1" dur="{DL}s" repeatCount="indefinite"/></line>
+<circle cx="350" cy="152" r="3" fill="#334155"/>
+{resistor_v(350, 166, 34, '突加')}
+<line x1="350" y1="200" x2="350" y2="214" stroke="#334155" stroke-width="2"/>
+{gnd_sym(350, 228)}
+<text x="356" y="118" font-size="10" fill="#dc2626" text-anchor="middle">30%处加重</text>
+<line x1="330" y1="90" x2="330" y2="130" stroke="#334155" stroke-width="2.5"/>
+{resistor_v(330, 130, 34, '')}
+<text x="318" y="151" text-anchor="end" font-size="12.5" font-weight="bold" fill="#b45309">R1</text>
+<circle cx="330" cy="186" r="3.5" fill="#334155"/>
+<line x1="330" y1="164" x2="330" y2="206" stroke="#334155" stroke-width="2.5"/>
+{resistor_v(330, 206, 34, '')}
+<text x="318" y="227" text-anchor="end" font-size="12.5" font-weight="bold" fill="#b45309">R2</text>
+<line x1="330" y1="240" x2="330" y2="252" stroke="#334155" stroke-width="2"/>
+{gnd_sym(330, 266)}
+<polygon points="180,170 180,222 240,196" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="188" y="196" font-size="13" font-weight="bold" fill="#dc2626">−</text>
+<text x="188" y="216" font-size="13" font-weight="bold" fill="#059669">+</text>
+<text x="168" y="240" font-size="10.5" fill="#475569">误差放大器</text>
+<line x1="330" y1="186" x2="240" y2="186" stroke="#334155" stroke-width="2"/>
+<text x="262" y="178" font-size="10" fill="#7c3aed">采样 1.25V</text>
+<rect x="150" y="230" width="70" height="24" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="185" y="246" text-anchor="middle" font-size="11" font-weight="bold" fill="#2563eb">基准 1.25V</text>
+<line x1="185" y1="230" x2="185" y2="222" stroke="#334155" stroke-width="2"/>
+<line x1="240" y1="196" x2="220" y2="196" stroke="#334155" stroke-width="2"/>
+<line x1="220" y1="196" x2="220" y2="104" stroke="#334155" stroke-width="2"/>
+<text x="226" y="152" font-size="10" fill="#475569">驱动</text>
+<path d="M120,240 C80,240 80,120 130,104" fill="none" stroke="#7c3aed" stroke-width="2" stroke-dasharray="5,4">
+<animate attributeName="opacity" values="0.3;1;0.3" dur="1.6s" repeatCount="indefinite"/></path>
+<text x="70" y="180" font-size="10.5" font-weight="bold" fill="#7c3aed">反馈环</text>
+'''
+    svg += f'''
+<text x="64" y="300" font-size="11.5" font-weight="bold" fill="#059669">有反馈：跌落→拉回（振铃后稳定）</text>
+<path d="{fb_d}" fill="none" stroke="#059669" stroke-width="3"/>
+<line x1="60" y1="340" x2="384" y2="340" stroke="#64748b" stroke-width="1.5"/>
+<line x1="156" y1="320" x2="156" y2="366" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="424" y="300" font-size="11.5" font-weight="bold" fill="#dc2626">若无反馈：一跌不起（负载调整率灾难）</text>
+<path d="{ol_d}" fill="none" stroke="#dc2626" stroke-width="3"/>
+<line x1="420" y1="340" x2="744" y2="340" stroke="#64748b" stroke-width="1.5"/>
+<line x1="516" y1="320" x2="516" y2="366" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
+'''
+    svg += caption("① 分压器 R1/R2 把 VOUT 采样回误差放大器，与 1.25V 基准比", "#7c3aed", DL,
+                   "0;1;1;0;0", "0;0.04;0.24;0.28;1", y=410)
+    svg += caption("② 负载突然加重 → VOUT 一跌 → 采样低于基准 → 误差放大器喊「不够！」", "#dc2626", DL,
+                   "0;0;1;1;0;0", "0;0.28;0.32;0.55;0.6;1", y=410)
+    svg += caption("③ 调整管立刻「调小自己的电阻」→ VOUT 拉回 5V——全自动，无需人管", "#059669", DL,
+                   "0;0;1;1", "0;0.6;0.65;1", y=410)
+    svg += note_box("VOUT = 1.25×(1+R1/R2) · 发热 = (VIN−VOUT)×I 全变成热——LDO 效率低的根因", 452, DL, "0;0.68;0.73;1", w=680)
+    save('ldo-feedback.svg', svg + '</svg>')
+
+
+# ======================= 图 10：模拟开关电荷注入 =======================
+def make_analog_switch():
+    DA = 6
+    sh_pts = []
+    per = 160
+    x_start = 430
+    for seg in range(2):
+        hv = None
+        for i in range(17):
+            u = i/16
+            x = x_start + seg*per + 40*u
+            t = (x-x_start)/320*4*np.pi
+            y = 330 - 42*np.sin(t)
+            sh_pts.append(f"{x:.0f},{y:.0f}")
+            hv = y
+        x0 = x_start + seg*per + 40
+        sh_pts.append(f"{x0:.0f},{hv-9:.0f}")
+        sh_pts.append(f"{x_start+seg*per+160:.0f},{hv-9:.0f}")
+    sh_d = "M" + " L".join(sh_pts)
+    sin_d = sine_path(430, 750, 330, 42, n=96)
+    svg = svg_open('模拟开关的暗伤：关断瞬间，沟道电荷被「挤」进电容（CD4066）', h=480)
+    svg += f'''
+<text x="215" y="60" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">采样保持电路（传输门 + 保持电容）</text>
+<circle cx="60" cy="160" r="20" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+<path d="M50,160 q5,-13 10,0 q5,13 10,0" fill="none" stroke="#2563eb" stroke-width="2"/>
+<text x="30" y="196" font-size="11" font-weight="bold" fill="#2563eb">输入</text>
+<line x1="80" y1="160" x2="130" y2="160" stroke="#334155" stroke-width="2.5"/>
+<circle cx="140" cy="160" r="3.5" fill="#334155"/>
+<line x1="140" y1="160" x2="168" y2="136" stroke="#059669" stroke-width="3">
+<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.6;0.64;1" dur="{DA}s" repeatCount="indefinite"/></line>
+<circle cx="176" cy="160" r="3.5" fill="#334155"/>
+<text x="118" y="128" font-size="11" font-weight="bold" fill="#334155">NMOS</text>
+<text x="118" y="118" font-size="9.5" fill="#475569">传低电平好手</text>
+<line x1="176" y1="160" x2="210" y2="160" stroke="#334155" stroke-width="2.5"/>
+<line x1="140" y1="160" x2="140" y2="210" stroke="#334155" stroke-width="2.5"/>
+<line x1="210" y1="160" x2="210" y2="210" stroke="#334155" stroke-width="2.5"/>
+<circle cx="140" cy="210" r="3.5" fill="#334155"/>
+<line x1="140" y1="210" x2="168" y2="186" stroke="#059669" stroke-width="3">
+<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.6;0.64;1" dur="{DA}s" repeatCount="indefinite"/></line>
+<circle cx="176" cy="210" r="3.5" fill="#334155"/>
+<text x="96" y="240" font-size="11" font-weight="bold" fill="#334155">PMOS</text>
+<text x="96" y="252" font-size="9.5" fill="#475569">传高电平好手</text>
+<text x="226" y="130" font-size="10.5" fill="#7c3aed">EN/EN̅ 互补控制</text>
+<text x="226" y="144" font-size="10" fill="#475569">两管同开同关</text>
+<line x1="210" y1="160" x2="280" y2="160" stroke="#334155" stroke-width="2.5"/>
+<line x1="210" y1="210" x2="280" y2="210" stroke="#334155" stroke-width="2.5"/>
+<line x1="280" y1="160" x2="280" y2="210" stroke="#334155" stroke-width="2.5"/>
+<circle cx="280" cy="185" r="4" fill="#334155"/>
+<line x1="280" y1="185" x2="330" y2="185" stroke="#334155" stroke-width="2.5"/>
+<line x1="330" y1="185" x2="330" y2="205" stroke="#334155" stroke-width="2.5"/>
+<line x1="300" y1="205" x2="360" y2="205" stroke="#334155" stroke-width="3"/>
+<line x1="300" y1="221" x2="360" y2="221" stroke="#334155" stroke-width="3"/>
+<line x1="330" y1="221" x2="330" y2="250" stroke="#334155" stroke-width="2.5"/>
+{gnd_sym(330, 264)}
+<text x="370" y="217" font-size="12" font-weight="bold" fill="#2563eb">C 保持 100pF</text>
+<g fill="#f59e0b" opacity="0">
+<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.3;0.36;0.6;0.66;1" dur="{DA}s" repeatCount="indefinite"/>
+<circle cx="150" cy="172" r="2.6"/><circle cx="158" cy="168" r="2.6"/><circle cx="163" cy="174" r="2.6"/>
+<circle cx="152" cy="222" r="2.6"/><circle cx="160" cy="218" r="2.6"/><circle cx="165" cy="224" r="2.6"/>
+</g>
+<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.62;0.66;0.9;0.94;1" dur="{DA}s" repeatCount="indefinite"/>
+{flow("M170,166 H272 V181 H324", 1.6, n=4, color="#f59e0b", r=4.5)}
+{flow("M170,214 H272 V189 H324", 1.6, n=4, color="#f59e0b", r=4.5)}
+</g>
+<text x="150" y="285" font-size="11.5" font-weight="bold" fill="#b45309" opacity="0">关断瞬间：沟道电子「无家可归」，被挤进 C！
+<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.64;0.68;0.9;0.94;1" dur="{DA}s" repeatCount="indefinite"/></text>
+'''
+    svg += f'<g><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.58;0.62;1" dur="{DA}s" repeatCount="indefinite"/>'
+    svg += flow("M84,156 H126 M184,156 H272 V181 H324", DA*0.6, n=6, color="#059669", r=5) + '</g>'
+    svg += f'''
+<text x="590" y="60" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">采样保持波形（注入跳变放大）</text>
+<path d="{sin_d}" fill="none" stroke="#94a3b8" stroke-width="1.8" stroke-dasharray="5,4"/>
+<text x="436" y="272" font-size="10.5" fill="#64748b">输入（虚线）</text>
+<path d="{sh_d}" fill="none" stroke="#2563eb" stroke-width="2.8"/>
+<text x="436" y="252" font-size="10.5" font-weight="bold" fill="#2563eb">保持电容电压（实线）</text>
+<line x1="430" y1="330" x2="752" y2="330" stroke="#64748b" stroke-width="1.4"/>
+<line x1="470" y1="306" x2="470" y2="292" stroke="#dc2626" stroke-width="2.5" opacity="0">
+<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.64;0.68;1" dur="{DA}s" repeatCount="indefinite"/></line>
+<text x="478" y="282" font-size="11" font-weight="bold" fill="#dc2626" opacity="0">跳变 ΔV≈10mV
+<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.64;0.68;1" dur="{DA}s" repeatCount="indefinite"/></text>
+'''
+    svg += caption("① 导通：NMOS+PMOS 互补——低走高走全摆幅无损通过（R_ON≈125Ω）", "#059669", DA,
+                   "0;1;1;0;0", "0;0.03;0.28;0.32;1", y=420)
+    svg += caption("② 跟随期：电容贴着输入走——采样就是把波形「复印」到电容上", "#2563eb", DA,
+                   "0;0;1;1;0;0", "0;0.32;0.36;0.58;0.62;1", y=420)
+    svg += caption("③ 关断瞬间：沟道电荷 Q≈1pC 涌入 100pF 电容 → ΔV=Q/C≈10mV！", "#dc2626", DA,
+                   "0;0;1;1", "0;0.62;0.66;1", y=420)
+    svg += note_box("12 位 ADC 的 1 LSB@3.3V 仅 0.8mV——10mV 注入误差=12 LSB！对策：加大保持电容/低注入开关/差分抵消", 458, DA, "0;0.7;0.75;1", w=740)
+    save('analog-switch.svg', svg + '</svg>')
+
+
+# ======================= 图 11：去耦电容 =======================
+def make_cap_decoupling():
+    DC = 5
+    def dip_wave(x0, depth, w=0.06):
+        pts = []
+        for i in range(81):
+            u = i/80
+            x = x0 + 320*u
+            y = 340 + depth*np.exp(-((u-0.5)**2)/(2*w**2))
+            pts.append(f"{x:.0f},{y:.1f}")
+        return "M" + " L".join(pts)
+    a_d = dip_wave(60, 55)
+    b_d = dip_wave(420, 10)
+    svg = svg_open('去耦电容为什么要「贴脸」放？——走线电感 vs 本地水库', h=480)
+    svg += f'''
+<text x="200" y="50" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#dc2626">场景 A：电容太远（或没有）</text>
+<text x="46" y="102" font-size="12" font-weight="bold" fill="#b45309">5V 源</text>
+<line x1="90" y1="96" x2="150" y2="96" stroke="#334155" stroke-width="2.5"/>
+<path d="M150,96 q6,-14 12,0 q6,14 12,0 q6,-14 12,0 q6,14 12,0 q6,-14 12,0" fill="none" stroke="#7c3aed" stroke-width="2.5"/>
+<line x1="210" y1="96" x2="260" y2="96" stroke="#334155" stroke-width="2.5"/>
+<text x="148" y="76" font-size="11" font-weight="bold" fill="#7c3aed">走线电感 ~10nH</text>
+<text x="148" y="64" font-size="10" fill="#475569">10cm 长走线</text>
+<rect x="260" y="76" width="90" height="40" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="305" y="100" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">IC</text>
+<line x1="305" y1="116" x2="305" y2="146" stroke="#334155" stroke-width="2"/>
+{gnd_sym(305, 160)}
+<text x="130" y="136" font-size="11" font-weight="bold" fill="#dc2626" opacity="0">尖峰来了，电感「顶住」不给过！
+<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.42;0.46;0.62;0.66;1" dur="{DC}s" repeatCount="indefinite"/></text>
+<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.4;0.44;0.6;0.64;1" dur="{DC}s" repeatCount="indefinite"/>
+{flow("M262,92 H300", 1.0, n=2, color="#dc2626", r=4)}
+</g>
+<text x="590" y="50" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">场景 B：100nF 贴脸（&lt;3mm）</text>
+<text x="436" y="102" font-size="12" font-weight="bold" fill="#b45309">5V 源</text>
+<line x1="480" y1="96" x2="540" y2="96" stroke="#334155" stroke-width="2.5"/>
+<path d="M540,96 q6,-14 12,0 q6,14 12,0 q6,-14 12,0 q6,14 12,0 q6,-14 12,0" fill="none" stroke="#7c3aed" stroke-width="2.5" opacity="0.45"/>
+<line x1="600" y1="96" x2="650" y2="96" stroke="#334155" stroke-width="2.5"/>
+<text x="540" y="76" font-size="11" fill="#94a3b8">走线电感（远，无所谓）</text>
+<rect x="650" y="76" width="90" height="40" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="695" y="100" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">IC</text>
+<line x1="695" y1="116" x2="695" y2="146" stroke="#334155" stroke-width="2"/>
+{gnd_sym(695, 160)}
+<line x1="650" y1="96" x2="630" y2="96" stroke="#334155" stroke-width="2.5"/>
+<circle cx="650" cy="96" r="3.5" fill="#334155"/>
+<line x1="630" y1="96" x2="630" y2="120" stroke="#334155" stroke-width="2.5"/>
+<line x1="612" y1="120" x2="648" y2="120" stroke="#059669" stroke-width="3.5"/>
+<line x1="612" y1="132" x2="648" y2="132" stroke="#059669" stroke-width="3.5"/>
+<line x1="630" y1="132" x2="630" y2="146" stroke="#334155" stroke-width="2"/>
+{gnd_sym(630, 160)}
+<text x="584" y="130" font-size="11" font-weight="bold" fill="#059669">100nF</text>
+<text x="560" y="146" font-size="9.5" fill="#475569">本地水库</text>
+<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.4;0.44;0.6;0.64;1" dur="{DC}s" repeatCount="indefinite"/>
+{flow("M634,126 V100 H648 M654,96 H688", 1.0, n=4, color="#059669", r=4.5)}
+</g>
+<text x="470" y="136" font-size="11" font-weight="bold" fill="#059669" opacity="0">本地水库瞬时放水，电压纹丝不动
+<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.42;0.46;0.62;0.66;1" dur="{DC}s" repeatCount="indefinite"/></text>
+'''
+    svg += f'''
+<text x="64" y="290" font-size="11.5" font-weight="bold" fill="#dc2626">A：电源脚电压塌陷 0.5V+（复位/误触发温床）</text>
+<path d="{a_d}" fill="none" stroke="#dc2626" stroke-width="3"/>
+<line x1="60" y1="340" x2="384" y2="340" stroke="#64748b" stroke-width="1.5"/>
+<text x="424" y="290" font-size="11.5" font-weight="bold" fill="#059669">B：微纹波（&lt;50mV），电路安心工作</text>
+<path d="{b_d}" fill="none" stroke="#059669" stroke-width="3"/>
+<line x1="420" y1="340" x2="744" y2="340" stroke="#64748b" stroke-width="1.5"/>
+'''
+    svg += caption("① IC 翻转瞬间要 100mA 尖峰电流，但只持续几 ns", "#b45309", DC,
+                   "0;1;1;0;0", "0;0.03;0.2;0.24;1", y=400)
+    svg += caption("② 走线电感：直流随便过，ns 尖峰面前=断路（V=L·di/dt）", "#7c3aed", DC,
+                   "0;0;1;1;0;0", "0;0.24;0.28;0.42;0.46;1", y=400)
+    svg += caption("③ 100nF 贴脸=本地水库：它距离近、电感小，尖峰由它顶上", "#059669", DC,
+                   "0;0;1;1;0;0", "0;0.46;0.5;0.68;0.72;1", y=400)
+    svg += caption("④ 所以记住：距离&lt;3mm、先过电容再到 IC、电容回路越短越好", "#2563eb", DC,
+                   "0;0;1;1", "0;0.72;0.76;1", y=400)
+    svg += note_box("100nF 管高频（ns 尖峰）· 10µF 管中频 · 大电解管低频——三级去耦，各司其职", 458, DC, "0;0.8;0.84;1", w=640)
+    save('cap-decoupling.svg', svg + '</svg>')
+
 if __name__ == '__main__':
     make_rc_charge()
     make_bridge_rectifier()
@@ -734,4 +1073,8 @@ if __name__ == '__main__':
     make_opamp_inverting()
     make_comparator_hysteresis()
     make_ne555_astable()
-    print('all 7 SVGs regenerated into', os.path.abspath(OUT))
+    make_pushpull_opendrain()
+    make_ldo_feedback()
+    make_analog_switch()
+    make_cap_decoupling()
+    print('all 11 SVGs regenerated into', os.path.abspath(OUT))
