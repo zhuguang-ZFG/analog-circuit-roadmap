@@ -221,7 +221,7 @@ MCU ──[Rb]── B  Q1(NPN 2N2222/8050)
 ### 3.7 热失控（BJT 特有死因）
 
 正反馈死亡螺旋：
-$$\text{温度↑} \xrightarrow{-2mV/°C} V_{BE}\text{↓} \xrightarrow{同}I_B\text{下} I_C\text{↑} \to \text{功耗}↑ \to \text{温度↑↑}$$
+$$\text{温度↑} \;\Rightarrow\; V_{BE}\text{↓（}-2\text{mV/°C）} \;\Rightarrow\; I_C\text{↑} \;\Rightarrow\; \text{功耗↑} \;\Rightarrow\; \text{温度↑↑}$$
 
 对策：发射极负反馈电阻、散热器、恒流偏置。**功率放大器偏置漂移烧管，八成是热失控。**
 
