@@ -21,20 +21,16 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="205" y="62" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">电路（固定偏置 · 可实搭）</text>
 <text x="36" y="92" font-size="13" font-weight="bold" fill="#b45309">+12V</text>
 <line x1="70" y1="86" x2="320" y2="86" stroke="#334155" stroke-width="2.5"/>
-<!-- Rb: VCC→基极 固定偏置 -->
 <line x1="180" y1="86" x2="180" y2="106" stroke="#334155" stroke-width="2.5"/>
 <rect x="169" y="106" width="22" height="56" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
 <text x="164" y="124" text-anchor="end" font-size="12.5" font-weight="bold" fill="#b45309">R<tspan baseline-shift="sub" font-size="9">B</tspan> 390kΩ</text>
-<line x1="180" y1="162" x2="180" y2="186" stroke="#334155" stroke-width="2.5"/>
-<line x1="180" y1="186" x2="180" y2="210" stroke="#334155" stroke-width="2.5"/>
+<line x1="180" y1="162" x2="180" y2="210" stroke="#334155" stroke-width="2.5"/>
 <circle cx="180" cy="210" r="3" fill="#334155"/>
 <line x1="180" y1="210" x2="215" y2="210" stroke="#334155" stroke-width="2.5"/>
-<!-- Rc -->
 <line x1="300" y1="86" x2="300" y2="106" stroke="#334155" stroke-width="2.5"/>
 <rect x="289" y="106" width="22" height="50" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
 <text x="320" y="128" font-size="12.5" font-weight="bold" fill="#b45309">R<tspan baseline-shift="sub" font-size="9">C</tspan> 2kΩ</text>
 <line x1="300" y1="156" x2="300" y2="175" stroke="#334155" stroke-width="2.5"/>
-<!-- NPN -->
 <g stroke="#334155" fill="none" stroke-width="2.5">
 <circle cx="288" cy="210" r="34" stroke-width="1.8"/>
 <line x1="265" y1="190" x2="265" y2="230" stroke-width="3.5"/>
@@ -50,7 +46,6 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="309" y="270" font-size="12.5" font-weight="bold" fill="#059669">E</text>
 <line x1="300" y1="265" x2="300" y2="300" stroke="#334155" stroke-width="2.5"/>
 <line x1="300" y1="300" x2="300" y2="314" stroke="#334155" stroke-width="2.5"/><line x1="284" y1="314" x2="316" y2="314" stroke="#334155" stroke-width="3"/><line x1="290" y1="320" x2="310" y2="320" stroke="#334155" stroke-width="3"/><line x1="296" y1="326" x2="304" y2="326" stroke="#334155" stroke-width="3"/>
-<!-- 耦合电容 C1 + 信号源 -->
 <line x1="82" y1="210" x2="108" y2="210" stroke="#334155" stroke-width="2.5"/>
 <line x1="108" y1="196" x2="108" y2="224" stroke="#334155" stroke-width="3"/>
 <line x1="118" y1="196" x2="118" y2="224" stroke="#334155" stroke-width="3"/>
@@ -62,10 +57,8 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="30" y="252" font-size="11" font-weight="bold" fill="#2563eb">信号10mV</text>
 <line x1="60" y1="231" x2="60" y2="300" stroke="#334155" stroke-width="2.5"/>
 <line x1="60" y1="300" x2="60" y2="314" stroke="#334155" stroke-width="2.5"/><line x1="44" y1="314" x2="76" y2="314" stroke="#334155" stroke-width="3"/><line x1="50" y1="320" x2="70" y2="320" stroke="#334155" stroke-width="3"/><line x1="56" y1="326" x2="64" y2="326" stroke="#334155" stroke-width="3"/>
-<!-- 输出 -->
 <line x1="300" y1="175" x2="366" y2="175" stroke="#334155" stroke-width="2.5"/>
 <text x="322" y="168" font-size="12" font-weight="bold" fill="#2563eb">vCE 输出</text>
-<!-- 参数标注（自洽核算值） -->
 <text x="150" y="262" font-size="11.5" font-weight="bold" fill="#dc2626">I_B ≈ 29µA</text>
 <text x="238" y="105" font-size="11.5" font-weight="bold" fill="#2563eb">I_C ≈ 2.9mA</text>
 <text x="322" y="192" font-size="11.5" font-weight="bold" fill="#059669">V_CE ≈ 6.2V</text>

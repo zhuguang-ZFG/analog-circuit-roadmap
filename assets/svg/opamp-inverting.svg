@@ -19,45 +19,35 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">运放反相放大器：「虚短虚断」是怎么回事（增益 = −Rf/Rin）</text>
 
 <text x="300" y="58" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">反相放大电路（LM358，±12V 供电）</text>
-<!-- vin 源 -->
 <circle cx="90" cy="180" r="21" fill="none" stroke="#2563eb" stroke-width="2.5"/>
 <path d="M79,180 q5.5,-14 11,0 q5.5,14 11,0" fill="none" stroke="#2563eb" stroke-width="2"/>
 <text x="42" y="152" font-size="11.5" font-weight="bold" fill="#2563eb">vin ±0.5V</text>
 <line x1="111" y1="180" x2="170" y2="180" stroke="#334155" stroke-width="2.5"/>
 <line x1="90" y1="201" x2="90" y2="250" stroke="#334155" stroke-width="2.5"/>
 <line x1="90" y1="250" x2="90" y2="264" stroke="#334155" stroke-width="2.5"/><line x1="74" y1="264" x2="106" y2="264" stroke="#334155" stroke-width="3"/><line x1="80" y1="270" x2="100" y2="270" stroke="#334155" stroke-width="3"/><line x1="86" y1="276" x2="94" y2="276" stroke="#334155" stroke-width="3"/>
-<!-- Rin 1k -->
 <line x1="170" y1="180" x2="190" y2="180" stroke="#334155" stroke-width="2.5"/>
 <rect x="190" y="169" width="56" height="22" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
 <line x1="246" y1="180" x2="266" y2="180" stroke="#334155" stroke-width="2.5"/>
 <text x="218.0" y="163" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#b45309">Rin 1kΩ</text>
-
 <line x1="266" y1="180" x2="330" y2="180" stroke="#334155" stroke-width="2.5"/>
 <circle cx="330" cy="180" r="4" fill="#334155"/>
-<!-- v- 到运放 -->
 <line x1="330" y1="180" x2="480" y2="180" stroke="#334155" stroke-width="2.5"/>
-<!-- 运放三角 -->
 <polygon points="480,158 480,242 566,200" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
 <text x="492" y="186" font-size="15" font-weight="bold" fill="#dc2626">−</text>
 <text x="492" y="228" font-size="15" font-weight="bold" fill="#059669">+</text>
 <text x="500" y="262" font-size="11.5" fill="#475569">LM358</text>
-<!-- v+ 接地 -->
 <line x1="440" y1="220" x2="480" y2="220" stroke="#334155" stroke-width="2.5"/>
 <line x1="440" y1="220" x2="440" y2="252" stroke="#334155" stroke-width="2.5"/>
 <line x1="440" y1="252" x2="440" y2="266" stroke="#334155" stroke-width="2.5"/><line x1="424" y1="266" x2="456" y2="266" stroke="#334155" stroke-width="3"/><line x1="430" y1="272" x2="450" y2="272" stroke="#334155" stroke-width="3"/><line x1="436" y1="278" x2="444" y2="278" stroke="#334155" stroke-width="3"/>
-<!-- Rf 反馈 -->
 <line x1="330" y1="180" x2="330" y2="140" stroke="#334155" stroke-width="2.5"/>
 <line x1="330" y1="140" x2="350" y2="140" stroke="#334155" stroke-width="2.5"/>
 <rect x="350" y="129" width="80" height="22" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
 <line x1="430" y1="140" x2="450" y2="140" stroke="#334155" stroke-width="2.5"/>
 <text x="390.0" y="123" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#b45309">Rf 10kΩ</text>
-
 <line x1="450" y1="140" x2="566" y2="140" stroke="#334155" stroke-width="2.5"/>
 <line x1="566" y1="140" x2="566" y2="200" stroke="#334155" stroke-width="2.5"/>
-<!-- vout -->
 <line x1="566" y1="200" x2="630" y2="200" stroke="#334155" stroke-width="2.5"/>
 <text x="640" y="205" font-size="13" font-weight="bold" fill="#dc2626">vout ∓5V</text>
-<!-- 虚地脉冲 -->
 <circle cx="330" cy="180" r="9" fill="none" stroke="#dc2626" stroke-width="2.5">
 <animate attributeName="opacity" values="0.25;1;0.25" dur="1.4s" repeatCount="indefinite"/></circle>
 <text x="300" y="216" font-size="12" font-weight="bold" fill="#dc2626">虚地 v− ≈ 0V</text>
