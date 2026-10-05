@@ -1,0 +1,32 @@
+name: links
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '17 3 * * 1'   # 每周一例行巡检，防链接腐烂
+
+permissions:
+  contents: read
+
+jobs:
+  lychee:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --verbose
+            --no-progress
+            --accept 200,202,204,301,302,403,429
+            --timeout 25
+            --max-retries 3
+            --exclude-loopback
+            --exclude 'doi\.org'
+            --exclude 'onsemi\.com'
+            --exclude 'microchip\.com'
+            './README.md'
+          fail: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

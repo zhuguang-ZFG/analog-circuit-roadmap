@@ -17,6 +17,10 @@
   <img src="https://img.shields.io/badge/章节-8篇18章-58a6ff.svg" alt="chapters">
 </p>
 
+<p align="center">
+🧭 <a href="#roadmap">路线图</a> · 📑 <a href="#toc">目录</a> · 🔬 <a href="#part1">器件原理</a> · ⚡ <a href="#part2">电路拓扑</a> · 🛠️ <a href="#part3">设计与PCB</a> · 🩺 <a href="#part4">排故方法</a> · 🎬 <a href="#part5">动画中心</a> · 🧩 <a href="#part6">图鉴速查</a> · 📺 <a href="#part7">视频</a> · 📚 <a href="#part8">路线索引</a>
+</p>
+
 ## 📖 前言
 
 数字电路统治了世界，但世界本身是模拟的。传感器电压、麦克风声波、天线射频、电池电量全是模拟量；每颗数字芯片的供电、时钟、接口背后都站着模拟电路。模拟设计无法被综合工具替代，至今仍是一门"手艺活"。
@@ -25,6 +29,7 @@
 
 ---
 
+<a id="roadmap"></a>
 ## 🗺️ 学习路线图
 
 ```mermaid
@@ -38,14 +43,38 @@ graph TD
     F --> H[模拟IC设计<br/>Bandgap/OTA/ADC/PLL]
 ```
 
+<a id="toc"></a>
+## 📑 目录
+
+<details open>
+<summary><b>八篇十八章 · 点击收起</b></summary>
+
+- **[第一篇：器件深度原理解析](#part1)** 🔬
+  - [第 1 章 无源元件的真实面目](#ch1) · [第 2 章 二极管](#ch2) · [第 3 章 BJT](#ch3) · [第 4 章 MOSFET](#ch4) · [第 5 章 推挽/开漏/上拉下拉](#ch5)
+  - [第 6 章 运算放大器](#ch6) · [第 7 章 比较器](#ch7) · [第 8 章 模拟开关](#ch8) · [第 9 章 基准与稳压](#ch9) · [第 10 章 555 定时器](#ch10)
+- **[第二篇：经典电路拓扑原理](#part2)** ⚡
+  - [第 11 章 放大电路拓扑](#ch11) · [第 12 章 运放应用电路族](#ch12) · [第 13 章 电源与信号产生](#ch13)
+- **[第三篇：设计要点与 PCB 实战](#part3)** 🛠️
+  - [第 14 章 设计方法论](#ch14) · [第 15 章 PCB 注意事项](#ch15)
+- **[第四篇：故障分析与排故方法论](#part4)** 🩺
+  - [第 16 章 排故五步法](#ch16) · [第 17 章 故障速查表](#ch17) · [第 18 章 大师智慧](#ch18)
+- **[第五篇：动画演示中心](#part5)** 🎬 — 12 张 SVG 动画 + Falstad 地图
+- **[第六篇：实物图鉴与速查](#part6)** 🧩 — 实物照片 · 参数速查 · [官方 datasheet 直达](#part6)
+- **[第七篇：视频资源](#part7)** 📺 — B站系统课 · YouTube 频道
+- **[第八篇：学习路线与资源索引](#part8)** 📚 — 路线图 · 书单 · 项目清单 · [官方资料](#part8) · [经典论文](#part8) · FAQ
+
+</details>
+
 ---
 
+<a id="part1"></a>
 # 第一篇：器件深度原理解析 🔬
 
 > 每个器件按统一结构讲解：**物理原理 → 数学模型 → 内部电路 → 关键参数 → 典型应用 → 故障模式 → 动态分析（四拍拆解）→ 配套视频**
 
 ---
 
+<a id="ch1"></a>
 ## 第 1 章 无源元件的真实面目
 
 理想元件不存在。理解寄生参数是区分"教科书学习者"和"工程师"的第一道门槛。
@@ -95,8 +124,8 @@ graph TD
 ### 📺 配套视频
 
 <p>
-<a href="https://www.youtube.com/watch?v=BcJ6UdDx1vg"><img src="https://img.youtube.com/vi/BcJ6UdDx1vg/hqdefault.jpg" width="230" alt="EEVblog #859 去耦电容教程"></a>
-<a href="https://www.youtube.com/watch?v=1xicZF9glH0"><img src="https://img.youtube.com/vi/1xicZF9glH0/hqdefault.jpg" width="230" alt="EEVblog #1085 去耦电容可视化"></a>
+<a href="https://www.youtube.com/watch?v=BcJ6UdDx1vg"><img src="https://img.youtube.com/vi/BcJ6UdDx1vg/mqdefault.jpg" width="230" alt="EEVblog #859 去耦电容教程"></a>
+<a href="https://www.youtube.com/watch?v=1xicZF9glH0"><img src="https://img.youtube.com/vi/1xicZF9glH0/mqdefault.jpg" width="230" alt="EEVblog #1085 去耦电容可视化"></a>
 </p>
 
 > **EEVblog #859 / #1085**（Dave Jones）：去耦电容为什么用、怎么放、封装的影响——先用阻抗分析仪实测验证理论，再可视化给你看。与本章 1.2 节 + 第 15 章"贴脸放"军规绝配。
@@ -105,6 +134,7 @@ graph TD
 
 ---
 
+<a id="ch2"></a>
 ## 第 2 章 二极管：单向导电的物理本质
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Diode-closeup.jpg" width="260" alt="二极管特写（Wikimedia Commons）">
@@ -188,6 +218,7 @@ $$I_D = I_S\left(e^{\frac{V_D}{nV_T}} - 1\right), \quad V_T = \frac{kT}{q} \appr
 
 ---
 
+<a id="ch3"></a>
 ## 第 3 章 BJT 三极管：完整概念体系
 
 ### 3.1 结构与载流子输运原理
@@ -316,6 +347,7 @@ $$\text{温度↑} \;\Rightarrow\; V_{BE}\text{↓（}-2\text{mV/°C）} \;\Righ
 
 ---
 
+<a id="ch4"></a>
 ## 第 4 章 MOSFET：电压控制的开关王者
 
 ### 4.1 沟道形成原理（N 沟道增强型）
@@ -371,12 +403,12 @@ MOSFET 栅极充电时 $V_{GS}$ 波形出现的"平台"：此时 $V_{DS}$ 正在
 
 **稳态**：$P_{cond} = I^2 R_{DS(on)} = 25\times 0.03Ω = 0.75W$。
 
-🧮 **算一笔**：AO3400 $Q_g≈7nC$，10mA 驱动 → 开关时间 $≈\frac{7nC}{10mA}=700ns$。若母线 20V/5A、重叠区 100ns、开关频率 100kHz：$P_{sw} = \frac{1}{2}\times 20\times 5\times 100ns\times 100kHz = 5W$——**是导通损耗的 6 倍！**这就是高频场合必须看 $Q_g$ 而不能只看 $R_{DS(on)}$ 的原因，也是栅极驱动器动辄 2A 峰值电流的原因：把平台期挤短，损耗就小。
+🧮 **算一笔**：AO3400 $Q_g≈7nC$，10mA 驱动 → 开关时间 $≈\frac{7nC}{10mA}=700ns$。母线 20V/5A、重叠区按 700ns 估、开关频率 100kHz：$P_{sw} = \frac{1}{2}\times 20\times 5\times 700ns\times 100kHz ≈ 3.5W$——**是导通损耗（0.75W）的 4 倍多！**这就是高频场合必须看 $Q_g$ 而不能只看 $R_{DS(on)}$ 的原因，也是栅极驱动器动辄 2A 峰值电流的原因：把平台期挤短，损耗就小。
 
 
 ### 📺 配套视频
 
-<a href="https://www.youtube.com/watch?v=Te5YYVZiOKs"><img src="https://img.youtube.com/vi/Te5YYVZiOKs/hqdefault.jpg" width="230" alt="Afrotechmods MOSFET 教程"></a>
+<a href="https://www.youtube.com/watch?v=Te5YYVZiOKs"><img src="https://img.youtube.com/vi/Te5YYVZiOKs/mqdefault.jpg" width="230" alt="Afrotechmods MOSFET 教程"></a>
 
 > **Afrotechmods《Transistor / MOSFET tutorial》**：N 沟 MOSFET 开关实战入门最佳短片——面包板实拍，看完就能点亮第一个 LED 负载。（别忘了他说的：栅极对地接 100k，默认保持关断）
 
@@ -384,6 +416,7 @@ MOSFET 栅极充电时 $V_{GS}$ 波形出现的"平台"：此时 $V_{DS}$ 正在
 
 ---
 
+<a id="ch5"></a>
 ## 第 5 章 输出结构彻底讲透：推挽、开漏、上拉下拉
 
 > 这是数字与模拟交界处**最容易翻车**的概念群。I2C 不通、GPIO 烧毁、总线冲突，十有八九源于此。
@@ -493,6 +526,7 @@ OUT ────────────────┤
 
 ---
 
+<a id="ch6"></a>
 ## 第 6 章 运算放大器：从内部结构到参数字典
 
 ### 6.1 解剖一只 741：运放内部四大模块
@@ -603,15 +637,33 @@ IN- ──┘   │ (长尾对)  │   │ (共射+密勒) │   │(互补推�
 
 ### 📺 配套视频
 
-<a href="https://www.youtube.com/watch?v=K03Rom3Cs28"><img src="https://img.youtube.com/vi/K03Rom3Cs28/hqdefault.jpg" width="230" alt="w2aew #75 运放电路理解法"></a>
+<a href="https://www.youtube.com/watch?v=K03Rom3Cs28"><img src="https://img.youtube.com/vi/K03Rom3Cs28/mqdefault.jpg" width="230" alt="w2aew #75 运放电路理解法"></a>
 
 > **w2aew #75《Basics of Opamp circuits》**：用"运放会拼命让两个输入相等"一句话讲透所有运放电路的分析法——78 万播放的 9 分钟，胜过教材一章。
 > 🅱️ 中文字幕平替：[上海交大 郑益慧 模电（4K）](https://www.bilibili.com/video/BV1qA5DzWEVh/)——运放章节的物理图像讲得极好。
+
+### 6.7 动态分析：运放阶跃响应——压摆率与建立时间（四拍拆解）🔬
+
+> 电路：741 接成跟随器，输入 0→1V 阶跃。输出不是"立刻跟上"的——它要闯三道关。
+
+**初始态**：输入 0、输出 0，虚短成立，一切安静。
+
+**扰动**：输入瞬间跳到 1V。
+
+**中间态**（三幕）：
+① **输入级饱和**：阶跃瞬间 $V_+-V_-=1V$——而线性区只有 µV 级！差分对完全失衡，放大功能"宕机"
+② **压摆率爬坡**：补偿电容只能用恒定电流充电 → 输出以 $SR=0.5V/µs$ **恒速斜坡**上升（是直线，不是指数曲线！）
+③ **线性收尾**：输出逼近 1V，差分对退出饱和回到线性区 → 按 GBW 决定的指数曲线收尾 → 可能带过冲/振铃（相位裕度不足时）
+
+**稳态**：输出=1V。从阶跃到稳定进入误差带（如 0.1%）的总时间叫**建立时间**（Settling Time）——ADC 多路切换前端最关心的指标。
+
+🧮 **算一笔**：741 爬 1V 要 $1V ÷ 0.5V/µs = 2µs$。更狠的推论——**全功率带宽** $f_{max}=\dfrac{SR}{2\pi V_p}$：输出 10Vpp 正弦（$V_p$=5V）只有 $\frac{0.5}{2\pi\times 5}≈16kHz$！GBW=1MHz 的小信号带宽看着宽，大信号 16kHz 就三角波化。**音频功率级选运放先看 SR 就是这个账**；对比：NE5532 SR=9V/µs，全功率带宽 ≈286kHz。
 
 > 🎯 **通关打卡**：虚短虚断已成直觉，datasheet 二十几个参数里你知道先看哪五个——GBW、$V_{OS}$、$I_B$、压摆率、轨到轨。
 
 ---
 
+<a id="ch7"></a>
 ## 第 7 章 比较器：专为"判决"而生
 
 ### 7.1 比较器 vs 运放：为什么不能混用
@@ -674,6 +726,7 @@ $$V_{TH+} = V_{REF}\left(1+\frac{R_1}{R_2}\right) - \frac{R_1}{R_2}V_{OL},\qquad
 
 ---
 
+<a id="ch8"></a>
 ## 第 8 章 模拟开关与多路复用器：CMOS 传输门
 
 ### 8.1 传输门原理：为什么必须 NMOS+PMOS 并联
@@ -739,6 +792,7 @@ IN ─────┤          ├───── OUT
 
 ---
 
+<a id="ch9"></a>
 ## 第 9 章 电压基准与稳压器：系统的"定盘星"
 
 ### 9.1 齐纳 vs 带隙：两种基准原理
@@ -805,10 +859,28 @@ VIN ──[调整管 PMOS/PNP]── VOUT
 | AMS1117 输出振荡 | 输出电容 ESR 不合要求 | 换型号或按规格书加钽电容 |
 | 上电过冲烧后级 | 输入高压+快上电，调整管未及时响应 | 软启动/选带过冲抑制型号 |
 
+### 9.5 动态分析：LDO 负载瞬态（四拍拆解）🔬
+
+> 电路：AMS1117-5V，输出电容 10µF（ESR 50mΩ），负载从 10mA 阶跃到 500mA（MCU 从休眠唤醒）。
+
+**初始态**：10mA 轻载，调整管的"自动电阻"较大，环路悠哉运行。
+
+**扰动**：负载电流阶跃 +490mA。
+
+**中间态**（三幕，对应动画里的"跌落→拉回"）：
+① **ESR 跳变**（零延迟）：$\Delta V_1 = 490mA \times 50mΩ ≈ 25mV$——瞬间发生，神仙也拦不住
+② **电容放电**（µs 级）：环路带宽有限还没反应，电容独自供电：$\Delta V_2 = \dfrac{I\cdot\Delta t}{C} = \dfrac{0.49A \times 5µs}{10µF} ≈ 245mV$——继续下跌
+③ **环路接管**：误差放大器驱动调整管"调小电阻" → VOUT 回升 → 过冲/振铃（相位裕度决定）→ 重新锁定
+
+**稳态**：500mA 下 $V_{OUT}=5V-$ 负载调整率（典型 0.2%，约 10mV）。
+
+🧮 **算一笔**：总跌落 ≈25+245=270mV。若这是 3.3V 系统、复位阈值 −5%（165mV）——**这次唤醒直接触发复位**。对策三板斧：加大输出电容（摊薄 ΔV₂）、换低 ESR 陶瓷电容（压掉 ΔV₁）、选快环路 LDO（缩短 Δt）。**"MCU 一跑大程序就复位"，十之五六是这个剧本。**
+
 > 🎯 **通关打卡**：LDO 在你眼里是闭环控制系统，7805 的发热你算得清，换料前会先查"输出电容 ESR"那一行。
 
 ---
 
+<a id="ch10"></a>
 ## 第 10 章 555 定时器：最经典的混合信号芯片
 
 
@@ -861,16 +933,35 @@ $$f = \frac{1.44}{(R_1 + 2R_2)\,C}, \qquad 占空比 = \frac{R_1+R_2}{R_1+2R_2} 
 - CMOS 版（TLC555/LMC555）：2~15V，低功耗，输出电流小
 - 常见故障：5 脚（CTRL）悬空拾取干扰导致频率漂移 → **标准做法接 10nF 到地**；输出驱动容性负载振荡；双极版电源毛刺需大容量去耦
 
+### 10.4 动态分析：555 无稳态的一个完整周期（四拍拆解）🔬
+
+> 电路：R1=1kΩ、R2=6.8kΩ、C=100nF，$V_{CC}=9V$。跟着电容走一圈。
+
+**初始态**（上电）：C=0V → TRIG（2 脚）<⅓VCC → 输出**高**、放电管（7 脚）关断。
+
+**充电**：电流经 R1+R2 给 C 充值；过 3V 时 TRIG 条件消失但无动作；**到 6V（⅔VCC）瞬间**：THRES（6 脚）触发 → 触发器翻转。
+
+**放电**：输出变**低**、7 脚对地导通 → C 经 R2 放电；**到 3V（⅓VCC）瞬间**：TRIG 触发 → 翻转回去，下一圈开始。
+
+**稳态**：电容 6V↔3V 三角波"荡秋千"，输出同步方波，无人值守永不停歇。
+
+🧮 **算一笔**：指数曲线上 ⅓→⅔ 恰好占 $\ln 2 ≈ 0.693$ 个时间常数：
+$t_{充}=0.693(R_1+R_2)C = 0.693\times 7.8k\times 100nF ≈ 541µs$（输出高）
+$t_{放}=0.693\,R_2\,C ≈ 471µs$（输出低）
+→ $f ≈ 990Hz$、占空比 ≈53%。**充电走 R1+R2、放电只走 R2，所以占空比永远 >50%**；想要准 50%：R2 两端并一只二极管，充电时抄近路绕过 R2。
+
 > 🎯 **通关打卡**：3 电阻+2 比较器+1 触发器+1 放电管刻进脑子——单稳/无稳/双稳三种模式随手搭，5 脚记得接 10nF。
 
 ---
 
+<a id="part2"></a>
 # 第二篇：经典电路拓扑原理 ⚡
 
 > 器件是"字"，拓扑是"句"。第一篇把每个字讲透了，这一篇组句：**为什么电路长成这个样子？**——每个拓扑都按同一逻辑讲：它要解决什么问题 → 这个结构凭什么能解决 → 关键设计式 → 经典翻车点。
 
 ---
 
+<a id="ch11"></a>
 ## 第 11 章 放大电路拓扑：三种组态与四大积木
 
 ### 11.1 共射/共集/共基：一只晶体管的三种人生
@@ -935,6 +1026,7 @@ $$f = \frac{1.44}{(R_1 + 2R_2)\,C}, \qquad 占空比 = \frac{R_1+R_2}{R_1+2R_2} 
 
 ---
 
+<a id="ch12"></a>
 ## 第 12 章 运放应用电路族：两条公理推演一切
 
 ### 12.1 方法论：虚短 + 虚断
@@ -995,6 +1087,7 @@ $$f_c = \frac{1}{2\pi\sqrt{R_1R_2C_1C_2}} \quad(\text{常用 } R_1{=}R_2{=}R,\ C
 
 ---
 
+<a id="ch13"></a>
 ## 第 13 章 电源与信号产生电路
 
 ### 13.1 分立串联稳压：LDO 的祖爷爷
@@ -1048,10 +1141,12 @@ $$\text{环路增益}=3\times\frac{1}{3}=1,\quad \text{环路相移}=0°$$
 > 🎯 **通关打卡**：伏秒平衡推出 $V_{out}=D\cdot V_{in}$；Boost"憋气弹簧"图像记住；巴克豪森判据（增益=1、相移=0）成为审视一切振荡电路的尺子；知道恒流源的四种实现与选型。
 
 
+<a id="part3"></a>
 # 第三篇：电路设计要点与 PCB 实战 🛠️
 
 ---
 
+<a id="ch14"></a>
 ## 第 14 章 电路设计方法论
 
 ### 14.1 设计流程五部曲
@@ -1091,6 +1186,7 @@ $$\text{环路增益}=3\times\frac{1}{3}=1,\quad \text{环路相移}=0°$$
 
 ---
 
+<a id="ch15"></a>
 ## 第 15 章 PCB 绘制注意事项
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Macro_circuit_board.JPG" width="480" alt="PCB 微距：走线、过孔与焊盘（Wikimedia Commons）">
@@ -1156,10 +1252,12 @@ $$\text{环路增益}=3\times\frac{1}{3}=1,\quad \text{环路相移}=0°$$
 
 ---
 
+<a id="part4"></a>
 # 第四篇：故障分析与排故方法论 🩺
 
 ---
 
+<a id="ch16"></a>
 ## 第 16 章 排故五步法
 
 <p>
@@ -1219,6 +1317,7 @@ $$\text{环路增益}=3\times\frac{1}{3}=1,\quad \text{环路相移}=0°$$
 
 > 🎯 **通关打卡**：你现在拿到一块故障板，会先问 5 个问题、按对数切半定位、一次只改一个变量——而不是抓起烙铁就换芯片。
 
+<a id="ch17"></a>
 ## 第 17 章 故障模式速查总表
 
 ### 17.1 电源类
@@ -1257,6 +1356,7 @@ $$\text{环路增益}=3\times\frac{1}{3}=1,\quad \text{环路相移}=0°$$
 
 > 🎯 **通关打卡**：症状→嫌疑→验证三列口诀随身带——故障现场，你不再慌。
 
+<a id="ch18"></a>
 ## 第 18 章 大师的排故智慧
 
 ### 18.1 Bob Pease：模拟排故的「老中医」
@@ -1286,6 +1386,7 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 
 ---
 
+<a id="part5"></a>
 # 第五篇：动画演示中心 🎬
 
 > 全部 SVG 动画（SMIL，浏览器直接播放）位于 `assets/svg/` 目录，由 `scripts/generate_svgs.py` 一键生成；配套 Falstad 在线电路可实时交互。
@@ -1359,6 +1460,7 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 
 ---
 
+<a id="part6"></a>
 # 第六篇：常用芯片实物图鉴与速查 🧩
 
 ## 6.1 实物图鉴
@@ -1445,6 +1547,7 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 
 **找不到官方 datasheet？** 检索口诀：`型号 + "datasheet" + 厂家名 + filetype:pdf`；聚合站 [Octopart](https://octopart.com/)、[Alldatasheet](https://www.alldatasheet.com/)、立创商城商品页（附中文参数翻译，新手友好）。
 
+<a id="part7"></a>
 # 第七篇：视频资源汇总 📺
 
 ## 7.1 B 站（中文系统课程）
@@ -1474,6 +1577,7 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 
 ---
 
+<a id="part8"></a>
 # 第八篇：学习路线与资源索引 📚
 
 ## 8.1 分阶段路线图
@@ -1487,7 +1591,7 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 | 4 | 频响与反馈（第 6 章） | 1.5 月 | 会读波特图、会算相位裕度 |
 | 5 | 应用芯片（第 7~10 章） | 1.5 月 | 独立完成比较器+运放信号链 |
 | 6 | 电路拓扑专题（第 11~13 章） | 1 月 | 徒手推 Buck 伏秒平衡、设计 Sallen-Key 滤波器 |
-| 7 | 方向深化：板级（第 14-15 章）/ IC 设计 | 长期 | 里程碑项目（8.4 节） |
+| 7 | 方向深化：板级（第 14-15 章）/ IC 设计 | 长期 | 里程碑项目（8.3 节） |
 
 ## 8.2 完整书单
 
@@ -1575,7 +1679,7 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 | 论文 | 作者/年份 | 为什么值得读 |
 |---|---|---|
 | [New Developments in IC Voltage Regulators](https://doi.org/10.1109/JSSC.1971.1050151) | **Robert Widlar**, IEEE JSSC 1971 | **带隙基准的诞生**——用 ΔV_BE 正温漂抵消 V_BE 负温漂，造出与温度无关的 1.2V 基准。今天每颗芯片都在用 |
-| [A Simple Three-Terminal IC Bandgap Reference](https://doi.org/10.1109/JSSC.1974.1050534) | **Paul Brokaw**, IEEE JSSC 1974 | Brokaw 单元——TL431/REF 系列的直系祖先，结构上更实用 |
+| [A Simple Three-Terminal IC Bandgap Reference](https://doi.org/10.1109/JSSC.1974.1050532) | **Paul Brokaw**, IEEE JSSC 1974 | Brokaw 单元——TL431/REF 系列的直系祖先，结构上更实用 |
 | [A Precise Four-Quadrant Multiplier](https://doi.org/10.1109/JSSC.1968.1049925) | **Barrie Gilbert**, IEEE JSSC 1968 | Gilbert 单元——混频器/调幅/PLL 检相的核心，"用差分对做乘法" |
 
 **入门建议读法**：论文正文前的 Introduction 往往是最精华的"问题史"——先读它，知道前人卡在哪，再看作者的解法妙在哪。
