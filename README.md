@@ -7,6 +7,16 @@
 
 ---
 
+<p align="center">
+  <img src="assets/comparator_hysteresis.gif" width="720" alt="动画演示：比较器迟滞原理">
+</p>
+
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-CC_BY--SA_4.0-lightgrey.svg" alt="License"></a>
+  <img src="https://img.shields.io/badge/GIF动画-7张-3fb950.svg" alt="GIF">
+  <img src="https://img.shields.io/badge/章节-7篇15章-58a6ff.svg" alt="chapters">
+</p>
+
 ## 📖 前言
 
 数字电路统治了世界，但世界本身是模拟的。传感器电压、麦克风声波、天线射频、电池电量全是模拟量；每颗数字芯片的供电、时钟、接口背后都站着模拟电路。模拟设计无法被综合工具替代，至今仍是一门"手艺活"。
