@@ -108,6 +108,9 @@ $$I_D = I_S\left(e^{\frac{V_D}{nV_T}} - 1\right), \quad V_T = \frac{kT}{q} \appr
 
 ### 2.3 整流原理
 
+<p align="center"><img src="assets/svg/bridge-rectifier.svg" width="720" alt="桥式整流动画：正负半周导通路径切换"></p>
+
+
 **半波整流**：只用半个周期，输出脉动大，效率低
 **桥式全波整流**（4 只二极管）：
 - 正半周：D1、D4 导通；负半周：D2、D3 导通
@@ -186,6 +189,9 @@ NPN 管 = 两块 N 型夹一块**极薄**的 P 型基区：
 
 ### 3.4 偏置电路：为什么必须用分压偏置
 
+<p align="center"><img src="assets/svg/bjt-amplify.svg" width="720" alt="共射放大器动画：偏置核算与放大原理"></p>
+
+
 固定偏置（单电阻从 Vcc 到基极）：$I_B=(V_{CC}-0.7)/R_B$，$I_C=\beta I_B$ —— **β 离散导致工作点完全不可控**。
 
 **分压偏置**（工程标准做法）：
@@ -242,6 +248,9 @@ $$\text{温度↑} \;\Rightarrow\; V_{BE}\text{↓（}-2\text{mV/°C）} \;\Righ
 ## 第 4 章 MOSFET：电压控制的开关王者
 
 ### 4.1 沟道形成原理（N 沟道增强型）
+
+<p align="center"><img src="assets/svg/mosfet-switch.svg" width="720" alt="MOSFET 开关动画：沟道形成与导通"></p>
+
 
 1. P 型衬底上两个 N+ 区（源 S、漏 D），中间隔栅氧层+栅极 G
 2. $V_{GS}=0$：两个背靠背 PN 结，不导通
@@ -466,6 +475,9 @@ IN- ──┘   │ (长尾对)  │   │ (共射+密勒) │   │(互补推�
 
 ### 6.5 经典应用电路原理
 
+<p align="center"><img src="assets/svg/opamp-inverting.svg" width="720" alt="反相放大器动画：虚短虚断"></p>
+
+
 - **反相放大**：$A_v = -R_f/R_{in}$；虚地——同相端接地，反相端被反馈强制为虚地
 - **同相放大**：$A_v = 1 + R_f/R_g$；输入阻抗极高
 - **电压跟随器**：增益=1 的缓冲器，阻抗变换
@@ -514,6 +526,9 @@ IN- ──┘   │ (长尾对)  │   │ (共射+密勒) │   │(互补推�
 - 静态电流：0.4mA（低功耗）
 
 ### 7.3 迟滞（Hysteresis）：噪声免疫的数学
+
+<p align="center"><img src="assets/svg/comparator-hysteresis.svg" width="720" alt="比较器迟滞动画：回滞环"></p>
+
 
 无迟滞比较器在阈值附近遇到噪声 → 输出多次抖动（🎬 见第四篇 [迟滞动画](#demo4)）。
 
@@ -663,6 +678,9 @@ VIN ──[调整管 PMOS/PNP]── VOUT
 
 
 ### 10.1 内部结构：一只 555 = 3 个电阻 + 2 个比较器 + 1 个触发器 + 1 个放电管
+
+<p align="center"><img src="assets/svg/ne555-astable.svg" width="720" alt="555 无稳态振荡动画"></p>
+
 
 ```
 Vcc ──┬──[R]──┬──[R]──┬──[R]──┬── GND      ← 三个 5kΩ 电阻分压（555 名字由来）
@@ -856,6 +874,9 @@ $$f = \frac{1.44}{(R_1 + 2R_2)\,C}, \qquad 占空比 = \frac{R_1+R_2}{R_1+2R_2} 
 > 全部 GIF 位于 `assets/` 目录，Markdown 阅读器直接可见；配套 Falstad 在线电路可实时交互。
 
 ## 4.1 RC 充电 <a id="demo1"></a>
+
+<p align="center"><img src="assets/svg/rc-charge.svg" width="720" alt="RC 充电动画：水桶与细水管"></p>
+
 
 ![RC 充电动画](assets/rc_charging.gif)
 
