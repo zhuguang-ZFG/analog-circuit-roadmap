@@ -25,7 +25,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
 [fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
 [fill="#cbd5e1"]{fill:#334155}[stroke="#cbd5e1"]{stroke:#475569}
-[fill="#ffffff"]{fill:#0f172a}[fill="#94a3b8"]{fill:#64748b}
+[fill="#ffffff"]{fill:#0f172a}[fill="#94a3b8"]{fill:#64748b}[stroke="#94a3b8"]{stroke:#64748b}
 [fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
 }
 </style>"""
