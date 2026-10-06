@@ -2456,9 +2456,9 @@ def make_inverting_buckboost():
 <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.52;0.56;0.9;0.96;1" dur="{DBB}s" repeatCount="indefinite"/></text>
 '''
     svg += f'<g><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.4;0.46;1" dur="{DBB}s" repeatCount="indefinite"/>'
-    svg += flow("M54,92 H150 M160,92 H201 M205,100 V132", DBB/3, n=5, color="#059669", r=5) + '</g>'
+    svg += flow("M54,92 H150 M160,92 H201 M205,100 V188", DBB/3, n=5, color="#059669", r=5) + '</g>'
     svg += f'<g><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.5;0.56;0.9;0.96;1" dur="{DBB}s" repeatCount="indefinite"/>'
-    svg += flow("M205,176 V140 M205,92 H256 M288,92 H336 M340,100 V136", DBB/3, n=5, color="#dc2626", r=5) + '</g>'
+    svg += flow("M340,136 V92 H288 M284,92 H260 M256,92 H210 M205,100 V188", DBB/3, n=5, color="#dc2626", r=5) + '</g>'
     svg += f'''
 <text x="440" y="252" font-size="11.5" font-weight="bold" fill="#7c3aed">电感电流（三角波）</text>
 <path d="{il_d}" fill="none" stroke="#059669" stroke-width="2.8"/>
