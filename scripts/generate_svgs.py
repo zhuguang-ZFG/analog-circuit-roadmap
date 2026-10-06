@@ -2827,7 +2827,7 @@ def make_clipper_clamper():
                    "0;1;1;0;0", "0;0.02;0.2;0.26;1", y=400)
     svg += caption("② 双向版就是 ADC 引脚保护：两只二极管把信号锁进 ±0.7V——第一道墙", "#b45309", DC,
                    "0;0;1;1;0;0", "0;0.26;0.32;0.5;0.56;1", y=400)
-    svg += caption("③ 钳位：负半周瞬间 D 导通，C 充到峰值——此后 D 常关，C 变成串联电池", "#059669", DC,
+    svg += caption("③ 钳位：负半周瞬间 D 导通，C 充到 ≈2.3V（峰值 3V − 0.7V）——此后 D 常关，C 变成串联电池", "#059669", DC,
                    "0;0;1;1;0;0", "0;0.56;0.62;0.78;0.84;1", y=400)
     svg += caption("④ 输出整体垫高：±3V 进来，−0.7~5.3V 出去——直流分量被恢复了", "#0891b2", DC,
                    "0;0;1;1", "0;0.84;0.9;1", y=400)
@@ -3345,7 +3345,7 @@ def make_divider_loading():
 # ======================= 图 45：BJT 三个工作区 =======================
 def make_bjt_regions():
     DB = 8
-    cur = "M456,214 L460,224 L464,234 L470,248 L476,252 L507,252 L620,252 L700,252 L790,251"
+    cur = "M456,214 L460,224 L464,236 L470,250 L476,260 L507,260 L620,260 L700,260 L790,259"
     svg = svg_open('BJT 三个工作区：看两个 PN 结的脸色', h=560)
     svg += f'''
 <text x="210" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">判据看两个结，不看心情</text>
@@ -3367,7 +3367,7 @@ def make_bjt_regions():
 <line x1="130" y1="325" x2="130" y2="350" stroke="#334155" stroke-width="2.5"/>
 {gnd_sym(130, 364)}
 <text x="140" y="232" font-size="11" fill="#475569">I_B=(12−0.7)/300k</text>
-<text x="140" y="268" font-size="11" fill="#dc2626">=40µA → I_C = 4mA</text>
+<text x="140" y="268" font-size="11" fill="#dc2626">≈38µA → I_C ≈ 3.8mA</text>
 <line x1="286" y1="76" x2="286" y2="388" stroke="#cbd5e1" stroke-width="1"/>
 <text x="300" y="88" font-size="12.5" font-weight="bold" fill="#334155">三个工作区</text>
 <text x="306" y="122" font-size="12" fill="#475569">发射结</text>
@@ -3392,22 +3392,22 @@ def make_bjt_regions():
 <text x="444" y="296" text-anchor="end" font-size="10.5" fill="#475569">2mA</text>
 <text x="444" y="256" text-anchor="end" font-size="10.5" fill="#475569">4mA</text>
 <text x="444" y="218" text-anchor="end" font-size="10.5" font-weight="bold" fill="#dc2626">6mA 饱和</text>
-<line x1="450" y1="252" x2="563" y2="252" stroke="#7c3aed" stroke-width="1" stroke-dasharray="3,3"/>
-<line x1="563" y1="252" x2="563" y2="332" stroke="#7c3aed" stroke-width="1" stroke-dasharray="3,3"/>
-<rect x="450" y="214" width="113" height="118" fill="#dc2626" opacity="0.10"/>
+<line x1="450" y1="260" x2="588" y2="260" stroke="#7c3aed" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="588" y1="260" x2="588" y2="332" stroke="#7c3aed" stroke-width="1" stroke-dasharray="3,3"/>
+<rect x="450" y="214" width="138" height="118" fill="#dc2626" opacity="0.10"/>
 <text x="790" y="352" text-anchor="end" font-size="10.5" font-weight="bold" fill="#64748b">12V 截止</text>
-<text x="563" y="352" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#7c3aed">4V</text>
+<text x="588" y="352" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#7c3aed">4.4V</text>
 <text x="476" y="352" font-size="10.5" fill="#475569">0.2V</text>
 <text x="470" y="140" font-size="11" font-weight="bold" fill="#dc2626">饱和区</text>
 <text x="470" y="158" font-size="10.5" fill="#475569">负载线压在曲线上方</text>
 <text x="470" y="180" font-size="10.5" fill="#475569">膝点：V_CE=0.2V，I_C≈5.9mA</text>
 <path d="{cur}" fill="none" stroke="#0ea5e9" stroke-width="2.4"/>
-<text x="676" y="214" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#0ea5e9">放大区：I_C=βI_B 拉平在 4mA</text>
+<text x="676" y="214" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#0ea5e9">放大区：I_C=βI_B 拉平在 3.8mA</text>
 <text x="760" y="140" text-anchor="end" font-size="10.5" font-weight="bold" fill="#7c3aed">负载线 I_C=(12−V_CE)/2k</text>
 <line x1="456" y1="214" x2="790" y2="332" stroke="#7c3aed" stroke-width="2" stroke-dasharray="6,4"/>
 <circle r="7" fill="#7c3aed" stroke="#ffffff" stroke-width="2">
 <animateMotion dur="{DB}s" repeatCount="indefinite" path="M456,214 L790,332" keyPoints="0;1;0" keyTimes="0;0.5;1"/></circle>
-<text x="575" y="246" font-size="11" font-weight="bold" fill="#7c3aed">Q（工作点）</text>
+<text x="600" y="254" font-size="11" font-weight="bold" fill="#7c3aed">Q（工作点）</text>
 <text x="620" y="374" text-anchor="middle" font-size="10.5" fill="#475569">蓝线=输出特性　紫虚线=负载线　圆点沿负载线来回扫：左端饱和、右端截止</text>
 <circle r="4.5" fill="#f59e0b"><animateMotion dur="{DB}s" begin="-0.2s" repeatCount="indefinite" path="M105,112 L105,138"/></circle>
 <circle r="4.5" fill="#f59e0b"><animateMotion dur="{DB}s" begin="-0.9s" repeatCount="indefinite" path="M70,112 L70,168"/></circle>
@@ -5401,7 +5401,7 @@ def make_bjt_switch():
 <rect x="446" y="228" width="330" height="96" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="1.8"/>
 <text x="462" y="254" font-size="12" font-weight="bold" fill="#b45309">② 算基极电阻</text>
 <text x="462" y="278" font-size="11.5" fill="#475569">R_B = (V_MCU − V_BE) / I_B</text>
-<text x="462" y="302" font-size="11.5" font-weight="bold" fill="#059669">= (3.3 − 0.7) / 7mA ≈ 360Ω</text>
+<text x="462" y="302" font-size="11.5" font-weight="bold" fill="#059669">= (3.3 − 0.7) / 7mA ≈ 371Ω</text>
 <text x="462" y="318" font-size="10.5" fill="#475569">取标称值 360Ω（或 330Ω，偏大更安全）</text>
 <rect x="446" y="338" width="330" height="150" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.8"/>
 <text x="462" y="364" font-size="12" font-weight="bold" fill="#b91c1c">③ 续流二极管：不是可选项</text>
@@ -5419,7 +5419,7 @@ def make_bjt_switch():
 '''
     svg += caption("① 用「强制 β=10」定 I_B：不依赖标称 β，才能保证深度饱和", "#2563eb", DS,
                    "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=586)
-    svg += caption("② R_B=(3.3V−0.7V)/7mA≈360Ω —— 分母是 I_B 不是 I_C，别算错", "#b45309", DS,
+    svg += caption("② R_B=(3.3V−0.7V)/7mA≈371Ω，就近取标称 360Ω —— 分母是 I_B 不是 I_C，别算错", "#b45309", DS,
                    "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=586)
     svg += caption("③ 续流二极管必备：线圈反电动势能到上百伏，三极管扛不住", "#dc2626", DS,
                    "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=586)
