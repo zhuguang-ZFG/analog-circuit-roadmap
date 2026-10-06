@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+<title>带隙基准：一正一负，凑出与温度无关的 1.25V</title>
+<rect width="800" height="500" fill="#f8fafc"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+@media (prefers-color-scheme: dark){
+rect[fill="#f8fafc"]{fill:#0f172a}
+[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
+[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
+[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
+[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
+[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
+[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
+[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
+[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
+[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
+[fill="#cbd5e1"]{fill:#334155}[stroke="#cbd5e1"]{stroke:#475569}
+[fill="#ffffff"]{fill:#0f172a}[fill="#94a3b8"]{fill:#64748b}[stroke="#94a3b8"]{stroke:#64748b}
+[fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
+}
+</style>
+<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">带隙基准：一正一负，凑出与温度无关的 1.25V</text>
+
+<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">V_REF = V_BE + K·ΔV_BE ≈ 1.25V（硅带隙电压）</text>
+<rect x="60" y="80" width="320" height="220" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+<text x="220" y="104" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">Brokaw 单元（简化）</text>
+<text x="220" y="122" text-anchor="middle" font-size="10.5" fill="#7c3aed">两管电流密度不同 → ΔV_BE=V_T·ln(8)≈54mV 落在 R 上</text>
+<g stroke="#334155" fill="none" stroke-width="2.5">
+<circle cx="138" cy="206" r="34" stroke-width="1.8"/>
+<line x1="115" y1="186" x2="115" y2="226" stroke-width="3.5"/>
+<line x1="115" y1="198" x2="150" y2="171"/>
+<line x1="115" y1="214" x2="150" y2="241"/>
+<line x1="150" y1="171" x2="150" y2="151"/>
+<line x1="150" y1="241" x2="150" y2="261"/>
+<line x1="65" y1="206" x2="115" y2="206"/>
+<polygon points="150,241 137.5,237.6 143.5,229.8" fill="#334155" stroke="none"/>
+</g>
+<text x="57" y="198" font-size="12.5" font-weight="bold" fill="#dc2626">B</text>
+<text x="159" y="158" font-size="12.5" font-weight="bold" fill="#2563eb">C</text>
+<text x="159" y="266" font-size="12.5" font-weight="bold" fill="#059669">E</text>
+<g stroke="#334155" fill="none" stroke-width="2.5">
+<circle cx="278" cy="206" r="34" stroke-width="1.8"/>
+<line x1="255" y1="186" x2="255" y2="226" stroke-width="3.5"/>
+<line x1="255" y1="198" x2="290" y2="171"/>
+<line x1="255" y1="214" x2="290" y2="241"/>
+<line x1="290" y1="171" x2="290" y2="151"/>
+<line x1="290" y1="241" x2="290" y2="261"/>
+<line x1="205" y1="206" x2="255" y2="206"/>
+<polygon points="290,241 277.5,237.6 283.5,229.8" fill="#334155" stroke="none"/>
+</g>
+<text x="197" y="198" font-size="12.5" font-weight="bold" fill="#dc2626">B</text>
+<text x="299" y="158" font-size="12.5" font-weight="bold" fill="#2563eb">C</text>
+<text x="299" y="266" font-size="12.5" font-weight="bold" fill="#059669">E</text>
+<text x="120" y="286" font-size="10.5" fill="#475569">Q1（1×）</text>
+<text x="255" y="286" font-size="10.5" font-weight="bold" fill="#dc2626">Q2（8× 面积）</text>
+
+<text x="590" y="76" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#475569">随温度（−40°C → 125°C）</text>
+<path d="M430,190 430,190 L434,190 L438,191 L442,191 L446,192 L450,192 L454,193 L458,193 L462,194 L466,194 L470,195 L474,195 L478,196 L482,196 L486,197 L490,198 L494,198 L498,199 L502,199 L506,200 L510,201 L514,201 L518,202 L522,202 L526,203 L530,204 L534,204 L538,205 L542,206 L546,206 L550,207 L554,207 L558,208 L562,209 L566,209 L570,210 L574,211 L578,211 L582,212 L586,213 L590,213 L594,214 L598,215 L602,215 L606,216 L610,217 L614,218 L618,218 L622,219 L626,220 L630,220 L634,221 L638,222 L642,222 L646,223 L650,224 L654,225 L658,225 L662,226 L666,227 L670,227 L674,228 L678,229 L682,230 L686,230 L690,231 L694,232 L698,232 L702,233 L706,234 L710,235 L714,235 L718,236 L722,237 L726,238 L730,238 L734,239 L738,240 L742,241 L746,241 L750,242" fill="none" stroke="#dc2626" stroke-width="2.8"/>
+<text x="640" y="238" font-size="10.5" fill="#dc2626">V_BE：−2mV/°C 下坡</text>
+<path d="M430,262 430,262 L434,261 L438,261 L442,260 L446,259 L450,259 L454,258 L458,257 L462,257 L466,256 L470,256 L474,255 L478,254 L482,254 L486,253 L490,252 L494,252 L498,251 L502,250 L506,250 L510,249 L514,248 L518,248 L522,247 L526,246 L530,246 L534,245 L538,244 L542,244 L546,243 L550,242 L554,242 L558,241 L562,241 L566,240 L570,239 L574,239 L578,238 L582,237 L586,237 L590,236 L594,235 L598,235 L602,234 L606,233 L610,233 L614,232 L618,231 L622,231 L626,230 L630,230 L634,229 L638,228 L642,228 L646,227 L650,226 L654,226 L658,225 L662,224 L666,224 L670,223 L674,222 L678,222 L682,221 L686,220 L690,220 L694,219 L698,218 L702,218 L706,217 L710,216 L714,216 L718,215 L722,215 L726,214 L730,213 L734,213 L738,212 L742,211 L746,211 L750,210" fill="none" stroke="#059669" stroke-width="2.8"/>
+<text x="440" y="296" font-size="10.5" fill="#059669">K·ΔV_BE：正温漂上坡（V_T 正比绝对温度）</text>
+<line x1="430" y1="226" x2="750" y2="226" stroke="#2563eb" stroke-width="3"/>
+<text x="590" y="216" font-size="11" font-weight="bold" fill="#2563eb">合成 V_REF=1.25V：一条直线</text>
+<line x1="430" y1="270" x2="750" y2="270" stroke="#64748b" stroke-width="1.2"/>
+<text x="430" y="284" font-size="10" fill="#475569">−40°C</text>
+<text x="724" y="284" font-size="10" fill="#475569">125°C</text>
+<text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">① V_BE 天生负温漂（−2mV/°C）——温度一升它就掉（PN 结特性，见 2.2）<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.22;0.28;1" dur="6s" repeatCount="indefinite"/></text><text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">② ΔV_BE 天生正温漂——两管电流密度差产生，V_T=kT/q 与绝对温度严格成正比<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.3;0.35;0.58;0.64;1" dur="6s" repeatCount="indefinite"/></text><text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">③ 给 ΔV_BE 配权重 K，让上坡斜率恰好抵消下坡——合成 1.25V，全温区纹丝不动<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.64;0.7;1" dur="6s" repeatCount="indefinite"/></text><g opacity="0">
+<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.74;0.79;1" dur="6s" repeatCount="indefinite"/>
+<rect x="30" y="450" width="740" height="34" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+<text x="400" y="472" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">1.25V 不是调出来的，是硅的带隙电压——两条物理曲线的交点写在材料常数里（Widlar 1971 / Brokaw 1974，见 8.9）</text>
+</g></svg>

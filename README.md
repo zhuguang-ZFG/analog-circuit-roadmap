@@ -13,7 +13,7 @@
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-CC_BY--SA_4.0-lightgrey.svg" alt="License"></a>
-  <img src="https://img.shields.io/badge/SVG动画-21张-3fb950.svg" alt="SVG">
+  <img src="https://img.shields.io/badge/SVG动画-25张-3fb950.svg" alt="SVG">
   <img src="https://img.shields.io/badge/章节-8篇19章-58a6ff.svg" alt="chapters">
 </p>
 
@@ -82,7 +82,7 @@ graph TD
   - [第 14 章 设计方法论](#ch14) · [第 15 章 PCB 注意事项](#ch15)
 - **[第四篇：故障分析与排故方法论](#part4)** 🩺
   - [第 16 章 排故五步法](#ch16) · [第 17 章 故障速查表](#ch17) · [第 18 章 大师智慧](#ch18)
-- **[第五篇：动画演示中心](#part5)** 🎬 — 21 张 SVG 动画 + Falstad 地图
+- **[第五篇：动画演示中心](#part5)** 🎬 — 25 张 SVG 动画 + Falstad 地图
 - **[第六篇：实物图鉴与速查](#part6)** 🧩 — 实物照片 · 参数速查 · [官方 datasheet 直达](#part6)
 - **[第七篇：视频资源](#part7)** 📺 — B站系统课 · YouTube 频道
 - **[第八篇：学习路线与资源索引](#part8)** 📚 — 路线图 · 书单 · 项目清单 · [官方资料](#sec88) · [经典论文](#sec89) · FAQ
@@ -935,8 +935,12 @@ IN ─────┤          ├───── OUT
 
 **带隙基准（Bandgap）**：利用两个温度特性相反的电压互相补偿：
 $$V_{REF} = \underbrace{V_{BE}}_{-2mV/°C} + \underbrace{K \cdot V_T \ln N}_{+0.085mV/°C \times K} \approx 1.25V$$
+
+<p align="center"><img src="assets/svg/bandgap.svg" width="720" alt="带隙基准动画：正负温漂抵消出 1.25V"></p>
 - $V_{BE}$ 随温度下降，热电压 $V_T$ 随温度上升 → 调好比例 K，零温漂
 - 1.25V ≈ 硅的带隙电压 → 名字由来。这是**所有现代电压基准芯片的核心**
+
+🧮 **算一笔（配比 K 从哪来）**：两只晶体管电流密度比 $N=8$ → $\Delta V_{BE}=V_T\ln 8\approx 26mV\times2.08=54mV$。它的温漂：$V_T$ 随温度 $+0.085mV/°C$，故 $\Delta V_{BE}$ 温漂 $=0.085\times2.08\approx +0.177mV/°C$。要抵消 $V_{BE}$ 的 $-2mV/°C$，所需配比 $K=2/0.177\approx 11.3$。验算：$V_{REF}=V_{BE}+K\cdot\Delta V_{BE}\approx 0.65V+11.3\times54mV\approx 1.26V$ ✓——恰好落在硅带隙电压附近。**整个设计没有一个"魔数"**：8 来自版图面积比（好做又准），K 来自电阻比（IC 里激光修调可精到 0.01%）——带隙基准能把温漂做到 3ppm/°C，靠的就是"两只管子+两个比值"这种结构天生好匹配（[11.2 差分对](#ch11)同一哲学：IC 里绝对值靠不住，比值才可靠）。
 
 ### 9.2 TL431：会"变身"的可调基准
 
@@ -1255,6 +1259,8 @@ $$\frac{V_{in}-0}{R_{in}} = \frac{0-V_{out}}{R_f} \;\Rightarrow\; V_{out} = -\fr
 
 **仪表放大器（三运放）**：前两运放做"双同相跟随"（输入阻抗 GΩ 级、差模增益可调），第三级做差分放大。心电、应变片、热电偶标配——因为这些传感器**源阻抗高、信号毫伏级、共模干扰大**，三个痛点仪放一次解决。
 
+<p align="center"><img src="assets/svg/instrumentation-amp.svg" width="720" alt="仪表放大器动画：三道防线挡共模"></p>
+
 ### 12.4 积分器与微分器
 
 **积分器**：反馈电阻换电容 → $V_{out} = -\frac{1}{RC}\int V_{in}\,dt$。
@@ -1331,6 +1337,8 @@ $$V_{out} = V_Z - 0.7V$$
 
 <p align="center"><img src="assets/svg/buck-converter.svg" width="720" alt="Buck 降压动画：电感惯性碾平方波"></p>
 
+> 📺 **配套视频**：[三分钟看懂！Buck 降压电路动画讲解](https://www.bilibili.com/video/BV1QJSFBVEHu/)（B站）——与上图互证：同一只电感，两种讲法。
+
 **问题**：12V→5V 用 LDO，效率只有 42%，7V 压差全烧在调整管上（第 9 章算过这笔账）。要效率，就不能让任何元件"顶着压差过电流"——改用开关。
 
 **结构**：开关管（通/断）→ 电感 → 输出；续流二极管从地接到开关节点。
@@ -1347,6 +1355,8 @@ $$(V_{in}-V_{out})\cdot D \cdot T = V_{out}\cdot(1-D)\cdot T \;\Rightarrow\; \bo
 ### 13.3 Boost 升压与电荷泵
 
 <p align="center"><img src="assets/svg/boost-converter.svg" width="720" alt="Boost 升压动画：电感叠罗汉"></p>
+
+> 📺 **配套视频**：[开关电源如何升压？超形象 Boost 动画](https://www.bilibili.com/video/BV1egmQBWE9m/)（B站）。
 
 **Boost**：把 Buck 的电感和开关换个位置——开关闭合时电感对地储能；断开瞬间，电感电压**叠加**在输入电压上，经二极管泵向输出：$V_{out} = \dfrac{V_{in}}{1-D}$（理想）。升压的物理图像：**电感是个"憋气弹簧"，先充电再猛地松手把电压顶上去**。
 
@@ -1365,6 +1375,10 @@ $$\text{环路增益}=3\times\frac{1}{3}=1,\quad \text{环路相移}=0°$$
 满足**巴克豪森判据**（增益=1、相移=0）→ 只有 $f_0$ 这一频率能自我维持——开机噪声里 $f_0$ 分量被选中、放大、循环、长成纯净正弦。
 
 > 💎 **精髓**：**所有振荡器都是"增益=1 的正反馈"**。难点不在起振（增益>1 就行），在**稳幅**——经典做法用白炽灯泡做负反馈电阻：幅度大→灯丝热→阻值升→增益降，自动稳在 3 倍。惠普公司的第一桶金（HP200A 音频振荡器）就是这颗灯泡。
+
+**延伸阅读：RC 之外，还有 LC 谐振选频**。文氏桥用 RC 网络选频（选频精度一般、波形好）；射频振荡器多用 LC 谐振回路选频（Q 值高、频率稳）——谐振的物理是电场能与磁场能"荡秋千"：
+
+<p align="center"><img src="assets/svg/rlc-resonance.svg" width="720" alt="LC 谐振动画：电场磁场荡秋千"></p>
 
 ### 13.5 恒流源家族
 
@@ -1390,6 +1404,10 @@ $$\text{环路增益}=3\times\frac{1}{3}=1,\quad \text{环路相移}=0°$$
 | **SAR**（逐次逼近） | 二进制搜索：DAC 从高位到低位试，比较器说大/小，N 次收敛 | 中（~1Msps） | 中高（12-18 位） | MCU 内置、ADS1115 外的多数采集 |
 | **Σ-Δ**（过采样） | 1 位高速粗采 + 数字滤波平均，用时间换精度 | 慢（<1ksps 级） | 极高（16-24 位） | ADS1115、电子秤、音频 |
 | **Flash**（并行） | $2^N-1$ 个比较器同时判决，一次出结果 | 极快（Gsps） | 低（<8 位） | 示波器、雷达 |
+
+<p align="center"><img src="assets/svg/sar-adc.svg" width="720" alt="SAR ADC 动画：四位天平四次称出答案"></p>
+
+**SAR 的四拍工作流**（对照上方动画）：拍 1 把最高位砝码（半天平）放上去——比较器只说一个字："沉了"还是"轻了"；沉了退掉这位，轻了留下；然后放一半小的砝码再问一次……N 位就是 N 次问答。注意两个工程细节：① **采样保持先行**——四拍问答期间输入必须被"冻结"，否则答案是移动靶（这就是第 8 章采样保持电路存在的原因）；② **DAC 是 SAR 的心脏**——它的精度直接等于 ADC 精度，所以 SAR 里那只电容阵列/R-2R 的匹配度是生死线（又是"比值可靠"哲学的应用）。
 
 **DAC 两条路**：
 - **R-2R 梯形**：两种阻值搭出二进制权流——精度靠电阻匹配，音频 DAC 主流
@@ -1660,7 +1678,7 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 <a id="part5"></a>
 # 第五篇：动画演示中心 🎬
 
-> 全部 21 张 SVG 动画（SMIL，浏览器直接播放）位于 `assets/svg/` 目录，由 `scripts/generate_svgs.py` 一键生成（仓库铁律：两者始终同步）；配套 Falstad 在线电路可实时交互。
+> 全部 25 张 SVG 动画（SMIL，浏览器直接播放）位于 `assets/svg/` 目录，由 `scripts/generate_svgs.py` 一键生成（仓库铁律：两者始终同步）；配套 Falstad 在线电路可实时交互。
 
 ## 5.1 RC 充电 <a id="demo1"></a>
 
@@ -1772,7 +1790,31 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 
 **看点**：IN 只摆 1mV、OUT 反相摆 100mV——跨接电容两端实际承受 101 倍摆幅，输入源仿佛对着 1nF 充电。高频滚降的元凶，也是密勒补偿的原理。→ 正文 [11.5 频率响应](#ch11)
 
-## 5.17 Falstad 内置示例地图（全部带动画）
+## 5.17 仪表放大器：三道防线挡共模 <a id="demo17"></a>
+
+<p align="center"><img src="assets/svg/instrumentation-amp.svg" width="720" alt="仪表放大器SVG动画"></p>
+
+**看点**：差模时 R_G 有电流（红粒子下流）、v1/v2 反向拉大；共模时 R_G 两端同升同降、无电流、前级增益=1——共模在源头就被"放生"，再被减法器剪掉。→ 正文 [12.3 仪表放大器](#ch12)
+
+## 5.18 LC 谐振：电场磁场荡秋千 <a id="demo18"></a>
+
+<p align="center"><img src="assets/svg/rlc-resonance.svg" width="720" alt="LC谐振SVG动画"></p>
+
+**看点**：底部两条能量条此消彼长——磁场能 ½LI² 与电场能 ½CV² 每秒倒腾 2f₀ 次；右侧 Q 高峰尖 vs Q 低峰胖，f₀ 处感抗容抗正负抵消电流冲顶。→ 正文 [13.4 延伸阅读](#ch13)
+
+## 5.19 SAR ADC：四位天平 <a id="demo19"></a>
+
+<p align="center"><img src="assets/svg/sar-adc.svg" width="720" alt="SAR ADC SVG动画"></p>
+
+**看点**：紫阶梯四拍逼近蓝输入线——试 8 太沉退、试 4 太轻留、试 6 太沉退、试 5 留下：0101。二分查找的硬件版，N 位只要 N 拍。→ 正文 [13.6 ADC](#ch13)
+
+## 5.20 带隙基准：一正一负凑直线 <a id="demo20"></a>
+
+<p align="center"><img src="assets/svg/bandgap.svg" width="720" alt="带隙基准SVG动画"></p>
+
+**看点**：红线 V_BE 下坡、绿线 K·ΔV_BE 上坡——给绿线配好权重，两斜率恰好抵消，蓝线 1.25V 全温区纹丝不动。基准芯片的全部物理就这三条线。→ 正文 [9.1 带隙基准](#ch9)
+
+## 5.21 Falstad 内置示例地图（全部带动画）
 
 | 主题 | 菜单路径 |
 |---|---|
@@ -1911,9 +1953,10 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 | **模拟电子技术基础（56 讲全）** | 清华大学 华成英 | [BV19s411a7KL](https://www.bilibili.com/video/BV19s411a7KL/) | 国内模电第一课，体系严谨 |
 | **模电 4K 高清重制版（189P）** | 华成英 | [BV1Vp411f71S](https://www.bilibili.com/video/BV1Vp411f71S/) | 画质修复版，带目录 |
 | **模拟电子技术（4K 降噪）** | 上海交大 郑益慧 | [BV1qA5DzWEVh](https://www.bilibili.com/video/BV1qA5DzWEVh/) | 讲透物理图像，口碑炸裂 |
-| 模电第五版课后习题精讲 | 清华教材配套 | [BV1XGSkYBESb](https://www.bilibili.com/video/BV1XGSkYBESb/) | 刷题必备 |
+| 模电第六版课后习题精讲 | 清华教材配套 | [BV1XGSkYBESb](https://www.bilibili.com/video/BV1XGSkYBESb/) | 刷题必备 |
 | 数字电子技术基础 | 清华大学 王红 | [BV18p411Z7ce](https://www.bilibili.com/video/BV18p411Z7ce/) | 数电姐妹篇 |
 | 硬件工程师入门教程 | 硬件工程师入门 | [BV1gHSyY3E6q](https://www.bilibili.com/video/BV1gHSyY3E6q/) | 偏工程实践 |
+| **开关电源动画三连**（Buck/Boost/Buck-Boost） | 硬件杂谈类 UP | [BV1QJSFBVEHu](https://www.bilibili.com/video/BV1QJSFBVEHu/) · [BV1egmQBWE9m](https://www.bilibili.com/video/BV1egmQBWE9m/) · [BV1CyZyBVEkg](https://www.bilibili.com/video/BV1CyZyBVEkg/) | 3 分钟一只拓扑，配 [13.2/13.3](#ch13) 服用 |
 
 ## 7.2 YouTube（英文频道）
 
@@ -1926,6 +1969,7 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 | **Falstad 仿真频道** | [播放列表](https://www.youtube.com/playlist?list=PLDp9Jik5WjRsZhPgjX-5uqaWuQQi714m3R) | 电路动画仿真演示 |
 | Op-Amp 系统教程 | [播放列表](https://www.youtube.com/playlist?list=PLfox_rt4mFCL94d_hcqqFCABmmup9VIK9) | 从基础到实战电路 |
 | Analog Electronics 全课程 | [播放列表](https://www.youtube.com/playlist?list=PLgwJF8NK-2e7jeZYKrMQd1_Iq8_gJvG6RM) | OP-AMP/PLL/VCO/稳压器 |
+| w2aew 运放教程系列 | [播放列表](https://www.youtube.com/playlist?list=PLBCjWUUpRpOeAFKEPvkys15YvOt86qGnU) | #75 虚短虚断 / #79 单电源与虚地 / #172 GBW 与压摆率——白板书推导派 |
 
 **MIT OCW 6.002 视频**：[课程主页](https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/) 内含 Anant Agarwal 全部讲课录像——MIT 新生第一门 EE 课，激情四射。
 

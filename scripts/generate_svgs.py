@@ -1739,6 +1739,249 @@ def make_miller_effect():
     svg += note_box("C_eff=(1+A)·C：它是放大器高频滚降的元凶（C_bc 只有几 pF），也是密勒补偿的原理", 474, DML, "0;0.74;0.79;1", w=710)
     save('miller-effect.svg', svg + '</svg>')
 
+
+# ======================= 图 22：仪表放大器 =======================
+def make_instrumentation_amp():
+    DI = 7
+    cm_in = sine_path(480, 740, 120, 34, n=64)
+    diff_out = sine_path(480, 740, 340, 44, n=64)
+    svg = svg_open('仪表放大器：三道防线挡住共模', h=520)
+    svg += f'''
+<text x="240" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">三运放仪放：前级双同相 + 后级减法器</text>
+<text x="18" y="128" font-size="11" font-weight="bold" fill="#059669">IN+</text>
+<text x="18" y="248" font-size="11" font-weight="bold" fill="#dc2626">IN−</text>
+<line x1="46" y1="124" x2="110" y2="124" stroke="#334155" stroke-width="2.5"/>
+<line x1="46" y1="244" x2="110" y2="244" stroke="#334155" stroke-width="2.5"/>
+<polygon points="110,100 110,160 170,130" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="114" y="126" font-size="12" font-weight="bold" fill="#059669">+</text>
+<text x="114" y="156" font-size="12" font-weight="bold" fill="#dc2626">−</text>
+<polygon points="110,220 110,280 170,250" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="114" y="246" font-size="12" font-weight="bold" fill="#059669">+</text>
+<text x="114" y="276" font-size="12" font-weight="bold" fill="#dc2626">−</text>
+<line x1="110" y1="148" x2="110" y2="166" stroke="#334155" stroke-width="2"/>
+<circle cx="110" cy="166" r="3.5" fill="#334155"/>
+{resistor_v(110, 166, 48, 'R_G')}
+<line x1="110" y1="234" x2="110" y2="268" stroke="#334155" stroke-width="2"/>
+<line x1="170" y1="130" x2="200" y2="130" stroke="#334155" stroke-width="2.5"/>
+<circle cx="200" cy="130" r="3.5" fill="#334155"/>
+<line x1="200" y1="130" x2="200" y2="90" stroke="#334155" stroke-width="2"/>
+{resistor_h(130, 90, 30, 'R1')}
+<line x1="110" y1="90" x2="110" y2="100" stroke="#334155" stroke-width="2"/>
+<line x1="180" y1="90" x2="200" y2="90" stroke="#334155" stroke-width="2"/>
+<line x1="170" y1="250" x2="200" y2="250" stroke="#334155" stroke-width="2.5"/>
+<circle cx="200" cy="250" r="3.5" fill="#334155"/>
+<line x1="200" y1="250" x2="200" y2="290" stroke="#334155" stroke-width="2"/>
+{resistor_h(130, 290, 30, 'R2')}
+<line x1="110" y1="280" x2="110" y2="290" stroke="#334155" stroke-width="2"/>
+<line x1="180" y1="290" x2="200" y2="290" stroke="#334155" stroke-width="2"/>
+<text x="206" y="120" font-size="10.5" font-weight="bold" fill="#2563eb">v1</text>
+<text x="206" y="266" font-size="10.5" font-weight="bold" fill="#2563eb">v2</text>
+<line x1="200" y1="130" x2="240" y2="130" stroke="#334155" stroke-width="2"/>
+<line x1="240" y1="130" x2="240" y2="186" stroke="#334155" stroke-width="2"/>
+{resistor_h(250, 186, 30, 'R')}
+<polygon points="310,170 310,230 370,200" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="316" y="198" font-size="12" font-weight="bold" fill="#dc2626">−</text>
+<text x="316" y="222" font-size="12" font-weight="bold" fill="#059669">+</text>
+<line x1="240" y1="250" x2="240" y2="214" stroke="#334155" stroke-width="2"/>
+<line x1="200" y1="250" x2="240" y2="250" stroke="#334155" stroke-width="2"/>
+{resistor_h(250, 214, 30, 'R')}
+<line x1="370" y1="200" x2="440" y2="200" stroke="#334155" stroke-width="2.5"/>
+<text x="400" y="186" font-size="11" font-weight="bold" fill="#2563eb">输出</text>
+<line x1="330" y1="222" x2="330" y2="250" stroke="#334155" stroke-width="2"/>
+{resistor_v(330, 250, 30, 'R')}
+{gnd_sym(330, 300)}
+<line x1="390" y1="200" x2="390" y2="150" stroke="#334155" stroke-width="2"/>
+{resistor_h(340, 150, 30, 'R')}
+<line x1="340" y1="150" x2="320" y2="150" stroke="#334155" stroke-width="2"/>
+<line x1="320" y1="150" x2="320" y2="170" stroke="#334155" stroke-width="2"/>
+<text x="100" y="330" font-size="11" fill="#dc2626" opacity="0">差模：R_G 有电流，v1/v2 反向拉大
+<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.05;0.28;0.33;1" dur="{DI}s" repeatCount="indefinite"/></text>
+<text x="100" y="352" font-size="11" fill="#7c3aed" opacity="0">共模：R_G 两端同升同降→无电流→前级增益=1
+<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.36;0.4;0.62;0.67;1" dur="{DI}s" repeatCount="indefinite"/></text>
+'''
+    svg += f'<g><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.3;0.35;1" dur="{DI}s" repeatCount="indefinite"/>'
+    svg += flow("M110,166 V210", DI/4, n=3, color="#dc2626", r=4.5)
+    svg += flow("M204,130 H240 V186 M204,250 H240 V214", DI/4, n=4, color="#059669", r=4.5) + '</g>'
+    svg += f'''
+<text x="610" y="66" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#475569">输入：毫伏差分 + 大共模干扰</text>
+<path d="{cm_in}" fill="none" stroke="#94a3b8" stroke-width="2"/>
+<text x="610" y="266" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#059669">输出：差分被放大，共模被扔掉</text>
+<path d="{diff_out}" fill="none" stroke="#059669" stroke-width="2.5"/>
+<line x1="480" y1="340" x2="740" y2="340" stroke="#64748b" stroke-width="1.2"/>
+'''
+    svg += caption("① 差模信号：R_G 两端有电位差→电流流过→v1 升 v2 降，前级增益 = 1+2R1/R_G", "#dc2626", DI,
+                   "0;1;1;0;0", "0;0.02;0.2;0.25;1", y=460)
+    svg += caption("② 共模信号：R_G 两端同升同降→电位差为零→无电流→前级对共模增益=1（不放大）", "#7c3aed", DI,
+                   "0;0;1;1;0;0", "0;0.27;0.32;0.5;0.55;1", y=460)
+    svg += caption("③ 减法器（A3+四只等值 R）：只认 v1−v2 的差——前级放行的共模在这里被减掉", "#059669", DI,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.78;0.83;1", y=460)
+    svg += caption("④ 一只 R_G 调增益：换 R_G 不碰任何匹配网络——产线/现场单手调增益", "#2563eb", DI,
+                   "0;0;1;1", "0;0.83;0.88;1", y=460)
+    svg += note_box("CMRR>100dB 的三道防线：前级对称结构 · R_G 不吸共模电流 · 减法器四 R 激光修调匹配", 494, DI, "0;0.88;0.92;1", w=700)
+    save('instrumentation-amp.svg', svg + '</svg>')
+
+
+# ======================= 图 23：LC 谐振 =======================
+def make_rlc_resonance():
+    DR = 6
+    f_pts = np.linspace(0.1, 4, 121)
+    def resp(Q):
+        pts = []
+        for f in f_pts:
+            H = 1/np.sqrt(1 + (Q*(f-1/f))**2)
+            x = 420 + (np.log10(f)-np.log10(0.1))/(np.log10(4)-np.log10(0.1))*320
+            pts.append(f"{x:.0f},{330-180*H:.0f}")
+        return "M" + " L".join(pts)
+    hi_q = resp(5); lo_q = resp(1.2)
+    svg = svg_open('LC 谐振：电场与磁场的「荡秋千」', h=500)
+    svg += f'''
+<text x="200" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">LC 串联谐振回路</text>
+<circle cx="60" cy="150" r="16" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="60" y="155" text-anchor="middle" font-size="12" fill="#334155">~</text>
+<line x1="76" y1="150" x2="100" y2="150" stroke="#334155" stroke-width="2.5"/>
+<path d="M100,150 q8,-16 16,0 q8,16 16,0 q8,-16 16,0 q8,16 16,0 q8,-16 16,0" fill="none" stroke="#7c3aed" stroke-width="2.5"/>
+<text x="116" y="124" font-size="12" font-weight="bold" fill="#7c3aed">L</text>
+<line x1="180" y1="150" x2="216" y2="150" stroke="#334155" stroke-width="2.5"/>
+<line x1="216" y1="134" x2="216" y2="166" stroke="#2563eb" stroke-width="3"/>
+<line x1="228" y1="134" x2="228" y2="166" stroke="#2563eb" stroke-width="3"/>
+<text x="238" y="142" font-size="12" font-weight="bold" fill="#2563eb">C</text>
+<line x1="228" y1="150" x2="280" y2="150" stroke="#334155" stroke-width="2.5"/>
+<line x1="280" y1="150" x2="280" y2="210" stroke="#334155" stroke-width="2"/>
+<line x1="60" y1="166" x2="60" y2="210" stroke="#334155" stroke-width="2"/>
+<line x1="60" y1="210" x2="280" y2="210" stroke="#334155" stroke-width="2"/>
+<circle cx="170" cy="210" r="4" fill="#334155"/>
+<text x="150" y="232" font-size="10.5" fill="#475569">回路电流 I</text>
+<rect x="90" y="260" height="14" fill="#7c3aed" width="30">
+<animate attributeName="width" values="30;120;30;120;30" dur="2s" repeatCount="indefinite"/></rect>
+<text x="90" y="290" font-size="10.5" fill="#7c3aed">磁场能 ½LI²</text>
+<rect x="240" y="260" height="14" fill="#2563eb" width="120">
+<animate attributeName="width" values="120;30;120;30;120" dur="2s" repeatCount="indefinite"/></rect>
+<text x="240" y="290" font-size="10.5" fill="#2563eb">电场能 ½CV²</text>
+'''
+    svg += flow("M80,146 H176 M232,146 H276 V206 H64 V170", DR/3, n=6, color="#059669", r=4.5)
+    svg += f'''
+<text x="590" y="66" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#475569">电流-频率曲线：f₀ 处阻抗抵消、电流冲顶</text>
+<path d="{hi_q}" fill="none" stroke="#dc2626" stroke-width="2.8"/>
+<path d="{lo_q}" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6,4"/>
+<line x1="420" y1="330" x2="740" y2="330" stroke="#64748b" stroke-width="1.4"/>
+<line x1="580" y1="150" x2="580" y2="330" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="568" y="344" font-size="10.5" fill="#475569">f₀</text>
+<text x="610" y="132" font-size="10.5" fill="#dc2626">Q 高：峰尖（选台准）</text>
+<text x="440" y="220" font-size="10.5" fill="#94a3b8">Q 低：峰胖（R 大衰减快）</text>
+'''
+    svg += caption("① f₀=1/(2π√LC)：感抗与容抗恰好相等、正负抵消——回路只剩 R，电流冲到最大", "#dc2626", DR,
+                   "0;1;1;0;0", "0;0.03;0.22;0.28;1", y=430)
+    svg += caption("② 能量的秋千：电场能（C）与磁场能（L）每周期来回倒两次——R 只是倒腾途中的摩擦", "#7c3aed", DR,
+                   "0;0;1;1;0;0", "0;0.3;0.35;0.58;0.64;1", y=430)
+    svg += caption("③ Q=ω₀L/R：R 越小 Q 越高、峰越尖——收音机选台、晶振稳频靠的都是高 Q", "#059669", DR,
+                   "0;0;1;1", "0;0.64;0.7;1", y=430)
+    svg += note_box("谐振不是「放大」——是阻抗抵消后电源只面对 R；峰顶的电压/电流可以远超激励，这就是谐振的危险与价值", 474, DR, "0;0.74;0.79;1", w=730)
+    save('rlc-resonance.svg', svg + '</svg>')
+
+
+# ======================= 图 24：SAR ADC 逐次逼近 =======================
+def make_sar_adc():
+    DA = 8
+    steps_x = [430, 510, 590, 670, 750]
+    dac_lv = [8, 4, 6, 5]
+    step_d = f"M430,300 "
+    for i, lv in enumerate(dac_lv):
+        y = 300 - lv*12
+        step_d += f"V{y} H{steps_x[i+1]} "
+    svg = svg_open('SAR ADC：四位天平，四次称出答案', h=520)
+    svg += f'''
+<text x="240" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">SAR = 二分查找的硬件版（4 位演示：满量程 16，输入 5.3）</text>
+<rect x="60" y="100" width="90" height="50" rx="6" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+<text x="105" y="122" text-anchor="middle" font-size="11" fill="#334155">采样保持</text>
+<text x="105" y="140" text-anchor="middle" font-size="10" fill="#2563eb">5.3V 抓住</text>
+<line x1="150" y1="125" x2="190" y2="125" stroke="#334155" stroke-width="2.5"/>
+<polygon points="190,100 190,150 240,125" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="196" y="118" font-size="11" font-weight="bold" fill="#059669">+</text>
+<text x="196" y="142" font-size="11" font-weight="bold" fill="#dc2626">−</text>
+<rect x="270" y="190" width="90" height="44" rx="6" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+<text x="315" y="210" text-anchor="middle" font-size="11" fill="#334155">SAR 逻辑</text>
+<text x="315" y="226" text-anchor="middle" font-size="10" fill="#475569">留/退裁决</text>
+<line x1="240" y1="125" x2="280" y2="125" stroke="#334155" stroke-width="2"/>
+<line x1="280" y1="125" x2="280" y2="190" stroke="#334155" stroke-width="2"/>
+<rect x="250" y="80" width="70" height="36" rx="6" fill="#f8fafc" stroke="#7c3aed" stroke-width="2"/>
+<text x="285" y="102" text-anchor="middle" font-size="11" font-weight="bold" fill="#7c3aed">DAC</text>
+<line x1="250" y1="98" x2="240" y2="98" stroke="#334155" stroke-width="2"/>
+<line x1="240" y1="98" x2="240" y2="112" stroke="#334155" stroke-width="2"/>
+<line x1="320" y1="80" x2="320" y2="60" stroke="#334155" stroke-width="2"/>
+<line x1="320" y1="60" x2="315" y2="60" stroke="#334155" stroke-width="2"/>
+<line x1="315" y1="60" x2="315" y2="190" stroke="#334155" stroke-width="2" stroke-dasharray="4,3"/>
+<text x="330" y="64" font-size="10" fill="#475569">试位码→</text>
+<text x="380" y="222" font-size="11" font-weight="bold" fill="#2563eb">结果 0101</text>
+<line x1="360" y1="212" x2="380" y2="212" stroke="#334155" stroke-width="2"/>
+'''
+    svg += f'''
+<text x="590" y="142" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#475569">DAC 输出（紫阶）四拍逼近输入线（蓝）</text>
+<line x1="430" y1="{300-5.3*12:.0f}" x2="750" y2="{300-5.3*12:.0f}" stroke="#2563eb" stroke-width="2.2"/>
+<text x="700" y="{292-5.3*12:.0f}" font-size="10.5" fill="#2563eb">输入 5.3</text>
+<path d="{step_d}" fill="none" stroke="#7c3aed" stroke-width="2.8"/>
+<line x1="430" y1="300" x2="750" y2="300" stroke="#64748b" stroke-width="1.4"/>
+<text x="448" y="330" font-size="10.5" fill="#475569">① 8→退</text>
+<text x="528" y="330" font-size="10.5" fill="#475569">② 4→留</text>
+<text x="608" y="330" font-size="10.5" fill="#475569">③ 6→退</text>
+<text x="688" y="330" font-size="10.5" fill="#475569">④ 5→留</text>
+<rect x="430" y="150" width="80" height="150" fill="#7c3aed" opacity="0">
+<animate attributeName="opacity" values="0;0.12;0.12;0;0" keyTimes="0;0.03;0.22;0.26;1" dur="{DA}s" repeatCount="indefinite"/></rect>
+<rect x="510" y="150" width="80" height="150" fill="#7c3aed" opacity="0">
+<animate attributeName="opacity" values="0;0;0.12;0.12;0;0" keyTimes="0;0.27;0.3;0.47;0.51;1" dur="{DA}s" repeatCount="indefinite"/></rect>
+<rect x="590" y="150" width="80" height="150" fill="#7c3aed" opacity="0">
+<animate attributeName="opacity" values="0;0;0.12;0.12;0;0" keyTimes="0;0.52;0.55;0.72;0.76;1" dur="{DA}s" repeatCount="indefinite"/></rect>
+<rect x="670" y="150" width="80" height="150" fill="#7c3aed" opacity="0">
+<animate attributeName="opacity" values="0;0;0.12;0.12;0;0" keyTimes="0;0.77;0.8;0.95;0.98;1" dur="{DA}s" repeatCount="indefinite"/></rect>
+'''
+    svg += caption("① 拍1：先试最高位 8（半天平）——DAC=8 > 5.3，太沉，退掉这一位", "#7c3aed", DA,
+                   "0;1;1;0;0", "0;0.03;0.2;0.26;1", y=460)
+    svg += caption("② 拍2：试次高位 4——DAC=4 &lt; 5.3，太轻，留下（累计 4）", "#059669", DA,
+                   "0;0;1;1;0;0", "0;0.28;0.33;0.45;0.51;1", y=460)
+    svg += caption("③ 拍3：试 4+2=6——6 &gt; 5.3，退；拍4：试 4+1=5——5 &lt; 5.3，留 → 0101", "#dc2626", DA,
+                   "0;0;1;1;0;0", "0;0.53;0.58;0.75;0.81;1", y=460)
+    svg += caption("④ N 位只要 N 拍：12 位=12 拍——速度与精度折中里的「中」就是这么来的", "#2563eb", DA,
+                   "0;0;1;1", "0;0.81;0.86;1", y=460)
+    svg += note_box("比较器是天平的指针，DAC 是砝码，SAR 逻辑是记录员——每拍只问一个问题：「重了还是轻了」", 494, DA, "0;0.88;0.92;1", w=690)
+    save('sar-adc.svg', svg + '</svg>')
+
+
+# ======================= 图 25：带隙基准 =======================
+def make_bandgap():
+    DBG = 6
+    vbe_d = "M430,190 " + " L".join(f"{430+320*i/80:.0f},{190+52*(i/80)**1.15:.0f}" for i in range(81))
+    dvbe_d = "M430,262 " + " L".join(f"{430+320*i/80:.0f},{262-52*(i/80):.0f}" for i in range(81))
+    svg = svg_open('带隙基准：一正一负，凑出与温度无关的 1.25V', h=500)
+    svg += f'''
+<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">V_REF = V_BE + K·ΔV_BE ≈ 1.25V（硅带隙电压）</text>
+<rect x="60" y="80" width="320" height="220" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+<text x="220" y="104" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">Brokaw 单元（简化）</text>
+<text x="220" y="122" text-anchor="middle" font-size="10.5" fill="#7c3aed">两管电流密度不同 → ΔV_BE=V_T·ln(8)≈54mV 落在 R 上</text>
+{npn_svg(150, 206)}
+{npn_svg(290, 206)}
+<text x="120" y="286" font-size="10.5" fill="#475569">Q1（1×）</text>
+<text x="255" y="286" font-size="10.5" font-weight="bold" fill="#dc2626">Q2（8× 面积）</text>
+'''
+    svg += f'''
+<text x="590" y="76" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#475569">随温度（−40°C → 125°C）</text>
+<path d="{vbe_d}" fill="none" stroke="#dc2626" stroke-width="2.8"/>
+<text x="640" y="238" font-size="10.5" fill="#dc2626">V_BE：−2mV/°C 下坡</text>
+<path d="{dvbe_d}" fill="none" stroke="#059669" stroke-width="2.8"/>
+<text x="440" y="296" font-size="10.5" fill="#059669">K·ΔV_BE：正温漂上坡（V_T 正比绝对温度）</text>
+<line x1="430" y1="226" x2="750" y2="226" stroke="#2563eb" stroke-width="3"/>
+<text x="590" y="216" font-size="11" font-weight="bold" fill="#2563eb">合成 V_REF=1.25V：一条直线</text>
+<line x1="430" y1="270" x2="750" y2="270" stroke="#64748b" stroke-width="1.2"/>
+<text x="430" y="284" font-size="10" fill="#475569">−40°C</text>
+<text x="724" y="284" font-size="10" fill="#475569">125°C</text>
+'''
+    svg += caption("① V_BE 天生负温漂（−2mV/°C）——温度一升它就掉（PN 结特性，见 2.2）", "#dc2626", DBG,
+                   "0;1;1;0;0", "0;0.03;0.22;0.28;1", y=430)
+    svg += caption("② ΔV_BE 天生正温漂——两管电流密度差产生，V_T=kT/q 与绝对温度严格成正比", "#059669", DBG,
+                   "0;0;1;1;0;0", "0;0.3;0.35;0.58;0.64;1", y=430)
+    svg += caption("③ 给 ΔV_BE 配权重 K，让上坡斜率恰好抵消下坡——合成 1.25V，全温区纹丝不动", "#2563eb", DBG,
+                   "0;0;1;1", "0;0.64;0.7;1", y=430)
+    svg += note_box("1.25V 不是调出来的，是硅的带隙电压——两条物理曲线的交点写在材料常数里（Widlar 1971 / Brokaw 1974，见 8.9）", 474, DBG, "0;0.74;0.79;1", w=740)
+    save('bandgap.svg', svg + '</svg>')
+
 if __name__ == '__main__':
     make_rc_charge()
     make_bridge_rectifier()
@@ -1761,4 +2004,8 @@ if __name__ == '__main__':
     make_boost_converter()
     make_precision_rectifier()
     make_miller_effect()
-    print('all 21 SVGs regenerated into', os.path.abspath(OUT))
+    make_instrumentation_amp()
+    make_rlc_resonance()
+    make_sar_adc()
+    make_bandgap()
+    print('all 25 SVGs regenerated into', os.path.abspath(OUT))

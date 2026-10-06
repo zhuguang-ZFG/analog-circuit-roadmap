@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="520" viewBox="0 0 800 520">
+<title>仪表放大器：三道防线挡住共模</title>
+<rect width="800" height="520" fill="#f8fafc"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+@media (prefers-color-scheme: dark){
+rect[fill="#f8fafc"]{fill:#0f172a}
+[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
+[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
+[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
+[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
+[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
+[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
+[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
+[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
+[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
+[fill="#cbd5e1"]{fill:#334155}[stroke="#cbd5e1"]{stroke:#475569}
+[fill="#ffffff"]{fill:#0f172a}[fill="#94a3b8"]{fill:#64748b}[stroke="#94a3b8"]{stroke:#64748b}
+[fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
+}
+</style>
+<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">仪表放大器：三道防线挡住共模</text>
+
+<text x="240" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">三运放仪放：前级双同相 + 后级减法器</text>
+<text x="18" y="128" font-size="11" font-weight="bold" fill="#059669">IN+</text>
+<text x="18" y="248" font-size="11" font-weight="bold" fill="#dc2626">IN−</text>
+<line x1="46" y1="124" x2="110" y2="124" stroke="#334155" stroke-width="2.5"/>
+<line x1="46" y1="244" x2="110" y2="244" stroke="#334155" stroke-width="2.5"/>
+<polygon points="110,100 110,160 170,130" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="114" y="126" font-size="12" font-weight="bold" fill="#059669">+</text>
+<text x="114" y="156" font-size="12" font-weight="bold" fill="#dc2626">−</text>
+<polygon points="110,220 110,280 170,250" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="114" y="246" font-size="12" font-weight="bold" fill="#059669">+</text>
+<text x="114" y="276" font-size="12" font-weight="bold" fill="#dc2626">−</text>
+<line x1="110" y1="148" x2="110" y2="166" stroke="#334155" stroke-width="2"/>
+<circle cx="110" cy="166" r="3.5" fill="#334155"/>
+<line x1="110" y1="146" x2="110" y2="166" stroke="#334155" stroke-width="2.5"/>
+<rect x="99" y="166" width="22" height="48" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<line x1="110" y1="214" x2="110" y2="234" stroke="#334155" stroke-width="2.5"/>
+<text x="130" y="194.0" font-size="12.5" font-weight="bold" fill="#b45309">R_G</text>
+<line x1="110" y1="234" x2="110" y2="268" stroke="#334155" stroke-width="2"/>
+<line x1="170" y1="130" x2="200" y2="130" stroke="#334155" stroke-width="2.5"/>
+<circle cx="200" cy="130" r="3.5" fill="#334155"/>
+<line x1="200" y1="130" x2="200" y2="90" stroke="#334155" stroke-width="2"/>
+<line x1="110" y1="90" x2="130" y2="90" stroke="#334155" stroke-width="2.5"/>
+<rect x="130" y="79" width="30" height="22" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<line x1="160" y1="90" x2="180" y2="90" stroke="#334155" stroke-width="2.5"/>
+<text x="145.0" y="73" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#b45309">R1</text>
+<line x1="110" y1="90" x2="110" y2="100" stroke="#334155" stroke-width="2"/>
+<line x1="180" y1="90" x2="200" y2="90" stroke="#334155" stroke-width="2"/>
+<line x1="170" y1="250" x2="200" y2="250" stroke="#334155" stroke-width="2.5"/>
+<circle cx="200" cy="250" r="3.5" fill="#334155"/>
+<line x1="200" y1="250" x2="200" y2="290" stroke="#334155" stroke-width="2"/>
+<line x1="110" y1="290" x2="130" y2="290" stroke="#334155" stroke-width="2.5"/>
+<rect x="130" y="279" width="30" height="22" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<line x1="160" y1="290" x2="180" y2="290" stroke="#334155" stroke-width="2.5"/>
+<text x="145.0" y="273" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#b45309">R2</text>
+<line x1="110" y1="280" x2="110" y2="290" stroke="#334155" stroke-width="2"/>
+<line x1="180" y1="290" x2="200" y2="290" stroke="#334155" stroke-width="2"/>
+<text x="206" y="120" font-size="10.5" font-weight="bold" fill="#2563eb">v1</text>
+<text x="206" y="266" font-size="10.5" font-weight="bold" fill="#2563eb">v2</text>
+<line x1="200" y1="130" x2="240" y2="130" stroke="#334155" stroke-width="2"/>
+<line x1="240" y1="130" x2="240" y2="186" stroke="#334155" stroke-width="2"/>
+<line x1="230" y1="186" x2="250" y2="186" stroke="#334155" stroke-width="2.5"/>
+<rect x="250" y="175" width="30" height="22" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<line x1="280" y1="186" x2="300" y2="186" stroke="#334155" stroke-width="2.5"/>
+<text x="265.0" y="169" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#b45309">R</text>
+<polygon points="310,170 310,230 370,200" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="316" y="198" font-size="12" font-weight="bold" fill="#dc2626">−</text>
+<text x="316" y="222" font-size="12" font-weight="bold" fill="#059669">+</text>
+<line x1="240" y1="250" x2="240" y2="214" stroke="#334155" stroke-width="2"/>
+<line x1="200" y1="250" x2="240" y2="250" stroke="#334155" stroke-width="2"/>
+<line x1="230" y1="214" x2="250" y2="214" stroke="#334155" stroke-width="2.5"/>
+<rect x="250" y="203" width="30" height="22" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<line x1="280" y1="214" x2="300" y2="214" stroke="#334155" stroke-width="2.5"/>
+<text x="265.0" y="197" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#b45309">R</text>
+<line x1="370" y1="200" x2="440" y2="200" stroke="#334155" stroke-width="2.5"/>
+<text x="400" y="186" font-size="11" font-weight="bold" fill="#2563eb">输出</text>
+<line x1="330" y1="222" x2="330" y2="250" stroke="#334155" stroke-width="2"/>
+<line x1="330" y1="230" x2="330" y2="250" stroke="#334155" stroke-width="2.5"/>
+<rect x="319" y="250" width="22" height="30" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<line x1="330" y1="280" x2="330" y2="300" stroke="#334155" stroke-width="2.5"/>
+<text x="350" y="269.0" font-size="12.5" font-weight="bold" fill="#b45309">R</text>
+<line x1="330" y1="286" x2="330" y2="300" stroke="#334155" stroke-width="2.5"/><line x1="314" y1="300" x2="346" y2="300" stroke="#334155" stroke-width="3"/><line x1="320" y1="306" x2="340" y2="306" stroke="#334155" stroke-width="3"/><line x1="326" y1="312" x2="334" y2="312" stroke="#334155" stroke-width="3"/>
+<line x1="390" y1="200" x2="390" y2="150" stroke="#334155" stroke-width="2"/>
+<line x1="320" y1="150" x2="340" y2="150" stroke="#334155" stroke-width="2.5"/>
+<rect x="340" y="139" width="30" height="22" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<line x1="370" y1="150" x2="390" y2="150" stroke="#334155" stroke-width="2.5"/>
+<text x="355.0" y="133" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#b45309">R</text>
+<line x1="340" y1="150" x2="320" y2="150" stroke="#334155" stroke-width="2"/>
+<line x1="320" y1="150" x2="320" y2="170" stroke="#334155" stroke-width="2"/>
+<text x="100" y="330" font-size="11" fill="#dc2626" opacity="0">差模：R_G 有电流，v1/v2 反向拉大
+<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.05;0.28;0.33;1" dur="7s" repeatCount="indefinite"/></text>
+<text x="100" y="352" font-size="11" fill="#7c3aed" opacity="0">共模：R_G 两端同升同降→无电流→前级增益=1
+<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.36;0.4;0.62;0.67;1" dur="7s" repeatCount="indefinite"/></text>
+<g><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.3;0.35;1" dur="7s" repeatCount="indefinite"/><circle r="4.5" fill="#dc2626"><animateMotion dur="1.75s" begin="-0.50s" repeatCount="indefinite" path="M110,166 V210"/></circle>
+<circle r="4.5" fill="#dc2626"><animateMotion dur="1.75s" begin="0.08s" repeatCount="indefinite" path="M110,166 V210"/></circle>
+<circle r="4.5" fill="#dc2626"><animateMotion dur="1.75s" begin="0.67s" repeatCount="indefinite" path="M110,166 V210"/></circle><circle r="4.5" fill="#059669"><animateMotion dur="1.75s" begin="-0.50s" repeatCount="indefinite" path="M204,130 H240 V186 M204,250 H240 V214"/></circle>
+<circle r="4.5" fill="#059669"><animateMotion dur="1.75s" begin="-0.06s" repeatCount="indefinite" path="M204,130 H240 V186 M204,250 H240 V214"/></circle>
+<circle r="4.5" fill="#059669"><animateMotion dur="1.75s" begin="0.38s" repeatCount="indefinite" path="M204,130 H240 V186 M204,250 H240 V214"/></circle>
+<circle r="4.5" fill="#059669"><animateMotion dur="1.75s" begin="0.81s" repeatCount="indefinite" path="M204,130 H240 V186 M204,250 H240 V214"/></circle></g>
+<text x="610" y="66" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#475569">输入：毫伏差分 + 大共模干扰</text>
+<path d="M480,120 L484,123 L488,127 L492,130 L496,133 L500,136 L504,139 L508,142 L512,144 L517,146 L521,148 L525,150 L529,151 L533,153 L537,153 L541,154 L545,154 L549,154 L553,153 L557,153 L561,151 L565,150 L569,148 L573,146 L578,144 L582,142 L586,139 L590,136 L594,133 L598,130 L602,127 L606,123 L610,120 L614,117 L618,113 L622,110 L626,107 L630,104 L634,101 L638,98 L642,96 L647,94 L651,92 L655,90 L659,89 L663,87 L667,87 L671,86 L675,86 L679,86 L683,87 L687,87 L691,89 L695,90 L699,92 L703,94 L708,96 L712,98 L716,101 L720,104 L724,107 L728,110 L732,113 L736,117 L740,120" fill="none" stroke="#94a3b8" stroke-width="2"/>
+<text x="610" y="266" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#059669">输出：差分被放大，共模被扔掉</text>
+<path d="M480,340 L484,344 L488,349 L492,353 L496,357 L500,361 L504,364 L508,368 L512,371 L517,374 L521,377 L525,379 L529,381 L533,382 L537,383 L541,384 L545,384 L549,384 L553,383 L557,382 L561,381 L565,379 L569,377 L573,374 L578,371 L582,368 L586,364 L590,361 L594,357 L598,353 L602,349 L606,344 L610,340 L614,336 L618,331 L622,327 L626,323 L630,319 L634,316 L638,312 L642,309 L647,306 L651,303 L655,301 L659,299 L663,298 L667,297 L671,296 L675,296 L679,296 L683,297 L687,298 L691,299 L695,301 L699,303 L703,306 L708,309 L712,312 L716,316 L720,319 L724,323 L728,327 L732,331 L736,336 L740,340" fill="none" stroke="#059669" stroke-width="2.5"/>
+<line x1="480" y1="340" x2="740" y2="340" stroke="#64748b" stroke-width="1.2"/>
+<text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">① 差模信号：R_G 两端有电位差→电流流过→v1 升 v2 降，前级增益 = 1+2R1/R_G<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.02;0.2;0.25;1" dur="7s" repeatCount="indefinite"/></text><text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">② 共模信号：R_G 两端同升同降→电位差为零→无电流→前级对共模增益=1（不放大）<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.27;0.32;0.5;0.55;1" dur="7s" repeatCount="indefinite"/></text><text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">③ 减法器（A3+四只等值 R）：只认 v1−v2 的差——前级放行的共模在这里被减掉<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.78;0.83;1" dur="7s" repeatCount="indefinite"/></text><text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">④ 一只 R_G 调增益：换 R_G 不碰任何匹配网络——产线/现场单手调增益<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.83;0.88;1" dur="7s" repeatCount="indefinite"/></text><g opacity="0">
+<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.88;0.92;1" dur="7s" repeatCount="indefinite"/>
+<rect x="50" y="470" width="700" height="34" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+<text x="400" y="492" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">CMRR>100dB 的三道防线：前级对称结构 · R_G 不吸共模电流 · 减法器四 R 激光修调匹配</text>
+</g></svg>
