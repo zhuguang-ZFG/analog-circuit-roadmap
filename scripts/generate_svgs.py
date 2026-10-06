@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-generate_svgs.py — 一键再生成《通往模拟电路之路》全部 50 张 SVG SMIL 动画
+generate_svgs.py — 一键再生成《通往模拟电路之路》全部 54 张 SVG SMIL 动画
 用法:  python generate_svgs.py            # 输出到 ../assets/svg/
 风格:  参考 BMS-Z 项目 —— 浅色底 + SMIL 节拍字幕 + 深色模式自适应 + 拟人化讲解
 所有电路参数经过自洽核算（datasheet 级），详见各函数注释。
@@ -3658,7 +3658,7 @@ def make_miller_plateau():
         pts = [f"{tx(t):.0f},{ybot-(v/vmax)*(ybot-ytop):.0f}" for t, v in tab]
         return (f'<path d="M' + " L".join(pts) + f'" fill="none" stroke="{color}" '
                 f'stroke-width="{wid}" stroke-linejoin="round"/>')
-    svg = svg_open('米勒平台：V_GS 为什么会在半路「停下来看戏」', h=600)
+    svg = svg_open('米勒平台：V_GS 为什么会在半路「停下来看戏」', h=620)
     svg += f'''
 <text x="425" y="50" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">20V 母线 · 5A 负载 · 10mA 驱动 · AO3400（Q_g≈7nC, Q_gd≈1.6nC）</text>
 <rect x="{tx(150):.0f}" y="70" width="{tx(400)-tx(150):.0f}" height="380" fill="#94a3b8" opacity="0.10"/>
@@ -3672,7 +3672,7 @@ def make_miller_plateau():
 <text x="20" y="236" font-size="12" font-weight="bold" fill="#dc2626">V_DS</text>
 <text x="20" y="342" font-size="12" font-weight="bold" fill="#059669">I_D</text>
 <text x="20" y="438" font-size="12" font-weight="bold" fill="#b45309">P=V·I</text>
-<line x1="{TX0}" y1="450" x2="{TX1}" y2="450" stroke="#64748b" stroke-width="1.6"/>
+<line x1="{TX0}" y1="502" x2="{TX1}" y2="502" stroke="#64748b" stroke-width="1.6"/>
 {path(vgs, 120, 196, 5, '#2563eb')}
 {path(vds, 216, 292, 20, '#dc2626')}
 {path(idr, 322, 398, 5, '#059669')}
@@ -3685,27 +3685,26 @@ def make_miller_plateau():
 <text x="{tx(700)+6:.0f}" y="308" font-size="10.5" font-weight="bold" fill="#059669">到底 0.15V</text>
 <text x="{tx(556):.0f}" y="210" text-anchor="end" font-size="10.5" font-weight="bold" fill="#7c3aed">平台期：V_DS 猛跌</text>
 <text x="{tx(275):.0f}" y="314" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#dc2626">V_DS 还满着 20V，I_D 已经上来了</text>
-<text x="{TX0}" y="490" font-size="10.5" font-weight="bold" fill="#b45309">损耗 = 阴影面积 × f_sw；重叠区 410ns → P_sw≈2W@100kHz</text>
+<text x="{tx(600):.0f}" y="484" font-size="10.5" font-weight="bold" fill="#b45309">损耗 = 阴影面积 × f_sw</text>
 <circle r="5" fill="#2563eb">
 <animateMotion dur="{DS}s" repeatCount="indefinite" keyPoints="0;0.35;0.35;1" keyTimes="0;0.18;0.62;1" path="M{tx(0):.0f},196 L{tx(150):.0f},175 L{tx(400):.0f},152 L{tx(560):.0f},152 L{tx(700):.0f},120 L{tx(800):.0f},120"/></circle>
 <circle r="5" fill="#dc2626">
 <animateMotion dur="{DS}s" repeatCount="indefinite" keyPoints="0;0.35;0.35;1" keyTimes="0;0.18;0.62;1" path="M{tx(0):.0f},216 L{tx(400):.0f},216 L{tx(560):.0f},291 L{tx(800):.0f},291"/></circle>
 <circle r="5" fill="#7c3aed">
 <animateMotion dur="{DS}s" repeatCount="indefinite" keyPoints="0;0.4;1" keyTimes="0;0.18;0.62" path="M{tx(100):.0f},84 L{tx(480):.0f},84 L{tx(480):.0f},152"/></circle>
-<text x="{tx(400):.0f}" y="468" text-anchor="middle" font-size="10.5" fill="#475569">400ns</text>
-<text x="{tx(560):.0f}" y="468" text-anchor="middle" font-size="10.5" fill="#475569">560ns</text>
-<text x="{TX1}" y="468" text-anchor="end" font-size="10.5" fill="#475569">800ns</text>
-<text x="430" y="506" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#7c3aed">平台时长 = Q_gd ÷ 驱动电流 = 1.6nC ÷ 10mA = 160ns</text>
-<text x="430" y="526" text-anchor="middle" font-size="11" fill="#475569">栅极电阻调小的每一份，都是拿 EMI 换损耗——电源工程师的经典权衡</text>
+<text x="{tx(400):.0f}" y="522" text-anchor="middle" font-size="10.5" fill="#475569">400ns</text>
+<text x="{tx(560):.0f}" y="522" text-anchor="middle" font-size="10.5" fill="#475569">560ns</text>
+<text x="{TX1}" y="522" text-anchor="end" font-size="10.5" fill="#475569">800ns</text>
+<text x="430" y="548" text-anchor="middle" font-size="11" font-weight="bold" fill="#7c3aed">平台时长 = Q_gd ÷ 驱动电流 = 1.6nC ÷ 10mA = 160ns；重叠 410ns → P_sw≈2W（§4.6 按 700ns 保守估 3.5W）</text>
 '''
     svg += caption("① 前 400ns：栅极电流先填 C_GS，I_D 起来时 V_DS 还满着——最疼的一段", "#dc2626", DS,
-                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=560)
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=584)
     svg += caption("② 平台期：驱动电流全被 C_GD 抽走，V_GS 被钉住，V_DS 一路雪崩下跌", "#7c3aed", DS,
-                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=560)
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=584)
     svg += caption("③ 平台结束才是 R_DS(on) 生效的时刻：0.75W 导通损耗此刻才开始", "#059669", DS,
-                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=560)
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=584)
     svg += caption("④ 记住 Q_gd：它比 C_rss 更直接地告诉你「这管子开关有多肉」", "#2563eb", DS,
-                   "0;0;1;1", "0;0.85;0.9;1", y=560)
+                   "0;0;1;1", "0;0.85;0.9;1", y=584)
     save('miller-plateau.svg', svg + '</svg>')
 
 
@@ -3766,7 +3765,7 @@ def make_opamp_slew():
 <line x1="{X0}" y1="{py(0.999):.0f}" x2="{px(2.75):.0f}" y2="{py(0.999):.0f}" stroke="#059669" stroke-width="1" stroke-dasharray="3,3"/>
 <text x="{px(2.78):.0f}" y="{py(0.999)+4:.0f}" font-size="10.5" font-weight="bold" fill="#059669">0.1% 误差带</text>
 <path d="{slew_path(2.0, 0.16)}" fill="none" stroke="#2563eb" stroke-width="3"/>
-<path d="{slew_path(0.0, 0.16)}" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="5,4"/>
+<path d="{slew_path(0.0, 0.16)}" fill="none" stroke="#64748b" stroke-width="2.4" stroke-dasharray="6,4"/>
 <text x="{px(2)-8:.0f}" y="{py(0.35):.0f}" text-anchor="end" font-size="10.5" fill="#64748b">若只有 GBW=1MHz 的小信号速度</text>
 <text x="{px(2.02):.0f}" y="{py(0.45):.0f}" font-size="11.5" font-weight="bold" fill="#dc2626">2µs 直线爬坡</text>
 <text x="{px(0.15):.0f}" y="{py(0.12):.0f}" font-size="11" fill="#475569">斜率 = 0.5V/µs（SR）</text>
@@ -3788,6 +3787,303 @@ def make_opamp_slew():
     svg += caption("④ 大信号看 SR、小信号看 GBW：两条曲线谁慢，就决定建立时间", "#b45309", DW,
                    "0;0;1;1", "0;0.85;0.9;1", y=572)
     save('opamp-slew.svg', svg + '</svg>')
+
+
+# ======================= 图 51：二极管伏安特性（第 2 章 2.2） =======================
+def make_diode_iv():
+    DI = 10
+    IS, VT = 1e-9, 0.026          # n=1 的理想硅结：每 60mV 一个十倍频
+    X0, X1, Y0, Y1 = 410, 764, 118, 402
+    px = lambda v: X0 + v/0.8*(X1-X0)
+    py = lambda i: Y0 + (np.log10(100e-3) - np.log10(max(i, 1e-9)))/8*(Y1-Y0)
+    def iv(v, dv=0.0):
+        return IS*(np.exp((v+dv)/VT)-1)
+    def curve(dv, color, wid=2.6):
+        pts = []
+        for v in np.linspace(0.001, 0.8, 400):
+            i = iv(v, dv)
+            if i > 100e-3:
+                break
+            pts.append(f"{px(v):.0f},{py(i):.0f}")
+        return f'<path d="M' + " L".join(pts) + f'" fill="none" stroke="{color}" stroke-width="{wid}"/>'
+    svg = svg_open('二极管伏安特性：一根 60mV 能换来十倍电流', h=600)
+    svg += f'''
+<text x="185" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">I_D = I_S(e^(V_D/nV_T) − 1)</text>
+<text x="40" y="86" font-size="11.5" font-weight="bold" fill="#334155">三条必须记住的账</text>
+<text x="40" y="112" font-size="11.5" font-weight="bold" fill="#2563eb">① V_T = kT/q ≈ 26mV</text>
+<text x="52" y="132" font-size="11" fill="#475569">→ 电压 +60mV，电流 ×10</text>
+<text x="40" y="162" font-size="11.5" font-weight="bold" fill="#dc2626">② −2mV/℃</text>
+<text x="52" y="182" font-size="11" fill="#475569">→ 同一电流，温度 +35℃</text>
+<text x="52" y="200" font-size="11" fill="#475569">　 V_D 掉 70mV（电流 ×14.7）</text>
+<text x="40" y="230" font-size="11.5" font-weight="bold" fill="#059669">③ 动态电阻 r_d</text>
+<text x="52" y="250" font-size="11" fill="#475569">= nV_T / I_D = 26mV/1mA = 26Ω</text>
+<rect x="36" y="272" width="290" height="120" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="1.5"/>
+<text x="50" y="296" font-size="11.5" font-weight="bold" fill="#b45309">工程近似模型（按精度三选一）</text>
+<text x="50" y="318" font-size="11" fill="#475569">理想开关：导通 0V —— 只算损耗时用</text>
+<text x="50" y="338" font-size="11" fill="#475569">恒压降 0.7V —— 手算最快，误差最大</text>
+<text x="50" y="358" font-size="11" fill="#475569">恒压降 + 体电阻 —— 大电流场合</text>
+<text x="50" y="380" font-size="11" font-weight="bold" fill="#dc2626">小电流时 0.7V 假设最骗人：</text>
+<text x="50" y="386" font-size="0" fill="none"> </text>
+{curve(0.0, '#dc2626')}
+{curve(0.07, '#2563eb')}
+<line x1="{X0}" y1="{Y1}" x2="{X1}" y2="{Y1}" stroke="#64748b" stroke-width="1.6"/>
+<line x1="{X0}" y1="{Y0}" x2="{X0}" y2="{Y1}" stroke="#64748b" stroke-width="1.6"/>
+<text x="{X1}" y="{Y1+22}" text-anchor="end" font-size="11" fill="#475569">V_D →</text>
+<text x="{X0-6}" y="{py(1e-3)+4:.0f}" text-anchor="end" font-size="10.5" fill="#475569">1mA</text>
+<text x="{X0-6}" y="{py(1e-6)+4:.0f}" text-anchor="end" font-size="10.5" fill="#475569">1µA</text>
+<text x="{X0-6}" y="{py(1e-9)+4:.0f}" text-anchor="end" font-size="10.5" fill="#475569">1nA</text>
+<text x="{X0+4}" y="{Y0+14}" font-size="10.5" fill="#475569">100mA</text>
+<text x="{px(0.2):.0f}" y="{Y1+22}" text-anchor="middle" font-size="10" fill="#475569">0.2V</text>
+<text x="{px(0.5):.0f}" y="{Y1+22}" text-anchor="middle" font-size="10" fill="#475569">0.5V</text>
+<circle cx="{px(0.36):.0f}" cy="{py(1e-3):.0f}" r="5" fill="#dc2626"/>
+<line x1="{px(0.36):.0f}" y1="{py(1e-3):.0f}" x2="{px(0.36):.0f}" y2="{Y1}" stroke="#dc2626" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="{px(0.36)+8:.0f}" y="{py(1e-3)+4:.0f}" font-size="10.5" font-weight="bold" fill="#dc2626">25℃ 时 1mA 在 0.36V</text>
+<text x="{px(0.36)+8:.0f}" y="{py(1e-3)-10:.0f}" font-size="10.5" font-weight="bold" fill="#2563eb">60℃ 时同一电流只要 0.29V</text>
+<text x="560" y="{Y0+40}" font-size="10.5" font-weight="bold" fill="#2563eb">60℃ 曲线：整条左移 70mV（−2mV/℃×35℃）</text>
+<text x="{px(0.42):.0f}" y="{py(1e-4)-8:.0f}" font-size="10.5" fill="#475569">↑ 每上升 60mV，电流爬一个十倍</text>
+<text x="{px(0.42):.0f}" y="{py(1e-5)-8:.0f}" font-size="10.5" fill="#475569">↑ 指数不是「快」，是「没有拐点」</text>
+<circle r="5" fill="#dc2626">
+<animateMotion dur="{DI}s" repeatCount="indefinite" path="{curve(0.0,'#dc2626')[9:]}" keyPoints="0;1" keyTimes="0;1"/></circle>
+<text x="587" y="474" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#dc2626">测温二极管、稳压二极管、温度传感器——全靠这条曲线</text>
+<text x="587" y="494" text-anchor="middle" font-size="11" fill="#475569">大功率管的「温度升→电流增→更热」正反馈，热失控从这里开始</text>
+'''
+    svg += caption("① 指数段：每 +60mV 电流 ×10——模拟工程师的十倍频速算法", "#dc2626", DI,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=548)
+    svg += caption("② 温度才是那条隐藏的线：+35℃ 让同一电流的 V_D 掉 70mV", "#2563eb", DI,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=548)
+    svg += caption("③ 动态电阻不是常数：1mA 处 26Ω，越小电流越「大」", "#059669", DI,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=548)
+    svg += caption("④ 所以二极管当不了精密基准——它的曲线只听温度的", "#b45309", DI,
+                   "0;0;1;1", "0;0.85;0.9;1", y=548)
+    svg += note_box("死记：V_T=26mV、每 60mV 一个十倍、−2mV/℃——三句话能现场推回任何一条硅结曲线", 588, DI,
+                    "0;0.9;0.94;1", w=760)
+    save('diode-iv.svg', svg + '</svg>')
+
+
+# ======================= 图 52：比较器 vs 运放（第 7 章 7.1） =======================
+def make_comparator_opamp():
+    DC = 10
+    TX0, TX1 = 430, 764
+    tx = lambda t: TX0 + t/8.0*334
+    YTOP, YBOT = 132, 296
+    vy = lambda v: YBOT - v/5.0*(YBOT-YTOP)
+    def opamp(t):
+        if t <= 4.0:
+            return min(2.0, 0.5*t)
+        return 2.0 - 2.0*(np.exp(-(t-4.0)/0.16))
+    def cmp_(t):
+        return 0.0 if t < 1.3 else 4.9
+    def curve(fn, color, wid=2.8, dash=''):
+        pts = [f"{tx(t):.0f},{vy(fn(t)):.0f}" for t in np.linspace(0, 8, 200)]
+        d = ' stroke-dasharray="%s"' % dash if dash else ''
+        return (f'<path d="M' + " L".join(pts) + f'" fill="none" stroke="{color}" '
+                f'stroke-width="{wid}"{d}/>')
+    svg = svg_open('运放当比较器、比较器当运放：为什么都不行', h=640)
+    svg += f'''
+<text x="180" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">同一个 0→2V 阶跃</text>
+<line x1="80" y1="170" x2="120" y2="170" stroke="#334155" stroke-width="2.5"/>
+<line x1="120" y1="146" x2="120" y2="194" stroke="#334155" stroke-width="2.5"/>
+<path d="M108,152 L120,142 L132,152 Z" fill="#334155"/>
+<path d="M108,188 L120,198 L132,188 Z" fill="#334155"/>
+<line x1="120" y1="170" x2="160" y2="170" stroke="#334155" stroke-width="2.5"/>
+<circle cx="160" cy="170" r="4" fill="#334155"/>
+<polygon points="170,138 170,226 240,182" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="178" y="162" font-size="13" font-weight="bold" fill="#059669">+</text>
+<text x="178" y="212" font-size="13" font-weight="bold" fill="#dc2626">−</text>
+<line x1="160" y1="170" x2="170" y2="170" stroke="#334155" stroke-width="2.5"/>
+<line x1="240" y1="182" x2="290" y2="182" stroke="#334155" stroke-width="2.5"/>
+<line x1="290" y1="182" x2="290" y2="250" stroke="#334155" stroke-width="2.5"/>
+<line x1="290" y1="250" x2="230" y2="250" stroke="#334155" stroke-width="2.5"/>
+<line x1="230" y1="250" x2="230" y2="194" stroke="#334155" stroke-width="2.5"/>
+<line x1="230" y1="194" x2="170" y2="194" stroke="#334155" stroke-width="2.5"/>
+<text x="60" y="290" font-size="11.5" font-weight="bold" fill="#2563eb">运放：有补偿</text>
+<text x="60" y="308" font-size="11.5" font-weight="bold" fill="#2563eb">SR 限速</text>
+<text x="60" y="334" font-size="11" fill="#475569">2V ÷ 0.5V/µs</text>
+<text x="60" y="352" font-size="11" fill="#475569">= 4µs 爬坡</text>
+<text x="60" y="382" font-size="11.5" font-weight="bold" fill="#059669">比较器：无补偿</text>
+<text x="60" y="400" font-size="11.5" font-weight="bold" fill="#059669">1.3µs 后直接跳</text>
+<line x1="{TX0}" y1="{YBOT}" x2="{TX1}" y2="{YBOT}" stroke="#64748b" stroke-width="1.6"/>
+<line x1="{TX0}" y1="{YTOP}" x2="{TX0}" y2="{YBOT}" stroke="#64748b" stroke-width="1.6"/>
+<text x="{TX1}" y="{YBOT+38}" text-anchor="end" font-size="11" fill="#475569">时间 →</text>
+<text x="{tx(2):.0f}" y="{YBOT+22}" text-anchor="middle" font-size="10" fill="#475569">2µs</text>
+<text x="{tx(4):.0f}" y="{YBOT+22}" text-anchor="middle" font-size="10" fill="#475569">4µs</text>
+<text x="{tx(8):.0f}" y="{YBOT+22}" text-anchor="middle" font-size="10" fill="#475569">8µs</text>
+<text x="{TX0-6}" y="{vy(5)+4:.0f}" text-anchor="end" font-size="10.5" fill="#475569">5V</text>
+<text x="{TX0-6}" y="{vy(2)+4:.0f}" text-anchor="end" font-size="10.5" fill="#475569">2V</text>
+<text x="{tx(4)+6:.0f}" y="{vy(2)-8:.0f}" font-size="10.5" font-weight="bold" fill="#2563eb">4µs 才爬到 2V</text>
+<text x="{tx(1.35):.0f}" y="{vy(4.9)+16:.0f}" font-size="10.5" font-weight="bold" fill="#059669">1.3µs 就跳到 4.9V</text>
+{curve(opamp, '#2563eb')}
+{curve(cmp_, '#059669')}
+<circle r="6" fill="#059669" stroke="#ffffff" stroke-width="2">
+<animateMotion dur="{DC}s" repeatCount="indefinite" path="{curve(cmp_,'#059669')[9:]}" keyPoints="0;1" keyTimes="0;1"/></circle>
+<text x="400" y="392" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#dc2626">真正的坑不在速度，在输出级</text>
+<text x="400" y="414" text-anchor="middle" font-size="11" fill="#475569">LM393 是开漏：输出只能「拉低」，上电沿要靠外部上拉电阻</text>
+<rect x="60" y="436" width="300" height="86" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+<text x="74" y="460" font-size="11.5" font-weight="bold" fill="#b91c1c">开漏 + 大电容 = 慢到离谱</text>
+<text x="74" y="482" font-size="11" fill="#475569">10k 上拉带 100nF：τ = 1ms</text>
+<text x="74" y="502" font-size="11" fill="#475569">上升沿 ≈ 2.2τ = 2.2ms——</text>
+<text x="74" y="518" font-size="11" fill="#475569">判决再快也被电容拖住</text>
+<path d="M400,470 L400,510" stroke="#2563eb" stroke-width="2.5"/>
+<path d="M393,503 L400,514 L407,503 Z" fill="#2563eb"/>
+<text x="430" y="470" font-size="11.5" font-weight="bold" fill="#2563eb">推挽运放直接驱动电容</text>
+<text x="430" y="490" font-size="11" fill="#475569">靠输出级电流「灌」进负载，</text>
+<text x="430" y="510" font-size="11" fill="#475569">不受上拉电阻的 RC 拖累</text>
+<text x="430" y="536" font-size="11" font-weight="bold" fill="#b45309">所以：判决用比较器，驱动用运放</text>
+'''
+    svg += caption("① 速度差：运放被压摆率限死（4µs 爬 2V），比较器 1.3µs 直接跳", "#059669", DC,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=584)
+    svg += caption("② 但快不等于能驱动：开漏输出的上电沿是 RC，不是 MOS 管", "#dc2626", DC,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=584)
+    svg += caption("③ 用运放当比较器：翻转慢、饱和恢复拖尾、相位裕度不够还会自激", "#2563eb", DC,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=584)
+    svg += caption("④ 用比较器当放大器：开漏 + 饱和恢复慢，线性增益根本稳不住", "#b45309", DC,
+                   "0;0;1;1", "0;0.85;0.9;1", y=584)
+    save('comparator-opamp.svg', svg + '</svg>')
+
+
+# ======================= 图 53：噪声三税种与噪声预算（第 11 章 11.6） =======================
+def make_noise_budget():
+    DN = 10
+    X0, X1, Y0, Y1 = 400, 764, 130, 400
+    fx = lambda f: X0 + np.log10(f/10)/5.0*(X1-X0)
+    def ny(db):
+        return Y0 + (-db)/60*(Y1-Y0)
+    white_db = 20*np.log10(4.1e-6/np.sqrt(1000))
+    def spec(f, corner, floor_db, shot_db):
+        fl = 1/np.sqrt(f)
+        ff = 1/np.sqrt(corner)
+        flicker = floor_db + 20*np.log10(np.sqrt(corner/f))
+        shot = shot_db + 20*np.log10(np.sqrt(1000/f))
+        w = floor_db + 20*np.log10(np.sqrt(1000/f))
+        tot = 10*np.log10(10**(fl/10)+10**(w/10)+10**(shot/10))
+        return tot
+    fig_fs = np.logspace(1, 6, 200)
+    svg = svg_open('噪声：消灭不了的三种税，和唯一能谈判的顺序', h=620)
+    svg += f'''
+<text x="185" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">电子热运动收的税，谁都逃不掉</text>
+<text x="40" y="86" font-size="11.5" font-weight="bold" fill="#2563eb">热噪声：V_n = √(4kTRB)</text>
+<text x="40" y="108" font-size="11" fill="#475569">白噪声，全频段均匀</text>
+<text x="40" y="126" font-size="11" fill="#475569">只看 R、T、B 三件事</text>
+<text x="40" y="156" font-size="11.5" font-weight="bold" fill="#dc2626">1/f 噪声：低频大高频小</text>
+<text x="40" y="178" font-size="11" fill="#475569">「嘶——」声的主力</text>
+<text x="40" y="196" font-size="11" fill="#475569">MOSFET 比 BJT 大一个量级</text>
+<text x="40" y="226" font-size="11.5" font-weight="bold" fill="#b45309">散粒噪声：I_n = √(2qIB)</text>
+<text x="40" y="248" font-size="11" fill="#475569">PN 结的粒子性</text>
+<text x="40" y="266" font-size="11" fill="#475569">只随 √I，不随 I</text>
+<rect x="36" y="290" width="292" height="150" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,4"/>
+<text x="50" y="314" font-size="11.5" font-weight="bold" fill="#059669">🧮 算一笔：麦克风前级</text>
+<text x="50" y="338" font-size="11" fill="#475569">源阻 1kΩ · 带宽 1MHz · 室温</text>
+<text x="50" y="360" font-size="11" fill="#475569">V_n = √(4kTRB) ≈ 4.1µV</text>
+<text x="50" y="382" font-size="11" fill="#475569">前级增益 ×1000 →</text>
+<text x="50" y="406" font-size="12.5" font-weight="bold" fill="#dc2626">输出 4.1mV 噪声</text>
+<text x="50" y="428" font-size="11" font-weight="bold" fill="#b91c1c">——已经不是背景，是对手</text>
+<line x1="{X0}" y1="{Y1}" x2="{X1}" y2="{Y1}" stroke="#64748b" stroke-width="1.6"/>
+<line x1="{X0}" y1="{Y0}" x2="{X0}" y2="{Y1}" stroke="#64748b" stroke-width="1.6"/>
+<text x="{X1}" y="{Y1+38}" text-anchor="end" font-size="11" fill="#475569">频率 →</text>
+<text x="{X0-6}" y="{Y0+12}" text-anchor="end" font-size="10.5" fill="#475569">0dB</text>
+<text x="{X0-6}" y="{Y0+30}" text-anchor="end" font-size="10.5" fill="#475569">−20</text>
+<text x="{X0-6}" y="{Y0+50}" text-anchor="end" font-size="10.5" fill="#475569">−40</text>
+<text x="{fx(100):.0f}" y="{Y1+22}" text-anchor="middle" font-size="10" fill="#475569">100Hz</text>
+<text x="{fx(1e4):.0f}" y="{Y1+22}" text-anchor="middle" font-size="10" fill="#475569">10kHz</text>
+<text x="{fx(1e6):.0f}" y="{Y1+22}" text-anchor="middle" font-size="10" fill="#475569">1MHz</text>
+<text x="580" y="{Y0-8}" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#334155">噪声谱：1/f 拐角决定「嘶」的低频端</text>
+'''
+    # 三条谱线（归一化到 0dB@10Hz 的相对形状，仅示范趋势）
+    def rel(f, corner, floor_db):
+        flicker = 20*np.log10(np.sqrt(corner/f))
+        white = floor_db + 20*np.log10(np.sqrt(100.0/f))
+        return 10*np.log10(10**(flicker/10)+10**(white/10))
+    for corner, color, name in ((100.0, '#059669', 'BJT'), (1000.0, '#dc2626', 'MOSFET')):
+        pts = []
+        for f in fig_fs:
+            db = min(0, rel(f, corner, 6.0))
+            pts.append(f"{fx(f):.0f},{ny(db):.0f}")
+        svg += (f'<path d="M' + " L".join(pts) + f'" fill="none" stroke="{color}" stroke-width="2.4"/>')
+    fpts = [f"{fx(f):.0f},{ny(min(0,20*np.log10(np.sqrt(100.0/f)))):.0f}" for f in fig_fs]
+    svg += f'<path d="M' + " L".join(fpts) + '" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6,4"/>'
+    svg += f'''
+<text x="{fx(60):.0f}" y="{ny(0)+18:.0f}" font-size="10.5" font-weight="bold" fill="#059669">BJT：1/f 拐角在百 Hz</text>
+<text x="{fx(3000):.0f}" y="{ny(0)+34:.0f}" font-size="10.5" font-weight="bold" fill="#dc2626">MOSFET：拐角晚一个量级，嘶声更重</text>
+<text x="{fx(2e4):.0f}" y="{ny(20*np.log10(np.sqrt(100.0/2e4)))-8:.0f}" font-size="10.5" fill="#475569">白噪声段（∝1/√f）</text>
+<circle r="5" fill="#dc2626">
+<animateMotion dur="{DN}s" repeatCount="indefinite" path="M{fx(10):.0f},{ny(0):.0f} L{fx(1e6):.0f},{ny(-30):.0f}" keyPoints="0;1" keyTimes="0;1"/></circle>
+<text x="400" y="474" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#b45309">降噪的正确顺序：先压带宽 → 再降源阻 → 最后才换贵管子</text>
+<text x="400" y="496" text-anchor="middle" font-size="11" fill="#475569">后级的噪声会被前级增益「除回去」：整机噪声几乎只看第一级（Friis）</text>
+<text x="400" y="518" text-anchor="middle" font-size="11" fill="#475569">方向反了 = 先买低噪声运放、不管带宽源阻 → 钱花两倍，噪声只降一半</text>
+'''
+    svg += caption("① 白噪声只随 √B 和 √R 增长——所以带宽是性价比最高的旋钮", "#2563eb", DN,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=562)
+    svg += caption("② 1/f 靠「换器件」解决：低频端要安静，BJT 的拐角比 MOSFET 低一个量级", "#059669", DN,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=562)
+    svg += caption("③ 散粒噪声只跟电流走 √I——大电流工作点不是噪声问题，是功耗问题", "#b45309", DN,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=562)
+    svg += caption("④ 降温也是降噪：射电望远镜用液氦泡放大器，不是玄学", "#7c3aed", DN,
+                   "0;0;1;1", "0;0.85;0.9;1", y=562)
+    svg += note_box("1kΩ·1MHz·300K → 4.1µV；×1000 后 4.1mV —— 噪声是乘法游戏的必然结果，先算账再选管", 600, DN,
+                    "0;0.9;0.94;1", w=750)
+    save('noise-budget.svg', svg + '</svg>')
+
+
+# ======================= 图 54：测量本身不破坏电路（第 16 章 16.3） =======================
+def make_probe_loading():
+    DP = 11
+    svg = svg_open('探头是负载：测量的动作本身就会改电路', h=640)
+    svg += '''
+<text x="270" y="50" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">① 探头一碰上去，电路就变了</text>
+<line x1="60" y1="150" x2="120" y2="150" stroke="#334155" stroke-width="2.5"/>
+<circle cx="120" cy="150" r="4" fill="#334155"/>
+<text x="44" y="146" font-size="11" fill="#475569">源</text>
+<line x1="120" y1="150" x2="150" y2="150" stroke="#334155" stroke-width="2.5"/>
+<rect x="150" y="138" width="50" height="24" rx="3" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="175" y="126" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#b45309">100k</text>
+<line x1="200" y1="150" x2="250" y2="150" stroke="#334155" stroke-width="2.5"/>
+<circle cx="250" cy="150" r="4" fill="#334155"/>
+<line x1="250" y1="150" x2="250" y2="190" stroke="#334155" stroke-width="2.5"/>
+<line x1="250" y1="190" x2="238" y2="190" stroke="#dc2626" stroke-width="3"/>
+<line x1="250" y1="202" x2="262" y2="202" stroke="#dc2626" stroke-width="3"/>
+<line x1="250" y1="190" x2="250" y2="224" stroke="#334155" stroke-width="2.5"/>
+<line x1="250" y1="224" x2="238" y2="224" stroke="#dc2626" stroke-width="3"/>
+<line x1="250" y1="236" x2="262" y2="236" stroke="#dc2626" stroke-width="3"/>
+<line x1="250" y1="236" x2="250" y2="270" stroke="#334155" stroke-width="2.5"/>
+<text x="266" y="206" font-size="11" font-weight="bold" fill="#dc2626">100pF</text>
+<line x1="250" y1="270" x2="290" y2="270" stroke="#334155" stroke-width="2.5"/>
+<rect x="290" y="258" width="46" height="24" rx="3" fill="#f8fafc" stroke="#dc2626" stroke-width="2.5"/>
+<text x="313" y="246" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#dc2626">1MΩ</text>
+<line x1="336" y1="270" x2="380" y2="270" stroke="#334155" stroke-width="2.5"/>
+<circle cx="390" cy="270" r="4" fill="#334155"/>
+<text x="398" y="266" font-size="11" font-weight="bold" fill="#2563eb">读到 V×0.91</text>
+<rect x="40" y="296" width="380" height="86" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+<text x="54" y="320" font-size="11.5" font-weight="bold" fill="#b91c1c">×1 档：误差 9%，还想测什么？</text>
+<text x="54" y="342" font-size="11" fill="#475569">100kΩ 源阻 + 1MΩ 探头 = 分压到 0.909</text>
+<text x="54" y="362" font-size="11" fill="#475569">而且 100k×100pF = 10µs → fc 只剩 16kHz</text>
+<text x="54" y="376" font-size="11" font-weight="bold" fill="#dc2626">高频信号直接被探头削圆</text>
+<text x="440" y="320" font-size="11.5" font-weight="bold" fill="#059669">×10 档：10MΩ‖10pF</text>
+<text x="440" y="342" font-size="11" fill="#475569">分压系数 0.990（误差 1%）</text>
+<text x="440" y="362" font-size="11" fill="#475569">时间常数 1µs → fc 提到 159kHz</text>
+<text x="440" y="382" font-size="11" font-weight="bold" fill="#059669">代价：探头电容被「等效缩小」10 倍</text>
+<text x="270" y="426" text-anchor="middle" font-size="11" fill="#475569">Jim Williams：先问「这个测量会不会改电路」，再按下探头</text>
+<line x1="60" y1="470" x2="500" y2="470" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="6,5"/>
+<text x="270" y="502" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">② 另外两个「一按就出事」的动作</text>
+<circle cx="90" cy="540" r="26" fill="#fef2f2" stroke="#dc2626" stroke-width="2.5"/>
+<text x="90" y="536" text-anchor="middle" font-size="12" font-weight="bold" fill="#b91c1c">A</text>
+<text x="90" y="554" text-anchor="middle" font-size="11" font-weight="bold" fill="#b91c1c">表</text>
+<text x="132" y="534" font-size="11.5" font-weight="bold" fill="#b91c1c">电流档 = 短路</text>
+<text x="132" y="554" font-size="11" fill="#475569">万用表电流档内阻≈0，并到电源上就是放炮</text>
+<text x="132" y="574" font-size="11" font-weight="bold" fill="#dc2626">测完立刻把表笔插回电压孔</text>
+<text x="420" y="536" font-size="11.5" font-weight="bold" fill="#dc2626">探头地夹 = 市电地</text>
+<text x="420" y="556" font-size="11" fill="#475569">示波器地夹与市电共地</text>
+<text x="420" y="574" font-size="11" font-weight="bold" fill="#dc2626">隔离变压器 或 差分探头，二选一</text>
+<text x="270" y="604" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#b45309">上电第一次：串限流灯泡 / 恒流 50mA —— 冒烟的是灯泡，不是芯片</text>
+'''
+    svg += caption("① 探头不是「接上去看看」——它是 1MΩ‖100pF 的负载，会分压也会滤波", "#dc2626", DP,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=628)
+    svg += caption("② 测模拟节点一律 ×10 档：误差从 9% 降到 1%，带宽从 16kHz 提到 159kHz", "#059669", DP,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=628)
+    svg += caption("③ 电流档并联 = 短路；示波器地夹接市电节点 = 短路——两个都是「一按就出事」", "#b91c1c", DP,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=628)
+    svg += caption("④ 新板第一次上电先限流：让最便宜的元件先冒烟", "#b45309", DP,
+                   "0;0;1;1", "0;0.85;0.9;1", y=628)
+    save('probe-loading.svg', svg + '</svg>')
 
 
 if __name__ == '__main__':
@@ -3841,4 +4137,8 @@ if __name__ == '__main__':
     make_cap_parasitics()
     make_miller_plateau()
     make_opamp_slew()
-    print('all 50 SVGs regenerated into', os.path.abspath(OUT))
+    make_diode_iv()
+    make_comparator_opamp()
+    make_noise_budget()
+    make_probe_loading()
+    print('all 54 SVGs regenerated into', os.path.abspath(OUT))

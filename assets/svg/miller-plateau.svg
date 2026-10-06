@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="620" viewBox="0 0 800 620">
 <title>米勒平台：V_GS 为什么会在半路「停下来看戏」</title>
-<rect width="800" height="600" fill="#f8fafc"/>
+<rect width="800" height="620" fill="#f8fafc"/>
 <style>
 text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
 @media (prefers-color-scheme: dark){
@@ -33,7 +33,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="20" y="236" font-size="12" font-weight="bold" fill="#dc2626">V_DS</text>
 <text x="20" y="342" font-size="12" font-weight="bold" fill="#059669">I_D</text>
 <text x="20" y="438" font-size="12" font-weight="bold" fill="#b45309">P=V·I</text>
-<line x1="90" y1="450" x2="760" y2="450" stroke="#64748b" stroke-width="1.6"/>
+<line x1="90" y1="502" x2="760" y2="502" stroke="#64748b" stroke-width="1.6"/>
 <path d="M90,196 L216,175 L425,152 L559,152 L676,120 L760,120" fill="none" stroke="#2563eb" stroke-width="2.6" stroke-linejoin="round"/>
 <path d="M90,216 L425,216 L559,291 L760,291" fill="none" stroke="#dc2626" stroke-width="2.6" stroke-linejoin="round"/>
 <path d="M90,398 L425,322 L760,322" fill="none" stroke="#059669" stroke-width="2.6" stroke-linejoin="round"/>
@@ -46,16 +46,15 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="682" y="308" font-size="10.5" font-weight="bold" fill="#059669">到底 0.15V</text>
 <text x="556" y="210" text-anchor="end" font-size="10.5" font-weight="bold" fill="#7c3aed">平台期：V_DS 猛跌</text>
 <text x="320" y="314" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#dc2626">V_DS 还满着 20V，I_D 已经上来了</text>
-<text x="90" y="490" font-size="10.5" font-weight="bold" fill="#b45309">损耗 = 阴影面积 × f_sw；重叠区 410ns → P_sw≈2W@100kHz</text>
+<text x="592" y="484" font-size="10.5" font-weight="bold" fill="#b45309">损耗 = 阴影面积 × f_sw</text>
 <circle r="5" fill="#2563eb">
 <animateMotion dur="10s" repeatCount="indefinite" keyPoints="0;0.35;0.35;1" keyTimes="0;0.18;0.62;1" path="M90,196 L216,175 L425,152 L559,152 L676,120 L760,120"/></circle>
 <circle r="5" fill="#dc2626">
 <animateMotion dur="10s" repeatCount="indefinite" keyPoints="0;0.35;0.35;1" keyTimes="0;0.18;0.62;1" path="M90,216 L425,216 L559,291 L760,291"/></circle>
 <circle r="5" fill="#7c3aed">
 <animateMotion dur="10s" repeatCount="indefinite" keyPoints="0;0.4;1" keyTimes="0;0.18;0.62" path="M174,84 L492,84 L492,152"/></circle>
-<text x="425" y="468" text-anchor="middle" font-size="10.5" fill="#475569">400ns</text>
-<text x="559" y="468" text-anchor="middle" font-size="10.5" fill="#475569">560ns</text>
-<text x="760" y="468" text-anchor="end" font-size="10.5" fill="#475569">800ns</text>
-<text x="430" y="506" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#7c3aed">平台时长 = Q_gd ÷ 驱动电流 = 1.6nC ÷ 10mA = 160ns</text>
-<text x="430" y="526" text-anchor="middle" font-size="11" fill="#475569">栅极电阻调小的每一份，都是拿 EMI 换损耗——电源工程师的经典权衡</text>
-<text x="400" y="560" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">① 前 400ns：栅极电流先填 C_GS，I_D 起来时 V_DS 还满着——最疼的一段<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="10s" repeatCount="indefinite"/></text><text x="400" y="560" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">② 平台期：驱动电流全被 C_GD 抽走，V_GS 被钉住，V_DS 一路雪崩下跌<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="10s" repeatCount="indefinite"/></text><text x="400" y="560" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">③ 平台结束才是 R_DS(on) 生效的时刻：0.75W 导通损耗此刻才开始<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="10s" repeatCount="indefinite"/></text><text x="400" y="560" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">④ 记住 Q_gd：它比 C_rss 更直接地告诉你「这管子开关有多肉」<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="10s" repeatCount="indefinite"/></text></svg>
+<text x="425" y="522" text-anchor="middle" font-size="10.5" fill="#475569">400ns</text>
+<text x="559" y="522" text-anchor="middle" font-size="10.5" fill="#475569">560ns</text>
+<text x="760" y="522" text-anchor="end" font-size="10.5" fill="#475569">800ns</text>
+<text x="430" y="548" text-anchor="middle" font-size="11" font-weight="bold" fill="#7c3aed">平台时长 = Q_gd ÷ 驱动电流 = 1.6nC ÷ 10mA = 160ns；重叠 410ns → P_sw≈2W（§4.6 按 700ns 保守估 3.5W）</text>
+<text x="400" y="584" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">① 前 400ns：栅极电流先填 C_GS，I_D 起来时 V_DS 还满着——最疼的一段<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="10s" repeatCount="indefinite"/></text><text x="400" y="584" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">② 平台期：驱动电流全被 C_GD 抽走，V_GS 被钉住，V_DS 一路雪崩下跌<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="10s" repeatCount="indefinite"/></text><text x="400" y="584" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">③ 平台结束才是 R_DS(on) 生效的时刻：0.75W 导通损耗此刻才开始<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="10s" repeatCount="indefinite"/></text><text x="400" y="584" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">④ 记住 Q_gd：它比 C_rss 更直接地告诉你「这管子开关有多肉」<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="10s" repeatCount="indefinite"/></text></svg>
