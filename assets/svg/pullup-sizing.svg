@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="620" viewBox="0 0 800 620">
+<title>上拉电阻取值：太大翻不动，太小白费电</title>
+<rect width="800" height="620" fill="#f8fafc"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+@media (prefers-color-scheme: dark){
+rect[fill="#f8fafc"]{fill:#0f172a}
+[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
+[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
+[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
+[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
+[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
+[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
+[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
+[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
+[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
+[fill="#cbd5e1"]{fill:#334155}[stroke="#cbd5e1"]{stroke:#475569}
+[fill="#ffffff"]{fill:#0f172a}[fill="#94a3b8"]{fill:#64748b}[stroke="#94a3b8"]{stroke:#64748b}
+[fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
+}
+</style>
+<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">上拉电阻取值：太大翻不动，太小白费电</text>
+
+<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">总线的上拉：上升沿是 RC，低电平是电流</text>
+<line x1="70" y1="96" x2="70" y2="136" stroke="#334155" stroke-width="2.5"/>
+<text x="56" y="90" font-size="11.5" font-weight="bold" fill="#b45309">3.3V</text>
+<rect x="58" y="136" width="24" height="34" rx="3" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<text x="92" y="158" font-size="11.5" font-weight="bold" fill="#b45309">R_p 上拉</text>
+<line x1="70" y1="170" x2="70" y2="200" stroke="#334155" stroke-width="2.5"/>
+<line x1="70" y1="200" x2="330" y2="200" stroke="#334155" stroke-width="2.5"/>
+<rect x="110" y="236" width="96" height="52" rx="6" fill="#f8fafc" stroke="#2563eb" stroke-width="2.5"/>
+<text x="158" y="258" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">驱动器</text>
+<text x="158" y="278" text-anchor="middle" font-size="10.5" fill="#475569">拉低时吸流</text>
+<line x1="158" y1="236" x2="158" y2="200" stroke="#2563eb" stroke-width="2.5"/>
+<line x1="158" y1="288" x2="158" y2="312" stroke="#334155" stroke-width="2.5"/>
+<line x1="158" y1="312" x2="158" y2="326" stroke="#334155" stroke-width="2.5"/><line x1="142" y1="326" x2="174" y2="326" stroke="#334155" stroke-width="3"/><line x1="148" y1="332" x2="168" y2="332" stroke="#334155" stroke-width="3"/><line x1="154" y1="338" x2="162" y2="338" stroke="#334155" stroke-width="3"/>
+<circle cx="250" cy="200" r="4.5" fill="#334155"/>
+<line x1="250" y1="200" x2="250" y2="160" stroke="#334155" stroke-width="2.5"/>
+<line x1="236" y1="160" x2="264" y2="160" stroke="#7c3aed" stroke-width="3.5"/>
+<line x1="236" y1="172" x2="264" y2="172" stroke="#7c3aed" stroke-width="3.5"/>
+<line x1="250" y1="172" x2="250" y2="140" stroke="#334155" stroke-width="2.5"/>
+<line x1="250" y1="126" x2="250" y2="140" stroke="#334155" stroke-width="2.5"/><line x1="234" y1="140" x2="266" y2="140" stroke="#334155" stroke-width="3"/><line x1="240" y1="146" x2="260" y2="146" stroke="#334155" stroke-width="3"/><line x1="246" y1="152" x2="254" y2="152" stroke="#334155" stroke-width="3"/>
+<text x="268" y="168" font-size="11" font-weight="bold" fill="#7c3aed">总线电容 C≈100pF</text>
+<circle r="5" fill="#2563eb"><animateMotion dur="11s" begin="-0.3s" repeatCount="indefinite" path="M160,234 L160,202"/></circle>
+<circle r="5" fill="#b45309"><animateMotion dur="11s" begin="-0.9s" repeatCount="indefinite" path="M70,172 L70,198 L246,200"/></circle>
+<circle r="3.6" fill="#7c3aed"><animateMotion dur="2.6s" begin="-0.4s" repeatCount="indefinite" path="M196,268 L118,268"/></circle>
+<circle r="3.6" fill="#7c3aed"><animateMotion dur="2.6s" begin="-1.7s" repeatCount="indefinite" path="M118,268 L196,268"/></circle>
+<text x="360" y="96" font-size="12.5" font-weight="bold" fill="#334155">两条硬约束</text>
+<text x="360" y="122" font-size="11.5" font-weight="bold" fill="#2563eb">① 上升沿：t_r ≈ 0.8473·R_p·C</text>
+<text x="374" y="142" font-size="11" fill="#475569">R_p 越大，充得越慢 → 限制最高速率</text>
+<text x="360" y="172" font-size="11.5" font-weight="bold" fill="#dc2626">② 低电平：I_low = V/R_p 必须灌得动</text>
+<text x="374" y="192" font-size="11" fill="#475569">R_p 越小，驱动器吸的电流越大</text>
+<text x="360" y="222" font-size="11.5" font-weight="bold" fill="#b45309">③ 空闲功耗：线为低时 R_p 一直在耗</text>
+<text x="374" y="242" font-size="11" fill="#475569">低功耗系统宁可取大（10k~100k）</text>
+<rect x="360" y="266" width="400" height="150" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,4"/>
+<text x="376" y="292" font-size="12" font-weight="bold" fill="#334155">算一笔（3.3V / C=100pF）</text>
+<text x="376" y="316" font-size="11.5" fill="#475569">R_p = 1kΩ → t_r ≈ 85ns，I_low = 3.3mA（太快但费电）</text>
+<text x="376" y="338" font-size="11.5" font-weight="bold" fill="#059669">R_p = 4.7kΩ → t_r ≈ 400ns，I_low = 0.70mA ← 经典值</text>
+<text x="376" y="360" font-size="11.5" fill="#475569">R_p = 10kΩ → t_r ≈ 847ns，I_low = 0.33mA（标准模式够用）</text>
+<text x="376" y="382" font-size="11.5" fill="#dc2626">R_p = 47kΩ → t_r ≈ 4µs，I_low = 70µA（快速模式直接不合格）</text>
+<text x="376" y="406" font-size="11" fill="#475569">I²C 标准模式（100kHz）要求 t_r &lt; 1000ns → R_p ≤ 11.8kΩ</text>
+<line x1="40" y1="440" x2="760" y2="440" stroke="#cbd5e1" stroke-width="1"/>
+<text x="400" y="468" text-anchor="middle" font-size="12" font-weight="bold" fill="#b45309">为什么教科书都说 4.7k</text>
+<text x="400" y="492" text-anchor="middle" font-size="11.5" fill="#475569">它是「够快（标准模式 400ns 有余量）+ 够省（0.7mA）」的折中点；</text>
+<text x="400" y="514" text-anchor="middle" font-size="11.5" fill="#475569">快速模式 400kHz 需要 ≤3.5kΩ，所以实板常见 2.2k；而 MCU 内部 30~50kΩ 弱上拉只够防浮空，不能当 I²C 上拉</text>
+<rect x="356" y="264" width="408" height="156" rx="10" fill="none" stroke="#059669" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.0s" repeatCount="indefinite"/></rect>
+<text x="400" y="552" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">① 上拉太大：RC 充得慢，上升沿被拉长——高速总线的第一个瓶颈<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="552" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">② 上拉太小：驱动器拉低时要吸大电流，还可能顶不住低电平门限<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="552" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">③ 算笔账：t_r≈0.8473·R·C；3.3V/100pF 下 4.7k 给 400ns、0.7mA<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="552" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">④ 结论：4.7k 是标准模式折中值，快速模式要 2.2k，内部弱上拉只防浮空<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/></text></svg>

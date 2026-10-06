@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-generate_svgs.py — 一键再生成《通往模拟电路之路》全部 64 张 SVG SMIL 动画
+generate_svgs.py — 一键再生成《通往模拟电路之路》全部 70 张 SVG SMIL 动画
 用法:  python generate_svgs.py            # 输出到 ../assets/svg/
 风格:  参考 BMS-Z 项目 —— 浅色底 + SMIL 节拍字幕 + 深色模式自适应 + 拟人化讲解
 所有电路参数经过自洽核算（datasheet 级），详见各函数注释。
@@ -4715,6 +4715,13 @@ def make_mosfet_curves():
 <text x="60" y="448" font-size="12" font-weight="bold" fill="#334155">河流比喻：沟道 = 河床</text>
 <text x="60" y="472" font-size="11.5" fill="#475569">V_DS 小：河水从源平缓流到漏，水流随坡度线性增加（线性区）</text>
 <text x="60" y="494" font-size="11.5" fill="#475569">V_DS 够大：漏端河床被「夹断」，水到断口被强电场直接甩过去——水量只由上游（V_GS）决定</text>
+<circle r="5" fill="#7c3aed"><animateMotion dur="{DM}s" begin="-0.7s" repeatCount="indefinite" path="{curve(6.0,'#7c3aed')[9:]}" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#94a3b8"><animateMotion dur="{DM}s" begin="-2.1s" repeatCount="indefinite" path="{curve(3.0,'#94a3b8')[9:]}" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle cx="{px(2):.0f}" cy="{py(0.9):.0f}" r="5" fill="none" stroke="#dc2626" stroke-width="2.4">
+<animate attributeName="r" values="5;12;5" dur="1.8s" repeatCount="indefinite"/>
+<animate attributeName="opacity" values="0.95;0.2;0.95" dur="1.8s" repeatCount="indefinite"/></circle>
+<circle cx="{px(10):.0f}" cy="{py(30):.0f}" r="5" fill="none" stroke="#059669" stroke-width="2.4">
+<animate attributeName="r" values="5;12;5" dur="2.2s" begin="-0.8s" repeatCount="indefinite"/></circle>
 {pulse(276, 114, 30, 288, '#dc2626', 2.0, 8)}
 '''
     svg += caption("① 线性区：沟道没夹断，I_D 跟 V_DS 走——管子就是个可变电阻（模拟开关用这里）", "#2563eb", DM,
@@ -4852,6 +4859,380 @@ def make_feedback_topo():
     save('feedback-topo.svg', svg + '</svg>')
 
 
+# ======================= 图 65：真实电阻的等效模型（第 1 章 1.1） =======================
+def make_resistor_model():
+    DR = 11
+    R, L, C = 1000.0, 10e-9, 0.2e-12
+    f1 = 1/(2*np.pi*R*C)          # 并联电容夺权点（极点）
+    f2 = R/(2*np.pi*L)            # 引线电感夺权点（零点）
+    def zmag(f):
+        zr = R + 2j*np.pi*f*L
+        zc = 1/(2j*np.pi*f*C)
+        return abs(zr*zc/(zr+zc))
+    X0, X1, Y0, Y1 = 400, 764, 120, 396
+    px = lambda f: X0 + (np.log10(f)-3)/7.0*(X1-X0)     # 1kHz .. 10GHz
+    py = lambda z: Y0 + (np.log10(2000)-np.log10(max(z, 10)))/np.log10(200)*(Y1-Y0)
+    ptss = []
+    for f in np.logspace(3, 10, 300):
+        ptss.append(f"{px(f):.0f},{py(zmag(f)):.0f}")
+    real_d = "M" + " L".join(ptss)
+    svg = svg_open('真实电阻：高频时它不再是「一个电阻」', h=620)
+    svg += f'''
+<text x="190" y="50" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">等效模型：R 串 L，再并 C</text>
+<text x="70" y="96" font-size="11.5" fill="#475569">理想 R</text>
+<line x1="130" y1="92" x2="170" y2="92" stroke="#334155" stroke-width="2.5"/>
+<rect x="170" y="80" width="70" height="24" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="205" y="97" text-anchor="middle" font-size="11" fill="#475569">1kΩ</text>
+<line x1="240" y1="92" x2="268" y2="92" stroke="#334155" stroke-width="2.5"/>
+<path d="M268,92 q8,12 16,0 q8,-12 16,0 q8,12 16,0" fill="none" stroke="#dc2626" stroke-width="2.5"/>
+<text x="300" y="76" font-size="11" font-weight="bold" fill="#dc2626">L 10nH</text>
+<line x1="316" y1="92" x2="350" y2="92" stroke="#334155" stroke-width="2.5"/>
+<line x1="205" y1="104" x2="205" y2="140" stroke="#334155" stroke-width="2"/>
+<line x1="193" y1="140" x2="217" y2="140" stroke="#7c3aed" stroke-width="3.5"/>
+<line x1="193" y1="152" x2="217" y2="152" stroke="#7c3aed" stroke-width="3.5"/>
+<line x1="205" y1="152" x2="205" y2="176" stroke="#334155" stroke-width="2"/>
+<line x1="130" y1="176" x2="350" y2="176" stroke="#334155" stroke-width="2.5"/>
+<text x="228" y="152" font-size="11" font-weight="bold" fill="#7c3aed">C 0.2pF</text>
+<text x="70" y="212" font-size="11.5" font-weight="bold" fill="#7c3aed">并联 C 先夺权（f₁）</text>
+<text x="70" y="234" font-size="11" fill="#475569">f₁ = 1/(2πRC) = 0.8MHz —— 这是</text>
+<text x="70" y="252" font-size="11" fill="#475569">「1kΩ 电阻拿来做高频负载」的真实上限</text>
+<text x="70" y="282" font-size="11.5" font-weight="bold" fill="#dc2626">串联 L 后夺权（f₂）</text>
+<text x="70" y="304" font-size="11" fill="#475569">f₂ = R/(2πL) = 15.9GHz —— 到那之后</text>
+<text x="70" y="322" font-size="11" fill="#475569">感抗接管，元件重新「变回电感」</text>
+<text x="70" y="352" font-size="11.5" font-weight="bold" fill="#b45309">选型结论</text>
+<text x="70" y="374" font-size="11" fill="#475569">高频用贴片（引线≈0），且元件值本身</text>
+<text x="70" y="392" font-size="11" fill="#475569">要按频率特性曲线复核</text>
+<text x="{X0-6}" y="{py(1000)+4:.0f}" text-anchor="end" font-size="10.5" fill="#475569">1kΩ</text>
+<text x="{X0-6}" y="{py(300)+4:.0f}" text-anchor="end" font-size="10.5" fill="#475569">300Ω</text>
+<text x="{px(1e3):.0f}" y="{Y1+22}" text-anchor="middle" font-size="10" fill="#475569">1kHz</text>
+<text x="{px(1e6):.0f}" y="{Y1+22}" text-anchor="middle" font-size="10" fill="#475569">1MHz</text>
+<text x="{px(1e9):.0f}" y="{Y1+22}" text-anchor="middle" font-size="10" fill="#475569">1GHz</text>
+<text x="{X1}" y="{Y1+40}" text-anchor="end" font-size="11" fill="#475569">频率 →</text>
+<line x1="{X0}" y1="{py(1000):.0f}" x2="{X1}" y2="{py(1000):.0f}" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="{X0+6}" y="{py(1000)-8:.0f}" font-size="10.5" fill="#94a3b8">理想 1kΩ：一条直线</text>
+<path d="{real_d}" fill="none" stroke="#2563eb" stroke-width="3"/>
+<circle cx="{px(f1):.0f}" cy="{py(zmag(f1)):.0f}" r="5.5" fill="#7c3aed"/>
+<text x="{px(f1)-6:.0f}" y="{py(zmag(f1))+42:.0f}" text-anchor="end" font-size="10.5" font-weight="bold" fill="#7c3aed">f₁=0.8MHz 起下坠</text>
+<circle cx="{px(1e9):.0f}" cy="{py(zmag(1e9)):.0f}" r="5.5" fill="#dc2626"/>
+<text x="{px(1e9)-8:.0f}" y="{py(zmag(1e9))+16:.0f}" text-anchor="end" font-size="10.5" font-weight="bold" fill="#dc2626">1GHz：只剩 {zmag(1e9):.0f}Ω</text>
+<circle r="5" fill="#2563eb"><animateMotion dur="{DR}s" repeatCount="indefinite" path="{real_d[9:]}" keyPoints="0;1" keyTimes="0;1"/></circle>
+{pulse(60, 60, 300, 124, '#94a3b8', 2.0, 10)}
+'''
+    svg += caption("① 低频：R 说了算——理想电阻的直线在 0.8MHz 之前都成立", "#94a3b8", DR,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=560)
+    svg += caption("② 中频：并联的 0.2pF 开始分流，曲线按 −20dB/dec 下坠", "#7c3aed", DR,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=560)
+    svg += caption(f"③ 高频：1GHz 时「1kΩ 电阻」实际只剩 {zmag(1e9):.0f}Ω——它已经变成复合元件", "#2563eb", DR,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=560)
+    svg += caption("④ 再往上（15.9GHz）引线电感接管：元件又「变回电感」", "#dc2626", DR,
+                   "0;0;1;1", "0;0.85;0.9;1", y=560)
+    svg += note_box("每个元件都有两个寄生夺权点：C 在 f₁=1/(2πRC) 开始、L 在 f₂=R/(2πL) 结束——中间才是它「当电阻」的区间", 600, DR,
+                    "0;0.9;0.94;1", w=760)
+    save('resistor-model.svg', svg + '</svg>')
+
+
+# ======================= 图 66：特殊二极管家族（第 2 章 2.4） =======================
+def make_diode_family():
+    DD = 11
+    svg = svg_open('特殊二极管家族：一族五口，各管一段活', h=620)
+    svg += f'''
+<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">横轴：正向压降　纵轴：速度　—— 每颗管子占的位置就说明了它的岗位</text>
+'''
+    fam = [
+        ('普通硅管', 0.7, 1.0, '#475569', '整流/钳位（慢）', 700),
+        ('肖特基', 0.3, 9.0, '#2563eb', '高频整流 / 防反接', 200),
+        ('LED', 2.4, 0.7, '#dc2626', '发光（必须限流）', 120),
+        ('TVS', 6.0, 8.5, '#7c3aed', 'ESD/浪涌 ns 级钳位', 60),
+        ('稳压管', 5.6, 1.6, '#b45309', '简易基准 / 过压钳位', 700),
+        ('变容管', 4.0, 3.0, '#059669', 'VCO 调谐（结电容可变）', 100),
+    ]
+    X0, Y0 = 90, 100
+    PW, PH = 640, 300
+    def px(v): return X0 + v/7.0*PW
+    def py(s): return Y0 + PH - s/10.0*PH
+    svg += f'<line x1="{X0}" y1="{Y0+PH}" x2="{X0+PW}" y2="{Y0+PH}" stroke="#64748b" stroke-width="1.6"/>'
+    svg += f'<line x1="{X0}" y1="{Y0}" x2="{X0}" y2="{Y0+PH}" stroke="#64748b" stroke-width="1.6"/>'
+    svg += f'<text x="{X0+PW}" y="{Y0+PH+46}" text-anchor="end" font-size="11" fill="#475569">正向压降 V_F →</text>'
+    svg += f'<text x="{X0-8}" y="{Y0+14}" text-anchor="end" font-size="11" fill="#475569">快</text>'
+    svg += f'<text x="{X0-8}" y="{Y0+PH}" text-anchor="end" font-size="11" fill="#475569">慢</text>'
+    for v in (1, 3, 5, 7):
+        svg += f'<line x1="{px(v):.0f}" y1="{Y0+PH}" x2="{px(v):.0f}" y2="{Y0+PH+5}" stroke="#64748b" stroke-width="1.2"/>'
+        svg += f'<text x="{px(v):.0f}" y="{Y0+PH+16}" text-anchor="middle" font-size="10" fill="#475569">{v}V</text>'
+    for nm, vf, sp, col, use, w in fam:
+        cx, cy = px(vf), py(sp)
+        svg += f'<circle cx="{cx:.0f}" cy="{cy:.0f}" r="9" fill="{col}" opacity="0.85"/>'
+        dx = 76 if cx < 190 else 0
+        svg += f'<text x="{cx+dx:.0f}" y="{cy-14:.0f}" text-anchor="middle" font-size="11.5" font-weight="bold" fill="{col}">{nm}</text>'
+        svg += f'<text x="{cx+dx:.0f}" y="{cy+28:.0f}" text-anchor="middle" font-size="10" fill="#475569">{use}</text>'
+    svg += f'''
+<text x="400" y="456" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">五个成员，五条「不能忘」的规矩</text>
+<text x="70" y="468" font-size="11.5" fill="#475569">① <tspan font-weight="bold" fill="#dc2626">LED 必须限流</tspan>：它是二极管，正向压降一旦建立，电流就指数暴涨——串电阻或上恒流</text>
+<text x="70" y="492" font-size="11.5" fill="#475569">② <tspan font-weight="bold" fill="#2563eb">肖特基快是因为「没有少子存储」</tspan>：金属-半导体结，反向恢复时间几乎为零</text>
+<text x="70" y="516" font-size="11.5" fill="#475569">③ <tspan font-weight="bold" fill="#7c3aed">TVS 拼的是「面积」</tspan>：大面积结承受浪涌能量，ns 级把电压钳住，接在接口最前线</text>
+<text x="70" y="540" font-size="11.5" fill="#475569">④ <tspan font-weight="bold" fill="#b45309">稳压管工作在击穿区</tspan>：这是唯一「故意让它击穿」的用法，5.6V 附近温漂最小</text>
+<text x="70" y="564" font-size="11.5" fill="#475569">⑤ <tspan font-weight="bold" fill="#059669">变容管是「电压控电容」</tspan>：反压越大耗尽层越宽、结电容越小——VCO 靠它调频</text>
+{pulse(270, 108, 120, 120, '#2563eb', 2.0, 10)}
+{pulse(196, 300, 130, 60, '#dc2626', 2.0, 10)}
+<circle cx="{px(fam[3][1]):.0f}" cy="{py(fam[3][2]):.0f}" r="5" fill="none" stroke="#7c3aed" stroke-width="2.4">
+<animate attributeName="r" values="5;12;5" dur="1.9s" repeatCount="indefinite"/></circle>
+'''
+    svg += caption("① 肖特基：0.3V 又最快——高频整流与防反接首选（但耐压低）", "#2563eb", DD,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=596)
+    svg += caption("② LED：压降大、速度慢，但它是唯一「把电变成光」的那颗", "#dc2626", DD,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=596)
+    svg += caption("③ TVS：速度最快的那位，专门守在接口门口替芯片挨打", "#7c3aed", DD,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=596)
+    svg += caption("④ 选型看两件事：要它「快」还是「省压降」——位置越靠前线越看速度", "#b45309", DD,
+                   "0;0;1;1", "0;0.85;0.9;1", y=596)
+    save('diode-family.svg', svg + '</svg>')
+
+
+# ======================= 图 67：上拉电阻取值（第 5 章 5.3） =======================
+def make_pullup_sizing():
+    DP = 11
+    V, C = 3.3, 100e-12
+    def tr(R): return 0.8473*R*C
+    svg = svg_open('上拉电阻取值：太大翻不动，太小白费电', h=620)
+    svg += f'''
+<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">总线的上拉：上升沿是 RC，低电平是电流</text>
+<line x1="70" y1="96" x2="70" y2="136" stroke="#334155" stroke-width="2.5"/>
+<text x="56" y="90" font-size="11.5" font-weight="bold" fill="#b45309">3.3V</text>
+<rect x="58" y="136" width="24" height="34" rx="3" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<text x="92" y="158" font-size="11.5" font-weight="bold" fill="#b45309">R_p 上拉</text>
+<line x1="70" y1="170" x2="70" y2="200" stroke="#334155" stroke-width="2.5"/>
+<line x1="70" y1="200" x2="330" y2="200" stroke="#334155" stroke-width="2.5"/>
+<rect x="110" y="236" width="96" height="52" rx="6" fill="#f8fafc" stroke="#2563eb" stroke-width="2.5"/>
+<text x="158" y="258" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">驱动器</text>
+<text x="158" y="278" text-anchor="middle" font-size="10.5" fill="#475569">拉低时吸流</text>
+<line x1="158" y1="236" x2="158" y2="200" stroke="#2563eb" stroke-width="2.5"/>
+<line x1="158" y1="288" x2="158" y2="312" stroke="#334155" stroke-width="2.5"/>
+{gnd_sym(158, 326)}
+<circle cx="250" cy="200" r="4.5" fill="#334155"/>
+<line x1="250" y1="200" x2="250" y2="160" stroke="#334155" stroke-width="2.5"/>
+<line x1="236" y1="160" x2="264" y2="160" stroke="#7c3aed" stroke-width="3.5"/>
+<line x1="236" y1="172" x2="264" y2="172" stroke="#7c3aed" stroke-width="3.5"/>
+<line x1="250" y1="172" x2="250" y2="140" stroke="#334155" stroke-width="2.5"/>
+{gnd_sym(250, 140)}
+<text x="268" y="168" font-size="11" font-weight="bold" fill="#7c3aed">总线电容 C≈100pF</text>
+<circle r="5" fill="#2563eb"><animateMotion dur="{DP}s" begin="-0.3s" repeatCount="indefinite" path="M160,234 L160,202"/></circle>
+<circle r="5" fill="#b45309"><animateMotion dur="{DP}s" begin="-0.9s" repeatCount="indefinite" path="M70,172 L70,198 L246,200"/></circle>
+<circle r="3.6" fill="#7c3aed"><animateMotion dur="2.6s" begin="-0.4s" repeatCount="indefinite" path="M196,268 L118,268"/></circle>
+<circle r="3.6" fill="#7c3aed"><animateMotion dur="2.6s" begin="-1.7s" repeatCount="indefinite" path="M118,268 L196,268"/></circle>
+<text x="360" y="96" font-size="12.5" font-weight="bold" fill="#334155">两条硬约束</text>
+<text x="360" y="122" font-size="11.5" font-weight="bold" fill="#2563eb">① 上升沿：t_r ≈ 0.8473·R_p·C</text>
+<text x="374" y="142" font-size="11" fill="#475569">R_p 越大，充得越慢 → 限制最高速率</text>
+<text x="360" y="172" font-size="11.5" font-weight="bold" fill="#dc2626">② 低电平：I_low = V/R_p 必须灌得动</text>
+<text x="374" y="192" font-size="11" fill="#475569">R_p 越小，驱动器吸的电流越大</text>
+<text x="360" y="222" font-size="11.5" font-weight="bold" fill="#b45309">③ 空闲功耗：线为低时 R_p 一直在耗</text>
+<text x="374" y="242" font-size="11" fill="#475569">低功耗系统宁可取大（10k~100k）</text>
+<rect x="360" y="266" width="400" height="150" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,4"/>
+<text x="376" y="292" font-size="12" font-weight="bold" fill="#334155">算一笔（3.3V / C=100pF）</text>
+<text x="376" y="316" font-size="11.5" fill="#475569">R_p = 1kΩ → t_r ≈ 85ns，I_low = 3.3mA（太快但费电）</text>
+<text x="376" y="338" font-size="11.5" font-weight="bold" fill="#059669">R_p = 4.7kΩ → t_r ≈ 400ns，I_low = 0.70mA ← 经典值</text>
+<text x="376" y="360" font-size="11.5" fill="#475569">R_p = 10kΩ → t_r ≈ 847ns，I_low = 0.33mA（标准模式够用）</text>
+<text x="376" y="382" font-size="11.5" fill="#dc2626">R_p = 47kΩ → t_r ≈ 4µs，I_low = 70µA（快速模式直接不合格）</text>
+<text x="376" y="406" font-size="11" fill="#475569">I²C 标准模式（100kHz）要求 t_r &lt; 1000ns → R_p ≤ 11.8kΩ</text>
+<line x1="40" y1="440" x2="760" y2="440" stroke="#cbd5e1" stroke-width="1"/>
+<text x="400" y="468" text-anchor="middle" font-size="12" font-weight="bold" fill="#b45309">为什么教科书都说 4.7k</text>
+<text x="400" y="492" text-anchor="middle" font-size="11.5" fill="#475569">它是「够快（标准模式 400ns 有余量）+ 够省（0.7mA）」的折中点；</text>
+<text x="400" y="514" text-anchor="middle" font-size="11.5" fill="#475569">快速模式 400kHz 需要 ≤3.5kΩ，所以实板常见 2.2k；而 MCU 内部 30~50kΩ 弱上拉只够防浮空，不能当 I²C 上拉</text>
+{pulse(356, 264, 408, 156, '#059669', 2.0, 10)}
+'''
+    svg += caption("① 上拉太大：RC 充得慢，上升沿被拉长——高速总线的第一个瓶颈", "#b45309", DP,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=552)
+    svg += caption("② 上拉太小：驱动器拉低时要吸大电流，还可能顶不住低电平门限", "#dc2626", DP,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=552)
+    svg += caption("③ 算笔账：t_r≈0.8473·R·C；3.3V/100pF 下 4.7k 给 400ns、0.7mA", "#059669", DP,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=552)
+    svg += caption("④ 结论：4.7k 是标准模式折中值，快速模式要 2.2k，内部弱上拉只防浮空", "#2563eb", DP,
+                   "0;0;1;1", "0;0.85;0.9;1", y=552)
+    save('pullup-sizing.svg', svg + '</svg>')
+
+
+# ======================= 图 68：LM358 双运放（第 6 章 6.2） =======================
+def make_lm358_dual():
+    DL = 11
+    svg = svg_open('LM358：单电源双运放，脾气全写在输入级和输出级上', h=620)
+    svg += f'''
+<text x="210" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">一只封装里两只运放</text>
+<rect x="60" y="76" width="120" height="180" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="120" y="104" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">LM358</text>
+<text x="120" y="126" text-anchor="middle" font-size="10.5" fill="#475569">DIP-8 / SOIC-8</text>
+<line x1="60" y1="140" x2="180" y2="140" stroke="#cbd5e1" stroke-width="1"/>
+<text x="76" y="164" font-size="11" font-weight="bold" fill="#2563eb">OUT1</text>
+<text x="164" y="164" text-anchor="end" font-size="11" font-weight="bold" fill="#2563eb">V+</text>
+<text x="76" y="188" font-size="11" font-weight="bold" fill="#dc2626">IN1−</text>
+<text x="164" y="188" text-anchor="end" font-size="11" font-weight="bold" fill="#dc2626">OUT2</text>
+<text x="76" y="212" font-size="11" font-weight="bold" fill="#dc2626">IN1+</text>
+<text x="164" y="212" text-anchor="end" font-size="11" font-weight="bold" fill="#dc2626">IN2−</text>
+<text x="76" y="236" font-size="11" font-weight="bold" fill="#334155">GND</text>
+<text x="164" y="236" text-anchor="end" font-size="11" font-weight="bold" fill="#334155">IN2+</text>
+<text x="210" y="196" font-size="11" fill="#475569">1 脚对着 1 脚看：</text>
+<text x="210" y="216" font-size="11" fill="#475569">一个封装两只独立运放</text>
+<text x="210" y="236" font-size="11" font-weight="bold" fill="#b45309">省一半板面积与成本</text>
+<polygon points="332,110 332,190 400,150" fill="#f8fafc" stroke="#2563eb" stroke-width="2.5"/>
+<text x="340" y="132" font-size="12" font-weight="bold" fill="#059669">+</text>
+<text x="340" y="176" font-size="12" font-weight="bold" fill="#dc2626">−</text>
+<text x="366" y="156" text-anchor="middle" font-size="11" font-weight="bold" fill="#2563eb">PNP</text>
+<text x="366" y="174" text-anchor="middle" font-size="10" fill="#475569">输入级</text>
+<text x="416" y="118" font-size="11.5" font-weight="bold" fill="#059669">输入级用 PNP</text>
+<text x="416" y="138" font-size="11" fill="#475569">共模范围包含地（0 ~ Vcc−1.5V）</text>
+<text x="416" y="158" font-size="11" font-weight="bold" fill="#b45309">→ 单电源 5V 系统直接可用</text>
+<text x="416" y="182" font-size="11.5" font-weight="bold" fill="#dc2626">输出非轨到轨</text>
+<text x="416" y="202" font-size="11" fill="#475569">最高只能摆到 Vcc−1.5V</text>
+<text x="416" y="222" font-size="11" font-weight="bold" fill="#7c3aed">→ 想「摆到轨」要换轨到轨型号</text>
+<circle r="5" fill="#f59e0b"><animateMotion dur="{DL}s" begin="-0.3s" repeatCount="indefinite" path="M182,164 L330,150"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="{DL}s" begin="-1.1s" repeatCount="indefinite" path="M330,170 L182,188"/></circle>
+<rect x="60" y="290" width="700" height="86" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.6"/>
+<text x="76" y="316" font-size="12" font-weight="bold" fill="#2563eb">输出摆幅：能到哪、不能到哪</text>
+<line x1="96" y1="356" x2="700" y2="356" stroke="#64748b" stroke-width="2"/>
+<line x1="96" y1="336" x2="700" y2="336" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,4"/>
+<text x="96" y="332" font-size="10.5" fill="#94a3b8">Vcc = 5V（轨）</text>
+<line x1="96" y1="376" x2="700" y2="376" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,4"/>
+<text x="700" y="372" text-anchor="end" font-size="10.5" fill="#94a3b8">GND（轨）</text>
+<line x1="96" y1="348" x2="700" y2="348" stroke="#dc2626" stroke-width="2.5"/>
+<text x="104" y="344" font-size="10.5" font-weight="bold" fill="#dc2626">实际最高约 3.5V（Vcc−1.5V）——够不到 5V 轨</text>
+<text x="400" y="404" text-anchor="middle" font-size="11" fill="#475569">所以 LM358 不能做「接近电源轨」的精密应用：要轨到轨就选 MCP6001 / TLV9001 这类</text>
+<line x1="40" y1="428" x2="760" y2="428" stroke="#cbd5e1" stroke-width="1"/>
+<text x="400" y="456" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">与 741 的三处关键差异</text>
+<text x="90" y="486" font-size="11.5" fill="#475569">① <tspan font-weight="bold" fill="#059669">单电源能用</tspan>：PNP 输入级，共模含地——5V 系统不用再造负电源</text>
+<text x="90" y="510" font-size="11.5" fill="#475569">② <tspan font-weight="bold" fill="#dc2626">输出到不了轨</tspan>：最高 Vcc−1.5V，设计摆幅时要先扣掉</text>
+<text x="90" y="534" font-size="11.5" fill="#475569">③ <tspan font-weight="bold" fill="#b45309">速度不快</tspan>：GBW 1MHz、SR 0.5V/µs —— 低速够用、音频勉强、视频免谈</text>
+{pulse(328, 108, 78, 88, '#2563eb', 2.0, 10)}
+'''
+    svg += caption("① 单封装双运放：一个封装两只独立运放，省面积省成本（板子上最常见的就是它）", "#2563eb", DL,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=590)
+    svg += caption("② 输入级 PNP → 共模范围含地：这是它能吃单电源的根本原因", "#059669", DL,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=590)
+    svg += caption("③ 输出非轨到轨：最高只到 Vcc−1.5V，算摆幅时必须先扣掉这 1.5V", "#dc2626", DL,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=590)
+    svg += caption("④ 速度定位：GBW 1MHz / SR 0.5V/µs —— 低速信号链的默认答案", "#b45309", DL,
+                   "0;0;1;1", "0;0.85;0.9;1", y=590)
+    save('lm358-dual.svg', svg + '</svg>')
+
+
+# ======================= 图 69：BJT 三种组态（第 11 章 11.1） =======================
+def make_bjt_configs():
+    DC = 11
+    def tri(x, y, col):
+        return (f'<polygon points="{x},{y-34} {x},{y+34} {x+60},{y}" fill="#f8fafc" stroke="{col}" stroke-width="2.2"/>')
+    svg = svg_open('一只晶体管的三种人生：共射、共集、共基', h=620)
+    svg += f'''
+<text x="400" y="56" text-anchor="middle" font-size="11" fill="#64748b">信号从哪进、从哪出、哪个极做交流公共端 —— 决定它的性格</text>
+'''
+    conf = [
+        ('共射 CE', '#2563eb', 'B 进 → C 出', '高（几十~几百）', '中 ~kΩ', '中 ~kΩ', '反相 180°', '放大主力'),
+        ('共集 CC', '#059669', 'B 进 → E 出', '≈1（略小于 1）', '高', '低（Ω 级）', '同相', '缓冲/阻抗变换'),
+        ('共基 CB', '#b45309', 'E 进 → C 出', '高', '极低（几十Ω）', '中', '同相', '高频放大'),
+    ]
+    x = 30
+    for name, col, io, av, zin, zout, ph, use in conf:
+        svg += f'<rect x="{x}" y="66" width="240" height="290" rx="10" fill="#f8fafc" stroke="{col}" stroke-width="1.8"/>'
+        svg += f'<text x="{x+120}" y="94" text-anchor="middle" font-size="13.5" font-weight="bold" fill="{col}">{name}</text>'
+        svg += tri(x+78, 150, col)
+        svg += f'<text x="{x+146}" y="146" font-size="11" font-weight="bold" fill="{col}">{io}</text>'
+        svg += f'<line x1="{x+14}" y1="196" x2="{x+226}" y2="196" stroke="#cbd5e1" stroke-width="1"/>'
+        yy = 218
+        for k, v in (('电压增益', av), ('输入阻抗', zin), ('输出阻抗', zout), ('相位', ph)):
+            svg += f'<text x="{x+16}" y="{yy}" font-size="11" fill="#475569">{k}</text>'
+            svg += f'<text x="{x+224}" y="{yy}" text-anchor="end" font-size="11" font-weight="bold" fill="{col}">{v}</text>'
+            yy += 22
+        svg += f'<line x1="{x+14}" y1="{yy-8}" x2="{x+226}" y2="{yy-8}" stroke="#e2e8f0" stroke-width="1"/>'
+        svg += f'<text x="{x+16}" y="{yy+14}" font-size="11" fill="#475569">用途</text>'
+        svg += f'<text x="{x+224}" y="{yy+14}" text-anchor="end" font-size="11" font-weight="bold" fill="{col}">{use}</text>'
+        x += 253
+    svg += f'''
+<line x1="30" y1="378" x2="770" y2="378" stroke="#cbd5e1" stroke-width="1"/>
+<text x="400" y="406" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">三句话记住它们</text>
+<text x="60" y="436" font-size="11.5" fill="#475569">① <tspan font-weight="bold" fill="#2563eb">共射</tspan>：电压放大最强、但输入输出阻抗都平庸——「主力但不好带」</text>
+<text x="60" y="460" font-size="11.5" fill="#475569">② <tspan font-weight="bold" fill="#059669">共集（射随器）</tspan>：放弃电压增益，换来「高进低出」——前级带不动？中间插一级它</text>
+<text x="60" y="484" font-size="11.5" fill="#475569">③ <tspan font-weight="bold" fill="#b45309">共基</tspan>：牺牲输入阻抗换高频性能——Miller 电容不再接地，高频放大器的最爱</text>
+<rect x="60" y="506" width="680" height="76" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="1.6"/>
+<text x="76" y="532" font-size="12" font-weight="bold" fill="#b45309">射随器为什么叫「跟随」</text>
+<text x="76" y="554" font-size="11.5" fill="#475569">V_E = V_B − 0.7V：基极动多少、发射极跟着动多少（差一个死板的 0.7V）。它放大的不是电压而是<tspan font-weight="bold">电流</tspan>：</text>
+<text x="76" y="574" font-size="11.5" fill="#475569">信号源只出 I_B，负载拿走 I_E = (1+β)·I_B —— 这就是「阻抗变换」的全部秘密</text>
+<circle r="5" fill="#2563eb"><animateMotion dur="{DC}s" repeatCount="indefinite" path="M78,150 L136,150 L164,150" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="{DC}s" begin="-1.1s" repeatCount="indefinite" path="M331,150 L389,150 L417,150" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#b45309"><animateMotion dur="{DC}s" begin="-2.2s" repeatCount="indefinite" path="M584,150 L642,150 L670,150" keyPoints="0;1" keyTimes="0;1"/></circle>
+{pulse(38, 92, 224, 30, '#2563eb', 2.0, 8)}
+{pulse(291, 92, 224, 30, '#059669', 2.0, 8)}
+{pulse(544, 92, 224, 30, '#b45309', 2.0, 8)}
+'''
+    svg += caption("① 共射：电压增益最高但阻抗平庸，还好反相——放大主力的代价", "#2563eb", DC,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=604)
+    svg += caption("② 共集：电压增益 ≈1 却成神器——高输入阻抗 + 极低输出阻抗 = 缓冲器", "#059669", DC,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=604)
+    svg += caption("③ 共基：输入阻抗极低，但高频性能最好（没有 Miller 效应拖后腿）", "#b45309", DC,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=604)
+    svg += caption("④ 级联心法：共射打头阵放大、射随器垫后驱动、共基守高频前线", "#7c3aed", DC,
+                   "0;0;1;1", "0;0.85;0.9;1", y=604)
+    save('bjt-configs.svg', svg + '</svg>')
+
+
+# ======================= 图 70：分立串联稳压（第 13 章 13.1） =======================
+def make_discrete_ldo():
+    DD = 11
+    svg = svg_open('分立串联稳压：LDO 的祖爷爷，三块积木', h=620)
+    svg += f'''
+<text x="400" y="56" text-anchor="middle" font-size="11" fill="#64748b">基准 + 误差放大 + 调整管 —— 与 LDO 内部框图同构</text>
+<line x1="70" y1="96" x2="70" y2="130" stroke="#334155" stroke-width="2.5"/>
+<text x="56" y="90" font-size="11.5" font-weight="bold" fill="#b45309">Vin 12V</text>
+<line x1="70" y1="130" x2="230" y2="130" stroke="#334155" stroke-width="2.5"/>
+<circle cx="230" cy="130" r="4.5" fill="#334155"/>
+<line x1="230" y1="130" x2="230" y2="160" stroke="#334155" stroke-width="2.5"/>
+<rect x="196" y="160" width="68" height="52" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5"/>
+<text x="230" y="182" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#2563eb">调整管</text>
+<text x="230" y="200" text-anchor="middle" font-size="10.5" fill="#475569">NPN 射随</text>
+<line x1="230" y1="212" x2="230" y2="244" stroke="#334155" stroke-width="2.5"/>
+<circle cx="230" cy="244" r="4.5" fill="#334155"/>
+<line x1="230" y1="244" x2="370" y2="244" stroke="#334155" stroke-width="2.5"/>
+<text x="376" y="240" font-size="12" font-weight="bold" fill="#059669">Vout</text>
+<text x="376" y="260" font-size="11" font-weight="bold" fill="#059669">= V_Z − 0.7V</text>
+<line x1="150" y1="130" x2="150" y2="176" stroke="#334155" stroke-width="2.5"/>
+<rect x="132" y="176" width="36" height="30" rx="4" fill="#fffbeb" stroke="#b45309" stroke-width="2.2"/>
+<text x="112" y="196" text-anchor="end" font-size="10.5" font-weight="bold" fill="#b45309">R_b</text>
+<line x1="150" y1="206" x2="150" y2="232" stroke="#334155" stroke-width="2.5"/>
+<path d="M138,232 L162,232 L150,254 Z" fill="#f8fafc" stroke="#b45309" stroke-width="2.2"/>
+<line x1="138" y1="254" x2="162" y2="254" stroke="#b45309" stroke-width="3.5"/>
+<line x1="150" y1="254" x2="150" y2="284" stroke="#334155" stroke-width="2.5"/>
+{gnd_sym(150, 298)}
+<line x1="150" y1="243" x2="196" y2="186" stroke="#334155" stroke-width="2.5"/>
+<text x="112" y="238" text-anchor="end" font-size="10.5" font-weight="bold" fill="#b45309">V_Z 6.2V</text>
+<circle r="4.5" fill="#b45309"><animateMotion dur="{DD}s" begin="-0.3s" repeatCount="indefinite" path="M72,132 L148,132 L150,174"/></circle>
+<circle r="4.5" fill="#2563eb"><animateMotion dur="{DD}s" begin="-0.9s" repeatCount="indefinite" path="M232,162 L232,210 L232,242 L368,244"/></circle>
+<circle r="4.5" fill="#7c3aed"><animateMotion dur="{DD}s" begin="-1.5s" repeatCount="indefinite" path="M152,241 L194,187"/></circle>
+<circle r="4.5" fill="#b45309"><animateMotion dur="{DD}s" begin="-2.1s" repeatCount="indefinite" path="M150,256 L150,282"/></circle>
+<text x="420" y="140" font-size="11.5" font-weight="bold" fill="#b45309">① 基准</text>
+<text x="420" y="160" font-size="11" fill="#475569">齐纳管出 μA 级参考</text>
+<text x="420" y="178" font-size="11" fill="#475569">（6.2V 附近温漂小）</text>
+<text x="420" y="206" font-size="11.5" font-weight="bold" fill="#2563eb">② 调整管</text>
+<text x="420" y="226" font-size="11" fill="#475569">NPN 射随器做电流放大</text>
+<text x="420" y="244" font-size="11" fill="#475569">出 A 级负载电流</text>
+<text x="420" y="272" font-size="11.5" font-weight="bold" fill="#7c3aed">③ 误差放大（隐含在射随器里）</text>
+<text x="420" y="292" font-size="11" fill="#475569">Vout 一跌 → V_BE 变大 → 调整管</text>
+<text x="420" y="310" font-size="11" fill="#475569">导通更深 → Vout 拉回：天然负反馈</text>
+<rect x="60" y="336" width="700" height="76" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.6"/>
+<text x="76" y="362" font-size="12" font-weight="bold" fill="#2563eb">缺的那一块：把「误差」真正放大</text>
+<text x="76" y="384" font-size="11.5" fill="#475569">射随器的负反馈是「顺带」的，增益只有 1 —— 想让 Vout 更稳，得用运放当误差放大器：</text>
+<text x="76" y="404" font-size="11.5" fill="#475569">齐纳基准 → 运放比 R 分压 → 驱动调整管。**7805/AMS1117 就是把这三块做进硅片**，再加保护电路。</text>
+<line x1="40" y1="440" x2="760" y2="440" stroke="#cbd5e1" stroke-width="1"/>
+<text x="400" y="468" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">演进：为什么最后都做进芯片</text>
+<text x="400" y="494" text-anchor="middle" font-size="11.5" fill="#475569">分立版：两颗元件 + 电阻，便宜、灵活，但温漂大（V_Z 与 V_BE 双重温漂）、无过流保护</text>
+<text x="400" y="518" text-anchor="middle" font-size="11.5" fill="#475569">集成版（7805）：同样三块积木，加上**过流/过热/安全工作区保护**与激光修调——温漂低一个量级</text>
+<text x="400" y="546" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#b45309">看懂分立版，就看懂了所有串联型线性稳压器的骨架</text>
+{pulse(192, 156, 76, 62, '#2563eb', 2.0, 10)}
+'''
+    svg += caption("① 两块积木就能稳压：齐纳出基准、NPN 射随器出电流（Vout = V_Z − 0.7V）", "#b45309", DD,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=592)
+    svg += caption("② 第三块是「顺带」的负反馈：Vout 一跌，V_BE 变大，管子导通更深把它拉回", "#7c3aed", DD,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=592)
+    svg += caption("③ 但射随器自己只有 1 倍「反馈增益」——想更稳必须上运放做误差放大", "#2563eb", DD,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=592)
+    svg += caption("④ 7805/AMS1117 就是这三块 + 保护做进硅片：看懂分立版就看懂了 LDO 骨架", "#059669", DD,
+                   "0;0;1;1", "0;0.85;0.9;1", y=592)
+    save('discrete-ldo.svg', svg + '</svg>')
+
+
 if __name__ == '__main__':
     make_rc_charge()
     make_bridge_rectifier()
@@ -4917,4 +5298,10 @@ if __name__ == '__main__':
     make_mosfet_curves()
     make_555_modes()
     make_feedback_topo()
-    print('all 64 SVGs regenerated into', os.path.abspath(OUT))
+    make_resistor_model()
+    make_diode_family()
+    make_pullup_sizing()
+    make_lm358_dual()
+    make_bjt_configs()
+    make_discrete_ldo()
+    print('all 70 SVGs regenerated into', os.path.abspath(OUT))

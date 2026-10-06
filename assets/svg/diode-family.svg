@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="620" viewBox="0 0 800 620">
+<title>特殊二极管家族：一族五口，各管一段活</title>
+<rect width="800" height="620" fill="#f8fafc"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+@media (prefers-color-scheme: dark){
+rect[fill="#f8fafc"]{fill:#0f172a}
+[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
+[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
+[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
+[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
+[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
+[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
+[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
+[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
+[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
+[fill="#cbd5e1"]{fill:#334155}[stroke="#cbd5e1"]{stroke:#475569}
+[fill="#ffffff"]{fill:#0f172a}[fill="#94a3b8"]{fill:#64748b}[stroke="#94a3b8"]{stroke:#64748b}
+[fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
+}
+</style>
+<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">特殊二极管家族：一族五口，各管一段活</text>
+
+<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">横轴：正向压降　纵轴：速度　—— 每颗管子占的位置就说明了它的岗位</text>
+<line x1="90" y1="400" x2="730" y2="400" stroke="#64748b" stroke-width="1.6"/><line x1="90" y1="100" x2="90" y2="400" stroke="#64748b" stroke-width="1.6"/><text x="730" y="446" text-anchor="end" font-size="11" fill="#475569">正向压降 V_F →</text><text x="82" y="114" text-anchor="end" font-size="11" fill="#475569">快</text><text x="82" y="400" text-anchor="end" font-size="11" fill="#475569">慢</text><line x1="181" y1="400" x2="181" y2="405" stroke="#64748b" stroke-width="1.2"/><text x="181" y="416" text-anchor="middle" font-size="10" fill="#475569">1V</text><line x1="364" y1="400" x2="364" y2="405" stroke="#64748b" stroke-width="1.2"/><text x="364" y="416" text-anchor="middle" font-size="10" fill="#475569">3V</text><line x1="547" y1="400" x2="547" y2="405" stroke="#64748b" stroke-width="1.2"/><text x="547" y="416" text-anchor="middle" font-size="10" fill="#475569">5V</text><line x1="730" y1="400" x2="730" y2="405" stroke="#64748b" stroke-width="1.2"/><text x="730" y="416" text-anchor="middle" font-size="10" fill="#475569">7V</text><circle cx="154" cy="370" r="9" fill="#475569" opacity="0.85"/><text x="230" y="356" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#475569">普通硅管</text><text x="230" y="398" text-anchor="middle" font-size="10" fill="#475569">整流/钳位（慢）</text><circle cx="117" cy="130" r="9" fill="#2563eb" opacity="0.85"/><text x="193" y="116" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#2563eb">肖特基</text><text x="193" y="158" text-anchor="middle" font-size="10" fill="#475569">高频整流 / 防反接</text><circle cx="309" cy="379" r="9" fill="#dc2626" opacity="0.85"/><text x="309" y="365" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#dc2626">LED</text><text x="309" y="407" text-anchor="middle" font-size="10" fill="#475569">发光（必须限流）</text><circle cx="639" cy="145" r="9" fill="#7c3aed" opacity="0.85"/><text x="639" y="131" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#7c3aed">TVS</text><text x="639" y="173" text-anchor="middle" font-size="10" fill="#475569">ESD/浪涌 ns 级钳位</text><circle cx="602" cy="352" r="9" fill="#b45309" opacity="0.85"/><text x="602" y="338" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#b45309">稳压管</text><text x="602" y="380" text-anchor="middle" font-size="10" fill="#475569">简易基准 / 过压钳位</text><circle cx="456" cy="310" r="9" fill="#059669" opacity="0.85"/><text x="456" y="296" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#059669">变容管</text><text x="456" y="338" text-anchor="middle" font-size="10" fill="#475569">VCO 调谐（结电容可变）</text>
+<text x="400" y="456" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">五个成员，五条「不能忘」的规矩</text>
+<text x="70" y="468" font-size="11.5" fill="#475569">① <tspan font-weight="bold" fill="#dc2626">LED 必须限流</tspan>：它是二极管，正向压降一旦建立，电流就指数暴涨——串电阻或上恒流</text>
+<text x="70" y="492" font-size="11.5" fill="#475569">② <tspan font-weight="bold" fill="#2563eb">肖特基快是因为「没有少子存储」</tspan>：金属-半导体结，反向恢复时间几乎为零</text>
+<text x="70" y="516" font-size="11.5" fill="#475569">③ <tspan font-weight="bold" fill="#7c3aed">TVS 拼的是「面积」</tspan>：大面积结承受浪涌能量，ns 级把电压钳住，接在接口最前线</text>
+<text x="70" y="540" font-size="11.5" fill="#475569">④ <tspan font-weight="bold" fill="#b45309">稳压管工作在击穿区</tspan>：这是唯一「故意让它击穿」的用法，5.6V 附近温漂最小</text>
+<text x="70" y="564" font-size="11.5" fill="#475569">⑤ <tspan font-weight="bold" fill="#059669">变容管是「电压控电容」</tspan>：反压越大耗尽层越宽、结电容越小——VCO 靠它调频</text>
+<rect x="270" y="108" width="120" height="120" rx="10" fill="none" stroke="#2563eb" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.0s" repeatCount="indefinite"/></rect>
+<rect x="196" y="300" width="130" height="60" rx="10" fill="none" stroke="#dc2626" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.0s" repeatCount="indefinite"/></rect>
+<circle cx="639" cy="145" r="5" fill="none" stroke="#7c3aed" stroke-width="2.4">
+<animate attributeName="r" values="5;12;5" dur="1.9s" repeatCount="indefinite"/></circle>
+<text x="400" y="596" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">① 肖特基：0.3V 又最快——高频整流与防反接首选（但耐压低）<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="596" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">② LED：压降大、速度慢，但它是唯一「把电变成光」的那颗<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="596" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">③ TVS：速度最快的那位，专门守在接口门口替芯片挨打<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="596" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">④ 选型看两件事：要它「快」还是「省压降」——位置越靠前线越看速度<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/></text></svg>
