@@ -64,6 +64,8 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="590" y="478" text-anchor="middle" font-size="10.5" fill="#dc2626">2.0V 就是合规极限 → R_L,max = 2.0V/1mA = 2kΩ</text>
 <circle r="5" fill="#059669"><animateMotion dur="11s" begin="-0.5s" repeatCount="indefinite" path="M434,336 L644,336" keyPoints="0;1" keyTimes="0;1"/></circle>
 <circle r="5" fill="#dc2626"><animateMotion dur="11s" begin="-1.6s" repeatCount="indefinite" path="M652,338 L670,436" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="4.5" fill="#b45309"><animateMotion dur="11s" begin="-0.8s" repeatCount="indefinite" path="M92,84 L92,118 L186,118 L186,146" keyPoints="0;1" keyTimes="0;1"/></circle>
+<rect x="428" y="210" width="322" height="38" rx="8" fill="none" stroke="#dc2626" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.6s" repeatCount="indefinite"/></rect>
 <rect x="60" y="416" width="310" height="120" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="1.6"/>
 <text x="76" y="442" font-size="11.5" font-weight="bold" fill="#b45309">换电源电压，天花板跟着变</text>
 <text x="76" y="466" font-size="11" fill="#475569">V_S=2.8V → R_L,max = 2.0kΩ</text>

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-generate_svgs.py — 一键再生成《通往模拟电路之路》全部 85 张 SVG SMIL 动画
+generate_svgs.py — 一键再生成《通往模拟电路之路》全部 86 张 SVG SMIL 动画
 用法:  python generate_svgs.py            # 输出到 ../assets/svg/
 风格:  参考 BMS-Z 项目 —— 浅色底 + SMIL 节拍字幕 + 深色模式自适应 + 拟人化讲解
 所有电路参数经过自洽核算（datasheet 级），详见各函数注释。
@@ -3573,6 +3573,11 @@ def make_thermal_runaway():
 <text x="682" y="462" text-anchor="middle" font-size="10.5" fill="#475569">I_C ↑ → V_E ↑ → V_BE ↓</text>
 <circle r="6" fill="#dc2626">
 <animateMotion dur="10s" repeatCount="indefinite" path="M682,462 L682,540" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="4.5" fill="#dc2626"><animateMotion dur="{DT}s" begin="-1.2s" repeatCount="indefinite" path="M350,100 A104 104 0 0 1 392,196" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="4.5" fill="#dc2626"><animateMotion dur="{DT}s" begin="-2.4s" repeatCount="indefinite" path="M548,262 A104 104 0 0 1 360,372" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="4.5" fill="#dc2626"><animateMotion dur="{DT}s" begin="-3.6s" repeatCount="indefinite" path="M170,372 A104 104 0 0 1 62,262" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="4.5" fill="#dc2626"><animateMotion dur="{DT}s" begin="-4.8s" repeatCount="indefinite" path="M68,196 A104 104 0 0 1 162,92" keyPoints="0;1" keyTimes="0;1"/></circle>
+{pulse(236,206,48,48,'#b91c1c',3.0,24)}
 <rect x="200" y="548" width="460" height="42" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="2.5"/>
 <text x="430" y="574" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#b91c1c">热失控不是「运气差」——是设计里少了一条负反馈</text>
 <text x="430" y="538" text-anchor="middle" font-size="11" fill="#475569">前两拍：I_C 慢慢涨（还没觉得烫）　后两拍：P 与温度互相加码，越快越失控</text>
@@ -5814,6 +5819,10 @@ def make_bjt_diagnosis():
 <circle r="5" fill="#059669"><animateMotion dur="{DX}s" begin="-0.3s" repeatCount="indefinite" path="M150,152 L150,172"/></circle>
 <circle r="5" fill="#059669"><animateMotion dur="{DX}s" begin="-1.0s" repeatCount="indefinite" path="M152,204 L152,246"/></circle>
 <circle r="5" fill="#059669"><animateMotion dur="{DX}s" begin="-1.7s" repeatCount="indefinite" path="M122,92 L120,108"/></circle>
+<circle r="5" fill="#2563eb"><animateMotion dur="{DX}s" begin="-2.2s" repeatCount="indefinite" path="M424,299 L764,299" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#2563eb"><animateMotion dur="{DX}s" begin="-3.4s" repeatCount="indefinite" path="M424,451 L764,451" keyPoints="0;1" keyTimes="0;1"/></circle>
+{pulse(416,186,352,76,'#b45309',2.0,10)}
+{pulse(416,338,352,76,'#2563eb',2.0,10)}
 <polygon points="175,150 175,200 220,175" fill="none" stroke="#059669" stroke-width="2.2" opacity="0">
 <animate attributeName="opacity" values="0;0.9;0" dur="2.2s" repeatCount="indefinite"/></polygon>
 <line x1="408" y1="76" x2="408" y2="560" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="6,5"/>
@@ -5896,6 +5905,9 @@ def make_opamp_pitfalls():
 <circle r="5" fill="#f59e0b"><animateMotion dur="{DO}s" begin="-1.5s" repeatCount="indefinite" path="M52,206 L748,206" keyPoints="0;1" keyTimes="0;1"/></circle>
 <circle r="5" fill="#f59e0b"><animateMotion dur="{DO}s" begin="-3.0s" repeatCount="indefinite" path="M52,294 L748,294" keyPoints="0;1" keyTimes="0;1"/></circle>
 <circle r="5" fill="#f59e0b"><animateMotion dur="{DO}s" begin="-4.5s" repeatCount="indefinite" path="M52,382 L748,382" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#f59e0b"><animateMotion dur="{DO}s" begin="-6.0s" repeatCount="indefinite" path="M52,470 L748,470" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#f59e0b"><animateMotion dur="{DO}s" begin="-7.5s" repeatCount="indefinite" path="M52,558 L748,558" keyPoints="0;1" keyTimes="0;1"/></circle>
+{pulse(38,432,724,84,'#059669',2.0,10)}
 {pulse(38, 80, 724, 84, '#dc2626', 2.0, 10)}
 '''
     svg += caption("① 输出贴轨是最高频故障：先查共模范围与反馈回路，别急着换运放", "#dc2626", DO,
@@ -5945,6 +5957,10 @@ def make_comparator_pitfalls():
 <circle r="5" fill="#f59e0b"><animateMotion dur="{DC}s" repeatCount="indefinite" path="M52,128 L748,128" keyPoints="0;1" keyTimes="0;1"/></circle>
 <circle r="5" fill="#059669"><animateMotion dur="{DC}s" begin="-1.5s" repeatCount="indefinite" path="M52,224 L748,224" keyPoints="0;1" keyTimes="0;1"/></circle>
 <circle r="5" fill="#7c3aed"><animateMotion dur="{DC}s" begin="-3.0s" repeatCount="indefinite" path="M52,320 L748,320" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="{DC}s" begin="-4.5s" repeatCount="indefinite" path="M52,416 L748,416" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="{DC}s" begin="-6.0s" repeatCount="indefinite" path="M52,512 L748,512" keyPoints="0;1" keyTimes="0;1"/></circle>
+{pulse(38,84,724,92,'#b45309',2.0,10)}
+{pulse(38,276,724,92,'#7c3aed',2.0,10)}
 {pulse(38, 82, 724, 92, '#dc2626', 2.0, 10)}
 '''
     svg += caption("① 「输出一直低」九成是忘接上拉——开漏只会拉低，不会推高", "#dc2626", DC,
@@ -6012,6 +6028,9 @@ def make_555_params():
     svg += f'''
 <circle r="5" fill="#f59e0b"><animateMotion dur="{DP}s" begin="-0.6s" repeatCount="indefinite" path="M52,380 L748,380" keyPoints="0;1" keyTimes="0;1"/></circle>
 <circle r="5" fill="#f59e0b"><animateMotion dur="{DP}s" begin="-1.8s" repeatCount="indefinite" path="M52,464 L748,464" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#f59e0b"><animateMotion dur="{DP}s" begin="-3.0s" repeatCount="indefinite" path="M52,548 L748,548" keyPoints="0;1" keyTimes="0;1"/></circle>
+{pulse(38,426,724,76,'#7c3aed',2.0,10)}
+{pulse(38,510,724,76,'#b45309',2.0,10)}
 {pulse(38, 342, 724, 80, '#dc2626', 2.0, 10)}
 '''
     svg += caption("① 5 脚悬空是 555 最常见的翻车——标准做法接 10nF 到地", "#dc2626", DP,
@@ -6063,6 +6082,10 @@ def make_source_types():
 <text x="478" y="240" font-size="10.5" font-weight="bold" fill="#dc2626">实际：几乎水平（Ro=10MΩ，几乎不掉）</text>
 <circle r="5" fill="#f59e0b"><animateMotion dur="{DS}s" begin="-0.7s" repeatCount="indefinite" path="M474,120 L726,120" keyPoints="0;1" keyTimes="0;1"/></circle>
 <circle r="5" fill="#dc2626"><animateMotion dur="{DS}s" begin="-2.1s" repeatCount="indefinite" path="M474,120 L726,198" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="{DS}s" begin="-2.8s" repeatCount="indefinite" path="M202,286 L202,122" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#2563eb"><animateMotion dur="{DS}s" begin="-3.5s" repeatCount="indefinite" path="M726,120 L474,120" keyPoints="0;1" keyTimes="0;1"/></circle>
+{pulse(66,112,268,182,'#2563eb',2.4,10)}
+{pulse(466,112,268,182,'#7c3aed',2.4,10)}
 <text x="200" y="348" text-anchor="middle" font-size="12" font-weight="bold" fill="#059669">斜率越小 = 内阻越小 = 越「恒压」</text>
 <text x="600" y="348" text-anchor="middle" font-size="12" font-weight="bold" fill="#7c3aed">斜率越大 = 输出阻抗越大 = 越「恒流」</text>
 <line x1="40" y1="372" x2="760" y2="372" stroke="#cbd5e1" stroke-width="1"/>
@@ -6115,6 +6138,9 @@ def make_thevenin():
 <text x="252" y="200" font-size="10.5" fill="#475569">输出端</text>
 <text x="252" y="322" font-size="10.5" fill="#475569">输出端（看进去）</text>
 <circle r="5" fill="#2563eb"><animateMotion dur="{DT}s" begin="-0.3s" repeatCount="indefinite" path="M60,120 L200,120 L140,122 L140,144"/></circle>
+<circle r="4.5" fill="#059669"><animateMotion dur="{DT}s" begin="-0.9s" repeatCount="indefinite" path="M450,110 L450,240"/></circle>
+<circle r="4.5" fill="#7c3aed"><animateMotion dur="3.6s" repeatCount="indefinite" path="M580,180 m-17,0 a17,17 0 1,0 34,0 a17,17 0 1,0 -34,0"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DT}s" begin="-2.2s" repeatCount="indefinite" path="M142,208 L236,208 L236,286"/></circle>
 <circle r="5" fill="#059669"><animateMotion dur="{DT}s" begin="-1.1s" repeatCount="indefinite" path="M142,208 L142,228"/></circle>
 <text x="400" y="200" text-anchor="middle" font-size="26" font-weight="bold" fill="#94a3b8">⇒</text>
 <text x="400" y="228" text-anchor="middle" font-size="11" fill="#64748b">只看这两个数</text>
@@ -6130,8 +6156,8 @@ def make_thevenin():
 <rect x="432" y="176" width="36" height="26" rx="4" fill="#f8fafc" stroke="#2563eb" stroke-width="2.2"/>
 <text x="450" y="194" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#2563eb">5k</text>
 <line x1="450" y1="202" x2="450" y2="240" stroke="#334155" stroke-width="2.5"/>
-<text x="470" y="122" font-size="12" font-weight="bold" fill="#059669">V_th = 6V</text>
-<text x="470" y="192" font-size="12" font-weight="bold" fill="#2563eb">R_th = 5kΩ</text>
+<text x="470" y="122" font-size="12" font-weight="bold" fill="#059669">V_th = 6V<animate attributeName="opacity" values="1;0.45;1" dur="2.6s" repeatCount="indefinite"/></text>
+<text x="470" y="192" font-size="12" font-weight="bold" fill="#2563eb">R_th = 5kΩ<animate attributeName="opacity" values="1;0.45;1" dur="2.6s" repeatCount="indefinite"/></text>
 <text x="680" y="86" text-anchor="middle" font-size="12" font-weight="bold" fill="#7c3aed">诺顿 = 电流源 + 并电阻</text>
 <line x1="620" y1="120" x2="620" y2="240" stroke="#334155" stroke-width="2.5"/>
 <circle cx="620" cy="120" r="4.5" fill="#334155"/>
@@ -6141,7 +6167,7 @@ def make_thevenin():
 <path d="M584,176 L584,184 M578,180 L580,180 M592,180 L620,180" fill="none" stroke="#7c3aed" stroke-width="2.2"/>
 <line x1="580" y1="180" x2="574" y2="180" stroke="#7c3aed" stroke-width="2.2"/>
 <line x1="620" y1="180" x2="620" y2="240" stroke="#334155" stroke-width="2.5"/>
-<text x="640" y="150" font-size="12" font-weight="bold" fill="#7c3aed">I_N = 1.2mA</text>
+<text x="640" y="150" font-size="12" font-weight="bold" fill="#7c3aed">I_N = 1.2mA<animate attributeName="opacity" values="1;0.45;1" dur="2.6s" repeatCount="indefinite"/></text>
 <text x="640" y="222" font-size="12" font-weight="bold" fill="#2563eb">R_N = 5kΩ</text>
 <text x="400" y="278" text-anchor="middle" font-size="12" font-weight="bold" fill="#b45309">两个等效互换：R_th = R_N = V_th / I_N</text>
 <text x="400" y="302" text-anchor="middle" font-size="11.5" fill="#475569">6V ÷ 1.2mA = 5kΩ（I_N 就是输出短路电流）</text>
@@ -6222,6 +6248,8 @@ def make_compliance_voltage():
 <text x="590" y="478" text-anchor="middle" font-size="10.5" fill="#dc2626">2.0V 就是合规极限 → R_L,max = 2.0V/1mA = 2kΩ</text>
 <circle r="5" fill="#059669"><animateMotion dur="{DC}s" begin="-0.5s" repeatCount="indefinite" path="M434,336 L644,336" keyPoints="0;1" keyTimes="0;1"/></circle>
 <circle r="5" fill="#dc2626"><animateMotion dur="{DC}s" begin="-1.6s" repeatCount="indefinite" path="M652,338 L670,436" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="4.5" fill="#b45309"><animateMotion dur="{DC}s" begin="-0.8s" repeatCount="indefinite" path="M92,84 L92,118 L186,118 L186,146" keyPoints="0;1" keyTimes="0;1"/></circle>
+{pulse(428,210,322,38,'#dc2626',2.6,8)}
 <rect x="60" y="416" width="310" height="120" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="1.6"/>
 <text x="76" y="442" font-size="11.5" font-weight="bold" fill="#b45309">换电源电压，天花板跟着变</text>
 <text x="76" y="466" font-size="11" fill="#475569">V_S=2.8V → R_L,max = 2.0kΩ</text>
@@ -6239,6 +6267,127 @@ def make_compliance_voltage():
     svg += caption("④ 这就解释了工业 4~20mA 环流为什么要 24V 供电——裕量是算出来的，不是拍的", "#7c3aed", DC,
                    "0;0;1;1", "0;0.85;0.9;1", y=612)
     save('compliance-voltage.svg', svg + '</svg>')
+
+
+# ======================= 图 86：共射放大器四拍拆解（第 3 章 3.9） =======================
+def make_ce_dynamic():
+    DQ = 12
+    import math as _m
+    def wv(x0, y0, w, cyc, amp, ph, n=72):
+        pts=[]
+        for i in range(n+1):
+            x=x0+w*i/n
+            y=y0-amp*_m.sin(2*_m.pi*cyc*i/n+ph)
+            pts.append(f"{x:.1f},{y:.1f}")
+        return " ".join(pts), "M"+" L".join(pts)
+    out_poly, out_d = wv(430, 250, 326, 3, 17, 0.0)
+    in_poly,  in_d  = wv(430, 118, 326, 3,  9, _m.pi)
+    svg = svg_open('共射放大器四拍：一个正弦周期里，电流怎么「指挥」电压', h=680)
+    svg += f'''
+<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">12V 单电源 · R_C=2kΩ · Q 点 I_C=3mA —— 输入升，输出降</text>
+<line x1="372" y1="80" x2="372" y2="352" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="6,5"/>
+<text x="64" y="88" text-anchor="end" font-size="11" font-weight="bold" fill="#b45309">12V</text>
+<line x1="70" y1="96" x2="260" y2="96" stroke="#334155" stroke-width="2.5"/>
+{resistor_v(110, 116, 40, 'R1')}
+<circle cx="110" cy="176" r="4" fill="#334155"/>
+{resistor_v(110, 196, 40, 'R2')}
+{gnd_sym(110, 270)}
+<line x1="110" y1="176" x2="178" y2="176" stroke="#334155" stroke-width="2.5"/>
+<line x1="180" y1="164" x2="180" y2="188" stroke="#334155" stroke-width="3"/>
+<line x1="182" y1="169" x2="194" y2="157" stroke="#334155" stroke-width="2.5"/>
+<line x1="182" y1="183" x2="194" y2="195" stroke="#334155" stroke-width="2.5"/>
+<polygon points="194,195 186,191 190,185" fill="#334155"/>
+{resistor_v(194, 116, 32, 'R_C 2k')}
+<line x1="194" y1="195" x2="194" y2="210" stroke="#334155" stroke-width="2.5"/>
+{resistor_v(194, 230, 40, 'R_E 600')}
+{gnd_sym(194, 304)}
+<circle cx="194" cy="168" r="4" fill="#334155"/>
+<line x1="194" y1="168" x2="244" y2="168" stroke="#334155" stroke-width="2.5"/>
+<line x1="248" y1="156" x2="248" y2="180" stroke="#334155" stroke-width="2.5"/>
+<line x1="256" y1="156" x2="256" y2="180" stroke="#334155" stroke-width="2.5"/>
+<line x1="256" y1="168" x2="288" y2="168" stroke="#334155" stroke-width="2.5"/>
+<circle cx="288" cy="168" r="4" fill="#334155"/>
+<text x="296" y="172" font-size="10.5" fill="#475569">输出</text>
+<circle cx="42" cy="176" r="12" fill="none" stroke="#2563eb" stroke-width="1.8"/>
+<path d="M35,176 q3.5,-6 7,0 q3.5,6 7,0" fill="none" stroke="#2563eb" stroke-width="1.8"/>
+<line x1="54" y1="176" x2="76" y2="176" stroke="#334155" stroke-width="2.5"/>
+<line x1="76" y1="164" x2="76" y2="188" stroke="#334155" stroke-width="2.5"/>
+<line x1="84" y1="164" x2="84" y2="188" stroke="#334155" stroke-width="2.5"/>
+<line x1="84" y1="176" x2="106" y2="176" stroke="#334155" stroke-width="2.5"/>
+<text x="42" y="204" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#2563eb">v_in 10mV</text>
+<text x="126" y="167" font-size="10.5" fill="#475569">V_B≈2.5V</text>
+<text x="222" y="152" font-size="10.5" fill="#475569">V_C=6V</text>
+<text x="206" y="224" font-size="10.5" fill="#475569">V_E≈1.8V</text>
+<circle r="4.5" fill="#059669"><animateMotion dur="{DQ}s" begin="-0.4s" repeatCount="indefinite" path="M112,176 L176,176"/></circle>
+<circle r="4.5" fill="#b45309"><animateMotion dur="{DQ}s" begin="-1.2s" repeatCount="indefinite" path="M76,96 L106,96"/></circle>
+<circle r="4.5" fill="#dc2626"><animateMotion dur="{DQ}s" begin="-2.0s" repeatCount="indefinite" path="M194,98 L194,150"/></circle>
+<circle r="4.5" fill="#7c3aed"><animateMotion dur="{DQ}s" begin="-2.8s" repeatCount="indefinite" path="M194,198 L194,246"/></circle>
+<circle r="4.5" fill="#2563eb"><animateMotion dur="{DQ}s" begin="-1.0s" repeatCount="indefinite" path="{in_d}"/></circle>
+<circle r="4.5" fill="#dc2626"><animateMotion dur="{DQ}s" begin="-4.0s" repeatCount="indefinite" path="{out_d}"/></circle>
+<line x1="418" y1="100" x2="418" y2="340" stroke="#64748b" stroke-width="1.6"/>
+<line x1="418" y1="340" x2="778" y2="340" stroke="#64748b" stroke-width="1.6"/>
+<text x="412" y="164" text-anchor="end" font-size="10.5" fill="#475569">12V</text>
+<text x="412" y="254" text-anchor="end" font-size="10.5" fill="#475569">6V</text>
+<text x="412" y="314" text-anchor="end" font-size="10.5" fill="#475569">2V</text>
+<text x="412" y="344" text-anchor="end" font-size="10.5" fill="#475569">0</text>
+<line x1="418" y1="160" x2="766" y2="160" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="5,4"/>
+<line x1="418" y1="310" x2="766" y2="310" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="5,4"/>
+<line x1="418" y1="250" x2="766" y2="250" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
+<polyline points="{in_poly}" fill="none" stroke="#2563eb" stroke-width="2.2"/>
+<polyline points="{out_poly}" fill="none" stroke="#dc2626" stroke-width="2.6"/>
+<text x="756" y="100" text-anchor="end" font-size="10.5" font-weight="bold" fill="#2563eb">输入 v_in 10mVpp</text>
+<text x="756" y="228" text-anchor="end" font-size="10.5" font-weight="bold" fill="#dc2626">输出 v_C ≈2.3Vpp（反相 230 倍）</text>
+<line x1="772" y1="164" x2="772" y2="246" stroke="#059669" stroke-width="1.6"/>
+<polygon points="772,160 768,168 776,168" fill="#059669"/>
+<polygon points="772,250 768,242 776,242" fill="#059669"/>
+<text x="778" y="209" font-size="10.5" font-weight="bold" fill="#059669">6V</text>
+<line x1="772" y1="254" x2="772" y2="306" stroke="#b45309" stroke-width="1.6"/>
+<polygon points="772,250 768,258 776,258" fill="#b45309"/>
+<polygon points="772,310 768,302 776,302" fill="#b45309"/>
+<text x="778" y="285" font-size="10.5" font-weight="bold" fill="#b45309">4V</text>
+<text x="598" y="362" text-anchor="middle" font-size="10.5" fill="#475569">上行余量 6V（到 12V 截止）｜下行余量 4V（到 2V 饱和）</text>
+<text x="598" y="380" text-anchor="middle" font-size="11" font-weight="bold" fill="#dc2626">→ 对称摆幅 = 2×min(6V, 4V) = 8.0Vpp（红线只用了 2.3Vpp）</text>
+<rect x="29" y="390" width="178" height="126" rx="9" fill="#f8fafc" stroke="#059669" stroke-width="1.6"/>
+<text x="45" y="414" font-size="12" font-weight="bold" fill="#059669">① 初始态（安静）</text>
+<text x="45" y="438" font-size="10.5" fill="#475569">V_B≈2.5V、V_E≈1.8V</text>
+<text x="45" y="458" font-size="10.5" fill="#475569">V_C=6V（I_C=3mA）</text>
+<text x="45" y="478" font-size="10.5" fill="#475569">信号都叠在这个「地基」上</text>
+<text x="45" y="498" font-size="10.5" fill="#475569">——它决定剩余空间</text>
+<rect x="217" y="390" width="178" height="126" rx="9" fill="#f8fafc" stroke="#dc2626" stroke-width="1.6"/>
+<text x="233" y="414" font-size="12" font-weight="bold" fill="#dc2626">② 正半周：输入 ↑</text>
+<text x="233" y="438" font-size="10.5" fill="#475569">v_BE↑ → i_B↑ → i_C=βi_B↑</text>
+<text x="233" y="458" font-size="10.5" fill="#475569">R_C 压降↑ → v_C 下降</text>
+<text x="233" y="478" font-size="10.5" fill="#475569">v_C = 12 − i_C·R_C ↓</text>
+<text x="233" y="498" font-size="10.5" fill="#475569">能量多分给 R_C，留给自己少</text>
+<rect x="405" y="390" width="178" height="126" rx="9" fill="#f8fafc" stroke="#2563eb" stroke-width="1.6"/>
+<text x="421" y="414" font-size="12" font-weight="bold" fill="#2563eb">③ 负半周：镜像</text>
+<text x="421" y="438" font-size="10.5" fill="#475569">输入 ↓ → i_B↓ → i_C↓</text>
+<text x="421" y="458" font-size="10.5" fill="#475569">R_C 压降↓ → v_C ↑</text>
+<text x="421" y="478" font-size="10.5" fill="#475569">输出与输入反着走</text>
+<text x="421" y="498" font-size="10.5" fill="#475569">一升一降，一个完整周期</text>
+<rect x="593" y="390" width="178" height="126" rx="9" fill="#f8fafc" stroke="#b45309" stroke-width="1.6"/>
+<text x="609" y="414" font-size="12" font-weight="bold" fill="#b45309">④ 边界：推过头</text>
+<text x="609" y="438" font-size="10.5" fill="#475569">推猛→v_C 撞 V_E+0.2V=2V</text>
+<text x="609" y="458" font-size="10.5" fill="#475569">底部削平（饱和失真）</text>
+<text x="609" y="478" font-size="10.5" fill="#475569">拉猛→i_B=0，v_C 挂 12V</text>
+<text x="609" y="498" font-size="10.5" fill="#475569">顶部削平（截止失真）</text>
+{pulse(217,390,178,126,'#dc2626',2.2,10)}
+{pulse(593,390,178,126,'#059669',2.2,10)}
+<rect x="29" y="526" width="742" height="102" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.6"/>
+<text x="45" y="550" font-size="12" font-weight="bold" fill="#2563eb">🧮 算一笔：两个余量，取小者</text>
+<text x="45" y="576" font-size="11" fill="#475569">上行 6V（到截止 12V）、下行 4V（到饱和 V_E+0.2V=2V）→ 最大不失真摆幅 = 2×min(6V, 4V) = 8.0Vpp</text>
+<text x="45" y="600" font-size="11" fill="#475569">增益 |A_v| = R_C/r_e ≈ 2kΩ/8.7Ω ≈ 230 → 满摆幅需输入 ≈35mVpp；本例 10mV → 输出 ≈2.3Vpp，远未削波</text>
+<text x="45" y="622" font-size="11" font-weight="bold" fill="#dc2626">摆幅由「更小的那份余量」决定 —— Q 点偏置就是余量分配器</text>
+'''
+    svg += caption("① 输入升、输出降——反相不是公式，是 i_C 电流路径的必然", "#059669", DQ,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=652)
+    svg += caption("② 正半周把 v_C 往下压，负半周镜像往上抬", "#dc2626", DQ,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=652)
+    svg += caption("③ 两个余量：上行 6V、下行 4V —— 对称摆幅取小者 = 8.0Vpp", "#2563eb", DQ,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=652)
+    svg += caption("④ 削波先发生在余量小的一侧：2V 的饱和底先被压平", "#b45309", DQ,
+                   "0;0;1;1", "0;0.85;0.9;1", y=652)
+    save('ce-dynamic.svg', svg + '</svg>')
 
 
 if __name__ == '__main__':
@@ -6327,4 +6476,5 @@ if __name__ == '__main__':
     make_source_types()
     make_thevenin()
     make_compliance_voltage()
-    print('all 85 SVGs regenerated into', os.path.abspath(OUT))
+    make_ce_dynamic()
+    print('all 86 SVGs regenerated into', os.path.abspath(OUT))
