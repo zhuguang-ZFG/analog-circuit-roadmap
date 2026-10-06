@@ -4064,20 +4064,22 @@ def make_probe_loading():
 <text x="175" y="126" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#b45309">100k</text>
 <line x1="200" y1="150" x2="250" y2="150" stroke="#334155" stroke-width="2.5"/>
 <circle cx="250" cy="150" r="4" fill="#334155"/>
-<line x1="250" y1="150" x2="250" y2="190" stroke="#334155" stroke-width="2.5"/>
-<line x1="250" y1="190" x2="238" y2="190" stroke="#dc2626" stroke-width="3"/>
-<line x1="250" y1="202" x2="262" y2="202" stroke="#dc2626" stroke-width="3"/>
-<line x1="250" y1="190" x2="250" y2="224" stroke="#334155" stroke-width="2.5"/>
-<line x1="250" y1="224" x2="238" y2="224" stroke="#dc2626" stroke-width="3"/>
-<line x1="250" y1="236" x2="262" y2="236" stroke="#dc2626" stroke-width="3"/>
-<line x1="250" y1="236" x2="250" y2="270" stroke="#334155" stroke-width="2.5"/>
-<text x="266" y="206" font-size="11" font-weight="bold" fill="#dc2626">100pF</text>
-<line x1="250" y1="270" x2="290" y2="270" stroke="#334155" stroke-width="2.5"/>
-<rect x="290" y="258" width="46" height="24" rx="3" fill="#f8fafc" stroke="#dc2626" stroke-width="2.5"/>
-<text x="313" y="246" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#dc2626">1MΩ</text>
-<line x1="336" y1="270" x2="380" y2="270" stroke="#334155" stroke-width="2.5"/>
-<circle cx="390" cy="270" r="4" fill="#334155"/>
-<text x="398" y="266" font-size="11" font-weight="bold" fill="#2563eb">读到 V×0.91</text>
+<line x1="250" y1="150" x2="250" y2="166" stroke="#334155" stroke-width="2.5"/>
+<line x1="222" y1="166" x2="318" y2="166" stroke="#334155" stroke-width="2.5"/>
+<line x1="222" y1="166" x2="222" y2="178" stroke="#334155" stroke-width="2.5"/>
+<line x1="210" y1="178" x2="234" y2="178" stroke="#dc2626" stroke-width="3.5"/>
+<line x1="210" y1="190" x2="234" y2="190" stroke="#dc2626" stroke-width="3.5"/>
+<line x1="222" y1="190" x2="222" y2="244" stroke="#334155" stroke-width="2.5"/>
+<line x1="318" y1="166" x2="318" y2="178" stroke="#334155" stroke-width="2.5"/>
+<rect x="300" y="178" width="36" height="24" rx="3" fill="#f8fafc" stroke="#dc2626" stroke-width="2.5"/>
+<line x1="318" y1="202" x2="318" y2="244" stroke="#334155" stroke-width="2.5"/>
+<line x1="222" y1="244" x2="318" y2="244" stroke="#334155" stroke-width="2.5"/>
+<line x1="270" y1="244" x2="270" y2="258" stroke="#334155" stroke-width="2.5"/>
+{gnd_sym(270, 272)}
+<text x="204" y="184" text-anchor="end" font-size="11" font-weight="bold" fill="#dc2626">100pF</text>
+<text x="344" y="196" font-size="11" font-weight="bold" fill="#dc2626">1MΩ</text>
+<text x="352" y="222" font-size="11" font-weight="bold" fill="#b45309">探头</text>
+<text x="300" y="140" text-anchor="end" font-size="11" font-weight="bold" fill="#2563eb">读到 V×0.91</text>
 <rect x="40" y="296" width="380" height="86" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
 <text x="54" y="320" font-size="11.5" font-weight="bold" fill="#b91c1c">×1 档：误差 9%，还想测什么？</text>
 <text x="54" y="342" font-size="11" fill="#475569">100kΩ 源阻 + 1MΩ 探头 = 分压到 0.909</text>
@@ -4102,8 +4104,8 @@ def make_probe_loading():
 <text x="270" y="604" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#b45309">上电第一次：串限流灯泡 / 恒流 50mA —— 冒烟的是灯泡，不是芯片</text>
 <circle r="5" fill="#f59e0b"><animateMotion dur="{DP}s" begin="-0.3s" repeatCount="indefinite" path="M70,150 L148,150"/></circle>
 <circle r="5" fill="#f59e0b"><animateMotion dur="{DP}s" begin="-0.8s" repeatCount="indefinite" path="M202,150 L248,150"/></circle>
-<circle r="5" fill="#f59e0b"><animateMotion dur="{DP}s" begin="-1.3s" repeatCount="indefinite" path="M250,152 L250,268"/></circle>
-<circle r="5" fill="#2563eb"><animateMotion dur="{DP}s" begin="-1.8s" repeatCount="indefinite" path="M338,270 L386,270"/></circle>
+<circle r="5" fill="#f59e0b"><animateMotion dur="{DP}s" begin="-1.3s" repeatCount="indefinite" path="M250,152 L250,166 L222,166 L222,180"/></circle>
+<circle r="5" fill="#2563eb"><animateMotion dur="{DP}s" begin="-1.8s" repeatCount="indefinite" path="M318,202 L318,244 L270,244 L270,258"/></circle>
 {pulse(52, 500, 96, 78, '#dc2626', 1.6, 12)}
 {pulse(52, 296, 300, 86, '#dc2626', 2.0, 10)}
 {pulse(400, 512, 380, 74, '#dc2626', 2.4, 10)}
