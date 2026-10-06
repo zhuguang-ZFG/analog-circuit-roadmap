@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="620" viewBox="0 0 800 620">
+<title>达林顿管：β 相乘，代价是三笔</title>
+<rect width="800" height="620" fill="#f8fafc"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+@media (prefers-color-scheme: dark){
+rect[fill="#f8fafc"]{fill:#0f172a}
+[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
+[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
+[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
+[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
+[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
+[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
+[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
+[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
+[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
+[fill="#cbd5e1"]{fill:#334155}[stroke="#cbd5e1"]{stroke:#475569}
+[fill="#ffffff"]{fill:#0f172a}[fill="#94a3b8"]{fill:#64748b}[stroke="#94a3b8"]{stroke:#64748b}
+[fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
+}
+</style>
+<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">达林顿管：β 相乘，代价是三笔</text>
+
+<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">Q2 的基极电流，就是 Q1 的发射极电流</text>
+<line x1="120" y1="92" x2="120" y2="122" stroke="#334155" stroke-width="2.5"/>
+<text x="106" y="88" font-size="11.5" font-weight="bold" fill="#b45309">Vin</text>
+<line x1="120" y1="122" x2="160" y2="122" stroke="#334155" stroke-width="2.5"/>
+<circle cx="160" cy="122" r="4.5" fill="#334155"/>
+<line x1="160" y1="122" x2="160" y2="152" stroke="#334155" stroke-width="2.5"/>
+<polygon points="160,152 160,200 208,176" fill="#f8fafc" stroke="#2563eb" stroke-width="2.4"/>
+<text x="172" y="170" font-size="10.5" font-weight="bold" fill="#2563eb">Q1</text>
+<text x="172" y="188" font-size="9.5" fill="#475569">β₁</text>
+<line x1="160" y1="200" x2="160" y2="248" stroke="#2563eb" stroke-width="2.5"/>
+<circle cx="160" cy="248" r="4.5" fill="#334155"/>
+<line x1="160" y1="248" x2="160" y2="278" stroke="#334155" stroke-width="2.5"/>
+<polygon points="160,278 160,326 208,302" fill="#f8fafc" stroke="#059669" stroke-width="2.4"/>
+<text x="172" y="296" font-size="10.5" font-weight="bold" fill="#059669">Q2</text>
+<text x="172" y="314" font-size="9.5" fill="#475569">β₂</text>
+<line x1="160" y1="326" x2="160" y2="366" stroke="#059669" stroke-width="2.5"/>
+<line x1="160" y1="366" x2="120" y2="366" stroke="#334155" stroke-width="2.5"/>
+<line x1="160" y1="366" x2="200" y2="366" stroke="#334155" stroke-width="2.5"/>
+<line x1="120" y1="366" x2="120" y2="392" stroke="#334155" stroke-width="2.5"/>
+<line x1="120" y1="392" x2="120" y2="406" stroke="#334155" stroke-width="2.5"/><line x1="104" y1="406" x2="136" y2="406" stroke="#334155" stroke-width="3"/><line x1="110" y1="412" x2="130" y2="412" stroke="#334155" stroke-width="3"/><line x1="116" y1="418" x2="124" y2="418" stroke="#334155" stroke-width="3"/>
+<line x1="200" y1="366" x2="240" y2="366" stroke="#334155" stroke-width="2.5"/>
+<circle cx="240" cy="366" r="4.5" fill="#334155"/>
+<line x1="240" y1="366" x2="240" y2="200" stroke="#334155" stroke-width="2.5"/>
+<line x1="240" y1="200" x2="208" y2="176" stroke="#334155" stroke-width="2.5"/>
+<line x1="240" y1="200" x2="300" y2="200" stroke="#334155" stroke-width="2.5"/>
+<text x="306" y="196" font-size="11.5" font-weight="bold" fill="#dc2626">I_C 总</text>
+<line x1="208" y1="302" x2="300" y2="302" stroke="#334155" stroke-width="2.5"/>
+<circle cx="240" cy="302" r="4" fill="#334155"/>
+<line x1="240" y1="302" x2="240" y2="366" stroke="#334155" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="248" y="330" font-size="11" font-weight="bold" fill="#059669">I_E1=I_B2</text>
+<circle r="5" fill="#2563eb"><animateMotion dur="11s" begin="-0.3s" repeatCount="indefinite" path="M122,124 L158,124"/></circle>
+<circle r="5" fill="#2563eb"><animateMotion dur="11s" begin="-1.0s" repeatCount="indefinite" path="M162,154 L162,198 L206,176"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="11s" begin="-1.7s" repeatCount="indefinite" path="M162,250 L162,276 L206,302"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="11s" begin="-2.4s" repeatCount="indefinite" path="M210,302 L298,300"/></circle>
+<circle r="5" fill="#7c3aed"><animateMotion dur="11s" begin="-3.0s" repeatCount="indefinite" path="M162,328 L162,364 L118,366"/></circle>
+<line x1="360" y1="80" x2="360" y2="560" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="6,5"/>
+<text x="580" y="80" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#334155">收益 vs 三笔代价</text>
+<rect x="382" y="98" width="356" height="90" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text x="398" y="124" font-size="12" font-weight="bold" fill="#2563eb">收益：β 相乘</text>
+<text x="398" y="148" font-size="11.5" fill="#475569">I_C2 = β₂·I_B2 = β₂·I_E1 = β₂·(1+β₁)·I_B1</text>
+<text x="398" y="172" font-size="11.5" font-weight="bold" fill="#059669">β_total ≈ β₁×β₂（可达 10000+）</text>
+<rect x="382" y="202" width="356" height="72" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="1.8"/>
+<text x="398" y="228" font-size="12" font-weight="bold" fill="#b45309">代价①：V_BE 翻倍</text>
+<text x="398" y="252" font-size="11.5" fill="#475569">两级各 0.7V 串联 → 约 1.4V（输入信号被抬高）</text>
+<text x="398" y="268" font-size="11" fill="#475569">低压 3.3V 系统里，1.4V 的损失不可忽略</text>
+<rect x="382" y="288" width="356" height="72" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.8"/>
+<text x="398" y="314" font-size="12" font-weight="bold" fill="#dc2626">代价②：V_CE(sat) 升高</text>
+<text x="398" y="338" font-size="11.5" fill="#475569">Q2 无法深度饱和 → 约 0.9V（普通管 0.2V）</text>
+<text x="398" y="354" font-size="11" fill="#475569">所以 1A 时白白多烧 0.9W 热</text>
+<rect x="382" y="374" width="356" height="72" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.8"/>
+<text x="398" y="400" font-size="12" font-weight="bold" fill="#64748b">代价③：速度慢</text>
+<text x="398" y="424" font-size="11.5" fill="#475569">Q1 关断时 Q2 基区电荷要多绕一圈才泄放</text>
+<text x="398" y="440" font-size="11" fill="#475569">（若不想慢，可在 Rbe 上并电阻加速泄放）</text>
+<text x="580" y="474" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">什么时候值得</text>
+<text x="580" y="498" text-anchor="middle" font-size="11.5" fill="#475569">需要「极小基极电流驱动大负载」时：MCU 引脚直接驱动继电器/步进电机</text>
+<text x="580" y="520" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#059669">经典集成件 ULN2003：7 路达林顿 + 每路自带续流二极管</text>
+<text x="580" y="542" text-anchor="middle" font-size="11" fill="#475569">（它把「续流」这件事也一起做进芯片了 —— 见 3.5 的教训）</text>
+<rect x="380" y="372" width="360" height="76" rx="10" fill="none" stroke="#64748b" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.0s" repeatCount="indefinite"/></rect>
+<text x="400" y="592" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">① β 相乘的机理：前一级的发射极电流就是后一级的基极电流——串联放大<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="592" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">② 代价一：V_BE 翻倍到 1.4V —— 3.3V 系统里这 1.4V 的损失不可忽略<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="592" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">③ 代价二：V_CE(sat) 升到 0.9V（Q2 无法深度饱和）→ 大电流时白烧热<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="592" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">④ 用武之地：μA 级驱动 A 级负载；ULN2003 把 7 路达林顿+续流管做进一颗芯片<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/></text></svg>

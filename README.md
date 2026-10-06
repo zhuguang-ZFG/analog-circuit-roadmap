@@ -13,7 +13,7 @@
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-CC_BY--SA_4.0-lightgrey.svg" alt="License"></a>
-  <img src="https://img.shields.io/badge/SVG动画-74张-3fb950.svg" alt="SVG">
+  <img src="https://img.shields.io/badge/SVG动画-78张-3fb950.svg" alt="SVG">
   <img src="https://img.shields.io/badge/章节-8篇19章-58a6ff.svg" alt="chapters">
   <img src="https://img.shields.io/badge/最近更新-2026.10-f0883e.svg" alt="updated">
 </p>
@@ -71,7 +71,7 @@
 | 电源噪声让 ADC 读数跳 | [15.2 接地](#ch15) + [15.1 布局](#ch15) | 回流在脚下 + 去耦电容贴脸放 |
 | 板子偶发复位/莫名振荡 | [第 16 章 排故五步法](#ch16) → [第 17 章 速查总表](#ch17) | 症状对号入座，一次只改一个变量 |
 | 高频信号过不去/边沿变肉 | [第 1 章 无源元件](#ch1) + [12.5 Sallen-Key](#ch12) | 寄生电感电容的真实代价 |
-| 只想先看动画找感觉 | [第五篇 动画中心](#part5) | 74 张 SMIL 动画随便点开 |
+| 只想先看动画找感觉 | [第五篇 动画中心](#part5) | 78 张 SMIL 动画随便点开 |
 
 
 ## ⭐ 必读精选（编辑之选）
@@ -118,7 +118,7 @@ graph TD
   - [第 14 章 设计方法论](#ch14) · [第 15 章 PCB 注意事项](#ch15)
 - **[第四篇：故障分析与排故方法论](#part4)** 🩺
   - [第 16 章 排故五步法](#ch16) · [第 17 章 故障速查表](#ch17) · [第 18 章 大师智慧](#ch18)
-- **[第五篇：动画演示中心](#part5)** 🎬 — 74 张 SVG 动画 + Falstad 地图
+- **[第五篇：动画演示中心](#part5)** 🎬 — 78 张 SVG 动画 + Falstad 地图
 - **[第六篇：实物图鉴与速查](#part6)** 🧩 — 实物照片 · 参数速查 · [官方 datasheet 直达](#part6)
 - **[第七篇：视频资源](#part7)** 📺 — B站系统课 · YouTube 频道
 - **[第八篇：学习路线与资源索引](#part8)** 📚 — 路线图 · 书单 · 项目清单 · [官方资料](#sec88) · [经典论文](#sec89) · [术语表](#sec810) · [顺口溜总表](#sec811) · FAQ
@@ -490,6 +490,11 @@ $I_C=βI_B=4mA$，负载线 $I_C=(12-V_{CE})/2k$ 与 4mA 水平线交于 **$V_{C
 | 共集 CC（射随） | B进E出 | ≈1 | 高 | **高** | **低** | 同相 | 缓冲、阻抗变换 |
 | 共基 CB | E进C出 | 高 | ≈1 | **极低** | 高 | 同相 | 高频、电流缓冲 |
 
+> 📊 三种组态的**图形化对照**（增益/阻抗/相位/用途四行并排 + 级联心法）见 [11.1 节的组态图](#ch11)，
+> 那里还讲了「射随器为什么叫跟随」的电流账。
+
+<p align="center"><img src="assets/svg/bjt-configs.svg" width="720" alt="BJT三种组态SVG动画"></p>
+
 ### 3.4 偏置电路：为什么必须用分压偏置
 
 <p align="center"><img src="assets/svg/bjt-amplify.svg" width="720" alt="共射放大器动画：偏置核算与放大原理"></p>
@@ -538,7 +543,13 @@ MCU ──[Rb]── B  Q1(NPN 2N2222/8050)
 
 ### 3.6 达林顿管
 
-两级 NPN 级联：$β_{total} = β_1 × β_2$（可达 10000），代价：$V_{BE}$ 翻倍（1.4V）、$V_{CE(sat)}$ 升高（约 0.9V，第二级无法深度饱和）、速度慢。集成件 **ULN2003**（7 路达林顿阵列+续流二极管）是驱动继电器/步进电机的经典芯片。
+两级 NPN 级联：$β_{total} = β_1 × β_2$（可达 10000），代价：$V_{BE}$ 翻倍（1.4V）、$V_{CE(sat)}$ 升高（约 0.9V，第二级无法深度饱和）、速度慢。<p align="center"><img src="assets/svg/darlington.svg" width="720" alt="达林顿管SVG动画：β相乘与三笔代价"></p>
+
+🧮 **算一笔**（β 相乘的机理）：$I_{C2}=\beta_2 I_{B2}=\beta_2 I_{E1}=\beta_2(1+\beta_1)I_{B1}$ →
+$\beta_{total}\approx\beta_1\beta_2$（可达 10000+）。三笔代价：**① $V_{BE}$ 翻倍到 1.4V**（3.3V 系统里不可忽略）、
+**② $V_{CE(sat)}$ 升到约 0.9V**（Q2 无法深度饱和 → 1A 时白烧 0.9W）、**③ 速度慢**（Q2 基区电荷要多绕一圈泄放）。
+
+集成件 **ULN2003**（7 路达林顿阵列+续流二极管）是驱动继电器/步进电机的经典芯片。
 
 ### 3.7 热失控（BJT 特有死因）
 
@@ -870,6 +881,12 @@ IN- ──┘   │ (长尾对)  │   │ (共射+密勒) │   │(互补推�
 
 ### 6.3 Datasheet 参数逐项解析 📋
 
+<p align="center"><img src="assets/svg/datasheet-params.svg" width="720" alt="Datasheet六参数优先级SVG动画"></p>
+
+上图把六个关键参数按「会咬人」的先后排好，每一项都标出**它咬在哪里**：
+$V_{OS}$ 被增益放大、$I_B$ 只在高源阻抗时咬人、GBW 管小信号、SR 管大信号……
+**读法：按「你电路会疼的地方」跳读，别从头翻到尾。**
+
 **① 输入失调电压 $V_{OS}$（Input Offset Voltage）**
 - 定义：让输出为零需要在输入端补偿的微小差分电压，源于输入对管的失配
 - 典型值：LM358 = 2mV（max 7mV）；精密运放 OP07 = 75µV；零漂运放（斩波型）< 1µV
@@ -918,6 +935,12 @@ IN- ──┘   │ (长尾对)  │   │ (共射+密勒) │   │(互补推�
 | OP07 | 精密 | 0.6MHz | 75µV | 低失调 | 直流测量 |
 | OP07/OPA2188 零漂类 | 斩波 | 2MHz | 1µV | 近零漂移 | 称重/热电偶 |
 | MCP6001 | CMOS RRIO | 1MHz | 4.5mV | 轨到轨、低压 | 电池设备 |
+
+<p align="center"><img src="assets/svg/opamp-map.svg" width="720" alt="运放选型地图SVG动画：速度×精度"></p>
+
+上图把它们放进**「速度（横轴 GBW）× 直流精度（纵轴 $V_{OS}$）」**的坐标里：右上角是最贵的地盘（又快又准），
+左下角是便宜的通用件。**两把尺子先量清楚再挑型号**：GBW ≥ 增益×最高频率×10；$V_{OS}$×增益 = 输出端误差。
+别忘了 $I_B$：源阻抗 >100kΩ 必须 FET 输入（TL072 的 30pA vs LM358 的 45nA，**差 1000 倍**）。
 
 ### 6.5 经典应用电路原理
 
@@ -1264,6 +1287,12 @@ VIN ──[调整管 PMOS/PNP]── VOUT
 | 输出有 100Hz 纹波 | 输入滤波电容不足，整流谷值跌破 $V_{OUT}+V_{DROP}$ | 加大电容/核算纹波谷值 |
 | AMS1117 输出振荡 | 输出电容 ESR 不合要求 | 换型号或按规格书加钽电容 |
 | 上电过冲烧后级 | 输入高压+快上电，调整管未及时响应 | 软启动/选带过冲抑制型号 |
+
+<p align="center"><img src="assets/svg/ldo-failures.svg" width="720" alt="7805/AMS1117故障地图SVG动画"></p>
+
+上图把四种死法的账都摊开：**① 热账 $P=(V_{IN}-5V)\times I$**（12V→5V@300mA = **2.1W**，无散热片必热关断）、
+**② 纹波账**（输入谷值必须 ≥ $V_{OUT}+V_{DROP}$）、**③ 稳定性账**（AMS1117 的环路补偿依赖输出电容 ESR，出窗口就振荡）、
+**④ 上电账**（大压差+快上电会过冲）。**结论：大压差 × 大电流 = 直接上 DCDC，别跟线性稳压较劲。**
 
 ### 9.5 动态分析：LDO 负载瞬态（四拍拆解）🔬
 
@@ -2090,7 +2119,7 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 <a id="part5"></a>
 # 第五篇：动画演示中心 🎬
 
-> 全部 74 张 SVG 动画（SMIL，浏览器直接播放）位于 `assets/svg/` 目录，由 `scripts/generate_svgs.py` 一键生成（仓库铁律：两者始终同步）；配套 Falstad 在线电路可实时交互。
+> 全部 78 张 SVG 动画（SMIL，浏览器直接播放）位于 `assets/svg/` 目录，由 `scripts/generate_svgs.py` 一键生成（仓库铁律：两者始终同步）；配套 Falstad 在线电路可实时交互。
 
 ## 5.1 RC 充电 <a id="demo1"></a>
 
@@ -2520,7 +2549,31 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 
 **看点**：3 位地址选 8 路、通道双向、切换时的电荷注入与 Ron 变化。→ 正文 [8.2 CD4066 与 CD4051](#ch8)
 
-## 5.70 Falstad 内置示例地图（全部带动画）
+## 5.70 达林顿管：β 相乘与三笔代价 <a id="demo70"></a>
+
+<p align="center"><img src="assets/svg/darlington.svg" width="720" alt="达林顿管SVG动画"></p>
+
+**看点**：前级发射极电流就是后级基极电流；β≈β₁β₂ 换来的 1.4V / 0.9V / 慢三笔代价。→ 正文 [3.6 达林顿管](#ch3)
+
+## 5.71 Datasheet 六参数优先级 <a id="demo71"></a>
+
+<p align="center"><img src="assets/svg/datasheet-params.svg" width="720" alt="Datasheet六参数SVG动画"></p>
+
+**看点**：六个参数按「会咬人」排序，每个都标出咬点与选型公式——五十页只读这六行。→ 正文 [6.3 Datasheet 参数](#ch6)
+
+## 5.72 运放选型地图：速度 × 精度 <a id="demo72"></a>
+
+<p align="center"><img src="assets/svg/opamp-map.svg" width="720" alt="运放选型地图SVG动画"></p>
+
+**看点**：七款常见运放按 GBW 与 V_OS 定位——斩波零漂在最高精度区、741/LM358 在左下角。→ 正文 [6.4 常用运放选型](#ch6)
+
+## 5.73 7805/AMS1117 四种翻车 <a id="demo73"></a>
+
+<p align="center"><img src="assets/svg/ldo-failures.svg" width="720" alt="线性稳压故障地图SVG动画"></p>
+
+**看点**：热账 2.1W、纹波谷值、ESR 振荡、上电过冲——四种死法的账都在图里。→ 正文 [9.4 7805/AMS1117 故障](#ch9)
+
+## 5.74 Falstad 内置示例地图（全部带动画）
 
 | 主题 | 菜单路径 |
 |---|---|
@@ -2882,7 +2935,8 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 
 | 版本 | 亮点 |
 |---|---|
-| **v2.3（当前）** | 动画 74 张：新增「BJT 载流子输运」（3.1）「BJT 作开关」（3.5）「体二极管与栅极保护」（4.4）「CD4051 多路复用」（8.2）；resistor-model/diode-family/lm358-dual 三图补运动（7→12、7→11、7→12） |
+| **v2.4（当前）** | 动画 78 张：新增「达林顿管」（3.6）「Datasheet 六参数」（6.3）「运放选型地图」（6.4）「线性稳压故障地图」（9.4）；§3.3 复用组态图；body-diode/discrete-ldo/pullup-sizing/555-modes 四图补运动（8→12、9→13、9→13、10→13） |
+| v2.3 | 动画 74 张：新增「BJT 载流子输运」（3.1）「BJT 作开关」（3.5）「体二极管与栅极保护」（4.4）「CD4051 多路复用」（8.2）；resistor-model/diode-family/lm358-dual 三图补运动（7→12、7→11、7→12） |
 | v2.2 | 动画 70 张：新增「真实电阻等效模型」（1.1）「特殊二极管家族」（2.4）「上拉电阻取值」（5.3）「LM358 双运放」（6.2）「三种组态」（11.1）「分立串联稳压」（13.1）；mosfet-curves 补运动（7→12） |
 | v2.1 | 动画 64 张：新增「PN 结的形成」（2.1）「MOSFET 输出特性」（4.2）「555 三种模式」（10.2）「负反馈四种拓扑」（12.7）；probe-loading/pushpull-stage/signal-chain/comparator-opamp/sar-adc 五图补运动（9→12、9→13、9→13、10→13、10→13） |
 | v2.0 | 动画 60 张：新增「推挽输出级」（5.1）「解剖 LM393」（7.2）「齐纳 vs 带隙」（9.1）；rc-lowpass/wien-bridge/ldo-feedback/capacitor-parasitics/peak-detector 五图补运动（7→11、7→11、8→13、9→15、9→15） |

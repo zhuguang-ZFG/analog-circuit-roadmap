@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-generate_svgs.py — 一键再生成《通往模拟电路之路》全部 74 张 SVG SMIL 动画
+generate_svgs.py — 一键再生成《通往模拟电路之路》全部 78 张 SVG SMIL 动画
 用法:  python generate_svgs.py            # 输出到 ../assets/svg/
 风格:  参考 BMS-Z 项目 —— 浅色底 + SMIL 节拍字幕 + 深色模式自适应 + 拟人化讲解
 所有电路参数经过自洽核算（datasheet 级），详见各函数注释。
@@ -4790,6 +4790,9 @@ def make_555_modes():
 <circle r="6" fill="#2563eb"><animateMotion dur="{DN}s" repeatCount="indefinite" path="M60,330 L240,330" keyPoints="0;1" keyTimes="0;1"/></circle>
 <circle r="6" fill="#059669"><animateMotion dur="{DN}s" begin="-1.1s" repeatCount="indefinite" path="M312,368 L312,330 L392,330" keyPoints="0;1" keyTimes="0;1"/></circle>
 <circle r="6" fill="#7c3aed"><animateMotion dur="{DN}s" begin="-2.2s" repeatCount="indefinite" path="M565,330 L745,330" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DN}s" begin="-0.5s" repeatCount="indefinite" path="M70,196 L158,196"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DN}s" begin="-1.3s" repeatCount="indefinite" path="M322,196 L410,196"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DN}s" begin="-2.1s" repeatCount="indefinite" path="M574,196 L662,196"/></circle>
 {pulse(38, 130, 224, 60, '#2563eb', 2.0, 8)}
 {pulse(291, 130, 224, 60, '#059669', 2.0, 8)}
 {pulse(544, 130, 224, 60, '#7c3aed', 2.0, 8)}
@@ -5050,6 +5053,11 @@ def make_pullup_sizing():
 <text x="400" y="468" text-anchor="middle" font-size="12" font-weight="bold" fill="#b45309">为什么教科书都说 4.7k</text>
 <text x="400" y="492" text-anchor="middle" font-size="11.5" fill="#475569">它是「够快（标准模式 400ns 有余量）+ 够省（0.7mA）」的折中点；</text>
 <text x="400" y="514" text-anchor="middle" font-size="11.5" fill="#475569">快速模式 400kHz 需要 ≤3.5kΩ，所以实板常见 2.2k；而 MCU 内部 30~50kΩ 弱上拉只够防浮空，不能当 I²C 上拉</text>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DP}s" begin="-0.7s" repeatCount="indefinite" path="M60,200 L156,200"/></circle>
+<circle r="4.5" fill="#dc2626"><animateMotion dur="{DP}s" begin="-1.5s" repeatCount="indefinite" path="M252,202 L326,200"/></circle>
+<circle cx="360" cy="322" r="5" fill="none" stroke="#059669" stroke-width="2.2">
+<animate attributeName="r" values="5;12;5" dur="1.8s" repeatCount="indefinite"/></circle>
+<circle cx="376" cy="360" r="4" fill="#dc2626"><animate attributeName="r" values="4;9;4" dur="1.6s" repeatCount="indefinite"/></circle>
 {pulse(356, 264, 408, 156, '#059669', 2.0, 10)}
 '''
     svg += caption("① 上拉太大：RC 充得慢，上升沿被拉长——高速总线的第一个瓶颈", "#b45309", DP,
@@ -5241,6 +5249,11 @@ def make_discrete_ldo():
 <text x="400" y="494" text-anchor="middle" font-size="11.5" fill="#475569">分立版：两颗元件 + 电阻，便宜、灵活，但温漂大（V_Z 与 V_BE 双重温漂）、无过流保护</text>
 <text x="400" y="518" text-anchor="middle" font-size="11.5" fill="#475569">集成版（7805）：同样三块积木，加上**过流/过热/安全工作区保护**与激光修调——温漂低一个量级</text>
 <text x="400" y="546" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#b45309">看懂分立版，就看懂了所有串联型线性稳压器的骨架</text>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DD}s" begin="-0.6s" repeatCount="indefinite" path="M196,166 L228,166"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DD}s" begin="-1.4s" repeatCount="indefinite" path="M230,246 L366,246"/></circle>
+<circle cx="376" cy="250" r="5" fill="none" stroke="#059669" stroke-width="2.2">
+<animate attributeName="r" values="5;12;5" dur="2.0s" repeatCount="indefinite"/></circle>
+<circle cx="150" cy="240" r="4" fill="#7c3aed"><animate attributeName="r" values="4;9;4" dur="1.7s" repeatCount="indefinite"/></circle>
 {pulse(192, 156, 76, 62, '#2563eb', 2.0, 10)}
 '''
     svg += caption("① 两块积木就能稳压：齐纳出基准、NPN 射随器出电流（Vout = V_Z − 0.7V）", "#b45309", DD,
@@ -5444,6 +5457,11 @@ def make_body_diode():
 <text x="600" y="534" text-anchor="middle" font-size="11.5" fill="#475569">体二极管：白送续流、但断了「反向阻断」这条路</text>
 <text x="600" y="556" text-anchor="middle" font-size="11.5" fill="#475569">栅极：当电容对待——防静电、防悬空、串小电阻</text>
 <text x="600" y="578" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#b45309">死区时间里的续流，正是体二极管在顶班（见 13.7 H 桥）</text>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DY}s" begin="-0.5s" repeatCount="indefinite" path="M46,146 L78,146"/></circle>
+<circle r="4.5" fill="#dc2626"><animateMotion dur="{DY}s" begin="-1.3s" repeatCount="indefinite" path="M150,190 L198,190"/></circle>
+<circle cx="200" cy="104" r="5" fill="none" stroke="#7c3aed" stroke-width="2.2">
+<animate attributeName="r" values="5;12;5" dur="1.9s" repeatCount="indefinite"/></circle>
+<circle cx="278" cy="440" r="4" fill="#dc2626"><animate attributeName="r" values="4;9;4" dur="1.6s" repeatCount="indefinite"/></circle>
 {pulse(258, 350, 338, 142, '#b45309', 2.0, 10)}
 '''
     svg += caption("① 体二极管是结构自带的：MOS 天然反向并联一只二极管，拆不掉", "#2563eb", DY,
@@ -5509,6 +5527,247 @@ def make_mux4051():
     svg += caption("④ 同族选型：4052 双 4 选 1、4053 三路 2 选 1、74HC4051 高速版", "#b45309", DM,
                    "0;0;1;1", "0;0.85;0.9;1", y=596)
     save('mux-4051.svg', svg + '</svg>')
+
+
+# ======================= 图 75：达林顿管（第 3 章 3.6） =======================
+def make_darlington():
+    DD = 11
+    svg = svg_open('达林顿管：β 相乘，代价是三笔', h=620)
+    svg += f'''
+<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">Q2 的基极电流，就是 Q1 的发射极电流</text>
+<line x1="120" y1="92" x2="120" y2="122" stroke="#334155" stroke-width="2.5"/>
+<text x="106" y="88" font-size="11.5" font-weight="bold" fill="#b45309">Vin</text>
+<line x1="120" y1="122" x2="160" y2="122" stroke="#334155" stroke-width="2.5"/>
+<circle cx="160" cy="122" r="4.5" fill="#334155"/>
+<line x1="160" y1="122" x2="160" y2="152" stroke="#334155" stroke-width="2.5"/>
+<polygon points="160,152 160,200 208,176" fill="#f8fafc" stroke="#2563eb" stroke-width="2.4"/>
+<text x="172" y="170" font-size="10.5" font-weight="bold" fill="#2563eb">Q1</text>
+<text x="172" y="188" font-size="9.5" fill="#475569">β₁</text>
+<line x1="160" y1="200" x2="160" y2="248" stroke="#2563eb" stroke-width="2.5"/>
+<circle cx="160" cy="248" r="4.5" fill="#334155"/>
+<line x1="160" y1="248" x2="160" y2="278" stroke="#334155" stroke-width="2.5"/>
+<polygon points="160,278 160,326 208,302" fill="#f8fafc" stroke="#059669" stroke-width="2.4"/>
+<text x="172" y="296" font-size="10.5" font-weight="bold" fill="#059669">Q2</text>
+<text x="172" y="314" font-size="9.5" fill="#475569">β₂</text>
+<line x1="160" y1="326" x2="160" y2="366" stroke="#059669" stroke-width="2.5"/>
+<line x1="160" y1="366" x2="120" y2="366" stroke="#334155" stroke-width="2.5"/>
+<line x1="160" y1="366" x2="200" y2="366" stroke="#334155" stroke-width="2.5"/>
+<line x1="120" y1="366" x2="120" y2="392" stroke="#334155" stroke-width="2.5"/>
+{gnd_sym(120, 406)}
+<line x1="200" y1="366" x2="240" y2="366" stroke="#334155" stroke-width="2.5"/>
+<circle cx="240" cy="366" r="4.5" fill="#334155"/>
+<line x1="240" y1="366" x2="240" y2="200" stroke="#334155" stroke-width="2.5"/>
+<line x1="240" y1="200" x2="208" y2="176" stroke="#334155" stroke-width="2.5"/>
+<line x1="240" y1="200" x2="300" y2="200" stroke="#334155" stroke-width="2.5"/>
+<text x="306" y="196" font-size="11.5" font-weight="bold" fill="#dc2626">I_C 总</text>
+<line x1="208" y1="302" x2="300" y2="302" stroke="#334155" stroke-width="2.5"/>
+<circle cx="240" cy="302" r="4" fill="#334155"/>
+<line x1="240" y1="302" x2="240" y2="366" stroke="#334155" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="248" y="330" font-size="11" font-weight="bold" fill="#059669">I_E1=I_B2</text>
+<circle r="5" fill="#2563eb"><animateMotion dur="{DD}s" begin="-0.3s" repeatCount="indefinite" path="M122,124 L158,124"/></circle>
+<circle r="5" fill="#2563eb"><animateMotion dur="{DD}s" begin="-1.0s" repeatCount="indefinite" path="M162,154 L162,198 L206,176"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="{DD}s" begin="-1.7s" repeatCount="indefinite" path="M162,250 L162,276 L206,302"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="{DD}s" begin="-2.4s" repeatCount="indefinite" path="M210,302 L298,300"/></circle>
+<circle r="5" fill="#7c3aed"><animateMotion dur="{DD}s" begin="-3.0s" repeatCount="indefinite" path="M162,328 L162,364 L118,366"/></circle>
+<line x1="360" y1="80" x2="360" y2="560" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="6,5"/>
+<text x="580" y="80" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#334155">收益 vs 三笔代价</text>
+<rect x="382" y="98" width="356" height="90" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text x="398" y="124" font-size="12" font-weight="bold" fill="#2563eb">收益：β 相乘</text>
+<text x="398" y="148" font-size="11.5" fill="#475569">I_C2 = β₂·I_B2 = β₂·I_E1 = β₂·(1+β₁)·I_B1</text>
+<text x="398" y="172" font-size="11.5" font-weight="bold" fill="#059669">β_total ≈ β₁×β₂（可达 10000+）</text>
+<rect x="382" y="202" width="356" height="72" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="1.8"/>
+<text x="398" y="228" font-size="12" font-weight="bold" fill="#b45309">代价①：V_BE 翻倍</text>
+<text x="398" y="252" font-size="11.5" fill="#475569">两级各 0.7V 串联 → 约 1.4V（输入信号被抬高）</text>
+<text x="398" y="268" font-size="11" fill="#475569">低压 3.3V 系统里，1.4V 的损失不可忽略</text>
+<rect x="382" y="288" width="356" height="72" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.8"/>
+<text x="398" y="314" font-size="12" font-weight="bold" fill="#dc2626">代价②：V_CE(sat) 升高</text>
+<text x="398" y="338" font-size="11.5" fill="#475569">Q2 无法深度饱和 → 约 0.9V（普通管 0.2V）</text>
+<text x="398" y="354" font-size="11" fill="#475569">所以 1A 时白白多烧 0.9W 热</text>
+<rect x="382" y="374" width="356" height="72" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.8"/>
+<text x="398" y="400" font-size="12" font-weight="bold" fill="#64748b">代价③：速度慢</text>
+<text x="398" y="424" font-size="11.5" fill="#475569">Q1 关断时 Q2 基区电荷要多绕一圈才泄放</text>
+<text x="398" y="440" font-size="11" fill="#475569">（若不想慢，可在 Rbe 上并电阻加速泄放）</text>
+<text x="580" y="474" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">什么时候值得</text>
+<text x="580" y="498" text-anchor="middle" font-size="11.5" fill="#475569">需要「极小基极电流驱动大负载」时：MCU 引脚直接驱动继电器/步进电机</text>
+<text x="580" y="520" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#059669">经典集成件 ULN2003：7 路达林顿 + 每路自带续流二极管</text>
+<text x="580" y="542" text-anchor="middle" font-size="11" fill="#475569">（它把「续流」这件事也一起做进芯片了 —— 见 3.5 的教训）</text>
+{pulse(380, 372, 360, 76, '#64748b', 2.0, 10)}
+'''
+    svg += caption("① β 相乘的机理：前一级的发射极电流就是后一级的基极电流——串联放大", "#2563eb", DD,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=592)
+    svg += caption("② 代价一：V_BE 翻倍到 1.4V —— 3.3V 系统里这 1.4V 的损失不可忽略", "#b45309", DD,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=592)
+    svg += caption("③ 代价二：V_CE(sat) 升到 0.9V（Q2 无法深度饱和）→ 大电流时白烧热", "#dc2626", DD,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=592)
+    svg += caption("④ 用武之地：μA 级驱动 A 级负载；ULN2003 把 7 路达林顿+续流管做进一颗芯片", "#059669", DD,
+                   "0;0;1;1", "0;0.85;0.9;1", y=592)
+    save('darlington.svg', svg + '</svg>')
+
+
+# ======================= 图 76：运放选型地图（第 6 章 6.4） =======================
+def make_opamp_map():
+    DO = 11
+    X0, Y0, PW, PH = 90, 96, 640, 300
+    def px(gbw): return X0 + (np.log10(gbw)-np.log10(0.5))/(np.log10(20)-np.log10(0.5))*PW
+    def py(vos): return Y0 + (np.log10(vos)-np.log10(1e-6))/(np.log10(1e-2)-np.log10(1e-6))*PH
+    parts = [
+        ('µA741', 1.0, 2e-3, '#94a3b8', '教学化石', 40),
+        ('LM358', 1.0, 2e-3, '#2563eb', '低速信号链', -74),
+        ('TL072', 3.0, 3e-3, '#059669', '音频前级', 20),
+        ('NE5532', 10.0, 5e-4, '#b45309', '音频黄金标准', 60),
+        ('OP07', 0.6, 7.5e-5, '#7c3aed', '直流测量', 0),
+        ('斩波零漂', 2.0, 1e-6, '#dc2626', '称重/热电偶', 76),
+        ('MCP6001', 1.0, 4.5e-3, '#0ea5e9', '电池 RRIO', 96),
+    ]
+    svg = svg_open('运放选型地图：速度（横）× 直流精度（纵）', h=620)
+    svg += f'''
+<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">越往右上越贵 —— 先问「我到底需要哪一头」</text>
+<line x1="{X0}" y1="{Y0+PH}" x2="{X0+PW}" y2="{Y0+PH}" stroke="#64748b" stroke-width="1.6"/>
+<line x1="{X0}" y1="{Y0}" x2="{X0}" y2="{Y0+PH}" stroke="#64748b" stroke-width="1.6"/>
+<text x="{X0+PW}" y="{Y0+PH+24}" text-anchor="end" font-size="11" fill="#475569">GBW（速度）→</text>
+<text x="{X0+10}" y="{Y0+16}" font-size="11" font-weight="bold" fill="#94a3b8">↑ 精度高</text>
+<text x="{X0+10}" y="{Y0+PH-8}" font-size="11" font-weight="bold" fill="#94a3b8">↓ 精度低</text>
+'''
+    for g in (1, 3, 10):
+        svg += f'<line x1="{px(g):.0f}" y1="{Y0+PH}" x2="{px(g):.0f}" y2="{Y0+PH+5}" stroke="#64748b" stroke-width="1.2"/>'
+        svg += f'<text x="{px(g):.0f}" y="{Y0+PH+18}" text-anchor="middle" font-size="10" fill="#475569">{g}MHz</text>'
+    for v, lab in ((1e-2, '10mV'), (1e-3, '1mV'), (1e-4, '100µV'), (1e-5, '10µV'), (1e-6, '1µV')):
+        svg += f'<text x="{X0-6}" y="{py(v)+4:.0f}" text-anchor="end" font-size="10" fill="#475569">{lab}</text>'
+    for nm, g, v, col, use, dx in parts:
+        cx, cy = px(g), py(v)
+        svg += f'<circle cx="{cx:.0f}" cy="{cy:.0f}" r="8" fill="{col}" opacity="0.85"/>'
+        svg += f'<text x="{cx+dx:.0f}" y="{cy-13:.0f}" text-anchor="middle" font-size="11.5" font-weight="bold" fill="{col}">{nm}</text>'
+        yy = cy+24 if cy < Y0+PH-30 else cy-34
+        svg += f'<text x="{cx+dx:.0f}" y="{yy:.0f}" text-anchor="middle" font-size="10" fill="#475569">{use}</text>'
+    svg += f'''
+<line x1="40" y1="424" x2="760" y2="424" stroke="#cbd5e1" stroke-width="1"/>
+<text x="400" y="450" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">两把尺子先量清楚，再挑型号</text>
+<text x="70" y="478" font-size="11.5" fill="#475569">① <tspan font-weight="bold" fill="#2563eb">速度尺</tspan>：GBW ≥ 增益 × 信号最高频率 × 10（裕量十倍）。LM358 增益 100 → 只有 10kHz 带宽</text>
+<text x="70" y="502" font-size="11.5" fill="#475569">② <tspan font-weight="bold" fill="#7c3aed">精度尺</tspan>：$V_{{OS}}$ 会被增益放大——2mV 失调 × 100 倍 = 输出端 200mV 误差，直流电路第一杀手</text>
+<text x="70" y="528" font-size="11.5" font-weight="bold" fill="#b45309">③ 还要看 $I_B$：源阻抗 &gt;100kΩ 必须选 FET 输入（TL072 的 30pA vs LM358 的 45nA，差 1000 倍）</text>
+<text x="70" y="554" font-size="11.5" fill="#475569">④ 最后才比价格与封装——<tspan font-weight="bold">先定需求，再挑型号，别反过来</tspan></text>
+<circle r="5" fill="#f59e0b"><animateMotion dur="{DO}s" repeatCount="indefinite" path="M{X0},{Y0+PH-2} L{X0+PW},{Y0+PH-2}" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#7c3aed"><animateMotion dur="{DO}s" begin="-1.6s" repeatCount="indefinite" path="M{X0+2},{Y0+PH} L{X0+2},{Y0}" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle cx="{px(10.0):.0f}" cy="{py(5e-4):.0f}" r="5" fill="none" stroke="#b45309" stroke-width="2.2">
+<animate attributeName="r" values="5;13;5" dur="1.9s" repeatCount="indefinite"/></circle>
+<circle cx="{px(2.0):.0f}" cy="{py(1e-6):.0f}" r="5" fill="none" stroke="#dc2626" stroke-width="2.2">
+<animate attributeName="r" values="5;13;5" dur="1.9s" begin="-0.9s" repeatCount="indefinite"/></circle>
+<circle cx="{px(0.6):.0f}" cy="{py(7.5e-5):.0f}" r="5" fill="none" stroke="#7c3aed" stroke-width="2.2">
+<animate attributeName="r" values="5;13;5" dur="1.9s" begin="-1.4s" repeatCount="indefinite"/></circle>
+{pulse(80, 90, 660, 312, '#94a3b8', 2.2, 10)}
+'''
+    svg += caption("① 横轴速度、纵轴精度：先判断自己站哪个区域，再挑型号", "#2563eb", DO,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=588)
+    svg += caption("② GBW 记账：增益 × 带宽 = GBW，LM358 增益 100 时只剩 10kHz", "#059669", DO,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=588)
+    svg += caption("③ 精度记账：V_OS 被增益放大，2mV×100=200mV —— 直流电路先看它", "#7c3aed", DO,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=588)
+    svg += caption("④ 别忘了 I_B：高源阻抗必须 FET 输入，45nA 与 30pA 差 1000 倍", "#b45309", DO,
+                   "0;0;1;1", "0;0.85;0.9;1", y=588)
+    save('opamp-map.svg', svg + '</svg>')
+
+
+# ======================= 图 77：Datasheet 六参数优先级（第 6 章 6.3） =======================
+def make_datasheet_params():
+    DP = 11
+    svg = svg_open('Datasheet 五十页，先读这六行', h=620)
+    svg += f'''
+<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">按「会咬人」的先后排序 —— 每一项都给出它咬在哪</text>
+'''
+    rows = [
+        ('① V_OS 输入失调', '2mV (LM358) / 75µV (OP07)', '被增益放大：×100 → 输出 200mV 误差', '直流第一杀手，看 max 不看 typ', '#7c3aed'),
+        ('② I_B 输入偏置电流', '45nA (BJT) / 30pA (JFET)', '流过高源阻抗 → 变成额外失调', '源阻抗 >100kΩ 必须 FET 输入', '#2563eb'),
+        ('③ GBW 增益带宽积', '1MHz (LM358) / 10MHz (NE5532)', '闭环增益 × 带宽 = GBW', '选型：≥ 增益×最高频率×10', '#059669'),
+        ('④ SR 压摆率', '0.5V/µs (LM358) / 9V/µs (NE5532)', '大信号被限速 → 三角波化', '全功率带宽 = SR/(2πVp)', '#dc2626'),
+        ('⑤ A_OL 开环增益', '≥100dB 常见', '太浅则闭环精度不足', '看它随频率滚降的曲线', '#b45309'),
+        ('⑥ 输出摆幅 / 轨到轨', 'Vcc−1.5V (LM358)', '够不到轨 → 摆幅不够', '接近电源轨就选 RRIO', '#0ea5e9'),
+    ]
+    y = 82
+    for name, typ, harm, tip, col in rows:
+        svg += f'<rect x="40" y="{y}" width="720" height="72" rx="8" fill="#f8fafc" stroke="{col}" stroke-width="1.6"/>'
+        svg += f'<text x="56" y="{y+26}" font-size="12.5" font-weight="bold" fill="{col}">{name}</text>'
+        svg += f'<text x="300" y="{y+26}" font-size="11" fill="#475569">{typ}</text>'
+        svg += f'<text x="56" y="{y+50}" font-size="11.5" font-weight="bold" fill="#1e293b">咬在这里：{harm}</text>'
+        svg += f'<text x="56" y="{y+66}" font-size="10.5" fill="#64748b">{tip}</text>'
+        y += 82
+    svg += f'''
+<line x1="40" y1="{y+6}" x2="760" y2="{y+6}" stroke="#cbd5e1" stroke-width="1"/>
+<text x="400" y="{y+34}" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">读法：先按自己的电路「会疼的地方」跳读</text>
+<text x="400" y="{y+58}" text-anchor="middle" font-size="11.5" fill="#475569">直流精密 → 先看 V_OS/I_B　·　高速 → 先看 GBW/SR　·　单电源低压 → 先看共模范围与输出摆幅</text>
+<text x="400" y="{y+80}" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#b45309">别从头读到尾：五十页里，就这六行在决定你的电路能不能工作</text>
+<circle r="5" fill="#f59e0b"><animateMotion dur="{DP}s" repeatCount="indefinite" path="M50,118 L754,118 L50,118" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#f59e0b"><animateMotion dur="{DP}s" begin="-1.6s" repeatCount="indefinite" path="M50,200 L754,200" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#7c3aed"><animateMotion dur="{DP}s" begin="-2.4s" repeatCount="indefinite" path="M50,282 L754,282" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="{DP}s" begin="-3.2s" repeatCount="indefinite" path="M50,364 L754,364" keyPoints="0;1" keyTimes="0;1"/></circle>
+{pulse(38, 80, 724, 76, '#7c3aed', 2.0, 10)}
+'''
+    svg += caption("① 第一行永远是 V_OS：它被增益放大，直流电路的头号杀手", "#7c3aed", DP,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=600)
+    svg += caption("② I_B 只在「高源阻抗」时才咬人——>100kΩ 就必须换 FET 输入", "#2563eb", DP,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=600)
+    svg += caption("③ GBW 与 SR 分工：小信号看 GBW、大信号看 SR（两条不同的路）", "#059669", DP,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=600)
+    svg += caption("④ 读法总结：按「你电路会疼的地方」跳读，别从头翻到尾", "#b45309", DP,
+                   "0;0;1;1", "0;0.85;0.9;1", y=600)
+    save('datasheet-params.svg', svg + '</svg>')
+
+
+# ======================= 图 78：7805/AMS1117 故障地图（第 9 章 9.4） =======================
+def make_ldo_failures():
+    DF = 11
+    svg = svg_open('7805/AMS1117 四种翻车：每一种都能事先算出来', h=620)
+    svg += f'''
+<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">线性稳压的四种死法 —— 根因都是「忘了算一笔账」</text>
+'''
+    cases = [
+        ('① 发烫关机', '#dc2626', '线性稳压把「多余的电压」全变成热',
+         'P = (Vin − 5V) × I',
+         '12V→5V @300mA = 2.1W —— 无散热片必热关断',
+         '降输入压差 / 加散热片 / 换 DCDC'),
+        ('② 输出有 100Hz 纹波', '#b45309', '整流谷值跌破「输出+压差」',
+         'V_min = V_out + V_dropout',
+         '输入电容不足 → 谷值掉下去 → 调整管失去余量',
+         '加大输入电容 / 核算纹波谷值'),
+        ('③ AMS1117 输出振荡', '#7c3aed', '输出电容 ESR 不在规格窗口内',
+         'ESR 太小或太大都会失稳',
+         'LDO 的环路补偿依赖输出电容的 ESR 零点',
+         '按规格书选钽电容 / 换型号'),
+        ('④ 上电过冲烧后级', '#0ea5e9', '输入高压 + 快上电，调整管来不及响应',
+         'di/dt 与环路响应速度赛跑',
+         '输出瞬间冲高 → 打坏 3.3V 后级芯片',
+         '软启动 / 选带过冲抑制的型号'),
+    ]
+    y = 80
+    for name, col, root, formula, why, fix in cases:
+        svg += f'<rect x="34" y="{y}" width="732" height="112" rx="9" fill="#f8fafc" stroke="{col}" stroke-width="1.8"/>'
+        svg += f'<text x="52" y="{y+26}" font-size="13" font-weight="bold" fill="{col}">{name}</text>'
+        svg += f'<text x="52" y="{y+48}" font-size="11.5" fill="#475569">根因：{root}</text>'
+        svg += f'<text x="52" y="{y+72}" font-size="12" font-weight="bold" fill="{col}">{formula}</text>'
+        svg += f'<text x="52" y="{y+92}" font-size="11" fill="#475569">{why}</text>'
+        svg += f'<text x="52" y="{y+107}" font-size="11" font-weight="bold" fill="#059669">解法：{fix}</text>'
+        svg += f'<circle cx="742" cy="{y+56}" r="6" fill="{col}" opacity="0.75"/>'
+        y += 122
+    svg += f'''
+<line x1="34" y1="{y+4}" x2="766" y2="{y+4}" stroke="#cbd5e1" stroke-width="1"/>
+<text x="400" y="{y+32}" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">四种死法，一个共同教训</text>
+<text x="400" y="{y+56}" text-anchor="middle" font-size="11.5" fill="#475569">线性稳压不是「接上就稳」：<tspan font-weight="bold" fill="#dc2626">压差 × 电流 = 热</tspan>、<tspan font-weight="bold" fill="#b45309">输入谷值 ≥ 输出 + 压差</tspan>、</text>
+<text x="400" y="{y+78}" text-anchor="middle" font-size="11.5" fill="#475569"><tspan font-weight="bold" fill="#7c3aed">输出电容 ESR 在窗口内</tspan>、<tspan font-weight="bold" fill="#0ea5e9">上电斜率受控</tspan> —— 四笔账，选型时全部要过一遍</text>
+<text x="400" y="{y+100}" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#b45309">大压差 + 大电流 = 直接上 DCDC，别跟线性稳压较劲</text>
+<circle r="5" fill="#f59e0b"><animateMotion dur="{DF}s" repeatCount="indefinite" path="M48,136 L748,136" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#f59e0b"><animateMotion dur="{DF}s" begin="-1.5s" repeatCount="indefinite" path="M48,258 L748,258" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#f59e0b"><animateMotion dur="{DF}s" begin="-3.0s" repeatCount="indefinite" path="M48,380 L748,380" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#f59e0b"><animateMotion dur="{DF}s" begin="-4.5s" repeatCount="indefinite" path="M48,502 L748,502" keyPoints="0;1" keyTimes="0;1"/></circle>
+{pulse(32, 78, 736, 116, '#dc2626', 2.0, 10)}
+'''
+    svg += caption("① 热账：P=(Vin−Vout)×I —— 12V→5V@300mA 就是 2.1W，没有散热片必然关机", "#dc2626", DF,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=600)
+    svg += caption("② 纹波账：输入谷值必须 ≥ Vout + 压差，否则 100Hz 纹波直接透到输出", "#b45309", DF,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=600)
+    svg += caption("③ 稳定性账：LDO 环路靠输出电容的 ESR 零点补偿，ESR 出窗口就振荡", "#7c3aed", DF,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=600)
+    svg += caption("④ 上电账：快上电 + 大压差会过冲；软启动或换型号。大压差大电流请直接上 DCDC", "#0ea5e9", DF,
+                   "0;0;1;1", "0;0.85;0.9;1", y=600)
+    save('ldo-failures.svg', svg + '</svg>')
 
 
 if __name__ == '__main__':
@@ -5586,4 +5845,8 @@ if __name__ == '__main__':
     make_bjt_switch()
     make_body_diode()
     make_mux4051()
-    print('all 74 SVGs regenerated into', os.path.abspath(OUT))
+    make_darlington()
+    make_opamp_map()
+    make_datasheet_params()
+    make_ldo_failures()
+    print('all 78 SVGs regenerated into', os.path.abspath(OUT))

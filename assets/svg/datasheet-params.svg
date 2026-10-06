@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="620" viewBox="0 0 800 620">
+<title>Datasheet 五十页，先读这六行</title>
+<rect width="800" height="620" fill="#f8fafc"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+@media (prefers-color-scheme: dark){
+rect[fill="#f8fafc"]{fill:#0f172a}
+[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
+[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
+[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
+[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
+[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
+[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
+[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
+[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
+[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
+[fill="#cbd5e1"]{fill:#334155}[stroke="#cbd5e1"]{stroke:#475569}
+[fill="#ffffff"]{fill:#0f172a}[fill="#94a3b8"]{fill:#64748b}[stroke="#94a3b8"]{stroke:#64748b}
+[fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
+}
+</style>
+<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">Datasheet 五十页，先读这六行</text>
+
+<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">按「会咬人」的先后排序 —— 每一项都给出它咬在哪</text>
+<rect x="40" y="82" width="720" height="72" rx="8" fill="#f8fafc" stroke="#7c3aed" stroke-width="1.6"/><text x="56" y="108" font-size="12.5" font-weight="bold" fill="#7c3aed">① V_OS 输入失调</text><text x="300" y="108" font-size="11" fill="#475569">2mV (LM358) / 75µV (OP07)</text><text x="56" y="132" font-size="11.5" font-weight="bold" fill="#1e293b">咬在这里：被增益放大：×100 → 输出 200mV 误差</text><text x="56" y="148" font-size="10.5" fill="#64748b">直流第一杀手，看 max 不看 typ</text><rect x="40" y="164" width="720" height="72" rx="8" fill="#f8fafc" stroke="#2563eb" stroke-width="1.6"/><text x="56" y="190" font-size="12.5" font-weight="bold" fill="#2563eb">② I_B 输入偏置电流</text><text x="300" y="190" font-size="11" fill="#475569">45nA (BJT) / 30pA (JFET)</text><text x="56" y="214" font-size="11.5" font-weight="bold" fill="#1e293b">咬在这里：流过高源阻抗 → 变成额外失调</text><text x="56" y="230" font-size="10.5" fill="#64748b">源阻抗 >100kΩ 必须 FET 输入</text><rect x="40" y="246" width="720" height="72" rx="8" fill="#f8fafc" stroke="#059669" stroke-width="1.6"/><text x="56" y="272" font-size="12.5" font-weight="bold" fill="#059669">③ GBW 增益带宽积</text><text x="300" y="272" font-size="11" fill="#475569">1MHz (LM358) / 10MHz (NE5532)</text><text x="56" y="296" font-size="11.5" font-weight="bold" fill="#1e293b">咬在这里：闭环增益 × 带宽 = GBW</text><text x="56" y="312" font-size="10.5" fill="#64748b">选型：≥ 增益×最高频率×10</text><rect x="40" y="328" width="720" height="72" rx="8" fill="#f8fafc" stroke="#dc2626" stroke-width="1.6"/><text x="56" y="354" font-size="12.5" font-weight="bold" fill="#dc2626">④ SR 压摆率</text><text x="300" y="354" font-size="11" fill="#475569">0.5V/µs (LM358) / 9V/µs (NE5532)</text><text x="56" y="378" font-size="11.5" font-weight="bold" fill="#1e293b">咬在这里：大信号被限速 → 三角波化</text><text x="56" y="394" font-size="10.5" fill="#64748b">全功率带宽 = SR/(2πVp)</text><rect x="40" y="410" width="720" height="72" rx="8" fill="#f8fafc" stroke="#b45309" stroke-width="1.6"/><text x="56" y="436" font-size="12.5" font-weight="bold" fill="#b45309">⑤ A_OL 开环增益</text><text x="300" y="436" font-size="11" fill="#475569">≥100dB 常见</text><text x="56" y="460" font-size="11.5" font-weight="bold" fill="#1e293b">咬在这里：太浅则闭环精度不足</text><text x="56" y="476" font-size="10.5" fill="#64748b">看它随频率滚降的曲线</text><rect x="40" y="492" width="720" height="72" rx="8" fill="#f8fafc" stroke="#0ea5e9" stroke-width="1.6"/><text x="56" y="518" font-size="12.5" font-weight="bold" fill="#0ea5e9">⑥ 输出摆幅 / 轨到轨</text><text x="300" y="518" font-size="11" fill="#475569">Vcc−1.5V (LM358)</text><text x="56" y="542" font-size="11.5" font-weight="bold" fill="#1e293b">咬在这里：够不到轨 → 摆幅不够</text><text x="56" y="558" font-size="10.5" fill="#64748b">接近电源轨就选 RRIO</text>
+<line x1="40" y1="580" x2="760" y2="580" stroke="#cbd5e1" stroke-width="1"/>
+<text x="400" y="608" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">读法：先按自己的电路「会疼的地方」跳读</text>
+<text x="400" y="632" text-anchor="middle" font-size="11.5" fill="#475569">直流精密 → 先看 V_OS/I_B　·　高速 → 先看 GBW/SR　·　单电源低压 → 先看共模范围与输出摆幅</text>
+<text x="400" y="654" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#b45309">别从头读到尾：五十页里，就这六行在决定你的电路能不能工作</text>
+<circle r="5" fill="#f59e0b"><animateMotion dur="11s" repeatCount="indefinite" path="M50,118 L754,118 L50,118" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#f59e0b"><animateMotion dur="11s" begin="-1.6s" repeatCount="indefinite" path="M50,200 L754,200" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#7c3aed"><animateMotion dur="11s" begin="-2.4s" repeatCount="indefinite" path="M50,282 L754,282" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="11s" begin="-3.2s" repeatCount="indefinite" path="M50,364 L754,364" keyPoints="0;1" keyTimes="0;1"/></circle>
+<rect x="38" y="80" width="724" height="76" rx="10" fill="none" stroke="#7c3aed" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.0s" repeatCount="indefinite"/></rect>
+<text x="400" y="600" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">① 第一行永远是 V_OS：它被增益放大，直流电路的头号杀手<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="600" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">② I_B 只在「高源阻抗」时才咬人——>100kΩ 就必须换 FET 输入<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="600" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">③ GBW 与 SR 分工：小信号看 GBW、大信号看 SR（两条不同的路）<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="600" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">④ 读法总结：按「你电路会疼的地方」跳读，别从头翻到尾<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/></text></svg>
