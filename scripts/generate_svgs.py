@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-generate_svgs.py — 一键再生成《通往模拟电路之路》全部 7 张 SVG SMIL 动画
+generate_svgs.py — 一键再生成《通往模拟电路之路》全部 50 张 SVG SMIL 动画
 用法:  python generate_svgs.py            # 输出到 ../assets/svg/
 风格:  参考 BMS-Z 项目 —— 浅色底 + SMIL 节拍字幕 + 深色模式自适应 + 拟人化讲解
 所有电路参数经过自洽核算（datasheet 级），详见各函数注释。
@@ -1502,8 +1502,8 @@ def make_sallen_key():
 <circle r="4" fill="#f59e0b"><animateMotion dur="{DS}s" begin="-1.4s" repeatCount="indefinite" path="M216,140 L216,210"/></circle>
 <circle r="4" fill="#7c3aed"><animateMotion dur="{DS}s" begin="-1.9s" repeatCount="indefinite" path="M130,140 L130,76 L310,76 L330,76 L330,140"/></circle>
 <circle r="4.5" fill="#059669"><animateMotion dur="{DS}s" begin="-2.4s" repeatCount="indefinite" path="M310,140 L380,140"/></circle>
-<circle cx="566" cy="240" r="6" fill="none" stroke="#059669" stroke-width="2.5">
-<animate attributeName="cy" values="240;240;211;211;240;240" keyTimes="0;0.23;0.28;0.48;0.53;1" dur="{DS}s" repeatCount="indefinite"/>
+<circle cx="639" cy="268" r="6" fill="none" stroke="#059669" stroke-width="2.5">
+<animate attributeName="cy" values="268;268;244;244;268;268" keyTimes="0;0.23;0.28;0.48;0.53;1" dur="{DS}s" repeatCount="indefinite"/>
 <animate attributeName="stroke" values="#059669;#059669;#dc2626;#dc2626;#059669;#059669" keyTimes="0;0.23;0.28;0.48;0.53;1" dur="{DS}s" repeatCount="indefinite"/></circle>
 '''
     svg += f'''
@@ -1511,8 +1511,8 @@ def make_sallen_key():
 <path d="{flat_d}" fill="none" stroke="#059669" stroke-width="2.8"/>
 <path d="{peak_d}" fill="none" stroke="#dc2626" stroke-width="2.2" stroke-dasharray="6,4"/>
 <line x1="420" y1="262" x2="750" y2="262" stroke="#64748b" stroke-width="1.4"/>
-<line x1="566" y1="230" x2="566" y2="370" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
-<text x="556" y="384" font-size="10.5" fill="#475569">fc</text>
+<line x1="639" y1="230" x2="639" y2="370" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="639" y="384" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#475569">fc</text>
 <text x="562" y="246" text-anchor="end" font-size="10.5" fill="#059669">Q=0.707 最平坦（Butterworth）</text>
 <text x="580" y="222" font-size="10.5" fill="#dc2626">Q=3 峰化鼓包→再大就振荡</text>
 <text x="648" y="330" font-size="10.5" fill="#475569">−40dB/dec</text>
@@ -3261,9 +3261,9 @@ def make_divider_loading():
 ''' + gnd_sym(430, 444) + '''
 <text x="452" y="342" font-size="11" font-weight="bold" fill="#dc2626">接上负载：突然变矮</text>
 <path d="M112,180 L112,308" stroke="#dc2626" stroke-width="3" fill="none" stroke-dasharray="6,5" opacity="0">
-<path d="M106,302 L112,310 L118,302 Z" fill="#dc2626" opacity="0">
 <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.19;0.23;0.4;0.45;1" dur="8s" repeatCount="indefinite"/></path>
-<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.19;0.23;0.4;0.45;1" dur="8s" repeatCount="indefinite"/></path>
+<polygon points="106,302 112,310 118,302" fill="#dc2626" opacity="0">
+<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.19;0.23;0.4;0.45;1" dur="8s" repeatCount="indefinite"/></polygon>
 <rect x="270" y="320" width="60" height="16" fill="#dc2626" rx="3" opacity="0">
 <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.19;0.23;0.4;0.45;1" dur="8s" repeatCount="indefinite"/></rect>
 <text x="300" y="332" text-anchor="middle" font-size="11" font-weight="bold" fill="#ffffff" opacity="0">33%
@@ -3432,7 +3432,7 @@ def make_signal_chain():
 <text x="42" y="430" font-size="11" fill="#475569">0</text>
 <text x="42" y="311" font-size="11" fill="#475569">1.024V</text>
 <text x="42" y="200" font-size="11" fill="#475569">2.048V</text>
-<text x="86" y="186" text-anchor="end" font-size="11" font-weight="bold" fill="#475569">ADC 满量程 2.048V（12 位 = 4096 码）</text>
+<text x="96" y="190" font-size="11" font-weight="bold" fill="#475569">ADC 满量程 2.048V（12 位 = 4096 码）</text>
 <line x1="340" y1="196" x2="340" y2="418" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="5,4"/>
 <line x1="580" y1="196" x2="580" y2="418" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="5,4"/>
 <line x1="90" y1="364" x2="760" y2="364" stroke="#0ea5e9" stroke-width="3.5"/>
@@ -3543,6 +3543,253 @@ def make_thermal_runaway():
     svg += note_box("对策：射极电阻 Re 负反馈 · 散热片降 Rth · 降额使用——负反馈是唯一能自动稳住的", 616, DT,
                     "0;0.9;0.94;1", w=740)
     save('thermal-runaway.svg', svg + '</svg>')
+# ======================= 图 48：真实电容的阻抗频谱（第 1 章 1.2） =======================
+def make_cap_parasitics():
+    DC = 9
+    ML = (100e-9, 0.3, 0.5e-9)
+    EL = (10e-6, 1.0, 20e-9)
+    def zmag(f, C, esr, esl):
+        xc = 1/(2*np.pi*f*C)
+        xl = 2*np.pi*f*esl
+        return float(np.hypot(esr, xc-xl))
+    X0, X1, Y0, Y1 = 400, 772, 104, 404
+    def px(f):
+        return X0+(np.log10(f)-1)/8*(X1-X0)
+    def py(z):
+        return Y0+(5-np.log10(max(z, 0.1)))/6*(Y1-Y0)
+    def curve(spec, color, wid=2.4):
+        fs = np.logspace(1, 9, 300)
+        pts = [f"{px(f):.0f},{py(zmag(f, *spec)):.0f}" for f in fs]
+        return f'<path d="M' + " L".join(pts) + f'" fill="none" stroke="{color}" stroke-width="{wid}"/>'
+    srf_ml = 1/(2*np.pi*np.sqrt(ML[0]*ML[2]))
+    srf_el = 1/(2*np.pi*np.sqrt(EL[0]*EL[2]))
+    svg = svg_open('真实电容的阻抗频谱：谷底有多低，决定它能救多高的频', h=600)
+    svg += f'''
+<text x="180" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">等效模型：C 串 ESR 串 ESL</text>
+<text x="40" y="120" font-size="11.5" fill="#475569">纹波源</text>
+<line x1="96" y1="116" x2="120" y2="116" stroke="#334155" stroke-width="2.5"/>
+<line x1="120" y1="86" x2="120" y2="146" stroke="#334155" stroke-width="2.5"/>
+<path d="M108,92 L120,82 L132,92 Z" fill="#334155"/>
+<path d="M108,140 L120,150 L132,140 Z" fill="#334155"/>
+<text x="140" y="122" font-size="11.5" font-weight="bold" fill="#334155">~ 噪声</text>
+<line x1="180" y1="116" x2="204" y2="116" stroke="#334155" stroke-width="2.5"/>
+<line x1="204" y1="96" x2="204" y2="136" stroke="#334155" stroke-width="2.5"/>
+<line x1="190" y1="100" x2="218" y2="100" stroke="#7c3aed" stroke-width="3.5"/>
+<line x1="190" y1="112" x2="218" y2="112" stroke="#7c3aed" stroke-width="3.5"/>
+<line x1="204" y1="112" x2="204" y2="126" stroke="#334155" stroke-width="2"/>
+<text x="222" y="110" font-size="12.5" font-weight="bold" fill="#7c3aed">C</text>
+<line x1="204" y1="126" x2="204" y2="150" stroke="#334155" stroke-width="2.5"/>
+<rect x="190" y="150" width="28" height="34" rx="3" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<text x="204" y="172" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#b45309">ESR</text>
+<line x1="204" y1="184" x2="204" y2="204" stroke="#334155" stroke-width="2.5"/>
+<path d="M192,204 q12,14 24,0 q12,-14 24,0" fill="none" stroke="#dc2626" stroke-width="2.5"/>
+<line x1="204" y1="204" x2="204" y2="228" stroke="#334155" stroke-width="2.5"/>
+<line x1="204" y1="228" x2="204" y2="248" stroke="#334155" stroke-width="2.5"/>
+{gnd_sym(204, 262)}
+<line x1="204" y1="116" x2="290" y2="116" stroke="#334155" stroke-width="2.5"/>
+<circle cx="290" cy="116" r="4" fill="#334155"/>
+<text x="296" y="112" font-size="11" font-weight="bold" fill="#2563eb">V 脚</text>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DC}s" begin="-0.3s" repeatCount="indefinite" path="M100,116 L120,116"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DC}s" begin="-0.3s" repeatCount="indefinite" path="M120,116 L180,116 L204,116 L204,150"/></circle>
+<circle r="4" fill="#f59e0b"><animateMotion dur="{DC}s" begin="-1.2s" repeatCount="indefinite" path="M204,184 L204,228 L204,248"/></circle>
+<text x="60" y="300" font-size="11.5" font-weight="bold" fill="#7c3aed">C 决定低频</text>
+<text x="60" y="320" font-size="11.5" font-weight="bold" fill="#b45309">ESR 决定谷底</text>
+<text x="60" y="340" font-size="11.5" font-weight="bold" fill="#dc2626">ESL 决定高频</text>
+<text x="60" y="368" font-size="11" fill="#475569">三者串联，谁在</text>
+<text x="60" y="386" font-size="11" fill="#475569">该频段主导，阻抗就</text>
+<text x="60" y="404" font-size="11" fill="#475569">长谁的样。</text>
+<text x="240" y="300" font-size="11" fill="#475569">走线 1cm ≈ 5nH：</text>
+<text x="240" y="320" font-size="11" fill="#475569">电容离芯片 5cm，</text>
+<text x="240" y="340" font-size="11" fill="#475569">ESL 直接 +25nH，</text>
+<text x="240" y="360" font-size="11" font-weight="bold" fill="#dc2626">高频救兵变拖油瓶</text>
+<text x="586" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">|Z| 随频率：两条曲线差 500 倍</text>
+<line x1="{X0}" y1="{Y1}" x2="{X1}" y2="{Y1}" stroke="#64748b" stroke-width="1.6"/>
+<line x1="{X0}" y1="{Y0}" x2="{X0}" y2="{Y1}" stroke="#64748b" stroke-width="1.6"/>
+<text x="{X1}" y="{Y1+36}" text-anchor="end" font-size="11" fill="#475569">频率 →</text>
+<text x="{X0-6}" y="{Y0+10}" text-anchor="end" font-size="10.5" fill="#475569">100kΩ</text>
+<text x="{X0-6}" y="{py(100)+4}" text-anchor="end" font-size="10.5" fill="#475569">1kΩ</text>
+<text x="{X0-6}" y="{py(1)+4}" text-anchor="end" font-size="10.5" fill="#475569">1Ω</text>
+<text x="{X0-6}" y="{Y1+4}" text-anchor="end" font-size="10.5" fill="#475569">0.1Ω</text>
+<text x="{px(10):.0f}" y="{Y1+20}" text-anchor="middle" font-size="10" fill="#475569">10Hz</text>
+<text x="{px(1e6):.0f}" y="{Y1+20}" text-anchor="middle" font-size="10" fill="#475569">1MHz</text>
+<text x="{px(1e9):.0f}" y="{Y1+20}" text-anchor="middle" font-size="10" fill="#475569">1GHz</text>
+{curve(EL, '#94a3b8', 2.2)}
+{curve(ML, '#2563eb')}
+<line x1="{px(srf_ml):.0f}" y1="{Y0}" x2="{px(srf_ml):.0f}" y2="{Y1}" stroke="#2563eb" stroke-width="1.2" stroke-dasharray="4,3"/>
+<line x1="{px(srf_el):.0f}" y1="{Y0}" x2="{px(srf_el):.0f}" y2="{Y1}" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="4,3"/>
+<circle cx="{px(srf_ml):.0f}" cy="{py(ML[1]):.0f}" r="5" fill="#2563eb"/>
+<text x="{px(srf_ml)+7:.0f}" y="{py(ML[1])+4:.0f}" font-size="10.5" font-weight="bold" fill="#2563eb">SRF {srf_ml/1e6:.1f}MHz</text>
+<text x="{px(srf_el)-7:.0f}" y="{py(EL[1])+4:.0f}" text-anchor="end" font-size="10.5" font-weight="bold" fill="#64748b">SRF {srf_el/1e3:.0f}kHz</text>
+<text x="400" y="76" font-size="11.5" font-weight="bold" fill="#2563eb">100nF MLCC（ESR 0.3Ω / ESL 0.5nH）</text>
+<text x="400" y="94" font-size="11.5" font-weight="bold" fill="#64748b">10µF 电解（ESR 1Ω / ESL 20nH）</text>
+<text x="{px(srf_el)-7:.0f}" y="{py(zmag(1e8,*EL))-8:.0f}" text-anchor="end" font-size="10.5" font-weight="bold" fill="#dc2626">100MHz 时电解已 {zmag(1e8,*EL):.0f}Ω</text>
+<circle r="5" fill="#2563eb">
+<animateMotion dur="{DC}s" repeatCount="indefinite" path="M{px(1e3):.0f},{py(zmag(1e3,*ML)):.0f} L{px(1e7):.0f},{py(zmag(1e7,*ML)):.0f}" keyPoints="0;1" keyTimes="0;1"/></circle>
+<text x="586" y="486" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#b45309">去耦选电容 = 选「谷底低且谷底宽」的那条曲线</text>
+<text x="586" y="506" text-anchor="middle" font-size="11" fill="#475569">电解负责储能（低频），100nF 陶瓷负责高频——两者不能互相替代</text>
+'''
+    svg += caption("① 低频：容抗 1/2πfC 主导——10µF 在 100Hz 只有 1.6Ω，但那是它最威风的时候", "#7c3aed", DC,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=548)
+    svg += caption("② 中频：ESR 兜底成谷底——MLCC 谷底 0.3Ω@22MHz，电解 1Ω@356kHz", "#b45309", DC,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=548)
+    svg += caption(f"③ 高频：ESL 接管，阻抗随频率上升——电解在 100MHz 已涨到 {zmag(1e8,*EL):.0f}Ω（MLCC 才 {zmag(1e8,*ML):.2f}Ω）", "#dc2626", DC,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=548)
+    svg += caption("④ 所以「贴脸放」不是迷信：多 5cm 走线 = 多 25nH 串进 ESL", "#2563eb", DC,
+                   "0;0;1;1", "0;0.85;0.9;1", y=548)
+    svg += note_box("自谐振频率 f_SRF = 1/(2π√(LC))：过了它，电容就变成了电感——所以高频去耦永远要用小封装小容量", 592, DC,
+                    "0;0.9;0.94;1", w=760)
+    save('capacitor-parasitics.svg', svg + '</svg>')
+
+
+# ======================= 图 49：米勒平台（MOSFET 开通波形，第 4 章 4.3） =======================
+def make_miller_plateau():
+    DS = 10
+    TX0, TX1 = 90, 760
+    tx = lambda t: TX0 + t/800*670
+    # 阶段边界（ns）：延时 150 / 电流上升 400 / 平台 560 / 完全增强 700
+    vgs = [(0, 0), (150, 1.4), (400, 2.9), (560, 2.9), (700, 5.0), (800, 5.0)]
+    vds = [(0, 20), (400, 20), (560, 0.15), (800, 0.15)]
+    idr = [(0, 0), (400, 5), (800, 5)]
+    pow_ = []
+    for t in range(0, 801, 10):
+        g = lambda tab: np.interp(t, [p[0] for p in tab], [p[1] for p in tab])
+        pow_.append((t, g(vds)*g(idr)))
+    def path(tab, ytop, ybot, vmax, color, wid=2.6):
+        pts = [f"{tx(t):.0f},{ybot-(v/vmax)*(ybot-ytop):.0f}" for t, v in tab]
+        return (f'<path d="M' + " L".join(pts) + f'" fill="none" stroke="{color}" '
+                f'stroke-width="{wid}" stroke-linejoin="round"/>')
+    svg = svg_open('米勒平台：V_GS 为什么会在半路「停下来看戏」', h=600)
+    svg += f'''
+<text x="425" y="50" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">20V 母线 · 5A 负载 · 10mA 驱动 · AO3400（Q_g≈7nC, Q_gd≈1.6nC）</text>
+<rect x="{tx(150):.0f}" y="70" width="{tx(400)-tx(150):.0f}" height="380" fill="#94a3b8" opacity="0.10"/>
+<rect x="{tx(400):.0f}" y="70" width="{tx(560)-tx(400):.0f}" height="380" fill="#7c3aed" opacity="0.10"/>
+<rect x="{tx(560):.0f}" y="70" width="{tx(700)-tx(560):.0f}" height="380" fill="#059669" opacity="0.10"/>
+<text x="{tx(75):.0f}" y="88" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#475569">① 延时区</text>
+<text x="{tx(275):.0f}" y="88" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#475569">② 电流上升区</text>
+<text x="{tx(480):.0f}" y="88" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#7c3aed">③ 米勒平台</text>
+<text x="{tx(630):.0f}" y="88" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#059669">④ 完全增强</text>
+<text x="20" y="130" font-size="12" font-weight="bold" fill="#2563eb">V_GS</text>
+<text x="20" y="236" font-size="12" font-weight="bold" fill="#dc2626">V_DS</text>
+<text x="20" y="342" font-size="12" font-weight="bold" fill="#059669">I_D</text>
+<text x="20" y="438" font-size="12" font-weight="bold" fill="#b45309">P=V·I</text>
+<line x1="{TX0}" y1="450" x2="{TX1}" y2="450" stroke="#64748b" stroke-width="1.6"/>
+{path(vgs, 120, 196, 5, '#2563eb')}
+{path(vds, 216, 292, 20, '#dc2626')}
+{path(idr, 322, 398, 5, '#059669')}
+{path(pow_, 418, 494, 100, '#b45309')}
+<line x1="{tx(400):.0f}" y1="120" x2="{tx(400):.0f}" y2="450" stroke="#dc2626" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="{tx(560):.0f}" y1="120" x2="{tx(560):.0f}" y2="450" stroke="#7c3aed" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="{tx(150):.0f}" y1="120" x2="{tx(150):.0f}" y2="200" stroke="#64748b" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="{tx(150)+6:.0f}" y="134" font-size="10.5" font-weight="bold" fill="#475569">V_th≈1.4V</text>
+<text x="{tx(400)-8:.0f}" y="112" text-anchor="end" font-size="10.5" font-weight="bold" fill="#2563eb">平台电压 ≈V_th+I_D/g_m ≈2.9V</text>
+<text x="{tx(700)+6:.0f}" y="308" font-size="10.5" font-weight="bold" fill="#059669">到底 0.15V</text>
+<text x="{tx(556):.0f}" y="210" text-anchor="end" font-size="10.5" font-weight="bold" fill="#7c3aed">平台期：V_DS 猛跌</text>
+<text x="{tx(275):.0f}" y="314" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#dc2626">V_DS 还满着 20V，I_D 已经上来了</text>
+<text x="{TX0}" y="490" font-size="10.5" font-weight="bold" fill="#b45309">损耗 = 阴影面积 × f_sw；重叠区 410ns → P_sw≈2W@100kHz</text>
+<circle r="5" fill="#2563eb">
+<animateMotion dur="{DS}s" repeatCount="indefinite" keyPoints="0;0.35;0.35;1" keyTimes="0;0.18;0.62;1" path="M{tx(0):.0f},196 L{tx(150):.0f},175 L{tx(400):.0f},152 L{tx(560):.0f},152 L{tx(700):.0f},120 L{tx(800):.0f},120"/></circle>
+<circle r="5" fill="#dc2626">
+<animateMotion dur="{DS}s" repeatCount="indefinite" keyPoints="0;0.35;0.35;1" keyTimes="0;0.18;0.62;1" path="M{tx(0):.0f},216 L{tx(400):.0f},216 L{tx(560):.0f},291 L{tx(800):.0f},291"/></circle>
+<circle r="5" fill="#7c3aed">
+<animateMotion dur="{DS}s" repeatCount="indefinite" keyPoints="0;0.4;1" keyTimes="0;0.18;0.62" path="M{tx(100):.0f},84 L{tx(480):.0f},84 L{tx(480):.0f},152"/></circle>
+<text x="{tx(400):.0f}" y="468" text-anchor="middle" font-size="10.5" fill="#475569">400ns</text>
+<text x="{tx(560):.0f}" y="468" text-anchor="middle" font-size="10.5" fill="#475569">560ns</text>
+<text x="{TX1}" y="468" text-anchor="end" font-size="10.5" fill="#475569">800ns</text>
+<text x="430" y="506" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#7c3aed">平台时长 = Q_gd ÷ 驱动电流 = 1.6nC ÷ 10mA = 160ns</text>
+<text x="430" y="526" text-anchor="middle" font-size="11" fill="#475569">栅极电阻调小的每一份，都是拿 EMI 换损耗——电源工程师的经典权衡</text>
+'''
+    svg += caption("① 前 400ns：栅极电流先填 C_GS，I_D 起来时 V_DS 还满着——最疼的一段", "#dc2626", DS,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=560)
+    svg += caption("② 平台期：驱动电流全被 C_GD 抽走，V_GS 被钉住，V_DS 一路雪崩下跌", "#7c3aed", DS,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=560)
+    svg += caption("③ 平台结束才是 R_DS(on) 生效的时刻：0.75W 导通损耗此刻才开始", "#059669", DS,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=560)
+    svg += caption("④ 记住 Q_gd：它比 C_rss 更直接地告诉你「这管子开关有多肉」", "#2563eb", DS,
+                   "0;0;1;1", "0;0.85;0.9;1", y=560)
+    save('miller-plateau.svg', svg + '</svg>')
+
+
+# ======================= 图 50：运放阶跃响应：压摆率与建立时间（6.7） =======================
+def make_opamp_slew():
+    DW = 9
+    X0, X1, Y0, Y1 = 430, 770, 130, 400
+    px = lambda t: X0 + t/3.0*340
+    py = lambda v: Y1 - v/1.15*(Y1-Y0)
+    def slew_path(dur_slew, tau, n=120):
+        pts = []
+        for i in range(n+1):
+            t = dur_slew*i/n
+            v = min(1.0, 0.5*t)
+            if t > dur_slew:
+                v = 1.0 - (1.0-v)*(np.exp(-(t-dur_slew)/tau))
+            pts.append(f"{px(t):.0f},{py(v):.0f}")
+        return "M" + " L".join(pts)
+    svg = svg_open('运放阶跃：直线爬坡，不是指数曲线', h=600)
+    svg += f'''
+<text x="200" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">741 接成跟随器，输入 0 → 1V 阶跃</text>
+<line x1="80" y1="150" x2="120" y2="150" stroke="#334155" stroke-width="2.5"/>
+<text x="60" y="146" font-size="11" fill="#475569">阶跃</text>
+<line x1="120" y1="126" x2="120" y2="174" stroke="#334155" stroke-width="2.5"/>
+<path d="M108,132 L120,122 L132,132 Z" fill="#334155"/>
+<path d="M108,168 L120,178 L132,168 Z" fill="#334155"/>
+<text x="126" y="196" font-size="11.5" font-weight="bold" fill="#334155">1V</text>
+<line x1="120" y1="150" x2="160" y2="150" stroke="#334155" stroke-width="2.5"/>
+<circle cx="160" cy="150" r="4" fill="#334155"/>
+<polygon points="170,118 170,206 240,162" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="178" y="142" font-size="13" font-weight="bold" fill="#059669">+</text>
+<text x="178" y="192" font-size="13" font-weight="bold" fill="#dc2626">−</text>
+<line x1="160" y1="150" x2="170" y2="150" stroke="#334155" stroke-width="2.5"/>
+<line x1="240" y1="162" x2="290" y2="162" stroke="#334155" stroke-width="2.5"/>
+<line x1="290" y1="162" x2="290" y2="240" stroke="#334155" stroke-width="2.5"/>
+<line x1="290" y1="240" x2="230" y2="240" stroke="#334155" stroke-width="2.5"/>
+<line x1="230" y1="240" x2="230" y2="174" stroke="#334155" stroke-width="2.5"/>
+<line x1="230" y1="174" x2="170" y2="174" stroke="#334155" stroke-width="2.5"/>
+<line x1="310" y1="162" x2="380" y2="162" stroke="#334155" stroke-width="2.5"/>
+<circle cx="330" cy="162" r="4" fill="#334155"/>
+<text x="336" y="158" font-size="11.5" font-weight="bold" fill="#2563eb">V_out</text>
+<circle r="5" fill="#f59e0b"><animateMotion dur="{DW}s" begin="-0.3s" repeatCount="indefinite" path="M90,150 L160,150"/></circle>
+<circle r="5" fill="#f59e0b"><animateMotion dur="{DW}s" begin="-0.9s" repeatCount="indefinite" path="M170,174 L230,174 L290,240 L290,162 L380,162"/></circle>
+<text x="60" y="290" font-size="11.5" font-weight="bold" fill="#b45309">补偿电容只能靠</text>
+<text x="60" y="310" font-size="11.5" font-weight="bold" fill="#b45309">恒定电流充电</text>
+<text x="60" y="338" font-size="11" fill="#475569">→ 电流恒定 ⇒ 斜率恒定</text>
+<text x="60" y="358" font-size="11" fill="#475569">→ 爬坡段是直线</text>
+<text x="60" y="386" font-size="11.5" font-weight="bold" fill="#dc2626">不是指数曲线！</text>
+<line x1="{X0}" y1="{Y1}" x2="{X1}" y2="{Y1}" stroke="#64748b" stroke-width="1.6"/>
+<line x1="{X0}" y1="{Y0}" x2="{X0}" y2="{Y1}" stroke="#64748b" stroke-width="1.6"/>
+<text x="{X1}" y="{Y1+36}" text-anchor="end" font-size="11" fill="#475569">时间 →</text>
+<text x="{X0-6}" y="{py(1)+4}" text-anchor="end" font-size="10.5" fill="#475569">1V</text>
+<text x="{X0-6}" y="{py(0)+4}" text-anchor="end" font-size="10.5" fill="#475569">0</text>
+<text x="{px(1):.0f}" y="{Y1+20}" text-anchor="middle" font-size="10" fill="#475569">1µs</text>
+<text x="{px(2):.0f}" y="{Y1+20}" text-anchor="middle" font-size="10" fill="#475569">2µs</text>
+<text x="{px(3):.0f}" y="{Y1+20}" text-anchor="end" font-size="10" fill="#475569">3µs</text>
+<line x1="{px(2):.0f}" y1="{py(1):.0f}" x2="{px(2):.0f}" y2="{Y1}" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="4,3"/>
+<line x1="{X0}" y1="{py(0.999):.0f}" x2="{px(2.75):.0f}" y2="{py(0.999):.0f}" stroke="#059669" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="{px(2.78):.0f}" y="{py(0.999)+4:.0f}" font-size="10.5" font-weight="bold" fill="#059669">0.1% 误差带</text>
+<path d="{slew_path(2.0, 0.16)}" fill="none" stroke="#2563eb" stroke-width="3"/>
+<path d="{slew_path(0.0, 0.16)}" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="5,4"/>
+<text x="{px(2)-8:.0f}" y="{py(0.35):.0f}" text-anchor="end" font-size="10.5" fill="#64748b">若只有 GBW=1MHz 的小信号速度</text>
+<text x="{px(2.02):.0f}" y="{py(0.45):.0f}" font-size="11.5" font-weight="bold" fill="#dc2626">2µs 直线爬坡</text>
+<text x="{px(0.15):.0f}" y="{py(0.12):.0f}" font-size="11" fill="#475569">斜率 = 0.5V/µs（SR）</text>
+<text x="{px(2.42):.0f}" y="{py(0.86):.0f}" font-size="11" fill="#475569">指数收尾 τ≈0.16µs</text>
+<text x="{px(1.35):.0f}" y="{py(0.62):.0f}" text-anchor="middle" font-size="11" font-weight="bold" fill="#b45309">建立时间≈2.6µs</text>
+<circle r="6" fill="#2563eb" stroke="#ffffff" stroke-width="2">
+<animateMotion dur="{DW}s" repeatCount="indefinite" path="{slew_path(2.0, 0.16)}" keyPoints="0;1" keyTimes="0;1"/></circle>
+<rect x="446" y="470" width="330" height="70" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="1.5"/>
+<text x="462" y="494" font-size="11.5" font-weight="bold" fill="#b45309">全功率带宽（同一个运放）</text>
+<text x="462" y="516" font-size="11" fill="#475569">f_max = SR / (2π·V_p) = 0.5 / (2π×0.5) ≈ 159kHz（1Vpp）</text>
+<text x="462" y="534" font-size="11" fill="#475569">10Vpp（V_p=5V）时只剩 ≈16kHz——GBW 1MHz 是个纸面数字</text>
+'''
+    svg += caption("① 阶跃瞬间 V_+−V_−=1V：差分对彻底失衡，放大功能直接「宕机」", "#64748b", DW,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=572)
+    svg += caption("② 补偿电容被恒定电流充电 → 输出以 SR=0.5V/µs 直线上升（2µs 爬 1V）", "#dc2626", DW,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=572)
+    svg += caption("③ 退出饱和后按 GBW 走指数收尾：τ≈0.16µs，可能带过冲振铃", "#2563eb", DW,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=572)
+    svg += caption("④ 大信号看 SR、小信号看 GBW：两条曲线谁慢，就决定建立时间", "#b45309", DW,
+                   "0;0;1;1", "0;0.85;0.9;1", y=572)
+    save('opamp-slew.svg', svg + '</svg>')
+
+
 if __name__ == '__main__':
     make_rc_charge()
     make_bridge_rectifier()
@@ -3591,4 +3838,7 @@ if __name__ == '__main__':
     make_bjt_regions()
     make_signal_chain()
     make_thermal_runaway()
-    print('all 47 SVGs regenerated into', os.path.abspath(OUT))
+    make_cap_parasitics()
+    make_miller_plateau()
+    make_opamp_slew()
+    print('all 50 SVGs regenerated into', os.path.abspath(OUT))

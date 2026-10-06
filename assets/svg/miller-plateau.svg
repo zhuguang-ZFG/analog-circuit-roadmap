@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+<title>米勒平台：V_GS 为什么会在半路「停下来看戏」</title>
+<rect width="800" height="600" fill="#f8fafc"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+@media (prefers-color-scheme: dark){
+rect[fill="#f8fafc"]{fill:#0f172a}
+[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
+[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
+[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
+[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
+[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
+[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
+[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
+[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
+[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
+[fill="#cbd5e1"]{fill:#334155}[stroke="#cbd5e1"]{stroke:#475569}
+[fill="#ffffff"]{fill:#0f172a}[fill="#94a3b8"]{fill:#64748b}[stroke="#94a3b8"]{stroke:#64748b}
+[fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
+}
+</style>
+<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">米勒平台：V_GS 为什么会在半路「停下来看戏」</text>
+
+<text x="425" y="50" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">20V 母线 · 5A 负载 · 10mA 驱动 · AO3400（Q_g≈7nC, Q_gd≈1.6nC）</text>
+<rect x="216" y="70" width="209" height="380" fill="#94a3b8" opacity="0.10"/>
+<rect x="425" y="70" width="134" height="380" fill="#7c3aed" opacity="0.10"/>
+<rect x="559" y="70" width="117" height="380" fill="#059669" opacity="0.10"/>
+<text x="153" y="88" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#475569">① 延时区</text>
+<text x="320" y="88" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#475569">② 电流上升区</text>
+<text x="492" y="88" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#7c3aed">③ 米勒平台</text>
+<text x="618" y="88" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#059669">④ 完全增强</text>
+<text x="20" y="130" font-size="12" font-weight="bold" fill="#2563eb">V_GS</text>
+<text x="20" y="236" font-size="12" font-weight="bold" fill="#dc2626">V_DS</text>
+<text x="20" y="342" font-size="12" font-weight="bold" fill="#059669">I_D</text>
+<text x="20" y="438" font-size="12" font-weight="bold" fill="#b45309">P=V·I</text>
+<line x1="90" y1="450" x2="760" y2="450" stroke="#64748b" stroke-width="1.6"/>
+<path d="M90,196 L216,175 L425,152 L559,152 L676,120 L760,120" fill="none" stroke="#2563eb" stroke-width="2.6" stroke-linejoin="round"/>
+<path d="M90,216 L425,216 L559,291 L760,291" fill="none" stroke="#dc2626" stroke-width="2.6" stroke-linejoin="round"/>
+<path d="M90,398 L425,322 L760,322" fill="none" stroke="#059669" stroke-width="2.6" stroke-linejoin="round"/>
+<path d="M90,494 L98,492 L107,490 L115,488 L124,486 L132,484 L140,483 L149,481 L157,479 L165,477 L174,475 L182,473 L190,471 L199,469 L207,467 L216,466 L224,464 L232,462 L241,460 L249,458 L258,456 L266,454 L274,452 L283,450 L291,448 L299,446 L308,445 L316,443 L324,441 L333,439 L341,437 L350,435 L358,433 L366,431 L375,429 L383,428 L392,426 L400,424 L408,422 L417,420 L425,418 L433,423 L442,427 L450,432 L459,437 L467,442 L475,446 L484,451 L492,456 L500,460 L509,465 L517,470 L526,475 L534,479 L542,484 L551,489 L559,493 L567,493 L576,493 L584,493 L592,493 L601,493 L609,493 L618,493 L626,493 L634,493 L643,493 L651,493 L660,493 L668,493 L676,493 L685,493 L693,493 L701,493 L710,493 L718,493 L726,493 L735,493 L743,493 L752,493 L760,493" fill="none" stroke="#b45309" stroke-width="2.6" stroke-linejoin="round"/>
+<line x1="425" y1="120" x2="425" y2="450" stroke="#dc2626" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="559" y1="120" x2="559" y2="450" stroke="#7c3aed" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="216" y1="120" x2="216" y2="200" stroke="#64748b" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="222" y="134" font-size="10.5" font-weight="bold" fill="#475569">V_th≈1.4V</text>
+<text x="417" y="112" text-anchor="end" font-size="10.5" font-weight="bold" fill="#2563eb">平台电压 ≈V_th+I_D/g_m ≈2.9V</text>
+<text x="682" y="308" font-size="10.5" font-weight="bold" fill="#059669">到底 0.15V</text>
+<text x="556" y="210" text-anchor="end" font-size="10.5" font-weight="bold" fill="#7c3aed">平台期：V_DS 猛跌</text>
+<text x="320" y="314" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#dc2626">V_DS 还满着 20V，I_D 已经上来了</text>
+<text x="90" y="490" font-size="10.5" font-weight="bold" fill="#b45309">损耗 = 阴影面积 × f_sw；重叠区 410ns → P_sw≈2W@100kHz</text>
+<circle r="5" fill="#2563eb">
+<animateMotion dur="10s" repeatCount="indefinite" keyPoints="0;0.35;0.35;1" keyTimes="0;0.18;0.62;1" path="M90,196 L216,175 L425,152 L559,152 L676,120 L760,120"/></circle>
+<circle r="5" fill="#dc2626">
+<animateMotion dur="10s" repeatCount="indefinite" keyPoints="0;0.35;0.35;1" keyTimes="0;0.18;0.62;1" path="M90,216 L425,216 L559,291 L760,291"/></circle>
+<circle r="5" fill="#7c3aed">
+<animateMotion dur="10s" repeatCount="indefinite" keyPoints="0;0.4;1" keyTimes="0;0.18;0.62" path="M174,84 L492,84 L492,152"/></circle>
+<text x="425" y="468" text-anchor="middle" font-size="10.5" fill="#475569">400ns</text>
+<text x="559" y="468" text-anchor="middle" font-size="10.5" fill="#475569">560ns</text>
+<text x="760" y="468" text-anchor="end" font-size="10.5" fill="#475569">800ns</text>
+<text x="430" y="506" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#7c3aed">平台时长 = Q_gd ÷ 驱动电流 = 1.6nC ÷ 10mA = 160ns</text>
+<text x="430" y="526" text-anchor="middle" font-size="11" fill="#475569">栅极电阻调小的每一份，都是拿 EMI 换损耗——电源工程师的经典权衡</text>
+<text x="400" y="560" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">① 前 400ns：栅极电流先填 C_GS，I_D 起来时 V_DS 还满着——最疼的一段<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="10s" repeatCount="indefinite"/></text><text x="400" y="560" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">② 平台期：驱动电流全被 C_GD 抽走，V_GS 被钉住，V_DS 一路雪崩下跌<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="10s" repeatCount="indefinite"/></text><text x="400" y="560" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">③ 平台结束才是 R_DS(on) 生效的时刻：0.75W 导通损耗此刻才开始<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="10s" repeatCount="indefinite"/></text><text x="400" y="560" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">④ 记住 Q_gd：它比 C_rss 更直接地告诉你「这管子开关有多肉」<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="10s" repeatCount="indefinite"/></text></svg>

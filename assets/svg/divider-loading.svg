@@ -68,9 +68,9 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <line x1="430" y1="430" x2="430" y2="444" stroke="#334155" stroke-width="2.5"/><line x1="414" y1="444" x2="446" y2="444" stroke="#334155" stroke-width="3"/><line x1="420" y1="450" x2="440" y2="450" stroke="#334155" stroke-width="3"/><line x1="426" y1="456" x2="434" y2="456" stroke="#334155" stroke-width="3"/>
 <text x="452" y="342" font-size="11" font-weight="bold" fill="#dc2626">接上负载：突然变矮</text>
 <path d="M112,180 L112,308" stroke="#dc2626" stroke-width="3" fill="none" stroke-dasharray="6,5" opacity="0">
-<path d="M106,302 L112,310 L118,302 Z" fill="#dc2626" opacity="0">
 <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.19;0.23;0.4;0.45;1" dur="8s" repeatCount="indefinite"/></path>
-<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.19;0.23;0.4;0.45;1" dur="8s" repeatCount="indefinite"/></path>
+<polygon points="106,302 112,310 118,302" fill="#dc2626" opacity="0">
+<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.19;0.23;0.4;0.45;1" dur="8s" repeatCount="indefinite"/></polygon>
 <rect x="270" y="320" width="60" height="16" fill="#dc2626" rx="3" opacity="0">
 <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.19;0.23;0.4;0.45;1" dur="8s" repeatCount="indefinite"/></rect>
 <text x="300" y="332" text-anchor="middle" font-size="11" font-weight="bold" fill="#ffffff" opacity="0">33%

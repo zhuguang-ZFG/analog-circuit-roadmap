@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+<title>运放阶跃：直线爬坡，不是指数曲线</title>
+<rect width="800" height="600" fill="#f8fafc"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+@media (prefers-color-scheme: dark){
+rect[fill="#f8fafc"]{fill:#0f172a}
+[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
+[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
+[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
+[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
+[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
+[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
+[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
+[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
+[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
+[fill="#cbd5e1"]{fill:#334155}[stroke="#cbd5e1"]{stroke:#475569}
+[fill="#ffffff"]{fill:#0f172a}[fill="#94a3b8"]{fill:#64748b}[stroke="#94a3b8"]{stroke:#64748b}
+[fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
+}
+</style>
+<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">运放阶跃：直线爬坡，不是指数曲线</text>
+
+<text x="200" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">741 接成跟随器，输入 0 → 1V 阶跃</text>
+<line x1="80" y1="150" x2="120" y2="150" stroke="#334155" stroke-width="2.5"/>
+<text x="60" y="146" font-size="11" fill="#475569">阶跃</text>
+<line x1="120" y1="126" x2="120" y2="174" stroke="#334155" stroke-width="2.5"/>
+<path d="M108,132 L120,122 L132,132 Z" fill="#334155"/>
+<path d="M108,168 L120,178 L132,168 Z" fill="#334155"/>
+<text x="126" y="196" font-size="11.5" font-weight="bold" fill="#334155">1V</text>
+<line x1="120" y1="150" x2="160" y2="150" stroke="#334155" stroke-width="2.5"/>
+<circle cx="160" cy="150" r="4" fill="#334155"/>
+<polygon points="170,118 170,206 240,162" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="178" y="142" font-size="13" font-weight="bold" fill="#059669">+</text>
+<text x="178" y="192" font-size="13" font-weight="bold" fill="#dc2626">−</text>
+<line x1="160" y1="150" x2="170" y2="150" stroke="#334155" stroke-width="2.5"/>
+<line x1="240" y1="162" x2="290" y2="162" stroke="#334155" stroke-width="2.5"/>
+<line x1="290" y1="162" x2="290" y2="240" stroke="#334155" stroke-width="2.5"/>
+<line x1="290" y1="240" x2="230" y2="240" stroke="#334155" stroke-width="2.5"/>
+<line x1="230" y1="240" x2="230" y2="174" stroke="#334155" stroke-width="2.5"/>
+<line x1="230" y1="174" x2="170" y2="174" stroke="#334155" stroke-width="2.5"/>
+<line x1="310" y1="162" x2="380" y2="162" stroke="#334155" stroke-width="2.5"/>
+<circle cx="330" cy="162" r="4" fill="#334155"/>
+<text x="336" y="158" font-size="11.5" font-weight="bold" fill="#2563eb">V_out</text>
+<circle r="5" fill="#f59e0b"><animateMotion dur="9s" begin="-0.3s" repeatCount="indefinite" path="M90,150 L160,150"/></circle>
+<circle r="5" fill="#f59e0b"><animateMotion dur="9s" begin="-0.9s" repeatCount="indefinite" path="M170,174 L230,174 L290,240 L290,162 L380,162"/></circle>
+<text x="60" y="290" font-size="11.5" font-weight="bold" fill="#b45309">补偿电容只能靠</text>
+<text x="60" y="310" font-size="11.5" font-weight="bold" fill="#b45309">恒定电流充电</text>
+<text x="60" y="338" font-size="11" fill="#475569">→ 电流恒定 ⇒ 斜率恒定</text>
+<text x="60" y="358" font-size="11" fill="#475569">→ 爬坡段是直线</text>
+<text x="60" y="386" font-size="11.5" font-weight="bold" fill="#dc2626">不是指数曲线！</text>
+<line x1="430" y1="400" x2="770" y2="400" stroke="#64748b" stroke-width="1.6"/>
+<line x1="430" y1="130" x2="430" y2="400" stroke="#64748b" stroke-width="1.6"/>
+<text x="770" y="436" text-anchor="end" font-size="11" fill="#475569">时间 →</text>
+<text x="424" y="169.2173913043478" text-anchor="end" font-size="10.5" fill="#475569">1V</text>
+<text x="424" y="404.0" text-anchor="end" font-size="10.5" fill="#475569">0</text>
+<text x="543" y="420" text-anchor="middle" font-size="10" fill="#475569">1µs</text>
+<text x="657" y="420" text-anchor="middle" font-size="10" fill="#475569">2µs</text>
+<text x="770" y="420" text-anchor="end" font-size="10" fill="#475569">3µs</text>
+<line x1="657" y1="165" x2="657" y2="400" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="4,3"/>
+<line x1="430" y1="165" x2="742" y2="165" stroke="#059669" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="745" y="169" font-size="10.5" font-weight="bold" fill="#059669">0.1% 误差带</text>
+<path d="M430,400 L432,398 L434,396 L436,394 L438,392 L439,390 L441,388 L443,386 L445,384 L447,382 L449,380 L451,378 L453,377 L455,375 L456,373 L458,371 L460,369 L462,367 L464,365 L466,363 L468,361 L470,359 L472,357 L473,355 L475,353 L477,351 L479,349 L481,347 L483,345 L485,343 L487,341 L489,339 L490,337 L492,335 L494,333 L496,332 L498,330 L500,328 L502,326 L504,324 L506,322 L507,320 L509,318 L511,316 L513,314 L515,312 L517,310 L519,308 L521,306 L523,304 L524,302 L526,300 L528,298 L530,296 L532,294 L534,292 L536,290 L538,288 L540,287 L541,285 L543,283 L545,281 L547,279 L549,277 L551,275 L553,273 L555,271 L557,269 L558,267 L560,265 L562,263 L564,261 L566,259 L568,257 L570,255 L572,253 L574,251 L575,249 L577,247 L579,245 L581,243 L583,242 L585,240 L587,238 L589,236 L591,234 L592,232 L594,230 L596,228 L598,226 L600,224 L602,222 L604,220 L606,218 L608,216 L609,214 L611,212 L613,210 L615,208 L617,206 L619,204 L621,202 L623,200 L625,198 L626,197 L628,195 L630,193 L632,191 L634,189 L636,187 L638,185 L640,183 L642,181 L643,179 L645,177 L647,175 L649,173 L651,171 L653,169 L655,167 L657,165" fill="none" stroke="#2563eb" stroke-width="3"/>
+<path d="M430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400 L430,400" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="5,4"/>
+<text x="649" y="318" text-anchor="end" font-size="10.5" fill="#64748b">若只有 GBW=1MHz 的小信号速度</text>
+<text x="659" y="294" font-size="11.5" font-weight="bold" fill="#dc2626">2µs 直线爬坡</text>
+<text x="447" y="372" font-size="11" fill="#475569">斜率 = 0.5V/µs（SR）</text>
+<text x="704" y="198" font-size="11" fill="#475569">指数收尾 τ≈0.16µs</text>
+<text x="583" y="254" text-anchor="middle" font-size="11" font-weight="bold" fill="#b45309">建立时间≈2.6µs</text>
+<circle r="6" fill="#2563eb" stroke="#ffffff" stroke-width="2">
+<animateMotion dur="9s" repeatCount="indefinite" path="M430,400 L432,398 L434,396 L436,394 L438,392 L439,390 L441,388 L443,386 L445,384 L447,382 L449,380 L451,378 L453,377 L455,375 L456,373 L458,371 L460,369 L462,367 L464,365 L466,363 L468,361 L470,359 L472,357 L473,355 L475,353 L477,351 L479,349 L481,347 L483,345 L485,343 L487,341 L489,339 L490,337 L492,335 L494,333 L496,332 L498,330 L500,328 L502,326 L504,324 L506,322 L507,320 L509,318 L511,316 L513,314 L515,312 L517,310 L519,308 L521,306 L523,304 L524,302 L526,300 L528,298 L530,296 L532,294 L534,292 L536,290 L538,288 L540,287 L541,285 L543,283 L545,281 L547,279 L549,277 L551,275 L553,273 L555,271 L557,269 L558,267 L560,265 L562,263 L564,261 L566,259 L568,257 L570,255 L572,253 L574,251 L575,249 L577,247 L579,245 L581,243 L583,242 L585,240 L587,238 L589,236 L591,234 L592,232 L594,230 L596,228 L598,226 L600,224 L602,222 L604,220 L606,218 L608,216 L609,214 L611,212 L613,210 L615,208 L617,206 L619,204 L621,202 L623,200 L625,198 L626,197 L628,195 L630,193 L632,191 L634,189 L636,187 L638,185 L640,183 L642,181 L643,179 L645,177 L647,175 L649,173 L651,171 L653,169 L655,167 L657,165" keyPoints="0;1" keyTimes="0;1"/></circle>
+<rect x="446" y="470" width="330" height="70" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="1.5"/>
+<text x="462" y="494" font-size="11.5" font-weight="bold" fill="#b45309">全功率带宽（同一个运放）</text>
+<text x="462" y="516" font-size="11" fill="#475569">f_max = SR / (2π·V_p) = 0.5 / (2π×0.5) ≈ 159kHz（1Vpp）</text>
+<text x="462" y="534" font-size="11" fill="#475569">10Vpp（V_p=5V）时只剩 ≈16kHz——GBW 1MHz 是个纸面数字</text>
+<text x="400" y="572" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#64748b" opacity="0">① 阶跃瞬间 V_+−V_−=1V：差分对彻底失衡，放大功能直接「宕机」<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="9s" repeatCount="indefinite"/></text><text x="400" y="572" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">② 补偿电容被恒定电流充电 → 输出以 SR=0.5V/µs 直线上升（2µs 爬 1V）<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="9s" repeatCount="indefinite"/></text><text x="400" y="572" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">③ 退出饱和后按 GBW 走指数收尾：τ≈0.16µs，可能带过冲振铃<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="9s" repeatCount="indefinite"/></text><text x="400" y="572" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">④ 大信号看 SR、小信号看 GBW：两条曲线谁慢，就决定建立时间<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="9s" repeatCount="indefinite"/></text></svg>
