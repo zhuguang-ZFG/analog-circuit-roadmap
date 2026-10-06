@@ -4908,7 +4908,7 @@ def make_resistor_model():
 <line x1="130" y1="176" x2="350" y2="176" stroke="#334155" stroke-width="2.5"/>
 <text x="228" y="152" font-size="11" font-weight="bold" fill="#7c3aed">C 0.2pF</text>
 <text x="70" y="212" font-size="11.5" font-weight="bold" fill="#7c3aed">并联 C 先夺权（f₁）</text>
-<text x="70" y="234" font-size="11" fill="#475569">f₁ = 1/(2πRC) = 0.8MHz —— 这是</text>
+<text x="70" y="234" font-size="11" fill="#475569">f₁ = 1/(2πRC) = 0.8GHz —— 这是</text>
 <text x="70" y="252" font-size="11" fill="#475569">「1kΩ 电阻拿来做高频负载」的真实上限</text>
 <text x="70" y="282" font-size="11.5" font-weight="bold" fill="#dc2626">串联 L 后夺权（f₂）</text>
 <text x="70" y="304" font-size="11" fill="#475569">f₂ = R/(2πL) = 15.9GHz —— 到那之后</text>
@@ -4926,7 +4926,7 @@ def make_resistor_model():
 <text x="{X0+6}" y="{py(1000)-8:.0f}" font-size="10.5" fill="#94a3b8">理想 1kΩ：一条直线</text>
 <path d="{real_d}" fill="none" stroke="#2563eb" stroke-width="3"/>
 <circle cx="{px(f1):.0f}" cy="{py(zmag(f1)):.0f}" r="5.5" fill="#7c3aed"/>
-<text x="{px(f1)-6:.0f}" y="{py(zmag(f1))+42:.0f}" text-anchor="end" font-size="10.5" font-weight="bold" fill="#7c3aed">f₁=0.8MHz 起下坠</text>
+<text x="{px(f1)-6:.0f}" y="{py(zmag(f1))+42:.0f}" text-anchor="end" font-size="10.5" font-weight="bold" fill="#7c3aed">f₁=0.8GHz 起下坠</text>
 <circle cx="{px(1e9):.0f}" cy="{py(zmag(1e9)):.0f}" r="5.5" fill="#dc2626"/>
 <text x="{px(1e9)-8:.0f}" y="{py(zmag(1e9))+16:.0f}" text-anchor="end" font-size="10.5" font-weight="bold" fill="#dc2626">1GHz：只剩 {zmag(1e9):.0f}Ω</text>
 <circle r="5" fill="#2563eb"><animateMotion dur="{DR}s" repeatCount="indefinite" path="{real_d[9:]}" keyPoints="0;1" keyTimes="0;1"/></circle>
@@ -4939,7 +4939,7 @@ def make_resistor_model():
 <animate attributeName="r" values="5;12;5" dur="1.9s" begin="-0.9s" repeatCount="indefinite"/></circle>
 {pulse(60, 60, 300, 124, '#94a3b8', 2.0, 10)}
 '''
-    svg += caption("① 低频：R 说了算——理想电阻的直线在 0.8MHz 之前都成立", "#94a3b8", DR,
+    svg += caption("① 低频：R 说了算——理想电阻的直线在 0.8GHz 之前都成立", "#94a3b8", DR,
                    "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=560)
     svg += caption("② 中频：并联的 0.2pF 开始分流，曲线按 −20dB/dec 下坠", "#7c3aed", DR,
                    "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=560)
