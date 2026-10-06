@@ -3947,16 +3947,7 @@ def make_noise_budget():
     X0, X1, Y0, Y1 = 400, 764, 130, 400
     fx = lambda f: X0 + np.log10(f/10)/5.0*(X1-X0)
     def ny(db):
-        return Y0 + (-db)/60*(Y1-Y0)
-    white_db = 20*np.log10(4.1e-6/np.sqrt(1000))
-    def spec(f, corner, floor_db, shot_db):
-        fl = 1/np.sqrt(f)
-        ff = 1/np.sqrt(corner)
-        flicker = floor_db + 20*np.log10(np.sqrt(corner/f))
-        shot = shot_db + 20*np.log10(np.sqrt(1000/f))
-        w = floor_db + 20*np.log10(np.sqrt(1000/f))
-        tot = 10*np.log10(10**(fl/10)+10**(w/10)+10**(shot/10))
-        return tot
+        return Y0 + (25-db)/85*(Y1-Y0)
     fig_fs = np.logspace(1, 6, 200)
     svg = svg_open('噪声：消灭不了的三种税，和唯一能谈判的顺序', h=620)
     svg += f'''
@@ -3980,33 +3971,39 @@ def make_noise_budget():
 <line x1="{X0}" y1="{Y1}" x2="{X1}" y2="{Y1}" stroke="#64748b" stroke-width="1.6"/>
 <line x1="{X0}" y1="{Y0}" x2="{X0}" y2="{Y1}" stroke="#64748b" stroke-width="1.6"/>
 <text x="{X1}" y="{Y1+38}" text-anchor="end" font-size="11" fill="#475569">频率 →</text>
-<text x="{X0-6}" y="{Y0+12}" text-anchor="end" font-size="10.5" fill="#475569">0dB</text>
-<text x="{X0-6}" y="{Y0+30}" text-anchor="end" font-size="10.5" fill="#475569">−20</text>
-<text x="{X0-6}" y="{Y0+50}" text-anchor="end" font-size="10.5" fill="#475569">−40</text>
+<text x="{X0-6}" y="{ny(0)+4:.0f}" text-anchor="end" font-size="10.5" fill="#475569">0dB</text>
+<text x="{X0-6}" y="{ny(-20)+4:.0f}" text-anchor="end" font-size="10.5" fill="#475569">−20</text>
+<text x="{X0-6}" y="{ny(-40)+4:.0f}" text-anchor="end" font-size="10.5" fill="#475569">−40</text>
 <text x="{fx(100):.0f}" y="{Y1+22}" text-anchor="middle" font-size="10" fill="#475569">100Hz</text>
 <text x="{fx(1e4):.0f}" y="{Y1+22}" text-anchor="middle" font-size="10" fill="#475569">10kHz</text>
 <text x="{fx(1e6):.0f}" y="{Y1+22}" text-anchor="middle" font-size="10" fill="#475569">1MHz</text>
 <text x="580" y="{Y0-8}" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#334155">噪声谱：1/f 拐角决定「嘶」的低频端</text>
 '''
     # 三条谱线（归一化到 0dB@10Hz 的相对形状，仅示范趋势）
-    def rel(f, corner, floor_db):
-        flicker = 20*np.log10(np.sqrt(corner/f))
-        white = floor_db + 20*np.log10(np.sqrt(100.0/f))
-        return 10*np.log10(10**(flicker/10)+10**(white/10))
+    def rel(f, corner, floor_db=0.0):
+        # 画的是噪声密度 ASD(V/√Hz) 对 log f：
+        #   1/f 噪声 → PSD ∝ 1/f → ASD ∝ 1/f  → −20dB/dec
+        #   白噪声   → ASD 为常数（平坦地板）→ 0dB/dec
+        flicker = 20*np.log10(corner/f)          # 1/f，−20dB/dec
+        white = floor_db                          # 白噪声：平的
+        return 10*np.log10(10**(flicker/10) + 10**(white/10))
     for corner, color, name in ((100.0, '#059669', 'BJT'), (1000.0, '#dc2626', 'MOSFET')):
         pts = []
         for f in fig_fs:
-            db = min(0, rel(f, corner, 6.0))
+            db = rel(f, corner, 0.0)     # 轴已留 +25dB 余量，不再钳到 0
             pts.append(f"{fx(f):.0f},{ny(db):.0f}")
         svg += (f'<path d="M' + " L".join(pts) + f'" fill="none" stroke="{color}" stroke-width="2.4"/>')
-    fpts = [f"{fx(f):.0f},{ny(min(0,20*np.log10(np.sqrt(100.0/f)))):.0f}" for f in fig_fs]
-    svg += f'<path d="M' + " L".join(fpts) + '" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6,4"/>'
+    svg += (f'<line x1="{fx(1e4):.0f}" y1="{ny(0):.0f}" x2="{fx(1e6):.0f}" y2="{ny(0):.0f}" '
+            f'stroke="#64748b" stroke-width="2" stroke-dasharray="6,4"/>')
     svg += f'''
-<text x="{fx(60):.0f}" y="{ny(0)+18:.0f}" font-size="10.5" font-weight="bold" fill="#059669">BJT：1/f 拐角在百 Hz</text>
-<text x="{fx(3000):.0f}" y="{ny(0)+34:.0f}" font-size="10.5" font-weight="bold" fill="#dc2626">MOSFET：拐角晚一个量级，嘶声更重</text>
-<text x="{fx(2e4):.0f}" y="{ny(20*np.log10(np.sqrt(100.0/2e4)))-8:.0f}" font-size="10.5" fill="#475569">白噪声段（∝1/√f）</text>
+<circle cx="{fx(100):.0f}" cy="{ny(3):.0f}" r="5" fill="#059669"/>
+<circle cx="{fx(1000):.0f}" cy="{ny(3):.0f}" r="5" fill="#dc2626"/>
+<text x="{fx(100):.0f}" y="{ny(3)-16:.0f}" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#059669">BJT 拐角 100Hz</text>
+<text x="{fx(1000):.0f}" y="{ny(3)+22:.0f}" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#dc2626">MOSFET 拐角 1kHz</text>
+<text x="{fx(3e4):.0f}" y="{ny(0)-8:.0f}" font-size="10.5" fill="#475569">白噪声地板（平坦）</text>
+<text x="{fx(12):.0f}" y="{ny(22)+16:.0f}" font-size="10.5" fill="#475569">1/f 段：−20dB/dec</text>
 <circle r="5" fill="#dc2626">
-<animateMotion dur="{DN}s" repeatCount="indefinite" path="M{fx(10):.0f},{ny(0):.0f} L{fx(1e6):.0f},{ny(-30):.0f}" keyPoints="0;1" keyTimes="0;1"/></circle>
+<animateMotion dur="{DN}s" repeatCount="indefinite" path="M{fx(10):.0f},{ny(20):.0f} L{fx(1e6):.0f},{ny(-40):.0f}" keyPoints="0;1" keyTimes="0;1"/></circle>
 <text x="400" y="474" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#b45309">降噪的正确顺序：先压带宽 → 再降源阻 → 最后才换贵管子</text>
 <text x="400" y="496" text-anchor="middle" font-size="11" fill="#475569">后级的噪声会被前级增益「除回去」：整机噪声几乎只看第一级（Friis）</text>
 <text x="400" y="518" text-anchor="middle" font-size="11" fill="#475569">方向反了 = 先买低噪声运放、不管带宽源阻 → 钱花两倍，噪声只降一半</text>
