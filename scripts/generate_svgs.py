@@ -3686,7 +3686,7 @@ def make_cap_parasitics():
 <animate attributeName="opacity" values="0.95;0.15;0.95" dur="1.9s" repeatCount="indefinite"/></circle>
 
 '''
-    svg += caption("① 低频：容抗 1/2πfC 主导——10µF 在 100Hz 只有 1.6Ω，但那是它最威风的时候", "#7c3aed", DC,
+    svg += caption("① 低频：容抗 1/2πfC 主导——10µF 在 100Hz 还有 159Ω，随频率一路走低", "#7c3aed", DC,
                    "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=548)
     svg += caption("② 中频：ESR 兜底成谷底——MLCC 谷底 0.3Ω@22MHz，电解 1Ω@356kHz", "#b45309", DC,
                    "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=548)
