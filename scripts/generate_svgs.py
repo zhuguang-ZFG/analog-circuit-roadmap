@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-generate_svgs.py — 一键再生成《通往模拟电路之路》全部 55 张 SVG SMIL 动画
+generate_svgs.py — 一键再生成《通往模拟电路之路》全部 57 张 SVG SMIL 动画
 用法:  python generate_svgs.py            # 输出到 ../assets/svg/
 风格:  参考 BMS-Z 项目 —— 浅色底 + SMIL 节拍字幕 + 深色模式自适应 + 拟人化讲解
 所有电路参数经过自洽核算（datasheet 级），详见各函数注释。
@@ -2025,6 +2025,13 @@ def make_bandgap():
 <circle cx="430" cy="190" r="5.5" fill="#fff" stroke="#dc2626" stroke-width="3"><animateMotion dur="{DBG}s" repeatCount="indefinite" path="{vbe_d}"/></circle>
 <circle cx="430" cy="262" r="5.5" fill="#fff" stroke="#059669" stroke-width="3"><animateMotion dur="{DBG}s" repeatCount="indefinite" path="{dvbe_d}"/></circle>
 <circle cx="430" cy="226" r="5.5" fill="#fff" stroke="#2563eb" stroke-width="3"><animateMotion dur="{DBG}s" repeatCount="indefinite" path="M430,226 H750"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DBG}s" begin="-0.5s" repeatCount="indefinite" path="M110,300 L110,340 L150,340"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DBG}s" begin="-1.2s" repeatCount="indefinite" path="M150,360 L200,360 L200,400"/></circle>
+<circle cx="750" cy="226" r="5" fill="none" stroke="#059669" stroke-width="2.4">
+<animate attributeName="r" values="5;13;5" dur="1.8s" repeatCount="indefinite"/>
+<animate attributeName="opacity" values="0.95;0.15;0.95" dur="1.8s" repeatCount="indefinite"/></circle>
+<circle cx="590" cy="226" r="6" fill="#2563eb">
+<animate attributeName="r" values="6;10;6" dur="2.2s" repeatCount="indefinite"/></circle>
 '''
     svg += caption("① V_BE 天生负温漂（−2mV/°C）——温度一升它就掉（PN 结特性，见 2.2）", "#dc2626", DBG,
                    "0;1;1;0;0", "0;0.03;0.22;0.28;1", y=430)
@@ -3703,6 +3710,14 @@ def make_miller_plateau():
 <text x="{tx(560):.0f}" y="522" text-anchor="middle" font-size="10.5" fill="#475569">560ns</text>
 <text x="{TX1}" y="522" text-anchor="end" font-size="10.5" fill="#475569">800ns</text>
 <text x="430" y="548" text-anchor="middle" font-size="11" font-weight="bold" fill="#7c3aed">平台时长 = Q_gd ÷ 驱动电流 = 1.6nC ÷ 10mA = 160ns；重叠 410ns → P_sw≈2W（§4.6 按 700ns 保守估 3.5W）</text>
+<circle cx="{tx(400):.0f}" cy="152" r="5" fill="none" stroke="#7c3aed" stroke-width="2.4">
+<animate attributeName="r" values="5;12;5" dur="1.6s" repeatCount="indefinite"/>
+<animate attributeName="opacity" values="0.95;0.2;0.95" dur="1.6s" repeatCount="indefinite"/></circle>
+<circle cx="{tx(400):.0f}" cy="216" r="5" fill="none" stroke="#dc2626" stroke-width="2.4">
+<animate attributeName="r" values="5;12;5" dur="1.6s" begin="-0.8s" repeatCount="indefinite"/>
+<animate attributeName="opacity" values="0.95;0.2;0.95" dur="1.6s" begin="-0.8s" repeatCount="indefinite"/></circle>
+<circle r="5" fill="#b45309"><animateMotion dur="{DS}s" begin="-0.7s" repeatCount="indefinite" path="M{tx(150):.0f},440 L{tx(560):.0f},440"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="{DS}s" begin="-1.4s" repeatCount="indefinite" path="M{tx(560):.0f},356 L{tx(800):.0f},356"/></circle>
 '''
     svg += caption("① 前 400ns：栅极电流先填 C_GS，I_D 起来时 V_DS 还满着——最疼的一段", "#dc2626", DS,
                    "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=584)
@@ -3784,6 +3799,15 @@ def make_opamp_slew():
 <text x="462" y="494" font-size="11.5" font-weight="bold" fill="#b45309">全功率带宽（同一个运放）</text>
 <text x="462" y="516" font-size="11" fill="#475569">f_max = SR / (2π·V_p) = 0.5 / (2π×0.5) ≈ 159kHz（1Vpp）</text>
 <text x="462" y="534" font-size="11" fill="#475569">10Vpp（V_p=5V）时只剩 ≈16kHz——GBW 1MHz 是个纸面数字</text>
+<circle r="5" fill="#f59e0b"><animateMotion dur="{DW}s" begin="-0.4s" repeatCount="indefinite" path="M90,150 L160,150"/></circle>
+<circle r="5" fill="#64748b"><animateMotion dur="{DW}s" begin="-1.1s" repeatCount="indefinite" path="{slew_path(0.0, 0.16)}" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle cx="{px(2.0):.0f}" cy="{py(1.0):.0f}" r="5" fill="none" stroke="#dc2626" stroke-width="2.4">
+<animate attributeName="r" values="5;13;5" dur="1.8s" repeatCount="indefinite"/>
+<animate attributeName="opacity" values="0.95;0.15;0.95" dur="1.8s" repeatCount="indefinite"/></circle>
+<circle cx="{px(0.0):.0f}" cy="{py(1.0):.0f}" r="5" fill="none" stroke="#2563eb" stroke-width="2.4">
+<animate attributeName="r" values="5;13;5" dur="1.8s" begin="-0.9s" repeatCount="indefinite"/>
+<animate attributeName="opacity" values="0.95;0.15;0.95" dur="1.8s" begin="-0.9s" repeatCount="indefinite"/></circle>
+{pulse(444, 466, 336, 78, '#b45309', 2.0, 10)}
 '''
     svg += caption("① 阶跃瞬间 V_+−V_−=1V：差分对彻底失衡，放大功能直接「宕机」", "#64748b", DW,
                    "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=572)
@@ -4203,6 +4227,133 @@ def make_transfer_gate():
     save('transfer-gate.svg', svg + '</svg>')
 
 
+# ======================= 图 56：三个基本拓扑对比（第 12 章 12.2） =======================
+def make_three_topologies():
+    DT = 11
+    def panel(x, title, color, formula, rows, rin, cmrr, phase):
+        p = f'<rect x="{x}" y="60" width="238" height="300" rx="10" fill="#f8fafc" stroke="{color}" stroke-width="1.8"/>'
+        p += f'<text x="{x+119}" y="86" text-anchor="middle" font-size="13.5" font-weight="bold" fill="{color}">{title}</text>'
+        p += f'<text x="{x+119}" y="110" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e293b">{formula}</text>'
+        p += f'<line x1="{x+14}" y1="122" x2="{x+224}" y2="122" stroke="#cbd5e1" stroke-width="1"/>'
+        y = 148
+        for k, v in rows:
+            p += f'<text x="{x+18}" y="{y}" font-size="11.5" fill="#475569">{k}</text>'
+            p += f'<text x="{x+220}" y="{y}" text-anchor="end" font-size="11.5" font-weight="bold" fill="#334155">{v}</text>'
+            y += 24
+        p += f'<line x1="{x+14}" y1="{y-6}" x2="{x+224}" y2="{y-6}" stroke="#e2e8f0" stroke-width="1"/>'
+        p += f'<text x="{x+18}" y="{y+16}" font-size="11" fill="#64748b">输入阻抗</text>'
+        p += f'<text x="{x+220}" y="{y+16}" text-anchor="end" font-size="11" font-weight="bold" fill="{color}">{rin}</text>'
+        p += f'<text x="{x+18}" y="{y+36}" font-size="11" fill="#64748b">共模抑制</text>'
+        p += f'<text x="{x+220}" y="{y+36}" text-anchor="end" font-size="11" font-weight="bold" fill="{color}">{cmrr}</text>'
+        p += f'<text x="{x+18}" y="{y+56}" font-size="11" fill="#64748b">输出相位</text>'
+        p += f'<text x="{x+220}" y="{y+56}" text-anchor="end" font-size="11" font-weight="bold" fill="{color}">{phase}</text>'
+        return p
+    svg = svg_open('三种基本拓扑：同一只运放，三条推演路径', h=620)
+    svg += f'''
+<text x="400" y="54" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#64748b">全部从「虚短 + 虚断」推出来——增益都由外接电阻决定，与运放本身无关</text>
+{panel(30, '反相放大', '#2563eb', 'A_v = −R_f / R_in = −10', [('R_f', '100k'), ('R_in', '10k')], '≈ R_in = 10k（低）', '无（+端接地）', '反相 180°')}
+{panel(281, '同相放大', '#059669', 'A_v = 1 + R_f / R_1 = 10', [('R_f', '90k'), ('R_1', '10k')], '≈ ∞（进 +端）', '无（+端进信号）', '同相 0°')}
+{panel(532, '差分放大', '#7c3aed', 'A_v = R_f / R_1 = 10', [('R_f', '100k'), ('R_1', '10k')], '≈ 2×R_1 = 20k', '有，但需四电阻配对', '差模同相')}
+<line x1="40" y1="400" x2="760" y2="400" stroke="#cbd5e1" stroke-width="1"/>
+<text x="400" y="428" text-anchor="middle" font-size="12" font-weight="bold" fill="#b45309">同一只运放、同一组电阻比例 → 同一份 10 倍增益，差别只在「信号从哪个端进去、哪个端接地」</text>
+<text x="400" y="452" text-anchor="middle" font-size="11.5" fill="#475569">反相：虚地把输入阻抗钉在 R_in；同相：信号直接进 +端，输入阻抗接近无穷但共模就是信号本身</text>
+<text x="400" y="476" text-anchor="middle" font-size="11.5" fill="#475569">差分：唯一能放大「两个信号之差」的拓扑，代价是四只电阻必须配对，否则共模抑制崩掉</text>
+<circle r="5" fill="#2563eb"><animateMotion dur="{DT}s" begin="-0.2s" repeatCount="indefinite" path="M150,200 L150,140"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="{DT}s" begin="-0.9s" repeatCount="indefinite" path="M401,200 L401,140"/></circle>
+<circle r="5" fill="#7c3aed"><animateMotion dur="{DT}s" begin="-1.6s" repeatCount="indefinite" path="M652,200 L652,140"/></circle>
+{pulse(38, 128, 222, 30, '#2563eb', 2.0, 8)}
+{pulse(289, 128, 222, 30, '#059669', 2.0, 8)}
+{pulse(540, 128, 222, 30, '#7c3aed', 2.0, 8)}
+<circle cx="149" cy="356" r="5" fill="none" stroke="#2563eb" stroke-width="2.2">
+<animate attributeName="r" values="5;11;5" dur="1.7s" repeatCount="indefinite"/></circle>
+<circle cx="400" cy="356" r="5" fill="none" stroke="#059669" stroke-width="2.2">
+<animate attributeName="r" values="5;11;5" dur="1.7s" begin="-0.6s" repeatCount="indefinite"/></circle>
+<circle cx="651" cy="356" r="5" fill="none" stroke="#7c3aed" stroke-width="2.2">
+<animate attributeName="r" values="5;11;5" dur="1.7s" begin="-1.2s" repeatCount="indefinite"/></circle>
+'''
+    svg += caption("① 反相：−端是「虚地」（0V），输入电流全部流过 R_in 与 R_f → 增益 = −R_f/R_in", "#2563eb", DT,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=516)
+    svg += caption("② 同相：信号进 +端，−端靠反馈「追平」它 → 增益 = 1 + R_f/R_1，输入阻抗天然极高", "#059669", DT,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=516)
+    svg += caption("③ 差分：两个输入各走一条分压，输出只认「差」——共模被两边一起减掉", "#7c3aed", DT,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=516)
+    svg += caption("④ 选型口诀：要控阻抗选反相、要高阻缓冲选同相、要抗共模选差分（但电阻必须配对）", "#b45309", DT,
+                   "0;0;1;1", "0;0.85;0.9;1", y=516)
+    svg += note_box("三种拓扑的增益公式都能从虚短虚断一步推出——真正的差别是输入阻抗、共模范围和电阻配对的代价", 560, DT,
+                    "0;0.9;0.94;1", w=760)
+    save('three-topologies.svg', svg + '</svg>')
+
+
+# ======================= 图 57：三态与高阻（第 5 章 5.4） =======================
+def make_tristate_bus():
+    DZ = 11
+    svg = svg_open('三态与高阻：总线上为什么必须有人「闭嘴」', h=620)
+    svg += f'''
+<text x="200" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">两个驱动器挂在同一根总线上</text>
+<line x1="60" y1="96" x2="60" y2="130" stroke="#334155" stroke-width="2.5"/>
+<text x="46" y="92" font-size="11.5" font-weight="bold" fill="#b45309">+5V</text>
+<rect x="48" y="130" width="24" height="34" rx="3" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<text x="86" y="152" font-size="11" font-weight="bold" fill="#b45309">10k 上拉</text>
+<line x1="60" y1="164" x2="60" y2="196" stroke="#334155" stroke-width="2.5"/>
+<line x1="60" y1="196" x2="330" y2="196" stroke="#334155" stroke-width="2.5"/>
+<rect x="90" y="230" width="80" height="52" rx="6" fill="#f8fafc" stroke="#2563eb" stroke-width="2.5"/>
+<text x="130" y="252" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">驱动器 A</text>
+<text x="130" y="272" text-anchor="middle" font-size="10.5" fill="#475569">EN_A</text>
+<line x1="130" y1="230" x2="130" y2="196" stroke="#2563eb" stroke-width="2.5"/>
+<rect x="250" y="230" width="80" height="52" rx="6" fill="#f8fafc" stroke="#dc2626" stroke-width="2.5"/>
+<text x="290" y="252" text-anchor="middle" font-size="12" font-weight="bold" fill="#dc2626">驱动器 B</text>
+<text x="290" y="272" text-anchor="middle" font-size="10.5" fill="#475569">EN_B</text>
+<line x1="290" y1="230" x2="290" y2="196" stroke="#dc2626" stroke-width="2.5"/>
+<circle cx="210" cy="196" r="5" fill="#334155"/>
+<line x1="210" y1="196" x2="210" y2="150" stroke="#334155" stroke-width="2.5"/>
+<line x1="196" y1="150" x2="224" y2="150" stroke="#7c3aed" stroke-width="3.5"/>
+<line x1="196" y1="162" x2="224" y2="162" stroke="#7c3aed" stroke-width="3.5"/>
+<line x1="210" y1="162" x2="210" y2="130" stroke="#334155" stroke-width="2.5"/>
+{gnd_sym(210, 130)}
+<text x="228" y="158" font-size="11" font-weight="bold" fill="#7c3aed">总线电容 20pF</text>
+<text x="330" y="190" font-size="11" font-weight="bold" fill="#334155">总线</text>
+<circle cx="130" cy="196" r="5" fill="#2563eb">
+<animate attributeName="opacity" values="1;0.15;1" dur="1.4s" repeatCount="indefinite"/></circle>
+<circle cx="290" cy="196" r="5" fill="#dc2626">
+<animate attributeName="opacity" values="0.15;1;0.15" dur="1.4s" repeatCount="indefinite"/></circle>
+<circle r="5" fill="#2563eb"><animateMotion dur="{DZ}s" begin="-0.3s" repeatCount="indefinite" path="M130,228 L130,198"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="{DZ}s" begin="-0.9s" repeatCount="indefinite" path="M290,228 L290,198"/></circle>
+<circle r="5" fill="#7c3aed"><animateMotion dur="{DZ}s" begin="-1.5s" repeatCount="indefinite" path="M212,198 L212,152"/></circle>
+<line x1="420" y1="70" x2="420" y2="492" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="6,5"/>
+<text x="610" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">三种状态：谁在说话，谁必须闭嘴</text>
+'''
+    rows = [
+        ('① A 驱动、B 高阻', '总线 = A 的电平', '正常：一人说话，其他人闭嘴', '#2563eb'),
+        ('② B 驱动、A 高阻', '总线 = B 的电平', '正常：换人说话，电平随之改变', '#dc2626'),
+        ('③ 两个都高阻', '总线悬空', '只靠 10k 上拉+漏电漂移，τ=10k×20pF=0.2µs', '#7c3aed'),
+        ('④ 两个同时驱动', '电平打架', '直通电流！毫安级到安培级，发热甚至烧管', '#b91c1c'),
+    ]
+    y = 84
+    for t, mid, note, col in rows:
+        svg += f'<rect x="446" y="{y}" width="330" height="74" rx="8" fill="#f8fafc" stroke="{col}" stroke-width="1.8"/>'
+        svg += f'<text x="462" y="{y+26}" font-size="12.5" font-weight="bold" fill="{col}">{t}</text>'
+        svg += f'<text x="462" y="{y+48}" font-size="11.5" font-weight="bold" fill="#1e293b">{mid}</text>'
+        svg += f'<text x="462" y="{y+66}" font-size="11" fill="#475569">{note}</text>'
+        y += 88
+    svg += f'''
+<text x="400" y="510" text-anchor="middle" font-size="12" font-weight="bold" fill="#b45309">高阻态不是「输出低」，是「输出端几乎从电路里消失」——它让总线归别人管</text>
+<text x="400" y="534" text-anchor="middle" font-size="11.5" fill="#475569">代价：悬空的总线电平不定（要靠上拉/下拉定住），且悬空输入会让下游 CMOS 输入级两头导通、白耗电</text>
+{pulse(446, 336, 330, 74, '#b91c1c', 1.8, 10)}
+<circle cx="646" cy="373" r="5" fill="none" stroke="#b91c1c" stroke-width="2.4">
+<animate attributeName="r" values="5;13;5" dur="1.6s" repeatCount="indefinite"/>
+<animate attributeName="opacity" values="0.95;0.2;0.95" dur="1.6s" repeatCount="indefinite"/></circle>
+'''
+    svg += caption("① 同一时刻只能有一个驱动器在说话——这就是「三态」存在的全部理由", "#2563eb", DZ,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=576)
+    svg += caption("② 关掉的那一方输出高阻：既不拉高也不拉低，等于从总线上「隐身」", "#059669", DZ,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=576)
+    svg += caption("③ 全部高阻：总线悬空 → 靠上拉定电平；没上拉就是天线，电平不定还白耗电", "#7c3aed", DZ,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=576)
+    svg += caption("④ 两个同时驱动且电平相反 = 直通电流——这是硬件上最容易烧片的错误之一", "#b91c1c", DZ,
+                   "0;0;1;1", "0;0.85;0.9;1", y=576)
+    save('tristate-bus.svg', svg + '</svg>')
+
+
 if __name__ == '__main__':
     make_rc_charge()
     make_bridge_rectifier()
@@ -4259,4 +4410,6 @@ if __name__ == '__main__':
     make_noise_budget()
     make_probe_loading()
     make_transfer_gate()
-    print('all 55 SVGs regenerated into', os.path.abspath(OUT))
+    make_three_topologies()
+    make_tristate_bus()
+    print('all 57 SVGs regenerated into', os.path.abspath(OUT))

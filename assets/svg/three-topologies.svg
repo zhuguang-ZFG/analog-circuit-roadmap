@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="620" viewBox="0 0 800 620">
+<title>三种基本拓扑：同一只运放，三条推演路径</title>
+<rect width="800" height="620" fill="#f8fafc"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+@media (prefers-color-scheme: dark){
+rect[fill="#f8fafc"]{fill:#0f172a}
+[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
+[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
+[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
+[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
+[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
+[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
+[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
+[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
+[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
+[fill="#cbd5e1"]{fill:#334155}[stroke="#cbd5e1"]{stroke:#475569}
+[fill="#ffffff"]{fill:#0f172a}[fill="#94a3b8"]{fill:#64748b}[stroke="#94a3b8"]{stroke:#64748b}
+[fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
+}
+</style>
+<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">三种基本拓扑：同一只运放，三条推演路径</text>
+
+<text x="400" y="54" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#64748b">全部从「虚短 + 虚断」推出来——增益都由外接电阻决定，与运放本身无关</text>
+<rect x="30" y="60" width="238" height="300" rx="10" fill="#f8fafc" stroke="#2563eb" stroke-width="1.8"/><text x="149" y="86" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#2563eb">反相放大</text><text x="149" y="110" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e293b">A_v = −R_f / R_in = −10</text><line x1="44" y1="122" x2="254" y2="122" stroke="#cbd5e1" stroke-width="1"/><text x="48" y="148" font-size="11.5" fill="#475569">R_f</text><text x="250" y="148" text-anchor="end" font-size="11.5" font-weight="bold" fill="#334155">100k</text><text x="48" y="172" font-size="11.5" fill="#475569">R_in</text><text x="250" y="172" text-anchor="end" font-size="11.5" font-weight="bold" fill="#334155">10k</text><line x1="44" y1="190" x2="254" y2="190" stroke="#e2e8f0" stroke-width="1"/><text x="48" y="212" font-size="11" fill="#64748b">输入阻抗</text><text x="250" y="212" text-anchor="end" font-size="11" font-weight="bold" fill="#2563eb">≈ R_in = 10k（低）</text><text x="48" y="232" font-size="11" fill="#64748b">共模抑制</text><text x="250" y="232" text-anchor="end" font-size="11" font-weight="bold" fill="#2563eb">无（+端接地）</text><text x="48" y="252" font-size="11" fill="#64748b">输出相位</text><text x="250" y="252" text-anchor="end" font-size="11" font-weight="bold" fill="#2563eb">反相 180°</text>
+<rect x="281" y="60" width="238" height="300" rx="10" fill="#f8fafc" stroke="#059669" stroke-width="1.8"/><text x="400" y="86" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">同相放大</text><text x="400" y="110" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e293b">A_v = 1 + R_f / R_1 = 10</text><line x1="295" y1="122" x2="505" y2="122" stroke="#cbd5e1" stroke-width="1"/><text x="299" y="148" font-size="11.5" fill="#475569">R_f</text><text x="501" y="148" text-anchor="end" font-size="11.5" font-weight="bold" fill="#334155">90k</text><text x="299" y="172" font-size="11.5" fill="#475569">R_1</text><text x="501" y="172" text-anchor="end" font-size="11.5" font-weight="bold" fill="#334155">10k</text><line x1="295" y1="190" x2="505" y2="190" stroke="#e2e8f0" stroke-width="1"/><text x="299" y="212" font-size="11" fill="#64748b">输入阻抗</text><text x="501" y="212" text-anchor="end" font-size="11" font-weight="bold" fill="#059669">≈ ∞（进 +端）</text><text x="299" y="232" font-size="11" fill="#64748b">共模抑制</text><text x="501" y="232" text-anchor="end" font-size="11" font-weight="bold" fill="#059669">无（+端进信号）</text><text x="299" y="252" font-size="11" fill="#64748b">输出相位</text><text x="501" y="252" text-anchor="end" font-size="11" font-weight="bold" fill="#059669">同相 0°</text>
+<rect x="532" y="60" width="238" height="300" rx="10" fill="#f8fafc" stroke="#7c3aed" stroke-width="1.8"/><text x="651" y="86" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#7c3aed">差分放大</text><text x="651" y="110" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e293b">A_v = R_f / R_1 = 10</text><line x1="546" y1="122" x2="756" y2="122" stroke="#cbd5e1" stroke-width="1"/><text x="550" y="148" font-size="11.5" fill="#475569">R_f</text><text x="752" y="148" text-anchor="end" font-size="11.5" font-weight="bold" fill="#334155">100k</text><text x="550" y="172" font-size="11.5" fill="#475569">R_1</text><text x="752" y="172" text-anchor="end" font-size="11.5" font-weight="bold" fill="#334155">10k</text><line x1="546" y1="190" x2="756" y2="190" stroke="#e2e8f0" stroke-width="1"/><text x="550" y="212" font-size="11" fill="#64748b">输入阻抗</text><text x="752" y="212" text-anchor="end" font-size="11" font-weight="bold" fill="#7c3aed">≈ 2×R_1 = 20k</text><text x="550" y="232" font-size="11" fill="#64748b">共模抑制</text><text x="752" y="232" text-anchor="end" font-size="11" font-weight="bold" fill="#7c3aed">有，但需四电阻配对</text><text x="550" y="252" font-size="11" fill="#64748b">输出相位</text><text x="752" y="252" text-anchor="end" font-size="11" font-weight="bold" fill="#7c3aed">差模同相</text>
+<line x1="40" y1="400" x2="760" y2="400" stroke="#cbd5e1" stroke-width="1"/>
+<text x="400" y="428" text-anchor="middle" font-size="12" font-weight="bold" fill="#b45309">同一只运放、同一组电阻比例 → 同一份 10 倍增益，差别只在「信号从哪个端进去、哪个端接地」</text>
+<text x="400" y="452" text-anchor="middle" font-size="11.5" fill="#475569">反相：虚地把输入阻抗钉在 R_in；同相：信号直接进 +端，输入阻抗接近无穷但共模就是信号本身</text>
+<text x="400" y="476" text-anchor="middle" font-size="11.5" fill="#475569">差分：唯一能放大「两个信号之差」的拓扑，代价是四只电阻必须配对，否则共模抑制崩掉</text>
+<circle r="5" fill="#2563eb"><animateMotion dur="11s" begin="-0.2s" repeatCount="indefinite" path="M150,200 L150,140"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="11s" begin="-0.9s" repeatCount="indefinite" path="M401,200 L401,140"/></circle>
+<circle r="5" fill="#7c3aed"><animateMotion dur="11s" begin="-1.6s" repeatCount="indefinite" path="M652,200 L652,140"/></circle>
+<rect x="38" y="128" width="222" height="30" rx="8" fill="none" stroke="#2563eb" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.0s" repeatCount="indefinite"/></rect>
+<rect x="289" y="128" width="222" height="30" rx="8" fill="none" stroke="#059669" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.0s" repeatCount="indefinite"/></rect>
+<rect x="540" y="128" width="222" height="30" rx="8" fill="none" stroke="#7c3aed" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.0s" repeatCount="indefinite"/></rect>
+<circle cx="149" cy="356" r="5" fill="none" stroke="#2563eb" stroke-width="2.2">
+<animate attributeName="r" values="5;11;5" dur="1.7s" repeatCount="indefinite"/></circle>
+<circle cx="400" cy="356" r="5" fill="none" stroke="#059669" stroke-width="2.2">
+<animate attributeName="r" values="5;11;5" dur="1.7s" begin="-0.6s" repeatCount="indefinite"/></circle>
+<circle cx="651" cy="356" r="5" fill="none" stroke="#7c3aed" stroke-width="2.2">
+<animate attributeName="r" values="5;11;5" dur="1.7s" begin="-1.2s" repeatCount="indefinite"/></circle>
+<text x="400" y="516" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">① 反相：−端是「虚地」（0V），输入电流全部流过 R_in 与 R_f → 增益 = −R_f/R_in<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="516" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">② 同相：信号进 +端，−端靠反馈「追平」它 → 增益 = 1 + R_f/R_1，输入阻抗天然极高<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="516" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">③ 差分：两个输入各走一条分压，输出只认「差」——共模被两边一起减掉<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="516" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">④ 选型口诀：要控阻抗选反相、要高阻缓冲选同相、要抗共模选差分（但电阻必须配对）<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/></text><g opacity="0">
+<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.9;0.94;1" dur="11s" repeatCount="indefinite"/>
+<rect x="20" y="536" width="760" height="34" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+<text x="400" y="558" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">三种拓扑的增益公式都能从虚短虚断一步推出——真正的差别是输入阻抗、共模范围和电阻配对的代价</text>
+</g></svg>

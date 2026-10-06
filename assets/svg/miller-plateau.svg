@@ -57,4 +57,12 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="559" y="522" text-anchor="middle" font-size="10.5" fill="#475569">560ns</text>
 <text x="760" y="522" text-anchor="end" font-size="10.5" fill="#475569">800ns</text>
 <text x="430" y="548" text-anchor="middle" font-size="11" font-weight="bold" fill="#7c3aed">平台时长 = Q_gd ÷ 驱动电流 = 1.6nC ÷ 10mA = 160ns；重叠 410ns → P_sw≈2W（§4.6 按 700ns 保守估 3.5W）</text>
+<circle cx="425" cy="152" r="5" fill="none" stroke="#7c3aed" stroke-width="2.4">
+<animate attributeName="r" values="5;12;5" dur="1.6s" repeatCount="indefinite"/>
+<animate attributeName="opacity" values="0.95;0.2;0.95" dur="1.6s" repeatCount="indefinite"/></circle>
+<circle cx="425" cy="216" r="5" fill="none" stroke="#dc2626" stroke-width="2.4">
+<animate attributeName="r" values="5;12;5" dur="1.6s" begin="-0.8s" repeatCount="indefinite"/>
+<animate attributeName="opacity" values="0.95;0.2;0.95" dur="1.6s" begin="-0.8s" repeatCount="indefinite"/></circle>
+<circle r="5" fill="#b45309"><animateMotion dur="10s" begin="-0.7s" repeatCount="indefinite" path="M216,440 L559,440"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="10s" begin="-1.4s" repeatCount="indefinite" path="M559,356 L760,356"/></circle>
 <text x="400" y="584" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">① 前 400ns：栅极电流先填 C_GS，I_D 起来时 V_DS 还满着——最疼的一段<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="10s" repeatCount="indefinite"/></text><text x="400" y="584" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">② 平台期：驱动电流全被 C_GD 抽走，V_GS 被钉住，V_DS 一路雪崩下跌<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="10s" repeatCount="indefinite"/></text><text x="400" y="584" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">③ 平台结束才是 R_DS(on) 生效的时刻：0.75W 导通损耗此刻才开始<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="10s" repeatCount="indefinite"/></text><text x="400" y="584" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">④ 记住 Q_gd：它比 C_rss 更直接地告诉你「这管子开关有多肉」<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="10s" repeatCount="indefinite"/></text></svg>

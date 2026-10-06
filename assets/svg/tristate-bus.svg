@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="620" viewBox="0 0 800 620">
+<title>三态与高阻：总线上为什么必须有人「闭嘴」</title>
+<rect width="800" height="620" fill="#f8fafc"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+@media (prefers-color-scheme: dark){
+rect[fill="#f8fafc"]{fill:#0f172a}
+[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
+[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
+[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
+[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
+[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
+[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
+[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
+[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
+[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
+[fill="#cbd5e1"]{fill:#334155}[stroke="#cbd5e1"]{stroke:#475569}
+[fill="#ffffff"]{fill:#0f172a}[fill="#94a3b8"]{fill:#64748b}[stroke="#94a3b8"]{stroke:#64748b}
+[fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
+}
+</style>
+<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">三态与高阻：总线上为什么必须有人「闭嘴」</text>
+
+<text x="200" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">两个驱动器挂在同一根总线上</text>
+<line x1="60" y1="96" x2="60" y2="130" stroke="#334155" stroke-width="2.5"/>
+<text x="46" y="92" font-size="11.5" font-weight="bold" fill="#b45309">+5V</text>
+<rect x="48" y="130" width="24" height="34" rx="3" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<text x="86" y="152" font-size="11" font-weight="bold" fill="#b45309">10k 上拉</text>
+<line x1="60" y1="164" x2="60" y2="196" stroke="#334155" stroke-width="2.5"/>
+<line x1="60" y1="196" x2="330" y2="196" stroke="#334155" stroke-width="2.5"/>
+<rect x="90" y="230" width="80" height="52" rx="6" fill="#f8fafc" stroke="#2563eb" stroke-width="2.5"/>
+<text x="130" y="252" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">驱动器 A</text>
+<text x="130" y="272" text-anchor="middle" font-size="10.5" fill="#475569">EN_A</text>
+<line x1="130" y1="230" x2="130" y2="196" stroke="#2563eb" stroke-width="2.5"/>
+<rect x="250" y="230" width="80" height="52" rx="6" fill="#f8fafc" stroke="#dc2626" stroke-width="2.5"/>
+<text x="290" y="252" text-anchor="middle" font-size="12" font-weight="bold" fill="#dc2626">驱动器 B</text>
+<text x="290" y="272" text-anchor="middle" font-size="10.5" fill="#475569">EN_B</text>
+<line x1="290" y1="230" x2="290" y2="196" stroke="#dc2626" stroke-width="2.5"/>
+<circle cx="210" cy="196" r="5" fill="#334155"/>
+<line x1="210" y1="196" x2="210" y2="150" stroke="#334155" stroke-width="2.5"/>
+<line x1="196" y1="150" x2="224" y2="150" stroke="#7c3aed" stroke-width="3.5"/>
+<line x1="196" y1="162" x2="224" y2="162" stroke="#7c3aed" stroke-width="3.5"/>
+<line x1="210" y1="162" x2="210" y2="130" stroke="#334155" stroke-width="2.5"/>
+<line x1="210" y1="116" x2="210" y2="130" stroke="#334155" stroke-width="2.5"/><line x1="194" y1="130" x2="226" y2="130" stroke="#334155" stroke-width="3"/><line x1="200" y1="136" x2="220" y2="136" stroke="#334155" stroke-width="3"/><line x1="206" y1="142" x2="214" y2="142" stroke="#334155" stroke-width="3"/>
+<text x="228" y="158" font-size="11" font-weight="bold" fill="#7c3aed">总线电容 20pF</text>
+<text x="330" y="190" font-size="11" font-weight="bold" fill="#334155">总线</text>
+<circle cx="130" cy="196" r="5" fill="#2563eb">
+<animate attributeName="opacity" values="1;0.15;1" dur="1.4s" repeatCount="indefinite"/></circle>
+<circle cx="290" cy="196" r="5" fill="#dc2626">
+<animate attributeName="opacity" values="0.15;1;0.15" dur="1.4s" repeatCount="indefinite"/></circle>
+<circle r="5" fill="#2563eb"><animateMotion dur="11s" begin="-0.3s" repeatCount="indefinite" path="M130,228 L130,198"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="11s" begin="-0.9s" repeatCount="indefinite" path="M290,228 L290,198"/></circle>
+<circle r="5" fill="#7c3aed"><animateMotion dur="11s" begin="-1.5s" repeatCount="indefinite" path="M212,198 L212,152"/></circle>
+<line x1="420" y1="70" x2="420" y2="492" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="6,5"/>
+<text x="610" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">三种状态：谁在说话，谁必须闭嘴</text>
+<rect x="446" y="84" width="330" height="74" rx="8" fill="#f8fafc" stroke="#2563eb" stroke-width="1.8"/><text x="462" y="110" font-size="12.5" font-weight="bold" fill="#2563eb">① A 驱动、B 高阻</text><text x="462" y="132" font-size="11.5" font-weight="bold" fill="#1e293b">总线 = A 的电平</text><text x="462" y="150" font-size="11" fill="#475569">正常：一人说话，其他人闭嘴</text><rect x="446" y="172" width="330" height="74" rx="8" fill="#f8fafc" stroke="#dc2626" stroke-width="1.8"/><text x="462" y="198" font-size="12.5" font-weight="bold" fill="#dc2626">② B 驱动、A 高阻</text><text x="462" y="220" font-size="11.5" font-weight="bold" fill="#1e293b">总线 = B 的电平</text><text x="462" y="238" font-size="11" fill="#475569">正常：换人说话，电平随之改变</text><rect x="446" y="260" width="330" height="74" rx="8" fill="#f8fafc" stroke="#7c3aed" stroke-width="1.8"/><text x="462" y="286" font-size="12.5" font-weight="bold" fill="#7c3aed">③ 两个都高阻</text><text x="462" y="308" font-size="11.5" font-weight="bold" fill="#1e293b">总线悬空</text><text x="462" y="326" font-size="11" fill="#475569">只靠 10k 上拉+漏电漂移，τ=10k×20pF=0.2µs</text><rect x="446" y="348" width="330" height="74" rx="8" fill="#f8fafc" stroke="#b91c1c" stroke-width="1.8"/><text x="462" y="374" font-size="12.5" font-weight="bold" fill="#b91c1c">④ 两个同时驱动</text><text x="462" y="396" font-size="11.5" font-weight="bold" fill="#1e293b">电平打架</text><text x="462" y="414" font-size="11" fill="#475569">直通电流！毫安级到安培级，发热甚至烧管</text>
+<text x="400" y="510" text-anchor="middle" font-size="12" font-weight="bold" fill="#b45309">高阻态不是「输出低」，是「输出端几乎从电路里消失」——它让总线归别人管</text>
+<text x="400" y="534" text-anchor="middle" font-size="11.5" fill="#475569">代价：悬空的总线电平不定（要靠上拉/下拉定住），且悬空输入会让下游 CMOS 输入级两头导通、白耗电</text>
+<rect x="446" y="336" width="330" height="74" rx="10" fill="none" stroke="#b91c1c" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="1.8s" repeatCount="indefinite"/></rect>
+<circle cx="646" cy="373" r="5" fill="none" stroke="#b91c1c" stroke-width="2.4">
+<animate attributeName="r" values="5;13;5" dur="1.6s" repeatCount="indefinite"/>
+<animate attributeName="opacity" values="0.95;0.2;0.95" dur="1.6s" repeatCount="indefinite"/></circle>
+<text x="400" y="576" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">① 同一时刻只能有一个驱动器在说话——这就是「三态」存在的全部理由<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="576" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">② 关掉的那一方输出高阻：既不拉高也不拉低，等于从总线上「隐身」<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="576" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">③ 全部高阻：总线悬空 → 靠上拉定电平；没上拉就是天线，电平不定还白耗电<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="576" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b91c1c" opacity="0">④ 两个同时驱动且电平相反 = 直通电流——这是硬件上最容易烧片的错误之一<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/></text></svg>
