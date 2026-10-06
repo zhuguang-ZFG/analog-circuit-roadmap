@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-generate_svgs.py — 一键再生成《通往模拟电路之路》全部 78 张 SVG SMIL 动画
+generate_svgs.py — 一键再生成《通往模拟电路之路》全部 82 张 SVG SMIL 动画
 用法:  python generate_svgs.py            # 输出到 ../assets/svg/
 风格:  参考 BMS-Z 项目 —— 浅色底 + SMIL 节拍字幕 + 深色模式自适应 + 拟人化讲解
 所有电路参数经过自洽核算（datasheet 级），详见各函数注释。
@@ -5185,6 +5185,10 @@ def make_bjt_configs():
 <circle r="5" fill="#b45309"><animateMotion dur="{DC}s" begin="-2.2s" repeatCount="indefinite" path="M584,150 L642,150 L670,150" keyPoints="0;1" keyTimes="0;1"/></circle>
 {pulse(38, 92, 224, 30, '#2563eb', 2.0, 8)}
 {pulse(291, 92, 224, 30, '#059669', 2.0, 8)}
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DC}s" begin="-0.6s" repeatCount="indefinite" path="M50,340 L246,340"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DC}s" begin="-1.6s" repeatCount="indefinite" path="M303,340 L499,340"/></circle>
+<circle cx="400" cy="552" r="5" fill="none" stroke="#b45309" stroke-width="2.2">
+<animate attributeName="r" values="5;12;5" dur="2.0s" repeatCount="indefinite"/></circle>
 {pulse(544, 92, 224, 30, '#b45309', 2.0, 8)}
 '''
     svg += caption("① 共射：电压增益最高但阻抗平庸，还好反相——放大主力的代价", "#2563eb", DC,
@@ -5397,6 +5401,9 @@ def make_bjt_switch():
 <text x="462" y="472" font-size="11" fill="#475569">一条泄放回路（方向：与电源相反）</text>
 <text x="620" y="516" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#7c3aed">感性负载三兄弟：继电器 / 电机 / 电磁阀 —— 一律加续流或吸收</text>
 <text x="620" y="540" text-anchor="middle" font-size="11" fill="#475569">驱动 MOS 时同理，且别忘了体二极管（见 4.4）</text>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DS}s" begin="-0.5s" repeatCount="indefinite" path="M448,120 L612,120"/></circle>
+<circle r="4.5" fill="#dc2626"><animateMotion dur="{DS}s" begin="-1.5s" repeatCount="indefinite" path="M448,300 L760,300"/></circle>
+<circle cx="180" cy="240" r="4" fill="#7c3aed"><animate attributeName="r" values="4;9;4" dur="1.6s" repeatCount="indefinite"/></circle>
 {pulse(444, 336, 334, 154, '#dc2626', 2.0, 10)}
 '''
     svg += caption("① 用「强制 β=10」定 I_B：不依赖标称 β，才能保证深度饱和", "#2563eb", DS,
@@ -5699,6 +5706,10 @@ def make_datasheet_params():
 <circle r="5" fill="#f59e0b"><animateMotion dur="{DP}s" begin="-1.6s" repeatCount="indefinite" path="M50,200 L754,200" keyPoints="0;1" keyTimes="0;1"/></circle>
 <circle r="5" fill="#7c3aed"><animateMotion dur="{DP}s" begin="-2.4s" repeatCount="indefinite" path="M50,282 L754,282" keyPoints="0;1" keyTimes="0;1"/></circle>
 <circle r="5" fill="#dc2626"><animateMotion dur="{DP}s" begin="-3.2s" repeatCount="indefinite" path="M50,364 L754,364" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DP}s" begin="-0.2s" repeatCount="indefinite" path="M50,164 L750,164"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DP}s" begin="-0.8s" repeatCount="indefinite" path="M50,246 L750,246"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DP}s" begin="-1.4s" repeatCount="indefinite" path="M50,328 L750,328"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DP}s" begin="-2.0s" repeatCount="indefinite" path="M50,410 L750,410"/></circle>
 {pulse(38, 80, 724, 76, '#7c3aed', 2.0, 10)}
 '''
     svg += caption("① 第一行永远是 V_OS：它被增益放大，直流电路的头号杀手", "#7c3aed", DP,
@@ -5757,6 +5768,10 @@ def make_ldo_failures():
 <circle r="5" fill="#f59e0b"><animateMotion dur="{DF}s" begin="-1.5s" repeatCount="indefinite" path="M48,258 L748,258" keyPoints="0;1" keyTimes="0;1"/></circle>
 <circle r="5" fill="#f59e0b"><animateMotion dur="{DF}s" begin="-3.0s" repeatCount="indefinite" path="M48,380 L748,380" keyPoints="0;1" keyTimes="0;1"/></circle>
 <circle r="5" fill="#f59e0b"><animateMotion dur="{DF}s" begin="-4.5s" repeatCount="indefinite" path="M48,502 L748,502" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DF}s" begin="-0.2s" repeatCount="indefinite" path="M48,196 L744,196"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DF}s" begin="-1.2s" repeatCount="indefinite" path="M48,318 L744,318"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DF}s" begin="-2.2s" repeatCount="indefinite" path="M48,440 L744,440"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DF}s" begin="-3.2s" repeatCount="indefinite" path="M48,562 L744,562"/></circle>
 {pulse(32, 78, 736, 116, '#dc2626', 2.0, 10)}
 '''
     svg += caption("① 热账：P=(Vin−Vout)×I —— 12V→5V@300mA 就是 2.1W，没有散热片必然关机", "#dc2626", DF,
@@ -5768,6 +5783,246 @@ def make_ldo_failures():
     svg += caption("④ 上电账：快上电 + 大压差会过冲；软启动或换型号。大压差大电流请直接上 DCDC", "#0ea5e9", DF,
                    "0;0;1;1", "0;0.85;0.9;1", y=600)
     save('ldo-failures.svg', svg + '</svg>')
+
+
+# ======================= 图 79：BJT 在线速判（第 3 章 3.8） =======================
+def make_bjt_diagnosis():
+    DX = 11
+    svg = svg_open('BJT 在线速判：三个电压，指出故障在哪', h=620)
+    svg += f'''
+<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">NPN 放大态的正常值：V_B≈0.7V、V_E≈0V、V_C 明显高于 V_B</text>
+<text x="200" y="86" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">正常：三个电压都「讲道理」</text>
+<line x1="80" y1="150" x2="120" y2="150" stroke="#334155" stroke-width="2"/>
+{resistor_v(120, 110, 36, 'R_C')}
+<circle cx="155" cy="175" r="4.5" fill="#334155"/>
+<polygon points="175,150 175,200 220,175" fill="#f8fafc" stroke="#2563eb" stroke-width="2.2"/>
+<text x="186" y="172" font-size="10" font-weight="bold" fill="#2563eb">Q1</text>
+<line x1="120" y1="175" x2="175" y2="175" stroke="#334155" stroke-width="2"/>
+<line x1="155" y1="175" x2="155" y2="175" stroke="#334155" stroke-width="2"/>
+<line x1="120" y1="175" x2="120" y2="175" stroke="#334155" stroke-width="2"/>
+{resistor_v(155, 210, 40, '')}
+<line x1="155" y1="250" x2="155" y2="276" stroke="#334155" stroke-width="2"/>
+{gnd_sym(155, 290)}
+<text x="52" y="130" font-size="11.5" font-weight="bold" fill="#b45309">+12V</text>
+<line x1="120" y1="90" x2="120" y2="110" stroke="#334155" stroke-width="2"/>
+<line x1="70" y1="90" x2="120" y2="90" stroke="#334155" stroke-width="2"/>
+<text x="240" y="150" font-size="11.5" font-weight="bold" fill="#059669">V_C = 6.0V</text>
+<text x="240" y="176" font-size="11.5" font-weight="bold" fill="#059669">V_B = 0.70V</text>
+<text x="240" y="202" font-size="11.5" font-weight="bold" fill="#059669">V_E = 0.00V</text>
+<text x="240" y="232" font-size="11" fill="#475569">V_BE = 0.70V ✓</text>
+<text x="240" y="252" font-size="11" fill="#475569">V_C 高于 V_B ✓</text>
+<circle r="5" fill="#059669"><animateMotion dur="{DX}s" begin="-0.3s" repeatCount="indefinite" path="M150,152 L150,172"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="{DX}s" begin="-1.0s" repeatCount="indefinite" path="M152,204 L152,246"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="{DX}s" begin="-1.7s" repeatCount="indefinite" path="M122,92 L120,108"/></circle>
+<polygon points="175,150 175,200 220,175" fill="none" stroke="#059669" stroke-width="2.2" opacity="0">
+<animate attributeName="opacity" values="0;0.9;0" dur="2.2s" repeatCount="indefinite"/></polygon>
+<line x1="408" y1="76" x2="408" y2="560" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="6,5"/>
+<text x="590" y="90" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">异常读数 → 故障定位</text>
+'''
+    rows = [
+        ('V_BE = 0V', '发射结开路 / 基极电阻虚焊', '查 R_B 焊点与管子 B-E 通断', '#dc2626'),
+        ('V_BE = 0.7V，但 V_C ≈ +12V', '集电结开路 / R_C 虚焊（无电流）', '测 R_C 两端压差；断电测集电极回路', '#b45309'),
+        ('V_BE = 0.7V，但 V_C ≈ 0.2V', '管子已饱和（基极电流过大）', '加大 R_B 或查负载是否短路', '#7c3aed'),
+        ('V_B ≈ 0V', '基极回路断（R_B 开路/驱动没输出）', '测 R_B 左侧（驱动端）有没有电平', '#2563eb'),
+        ('V_E > V_B', '管子未导通（V_BE 反偏）/ 装反', '查极性：NPN 还是 PNP？', '#0ea5e9'),
+        ('三个电压都对但发热', '功耗问题，非电气故障', '核算 P=V_CE·I_C vs 散热能力', '#059669'),
+    ]
+    y = 112
+    for title, root, act, col in rows:
+        svg += f'<rect x="420" y="{y}" width="348" height="70" rx="8" fill="#f8fafc" stroke="{col}" stroke-width="1.6"/>'
+        svg += f'<text x="434" y="{y+24}" font-size="12" font-weight="bold" fill="{col}">{title}</text>'
+        svg += f'<text x="434" y="{y+44}" font-size="11" fill="#475569">→ {root}</text>'
+        svg += f'<text x="434" y="{y+62}" font-size="10.5" font-weight="bold" fill="#334155">动作：{act}</text>'
+        y += 76
+    svg += f'''
+<text x="200" y="330" font-size="12" font-weight="bold" fill="#b45309">记忆法：把三个电压当「三个人」</text>
+<text x="60" y="358" font-size="11" fill="#475569">B 是「咽喉」：必须比 E 高 0.7V，否则没开</text>
+<text x="60" y="382" font-size="11" fill="#475569">E 是「地线延伸」：直耦时贴地，抬高=发射极电阻太大</text>
+<text x="60" y="406" font-size="11" fill="#475569">C 是「结果」：高=没电流，低=饱和了</text>
+<rect x="60" y="430" width="300" height="110" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="1.6"/>
+<text x="76" y="456" font-size="11.5" font-weight="bold" fill="#b45309">为什么先量电压、不先拆管子？</text>
+<text x="76" y="480" font-size="11" fill="#475569">拆焊一次就有损伤风险（尤其多层板），</text>
+<text x="76" y="500" font-size="11" fill="#475569">而三个电压在线 30 秒就能测完，</text>
+<text x="76" y="520" font-size="11" font-weight="bold" fill="#dc2626">能定向到「哪个回路」，再动手。</text>
+{pulse(416, 110, 352, 76, '#dc2626', 2.0, 10)}
+'''
+    svg += caption("① 正常态：V_BE=0.7V、V_C 高于 V_B —— 两条判据同时成立才叫「放大态」", "#059669", DX,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=580)
+    svg += caption("② V_BE=0.7V 但 V_C 高挂电源：说明「有基极电流、无集电极电流」→ 查集电极回路", "#b45309", DX,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=580)
+    svg += caption("③ 三个电压一量就能定向到回路——先测后拆，是最省时间的排故顺序", "#2563eb", DX,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=580)
+    svg += caption("④ 电压全对却烫手：那是散热账（P=V_CE·I_C），不是电气故障", "#dc2626", DX,
+                   "0;0;1;1", "0;0.85;0.9;1", y=580)
+    save('bjt-diagnosis.svg', svg + '</svg>')
+
+
+# ======================= 图 80：运放六个经典坑（第 6 章 6.6） =======================
+def make_opamp_pitfalls():
+    DO = 11
+    svg = svg_open('运放的六个经典坑：每一个都能复现、都能预防', h=620)
+    svg += f'''
+<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">症状 → 根因 → 解法，按现场出现频率排序</text>
+'''
+    pits = [
+        ('输出锁定在电源轨', '#dc2626', '输入超共模范围 / 反相端反馈开路',
+         '查共模范围（LM358 是 0~Vcc−1.5V）；查反馈电阻焊接'),
+        ('相位反转（跳到相反轨）', '#b45309', '老式运放输入超共模时内部结正偏',
+         '选带相位反转保护的型号；输入端限幅/钳位'),
+        ('高频自激振荡', '#7c3aed', '驱动容性负载（长电缆）破坏相位裕度',
+         '输出串 10~100Ω 隔离电阻 —— 最常用的急救措施'),
+        ('输出三角波化', '#2563eb', 'SR 不足（大信号被限速）',
+         '降幅度或换高速运放；算 f_max = SR/(2πVp)'),
+        ('直流误差超标', '#059669', 'V_OS×增益；I_B×源阻抗',
+         '换精密运放（OP07/斩波）；降低源阻抗'),
+        ('微音效应/杂音', '#0ea5e9', '高增益受振动（陶瓷电容压电效应）',
+         '换 C0G 电容；减振布局；避免机械应力'),
+    ]
+    y = 82
+    for name, col, root, fix in pits:
+        svg += f'<rect x="40" y="{y}" width="720" height="80" rx="9" fill="#f8fafc" stroke="{col}" stroke-width="1.6"/>'
+        svg += f'<text x="58" y="{y+28}" font-size="12.5" font-weight="bold" fill="{col}">⚠ {name}</text>'
+        svg += f'<text x="58" y="{y+52}" font-size="11" fill="#475569">根因：{root}</text>'
+        svg += f'<text x="58" y="{y+70}" font-size="11" font-weight="bold" fill="#334155">解法：{fix}</text>'
+        svg += f'<circle cx="742" cy="{y+40}" r="5" fill="{col}" opacity="0.8"/>'
+        y += 88
+    svg += f'''
+<line x1="40" y1="{y+2}" x2="760" y2="{y+2}" stroke="#cbd5e1" stroke-width="1"/>
+<text x="400" y="{y+30}" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">三条「先量后换」的诊断动作</text>
+<text x="400" y="{y+54}" text-anchor="middle" font-size="11.5" fill="#475569">① 先看<b>输出直流电平</b>：贴轨 → 查共模范围与反馈回路；居中但抖 → 查自激与去耦</text>
+<text x="400" y="{y+76}" text-anchor="middle" font-size="11.5" fill="#475569">② 再看<b>输入端电压差</b>：虚短失效（差几百 mV）→ 反馈断了；差几 µV → 正常工作</text>
+<text x="400" y="{y+98}" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#b45309">③ 最后才怀疑运放本身——绝大多数「运放坏了」其实是外围（反馈、去耦、负载）</text>
+<circle r="5" fill="#f59e0b"><animateMotion dur="{DO}s" repeatCount="indefinite" path="M52,118 L748,118" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#f59e0b"><animateMotion dur="{DO}s" begin="-1.5s" repeatCount="indefinite" path="M52,206 L748,206" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#f59e0b"><animateMotion dur="{DO}s" begin="-3.0s" repeatCount="indefinite" path="M52,294 L748,294" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#f59e0b"><animateMotion dur="{DO}s" begin="-4.5s" repeatCount="indefinite" path="M52,382 L748,382" keyPoints="0;1" keyTimes="0;1"/></circle>
+{pulse(38, 80, 724, 84, '#dc2626', 2.0, 10)}
+'''
+    svg += caption("① 输出贴轨是最高频故障：先查共模范围与反馈回路，别急着换运放", "#dc2626", DO,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=600)
+    svg += caption("② 容性负载自激：输出串 10~100Ω 隔离电阻是最常用的急救", "#7c3aed", DO,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=600)
+    svg += caption("③ 三角波化 = SR 不足；直流误差 = V_OS×增益 —— 两笔账都能提前算", "#2563eb", DO,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=600)
+    svg += caption("④ 诊断顺序：输出电平 → 输入端压差 → 最后才怀疑运放本身", "#b45309", DO,
+                   "0;0;1;1", "0;0.85;0.9;1", y=600)
+    save('opamp-pitfalls.svg', svg + '</svg>')
+
+
+# ======================= 图 81：比较器五个坑（第 7 章 7.4） =======================
+def make_comparator_pitfalls():
+    DC = 11
+    svg = svg_open('比较器的五个坑：忘了上拉排第一', h=620)
+    svg += f'''
+<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">LM393 是开漏输出 —— 一半的「故障」都源于这件事</text>
+'''
+    pits = [
+        ('输出一直为低', '#dc2626', 'LM393 忘接上拉电阻（开漏只会拉低）',
+         '输出到 Vcc 接 4.7kΩ —— 没上拉就永远只有一个「0」', '最高频'),
+        ('阈值附近连发误触发', '#b45309', '无迟滞 + 输入噪声（信号在阈值上抖动）',
+         '加正反馈迟滞（见 7.3）；输入端并小电容', '经典'),
+        ('高频自激', '#7c3aed', '输出线耦合回输入（布线寄生）',
+         '输入/输出走线远离；地平面隔离；串小电阻', '布线问题'),
+        ('判决点偏移', '#2563eb', '输入源阻抗过高，I_B 压降改变阈值',
+         '降低源阻抗；两输入端加对称补偿电阻', '精度问题'),
+        ('上电瞬间误输出', '#059669', '电源爬升期内部状态未定',
+         '加 RC 延时；或选带 POR（上电复位）的型号', '启动问题'),
+    ]
+    y = 84
+    for name, col, root, fix, tag in pits:
+        svg += f'<rect x="40" y="{y}" width="720" height="88" rx="9" fill="#f8fafc" stroke="{col}" stroke-width="1.6"/>'
+        svg += f'<text x="58" y="{y+28}" font-size="12.5" font-weight="bold" fill="{col}">⚠ {name}</text>'
+        svg += f'<text x="640" y="{y+28}" font-size="10.5" font-weight="bold" fill="{col}">[{tag}]</text>'
+        svg += f'<text x="58" y="{y+52}" font-size="11" fill="#475569">根因：{root}</text>'
+        svg += f'<text x="58" y="{y+74}" font-size="11" font-weight="bold" fill="#334155">解法：{fix}</text>'
+        y += 96
+    svg += f'''
+<line x1="40" y1="{y+2}" x2="760" y2="{y+2}" stroke="#cbd5e1" stroke-width="1"/>
+<text x="400" y="{y+30}" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">开漏这件事，一次说清</text>
+<text x="400" y="{y+54}" text-anchor="middle" font-size="11.5" fill="#475569">开漏输出 = 一只对地开关。<b>没有上拉就没有高电平</b>，而高电平的值由「上拉接到哪」决定 → 天然电平转换。</text>
+<text x="400" y="{y+76}" text-anchor="middle" font-size="11.5" fill="#475569">多个开漏输出可并联 = <b>线与</b>：谁拉低谁说了算 —— 窗口检测器就这么搭。</text>
+<text x="400" y="{y+98}" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#b45309">上拉取值要算：t_r≈0.8473·R·C（见 5.3），I²C 标准模式 R≤11.8kΩ</text>
+<circle r="5" fill="#f59e0b"><animateMotion dur="{DC}s" repeatCount="indefinite" path="M52,128 L748,128" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="{DC}s" begin="-1.5s" repeatCount="indefinite" path="M52,224 L748,224" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#7c3aed"><animateMotion dur="{DC}s" begin="-3.0s" repeatCount="indefinite" path="M52,320 L748,320" keyPoints="0;1" keyTimes="0;1"/></circle>
+{pulse(38, 82, 724, 92, '#dc2626', 2.0, 10)}
+'''
+    svg += caption("① 「输出一直低」九成是忘接上拉——开漏只会拉低，不会推高", "#dc2626", DC,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=600)
+    svg += caption("② 阈值附近误触发：不是比较器坏，是缺迟滞——加正反馈造免疫区", "#b45309", DC,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=600)
+    svg += caption("③ 自激多是布线问题：输入输出走线远离、地平面隔离", "#7c3aed", DC,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=600)
+    svg += caption("④ 记住开漏的三个红利与一个义务：能转换电平/能与线/能当使能 —— 但必须给上拉", "#059669", DC,
+                   "0;0;1;1", "0;0.85;0.9;1", y=600)
+    save('comparator-pitfalls.svg', svg + '</svg>')
+
+
+# ======================= 图 82：555 参数与三个坑（第 10 章 10.3） =======================
+def make_555_params():
+    DP = 11
+    svg = svg_open('555 参数与三个坑：5 脚不能悬空', h=620)
+    svg += f'''
+<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">双极版 vs CMOS 版 —— 同一功能，两套代价</text>
+<rect x="60" y="76" width="330" height="150" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text x="225" y="102" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb">双极版 NE555</text>
+<text x="76" y="130" font-size="11.5" fill="#475569">电源</text>
+<text x="374" y="130" text-anchor="end" font-size="11.5" font-weight="bold" fill="#2563eb">4.5 ~ 16V</text>
+<text x="76" y="156" font-size="11.5" fill="#475569">输出电流</text>
+<text x="374" y="156" text-anchor="end" font-size="11.5" font-weight="bold" fill="#059669">200mA（可直接驱动继电器）</text>
+<text x="76" y="182" font-size="11.5" fill="#475569">静态功耗</text>
+<text x="374" y="182" text-anchor="end" font-size="11.5" font-weight="bold" fill="#dc2626">大（mA 级）</text>
+<text x="76" y="208" font-size="11.5" fill="#475569">输出摆幅</text>
+<text x="374" y="208" text-anchor="end" font-size="11.5" font-weight="bold" fill="#dc2626">非轨到轨（约 Vcc−1.7V）</text>
+<rect x="410" y="76" width="330" height="150" rx="9" fill="#ecfdf5" stroke="#059669" stroke-width="1.8"/>
+<text x="575" y="102" text-anchor="middle" font-size="13" font-weight="bold" fill="#059669">CMOS 版 TLC555/LMC555</text>
+<text x="426" y="130" font-size="11.5" fill="#475569">电源</text>
+<text x="724" y="130" text-anchor="end" font-size="11.5" font-weight="bold" fill="#059669">2 ~ 15V</text>
+<text x="426" y="156" font-size="11.5" fill="#475569">输出电流</text>
+<text x="724" y="156" text-anchor="end" font-size="11.5" font-weight="bold" fill="#dc2626">小（驱动能力弱）</text>
+<text x="426" y="182" font-size="11.5" fill="#475569">静态功耗</text>
+<text x="724" y="182" text-anchor="end" font-size="11.5" font-weight="bold" fill="#059669">极低（µA 级）</text>
+<text x="426" y="208" font-size="11.5" fill="#475569">输出摆幅</text>
+<text x="724" y="208" text-anchor="end" font-size="11.5" font-weight="bold" fill="#059669">接近轨到轨</text>
+<circle r="5" fill="#2563eb"><animateMotion dur="{DP}s" repeatCount="indefinite" path="M75,140 L370,140" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="{DP}s" begin="-1.4s" repeatCount="indefinite" path="M425,140 L720,140" keyPoints="0;1" keyTimes="0;1"/></circle>
+<text x="400" y="252" text-anchor="middle" font-size="12" font-weight="bold" fill="#b45309">选型一句话</text>
+<text x="400" y="276" text-anchor="middle" font-size="11.5" fill="#475569">要直接驱动（继电器/蜂鸣器）→ 双极版；要低功耗/电池供电 → CMOS 版</text>
+<line x1="40" y1="296" x2="760" y2="296" stroke="#cbd5e1" stroke-width="1"/>
+<text x="400" y="324" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">三个坑</text>
+'''
+    pits = [
+        ('① 5 脚（CTRL）悬空 → 频率漂移', '#dc2626',
+         'CTRL 直接接到内部 2/3Vcc 分压点，悬空等于天线，拾取的干扰直接改变阈值',
+         '标准做法：5 脚接 10nF 到地（这是所有 555 datasheet 的推荐电路）'),
+        ('② 输出驱动容性负载 → 振荡', '#7c3aed',
+         '输出级推挽 + 电容负载 = 相位裕度被破坏（同类问题见 6.6 运放自激）',
+         '串 10~100Ω 隔离电阻；或减小负载电容'),
+        ('③ 双极版电源毛刺 → 误触发', '#b45309',
+         '输出翻转瞬间 200mA 级电流冲击电源，毛刺经电源耦合回内部比较器',
+         '电源就近加 100nF 陶瓷 + 10µF 电解；5 脚那个 10nF 也顺带滤波'),
+    ]
+    y = 344
+    for name, col, root, fix in pits:
+        svg += f'<rect x="40" y="{y}" width="720" height="76" rx="9" fill="#f8fafc" stroke="{col}" stroke-width="1.6"/>'
+        svg += f'<text x="58" y="{y+26}" font-size="12.5" font-weight="bold" fill="{col}">{name}</text>'
+        svg += f'<text x="58" y="{y+48}" font-size="11" fill="#475569">根因：{root}</text>'
+        svg += f'<text x="58" y="{y+68}" font-size="11" font-weight="bold" fill="#334155">解法：{fix}</text>'
+        y += 84
+    svg += f'''
+<circle r="5" fill="#f59e0b"><animateMotion dur="{DP}s" begin="-0.6s" repeatCount="indefinite" path="M52,380 L748,380" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#f59e0b"><animateMotion dur="{DP}s" begin="-1.8s" repeatCount="indefinite" path="M52,464 L748,464" keyPoints="0;1" keyTimes="0;1"/></circle>
+{pulse(38, 342, 724, 80, '#dc2626', 2.0, 10)}
+'''
+    svg += caption("① 5 脚悬空是 555 最常见的翻车——标准做法接 10nF 到地", "#dc2626", DP,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=604)
+    svg += caption("② 输出带容性负载会振荡：串 10~100Ω —— 与运放自激同一套机理", "#7c3aed", DP,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=604)
+    svg += caption("③ 双极版 200mA 翻转会打电源：就近 100nF + 10µF 是必需品", "#b45309", DP,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=604)
+    svg += caption("④ 选型：要驱动能力选双极、要低功耗选 CMOS —— 参数表第二页就有答案", "#059669", DP,
+                   "0;0;1;1", "0;0.85;0.9;1", y=604)
+    save('ne555-params.svg', svg + '</svg>')
 
 
 if __name__ == '__main__':
@@ -5849,4 +6104,8 @@ if __name__ == '__main__':
     make_opamp_map()
     make_datasheet_params()
     make_ldo_failures()
-    print('all 78 SVGs regenerated into', os.path.abspath(OUT))
+    make_bjt_diagnosis()
+    make_opamp_pitfalls()
+    make_comparator_pitfalls()
+    make_555_params()
+    print('all 82 SVGs regenerated into', os.path.abspath(OUT))

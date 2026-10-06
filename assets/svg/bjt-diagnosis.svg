@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="620" viewBox="0 0 800 620">
+<title>BJT 在线速判：三个电压，指出故障在哪</title>
+<rect width="800" height="620" fill="#f8fafc"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+@media (prefers-color-scheme: dark){
+rect[fill="#f8fafc"]{fill:#0f172a}
+[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
+[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
+[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
+[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
+[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
+[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
+[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
+[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
+[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
+[fill="#cbd5e1"]{fill:#334155}[stroke="#cbd5e1"]{stroke:#475569}
+[fill="#ffffff"]{fill:#0f172a}[fill="#94a3b8"]{fill:#64748b}[stroke="#94a3b8"]{stroke:#64748b}
+[fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
+}
+</style>
+<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">BJT 在线速判：三个电压，指出故障在哪</text>
+
+<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">NPN 放大态的正常值：V_B≈0.7V、V_E≈0V、V_C 明显高于 V_B</text>
+<text x="200" y="86" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">正常：三个电压都「讲道理」</text>
+<line x1="80" y1="150" x2="120" y2="150" stroke="#334155" stroke-width="2"/>
+<line x1="120" y1="90" x2="120" y2="110" stroke="#334155" stroke-width="2.5"/>
+<rect x="109" y="110" width="22" height="36" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<line x1="120" y1="146" x2="120" y2="166" stroke="#334155" stroke-width="2.5"/>
+<text x="140" y="132.0" font-size="12.5" font-weight="bold" fill="#b45309">R_C</text>
+<circle cx="155" cy="175" r="4.5" fill="#334155"/>
+<polygon points="175,150 175,200 220,175" fill="#f8fafc" stroke="#2563eb" stroke-width="2.2"/>
+<text x="186" y="172" font-size="10" font-weight="bold" fill="#2563eb">Q1</text>
+<line x1="120" y1="175" x2="175" y2="175" stroke="#334155" stroke-width="2"/>
+<line x1="155" y1="175" x2="155" y2="175" stroke="#334155" stroke-width="2"/>
+<line x1="120" y1="175" x2="120" y2="175" stroke="#334155" stroke-width="2"/>
+<line x1="155" y1="190" x2="155" y2="210" stroke="#334155" stroke-width="2.5"/>
+<rect x="144" y="210" width="22" height="40" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<line x1="155" y1="250" x2="155" y2="270" stroke="#334155" stroke-width="2.5"/>
+<line x1="155" y1="250" x2="155" y2="276" stroke="#334155" stroke-width="2"/>
+<line x1="155" y1="276" x2="155" y2="290" stroke="#334155" stroke-width="2.5"/><line x1="139" y1="290" x2="171" y2="290" stroke="#334155" stroke-width="3"/><line x1="145" y1="296" x2="165" y2="296" stroke="#334155" stroke-width="3"/><line x1="151" y1="302" x2="159" y2="302" stroke="#334155" stroke-width="3"/>
+<text x="52" y="130" font-size="11.5" font-weight="bold" fill="#b45309">+12V</text>
+<line x1="120" y1="90" x2="120" y2="110" stroke="#334155" stroke-width="2"/>
+<line x1="70" y1="90" x2="120" y2="90" stroke="#334155" stroke-width="2"/>
+<text x="240" y="150" font-size="11.5" font-weight="bold" fill="#059669">V_C = 6.0V</text>
+<text x="240" y="176" font-size="11.5" font-weight="bold" fill="#059669">V_B = 0.70V</text>
+<text x="240" y="202" font-size="11.5" font-weight="bold" fill="#059669">V_E = 0.00V</text>
+<text x="240" y="232" font-size="11" fill="#475569">V_BE = 0.70V ✓</text>
+<text x="240" y="252" font-size="11" fill="#475569">V_C 高于 V_B ✓</text>
+<circle r="5" fill="#059669"><animateMotion dur="11s" begin="-0.3s" repeatCount="indefinite" path="M150,152 L150,172"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="11s" begin="-1.0s" repeatCount="indefinite" path="M152,204 L152,246"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="11s" begin="-1.7s" repeatCount="indefinite" path="M122,92 L120,108"/></circle>
+<polygon points="175,150 175,200 220,175" fill="none" stroke="#059669" stroke-width="2.2" opacity="0">
+<animate attributeName="opacity" values="0;0.9;0" dur="2.2s" repeatCount="indefinite"/></polygon>
+<line x1="408" y1="76" x2="408" y2="560" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="6,5"/>
+<text x="590" y="90" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">异常读数 → 故障定位</text>
+<rect x="420" y="112" width="348" height="70" rx="8" fill="#f8fafc" stroke="#dc2626" stroke-width="1.6"/><text x="434" y="136" font-size="12" font-weight="bold" fill="#dc2626">V_BE = 0V</text><text x="434" y="156" font-size="11" fill="#475569">→ 发射结开路 / 基极电阻虚焊</text><text x="434" y="174" font-size="10.5" font-weight="bold" fill="#334155">动作：查 R_B 焊点与管子 B-E 通断</text><rect x="420" y="188" width="348" height="70" rx="8" fill="#f8fafc" stroke="#b45309" stroke-width="1.6"/><text x="434" y="212" font-size="12" font-weight="bold" fill="#b45309">V_BE = 0.7V，但 V_C ≈ +12V</text><text x="434" y="232" font-size="11" fill="#475569">→ 集电结开路 / R_C 虚焊（无电流）</text><text x="434" y="250" font-size="10.5" font-weight="bold" fill="#334155">动作：测 R_C 两端压差；断电测集电极回路</text><rect x="420" y="264" width="348" height="70" rx="8" fill="#f8fafc" stroke="#7c3aed" stroke-width="1.6"/><text x="434" y="288" font-size="12" font-weight="bold" fill="#7c3aed">V_BE = 0.7V，但 V_C ≈ 0.2V</text><text x="434" y="308" font-size="11" fill="#475569">→ 管子已饱和（基极电流过大）</text><text x="434" y="326" font-size="10.5" font-weight="bold" fill="#334155">动作：加大 R_B 或查负载是否短路</text><rect x="420" y="340" width="348" height="70" rx="8" fill="#f8fafc" stroke="#2563eb" stroke-width="1.6"/><text x="434" y="364" font-size="12" font-weight="bold" fill="#2563eb">V_B ≈ 0V</text><text x="434" y="384" font-size="11" fill="#475569">→ 基极回路断（R_B 开路/驱动没输出）</text><text x="434" y="402" font-size="10.5" font-weight="bold" fill="#334155">动作：测 R_B 左侧（驱动端）有没有电平</text><rect x="420" y="416" width="348" height="70" rx="8" fill="#f8fafc" stroke="#0ea5e9" stroke-width="1.6"/><text x="434" y="440" font-size="12" font-weight="bold" fill="#0ea5e9">V_E > V_B</text><text x="434" y="460" font-size="11" fill="#475569">→ 管子未导通（V_BE 反偏）/ 装反</text><text x="434" y="478" font-size="10.5" font-weight="bold" fill="#334155">动作：查极性：NPN 还是 PNP？</text><rect x="420" y="492" width="348" height="70" rx="8" fill="#f8fafc" stroke="#059669" stroke-width="1.6"/><text x="434" y="516" font-size="12" font-weight="bold" fill="#059669">三个电压都对但发热</text><text x="434" y="536" font-size="11" fill="#475569">→ 功耗问题，非电气故障</text><text x="434" y="554" font-size="10.5" font-weight="bold" fill="#334155">动作：核算 P=V_CE·I_C vs 散热能力</text>
+<text x="200" y="330" font-size="12" font-weight="bold" fill="#b45309">记忆法：把三个电压当「三个人」</text>
+<text x="60" y="358" font-size="11" fill="#475569">B 是「咽喉」：必须比 E 高 0.7V，否则没开</text>
+<text x="60" y="382" font-size="11" fill="#475569">E 是「地线延伸」：直耦时贴地，抬高=发射极电阻太大</text>
+<text x="60" y="406" font-size="11" fill="#475569">C 是「结果」：高=没电流，低=饱和了</text>
+<rect x="60" y="430" width="300" height="110" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="1.6"/>
+<text x="76" y="456" font-size="11.5" font-weight="bold" fill="#b45309">为什么先量电压、不先拆管子？</text>
+<text x="76" y="480" font-size="11" fill="#475569">拆焊一次就有损伤风险（尤其多层板），</text>
+<text x="76" y="500" font-size="11" fill="#475569">而三个电压在线 30 秒就能测完，</text>
+<text x="76" y="520" font-size="11" font-weight="bold" fill="#dc2626">能定向到「哪个回路」，再动手。</text>
+<rect x="416" y="110" width="352" height="76" rx="10" fill="none" stroke="#dc2626" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.0s" repeatCount="indefinite"/></rect>
+<text x="400" y="580" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">① 正常态：V_BE=0.7V、V_C 高于 V_B —— 两条判据同时成立才叫「放大态」<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="580" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">② V_BE=0.7V 但 V_C 高挂电源：说明「有基极电流、无集电极电流」→ 查集电极回路<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="580" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">③ 三个电压一量就能定向到回路——先测后拆，是最省时间的排故顺序<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="580" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">④ 电压全对却烫手：那是散热账（P=V_CE·I_C），不是电气故障<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/></text></svg>

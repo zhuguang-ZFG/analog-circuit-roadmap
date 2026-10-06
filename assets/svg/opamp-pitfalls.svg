@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="620" viewBox="0 0 800 620">
+<title>运放的六个经典坑：每一个都能复现、都能预防</title>
+<rect width="800" height="620" fill="#f8fafc"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+@media (prefers-color-scheme: dark){
+rect[fill="#f8fafc"]{fill:#0f172a}
+[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
+[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
+[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
+[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
+[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
+[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
+[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
+[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
+[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
+[fill="#cbd5e1"]{fill:#334155}[stroke="#cbd5e1"]{stroke:#475569}
+[fill="#ffffff"]{fill:#0f172a}[fill="#94a3b8"]{fill:#64748b}[stroke="#94a3b8"]{stroke:#64748b}
+[fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
+}
+</style>
+<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">运放的六个经典坑：每一个都能复现、都能预防</text>
+
+<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">症状 → 根因 → 解法，按现场出现频率排序</text>
+<rect x="40" y="82" width="720" height="80" rx="9" fill="#f8fafc" stroke="#dc2626" stroke-width="1.6"/><text x="58" y="110" font-size="12.5" font-weight="bold" fill="#dc2626">⚠ 输出锁定在电源轨</text><text x="58" y="134" font-size="11" fill="#475569">根因：输入超共模范围 / 反相端反馈开路</text><text x="58" y="152" font-size="11" font-weight="bold" fill="#334155">解法：查共模范围（LM358 是 0~Vcc−1.5V）；查反馈电阻焊接</text><circle cx="742" cy="122" r="5" fill="#dc2626" opacity="0.8"/><rect x="40" y="170" width="720" height="80" rx="9" fill="#f8fafc" stroke="#b45309" stroke-width="1.6"/><text x="58" y="198" font-size="12.5" font-weight="bold" fill="#b45309">⚠ 相位反转（跳到相反轨）</text><text x="58" y="222" font-size="11" fill="#475569">根因：老式运放输入超共模时内部结正偏</text><text x="58" y="240" font-size="11" font-weight="bold" fill="#334155">解法：选带相位反转保护的型号；输入端限幅/钳位</text><circle cx="742" cy="210" r="5" fill="#b45309" opacity="0.8"/><rect x="40" y="258" width="720" height="80" rx="9" fill="#f8fafc" stroke="#7c3aed" stroke-width="1.6"/><text x="58" y="286" font-size="12.5" font-weight="bold" fill="#7c3aed">⚠ 高频自激振荡</text><text x="58" y="310" font-size="11" fill="#475569">根因：驱动容性负载（长电缆）破坏相位裕度</text><text x="58" y="328" font-size="11" font-weight="bold" fill="#334155">解法：输出串 10~100Ω 隔离电阻 —— 最常用的急救措施</text><circle cx="742" cy="298" r="5" fill="#7c3aed" opacity="0.8"/><rect x="40" y="346" width="720" height="80" rx="9" fill="#f8fafc" stroke="#2563eb" stroke-width="1.6"/><text x="58" y="374" font-size="12.5" font-weight="bold" fill="#2563eb">⚠ 输出三角波化</text><text x="58" y="398" font-size="11" fill="#475569">根因：SR 不足（大信号被限速）</text><text x="58" y="416" font-size="11" font-weight="bold" fill="#334155">解法：降幅度或换高速运放；算 f_max = SR/(2πVp)</text><circle cx="742" cy="386" r="5" fill="#2563eb" opacity="0.8"/><rect x="40" y="434" width="720" height="80" rx="9" fill="#f8fafc" stroke="#059669" stroke-width="1.6"/><text x="58" y="462" font-size="12.5" font-weight="bold" fill="#059669">⚠ 直流误差超标</text><text x="58" y="486" font-size="11" fill="#475569">根因：V_OS×增益；I_B×源阻抗</text><text x="58" y="504" font-size="11" font-weight="bold" fill="#334155">解法：换精密运放（OP07/斩波）；降低源阻抗</text><circle cx="742" cy="474" r="5" fill="#059669" opacity="0.8"/><rect x="40" y="522" width="720" height="80" rx="9" fill="#f8fafc" stroke="#0ea5e9" stroke-width="1.6"/><text x="58" y="550" font-size="12.5" font-weight="bold" fill="#0ea5e9">⚠ 微音效应/杂音</text><text x="58" y="574" font-size="11" fill="#475569">根因：高增益受振动（陶瓷电容压电效应）</text><text x="58" y="592" font-size="11" font-weight="bold" fill="#334155">解法：换 C0G 电容；减振布局；避免机械应力</text><circle cx="742" cy="562" r="5" fill="#0ea5e9" opacity="0.8"/>
+<line x1="40" y1="612" x2="760" y2="612" stroke="#cbd5e1" stroke-width="1"/>
+<text x="400" y="640" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">三条「先量后换」的诊断动作</text>
+<text x="400" y="664" text-anchor="middle" font-size="11.5" fill="#475569">① 先看<b>输出直流电平</b>：贴轨 → 查共模范围与反馈回路；居中但抖 → 查自激与去耦</text>
+<text x="400" y="686" text-anchor="middle" font-size="11.5" fill="#475569">② 再看<b>输入端电压差</b>：虚短失效（差几百 mV）→ 反馈断了；差几 µV → 正常工作</text>
+<text x="400" y="708" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#b45309">③ 最后才怀疑运放本身——绝大多数「运放坏了」其实是外围（反馈、去耦、负载）</text>
+<circle r="5" fill="#f59e0b"><animateMotion dur="11s" repeatCount="indefinite" path="M52,118 L748,118" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#f59e0b"><animateMotion dur="11s" begin="-1.5s" repeatCount="indefinite" path="M52,206 L748,206" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#f59e0b"><animateMotion dur="11s" begin="-3.0s" repeatCount="indefinite" path="M52,294 L748,294" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#f59e0b"><animateMotion dur="11s" begin="-4.5s" repeatCount="indefinite" path="M52,382 L748,382" keyPoints="0;1" keyTimes="0;1"/></circle>
+<rect x="38" y="80" width="724" height="84" rx="10" fill="none" stroke="#dc2626" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.0s" repeatCount="indefinite"/></rect>
+<text x="400" y="600" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">① 输出贴轨是最高频故障：先查共模范围与反馈回路，别急着换运放<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="600" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">② 容性负载自激：输出串 10~100Ω 隔离电阻是最常用的急救<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="600" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">③ 三角波化 = SR 不足；直流误差 = V_OS×增益 —— 两笔账都能提前算<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="600" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">④ 诊断顺序：输出电平 → 输入端压差 → 最后才怀疑运放本身<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/></text></svg>
