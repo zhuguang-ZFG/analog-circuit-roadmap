@@ -6310,9 +6310,13 @@ def make_mosfet_four_beats():
         return (f'<path d="M' + " L".join(pts) + f'" fill="none" stroke="{color}" '
                 f'stroke-width="{width}" stroke-linejoin="round"/>')
 
-    def motion_path(tab, ytop, ybot, vmax):
-        return "M" + " L".join(
-            f"{tx(t):.0f},{ybot - (value / vmax) * (ybot - ytop):.0f}" for t, value in tab)
+    series = [
+        ('#2563eb', [(t, 362 - v / 5 * 18) for t, v in vgs]),
+        ('#059669', [(t, 392 - v / 5 * 18) for t, v in ids]),
+        ('#dc2626', [(t, 422 - v / 20 * 18) for t, v in vds]),
+        ('#b45309', [(t, 452 - p / 100 * 18) for t, p in pwr]),
+    ]
+    cursor = waveform_cursor(DB, 700, series, [], T0, T1, 324, 474)
 
     def mini_stage(x, title, time_text, color, current_text, vds_text, vgs_text,
                    channel, current_path=None, gate_path=None):
@@ -6384,10 +6388,7 @@ def make_mosfet_four_beats():
 <text x="{tx(400)+5:.0f}" y="488" font-size="10.5" fill="#475569">400ns</text>
 <text x="{tx(560)+5:.0f}" y="488" font-size="10.5" fill="#475569">560ns</text>
 <text x="{tx(700):.0f}" y="488" text-anchor="end" font-size="10.5" fill="#475569">700ns</text>
-<circle r="4.2" fill="#2563eb"><animateMotion dur="{DB}s" repeatCount="indefinite" path="{motion_path(vgs, 344, 362, 5)}"/></circle>
-<circle r="4.2" fill="#059669"><animateMotion dur="{DB}s" repeatCount="indefinite" path="{motion_path(ids, 374, 392, 5)}"/></circle>
-<circle r="4.2" fill="#dc2626"><animateMotion dur="{DB}s" repeatCount="indefinite" path="{motion_path(vds, 404, 422, 20)}"/></circle>
-<circle r="4.2" fill="#b45309"><animateMotion dur="{DB}s" repeatCount="indefinite" path="{motion_path(pwr, 434, 452, 100)}"/></circle>
+{cursor}
 <rect x="22" y="515" width="756" height="87" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
 <text x="40" y="540" font-size="12" font-weight="bold" fill="#2563eb">🧮 四拍账本：电流先上来，电压再掉下去，乘积才是热</text>
 <text x="40" y="563" font-size="11" fill="#475569">①150ns + ②250ns + ③160ns + ④140ns = 700ns；③ 平台：Q_gd = 10mA×160ns = 1.6nC</text>
@@ -6457,6 +6458,13 @@ def make_rectifier_filter_beats():
     id_d = (f"M{T0},438 L{tx(4.3):.0f},438" + pulse(4.3)
             + f" L{tx(14.3):.0f},438" + pulse(14.3) + f" L{T1},438")
 
+    series = [
+        ('#2563eb', [(t, 378 - abs(np.sin(np.pi * t / 10)) * 20) for t in ts]),
+        ('#059669', [(t, vy(v)) for t, v in zip(vc_t, vc_v)]),
+        ('#dc2626', [(0, 438), (4.3, 438), (4.65, 416), (5.0, 438),
+                     (14.3, 438), (14.65, 416), (15.0, 438), (20, 438)]),
+    ]
+    cursor = waveform_cursor(DB, 20, series, [], T0, T1, 340, 458)
     svg = svg_open('整流滤波电源四拍拆解：从空电容到稳态纹波', h=680)
     svg += f'''
 <text x="400" y="51" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#334155">12V AC（峰值 17V）· 桥式整流 · 4700µF · 1A 负载：一个周期的四拍</text>
@@ -6482,9 +6490,7 @@ def make_rectifier_filter_beats():
 <text x="{tx(10):.0f}" y="458" text-anchor="middle" font-size="10.5" fill="#475569">10ms</text>
 <text x="{tx(15):.0f}" y="458" text-anchor="middle" font-size="10.5" fill="#475569">15ms</text>
 <text x="{T1}" y="458" text-anchor="end" font-size="10.5" fill="#475569">20ms</text>
-<circle r="4.2" fill="#2563eb"><animateMotion dur="{DB}s" repeatCount="indefinite" path="{ac_d}"/></circle>
-<circle r="4.2" fill="#059669"><animateMotion dur="{DB}s" repeatCount="indefinite" path="{vc_d}"/></circle>
-<circle r="4.2" fill="#dc2626"><animateMotion dur="{DB}s" repeatCount="indefinite" path="{id_d}"/></circle>
+{cursor}
 <rect x="22" y="515" width="756" height="87" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
 <text x="40" y="540" font-size="12" font-weight="bold" fill="#2563eb">🧮 四拍账本：导通角只有 20%，峰值电流是负载的 5~10 倍</text>
 <text x="40" y="563" font-size="11" fill="#475569">纹波 ΔV = I·Δt/C = 1A×10ms/4700µF ≈ 2.1V；峰值电流 ≈ 10ms/2ms×1A = 5A</text>

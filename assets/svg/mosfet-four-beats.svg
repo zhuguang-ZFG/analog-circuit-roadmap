@@ -133,10 +133,18 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="478" y="488" font-size="10.5" fill="#475569">400ns</text>
 <text x="631" y="488" font-size="10.5" fill="#475569">560ns</text>
 <text x="760" y="488" text-anchor="end" font-size="10.5" fill="#475569">700ns</text>
-<circle r="4.2" fill="#2563eb"><animateMotion dur="10s" repeatCount="indefinite" path="M90,362 L234,357 L473,352 L626,352 L760,344"/></circle>
-<circle r="4.2" fill="#059669"><animateMotion dur="10s" repeatCount="indefinite" path="M90,392 L234,392 L473,374 L626,374 L760,374"/></circle>
-<circle r="4.2" fill="#dc2626"><animateMotion dur="10s" repeatCount="indefinite" path="M90,404 L234,404 L473,404 L626,422 L760,422"/></circle>
-<circle r="4.2" fill="#b45309"><animateMotion dur="10s" repeatCount="indefinite" path="M90,452 L234,452 L473,434 L626,452 L760,452"/></circle>
+<g transform="translate(90,0)">
+<animateTransform attributeName="transform" type="translate" values="90,0;760,0" keyTimes="0;1" calcMode="linear" dur="10s" repeatCount="indefinite"/>
+<line x1="0" y1="324" x2="0" y2="474" stroke="#64748b" stroke-width="1.2" stroke-dasharray="3,3"/>
+<circle cx="0" cy="362.000" r="4.2" fill="#2563eb">
+<animate attributeName="cy" values="362.000;356.960;351.560;351.560;344.000" keyTimes="0.000000000;0.214285714;0.571428571;0.800000000;1.000000000" calcMode="linear" dur="10s" repeatCount="indefinite"/>
+</circle><circle cx="0" cy="392.000" r="4.2" fill="#059669">
+<animate attributeName="cy" values="392.000;392.000;374.000;374.000;374.000" keyTimes="0.000000000;0.214285714;0.571428571;0.800000000;1.000000000" calcMode="linear" dur="10s" repeatCount="indefinite"/>
+</circle><circle cx="0" cy="404.000" r="4.2" fill="#dc2626">
+<animate attributeName="cy" values="404.000;404.000;404.000;421.865;421.865" keyTimes="0.000000000;0.214285714;0.571428571;0.800000000;1.000000000" calcMode="linear" dur="10s" repeatCount="indefinite"/>
+</circle><circle cx="0" cy="452.000" r="4.2" fill="#b45309">
+<animate attributeName="cy" values="452.000;452.000;434.000;451.865;451.865" keyTimes="0.000000000;0.214285714;0.571428571;0.800000000;1.000000000" calcMode="linear" dur="10s" repeatCount="indefinite"/>
+</circle></g>
 <rect x="22" y="515" width="756" height="87" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
 <text x="40" y="540" font-size="12" font-weight="bold" fill="#2563eb">🧮 四拍账本：电流先上来，电压再掉下去，乘积才是热</text>
 <text x="40" y="563" font-size="11" fill="#475569">①150ns + ②250ns + ③160ns + ④140ns = 700ns；③ 平台：Q_gd = 10mA×160ns = 1.6nC</text>

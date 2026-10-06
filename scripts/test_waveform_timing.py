@@ -1,4 +1,4 @@
-"""Browser regression for the three time-domain teaching diagrams.
+"""Browser regression for the time-domain teaching diagrams.
 
 Run: python -m unittest discover -s scripts -p test_waveform_timing.py -v
 Requires Playwright and installed Google Chrome (channel="chrome").
@@ -17,6 +17,11 @@ CASES = {
     "analog-switch-beats": (20, [8], "#7c3aed"),
     "ldo-transient-beats": (50, [5, 10, 30], "#b45309"),
     "555-astable-beats": (1012, [541], "#dc2626"),
+}
+
+FOUR_BEATS = {
+    "mosfet-four-beats": (10, 90, 760, 4),
+    "rectifier-filter-beats": (12, 80, 760, 3),
 }
 
 
@@ -104,6 +109,19 @@ class WaveformTimingTests(unittest.TestCase):
             times = [edge / span * DURATION + offset
                      for edge in transitions for offset in [-0.002, 0.002]]
             self.check_positions(name, times)
+
+    def test_four_beat_markers_follow_time_axis(self):
+        for name, (duration, x0, x1, markers) in FOUR_BEATS.items():
+            times = [0, duration * 0.17, duration * 0.5,
+                     duration * 0.83, duration - 0.01]
+            for frame, seconds in zip(self.snapshot(name, times), times):
+                expected_x = x0 + seconds / duration * (x1 - x0)
+                with self.subTest(diagram=name, seconds=seconds):
+                    self.assertEqual(len(frame["points"]), markers)
+                    for point in frame["points"]:
+                        self.assertAlmostEqual(
+                            point["x"], expected_x, delta=1.0,
+                            msg=f"marker {point['color']} must follow elapsed time")
 
     def test_cycle_restart_and_seek(self):
         for name in CASES:
