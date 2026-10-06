@@ -4127,8 +4127,9 @@ def make_transfer_gate():
     X0, X1, Y0, Y1 = 400, 760, 132, 402
     px = lambda v: X0 + v/VDD*(X1-X0)
     def ry(r):
+        # 电阻轴按惯例：Ron 越大越靠上（∞ 冲出图顶），所以 1kΩ 在顶、10Ω 在底
         r = min(max(r, 10.0), 1000.0)
-        return Y0 + (np.log10(r)-1)/2*(Y1-Y0)
+        return Y0 + (3-np.log10(r))/2*(Y1-Y0)
     def ron_n(vin):
         d = VDD - vin - VT
         return R0/d if d > 0.06 else 1000.0
