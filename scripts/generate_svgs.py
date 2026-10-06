@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-generate_svgs.py — 一键再生成《通往模拟电路之路》全部 86 张 SVG SMIL 动画
+generate_svgs.py — 一键再生成《通往模拟电路之路》全部 90 张 SVG SMIL 动画
 用法:  python generate_svgs.py            # 输出到 ../assets/svg/
 风格:  参考 BMS-Z 项目 —— 浅色底 + SMIL 节拍字幕 + 深色模式自适应 + 拟人化讲解
 所有电路参数经过自洽核算（datasheet 级），详见各函数注释。
@@ -4855,6 +4855,12 @@ def make_feedback_topo():
 {pulse(587, 118, 148, 60, '#b45309', 2.0, 8)}
 <circle r="5" fill="#2563eb"><animateMotion dur="{DF}s" repeatCount="indefinite" path="M60,246 L196,246" keyPoints="0;1" keyTimes="0;1"/></circle>
 <circle r="5" fill="#b45309"><animateMotion dur="{DF}s" begin="-1.6s" repeatCount="indefinite" path="M610,246 L742,246" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="{DF}s" begin="-0.8s" repeatCount="indefinite" path="M243,246 L379,246"/></circle>
+<circle r="5" fill="#7c3aed"><animateMotion dur="{DF}s" begin="-0.8s" repeatCount="indefinite" path="M426,246 L562,246"/></circle>
+<circle cx="112" cy="168" r="5" fill="none" stroke="#2563eb" stroke-width="2.2"><animate attributeName="r" values="5;13;5" dur="2.2s" repeatCount="indefinite"/></circle>
+<circle cx="295" cy="168" r="5" fill="none" stroke="#059669" stroke-width="2.2"><animate attributeName="r" values="5;13;5" dur="2.2s" begin="-1.1s" repeatCount="indefinite"/></circle>
+<circle cx="478" cy="168" r="5" fill="none" stroke="#7c3aed" stroke-width="2.2"><animate attributeName="r" values="5;13;5" dur="2.2s" begin="-0.55s" repeatCount="indefinite"/></circle>
+<circle cx="661" cy="168" r="5" fill="none" stroke="#b45309" stroke-width="2.2"><animate attributeName="r" values="5;13;5" dur="2.2s" begin="-1.65s" repeatCount="indefinite"/></circle>
 '''
     svg += caption("① 采样决定「稳什么」：采样电压稳电压、采样电流稳电流", "#2563eb", DF,
                    "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=606)
@@ -5529,6 +5535,10 @@ def make_mux4051():
 <animate attributeName="r" values="5;12;5" dur="2.0s" repeatCount="indefinite"/></circle>
 <circle cx="370" cy="200" r="5" fill="none" stroke="#059669" stroke-width="2.2">
 <animate attributeName="r" values="5;12;5" dur="2.0s" begin="-1.0s" repeatCount="indefinite"/></circle>
+<circle r="5" fill="#94a3b8"><animateMotion dur="{DM}s" begin="-4.0s" repeatCount="indefinite" path="M72,200 L118,200"/></circle>
+<circle r="5" fill="#94a3b8"><animateMotion dur="{DM}s" begin="-5.5s" repeatCount="indefinite" path="M72,248 L118,248"/></circle>
+<circle cx="370" cy="300" r="5" fill="none" stroke="#7c3aed" stroke-width="2.2"><animate attributeName="r" values="5;12;5" dur="2.0s" repeatCount="indefinite"/></circle>
+<circle cx="320" cy="300" r="5" fill="none" stroke="#059669" stroke-width="2.2"><animate attributeName="r" values="5;12;5" dur="2.0s" begin="-1.0s" repeatCount="indefinite"/></circle>
 '''
     svg += caption("① 三位地址选通一路：8 个传感器轮流接到同一个 ADC——省掉 7 个 ADC", "#2563eb", DM,
                    "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=596)
@@ -5604,6 +5614,12 @@ def make_darlington():
 <text x="580" y="520" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#059669">经典集成件 ULN2003：7 路达林顿 + 每路自带续流二极管</text>
 <text x="580" y="542" text-anchor="middle" font-size="11" fill="#475569">（它把「续流」这件事也一起做进芯片了 —— 见 3.5 的教训）</text>
 {pulse(380, 372, 360, 76, '#64748b', 2.0, 10)}
+<circle r="5" fill="#2563eb"><animateMotion dur="{DD}s" begin="-0.65s" repeatCount="indefinite" path="M162,154 L162,198 L206,176"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="{DD}s" begin="-2.05s" repeatCount="indefinite" path="M162,250 L162,276 L206,302"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="{DD}s" begin="-2.75s" repeatCount="indefinite" path="M210,302 L298,300"/></circle>
+<circle cx="208" cy="176" r="5" fill="none" stroke="#2563eb" stroke-width="2.2"><animate attributeName="r" values="5;13;5" dur="2.2s" repeatCount="indefinite"/></circle>
+<circle cx="208" cy="302" r="5" fill="none" stroke="#059669" stroke-width="2.2"><animate attributeName="r" values="5;13;5" dur="2.2s" begin="-1.1s" repeatCount="indefinite"/></circle>
+<circle cx="300" cy="200" r="5" fill="none" stroke="#dc2626" stroke-width="2.2"><animate attributeName="r" values="5;13;5" dur="2.2s" begin="-0.5s" repeatCount="indefinite"/></circle>
 '''
     svg += caption("① β 相乘的机理：前一级的发射极电流就是后一级的基极电流——串联放大", "#2563eb", DD,
                    "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=592)
@@ -6268,6 +6284,388 @@ def make_compliance_voltage():
                    "0;0;1;1", "0;0.85;0.9;1", y=612)
     save('compliance-voltage.svg', svg + '</svg>')
 
+# ======================= 图 87：MOSFET 开通四拍（第 4 章 4.6） =======================
+def make_mosfet_four_beats():
+    """把同一次开通拆成四个能量状态：栅极电荷、沟道电流与损耗同步变化。"""
+    DB = 10
+    T0, T1 = 90, 760
+    tx = lambda t: T0 + t / 700 * (T1 - T0)
+
+    vgs = [(0, 0), (150, 1.4), (400, 2.9), (560, 2.9), (700, 5.0)]
+    ids = [(0, 0), (150, 0), (400, 5), (560, 5), (700, 5)]
+    vds = [(0, 20), (150, 20), (400, 20), (560, 0.15), (700, 0.15)]
+    pwr = [(t, vd * current) for (t, vd), (_, current) in zip(vds, ids)]
+
+    def path(tab, ytop, ybot, vmax, color, width=2.5):
+        pts = [f"{tx(t):.0f},{ybot - (value / vmax) * (ybot - ytop):.0f}" for t, value in tab]
+        return (f'<path d="M' + " L".join(pts) + f'" fill="none" stroke="{color}" '
+                f'stroke-width="{width}" stroke-linejoin="round"/>')
+
+    def motion_path(tab, ytop, ybot, vmax):
+        return "M" + " L".join(
+            f"{tx(t):.0f},{ybot - (value / vmax) * (ybot - ytop):.0f}" for t, value in tab)
+
+    def mini_stage(x, title, time_text, color, current_text, vds_text, vgs_text,
+                   channel, current_path=None, gate_path=None):
+        current = flow(current_path, DB, n=2, color="#dc2626", r=4.2) if current_path else ''
+        gate = flow(gate_path, DB, n=2, color="#7c3aed", r=3.6) if gate_path else ''
+        return f'''<rect x="{x}" y="70" width="174" height="214" rx="10" fill="#f8fafc" stroke="{color}" stroke-width="1.8"/>
+<text x="{x+87}" y="94" text-anchor="middle" font-size="13" font-weight="bold" fill="{color}">{title}</text>
+<text x="{x+87}" y="113" text-anchor="middle" font-size="10.5" fill="#475569">{time_text}</text>
+<text x="{x+18}" y="134" font-size="10.5" font-weight="bold" fill="#b45309">+20V</text>
+<line x1="{x+54}" y1="128" x2="{x+54}" y2="143" stroke="#334155" stroke-width="2.3"/>
+<rect x="{x+43}" y="143" width="22" height="30" fill="#fffbeb" stroke="#334155" stroke-width="2.2"/>
+<text x="{x+75}" y="161" font-size="10" fill="#475569">R_L=4Ω</text>
+<line x1="{x+54}" y1="173" x2="{x+54}" y2="198" stroke="#334155" stroke-width="2.3"/>
+<rect x="{x+39}" y="198" width="30" height="30" rx="3" fill="{channel}" stroke="#334155" stroke-width="2.2"/>
+<line x1="{x+39}" y1="198" x2="{x+39}" y2="228" stroke="#334155" stroke-width="3.4"/>
+<line x1="{x+3}" y1="213" x2="{x+39}" y2="213" stroke="#334155" stroke-width="2.2"/>
+<text x="{x+5}" y="234" font-size="10" font-weight="bold" fill="#7c3aed">G</text>
+<line x1="{x+54}" y1="228" x2="{x+54}" y2="239" stroke="#334155" stroke-width="2.3"/>
+<line x1="{x+38}" y1="239" x2="{x+70}" y2="239" stroke="#334155" stroke-width="2.5"/>
+<line x1="{x+43}" y1="245" x2="{x+65}" y2="245" stroke="#334155" stroke-width="2.5"/>
+<line x1="{x+48}" y1="251" x2="{x+60}" y2="251" stroke="#334155" stroke-width="2.5"/>
+{current}{gate}
+<text x="{x+87}" y="266" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#dc2626">I_D：{current_text}</text>
+<text x="{x+87}" y="278" text-anchor="middle" font-size="10" fill="#475569">V_DS：{vds_text} · V_GS：{vgs_text}</text>'''
+
+    cards = [
+        mini_stage(20, '① 延时区', '0–150ns', '#64748b', '0', '20V', '0→1.4V', '#cbd5e1'),
+        mini_stage(212, '② 电流上升', '150–400ns', '#b45309', '0→5A', '20V', '1.4→2.9V', '#f59e0b',
+                   'M266,128 V239', 'M215,213 H251'),
+        mini_stage(404, '③ Miller 平台', '400–560ns', '#7c3aed', '5A', '20→0.15V', '≈2.9V', '#7c3aed',
+                   'M458,128 V239', 'M407,213 H443'),
+        mini_stage(596, '④ 完全增强', '560–700ns', '#059669', '5A', '0.15V', '2.9→5V', '#059669',
+                   'M650,128 V239', 'M599,213 H635'),
+    ]
+
+    svg = svg_open('MOSFET 开通四拍：栅极电荷如何变成热', h=680)
+    svg += f'''
+<text x="400" y="51" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#334155">20V 母线 · 5A 负载 · 10mA 驱动 · AO3400：同一条电流路径，四种状态</text>
+{cards[0]}
+{cards[1]}
+{cards[2]}
+{cards[3]}
+<text x="425" y="314" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">同一次开通：四条波形共用一条时间轴</text>
+<rect x="{tx(0):.0f}" y="324" width="{tx(150)-tx(0):.0f}" height="150" fill="#cbd5e1" opacity="0.18"/>
+<rect x="{tx(150):.0f}" y="324" width="{tx(400)-tx(150):.0f}" height="150" fill="#f59e0b" opacity="0.13"/>
+<rect x="{tx(400):.0f}" y="324" width="{tx(560)-tx(400):.0f}" height="150" fill="#7c3aed" opacity="0.13"/>
+<rect x="{tx(560):.0f}" y="324" width="{tx(700)-tx(560):.0f}" height="150" fill="#059669" opacity="0.13"/>
+<text x="{tx(75):.0f}" y="338" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#64748b">① 延时</text>
+<text x="{tx(275):.0f}" y="338" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#b45309">② 上升</text>
+<text x="{tx(480):.0f}" y="338" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#7c3aed">③ 平台</text>
+<text x="{tx(630):.0f}" y="338" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#059669">④ 增强</text>
+<text x="28" y="360" font-size="11" font-weight="bold" fill="#2563eb">V_GS</text>
+<text x="28" y="390" font-size="11" font-weight="bold" fill="#059669">I_D</text>
+<text x="28" y="420" font-size="11" font-weight="bold" fill="#dc2626">V_DS</text>
+<text x="28" y="450" font-size="11" font-weight="bold" fill="#b45309">P=V·I</text>
+<line x1="{T0}" y1="362" x2="{T1}" y2="362" stroke="#cbd5e1" stroke-width="1"/>
+<line x1="{T0}" y1="392" x2="{T1}" y2="392" stroke="#cbd5e1" stroke-width="1"/>
+<line x1="{T0}" y1="422" x2="{T1}" y2="422" stroke="#cbd5e1" stroke-width="1"/>
+<line x1="{T0}" y1="452" x2="{T1}" y2="452" stroke="#cbd5e1" stroke-width="1"/>
+{path(vgs, 344, 362, 5, '#2563eb')}
+{path(ids, 374, 392, 5, '#059669')}
+{path(vds, 404, 422, 20, '#dc2626')}
+{path(pwr, 434, 452, 100, '#b45309')}
+<line x1="{tx(150):.0f}" y1="324" x2="{tx(150):.0f}" y2="474" stroke="#64748b" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="{tx(400):.0f}" y1="324" x2="{tx(400):.0f}" y2="474" stroke="#dc2626" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="{tx(560):.0f}" y1="324" x2="{tx(560):.0f}" y2="474" stroke="#7c3aed" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="{tx(700):.0f}" y1="324" x2="{tx(700):.0f}" y2="474" stroke="#059669" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="{tx(150)+5:.0f}" y="488" font-size="10.5" fill="#475569">150ns</text>
+<text x="{tx(400)+5:.0f}" y="488" font-size="10.5" fill="#475569">400ns</text>
+<text x="{tx(560)+5:.0f}" y="488" font-size="10.5" fill="#475569">560ns</text>
+<text x="{tx(700):.0f}" y="488" text-anchor="end" font-size="10.5" fill="#475569">700ns</text>
+<circle r="4.2" fill="#2563eb"><animateMotion dur="{DB}s" repeatCount="indefinite" path="{motion_path(vgs, 344, 362, 5)}"/></circle>
+<circle r="4.2" fill="#059669"><animateMotion dur="{DB}s" repeatCount="indefinite" path="{motion_path(ids, 374, 392, 5)}"/></circle>
+<circle r="4.2" fill="#dc2626"><animateMotion dur="{DB}s" repeatCount="indefinite" path="{motion_path(vds, 404, 422, 20)}"/></circle>
+<circle r="4.2" fill="#b45309"><animateMotion dur="{DB}s" repeatCount="indefinite" path="{motion_path(pwr, 434, 452, 100)}"/></circle>
+<rect x="22" y="515" width="756" height="87" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="40" y="540" font-size="12" font-weight="bold" fill="#2563eb">🧮 四拍账本：电流先上来，电压再掉下去，乘积才是热</text>
+<text x="40" y="563" font-size="11" fill="#475569">①150ns + ②250ns + ③160ns + ④140ns = 700ns；③ 平台：Q_gd = 10mA×160ns = 1.6nC</text>
+<text x="40" y="585" font-size="11" fill="#475569">稳态导通：P_cond = 5²×0.03Ω = 0.75W；保守重叠估算：P_sw≈½×20×5×700ns×100kHz≈3.5W</text>
+<text x="40" y="597" font-size="10.5" font-weight="bold" fill="#dc2626">所以栅极驱动不是「有没有电压」，而是「能不能把 Q_gd 搬得足够快」</text>
+'''
+    svg += caption('四阶段的因果链：C_GS 先充电 → I_D 上升 → C_GD 抢走驱动电流形成平台 → R_DS(on) 降到最低', '#7c3aed', DB,
+                   '0;0;1;1', '0;0.84;0.89;1', y=650, size=13.2)
+    save('mosfet-four-beats.svg', svg + '</svg>')
+
+# ======================= 图 88：整流滤波电源四拍拆解（第 2 章 2.6） =======================
+def make_rectifier_filter_beats():
+    """整流滤波电源四拍拆解：AC→二极管→C∥R_L，从空电容到稳态纹波。"""
+    DB = 12
+    T0, T1 = 80, 760
+    tx = lambda t: T0 + t / 20 * (T1 - T0)          # ms → x（20ms 线性时间轴）
+    vy = lambda v: 390 + (15.6 - v) / 2.1 * 16      # V_C：15.6V→390，13.5V→406
+
+    def mini_stage(x, title, time_text, color, current_text, voltage_text,
+                   diode_color, cap_color, flow_path=None, flow_color="#dc2626"):
+        fl = flow(flow_path, DB, n=2, color=flow_color, r=4.2) if flow_path else ''
+        return f'''<rect x="{x}" y="70" width="174" height="214" rx="10" fill="#f8fafc" stroke="{color}" stroke-width="1.8"/>
+<text x="{x+87}" y="94" text-anchor="middle" font-size="13" font-weight="bold" fill="{color}">{title}</text>
+<text x="{x+87}" y="113" text-anchor="middle" font-size="10.5" fill="#475569">{time_text}</text>
+<circle cx="{x+28}" cy="152" r="12" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<path d="M{x+20},152 q4,-8 8,0 q4,8 8,0" fill="none" stroke="#2563eb" stroke-width="1.8"/>
+<text x="{x+28}" y="133" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#2563eb">AC</text>
+<line x1="{x+40}" y1="152" x2="{x+46}" y2="152" stroke="#334155" stroke-width="2.2"/>
+<polygon points="{x+62},152 {x+46},145 {x+46},159" fill="{diode_color}"/>
+<line x1="{x+62}" y1="145" x2="{x+62}" y2="159" stroke="#334155" stroke-width="2.5"/>
+<line x1="{x+62}" y1="152" x2="{x+98}" y2="152" stroke="#334155" stroke-width="2.2"/>
+<line x1="{x+98}" y1="152" x2="{x+98}" y2="164" stroke="#334155" stroke-width="2.2"/>
+<line x1="{x+86}" y1="164" x2="{x+110}" y2="164" stroke="{cap_color}" stroke-width="3"/>
+<line x1="{x+86}" y1="172" x2="{x+110}" y2="172" stroke="{cap_color}" stroke-width="3"/>
+<line x1="{x+98}" y1="172" x2="{x+98}" y2="190" stroke="#334155" stroke-width="2.2"/>
+<line x1="{x+98}" y1="152" x2="{x+132}" y2="152" stroke="#334155" stroke-width="2.2"/>
+<rect x="{x+126}" y="157" width="12" height="26" fill="#f8fafc" stroke="#334155" stroke-width="2.2"/>
+<line x1="{x+132}" y1="152" x2="{x+132}" y2="157" stroke="#334155" stroke-width="2.2"/>
+<line x1="{x+132}" y1="183" x2="{x+132}" y2="190" stroke="#334155" stroke-width="2.2"/>
+<line x1="{x+28}" y1="164" x2="{x+28}" y2="190" stroke="#334155" stroke-width="2.2"/>
+<line x1="{x+28}" y1="190" x2="{x+132}" y2="190" stroke="#334155" stroke-width="2.2"/>
+<text x="{x+113}" y="170" font-size="9" font-weight="bold" fill="#475569">C</text>
+<text x="{x+146}" y="172" font-size="9" font-weight="bold" fill="#475569">R_L</text>
+<text x="{x+52}" y="141" font-size="9" font-weight="bold" fill="#475569">D</text>
+{fl}
+<text x="{x+87}" y="266" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#dc2626">I_D：{current_text}</text>
+<text x="{x+87}" y="278" text-anchor="middle" font-size="10" fill="#475569">V_C：{voltage_text}</text>'''
+
+    cards = [
+        mini_stage(20, '① 初始态', 't=0 · 上电前', '#64748b', '0', '0V',
+                   '#cbd5e1', '#cbd5e1'),
+        mini_stage(212, '② 浪涌充电', '第一次过峰', '#b45309', '10~50A', '0→15.6V',
+                   '#f59e0b', '#f59e0b', 'M246,152 L310,152', '#dc2626'),
+        mini_stage(404, '③ 峰值充电', '稳态峰顶 · 导通角~20%', '#7c3aed', '5~10A', '13.5→15.6V',
+                   '#7c3aed', '#7c3aed', 'M438,152 L502,152', '#dc2626'),
+        mini_stage(596, '④ 谷值放电', '稳态谷值', '#059669', '0', '15.6→13.5V',
+                   '#cbd5e1', '#059669', 'M630,152 L664,152 L664,190 L630,190', '#059669'),
+    ]
+
+    # ---- 波形：20ms 线性轴；|sin| 峰值在 5/15ms，纹波周期 10ms ----
+    ts = np.linspace(0, 20, 97)
+    ac_d = "M" + " L".join(f"{tx(t):.0f},{378 - abs(np.sin(np.pi * t / 10)) * 20:.0f}" for t in ts)
+    vc_t = [0, 4.3, 5.0, 14.3, 15.0, 20]
+    vc_v = [14.47, 13.5, 15.6, 13.5, 15.6, 13.87]
+    vc_d = "M" + " L".join(f"{tx(t):.0f},{vy(v):.0f}" for t, v in zip(vc_t, vc_v))
+    pulse = lambda t0: (f" L{tx(t0):.0f},438 L{tx(t0 + 0.35):.0f},416 L{tx(t0 + 0.7):.0f},438")
+    id_d = (f"M{T0},438 L{tx(4.3):.0f},438" + pulse(4.3)
+            + f" L{tx(14.3):.0f},438" + pulse(14.3) + f" L{T1},438")
+
+    svg = svg_open('整流滤波电源四拍拆解：从空电容到稳态纹波', h=680)
+    svg += f'''
+<text x="400" y="51" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#334155">12V AC（峰值 17V）· 桥式整流 · 4700µF · 1A 负载：一个周期的四拍</text>
+{cards[0]}
+{cards[1]}
+{cards[2]}
+{cards[3]}
+<text x="425" y="314" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">一个周期：AC 输入、电容电压、二极管电流</text>
+<rect x="{T0}" y="340" width="{T1-T0}" height="105" fill="#e2e8f0" opacity="0.15"/>
+<text x="24" y="374" font-size="11" font-weight="bold" fill="#2563eb">V_AC</text>
+<text x="24" y="400" font-size="11" font-weight="bold" fill="#059669">V_C</text>
+<text x="24" y="432" font-size="11" font-weight="bold" fill="#dc2626">I_D</text>
+<line x1="{T0}" y1="378" x2="{T1}" y2="378" stroke="#cbd5e1" stroke-width="1"/>
+<line x1="{T0}" y1="406" x2="{T1}" y2="406" stroke="#cbd5e1" stroke-width="1"/>
+<line x1="{T0}" y1="438" x2="{T1}" y2="438" stroke="#cbd5e1" stroke-width="1"/>
+<path d="{ac_d}" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="5,3"/>
+<path d="{vc_d}" fill="none" stroke="#059669" stroke-width="2.5"/>
+<path d="{id_d}" fill="none" stroke="#dc2626" stroke-width="2.5"/>
+<line x1="{tx(5):.0f}" y1="340" x2="{tx(5):.0f}" y2="445" stroke="#64748b" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="{tx(10):.0f}" y1="340" x2="{tx(10):.0f}" y2="445" stroke="#64748b" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="{tx(15):.0f}" y1="340" x2="{tx(15):.0f}" y2="445" stroke="#64748b" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="{tx(5):.0f}" y="458" text-anchor="middle" font-size="10.5" fill="#475569">5ms</text>
+<text x="{tx(10):.0f}" y="458" text-anchor="middle" font-size="10.5" fill="#475569">10ms</text>
+<text x="{tx(15):.0f}" y="458" text-anchor="middle" font-size="10.5" fill="#475569">15ms</text>
+<text x="{T1}" y="458" text-anchor="end" font-size="10.5" fill="#475569">20ms</text>
+<circle r="4.2" fill="#2563eb"><animateMotion dur="{DB}s" repeatCount="indefinite" path="{ac_d}"/></circle>
+<circle r="4.2" fill="#059669"><animateMotion dur="{DB}s" repeatCount="indefinite" path="{vc_d}"/></circle>
+<circle r="4.2" fill="#dc2626"><animateMotion dur="{DB}s" repeatCount="indefinite" path="{id_d}"/></circle>
+<rect x="22" y="515" width="756" height="87" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="40" y="540" font-size="12" font-weight="bold" fill="#2563eb">🧮 四拍账本：导通角只有 20%，峰值电流是负载的 5~10 倍</text>
+<text x="40" y="563" font-size="11" fill="#475569">纹波 ΔV = I·Δt/C = 1A×10ms/4700µF ≈ 2.1V；峰值电流 ≈ 10ms/2ms×1A = 5A</text>
+<text x="40" y="585" font-size="11" fill="#475569">所以选整流管看 I_FRM（重复峰值），不是标称平均电流——1A 电源用 1N4007 余量很紧</text>
+<text x="40" y="597" font-size="10.5" font-weight="bold" fill="#dc2626">上电浪涌 10~50A → 保险丝要选慢断型（T 型）</text>
+'''
+    svg += caption('四拍因果链：电容充电 → 二极管截止 → 电容放电 → 再充电', '#7c3aed', DB,
+                   '0;0;1;1', '0;0.84;0.89;1', y=650, size=13.2)
+    save('rectifier-filter-beats.svg', svg + '</svg>')
+
+# ======================= 图 89：模拟开关开合四拍（第 8 章 8.6） =======================
+def make_analog_switch_beats():
+    """模拟开关四拍：开→通（存储 Q_ch）→关（电荷注入 ΔV）→补偿（dummy 管）。"""
+    DB = 12
+    T0, T1 = 80, 760
+    tx = lambda t: T0 + t / 20 * (T1 - T0)      # ms → x（20ms 线性轴）
+
+    def mini_stage(x, title, time_text, color, row1, row2, tg_fill,
+                   flow_path=None, flow_color="#f59e0b", extra=''):
+        fl = flow(flow_path, DB, n=2, color=flow_color, r=4.0) if flow_path else ''
+        return f'''<rect x="{x}" y="70" width="174" height="214" rx="10" fill="#f8fafc" stroke="{color}" stroke-width="1.8"/>
+<text x="{x+87}" y="94" text-anchor="middle" font-size="13" font-weight="bold" fill="{color}">{title}</text>
+<text x="{x+87}" y="113" text-anchor="middle" font-size="10.5" fill="#475569">{time_text}</text>
+<circle cx="{x+22}" cy="152" r="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="{x+22}" y="137" text-anchor="middle" font-size="9" fill="#2563eb">V_in</text>
+<line x1="{x+32}" y1="152" x2="{x+50}" y2="152" stroke="#334155" stroke-width="2.2"/>
+<rect x="{x+50}" y="142" width="34" height="20" rx="3" fill="{tg_fill}" stroke="#334155" stroke-width="2"/>
+<text x="{x+67}" y="156" text-anchor="middle" font-size="10" font-weight="bold" fill="#1e293b">TG</text>
+<line x1="{x+67}" y1="142" x2="{x+67}" y2="130" stroke="#7c3aed" stroke-width="2"/>
+<text x="{x+67}" y="126" text-anchor="middle" font-size="9" font-weight="bold" fill="#7c3aed">EN</text>
+<line x1="{x+84}" y1="152" x2="{x+104}" y2="152" stroke="#334155" stroke-width="2.2"/>
+<circle cx="{x+104}" cy="152" r="3" fill="#334155"/>
+<line x1="{x+104}" y1="152" x2="{x+104}" y2="166" stroke="#334155" stroke-width="2.2"/>
+<line x1="{x+92}" y1="166" x2="{x+116}" y2="166" stroke="#2563eb" stroke-width="3"/>
+<line x1="{x+92}" y1="174" x2="{x+116}" y2="174" stroke="#2563eb" stroke-width="3"/>
+<line x1="{x+104}" y1="174" x2="{x+104}" y2="186" stroke="#334155" stroke-width="2.2"/>
+<line x1="{x+92}" y1="186" x2="{x+116}" y2="186" stroke="#334155" stroke-width="2.5"/>
+<line x1="{x+97}" y1="192" x2="{x+111}" y2="192" stroke="#334155" stroke-width="2.5"/>
+<line x1="{x+101}" y1="198" x2="{x+107}" y2="198" stroke="#334155" stroke-width="2.5"/>
+<text x="{x+120}" y="172" font-size="9" font-weight="bold" fill="#2563eb">C_h</text>
+{extra}
+{fl}
+<text x="{x+87}" y="266" text-anchor="middle" font-size="10.5" font-weight="bold" fill="{color}">{row1}</text>
+<text x="{x+87}" y="278" text-anchor="middle" font-size="10" fill="#475569">{row2}</text>'''
+
+    inj = '<polygon points="500,164 495,154 505,154" fill="#dc2626"/><polygon points="516,164 511,154 521,154" fill="#dc2626"/>'
+    cards = [
+        mini_stage(20, '① 开', 'EN 上升 · 几十 ns', '#64748b', 'R_on：∞→45Ω', 'Q_ch 尚未建立',
+                   '#cbd5e1'),
+        mini_stage(212, '② 通', '导通期 · 采样', '#059669', 'Q_ch = 0.2pC', 'V_C：跟随 2.000V',
+                   '#34d399', 'M244,152 L316,152', '#f59e0b'),
+        mini_stage(404, '③ 关', 'EN 下降 · 电荷注入', '#dc2626', 'ΔV = Q_ch/2C_h = 10mV', 'V_C：2.000→1.990V',
+                   '#cbd5e1', extra=inj),
+        mini_stage(596, '④ 补偿', 'dummy 半尺寸管', '#7c3aed', '注入反向抵消', 'ΔV → ≈0',
+                   '#34d399', 'M628,152 L700,152', '#7c3aed'),
+    ]
+
+    # ---- 波形：EN 高=采样(0–8ms)，低=保持；关断瞬间 V_C 下陷 10mV ----
+    en_d = f"M{T0},430 L{tx(8):.0f},430 L{tx(8):.0f},452 L{T1},452"
+    vc_d = f"M{T0},366 L{tx(8):.0f},366 L{tx(8):.0f},386 L{T1},392"
+    vin_d = f"M{T0},366 L{T1},366"
+
+    svg = svg_open('模拟开关开合四拍：电荷注入如何毁掉采样精度（5V 传输门）', h=680)
+    svg += f'''
+<text x="400" y="51" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#334155">V_DD=5V 传输门 · C_h=10pF · 被采信号 2.000V：一个采样周期的四拍</text>
+{cards[0]}
+{cards[1]}
+{cards[2]}
+{cards[3]}
+<text x="425" y="314" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">一次采样：控制信号 EN 与保持电容电压 V_C（注入台阶放大）</text>
+<rect x="{T0}" y="340" width="{T1-T0}" height="118" fill="#e2e8f0" opacity="0.15"/>
+<text x="24" y="370" font-size="11" font-weight="bold" fill="#2563eb">V_C</text>
+<text x="24" y="444" font-size="11" font-weight="bold" fill="#7c3aed">EN</text>
+<line x1="{T0}" y1="366" x2="{T1}" y2="366" stroke="#cbd5e1" stroke-width="1"/>
+<path d="{vin_d}" fill="none" stroke="#94a3b8" stroke-width="1.8" stroke-dasharray="5,4"/>
+<path d="{vc_d}" fill="none" stroke="#2563eb" stroke-width="2.8"/>
+<path d="{en_d}" fill="none" stroke="#7c3aed" stroke-width="2.5"/>
+<line x1="{tx(8):.0f}" y1="340" x2="{tx(8):.0f}" y2="458" stroke="#dc2626" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="{tx(8)+6:.0f}" y="356" font-size="10.5" font-weight="bold" fill="#dc2626">关断 → 注入 10mV</text>
+<text x="{T0}" y="472" font-size="10.5" fill="#475569">采样相（EN 高）</text>
+<text x="{tx(8)+6:.0f}" y="472" font-size="10.5" fill="#475569">保持相（EN 低）</text>
+<circle r="4.2" fill="#2563eb"><animateMotion dur="{DB}s" repeatCount="indefinite" path="{vc_d}"/></circle>
+<circle r="4.2" fill="#7c3aed"><animateMotion dur="{DB}s" repeatCount="indefinite" path="{en_d}"/></circle>
+<rect x="22" y="515" width="756" height="87" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="40" y="540" font-size="12" font-weight="bold" fill="#2563eb">🧮 四拍账本：精度与速度，在模拟开关这一级就定死了</text>
+<text x="40" y="563" font-size="11" fill="#475569">Q_ch = C_ox·W·L·(V_GS−V_TH) ≈ 0.2pC（随信号电压变化）；ΔV = Q_ch/2C_h = 0.2pC/(2×10pF) = 10mV</text>
+<text x="40" y="585" font-size="11" fill="#475569">12 位 / 2.048V：1 LSB = 500µV → 10mV = 20 个 LSB！加大 C_h 到 100pF 使 ΔV→1mV，代价 τ=R_on·C_h 长 10 倍</text>
+<text x="40" y="597" font-size="10.5" font-weight="bold" fill="#dc2626">对策：dummy 半尺寸管反向注入 / 加大 C_h 摊薄 / 差分结构两侧等量相消</text>
+'''
+    svg += caption('四拍因果链：栅极驱动开启 → 沟道存电荷 → 关断注入 C_h → dummy 管抵消', '#7c3aed', DB,
+                   '0;0;1;1', '0;0.84;0.89;1', y=650, size=13.2)
+    save('analog-switch-beats.svg', svg + '</svg>')
+
+# ======================= 图 90：LDO 负载瞬态四拍（第 9 章 9.5） =======================
+def make_ldo_transient_beats():
+    """LDO 负载瞬态四拍：ESR 跳变 → 电容放电 → 环路接管 → 重新锁定。"""
+    DB = 12
+    T0, T1 = 80, 760
+    tx = lambda t: T0 + t / 50 * (T1 - T0)              # µs → x（0..50µs 线性轴）
+    vy = lambda v: 348 + (5.01 - v) / 0.31 * 80         # V_OUT：5.01V→348，4.70V→428
+
+    def mini_stage(x, title, time_text, color, row1, row2, ldo_fill, esr_c, cap_c,
+                   flow_path=None, flow_color="#dc2626"):
+        fl = flow(flow_path, DB, n=2, color=flow_color, r=4.0) if flow_path else ''
+        return f'''<rect x="{x}" y="70" width="174" height="214" rx="10" fill="#f8fafc" stroke="{color}" stroke-width="1.8"/>
+<text x="{x+87}" y="94" text-anchor="middle" font-size="13" font-weight="bold" fill="{color}">{title}</text>
+<text x="{x+87}" y="113" text-anchor="middle" font-size="10.5" fill="#475569">{time_text}</text>
+<text x="{x+14}" y="131" text-anchor="middle" font-size="9" fill="#475569">V_IN</text>
+<line x1="{x+12}" y1="153" x2="{x+18}" y2="153" stroke="#334155" stroke-width="2.2"/>
+<rect x="{x+18}" y="138" width="44" height="30" rx="4" fill="{ldo_fill}" stroke="#334155" stroke-width="2"/>
+<text x="{x+40}" y="157" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#1e293b">LDO</text>
+<line x1="{x+62}" y1="153" x2="{x+92}" y2="153" stroke="#334155" stroke-width="2.2"/>
+<circle cx="{x+92}" cy="153" r="3" fill="#334155"/>
+<line x1="{x+92}" y1="153" x2="{x+92}" y2="162" stroke="#334155" stroke-width="2.2"/>
+<rect x="{x+87}" y="162" width="10" height="7" fill="#fef2f2" stroke="{esr_c}" stroke-width="1.8"/>
+<line x1="{x+92}" y1="169" x2="{x+92}" y2="174" stroke="#334155" stroke-width="2.2"/>
+<line x1="{x+80}" y1="174" x2="{x+104}" y2="174" stroke="{cap_c}" stroke-width="3"/>
+<line x1="{x+80}" y1="182" x2="{x+104}" y2="182" stroke="{cap_c}" stroke-width="3"/>
+<line x1="{x+92}" y1="182" x2="{x+92}" y2="190" stroke="#334155" stroke-width="2.2"/>
+<line x1="{x+82}" y1="190" x2="{x+102}" y2="190" stroke="#334155" stroke-width="2.5"/>
+<line x1="{x+87}" y1="195" x2="{x+97}" y2="195" stroke="#334155" stroke-width="2.5"/>
+<line x1="{x+92}" y1="153" x2="{x+134}" y2="153" stroke="#334155" stroke-width="2.2"/>
+<rect x="{x+128}" y="158" width="12" height="24" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+<line x1="{x+134}" y1="153" x2="{x+134}" y2="158" stroke="#334155" stroke-width="2.2"/>
+<line x1="{x+134}" y1="182" x2="{x+134}" y2="190" stroke="#334155" stroke-width="2.2"/>
+<line x1="{x+92}" y1="190" x2="{x+134}" y2="190" stroke="#334155" stroke-width="2.2"/>
+<text x="{x+92}" y="210" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#2563eb">C_out 10µF</text>
+<text x="{x+134}" y="210" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#475569">R_L</text>
+<text x="{x+108}" y="168" font-size="8" font-weight="bold" fill="#dc2626">ESR</text>
+{fl}
+<text x="{x+87}" y="266" text-anchor="middle" font-size="10.5" font-weight="bold" fill="{color}">{row1}</text>
+<text x="{x+87}" y="278" text-anchor="middle" font-size="10" fill="#475569">{row2}</text>'''
+
+    cards = [
+        mini_stage(20, '① ESR 跳变', '零延迟 · 神仙难救', '#dc2626', 'ΔV₁ = 490mA×50mΩ', '≈ 25mV',
+                   '#f8fafc', '#dc2626', '#2563eb'),
+        mini_stage(212, '② 电容放电', 'µs 级 · 环路未醒', '#b45309', 'ΔV₂ = I·Δt/C', '≈ 245mV',
+                   '#f8fafc', '#dc2626', '#f59e0b', 'M244,174 L316,182', '#f59e0b'),
+        mini_stage(404, '③ 环路接管', '误差放大器调管', '#059669', '调整管电阻↓', 'V_OUT 回升',
+                   '#d1fae5', '#dc2626', '#2563eb', 'M438,153 L502,153', '#059669'),
+        mini_stage(596, '④ 重新锁定', '过冲/振铃后', '#7c3aed', 'V_OUT = 5V − 负载调整率', '≈ 4.990V',
+                   '#f8fafc', '#dc2626', '#2563eb'),
+    ]
+
+    # ---- 波形：t=5µs 负载阶跃；ESR 瞬跳 25mV → 电容放电 245mV → 环路拉回 ----
+    vout_t = [0, 5, 5, 10, 30, 50]
+    vout_v = [5.000, 5.000, 4.975, 4.730, 4.990, 4.990]
+    vout_d = "M" + " L".join(f"{tx(t):.0f},{vy(v):.0f}" for t, v in zip(vout_t, vout_v))
+    il_d = f"M{T0},462 L{tx(5):.0f},462 L{tx(5):.0f},436 L{T1},436"
+    ref_y = f"{vy(5.000):.0f}"
+
+    svg = svg_open('LDO 负载瞬态四拍：一次唤醒为何把 MCU 打到复位（AMS1117-5V）', h=680)
+    svg += f'''
+<text x="400" y="51" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#334155">AMS1117-5V · C_out=10µF(ESR 50mΩ) · 负载 10mA→500mA：一次唤醒的四拍</text>
+{cards[0]}
+{cards[1]}
+{cards[2]}
+{cards[3]}
+<text x="425" y="314" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">负载阶跃后：V_OUT 先跳后塌再拉回（跌落放大）</text>
+<rect x="{T0}" y="336" width="{T1-T0}" height="140" fill="#e2e8f0" opacity="0.15"/>
+<text x="22" y="360" font-size="11" font-weight="bold" fill="#2563eb">V_OUT</text>
+<text x="22" y="446" font-size="11" font-weight="bold" fill="#b45309">I_L</text>
+<line x1="{T0}" y1="{ref_y}" x2="{T1}" y2="{ref_y}" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="5,4"/>
+<text x="{T1}" y="{int(ref_y)-6}" text-anchor="end" font-size="9.5" fill="#64748b">5.000V 标称</text>
+<path d="{vout_d}" fill="none" stroke="#2563eb" stroke-width="2.8"/>
+<path d="{il_d}" fill="none" stroke="#b45309" stroke-width="2.5"/>
+<line x1="{tx(5):.0f}" y1="336" x2="{tx(5):.0f}" y2="466" stroke="#dc2626" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="{tx(10):.0f}" y1="336" x2="{tx(10):.0f}" y2="466" stroke="#059669" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="{tx(5)+4:.0f}" y="346" font-size="10" font-weight="bold" fill="#dc2626">阶跃 +490mA</text>
+<text x="{tx(10)+6:.0f}" y="424" font-size="10" font-weight="bold" fill="#059669">环路接管 → 回升</text>
+<text x="{tx(0):.0f}" y="482" font-size="10.5" fill="#475569">0</text>
+<text x="{tx(5):.0f}" y="482" text-anchor="middle" font-size="10.5" fill="#475569">5µs</text>
+<text x="{tx(10):.0f}" y="482" text-anchor="middle" font-size="10.5" fill="#475569">10µs</text>
+<text x="{T1}" y="482" text-anchor="end" font-size="10.5" fill="#475569">50µs</text>
+<circle r="4.2" fill="#2563eb"><animateMotion dur="{DB}s" repeatCount="indefinite" path="{vout_d}"/></circle>
+<circle r="4.2" fill="#b45309"><animateMotion dur="{DB}s" repeatCount="indefinite" path="{il_d}"/></circle>
+<rect x="22" y="515" width="756" height="87" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="40" y="540" font-size="12" font-weight="bold" fill="#2563eb">🧮 四拍账本：一次唤醒的跌落，够不够触发复位？</text>
+<text x="40" y="563" font-size="11" fill="#475569">① ESR 跳变（零延迟）：ΔV₁ = 490mA×50mΩ ≈ 25mV；② 电容放电（µs 级）：ΔV₂ = 0.49A×5µs/10µF ≈ 245mV</text>
+<text x="40" y="585" font-size="11" fill="#475569">总跌落 ≈ 25+245 = 270mV；3.3V 系统复位阈值 −5% = 165mV → 这次唤醒直接触发复位！</text>
+<text x="40" y="597" font-size="10.5" font-weight="bold" fill="#dc2626">对策三板斧：加大 C_out 摊薄 ΔV₂ / 换低 ESR 陶瓷压掉 ΔV₁ / 选快环路 LDO 缩短 Δt</text>
+'''
+    svg += caption('四拍因果链：ESR 瞬跳 → 电容独自扛 → 环路拉回调管 → 重新锁定（可能过冲）', '#7c3aed', DB,
+                   '0;0;1;1', '0;0.84;0.89;1', y=650, size=13.2)
+    save('ldo-transient-beats.svg', svg + '</svg>')
+
+
+
+
+
 
 # ======================= 图 86：共射放大器四拍拆解（第 3 章 3.9） =======================
 def make_ce_dynamic():
@@ -6477,4 +6875,8 @@ if __name__ == '__main__':
     make_thevenin()
     make_compliance_voltage()
     make_ce_dynamic()
-    print('all 86 SVGs regenerated into', os.path.abspath(OUT))
+    make_mosfet_four_beats()
+    make_rectifier_filter_beats()
+    make_analog_switch_beats()
+    make_ldo_transient_beats()
+    print('all 90 SVGs regenerated into', os.path.abspath(OUT))

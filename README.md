@@ -13,7 +13,7 @@
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-CC_BY--SA_4.0-lightgrey.svg" alt="License"></a>
-  <img src="https://img.shields.io/badge/SVG动画-86张-3fb950.svg" alt="SVG">
+  <img src="https://img.shields.io/badge/SVG动画-90张-3fb950.svg" alt="SVG">
   <img src="https://img.shields.io/badge/章节-8篇19章-58a6ff.svg" alt="chapters">
   <img src="https://img.shields.io/badge/最近更新-2026.10-f0883e.svg" alt="updated">
 </p>
@@ -71,7 +71,7 @@
 | 电源噪声让 ADC 读数跳 | [15.2 接地](#ch15) + [15.1 布局](#ch15) | 回流在脚下 + 去耦电容贴脸放 |
 | 板子偶发复位/莫名振荡 | [第 16 章 排故五步法](#ch16) → [第 17 章 速查总表](#ch17) | 症状对号入座，一次只改一个变量 |
 | 高频信号过不去/边沿变肉 | [第 1 章 无源元件](#ch1) + [12.5 Sallen-Key](#ch12) | 寄生电感电容的真实代价 |
-| 只想先看动画找感觉 | [第五篇 动画中心](#part5) | 86 张 SMIL 动画随便点开 |
+| 只想先看动画找感觉 | [第五篇 动画中心](#part5) | 90 张 SMIL 动画随便点开 |
 
 
 ## ⭐ 必读精选（编辑之选）
@@ -118,7 +118,7 @@ graph TD
   - [第 14 章 设计方法论](#ch14) · [第 15 章 PCB 注意事项](#ch15)
 - **[第四篇：故障分析与排故方法论](#part4)** 🩺
   - [第 16 章 排故五步法](#ch16) · [第 17 章 故障速查表](#ch17) · [第 18 章 大师智慧](#ch18)
-- **[第五篇：动画演示中心](#part5)** 🎬 — 86 张 SVG 动画 + Falstad 地图
+- **[第五篇：动画演示中心](#part5)** 🎬 — 90 张 SVG 动画 + Falstad 地图
 - **[第六篇：实物图鉴与速查](#part6)** 🧩 — 实物照片 · 参数速查 · [官方 datasheet 直达](#part6)
 - **[第七篇：视频资源](#part7)** 📺 — B站系统课 · YouTube 频道
 - **[第八篇：学习路线与资源索引](#part8)** 📚 — 路线图 · 书单 · 项目清单 · [官方资料](#sec88) · [经典论文](#sec89) · [术语表](#sec810) · [顺口溜总表](#sec811) · FAQ
@@ -444,6 +444,10 @@ LED 在下方（压降大、速度慢，但唯一会发光）、TVS 在右上（
 - **放电段**：二极管全关，电容独自供负载，近似线性放电 $\Delta V = I_{load}\cdot\Delta t/C$
 
 🧮 **算一笔**：1A 负载、4700µF、全波 100Hz：$\Delta V = \frac{1A \times 10ms}{4700µF} ≈ 2.1V$ 纹波；二极管峰值电流 ≈ $\frac{10ms}{2ms}\times 1A = 5A$。**所以选整流管看的是 $I_{FRM}$（重复峰值），不是标称平均电流**——1A 电源用 1N4007（1A 均值）其实余量很紧。
+<p align="center"><img src="assets/svg/rectifier-filter-beats.svg" width="720" alt="整流滤波电源四拍拆解SVG动画"></p>
+
+**看点**：四拍拆解从空电容到稳态纹波——初始态电容放空、浪涌充电 10~50A、稳态峰值充电 5~10A、谷值放电电容独供负载。→ 本节 [2.6](#ch2)
+
 
 ### 2.7 限幅与钳位：二极管的"整形"手艺
 
@@ -749,6 +753,10 @@ MOSFET 栅极充电时 $V_{GS}$ 波形出现的"平台"：此时 $V_{DS}$ 正在
 **稳态**：$P_{cond} = I^2 R_{DS(on)} = 25\times 0.03Ω = 0.75W$。
 
 🧮 **算一笔**：AO3400 $Q_g≈7nC$，10mA 驱动 → 开关时间 $≈\frac{7nC}{10mA}=700ns$。母线 20V/5A、重叠区按 700ns 估、开关频率 100kHz：$P_{sw} = \frac{1}{2}\times 20\times 5\times 700ns\times 100kHz ≈ 3.5W$——**是导通损耗（0.75W）的 4 倍多！**这就是高频场合必须看 $Q_g$ 而不能只看 $R_{DS(on)}$ 的原因，也是栅极驱动器动辄 2A 峰值电流的原因：把平台期挤短，损耗就小。
+
+<p align="center"><img src="assets/svg/mosfet-four-beats.svg" width="720" alt="MOSFET开通四拍SVG动画：栅极电荷与开关损耗"></p>
+
+**看点**：四张小电路把同一次开通钉在四个状态：$C_{GS}$ 先充、$I_D$ 再升、$C_{GD}$ 抢走驱动电流形成 Miller 平台，最后 $R_{DS(on)}$ 落到最低；底部时间轴把 700ns、$Q_{gd}=1.6nC$ 与约 3.5W 开关损耗串成一笔账。→ 本节 [4.6](#ch4)
 
 
 ### 📺 配套视频
@@ -1281,6 +1289,10 @@ COM 再送 ADC——**省掉 7 个 ADC 通道**。两个要点：① 通道是**
 **稳态**：EN 保持低，$C_h$ 记住电压——但记住的是**被注入电荷推偏过的**电压。
 
 🧮 **算一笔**：$\Delta V=Q_{ch}/2C_h$ ——误差反比于 $C_h$。把 $C_h$ 从 10pF 加到 100pF，$\Delta V$ 从 10mV 降到 1mV，代价是**采样时间要长 10 倍**（$\tau=R_{on}C_h$ 同样放大 10 倍）。**精度与速度的取舍，在模拟开关这一级就已经定了。**
+<p align="center"><img src="assets/svg/analog-switch-beats.svg" width="720" alt="模拟开关开合四拍拆解SVG动画"></p>
+
+**看点**：四拍把一次采样钉在四个状态——① 栅极驱动开启、$R_{on}$ 落到 45Ω；② 沟道存下 $Q_{ch}=0.2pC$；③ 关断瞬间一半电荷注入 $C_h$，$\Delta V=10mV$（=20 个 LSB）；④ dummy 半尺寸管反向抵消。→ 本节 [8.6](#ch8)
+
 
 > 🎯 **通关打卡**：你会算传输门的 $R_{on}$、知道电荷注入与时钟馈通是采样误差的两大来源、也记住了「加大采样电容降误差但要付出速度代价」——SAR ADC 前端的账，从这里开始算。
 
@@ -1388,6 +1400,10 @@ VIN ──[调整管 PMOS/PNP]── VOUT
 **稳态**：500mA 下 $V_{OUT}=5V-$ 负载调整率（典型 0.2%，约 10mV）。
 
 🧮 **算一笔**：总跌落 ≈25+245=270mV。若这是 3.3V 系统、复位阈值 −5%（165mV）——**这次唤醒直接触发复位**。对策三板斧：加大输出电容（摊薄 ΔV₂）、换低 ESR 陶瓷电容（压掉 ΔV₁）、选快环路 LDO（缩短 Δt）。**"MCU 一跑大程序就复位"，十之五六是这个剧本。**
+<p align="center"><img src="assets/svg/ldo-transient-beats.svg" width="720" alt="LDO负载瞬态四拍拆解SVG动画"></p>
+
+**看点**：四拍把一次唤醒钉在四个状态——① ESR 零延迟瞬跳 25mV；② 电容独自扛、跌落 245mV；③ 环路拉回调管、V_OUT 回升；④ 过冲振铃后重新锁定。→ 本节 [9.5](#ch9)
+
 
 > 🎯 **通关打卡**：LDO 在你眼里是闭环控制系统，7805 的发热你算得清，换料前会先查"输出电容 ESR"那一行。
 
@@ -2221,7 +2237,7 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 <a id="part5"></a>
 # 第五篇：动画演示中心 🎬
 
-> 全部 86 张 SVG 动画（SMIL，浏览器直接播放）位于 `assets/svg/` 目录，由 `scripts/generate_svgs.py` 一键生成（仓库铁律：两者始终同步）；配套 Falstad 在线电路可实时交互。
+> 全部 90 张 SVG 动画（SMIL，浏览器直接播放）位于 `assets/svg/` 目录，由 `scripts/generate_svgs.py` 一键生成（仓库铁律：两者始终同步）；配套 Falstad 在线电路可实时交互。
 
 ## 5.1 RC 充电 <a id="demo1"></a>
 
@@ -2723,7 +2739,33 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 
 **看点**：一个正弦周期拆成四拍；上行余量 6V、下行余量 4V → 对称摆幅 8.0Vpp；Q 点偏置就是「余量分配器」。→ 正文 [3.9 动态分析](#ch3)
 
-## 5.82 Falstad 内置示例地图（全部带动画）
+## 5.82 MOSFET 开通四拍：栅极电荷如何变成热 <a id="demo82"></a>
+
+<p align="center"><img src="assets/svg/mosfet-four-beats.svg" width="720" alt="MOSFET开通四拍SVG动画"></p>
+
+**看点**：① 延时只充 $C_{GS}$；② $I_D$ 上升而 $V_{DS}$ 仍是 20V；③ $Q_{gd}=1.6nC$ 搬出 Miller 平台；④ 完全增强后只剩 0.75W 导通损耗。→ 正文 [4.6 动态分析](#ch4)
+
+## 5.83 整流滤波电源四拍：从空电容到稳态纹波 <a id="demo83"></a>
+
+<p align="center"><img src="assets/svg/rectifier-filter-beats.svg" width="720" alt="整流滤波电源四拍拆解SVG动画"></p>
+
+**看点**：① 初始态电容放空；② 浪涌充电 10~50A；③ 稳态峰值充电 5~10A、导通角~20%；④ 谷值放电电容独供负载。→ 正文 [2.6 动态分析](#ch2)
+
+
+## 5.84 模拟开关开合四拍：电荷注入如何毁掉采样精度 <a id="demo84"></a>
+
+<p align="center"><img src="assets/svg/analog-switch-beats.svg" width="720" alt="模拟开关开合四拍拆解SVG动画"></p>
+
+**看点**：① 栅极驱动开启、$R_{on}$→45Ω；② 沟道存 $Q_{ch}=0.2pC$；③ 关断注入 $\Delta V=10mV$（=20 LSB）；④ dummy 管反向抵消。→ 正文 [8.6 动态分析](#ch8)
+
+## 5.85 LDO 负载瞬态四拍：一次唤醒为何把 MCU 打到复位 <a id="demo85"></a>
+
+<p align="center"><img src="assets/svg/ldo-transient-beats.svg" width="720" alt="LDO负载瞬态四拍拆解SVG动画"></p>
+
+**看点**：① ESR 瞬跳 25mV；② 电容放电 245mV；③ 环路接管回升；④ 重新锁定（可能过冲）。总跌落 270mV ＞ 3.3V 复位阈值 165mV。→ 正文 [9.5 动态分析](#ch9)
+
+
+## 5.86 Falstad 内置示例地图（全部带动画）
 
 | 主题 | 菜单路径 |
 |---|---|
@@ -3085,7 +3127,11 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 
 | 版本 | 亮点 |
 |---|---|
-| **v2.8（当前）** | 动画 86 张：新增「共射放大器四拍拆解」（3.9，含 8.0Vpp/35mVpp 算一笔，修掉原稿 V_CE 与摆幅的算术不一致）+ 8 张低运动图补动（thevenin/thermal/source-types/comparator/555-params/opamp 双坑/bjt-diagnosis/compliance） |
+| **v3.2（当前）** | 动画 90 张：新增「LDO 负载瞬态四拍拆解」（9.5，AMS1117-5V/C_out=10µF，ESR 25mV + 放电 245mV = 270mV 跌落算一笔）+ 3 张低运动图补动（darlington/feedback-topo/mux-4051，10→16/16/14） |
+| v3.1 | 动画 89 张：新增「模拟开关开合四拍拆解」（8.6，5V 传输门/C_h=10pF，Q_ch=0.2pC、ΔV=10mV=20 LSB 算一笔） |
+| v3.0 | 动画 88 张：新增「整流滤波电源四拍拆解」（2.6，12V AC/4700µF/1A，导通角~20%、峰值电流 5~10A、纹波 2.1V 算一笔） |
+| v2.9 | 动画 87 张：新增「MOSFET 开通四拍」（4.6，20V/5A/10mA，700ns 四阶段与 $Q_{gd}=1.6nC$、$P_{sw}≈3.5W$ 算一笔） |
+| v2.8 | 动画 86 张：新增「共射放大器四拍拆解」（3.9，含 8.0Vpp/35mVpp 算一笔，修掉原稿 V_CE 与摆幅的算术不一致）+ 8 张低运动图补动（thevenin/thermal/source-types/comparator/555-params/opamp 双坑/bjt-diagnosis/compliance） |
 | v2.7 | 动画 85 张：新增「戴维南与诺顿等效」（1.4，含 6V/1.2mA/5kΩ 算一笔）+「恒流源合规电压」（13.5.1，2.8V 天花板与 4~20mA 环流 24V 的由来） |
 | v2.6 | 动画 83 张：新增「恒压源与恒流源：电源的两种性格」（0.6 新节，含 V-I 曲线与内阻账） |
 | v2.5 | 动画 82 张：新增「BJT 在线速判」（3.8）「运放六个经典坑」（6.6）「比较器五个坑」（7.4）「555 参数与三个坑」（10.3）；datasheet-params/ldo-failures/bjt-configs/bjt-switch 四图补运动（9→13、9→13、10→13、10→13） |

@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="680" viewBox="0 0 800 680">
+<title>MOSFET 开通四拍：栅极电荷如何变成热</title>
+<rect width="800" height="680" fill="#f8fafc"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+@media (prefers-color-scheme: dark){
+rect[fill="#f8fafc"]{fill:#0f172a}
+[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
+[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
+[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
+[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
+[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
+[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
+[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
+[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
+[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
+[fill="#cbd5e1"]{fill:#334155}[stroke="#cbd5e1"]{stroke:#475569}
+[fill="#ffffff"]{fill:#0f172a}[fill="#94a3b8"]{fill:#64748b}[stroke="#94a3b8"]{stroke:#64748b}
+[fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
+}
+</style>
+<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">MOSFET 开通四拍：栅极电荷如何变成热</text>
+
+<text x="400" y="51" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#334155">20V 母线 · 5A 负载 · 10mA 驱动 · AO3400：同一条电流路径，四种状态</text>
+<rect x="20" y="70" width="174" height="214" rx="10" fill="#f8fafc" stroke="#64748b" stroke-width="1.8"/>
+<text x="107" y="94" text-anchor="middle" font-size="13" font-weight="bold" fill="#64748b">① 延时区</text>
+<text x="107" y="113" text-anchor="middle" font-size="10.5" fill="#475569">0–150ns</text>
+<text x="38" y="134" font-size="10.5" font-weight="bold" fill="#b45309">+20V</text>
+<line x1="74" y1="128" x2="74" y2="143" stroke="#334155" stroke-width="2.3"/>
+<rect x="63" y="143" width="22" height="30" fill="#fffbeb" stroke="#334155" stroke-width="2.2"/>
+<text x="95" y="161" font-size="10" fill="#475569">R_L=4Ω</text>
+<line x1="74" y1="173" x2="74" y2="198" stroke="#334155" stroke-width="2.3"/>
+<rect x="59" y="198" width="30" height="30" rx="3" fill="#cbd5e1" stroke="#334155" stroke-width="2.2"/>
+<line x1="59" y1="198" x2="59" y2="228" stroke="#334155" stroke-width="3.4"/>
+<line x1="23" y1="213" x2="59" y2="213" stroke="#334155" stroke-width="2.2"/>
+<text x="25" y="234" font-size="10" font-weight="bold" fill="#7c3aed">G</text>
+<line x1="74" y1="228" x2="74" y2="239" stroke="#334155" stroke-width="2.3"/>
+<line x1="58" y1="239" x2="90" y2="239" stroke="#334155" stroke-width="2.5"/>
+<line x1="63" y1="245" x2="85" y2="245" stroke="#334155" stroke-width="2.5"/>
+<line x1="68" y1="251" x2="80" y2="251" stroke="#334155" stroke-width="2.5"/>
+
+<text x="107" y="266" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#dc2626">I_D：0</text>
+<text x="107" y="278" text-anchor="middle" font-size="10" fill="#475569">V_DS：20V · V_GS：0→1.4V</text>
+<rect x="212" y="70" width="174" height="214" rx="10" fill="#f8fafc" stroke="#b45309" stroke-width="1.8"/>
+<text x="299" y="94" text-anchor="middle" font-size="13" font-weight="bold" fill="#b45309">② 电流上升</text>
+<text x="299" y="113" text-anchor="middle" font-size="10.5" fill="#475569">150–400ns</text>
+<text x="230" y="134" font-size="10.5" font-weight="bold" fill="#b45309">+20V</text>
+<line x1="266" y1="128" x2="266" y2="143" stroke="#334155" stroke-width="2.3"/>
+<rect x="255" y="143" width="22" height="30" fill="#fffbeb" stroke="#334155" stroke-width="2.2"/>
+<text x="287" y="161" font-size="10" fill="#475569">R_L=4Ω</text>
+<line x1="266" y1="173" x2="266" y2="198" stroke="#334155" stroke-width="2.3"/>
+<rect x="251" y="198" width="30" height="30" rx="3" fill="#f59e0b" stroke="#334155" stroke-width="2.2"/>
+<line x1="251" y1="198" x2="251" y2="228" stroke="#334155" stroke-width="3.4"/>
+<line x1="215" y1="213" x2="251" y2="213" stroke="#334155" stroke-width="2.2"/>
+<text x="217" y="234" font-size="10" font-weight="bold" fill="#7c3aed">G</text>
+<line x1="266" y1="228" x2="266" y2="239" stroke="#334155" stroke-width="2.3"/>
+<line x1="250" y1="239" x2="282" y2="239" stroke="#334155" stroke-width="2.5"/>
+<line x1="255" y1="245" x2="277" y2="245" stroke="#334155" stroke-width="2.5"/>
+<line x1="260" y1="251" x2="272" y2="251" stroke="#334155" stroke-width="2.5"/>
+<circle r="4.2" fill="#dc2626"><animateMotion dur="10s" begin="-0.50s" repeatCount="indefinite" path="M266,128 V239"/></circle>
+<circle r="4.2" fill="#dc2626"><animateMotion dur="10s" begin="4.50s" repeatCount="indefinite" path="M266,128 V239"/></circle><circle r="3.6" fill="#7c3aed"><animateMotion dur="10s" begin="-0.50s" repeatCount="indefinite" path="M215,213 H251"/></circle>
+<circle r="3.6" fill="#7c3aed"><animateMotion dur="10s" begin="4.50s" repeatCount="indefinite" path="M215,213 H251"/></circle>
+<text x="299" y="266" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#dc2626">I_D：0→5A</text>
+<text x="299" y="278" text-anchor="middle" font-size="10" fill="#475569">V_DS：20V · V_GS：1.4→2.9V</text>
+<rect x="404" y="70" width="174" height="214" rx="10" fill="#f8fafc" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="491" y="94" text-anchor="middle" font-size="13" font-weight="bold" fill="#7c3aed">③ Miller 平台</text>
+<text x="491" y="113" text-anchor="middle" font-size="10.5" fill="#475569">400–560ns</text>
+<text x="422" y="134" font-size="10.5" font-weight="bold" fill="#b45309">+20V</text>
+<line x1="458" y1="128" x2="458" y2="143" stroke="#334155" stroke-width="2.3"/>
+<rect x="447" y="143" width="22" height="30" fill="#fffbeb" stroke="#334155" stroke-width="2.2"/>
+<text x="479" y="161" font-size="10" fill="#475569">R_L=4Ω</text>
+<line x1="458" y1="173" x2="458" y2="198" stroke="#334155" stroke-width="2.3"/>
+<rect x="443" y="198" width="30" height="30" rx="3" fill="#7c3aed" stroke="#334155" stroke-width="2.2"/>
+<line x1="443" y1="198" x2="443" y2="228" stroke="#334155" stroke-width="3.4"/>
+<line x1="407" y1="213" x2="443" y2="213" stroke="#334155" stroke-width="2.2"/>
+<text x="409" y="234" font-size="10" font-weight="bold" fill="#7c3aed">G</text>
+<line x1="458" y1="228" x2="458" y2="239" stroke="#334155" stroke-width="2.3"/>
+<line x1="442" y1="239" x2="474" y2="239" stroke="#334155" stroke-width="2.5"/>
+<line x1="447" y1="245" x2="469" y2="245" stroke="#334155" stroke-width="2.5"/>
+<line x1="452" y1="251" x2="464" y2="251" stroke="#334155" stroke-width="2.5"/>
+<circle r="4.2" fill="#dc2626"><animateMotion dur="10s" begin="-0.50s" repeatCount="indefinite" path="M458,128 V239"/></circle>
+<circle r="4.2" fill="#dc2626"><animateMotion dur="10s" begin="4.50s" repeatCount="indefinite" path="M458,128 V239"/></circle><circle r="3.6" fill="#7c3aed"><animateMotion dur="10s" begin="-0.50s" repeatCount="indefinite" path="M407,213 H443"/></circle>
+<circle r="3.6" fill="#7c3aed"><animateMotion dur="10s" begin="4.50s" repeatCount="indefinite" path="M407,213 H443"/></circle>
+<text x="491" y="266" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#dc2626">I_D：5A</text>
+<text x="491" y="278" text-anchor="middle" font-size="10" fill="#475569">V_DS：20→0.15V · V_GS：≈2.9V</text>
+<rect x="596" y="70" width="174" height="214" rx="10" fill="#f8fafc" stroke="#059669" stroke-width="1.8"/>
+<text x="683" y="94" text-anchor="middle" font-size="13" font-weight="bold" fill="#059669">④ 完全增强</text>
+<text x="683" y="113" text-anchor="middle" font-size="10.5" fill="#475569">560–700ns</text>
+<text x="614" y="134" font-size="10.5" font-weight="bold" fill="#b45309">+20V</text>
+<line x1="650" y1="128" x2="650" y2="143" stroke="#334155" stroke-width="2.3"/>
+<rect x="639" y="143" width="22" height="30" fill="#fffbeb" stroke="#334155" stroke-width="2.2"/>
+<text x="671" y="161" font-size="10" fill="#475569">R_L=4Ω</text>
+<line x1="650" y1="173" x2="650" y2="198" stroke="#334155" stroke-width="2.3"/>
+<rect x="635" y="198" width="30" height="30" rx="3" fill="#059669" stroke="#334155" stroke-width="2.2"/>
+<line x1="635" y1="198" x2="635" y2="228" stroke="#334155" stroke-width="3.4"/>
+<line x1="599" y1="213" x2="635" y2="213" stroke="#334155" stroke-width="2.2"/>
+<text x="601" y="234" font-size="10" font-weight="bold" fill="#7c3aed">G</text>
+<line x1="650" y1="228" x2="650" y2="239" stroke="#334155" stroke-width="2.3"/>
+<line x1="634" y1="239" x2="666" y2="239" stroke="#334155" stroke-width="2.5"/>
+<line x1="639" y1="245" x2="661" y2="245" stroke="#334155" stroke-width="2.5"/>
+<line x1="644" y1="251" x2="656" y2="251" stroke="#334155" stroke-width="2.5"/>
+<circle r="4.2" fill="#dc2626"><animateMotion dur="10s" begin="-0.50s" repeatCount="indefinite" path="M650,128 V239"/></circle>
+<circle r="4.2" fill="#dc2626"><animateMotion dur="10s" begin="4.50s" repeatCount="indefinite" path="M650,128 V239"/></circle><circle r="3.6" fill="#7c3aed"><animateMotion dur="10s" begin="-0.50s" repeatCount="indefinite" path="M599,213 H635"/></circle>
+<circle r="3.6" fill="#7c3aed"><animateMotion dur="10s" begin="4.50s" repeatCount="indefinite" path="M599,213 H635"/></circle>
+<text x="683" y="266" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#dc2626">I_D：5A</text>
+<text x="683" y="278" text-anchor="middle" font-size="10" fill="#475569">V_DS：0.15V · V_GS：2.9→5V</text>
+<text x="425" y="314" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">同一次开通：四条波形共用一条时间轴</text>
+<rect x="90" y="324" width="144" height="150" fill="#cbd5e1" opacity="0.18"/>
+<rect x="234" y="324" width="239" height="150" fill="#f59e0b" opacity="0.13"/>
+<rect x="473" y="324" width="153" height="150" fill="#7c3aed" opacity="0.13"/>
+<rect x="626" y="324" width="134" height="150" fill="#059669" opacity="0.13"/>
+<text x="162" y="338" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#64748b">① 延时</text>
+<text x="353" y="338" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#b45309">② 上升</text>
+<text x="549" y="338" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#7c3aed">③ 平台</text>
+<text x="693" y="338" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#059669">④ 增强</text>
+<text x="28" y="360" font-size="11" font-weight="bold" fill="#2563eb">V_GS</text>
+<text x="28" y="390" font-size="11" font-weight="bold" fill="#059669">I_D</text>
+<text x="28" y="420" font-size="11" font-weight="bold" fill="#dc2626">V_DS</text>
+<text x="28" y="450" font-size="11" font-weight="bold" fill="#b45309">P=V·I</text>
+<line x1="90" y1="362" x2="760" y2="362" stroke="#cbd5e1" stroke-width="1"/>
+<line x1="90" y1="392" x2="760" y2="392" stroke="#cbd5e1" stroke-width="1"/>
+<line x1="90" y1="422" x2="760" y2="422" stroke="#cbd5e1" stroke-width="1"/>
+<line x1="90" y1="452" x2="760" y2="452" stroke="#cbd5e1" stroke-width="1"/>
+<path d="M90,362 L234,357 L473,352 L626,352 L760,344" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linejoin="round"/>
+<path d="M90,392 L234,392 L473,374 L626,374 L760,374" fill="none" stroke="#059669" stroke-width="2.5" stroke-linejoin="round"/>
+<path d="M90,404 L234,404 L473,404 L626,422 L760,422" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-linejoin="round"/>
+<path d="M90,452 L234,452 L473,434 L626,452 L760,452" fill="none" stroke="#b45309" stroke-width="2.5" stroke-linejoin="round"/>
+<line x1="234" y1="324" x2="234" y2="474" stroke="#64748b" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="473" y1="324" x2="473" y2="474" stroke="#dc2626" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="626" y1="324" x2="626" y2="474" stroke="#7c3aed" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="760" y1="324" x2="760" y2="474" stroke="#059669" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="239" y="488" font-size="10.5" fill="#475569">150ns</text>
+<text x="478" y="488" font-size="10.5" fill="#475569">400ns</text>
+<text x="631" y="488" font-size="10.5" fill="#475569">560ns</text>
+<text x="760" y="488" text-anchor="end" font-size="10.5" fill="#475569">700ns</text>
+<circle r="4.2" fill="#2563eb"><animateMotion dur="10s" repeatCount="indefinite" path="M90,362 L234,357 L473,352 L626,352 L760,344"/></circle>
+<circle r="4.2" fill="#059669"><animateMotion dur="10s" repeatCount="indefinite" path="M90,392 L234,392 L473,374 L626,374 L760,374"/></circle>
+<circle r="4.2" fill="#dc2626"><animateMotion dur="10s" repeatCount="indefinite" path="M90,404 L234,404 L473,404 L626,422 L760,422"/></circle>
+<circle r="4.2" fill="#b45309"><animateMotion dur="10s" repeatCount="indefinite" path="M90,452 L234,452 L473,434 L626,452 L760,452"/></circle>
+<rect x="22" y="515" width="756" height="87" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="40" y="540" font-size="12" font-weight="bold" fill="#2563eb">🧮 四拍账本：电流先上来，电压再掉下去，乘积才是热</text>
+<text x="40" y="563" font-size="11" fill="#475569">①150ns + ②250ns + ③160ns + ④140ns = 700ns；③ 平台：Q_gd = 10mA×160ns = 1.6nC</text>
+<text x="40" y="585" font-size="11" fill="#475569">稳态导通：P_cond = 5²×0.03Ω = 0.75W；保守重叠估算：P_sw≈½×20×5×700ns×100kHz≈3.5W</text>
+<text x="40" y="597" font-size="10.5" font-weight="bold" fill="#dc2626">所以栅极驱动不是「有没有电压」，而是「能不能把 Q_gd 搬得足够快」</text>
+<text x="400" y="650" text-anchor="middle" font-size="13.2" font-weight="bold" fill="#7c3aed" opacity="0">四阶段的因果链：C_GS 先充电 → I_D 上升 → C_GD 抢走驱动电流形成平台 → R_DS(on) 降到最低<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.84;0.89;1" dur="10s" repeatCount="indefinite"/></text></svg>

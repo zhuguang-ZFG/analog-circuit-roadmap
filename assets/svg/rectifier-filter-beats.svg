@@ -1,0 +1,158 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="680" viewBox="0 0 800 680">
+<title>整流滤波电源四拍拆解：从空电容到稳态纹波</title>
+<rect width="800" height="680" fill="#f8fafc"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+@media (prefers-color-scheme: dark){
+rect[fill="#f8fafc"]{fill:#0f172a}
+[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
+[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
+[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
+[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
+[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
+[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
+[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
+[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
+[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
+[fill="#cbd5e1"]{fill:#334155}[stroke="#cbd5e1"]{stroke:#475569}
+[fill="#ffffff"]{fill:#0f172a}[fill="#94a3b8"]{fill:#64748b}[stroke="#94a3b8"]{stroke:#64748b}
+[fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
+}
+</style>
+<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">整流滤波电源四拍拆解：从空电容到稳态纹波</text>
+
+<text x="400" y="51" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#334155">12V AC（峰值 17V）· 桥式整流 · 4700µF · 1A 负载：一个周期的四拍</text>
+<rect x="20" y="70" width="174" height="214" rx="10" fill="#f8fafc" stroke="#64748b" stroke-width="1.8"/>
+<text x="107" y="94" text-anchor="middle" font-size="13" font-weight="bold" fill="#64748b">① 初始态</text>
+<text x="107" y="113" text-anchor="middle" font-size="10.5" fill="#475569">t=0 · 上电前</text>
+<circle cx="48" cy="152" r="12" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<path d="M40,152 q4,-8 8,0 q4,8 8,0" fill="none" stroke="#2563eb" stroke-width="1.8"/>
+<text x="48" y="133" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#2563eb">AC</text>
+<line x1="60" y1="152" x2="66" y2="152" stroke="#334155" stroke-width="2.2"/>
+<polygon points="82,152 66,145 66,159" fill="#cbd5e1"/>
+<line x1="82" y1="145" x2="82" y2="159" stroke="#334155" stroke-width="2.5"/>
+<line x1="82" y1="152" x2="118" y2="152" stroke="#334155" stroke-width="2.2"/>
+<line x1="118" y1="152" x2="118" y2="164" stroke="#334155" stroke-width="2.2"/>
+<line x1="106" y1="164" x2="130" y2="164" stroke="#cbd5e1" stroke-width="3"/>
+<line x1="106" y1="172" x2="130" y2="172" stroke="#cbd5e1" stroke-width="3"/>
+<line x1="118" y1="172" x2="118" y2="190" stroke="#334155" stroke-width="2.2"/>
+<line x1="118" y1="152" x2="152" y2="152" stroke="#334155" stroke-width="2.2"/>
+<rect x="146" y="157" width="12" height="26" fill="#f8fafc" stroke="#334155" stroke-width="2.2"/>
+<line x1="152" y1="152" x2="152" y2="157" stroke="#334155" stroke-width="2.2"/>
+<line x1="152" y1="183" x2="152" y2="190" stroke="#334155" stroke-width="2.2"/>
+<line x1="48" y1="164" x2="48" y2="190" stroke="#334155" stroke-width="2.2"/>
+<line x1="48" y1="190" x2="152" y2="190" stroke="#334155" stroke-width="2.2"/>
+<text x="133" y="170" font-size="9" font-weight="bold" fill="#475569">C</text>
+<text x="166" y="172" font-size="9" font-weight="bold" fill="#475569">R_L</text>
+<text x="72" y="141" font-size="9" font-weight="bold" fill="#475569">D</text>
+
+<text x="107" y="266" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#dc2626">I_D：0</text>
+<text x="107" y="278" text-anchor="middle" font-size="10" fill="#475569">V_C：0V</text>
+<rect x="212" y="70" width="174" height="214" rx="10" fill="#f8fafc" stroke="#b45309" stroke-width="1.8"/>
+<text x="299" y="94" text-anchor="middle" font-size="13" font-weight="bold" fill="#b45309">② 浪涌充电</text>
+<text x="299" y="113" text-anchor="middle" font-size="10.5" fill="#475569">第一次过峰</text>
+<circle cx="240" cy="152" r="12" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<path d="M232,152 q4,-8 8,0 q4,8 8,0" fill="none" stroke="#2563eb" stroke-width="1.8"/>
+<text x="240" y="133" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#2563eb">AC</text>
+<line x1="252" y1="152" x2="258" y2="152" stroke="#334155" stroke-width="2.2"/>
+<polygon points="274,152 258,145 258,159" fill="#f59e0b"/>
+<line x1="274" y1="145" x2="274" y2="159" stroke="#334155" stroke-width="2.5"/>
+<line x1="274" y1="152" x2="310" y2="152" stroke="#334155" stroke-width="2.2"/>
+<line x1="310" y1="152" x2="310" y2="164" stroke="#334155" stroke-width="2.2"/>
+<line x1="298" y1="164" x2="322" y2="164" stroke="#f59e0b" stroke-width="3"/>
+<line x1="298" y1="172" x2="322" y2="172" stroke="#f59e0b" stroke-width="3"/>
+<line x1="310" y1="172" x2="310" y2="190" stroke="#334155" stroke-width="2.2"/>
+<line x1="310" y1="152" x2="344" y2="152" stroke="#334155" stroke-width="2.2"/>
+<rect x="338" y="157" width="12" height="26" fill="#f8fafc" stroke="#334155" stroke-width="2.2"/>
+<line x1="344" y1="152" x2="344" y2="157" stroke="#334155" stroke-width="2.2"/>
+<line x1="344" y1="183" x2="344" y2="190" stroke="#334155" stroke-width="2.2"/>
+<line x1="240" y1="164" x2="240" y2="190" stroke="#334155" stroke-width="2.2"/>
+<line x1="240" y1="190" x2="344" y2="190" stroke="#334155" stroke-width="2.2"/>
+<text x="325" y="170" font-size="9" font-weight="bold" fill="#475569">C</text>
+<text x="358" y="172" font-size="9" font-weight="bold" fill="#475569">R_L</text>
+<text x="264" y="141" font-size="9" font-weight="bold" fill="#475569">D</text>
+<circle r="4.2" fill="#dc2626"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M246,152 L310,152"/></circle>
+<circle r="4.2" fill="#dc2626"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M246,152 L310,152"/></circle>
+<text x="299" y="266" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#dc2626">I_D：10~50A</text>
+<text x="299" y="278" text-anchor="middle" font-size="10" fill="#475569">V_C：0→15.6V</text>
+<rect x="404" y="70" width="174" height="214" rx="10" fill="#f8fafc" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="491" y="94" text-anchor="middle" font-size="13" font-weight="bold" fill="#7c3aed">③ 峰值充电</text>
+<text x="491" y="113" text-anchor="middle" font-size="10.5" fill="#475569">稳态峰顶 · 导通角~20%</text>
+<circle cx="432" cy="152" r="12" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<path d="M424,152 q4,-8 8,0 q4,8 8,0" fill="none" stroke="#2563eb" stroke-width="1.8"/>
+<text x="432" y="133" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#2563eb">AC</text>
+<line x1="444" y1="152" x2="450" y2="152" stroke="#334155" stroke-width="2.2"/>
+<polygon points="466,152 450,145 450,159" fill="#7c3aed"/>
+<line x1="466" y1="145" x2="466" y2="159" stroke="#334155" stroke-width="2.5"/>
+<line x1="466" y1="152" x2="502" y2="152" stroke="#334155" stroke-width="2.2"/>
+<line x1="502" y1="152" x2="502" y2="164" stroke="#334155" stroke-width="2.2"/>
+<line x1="490" y1="164" x2="514" y2="164" stroke="#7c3aed" stroke-width="3"/>
+<line x1="490" y1="172" x2="514" y2="172" stroke="#7c3aed" stroke-width="3"/>
+<line x1="502" y1="172" x2="502" y2="190" stroke="#334155" stroke-width="2.2"/>
+<line x1="502" y1="152" x2="536" y2="152" stroke="#334155" stroke-width="2.2"/>
+<rect x="530" y="157" width="12" height="26" fill="#f8fafc" stroke="#334155" stroke-width="2.2"/>
+<line x1="536" y1="152" x2="536" y2="157" stroke="#334155" stroke-width="2.2"/>
+<line x1="536" y1="183" x2="536" y2="190" stroke="#334155" stroke-width="2.2"/>
+<line x1="432" y1="164" x2="432" y2="190" stroke="#334155" stroke-width="2.2"/>
+<line x1="432" y1="190" x2="536" y2="190" stroke="#334155" stroke-width="2.2"/>
+<text x="517" y="170" font-size="9" font-weight="bold" fill="#475569">C</text>
+<text x="550" y="172" font-size="9" font-weight="bold" fill="#475569">R_L</text>
+<text x="456" y="141" font-size="9" font-weight="bold" fill="#475569">D</text>
+<circle r="4.2" fill="#dc2626"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M438,152 L502,152"/></circle>
+<circle r="4.2" fill="#dc2626"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M438,152 L502,152"/></circle>
+<text x="491" y="266" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#dc2626">I_D：5~10A</text>
+<text x="491" y="278" text-anchor="middle" font-size="10" fill="#475569">V_C：13.5→15.6V</text>
+<rect x="596" y="70" width="174" height="214" rx="10" fill="#f8fafc" stroke="#059669" stroke-width="1.8"/>
+<text x="683" y="94" text-anchor="middle" font-size="13" font-weight="bold" fill="#059669">④ 谷值放电</text>
+<text x="683" y="113" text-anchor="middle" font-size="10.5" fill="#475569">稳态谷值</text>
+<circle cx="624" cy="152" r="12" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<path d="M616,152 q4,-8 8,0 q4,8 8,0" fill="none" stroke="#2563eb" stroke-width="1.8"/>
+<text x="624" y="133" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#2563eb">AC</text>
+<line x1="636" y1="152" x2="642" y2="152" stroke="#334155" stroke-width="2.2"/>
+<polygon points="658,152 642,145 642,159" fill="#cbd5e1"/>
+<line x1="658" y1="145" x2="658" y2="159" stroke="#334155" stroke-width="2.5"/>
+<line x1="658" y1="152" x2="694" y2="152" stroke="#334155" stroke-width="2.2"/>
+<line x1="694" y1="152" x2="694" y2="164" stroke="#334155" stroke-width="2.2"/>
+<line x1="682" y1="164" x2="706" y2="164" stroke="#059669" stroke-width="3"/>
+<line x1="682" y1="172" x2="706" y2="172" stroke="#059669" stroke-width="3"/>
+<line x1="694" y1="172" x2="694" y2="190" stroke="#334155" stroke-width="2.2"/>
+<line x1="694" y1="152" x2="728" y2="152" stroke="#334155" stroke-width="2.2"/>
+<rect x="722" y="157" width="12" height="26" fill="#f8fafc" stroke="#334155" stroke-width="2.2"/>
+<line x1="728" y1="152" x2="728" y2="157" stroke="#334155" stroke-width="2.2"/>
+<line x1="728" y1="183" x2="728" y2="190" stroke="#334155" stroke-width="2.2"/>
+<line x1="624" y1="164" x2="624" y2="190" stroke="#334155" stroke-width="2.2"/>
+<line x1="624" y1="190" x2="728" y2="190" stroke="#334155" stroke-width="2.2"/>
+<text x="709" y="170" font-size="9" font-weight="bold" fill="#475569">C</text>
+<text x="742" y="172" font-size="9" font-weight="bold" fill="#475569">R_L</text>
+<text x="648" y="141" font-size="9" font-weight="bold" fill="#475569">D</text>
+<circle r="4.2" fill="#059669"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M630,152 L664,152 L664,190 L630,190"/></circle>
+<circle r="4.2" fill="#059669"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M630,152 L664,152 L664,190 L630,190"/></circle>
+<text x="683" y="266" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#dc2626">I_D：0</text>
+<text x="683" y="278" text-anchor="middle" font-size="10" fill="#475569">V_C：15.6→13.5V</text>
+<text x="425" y="314" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">一个周期：AC 输入、电容电压、二极管电流</text>
+<rect x="80" y="340" width="680" height="105" fill="#e2e8f0" opacity="0.15"/>
+<text x="24" y="374" font-size="11" font-weight="bold" fill="#2563eb">V_AC</text>
+<text x="24" y="400" font-size="11" font-weight="bold" fill="#059669">V_C</text>
+<text x="24" y="432" font-size="11" font-weight="bold" fill="#dc2626">I_D</text>
+<line x1="80" y1="378" x2="760" y2="378" stroke="#cbd5e1" stroke-width="1"/>
+<line x1="80" y1="406" x2="760" y2="406" stroke="#cbd5e1" stroke-width="1"/>
+<line x1="80" y1="438" x2="760" y2="438" stroke="#cbd5e1" stroke-width="1"/>
+<path d="M80,378 L87,377 L94,375 L101,374 L108,373 L115,372 L122,370 L130,369 L137,368 L144,367 L151,366 L158,365 L165,364 L172,363 L179,362 L186,361 L193,361 L200,360 L208,360 L215,359 L222,359 L229,358 L236,358 L243,358 L250,358 L257,358 L264,358 L271,358 L278,359 L285,359 L292,360 L300,360 L307,361 L314,361 L321,362 L328,363 L335,364 L342,365 L349,366 L356,367 L363,368 L370,369 L378,370 L385,372 L392,373 L399,374 L406,375 L413,377 L420,378 L427,377 L434,375 L441,374 L448,373 L455,372 L462,370 L470,369 L477,368 L484,367 L491,366 L498,365 L505,364 L512,363 L519,362 L526,361 L533,361 L540,360 L548,360 L555,359 L562,359 L569,358 L576,358 L583,358 L590,358 L597,358 L604,358 L611,358 L618,359 L625,359 L632,360 L640,360 L647,361 L654,361 L661,362 L668,363 L675,364 L682,365 L689,366 L696,367 L703,368 L710,369 L718,370 L725,372 L732,373 L739,374 L746,375 L753,377 L760,378" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="5,3"/>
+<path d="M80,399 L226,406 L250,390 L566,406 L590,390 L760,403" fill="none" stroke="#059669" stroke-width="2.5"/>
+<path d="M80,438 L226,438 L226,438 L238,416 L250,438 L566,438 L566,438 L578,416 L590,438 L760,438" fill="none" stroke="#dc2626" stroke-width="2.5"/>
+<line x1="250" y1="340" x2="250" y2="445" stroke="#64748b" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="420" y1="340" x2="420" y2="445" stroke="#64748b" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="590" y1="340" x2="590" y2="445" stroke="#64748b" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="250" y="458" text-anchor="middle" font-size="10.5" fill="#475569">5ms</text>
+<text x="420" y="458" text-anchor="middle" font-size="10.5" fill="#475569">10ms</text>
+<text x="590" y="458" text-anchor="middle" font-size="10.5" fill="#475569">15ms</text>
+<text x="760" y="458" text-anchor="end" font-size="10.5" fill="#475569">20ms</text>
+<circle r="4.2" fill="#2563eb"><animateMotion dur="12s" repeatCount="indefinite" path="M80,378 L87,377 L94,375 L101,374 L108,373 L115,372 L122,370 L130,369 L137,368 L144,367 L151,366 L158,365 L165,364 L172,363 L179,362 L186,361 L193,361 L200,360 L208,360 L215,359 L222,359 L229,358 L236,358 L243,358 L250,358 L257,358 L264,358 L271,358 L278,359 L285,359 L292,360 L300,360 L307,361 L314,361 L321,362 L328,363 L335,364 L342,365 L349,366 L356,367 L363,368 L370,369 L378,370 L385,372 L392,373 L399,374 L406,375 L413,377 L420,378 L427,377 L434,375 L441,374 L448,373 L455,372 L462,370 L470,369 L477,368 L484,367 L491,366 L498,365 L505,364 L512,363 L519,362 L526,361 L533,361 L540,360 L548,360 L555,359 L562,359 L569,358 L576,358 L583,358 L590,358 L597,358 L604,358 L611,358 L618,359 L625,359 L632,360 L640,360 L647,361 L654,361 L661,362 L668,363 L675,364 L682,365 L689,366 L696,367 L703,368 L710,369 L718,370 L725,372 L732,373 L739,374 L746,375 L753,377 L760,378"/></circle>
+<circle r="4.2" fill="#059669"><animateMotion dur="12s" repeatCount="indefinite" path="M80,399 L226,406 L250,390 L566,406 L590,390 L760,403"/></circle>
+<circle r="4.2" fill="#dc2626"><animateMotion dur="12s" repeatCount="indefinite" path="M80,438 L226,438 L226,438 L238,416 L250,438 L566,438 L566,438 L578,416 L590,438 L760,438"/></circle>
+<rect x="22" y="515" width="756" height="87" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="40" y="540" font-size="12" font-weight="bold" fill="#2563eb">🧮 四拍账本：导通角只有 20%，峰值电流是负载的 5~10 倍</text>
+<text x="40" y="563" font-size="11" fill="#475569">纹波 ΔV = I·Δt/C = 1A×10ms/4700µF ≈ 2.1V；峰值电流 ≈ 10ms/2ms×1A = 5A</text>
+<text x="40" y="585" font-size="11" fill="#475569">所以选整流管看 I_FRM（重复峰值），不是标称平均电流——1A 电源用 1N4007 余量很紧</text>
+<text x="40" y="597" font-size="10.5" font-weight="bold" fill="#dc2626">上电浪涌 10~50A → 保险丝要选慢断型（T 型）</text>
+<text x="400" y="650" text-anchor="middle" font-size="13.2" font-weight="bold" fill="#7c3aed" opacity="0">四拍因果链：电容充电 → 二极管截止 → 电容放电 → 再充电<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.84;0.89;1" dur="12s" repeatCount="indefinite"/></text></svg>
