@@ -120,7 +120,7 @@ class WaveformTimingTests(unittest.TestCase):
                     self.assertEqual(len(frame["points"]), markers)
                     for point in frame["points"]:
                         self.assertAlmostEqual(
-                            point["x"], expected_x, delta=1.0,
+                            point["x"], expected_x, delta=0.5,
                             msg=f"marker {point['color']} must follow elapsed time")
 
     def test_cycle_restart_and_seek(self):
