@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="640" viewBox="0 0 800 640">
+<title>恒流源也有天花板：合规电压算给你看</title>
+<rect width="800" height="640" fill="#f8fafc"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+@media (prefers-color-scheme: dark){
+rect[fill="#f8fafc"]{fill:#0f172a}
+[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
+[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
+[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
+[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
+[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
+[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
+[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
+[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
+[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
+[fill="#cbd5e1"]{fill:#334155}[stroke="#cbd5e1"]{stroke:#475569}
+[fill="#ffffff"]{fill:#0f172a}[fill="#94a3b8"]{fill:#64748b}[stroke="#94a3b8"]{stroke:#64748b}
+[fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
+}
+</style>
+<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">恒流源也有天花板：合规电压算给你看</text>
+
+<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">恒流源不是「万能」——负载太重，它就撑不住了</text>
+<line x1="90" y1="86" x2="90" y2="120" stroke="#334155" stroke-width="2.5"/>
+<text x="76" y="82" font-size="11.5" font-weight="bold" fill="#b45309">Vs 2.8V</text>
+<line x1="90" y1="120" x2="330" y2="120" stroke="#334155" stroke-width="2.5"/>
+<rect x="140" y="150" width="96" height="52" rx="6" fill="#f8fafc" stroke="#7c3aed" stroke-width="2.4"/>
+<text x="188" y="172" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#7c3aed">恒流源</text>
+<text x="188" y="190" text-anchor="middle" font-size="10.5" fill="#475569">I = 1mA</text>
+<line x1="188" y1="120" x2="188" y2="150" stroke="#334155" stroke-width="2.5"/>
+<line x1="188" y1="202" x2="188" y2="232" stroke="#334155" stroke-width="2.5"/>
+<rect x="170" y="232" width="36" height="24" rx="4" fill="#fffbeb" stroke="#b45309" stroke-width="2.2"/>
+<text x="220" y="248" font-size="10.5" font-weight="bold" fill="#b45309">R_sense 100</text>
+<line x1="188" y1="256" x2="188" y2="286" stroke="#334155" stroke-width="2.5"/>
+<rect x="150" y="286" width="76" height="52" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="2.4"/>
+<text x="188" y="308" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#2563eb">负载 R_L</text>
+<text x="188" y="326" text-anchor="middle" font-size="10.5" fill="#475569">0 ~ 2kΩ</text>
+<line x1="188" y1="338" x2="188" y2="362" stroke="#334155" stroke-width="2.5"/>
+<line x1="188" y1="362" x2="188" y2="376" stroke="#334155" stroke-width="2.5"/><line x1="172" y1="376" x2="204" y2="376" stroke="#334155" stroke-width="3"/><line x1="178" y1="382" x2="198" y2="382" stroke="#334155" stroke-width="3"/><line x1="184" y1="388" x2="192" y2="388" stroke="#334155" stroke-width="3"/>
+<circle r="4.5" fill="#7c3aed"><animateMotion dur="11s" begin="-0.3s" repeatCount="indefinite" path="M190,122 L190,148"/></circle>
+<circle r="4.5" fill="#b45309"><animateMotion dur="11s" begin="-1.0s" repeatCount="indefinite" path="M190,204 L190,230"/></circle>
+<circle r="4.5" fill="#2563eb"><animateMotion dur="11s" begin="-1.7s" repeatCount="indefinite" path="M190,258 L190,284"/></circle>
+<circle r="4.5" fill="#334155"><animateMotion dur="11s" begin="-2.4s" repeatCount="indefinite" path="M190,340 L190,360"/></circle>
+<line x1="400" y1="80" x2="400" y2="560" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="6,5"/>
+<text x="590" y="96" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">合规电压：三块压降之和</text>
+<rect x="424" y="112" width="330" height="140" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.6"/>
+<text x="440" y="138" font-size="11.5" font-weight="bold" fill="#2563eb">V_S ≥ V_load + I×R_sense + V_drop</text>
+<text x="440" y="164" font-size="11.5" fill="#475569">① 负载压降：2kΩ × 1mA = <tspan font-weight="bold">2.0V</tspan></text>
+<text x="440" y="186" font-size="11.5" fill="#475569">② 采样电阻：100Ω × 1mA = <tspan font-weight="bold">0.1V</tspan></text>
+<text x="440" y="208" font-size="11.5" fill="#475569">③ 调整管压差：≥ <tspan font-weight="bold">0.7V</tspan>（BJT）</text>
+<text x="440" y="236" font-size="12" font-weight="bold" fill="#dc2626">合计需要 ≥ 2.8V —— 低于此值就不恒流了</text>
+<text x="590" y="288" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">I-V 曲线：平坦到极限，然后塌下来</text>
+<line x1="430" y1="440" x2="730" y2="440" stroke="#64748b" stroke-width="1.6"/>
+<line x1="430" y1="320" x2="430" y2="440" stroke="#64748b" stroke-width="1.6"/>
+<text x="730" y="460" text-anchor="end" font-size="10.5" fill="#475569">负载电压 V →</text>
+<text x="422" y="330" text-anchor="end" font-size="10.5" fill="#475569">1mA</text>
+<text x="422" y="440" text-anchor="end" font-size="10.5" fill="#475569">0</text>
+<line x1="430" y1="336" x2="648" y2="336" stroke="#059669" stroke-width="3.2"/>
+<path d="M648,336 Q664,352 672,440" fill="none" stroke="#dc2626" stroke-width="3.2"/>
+<text x="440" y="326" font-size="10.5" font-weight="bold" fill="#059669">恒流区：稳稳 1mA</text>
+<text x="676" y="392" font-size="10.5" font-weight="bold" fill="#dc2626">塌陷区</text>
+<line x1="648" y1="320" x2="648" y2="440" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="4,3"/>
+<text x="590" y="478" text-anchor="middle" font-size="10.5" fill="#dc2626">2.0V 就是合规极限 → R_L,max = 2.0V/1mA = 2kΩ</text>
+<circle r="5" fill="#059669"><animateMotion dur="11s" begin="-0.5s" repeatCount="indefinite" path="M434,336 L644,336" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="11s" begin="-1.6s" repeatCount="indefinite" path="M652,338 L670,436" keyPoints="0;1" keyTimes="0;1"/></circle>
+<rect x="60" y="416" width="310" height="120" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="1.6"/>
+<text x="76" y="442" font-size="11.5" font-weight="bold" fill="#b45309">换电源电压，天花板跟着变</text>
+<text x="76" y="466" font-size="11" fill="#475569">V_S=2.8V → R_L,max = 2.0kΩ</text>
+<text x="76" y="486" font-size="11" fill="#475569">V_S=5V → R_L,max = 4.2kΩ</text>
+<text x="76" y="506" font-size="11" fill="#475569">V_S=12V → R_L,max = 11.2kΩ</text>
+<text x="76" y="528" font-size="11" font-weight="bold" fill="#dc2626">要更大的负载空间？只能抬高 V_S</text>
+<text x="400" y="580" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#7c3aed">工业 4~20mA 环流用 24V，就是这个道理：20mA×500Ω=10V 负载 + 采样 + 发射器裕量</text>
+<text x="400" y="612" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">① 恒流源要「三块压降」：负载 + 采样电阻 + 调整管——缺一块就退出恒流区<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="612" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">② I-V 曲线：平坦到 2.0V（合规极限），再往下负载压降就把它拽出恒流区<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="612" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">③ 想驱动更大负载？抬高电源电压——R_L,max 与 V_S 成正比<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="612" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">④ 这就解释了工业 4~20mA 环流为什么要 24V 供电——裕量是算出来的，不是拍的<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/></text></svg>

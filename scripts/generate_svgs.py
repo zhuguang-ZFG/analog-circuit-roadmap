@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-generate_svgs.py — 一键再生成《通往模拟电路之路》全部 83 张 SVG SMIL 动画
+generate_svgs.py — 一键再生成《通往模拟电路之路》全部 85 张 SVG SMIL 动画
 用法:  python generate_svgs.py            # 输出到 ../assets/svg/
 风格:  参考 BMS-Z 项目 —— 浅色底 + SMIL 节拍字幕 + 深色模式自适应 + 拟人化讲解
 所有电路参数经过自洽核算（datasheet 级），详见各函数注释。
@@ -6091,6 +6091,156 @@ def make_source_types():
     save('source-types.svg', svg + '</svg>')
 
 
+# ======================= 图 84：戴维南与诺顿等效（第 1 章 1.4） =======================
+def make_thevenin():
+    DT = 11
+    svg = svg_open('戴维南与诺顿：任何线性网络，都能压成两个元件', h=640)
+    svg += f'''
+<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">看着复杂，其实只需知道「开路电压」与「内阻」</text>
+<text x="140" y="86" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#2563eb">原网络</text>
+<line x1="60" y1="120" x2="220" y2="120" stroke="#334155" stroke-width="2.5"/>
+<circle cx="140" cy="120" r="4.5" fill="#334155"/>
+<text x="126" y="112" font-size="11" font-weight="bold" fill="#b45309">12V</text>
+<line x1="140" y1="120" x2="140" y2="146" stroke="#334155" stroke-width="2.5"/>
+{resistor_v(140, 146, 40, 'R1 10k')}
+<circle cx="140" cy="206" r="4.5" fill="#334155"/>
+<line x1="140" y1="206" x2="140" y2="230" stroke="#334155" stroke-width="2.5"/>
+{resistor_v(140, 230, 40, 'R2 10k')}
+<line x1="140" y1="290" x2="140" y2="310" stroke="#334155" stroke-width="2.5"/>
+{gnd_sym(140, 324)}
+<line x1="140" y1="206" x2="240" y2="206" stroke="#334155" stroke-width="2.5"/>
+<circle cx="240" cy="206" r="4.5" fill="#334155"/>
+<circle cx="240" cy="290" r="4.5" fill="#334155"/>
+<line x1="240" y1="206" x2="240" y2="290" stroke="#94a3b8" stroke-width="1.6" stroke-dasharray="5,4"/>
+<text x="252" y="200" font-size="10.5" fill="#475569">输出端</text>
+<text x="252" y="322" font-size="10.5" fill="#475569">输出端（看进去）</text>
+<circle r="5" fill="#2563eb"><animateMotion dur="{DT}s" begin="-0.3s" repeatCount="indefinite" path="M60,120 L200,120 L140,122 L140,144"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="{DT}s" begin="-1.1s" repeatCount="indefinite" path="M142,208 L142,228"/></circle>
+<text x="400" y="200" text-anchor="middle" font-size="26" font-weight="bold" fill="#94a3b8">⇒</text>
+<text x="400" y="228" text-anchor="middle" font-size="11" fill="#64748b">只看这两个数</text>
+<line x1="286" y1="140" x2="286" y2="256" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="6,5"/>
+<text x="480" y="86" text-anchor="middle" font-size="12" font-weight="bold" fill="#059669">戴维南 = 电压源 + 串电阻</text>
+<line x1="430" y1="150" x2="470" y2="150" stroke="#334155" stroke-width="2.5"/>
+<circle cx="450" cy="150" r="4.5" fill="#334155"/>
+<line x1="450" y1="120" x2="450" y2="150" stroke="#334155" stroke-width="2.5"/>
+<line x1="436" y1="120" x2="464" y2="120" stroke="#059669" stroke-width="3.2"/>
+<line x1="436" y1="132" x2="464" y2="132" stroke="#059669" stroke-width="3.2"/>
+<line x1="450" y1="132" x2="450" y2="108" stroke="#334155" stroke-width="2.5"/>
+<line x1="450" y1="150" x2="450" y2="176" stroke="#334155" stroke-width="2.5"/>
+<rect x="432" y="176" width="36" height="26" rx="4" fill="#f8fafc" stroke="#2563eb" stroke-width="2.2"/>
+<text x="450" y="194" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#2563eb">5k</text>
+<line x1="450" y1="202" x2="450" y2="240" stroke="#334155" stroke-width="2.5"/>
+<text x="470" y="122" font-size="12" font-weight="bold" fill="#059669">V_th = 6V</text>
+<text x="470" y="192" font-size="12" font-weight="bold" fill="#2563eb">R_th = 5kΩ</text>
+<text x="680" y="86" text-anchor="middle" font-size="12" font-weight="bold" fill="#7c3aed">诺顿 = 电流源 + 并电阻</text>
+<line x1="620" y1="120" x2="620" y2="240" stroke="#334155" stroke-width="2.5"/>
+<circle cx="620" cy="120" r="4.5" fill="#334155"/>
+<circle cx="620" cy="240" r="4.5" fill="#334155"/>
+<circle cx="580" cy="180" r="15" fill="none" stroke="#7c3aed" stroke-width="2.4"/>
+<line x1="580" y1="172" x2="580" y2="192" stroke="#7c3aed" stroke-width="2.4"/>
+<path d="M584,176 L584,184 M578,180 L580,180 M592,180 L620,180" fill="none" stroke="#7c3aed" stroke-width="2.2"/>
+<line x1="580" y1="180" x2="574" y2="180" stroke="#7c3aed" stroke-width="2.2"/>
+<line x1="620" y1="180" x2="620" y2="240" stroke="#334155" stroke-width="2.5"/>
+<text x="640" y="150" font-size="12" font-weight="bold" fill="#7c3aed">I_N = 1.2mA</text>
+<text x="640" y="222" font-size="12" font-weight="bold" fill="#2563eb">R_N = 5kΩ</text>
+<text x="400" y="278" text-anchor="middle" font-size="12" font-weight="bold" fill="#b45309">两个等效互换：R_th = R_N = V_th / I_N</text>
+<text x="400" y="302" text-anchor="middle" font-size="11.5" fill="#475569">6V ÷ 1.2mA = 5kΩ（I_N 就是输出短路电流）</text>
+<line x1="40" y1="330" x2="760" y2="330" stroke="#cbd5e1" stroke-width="1"/>
+<text x="400" y="356" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">怎么求：两条判据，一步到位</text>
+<text x="60" y="384" font-size="11.5" fill="#475569">① <tspan font-weight="bold" fill="#059669">开路电压 V_th</tspan>：把负载拿掉，量输出端电压 → 这里 12V × 10k/(10k+10k) = <tspan font-weight="bold">6V</tspan></text>
+<text x="60" y="408" font-size="11.5" fill="#475569">② <tspan font-weight="bold" fill="#7c3aed">短路电流 I_N</tspan>：输出端短路，算流过电流 → 12V / 10k = <tspan font-weight="bold">1.2mA</tspan>（R2 被短路）</text>
+<text x="60" y="432" font-size="11.5" fill="#475569">③ <tspan font-weight="bold" fill="#2563eb">R_th = V_th / I_N</tspan>：把独立源「置零」再求等效电阻也行（电压源短路 → R1∥R2 = 5kΩ）</text>
+<rect x="60" y="452" width="340" height="96" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.6"/>
+<text x="76" y="476" font-size="12" font-weight="bold" fill="#2563eb">等效之后，带载误差一眼看出</text>
+<text x="76" y="500" font-size="11" fill="#475569">V_out = V_th × R_L/(R_th+R_L)</text>
+<text x="76" y="520" font-size="11" fill="#475569">R_L = R_th 时 → 只剩一半（3V）</text>
+<text x="76" y="540" font-size="11" fill="#475569">R_L = 1MΩ 时 → 5.97V（只差 0.5%）</text>
+<rect x="420" y="452" width="340" height="96" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="1.6"/>
+<text x="436" y="476" font-size="12" font-weight="bold" fill="#b45309">为什么它是「万能钥匙」</text>
+<text x="436" y="500" font-size="11" fill="#475569">不管原网络有 5 个还是 50 个元件，从任意两个</text>
+<text x="436" y="520" font-size="11" fill="#475569">端子看进去都只剩「一个源 + 一个电阻」——</text>
+<text x="436" y="540" font-size="11.5" font-weight="bold" fill="#dc2626">所以「带不动」永远只需比 R_th 与 R_L</text>
+'''
+    svg += caption("① 开路电压、短路电流，两个数就定下整个网络的对外性格", "#2563eb", DT,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=612)
+    svg += caption("② 戴维南与诺顿是对偶：一个电压源串电阻，一个电流源并电阻", "#7c3aed", DT,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=612)
+    svg += caption("③ 换算只需一个式子：R_th = V_th / I_N = 6V / 1.2mA = 5kΩ", "#059669", DT,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=612)
+    svg += caption("④ 用途：判断「带不带得动」只需比 R_th 与 R_L —— 回溯 0.3 分压器与 0.6 恒压源", "#b45309", DT,
+                   "0;0;1;1", "0;0.85;0.9;1", y=612)
+    save('thevenin-norton.svg', svg + '</svg>')
+
+
+# ======================= 图 85：恒流源的合规电压（第 13 章 13.5） =======================
+def make_compliance_voltage():
+    DC = 11
+    VS, ISET, RSENSE, VDROP = 2.8, 1e-3, 100.0, 0.7
+    rl_max = (VS - VDROP - ISET*RSENSE)/ISET
+    svg = svg_open('恒流源也有天花板：合规电压算给你看', h=640)
+    svg += f'''
+<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">恒流源不是「万能」——负载太重，它就撑不住了</text>
+<line x1="90" y1="86" x2="90" y2="120" stroke="#334155" stroke-width="2.5"/>
+<text x="76" y="82" font-size="11.5" font-weight="bold" fill="#b45309">Vs 2.8V</text>
+<line x1="90" y1="120" x2="330" y2="120" stroke="#334155" stroke-width="2.5"/>
+<rect x="140" y="150" width="96" height="52" rx="6" fill="#f8fafc" stroke="#7c3aed" stroke-width="2.4"/>
+<text x="188" y="172" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#7c3aed">恒流源</text>
+<text x="188" y="190" text-anchor="middle" font-size="10.5" fill="#475569">I = 1mA</text>
+<line x1="188" y1="120" x2="188" y2="150" stroke="#334155" stroke-width="2.5"/>
+<line x1="188" y1="202" x2="188" y2="232" stroke="#334155" stroke-width="2.5"/>
+<rect x="170" y="232" width="36" height="24" rx="4" fill="#fffbeb" stroke="#b45309" stroke-width="2.2"/>
+<text x="220" y="248" font-size="10.5" font-weight="bold" fill="#b45309">R_sense 100</text>
+<line x1="188" y1="256" x2="188" y2="286" stroke="#334155" stroke-width="2.5"/>
+<rect x="150" y="286" width="76" height="52" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="2.4"/>
+<text x="188" y="308" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#2563eb">负载 R_L</text>
+<text x="188" y="326" text-anchor="middle" font-size="10.5" fill="#475569">0 ~ 2kΩ</text>
+<line x1="188" y1="338" x2="188" y2="362" stroke="#334155" stroke-width="2.5"/>
+{gnd_sym(188, 376)}
+<circle r="4.5" fill="#7c3aed"><animateMotion dur="{DC}s" begin="-0.3s" repeatCount="indefinite" path="M190,122 L190,148"/></circle>
+<circle r="4.5" fill="#b45309"><animateMotion dur="{DC}s" begin="-1.0s" repeatCount="indefinite" path="M190,204 L190,230"/></circle>
+<circle r="4.5" fill="#2563eb"><animateMotion dur="{DC}s" begin="-1.7s" repeatCount="indefinite" path="M190,258 L190,284"/></circle>
+<circle r="4.5" fill="#334155"><animateMotion dur="{DC}s" begin="-2.4s" repeatCount="indefinite" path="M190,340 L190,360"/></circle>
+<line x1="400" y1="80" x2="400" y2="560" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="6,5"/>
+<text x="590" y="96" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">合规电压：三块压降之和</text>
+<rect x="424" y="112" width="330" height="140" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.6"/>
+<text x="440" y="138" font-size="11.5" font-weight="bold" fill="#2563eb">V_S ≥ V_load + I×R_sense + V_drop</text>
+<text x="440" y="164" font-size="11.5" fill="#475569">① 负载压降：2kΩ × 1mA = <tspan font-weight="bold">2.0V</tspan></text>
+<text x="440" y="186" font-size="11.5" fill="#475569">② 采样电阻：100Ω × 1mA = <tspan font-weight="bold">0.1V</tspan></text>
+<text x="440" y="208" font-size="11.5" fill="#475569">③ 调整管压差：≥ <tspan font-weight="bold">0.7V</tspan>（BJT）</text>
+<text x="440" y="236" font-size="12" font-weight="bold" fill="#dc2626">合计需要 ≥ 2.8V —— 低于此值就不恒流了</text>
+<text x="590" y="288" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">I-V 曲线：平坦到极限，然后塌下来</text>
+<line x1="430" y1="440" x2="730" y2="440" stroke="#64748b" stroke-width="1.6"/>
+<line x1="430" y1="320" x2="430" y2="440" stroke="#64748b" stroke-width="1.6"/>
+<text x="730" y="460" text-anchor="end" font-size="10.5" fill="#475569">负载电压 V →</text>
+<text x="422" y="330" text-anchor="end" font-size="10.5" fill="#475569">1mA</text>
+<text x="422" y="440" text-anchor="end" font-size="10.5" fill="#475569">0</text>
+<line x1="430" y1="336" x2="648" y2="336" stroke="#059669" stroke-width="3.2"/>
+<path d="M648,336 Q664,352 672,440" fill="none" stroke="#dc2626" stroke-width="3.2"/>
+<text x="440" y="326" font-size="10.5" font-weight="bold" fill="#059669">恒流区：稳稳 1mA</text>
+<text x="676" y="392" font-size="10.5" font-weight="bold" fill="#dc2626">塌陷区</text>
+<line x1="648" y1="320" x2="648" y2="440" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="4,3"/>
+<text x="590" y="478" text-anchor="middle" font-size="10.5" fill="#dc2626">2.0V 就是合规极限 → R_L,max = 2.0V/1mA = 2kΩ</text>
+<circle r="5" fill="#059669"><animateMotion dur="{DC}s" begin="-0.5s" repeatCount="indefinite" path="M434,336 L644,336" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="{DC}s" begin="-1.6s" repeatCount="indefinite" path="M652,338 L670,436" keyPoints="0;1" keyTimes="0;1"/></circle>
+<rect x="60" y="416" width="310" height="120" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="1.6"/>
+<text x="76" y="442" font-size="11.5" font-weight="bold" fill="#b45309">换电源电压，天花板跟着变</text>
+<text x="76" y="466" font-size="11" fill="#475569">V_S=2.8V → R_L,max = 2.0kΩ</text>
+<text x="76" y="486" font-size="11" fill="#475569">V_S=5V → R_L,max = 4.2kΩ</text>
+<text x="76" y="506" font-size="11" fill="#475569">V_S=12V → R_L,max = 11.2kΩ</text>
+<text x="76" y="528" font-size="11" font-weight="bold" fill="#dc2626">要更大的负载空间？只能抬高 V_S</text>
+<text x="400" y="580" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#7c3aed">工业 4~20mA 环流用 24V，就是这个道理：20mA×500Ω=10V 负载 + 采样 + 发射器裕量</text>
+'''
+    svg += caption("① 恒流源要「三块压降」：负载 + 采样电阻 + 调整管——缺一块就退出恒流区", "#2563eb", DC,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=612)
+    svg += caption("② I-V 曲线：平坦到 2.0V（合规极限），再往下负载压降就把它拽出恒流区", "#dc2626", DC,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=612)
+    svg += caption("③ 想驱动更大负载？抬高电源电压——R_L,max 与 V_S 成正比", "#b45309", DC,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=612)
+    svg += caption("④ 这就解释了工业 4~20mA 环流为什么要 24V 供电——裕量是算出来的，不是拍的", "#7c3aed", DC,
+                   "0;0;1;1", "0;0.85;0.9;1", y=612)
+    save('compliance-voltage.svg', svg + '</svg>')
+
+
 if __name__ == '__main__':
     make_rc_charge()
     make_bridge_rectifier()
@@ -6175,4 +6325,6 @@ if __name__ == '__main__':
     make_comparator_pitfalls()
     make_555_params()
     make_source_types()
-    print('all 83 SVGs regenerated into', os.path.abspath(OUT))
+    make_thevenin()
+    make_compliance_voltage()
+    print('all 85 SVGs regenerated into', os.path.abspath(OUT))
