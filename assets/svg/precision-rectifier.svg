@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+<title>精密整流：运放「借增益」消灭二极管压降</title>
+<rect width="800" height="500" fill="#f8fafc"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+@media (prefers-color-scheme: dark){
+rect[fill="#f8fafc"]{fill:#0f172a}
+[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
+[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
+[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
+[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
+[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
+[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
+[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
+[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
+[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
+[fill="#cbd5e1"]{fill:#334155}[stroke="#cbd5e1"]{stroke:#475569}
+[fill="#ffffff"]{fill:#0f172a}[fill="#94a3b8"]{fill:#64748b}[stroke="#94a3b8"]{stroke:#64748b}
+[fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
+}
+</style>
+<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">精密整流：运放「借增益」消灭二极管压降</text>
+
+<text x="210" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">精密半波整流器（反相型）</text>
+<text x="16" y="145" font-size="11" fill="#475569">输入</text>
+<text x="16" y="160" font-size="10" fill="#94a3b8">±100mV</text>
+<line x1="40" y1="150" x2="60" y2="150" stroke="#334155" stroke-width="2.5"/>
+<rect x="60" y="139" width="40" height="22" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<line x1="100" y1="150" x2="120" y2="150" stroke="#334155" stroke-width="2.5"/>
+<text x="80.0" y="133" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#b45309">R1</text>
+<circle cx="170" cy="150" r="4" fill="#334155"/>
+<polygon points="200,120 200,180 260,150" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="206" y="144" font-size="13" font-weight="bold" fill="#dc2626">−</text>
+<text x="206" y="170" font-size="13" font-weight="bold" fill="#059669">+</text>
+<line x1="170" y1="150" x2="200" y2="135" stroke="#334155" stroke-width="2"/>
+<line x1="200" y1="165" x2="196" y2="190" stroke="#334155" stroke-width="2"/>
+<line x1="196" y1="190" x2="196" y2="204" stroke="#334155" stroke-width="2.5"/><line x1="180" y1="204" x2="212" y2="204" stroke="#334155" stroke-width="3"/><line x1="186" y1="210" x2="206" y2="210" stroke="#334155" stroke-width="3"/><line x1="192" y1="216" x2="200" y2="216" stroke="#334155" stroke-width="3"/>
+<line x1="260" y1="150" x2="284" y2="150" stroke="#334155" stroke-width="2.5"/>
+<polygon points="308,150 284,138 284,162" fill="none" stroke="#334155" stroke-width="2.5"/>
+<line x1="308" y1="138" x2="308" y2="162" stroke="#334155" stroke-width="3"/>
+<text x="272" y="132" font-size="10.5" fill="#dc2626">D</text>
+<line x1="308" y1="150" x2="350" y2="150" stroke="#334155" stroke-width="2.5"/>
+<circle cx="350" cy="150" r="4" fill="#334155"/>
+<line x1="350" y1="150" x2="400" y2="150" stroke="#334155" stroke-width="2.5"/>
+<text x="360" y="136" font-size="11" font-weight="bold" fill="#2563eb">输出</text>
+<line x1="180" y1="210" x2="200" y2="210" stroke="#334155" stroke-width="2.5"/>
+<rect x="200" y="199" width="40" height="22" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<line x1="240" y1="210" x2="260" y2="210" stroke="#334155" stroke-width="2.5"/>
+<text x="220.0" y="193" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#b45309">Rf</text>
+<line x1="120" y1="150" x2="170" y2="150" stroke="#334155" stroke-width="2.5"/>
+<line x1="260" y1="210" x2="280" y2="210" stroke="#334155" stroke-width="2"/>
+<line x1="170" y1="150" x2="170" y2="210" stroke="#334155" stroke-width="2"/>
+<line x1="170" y1="210" x2="180" y2="210" stroke="#334155" stroke-width="2"/>
+<line x1="280" y1="210" x2="350" y2="210" stroke="#334155" stroke-width="2"/>
+<line x1="350" y1="210" x2="350" y2="150" stroke="#334155" stroke-width="2"/>
+<text x="120" y="245" font-size="11" fill="#dc2626" opacity="0">运放输出自动多抬 0.7V
+<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.06;0.4;0.46;1" dur="6s" repeatCount="indefinite"/></text>
+<g><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.44;0.5;1" dur="6s" repeatCount="indefinite"/><circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="-0.50s" repeatCount="indefinite" path="M64,146 H160 M170,210 H200 M260,210 H346 V154 H396"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="-0.17s" repeatCount="indefinite" path="M64,146 H160 M170,210 H200 M260,210 H346 V154 H396"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="0.17s" repeatCount="indefinite" path="M64,146 H160 M170,210 H200 M260,210 H346 V154 H396"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="0.50s" repeatCount="indefinite" path="M64,146 H160 M170,210 H200 M260,210 H346 V154 H396"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="0.83s" repeatCount="indefinite" path="M64,146 H160 M170,210 H200 M260,210 H346 V154 H396"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="1.17s" repeatCount="indefinite" path="M64,146 H160 M170,210 H200 M260,210 H346 V154 H396"/></circle></g>
+<text x="590" y="66" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#475569">输入 ±100mV（太小，普通整流全丢）</text>
+<path d="M430,120 L434,122 L439,125 L443,127 L448,129 L452,131 L457,133 L461,135 L466,137 L470,138 L474,140 L479,141 L483,143 L488,144 L492,144 L497,145 L501,146 L506,146 L510,146 L514,146 L519,146 L523,145 L528,144 L532,144 L537,143 L541,141 L546,140 L550,138 L554,137 L559,135 L563,133 L568,131 L572,129 L577,127 L581,125 L586,122 L590,120 L594,118 L599,115 L603,113 L608,111 L612,109 L617,107 L621,105 L626,103 L630,102 L634,100 L639,99 L643,97 L648,96 L652,96 L657,95 L661,94 L666,94 L670,94 L674,94 L679,94 L683,95 L688,96 L692,96 L697,97 L701,99 L706,100 L710,102 L714,103 L719,105 L723,107 L728,109 L732,111 L737,113 L741,115 L746,118 L750,120" fill="none" stroke="#94a3b8" stroke-width="2"/>
+<text x="590" y="200" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#dc2626">普通二极管整流：0.7V 死区 → 输出=0</text>
+<path d="M430,280 L750,280" fill="none" stroke="#dc2626" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="590" y="416" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#059669">精密整流输出：干净半波（基线=0V）</text>
+<path d="M430,280 L434,273 L439,266 L443,260 L448,254 L452,249 L457,245 L461,242 L466,241 L470,240 L474,241 L479,242 L483,245 L488,249 L492,254 L497,260 L501,266 L506,273 L510,280 L514,280 L519,280 L523,280 L528,280 L532,280 L537,280 L541,280 L546,280 L550,280 L554,280 L559,280 L563,280 L568,280 L572,280 L577,280 L581,280 L586,280 L590,280 L594,273 L599,266 L603,260 L608,254 L612,249 L617,245 L621,242 L626,241 L630,240 L634,241 L639,242 L643,245 L648,249 L652,254 L657,260 L661,266 L666,273 L670,280 L674,280 L679,280 L683,280 L688,280 L692,280 L697,280 L701,280 L706,280 L710,280 L714,280 L719,280 L723,280 L728,280 L732,280 L737,280 L741,280 L746,280 L750,280" fill="none" stroke="#059669" stroke-width="2.5" transform="translate(0,80)"/>
+<line x1="430" y1="360" x2="750" y2="360" stroke="#64748b" stroke-width="1.2"/>
+<text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">① 正半周：运放开环增益 10 万倍——输出只需多抬 0.7V，折算回输入仅 7µV 误差<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.22;0.28;1" dur="6s" repeatCount="indefinite"/></text><text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">② 负半周：二极管截止、运放饱和也无妨——输出被 Rf 锚在 0<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.3;0.35;0.58;0.64;1" dur="6s" repeatCount="indefinite"/></text><text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">③ 对比：普通二极管对 100mV 信号输出为零；精密整流分毫毕现——mV 级信号救星<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.64;0.7;1" dur="6s" repeatCount="indefinite"/></text><g opacity="0">
+<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.74;0.79;1" dur="6s" repeatCount="indefinite"/>
+<rect x="60" y="450" width="680" height="34" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+<text x="400" y="472" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">0.7V ÷ 开环增益 = 等效死区 7µV——把非线性元件塞进反馈环，让增益替你买单</text>
+</g></svg>

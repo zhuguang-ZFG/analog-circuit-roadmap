@@ -13,7 +13,7 @@
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-CC_BY--SA_4.0-lightgrey.svg" alt="License"></a>
-  <img src="https://img.shields.io/badge/SVG动画-17张-3fb950.svg" alt="SVG">
+  <img src="https://img.shields.io/badge/SVG动画-21张-3fb950.svg" alt="SVG">
   <img src="https://img.shields.io/badge/章节-8篇19章-58a6ff.svg" alt="chapters">
 </p>
 
@@ -82,7 +82,7 @@ graph TD
   - [第 14 章 设计方法论](#ch14) · [第 15 章 PCB 注意事项](#ch15)
 - **[第四篇：故障分析与排故方法论](#part4)** 🩺
   - [第 16 章 排故五步法](#ch16) · [第 17 章 故障速查表](#ch17) · [第 18 章 大师智慧](#ch18)
-- **[第五篇：动画演示中心](#part5)** 🎬 — 12 张 SVG 动画 + Falstad 地图
+- **[第五篇：动画演示中心](#part5)** 🎬 — 21 张 SVG 动画 + Falstad 地图
 - **[第六篇：实物图鉴与速查](#part6)** 🧩 — 实物照片 · 参数速查 · [官方 datasheet 直达](#part6)
 - **[第七篇：视频资源](#part7)** 📺 — B站系统课 · YouTube 频道
 - **[第八篇：学习路线与资源索引](#part8)** 📚 — 路线图 · 书单 · 项目清单 · [官方资料](#sec88) · [经典论文](#sec89) · FAQ
@@ -1095,6 +1095,8 @@ $t_{放}=0.693\,R_2\,C ≈ 471µs$（输出低）
 
 ### 11.3 电流镜：模拟 IC 的"复印机"
 
+<p align="center"><img src="assets/svg/current-mirror.svg" width="720" alt="电流镜动画：共用 V_BE 复印电流"></p>
+
 **问题**：芯片里做不出大电阻（占面积），而放大器处处需要偏置电流和高阻负载，怎么办？
 
 **结构**：两只工艺上紧挨着的匹配管，左边管子 C-B 短接（"二极管接法"）注入参考电流 $I_{REF}$，右边管子复制输出。
@@ -1186,6 +1188,8 @@ $$f_c = \frac{1}{2\pi\sqrt{R_1R_2C_1C_2}} \quad(\text{常用 } R_1{=}R_2{=}R,\ C
 
 ### 12.6 精密整流与峰值检测
 
+<p align="center"><img src="assets/svg/precision-rectifier.svg" width="720" alt="精密整流动画：增益消灭二极管压降"></p>
+
 **问题**：普通二极管整流有 0.7V 死区——整 50mV 的小信号？全军覆没。
 
 **精密整流**：把二极管放进运放反馈环里。运放会自动把输出多顶 0.7V，恰好抵消二极管压降 → 整流精度到 mV 级。**"把非理想元件关进反馈的笼子"——这是运放应用最深的思想之一。**
@@ -1225,6 +1229,8 @@ $$(V_{in}-V_{out})\cdot D \cdot T = V_{out}\cdot(1-D)\cdot T \;\Rightarrow\; \bo
 > 💎 **精髓**：开关电源的主角不是开关，是**电感的惯性**——它像飞轮，把"断续的能量包"碾平成连续输出。占空比 D 就是电压的"档位"。效率 90%+ 的秘密：开关要么全开（压降≈0）要么全关（电流=0），都不耗功率。
 
 ### 13.3 Boost 升压与电荷泵
+
+<p align="center"><img src="assets/svg/boost-converter.svg" width="720" alt="Boost 升压动画：电感叠罗汉"></p>
 
 **Boost**：把 Buck 的电感和开关换个位置——开关闭合时电感对地储能；断开瞬间，电感电压**叠加**在输入电压上，经二极管泵向输出：$V_{out} = \dfrac{V_{in}}{1-D}$（理想）。升压的物理图像：**电感是个"憋气弹簧"，先充电再猛地松手把电压顶上去**。
 
@@ -1514,7 +1520,7 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 <a id="part5"></a>
 # 第五篇：动画演示中心 🎬
 
-> 全部 17 张 SVG 动画（SMIL，浏览器直接播放）位于 `assets/svg/` 目录，由 `scripts/generate_svgs.py` 一键生成（仓库铁律：两者始终同步）；配套 Falstad 在线电路可实时交互。
+> 全部 21 张 SVG 动画（SMIL，浏览器直接播放）位于 `assets/svg/` 目录，由 `scripts/generate_svgs.py` 一键生成（仓库铁律：两者始终同步）；配套 Falstad 在线电路可实时交互。
 
 ## 5.1 RC 充电 <a id="demo1"></a>
 
@@ -1602,7 +1608,31 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 
 **看点**：右侧波形从噪声种子指数长大、到包络线封顶——f₀ 处 RC 网络相移 0°、衰减 1/3，增益=3 恰好补平；幅度停在哪儿？灯泡发热升阻把增益自动摁回 3。→ 正文 [13.4 文氏桥](#ch13)
 
-## 5.13 Falstad 内置示例地图（全部带动画）
+## 5.13 电流镜：共用 V_BE 的复印机 <a id="demo13"></a>
+
+<p align="center"><img src="assets/svg/current-mirror.svg" width="720" alt="电流镜SVG动画"></p>
+
+**看点**：绿粒子经 R_SET 流入二极管接法的 Q1，自动建立 V_BE；幕 2 蓝粒子从负载侧流入 Q2——同一根基极线把 V_BE 一送二，电流被原样复印。→ 正文 [11.3 电流镜](#ch11)
+
+## 5.14 Boost 升压：电感叠罗汉 <a id="demo14"></a>
+
+<p align="center"><img src="assets/svg/boost-converter.svg" width="720" alt="Boost升压SVG动画"></p>
+
+**看点**：开关闭合绿粒子给电感"打气"（输出靠电容撑）；断开瞬间电感极性翻转与 12V 串联叠加，红粒子顶开二极管直灌 24V。伏秒平衡：Vout=Vin/(1−D)。→ 正文 [13.3 Boost](#ch13)
+
+## 5.15 精密整流：借增益消灭 0.7V <a id="demo15"></a>
+
+<p align="center"><img src="assets/svg/precision-rectifier.svg" width="720" alt="精密整流SVG动画"></p>
+
+**看点**：±100mV 小信号，普通二极管整流输出一条死线；运放把二极管塞进反馈环，等效死区 0.7V÷10万=7µV——输出半波分毫毕现。→ 正文 [12.6 精密整流](#ch12)
+
+## 5.16 米勒效应：10pF 变身 1nF <a id="demo16"></a>
+
+<p align="center"><img src="assets/svg/miller-effect.svg" width="720" alt="米勒效应SVG动画"></p>
+
+**看点**：IN 只摆 1mV、OUT 反相摆 100mV——跨接电容两端实际承受 101 倍摆幅，输入源仿佛对着 1nF 充电。高频滚降的元凶，也是密勒补偿的原理。→ 正文 [11.5 频率响应](#ch11)
+
+## 5.17 Falstad 内置示例地图（全部带动画）
 
 | 主题 | 菜单路径 |
 |---|---|

@@ -1495,6 +1495,250 @@ def make_sallen_key():
     svg += note_box("fc = 1/(2πRC)（R1=R2、C1=C2 时）· Q 由增益设定——滤波器不是衰减器，是受控的谐振", 494, DS, "0;0.88;0.92;1", w=730)
     save('sallen-key.svg', svg + '</svg>')
 
+
+# ======================= 图 18：电流镜 =======================
+def make_current_mirror():
+    DM = 6
+    svg = svg_open('电流镜：共用一个 V_BE 的「复印机」', h=500)
+    svg += f'''
+<text x="300" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">基本电流镜（Q1 二极管接法设基准，Q2 复印输出）</text>
+<text x="30" y="76" font-size="12.5" font-weight="bold" fill="#b45309">VCC</text>
+<line x1="60" y1="70" x2="560" y2="70" stroke="#334155" stroke-width="2.5"/>
+{resistor_v(140, 90, 34, 'R_SET')}
+<text x="60" y="150" font-size="11" font-weight="bold" fill="#059669">I_REF=1mA</text>
+<line x1="105" y1="200" x2="355" y2="200" stroke="#334155" stroke-width="2.5"/>
+{npn_svg(140, 200)}
+{npn_svg(440, 200)}
+<path d="M140,165 V152 H98 V190 H105" fill="none" stroke="#7c3aed" stroke-width="2" stroke-dasharray="4,3"/>
+<text x="220" y="142" font-size="10.5" fill="#7c3aed">C-B 短接=二极管接法</text>
+<line x1="140" y1="255" x2="140" y2="285" stroke="#334155" stroke-width="2.5"/>
+{gnd_sym(140, 299)}
+<line x1="440" y1="255" x2="440" y2="285" stroke="#334155" stroke-width="2.5"/>
+{gnd_sym(440, 299)}
+<line x1="440" y1="145" x2="440" y2="120" stroke="#334155" stroke-width="2.5"/>
+<circle cx="440" cy="120" r="4" fill="#334155"/>
+<line x1="440" y1="120" x2="500" y2="120" stroke="#334155" stroke-width="2.5"/>
+<rect x="500" y="100" width="60" height="40" rx="5" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+<text x="530" y="124" text-anchor="middle" font-size="11" fill="#475569">负载</text>
+<line x1="560" y1="120" x2="560" y2="70" stroke="#334155" stroke-width="2.5"/>
+<text x="452" y="112" font-size="11" font-weight="bold" fill="#2563eb">I_OUT≈1mA</text>
+<path d="M200,240 C280,290 360,290 420,240" fill="none" stroke="#7c3aed" stroke-width="1.8" stroke-dasharray="5,4"/>
+<polygon points="420,240 410,238 413,248" fill="#7c3aed"/>
+<text x="280" y="292" font-size="11" fill="#7c3aed">同一个 V_BE → 同一份 I_C</text>
+<text x="120" y="330" font-size="11" fill="#059669" opacity="0">V_BE 自动建立
+<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.06;0.4;0.46;1" dur="{DM}s" repeatCount="indefinite"/></text>
+<text x="400" y="330" font-size="11" fill="#2563eb" opacity="0">电流被复印
+<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.52;0.56;0.9;0.96;1" dur="{DM}s" repeatCount="indefinite"/></text>
+'''
+    svg += f'<g><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.44;0.5;1" dur="{DM}s" repeatCount="indefinite"/>'
+    svg += flow("M64,66 H140 V160 V235 V281", DM/3, n=6, color="#059669", r=5) + '</g>'
+    svg += f'<g><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.5;0.56;0.9;0.96;1" dur="{DM}s" repeatCount="indefinite"/>'
+    svg += flow("M556,66 V116 H505 M444,124 V160 V235 V281", DM/3, n=5, color="#2563eb", r=5) + '</g>'
+    svg += caption("① R_SET 注入 I_REF——Q1 二极管接法让 V_BE 自动停在「恰好流过 1mA」的值", "#059669", DM,
+                   "0;1;1;0;0", "0;0.03;0.22;0.28;1", y=430)
+    svg += caption("② 同一根基极线把这只 V_BE 同时喂给 Q2——V_BE 相同，I_C 就相同：电流被复印", "#2563eb", DM,
+                   "0;0;1;1;0;0", "0;0.3;0.35;0.58;0.64;1", y=430)
+    svg += caption("③ Q2 集电极电压随负载怎么变，电流纹丝不动——这就是「电流源」", "#7c3aed", DM,
+                   "0;0;1;1", "0;0.64;0.7;1", y=430)
+    svg += note_box("误差源头：两只基流都从 I_REF 里扣（β 有限）——Wilson 镜再加一管，把误差再压一个数量级", 474, DM, "0;0.74;0.79;1", w=700)
+    save('current-mirror.svg', svg + '</svg>')
+
+
+# ======================= 图 19：Boost 升压 =======================
+def make_boost_converter():
+    DB2 = 6
+    il_pts = []
+    for i in range(97):
+        u = i/96
+        x = 430 + 320*u
+        seg = (u*3) % 1.0
+        y = 372 - (30*seg/0.5 if seg < 0.5 else 30*(1-seg)/0.5)
+        il_pts.append(f"{x:.0f},{y:.0f}")
+    il_d = "M" + " L".join(il_pts)
+    svg = svg_open('Boost 升压：电感「叠罗汉」把电压顶上去', h=520)
+    svg += f'''
+<text x="230" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">Boost 变换器（12V → 24V，占空比 50%）</text>
+<text x="18" y="102" font-size="12.5" font-weight="bold" fill="#b45309">12V</text>
+<line x1="48" y1="96" x2="90" y2="96" stroke="#334155" stroke-width="2.5"/>
+<path d="M90,96 q8,-16 16,0 q8,16 16,0 q8,-16 16,0 q8,16 16,0 q8,-16 16,0" fill="none" stroke="#7c3aed" stroke-width="2.5"/>
+<text x="106" y="70" font-size="12" font-weight="bold" fill="#7c3aed">电感 L</text>
+<line x1="170" y1="96" x2="205" y2="96" stroke="#334155" stroke-width="2.5"/>
+<circle cx="205" cy="96" r="4" fill="#334155"/>
+<text x="182" y="118" font-size="10" fill="#7c3aed">开关节点</text>
+<line x1="205" y1="96" x2="230" y2="96" stroke="#334155" stroke-width="2.5"/>
+<polygon points="254,96 230,84 230,108" fill="none" stroke="#334155" stroke-width="2.5"/>
+<line x1="254" y1="84" x2="254" y2="108" stroke="#334155" stroke-width="3"/>
+<text x="222" y="78" font-size="10.5" fill="#dc2626">二极管</text>
+<line x1="254" y1="96" x2="320" y2="96" stroke="#334155" stroke-width="2.5"/>
+<circle cx="320" cy="96" r="4" fill="#334155"/>
+<line x1="320" y1="96" x2="370" y2="96" stroke="#334155" stroke-width="2.5"/>
+<text x="374" y="101" font-size="12.5" font-weight="bold" fill="#059669">24V 输出</text>
+<line x1="320" y1="96" x2="320" y2="130" stroke="#334155" stroke-width="2.5"/>
+<line x1="304" y1="130" x2="336" y2="130" stroke="#2563eb" stroke-width="3.5"/>
+<line x1="304" y1="142" x2="336" y2="142" stroke="#2563eb" stroke-width="3.5"/>
+<line x1="320" y1="142" x2="320" y2="160" stroke="#334155" stroke-width="2"/>
+{gnd_sym(320, 174)}
+<text x="344" y="140" font-size="10.5" fill="#2563eb">C 撑住输出</text>
+<line x1="205" y1="96" x2="205" y2="150" stroke="#334155" stroke-width="2.5"/>
+<circle cx="205" cy="156" r="3.5" fill="#334155"/>
+<line x1="205" y1="156" x2="185" y2="180" stroke="#059669" stroke-width="3">
+<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.4;0.46;1" dur="{DB2}s" repeatCount="indefinite"/></line>
+<circle cx="205" cy="186" r="3.5" fill="#334155"/>
+<text x="150" y="176" font-size="11" font-weight="bold" fill="#334155">开关 SW</text>
+<line x1="205" y1="186" x2="205" y2="196" stroke="#334155" stroke-width="2.5"/>
+{gnd_sym(205, 210)}
+<line x1="48" y1="96" x2="48" y2="210" stroke="#334155" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.4"/>
+<line x1="48" y1="210" x2="320" y2="210" stroke="#334155" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.4"/>
+<text x="100" y="245" font-size="11" fill="#059669" opacity="0">电感储能 ½LI²
+<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.06;0.4;0.46;1" dur="{DB2}s" repeatCount="indefinite"/></text>
+<text x="240" y="245" font-size="11" fill="#dc2626" opacity="0">Vin+L 叠加=24V 顶上去
+<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.52;0.56;0.9;0.96;1" dur="{DB2}s" repeatCount="indefinite"/></text>
+'''
+    svg += f'<g><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.4;0.46;1" dur="{DB2}s" repeatCount="indefinite"/>'
+    svg += flow("M52,92 H196 M205,110 V150 V196", DB2/3, n=6, color="#059669", r=5) + '</g>'
+    svg += f'<g><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.5;0.56;0.88;0.94;1" dur="{DB2}s" repeatCount="indefinite"/>'
+    svg += flow("M52,92 H196 M214,92 H316 M320,100 V126", DB2/3, n=6, color="#dc2626", r=5) + '</g>'
+    svg += f'''
+<text x="440" y="252" font-size="11.5" font-weight="bold" fill="#7c3aed">开关节点（0 / 24V 方波）</text>
+<path d="M430,300 V268 H483 V300 H537 V268 H590 V300 H644 V268 H697 V300 H750" fill="none" stroke="#7c3aed" stroke-width="2.8"/>
+<text x="440" y="332" font-size="11.5" font-weight="bold" fill="#059669">电感电流（升降各半：D=0.5）</text>
+<path d="{il_d}" fill="none" stroke="#059669" stroke-width="2.8"/>
+<line x1="430" y1="392" x2="750" y2="392" stroke="#2563eb" stroke-width="2.8"/>
+<text x="440" y="412" font-size="11.5" font-weight="bold" fill="#2563eb">输出 24V = 12V/(1−0.5)</text>
+'''
+    svg += caption("① 开关闭合：12V 全加在电感上，电流斜坡上升——能量存进磁场（输出靠电容撑）", "#059669", DB2,
+                   "0;1;1;0;0", "0;0.03;0.2;0.26;1", y=460)
+    svg += caption("② 开关断开：电感不许电流突变，极性翻转与 12V 串联叠加——顶开二极管向 24V 灌能", "#dc2626", DB2,
+                   "0;0;1;1;0;0", "0;0.28;0.33;0.5;0.56;1", y=460)
+    svg += caption("③ 伏秒平衡：Vin·D = (Vout−Vin)·(1−D) → Vout = Vin/(1−D)——D 越近 1 升得越高", "#7c3aed", DB2,
+                   "0;0;1;1", "0;0.58;0.64;1", y=460)
+    svg += note_box("升压的秘密 = 电感电压与输入「叠罗汉」；Buck 是电感在后级碾平，Boost 是电感在前级打气", 494, DB2, "0;0.7;0.75;1", w=730)
+    save('boost-converter.svg', svg + '</svg>')
+
+
+# ======================= 图 20：精密整流 =======================
+def make_precision_rectifier():
+    DP = 6
+    sin_in = sine_path(430, 750, 120, 26, n=72)
+    half_pts = []
+    for i in range(73):
+        u = i/72
+        x = 430 + 320*u
+        s = np.sin(u*4*np.pi)
+        half_pts.append(f"{x:.0f},{280 - 40*max(0.0, s):.0f}")
+    half_d = "M" + " L".join(half_pts)
+    flat_d = f"M430,280 L750,280"
+    svg = svg_open('精密整流：运放「借增益」消灭二极管压降', h=500)
+    svg += f'''
+<text x="210" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">精密半波整流器（反相型）</text>
+<text x="16" y="145" font-size="11" fill="#475569">输入</text>
+<text x="16" y="160" font-size="10" fill="#94a3b8">±100mV</text>
+{resistor_h(60, 150, 40, 'R1')}
+<circle cx="170" cy="150" r="4" fill="#334155"/>
+<polygon points="200,120 200,180 260,150" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="206" y="144" font-size="13" font-weight="bold" fill="#dc2626">−</text>
+<text x="206" y="170" font-size="13" font-weight="bold" fill="#059669">+</text>
+<line x1="170" y1="150" x2="200" y2="135" stroke="#334155" stroke-width="2"/>
+<line x1="200" y1="165" x2="196" y2="190" stroke="#334155" stroke-width="2"/>
+{gnd_sym(196, 204)}
+<line x1="260" y1="150" x2="284" y2="150" stroke="#334155" stroke-width="2.5"/>
+<polygon points="308,150 284,138 284,162" fill="none" stroke="#334155" stroke-width="2.5"/>
+<line x1="308" y1="138" x2="308" y2="162" stroke="#334155" stroke-width="3"/>
+<text x="272" y="132" font-size="10.5" fill="#dc2626">D</text>
+<line x1="308" y1="150" x2="350" y2="150" stroke="#334155" stroke-width="2.5"/>
+<circle cx="350" cy="150" r="4" fill="#334155"/>
+<line x1="350" y1="150" x2="400" y2="150" stroke="#334155" stroke-width="2.5"/>
+<text x="360" y="136" font-size="11" font-weight="bold" fill="#2563eb">输出</text>
+{resistor_h(200, 210, 40, 'Rf')}
+<line x1="120" y1="150" x2="170" y2="150" stroke="#334155" stroke-width="2.5"/>
+<line x1="260" y1="210" x2="280" y2="210" stroke="#334155" stroke-width="2"/>
+<line x1="170" y1="150" x2="170" y2="210" stroke="#334155" stroke-width="2"/>
+<line x1="170" y1="210" x2="180" y2="210" stroke="#334155" stroke-width="2"/>
+<line x1="280" y1="210" x2="350" y2="210" stroke="#334155" stroke-width="2"/>
+<line x1="350" y1="210" x2="350" y2="150" stroke="#334155" stroke-width="2"/>
+<text x="120" y="245" font-size="11" fill="#dc2626" opacity="0">运放输出自动多抬 0.7V
+<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.06;0.4;0.46;1" dur="{DP}s" repeatCount="indefinite"/></text>
+'''
+    svg += f'<g><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.44;0.5;1" dur="{DP}s" repeatCount="indefinite"/>'
+    svg += flow("M64,146 H160 M170,210 H200 M260,210 H346 V154 H396", DP/3, n=6, color="#059669", r=5) + '</g>'
+    svg += f'''
+<text x="590" y="66" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#475569">输入 ±100mV（太小，普通整流全丢）</text>
+<path d="{sin_in}" fill="none" stroke="#94a3b8" stroke-width="2"/>
+<text x="590" y="200" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#dc2626">普通二极管整流：0.7V 死区 → 输出=0</text>
+<path d="{flat_d}" fill="none" stroke="#dc2626" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="590" y="416" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#059669">精密整流输出：干净半波（基线=0V）</text>
+<path d="{half_d}" fill="none" stroke="#059669" stroke-width="2.5" transform="translate(0,80)"/>
+<line x1="430" y1="360" x2="750" y2="360" stroke="#64748b" stroke-width="1.2"/>
+'''
+    svg += caption("① 正半周：运放开环增益 10 万倍——输出只需多抬 0.7V，折算回输入仅 7µV 误差", "#059669", DP,
+                   "0;1;1;0;0", "0;0.03;0.22;0.28;1", y=430)
+    svg += caption("② 负半周：二极管截止、运放饱和也无妨——输出被 Rf 锚在 0", "#dc2626", DP,
+                   "0;0;1;1;0;0", "0;0.3;0.35;0.58;0.64;1", y=430)
+    svg += caption("③ 对比：普通二极管对 100mV 信号输出为零；精密整流分毫毕现——mV 级信号救星", "#2563eb", DP,
+                   "0;0;1;1", "0;0.64;0.7;1", y=430)
+    svg += note_box("0.7V ÷ 开环增益 = 等效死区 7µV——把非线性元件塞进反馈环，让增益替你买单", 474, DP, "0;0.74;0.79;1", w=680)
+    save('precision-rectifier.svg', svg + '</svg>')
+
+
+# ======================= 图 21：米勒效应 =======================
+def make_miller_effect():
+    DML = 6
+    svg = svg_open('米勒效应：小电容被增益放大 (1+A) 倍', h=500)
+    svg += f'''
+<text x="220" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">跨接在增益级输入输出之间的电容 C</text>
+<text x="20" y="145" font-size="11" fill="#475569">输入源</text>
+{resistor_h(60, 150, 40, 'R_sig')}
+<circle cx="190" cy="150" r="4" fill="#334155"/>
+<text x="182" y="172" font-size="11" font-weight="bold" fill="#2563eb">IN</text>
+<rect x="230" y="120" width="90" height="60" rx="6" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="275" y="146" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">增益级</text>
+<text x="275" y="166" text-anchor="middle" font-size="12" font-weight="bold" fill="#dc2626">−A = −100</text>
+<line x1="190" y1="150" x2="230" y2="150" stroke="#334155" stroke-width="2.5"/>
+<line x1="320" y1="150" x2="360" y2="150" stroke="#334155" stroke-width="2.5"/>
+<circle cx="360" cy="150" r="4" fill="#334155"/>
+<text x="352" y="172" font-size="11" font-weight="bold" fill="#dc2626">OUT</text>
+<line x1="190" y1="150" x2="190" y2="90" stroke="#334155" stroke-width="2"/>
+<line x1="190" y1="90" x2="216" y2="90" stroke="#334155" stroke-width="2"/>
+<line x1="216" y1="76" x2="216" y2="104" stroke="#7c3aed" stroke-width="3"/>
+<line x1="228" y1="76" x2="228" y2="104" stroke="#7c3aed" stroke-width="3"/>
+<text x="238" y="82" font-size="11" font-weight="bold" fill="#7c3aed">C=10pF</text>
+<line x1="228" y1="90" x2="360" y2="90" stroke="#334155" stroke-width="2"/>
+<line x1="360" y1="90" x2="360" y2="150" stroke="#334155" stroke-width="2"/>
+<text x="60" y="220" font-size="11" fill="#2563eb" opacity="0">IN 摆 1mV
+<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.06;0.4;0.46;1" dur="{DML}s" repeatCount="indefinite"/></text>
+<text x="300" y="220" font-size="11" fill="#dc2626" opacity="0">OUT 反相摆 −100mV
+<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.06;0.4;0.46;1" dur="{DML}s" repeatCount="indefinite"/></text>
+<text x="150" y="290" font-size="11.5" font-weight="bold" fill="#7c3aed" opacity="0">C 两端电压差摆了 101mV——充电电流是「预期」的 101 倍！
+<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.52;0.56;0.9;0.96;1" dur="{DML}s" repeatCount="indefinite"/></text>
+<text x="60" y="330" font-size="12" fill="#334155" opacity="0">⇒ 从输入端看：等效电容 C_eff = (1+A)×C = 101×10pF ≈ <tspan font-weight="bold" fill="#dc2626">1nF</tspan>
+<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.56;0.6;0.92;0.98;1" dur="{DML}s" repeatCount="indefinite"/></text>
+'''
+    svg += f'''
+<rect x="480" y="90" width="270" height="130" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,4"/>
+<text x="615" y="116" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">输入端看到的「等效世界」</text>
+<line x1="500" y1="150" x2="560" y2="150" stroke="#334155" stroke-width="2.5"/>
+<line x1="560" y1="150" x2="560" y2="170" stroke="#334155" stroke-width="2"/>
+<line x1="546" y1="170" x2="574" y2="170" stroke="#7c3aed" stroke-width="3"/>
+<line x1="546" y1="182" x2="574" y2="182" stroke="#7c3aed" stroke-width="3"/>
+<line x1="560" y1="182" x2="560" y2="196" stroke="#334155" stroke-width="2"/>
+<text x="586" y="180" font-size="11" font-weight="bold" fill="#dc2626">1nF 到地</text>
+<text x="615" y="212" text-anchor="middle" font-size="10.5" fill="#475569">10pF 变身 1nF——高频信号全被它拖慢</text>
+<text x="440" y="242" font-size="11" font-weight="bold" fill="#2563eb">IN：±1mV 小摆幅</text>
+<path d="{sine_path(440, 740, 268, 7, n=64)}" fill="none" stroke="#2563eb" stroke-width="2.2"/>
+<line x1="440" y1="268" x2="740" y2="268" stroke="#94a3b8" stroke-width="0.8" stroke-dasharray="3,3"/>
+<text x="440" y="312" font-size="11" font-weight="bold" fill="#dc2626">OUT：∓100mV 大摆幅（反相）</text>
+<path d="{sine_path(440, 740, 352, 38, n=64, phase=3.14159)}" fill="none" stroke="#dc2626" stroke-width="2.2"/>
+<line x1="440" y1="352" x2="740" y2="352" stroke="#94a3b8" stroke-width="0.8" stroke-dasharray="3,3"/>
+'''
+    svg += caption("① IN 只摆 1mV，OUT 反相摆 −100mV——电容两端实际承受 101mV 的摆幅", "#2563eb", DML,
+                   "0;1;1;0;0", "0;0.03;0.22;0.28;1", y=430)
+    svg += caption("② 充同一份电荷，输入源要供 101 倍电流——仿佛对着 1nF 而不是 10pF", "#7c3aed", DML,
+                   "0;0;1;1;0;0", "0;0.3;0.35;0.58;0.64;1", y=430)
+    svg += caption("③ 坏事变好事：运放人为跨接小补偿电容——用米勒效应低成本获得大电容", "#059669", DML,
+                   "0;0;1;1", "0;0.64;0.7;1", y=430)
+    svg += note_box("C_eff=(1+A)·C：它是放大器高频滚降的元凶（C_bc 只有几 pF），也是密勒补偿的原理", 474, DML, "0;0.74;0.79;1", w=710)
+    save('miller-effect.svg', svg + '</svg>')
+
 if __name__ == '__main__':
     make_rc_charge()
     make_bridge_rectifier()
@@ -1513,4 +1757,8 @@ if __name__ == '__main__':
     make_wien_bridge()
     make_class_b()
     make_sallen_key()
-    print('all 17 SVGs regenerated into', os.path.abspath(OUT))
+    make_current_mirror()
+    make_boost_converter()
+    make_precision_rectifier()
+    make_miller_effect()
+    print('all 21 SVGs regenerated into', os.path.abspath(OUT))

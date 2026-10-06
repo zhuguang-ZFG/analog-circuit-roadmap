@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="520" viewBox="0 0 800 520">
+<title>Boost 升压：电感「叠罗汉」把电压顶上去</title>
+<rect width="800" height="520" fill="#f8fafc"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+@media (prefers-color-scheme: dark){
+rect[fill="#f8fafc"]{fill:#0f172a}
+[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
+[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
+[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
+[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
+[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
+[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
+[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
+[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
+[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
+[fill="#cbd5e1"]{fill:#334155}[stroke="#cbd5e1"]{stroke:#475569}
+[fill="#ffffff"]{fill:#0f172a}[fill="#94a3b8"]{fill:#64748b}[stroke="#94a3b8"]{stroke:#64748b}
+[fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
+}
+</style>
+<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">Boost 升压：电感「叠罗汉」把电压顶上去</text>
+
+<text x="230" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">Boost 变换器（12V → 24V，占空比 50%）</text>
+<text x="18" y="102" font-size="12.5" font-weight="bold" fill="#b45309">12V</text>
+<line x1="48" y1="96" x2="90" y2="96" stroke="#334155" stroke-width="2.5"/>
+<path d="M90,96 q8,-16 16,0 q8,16 16,0 q8,-16 16,0 q8,16 16,0 q8,-16 16,0" fill="none" stroke="#7c3aed" stroke-width="2.5"/>
+<text x="106" y="70" font-size="12" font-weight="bold" fill="#7c3aed">电感 L</text>
+<line x1="170" y1="96" x2="205" y2="96" stroke="#334155" stroke-width="2.5"/>
+<circle cx="205" cy="96" r="4" fill="#334155"/>
+<text x="182" y="118" font-size="10" fill="#7c3aed">开关节点</text>
+<line x1="205" y1="96" x2="230" y2="96" stroke="#334155" stroke-width="2.5"/>
+<polygon points="254,96 230,84 230,108" fill="none" stroke="#334155" stroke-width="2.5"/>
+<line x1="254" y1="84" x2="254" y2="108" stroke="#334155" stroke-width="3"/>
+<text x="222" y="78" font-size="10.5" fill="#dc2626">二极管</text>
+<line x1="254" y1="96" x2="320" y2="96" stroke="#334155" stroke-width="2.5"/>
+<circle cx="320" cy="96" r="4" fill="#334155"/>
+<line x1="320" y1="96" x2="370" y2="96" stroke="#334155" stroke-width="2.5"/>
+<text x="374" y="101" font-size="12.5" font-weight="bold" fill="#059669">24V 输出</text>
+<line x1="320" y1="96" x2="320" y2="130" stroke="#334155" stroke-width="2.5"/>
+<line x1="304" y1="130" x2="336" y2="130" stroke="#2563eb" stroke-width="3.5"/>
+<line x1="304" y1="142" x2="336" y2="142" stroke="#2563eb" stroke-width="3.5"/>
+<line x1="320" y1="142" x2="320" y2="160" stroke="#334155" stroke-width="2"/>
+<line x1="320" y1="160" x2="320" y2="174" stroke="#334155" stroke-width="2.5"/><line x1="304" y1="174" x2="336" y2="174" stroke="#334155" stroke-width="3"/><line x1="310" y1="180" x2="330" y2="180" stroke="#334155" stroke-width="3"/><line x1="316" y1="186" x2="324" y2="186" stroke="#334155" stroke-width="3"/>
+<text x="344" y="140" font-size="10.5" fill="#2563eb">C 撑住输出</text>
+<line x1="205" y1="96" x2="205" y2="150" stroke="#334155" stroke-width="2.5"/>
+<circle cx="205" cy="156" r="3.5" fill="#334155"/>
+<line x1="205" y1="156" x2="185" y2="180" stroke="#059669" stroke-width="3">
+<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.4;0.46;1" dur="6s" repeatCount="indefinite"/></line>
+<circle cx="205" cy="186" r="3.5" fill="#334155"/>
+<text x="150" y="176" font-size="11" font-weight="bold" fill="#334155">开关 SW</text>
+<line x1="205" y1="186" x2="205" y2="196" stroke="#334155" stroke-width="2.5"/>
+<line x1="205" y1="196" x2="205" y2="210" stroke="#334155" stroke-width="2.5"/><line x1="189" y1="210" x2="221" y2="210" stroke="#334155" stroke-width="3"/><line x1="195" y1="216" x2="215" y2="216" stroke="#334155" stroke-width="3"/><line x1="201" y1="222" x2="209" y2="222" stroke="#334155" stroke-width="3"/>
+<line x1="48" y1="96" x2="48" y2="210" stroke="#334155" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.4"/>
+<line x1="48" y1="210" x2="320" y2="210" stroke="#334155" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.4"/>
+<text x="100" y="245" font-size="11" fill="#059669" opacity="0">电感储能 ½LI²
+<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.06;0.4;0.46;1" dur="6s" repeatCount="indefinite"/></text>
+<text x="240" y="245" font-size="11" fill="#dc2626" opacity="0">Vin+L 叠加=24V 顶上去
+<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.52;0.56;0.9;0.96;1" dur="6s" repeatCount="indefinite"/></text>
+<g><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.4;0.46;1" dur="6s" repeatCount="indefinite"/><circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="-0.50s" repeatCount="indefinite" path="M52,92 H196 M205,110 V150 V196"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="-0.17s" repeatCount="indefinite" path="M52,92 H196 M205,110 V150 V196"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="0.17s" repeatCount="indefinite" path="M52,92 H196 M205,110 V150 V196"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="0.50s" repeatCount="indefinite" path="M52,92 H196 M205,110 V150 V196"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="0.83s" repeatCount="indefinite" path="M52,92 H196 M205,110 V150 V196"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="1.17s" repeatCount="indefinite" path="M52,92 H196 M205,110 V150 V196"/></circle></g><g><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.5;0.56;0.88;0.94;1" dur="6s" repeatCount="indefinite"/><circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="-0.50s" repeatCount="indefinite" path="M52,92 H196 M214,92 H316 M320,100 V126"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="-0.17s" repeatCount="indefinite" path="M52,92 H196 M214,92 H316 M320,100 V126"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="0.17s" repeatCount="indefinite" path="M52,92 H196 M214,92 H316 M320,100 V126"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="0.50s" repeatCount="indefinite" path="M52,92 H196 M214,92 H316 M320,100 V126"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="0.83s" repeatCount="indefinite" path="M52,92 H196 M214,92 H316 M320,100 V126"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="1.17s" repeatCount="indefinite" path="M52,92 H196 M214,92 H316 M320,100 V126"/></circle></g>
+<text x="440" y="252" font-size="11.5" font-weight="bold" fill="#7c3aed">开关节点（0 / 24V 方波）</text>
+<path d="M430,300 V268 H483 V300 H537 V268 H590 V300 H644 V268 H697 V300 H750" fill="none" stroke="#7c3aed" stroke-width="2.8"/>
+<text x="440" y="332" font-size="11.5" font-weight="bold" fill="#059669">电感电流（升降各半：D=0.5）</text>
+<path d="M430,372 L433,370 L437,368 L440,366 L443,364 L447,363 L450,361 L453,359 L457,357 L460,355 L463,353 L467,351 L470,350 L473,348 L477,346 L480,344 L483,342 L487,344 L490,346 L493,348 L497,350 L500,351 L503,353 L507,355 L510,357 L513,359 L517,361 L520,363 L523,364 L527,366 L530,368 L533,370 L537,372 L540,370 L543,368 L547,366 L550,364 L553,363 L557,361 L560,359 L563,357 L567,355 L570,353 L573,351 L577,350 L580,348 L583,346 L587,344 L590,342 L593,344 L597,346 L600,348 L603,350 L607,351 L610,353 L613,355 L617,357 L620,359 L623,361 L627,363 L630,364 L633,366 L637,368 L640,370 L643,372 L647,370 L650,368 L653,366 L657,364 L660,363 L663,361 L667,359 L670,357 L673,355 L677,353 L680,351 L683,350 L687,348 L690,346 L693,344 L697,342 L700,344 L703,346 L707,348 L710,350 L713,351 L717,353 L720,355 L723,357 L727,359 L730,361 L733,363 L737,364 L740,366 L743,368 L747,370 L750,372" fill="none" stroke="#059669" stroke-width="2.8"/>
+<line x1="430" y1="392" x2="750" y2="392" stroke="#2563eb" stroke-width="2.8"/>
+<text x="440" y="412" font-size="11.5" font-weight="bold" fill="#2563eb">输出 24V = 12V/(1−0.5)</text>
+<text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">① 开关闭合：12V 全加在电感上，电流斜坡上升——能量存进磁场（输出靠电容撑）<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.26;1" dur="6s" repeatCount="indefinite"/></text><text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">② 开关断开：电感不许电流突变，极性翻转与 12V 串联叠加——顶开二极管向 24V 灌能<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.28;0.33;0.5;0.56;1" dur="6s" repeatCount="indefinite"/></text><text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">③ 伏秒平衡：Vin·D = (Vout−Vin)·(1−D) → Vout = Vin/(1−D)——D 越近 1 升得越高<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.58;0.64;1" dur="6s" repeatCount="indefinite"/></text><g opacity="0">
+<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.7;0.75;1" dur="6s" repeatCount="indefinite"/>
+<rect x="35" y="470" width="730" height="34" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+<text x="400" y="492" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">升压的秘密 = 电感电压与输入「叠罗汉」；Buck 是电感在后级碾平，Boost 是电感在前级打气</text>
+</g></svg>
