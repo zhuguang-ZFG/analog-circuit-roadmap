@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="520" viewBox="0 0 800 520">
+<title>Buck 降压：电感是「水车惯性」，把断续水流碾成直流</title>
+<rect width="800" height="520" fill="#f8fafc"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+@media (prefers-color-scheme: dark){
+rect[fill="#f8fafc"]{fill:#0f172a}
+[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
+[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
+[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
+[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
+[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
+[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
+[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
+[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
+[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
+[fill="#cbd5e1"]{fill:#334155}[stroke="#cbd5e1"]{stroke:#475569}
+[fill="#ffffff"]{fill:#0f172a}[fill="#94a3b8"]{fill:#64748b}[stroke="#94a3b8"]{stroke:#64748b}
+[fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
+}
+</style>
+<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">Buck 降压：电感是「水车惯性」，把断续水流碾成直流</text>
+
+<text x="220" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">Buck 变换器（12V → 5V，占空比 42%）</text>
+<text x="36" y="102" font-size="12.5" font-weight="bold" fill="#b45309">12V</text>
+<line x1="70" y1="96" x2="130" y2="96" stroke="#334155" stroke-width="2.5"/>
+<circle cx="140" cy="96" r="3.5" fill="#334155"/>
+<line x1="140" y1="96" x2="170" y2="68" stroke="#059669" stroke-width="3">
+<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.4;0.46;1" dur="6s" repeatCount="indefinite"/></line>
+<circle cx="176" cy="96" r="3.5" fill="#334155"/>
+<text x="126" y="62" font-size="11" font-weight="bold" fill="#334155">开关 SW</text>
+<line x1="176" y1="96" x2="200" y2="96" stroke="#334155" stroke-width="2.5"/>
+<circle cx="205" cy="96" r="4" fill="#334155"/>
+<text x="180" y="118" font-size="10" fill="#7c3aed">开关节点</text>
+<path d="M205,96 q8,-16 16,0 q8,16 16,0 q8,-16 16,0 q8,16 16,0 q8,-16 16,0" fill="none" stroke="#7c3aed" stroke-width="2.5"/>
+<text x="222" y="70" font-size="12" font-weight="bold" fill="#7c3aed">电感 L</text>
+<line x1="285" y1="96" x2="320" y2="96" stroke="#334155" stroke-width="2.5"/>
+<circle cx="320" cy="96" r="4" fill="#334155"/>
+<line x1="320" y1="96" x2="380" y2="96" stroke="#334155" stroke-width="2.5"/>
+<text x="384" y="101" font-size="12.5" font-weight="bold" fill="#059669">5V 输出</text>
+<line x1="320" y1="96" x2="320" y2="130" stroke="#334155" stroke-width="2.5"/>
+<line x1="304" y1="130" x2="336" y2="130" stroke="#2563eb" stroke-width="3.5"/>
+<line x1="304" y1="142" x2="336" y2="142" stroke="#2563eb" stroke-width="3.5"/>
+<line x1="320" y1="142" x2="320" y2="160" stroke="#334155" stroke-width="2"/>
+<line x1="320" y1="160" x2="320" y2="174" stroke="#334155" stroke-width="2.5"/><line x1="304" y1="174" x2="336" y2="174" stroke="#334155" stroke-width="3"/><line x1="310" y1="180" x2="330" y2="180" stroke="#334155" stroke-width="3"/><line x1="316" y1="186" x2="324" y2="186" stroke="#334155" stroke-width="3"/>
+<text x="344" y="140" font-size="10.5" fill="#2563eb">C 滤波</text>
+<line x1="205" y1="96" x2="205" y2="150" stroke="#334155" stroke-width="2.5"/>
+<polygon points="205,146 193,170 217,170" fill="none" stroke="#334155" stroke-width="2.5"/>
+<line x1="193" y1="146" x2="217" y2="146" stroke="#334155" stroke-width="3"/>
+<line x1="205" y1="170" x2="205" y2="186" stroke="#334155" stroke-width="2.5"/>
+<line x1="205" y1="186" x2="205" y2="200" stroke="#334155" stroke-width="2.5"/><line x1="189" y1="200" x2="221" y2="200" stroke="#334155" stroke-width="3"/><line x1="195" y1="206" x2="215" y2="206" stroke="#334155" stroke-width="3"/><line x1="201" y1="212" x2="209" y2="212" stroke="#334155" stroke-width="3"/>
+<text x="150" y="182" font-size="10.5" fill="#dc2626">续流二极管</text>
+<line x1="40" y1="200" x2="40" y2="96" stroke="#334155" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.4"/>
+<line x1="40" y1="200" x2="320" y2="200" stroke="#334155" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.4"/>
+<g><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.4;0.46;1" dur="6s" repeatCount="indefinite"/><circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="-0.50s" repeatCount="indefinite" path="M74,92 H196 M214,92 H316"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="-0.17s" repeatCount="indefinite" path="M74,92 H196 M214,92 H316"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="0.17s" repeatCount="indefinite" path="M74,92 H196 M214,92 H316"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="0.50s" repeatCount="indefinite" path="M74,92 H196 M214,92 H316"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="0.83s" repeatCount="indefinite" path="M74,92 H196 M214,92 H316"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="1.17s" repeatCount="indefinite" path="M74,92 H196 M214,92 H316"/></circle></g><g><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.5;0.56;0.88;0.94;1" dur="6s" repeatCount="indefinite"/><circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="-0.50s" repeatCount="indefinite" path="M205,186 V160 M214,146 V100 M214,92 H316"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="-0.10s" repeatCount="indefinite" path="M205,186 V160 M214,146 V100 M214,92 H316"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="0.30s" repeatCount="indefinite" path="M205,186 V160 M214,146 V100 M214,92 H316"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="0.70s" repeatCount="indefinite" path="M205,186 V160 M214,146 V100 M214,92 H316"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="1.10s" repeatCount="indefinite" path="M205,186 V160 M214,146 V100 M214,92 H316"/></circle></g>
+<text x="440" y="252" font-size="11.5" font-weight="bold" fill="#7c3aed">开关节点电压（方波）</text>
+<path d="M430,300 V268 H475 V300 H537 V268 H582 V300 H644 V268 H689 V300 H750" fill="none" stroke="#7c3aed" stroke-width="2.8"/>
+<text x="440" y="332" font-size="11.5" font-weight="bold" fill="#059669">电感电流（三角波：斜坡升/斜坡降）</text>
+<path d="M430,372 L433,371 L437,370 L440,369 L443,368 L447,367 L450,366 L453,365 L457,364 L460,364 L463,363 L467,362 L470,361 L473,360 L477,359 L480,358 L483,357 L487,358 L490,359 L493,360 L497,361 L500,362 L503,363 L507,364 L510,364 L513,365 L517,366 L520,367 L523,368 L527,369 L530,370 L533,371 L537,372 L540,371 L543,370 L547,369 L550,368 L553,367 L557,366 L560,365 L563,364 L567,364 L570,363 L573,362 L577,361 L580,360 L583,359 L587,358 L590,357 L593,358 L597,359 L600,360 L603,361 L607,362 L610,363 L613,364 L617,364 L620,365 L623,366 L627,367 L630,368 L633,369 L637,370 L640,371 L643,372 L647,371 L650,370 L653,369 L657,368 L660,367 L663,366 L667,365 L670,364 L673,364 L677,363 L680,362 L683,361 L687,360 L690,359 L693,358 L697,357 L700,358 L703,359 L707,360 L710,361 L713,362 L717,363 L720,364 L723,364 L727,365 L730,366 L733,367 L737,368 L740,369 L743,370 L747,371 L750,372" fill="none" stroke="#059669" stroke-width="2.8"/>
+<line x1="430" y1="392" x2="750" y2="392" stroke="#2563eb" stroke-width="2.8"/>
+<text x="440" y="412" font-size="11.5" font-weight="bold" fill="#2563eb">输出电压（惯性碾平=直流 5V）</text>
+<text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">① 开关闭合：12V 经电感向输出灌能量——电感电流斜坡上升（储 ½LI²）<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.26;1" dur="6s" repeatCount="indefinite"/></text><text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">② 开关断开：电感不许电流突变，把节点拉到负压——二极管接住续流<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.28;0.33;0.5;0.56;1" dur="6s" repeatCount="indefinite"/></text><text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">③ 伏秒平衡：电感一周期平均电压必须为 0 → Vout = D×Vin = 0.42×12 = 5V<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.58;0.64;1" dur="6s" repeatCount="indefinite"/></text><g opacity="0">
+<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.7;0.75;1" dur="6s" repeatCount="indefinite"/>
+<rect x="35" y="470" width="730" height="34" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+<text x="400" y="492" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">电感=水车的惯性：开关只管断续送水，惯性把水流碾平——效率 90%+ 的秘密是开关不顶压差</text>
+</g></svg>

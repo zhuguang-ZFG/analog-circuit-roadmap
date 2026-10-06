@@ -13,14 +13,15 @@
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-CC_BY--SA_4.0-lightgrey.svg" alt="License"></a>
-  <img src="https://img.shields.io/badge/SVG动画-12张-3fb950.svg" alt="SVG">
-  <img src="https://img.shields.io/badge/章节-8篇18章-58a6ff.svg" alt="chapters">
+  <img src="https://img.shields.io/badge/SVG动画-17张-3fb950.svg" alt="SVG">
+  <img src="https://img.shields.io/badge/章节-8篇19章-58a6ff.svg" alt="chapters">
 </p>
 
 <p align="center">
 🧭 <a href="#roadmap">路线图</a> · 📑 <a href="#toc">目录</a> · 🔬 <a href="#part1">器件原理</a> · ⚡ <a href="#part2">电路拓扑</a> · 🛠️ <a href="#part3">设计与PCB</a> · 🩺 <a href="#part4">排故方法</a> · 🎬 <a href="#part5">动画中心</a> · 🧩 <a href="#part6">图鉴速查</a> · 📺 <a href="#part7">视频</a> · 📚 <a href="#part8">路线索引</a>
 </p>
 
+<a id="preface"></a>
 ## 📖 前言
 
 数字电路统治了世界，但世界本身是模拟的。传感器电压、麦克风声波、天线射频、电池电量全是模拟量；每颗数字芯片的供电、时钟、接口背后都站着模拟电路。模拟设计无法被综合工具替代，至今仍是一门"手艺活"。
@@ -32,7 +33,7 @@
 
 | 你是谁 | 推荐路线 |
 |---|---|
-| **零基础小白** | [前言](#前言) → [第 1 章](#ch1) 建立直觉 → 每章**先看动画再做题** → [里程碑项目 1-2](#part8) 动手焊起来 |
+| **零基础小白** | [前言](#preface) → [第 1 章](#ch1) 建立直觉 → 每章**先看动画再做题** → [里程碑项目 1-2](#part8) 动手焊起来 |
 | **有数电/单片机基础** | 直奔 [第 5 章 推挽开漏](#ch5)（痛点高发区）→ [第 12 章 运放电路族](#ch12) → [第 15 章 PCB](#ch15) |
 | **工程师转模拟/复习** | [第 17 章 故障速查](#ch17) 当手册 → [第 11~13 章 拓扑](#part2) 补原理 → [8.8 官方资料](#sec88) 深入 |
 | **时间紧只要精华** | 下方 ⭐ 必读精选——6 个锚点吃透一半模拟电路 |
@@ -45,6 +46,7 @@
 4. 📐 [虚短虚断两公理](#ch12) —— 三行推导打遍运放电路
 5. 🏠 [去耦电容贴脸放](#ch15) —— "本地水库"与回流在脚下，PCB 两条军规
 6. 🩺 [排故五步法](#ch16) —— 先问 5 个问题，对数切半，一次只改一个变量
+
 ---
 
 <a id="roadmap"></a>
@@ -52,7 +54,7 @@
 
 ```mermaid
 graph TD
-    A[① 地基<br/>电路分析+数学准备<br/>第1章] --> B[② 器件原理<br/>二极管→BJT→MOSFET<br/>第2-4章]
+    A[① 地基<br/>电路直觉+水路比喻<br/>第0-1章] --> B[② 器件原理<br/>二极管→BJT→MOSFET<br/>第2-4章]
     B --> C[③ 接口与放大<br/>推挽开漏/运放/比较器<br/>第5-7章]
     C --> D[④ 应用器件<br/>模拟开关/基准稳压/555<br/>第8-10章]
     D --> E[⑤ 电路拓扑专题<br/>放大组态/运放族/电源振荡<br/>第11-13章]
@@ -60,7 +62,7 @@ graph TD
     F --> G{方向深化}
     G --> H[板级模拟设计<br/>电源/信号链/音频]
     G --> I[模拟IC设计<br/>Bandgap/OTA/ADC/PLL]
-    R[📚 全程伴读资源<br/>🎬动画中心 · 🧩图鉴速查<br/>📺视频资源 · ⭐里程碑项目] -. 随时查阅 .-> B
+    R[📚 全程伴读资源<br/>🎬动画中心 · 🧩图鉴速查<br/>📺视频资源 · ⭐里程碑项目] -. "全程伴读" .-> B
     R -.-> C
     R -.-> E
 ```
@@ -72,7 +74,7 @@ graph TD
 <summary><b>八篇十八章 · 点击收起</b></summary>
 
 - **[第一篇：器件深度原理解析](#part1)** 🔬
-  - [第 1 章 无源元件的真实面目](#ch1) · [第 2 章 二极管](#ch2) · [第 3 章 BJT](#ch3) · [第 4 章 MOSFET](#ch4) · [第 5 章 推挽/开漏/上拉下拉](#ch5)
+  - [第 0 章 电路直觉学前班](#ch0) · [第 1 章 无源元件](#ch1) · [第 2 章 二极管](#ch2) · [第 3 章 BJT](#ch3) · [第 4 章 MOSFET](#ch4) · [第 5 章 推挽/开漏](#ch5)
   - [第 6 章 运算放大器](#ch6) · [第 7 章 比较器](#ch7) · [第 8 章 模拟开关](#ch8) · [第 9 章 基准与稳压](#ch9) · [第 10 章 555 定时器](#ch10)
 - **[第二篇：经典电路拓扑原理](#part2)** ⚡
   - [第 11 章 放大电路拓扑](#ch11) · [第 12 章 运放应用电路族](#ch12) · [第 13 章 电源与信号产生](#ch13)
@@ -96,8 +98,65 @@ graph TD
 
 ---
 
+<a id="ch0"></a>
+## 第 0 章 电路直觉学前班：先上车，再赶路 🍼
+
+> 这一章没有公式推导、没有复杂术语——只有一套"水路"比喻和三个思维习惯。**后面的每一章都建立在这套直觉上。**学完你能做到：看到一个陌生电路，先说出"水从哪来、往哪去、路上被谁拦住"。
+
+### 0.1 水路比喻总纲（全书通用语言）
+
+| 电 | 水 | 一句话直觉 |
+|---|---|---|
+| **电压 V** | 水压 | 推动电流的"势"，永远相对两点而言 |
+| **电流 I** | 水流 | 电荷的流量，**必须成环**——没有"只进不出"的电流 |
+| **电阻 R** | 细水管 | 越细（R 越大）同样的水压流出的水越少 |
+| **电容 C** | 蓄水池 | 攒水位（电压）的池子，水位不能突变 |
+| **电感 L** | 水车/涡轮的惯性 | 水流转速不能突变，断电时"惯性"顶着继续冲 |
+| **二极管** | 单向阀 | 只许水往一个方向流 |
+| **MOSFET** | 闸门 | 栅极电压是闸门管理员：一声令下开闸放水 |
+| **地 GND** | 海平面 | 所有水位（电压）的测量基准，不是"下水道" |
+
+> 💎 **精髓**：这套比喻不是科普点缀——工程师分析电路时的内心戏就是它。第 1 章的 ESR（池子漏）、第 4 章的开关损耗（闸门开一半时最费劲）、第 13 章的 Buck（水车惯性碾平断续水流），全都用得上。
+
+### 0.2 欧姆定律与"电压降"世界观
+
+$$V = I \times R$$
+
+三个量，知二求一。但真正值钱的理解方式是反着读：**电流流过电阻，会在电阻上"留下"一份电压（电压降）**。一条串联路径上，各电阻按阻值大小瓜分总电压——阻大的分得多。
+
+🧮 **算一笔**：5V 加在 1kΩ 上 → I=5mA。这 5mA 流过串联的 1kΩ+4kΩ → 4kΩ 上降掉 4V，1kΩ 上只剩 1V。**谁 R 大，谁分的电压多**——这是分压器的全部秘密。
+
+### 0.3 分压器：模拟电路出场率第一名
+
+```
+V ──[R1]──┬── Vout = V × R2/(R1+R2)
+          │
+         [R2]
+          │
+         GND
+```
+
+偏置 BJT（第 3 章）、设定比较器阈值（第 7 章）、采样输出电压给 LDO 反馈（第 9 章）——全是它。
+
+⚠️ **血坑预警**：分压公式只在**空载**时成立！从 Vout 抽电流 = 给 R2 并联了一个电阻 → Vout 塌陷。
+🧮 **算一笔**：R1=R2=10k 分 10V，空载 5V；接上 10k 负载后 R2 等效变 5k → Vout=10×5/(10+5)=**3.3V**（塌了 34%！）。口诀：**分压器带载能力 ≈ 它自己的内阻**（R1∥R2）。
+
+### 0.4 地：参考点，不是下水道
+
+"接地"是选一个地方宣布"从这里量起，它是 0V"。电流回流到电源负极是因为**回路**，不是因为地被"吸走"了。理解这一点，第 15 章的"回流路径"军规一读就懂。
+
+### 0.5 三个思维习惯（带走用一辈子）
+
+1. **量电压，先问"相对谁"**——电压永远是两点之差，悬空说"这点 5V"没有意义
+2. **看电路，先追"电流回路"**——从电源正极出发，跟着电流走一圈回家，沿途谁分压、谁储能、谁开关，电路就懂了
+3. **先直流，后交流**——先把电容当开路、电感当短路的"静态"算明白（这就是第 3 章"工作点"），再谈信号（交流）。顺序反了必乱
+
+> 🎯 **通关打卡**：你现在有了一套通用语言（水路八词）、一个第一电路（分压器带载塌陷的账）、三个思维习惯。**从这里开始，每一章都在给这套直觉添砖加瓦。**
+
 <a id="ch1"></a>
 ## 第 1 章 无源元件的真实面目
+
+> 📚 **先修**：[第 0 章水路比喻](#ch0)——本章告诉你"水池也会漏、水管也有惯性"（寄生参数）。
 
 理想元件不存在。理解寄生参数是区分"教科书学习者"和"工程师"的第一道门槛。
 
@@ -158,6 +217,8 @@ graph TD
 
 <a id="ch2"></a>
 ## 第 2 章 二极管：单向导电的物理本质
+
+> 📚 **先修**：[第 0 章单向阀比喻](#ch0) + [第 1 章寄生参数](#ch1)。
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Diode-closeup.jpg" width="260" alt="二极管特写（Wikimedia Commons）">
 
@@ -242,6 +303,8 @@ $$I_D = I_S\left(e^{\frac{V_D}{nV_T}} - 1\right), \quad V_T = \frac{kT}{q} \appr
 
 <a id="ch3"></a>
 ## 第 3 章 BJT 三极管：完整概念体系
+
+> 📚 **先修**：[第 2 章 PN 结](#ch2)——BJT 就是两个 PN 结背靠背；[0.3 分压器](#ch0) 是偏置的基础。
 
 ### 3.1 结构与载流子输运原理
 
@@ -372,6 +435,8 @@ $$\text{温度↑} \;\Rightarrow\; V_{BE}\text{↓（}-2\text{mV/°C）} \;\Righ
 <a id="ch4"></a>
 ## 第 4 章 MOSFET：电压控制的开关王者
 
+> 📚 **先修**：[第 3 章 BJT](#ch3)——对照"电流阀门"理解"电压阀门"。
+
 ### 4.1 沟道形成原理（N 沟道增强型）
 
 <p align="center"><img src="assets/svg/mosfet-switch.svg" width="720" alt="MOSFET 开关动画：沟道形成与导通"></p>
@@ -440,6 +505,8 @@ MOSFET 栅极充电时 $V_{GS}$ 波形出现的"平台"：此时 $V_{DS}$ 正在
 
 <a id="ch5"></a>
 ## 第 5 章 输出结构彻底讲透：推挽、开漏、上拉下拉
+
+> 📚 **先修**：[第 3 章](#ch3)/[第 4 章](#ch4) 开关行为 + [0.2 电压降世界观](#ch0)。
 
 > 这是数字与模拟交界处**最容易翻车**的概念群。I2C 不通、GPIO 烧毁、总线冲突，十有八九源于此。
 
@@ -550,6 +617,8 @@ OUT ────────────────┤
 
 <a id="ch6"></a>
 ## 第 6 章 运算放大器：从内部结构到参数字典
+
+> 📚 **先修**：[第 3 章 BJT](#ch3)（内部全是它）——本章出现差分对/电流镜，详解见 [第 11 章](#ch11)。
 
 ### 6.1 解剖一只 741：运放内部四大模块
 
@@ -688,6 +757,8 @@ IN- ──┘   │ (长尾对)  │   │ (共射+密勒) │   │(互补推�
 <a id="ch7"></a>
 ## 第 7 章 比较器：专为"判决"而生
 
+> 📚 **先修**：[第 6 章运放](#ch6) + [0.3 分压器](#ch0)（阈值就是它设的）。
+
 ### 7.1 比较器 vs 运放：为什么不能混用
 
 | 维度 | 运放 | 比较器 |
@@ -750,6 +821,8 @@ $$V_{TH+} = V_{REF}\left(1+\frac{R_1}{R_2}\right) - \frac{R_1}{R_2}V_{OL},\qquad
 
 <a id="ch8"></a>
 ## 第 8 章 模拟开关与多路复用器：CMOS 传输门
+
+> 📚 **先修**：[第 4 章 MOSFET](#ch4)——传输门 = NMOS+PMOS 互补。
 
 ### 8.1 传输门原理：为什么必须 NMOS+PMOS 并联
 
@@ -816,6 +889,8 @@ IN ─────┤          ├───── OUT
 
 <a id="ch9"></a>
 ## 第 9 章 电压基准与稳压器：系统的"定盘星"
+
+> 📚 **先修**：[第 2 章齐纳](#ch2) + [第 6 章负反馈](#ch6)——LDO = 基准+误差放大+调整管。
 
 ### 9.1 齐纳 vs 带隙：两种基准原理
 
@@ -905,6 +980,8 @@ VIN ──[调整管 PMOS/PNP]── VOUT
 <a id="ch10"></a>
 ## 第 10 章 555 定时器：最经典的混合信号芯片
 
+> 📚 **先修**：[第 7 章比较器](#ch7) + [RC 充电动画](assets/svg/rc-charge.svg)。
+
 
 ### 10.1 内部结构：一只 555 = 3 个电阻 + 2 个比较器 + 1 个触发器 + 1 个放电管
 
@@ -986,6 +1063,8 @@ $t_{放}=0.693\,R_2\,C ≈ 471µs$（输出低）
 <a id="ch11"></a>
 ## 第 11 章 放大电路拓扑：三种组态与四大积木
 
+> 📚 **先修**：[第 3 章共射放大](#ch3)——本章把单管升级成"积木组合"。
+
 ### 11.1 共射/共集/共基：一只晶体管的三种人生
 
 **问题**：同一只 BJT，为什么有三种接法？答案：信号从哪个极进、从哪个极出、哪个极做交流"公共端"，决定了电路的性格。
@@ -1001,6 +1080,8 @@ $t_{放}=0.693\,R_2\,C ≈ 471µs$（输出低）
 **射随器为什么"射极跟随"**：$V_E = V_B - 0.7V$——基极动多少，发射极跟着动多少（差一个死板的 0.7V）。看起来"没放大"？它放大的是**电流**（β 倍）：信号源只出 $I_B$，负载拿走 $I_E=(1+\beta)I_B$。
 
 ### 11.2 差分对：为什么所有运放的第一级都是它
+
+<p align="center"><img src="assets/svg/diff-pair.svg" width="720" alt="差分对动画：差模放大共模抑制，CMRR 的秘密是尾巴"></p>
 
 **问题**：要放大传感器 10mV 的**差**信号，同时扛住两根线上共同的 5V 电源噪声和温度漂移——单管放大器把差模共模一起放大，完蛋。
 
@@ -1030,6 +1111,8 @@ $t_{放}=0.693\,R_2\,C ≈ 471µs$（输出低）
 
 **达林顿**：两管级联（前管发射极直接喂后管基极），等效 $\beta = \beta_1 \times \beta_2$——50×50=2500，微安级输入驱动安培级负载。代价：$V_{BE}$ 翻倍（1.4V）、饱和压降大（≥0.9V，不能像单管压到 0.2V）、关断慢。ULN2003 内部就是 7 路达林顿。
 
+<p align="center"><img src="assets/svg/class-b-crossover.svg" width="720" alt="乙类推挽动画：交越失真的豁口与消除"></p>
+
 **乙类推挽**（功放输出级）：
 ```
         VCC
@@ -1050,6 +1133,8 @@ $t_{放}=0.693\,R_2\,C ≈ 471µs$（输出低）
 
 <a id="ch12"></a>
 ## 第 12 章 运放应用电路族：两条公理推演一切
+
+> 📚 **先修**：[第 6 章虚短虚断](#ch6)——本章是公理的全套拳法。
 
 ### 12.1 方法论：虚短 + 虚断
 
@@ -1091,6 +1176,8 @@ $$\frac{V_{in}-0}{R_{in}} = \frac{0-V_{out}}{R_f} \;\Rightarrow\; V_{out} = -\fr
 
 ### 12.5 有源滤波：Sallen-Key 二阶低通
 
+<p align="center"><img src="assets/svg/sallen-key.svg" width="720" alt="Sallen-Key 滤波器动画：Q 值峰化与滚降"></p>
+
 **问题**：一级无源 RC 只有 −20dB/十倍频，滚降太肉；两级无源级联互相拖累。怎么办？把无源网络接进运放（跟随器隔离+反馈），互不拖累还能提 Q。
 
 $$f_c = \frac{1}{2\pi\sqrt{R_1R_2C_1C_2}} \quad(\text{常用 } R_1{=}R_2{=}R,\ C_1{=}C_2{=}C:\ f_c=\frac{1}{2\pi RC})$$
@@ -1112,6 +1199,8 @@ $$f_c = \frac{1}{2\pi\sqrt{R_1R_2C_1C_2}} \quad(\text{常用 } R_1{=}R_2{=}R,\ C
 <a id="ch13"></a>
 ## 第 13 章 电源与信号产生电路
 
+> 📚 **先修**：[第 9 章 LDO](#ch9) + [0.1 电感=惯性](#ch0)——Buck 全靠这个直觉。
+
 ### 13.1 分立串联稳压：LDO 的祖爷爷
 
 **最简版**：齐纳二极管（基准）+ NPN 射随器（电流放大）：
@@ -1119,6 +1208,8 @@ $$V_{out} = V_Z - 0.7V$$
 齐纳管出 μA 级参考，射随器出 A 级负载电流——稳压的本质：**基准电压 + 误差放大 + 调整管**，和第 9 章 LDO 内部框图一模一样。7805/AMS1117 无非是把这三块做进硅片、再加保护。
 
 ### 13.2 Buck 降压：电感是能量搬运工
+
+<p align="center"><img src="assets/svg/buck-converter.svg" width="720" alt="Buck 降压动画：电感惯性碾平方波"></p>
 
 **问题**：12V→5V 用 LDO，效率只有 42%，7V 压差全烧在调整管上（第 9 章算过这笔账）。要效率，就不能让任何元件"顶着压差过电流"——改用开关。
 
@@ -1140,6 +1231,8 @@ $$(V_{in}-V_{out})\cdot D \cdot T = V_{out}\cdot(1-D)\cdot T \;\Rightarrow\; \bo
 **电荷泵**（无电感）：电容当"飞桶"——开关阵列先把电容并联到电源充电，再串联到输出放电：倍压（2×）、反压（−1×）。ICL7660 是经典负压发生器；优点无磁件、EMI 小，缺点带载能力弱（几十 mA）。
 
 ### 13.4 文氏桥正弦振荡器：正弦从哪里来
+
+<p align="center"><img src="assets/svg/wien-bridge.svg" width="720" alt="文氏桥振荡器动画：起振与稳幅"></p>
 
 **问题**：信号源里的正弦波，最初是怎么"无中生有"的？
 
@@ -1170,6 +1263,8 @@ $$\text{环路增益}=3\times\frac{1}{3}=1,\quad \text{环路相移}=0°$$
 
 <a id="ch14"></a>
 ## 第 14 章 电路设计方法论
+
+> 📚 **先修**：第一篇器件任选三章以上——方法论要落在具体器件上才有感。
 
 ### 14.1 设计流程五部曲
 
@@ -1210,6 +1305,8 @@ $$\text{环路增益}=3\times\frac{1}{3}=1,\quad \text{环路相移}=0°$$
 
 <a id="ch15"></a>
 ## 第 15 章 PCB 绘制注意事项
+
+> 📚 **先修**：[第 1 章寄生参数](#ch1) + [第 14 章设计流程](#ch14)——走线电感是本章主角之一。
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Macro_circuit_board.JPG" width="480" alt="PCB 微距：走线、过孔与焊盘（Wikimedia Commons）">
 
@@ -1282,6 +1379,8 @@ $$\text{环路增益}=3\times\frac{1}{3}=1,\quad \text{环路相移}=0°$$
 <a id="ch16"></a>
 ## 第 16 章 排故五步法
 
+> 📚 **先修**：[第 14/15 章](#part3) 的设计知识——知道"正确的电路什么样"才找得出故障。
+
 <p>
 <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Digital_Multimeter_Aka.jpg" width="240" alt="数字万用表（Wikimedia Commons，CC BY-SA）">
 <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Digital_oscilloscope_in_use.jpg" width="360" alt="数字示波器实战（Wikimedia Commons）">
@@ -1342,6 +1441,8 @@ $$\text{环路增益}=3\times\frac{1}{3}=1,\quad \text{环路相移}=0°$$
 <a id="ch17"></a>
 ## 第 17 章 故障模式速查总表
 
+> 📚 **先修**：[第 16 章五步法](#ch16)——本表是查案手册，配合方法论使用。
+
 ### 17.1 电源类
 | 症状 | 头号嫌疑 | 验证手段 |
 |---|---|---|
@@ -1380,6 +1481,8 @@ $$\text{环路增益}=3\times\frac{1}{3}=1,\quad \text{环路相移}=0°$$
 
 <a id="ch18"></a>
 ## 第 18 章 大师的排故智慧
+
+> 📚 **先修**：[第 16/17 章](#ch16)——大师心法在有基本方法后读，收获最大。
 
 ### 18.1 Bob Pease：模拟排故的「老中医」
 
@@ -1468,7 +1571,38 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 
 **看点**：红色信号粒子向前、绿色回流粒子紧贴其正下方反向回家（环路面积≈0）；地平面开槽后，紫色回流被迫绕到槽底走大圈，阴影区域就是 EMI 天线。
 
-## 5.8 Falstad 内置示例地图（全部带动画）
+
+## 5.8 差分对：差模放大、共模抑制 <a id="demo8"></a>
+
+<p align="center"><img src="assets/svg/diff-pair.svg" width="720" alt="差分对SVG动画"></p>
+
+**看点**：幕 1 差模——绿粒子左管多吃、灰粒子右管挨饿，两集电极一升一降拉开输出；幕 2 共模——蓝粒子两边同涨，尾电流源"总量钉死"，谁也多吃不了。底部红绿分配条就是 CMRR 的物理图像。→ 正文 [第 11 章](#ch11)
+
+## 5.9 乙类推挽与交越失真 <a id="demo9"></a>
+
+<p align="center"><img src="assets/svg/class-b-crossover.svg" width="720" alt="乙类推挽SVG动画"></p>
+
+**看点**：正半周绿粒子 NPN 推、负半周红粒子 PNP 拉——交接区 ±0.7V 两管全关，输出波形过零处摔出一个豁口。甲乙类偏置就是给两管"预热身"。→ 正文 [11.4 推挽输出级](#ch11)
+
+## 5.10 Sallen-Key 二阶低通 <a id="demo10"></a>
+
+<p align="center"><img src="assets/svg/sallen-key.svg" width="720" alt="Sallen-Key SVG动画"></p>
+
+**看点**：绿线 Q=0.707 最平坦，红虚线 Q=3 在 fc 处鼓包——同一张电路，Q 值决定"平"还是"峰"。C1 顶帽正反馈是峰化的来源，Q 再大就变振荡器。→ 正文 [12.5 有源滤波](#ch12)
+
+## 5.11 Buck 降压：伏秒平衡 <a id="demo11"></a>
+
+<p align="center"><img src="assets/svg/buck-converter.svg" width="720" alt="Buck 降压SVG动画"></p>
+
+**看点**：开关闭合绿粒子灌能、断开红粒子经二极管续流；开关节点方波被电感惯性碾成三角电流、再被电容碾成直流。占空比 42% × 12V = 5V，一个字：伏秒平衡。→ 正文 [13.2 Buck](#ch13)
+
+## 5.12 文氏桥振荡器：起振与稳幅 <a id="demo12"></a>
+
+<p align="center"><img src="assets/svg/wien-bridge.svg" width="720" alt="文氏桥SVG动画"></p>
+
+**看点**：右侧波形从噪声种子指数长大、到包络线封顶——f₀ 处 RC 网络相移 0°、衰减 1/3，增益=3 恰好补平；幅度停在哪儿？灯泡发热升阻把增益自动摁回 3。→ 正文 [13.4 文氏桥](#ch13)
+
+## 5.13 Falstad 内置示例地图（全部带动画）
 
 | 主题 | 菜单路径 |
 |---|---|
@@ -1566,6 +1700,33 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 | 驱动阵列 | ULN2003 | [TI PDF](https://www.ti.com/lit/ds/symlink/uln2003a.pdf) |
 | ADC | ADS1115（16 位 I2C） | [TI PDF](https://www.ti.com/lit/ds/symlink/ads1115.pdf) |
 | DAC | MCP4725（12 位 I2C） | [Microchip PDF](https://ww1.microchip.com/downloads/en/DeviceDoc/22039d.pdf) |
+| MOSFET | 2N7000（小信号 N 沟） | [Diodes PDF](https://www.diodes.com/assets/Datasheets/2N7000.pdf) |
+| 二极管 | 1N4007（整流 1A） | [Vishay PDF](https://www.vishay.com/docs/88503/1n4001.pdf) |
+| 二极管 | 1N5819（肖特基） | [Vishay PDF](https://www.vishay.com/docs/88525/1n5817.pdf) |
+| 运放 | TL072（JFET 音频） | [TI PDF](https://www.ti.com/lit/ds/symlink/tl072.pdf) |
+| 运放 | LM324（四路单电源） | [TI PDF](https://www.ti.com/lit/ds/symlink/lm324.pdf) |
+| 运放 | MCP6001（轨到轨低压） | [Microchip PDF](https://ww1.microchip.com/downloads/en/DeviceDoc/MCP6001-1R-1U-2-4-1-MHz-Low-Power-Op-Amp-DS20001733L.pdf) |
+| 模拟开关 | CD4051B（8 选 1） | [TI PDF](https://www.ti.com/lit/ds/symlink/cd4051b.pdf) |
+| 模拟开关 | 74HC4051（高速） | [Nexperia PDF](https://assets.nexperia.com/documents/data-sheet/74HC_HCT4051.pdf) |
+| 模拟开关 | MAX4617（低阻精密） | [ADI PDF](https://www.analog.com/media/en/technical-documentation/data-sheets/MAX4617-MAX4619.pdf) |
+
+## 6.4 datasheet 阅读法：50 页里只读 6 个地方 📖
+
+> 新手对着 50 页 datasheet 从头读——错。老手按"参数分组"跳读，10 分钟拿到设计要用的全部信息。
+
+| 顺序 | 看什么 | 为什么 | 在哪找 |
+|---|---|---|---|
+| 1 | **Feature 列表 + 典型应用图**（第 1 页） | 30 秒判断"这颗料适不适合我的场景" | 首页加粗 bullet |
+| 2 | **Absolute Maximum Ratings** | 红线：超过就死，设计永远留 20% 余量 | 通常第 2-3 页 |
+| 3 | **Electrical Characteristics 表** | 核心参数表；盯住**测试条件列**（Vcc/温度/负载）——同一参数条件不同值能差 3 倍 | 表头 conditions 小字 |
+| 4 | **Typical Performance Curves** | 参数随温度/电压/频率怎么变——datasheet 里最诚实的地方 | 图表区 |
+| 5 | **Application Information / 典型应用电路** | 原厂推荐的用法与外围计算，直接抄起步 | 后半部分 |
+| 6 | **封装与 Layout 指南** | 散热焊盘/地回路/去耦摆位，照着画不出事 | 末尾 |
+
+**三个暗坑**：
+- **Typical vs Min/Max**：typ 是"运气好"的值，设计按 min/max 留裕量——批量生产时总有人抽到 typ 之外的料
+- **测试条件小字**：GBW 在 CL=20pF 下测的，你接 1nF 就自激；噪声在 1kHz 测的，你关心 10Hz 就翻车
+- **"推荐工作条件"≠"绝对最大值"**：在 Absolute Max 边界"不死"≠"正常工作"——性能表只在推荐条件下成立
 
 **找不到官方 datasheet？** 检索口诀：`型号 + "datasheet" + 厂家名 + filetype:pdf`；聚合站 [Octopart](https://octopart.com/)、[Alldatasheet](https://www.alldatasheet.com/)、立创商城商品页（附中文参数翻译，新手友好）。
 
@@ -1705,6 +1866,13 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 | [New Developments in IC Voltage Regulators](https://doi.org/10.1109/JSSC.1971.1050151) | **Robert Widlar**, IEEE JSSC 1971 | **带隙基准的诞生**——用 ΔV_BE 正温漂抵消 V_BE 负温漂，造出与温度无关的 1.2V 基准。今天每颗芯片都在用 |
 | [A Simple Three-Terminal IC Bandgap Reference](https://doi.org/10.1109/JSSC.1974.1050532) | **Paul Brokaw**, IEEE JSSC 1974 | Brokaw 单元——TL431/REF 系列的直系祖先，结构上更实用 |
 | [A Precise Four-Quadrant Multiplier](https://doi.org/10.1109/JSSC.1968.1049925) | **Barrie Gilbert**, IEEE JSSC 1968 | Gilbert 单元——混频器/调幅/PLL 检相的核心，"用差分对做乘法" |
+| [Translinear Circuits: A Proposed Classification](https://doi.org/10.1049/el:19750011) | **Barrie Gilbert**, Electronics Letters 1975 | Translinear 原理——"电流域相乘 = 电压域相加"（log 域技巧），Gilbert 单元的理论升华 |
+| [Stabilized Feedback Amplifiers](https://doi.org/10.1002/j.1538-7305.1934.tb00652.x) | **Harold Black**, Bell System Technical Journal 1934 | **负反馈的出生证明**——Black 在渡轮上灵光一现写下反馈方程：用增益换线性/带宽/稳定性的交易，至今是模拟设计第一公理 |
+| [Regeneration Theory](https://doi.org/10.1002/j.1538-7305.1932.tb02344.x) | **Harry Nyquist**, Bell System Technical Journal 1932 | **稳定性判据的源头**——反馈什么时候变成振荡？Nyquist 判据回答。读第 13 章振荡器之前，先读它的思想 |
+| [Some Circuit Design Techniques for Linear Integrated Circuits](https://doi.org/10.1109/TCT.1965.1082512) | **Robert Widlar**, IEEE Trans. Circuit Theory 1965 | 电流镜与带隙雏形的工程化——Widlar 证明"硅片上晶体管比电阻便宜"的 IC 设计哲学 |
+| [A Transistor Voltage Reference—and What the Bandgap Has to Do with It](https://doi.org/10.1109/ASIC.1993.410796) | **Paul Brokaw**, IEEE ASIC Conf. 1993 | 发明人 20 年后亲口复盘——bandgap 是怎么被"逼"出来的，教科书不会写的工程决策史 |
+
+> 以上 DOI 全部经 Crossref 元数据核对（标题/作者/年份/期刊四要素匹配）。反面教材：`10.1049/el:19750002` 看似 Gilbert translinear，实际指向同期一篇光学论文——**引用前必查元数据**。
 
 **入门建议读法**：论文正文前的 Introduction 往往是最精华的"问题史"——先读它，知道前人卡在哪，再看作者的解法妙在哪。
 

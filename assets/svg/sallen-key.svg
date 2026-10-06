@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="520" viewBox="0 0 800 520">
+<title>Sallen-Key 二阶低通：滤波器是「受控的谐振」</title>
+<rect width="800" height="520" fill="#f8fafc"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+@media (prefers-color-scheme: dark){
+rect[fill="#f8fafc"]{fill:#0f172a}
+[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
+[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
+[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
+[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
+[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
+[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
+[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
+[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
+[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
+[fill="#cbd5e1"]{fill:#334155}[stroke="#cbd5e1"]{stroke:#475569}
+[fill="#ffffff"]{fill:#0f172a}[fill="#94a3b8"]{fill:#64748b}[stroke="#94a3b8"]{stroke:#64748b}
+[fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
+}
+</style>
+<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">Sallen-Key 二阶低通：滤波器是「受控的谐振」</text>
+
+<text x="200" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">Sallen-Key 二阶低通（单位增益）</text>
+<line x1="40" y1="140" x2="60" y2="140" stroke="#334155" stroke-width="2.5"/>
+<text x="18" y="145" font-size="11" fill="#475569">输入</text>
+<line x1="40" y1="140" x2="60" y2="140" stroke="#334155" stroke-width="2.5"/>
+<rect x="60" y="129" width="40" height="22" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<line x1="100" y1="140" x2="120" y2="140" stroke="#334155" stroke-width="2.5"/>
+<text x="80.0" y="123" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#b45309">R1</text>
+<line x1="120" y1="140" x2="140" y2="140" stroke="#334155" stroke-width="2.5"/>
+<rect x="140" y="129" width="40" height="22" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<line x1="180" y1="140" x2="200" y2="140" stroke="#334155" stroke-width="2.5"/>
+<text x="160.0" y="123" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#b45309">R2</text>
+<circle cx="216" cy="140" r="4" fill="#334155"/>
+<line x1="216" y1="140" x2="250" y2="140" stroke="#334155" stroke-width="2.5"/>
+<line x1="130" y1="140" x2="130" y2="100" stroke="#334155" stroke-width="2"/>
+<line x1="118" y1="100" x2="142" y2="100" stroke="#7c3aed" stroke-width="3"/>
+<line x1="118" y1="90" x2="142" y2="90" stroke="#7c3aed" stroke-width="3"/>
+<line x1="130" y1="90" x2="130" y2="76" stroke="#334155" stroke-width="2"/>
+<line x1="130" y1="76" x2="300" y2="76" stroke="#334155" stroke-width="2"/>
+<text x="148" y="99" font-size="10.5" fill="#7c3aed">C1（反馈顶帽）</text>
+<line x1="216" y1="140" x2="216" y2="180" stroke="#334155" stroke-width="2"/>
+<line x1="204" y1="180" x2="228" y2="180" stroke="#7c3aed" stroke-width="3"/>
+<line x1="204" y1="192" x2="228" y2="192" stroke="#7c3aed" stroke-width="3"/>
+<line x1="216" y1="192" x2="216" y2="210" stroke="#334155" stroke-width="2"/>
+<line x1="216" y1="210" x2="216" y2="224" stroke="#334155" stroke-width="2.5"/><line x1="200" y1="224" x2="232" y2="224" stroke="#334155" stroke-width="3"/><line x1="206" y1="230" x2="226" y2="230" stroke="#334155" stroke-width="3"/><line x1="212" y1="236" x2="220" y2="236" stroke="#334155" stroke-width="3"/>
+<text x="150" y="190" font-size="10.5" fill="#7c3aed">C2 下地</text>
+<polygon points="250,110 250,170 310,140" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="256" y="134" font-size="13" font-weight="bold" fill="#059669">+</text>
+<text x="256" y="160" font-size="13" font-weight="bold" fill="#dc2626">−</text>
+<line x1="250" y1="140" x2="244" y2="140" stroke="#334155" stroke-width="2.5"/>
+<line x1="310" y1="140" x2="380" y2="140" stroke="#334155" stroke-width="2.5"/>
+<text x="316" y="126" font-size="11" font-weight="bold" fill="#2563eb">输出</text>
+<circle cx="350" cy="140" r="4" fill="#334155"/>
+<line x1="350" y1="140" x2="350" y2="195" stroke="#334155" stroke-width="2"/>
+<line x1="350" y1="195" x2="244" y2="195" stroke="#334155" stroke-width="2"/>
+<line x1="244" y1="195" x2="244" y2="155" stroke="#334155" stroke-width="2"/>
+<line x1="244" y1="155" x2="250" y2="155" stroke="#334155" stroke-width="2"/>
+<line x1="300" y1="76" x2="310" y2="76" stroke="#334155" stroke-width="2"/>
+<line x1="310" y1="76" x2="330" y2="76" stroke="#334155" stroke-width="2"/>
+<line x1="330" y1="76" x2="330" y2="140" stroke="#334155" stroke-width="2"/>
+
+<text x="590" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">频响：Q 决定峰化</text>
+<path d="M420,262 L457,262 L481,262 L500,262 L514,262 L526,262 L537,262 L546,262 L554,262 L561,262 L568,262 L574,262 L580,262 L585,262 L590,263 L594,263 L599,263 L603,263 L606,263 L610,264 L614,264 L617,264 L620,265 L623,265 L626,265 L629,266 L632,266 L634,267 L637,267 L639,268 L641,268 L644,269 L646,270 L648,270 L650,271 L652,271 L654,272 L656,273 L658,273 L660,274 L662,274 L663,275 L665,276 L667,276 L668,277 L670,277 L671,278 L673,279 L674,279 L676,280 L677,280 L679,281 L680,282 L681,282 L683,283 L684,283 L685,284 L687,284 L688,285 L689,285 L690,286 L691,286 L693,287 L694,287 L695,288 L696,288 L697,289 L698,289 L699,290 L700,290 L701,291 L702,291 L703,291 L704,292 L705,292 L706,293 L707,293 L708,294 L709,294 L710,294 L711,295 L712,295 L713,296 L713,296 L714,296 L715,297 L716,297 L717,297 L718,298 L718,298 L719,298 L720,299 L721,299 L722,300 L722,300 L723,300 L724,301 L725,301 L725,301 L726,302 L727,302 L728,302 L728,303 L729,303 L730,303 L730,303 L731,304 L732,304 L732,304 L733,305 L734,305 L734,305 L735,306 L736,306 L736,306 L737,306 L738,307 L738,307 L739,307 L739,308 L740,308" fill="none" stroke="#059669" stroke-width="2.8"/>
+<path d="M420,262 L457,262 L481,262 L500,262 L514,261 L526,261 L537,261 L546,261 L554,260 L561,260 L568,260 L574,259 L580,259 L585,258 L590,257 L594,257 L599,256 L603,255 L606,254 L610,253 L614,252 L617,251 L620,250 L623,248 L626,247 L629,246 L632,245 L634,244 L637,244 L639,244 L641,245 L644,246 L646,248 L648,250 L650,252 L652,254 L654,255 L656,257 L658,259 L660,260 L662,262 L663,263 L665,264 L667,266 L668,267 L670,268 L671,269 L673,270 L674,271 L676,272 L677,273 L679,274 L680,275 L681,276 L683,277 L684,277 L685,278 L687,279 L688,280 L689,280 L690,281 L691,282 L693,282 L694,283 L695,284 L696,284 L697,285 L698,286 L699,286 L700,287 L701,287 L702,288 L703,288 L704,289 L705,289 L706,290 L707,290 L708,291 L709,291 L710,292 L711,292 L712,293 L713,293 L713,294 L714,294 L715,295 L716,295 L717,295 L718,296 L718,296 L719,297 L720,297 L721,297 L722,298 L722,298 L723,299 L724,299 L725,299 L725,300 L726,300 L727,300 L728,301 L728,301 L729,301 L730,302 L730,302 L731,302 L732,303 L732,303 L733,303 L734,304 L734,304 L735,304 L736,305 L736,305 L737,305 L738,306 L738,306 L739,306 L739,306 L740,307" fill="none" stroke="#dc2626" stroke-width="2.2" stroke-dasharray="6,4"/>
+<line x1="420" y1="262" x2="750" y2="262" stroke="#64748b" stroke-width="1.4"/>
+<line x1="566" y1="230" x2="566" y2="370" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="556" y="384" font-size="10.5" fill="#475569">fc</text>
+<text x="440" y="246" font-size="10.5" fill="#059669">Q=0.707 最平坦（Butterworth）</text>
+<text x="580" y="222" font-size="10.5" fill="#dc2626">Q=3 峰化鼓包→再大就振荡</text>
+<text x="648" y="330" font-size="10.5" fill="#475569">−40dB/dec</text>
+<text x="440" y="86" font-size="11.5" font-weight="bold" fill="#475569">高频输入（实线）→ 输出（衰减）</text>
+<path d="M430,130 L434,133 L439,135 L443,138 L448,140 L452,143 L457,145 L461,147 L466,149 L470,151 L474,153 L479,155 L483,156 L488,157 L492,158 L497,159 L501,160 L506,160 L510,160 L514,160 L519,160 L523,159 L528,158 L532,157 L537,156 L541,155 L546,153 L550,151 L554,149 L559,147 L563,145 L568,143 L572,140 L577,138 L581,135 L586,133 L590,130 L594,127 L599,125 L603,122 L608,120 L612,117 L617,115 L621,113 L626,111 L630,109 L634,107 L639,105 L643,104 L648,103 L652,102 L657,101 L661,100 L666,100 L670,100 L674,100 L679,100 L683,101 L688,102 L692,103 L697,104 L701,105 L706,107 L710,109 L714,111 L719,113 L723,115 L728,117 L732,120 L737,122 L741,125 L746,127 L750,130" fill="none" stroke="#94a3b8" stroke-width="1.6"/>
+<path d="M430,130 L434,125 L439,120 L443,116 L448,113 L452,110 L457,108 L461,107 L466,107 L470,107 L474,108 L479,110 L483,112 L488,115 L492,117 L497,121 L501,124 L506,127 L510,130 L514,133 L519,136 L523,138 L528,140 L532,141 L537,142 L541,143 L546,143 L550,143 L554,143 L559,142 L563,140 L568,139 L572,137 L577,135 L581,134 L586,132 L590,130 L594,128 L599,127 L603,125 L608,124 L612,123 L617,123 L621,122 L626,122 L630,122 L634,123 L639,123 L643,124 L648,125 L652,126 L657,127 L661,128 L666,129 L670,130 L674,131 L679,132 L683,133 L688,133 L692,134 L697,134 L701,134 L706,134 L710,134 L714,134 L719,134 L723,133 L728,133 L732,132 L737,132 L741,131 L746,131 L750,130" fill="none" stroke="#059669" stroke-width="2.5"/>
+<text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">① 低频：C 开路信号直通——增益=1<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.18;0.23;1" dur="7s" repeatCount="indefinite"/></text><text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">② fc 附近：C1 顶帽正反馈「托一把」——Q 值决定这里是平还是鼓包<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.23;0.28;0.48;0.53;1" dur="7s" repeatCount="indefinite"/></text><text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">③ 高频：两级 RC 接力衰减，−40dB/十倍频滚降<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.53;0.58;0.78;0.83;1" dur="7s" repeatCount="indefinite"/></text><text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">④ 级数每+1 滚降+20dB——要更陡？多级级联，Q 值按查表分配<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.83;0.88;1" dur="7s" repeatCount="indefinite"/></text><g opacity="0">
+<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.88;0.92;1" dur="7s" repeatCount="indefinite"/>
+<rect x="35" y="470" width="730" height="34" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+<text x="400" y="492" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">fc = 1/(2πRC)（R1=R2、C1=C2 时）· Q 由增益设定——滤波器不是衰减器，是受控的谐振</text>
+</g></svg>

@@ -1052,6 +1052,143 @@ def make_pcb_return_path():
     save('pcb-return-path.svg', svg + '</svg>')
 
 
+# ======================= 图 13：差分对 =======================
+def make_diff_pair():
+    DD = 6
+    svg = svg_open('差分对：只认「差」，不认「同」——运放第一级的灵魂', h=520)
+    svg += f'''
+<text x="330" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">差分对（长尾对）：2mA 的零和游戏</text>
+<text x="56" y="76" font-size="12.5" font-weight="bold" fill="#b45309">VCC</text>
+<line x1="90" y1="70" x2="480" y2="70" stroke="#334155" stroke-width="2.5"/>
+{resistor_v(220, 90, 34, 'Rc1')}
+{resistor_v(420, 90, 34, 'Rc2')}
+{npn_svg(220, 200)}
+{npn_svg(420, 200)}
+<line x1="220" y1="255" x2="220" y2="285" stroke="#334155" stroke-width="2.5"/>
+<line x1="420" y1="255" x2="420" y2="285" stroke="#334155" stroke-width="2.5"/>
+<line x1="220" y1="285" x2="420" y2="285" stroke="#334155" stroke-width="2.5"/>
+<circle cx="320" cy="285" r="4" fill="#334155"/>
+<line x1="320" y1="285" x2="320" y2="300" stroke="#334155" stroke-width="2.5"/>
+<circle cx="320" cy="318" r="16" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<line x1="320" y1="328" x2="320" y2="310" stroke="#7c3aed" stroke-width="2.5"/>
+<polygon points="320,306 315,314 325,314" fill="#7c3aed"/>
+<line x1="320" y1="334" x2="320" y2="350" stroke="#334155" stroke-width="2.5"/>
+{gnd_sym(320, 364)}
+<text x="344" y="322" font-size="11" font-weight="bold" fill="#7c3aed">尾电流源 I_EE=2mA（总量钉死）</text>
+<text x="52" y="196" font-size="12.5" font-weight="bold" fill="#059669">IN+</text>
+<text x="556" y="196" font-size="12.5" font-weight="bold" fill="#dc2626">IN−</text>
+<line x1="90" y1="200" x2="135" y2="200" stroke="#334155" stroke-width="2.5"/>
+<line x1="385" y1="200" x2="550" y2="200" stroke="#334155" stroke-width="2.5"/>
+<circle cx="220" cy="160" r="3.5" fill="#334155"/>
+<circle cx="420" cy="160" r="3.5" fill="#334155"/>
+<text x="168" y="158" font-size="10.5" font-weight="bold" fill="#2563eb">vC1</text>
+<text x="452" y="158" font-size="10.5" font-weight="bold" fill="#2563eb">vC2</text>
+<text x="150" y="130" font-size="11" fill="#059669" opacity="0">↑ 升
+<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.06;0.4;0.46;1" dur="{DD}s" repeatCount="indefinite"/></text>
+<text x="480" y="130" font-size="11" fill="#dc2626" opacity="0">↓ 降
+<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.06;0.4;0.46;1" dur="{DD}s" repeatCount="indefinite"/></text>
+<text x="150" y="130" font-size="11" fill="#dc2626" opacity="0">↑ 同升
+<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.52;0.56;0.9;0.96;1" dur="{DD}s" repeatCount="indefinite"/></text>
+<text x="480" y="130" font-size="11" fill="#dc2626" opacity="0">↑ 同升
+<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.52;0.56;0.9;0.96;1" dur="{DD}s" repeatCount="indefinite"/></text>
+'''
+    svg += f'<g><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.44;0.5;1" dur="{DD}s" repeatCount="indefinite"/>'
+    svg += flow("M320,300 V285 H220 V150 V110 V74", DD/3, n=6, color="#059669", r=5)
+    svg += flow("M320,300 V285 H420 V150 V74", DD/3, n=1, color="#94a3b8", r=4) + '</g>'
+    svg += f'<g><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.5;0.56;0.9;0.96;1" dur="{DD}s" repeatCount="indefinite"/>'
+    svg += flow("M320,300 V285 H220 V150 V74", DD/3, n=3, color="#2563eb", r=5)
+    svg += flow("M320,300 V285 H420 V150 V74", DD/3, n=3, color="#2563eb", r=5) + '</g>'
+    svg += f'''
+<text x="180" y="402" font-size="11" font-weight="bold" fill="#475569">电流分配（Q1 绿 vs Q2 红）</text>
+<rect y="414" height="16" fill="#059669" x="100" width="220">
+<animate attributeName="x" values="100;100;195;195;100" keyTimes="0;0.45;0.55;0.95;1" dur="{DD}s" repeatCount="indefinite"/>
+<animate attributeName="width" values="220;220;125;125;220" keyTimes="0;0.45;0.55;0.95;1" dur="{DD}s" repeatCount="indefinite"/></rect>
+<rect x="320" y="414" height="16" fill="#dc2626" width="30">
+<animate attributeName="width" values="30;30;125;125;30" keyTimes="0;0.45;0.55;0.95;1" dur="{DD}s" repeatCount="indefinite"/></rect>
+<text x="100" y="450" font-size="10.5" fill="#059669" opacity="0">Q1 吃 1.8mA
+<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.06;0.4;0.46;1" dur="{DD}s" repeatCount="indefinite"/></text>
+<text x="380" y="450" font-size="10.5" fill="#94a3b8" opacity="0">Q2 剩 0.2mA
+<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.06;0.4;0.46;1" dur="{DD}s" repeatCount="indefinite"/></text>
+<text x="210" y="450" font-size="10.5" fill="#2563eb" opacity="0">各 1mA：谁也多吃不了
+<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.52;0.56;0.9;0.96;1" dur="{DD}s" repeatCount="indefinite"/></text>
+'''
+    svg += caption("① 差模（IN+升 IN−降）：尾电流此消彼长——vC1 降 vC2 升，输出拉开差距", "#059669", DD,
+                   "0;1;1;0;0", "0;0.03;0.2;0.26;1", y=478)
+    svg += caption("② 共模（两边同升）：尾源总量钉死，两管谁也多吃不了——输出纹丝不动", "#2563eb", DD,
+                   "0;0;1;1;0;0", "0;0.28;0.33;0.48;0.53;1", y=478)
+    svg += caption("③ 温度漂移是同向的=共模——被结构天然免疫，这就是运放第一级必选它的原因", "#7c3aed", DD,
+                   "0;0;1;1", "0;0.55;0.6;1", y=478)
+    svg += note_box("CMRR（共模抑制比）的全部秘密 = 尾电流源的内阻——内阻越大，共模越动弹不得", 500, DD, "0;0.66;0.71;1", w=700)
+    save('diff-pair.svg', svg + '</svg>')
+
+
+# ======================= 图 14：Buck 降压 =======================
+def make_buck_converter():
+    DB = 6
+    il_pts = []
+    for i in range(97):
+        u = i/96
+        x = 430 + 320*u
+        seg = (u*3) % 1.0
+        y = 372 - (30*seg if seg < 0.5 else 30*(1-seg))
+        il_pts.append(f"{x:.0f},{y:.0f}")
+    il_d = "M" + " L".join(il_pts)
+    svg = svg_open('Buck 降压：电感是「水车惯性」，把断续水流碾成直流', h=520)
+    svg += f'''
+<text x="220" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">Buck 变换器（12V → 5V，占空比 42%）</text>
+<text x="36" y="102" font-size="12.5" font-weight="bold" fill="#b45309">12V</text>
+<line x1="70" y1="96" x2="130" y2="96" stroke="#334155" stroke-width="2.5"/>
+<circle cx="140" cy="96" r="3.5" fill="#334155"/>
+<line x1="140" y1="96" x2="170" y2="68" stroke="#059669" stroke-width="3">
+<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.4;0.46;1" dur="{DB}s" repeatCount="indefinite"/></line>
+<circle cx="176" cy="96" r="3.5" fill="#334155"/>
+<text x="126" y="62" font-size="11" font-weight="bold" fill="#334155">开关 SW</text>
+<line x1="176" y1="96" x2="200" y2="96" stroke="#334155" stroke-width="2.5"/>
+<circle cx="205" cy="96" r="4" fill="#334155"/>
+<text x="180" y="118" font-size="10" fill="#7c3aed">开关节点</text>
+<path d="M205,96 q8,-16 16,0 q8,16 16,0 q8,-16 16,0 q8,16 16,0 q8,-16 16,0" fill="none" stroke="#7c3aed" stroke-width="2.5"/>
+<text x="222" y="70" font-size="12" font-weight="bold" fill="#7c3aed">电感 L</text>
+<line x1="285" y1="96" x2="320" y2="96" stroke="#334155" stroke-width="2.5"/>
+<circle cx="320" cy="96" r="4" fill="#334155"/>
+<line x1="320" y1="96" x2="380" y2="96" stroke="#334155" stroke-width="2.5"/>
+<text x="384" y="101" font-size="12.5" font-weight="bold" fill="#059669">5V 输出</text>
+<line x1="320" y1="96" x2="320" y2="130" stroke="#334155" stroke-width="2.5"/>
+<line x1="304" y1="130" x2="336" y2="130" stroke="#2563eb" stroke-width="3.5"/>
+<line x1="304" y1="142" x2="336" y2="142" stroke="#2563eb" stroke-width="3.5"/>
+<line x1="320" y1="142" x2="320" y2="160" stroke="#334155" stroke-width="2"/>
+{gnd_sym(320, 174)}
+<text x="344" y="140" font-size="10.5" fill="#2563eb">C 滤波</text>
+<line x1="205" y1="96" x2="205" y2="150" stroke="#334155" stroke-width="2.5"/>
+<polygon points="205,146 193,170 217,170" fill="none" stroke="#334155" stroke-width="2.5"/>
+<line x1="193" y1="146" x2="217" y2="146" stroke="#334155" stroke-width="3"/>
+<line x1="205" y1="170" x2="205" y2="186" stroke="#334155" stroke-width="2.5"/>
+{gnd_sym(205, 200)}
+<text x="150" y="182" font-size="10.5" fill="#dc2626">续流二极管</text>
+<line x1="40" y1="200" x2="40" y2="96" stroke="#334155" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.4"/>
+<line x1="40" y1="200" x2="320" y2="200" stroke="#334155" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.4"/>
+'''
+    svg += f'<g><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.4;0.46;1" dur="{DB}s" repeatCount="indefinite"/>'
+    svg += flow("M74,92 H196 M214,92 H316", DB/3, n=6, color="#059669", r=5) + '</g>'
+    svg += f'<g><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.5;0.56;0.88;0.94;1" dur="{DB}s" repeatCount="indefinite"/>'
+    svg += flow("M205,186 V160 M214,146 V100 M214,92 H316", DB/3, n=5, color="#dc2626", r=5) + '</g>'
+    svg += f'''
+<text x="440" y="252" font-size="11.5" font-weight="bold" fill="#7c3aed">开关节点电压（方波）</text>
+<path d="M430,300 V268 H475 V300 H537 V268 H582 V300 H644 V268 H689 V300 H750" fill="none" stroke="#7c3aed" stroke-width="2.8"/>
+<text x="440" y="332" font-size="11.5" font-weight="bold" fill="#059669">电感电流（三角波：斜坡升/斜坡降）</text>
+<path d="{il_d}" fill="none" stroke="#059669" stroke-width="2.8"/>
+<line x1="430" y1="392" x2="750" y2="392" stroke="#2563eb" stroke-width="2.8"/>
+<text x="440" y="412" font-size="11.5" font-weight="bold" fill="#2563eb">输出电压（惯性碾平=直流 5V）</text>
+'''
+    svg += caption("① 开关闭合：12V 经电感向输出灌能量——电感电流斜坡上升（储 ½LI²）", "#059669", DB,
+                   "0;1;1;0;0", "0;0.03;0.2;0.26;1", y=460)
+    svg += caption("② 开关断开：电感不许电流突变，把节点拉到负压——二极管接住续流", "#dc2626", DB,
+                   "0;0;1;1;0;0", "0;0.28;0.33;0.5;0.56;1", y=460)
+    svg += caption("③ 伏秒平衡：电感一周期平均电压必须为 0 → Vout = D×Vin = 0.42×12 = 5V", "#7c3aed", DB,
+                   "0;0;1;1", "0;0.58;0.64;1", y=460)
+    svg += note_box("电感=水车的惯性：开关只管断续送水，惯性把水流碾平——效率 90%+ 的秘密是开关不顶压差", 494, DB, "0;0.7;0.75;1", w=730)
+    save('buck-converter.svg', svg + '</svg>')
+
+
 # ======================= 图 11：去耦电容 =======================
 def make_cap_decoupling():
     DC = 5
@@ -1127,6 +1264,230 @@ def make_cap_decoupling():
     svg += note_box("100nF 管高频（ns 尖峰）· 10µF 管中频 · 大电解管低频——三级去耦，各司其职", 458, DC, "0;0.8;0.84;1", w=640)
     save('cap-decoupling.svg', svg + '</svg>')
 
+
+# ======================= 图 15：文氏桥振荡器 =======================
+def make_wien_bridge():
+    DW = 6
+    osc_pts = []
+    for i in range(161):
+        u = i/160
+        x = 420 + 330*u
+        A = min(1.0, 0.12*np.exp(2.2*u))
+        y = 320 - 44*A*np.sin(u*12*np.pi)
+        osc_pts.append(f"{x:.0f},{y:.1f}")
+    osc_d = "M" + " L".join(osc_pts)
+    env_pts = []
+    for i in range(61):
+        u = i/60
+        x = 420 + 330*u
+        A = min(1.0, 0.12*np.exp(2.2*u))
+        env_pts.append(f"{x:.0f},{320-44*A:.1f}")
+    env_d = "M" + " L".join(env_pts)
+    svg = svg_open('文氏桥振荡器：正弦波是怎么「无中生有」的', h=500)
+    svg += f'''
+<text x="200" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">RC 选频 + 增益=3 的同相放大</text>
+<text x="14" y="145" font-size="11" fill="#475569">输入</text>
+{resistor_h(60, 140, 40, 'R')}
+<line x1="120" y1="140" x2="128" y2="140" stroke="#334155" stroke-width="2.5"/>
+<line x1="128" y1="124" x2="128" y2="156" stroke="#334155" stroke-width="3"/>
+<line x1="140" y1="124" x2="140" y2="156" stroke="#334155" stroke-width="3"/>
+<text x="134" y="114" font-size="11" font-weight="bold" fill="#b45309">C</text>
+<line x1="140" y1="140" x2="165" y2="140" stroke="#334155" stroke-width="2.5"/>
+<circle cx="165" cy="140" r="4" fill="#334155"/>
+<line x1="165" y1="140" x2="300" y2="140" stroke="#334155" stroke-width="2.5"/>
+{resistor_v(165, 160, 30, 'R')}
+<circle cx="220" cy="140" r="4" fill="#334155"/>
+<line x1="220" y1="140" x2="220" y2="160" stroke="#334155" stroke-width="2.5"/>
+<line x1="208" y1="160" x2="232" y2="160" stroke="#334155" stroke-width="3"/>
+<line x1="208" y1="172" x2="232" y2="172" stroke="#334155" stroke-width="3"/>
+<text x="238" y="170" font-size="11" font-weight="bold" fill="#b45309">C</text>
+<line x1="220" y1="172" x2="220" y2="210" stroke="#334155" stroke-width="2.5"/>
+<line x1="165" y1="210" x2="220" y2="210" stroke="#334155" stroke-width="2"/>
+{gnd_sym(192, 224)}
+<polygon points="300,110 300,170 360,140" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="306" y="133" font-size="13" font-weight="bold" fill="#059669">+</text>
+<text x="306" y="165" font-size="13" font-weight="bold" fill="#dc2626">−</text>
+<line x1="360" y1="140" x2="408" y2="140" stroke="#334155" stroke-width="2.5"/>
+<circle cx="390" cy="140" r="4" fill="#334155"/>
+<text x="340" y="124" font-size="11" font-weight="bold" fill="#2563eb">输出正弦</text>
+<line x1="300" y1="155" x2="300" y2="185" stroke="#334155" stroke-width="2"/>
+<circle cx="300" cy="185" r="3.5" fill="#334155"/>
+{resistor_h(320, 185, 30)}
+<text x="335" y="212" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#b45309">Rf=2R</text>
+<line x1="370" y1="185" x2="390" y2="185" stroke="#334155" stroke-width="2"/>
+<line x1="390" y1="185" x2="390" y2="140" stroke="#334155" stroke-width="2"/>
+{resistor_v(300, 205, 30, 'R1=R')}
+<line x1="300" y1="255" x2="300" y2="262" stroke="#334155" stroke-width="2"/>
+{gnd_sym(300, 276)}
+<text x="230" y="256" font-size="10.5" fill="#475569">增益 = 1+Rf/R1 = 3</text>
+<text x="40" y="118" font-size="11" fill="#475569">反馈回 +端</text>
+<path d="M45,140 C20,140 20,310 200,310 C340,310 380,230 400,150" fill="none" stroke="#7c3aed" stroke-width="1.8" stroke-dasharray="5,4">
+<animate attributeName="opacity" values="0.3;1;0.3" dur="1.8s" repeatCount="indefinite"/></path>
+'''
+    svg += f'''
+<text x="585" y="252" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#2563eb">起振过程：噪声种子 → 指数长大 → 稳幅</text>
+<path d="{osc_d}" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+<path d="{env_d}" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="5,4"/>
+<line x1="420" y1="320" x2="750" y2="320" stroke="#64748b" stroke-width="1.4"/>
+<line x1="420" y1="276" x2="750" y2="276" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="700" y="270" font-size="10" fill="#7c3aed">灯泡稳幅</text>
+<text x="440" y="340" font-size="10.5" fill="#475569">开机噪声里的 f₀ 分量被选中、每圈放大一点</text>
+'''
+    svg += caption("① RC 串并网络在 f₀=1/(2πRC) 处：相移恰好 0°、衰减恰好 1/3", "#7c3aed", DW,
+                   "0;1;1;0;0", "0;0.03;0.22;0.28;1", y=430)
+    svg += caption("② 同相放大器增益=3：3 × 1/3 = 1——环路增益=1、相移=0，巴克豪森判据成立", "#059669", DW,
+                   "0;0;1;1;0;0", "0;0.28;0.33;0.55;0.61;1", y=430)
+    svg += caption("③ 起振靠噪声种子；幅度长大靠增益>1；停在多大？——灯泡发热升阻自动稳幅", "#2563eb", DW,
+                   "0;0;1;1", "0;0.61;0.67;1", y=430)
+    svg += note_box("惠普第一桶金 HP200A 就是这颗灯泡：幅度大→灯丝热→阻升→增益降，自稳在 3 倍", 474, DW, "0;0.72;0.77;1", w=690)
+    save('wien-bridge.svg', svg + '</svg>')
+
+
+# ======================= 图 16：乙类推挽与交越失真 =======================
+def make_class_b():
+    DC2 = 6
+    sin_d = sine_path(60, 390, 330, 40, n=72)
+    xo_pts = []
+    for i in range(97):
+        u = i/96
+        x = 430 + 320*u
+        s = np.sin(u*4*np.pi)
+        y = 330 - 40*(0 if abs(s) < 0.18 else (s-0.18*np.sign(s))/0.82)
+        xo_pts.append(f"{x:.0f},{y:.0f}")
+    xo_d = "M" + " L".join(xo_pts)
+    sin_d2 = sine_path(430, 750, 330, 40, n=72)
+    svg = svg_open('乙类推挽：两个人抬轿子，交接处摔了一跤（交越失真）', h=500)
+    svg += f'''
+<text x="200" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">乙类推挽输出级</text>
+<text x="56" y="76" font-size="12.5" font-weight="bold" fill="#b45309">+VCC</text>
+<line x1="90" y1="70" x2="140" y2="70" stroke="#334155" stroke-width="2.5"/>
+<line x1="140" y1="70" x2="140" y2="86" stroke="#334155" stroke-width="2.5"/>
+<rect x="112" y="86" width="56" height="30" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="140" y="106" text-anchor="middle" font-size="11" font-weight="bold" fill="#2563eb">NPN</text>
+<line x1="140" y1="116" x2="140" y2="185" stroke="#334155" stroke-width="2.5"/>
+<circle cx="140" cy="185" r="4" fill="#334155"/>
+<line x1="140" y1="185" x2="320" y2="185" stroke="#334155" stroke-width="2.5"/>
+<text x="328" y="190" font-size="12" font-weight="bold" fill="#2563eb">输出</text>
+<rect x="112" y="200" width="56" height="30" rx="5" fill="#fef2f2" stroke="#dc2626" stroke-width="2"/>
+<text x="140" y="220" text-anchor="middle" font-size="11" font-weight="bold" fill="#dc2626">PNP</text>
+<line x1="140" y1="185" x2="140" y2="200" stroke="#334155" stroke-width="2.5"/>
+<line x1="140" y1="230" x2="140" y2="250" stroke="#334155" stroke-width="2.5"/>
+<text x="56" y="256" font-size="12.5" font-weight="bold" fill="#b45309">−VEE</text>
+<line x1="90" y1="250" x2="140" y2="250" stroke="#334155" stroke-width="2.5"/>
+<line x1="60" y1="160" x2="112" y2="160" stroke="#334155" stroke-width="2.5"/>
+<line x1="112" y1="160" x2="112" y2="101" stroke="#334155" stroke-width="2"/>
+<line x1="112" y1="160" x2="112" y2="215" stroke="#334155" stroke-width="2"/>
+<text x="30" y="156" font-size="11" fill="#475569">输入</text>
+'''
+    svg += f'<g><animate attributeName="opacity" values="1;1;0;0;0;1;1" keyTimes="0;0.22;0.26;0.7;0.74;0.96;1" dur="{DC2}s" repeatCount="indefinite"/>'
+    svg += flow("M136,88 V116 V181 H314", DC2/4, n=5, color="#059669", r=5) + '</g>'
+    svg += f'<g><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.26;0.3;0.68;0.72;1" dur="{DC2}s" repeatCount="indefinite"/>'
+    svg += flow("M314,181 H144 V228 V246", DC2/4, n=5, color="#dc2626", r=5) + '</g>'
+    svg += f'''
+<text x="64" y="290" font-size="11.5" font-weight="bold" fill="#475569">输入正弦</text>
+<path d="{sin_d}" fill="none" stroke="#94a3b8" stroke-width="2.2"/>
+<text x="434" y="290" font-size="11.5" font-weight="bold" fill="#dc2626">乙类输出：过零豁口（死区 ±0.7V）</text>
+<path d="{sin_d2}" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3"/>
+<path d="{xo_d}" fill="none" stroke="#dc2626" stroke-width="2.8"/>
+<rect x="582" y="316" width="46" height="28" fill="#dc2626" opacity="0.12">
+<animate attributeName="opacity" values="0.12;0.12;0.4;0.4;0.12;0.12" keyTimes="0;0.44;0.5;0.88;0.94;1" dur="{DC2}s" repeatCount="indefinite"/></rect>
+<text x="590" y="356" font-size="10" fill="#dc2626">豁口=两管全关</text>
+'''
+    svg += caption("① 正半周：NPN 导通往下「推」电流（绿粒子）", "#059669", DC2,
+                   "0;1;1;0;0", "0;0.03;0.2;0.24;1", y=430)
+    svg += caption("② 负半周：PNP 导通往上「拉」电流（红粒子）", "#dc2626", DC2,
+                   "0;0;1;1;0;0", "0;0.24;0.28;0.46;0.5;1", y=430)
+    svg += caption("③ 交接区 |输入|&lt;0.7V：两管全关→输出豁口——这就是交越失真", "#b45309", DC2,
+                   "0;0;1;1;0;0", "0;0.5;0.54;0.72;0.76;1", y=430)
+    svg += caption("④ 甲乙类解法：基极间塞两只二极管预加微偏置——死区消失，功放标配", "#2563eb", DC2,
+                   "0;0;1;1", "0;0.76;0.8;1", y=430)
+    svg += note_box("偏置管要紧贴功率管安装（热耦合）——否则温度升→电流增→更热：热失控烧管", 474, DC2, "0;0.84;0.88;1", w=660)
+    save('class-b-crossover.svg', svg + '</svg>')
+
+
+# ======================= 图 17：Sallen-Key 滤波器 =======================
+def make_sallen_key():
+    DS = 7
+    freqs = np.linspace(0.05, 4, 121)
+    def bode(Q):
+        pts = []
+        for i, f in enumerate(freqs):
+            H = 1/np.sqrt((1-f**2)**2 + (f/Q)**2)
+            db = max(-52, 20*np.log10(H))
+            x = 420 + (np.log10(f)-np.log10(0.05))/(np.log10(4)-np.log10(0.05))*320
+            y = 262 - db*1.9
+            pts.append(f"{x:.0f},{y:.0f}")
+        return "M" + " L".join(pts)
+    flat_d = bode(0.707); peak_d = bode(3.0)
+    sin_in = sine_path(430, 750, 130, 30, n=72)
+    lo_pts = []
+    for i in range(73):
+        u = i/72
+        x = 430 + 320*u
+        y = 130 - 30*np.sin(u*4*np.pi)*np.exp(-u*2.2)
+        lo_pts.append(f"{x:.0f},{y:.0f}")
+    lo_d = "M" + " L".join(lo_pts)
+    svg = svg_open('Sallen-Key 二阶低通：滤波器是「受控的谐振」', h=520)
+    svg += f'''
+<text x="200" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">Sallen-Key 二阶低通（单位增益）</text>
+<line x1="40" y1="140" x2="60" y2="140" stroke="#334155" stroke-width="2.5"/>
+<text x="18" y="145" font-size="11" fill="#475569">输入</text>
+{resistor_h(60, 140, 40, 'R1')}
+{resistor_h(140, 140, 40, 'R2')}
+<circle cx="216" cy="140" r="4" fill="#334155"/>
+<line x1="216" y1="140" x2="250" y2="140" stroke="#334155" stroke-width="2.5"/>
+<line x1="130" y1="140" x2="130" y2="100" stroke="#334155" stroke-width="2"/>
+<line x1="118" y1="100" x2="142" y2="100" stroke="#7c3aed" stroke-width="3"/>
+<line x1="118" y1="90" x2="142" y2="90" stroke="#7c3aed" stroke-width="3"/>
+<line x1="130" y1="90" x2="130" y2="76" stroke="#334155" stroke-width="2"/>
+<line x1="130" y1="76" x2="300" y2="76" stroke="#334155" stroke-width="2"/>
+<text x="148" y="99" font-size="10.5" fill="#7c3aed">C1（反馈顶帽）</text>
+<line x1="216" y1="140" x2="216" y2="180" stroke="#334155" stroke-width="2"/>
+<line x1="204" y1="180" x2="228" y2="180" stroke="#7c3aed" stroke-width="3"/>
+<line x1="204" y1="192" x2="228" y2="192" stroke="#7c3aed" stroke-width="3"/>
+<line x1="216" y1="192" x2="216" y2="210" stroke="#334155" stroke-width="2"/>
+{gnd_sym(216, 224)}
+<text x="150" y="190" font-size="10.5" fill="#7c3aed">C2 下地</text>
+<polygon points="250,110 250,170 310,140" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="256" y="134" font-size="13" font-weight="bold" fill="#059669">+</text>
+<text x="256" y="160" font-size="13" font-weight="bold" fill="#dc2626">−</text>
+<line x1="250" y1="140" x2="244" y2="140" stroke="#334155" stroke-width="2.5"/>
+<line x1="310" y1="140" x2="380" y2="140" stroke="#334155" stroke-width="2.5"/>
+<text x="316" y="126" font-size="11" font-weight="bold" fill="#2563eb">输出</text>
+<circle cx="350" cy="140" r="4" fill="#334155"/>
+<line x1="350" y1="140" x2="350" y2="195" stroke="#334155" stroke-width="2"/>
+<line x1="350" y1="195" x2="244" y2="195" stroke="#334155" stroke-width="2"/>
+<line x1="244" y1="195" x2="244" y2="155" stroke="#334155" stroke-width="2"/>
+<line x1="244" y1="155" x2="250" y2="155" stroke="#334155" stroke-width="2"/>
+<line x1="300" y1="76" x2="310" y2="76" stroke="#334155" stroke-width="2"/>
+<line x1="310" y1="76" x2="330" y2="76" stroke="#334155" stroke-width="2"/>
+<line x1="330" y1="76" x2="330" y2="140" stroke="#334155" stroke-width="2"/>
+'''
+    svg += f'''
+<text x="590" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">频响：Q 决定峰化</text>
+<path d="{flat_d}" fill="none" stroke="#059669" stroke-width="2.8"/>
+<path d="{peak_d}" fill="none" stroke="#dc2626" stroke-width="2.2" stroke-dasharray="6,4"/>
+<line x1="420" y1="262" x2="750" y2="262" stroke="#64748b" stroke-width="1.4"/>
+<line x1="566" y1="230" x2="566" y2="370" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="556" y="384" font-size="10.5" fill="#475569">fc</text>
+<text x="440" y="246" font-size="10.5" fill="#059669">Q=0.707 最平坦（Butterworth）</text>
+<text x="580" y="222" font-size="10.5" fill="#dc2626">Q=3 峰化鼓包→再大就振荡</text>
+<text x="648" y="330" font-size="10.5" fill="#475569">−40dB/dec</text>
+<text x="440" y="86" font-size="11.5" font-weight="bold" fill="#475569">高频输入（实线）→ 输出（衰减）</text>
+<path d="{sin_in}" fill="none" stroke="#94a3b8" stroke-width="1.6"/>
+<path d="{lo_d}" fill="none" stroke="#059669" stroke-width="2.5"/>
+'''
+    svg += caption("① 低频：C 开路信号直通——增益=1", "#059669", DS,
+                   "0;1;1;0;0", "0;0.03;0.18;0.23;1", y=460)
+    svg += caption("② fc 附近：C1 顶帽正反馈「托一把」——Q 值决定这里是平还是鼓包", "#dc2626", DS,
+                   "0;0;1;1;0;0", "0;0.23;0.28;0.48;0.53;1", y=460)
+    svg += caption("③ 高频：两级 RC 接力衰减，−40dB/十倍频滚降", "#7c3aed", DS,
+                   "0;0;1;1;0;0", "0;0.53;0.58;0.78;0.83;1", y=460)
+    svg += caption("④ 级数每+1 滚降+20dB——要更陡？多级级联，Q 值按查表分配", "#2563eb", DS,
+                   "0;0;1;1", "0;0.83;0.88;1", y=460)
+    svg += note_box("fc = 1/(2πRC)（R1=R2、C1=C2 时）· Q 由增益设定——滤波器不是衰减器，是受控的谐振", 494, DS, "0;0.88;0.92;1", w=730)
+    save('sallen-key.svg', svg + '</svg>')
+
 if __name__ == '__main__':
     make_rc_charge()
     make_bridge_rectifier()
@@ -1140,4 +1501,9 @@ if __name__ == '__main__':
     make_analog_switch()
     make_cap_decoupling()
     make_pcb_return_path()
-    print('all 12 SVGs regenerated into', os.path.abspath(OUT))
+    make_diff_pair()
+    make_buck_converter()
+    make_wien_bridge()
+    make_class_b()
+    make_sallen_key()
+    print('all 17 SVGs regenerated into', os.path.abspath(OUT))
