@@ -100,6 +100,13 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <animateMotion dur="8s" repeatCount="indefinite" path="M456,214 L790,332" keyPoints="0;1;0" keyTimes="0;0.5;1"/></circle>
 <text x="575" y="246" font-size="11" font-weight="bold" fill="#7c3aed">Q（工作点）</text>
 <text x="620" y="374" text-anchor="middle" font-size="10.5" fill="#475569">蓝线=输出特性　紫虚线=负载线　圆点沿负载线来回扫：左端饱和、右端截止</text>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="8s" begin="-0.2s" repeatCount="indefinite" path="M105,112 L105,138"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="8s" begin="-0.9s" repeatCount="indefinite" path="M70,112 L70,168"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="8s" begin="-1.6s" repeatCount="indefinite" path="M52,190 L93,190"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="8s" begin="-2.3s" repeatCount="indefinite" path="M130,247 L130,282"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="8s" begin="-3.0s" repeatCount="indefinite" path="M130,137 L130,168"/></circle>
+<rect x="452" y="130" width="116" height="96" rx="8" fill="none" stroke="#dc2626" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.0s" repeatCount="indefinite"/></rect>
+<rect x="534" y="242" width="30" height="30" rx="6" fill="none" stroke="#7c3aed" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="1.6s" repeatCount="indefinite"/></rect>
 <text x="400" y="406" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#64748b" opacity="0">① 截止区：两个结都反偏——CE 之间像断了的开关，I_C≈0<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="8s" repeatCount="indefinite"/></text><text x="400" y="406" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">② 放大区：发射结正偏、集电结反偏——I_C=β·I_B，是放大器的家<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="8s" repeatCount="indefinite"/></text><text x="400" y="406" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">③ 饱和区：两个结都正偏——V_CE≈0.2V，像合上的开关，β 说了不算<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.78;0.83;1" dur="8s" repeatCount="indefinite"/></text><text x="400" y="406" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">④ 常青坑：设计时不先把「放大区」用负载线框死——信号一摆就削顶<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.83;0.88;1" dur="8s" repeatCount="indefinite"/></text><g opacity="0">
 <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.9;0.94;1" dur="8s" repeatCount="indefinite"/>
 <rect x="30" y="460" width="740" height="34" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>

@@ -66,4 +66,12 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="420" y="556" font-size="11" fill="#475569">示波器地夹与市电共地</text>
 <text x="420" y="574" font-size="11" font-weight="bold" fill="#dc2626">隔离变压器 或 差分探头，二选一</text>
 <text x="270" y="604" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#b45309">上电第一次：串限流灯泡 / 恒流 50mA —— 冒烟的是灯泡，不是芯片</text>
+<circle r="5" fill="#f59e0b"><animateMotion dur="{DP}s" begin="-0.3s" repeatCount="indefinite" path="M70,150 L148,150"/></circle>
+<circle r="5" fill="#f59e0b"><animateMotion dur="{DP}s" begin="-0.8s" repeatCount="indefinite" path="M202,150 L248,150"/></circle>
+<circle r="5" fill="#f59e0b"><animateMotion dur="{DP}s" begin="-1.3s" repeatCount="indefinite" path="M250,152 L250,268"/></circle>
+<circle r="5" fill="#2563eb"><animateMotion dur="{DP}s" begin="-1.8s" repeatCount="indefinite" path="M338,270 L386,270"/></circle>
+{pulse(52, 500, 96, 78, '#dc2626', 1.6, 12)}
+{pulse(52, 296, 300, 86, '#dc2626', 2.0, 10)}
+{pulse(400, 512, 380, 74, '#dc2626', 2.4, 10)}
+<circle r="5" fill="#dc2626"><animateMotion dur="{DP}s" begin="-0.5s" repeatCount="indefinite" path="M90,514 L90,566 L90,514"/></circle>
 <text x="400" y="628" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">① 探头不是「接上去看看」——它是 1MΩ‖100pF 的负载，会分压也会滤波<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="628" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">② 测模拟节点一律 ×10 档：误差从 9% 降到 1%，带宽从 16kHz 提到 159kHz<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="628" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b91c1c" opacity="0">③ 电流档并联 = 短路；示波器地夹接市电节点 = 短路——两个都是「一按就出事」<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="628" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">④ 新板第一次上电先限流：让最便宜的元件先冒烟<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/></text></svg>

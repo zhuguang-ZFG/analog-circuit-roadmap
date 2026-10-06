@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-generate_svgs.py — 一键再生成《通往模拟电路之路》全部 54 张 SVG SMIL 动画
+generate_svgs.py — 一键再生成《通往模拟电路之路》全部 55 张 SVG SMIL 动画
 用法:  python generate_svgs.py            # 输出到 ../assets/svg/
 风格:  参考 BMS-Z 项目 —— 浅色底 + SMIL 节拍字幕 + 深色模式自适应 + 拟人化讲解
 所有电路参数经过自洽核算（datasheet 级），详见各函数注释。
@@ -3375,6 +3375,13 @@ def make_bjt_regions():
 <animateMotion dur="{DB}s" repeatCount="indefinite" path="M456,214 L790,332" keyPoints="0;1;0" keyTimes="0;0.5;1"/></circle>
 <text x="575" y="246" font-size="11" font-weight="bold" fill="#7c3aed">Q（工作点）</text>
 <text x="620" y="374" text-anchor="middle" font-size="10.5" fill="#475569">蓝线=输出特性　紫虚线=负载线　圆点沿负载线来回扫：左端饱和、右端截止</text>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DB}s" begin="-0.2s" repeatCount="indefinite" path="M105,112 L105,138"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DB}s" begin="-0.9s" repeatCount="indefinite" path="M70,112 L70,168"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DB}s" begin="-1.6s" repeatCount="indefinite" path="M52,190 L93,190"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DB}s" begin="-2.3s" repeatCount="indefinite" path="M130,247 L130,282"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DB}s" begin="-3.0s" repeatCount="indefinite" path="M130,137 L130,168"/></circle>
+{pulse(452, 130, 116, 96, '#dc2626', 2.0, 8)}
+{pulse(534, 242, 30, 30, '#7c3aed', 1.6, 6)}
 '''
     svg += caption("① 截止区：两个结都反偏——CE 之间像断了的开关，I_C≈0", "#64748b", DB,
                    "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=406)
@@ -3846,6 +3853,12 @@ def make_diode_iv():
 <animateMotion dur="{DI}s" repeatCount="indefinite" path="{curve(0.0,'#dc2626')[9:]}" keyPoints="0;1" keyTimes="0;1"/></circle>
 <text x="587" y="474" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#dc2626">测温二极管、稳压二极管、温度传感器——全靠这条曲线</text>
 <text x="587" y="494" text-anchor="middle" font-size="11" fill="#475569">大功率管的「温度升→电流增→更热」正反馈，热失控从这里开始</text>
+<circle r="5" fill="#2563eb"><animateMotion dur="{DI}s" repeatCount="indefinite" path="{curve(0.07,'#2563eb')[9:]}" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle cx="{px(0.36):.0f}" cy="{py(1e-3):.0f}" r="4" fill="#dc2626"><animate attributeName="r" values="5;11;5" dur="1.6s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.9;0.2;0.9" dur="1.6s" repeatCount="indefinite"/></circle>
+<circle cx="{px(0.24):.0f}" cy="{py(1e-5):.0f}" r="4" fill="#b45309"><animate attributeName="r" values="3;7;3" dur="2.2s" repeatCount="indefinite"/></circle>
+<circle cx="{px(0.3):.0f}" cy="{py(1e-4):.0f}" r="4" fill="#b45309"><animate attributeName="r" values="3;7;3" dur="2.2s" begin="-0.7s" repeatCount="indefinite"/></circle>
+<line x1="{px(0.29):.0f}" y1="{py(1e-3)-6:.0f}" x2="{px(0.36):.0f}" y2="{py(1e-3)-6:.0f}" stroke="#2563eb" stroke-width="2" stroke-dasharray="4,3">
+<animate attributeName="opacity" values="0;1;1;0;0" dur="{DI}s" repeatCount="indefinite" keyTimes="0;0.3;0.46;0.52;1"/></line>
 '''
     svg += caption("① 指数段：每 +60mV 电流 ×10——模拟工程师的十倍频速算法", "#dc2626", DI,
                    "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=548)
@@ -3929,6 +3942,11 @@ def make_comparator_opamp():
 <text x="430" y="490" font-size="11" fill="#475569">靠输出级电流「灌」进负载，</text>
 <text x="430" y="510" font-size="11" fill="#475569">不受上拉电阻的 RC 拖累</text>
 <text x="430" y="536" font-size="11" font-weight="bold" fill="#b45309">所以：判决用比较器，驱动用运放</text>
+<circle r="5" fill="#2563eb"><animateMotion dur="{DC}s" repeatCount="indefinite" path="{curve(opamp,'#2563eb')[9:]}" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#f59e0b"><animateMotion dur="{DC}s" begin="-0.4s" repeatCount="indefinite" path="M92,170 L158,170"/></circle>
+{pulse(58, 434, 304, 90, '#dc2626', 1.8, 10)}
+{pulse(tx(1.35), vy(4.9)+16, 150, 22, '#059669', 1.4, 6)}
+{pulse(408, 452, 300, 74, '#2563eb', 2.2, 10)}
 '''
     svg += caption("① 速度差：运放被压摆率限死（4µs 爬 2V），比较器 1.3µs 直接跳", "#059669", DC,
                    "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=584)
@@ -4071,6 +4089,14 @@ def make_probe_loading():
 <text x="420" y="556" font-size="11" fill="#475569">示波器地夹与市电共地</text>
 <text x="420" y="574" font-size="11" font-weight="bold" fill="#dc2626">隔离变压器 或 差分探头，二选一</text>
 <text x="270" y="604" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#b45309">上电第一次：串限流灯泡 / 恒流 50mA —— 冒烟的是灯泡，不是芯片</text>
+<circle r="5" fill="#f59e0b"><animateMotion dur="{DP}s" begin="-0.3s" repeatCount="indefinite" path="M70,150 L148,150"/></circle>
+<circle r="5" fill="#f59e0b"><animateMotion dur="{DP}s" begin="-0.8s" repeatCount="indefinite" path="M202,150 L248,150"/></circle>
+<circle r="5" fill="#f59e0b"><animateMotion dur="{DP}s" begin="-1.3s" repeatCount="indefinite" path="M250,152 L250,268"/></circle>
+<circle r="5" fill="#2563eb"><animateMotion dur="{DP}s" begin="-1.8s" repeatCount="indefinite" path="M338,270 L386,270"/></circle>
+{pulse(52, 500, 96, 78, '#dc2626', 1.6, 12)}
+{pulse(52, 296, 300, 86, '#dc2626', 2.0, 10)}
+{pulse(400, 512, 380, 74, '#dc2626', 2.4, 10)}
+<circle r="5" fill="#dc2626"><animateMotion dur="{DP}s" begin="-0.5s" repeatCount="indefinite" path="M90,514 L90,566 L90,514"/></circle>
 '''
     svg += caption("① 探头不是「接上去看看」——它是 1MΩ‖100pF 的负载，会分压也会滤波", "#dc2626", DP,
                    "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=628)
@@ -4081,6 +4107,86 @@ def make_probe_loading():
     svg += caption("④ 新板第一次上电先限流：让最便宜的元件先冒烟", "#b45309", DP,
                    "0;0;1;1", "0;0.85;0.9;1", y=628)
     save('probe-loading.svg', svg + '</svg>')
+
+
+# ======================= 图 55：CMOS 传输门为什么必须 N+P 并联（第 8 章 8.1） =======================
+def make_transfer_gate():
+    DG = 10
+    VT, R0, VDD = 1.0, 80.0, 5.0
+    X0, X1, Y0, Y1 = 400, 760, 132, 402
+    px = lambda v: X0 + v/VDD*(X1-X0)
+    def ry(r):
+        r = min(max(r, 10.0), 1000.0)
+        return Y0 + (np.log10(r)-1)/2*(Y1-Y0)
+    def ron_n(vin):
+        d = VDD - vin - VT
+        return R0/d if d > 0.06 else 1000.0
+    def ron_p(vin):
+        d = vin - VT
+        return R0/d if d > 0.06 else 1000.0
+    def ron_par(vin):
+        rn, rp = ron_n(vin), ron_p(vin)
+        return 1/(1/rn + 1/rp)
+    def curve(fn, color, wid=2.6):
+        pts = [f"{px(v):.0f},{ry(fn(v)):.0f}" for v in np.linspace(0, VDD, 240)]
+        return f'<path d="M' + " L".join(pts) + f'" fill="none" stroke="{color}" stroke-width="{wid}"/>'
+    svg = svg_open('CMOS 传输门：一只管子总有一段「使不上劲」', h=640)
+    svg += f'''
+<text x="190" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">NMOS + PMOS 并联 = 全程平坦</text>
+<text x="40" y="92" font-size="11.5" fill="#475569">Vin 靠近 0V：NMOS 的 V_GS 最大 →</text>
+<text x="52" y="110" font-size="11.5" font-weight="bold" fill="#2563eb">NMOS 挑大梁（Ron 20Ω）</text>
+<text x="40" y="140" font-size="11.5" fill="#475569">Vin 逼近 VDD：NMOS 的 V_GS→0</text>
+<text x="52" y="158" font-size="11.5" font-weight="bold" fill="#dc2626">NMOS 彻底罢工（Ron→∞）</text>
+<text x="40" y="188" font-size="11.5" fill="#475569">PMOS 恰好相反：Vin 越低压</text>
+<text x="52" y="206" font-size="11.5" font-weight="bold" fill="#dc2626">V_SG 越不够，低端罢工</text>
+<text x="40" y="236" font-size="11.5" font-weight="bold" fill="#059669">两只并联：谁行谁上，接力覆盖</text>
+<text x="52" y="254" font-size="11.5" fill="#475569">Ron 全程锁在 20~27Ω</text>
+<text x="40" y="284" font-size="11" fill="#475569">代价：多一只管子、多一个</text>
+<text x="40" y="302" font-size="11" fill="#475569">反相控制信号——CD4066 内部</text>
+<text x="40" y="320" font-size="11" fill="#475569">就是这么干的</text>
+<polygon points="60,380 60,440 140,410" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="66" y="402" font-size="11" font-weight="bold" fill="#dc2626">N</text>
+<text x="66" y="428" font-size="11" font-weight="bold" fill="#2563eb">P</text>
+<line x1="140" y1="410" x2="200" y2="410" stroke="#334155" stroke-width="2.5"/>
+<line x1="200" y1="410" x2="200" y2="470" stroke="#334155" stroke-width="2.5"/>
+{resistor_v(150, 440, 30, '')}
+<text x="120" y="500" font-size="11" fill="#475569">导通电阻 Ron</text>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DG}s" begin="-0.3s" repeatCount="indefinite" path="M20,410 L58,410"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DG}s" begin="-0.9s" repeatCount="indefinite" path="M142,410 L198,410"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DG}s" begin="-1.5s" repeatCount="indefinite" path="M200,412 L200,468"/></circle>
+<line x1="{X0}" y1="{Y1}" x2="{X1}" y2="{Y1}" stroke="#64748b" stroke-width="1.6"/>
+<line x1="{X0}" y1="{Y0}" x2="{X0}" y2="{Y1}" stroke="#64748b" stroke-width="1.6"/>
+<text x="{X1}" y="{Y1+42}" text-anchor="end" font-size="11" fill="#475569">Vin →</text>
+<text x="{X0-6}" y="{ry(10)+4:.0f}" text-anchor="end" font-size="10.5" fill="#475569">10Ω</text>
+<text x="{X0-6}" y="{ry(100)+4:.0f}" text-anchor="end" font-size="10.5" fill="#475569">100Ω</text>
+<text x="{X0-6}" y="{ry(1000)+4:.0f}" text-anchor="end" font-size="10.5" fill="#475569">1kΩ</text>
+<text x="{px(1):.0f}" y="{Y1+24}" text-anchor="middle" font-size="10" fill="#475569">1V</text>
+<text x="{px(2.5):.0f}" y="{Y1+24}" text-anchor="middle" font-size="10" fill="#475569">2.5V</text>
+<text x="{px(5):.0f}" y="{Y1+24}" text-anchor="middle" font-size="10" fill="#475569">5V</text>
+<line x1="{px(4):.0f}" y1="{Y0}" x2="{px(4):.0f}" y2="{Y1}" stroke="#dc2626" stroke-width="1" stroke-dasharray="4,3"/>
+<line x1="{px(1):.0f}" y1="{Y0}" x2="{px(1):.0f}" y2="{Y1}" stroke="#dc2626" stroke-width="1" stroke-dasharray="4,3"/>
+{curve(ron_n, '#dc2626')}
+{curve(ron_p, '#2563eb')}
+{curve(ron_par, '#059669')}
+<text x="{px(3.85):.0f}" y="{Y0-10}" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#dc2626">NMOS 在此罢工</text>
+<text x="{px(1.15):.0f}" y="{Y0-10}" text-anchor="start" font-size="10.5" font-weight="bold" fill="#2563eb">PMOS 在此罢工</text>
+<text x="{px(2.5):.0f}" y="{ry(26.7)-16:.0f}" text-anchor="middle" font-size="11" font-weight="bold" fill="#059669">并联：20~27Ω 全程平坦</text>
+<text x="580" y="500" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#b45309">口诀：N 管送低、P 管送高，并联才全都能送</text>
+<circle r="5" fill="#dc2626"><animateMotion dur="{DG}s" repeatCount="indefinite" path="M{px(0):.0f},{ry(20):.0f} L{px(3.9):.0f},{ry(970):.0f}" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#059669">
+<animateMotion dur="{DG}s" repeatCount="indefinite" path="M{px(0):.0f},{ry(20):.0f} L{px(2.5):.0f},{ry(26.7):.0f} L{px(5):.0f},{ry(20):.0f}" keyPoints="0;1" keyTimes="0;1"/></circle>
+'''
+    svg += caption("① 低端：NMOS 的 V_GS 最足 → 20Ω；此时 PMOS 的 V_SG 反而最弱", "#2563eb", DG,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=544)
+    svg += caption("② 高端：NMOS 的 V_GS→0，Ron→∞ 彻底罢工——这就是「N 管传高电平会掉一个 V_T」", "#dc2626", DG,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=544)
+    svg += caption("③ 两只并联：低端 N 扛、高端 P 扛、中间一起扛 → Ron 全程 20~27Ω", "#059669", DG,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=544)
+    svg += caption("④ 代价只是多一只管子和一个反相控制——所以模拟开关内部永远是「传输门」", "#b45309", DG,
+                   "0;0;1;1", "0;0.85;0.9;1", y=544)
+    svg += note_box("单管传的是「有盲区」的电压；传输门传的是「全程达标」的电阻——信号完整性从第一只开关就开始算", 584, DG,
+                    "0;0.9;0.94;1", w=750)
+    save('transfer-gate.svg', svg + '</svg>')
 
 
 if __name__ == '__main__':
@@ -4138,4 +4244,5 @@ if __name__ == '__main__':
     make_comparator_opamp()
     make_noise_budget()
     make_probe_loading()
-    print('all 54 SVGs regenerated into', os.path.abspath(OUT))
+    make_transfer_gate()
+    print('all 55 SVGs regenerated into', os.path.abspath(OUT))
