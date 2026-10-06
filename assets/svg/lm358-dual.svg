@@ -65,5 +65,12 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="90" y="486" font-size="11.5" fill="#475569">① <tspan font-weight="bold" fill="#059669">单电源能用</tspan>：PNP 输入级，共模含地——5V 系统不用再造负电源</text>
 <text x="90" y="510" font-size="11.5" fill="#475569">② <tspan font-weight="bold" fill="#dc2626">输出到不了轨</tspan>：最高 Vcc−1.5V，设计摆幅时要先扣掉</text>
 <text x="90" y="534" font-size="11.5" fill="#475569">③ <tspan font-weight="bold" fill="#b45309">速度不快</tspan>：GBW 1MHz、SR 0.5V/µs —— 低速够用、音频勉强、视频免谈</text>
+<circle r="4.5" fill="#059669"><animateMotion dur="11s" begin="-0.5s" repeatCount="indefinite" path="M76,164 L158,164"/></circle>
+<circle r="4.5" fill="#dc2626"><animateMotion dur="11s" begin="-1.2s" repeatCount="indefinite" path="M76,188 L160,180"/></circle>
+<circle r="4.5" fill="#2563eb"><animateMotion dur="11s" begin="-1.9s" repeatCount="indefinite" path="M96,356 L696,356"/></circle>
+<circle cx="700" cy="348" r="5" fill="none" stroke="#dc2626" stroke-width="2.2">
+<animate attributeName="r" values="5;12;5" dur="2.0s" repeatCount="indefinite"/></circle>
+<circle cx="96" cy="336" r="5" fill="none" stroke="#94a3b8" stroke-width="2.2">
+<animate attributeName="r" values="5;12;5" dur="2.0s" begin="-1.0s" repeatCount="indefinite"/></circle>
 <rect x="328" y="108" width="78" height="88" rx="10" fill="none" stroke="#2563eb" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.0s" repeatCount="indefinite"/></rect>
 <text x="400" y="590" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">① 单封装双运放：一个封装两只独立运放，省面积省成本（板子上最常见的就是它）<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="590" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">② 输入级 PNP → 共模范围含地：这是它能吃单电源的根本原因<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="590" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">③ 输出非轨到轨：最高只到 Vcc−1.5V，算摆幅时必须先扣掉这 1.5V<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="590" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">④ 速度定位：GBW 1MHz / SR 0.5V/µs —— 低速信号链的默认答案<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/></text></svg>

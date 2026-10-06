@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="620" viewBox="0 0 800 620">
+<title>CD4051：八路传感器共用一个 ADC</title>
+<rect width="800" height="620" fill="#f8fafc"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+@media (prefers-color-scheme: dark){
+rect[fill="#f8fafc"]{fill:#0f172a}
+[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
+[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
+[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
+[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
+[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
+[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
+[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
+[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
+[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
+[fill="#cbd5e1"]{fill:#334155}[stroke="#cbd5e1"]{stroke:#475569}
+[fill="#ffffff"]{fill:#0f172a}[fill="#94a3b8"]{fill:#64748b}[stroke="#94a3b8"]{stroke:#64748b}
+[fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
+}
+</style>
+<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">CD4051：八路传感器共用一个 ADC</text>
+
+<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">3 位地址选 8 路之一 —— 多路复用器就是「模拟旋转开关」</text>
+<text x="220" y="100" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">CD4051（8 选 1）</text>
+<rect x="120" y="120" width="200" height="260" rx="10" fill="#f8fafc" stroke="#2563eb" stroke-width="2.2"/>
+<text x="220" y="148" text-anchor="middle" font-size="11.5" fill="#475569">8 路模拟输入（双向）</text>
+<line x1="70" y1="176" x2="120" y2="176" stroke="#334155" stroke-width="2"/><circle cx="120" cy="176" r="3.5" fill="#334155"/><text x="62" y="180" text-anchor="end" font-size="10.5" font-weight="bold" fill="#b45309">Y0</text><line x1="70" y1="200" x2="120" y2="200" stroke="#334155" stroke-width="2"/><circle cx="120" cy="200" r="3.5" fill="#334155"/><text x="62" y="204" text-anchor="end" font-size="10.5" font-weight="bold" fill="#b45309">Y1</text><line x1="70" y1="224" x2="120" y2="224" stroke="#334155" stroke-width="2"/><circle cx="120" cy="224" r="3.5" fill="#334155"/><text x="62" y="228" text-anchor="end" font-size="10.5" font-weight="bold" fill="#b45309">Y2</text><line x1="70" y1="248" x2="120" y2="248" stroke="#334155" stroke-width="2"/><circle cx="120" cy="248" r="3.5" fill="#334155"/><text x="62" y="252" text-anchor="end" font-size="10.5" font-weight="bold" fill="#b45309">Y3</text><line x1="70" y1="272" x2="120" y2="272" stroke="#334155" stroke-width="2"/><circle cx="120" cy="272" r="3.5" fill="#334155"/><text x="62" y="276" text-anchor="end" font-size="10.5" font-weight="bold" fill="#b45309">Y4</text><line x1="70" y1="296" x2="120" y2="296" stroke="#334155" stroke-width="2"/><circle cx="120" cy="296" r="3.5" fill="#334155"/><text x="62" y="300" text-anchor="end" font-size="10.5" font-weight="bold" fill="#b45309">Y5</text><line x1="70" y1="320" x2="120" y2="320" stroke="#334155" stroke-width="2"/><circle cx="120" cy="320" r="3.5" fill="#334155"/><text x="62" y="324" text-anchor="end" font-size="10.5" font-weight="bold" fill="#b45309">Y6</text><line x1="70" y1="344" x2="120" y2="344" stroke="#334155" stroke-width="2"/><circle cx="120" cy="344" r="3.5" fill="#334155"/><text x="62" y="348" text-anchor="end" font-size="10.5" font-weight="bold" fill="#b45309">Y7</text>
+<line x1="320" y1="200" x2="370" y2="200" stroke="#334155" stroke-width="2.5"/>
+<text x="382" y="204" font-size="11.5" font-weight="bold" fill="#059669">COM 公共端</text>
+<line x1="320" y1="300" x2="370" y2="300" stroke="#334155" stroke-width="2.5"/>
+<text x="376" y="304" font-size="11.5" font-weight="bold" fill="#7c3aed">→ 送 ADC</text>
+<text x="220" y="410" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#2563eb">A0 A1 A2 三位地址（4051）</text>
+<line x1="400" y1="430" x2="760" y2="430" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="6,5"/>
+<text x="580" y="470" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">通道选择表</text>
+<text x="450" y="502" font-size="11.5" font-weight="bold" fill="#475569">A2 A1 A0</text>
+<text x="600" y="502" font-size="11.5" font-weight="bold" fill="#475569">选中的通道</text>
+<text x="450" y="526" font-size="11" fill="#475569">0 0 0</text><text x="600" y="526" font-size="11" font-weight="bold" fill="#475569">Y0</text><text x="450" y="546" font-size="11" fill="#475569">0 0 1</text><text x="600" y="546" font-size="11" font-weight="bold" fill="#475569">Y1</text><text x="450" y="566" font-size="11" fill="#475569">0 1 0</text><text x="600" y="566" font-size="11" font-weight="bold" fill="#475569">Y2</text><text x="450" y="586" font-size="11" fill="#475569">0 1 1</text><text x="600" y="586" font-size="11" font-weight="bold" fill="#475569">Y3</text><text x="450" y="606" font-size="11" fill="#475569">1 0 0</text><text x="600" y="606" font-size="11" font-weight="bold" fill="#475569">Y4</text><text x="450" y="626" font-size="11" fill="#059669">1 0 1</text><text x="600" y="626" font-size="11" font-weight="bold" fill="#059669">Y5</text><text x="640" y="626" font-size="10.5" fill="#059669">← 本例选中（接热敏电阻）</text><text x="450" y="646" font-size="11" fill="#475569">1 1 0</text><text x="600" y="646" font-size="11" font-weight="bold" fill="#475569">Y6</text><text x="450" y="666" font-size="11" fill="#475569">1 1 1</text><text x="600" y="666" font-size="11" font-weight="bold" fill="#475569">Y7</text>
+<circle r="5" fill="#059669"><animateMotion dur="11s" begin="-0.3s" repeatCount="indefinite" path="M60,296 L118,296"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="11s" begin="-0.9s" repeatCount="indefinite" path="M122,296 L318,300"/></circle>
+<circle r="5" fill="#7c3aed"><animateMotion dur="11s" begin="-1.5s" repeatCount="indefinite" path="M322,300 L368,300"/></circle>
+<circle r="5" fill="#2563eb"><animateMotion dur="11s" begin="-2.1s" repeatCount="indefinite" path="M150,404 L290,404"/></circle>
+<circle cx="220" cy="140" r="5" fill="none" stroke="#2563eb" stroke-width="2.2">
+<animate attributeName="r" values="5;12;5" dur="2.0s" repeatCount="indefinite"/></circle>
+<circle cx="370" cy="200" r="5" fill="none" stroke="#059669" stroke-width="2.2">
+<animate attributeName="r" values="5;12;5" dur="2.0s" begin="-1.0s" repeatCount="indefinite"/></circle>
+<text x="400" y="596" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">① 三位地址选通一路：8 个传感器轮流接到同一个 ADC——省掉 7 个 ADC<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="596" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">② 通道是双向的：COM 既能输出（送 ADC）、也能输入（做信号分配）<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="596" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">③ 切换瞬间有电荷注入与 Ron 变化——别在转换中途切通道（见 8.6）<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="596" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">④ 同族选型：4052 双 4 选 1、4053 三路 2 选 1、74HC4051 高速版<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/></text></svg>

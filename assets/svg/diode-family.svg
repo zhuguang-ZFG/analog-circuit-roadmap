@@ -29,6 +29,13 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="70" y="516" font-size="11.5" fill="#475569">③ <tspan font-weight="bold" fill="#7c3aed">TVS 拼的是「面积」</tspan>：大面积结承受浪涌能量，ns 级把电压钳住，接在接口最前线</text>
 <text x="70" y="540" font-size="11.5" fill="#475569">④ <tspan font-weight="bold" fill="#b45309">稳压管工作在击穿区</tspan>：这是唯一「故意让它击穿」的用法，5.6V 附近温漂最小</text>
 <text x="70" y="564" font-size="11.5" fill="#475569">⑤ <tspan font-weight="bold" fill="#059669">变容管是「电压控电容」</tspan>：反压越大耗尽层越宽、结电容越小——VCO 靠它调频</text>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="11s" begin="-0.5s" repeatCount="indefinite" path="M108,394 L273,394"/></circle>
+<circle cx="154" cy="370" r="5" fill="none" stroke="#475569" stroke-width="2.2">
+<animate attributeName="r" values="5;12;5" dur="2.0s" repeatCount="indefinite"/></circle>
+<circle cx="117" cy="130" r="5" fill="none" stroke="#2563eb" stroke-width="2.2">
+<animate attributeName="r" values="5;12;5" dur="2.0s" begin="-0.7s" repeatCount="indefinite"/></circle>
+<circle cx="456" cy="310" r="5" fill="none" stroke="#059669" stroke-width="2.2">
+<animate attributeName="r" values="5;12;5" dur="2.0s" begin="-1.4s" repeatCount="indefinite"/></circle>
 <rect x="270" y="108" width="120" height="120" rx="10" fill="none" stroke="#2563eb" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.0s" repeatCount="indefinite"/></rect>
 <rect x="196" y="300" width="130" height="60" rx="10" fill="none" stroke="#dc2626" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.0s" repeatCount="indefinite"/></rect>
 <circle cx="639" cy="145" r="5" fill="none" stroke="#7c3aed" stroke-width="2.4">

@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="620" viewBox="0 0 800 620">
+<title>BJT 放大原理：99% 的电子来不及复合，就成了 I_C</title>
+<rect width="800" height="620" fill="#f8fafc"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+@media (prefers-color-scheme: dark){
+rect[fill="#f8fafc"]{fill:#0f172a}
+[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
+[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
+[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
+[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
+[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
+[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
+[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
+[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
+[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
+[fill="#cbd5e1"]{fill:#334155}[stroke="#cbd5e1"]{stroke:#475569}
+[fill="#ffffff"]{fill:#0f172a}[fill="#94a3b8"]{fill:#64748b}[stroke="#94a3b8"]{stroke:#64748b}
+[fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
+}
+</style>
+<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">BJT 放大原理：99% 的电子来不及复合，就成了 I_C</text>
+
+<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">NPN：两块 N 夹一块「极薄」的 P</text>
+<rect x="80" y="90" width="130" height="130" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="2.2"/>
+<text x="145" y="118" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#2563eb">发射区 N+</text>
+<text x="145" y="140" text-anchor="middle" font-size="10.5" fill="#475569">重掺杂</text>
+<text x="145" y="162" text-anchor="middle" font-size="10.5" fill="#475569">发射结正偏</text>
+<text x="145" y="182" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#059669">↓ 注入电子</text>
+<rect x="250" y="90" width="90" height="130" rx="6" fill="#fef2f2" stroke="#dc2626" stroke-width="2.2"/>
+<text x="295" y="112" text-anchor="middle" font-size="12" font-weight="bold" fill="#dc2626">基区 P</text>
+<text x="295" y="132" text-anchor="middle" font-size="10.5" fill="#475569">极薄</text>
+<text x="295" y="150" text-anchor="middle" font-size="10.5" fill="#475569">轻掺杂</text>
+<text x="295" y="176" text-anchor="middle" font-size="10" fill="#475569">（复合 1%）</text>
+<rect x="380" y="90" width="130" height="130" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="2.2"/>
+<text x="445" y="118" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#2563eb">集电区 N</text>
+<text x="445" y="140" text-anchor="middle" font-size="10.5" fill="#475569">集电结反偏</text>
+<text x="445" y="162" text-anchor="middle" font-size="10.5" fill="#475569">强电场扫入</text>
+<text x="445" y="182" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#059669">→ I_C</text>
+<line x1="210" y1="140" x2="248" y2="140" stroke="#334155" stroke-width="2"/>
+<line x1="342" y1="140" x2="378" y2="140" stroke="#334155" stroke-width="2"/>
+<text x="145" y="86" text-anchor="middle" font-size="11" font-weight="bold" fill="#b45309">E</text>
+<text x="295" y="86" text-anchor="middle" font-size="11" font-weight="bold" fill="#b45309">B</text>
+<text x="445" y="86" text-anchor="middle" font-size="11" font-weight="bold" fill="#b45309">C</text>
+<line x1="295" y1="220" x2="295" y2="252" stroke="#b45309" stroke-width="2.5"/>
+<text x="305" y="244" font-size="11" font-weight="bold" fill="#b45309">I_B ≈ 1% I_E</text>
+<circle r="5.5" fill="#2563eb"><animateMotion dur="11s" begin="-0.2s" repeatCount="indefinite" path="M92,155 L246,150" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5.5" fill="#2563eb"><animateMotion dur="11s" begin="-0.7s" repeatCount="indefinite" path="M92,135 L246,135" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5.5" fill="#2563eb"><animateMotion dur="11s" begin="-1.2s" repeatCount="indefinite" path="M252,140 L376,140" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="4.5" fill="#dc2626"><animateMotion dur="11s" begin="-1.8s" repeatCount="indefinite" path="M288,150 L300,214" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="4" fill="#dc2626"><animateMotion dur="11s" begin="-2.4s" repeatCount="indefinite" path="M280,165 L282,168" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="4" fill="#dc2626"><animateMotion dur="11s" begin="-2.7s" repeatCount="indefinite" path="M302,158 L305,161" keyPoints="0;1" keyTimes="0;1"/></circle>
+<line x1="504" y1="90" x2="504" y2="480" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="6,5"/>
+<text x="600" y="112" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#334155">五步物理图像</text>
+<text x="560" y="146" font-size="11.5" fill="#475569">① 发射结<tspan font-weight="bold" fill="#059669">正偏</tspan> → 发射区向基区大量注入电子</text>
+<text x="560" y="176" font-size="11.5" fill="#475569">② 基区<tspan font-weight="bold" fill="#dc2626">极薄且轻掺杂</tspan> → 99% 电子来不及复合</text>
+<text x="560" y="206" font-size="11.5" fill="#475569">③ 集电结<tspan font-weight="bold" fill="#059669">反偏</tspan> → 强电场把电子扫入集电极</text>
+<text x="560" y="236" font-size="11.5" fill="#475569">④ 只有约 <tspan font-weight="bold" fill="#b45309">1%</tspan> 在基区复合 → 形成小电流 I_B</text>
+<text x="560" y="266" font-size="11.5" fill="#475569">⑤ 结果：I_C = β·I_B，<tspan font-weight="bold">小电流控制大电流</tspan></text>
+<rect x="560" y="292" width="240" height="120" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="1.8"/>
+<text x="570" y="318" font-size="12" font-weight="bold" fill="#b45309">为什么不能依赖 β</text>
+<text x="570" y="342" font-size="11" fill="#475569">β 不是精密常数：</text>
+<text x="570" y="362" font-size="11" fill="#475569">· 同一型号离散 50~300</text>
+<text x="570" y="382" font-size="11" fill="#475569">· 随温度变化</text>
+<text x="570" y="402" font-size="11" fill="#475569">· 随 I_C 大小变化</text>
+<rect x="60" y="292" width="440" height="120" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text x="76" y="318" font-size="12" font-weight="bold" fill="#2563eb">电流账（β=100 时）</text>
+<text x="76" y="342" font-size="11.5" fill="#475569">I_E = I_B + I_C（基尔霍夫，永远成立）</text>
+<text x="76" y="364" font-size="11.5" fill="#475569">I_B = 1% I_E → I_C = 99% I_E</text>
+<text x="76" y="386" font-size="11.5" font-weight="bold" fill="#059669">所以 β = I_C/I_B ≈ 99 —— 它是「漏网比例」的倒数</text>
+<text x="76" y="404" font-size="11" fill="#475569">设计时用「强制 β」（如 10）而非标称 β，见 3.5</text>
+<text x="400" y="520" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">① 发射结正偏注入电子——这是「源」；电子多少由 V_BE 决定<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="520" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">② 基区极薄是关键：电子「来不及」复合就被扫走了——这是 β 的物理来源<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="520" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">③ 集电结反偏提供清扫电场：结构决定它「只能放大、不能反过来」<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="520" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">④ 记住 β 是「漏网比例的倒数」——离散大、随温度变，设计绝不依赖它<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/></text><g opacity="0">
+<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.9;0.94;1" dur="11s" repeatCount="indefinite"/>
+<rect x="20" y="536" width="760" height="34" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+<text x="400" y="558" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">BJT 是电流控制器件：真正的输入量是 I_B，输出是 I_C——这是与 MOSFET（电压控制）最本质的分野</text>
+</g></svg>

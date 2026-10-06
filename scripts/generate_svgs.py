@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-generate_svgs.py — 一键再生成《通往模拟电路之路》全部 70 张 SVG SMIL 动画
+generate_svgs.py — 一键再生成《通往模拟电路之路》全部 74 张 SVG SMIL 动画
 用法:  python generate_svgs.py            # 输出到 ../assets/svg/
 风格:  参考 BMS-Z 项目 —— 浅色底 + SMIL 节拍字幕 + 深色模式自适应 + 拟人化讲解
 所有电路参数经过自洽核算（datasheet 级），详见各函数注释。
@@ -4916,6 +4916,13 @@ def make_resistor_model():
 <circle cx="{px(1e9):.0f}" cy="{py(zmag(1e9)):.0f}" r="5.5" fill="#dc2626"/>
 <text x="{px(1e9)-8:.0f}" y="{py(zmag(1e9))+16:.0f}" text-anchor="end" font-size="10.5" font-weight="bold" fill="#dc2626">1GHz：只剩 {zmag(1e9):.0f}Ω</text>
 <circle r="5" fill="#2563eb"><animateMotion dur="{DR}s" repeatCount="indefinite" path="{real_d[9:]}" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DR}s" begin="-0.4s" repeatCount="indefinite" path="M132,92 L168,92"/></circle>
+<circle r="4.5" fill="#dc2626"><animateMotion dur="{DR}s" begin="-1.1s" repeatCount="indefinite" path="M242,92 L266,92"/></circle>
+<circle r="4.5" fill="#7c3aed"><animateMotion dur="{DR}s" begin="-1.8s" repeatCount="indefinite" path="M205,154 L205,174"/></circle>
+<circle cx="{px(f1):.0f}" cy="{py(zmag(f1)):.0f}" r="5" fill="none" stroke="#7c3aed" stroke-width="2.4">
+<animate attributeName="r" values="5;12;5" dur="1.9s" repeatCount="indefinite"/></circle>
+<circle cx="{px(f2/1e3):.0f}" cy="{py(zmag(f2)):.0f}" r="5" fill="none" stroke="#dc2626" stroke-width="2.4">
+<animate attributeName="r" values="5;12;5" dur="1.9s" begin="-0.9s" repeatCount="indefinite"/></circle>
 {pulse(60, 60, 300, 124, '#94a3b8', 2.0, 10)}
 '''
     svg += caption("① 低频：R 说了算——理想电阻的直线在 0.8MHz 之前都成立", "#94a3b8", DR,
@@ -4971,6 +4978,13 @@ def make_diode_family():
 <text x="70" y="516" font-size="11.5" fill="#475569">③ <tspan font-weight="bold" fill="#7c3aed">TVS 拼的是「面积」</tspan>：大面积结承受浪涌能量，ns 级把电压钳住，接在接口最前线</text>
 <text x="70" y="540" font-size="11.5" fill="#475569">④ <tspan font-weight="bold" fill="#b45309">稳压管工作在击穿区</tspan>：这是唯一「故意让它击穿」的用法，5.6V 附近温漂最小</text>
 <text x="70" y="564" font-size="11.5" fill="#475569">⑤ <tspan font-weight="bold" fill="#059669">变容管是「电压控电容」</tspan>：反压越大耗尽层越宽、结电容越小——VCO 靠它调频</text>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DD}s" begin="-0.5s" repeatCount="indefinite" path="M{px(0.2):.0f},{Y0+PH-6} L{px(2.0):.0f},{Y0+PH-6}"/></circle>
+<circle cx="{px(fam[0][1]):.0f}" cy="{py(fam[0][2]):.0f}" r="5" fill="none" stroke="#475569" stroke-width="2.2">
+<animate attributeName="r" values="5;12;5" dur="2.0s" repeatCount="indefinite"/></circle>
+<circle cx="{px(fam[1][1]):.0f}" cy="{py(fam[1][2]):.0f}" r="5" fill="none" stroke="#2563eb" stroke-width="2.2">
+<animate attributeName="r" values="5;12;5" dur="2.0s" begin="-0.7s" repeatCount="indefinite"/></circle>
+<circle cx="{px(fam[5][1]):.0f}" cy="{py(fam[5][2]):.0f}" r="5" fill="none" stroke="#059669" stroke-width="2.2">
+<animate attributeName="r" values="5;12;5" dur="2.0s" begin="-1.4s" repeatCount="indefinite"/></circle>
 {pulse(270, 108, 120, 120, '#2563eb', 2.0, 10)}
 {pulse(196, 300, 130, 60, '#dc2626', 2.0, 10)}
 <circle cx="{px(fam[3][1]):.0f}" cy="{py(fam[3][2]):.0f}" r="5" fill="none" stroke="#7c3aed" stroke-width="2.4">
@@ -5098,6 +5112,13 @@ def make_lm358_dual():
 <text x="90" y="486" font-size="11.5" fill="#475569">① <tspan font-weight="bold" fill="#059669">单电源能用</tspan>：PNP 输入级，共模含地——5V 系统不用再造负电源</text>
 <text x="90" y="510" font-size="11.5" fill="#475569">② <tspan font-weight="bold" fill="#dc2626">输出到不了轨</tspan>：最高 Vcc−1.5V，设计摆幅时要先扣掉</text>
 <text x="90" y="534" font-size="11.5" fill="#475569">③ <tspan font-weight="bold" fill="#b45309">速度不快</tspan>：GBW 1MHz、SR 0.5V/µs —— 低速够用、音频勉强、视频免谈</text>
+<circle r="4.5" fill="#059669"><animateMotion dur="{DL}s" begin="-0.5s" repeatCount="indefinite" path="M76,164 L158,164"/></circle>
+<circle r="4.5" fill="#dc2626"><animateMotion dur="{DL}s" begin="-1.2s" repeatCount="indefinite" path="M76,188 L160,180"/></circle>
+<circle r="4.5" fill="#2563eb"><animateMotion dur="{DL}s" begin="-1.9s" repeatCount="indefinite" path="M96,356 L696,356"/></circle>
+<circle cx="700" cy="348" r="5" fill="none" stroke="#dc2626" stroke-width="2.2">
+<animate attributeName="r" values="5;12;5" dur="2.0s" repeatCount="indefinite"/></circle>
+<circle cx="96" cy="336" r="5" fill="none" stroke="#94a3b8" stroke-width="2.2">
+<animate attributeName="r" values="5;12;5" dur="2.0s" begin="-1.0s" repeatCount="indefinite"/></circle>
 {pulse(328, 108, 78, 88, '#2563eb', 2.0, 10)}
 '''
     svg += caption("① 单封装双运放：一个封装两只独立运放，省面积省成本（板子上最常见的就是它）", "#2563eb", DL,
@@ -5233,6 +5254,263 @@ def make_discrete_ldo():
     save('discrete-ldo.svg', svg + '</svg>')
 
 
+# ======================= 图 71：BJT 载流子输运（第 3 章 3.1） =======================
+def make_bjt_transport():
+    DB = 11
+    svg = svg_open('BJT 放大原理：99% 的电子来不及复合，就成了 I_C', h=620)
+    svg += f'''
+<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">NPN：两块 N 夹一块「极薄」的 P</text>
+<rect x="80" y="90" width="130" height="130" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="2.2"/>
+<text x="145" y="118" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#2563eb">发射区 N+</text>
+<text x="145" y="140" text-anchor="middle" font-size="10.5" fill="#475569">重掺杂</text>
+<text x="145" y="162" text-anchor="middle" font-size="10.5" fill="#475569">发射结正偏</text>
+<text x="145" y="182" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#059669">↓ 注入电子</text>
+<rect x="250" y="90" width="90" height="130" rx="6" fill="#fef2f2" stroke="#dc2626" stroke-width="2.2"/>
+<text x="295" y="112" text-anchor="middle" font-size="12" font-weight="bold" fill="#dc2626">基区 P</text>
+<text x="295" y="132" text-anchor="middle" font-size="10.5" fill="#475569">极薄</text>
+<text x="295" y="150" text-anchor="middle" font-size="10.5" fill="#475569">轻掺杂</text>
+<text x="295" y="176" text-anchor="middle" font-size="10" fill="#475569">（复合 1%）</text>
+<rect x="380" y="90" width="130" height="130" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="2.2"/>
+<text x="445" y="118" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#2563eb">集电区 N</text>
+<text x="445" y="140" text-anchor="middle" font-size="10.5" fill="#475569">集电结反偏</text>
+<text x="445" y="162" text-anchor="middle" font-size="10.5" fill="#475569">强电场扫入</text>
+<text x="445" y="182" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#059669">→ I_C</text>
+<line x1="210" y1="140" x2="248" y2="140" stroke="#334155" stroke-width="2"/>
+<line x1="342" y1="140" x2="378" y2="140" stroke="#334155" stroke-width="2"/>
+<text x="145" y="86" text-anchor="middle" font-size="11" font-weight="bold" fill="#b45309">E</text>
+<text x="295" y="86" text-anchor="middle" font-size="11" font-weight="bold" fill="#b45309">B</text>
+<text x="445" y="86" text-anchor="middle" font-size="11" font-weight="bold" fill="#b45309">C</text>
+<line x1="295" y1="220" x2="295" y2="252" stroke="#b45309" stroke-width="2.5"/>
+<text x="305" y="244" font-size="11" font-weight="bold" fill="#b45309">I_B ≈ 1% I_E</text>
+<circle r="5.5" fill="#2563eb"><animateMotion dur="{DB}s" begin="-0.2s" repeatCount="indefinite" path="M92,155 L246,150" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5.5" fill="#2563eb"><animateMotion dur="{DB}s" begin="-0.7s" repeatCount="indefinite" path="M92,135 L246,135" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5.5" fill="#2563eb"><animateMotion dur="{DB}s" begin="-1.2s" repeatCount="indefinite" path="M252,140 L376,140" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="4.5" fill="#dc2626"><animateMotion dur="{DB}s" begin="-1.8s" repeatCount="indefinite" path="M288,150 L300,214" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="4" fill="#dc2626"><animateMotion dur="{DB}s" begin="-2.4s" repeatCount="indefinite" path="M280,165 L282,168" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="4" fill="#dc2626"><animateMotion dur="{DB}s" begin="-2.7s" repeatCount="indefinite" path="M302,158 L305,161" keyPoints="0;1" keyTimes="0;1"/></circle>
+<line x1="504" y1="90" x2="504" y2="480" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="6,5"/>
+<text x="600" y="112" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#334155">五步物理图像</text>
+<text x="560" y="146" font-size="11.5" fill="#475569">① 发射结<tspan font-weight="bold" fill="#059669">正偏</tspan> → 发射区向基区大量注入电子</text>
+<text x="560" y="176" font-size="11.5" fill="#475569">② 基区<tspan font-weight="bold" fill="#dc2626">极薄且轻掺杂</tspan> → 99% 电子来不及复合</text>
+<text x="560" y="206" font-size="11.5" fill="#475569">③ 集电结<tspan font-weight="bold" fill="#059669">反偏</tspan> → 强电场把电子扫入集电极</text>
+<text x="560" y="236" font-size="11.5" fill="#475569">④ 只有约 <tspan font-weight="bold" fill="#b45309">1%</tspan> 在基区复合 → 形成小电流 I_B</text>
+<text x="560" y="266" font-size="11.5" fill="#475569">⑤ 结果：I_C = β·I_B，<tspan font-weight="bold">小电流控制大电流</tspan></text>
+<rect x="560" y="292" width="240" height="120" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="1.8"/>
+<text x="570" y="318" font-size="12" font-weight="bold" fill="#b45309">为什么不能依赖 β</text>
+<text x="570" y="342" font-size="11" fill="#475569">β 不是精密常数：</text>
+<text x="570" y="362" font-size="11" fill="#475569">· 同一型号离散 50~300</text>
+<text x="570" y="382" font-size="11" fill="#475569">· 随温度变化</text>
+<text x="570" y="402" font-size="11" fill="#475569">· 随 I_C 大小变化</text>
+<rect x="60" y="292" width="440" height="120" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text x="76" y="318" font-size="12" font-weight="bold" fill="#2563eb">电流账（β=100 时）</text>
+<text x="76" y="342" font-size="11.5" fill="#475569">I_E = I_B + I_C（基尔霍夫，永远成立）</text>
+<text x="76" y="364" font-size="11.5" fill="#475569">I_B = 1% I_E → I_C = 99% I_E</text>
+<text x="76" y="386" font-size="11.5" font-weight="bold" fill="#059669">所以 β = I_C/I_B ≈ 99 —— 它是「漏网比例」的倒数</text>
+<text x="76" y="404" font-size="11" fill="#475569">设计时用「强制 β」（如 10）而非标称 β，见 3.5</text>
+'''
+    svg += caption("① 发射结正偏注入电子——这是「源」；电子多少由 V_BE 决定", "#2563eb", DB,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=520)
+    svg += caption("② 基区极薄是关键：电子「来不及」复合就被扫走了——这是 β 的物理来源", "#dc2626", DB,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=520)
+    svg += caption("③ 集电结反偏提供清扫电场：结构决定它「只能放大、不能反过来」", "#059669", DB,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=520)
+    svg += caption("④ 记住 β 是「漏网比例的倒数」——离散大、随温度变，设计绝不依赖它", "#b45309", DB,
+                   "0;0;1;1", "0;0.85;0.9;1", y=520)
+    svg += note_box("BJT 是电流控制器件：真正的输入量是 I_B，输出是 I_C——这是与 MOSFET（电压控制）最本质的分野", 560, DB,
+                    "0;0.9;0.94;1", w=760)
+    save('bjt-transport.svg', svg + '</svg>')
+
+
+# ======================= 图 72：BJT 作开关驱动继电器（第 3 章 3.5） =======================
+def make_bjt_switch():
+    DS = 11
+    svg = svg_open('BJT 作开关：算对 Rb，再给线圈配一只续流二极管', h=620)
+    svg += f'''
+<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">5V/70mA 继电器 + 3.3V MCU 驱动</text>
+<line x1="180" y1="90" x2="180" y2="120" stroke="#334155" stroke-width="2.5"/>
+<text x="166" y="86" font-size="11.5" font-weight="bold" fill="#b45309">Vcc 5V</text>
+<line x1="120" y1="120" x2="330" y2="120" stroke="#334155" stroke-width="2.5"/>
+<line x1="180" y1="120" x2="180" y2="150" stroke="#334155" stroke-width="2.5"/>
+<rect x="152" y="150" width="56" height="60" rx="5" fill="#fffbeb" stroke="#b45309" stroke-width="2.2"/>
+<text x="180" y="176" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#b45309">线圈</text>
+<text x="180" y="196" text-anchor="middle" font-size="10" fill="#475569">70mA</text>
+<line x1="180" y1="210" x2="180" y2="248" stroke="#334155" stroke-width="2.5"/>
+<circle cx="180" cy="248" r="4.5" fill="#334155"/>
+<line x1="120" y1="120" x2="120" y2="150" stroke="#334155" stroke-width="2.5"/>
+<path d="M108,150 L120,150 L120,210 L108,210" fill="none" stroke="#7c3aed" stroke-width="2.2"/>
+<line x1="120" y1="150" x2="120" y2="150" stroke="#7c3aed" stroke-width="2.2"/>
+<line x1="108" y1="150" x2="132" y2="150" stroke="#7c3aed" stroke-width="3.2"/>
+<line x1="108" y1="210" x2="132" y2="210" stroke="#7c3aed" stroke-width="3.2"/>
+<line x1="120" y1="210" x2="120" y2="248" stroke="#7c3aed" stroke-width="2.2"/>
+<line x1="120" y1="248" x2="180" y2="248" stroke="#7c3aed" stroke-width="2.2"/>
+<text x="60" y="186" font-size="11" font-weight="bold" fill="#7c3aed">1N4148</text>
+<text x="60" y="204" font-size="10" fill="#dc2626">续流</text>
+<text x="196" y="240" font-size="12" font-weight="bold" fill="#2563eb">C</text>
+<polygon points="200,248 200,290 250,269" fill="#f8fafc" stroke="#2563eb" stroke-width="2.5"/>
+<text x="216" y="266" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#2563eb">NPN</text>
+<text x="196" y="310" font-size="12" font-weight="bold" fill="#059669">E</text>
+<line x1="200" y1="290" x2="180" y2="290" stroke="#2563eb" stroke-width="2.5"/>
+<line x1="180" y1="290" x2="180" y2="318" stroke="#2563eb" stroke-width="2.5"/>
+{gnd_sym(180, 332)}
+<line x1="150" y1="269" x2="118" y2="269" stroke="#334155" stroke-width="2.5"/>
+<rect x="68" y="257" width="46" height="24" rx="3" fill="#f8fafc" stroke="#b45309" stroke-width="2.5"/>
+<text x="91" y="245" text-anchor="middle" font-size="11" font-weight="bold" fill="#b45309">R_b 360Ω</text>
+<line x1="68" y1="269" x2="30" y2="269" stroke="#334155" stroke-width="2.5"/>
+<text x="24" y="265" text-anchor="end" font-size="11.5" font-weight="bold" fill="#059669">MCU 3.3V</text>
+<circle r="5" fill="#059669"><animateMotion dur="{DS}s" begin="-0.3s" repeatCount="indefinite" path="M32,269 L66,269"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="{DS}s" begin="-1.0s" repeatCount="indefinite" path="M116,269 L148,269"/></circle>
+<circle r="5" fill="#2563eb"><animateMotion dur="{DS}s" begin="-1.7s" repeatCount="indefinite" path="M182,250 L182,288 L180,316"/></circle>
+<circle r="5" fill="#b45309"><animateMotion dur="{DS}s" begin="-2.4s" repeatCount="indefinite" path="M182,122 L182,148"/></circle>
+<circle r="5" fill="#7c3aed"><animateMotion dur="{DS}s" begin="-3.0s" repeatCount="indefinite" path="M122,212 L122,246"/></circle>
+<line x1="420" y1="80" x2="420" y2="560" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="6,5"/>
+<text x="620" y="76" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#334155">三步算完（继电器 5V/70mA）</text>
+<rect x="446" y="94" width="330" height="120" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text x="462" y="120" font-size="12" font-weight="bold" fill="#2563eb">① 取「强制 β = 10」</text>
+<text x="462" y="144" font-size="11.5" fill="#475569">深度饱和保险系数——不用标称 β</text>
+<text x="462" y="166" font-size="11.5" font-weight="bold" fill="#059669">I_B = 70mA / 10 = 7mA</text>
+<text x="462" y="190" font-size="11" fill="#475569">（若按 β=100 算只需 0.7mA，一旦</text>
+<text x="462" y="206" font-size="11" fill="#475569">换成低 β 管子就不饱和了）</text>
+<rect x="446" y="228" width="330" height="96" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="1.8"/>
+<text x="462" y="254" font-size="12" font-weight="bold" fill="#b45309">② 算基极电阻</text>
+<text x="462" y="278" font-size="11.5" fill="#475569">R_B = (V_MCU − V_BE) / I_B</text>
+<text x="462" y="302" font-size="11.5" font-weight="bold" fill="#059669">= (3.3 − 0.7) / 7mA ≈ 360Ω</text>
+<text x="462" y="318" font-size="10.5" fill="#475569">取标称值 360Ω（或 330Ω，偏大更安全）</text>
+<rect x="446" y="338" width="330" height="150" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.8"/>
+<text x="462" y="364" font-size="12" font-weight="bold" fill="#b91c1c">③ 续流二极管：不是可选项</text>
+<text x="462" y="388" font-size="11.5" fill="#475569">线圈是感性负载：关断瞬间 L·di/dt 产生</text>
+<text x="462" y="408" font-size="11.5" fill="#475569">反电动势（可到几十上百伏）</text>
+<text x="462" y="430" font-size="11.5" font-weight="bold" fill="#dc2626">没有它 → 三极管 C-E 被击穿</text>
+<text x="462" y="454" font-size="11" fill="#475569">1N4148 反并在线圈两端，给感应电流</text>
+<text x="462" y="472" font-size="11" fill="#475569">一条泄放回路（方向：与电源相反）</text>
+<text x="620" y="516" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#7c3aed">感性负载三兄弟：继电器 / 电机 / 电磁阀 —— 一律加续流或吸收</text>
+<text x="620" y="540" text-anchor="middle" font-size="11" fill="#475569">驱动 MOS 时同理，且别忘了体二极管（见 4.4）</text>
+{pulse(444, 336, 334, 154, '#dc2626', 2.0, 10)}
+'''
+    svg += caption("① 用「强制 β=10」定 I_B：不依赖标称 β，才能保证深度饱和", "#2563eb", DS,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=586)
+    svg += caption("② R_B=(3.3V−0.7V)/7mA≈360Ω —— 分母是 I_B 不是 I_C，别算错", "#b45309", DS,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=586)
+    svg += caption("③ 续流二极管必备：线圈反电动势能到上百伏，三极管扛不住", "#dc2626", DS,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=586)
+    svg += caption("④ 电感（继电器/电机/电磁阀）都要有泄放回路——这是硬件保命常识", "#7c3aed", DS,
+                   "0;0;1;1", "0;0.85;0.9;1", y=586)
+    save('bjt-switch.svg', svg + '</svg>')
+
+
+# ======================= 图 73：体二极管与栅极保护（第 4 章 4.4） =======================
+def make_body_diode():
+    DY = 11
+    svg = svg_open('MOSFET 的两条命门：体二极管与栅氧层', h=620)
+    svg += f'''
+<text x="200" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">体二极管：白送的一只「反向并联」二极管</text>
+<text x="26" y="150" font-size="12" font-weight="bold" fill="#2563eb">D</text>
+<line x1="44" y1="146" x2="80" y2="146" stroke="#334155" stroke-width="2.5"/>
+<line x1="80" y1="120" x2="80" y2="172" stroke="#334155" stroke-width="2.5"/>
+<line x1="96" y1="120" x2="96" y2="172" stroke="#334155" stroke-width="2.5"/>
+<line x1="96" y1="146" x2="140" y2="146" stroke="#334155" stroke-width="2.5"/>
+<text x="150" y="176" font-size="12" font-weight="bold" fill="#059669">S</text>
+<line x1="88" y1="146" x2="88" y2="200" stroke="#94a3b8" stroke-width="2"/>
+<line x1="88" y1="200" x2="200" y2="200" stroke="#94a3b8" stroke-width="2"/>
+<line x1="200" y1="200" x2="200" y2="146" stroke="#94a3b8" stroke-width="2"/>
+<path d="M150,120 L200,120 L200,146" fill="none" stroke="#7c3aed" stroke-width="2.2"/>
+<line x1="150" y1="120" x2="150" y2="200" stroke="#7c3aed" stroke-width="2.2"/>
+<line x1="188" y1="108" x2="212" y2="108" stroke="#7c3aed" stroke-width="3.5"/>
+<line x1="200" y1="108" x2="200" y2="120" stroke="#7c3aed" stroke-width="2"/>
+<path d="M188,96 L200,86 L212,96 Z" fill="#7c3aed"/>
+<text x="222" y="76" font-size="10.5" font-weight="bold" fill="#7c3aed">体二极管</text>
+<circle r="5" fill="#2563eb"><animateMotion dur="{DY}s" begin="-0.3s" repeatCount="indefinite" path="M46,146 L78,146"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="{DY}s" begin="-1.0s" repeatCount="indefinite" path="M98,146 L138,146"/></circle>
+<circle r="5" fill="#7c3aed"><animateMotion dur="{DY}s" begin="-1.7s" repeatCount="indefinite" path="M150,190 L198,190 L198,150"/></circle>
+<line x1="236" y1="80" x2="236" y2="560" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="6,5"/>
+<text x="520" y="76" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#334155">两处后果 + 一处保护</text>
+<rect x="262" y="94" width="330" height="120" rx="8" fill="#f8fafc" stroke="#2563eb" stroke-width="1.8"/>
+<text x="278" y="120" font-size="12" font-weight="bold" fill="#2563eb">① 好处：白送一只续流管</text>
+<text x="278" y="144" font-size="11.5" fill="#475569">H 桥 / 同步 Buck 的「续流」环节，</text>
+<text x="278" y="164" font-size="11.5" fill="#475569">正是体二极管在顶班（死区时间里）</text>
+<text x="278" y="188" font-size="11.5" font-weight="bold" fill="#059669">→ 这是 MOS 能替代二极管整流的根</text>
+<text x="278" y="206" font-size="11" fill="#475569">但它的压降比肖特基大、反向恢复更慢</text>
+<rect x="262" y="228" width="330" height="110" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.8"/>
+<text x="278" y="254" font-size="12" font-weight="bold" fill="#b91c1c">② 坏处：不能反向阻断</text>
+<text x="278" y="278" font-size="11.5" fill="#475569">想用 MOS 做「理想二极管」防反接？</text>
+<text x="278" y="300" font-size="11.5" font-weight="bold" fill="#dc2626">单管不行——反向时体二极管照样导通</text>
+<text x="278" y="324" font-size="11.5" fill="#475569">要用两只背靠背（共源）才有阻断能力</text>
+<rect x="262" y="352" width="330" height="136" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="1.8"/>
+<text x="278" y="378" font-size="12" font-weight="bold" fill="#b45309">③ 栅氧层只有几十 nm，耐压 ±20V</text>
+<text x="278" y="402" font-size="11.5" fill="#475569">栅极是「电容」，不是电阻——</text>
+<text x="278" y="422" font-size="11.5" fill="#475569">一旦过压或静电，栅氧直接击穿（永久损坏）</text>
+<text x="278" y="446" font-size="11.5" font-weight="bold" fill="#dc2626">未用的 MOS 栅极不得悬空！</text>
+<text x="278" y="470" font-size="11" fill="#475569">驱动回路串 10~100Ω 抑制振铃 + 栅极加钳位/下拉</text>
+<text x="600" y="508" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">三句话速记</text>
+<text x="600" y="534" text-anchor="middle" font-size="11.5" fill="#475569">体二极管：白送续流、但断了「反向阻断」这条路</text>
+<text x="600" y="556" text-anchor="middle" font-size="11.5" fill="#475569">栅极：当电容对待——防静电、防悬空、串小电阻</text>
+<text x="600" y="578" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#b45309">死区时间里的续流，正是体二极管在顶班（见 13.7 H 桥）</text>
+{pulse(258, 350, 338, 142, '#b45309', 2.0, 10)}
+'''
+    svg += caption("① 体二极管是结构自带的：MOS 天然反向并联一只二极管，拆不掉", "#2563eb", DY,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=604)
+    svg += caption("② 好处是 H 桥/同步 Buck 的死区续流有它顶班；坏处是想反向阻断就不行", "#dc2626", DY,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=604)
+    svg += caption("③ 栅氧层几十 nm、耐压 ±20V：栅极当电容看，防静电防悬空", "#b45309", DY,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=604)
+    svg += caption("④ 驱动串 10~100Ω 抑制振铃；未用管子栅极必须下拉或接地", "#7c3aed", DY,
+                   "0;0;1;1", "0;0.85;0.9;1", y=604)
+    save('body-diode.svg', svg + '</svg>')
+
+
+# ======================= 图 74：CD4051 多路复用（第 8 章 8.2） =======================
+def make_mux4051():
+    DM = 11
+    svg = svg_open('CD4051：八路传感器共用一个 ADC', h=620)
+    svg += f'''
+<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">3 位地址选 8 路之一 —— 多路复用器就是「模拟旋转开关」</text>
+<text x="220" y="100" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">CD4051（8 选 1）</text>
+<rect x="120" y="120" width="200" height="260" rx="10" fill="#f8fafc" stroke="#2563eb" stroke-width="2.2"/>
+<text x="220" y="148" text-anchor="middle" font-size="11.5" fill="#475569">8 路模拟输入（双向）</text>
+'''
+    for i in range(8):
+        y = 176 + i*24
+        svg += f'<line x1="70" y1="{y}" x2="120" y2="{y}" stroke="#334155" stroke-width="2"/>'
+        svg += f'<circle cx="120" cy="{y}" r="3.5" fill="#334155"/>'
+        svg += f'<text x="62" y="{y+4}" text-anchor="end" font-size="10.5" font-weight="bold" fill="#b45309">Y{i}</text>'
+    svg += f'''
+<line x1="320" y1="200" x2="370" y2="200" stroke="#334155" stroke-width="2.5"/>
+<text x="382" y="204" font-size="11.5" font-weight="bold" fill="#059669">COM 公共端</text>
+<line x1="320" y1="300" x2="370" y2="300" stroke="#334155" stroke-width="2.5"/>
+<text x="376" y="304" font-size="11.5" font-weight="bold" fill="#7c3aed">→ 送 ADC</text>
+<text x="220" y="410" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#2563eb">A0 A1 A2 三位地址（4051）</text>
+<line x1="400" y1="430" x2="760" y2="430" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="6,5"/>
+<text x="580" y="470" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">通道选择表</text>
+<text x="450" y="502" font-size="11.5" font-weight="bold" fill="#475569">A2 A1 A0</text>
+<text x="600" y="502" font-size="11.5" font-weight="bold" fill="#475569">选中的通道</text>
+'''
+    for i, addr in enumerate(['0 0 0', '0 0 1', '0 1 0', '0 1 1', '1 0 0', '1 0 1', '1 1 0', '1 1 1']):
+        y = 526 + i*20
+        col = '#059669' if i == 5 else '#475569'
+        svg += f'<text x="450" y="{y}" font-size="11" fill="{col}">{addr}</text>'
+        svg += f'<text x="600" y="{y}" font-size="11" font-weight="bold" fill="{col}">Y{i}</text>'
+        if i == 5:
+            svg += f'<text x="640" y="{y}" font-size="10.5" fill="#059669">← 本例选中（接热敏电阻）</text>'
+    svg += f'''
+<circle r="5" fill="#059669"><animateMotion dur="{DM}s" begin="-0.3s" repeatCount="indefinite" path="M60,296 L118,296"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="{DM}s" begin="-0.9s" repeatCount="indefinite" path="M122,296 L318,300"/></circle>
+<circle r="5" fill="#7c3aed"><animateMotion dur="{DM}s" begin="-1.5s" repeatCount="indefinite" path="M322,300 L368,300"/></circle>
+<circle r="5" fill="#2563eb"><animateMotion dur="{DM}s" begin="-2.1s" repeatCount="indefinite" path="M150,404 L290,404"/></circle>
+<circle cx="220" cy="140" r="5" fill="none" stroke="#2563eb" stroke-width="2.2">
+<animate attributeName="r" values="5;12;5" dur="2.0s" repeatCount="indefinite"/></circle>
+<circle cx="370" cy="200" r="5" fill="none" stroke="#059669" stroke-width="2.2">
+<animate attributeName="r" values="5;12;5" dur="2.0s" begin="-1.0s" repeatCount="indefinite"/></circle>
+'''
+    svg += caption("① 三位地址选通一路：8 个传感器轮流接到同一个 ADC——省掉 7 个 ADC", "#2563eb", DM,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=596)
+    svg += caption("② 通道是双向的：COM 既能输出（送 ADC）、也能输入（做信号分配）", "#059669", DM,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=596)
+    svg += caption("③ 切换瞬间有电荷注入与 Ron 变化——别在转换中途切通道（见 8.6）", "#dc2626", DM,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=596)
+    svg += caption("④ 同族选型：4052 双 4 选 1、4053 三路 2 选 1、74HC4051 高速版", "#b45309", DM,
+                   "0;0;1;1", "0;0.85;0.9;1", y=596)
+    save('mux-4051.svg', svg + '</svg>')
+
+
 if __name__ == '__main__':
     make_rc_charge()
     make_bridge_rectifier()
@@ -5304,4 +5582,8 @@ if __name__ == '__main__':
     make_lm358_dual()
     make_bjt_configs()
     make_discrete_ldo()
-    print('all 70 SVGs regenerated into', os.path.abspath(OUT))
+    make_bjt_transport()
+    make_bjt_switch()
+    make_body_diode()
+    make_mux4051()
+    print('all 74 SVGs regenerated into', os.path.abspath(OUT))

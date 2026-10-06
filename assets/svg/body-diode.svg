@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="620" viewBox="0 0 800 620">
+<title>MOSFET 的两条命门：体二极管与栅氧层</title>
+<rect width="800" height="620" fill="#f8fafc"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+@media (prefers-color-scheme: dark){
+rect[fill="#f8fafc"]{fill:#0f172a}
+[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
+[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
+[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
+[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
+[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
+[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
+[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
+[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
+[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
+[fill="#cbd5e1"]{fill:#334155}[stroke="#cbd5e1"]{stroke:#475569}
+[fill="#ffffff"]{fill:#0f172a}[fill="#94a3b8"]{fill:#64748b}[stroke="#94a3b8"]{stroke:#64748b}
+[fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
+}
+</style>
+<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">MOSFET 的两条命门：体二极管与栅氧层</text>
+
+<text x="200" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">体二极管：白送的一只「反向并联」二极管</text>
+<text x="26" y="150" font-size="12" font-weight="bold" fill="#2563eb">D</text>
+<line x1="44" y1="146" x2="80" y2="146" stroke="#334155" stroke-width="2.5"/>
+<line x1="80" y1="120" x2="80" y2="172" stroke="#334155" stroke-width="2.5"/>
+<line x1="96" y1="120" x2="96" y2="172" stroke="#334155" stroke-width="2.5"/>
+<line x1="96" y1="146" x2="140" y2="146" stroke="#334155" stroke-width="2.5"/>
+<text x="150" y="176" font-size="12" font-weight="bold" fill="#059669">S</text>
+<line x1="88" y1="146" x2="88" y2="200" stroke="#94a3b8" stroke-width="2"/>
+<line x1="88" y1="200" x2="200" y2="200" stroke="#94a3b8" stroke-width="2"/>
+<line x1="200" y1="200" x2="200" y2="146" stroke="#94a3b8" stroke-width="2"/>
+<path d="M150,120 L200,120 L200,146" fill="none" stroke="#7c3aed" stroke-width="2.2"/>
+<line x1="150" y1="120" x2="150" y2="200" stroke="#7c3aed" stroke-width="2.2"/>
+<line x1="188" y1="108" x2="212" y2="108" stroke="#7c3aed" stroke-width="3.5"/>
+<line x1="200" y1="108" x2="200" y2="120" stroke="#7c3aed" stroke-width="2"/>
+<path d="M188,96 L200,86 L212,96 Z" fill="#7c3aed"/>
+<text x="222" y="76" font-size="10.5" font-weight="bold" fill="#7c3aed">体二极管</text>
+<circle r="5" fill="#2563eb"><animateMotion dur="11s" begin="-0.3s" repeatCount="indefinite" path="M46,146 L78,146"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="11s" begin="-1.0s" repeatCount="indefinite" path="M98,146 L138,146"/></circle>
+<circle r="5" fill="#7c3aed"><animateMotion dur="11s" begin="-1.7s" repeatCount="indefinite" path="M150,190 L198,190 L198,150"/></circle>
+<line x1="236" y1="80" x2="236" y2="560" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="6,5"/>
+<text x="520" y="76" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#334155">两处后果 + 一处保护</text>
+<rect x="262" y="94" width="330" height="120" rx="8" fill="#f8fafc" stroke="#2563eb" stroke-width="1.8"/>
+<text x="278" y="120" font-size="12" font-weight="bold" fill="#2563eb">① 好处：白送一只续流管</text>
+<text x="278" y="144" font-size="11.5" fill="#475569">H 桥 / 同步 Buck 的「续流」环节，</text>
+<text x="278" y="164" font-size="11.5" fill="#475569">正是体二极管在顶班（死区时间里）</text>
+<text x="278" y="188" font-size="11.5" font-weight="bold" fill="#059669">→ 这是 MOS 能替代二极管整流的根</text>
+<text x="278" y="206" font-size="11" fill="#475569">但它的压降比肖特基大、反向恢复更慢</text>
+<rect x="262" y="228" width="330" height="110" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.8"/>
+<text x="278" y="254" font-size="12" font-weight="bold" fill="#b91c1c">② 坏处：不能反向阻断</text>
+<text x="278" y="278" font-size="11.5" fill="#475569">想用 MOS 做「理想二极管」防反接？</text>
+<text x="278" y="300" font-size="11.5" font-weight="bold" fill="#dc2626">单管不行——反向时体二极管照样导通</text>
+<text x="278" y="324" font-size="11.5" fill="#475569">要用两只背靠背（共源）才有阻断能力</text>
+<rect x="262" y="352" width="330" height="136" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="1.8"/>
+<text x="278" y="378" font-size="12" font-weight="bold" fill="#b45309">③ 栅氧层只有几十 nm，耐压 ±20V</text>
+<text x="278" y="402" font-size="11.5" fill="#475569">栅极是「电容」，不是电阻——</text>
+<text x="278" y="422" font-size="11.5" fill="#475569">一旦过压或静电，栅氧直接击穿（永久损坏）</text>
+<text x="278" y="446" font-size="11.5" font-weight="bold" fill="#dc2626">未用的 MOS 栅极不得悬空！</text>
+<text x="278" y="470" font-size="11" fill="#475569">驱动回路串 10~100Ω 抑制振铃 + 栅极加钳位/下拉</text>
+<text x="600" y="508" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">三句话速记</text>
+<text x="600" y="534" text-anchor="middle" font-size="11.5" fill="#475569">体二极管：白送续流、但断了「反向阻断」这条路</text>
+<text x="600" y="556" text-anchor="middle" font-size="11.5" fill="#475569">栅极：当电容对待——防静电、防悬空、串小电阻</text>
+<text x="600" y="578" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#b45309">死区时间里的续流，正是体二极管在顶班（见 13.7 H 桥）</text>
+<rect x="258" y="350" width="338" height="142" rx="10" fill="none" stroke="#b45309" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.0s" repeatCount="indefinite"/></rect>
+<text x="400" y="604" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">① 体二极管是结构自带的：MOS 天然反向并联一只二极管，拆不掉<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="604" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">② 好处是 H 桥/同步 Buck 的死区续流有它顶班；坏处是想反向阻断就不行<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="604" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">③ 栅氧层几十 nm、耐压 ±20V：栅极当电容看，防静电防悬空<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="604" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">④ 驱动串 10~100Ω 抑制振铃；未用管子栅极必须下拉或接地<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/></text></svg>
