@@ -1,0 +1,115 @@
+"""Browser regression for the three time-domain teaching diagrams.
+
+Run: python -m unittest discover -s scripts -p test_waveform_timing.py -v
+Requires Playwright and installed Google Chrome (channel="chrome").
+These tests inspect rendered SMIL positions, not animation markup.
+"""
+import math
+from pathlib import Path
+import unittest
+
+from playwright.sync_api import sync_playwright
+
+
+ASSETS = Path(__file__).resolve().parents[1] / "assets" / "svg"
+DURATION = 12
+CASES = {
+    "analog-switch-beats": (20, [8], "#7c3aed"),
+    "ldo-transient-beats": (50, [5, 10, 30], "#b45309"),
+    "555-astable-beats": (1012, [541], "#dc2626"),
+}
+
+
+def expected_y(name, time):
+    if name == "analog-switch-beats":
+        return (366 if time < 8 else 386 + (time - 8) / 2,
+                430 if time < 8 else 452)
+    if name == "ldo-transient-beats":
+        if time < 5:
+            voltage = 5
+        elif time < 10:
+            voltage = 4.975 - 0.245 * (time - 5) / 5
+        elif time < 30:
+            voltage = 4.730 + 0.260 * (time - 10) / 20
+        else:
+            voltage = 4.990
+        return 348 + (5.01 - voltage) / 0.31 * 80, 462 if time < 5 else 436
+    voltage = (9 - 6 * math.exp(-time / 780) if time < 541
+               else 6 * math.exp(-(time - 541) / 680))
+    return 420 - voltage / 9 * 62, 435 if time < 541 else 455
+
+
+class WaveformTimingTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.playwright = sync_playwright().start()
+        try:
+            cls.browser = cls.playwright.chromium.launch(channel="chrome", headless=True)
+        except Exception:
+            cls.playwright.stop()
+            raise
+        cls.addClassCleanup(cls.playwright.stop)
+        cls.addClassCleanup(cls.browser.close)
+        cls.page = cls.browser.new_page(viewport={"width": 800, "height": 680})
+
+    def snapshot(self, name, times):
+        self.page.goto((ASSETS / (name + ".svg")).as_uri())
+        self.page.locator("svg").wait_for()
+        return self.page.evaluate("""times => {
+            const svg = document.documentElement;
+            svg.pauseAnimations();
+            return times.map(time => {
+                svg.setCurrentTime(time);
+                const points = Array.from(svg.querySelectorAll('circle[r="4.2"]'), c => {
+                    const b = c.getBBox(), m = c.getCTM();
+                    return {
+                        color: c.getAttribute('fill'),
+                        x: m.a * (b.x + b.width / 2) + m.c * (b.y + b.height / 2) + m.e,
+                        y: m.b * (b.x + b.width / 2) + m.d * (b.y + b.height / 2) + m.f
+                    };
+                }).filter(p => p.y >= 335 && p.y <= 478);
+                const phases = Array.from(svg.querySelectorAll('.waveform-phase'),
+                    e => Number(getComputedStyle(e).opacity));
+                return {time, points, phases};
+            });
+        }""", times)
+
+    def check_positions(self, name, times):
+        span, transitions, control_color = CASES[name]
+        for frame in self.snapshot(name, times):
+            time = (frame["time"] % DURATION) / DURATION * span
+            with self.subTest(diagram=name, seconds=frame["time"]):
+                self.assertEqual(len(frame["points"]), 2)
+                points = {p["color"]: p for p in frame["points"]}
+                self.assertEqual(set(points), {"#2563eb", control_color})
+                voltage_y, control_y = expected_y(name, time)
+                for color, y in [("#2563eb", voltage_y), (control_color, control_y)]:
+                    self.assertAlmostEqual(points[color]["x"], 80 + time / span * 680,
+                                           delta=0.6, msg="marker must follow elapsed time")
+                    self.assertAlmostEqual(points[color]["y"], y, delta=0.75,
+                                           msg="marker must match the electrical state")
+                expected_phase = sum(time >= edge for edge in transitions)
+                visible_phases = [i for i, opacity in enumerate(frame["phases"])
+                                  if opacity > 0.01]
+                self.assertEqual(visible_phases, [expected_phase],
+                                 "exactly the current phase must be visible")
+                self.assertAlmostEqual(frame["phases"][expected_phase], 1, delta=0.01)
+
+    def test_linear_time_axis(self):
+        for name in CASES:
+            self.check_positions(name, [0, 3, 6, 9, 11.99])
+
+    def test_transition_boundaries(self):
+        for name, (span, transitions, _) in CASES.items():
+            times = [edge / span * DURATION + offset
+                     for edge in transitions for offset in [-0.002, 0.002]]
+            self.check_positions(name, times)
+
+    def test_cycle_restart_and_seek(self):
+        for name in CASES:
+            # Jump forwards and backwards; the second cycle must reproduce the first.
+            self.check_positions(name, [24.01, 12, 12.01, 23.99, 0, 6])
+
+
+if __name__ == "__main__":
+    unittest.main()

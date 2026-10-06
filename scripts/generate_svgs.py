@@ -6495,6 +6495,29 @@ def make_rectifier_filter_beats():
                    '0;0;1;1', '0;0.84;0.89;1', y=650, size=13.2)
     save('rectifier-filter-beats.svg', svg + '</svg>')
 
+def waveform_cursor(dur, span, series, phases, x0, x1, y0, y1):
+    """时间轴共用匀速游标；series 为 (颜色, [(时刻, y)])，重复时刻表示瞬跳。"""
+    svg = f'''<g transform="translate({x0},0)">
+<animateTransform attributeName="transform" type="translate" values="{x0},0;{x1},0" keyTimes="0;1" calcMode="linear" dur="{dur}s" repeatCount="indefinite"/>
+<line x1="0" y1="{y0}" x2="0" y2="{y1}" stroke="#64748b" stroke-width="1.2" stroke-dasharray="3,3"/>
+'''
+    for color, samples in series:
+        times = ';'.join(f'{t / span:.9f}' for t, _ in samples)
+        values = ';'.join(f'{y:.3f}' for _, y in samples)
+        svg += f'''<circle cx="0" cy="{samples[0][1]:.3f}" r="4.2" fill="{color}">
+<animate attributeName="cy" values="{values}" keyTimes="{times}" calcMode="linear" dur="{dur}s" repeatCount="indefinite"/>
+</circle>'''
+    svg += '</g>'
+    # 字幕与波形使用同一时钟；离散切换避免相邻阶段叠字。
+    phase_times = ';'.join(f'{t / span:.9f}' for t, _, _ in phases) + ';1'
+    for i, (_, text, color) in enumerate(phases):
+        values = ['1' if j == i else '0' for j in range(len(phases))]
+        values.append(values[-1])
+        svg += f'''<text class="waveform-phase" x="400" y="501" text-anchor="middle" font-size="12" font-weight="bold" fill="{color}" opacity="{values[0]}">{text}
+<animate attributeName="opacity" values="{';'.join(values)}" keyTimes="{phase_times}" calcMode="discrete" dur="{dur}s" repeatCount="indefinite"/></text>'''
+    return svg
+
+
 # ======================= 图 89：模拟开关开合四拍（第 8 章 8.6） =======================
 def make_analog_switch_beats():
     """模拟开关四拍：开→通（存储 Q_ch）→关（电荷注入 ΔV）→补偿（dummy 管）。"""
@@ -6546,6 +6569,13 @@ def make_analog_switch_beats():
     en_d = f"M{T0},430 L{tx(8):.0f},430 L{tx(8):.0f},452 L{T1},452"
     vc_d = f"M{T0},366 L{tx(8):.0f},366 L{tx(8):.0f},386 L{T1},392"
     vin_d = f"M{T0},366 L{T1},366"
+    cursor = waveform_cursor(DB, 20, [
+        ('#2563eb', [(0, 366), (8, 366), (8, 386), (20, 392)]),
+        ('#7c3aed', [(0, 430), (8, 430), (8, 452), (20, 452)]),
+    ], [
+        (0, '采样：EN 高，V_C 跟随输入；竖游标上的两点是同一时刻', '#059669'),
+        (8, '保持：EN 变低时注入 10mV 台阶，之后缓慢下垂（未补偿）', '#dc2626'),
+    ], T0, T1, 340, 458)
 
     svg = svg_open('模拟开关开合四拍：电荷注入如何毁掉采样精度（5V 传输门）', h=680)
     svg += f'''
@@ -6566,8 +6596,7 @@ def make_analog_switch_beats():
 <text x="{tx(8)+6:.0f}" y="356" font-size="10.5" font-weight="bold" fill="#dc2626">关断 → 注入 10mV</text>
 <text x="{T0}" y="472" font-size="10.5" fill="#475569">采样相（EN 高）</text>
 <text x="{tx(8)+6:.0f}" y="472" font-size="10.5" fill="#475569">保持相（EN 低）</text>
-<circle r="4.2" fill="#2563eb"><animateMotion dur="{DB}s" repeatCount="indefinite" path="{vc_d}"/></circle>
-<circle r="4.2" fill="#7c3aed"><animateMotion dur="{DB}s" repeatCount="indefinite" path="{en_d}"/></circle>
+{cursor}
 <rect x="22" y="515" width="756" height="87" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
 <text x="40" y="540" font-size="12" font-weight="bold" fill="#2563eb">🧮 四拍账本：精度与速度，在模拟开关这一级就定死了</text>
 <text x="40" y="563" font-size="11" fill="#475569">Q_ch = C_ox·W·L·(V_GS−V_TH) ≈ 0.2pC（随信号电压变化）；ΔV = Q_ch/2C_h = 0.2pC/(2×10pF) = 10mV</text>
@@ -6635,6 +6664,15 @@ def make_ldo_transient_beats():
     vout_d = "M" + " L".join(f"{tx(t):.0f},{vy(v):.0f}" for t, v in zip(vout_t, vout_v))
     il_d = f"M{T0},462 L{tx(5):.0f},462 L{tx(5):.0f},436 L{T1},436"
     ref_y = f"{vy(5.000):.0f}"
+    cursor = waveform_cursor(DB, 50, [
+        ('#2563eb', [(t, vy(v)) for t, v in zip(vout_t, vout_v)]),
+        ('#b45309', [(0, 462), (5, 462), (5, 436), (50, 436)]),
+    ], [
+        (0, '阶跃前：负载 10mA，输出 5V；竖游标上的两点是同一时刻', '#64748b'),
+        (5, '电容支撑：ESR 先跳 25mV，再随电容放电继续下降', '#b45309'),
+        (10, '环路接管：调整管加大供电，输出从谷底回升', '#059669'),
+        (30, '重新稳定：负载保持 500mA，输出约 4.990V（示意）', '#7c3aed'),
+    ], T0, T1, 336, 466)
 
     svg = svg_open('LDO 负载瞬态四拍：一次唤醒为何把 MCU 打到复位（AMS1117-5V）', h=680)
     svg += f'''
@@ -6659,8 +6697,7 @@ def make_ldo_transient_beats():
 <text x="{tx(5):.0f}" y="482" text-anchor="middle" font-size="10.5" fill="#475569">5µs</text>
 <text x="{tx(10):.0f}" y="482" text-anchor="middle" font-size="10.5" fill="#475569">10µs</text>
 <text x="{T1}" y="482" text-anchor="end" font-size="10.5" fill="#475569">50µs</text>
-<circle r="4.2" fill="#2563eb"><animateMotion dur="{DB}s" repeatCount="indefinite" path="{vout_d}"/></circle>
-<circle r="4.2" fill="#b45309"><animateMotion dur="{DB}s" repeatCount="indefinite" path="{il_d}"/></circle>
+{cursor}
 <rect x="22" y="515" width="756" height="87" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
 <text x="40" y="540" font-size="12" font-weight="bold" fill="#2563eb">🧮 四拍账本：一次唤醒的跌落，够不够触发复位？</text>
 <text x="40" y="563" font-size="11" fill="#475569">① ESR 跳变（零延迟）：ΔV₁ = 490mA×50mΩ ≈ 25mV；② 电容放电（µs 级）：ΔV₂ = 0.49A×5µs/10µF ≈ 245mV</text>
@@ -6735,6 +6772,13 @@ def make_555_astable_beats():
     vc_pts = list(zip(tc, vcc_charge)) + [(541 + t, v) for t, v in zip(td, vcc_dis)]
     vc_d = "M" + " L".join(f"{tx(t):.0f},{vy(v):.0f}" for t, v in vc_pts)
     out_d = f"M{T0},435 L{tx(541):.0f},435 L{tx(541):.0f},455 L{T1},455"
+    cursor = waveform_cursor(DB, PER, [
+        ('#2563eb', [(t, vy(v)) for t, v in vc_pts]),
+        ('#dc2626', [(0, 435), (541, 435), (541, 455), (PER, 455)]),
+    ], [
+        (0, '稳态充电：V_C 从 3V 升向 6V，OUT 高（首次上电从 0V 起）', '#b45309'),
+        (541, '稳态放电：到 6V 时 OUT 翻低，V_C 经 R2 降回 3V 后再循环', '#dc2626'),
+    ], T0, T1, 340, 468)
 
     svg = svg_open('555 无稳态四拍：电容荡秋千，输出跳方波（R1=1k/R2=6.8k/C=100nF）', h=680)
     svg += f'''
@@ -6757,8 +6801,7 @@ def make_555_astable_beats():
 <text x="{tx(541)+6:.0f}" y="352" font-size="10" font-weight="bold" fill="#dc2626">THRES 触发 → 翻转</text>
 <text x="{T0+4}" y="484" font-size="10" fill="#475569">充电相 541µs（OUT 高）</text>
 <text x="{tx(541)+6:.0f}" y="484" font-size="10" fill="#475569">放电相 471µs（OUT 低）</text>
-<circle r="4.2" fill="#2563eb"><animateMotion dur="{DB}s" repeatCount="indefinite" path="{vc_d}"/></circle>
-<circle r="4.2" fill="#dc2626"><animateMotion dur="{DB}s" repeatCount="indefinite" path="{out_d}"/></circle>
+{cursor}
 <rect x="22" y="515" width="756" height="87" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
 <text x="40" y="540" font-size="12" font-weight="bold" fill="#2563eb">🧮 四拍账本：⅓→⅔ 恰好 0.693 个时间常数</text>
 <text x="40" y="563" font-size="11" fill="#475569">t_充 = 0.693(R1+R2)C = 0.693×7.8kΩ×100nF ≈ 541µs（OUT 高）；t_放 = 0.693·R2·C ≈ 471µs（OUT 低）</text>
