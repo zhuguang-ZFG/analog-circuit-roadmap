@@ -4710,7 +4710,7 @@ def make_mosfet_curves():
 <text x="{px(10):.0f}" y="{Y1+22}" text-anchor="middle" font-size="10" fill="#475569">10V</text>
 <line x1="{px(2):.0f}" y1="{Y0}" x2="{px(2):.0f}" y2="{Y1}" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
 <text x="{px(2)+6:.0f}" y="{Y0+16}" font-size="10" fill="#94a3b8">V_TH=2V</text>
-<path d="M{px(2):.0f},{py(0.9):.0f} L{px(4):.0f},{py(3.6):.0f} L{px(6):.0f},{py(8.1):.0f} L{px(8):.0f},{py(14.4):.0f}" fill="none" stroke="#dc2626" stroke-width="1.6" stroke-dasharray="5,4"/>
+<path d="M{px(2):.0f},{py(1.8):.0f} L{px(4):.0f},{py(7.2):.0f} L{px(6):.0f},{py(16.2):.0f} L{px(8):.0f},{py(28.8):.0f}" fill="none" stroke="#dc2626" stroke-width="1.6" stroke-dasharray="5,4"/>
 <circle r="5" fill="#059669"><animateMotion dur="{DM}s" repeatCount="indefinite" path="{curve(5.0,'#059669')[9:]}" keyPoints="0;1" keyTimes="0;1"/></circle>
 <circle r="5" fill="#2563eb"><animateMotion dur="{DM}s" begin="-1.4s" repeatCount="indefinite" path="{curve(4.0,'#2563eb')[9:]}" keyPoints="0;1" keyTimes="0;1"/></circle>
 <text x="{px(6.5):.0f}" y="{Y0+34}" font-size="10.5" font-weight="bold" fill="#dc2626">虚线上是夹断点：分界线</text>
@@ -4722,7 +4722,7 @@ def make_mosfet_curves():
 <text x="60" y="494" font-size="11.5" fill="#475569">V_DS 够大：漏端河床被「夹断」，水到断口被强电场直接甩过去——水量只由上游（V_GS）决定</text>
 <circle r="5" fill="#7c3aed"><animateMotion dur="{DM}s" begin="-0.7s" repeatCount="indefinite" path="{curve(6.0,'#7c3aed')[9:]}" keyPoints="0;1" keyTimes="0;1"/></circle>
 <circle r="5" fill="#94a3b8"><animateMotion dur="{DM}s" begin="-2.1s" repeatCount="indefinite" path="{curve(3.0,'#94a3b8')[9:]}" keyPoints="0;1" keyTimes="0;1"/></circle>
-<circle cx="{px(2):.0f}" cy="{py(0.9):.0f}" r="5" fill="none" stroke="#dc2626" stroke-width="2.4">
+<circle cx="{px(2):.0f}" cy="{py(1.8):.0f}" r="5" fill="none" stroke="#dc2626" stroke-width="2.4">
 <animate attributeName="r" values="5;12;5" dur="1.8s" repeatCount="indefinite"/>
 <animate attributeName="opacity" values="0.95;0.2;0.95" dur="1.8s" repeatCount="indefinite"/></circle>
 <circle cx="{px(10):.0f}" cy="{py(30):.0f}" r="5" fill="none" stroke="#059669" stroke-width="2.4">
