@@ -124,7 +124,7 @@ $$V = I \times R$$
 
 三个量，知二求一。但真正值钱的理解方式是反着读：**电流流过电阻，会在电阻上"留下"一份电压（电压降）**。一条串联路径上，各电阻按阻值大小瓜分总电压——阻大的分得多。
 
-🧮 **算一笔**：5V 加在 1kΩ 上 → I=5mA。这 5mA 流过串联的 1kΩ+4kΩ → 4kΩ 上降掉 4V，1kΩ 上只剩 1V。**谁 R 大，谁分的电压多**——这是分压器的全部秘密。
+🧮 **算一笔**：5V 加在串联的 1kΩ+4kΩ（总 5kΩ）上 → I = 5V/5kΩ = **1mA**。同一股电流流过两电阻：4kΩ 降掉 4V，1kΩ 降掉 1V——加起来恰好 5V，不多不少。**谁 R 大，谁分的电压多**——这是分压器的全部秘密。
 
 ### 0.3 分压器：模拟电路出场率第一名
 
@@ -1514,7 +1514,7 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 <a id="part5"></a>
 # 第五篇：动画演示中心 🎬
 
-> 全部 SVG 动画（SMIL，浏览器直接播放）位于 `assets/svg/` 目录，由 `scripts/generate_svgs.py` 一键生成；配套 Falstad 在线电路可实时交互。
+> 全部 17 张 SVG 动画（SMIL，浏览器直接播放）位于 `assets/svg/` 目录，由 `scripts/generate_svgs.py` 一键生成（仓库铁律：两者始终同步）；配套 Falstad 在线电路可实时交互。
 
 ## 5.1 RC 充电 <a id="demo1"></a>
 
@@ -1710,6 +1710,8 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 | 模拟开关 | 74HC4051（高速） | [Nexperia PDF](https://assets.nexperia.com/documents/data-sheet/74HC_HCT4051.pdf) |
 | 模拟开关 | MAX4617（低阻精密） | [ADI PDF](https://www.analog.com/media/en/technical-documentation/data-sheets/MAX4617-MAX4619.pdf) |
 
+**找不到官方 datasheet？** 检索口诀：`型号 + "datasheet" + 厂家名 + filetype:pdf`；聚合站 [Octopart](https://octopart.com/)、[Alldatasheet](https://www.alldatasheet.com/)、立创商城商品页（附中文参数翻译，新手友好）。
+
 ## 6.4 datasheet 阅读法：50 页里只读 6 个地方 📖
 
 > 新手对着 50 页 datasheet 从头读——错。老手按"参数分组"跳读，10 分钟拿到设计要用的全部信息。
@@ -1728,7 +1730,6 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 - **测试条件小字**：GBW 在 CL=20pF 下测的，你接 1nF 就自激；噪声在 1kHz 测的，你关心 10Hz 就翻车
 - **"推荐工作条件"≠"绝对最大值"**：在 Absolute Max 边界"不死"≠"正常工作"——性能表只在推荐条件下成立
 
-**找不到官方 datasheet？** 检索口诀：`型号 + "datasheet" + 厂家名 + filetype:pdf`；聚合站 [Octopart](https://octopart.com/)、[Alldatasheet](https://www.alldatasheet.com/)、立创商城商品页（附中文参数翻译，新手友好）。
 
 <a id="part7"></a>
 # 第七篇：视频资源汇总 📺

@@ -1130,7 +1130,7 @@ def make_buck_converter():
         u = i/96
         x = 430 + 320*u
         seg = (u*3) % 1.0
-        y = 372 - (30*seg if seg < 0.5 else 30*(1-seg))
+        y = 372 - (30*seg/0.42 if seg < 0.42 else 30*(1-seg)/0.58)
         il_pts.append(f"{x:.0f},{y:.0f}")
     il_d = "M" + " L".join(il_pts)
     svg = svg_open('Buck 降压：电感是「水车惯性」，把断续水流碾成直流', h=520)
@@ -1313,8 +1313,11 @@ def make_wien_bridge():
 <line x1="300" y1="155" x2="300" y2="185" stroke="#334155" stroke-width="2"/>
 <circle cx="300" cy="185" r="3.5" fill="#334155"/>
 {resistor_h(320, 185, 30)}
+<circle cx="378" cy="185" r="7" fill="#fff7ed" stroke="#b45309" stroke-width="2"/>
+<path d="M372,185 q2,-4 3,0 q2,4 3,0 q2,-4 3,0" fill="none" stroke="#b45309" stroke-width="1.5"/>
+<text x="378" y="212" text-anchor="middle" font-size="10" font-weight="bold" fill="#b45309">灯泡</text>
 <text x="335" y="212" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#b45309">Rf=2R</text>
-<line x1="370" y1="185" x2="390" y2="185" stroke="#334155" stroke-width="2"/>
+<line x1="385" y1="185" x2="390" y2="185" stroke="#334155" stroke-width="2"/>
 <line x1="390" y1="185" x2="390" y2="140" stroke="#334155" stroke-width="2"/>
 {resistor_v(300, 205, 30, 'R1=R')}
 <line x1="300" y1="255" x2="300" y2="262" stroke="#334155" stroke-width="2"/>
@@ -1389,7 +1392,11 @@ def make_class_b():
 <text x="434" y="290" font-size="11.5" font-weight="bold" fill="#dc2626">乙类输出：过零豁口（死区 ±0.7V）</text>
 <path d="{sin_d2}" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3"/>
 <path d="{xo_d}" fill="none" stroke="#dc2626" stroke-width="2.8"/>
-<rect x="582" y="316" width="46" height="28" fill="#dc2626" opacity="0.12">
+<rect x="504" y="316" width="12" height="28" fill="#dc2626" opacity="0.12">
+<animate attributeName="opacity" values="0.12;0.12;0.4;0.4;0.12;0.12" keyTimes="0;0.44;0.5;0.88;0.94;1" dur="{DC2}s" repeatCount="indefinite"/></rect>
+<rect x="584" y="316" width="12" height="28" fill="#dc2626" opacity="0.12">
+<animate attributeName="opacity" values="0.12;0.12;0.4;0.4;0.12;0.12" keyTimes="0;0.44;0.5;0.88;0.94;1" dur="{DC2}s" repeatCount="indefinite"/></rect>
+<rect x="664" y="316" width="12" height="28" fill="#dc2626" opacity="0.12">
 <animate attributeName="opacity" values="0.12;0.12;0.4;0.4;0.12;0.12" keyTimes="0;0.44;0.5;0.88;0.94;1" dur="{DC2}s" repeatCount="indefinite"/></rect>
 <text x="590" y="356" font-size="10" fill="#dc2626">豁口=两管全关</text>
 '''

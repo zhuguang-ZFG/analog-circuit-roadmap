@@ -26,6 +26,7 @@ jobs:
             --exclude 'doi\.org'
             --exclude 'onsemi\.com'
             --exclude 'microchip\.com'
+            --exclude 'analog\.com'
             './README.md'
           fail: true
         env:
