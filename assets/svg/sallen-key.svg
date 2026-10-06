@@ -60,6 +60,14 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <line x1="300" y1="76" x2="310" y2="76" stroke="#334155" stroke-width="2"/>
 <line x1="310" y1="76" x2="330" y2="76" stroke="#334155" stroke-width="2"/>
 <line x1="330" y1="76" x2="330" y2="140" stroke="#334155" stroke-width="2"/>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="7s" begin="-0.4s" repeatCount="indefinite" path="M40,140 L180,140"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="7s" begin="-0.9s" repeatCount="indefinite" path="M180,140 L250,140"/></circle>
+<circle r="4" fill="#f59e0b"><animateMotion dur="7s" begin="-1.4s" repeatCount="indefinite" path="M216,140 L216,210"/></circle>
+<circle r="4" fill="#7c3aed"><animateMotion dur="7s" begin="-1.9s" repeatCount="indefinite" path="M130,140 L130,76 L310,76 L330,76 L330,140"/></circle>
+<circle r="4.5" fill="#059669"><animateMotion dur="7s" begin="-2.4s" repeatCount="indefinite" path="M310,140 L380,140"/></circle>
+<circle cx="566" cy="240" r="6" fill="none" stroke="#059669" stroke-width="2.5">
+<animate attributeName="cy" values="240;240;211;211;240;240" keyTimes="0;0.23;0.28;0.48;0.53;1" dur="7s" repeatCount="indefinite"/>
+<animate attributeName="stroke" values="#059669;#059669;#dc2626;#dc2626;#059669;#059669" keyTimes="0;0.23;0.28;0.48;0.53;1" dur="7s" repeatCount="indefinite"/></circle>
 
 <text x="590" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">频响：Q 决定峰化</text>
 <path d="M420,262 L457,262 L481,262 L500,262 L514,262 L526,262 L537,262 L546,262 L554,262 L561,262 L568,262 L574,262 L580,262 L585,262 L590,263 L594,263 L599,263 L603,263 L606,263 L610,264 L614,264 L617,264 L620,265 L623,265 L626,265 L629,266 L632,266 L634,267 L637,267 L639,268 L641,268 L644,269 L646,270 L648,270 L650,271 L652,271 L654,272 L656,273 L658,273 L660,274 L662,274 L663,275 L665,276 L667,276 L668,277 L670,277 L671,278 L673,279 L674,279 L676,280 L677,280 L679,281 L680,282 L681,282 L683,283 L684,283 L685,284 L687,284 L688,285 L689,285 L690,286 L691,286 L693,287 L694,287 L695,288 L696,288 L697,289 L698,289 L699,290 L700,290 L701,291 L702,291 L703,291 L704,292 L705,292 L706,293 L707,293 L708,294 L709,294 L710,294 L711,295 L712,295 L713,296 L713,296 L714,296 L715,297 L716,297 L717,297 L718,298 L718,298 L719,298 L720,299 L721,299 L722,300 L722,300 L723,300 L724,301 L725,301 L725,301 L726,302 L727,302 L728,302 L728,303 L729,303 L730,303 L730,303 L731,304 L732,304 L732,304 L733,305 L734,305 L734,305 L735,306 L736,306 L736,306 L737,306 L738,307 L738,307 L739,307 L739,308 L740,308" fill="none" stroke="#059669" stroke-width="2.8"/>

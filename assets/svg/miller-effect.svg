@@ -43,6 +43,10 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="238" y="82" font-size="11" font-weight="bold" fill="#7c3aed">C=10pF</text>
 <line x1="228" y1="90" x2="360" y2="90" stroke="#334155" stroke-width="2"/>
 <line x1="360" y1="90" x2="360" y2="150" stroke="#334155" stroke-width="2"/>
+<circle r="4" fill="#7c3aed"><animateMotion dur="6s" begin="-0.3s" repeatCount="indefinite" path="M190,150 L190,90 L216,90"/></circle>
+<circle r="4" fill="#7c3aed"><animateMotion dur="6s" begin="-0.3s" repeatCount="indefinite" path="M228,90 L360,90 L360,150"/></circle>
+<circle r="4" fill="#7c3aed"><animateMotion dur="6s" begin="-0.8s" repeatCount="indefinite" path="M190,150 L190,90 L216,90"/></circle>
+<circle r="4" fill="#7c3aed"><animateMotion dur="6s" begin="-0.8s" repeatCount="indefinite" path="M228,90 L360,90 L360,150"/></circle>
 <text x="60" y="220" font-size="11" fill="#2563eb" opacity="0">IN 摆 1mV
 <animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.06;0.4;0.46;1" dur="6s" repeatCount="indefinite"/></text>
 <text x="300" y="220" font-size="11" fill="#dc2626" opacity="0">OUT 反相摆 −100mV

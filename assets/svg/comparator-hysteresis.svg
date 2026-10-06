@@ -73,6 +73,15 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="268" y="301" text-anchor="middle" font-size="11" font-weight="bold" fill="#b45309">R3 1MΩ</text>
 <line x1="240" y1="318" x2="200" y2="318" stroke="#334155" stroke-width="2.5"/>
 <line x1="200" y1="318" x2="200" y2="290" stroke="#334155" stroke-width="2.5"/>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="5s" begin="-0.2s" repeatCount="indefinite" path="M350,190 L350,318 L296,318"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="5s" begin="-0.7s" repeatCount="indefinite" path="M240,318 L200,318 L200,290"/></circle>
+<circle r="4" fill="#f59e0b"><animateMotion dur="5s" begin="-1.2s" repeatCount="indefinite" path="M200,290 L260,290 L260,216"/></circle>
+<circle cx="622" cy="300" r="5" fill="none" stroke="#059669" stroke-width="2.5">
+<animate attributeName="r" values="5;11;5" dur="1.3s" repeatCount="indefinite"/>
+<animate attributeName="opacity" values="0.9;0.2;0.9" dur="1.3s" repeatCount="indefinite"/></circle>
+<circle cx="558" cy="130" r="5" fill="none" stroke="#dc2626" stroke-width="2.5">
+<animate attributeName="r" values="5;11;5" dur="1.3s" begin="0.65s" repeatCount="indefinite"/>
+<animate attributeName="opacity" values="0.9;0.2;0.9" dur="1.3s" begin="0.65s" repeatCount="indefinite"/></circle>
 <text x="252" y="346" font-size="11" fill="#475569">正反馈：输出「拽」输入</text>
 <text x="590" y="58" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">传输特性：回滞环</text>
 <line x1="440" y1="300" x2="760" y2="300" stroke="#64748b" stroke-width="2"/>

@@ -604,6 +604,15 @@ def make_comparator_hysteresis():
 <text x="268" y="301" text-anchor="middle" font-size="11" font-weight="bold" fill="#b45309">R3 1MΩ</text>
 <line x1="240" y1="318" x2="200" y2="318" stroke="#334155" stroke-width="2.5"/>
 <line x1="200" y1="318" x2="200" y2="290" stroke="#334155" stroke-width="2.5"/>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{D5}s" begin="-0.2s" repeatCount="indefinite" path="M350,190 L350,318 L296,318"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{D5}s" begin="-0.7s" repeatCount="indefinite" path="M240,318 L200,318 L200,290"/></circle>
+<circle r="4" fill="#f59e0b"><animateMotion dur="{D5}s" begin="-1.2s" repeatCount="indefinite" path="M200,290 L260,290 L260,216"/></circle>
+<circle cx="622" cy="300" r="5" fill="none" stroke="#059669" stroke-width="2.5">
+<animate attributeName="r" values="5;11;5" dur="1.3s" repeatCount="indefinite"/>
+<animate attributeName="opacity" values="0.9;0.2;0.9" dur="1.3s" repeatCount="indefinite"/></circle>
+<circle cx="558" cy="130" r="5" fill="none" stroke="#dc2626" stroke-width="2.5">
+<animate attributeName="r" values="5;11;5" dur="1.3s" begin="0.65s" repeatCount="indefinite"/>
+<animate attributeName="opacity" values="0.9;0.2;0.9" dur="1.3s" begin="0.65s" repeatCount="indefinite"/></circle>
 <text x="252" y="346" font-size="11" fill="#475569">正反馈：输出「拽」输入</text>
 <text x="590" y="58" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">传输特性：回滞环</text>
 <line x1="440" y1="300" x2="760" y2="300" stroke="#64748b" stroke-width="2"/>
@@ -1488,6 +1497,14 @@ def make_sallen_key():
 <line x1="300" y1="76" x2="310" y2="76" stroke="#334155" stroke-width="2"/>
 <line x1="310" y1="76" x2="330" y2="76" stroke="#334155" stroke-width="2"/>
 <line x1="330" y1="76" x2="330" y2="140" stroke="#334155" stroke-width="2"/>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DS}s" begin="-0.4s" repeatCount="indefinite" path="M40,140 L180,140"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DS}s" begin="-0.9s" repeatCount="indefinite" path="M180,140 L250,140"/></circle>
+<circle r="4" fill="#f59e0b"><animateMotion dur="{DS}s" begin="-1.4s" repeatCount="indefinite" path="M216,140 L216,210"/></circle>
+<circle r="4" fill="#7c3aed"><animateMotion dur="{DS}s" begin="-1.9s" repeatCount="indefinite" path="M130,140 L130,76 L310,76 L330,76 L330,140"/></circle>
+<circle r="4.5" fill="#059669"><animateMotion dur="{DS}s" begin="-2.4s" repeatCount="indefinite" path="M310,140 L380,140"/></circle>
+<circle cx="566" cy="240" r="6" fill="none" stroke="#059669" stroke-width="2.5">
+<animate attributeName="cy" values="240;240;211;211;240;240" keyTimes="0;0.23;0.28;0.48;0.53;1" dur="{DS}s" repeatCount="indefinite"/>
+<animate attributeName="stroke" values="#059669;#059669;#dc2626;#dc2626;#059669;#059669" keyTimes="0;0.23;0.28;0.48;0.53;1" dur="{DS}s" repeatCount="indefinite"/></circle>
 '''
     svg += f'''
 <text x="590" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">频响：Q 决定峰化</text>
@@ -1723,6 +1740,10 @@ def make_miller_effect():
 <text x="238" y="82" font-size="11" font-weight="bold" fill="#7c3aed">C=10pF</text>
 <line x1="228" y1="90" x2="360" y2="90" stroke="#334155" stroke-width="2"/>
 <line x1="360" y1="90" x2="360" y2="150" stroke="#334155" stroke-width="2"/>
+<circle r="4" fill="#7c3aed"><animateMotion dur="{DML}s" begin="-0.3s" repeatCount="indefinite" path="M190,150 L190,90 L216,90"/></circle>
+<circle r="4" fill="#7c3aed"><animateMotion dur="{DML}s" begin="-0.3s" repeatCount="indefinite" path="M228,90 L360,90 L360,150"/></circle>
+<circle r="4" fill="#7c3aed"><animateMotion dur="{DML}s" begin="-0.8s" repeatCount="indefinite" path="M190,150 L190,90 L216,90"/></circle>
+<circle r="4" fill="#7c3aed"><animateMotion dur="{DML}s" begin="-0.8s" repeatCount="indefinite" path="M228,90 L360,90 L360,150"/></circle>
 <text x="60" y="220" font-size="11" fill="#2563eb" opacity="0">IN 摆 1mV
 <animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.06;0.4;0.46;1" dur="{DML}s" repeatCount="indefinite"/></text>
 <text x="300" y="220" font-size="11" fill="#dc2626" opacity="0">OUT 反相摆 −100mV
@@ -1957,6 +1978,10 @@ def make_sar_adc():
 <animate attributeName="opacity" values="0;0;0.12;0.12;0;0" keyTimes="0;0.52;0.55;0.72;0.76;1" dur="{DA}s" repeatCount="indefinite"/></rect>
 <rect x="670" y="150" width="80" height="150" fill="#7c3aed" opacity="0">
 <animate attributeName="opacity" values="0;0;0.12;0.12;0;0" keyTimes="0;0.77;0.8;0.95;0.98;1" dur="{DA}s" repeatCount="indefinite"/></rect>
+<circle r="6" fill="#7c3aed" stroke="#ffffff" stroke-width="2">
+<animateMotion dur="{DA}s" repeatCount="indefinite" calcMode="linear"
+  keyPoints="0;0.352;0.352;0.608;0.608;0.84;0.84;1;1" keyTimes="0;0.05;0.24;0.3;0.48;0.55;0.73;0.79;1"
+  path="{step_d}"/></circle>
 '''
     svg += caption("① 拍1：先试最高位 8（半天平）——DAC=8 > 5.3，太沉，退掉这一位", "#7c3aed", DA,
                    "0;1;1;0;0", "0;0.03;0.2;0.26;1", y=460)
@@ -3192,6 +3217,332 @@ def make_debug_flow():
     save('debug-flow.svg', svg + '</svg>')
 
 
+# ======================= 图 44：分压器与带载误差（第 0 章首图） =======================
+def make_divider_loading():
+    DD = 8
+    svg = svg_open('分压器：最容易上手，也最容易翻车的一招', h=600)
+    svg += '''
+<text x="215" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">空载：R1=R2 → 正好取一半</text>
+<line x1="95" y1="150" x2="110" y2="150" stroke="#334155" stroke-width="2.5"/>
+<line x1="160" y1="150" x2="175" y2="150" stroke="#334155" stroke-width="2.5"/>
+<line x1="135" y1="172" x2="135" y2="210" stroke="#334155" stroke-width="2.5"/>
+<circle cx="135" cy="172" r="3.5" fill="#334155"/>
+<circle cx="135" cy="210" r="3.5" fill="#334155"/>
+<line x1="110" y1="172" x2="160" y2="172" stroke="#334155" stroke-width="2.5"/>
+<line x1="110" y1="210" x2="160" y2="210" stroke="#334155" stroke-width="2.5"/>
+<text x="175" y="150" font-size="12.5" font-weight="bold" fill="#b45309">12V</text>
+<text x="144" y="228" font-size="11" fill="#475569">5%</text>
+''' + resistor_v(135, 248, 40, 'R1 10k') + '''
+<circle cx="135" cy="328" r="3.5" fill="#334155"/>
+''' + resistor_v(135, 348, 40, 'R2 10k') + '''
+''' + gnd_sym(135, 430) + '''
+<line x1="135" y1="328" x2="300" y2="328" stroke="#334155" stroke-width="2.5"/>
+<circle cx="300" cy="328" r="3.5" fill="#334155"/>
+<text x="306" y="350" font-size="12.5" font-weight="bold" fill="#2563eb">Vout</text>
+<line x1="300" y1="328" x2="300" y2="400" stroke="#334155" stroke-width="2.5" stroke-dasharray="5,4"/>
+<rect x="270" y="320" width="60" height="16" fill="#0284c7" rx="3"/>
+<text x="300" y="332" text-anchor="middle" font-size="11" font-weight="bold" fill="#ffffff">50%</text>
+<line x1="60" y1="180" x2="60" y2="372" stroke="#334155" stroke-width="2"/>
+<path d="M54,180 L60,170 L66,180 Z" fill="#334155"/>
+<path d="M54,372 L60,382 L66,372 Z" fill="#334155"/>
+<text x="50" y="265" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#334155" transform="rotate(-90 50 265)">12V</text>
+<line x1="64" y1="276" x2="84" y2="276" stroke="#f59e0b" stroke-width="2"/>
+<line x1="64" y1="308" x2="84" y2="308" stroke="#dc2626" stroke-width="2"/>
+<text x="56" y="280" text-anchor="end" font-size="10.5" font-weight="bold" fill="#f59e0b">6V</text>
+<text x="56" y="312" text-anchor="end" font-size="10.5" font-weight="bold" fill="#dc2626">4V</text>
+<text x="210" y="280" font-size="11" font-weight="bold" fill="#b45309">空载指针：到中点 = 6V</text>
+<text x="210" y="312" font-size="11" font-weight="bold" fill="#dc2626">带载指针：矮一截 = 4V</text>
+<path d="M88,180 L88,372" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="6,4"/>
+<path d="M82,186 L88,174 L94,186 Z" fill="#f59e0b"/>
+''' + resistor_v(430, 328, 44, '', lcolor='#dc2626') + '''
+<text x="398" y="414" text-anchor="end" font-size="12.5" font-weight="bold" fill="#dc2626">RL 10k</text>
+<line x1="300" y1="328" x2="430" y2="328" stroke="#dc2626" stroke-width="2.5"/>
+<line x1="430" y1="392" x2="430" y2="430" stroke="#dc2626" stroke-width="2.5"/>
+''' + gnd_sym(430, 444) + '''
+<text x="452" y="342" font-size="11" font-weight="bold" fill="#dc2626">接上负载：突然变矮</text>
+<path d="M112,180 L112,308" stroke="#dc2626" stroke-width="3" fill="none" stroke-dasharray="6,5" opacity="0">
+<path d="M106,302 L112,310 L118,302 Z" fill="#dc2626" opacity="0">
+<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.19;0.23;0.4;0.45;1" dur="8s" repeatCount="indefinite"/></path>
+<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.19;0.23;0.4;0.45;1" dur="8s" repeatCount="indefinite"/></path>
+<rect x="270" y="320" width="60" height="16" fill="#dc2626" rx="3" opacity="0">
+<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.19;0.23;0.4;0.45;1" dur="8s" repeatCount="indefinite"/></rect>
+<text x="300" y="332" text-anchor="middle" font-size="11" font-weight="bold" fill="#ffffff" opacity="0">33%
+<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.19;0.23;0.4;0.45;1" dur="8s" repeatCount="indefinite"/></text>
+<text x="245" y="470" text-anchor="middle" font-size="12" font-weight="bold" fill="#b45309" opacity="0">Vout = 12 × 5k / (10k + 5k) = 4V
+<animate attributeName="opacity" values="0;0;0;1;1;0;0" keyTimes="0;0.21;0.24;0.28;0.4;0.45;1" dur="8s" repeatCount="indefinite"/></text>
+<circle r="5.5" fill="#f59e0b">
+<animateMotion dur="8s" repeatCount="indefinite" path="M175,150 L135,150 L135,248" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5.5" fill="#f59e0b">
+<animateMotion dur="8s" repeatCount="indefinite" path="M135,308 L135,348" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5.5" fill="#f59e0b">
+<animateMotion dur="8s" repeatCount="indefinite" path="M135,408 L135,430" keyPoints="0;1" keyTimes="0;1"/></circle>
+<line x1="410" y1="70" x2="410" y2="496" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="6,5"/>
+<text x="600" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">算式：Vout = 12 × R2/(R1+R2)</text>
+<text x="440" y="100" font-size="13" font-weight="bold" fill="#2563eb">第一步 先算「下面那坨」的总电阻</text>
+<text x="456" y="126" font-size="12" fill="#475569">R下 = R2 ∥ RL = 10k ∥ 10k = 5k</text>
+<text x="440" y="164" font-size="13" font-weight="bold" fill="#2563eb">第二步 再用分压公式</text>
+<text x="456" y="190" font-size="12" fill="#475569">Vout = 12V × 5k / (10k + 5k) = 4V</text>
+<line x1="440" y1="212" x2="780" y2="212" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="452" y="230" width="96" height="26" fill="#2563eb" rx="4"/>
+<text x="500" y="248" text-anchor="middle" font-size="12" font-weight="bold" fill="#ffffff">蓝色 6V</text>
+<text x="566" y="249" font-size="12" fill="#475569">按 50% 白算的那份（错）</text>
+<line x1="440" y1="282" x2="780" y2="282" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="452" y="298" width="55" height="26" fill="#dc2626" rx="4"/>
+<text x="479" y="316" text-anchor="middle" font-size="12" font-weight="bold" fill="#ffffff">红色 4V</text>
+<text x="520" y="317" font-size="12" fill="#475569">带载后的真实值（少了 33%）</text>
+<text x="440" y="358" font-size="12.5" font-weight="bold" fill="#b45309">结论：分压器输出的不是「电压」，是「比值」——</text>
+<text x="440" y="380" font-size="12.5" fill="#475569">背后接什么，它就跟着变。要稳，就得把源阻抗压下去。</text>
+<text x="440" y="424" font-size="12.5" font-weight="bold" fill="#059669">三条活路：</text>
+<text x="456" y="446" font-size="12" fill="#475569">① 后级输入阻抗 ≫ R2（如 1MΩ 的 ADC 输入）</text>
+<text x="456" y="468" font-size="12" fill="#475569">② R1/R2 取小（10k→1k）：但静态电流和功耗上去了</text>
+<text x="456" y="490" font-size="12" fill="#475569">③ 后面跟一级运放缓冲（第 12 章）——教科书答案</text>
+'''
+    svg += caption("① 空载：R1、R2 各分一半——Vout = 6V，指针稳稳停在正中", "#2563eb", DD,
+                   "0;1;1;0;0", "0;0.04;0.2;0.25;1", y=512)
+    svg += caption("② 挂上 RL=10k：R2∥RL 只剩 5k——Vout 塌到 4V，指针矮了三分之一", "#dc2626", DD,
+                   "0;0;1;1;0;0", "0;0.42;0.47;0.7;0.76;1", y=512)
+    svg += caption("③ 分压比会跟着负载变：要稳，就把源阻抗压到远小于负载阻抗", "#059669", DD,
+                   "0;0;1;1", "0;0.78;0.84;1", y=512)
+    svg += note_box("分压器是阻抗问题：算之前先问一句「它后面接什么」——Vout = Vin × R下 / (R上 + R下)", 558, DD,
+                    "0;0.88;0.92;1", w=770)
+    save('divider-loading.svg', svg + '</svg>')
+
+
+# ======================= 图 45：BJT 三个工作区 =======================
+def make_bjt_regions():
+    DB = 8
+    cur = "M456,214 L460,224 L464,234 L470,248 L476,252 L507,252 L620,252 L700,252 L790,251"
+    svg = svg_open('BJT 三个工作区：看两个 PN 结的脸色', h=560)
+    svg += f'''
+<text x="210" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">判据看两个结，不看心情</text>
+{npn_svg(130, 190)}
+<line x1="105" y1="140" x2="105" y2="170" stroke="#334155" stroke-width="2.5"/>
+<text x="30" y="134" font-size="11.5" font-weight="bold" fill="#b45309">+12V</text>
+{resistor_v(105, 140, 40, '')}
+<text x="168" y="161" font-size="12.5" font-weight="bold" fill="#b45309">R_C 2k</text>
+<line x1="130" y1="135" x2="130" y2="170" stroke="#334155" stroke-width="2.5"/>
+<line x1="50" y1="190" x2="95" y2="190" stroke="#334155" stroke-width="2.5"/>
+{resistor_v(70, 190, 40, '')}
+<text x="70" y="264" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#b45309">R_B 300k</text>
+<line x1="70" y1="110" x2="70" y2="170" stroke="#334155" stroke-width="2.5"/>
+<line x1="70" y1="110" x2="105" y2="110" stroke="#334155" stroke-width="2.5"/>
+<text x="18" y="106" font-size="11.5" font-weight="bold" fill="#b45309">+12V</text>
+<line x1="130" y1="245" x2="130" y2="285" stroke="#334155" stroke-width="2.5"/>
+{resistor_v(130, 285, 40, '')}
+<text x="150" y="310" font-size="11" font-weight="bold" fill="#475569">R_E 100</text>
+<line x1="130" y1="325" x2="130" y2="350" stroke="#334155" stroke-width="2.5"/>
+{gnd_sym(130, 364)}
+<text x="140" y="232" font-size="11" fill="#475569">I_B=(12−0.7)/300k</text>
+<text x="140" y="268" font-size="11" fill="#dc2626">=40µA → I_C = 4mA</text>
+<line x1="286" y1="76" x2="286" y2="388" stroke="#cbd5e1" stroke-width="1"/>
+<text x="300" y="88" font-size="12.5" font-weight="bold" fill="#334155">三个工作区</text>
+<text x="306" y="122" font-size="12" fill="#475569">发射结</text>
+<text x="394" y="122" font-size="12" fill="#475569">集电结</text>
+<text x="300" y="152" font-size="12.5" font-weight="bold" fill="#64748b">截止</text>
+<text x="306" y="178" font-size="11.5" fill="#dc2626">反偏</text>
+<text x="394" y="178" font-size="11.5" fill="#dc2626">反偏</text>
+<text x="300" y="208" font-size="12.5" font-weight="bold" fill="#2563eb">放大</text>
+<text x="306" y="234" font-size="11.5" fill="#059669">正偏</text>
+<text x="394" y="234" font-size="11.5" fill="#dc2626">反偏</text>
+<text x="300" y="264" font-size="12.5" font-weight="bold" fill="#dc2626">饱和</text>
+<text x="306" y="290" font-size="11.5" fill="#059669">正偏</text>
+<text x="394" y="290" font-size="11.5" fill="#059669">正偏</text>
+<text x="300" y="332" font-size="12" font-weight="bold" fill="#64748b">≈ 断路（开关打开）</text>
+<text x="300" y="356" font-size="12" font-weight="bold" fill="#2563eb">I_C = β·I_B</text>
+<text x="300" y="380" font-size="12" font-weight="bold" fill="#dc2626">≈ 闭合开关（β 失效）</text>
+<text x="470" y="60" font-size="12.5" font-weight="bold" fill="#334155">输出特性：负载线切过哪里，就是哪个区</text>
+<line x1="450" y1="332" x2="790" y2="332" stroke="#64748b" stroke-width="1.6"/>
+<line x1="450" y1="332" x2="450" y2="92" stroke="#64748b" stroke-width="1.6"/>
+<text x="442" y="86" text-anchor="end" font-size="11" fill="#475569">I_C</text>
+<text x="444" y="336" text-anchor="end" font-size="10.5" fill="#475569">0</text>
+<text x="444" y="296" text-anchor="end" font-size="10.5" fill="#475569">2mA</text>
+<text x="444" y="256" text-anchor="end" font-size="10.5" fill="#475569">4mA</text>
+<text x="444" y="218" text-anchor="end" font-size="10.5" font-weight="bold" fill="#dc2626">6mA 饱和</text>
+<line x1="450" y1="252" x2="563" y2="252" stroke="#7c3aed" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="563" y1="252" x2="563" y2="332" stroke="#7c3aed" stroke-width="1" stroke-dasharray="3,3"/>
+<rect x="450" y="214" width="113" height="118" fill="#dc2626" opacity="0.10"/>
+<text x="790" y="352" text-anchor="end" font-size="10.5" font-weight="bold" fill="#64748b">12V 截止</text>
+<text x="563" y="352" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#7c3aed">4V</text>
+<text x="476" y="352" font-size="10.5" fill="#475569">0.2V</text>
+<text x="470" y="140" font-size="11" font-weight="bold" fill="#dc2626">饱和区</text>
+<text x="470" y="158" font-size="10.5" fill="#475569">负载线压在曲线上方</text>
+<text x="470" y="180" font-size="10.5" fill="#475569">膝点：V_CE=0.2V，I_C≈5.9mA</text>
+<path d="{cur}" fill="none" stroke="#0ea5e9" stroke-width="2.4"/>
+<text x="676" y="214" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#0ea5e9">放大区：I_C=βI_B 拉平在 4mA</text>
+<text x="760" y="140" text-anchor="end" font-size="10.5" font-weight="bold" fill="#7c3aed">负载线 I_C=(12−V_CE)/2k</text>
+<line x1="456" y1="214" x2="790" y2="332" stroke="#7c3aed" stroke-width="2" stroke-dasharray="6,4"/>
+<circle r="7" fill="#7c3aed" stroke="#ffffff" stroke-width="2">
+<animateMotion dur="{DB}s" repeatCount="indefinite" path="M456,214 L790,332" keyPoints="0;1;0" keyTimes="0;0.5;1"/></circle>
+<text x="575" y="246" font-size="11" font-weight="bold" fill="#7c3aed">Q（工作点）</text>
+<text x="620" y="374" text-anchor="middle" font-size="10.5" fill="#475569">蓝线=输出特性　紫虚线=负载线　圆点沿负载线来回扫：左端饱和、右端截止</text>
+'''
+    svg += caption("① 截止区：两个结都反偏——CE 之间像断了的开关，I_C≈0", "#64748b", DB,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=406)
+    svg += caption("② 放大区：发射结正偏、集电结反偏——I_C=β·I_B，是放大器的家", "#2563eb", DB,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=406)
+    svg += caption("③ 饱和区：两个结都正偏——V_CE≈0.2V，像合上的开关，β 说了不算", "#dc2626", DB,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.78;0.83;1", y=406)
+    svg += caption("④ 常青坑：设计时不先把「放大区」用负载线框死——信号一摆就削顶", "#b45309", DB,
+                   "0;0;1;1", "0;0.83;0.88;1", y=406)
+    svg += note_box("口诀：放大靠「发正集反」；开关要「深饱和」（I_B 按 1/10 I_C 给，别按 β 算）", 484, DB,
+                    "0;0.9;0.94;1", w=740)
+    save('bjt-regions.svg', svg + '</svg>')
+
+
+# ======================= 图 46：PT100 信号链（第 14 章实例） =======================
+def make_signal_chain():
+    DSL = 9
+    svg = svg_open('信号链设计实例：PT100 温度采集全链复盘', h=600)
+    svg += f'''
+<circle cx="100" cy="82" r="16" fill="none" stroke="#2563eb" stroke-width="1.6" stroke-dasharray="4,4">
+<animateTransform attributeName="transform" type="rotate" values="0 100 82;360 100 82" dur="7s" repeatCount="indefinite"/>
+</circle>
+<circle cx="100" cy="82" r="5.5" fill="#2563eb"/>
+<text x="100" y="114" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#2563eb">PT100</text>
+<text x="100" y="130" text-anchor="middle" font-size="10.5" fill="#475569">1mA 激励 → 385µV/℃</text>
+<line x1="130" y1="82" x2="186" y2="82" stroke="#334155" stroke-width="2.5"/>
+<circle r="5" fill="#059669">
+<animateMotion dur="{DSL}s" repeatCount="indefinite" path="M110,82 H186" keyPoints="0;1" keyTimes="0;1"/></circle>
+<text x="158" y="46" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#059669">385µV</text>
+<rect x="190" y="52" width="150" height="80" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="265" y="82" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">仪表放大器</text>
+<text x="265" y="100" text-anchor="middle" font-size="10.5" fill="#475569">INA333 · G=40</text>
+<text x="265" y="122" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#dc2626">共模 100mV → 差模 1µV</text>
+<line x1="340" y1="82" x2="446" y2="82" stroke="#334155" stroke-width="2.5"/>
+<circle r="5" fill="#059669">
+<animateMotion dur="{DSL}s" repeatCount="indefinite" path="M346,82 H446" keyPoints="0;1" keyTimes="0;1"/></circle>
+<text x="392" y="46" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#059669">15.4mV/℃</text>
+<rect x="450" y="52" width="130" height="80" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="515" y="82" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">Sallen-Key 低通</text>
+<text x="515" y="100" text-anchor="middle" font-size="10.5" fill="#475569">fc=10Hz · Q=0.707</text>
+<text x="515" y="122" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#dc2626">50Hz 工频 −28dB</text>
+<line x1="580" y1="82" x2="686" y2="82" stroke="#334155" stroke-width="2.5"/>
+<circle r="5" fill="#059669">
+<animateMotion dur="{DSL}s" repeatCount="indefinite" path="M586,82 H686" keyPoints="0;1" keyTimes="0;1"/></circle>
+<text x="632" y="46" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#059669">1.54V</text>
+<rect x="690" y="52" width="86" height="80" rx="8" fill="#f8fafc" stroke="#7c3aed" stroke-width="2.5"/>
+<text x="733" y="84" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#7c3aed">ADC</text>
+<text x="733" y="102" text-anchor="middle" font-size="10.5" fill="#475569">12 位</text>
+<text x="733" y="120" text-anchor="middle" font-size="10.5" fill="#475569">LSB 500µV</text>
+
+<line x1="30" y1="190" x2="30" y2="418" stroke="#94a3b8" stroke-width="1.4"/>
+<line x1="30" y1="418" x2="790" y2="418" stroke="#64748b" stroke-width="1.6"/>
+<line x1="30" y1="196" x2="37" y2="196" stroke="#94a3b8" stroke-width="1.2"/>
+<line x1="30" y1="307" x2="37" y2="307" stroke="#94a3b8" stroke-width="1.2"/>
+<text x="42" y="430" font-size="11" fill="#475569">0</text>
+<text x="42" y="311" font-size="11" fill="#475569">1.024V</text>
+<text x="42" y="200" font-size="11" fill="#475569">2.048V</text>
+<text x="86" y="186" text-anchor="end" font-size="11" font-weight="bold" fill="#475569">ADC 满量程 2.048V（12 位 = 4096 码）</text>
+<line x1="340" y1="196" x2="340" y2="418" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="5,4"/>
+<line x1="580" y1="196" x2="580" y2="418" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="5,4"/>
+<line x1="90" y1="364" x2="760" y2="364" stroke="#0ea5e9" stroke-width="3.5"/>
+<circle r="6" fill="#0ea5e9" stroke="#ffffff" stroke-width="2">
+<animateMotion dur="{DSL}s" repeatCount="indefinite" path="M90,364 H760" keyPoints="0;1" keyTimes="0;1"/></circle>
+<text x="96" y="352" font-size="11.5" font-weight="bold" fill="#0ea5e9">放大后 1.54V（100℃ 满量）＝ 75% 满量程</text>
+<line x1="90" y1="417" x2="340" y2="417" stroke="#dc2626" stroke-width="1.8" stroke-dasharray="6,4"/>
+<text x="96" y="404" font-size="11.5" font-weight="bold" fill="#dc2626">未放大 38.5mV：真实位置离地 4px，贴地</text>
+<text x="96" y="386" font-size="11" fill="#475569">不放大只剩 77 码（≈6.3 位）</text>
+<text x="760" y="344" text-anchor="end" font-size="11.5" font-weight="bold" fill="#7c3aed">12.5µV/码 ≈ 0.032℃</text>
+<text x="90" y="436" font-size="10.5" font-weight="bold" fill="#475569">PT100 385µV/℃</text>
+<text x="340" y="436" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#475569">INA333 ×40</text>
+<text x="580" y="436" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#475569">低通 fc=10Hz</text>
+<text x="760" y="436" text-anchor="end" font-size="10.5" font-weight="bold" fill="#475569">ADC</text>
+<rect x="446" y="500" width="340" height="60" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="1.5"/>
+<text x="462" y="524" font-size="11.5" font-weight="bold" fill="#b45309">不做前端处理会怎样？</text>
+<text x="462" y="548" font-size="11" fill="#475569">不放大：77 码 ≈ 6.3 位　放大后：3080 码 ≈ 11.6 位有效</text>
+<text x="452" y="578" font-size="11.5" font-weight="bold" fill="#059669">放大不只是「变大」：把信号顶到接近满量程，才叫没浪费 ADC</text>
+'''
+    svg += caption("① 反推增益：满量程 2.048V 留 25% 余量 → 目标 1.54V；1.54V ÷ 38.5mV = ×40", "#2563eb", DSL,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=490)
+    svg += caption("② 选前端：仪表放大器先扛共模、给高阻；低通 fc=10Hz 再把工频按到 −28dB", "#059669", DSL,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=490)
+    svg += caption("③ 逐级验算：每加一级都要回头看「信号还在不在 噪声有没有追上来」", "#dc2626", DSL,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=490)
+    svg += caption("④ 收尾：12 位 LSB 折算回输入 = 0.032℃/码，远细于 0.1℃ 的目标分辨率", "#7c3aed", DSL,
+                   "0;0;1;1", "0;0.85;0.9;1", y=490)
+    save('signal-chain.svg', svg + '</svg>')
+
+
+# ======================= 图 47：热失控正反馈环 =======================
+def make_thermal_runaway():
+    DT = 10
+    svg = svg_open('热失控：一只 BJT 自己把自己烧了（正反馈环）', h=640)
+    svg += '''
+<circle cx="260" cy="230" r="110" fill="none" stroke="#fecaca" stroke-width="14" stroke-dasharray="10 10">
+<animateTransform attributeName="transform" type="rotate" values="0 260 230;360 260 230" dur="12s" repeatCount="indefinite"/>
+</circle>
+<circle cx="260" cy="230" r="20" fill="#fee2e2"/>
+<text x="260" y="217" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#b91c1c">热失控</text>
+<text x="260" y="234" text-anchor="middle" font-size="11" font-weight="bold" fill="#dc2626">Tj ↑</text>
+<text x="260" y="250" text-anchor="middle" font-size="10.5" fill="#dc2626">累积</text>
+<rect x="170" y="66" width="180" height="48" rx="8" fill="#fff7ed" stroke="#b45309" stroke-width="2"/>
+<text x="260" y="88" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#b45309">① V_BE 变小</text>
+<text x="260" y="106" text-anchor="middle" font-size="10.5" fill="#475569">−2mV/℃（约）</text>
+<rect x="378" y="206" width="180" height="48" rx="8" fill="#fff7ed" stroke="#b45309" stroke-width="2"/>
+<text x="468" y="228" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#b45309">② I_C = β·I_B</text>
+<text x="468" y="246" text-anchor="middle" font-size="10.5" fill="#475569">β 也随温度涨</text>
+<rect x="170" y="348" width="180" height="48" rx="8" fill="#fff7ed" stroke="#b45309" stroke-width="2"/>
+<text x="260" y="370" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#b45309">③ P = V_CE·I_C</text>
+<text x="260" y="388" text-anchor="middle" font-size="10.5" fill="#475569">自身发热更猛</text>
+<rect x="10" y="206" width="128" height="48" rx="8" fill="#fff7ed" stroke="#b45309" stroke-width="2"/>
+<text x="74" y="228" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#b45309">④ Tj 继续爬</text>
+<text x="74" y="246" text-anchor="middle" font-size="10.5" fill="#475569">Ta + P·Rth</text>
+<g fill="none" stroke="#b45309" stroke-width="2.5">
+<path d="M350,100 A104 104 0 0 1 392,196"/>
+<path d="M548,262 A104 104 0 0 1 360,372"/>
+<path d="M170,372 A104 104 0 0 1 62,262"/>
+<path d="M68,196 A104 104 0 0 1 162,92"/>
+</g>
+<path d="M392,196 l-12,-13 M392,196 l-17,3" stroke="#b45309" stroke-width="2.5"/>
+<path d="M360,372 l-16,-4 M360,372 l1,-16" stroke="#b45309" stroke-width="2.5"/>
+<path d="M62,262 l5,-17 M62,262 l17,1" stroke="#b45309" stroke-width="2.5"/>
+<path d="M162,92 l17,3 M162,92 l1,16" stroke="#b45309" stroke-width="2.5"/>
+<circle r="6" fill="#dc2626">
+<animateMotion dur="10s" repeatCount="indefinite" path="M260,68 A162 162 0 1 1 258,68" keyPoints="0;1" keyTimes="0;1"/></circle>
+<text x="330" y="128" font-size="10.5" font-weight="bold" fill="#94a3b8">正反馈环</text>
+<g>
+<animateTransform attributeName="transform" type="scale" values="1 1;2.2 2.2;2.2 2.2;1 1;1 1" keyTimes="0;0.3;0.62;0.94;1" dur="10s" repeatCount="indefinite" additive="sum"/>
+<animateTransform attributeName="transform" type="translate" values="0 0;-406 -182;-406 -182;0 0;0 0" keyTimes="0;0.3;0.62;0.94;1" dur="10s" repeatCount="indefinite" additive="sum"/>
+<circle cx="338" cy="152" r="7" fill="#dc2626"/>
+</g>
+<text x="338" y="178" text-anchor="middle" font-size="10.5" fill="#94a3b8">越烧越大的结点</text>
+<line x1="566" y1="70" x2="566" y2="496" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="6,5"/>
+<text x="682" y="60" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#334155">可用的偏置 vs 作死的偏置</text>
+<line x1="576" y1="92" x2="788" y2="92" stroke="#94a3b8" stroke-width="1.6"/>
+<line x1="576" y1="132" x2="788" y2="132" stroke="#cbd5e1" stroke-width="1"/>
+<line x1="576" y1="182" x2="788" y2="182" stroke="#cbd5e1" stroke-width="1"/>
+<line x1="576" y1="236" x2="788" y2="236" stroke="#cbd5e1" stroke-width="1"/>
+<line x1="576" y1="300" x2="788" y2="300" stroke="#cbd5e1" stroke-width="1"/>
+<line x1="576" y1="356" x2="788" y2="356" stroke="#cbd5e1" stroke-width="1"/>
+<line x1="576" y1="412" x2="788" y2="412" stroke="#cbd5e1" stroke-width="1"/>
+<text x="682" y="114" text-anchor="middle" font-size="12" font-weight="bold" fill="#475569">偏置方式</text>
+<text x="682" y="158" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#059669">分压 + 射极电阻 Re</text>
+<text x="682" y="212" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#dc2626">固定 I_B 偏置</text>
+<text x="682" y="272" text-anchor="middle" font-size="11" fill="#475569">温度一升，Re 上压降</text>
+<text x="682" y="290" text-anchor="middle" font-size="11" fill="#475569">变大 → V_BE 自己降 → 自动刹车</text>
+<text x="682" y="330" text-anchor="middle" font-size="11" fill="#475569">I_C 涨 → 更热 → I_C 再涨</text>
+<text x="682" y="348" text-anchor="middle" font-size="11" fill="#475569">没有回路对手，直到烧穿</text>
+<text x="682" y="386" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#2563eb">负反馈 = 刹车</text>
+<path d="M682,398 L682,440" stroke="#2563eb" stroke-width="2" stroke-dasharray="5,4"/>
+<path d="M676,412 L682,398 L688,412" fill="#2563eb"/>
+<text x="682" y="462" text-anchor="middle" font-size="10.5" fill="#475569">I_C ↑ → V_E ↑ → V_BE ↓</text>
+<circle r="6" fill="#dc2626">
+<animateMotion dur="10s" repeatCount="indefinite" path="M682,462 L682,540" keyPoints="0;1" keyTimes="0;1"/></circle>
+<rect x="200" y="548" width="460" height="42" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="2.5"/>
+<text x="430" y="574" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#b91c1c">热失控不是「运气差」——是设计里少了一条负反馈</text>
+<text x="430" y="538" text-anchor="middle" font-size="11" fill="#475569">前两拍：I_C 慢慢涨（还没觉得烫）　后两拍：P 与温度互相加码，越快越失控</text>
+'''
+    svg += caption("① 硅的脾气：V_BE 每升 1℃ 就低 2mV——同样的 V_B 会挤出更大的 I_C", "#b45309", DT,
+                   "0;1;1;0;0", "0;0.03;0.2;0.26;1", y=520)
+    svg += caption("② 恶性循环：更热 → I_C 更大 → 功耗更大 → 更热——自己给自己加速", "#dc2626", DT,
+                   "0;0;1;1;0;0", "0;0.26;0.32;0.48;0.54;1", y=520)
+    svg += caption("③ 唯一能自己刹住车的是负反馈：Re 把 I_C 的增量变成 V_BE 的减量", "#2563eb", DT,
+                   "0;0;1;1;0;0", "0;0.54;0.6;0.78;0.84;1", y=520)
+    svg += caption("④ 实战三招：射极电阻、散热片降 Rth、降额使用——别再靠「应该不会那么热」", "#059669", DT,
+                   "0;0;1;1", "0;0.84;0.9;1", y=520)
+    svg += note_box("对策：射极电阻 Re 负反馈 · 散热片降 Rth · 降额使用——负反馈是唯一能自动稳住的", 616, DT,
+                    "0;0.9;0.94;1", w=740)
+    save('thermal-runaway.svg', svg + '</svg>')
 if __name__ == '__main__':
     make_rc_charge()
     make_bridge_rectifier()
@@ -3236,4 +3587,8 @@ if __name__ == '__main__':
     make_impedance_freq()
     make_opamp_internals()
     make_debug_flow()
-    print('all 43 SVGs regenerated into', os.path.abspath(OUT))
+    make_divider_loading()
+    make_bjt_regions()
+    make_signal_chain()
+    make_thermal_runaway()
+    print('all 47 SVGs regenerated into', os.path.abspath(OUT))

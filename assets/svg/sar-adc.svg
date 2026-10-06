@@ -62,6 +62,10 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <animate attributeName="opacity" values="0;0;0.12;0.12;0;0" keyTimes="0;0.52;0.55;0.72;0.76;1" dur="8s" repeatCount="indefinite"/></rect>
 <rect x="670" y="150" width="80" height="150" fill="#7c3aed" opacity="0">
 <animate attributeName="opacity" values="0;0;0.12;0.12;0;0" keyTimes="0;0.77;0.8;0.95;0.98;1" dur="8s" repeatCount="indefinite"/></rect>
+<circle r="6" fill="#7c3aed" stroke="#ffffff" stroke-width="2">
+<animateMotion dur="8s" repeatCount="indefinite" calcMode="linear"
+  keyPoints="0;0.352;0.352;0.608;0.608;0.84;0.84;1;1" keyTimes="0;0.05;0.24;0.3;0.48;0.55;0.73;0.79;1"
+  path="M430,300 V204 H510 V252 H590 V228 H670 V240 H750 "/></circle>
 <text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">① 拍1：先试最高位 8（半天平）——DAC=8 > 5.3，太沉，退掉这一位<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.26;1" dur="8s" repeatCount="indefinite"/></text><text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">② 拍2：试次高位 4——DAC=4 &lt; 5.3，太轻，留下（累计 4）<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.28;0.33;0.45;0.51;1" dur="8s" repeatCount="indefinite"/></text><text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">③ 拍3：试 4+2=6——6 &gt; 5.3，退；拍4：试 4+1=5——5 &lt; 5.3，留 → 0101<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.53;0.58;0.75;0.81;1" dur="8s" repeatCount="indefinite"/></text><text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">④ N 位只要 N 拍：12 位=12 拍——速度与精度折中里的「中」就是这么来的<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.81;0.86;1" dur="8s" repeatCount="indefinite"/></text><g opacity="0">
 <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.88;0.92;1" dur="8s" repeatCount="indefinite"/>
 <rect x="55" y="470" width="690" height="34" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
