@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-generate_svgs.py — 一键再生成《通往模拟电路之路》全部 57 张 SVG SMIL 动画
+generate_svgs.py — 一键再生成《通往模拟电路之路》全部 60 张 SVG SMIL 动画
 用法:  python generate_svgs.py            # 输出到 ../assets/svg/
 风格:  参考 BMS-Z 项目 —— 浅色底 + SMIL 节拍字幕 + 深色模式自适应 + 拟人化讲解
 所有电路参数经过自洽核算（datasheet 级），详见各函数注释。
@@ -913,6 +913,12 @@ def make_ldo_feedback():
 <line x1="156" y1="320" x2="156" y2="366" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
 <text x="424" y="300" font-size="11.5" font-weight="bold" fill="#dc2626">若无反馈：一跌不起（负载调整率灾难）</text>
 <path d="{ol_d}" fill="none" stroke="#dc2626" stroke-width="3"/>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DL}s" begin="-0.3s" repeatCount="indefinite" path="M102,90 L178,90"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DL}s" begin="-0.8s" repeatCount="indefinite" path="M332,90 L400,90 L400,108"/></circle>
+<circle r="4.5" fill="#059669"><animateMotion dur="{DL}s" begin="-1.3s" repeatCount="indefinite" path="M400,158 L400,174"/></circle>
+<circle r="4.5" fill="#059669"><animateMotion dur="{DL}s" begin="-1.8s" repeatCount="indefinite" path="M400,188 L400,198"/></circle>
+<circle r="5" fill="#7c3aed"><animateMotion dur="{DL}s" begin="-2.3s" repeatCount="indefinite" path="{ol_d[9:]}" keyPoints="0;1" keyTimes="0;1"/></circle>
+
 <circle cx="420" cy="340" r="5.5" fill="#fff" stroke="#dc2626" stroke-width="3"><animateMotion dur="{DL}s" repeatCount="indefinite" path="{ol_d}"/></circle>
 <line x1="420" y1="340" x2="744" y2="340" stroke="#64748b" stroke-width="1.5"/>
 <line x1="516" y1="320" x2="516" y2="366" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
@@ -1363,6 +1369,11 @@ def make_wien_bridge():
 <line x1="420" y1="276" x2="750" y2="276" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
 <text x="700" y="270" font-size="10" fill="#7c3aed">灯泡稳幅</text>
 <text x="440" y="340" font-size="10.5" fill="#475569">开机噪声里的 f₀ 分量被选中、每圈放大一点</text>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DW}s" begin="-0.3s" repeatCount="indefinite" path="M42,140 L58,140"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DW}s" begin="-0.9s" repeatCount="indefinite" path="M102,140 L126,140"/></circle>
+<circle r="4.5" fill="#7c3aed"><animateMotion dur="{DW}s" begin="-1.5s" repeatCount="indefinite" path="M167,140 L298,140"/></circle>
+<circle r="4.5" fill="#7c3aed"><animateMotion dur="{DW}s" begin="-2.1s" repeatCount="indefinite" path="M220,142 L220,158"/></circle>
+
 '''
     svg += caption("① RC 串并网络在 f₀=1/(2πRC) 处：相移恰好 0°、衰减恰好 1/3", "#7c3aed", DW,
                    "0;1;1;0;0", "0;0.03;0.22;0.28;1", y=430)
@@ -2296,6 +2307,11 @@ def make_rc_lowpass():
 <text x="440" y="384" font-size="10.5" font-weight="bold" fill="#475569">高频输入（灰）→ 输出（绿）：频率不变、幅度缩、相位滞后</text>
 <path d="{sin_hi_in}" fill="none" stroke="#94a3b8" stroke-width="1.6"/>
 <path d="{sin_hi_out}" fill="none" stroke="#059669" stroke-width="2.5"/>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DLP}s" begin="-0.3s" repeatCount="indefinite" path="M42,150 L58,150"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DLP}s" begin="-0.9s" repeatCount="indefinite" path="M142,150 L238,150"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DLP}s" begin="-1.5s" repeatCount="indefinite" path="M180,152 L180,188"/></circle>
+<circle r="5" fill="#7c3aed"><animateMotion dur="{DLP}s" begin="-2.1s" repeatCount="indefinite" path="M176,240 L184,240 L180,234"/></circle>
+
 <circle cx="430" cy="150" r="5.5" fill="#fff" stroke="#059669" stroke-width="3"><animateMotion dur="{DLP}s" repeatCount="indefinite" path="{mag_d}"/></circle>
 <circle cx="430" cy="297" r="5" fill="#fff" stroke="#7c3aed" stroke-width="3"><animateMotion dur="{DLP}s" repeatCount="indefinite" path="{pha_d}"/></circle>
 <circle cx="430" cy="424" r="5" fill="#fff" stroke="#059669" stroke-width="3"><animateMotion dur="{DLP}s" repeatCount="indefinite" path="{sin_hi_out}"/></circle>
@@ -2461,6 +2477,14 @@ def make_peak_detector():
 <path d="{pk_d}" fill="none" stroke="#059669" stroke-width="2.8"/>
 <line x1="430" y1="170" x2="750" y2="170" stroke="#64748b" stroke-width="1"/>
 <text x="440" y="290" font-size="10.5" fill="#059669">峰顶充电（跳上）→ 输入回落 → 电容记住（平台缓降=泄放）</text>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DPK}s" begin="-0.3s" repeatCount="indefinite" path="M48,140 L88,140"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DPK}s" begin="-0.9s" repeatCount="indefinite" path="M152,140 L172,140"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DPK}s" begin="-1.5s" repeatCount="indefinite" path="M200,140 L238,140 L240,104 L92,100"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="{DPK}s" begin="-2.1s" repeatCount="indefinite" path="{pk_d[9:]}" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle cx="560" cy="170" r="5" fill="none" stroke="#059669" stroke-width="2.4">
+<animate attributeName="r" values="5;12;5" dur="1.7s" repeatCount="indefinite"/>
+<animate attributeName="opacity" values="0.95;0.2;0.95" dur="1.7s" repeatCount="indefinite"/></circle>
+
 '''
     svg += caption("① 输入创「新高」：运放顶开二极管，C_hold 瞬间充到峰顶——只许上", "#059669", DPK,
                    "0;1;1;0;0", "0;0.03;0.2;0.26;1", y=430)
@@ -3641,6 +3665,14 @@ def make_cap_parasitics():
 <animateMotion dur="{DC}s" repeatCount="indefinite" path="M{px(1e3):.0f},{py(zmag(1e3,*ML)):.0f} L{px(1e7):.0f},{py(zmag(1e7,*ML)):.0f}" keyPoints="0;1" keyTimes="0;1"/></circle>
 <text x="586" y="486" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#b45309">去耦选电容 = 选「谷底低且谷底宽」的那条曲线</text>
 <text x="586" y="506" text-anchor="middle" font-size="11" fill="#475569">电解负责储能（低频），100nF 陶瓷负责高频——两者不能互相替代</text>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DC}s" begin="-0.4s" repeatCount="indefinite" path="M98,116 L118,116"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DC}s" begin="-1.0s" repeatCount="indefinite" path="M182,116 L204,116 L204,134"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DC}s" begin="-1.6s" repeatCount="indefinite" path="M204,186 L204,226"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DC}s" begin="-2.2s" repeatCount="indefinite" path="M204,230 L204,260"/></circle>
+<circle cx="{px(srf_ml):.0f}" cy="{py(ML[1]):.0f}" r="6" fill="none" stroke="#2563eb" stroke-width="2.4">
+<animate attributeName="r" values="6;15;6" dur="1.9s" repeatCount="indefinite"/>
+<animate attributeName="opacity" values="0.95;0.15;0.95" dur="1.9s" repeatCount="indefinite"/></circle>
+
 '''
     svg += caption("① 低频：容抗 1/2πfC 主导——10µF 在 100Hz 只有 1.6Ω，但那是它最威风的时候", "#7c3aed", DC,
                    "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=548)
@@ -4354,6 +4386,211 @@ def make_tristate_bus():
     save('tristate-bus.svg', svg + '</svg>')
 
 
+# ======================= 图 58：推挽输出与直通电流（第 5 章 5.1） =======================
+def make_pushpull_stage():
+    DP = 11
+    svg = svg_open('推挽输出：两个方向都能驱动，但绝不能同时开', h=620)
+    svg += f'''
+<text x="200" y="50" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">图腾柱：上管推高、下管拉低</text>
+<text x="88" y="86" text-anchor="end" font-size="11.5" font-weight="bold" fill="#b45309">VDD 5V</text>
+<line x1="150" y1="92" x2="150" y2="120" stroke="#334155" stroke-width="2.5"/>
+<line x1="96" y1="92" x2="150" y2="92" stroke="#334155" stroke-width="2.5"/>
+<rect x="112" y="120" width="76" height="46" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5"/>
+<text x="150" y="140" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#2563eb">上管 PMOS</text>
+<text x="150" y="158" text-anchor="middle" font-size="10.5" fill="#475569">ON = 推高</text>
+<line x1="150" y1="166" x2="150" y2="196" stroke="#334155" stroke-width="2.5"/>
+<circle cx="150" cy="196" r="4.5" fill="#334155"/>
+<line x1="150" y1="196" x2="290" y2="196" stroke="#334155" stroke-width="2.5"/>
+<text x="296" y="192" font-size="12" font-weight="bold" fill="#059669">OUT</text>
+<line x1="150" y1="196" x2="150" y2="226" stroke="#334155" stroke-width="2.5"/>
+<rect x="112" y="226" width="76" height="46" rx="6" fill="#fef2f2" stroke="#dc2626" stroke-width="2.5"/>
+<text x="150" y="246" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#dc2626">下管 NMOS</text>
+<text x="150" y="264" text-anchor="middle" font-size="10.5" fill="#475569">ON = 拉低</text>
+<line x1="150" y1="272" x2="150" y2="300" stroke="#334155" stroke-width="2.5"/>
+{gnd_sym(150, 314)}
+<circle r="5" fill="#2563eb"><animateMotion dur="{DP}s" begin="-0.3s" repeatCount="indefinite" path="M150,92 L150,118"/></circle>
+<circle r="5" fill="#2563eb"><animateMotion dur="{DP}s" begin="-0.3s" repeatCount="indefinite" path="M152,168 L152,194 L288,196"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="{DP}s" begin="-1.2s" repeatCount="indefinite" path="M288,200 L152,200 L152,274 L150,298"/></circle>
+<circle r="4" fill="#f59e0b"><animateMotion dur="{DP}s" begin="-2.0s" repeatCount="indefinite" path="M150,116 L150,270 L150,116"/></circle>
+<text x="330" y="120" font-size="11.5" font-weight="bold" fill="#2563eb">输出高：上管供流</text>
+<text x="330" y="138" font-size="11" fill="#475569">（source current）</text>
+<text x="330" y="170" font-size="11.5" font-weight="bold" fill="#dc2626">输出低：下管吸流</text>
+<text x="330" y="188" font-size="11" fill="#475569">（sink current）</text>
+<text x="330" y="220" font-size="11.5" font-weight="bold" fill="#059669">两个方向都主动驱动</text>
+<text x="330" y="238" font-size="11" fill="#475569">——比开漏快得多</text>
+<rect x="40" y="340" width="330" height="130" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+<text x="56" y="366" font-size="12" font-weight="bold" fill="#b91c1c">⚠ 两个推挽直连 = 短路</text>
+<text x="56" y="390" font-size="11" fill="#475569">一只推高、一只推低，电流只受管阻限制：</text>
+<text x="56" y="410" font-size="11" font-weight="bold" fill="#dc2626">I = 5V / (25Ω+25Ω) = 100mA</text>
+<text x="56" y="432" font-size="11" fill="#475569">够烧 IO；所以共享总线绝不能用推挽</text>
+<text x="56" y="454" font-size="11" fill="#475569">（要用开漏 / 三态，见 5.2、5.4）</text>
+<text x="420" y="340" font-size="12" font-weight="bold" fill="#b45309">切换瞬间：直通电流（shoot-through）</text>
+<text x="420" y="362" font-size="11" fill="#475569">上下管换班的几 ns 里两个都半开，</text>
+<text x="420" y="382" font-size="11" fill="#475569">VDD 到 GND 被短暂打通 → 电源毛刺 +</text>
+<text x="420" y="402" font-size="11" fill="#475569">动态功耗的元凶。芯片靠「死区时间」</text>
+<text x="420" y="422" font-size="11" fill="#475569">（先关后开）把它压掉。</text>
+<text x="420" y="452" font-size="11.5" font-weight="bold" fill="#7c3aed">音频乙类推挽还要防交越失真（见 11.4）</text>
+<line x1="40" y1="490" x2="760" y2="490" stroke="#cbd5e1" stroke-width="1"/>
+<text x="400" y="516" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">三兄弟对比：推挽 vs 开漏 vs 三态</text>
+<text x="400" y="542" text-anchor="middle" font-size="11.5" fill="#475569">推挽：两个方向都主动驱动，但**不能共享总线**　·　开漏：只能拉低，靠上拉出高，**可以线与**　·　三态：加了「隐身」态，**可以共享总线**</text>
+<text x="400" y="566" text-anchor="middle" font-size="11" fill="#64748b">选哪种，先问一句：这根线上会不会有第二个驱动器？</text>
+{pulse(40, 338, 330, 134, '#b91c1c', 1.9, 10)}
+'''
+    svg += caption("① 上管导通 = 主动推高；下管导通 = 主动拉低——两个方向都有低阻通路", "#2563eb", DP,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=600)
+    svg += caption("② 所以推挽输出上升/下降沿都快、驱动强——MCU GPIO 默认就是它", "#059669", DP,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=600)
+    svg += caption("③ 代价一：两个推挽直连就是短路，电流只受管阻限制（100mA 级）", "#b91c1c", DP,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=600)
+    svg += caption("④ 代价二：换班瞬间有直通电流 → 电源毛刺；要靠死区时间压掉", "#b45309", DP,
+                   "0;0;1;1", "0;0.85;0.9;1", y=600)
+    save('pushpull-stage.svg', svg + '</svg>')
+
+
+# ======================= 图 59：LM393 内部解剖（第 7 章 7.2） =======================
+def make_lm393_inside():
+    DL = 11
+    svg = svg_open('解剖 LM393：四级里最关键是那只「只会拉低」的输出管', h=620)
+    svg += f'''
+<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">PNP 差分输入 → 增益级 → 开漏输出管</text>
+<rect x="40" y="90" width="150" height="80" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5"/>
+<text x="115" y="118" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#2563eb">① PNP 差分输入</text>
+<text x="115" y="140" text-anchor="middle" font-size="10.5" fill="#475569">共模 0 ~ Vcc−1.5V</text>
+<text x="115" y="158" text-anchor="middle" font-size="10.5" fill="#475569">能一路接到地</text>
+<line x1="190" y1="130" x2="230" y2="130" stroke="#334155" stroke-width="2.5"/>
+<circle r="5" fill="#2563eb"><animateMotion dur="{DL}s" begin="-0.3s" repeatCount="indefinite" path="M192,130 L228,130"/></circle>
+<rect x="230" y="90" width="140" height="80" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="300" y="118" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">② 增益级</text>
+<text x="300" y="140" text-anchor="middle" font-size="10.5" fill="#475569">把 mV 差放大成判决</text>
+<text x="300" y="158" text-anchor="middle" font-size="10.5" fill="#475569">V_OS 2mV 决定精度</text>
+<line x1="370" y1="130" x2="410" y2="130" stroke="#334155" stroke-width="2.5"/>
+<circle r="5" fill="#334155"><animateMotion dur="{DL}s" begin="-0.9s" repeatCount="indefinite" path="M372,130 L408,130"/></circle>
+<rect x="410" y="90" width="160" height="80" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="2.5"/>
+<text x="490" y="118" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#dc2626">③ 开漏输出管</text>
+<text x="490" y="140" text-anchor="middle" font-size="10.5" fill="#475569">只有一只 NPN 对地</text>
+<text x="490" y="158" text-anchor="middle" font-size="10.5" fill="#475569">只会拉低，不会推高</text>
+<rect x="410" y="210" width="160" height="60" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<text x="490" y="234" text-anchor="middle" font-size="11" font-weight="bold" fill="#b45309">上拉电阻 10k</text>
+<text x="490" y="254" text-anchor="middle" font-size="10.5" fill="#475569">可接任意电压 → 电平转换</text>
+<line x1="490" y1="170" x2="490" y2="210" stroke="#dc2626" stroke-width="2.5"/>
+<line x1="490" y1="270" x2="490" y2="300" stroke="#334155" stroke-width="2.5"/>
+<circle cx="490" cy="300" r="4.5" fill="#334155"/>
+<line x1="490" y1="300" x2="590" y2="300" stroke="#334155" stroke-width="2.5"/>
+<text x="596" y="296" font-size="12" font-weight="bold" fill="#059669">OUT</text>
+<circle r="5" fill="#b45309"><animateMotion dur="{DL}s" begin="-1.5s" repeatCount="indefinite" path="M490,272 L490,212"/></circle>
+<text x="584" y="222" font-size="11.5" font-weight="bold" fill="#dc2626">输出管导通 → OUT 拉到地</text>
+<text x="584" y="244" font-size="11" fill="#475569">输出管关断 → 10k 拉到高</text>
+<text x="584" y="266" font-size="11" fill="#475569">这就是「开漏」的全部含义</text>
+<rect x="40" y="200" width="260" height="120" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,4"/>
+<text x="56" y="226" font-size="11.5" font-weight="bold" fill="#334155">开漏的三个红利</text>
+<text x="56" y="250" font-size="11" fill="#475569">① 上拉接 3.3V → 5V 器件直接比 3.3V 逻辑</text>
+<text x="56" y="272" font-size="11" fill="#475569">② 多个输出并联 = 线与（谁拉低谁说了算）</text>
+<text x="56" y="294" font-size="11" fill="#475569">③ 不接上拉就没有高电平——这也能当使能</text>
+<line x1="40" y1="350" x2="760" y2="350" stroke="#cbd5e1" stroke-width="1"/>
+<text x="400" y="376" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">LM393 关键参数（选型直接看这五行）</text>
+<text x="120" y="406" font-size="11.5" font-weight="bold" fill="#b45309">V_OS 2mV</text>
+<text x="120" y="426" font-size="10.5" fill="#475569">判决精度</text>
+<text x="270" y="406" font-size="11.5" font-weight="bold" fill="#b45309">共模 0~Vcc−1.5V</text>
+<text x="270" y="426" font-size="10.5" fill="#475569">可接地</text>
+<text x="450" y="406" font-size="11.5" font-weight="bold" fill="#b45309">t_PD ≈1.3µs</text>
+<text x="450" y="426" font-size="10.5" fill="#475569">大信号传播延迟</text>
+<text x="610" y="406" font-size="11.5" font-weight="bold" fill="#b45309">2~36V 供电</text>
+<text x="610" y="426" font-size="10.5" fill="#475569">单/双电源通吃</text>
+<text x="700" y="406" font-size="11.5" font-weight="bold" fill="#b45309">I_q 0.4mA</text>
+<text x="700" y="426" font-size="10.5" fill="#475569">低功耗</text>
+{pulse(40, 88, 152, 84, '#2563eb', 2.0, 8)}
+{pulse(408, 88, 164, 84, '#dc2626', 2.0, 8)}
+<circle cx="490" cy="130" r="5" fill="none" stroke="#dc2626" stroke-width="2.4">
+<animate attributeName="r" values="5;12;5" dur="1.8s" repeatCount="indefinite"/></circle>
+'''
+    svg += caption("① 输入级用 PNP：共模范围能一路到地——单电源接地信号直接能比", "#2563eb", DL,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=468)
+    svg += caption("② 输出只有一只对地 NPN：只会拉低、不会推高，所以必须外接上拉", "#dc2626", DL,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=468)
+    svg += caption("③ 开漏不是缺点：上拉接任意电压 → 天然电平转换 + 多路可与（窗口检测器）", "#059669", DL,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=468)
+    svg += caption("④ 选型只看五行：V_OS、共模范围、传播延迟、供电范围、静态电流", "#b45309", DL,
+                   "0;0;1;1", "0;0.85;0.9;1", y=468)
+    svg += note_box("LM393 的全部脾气都来自「PNP 输入 + 开漏输出」这两个选择——先看结构，再看参数表", 510, DL,
+                    "0;0.9;0.94;1", w=740)
+    save('lm393-inside.svg', svg + '</svg>')
+
+
+# ======================= 图 60：齐纳 vs 带隙（第 9 章 9.1） =======================
+def make_ref_showdown():
+    DR = 11
+    svg = svg_open('齐纳 vs 带隙：两种基准，两套温漂账', h=620)
+    svg += f'''
+<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">同一个问题（要一个不动的电压），两条技术路线</text>
+<rect x="34" y="76" width="350" height="240" rx="10" fill="#f8fafc" stroke="#b45309" stroke-width="1.8"/>
+<text x="209" y="104" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#b45309">齐纳基准（Zener）</text>
+<line x1="60" y1="150" x2="100" y2="150" stroke="#334155" stroke-width="2.5"/>
+<line x1="100" y1="126" x2="100" y2="174" stroke="#334155" stroke-width="2.5"/>
+<path d="M88,132 L100,122 L112,132 Z" fill="#334155"/>
+<path d="M88,168 L100,178 L112,168 Z" fill="#334155"/>
+<line x1="100" y1="150" x2="140" y2="150" stroke="#334155" stroke-width="2.5"/>
+<rect x="140" y="138" width="46" height="24" rx="3" fill="#fffbeb" stroke="#b45309" stroke-width="2.5"/>
+<text x="163" y="126" text-anchor="middle" font-size="11" font-weight="bold" fill="#b45309">R_s</text>
+<line x1="186" y1="150" x2="230" y2="150" stroke="#334155" stroke-width="2.5"/>
+<line x1="230" y1="150" x2="230" y2="186" stroke="#334155" stroke-width="2.5"/>
+<path d="M216,186 L244,186 L230,208 Z" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<line x1="216" y1="208" x2="244" y2="208" stroke="#334155" stroke-width="3.5"/>
+<line x1="230" y1="208" x2="230" y2="238" stroke="#334155" stroke-width="2.5"/>
+{gnd_sym(230, 252)}
+<line x1="230" y1="150" x2="300" y2="150" stroke="#334155" stroke-width="2.5"/>
+<circle cx="300" cy="150" r="4.5" fill="#334155"/>
+<text x="306" y="146" font-size="11.5" font-weight="bold" fill="#059669">V_REF</text>
+<text x="60" y="290" font-size="11.5" font-weight="bold" fill="#b45309">5.6V 附近温漂最小</text>
+<text x="230" y="290" font-size="11.5" font-weight="bold" fill="#dc2626">但噪声大、精度差</text>
+<text x="60" y="310" font-size="11" fill="#475569">（齐纳击穿负温漂 ≈ 雪崩正温漂，互相抵消）</text>
+<circle r="5" fill="#f59e0b"><animateMotion dur="{DR}s" begin="-0.3s" repeatCount="indefinite" path="M62,150 L98,150"/></circle>
+<circle r="5" fill="#f59e0b"><animateMotion dur="{DR}s" begin="-0.9s" repeatCount="indefinite" path="M188,150 L298,150"/></circle>
+<circle r="5" fill="#f59e0b"><animateMotion dur="{DR}s" begin="-1.5s" repeatCount="indefinite" path="M230,210 L230,250"/></circle>
+<rect x="416" y="76" width="350" height="240" rx="10" fill="#f8fafc" stroke="#2563eb" stroke-width="1.8"/>
+<text x="591" y="104" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#2563eb">带隙基准（Bandgap）</text>
+<text x="440" y="140" font-size="12" font-weight="bold" fill="#dc2626">V_BE</text>
+<text x="440" y="160" font-size="10.5" fill="#475569">随温度下降</text>
+<text x="440" y="180" font-size="11.5" font-weight="bold" fill="#dc2626">−2mV/℃</text>
+<text x="560" y="140" font-size="12" font-weight="bold" fill="#059669">+ K·ΔV_BE</text>
+<text x="560" y="160" font-size="10.5" fill="#475569">随温度上升</text>
+<text x="560" y="180" font-size="11.5" font-weight="bold" fill="#059669">+0.177mV/℃×K</text>
+<line x1="440" y1="196" x2="740" y2="196" stroke="#cbd5e1" stroke-width="1"/>
+<text x="440" y="220" font-size="12" font-weight="bold" fill="#7c3aed">合成：K=2/0.177≈11.3</text>
+<text x="440" y="242" font-size="11.5" fill="#475569">V_REF = V_BE + K·V_T·ln8 ≈ 1.26V</text>
+<text x="440" y="264" font-size="11.5" font-weight="bold" fill="#2563eb">≈ 硅的带隙电压 → 名字由来</text>
+<text x="440" y="292" font-size="11.5" font-weight="bold" fill="#b45309">配比全部来自「两只管子 + 两个比值」</text>
+<text x="440" y="310" font-size="11" fill="#475569">版图面积比 8 好做好准，电阻比可激光修调</text>
+<circle r="5" fill="#2563eb"><animateMotion dur="{DR}s" begin="-0.6s" repeatCount="indefinite" path="M592,196 L700,196"/></circle>
+<circle cx="591" cy="196" r="5" fill="none" stroke="#2563eb" stroke-width="2.4">
+<animate attributeName="r" values="5;12;5" dur="1.8s" repeatCount="indefinite"/></circle>
+<line x1="400" y1="336" x2="400" y2="484" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="6,5"/>
+<text x="30" y="360" font-size="12" font-weight="bold" fill="#334155">温漂：同一条温度轴上比</text>
+<line x1="60" y1="470" x2="740" y2="470" stroke="#64748b" stroke-width="1.4"/>
+<line x1="60" y1="380" x2="60" y2="470" stroke="#64748b" stroke-width="1.4"/>
+<text x="52" y="490" text-anchor="end" font-size="10.5" fill="#475569">−40℃</text>
+<text x="734" y="490" text-anchor="end" font-size="10.5" fill="#475569">+125℃</text>
+<path d="M70,414 Q210,392 300,416 Q340,428 360,442" fill="none" stroke="#b45309" stroke-width="3"/>
+<text x="150" y="404" font-size="11" font-weight="bold" fill="#b45309">齐纳：抛物线，5.6V 处才触底</text>
+<path d="M70,430 L360,430" fill="none" stroke="#2563eb" stroke-width="3"/>
+<text x="150" y="450" font-size="11" font-weight="bold" fill="#2563eb">带隙：修调后能压到 3ppm/℃</text>
+<text x="60" y="508" font-size="12" font-weight="bold" fill="#334155">怎么选</text>
+<text x="90" y="534" font-size="11.5" fill="#475569">粗基准、成本敏感、要高压 → 齐纳（5.6V 附近选型）</text>
+<text x="90" y="556" font-size="11.5" fill="#475569">精密基准、ADC 参考 → 带隙（现代基准芯片清一色）</text>
+{pulse(34, 74, 352, 244, '#b45309', 2.0, 10)}
+'''
+    svg += caption("① 齐纳：靠击穿电压，简单粗暴便宜——但 5.6V 之外温漂就上去了", "#b45309", DR,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=592)
+    svg += caption("② 带隙：用一正一负两条温漂曲线相加，让它们互相抵消", "#2563eb", DR,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=592)
+    svg += caption("③ 配比 K 不是魔数：它等于 2mV/℃ ÷ (0.085mV/℃ × ln8) ≈ 11.3", "#7c3aed", DR,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=592)
+    svg += caption("④ 选型口诀：粗基准看齐纳、精密基准看带隙——温漂差两个数量级", "#059669", DR,
+                   "0;0;1;1", "0;0.85;0.9;1", y=592)
+    svg += note_box("带隙能赢不是因为「更复杂」，而是因为它把温漂做成了「两个比值之比」——IC 里比值天生好匹配", 610, DR,
+                    "0;0.9;0.94;1", w=740)
+    save('ref-showdown.svg', svg + '</svg>')
+
+
 if __name__ == '__main__':
     make_rc_charge()
     make_bridge_rectifier()
@@ -4412,4 +4649,7 @@ if __name__ == '__main__':
     make_transfer_gate()
     make_three_topologies()
     make_tristate_bus()
-    print('all 57 SVGs regenerated into', os.path.abspath(OUT))
+    make_pushpull_stage()
+    make_lm393_inside()
+    make_ref_showdown()
+    print('all 60 SVGs regenerated into', os.path.abspath(OUT))

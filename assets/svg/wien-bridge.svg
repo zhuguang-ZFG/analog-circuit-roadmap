@@ -84,6 +84,11 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <line x1="420" y1="276" x2="750" y2="276" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
 <text x="700" y="270" font-size="10" fill="#7c3aed">灯泡稳幅</text>
 <text x="440" y="340" font-size="10.5" fill="#475569">开机噪声里的 f₀ 分量被选中、每圈放大一点</text>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="6s" begin="-0.3s" repeatCount="indefinite" path="M42,140 L58,140"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="6s" begin="-0.9s" repeatCount="indefinite" path="M102,140 L126,140"/></circle>
+<circle r="4.5" fill="#7c3aed"><animateMotion dur="6s" begin="-1.5s" repeatCount="indefinite" path="M167,140 L298,140"/></circle>
+<circle r="4.5" fill="#7c3aed"><animateMotion dur="6s" begin="-2.1s" repeatCount="indefinite" path="M220,142 L220,158"/></circle>
+
 <text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">① RC 串并网络在 f₀=1/(2πRC) 处：相移恰好 0°、衰减恰好 1/3<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.22;0.28;1" dur="6s" repeatCount="indefinite"/></text><text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">② 同相放大器增益=3：3 × 1/3 = 1——环路增益=1、相移=0，巴克豪森判据成立<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.28;0.33;0.55;0.61;1" dur="6s" repeatCount="indefinite"/></text><text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">③ 起振靠噪声种子；幅度长大靠增益>1；停在多大？——灯泡发热升阻自动稳幅<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.61;0.67;1" dur="6s" repeatCount="indefinite"/></text><g opacity="0">
 <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.72;0.77;1" dur="6s" repeatCount="indefinite"/>
 <rect x="55" y="450" width="690" height="34" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>

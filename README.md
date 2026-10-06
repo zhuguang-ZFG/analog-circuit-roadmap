@@ -13,7 +13,7 @@
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-CC_BY--SA_4.0-lightgrey.svg" alt="License"></a>
-  <img src="https://img.shields.io/badge/SVG动画-57张-3fb950.svg" alt="SVG">
+  <img src="https://img.shields.io/badge/SVG动画-60张-3fb950.svg" alt="SVG">
   <img src="https://img.shields.io/badge/章节-8篇19章-58a6ff.svg" alt="chapters">
   <img src="https://img.shields.io/badge/最近更新-2026.10-f0883e.svg" alt="updated">
 </p>
@@ -71,7 +71,7 @@
 | 电源噪声让 ADC 读数跳 | [15.2 接地](#ch15) + [15.1 布局](#ch15) | 回流在脚下 + 去耦电容贴脸放 |
 | 板子偶发复位/莫名振荡 | [第 16 章 排故五步法](#ch16) → [第 17 章 速查总表](#ch17) | 症状对号入座，一次只改一个变量 |
 | 高频信号过不去/边沿变肉 | [第 1 章 无源元件](#ch1) + [12.5 Sallen-Key](#ch12) | 寄生电感电容的真实代价 |
-| 只想先看动画找感觉 | [第五篇 动画中心](#part5) | 57 张 SMIL 动画随便点开 |
+| 只想先看动画找感觉 | [第五篇 动画中心](#part5) | 60 张 SMIL 动画随便点开 |
 
 
 ## ⭐ 必读精选（编辑之选）
@@ -118,7 +118,7 @@ graph TD
   - [第 14 章 设计方法论](#ch14) · [第 15 章 PCB 注意事项](#ch15)
 - **[第四篇：故障分析与排故方法论](#part4)** 🩺
   - [第 16 章 排故五步法](#ch16) · [第 17 章 故障速查表](#ch17) · [第 18 章 大师智慧](#ch18)
-- **[第五篇：动画演示中心](#part5)** 🎬 — 57 张 SVG 动画 + Falstad 地图
+- **[第五篇：动画演示中心](#part5)** 🎬 — 60 张 SVG 动画 + Falstad 地图
 - **[第六篇：实物图鉴与速查](#part6)** 🧩 — 实物照片 · 参数速查 · [官方 datasheet 直达](#part6)
 - **[第七篇：视频资源](#part7)** 📺 — B站系统课 · YouTube 频道
 - **[第八篇：学习路线与资源索引](#part8)** 📚 — 路线图 · 书单 · 项目清单 · [官方资料](#sec88) · [经典论文](#sec89) · [术语表](#sec810) · [顺口溜总表](#sec811) · FAQ
@@ -676,6 +676,14 @@ MOSFET 栅极充电时 $V_{GS}$ 波形出现的"平台"：此时 $V_{DS}$ 正在
 - 多设备共享总线时**绝不能**用推挽
 - 上下管切换瞬间存在微小共同导通窗口 → 直通电流（shoot-through），CMOS 芯片动态功耗和电源毛刺的来源之一
 
+<p align="center"><img src="assets/svg/pushpull-stage.svg" width="720" alt="推挽输出级SVG动画：图腾柱与直通电流"></p>
+
+🧮 **算一笔**（两推挽直连有多狠）：5V 供电、上下管各 25Ω →
+$I=\dfrac{5V}{25\Omega+25\Omega}=100mA$——**这个电流不经过负载，纯粹在两只管子之间烧掉**。
+所以共享总线（I²C、多设备数据线）绝不能用推挽，必须用开漏或三态（[5.2](#ch5)、[5.4](#ch5)）。
+另一笔账更隐蔽：上下管换班的几 ns 里两个都半开，VDD→GND 被短暂打通（**直通电流 shoot-through**），
+这正是 CMOS 动态功耗和电源毛刺的主要来源，芯片靠「死区时间」（先关后开）把它压下去。
+
 **典型应用**：MCU GPIO 默认模式、74HC 逻辑输出、B 类/AB 类音频功放的输出级（NPN+PNP 互补对管，会有**交越失真**——两管都未导通的死区造成波形过零畸变，AB 类用二极管偏置消除）。
 
 ### 5.2 开漏输出（Open-Drain）
@@ -949,6 +957,12 @@ $$\tau=RC=1\text{ms},\quad t_r\approx2.2\tau=2.2\text{ms}$$
 - 上拉可接任意电压 → 天然电平转换（3.3V 比较、5V 输出）
 - 多路比较器输出可线与（窗口检测器）
 
+<p align="center"><img src="assets/svg/lm393-inside.svg" width="720" alt="LM393内部解剖SVG动画：PNP输入+开漏输出"></p>
+
+**看结构就懂脾气**：输入级用 **PNP 差分对**，所以共模范围能一路到地（0~Vcc−1.5V）——
+单电源接地信号直接能比；输出级只有**一只对地 NPN**（开漏），所以它「只会拉低、不会推高」，
+必须外接上拉。这两条结构选择，决定了 LM393 所有的使用习惯与坑。
+
 **LM393 关键参数**：
 - 输入失调电压：2mV typ（决定判决精度）
 - 输入共模范围：0 ~ Vcc-1.5V（**接地，单电源友好**）
@@ -1117,6 +1131,11 @@ $R_{on,N}=\dfrac{R_0}{V_{DD}-V_{IN}-V_{TH}}$、$R_{on,P}=\dfrac{R_0}{V_{IN}-V_{T
 ### 9.1 齐纳 vs 带隙：两种基准原理
 
 **齐纳基准**：反向击穿稳压管。5.6V 附近温度系数最小（齐纳击穿负温漂与雪崩击穿正温漂抵消）；噪声大、精度差 → 只适合粗基准。
+
+<p align="center"><img src="assets/svg/ref-showdown.svg" width="720" alt="齐纳与带隙温漂对比SVG动画"></p>
+
+上图把两条路线的温漂画在同一条温度轴上：**齐纳是抛物线（只有 5.6V 附近才触底），
+带隙修调后能压到 3ppm/℃ 的平直线**——差了约两个数量级。选型口诀：粗基准看齐纳、精密基准看带隙。
 
 <p align="center"><img src="assets/svg/zener-regulator.svg" width="720" alt="齐纳稳压动画：溢流阀"></p>
 
@@ -1985,7 +2004,7 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 <a id="part5"></a>
 # 第五篇：动画演示中心 🎬
 
-> 全部 57 张 SVG 动画（SMIL，浏览器直接播放）位于 `assets/svg/` 目录，由 `scripts/generate_svgs.py` 一键生成（仓库铁律：两者始终同步）；配套 Falstad 在线电路可实时交互。
+> 全部 60 张 SVG 动画（SMIL，浏览器直接播放）位于 `assets/svg/` 目录，由 `scripts/generate_svgs.py` 一键生成（仓库铁律：两者始终同步）；配套 Falstad 在线电路可实时交互。
 
 ## 5.1 RC 充电 <a id="demo1"></a>
 
@@ -2313,7 +2332,25 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 
 **看点**：反相/同相/差分并排——同一组电阻比例都是 10 倍增益，差别只在输入阻抗、共模与服务代价。→ 正文 [12.2 三个基本拓扑](#ch12)
 
-## 5.53 Falstad 内置示例地图（全部带动画）
+## 5.53 推挽输出级：直通电流从哪来 <a id="demo53"></a>
+
+<p align="center"><img src="assets/svg/pushpull-stage.svg" width="720" alt="推挽输出级SVG动画"></p>
+
+**看点**：上管供流/下管吸流两个方向都主动；两个推挽直连 = 100mA 短路，换班瞬间还有直通电流。→ 正文 [5.1 推挽输出](#ch5)
+
+## 5.54 解剖 LM393：开漏输出的三个红利 <a id="demo54"></a>
+
+<p align="center"><img src="assets/svg/lm393-inside.svg" width="720" alt="LM393内部解剖SVG动画"></p>
+
+**看点**：粒子从 PNP 输入级流到开漏输出管；上拉接任意电压 → 电平转换，多路并联 → 线与。→ 正文 [7.2 解剖 LM393](#ch7)
+
+## 5.55 齐纳 vs 带隙：两套温漂账 <a id="demo55"></a>
+
+<p align="center"><img src="assets/svg/ref-showdown.svg" width="720" alt="齐纳与带隙对比SVG动画"></p>
+
+**看点**：齐纳的抛物线温漂（5.6V 才触底）对带隙的平直线（3ppm/℃）；配比 K=2/0.177≈11.3 的来龙去脉。→ 正文 [9.1 齐纳 vs 带隙](#ch9)
+
+## 5.56 Falstad 内置示例地图（全部带动画）
 
 | 主题 | 菜单路径 |
 |---|---|
@@ -2675,7 +2712,8 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 
 | 版本 | 亮点 |
 |---|---|
-| **v1.9（当前）** | 动画 57 张：新增「三态总线」（5.4，补零图区）「三种基本拓扑对比」（12.2，补零图区）；bandgap/miller-plateau/opamp-slew 三图补运动（各 7→12/13/14）；**修正图54 探头拓扑**（原画成串联且无地回路，实为跨接节点的并联负载 1MΩ‖100pF） |
+| **v2.0（当前）** | 动画 60 张：新增「推挽输出级」（5.1）「解剖 LM393」（7.2）「齐纳 vs 带隙」（9.1）；rc-lowpass/wien-bridge/ldo-feedback/capacitor-parasitics/peak-detector 五图补运动（7→11、7→11、8→13、9→15、9→15） |
+| v1.9 | 动画 57 张：新增「三态总线」（5.4，补零图区）「三种基本拓扑对比」（12.2，补零图区）；bandgap/miller-plateau/opamp-slew 三图补运动（各 7→12/13/14）；**修正图54 探头拓扑**（原画成串联且无地回路，实为跨接节点的并联负载 1MΩ‖100pF） |
 | v1.8 | 动画 55 张：新增「CMOS 传输门」（8.1，补最薄的一章）+ §8.1 四拍算一笔；5 张图补运动（diode-iv/comparator-opamp/bjt-regions/noise-budget/probe-loading）；新增 waytoagi 式「⏱️ 读多久：三条时间线」 |
 | v1.7 | 动画 54 张：新增「二极管伏安特性」（2.2）「运放 vs 比较器」（7.1）「噪声三税种与预算」（11.6）「探头负载与测量铁律」（16.3）；修米勒平台时间轴从损耗面板中间穿过、阶跃图灰色参考曲线过淡 |
 | v1.6 | 动画 50 张：新增「真实电容阻抗频谱」（1.2）「MOSFET 米勒平台」（4.3）「运放阶跃响应压摆率」（6.7）；修复 Sallen-Key 的 fc 标记画错频率（标在 f=0.37 通带处）+ 分压器箭头嵌套 path 不渲染 |
