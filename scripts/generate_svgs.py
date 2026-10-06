@@ -2180,6 +2180,163 @@ def make_charge_pump():
     svg += note_box("ICL7660 负压、MAX232 的 ±10V、运放负电源——都是这架斗提机；要电流大？请回 13.3 用电感 Boost", 474, DC3, "0;0.74;0.79;1", w=700)
     save('charge-pump.svg', svg + '</svg>')
 
+
+# ======================= 图 29：一阶 RC 低通与波特图 =======================
+def make_rc_lowpass():
+    DLP = 7
+    f_pts = np.linspace(0.05, 40, 121)
+    mag_pts, pha_pts = [], []
+    for f in f_pts:
+        x = 430 + (np.log10(f)-np.log10(0.05))/(np.log10(40)-np.log10(0.05))*320
+        H = 1/np.sqrt(1+f*f)
+        mag_pts.append(f"{x:.0f},{150+90*(1-H):.0f}")
+        pha = np.degrees(np.arctan(f))
+        pha_pts.append(f"{x:.0f},{295+65*pha/90:.0f}")
+    mag_d = "M" + " L".join(mag_pts)
+    pha_d = "M" + " L".join(pha_pts)
+    sin_hi_in = sine_path(430, 750, 416, 24, n=96)
+    hi_pts = []
+    for i in range(97):
+        u = i/96
+        x = 430 + 320*u
+        y = 416 - 8*np.sin(u*12*np.pi - 1.2)
+        hi_pts.append(f"{x:.0f},{y:.0f}")
+    sin_hi_out = "M" + " L".join(hi_pts)
+    svg = svg_open('一阶 RC 低通：一颗极点的人生观', h=520)
+    svg += f'''
+<text x="180" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">R 在前、C 下地 = 低通</text>
+<text x="16" y="145" font-size="11" fill="#475569">输入</text>
+{resistor_h(60, 150, 40, 'R')}
+<line x1="140" y1="150" x2="180" y2="150" stroke="#334155" stroke-width="2.5"/>
+<circle cx="180" cy="150" r="4" fill="#334155"/>
+<line x1="180" y1="150" x2="240" y2="150" stroke="#334155" stroke-width="2.5"/>
+<text x="246" y="155" font-size="11" font-weight="bold" fill="#2563eb">输出</text>
+<line x1="180" y1="150" x2="180" y2="190" stroke="#334155" stroke-width="2"/>
+<line x1="168" y1="190" x2="192" y2="190" stroke="#2563eb" stroke-width="3"/>
+<line x1="168" y1="202" x2="192" y2="202" stroke="#2563eb" stroke-width="3"/>
+<line x1="180" y1="202" x2="180" y2="220" stroke="#334155" stroke-width="2"/>
+{gnd_sym(180, 234)}
+<text x="200" y="200" font-size="10.5" fill="#2563eb">C</text>
+<text x="60" y="280" font-size="11" fill="#475569">低频：C 容抗大≈开路 → 全通</text>
+<text x="60" y="304" font-size="11" fill="#475569">高频：C 容抗小≈短路 → 被泄放</text>
+'''
+    svg += f'''
+<text x="590" y="76" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#475569">幅度：fc 后 −20dB/十倍频</text>
+<path d="{mag_d}" fill="none" stroke="#059669" stroke-width="2.8"/>
+<line x1="430" y1="150" x2="750" y2="150" stroke="#64748b" stroke-width="1.2"/>
+<line x1="573" y1="150" x2="573" y2="240" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
+<line x1="430" y1="177" x2="750" y2="177" stroke="#94a3b8" stroke-width="0.8" stroke-dasharray="3,3"/>
+<text x="564" y="254" font-size="10.5" fill="#475569">fc</text>
+<text x="700" y="170" font-size="10" fill="#dc2626">−3dB</text>
+<text x="590" y="270" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#475569">相位：0° → −90°（fc 处恰 −45°）</text>
+<path d="{pha_d}" fill="none" stroke="#7c3aed" stroke-width="2.5"/>
+<line x1="430" y1="300" x2="750" y2="300" stroke="#64748b" stroke-width="1.2"/>
+<text x="440" y="388" font-size="10.5" font-weight="bold" fill="#475569">高频输入（灰）→ 输出（绿）：幅度缩、相位滞后</text>
+<path d="{sin_hi_in}" fill="none" stroke="#94a3b8" stroke-width="1.6"/>
+<path d="{sin_hi_out}" fill="none" stroke="#059669" stroke-width="2.5"/>
+'''
+    svg += caption("① fc=1/(2πRC)：此处容抗=电阻，输出恰好 −3dB（半功率点）、相位 −45°", "#059669", DLP,
+                   "0;1;1;0;0", "0;0.03;0.2;0.26;1", y=460)
+    svg += caption("② 每过十倍频，容抗小十倍、输出小十倍：−20dB/dec 直线——一颗极点的身份证", "#7c3aed", DLP,
+                   "0;0;1;1;0;0", "0;0.28;0.33;0.55;0.61;1", y=460)
+    svg += caption("③ 相位最多拖到 −90°——一颗极点永远掀不翻反馈（[12.7](#) 稳定性），两颗就危险", "#dc2626", DLP,
+                   "0;0;1;1", "0;0.61;0.67;1", y=460)
+    svg += note_box("Sallen-Key、有源滤波、运放主极点——全是这颗种子的繁殖；看懂它，波特图会读一半", 494, DLP, "0;0.7;0.75;1", w=680)
+    save('rc-lowpass.svg', svg + '</svg>')
+
+
+# ======================= 图 30：齐纳稳压 =======================
+def make_zener_regulator():
+    DZ = 6
+    svg = svg_open('齐纳稳压：拿电流换电压的「溢流阀」', h=500)
+    svg += f'''
+<text x="220" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">12V±波动 → Rs → 齐纳 5.6V</text>
+<text x="16" y="102" font-size="12" font-weight="bold" fill="#b45309">12V±</text>
+{resistor_h(60, 100, 40, 'Rs')}
+<line x1="140" y1="100" x2="180" y2="100" stroke="#334155" stroke-width="2.5"/>
+<circle cx="180" cy="100" r="4" fill="#334155"/>
+<line x1="180" y1="100" x2="260" y2="100" stroke="#334155" stroke-width="2.5"/>
+<text x="266" y="105" font-size="12" font-weight="bold" fill="#2563eb">5.6V 输出</text>
+<line x1="180" y1="100" x2="180" y2="150" stroke="#334155" stroke-width="2.5"/>
+<polygon points="180,150 168,178 192,178" fill="none" stroke="#7c3aed" stroke-width="2.5"/>
+<line x1="160" y1="150" x2="168" y2="150" stroke="#7c3aed" stroke-width="3"/>
+<line x1="164" y1="144" x2="168" y2="150" stroke="#7c3aed" stroke-width="3"/>
+<line x1="168" y1="150" x2="196" y2="150" stroke="#7c3aed" stroke-width="3"/>
+<line x1="180" y1="178" x2="180" y2="200" stroke="#334155" stroke-width="2.5"/>
+{gnd_sym(180, 214)}
+<text x="200" y="168" font-size="10.5" fill="#7c3aed">齐纳（反接）</text>
+<text x="60" y="270" font-size="11" fill="#dc2626" opacity="0">Vin 升高 → 齐纳多吸流，余压落在 Rs
+<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.06;0.4;0.46;1" dur="{DZ}s" repeatCount="indefinite"/></text>
+<text x="60" y="294" font-size="11" fill="#059669" opacity="0">负载加重 → 齐纳少吸流让位——Vout 纹丝不动
+<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.52;0.56;0.9;0.96;1" dur="{DZ}s" repeatCount="indefinite"/></text>
+'''
+    svg += f'<g><animate attributeName="opacity" values="1;1;0.4;0.4;1;1" keyTimes="0;0.2;0.3;0.9;0.96;1" dur="{DZ}s" repeatCount="indefinite"/>'
+    svg += flow("M64,96 H176 M180,104 V146 V196", DZ/3, n=5, color="#dc2626", r=5) + '</g>'
+    svg += flow("M64,96 H176 M184,96 H256", DZ/3, n=5, color="#2563eb", r=5)
+    svg += f'''
+<text x="590" y="86" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#475569">输入抖（灰）→ 输出稳（蓝）</text>
+<path d="{sine_path(430, 750, 150, 22, n=96)}" fill="none" stroke="#94a3b8" stroke-width="2"/>
+<line x1="430" y1="150" x2="750" y2="150" stroke="#2563eb" stroke-width="2.8"/>
+<text x="700" y="140" font-size="10.5" fill="#2563eb">5.6V</text>
+<text x="590" y="240" text-anchor="middle" font-size="11" fill="#475569">Rs 的账：Vin 最低时仍供 Iz_min；Vin 最高时齐纳吃掉差额</text>
+<text x="590" y="264" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#b45309">Rs = (Vin_min − 5.6) / (Iz_min + I_load_max)</text>
+'''
+    svg += caption("① 齐纳击穿后电压钉在 5.6V——输入再涨，多余的压降全落在 Rs 上（齐纳多吸流）", "#dc2626", DZ,
+                   "0;1;1;0;0", "0;0.03;0.22;0.28;1", y=430)
+    svg += caption("② 负载加重抢电流，齐纳自动少吸让出份额——总流量恒定，分配自适应", "#059669", DZ,
+                   "0;0;1;1;0;0", "0;0.3;0.35;0.58;0.64;1", y=430)
+    svg += caption("③ 代价全在功耗：负载不用电时齐纳全吃——所以齐纳只做基准/小功率，大功率去 [9.3 LDO](#)", "#b45309", DZ,
+                   "0;0;1;1", "0;0.64;0.7;1", y=430)
+    svg += note_box("水位一到就开闸放水——齐纳是电压的溢流阀；5.6V 附近温度系数最小（两种击穿机制温漂互消）", 474, DZ, "0;0.74;0.79;1", w=700)
+    save('zener-regulator.svg', svg + '</svg>')
+
+
+# ======================= 图 31：恒流源 =======================
+def make_constant_current():
+    DCC = 6
+    svg = svg_open('恒流源：电压随便变，电流我包了', h=500)
+    svg += f'''
+<text x="220" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">射极负反馈恒流源（I = (V_B−0.7)/R_E，与负载无关）</text>
+<text x="30" y="76" font-size="12.5" font-weight="bold" fill="#b45309">VCC</text>
+<line x1="60" y1="70" x2="240" y2="70" stroke="#334155" stroke-width="2.5"/>
+<rect x="150" y="86" width="80" height="34" rx="5" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+<text x="190" y="107" text-anchor="middle" font-size="10.5" fill="#475569">负载（可变）</text>
+<line x1="190" y1="70" x2="190" y2="86" stroke="#334155" stroke-width="2.5"/>
+<line x1="190" y1="120" x2="190" y2="140" stroke="#334155" stroke-width="2.5"/>
+{npn_svg(190, 196)}
+<line x1="190" y1="140" x2="190" y2="141" stroke="#334155" stroke-width="2.5"/>
+{resistor_v(190, 262, 30, 'R_E')}
+<line x1="190" y1="312" x2="190" y2="318" stroke="#334155" stroke-width="2"/>
+{gnd_sym(190, 332)}
+<rect x="60" y="176" width="46" height="40" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="83" y="200" text-anchor="middle" font-size="10" font-weight="bold" fill="#2563eb">基准 V_B</text>
+<line x1="106" y1="196" x2="155" y2="196" stroke="#334155" stroke-width="2"/>
+<text x="240" y="140" font-size="10.5" fill="#dc2626" opacity="0">V_CE 随负载怎么变
+<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.06;0.4;0.46;1" dur="{DCC}s" repeatCount="indefinite"/></text>
+<text x="240" y="280" font-size="10.5" fill="#059669" opacity="0">I 被 R_E 钉死：纹丝不动
+<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.52;0.56;0.9;0.96;1" dur="{DCC}s" repeatCount="indefinite"/></text>
+'''
+    svg += flow("M194,76 V116 M190,141 V160 V226 V297", DCC/3, n=5, color="#059669", r=5)
+    svg += f'''
+<text x="590" y="86" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#475569">I-V 特性：电压横扫，电流平躺</text>
+<line x1="430" y1="210" x2="750" y2="210" stroke="#059669" stroke-width="3"/>
+<line x1="430" y1="300" x2="750" y2="300" stroke="#64748b" stroke-width="1.4"/>
+<line x1="430" y1="300" x2="430" y2="180" stroke="#64748b" stroke-width="1.4"/>
+<text x="700" y="196" font-size="10.5" fill="#059669">I 恒定</text>
+<text x="440" y="316" font-size="10" fill="#475569">0</text>
+<text x="700" y="316" font-size="10" fill="#475569">V_CE 扫过全程</text>
+<text x="446" y="200" font-size="10" fill="#475569">I</text>
+<text x="590" y="250" text-anchor="middle" font-size="10.5" fill="#94a3b8">斜率≈0 ⇒ 输出阻抗极高（理想∞）</text>
+'''
+    svg += caption("① 基准把 V_B 钉死 → V_E=V_B−0.7 钉死 → I=V_E/R_E 钉死：电流与负载脱钩", "#059669", DCC,
+                   "0;1;1;0;0", "0;0.03;0.22;0.28;1", y=430)
+    svg += caption("② 负载变化只改 V_CE——管子默默吸收全部电压波动，电流纹丝不动", "#2563eb", DCC,
+                   "0;0;1;1;0;0", "0;0.3;0.35;0.58;0.64;1", y=430)
+    svg += caption("③ 温度捣乱？R_E 负反馈摁住（[3.4](#) 偏置同款机制）——这就是 11.2 差分对的「尾巴」", "#7c3aed", DCC,
+                   "0;0;1;1", "0;0.64;0.7;1", y=430)
+    svg += note_box("恒流源 = 会自适应的电阻：LED 驱动、传感器激励、电流镜负载、差分对长尾——四处都有它", 474, DCC, "0;0.74;0.79;1", w=690)
+    save('constant-current.svg', svg + '</svg>')
+
 if __name__ == '__main__':
     make_rc_charge()
     make_bridge_rectifier()
@@ -2209,4 +2366,7 @@ if __name__ == '__main__':
     make_tl431()
     make_sample_hold()
     make_charge_pump()
-    print('all 28 SVGs regenerated into', os.path.abspath(OUT))
+    make_rc_lowpass()
+    make_zener_regulator()
+    make_constant_current()
+    print('all 31 SVGs regenerated into', os.path.abspath(OUT))

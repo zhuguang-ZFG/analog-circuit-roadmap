@@ -13,7 +13,7 @@
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-CC_BY--SA_4.0-lightgrey.svg" alt="License"></a>
-  <img src="https://img.shields.io/badge/SVG动画-28张-3fb950.svg" alt="SVG">
+  <img src="https://img.shields.io/badge/SVG动画-31张-3fb950.svg" alt="SVG">
   <img src="https://img.shields.io/badge/章节-8篇19章-58a6ff.svg" alt="chapters">
 </p>
 
@@ -82,7 +82,7 @@ graph TD
   - [第 14 章 设计方法论](#ch14) · [第 15 章 PCB 注意事项](#ch15)
 - **[第四篇：故障分析与排故方法论](#part4)** 🩺
   - [第 16 章 排故五步法](#ch16) · [第 17 章 故障速查表](#ch17) · [第 18 章 大师智慧](#ch18)
-- **[第五篇：动画演示中心](#part5)** 🎬 — 28 张 SVG 动画 + Falstad 地图
+- **[第五篇：动画演示中心](#part5)** 🎬 — 31 张 SVG 动画 + Falstad 地图
 - **[第六篇：实物图鉴与速查](#part6)** 🧩 — 实物照片 · 参数速查 · [官方 datasheet 直达](#part6)
 - **[第七篇：视频资源](#part7)** 📺 — B站系统课 · YouTube 频道
 - **[第八篇：学习路线与资源索引](#part8)** 📚 — 路线图 · 书单 · 项目清单 · [官方资料](#sec88) · [经典论文](#sec89) · FAQ
@@ -313,6 +313,34 @@ $$I_D = I_S\left(e^{\frac{V_D}{nV_T}} - 1\right), \quad V_T = \frac{kT}{q} \appr
 - **放电段**：二极管全关，电容独自供负载，近似线性放电 $\Delta V = I_{load}\cdot\Delta t/C$
 
 🧮 **算一笔**：1A 负载、4700µF、全波 100Hz：$\Delta V = \frac{1A \times 10ms}{4700µF} ≈ 2.1V$ 纹波；二极管峰值电流 ≈ $\frac{10ms}{2ms}\times 1A = 5A$。**所以选整流管看的是 $I_{FRM}$（重复峰值），不是标称平均电流**——1A 电源用 1N4007（1A 均值）其实余量很紧。
+
+### 2.7 限幅与钳位：二极管的"整形"手艺
+
+整流只是二极管的第一份工作。凭"过 0.7V 才导通"这一条，它还能干两种波形整形活：
+
+**限幅（Clipper）：削掉超过门槛的部分**
+```
+输入 ──[R]──┬── 输出（被削顶）
+           ┌┴┐
+           │D│ 接偏置 V_ref（或双管接 ±电源轨）
+           └┬┘
+           GND / V_ref
+```
+输出电压想越过 $V_{ref}+0.7V$，二极管立刻导通把多余部分"泄"掉——波形顶部被削平在门槛上。**头号应用是保护**：MCU 的 ADC 引脚怕负压/过压，两只二极管一只接 VCC 一只接地（"轨到轨钳位"），输入超出 $-0.7V \sim V_{CC}+0.7V$ 就被旁路——[13.6](#ch13) ADC 前端几乎必配。注意电阻 R 是限流命根：泄放电流全经它，缺失时二极管和信号源对烧。
+
+**钳位（Clamper）：把整个波形"抬"起来**
+```
+输入 ──[C]──┬── 输出（整体抬高 ≈V_峰值）
+           ┌┴┐
+           │D│（阳极地、阴极朝节点）
+           └┬┘
+           GND
+```
+负半周峰值处二极管导通，电容充电到峰值电压；此后二极管常关，电容像一块"串联电池"把波形整体垫高：原本 ±5V 摆动的正弦，出来变成 0~10V 摆动——**直流分量被恢复了**。老式电视机的"直流恢复器"、倍压整流（多级钳位级联，[13.3 电荷泵](#ch13) 的亲兄弟）都是它。
+
+🧮 **算一笔**：±3V 正弦进钳位电路（二极管阳极地）。负峰值 −3V 时 D 导通，C 充到 3V（左正右负）；之后任意时刻 $v_{out}=v_{in}+3V-0.7V$——输出在 $-0.7V \sim 5.3V$ 摆动，最低点被"钳"在二极管压降处，这也是"钳位"名字的由来。
+
+> 💎 **精髓**：限幅动"幅度"（削顶）、钳位动"直流"（垫高）——同一个 0.7V，一个当闸门一个当垫脚石。看到波形缺了顶或被抬了底，先想二极管。
 
 > 🎯 **通关打卡**：PN 结不再神秘——你能从载流子扩散讲到 0.7V 的由来，知道接反会怎样，也记住了续流二极管救过多少驱动管。
 
@@ -939,6 +967,8 @@ IN ─────┤          ├───── OUT
 
 **齐纳基准**：反向击穿稳压管。5.6V 附近温度系数最小（齐纳击穿负温漂与雪崩击穿正温漂抵消）；噪声大、精度差 → 只适合粗基准。
 
+<p align="center"><img src="assets/svg/zener-regulator.svg" width="720" alt="齐纳稳压动画：溢流阀"></p>
+
 **带隙基准（Bandgap）**：利用两个温度特性相反的电压互相补偿：
 $$V_{REF} = \underbrace{V_{BE}}_{-2mV/°C} + \underbrace{K \cdot V_T \ln N}_{+0.085mV/°C \times K} \approx 1.25V$$
 
@@ -1280,6 +1310,9 @@ $$\frac{V_{in}-0}{R_{in}} = \frac{0-V_{out}}{R_f} \;\Rightarrow\; V_{out} = -\fr
 
 ### 12.5 有源滤波：Sallen-Key 二阶低通
 
+<p align="center"><img src="assets/svg/rc-lowpass.svg" width="720" alt="一阶 RC 低通与波特图动画"></p>
+
+
 <p align="center"><img src="assets/svg/sallen-key.svg" width="720" alt="Sallen-Key 滤波器动画：Q 值峰化与滚降"></p>
 
 **问题**：一级无源 RC 只有 −20dB/十倍频，滚降太肉；两级无源级联互相拖累。怎么办？把无源网络接进运放（跟随器隔离+反馈），互不拖累还能提 Q。
@@ -1392,6 +1425,9 @@ $$\text{环路增益}=3\times\frac{1}{3}=1,\quad \text{环路相移}=0°$$
 
 ### 13.5 恒流源家族
 
+<p align="center"><img src="assets/svg/constant-current.svg" width="720" alt="恒流源动画：电压横扫电流平躺"></p>
+
+
 | 电路 | 原理 | 用在哪 |
 |---|---|---|
 | 射极负反馈恒流 | $I_E=(V_B-0.7)/R_E$，基极电压被基准钉住 | LED 驱动、传感器激励 |
@@ -1473,9 +1509,34 @@ $$\text{环路增益}=3\times\frac{1}{3}=1,\quad \text{环路相移}=0°$$
 - **去耦电容的物理意义**：芯片开关瞬间需要瞬态电流，电源远端来不及供（走线电感阻挡）→ 本地电容充当"微型水库"。100nF 管高频、10µF 管中频、大电解管低频
 - **LDO vs DCDC 决策**：压差小/电流小/噪声敏感 → LDO；压差大/电流大 → DCDC（效率优先）+ 后级 LDO（净化噪声）
 
-> 🎯 **通关打卡**：设计五部曲+降额+裕量——你的第一块板子，就有老师傅级别的稳健。
 
----
+
+### 14.4 信号链设计实例：PT100 温度采集全链复盘
+
+把前五篇的零件串成一台真机器——PT100 铂电阻测温（0.1°C 分辨），看每一环怎么选、为什么：
+
+```
+PT100 ──恒流激励──> 仪放 ──> 低通滤波 ──> ADC ──> MCU
+(传感器)  (13.5)  (12.3)    (12.5)    (13.6)
+```
+
+**第一环：激励**。PT100 是电阻（100Ω@0°C，0.385Ω/°C）——电阻要变电压，得喂**恒流**（[13.5](#ch13)）：取 1mA（自热 $I^2R=0.1mW$，温升 <0.05°C 可忽略；电流越大信号越大但自热越狠——这是传感器激励的永恒权衡）。0.1°C 对应电压 $1mA\times0.0385\Omega=38.5\mu V$——**微伏级信号**，决定了下一环必须仪放。
+
+**第二环：放大**。38.5µV 坐在导线拾取的 50Hz 工频共模干扰（可达伏级！）上——[12.3](#ch12) 仪表放大器：增益设 100（$R_G$ 一只可调），CMRR>100dB 把共模压到万分之一。输出灵敏度 $385\mu V/°C\times100=38.5mV/°C$（0.1°C 步进=3.85mV），共模残余 <10µV。
+
+**第三环：滤波**。ADC 采样率定 100sps → 奈奎斯特红线 50Hz（[13.6](#ch13)）——[12.5](#ch12) Sallen-Key 二阶低通，fc=25Hz：50Hz 处衰减 −12dB，混叠风险可控；工频陷波交给软件平均（100sps 对 20ms 整周期平均，50Hz 天然归零）。
+
+**第四环：转换**。信号范围 0~2.6V（0~250°C）——选 16 位 Σ-Δ ADC（ADS1115，[6.2](#part6)）：台阶 $3.3V/65536\approx 50\mu V$，经仪放增益 100 后对应 0.5µV 输入 ≈ 0.013°C——**分辨率富余 8 倍，给噪声和漂移留足空间**（永远别让 ADC 分辨率成为链里最紧的一环）。采样保持（[8.4](#ch8)）由 ADC 内置。
+
+**全链失败模式自查**（设计评审清单）：
+- 恒流源温漂直接进信号 → 基准选带隙（[9.1](#ch9)），不选齐纳
+- 仪放电阻不匹配 → CMRR 崩（[12.3](#ch12) 血坑）→ 0.1% 电阻或集成仪放
+- 滤波器运放 GBW 不够 → fc 处增益虚高 → GBW ≥ 100×fc×增益（[11.5](#ch11)）
+- 长导线 antenna → 屏蔽+双绞（[15.x](#ch15)），否则滤波器再努力也白搭
+
+> 💎 **精髓**：信号链没有"最强一环"，只有"最弱一环"——38.5µV 的信号，毁在激励、放大、滤波、转换任意一处都是全损。设计从后往前推（ADC 分辨率→增益分配→噪声预算），调试从前往后查（激励对不对→放大对不对→……）。
+
+> 🎯 **通关打卡**：设计五部曲+降额+裕量——你的第一块板子，就有老师傅级别的稳健；PT100 全链四环（激励/放大/滤波/转换）的选型理由能各说一句。
 
 <a id="ch15"></a>
 ## 第 15 章 PCB 绘制注意事项
@@ -1688,7 +1749,7 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 <a id="part5"></a>
 # 第五篇：动画演示中心 🎬
 
-> 全部 28 张 SVG 动画（SMIL，浏览器直接播放）位于 `assets/svg/` 目录，由 `scripts/generate_svgs.py` 一键生成（仓库铁律：两者始终同步）；配套 Falstad 在线电路可实时交互。
+> 全部 31 张 SVG 动画（SMIL，浏览器直接播放）位于 `assets/svg/` 目录，由 `scripts/generate_svgs.py` 一键生成（仓库铁律：两者始终同步）；配套 Falstad 在线电路可实时交互。
 
 ## 5.1 RC 充电 <a id="demo1"></a>
 
@@ -1842,7 +1903,25 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 
 **看点**：相1 绿粒子灌满 C1（下端接地），相2 下端被抬到 Vin、上端 2Vin 红粒子倒进 C2 水库——几轮之后输出爬满 2Vin。不用电感的升压。→ 正文 [13.3 电荷泵](#ch13)
 
-## 5.24 Falstad 内置示例地图（全部带动画）
+## 5.24 一阶 RC 低通与波特图 <a id="demo24"></a>
+
+<p align="center"><img src="assets/svg/rc-lowpass.svg" width="720" alt="RC低通SVG动画"></p>
+
+**看点**：fc 竖线恰好穿过 −3dB 交点；高频正弦进、缩小且滞后的绿波出——一颗极点的全部人生：−20dB/dec 与最多 −90°。→ 正文 [12.5 有源滤波](#ch12)
+
+## 5.25 齐纳稳压：电压溢流阀 <a id="demo25"></a>
+
+<p align="center"><img src="assets/svg/zener-regulator.svg" width="720" alt="齐纳稳压SVG动画"></p>
+
+**看点**：输入正弦抖、输出一根直线——水位到顶开闸，多余的压降全落在 Rs 上。负载抢流？齐纳少吸让位。→ 正文 [9.1 齐纳](#ch9)
+
+## 5.26 恒流源：电压横扫，电流平躺 <a id="demo26"></a>
+
+<p align="center"><img src="assets/svg/constant-current.svg" width="720" alt="恒流源SVG动画"></p>
+
+**看点**：V_CE 扫过全程，I 线纹丝平躺——斜率≈0 就是"输出阻抗极高"的图形化。基准钉 V_B、R_E 钉电流、管子吸收全部波动。→ 正文 [13.5 恒流源](#ch13)
+
+## 5.27 Falstad 内置示例地图（全部带动画）
 
 | 主题 | 菜单路径 |
 |---|---|
@@ -1985,6 +2064,7 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 | 数字电子技术基础 | 清华大学 王红 | [BV18p411Z7ce](https://www.bilibili.com/video/BV18p411Z7ce/) | 数电姐妹篇 |
 | 硬件工程师入门教程 | 硬件工程师入门 | [BV1gHSyY3E6q](https://www.bilibili.com/video/BV1gHSyY3E6q/) | 偏工程实践 |
 | **开关电源动画三连**（Buck/Boost/Buck-Boost） | 蓝指针科普 | [BV1QJSFBVEHu](https://www.bilibili.com/video/BV1QJSFBVEHu/) · [BV1egmQBWE9m](https://www.bilibili.com/video/BV1egmQBWE9m/) · [BV1CyZyBVEkg](https://www.bilibili.com/video/BV1CyZyBVEkg/) | 3 分钟一只拓扑，配 [13.2/13.3](#ch13) 服用 |
+| 零基础示波器使用入门 | 芯讲坛 | [BV1nrjM6NEr8](https://www.bilibili.com/video/BV1nrjM6NEr8/) | 排故实操第一课，配 [第 16 章](#ch16) |
 
 ## 7.2 YouTube（英文频道）
 
@@ -1998,6 +2078,7 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 | Op-Amp 系统教程 | [播放列表](https://www.youtube.com/playlist?list=PLfox_rt4mFCL94d_hcqqFCABmmup9VIK9) | 从基础到实战电路 |
 | Analog Electronics 全课程 | [播放列表](https://www.youtube.com/playlist?list=PLgwJF8NK-2e7jeZYKrMQd1_Iq8_gJvG6RM) | OP-AMP/PLL/VCO/稳压器 |
 | w2aew 运放教程系列 | [播放列表](https://www.youtube.com/playlist?list=PLBCjWUUpRpOeAFKEPvkys15YvOt86qGnU) | #75 虚短虚断 / #79 单电源与虚地 / #172 GBW 与压摆率——白板书推导派 |
+| w2aew 示波器教程系列 | [播放列表](https://www.youtube.com/playlist?list=PLhtYYpsE3LzVUVSNHUVhfcoaI3mLEKSIx) | #9 探头 1X/10X 补偿 / #10 AC-DC 耦合 / #11 触发——仪器使用圣经 |
 
 **MIT OCW 6.002 视频**：[课程主页](https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/) 内含 Anant Agarwal 全部讲课录像——MIT 新生第一门 EE 课，激情四射。
 
