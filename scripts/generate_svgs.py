@@ -2519,7 +2519,7 @@ def make_ne555_monostable():
 <circle cx="205" cy="260" r="4" fill="#334155"/>
 <line x1="205" y1="260" x2="205" y2="290" stroke="#334155" stroke-width="2.5"/>
 {gnd_sym(205, 304)}
-<text x="222" y="280" font-size="10" fill="#475569">GND(1)</text>
+<text x="199" y="280" text-anchor="end" font-size="10" fill="#475569">GND(1)</text>
 <line x1="150" y1="180" x2="118" y2="180" stroke="#334155" stroke-width="2.5"/>
 <text x="146" y="192" text-anchor="end" font-size="10" fill="#475569">RST(4)</text>
 <line x1="118" y1="180" x2="118" y2="80" stroke="#334155" stroke-width="2"/>
