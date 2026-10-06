@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-generate_svgs.py — 一键再生成《通往模拟电路之路》全部 82 张 SVG SMIL 动画
+generate_svgs.py — 一键再生成《通往模拟电路之路》全部 83 张 SVG SMIL 动画
 用法:  python generate_svgs.py            # 输出到 ../assets/svg/
 风格:  参考 BMS-Z 项目 —— 浅色底 + SMIL 节拍字幕 + 深色模式自适应 + 拟人化讲解
 所有电路参数经过自洽核算（datasheet 级），详见各函数注释。
@@ -6025,6 +6025,72 @@ def make_555_params():
     save('ne555-params.svg', svg + '</svg>')
 
 
+# ======================= 图 83：恒压源与恒流源（第 0 章 0.6） =======================
+def make_source_types():
+    DS = 11
+    svg = svg_open('恒压源与恒流源：电源的两种性格', h=640)
+    svg += f'''
+<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">看 V-I 曲线：竖直是恒压、水平是恒流——斜率就是「内阻」</text>
+<text x="200" y="82" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb">① 电压源：I 怎么变，V 都不动</text>
+<line x1="70" y1="290" x2="330" y2="290" stroke="#64748b" stroke-width="1.6"/>
+<line x1="70" y1="110" x2="70" y2="290" stroke="#64748b" stroke-width="1.6"/>
+<text x="330" y="310" text-anchor="end" font-size="10.5" fill="#475569">负载电流 I →</text>
+<text x="62" y="120" text-anchor="end" font-size="10.5" fill="#475569">5.0V</text>
+<text x="62" y="220" text-anchor="end" font-size="10.5" fill="#475569">4.8V</text>
+<line x1="70" y1="120" x2="330" y2="120" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
+<line x1="70" y1="220" x2="330" y2="220" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
+<line x1="200" y1="120" x2="200" y2="290" stroke="#059669" stroke-width="3.5"/>
+<text x="212" y="164" font-size="10.5" font-weight="bold" fill="#059669">理想：竖线</text>
+<line x1="200" y1="120" x2="330" y2="220" stroke="#dc2626" stroke-width="3"/>
+<text x="238" y="212" font-size="11" font-weight="bold" fill="#dc2626">实际：斜线</text>
+<text x="238" y="230" font-size="10.5" fill="#475569">斜率 = 输出阻抗</text>
+<text x="70" y="266" font-size="10.5" fill="#475569">0A</text>
+<text x="330" y="266" text-anchor="end" font-size="10.5" fill="#475569">2A</text>
+<circle r="5" fill="#f59e0b"><animateMotion dur="{DS}s" repeatCount="indefinite" path="M202,140 L202,286" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="{DS}s" begin="-1.4s" repeatCount="indefinite" path="M202,121 L328,219" keyPoints="0;1" keyTimes="0;1"/></circle>
+<line x1="420" y1="76" x2="420" y2="356" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="6,5"/>
+<text x="600" y="82" text-anchor="middle" font-size="13" font-weight="bold" fill="#7c3aed">② 电流源：V 怎么变，I 都不动</text>
+<line x1="470" y1="290" x2="730" y2="290" stroke="#64748b" stroke-width="1.6"/>
+<line x1="470" y1="110" x2="470" y2="290" stroke="#64748b" stroke-width="1.6"/>
+<text x="730" y="310" text-anchor="end" font-size="10.5" fill="#475569">负载电压 V →</text>
+<text x="462" y="124" text-anchor="end" font-size="10.5" fill="#475569">1.00mA</text>
+<text x="462" y="204" text-anchor="end" font-size="10.5" fill="#475569">0.99mA</text>
+<line x1="470" y1="120" x2="730" y2="120" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
+<line x1="470" y1="200" x2="730" y2="200" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
+<line x1="470" y1="120" x2="730" y2="120" stroke="#059669" stroke-width="3.5"/>
+<text x="478" y="112" font-size="11" font-weight="bold" fill="#059669">理想：水平线（任何电压都 1mA）</text>
+<line x1="470" y1="120" x2="730" y2="200" stroke="#dc2626" stroke-width="3" stroke-dasharray="8,4"/>
+<text x="478" y="240" font-size="10.5" font-weight="bold" fill="#dc2626">实际：几乎水平（Ro=10MΩ，几乎不掉）</text>
+<circle r="5" fill="#f59e0b"><animateMotion dur="{DS}s" begin="-0.7s" repeatCount="indefinite" path="M474,120 L726,120" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="{DS}s" begin="-2.1s" repeatCount="indefinite" path="M474,120 L726,198" keyPoints="0;1" keyTimes="0;1"/></circle>
+<text x="200" y="348" text-anchor="middle" font-size="12" font-weight="bold" fill="#059669">斜率越小 = 内阻越小 = 越「恒压」</text>
+<text x="600" y="348" text-anchor="middle" font-size="12" font-weight="bold" fill="#7c3aed">斜率越大 = 输出阻抗越大 = 越「恒流」</text>
+<line x1="40" y1="372" x2="760" y2="372" stroke="#cbd5e1" stroke-width="1"/>
+<text x="400" y="400" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">算一笔：内阻怎么毁掉「恒压」</text>
+<rect x="40" y="416" width="352" height="70" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.6"/>
+<text x="56" y="440" font-size="11.5" font-weight="bold" fill="#2563eb">实验室电源：Zout ≈ 1mΩ</text>
+<text x="56" y="462" font-size="11.5" fill="#475569">5A 时跌 5mV（0.1%）→ 基本可以当恒压源</text>
+<text x="56" y="480" font-size="10.5" fill="#475569">ΔV = I × Zout = 5A × 1mΩ = 5mV</text>
+<rect x="408" y="416" width="352" height="70" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.6"/>
+<text x="424" y="440" font-size="11.5" font-weight="bold" fill="#dc2626">劣质适配器：Zout ≈ 100mΩ</text>
+<text x="424" y="462" font-size="11.5" fill="#475569">2A 时跌 200mV（4%）→ 负载一重电压就塌</text>
+<text x="424" y="480" font-size="10.5" fill="#475569">ΔV = 2A × 100mΩ = 200mV</text>
+<rect x="40" y="498" width="720" height="76" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="1.6"/>
+<text x="56" y="522" font-size="12" font-weight="bold" fill="#b45309">对偶关系（记住这张表，两个概念就不会混）</text>
+<text x="56" y="546" font-size="11" fill="#475569">电压源：短路是灾难 / 开路正常 / 负载<b>并联</b>接（各自取电流）　‖　电流源：开路是灾难 / 短路正常 / 负载<b>串联</b>接（同一电流穿过）</text>
+<text x="56" y="566" font-size="11.5" font-weight="bold" fill="#059669">实际元件：温度传感器激励、LED 驱动要「恒流」；供电、基准要「恒压」——同一套元件，两种用法</text>
+'''
+    svg += caption("① 电压源的 V-I 是竖线：电流怎么变，电压都不动——斜率就是输出阻抗", "#2563eb", DS,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=612)
+    svg += caption("② 电流源的 V-I 是水平线：电压怎么变，电流都不动——要的是「高输出阻抗」", "#7c3aed", DS,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=612)
+    svg += caption("③ 内阻是唯一变量：1mΩ 是恒压源、100mΩ 就是「会塌的电源」——两个都能现场算", "#dc2626", DS,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=612)
+    svg += caption("④ 唯一真源是「恒压源」：恒流源都是拿恒压源 + 负反馈做出来的（见 13.5）", "#b45309", DS,
+                   "0;0;1;1", "0;0.85;0.9;1", y=612)
+    save('source-types.svg', svg + '</svg>')
+
+
 if __name__ == '__main__':
     make_rc_charge()
     make_bridge_rectifier()
@@ -6108,4 +6174,5 @@ if __name__ == '__main__':
     make_opamp_pitfalls()
     make_comparator_pitfalls()
     make_555_params()
-    print('all 82 SVGs regenerated into', os.path.abspath(OUT))
+    make_source_types()
+    print('all 83 SVGs regenerated into', os.path.abspath(OUT))
