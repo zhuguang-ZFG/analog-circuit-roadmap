@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="520" viewBox="0 0 800 520">
+<title>电压降：同一股电流，谁 R 大谁分得多</title>
+<rect width="800" height="520" fill="#f8fafc"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+@media (prefers-color-scheme: dark){
+rect[fill="#f8fafc"]{fill:#0f172a}
+[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
+[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
+[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
+[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
+[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
+[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
+[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
+[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
+[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
+[fill="#cbd5e1"]{fill:#334155}[stroke="#cbd5e1"]{stroke:#475569}
+[fill="#ffffff"]{fill:#0f172a}[fill="#94a3b8"]{fill:#64748b}[stroke="#94a3b8"]{stroke:#64748b}
+[fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
+}
+</style>
+<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">电压降：同一股电流，谁 R 大谁分得多</text>
+
+<text x="400" y="46" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#334155">同一股电流流过所有电阻——每个电阻「留下」一份电压，加起来恰好等于电源</text>
+<text x="190" y="86" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">电路：5V → 4kΩ → 1kΩ → GND</text>
+<line x1="80" y1="110" x2="240" y2="110" stroke="#334155" stroke-width="2.5"/>
+<text x="62" y="104" font-size="12.5" font-weight="bold" fill="#b45309">5V</text>
+<circle cx="160" cy="110" r="3.5" fill="#334155"/>
+<line x1="160" y1="110" x2="160" y2="124" stroke="#334155" stroke-width="2.5"/>
+<rect x="148" y="124" width="24" height="56" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="182" y="146" font-size="12" font-weight="bold" fill="#b45309">4kΩ</text>
+<text x="182" y="164" font-size="11" font-weight="bold" fill="#dc2626">降 4V</text>
+<line x1="160" y1="180" x2="160" y2="198" stroke="#334155" stroke-width="2.5"/>
+<circle cx="160" cy="202" r="3.5" fill="#334155"/>
+<text x="182" y="206" font-size="12" font-weight="bold" fill="#059669">1V（节点）</text>
+<line x1="160" y1="206" x2="160" y2="222" stroke="#334155" stroke-width="2.5"/>
+<rect x="148" y="222" width="24" height="56" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="182" y="244" font-size="12" font-weight="bold" fill="#b45309">1kΩ</text>
+<text x="182" y="262" font-size="11" font-weight="bold" fill="#dc2626">降 1V</text>
+<line x1="160" y1="278" x2="160" y2="298" stroke="#334155" stroke-width="2.5"/>
+<line x1="140" y1="302" x2="180" y2="302" stroke="#334155" stroke-width="2.5"/>
+<line x1="146" y1="310" x2="174" y2="310" stroke="#334155" stroke-width="2.5"/>
+<line x1="152" y1="318" x2="168" y2="318" stroke="#334155" stroke-width="2.5"/>
+<circle r="5" fill="#f59e0b"><animateMotion dur="10s" begin="-0.50s" repeatCount="indefinite" path="M160,112 L160,298"/></circle>
+<circle r="5" fill="#f59e0b"><animateMotion dur="10s" begin="2.00s" repeatCount="indefinite" path="M160,112 L160,298"/></circle>
+<circle r="5" fill="#f59e0b"><animateMotion dur="10s" begin="4.50s" repeatCount="indefinite" path="M160,112 L160,298"/></circle>
+<circle r="5" fill="#f59e0b"><animateMotion dur="10s" begin="7.00s" repeatCount="indefinite" path="M160,112 L160,298"/></circle>
+<text x="128" y="202" text-anchor="end" font-size="11.5" font-weight="bold" fill="#2563eb">I = 1mA</text>
+<text x="190" y="338" text-anchor="middle" font-size="11" fill="#475569">5V ÷ (4k+1k) = 1mA —— 同一股电流，处处相等</text>
+<text x="600" y="86" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">沿回路走一圈，看电压怎么一级级掉下去</text>
+<line x1="430" y1="350.0" x2="780" y2="350.0" stroke="#cbd5e1" stroke-width="1"/>
+<line x1="430" y1="310.0" x2="780" y2="310.0" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4,3"/>
+<line x1="430" y1="150.0" x2="780" y2="150.0" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="424" y="154.0" text-anchor="end" font-size="10.5" fill="#475569">5V</text>
+<text x="424" y="314.0" text-anchor="end" font-size="10.5" fill="#475569">1V</text>
+<text x="424" y="354.0" text-anchor="end" font-size="10.5" fill="#475569">0V</text>
+<path d="M432,150.0 L510,150.0 L510,310.0 L590,310.0 L590,350.0 L770,350.0" fill="none" stroke="#2563eb" stroke-width="3"/>
+<text x="514" y="230.0" font-size="11.5" font-weight="bold" fill="#dc2626">4kΩ 分到 4V</text>
+<text x="594" y="330.0" font-size="11.5" font-weight="bold" fill="#dc2626">1kΩ 分到 1V</text>
+<text x="600" y="404" text-anchor="middle" font-size="11" fill="#475569">每一段竖降 = 跨过一个电阻的电压降；横走 = 沿理想导线（不降压）</text>
+<circle r="4.5" fill="#2563eb"><animateMotion dur="10s" repeatCount="indefinite" path="M432,150.0 L510,150.0 L510,310.0 L590,310.0 L590,350.0 L770,350.0"/></circle>
+<text x="400" y="452" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb" opacity="0">口诀：V = I×R —— 同一电流下电压按电阻成比例分配（4k:1k = 4:1 → 4V:1V）<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.8;0.86;1" dur="10s" repeatCount="indefinite"/></text></svg>

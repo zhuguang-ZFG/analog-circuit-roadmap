@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-generate_svgs.py — 一键再生成《通往模拟电路之路》全部 93 张 SVG SMIL 动画
+generate_svgs.py — 一键再生成《通往模拟电路之路》全部 95 张 SVG SMIL 动画
 用法:  python generate_svgs.py            # 输出到 ../assets/svg/
 风格:  参考 BMS-Z 项目 —— 浅色底 + SMIL 节拍字幕 + 深色模式自适应 + 拟人化讲解
 所有电路参数经过自洽核算（datasheet 级），详见各函数注释。
@@ -6876,6 +6876,101 @@ def make_power_tree():
                    '0;0;1;1', '0;0.82;0.88;1', y=452, size=13)
     save('power-tree.svg', svg + '</svg>')
 
+# ======================= 图 94：电压降（第 0 章 0.2） =======================
+def make_voltage_drop():
+    """欧姆定律的「电压降」视角：串联路径上各电阻按阻值瓜分总电压。"""
+    DV = 10
+    vy = lambda v: 350 - v / 5 * 200          # 5V→150, 0V→350
+    svg = svg_open('电压降：同一股电流，谁 R 大谁分得多', h=520)
+    svg += f'''
+<text x="400" y="46" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#334155">同一股电流流过所有电阻——每个电阻「留下」一份电压，加起来恰好等于电源</text>
+<text x="190" y="86" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">电路：5V → 4kΩ → 1kΩ → GND</text>
+<line x1="80" y1="110" x2="240" y2="110" stroke="#334155" stroke-width="2.5"/>
+<text x="62" y="104" font-size="12.5" font-weight="bold" fill="#b45309">5V</text>
+<circle cx="160" cy="110" r="3.5" fill="#334155"/>
+<line x1="160" y1="110" x2="160" y2="124" stroke="#334155" stroke-width="2.5"/>
+<rect x="148" y="124" width="24" height="56" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="182" y="146" font-size="12" font-weight="bold" fill="#b45309">4kΩ</text>
+<text x="182" y="164" font-size="11" font-weight="bold" fill="#dc2626">降 4V</text>
+<line x1="160" y1="180" x2="160" y2="198" stroke="#334155" stroke-width="2.5"/>
+<circle cx="160" cy="202" r="3.5" fill="#334155"/>
+<text x="182" y="206" font-size="12" font-weight="bold" fill="#059669">1V（节点）</text>
+<line x1="160" y1="206" x2="160" y2="222" stroke="#334155" stroke-width="2.5"/>
+<rect x="148" y="222" width="24" height="56" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="182" y="244" font-size="12" font-weight="bold" fill="#b45309">1kΩ</text>
+<text x="182" y="262" font-size="11" font-weight="bold" fill="#dc2626">降 1V</text>
+<line x1="160" y1="278" x2="160" y2="298" stroke="#334155" stroke-width="2.5"/>
+<line x1="140" y1="302" x2="180" y2="302" stroke="#334155" stroke-width="2.5"/>
+<line x1="146" y1="310" x2="174" y2="310" stroke="#334155" stroke-width="2.5"/>
+<line x1="152" y1="318" x2="168" y2="318" stroke="#334155" stroke-width="2.5"/>
+{flow("M160,112 L160,298", DV, n=4, color="#f59e0b", r=5)}
+<text x="128" y="202" text-anchor="end" font-size="11.5" font-weight="bold" fill="#2563eb">I = 1mA</text>
+<text x="190" y="338" text-anchor="middle" font-size="11" fill="#475569">5V ÷ (4k+1k) = 1mA —— 同一股电流，处处相等</text>
+<text x="600" y="86" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">沿回路走一圈，看电压怎么一级级掉下去</text>
+<line x1="430" y1="{vy(0)}" x2="780" y2="{vy(0)}" stroke="#cbd5e1" stroke-width="1"/>
+<line x1="430" y1="{vy(1)}" x2="780" y2="{vy(1)}" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4,3"/>
+<line x1="430" y1="{vy(5)}" x2="780" y2="{vy(5)}" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="424" y="{vy(5)+4}" text-anchor="end" font-size="10.5" fill="#475569">5V</text>
+<text x="424" y="{vy(1)+4}" text-anchor="end" font-size="10.5" fill="#475569">1V</text>
+<text x="424" y="{vy(0)+4}" text-anchor="end" font-size="10.5" fill="#475569">0V</text>
+<path d="M432,{vy(5)} L510,{vy(5)} L510,{vy(1)} L590,{vy(1)} L590,{vy(0)} L770,{vy(0)}" fill="none" stroke="#2563eb" stroke-width="3"/>
+<text x="514" y="{(vy(5)+vy(1))//2}" font-size="11.5" font-weight="bold" fill="#dc2626">4kΩ 分到 4V</text>
+<text x="594" y="{(vy(1)+vy(0))//2}" font-size="11.5" font-weight="bold" fill="#dc2626">1kΩ 分到 1V</text>
+<text x="600" y="404" text-anchor="middle" font-size="11" fill="#475569">每一段竖降 = 跨过一个电阻的电压降；横走 = 沿理想导线（不降压）</text>
+<circle r="4.5" fill="#2563eb"><animateMotion dur="{DV}s" repeatCount="indefinite" path="M432,{vy(5)} L510,{vy(5)} L510,{vy(1)} L590,{vy(1)} L590,{vy(0)} L770,{vy(0)}"/></circle>
+'''
+    svg += caption('口诀：V = I×R —— 同一电流下电压按电阻成比例分配（4k:1k = 4:1 → 4V:1V）', '#2563eb', DV,
+                   '0;0;1;1', '0;0.8;0.86;1', y=452, size=13)
+    save('voltage-drop.svg', svg + '</svg>')
+
+
+# ======================= 图 95：PCB 布线四招（第 15 章 15.3） =======================
+def make_pcb_routing():
+    """布线规则可视化：45° 拐角 / 过孔寄生 / 差分对 / 敏感线包地。"""
+    DP = 12
+    svg = svg_open('PCB 布线四招：每一条规则背后都有物理', h=560)
+    svg += f'''
+<text x="400" y="46" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#334155">同样的网络，画法不同，高频行为就不同</text>
+<!-- 1: 45 度拐角 -->
+<text x="210" y="88" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">① 拐角：用 45°，不用 90°</text>
+<path d="M70,150 H160 V220" fill="none" stroke="#dc2626" stroke-width="7" stroke-linejoin="miter"/>
+<text x="70" y="140" font-size="10.5" font-weight="bold" fill="#dc2626">90° 尖角</text>
+<text x="120" y="244" font-size="10" fill="#475569">蚀刻不均、高频反射</text>
+<path d="M250,150 H320 L370,200 V240" fill="none" stroke="#059669" stroke-width="7" stroke-linejoin="round"/>
+<text x="250" y="140" font-size="10.5" font-weight="bold" fill="#059669">45° 折角</text>
+<text x="300" y="264" font-size="10" fill="#475569">线宽连续、阻抗平顺</text>
+<!-- 2: 过孔寄生 -->
+<text x="610" y="88" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">② 过孔：1nH + 0.5pF / 个</text>
+<line x1="500" y1="140" x2="700" y2="140" stroke="#2563eb" stroke-width="7"/>
+<circle cx="600" cy="140" r="11" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<circle cx="600" cy="140" r="5" fill="#94a3b8"/>
+<line x1="500" y1="220" x2="700" y2="220" stroke="#059669" stroke-width="7"/>
+<line x1="600" y1="151" x2="600" y2="220" stroke="#334155" stroke-width="2.5" stroke-dasharray="5,4"/>
+<text x="616" y="188" font-size="11" font-weight="bold" fill="#dc2626">L≈1nH · C≈0.5pF</text>
+<text x="600" y="250" text-anchor="middle" font-size="10" fill="#475569">高速/大电流少打孔；电源过孔打多个并联</text>
+<!-- 3: 差分对 -->
+<text x="210" y="320" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">③ 差分对：等长 · 等距 · 紧邻</text>
+<path d="M70,370 H200 L250,420 H350" fill="none" stroke="#7c3aed" stroke-width="5"/>
+<path d="M70,398 H200 L250,448 H350" fill="none" stroke="#2563eb" stroke-width="5"/>
+<text x="230" y="360" font-size="10" fill="#475569">间距恒定 → 差分阻抗恒定</text>
+<text x="210" y="480" text-anchor="middle" font-size="10" fill="#475569">等长保证两线同时到达；紧邻让共模干扰同相抵消</text>
+<!-- 4: 敏感线包地 -->
+<text x="610" y="320" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">④ 敏感线：远离时钟，必要时包地</text>
+<path d="M470,380 H540 L560,400 H700" fill="none" stroke="#dc2626" stroke-width="5"/>
+<text x="470" y="370" font-size="10" font-weight="bold" fill="#dc2626">时钟 / 开关节点</text>
+<path d="M470,440 H700" fill="none" stroke="#94a3b8" stroke-width="3" stroke-dasharray="6,4"/>
+<path d="M470,462 H700" fill="none" stroke="#94a3b8" stroke-width="3" stroke-dasharray="6,4"/>
+<path d="M470,418 H700" fill="none" stroke="#2563eb" stroke-width="5"/>
+<text x="470" y="412" font-size="10" font-weight="bold" fill="#2563eb">敏感模拟线（两侧包地）</text>
+<text x="610" y="490" text-anchor="middle" font-size="10" fill="#475569">平行走线越长、越近，串扰越大——包地是「屏蔽墙」</text>
+{flow("M472,380 H538 L558,400 H698", DP, n=3, color="#dc2626", r=4.5)}
+{flow("M472,418 H698", DP, n=4, color="#2563eb", r=4.5)}
+'''
+    svg += caption('口诀：45° 拐角、少打过孔、差分等长紧邻、敏感线包地——四条都源自「电感与耦合」', '#2563eb', DP,
+                   '0;0;1;1', '0;0.8;0.86;1', y=534, size=13)
+    save('pcb-routing.svg', svg + '</svg>')
+
+
 
 
 
@@ -7099,4 +7194,6 @@ if __name__ == '__main__':
     make_555_astable_beats()
     make_water_analogy()
     make_power_tree()
-    print('all 93 SVGs regenerated into', os.path.abspath(OUT))
+    make_voltage_drop()
+    make_pcb_routing()
+    print('all 95 SVGs regenerated into', os.path.abspath(OUT))
