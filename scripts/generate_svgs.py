@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-generate_svgs.py — 一键再生成《通往模拟电路之路》全部 90 张 SVG SMIL 动画
+generate_svgs.py — 一键再生成《通往模拟电路之路》全部 91 张 SVG SMIL 动画
 用法:  python generate_svgs.py            # 输出到 ../assets/svg/
 风格:  参考 BMS-Z 项目 —— 浅色底 + SMIL 节拍字幕 + 深色模式自适应 + 拟人化讲解
 所有电路参数经过自洽核算（datasheet 级），详见各函数注释。
@@ -6662,6 +6662,105 @@ def make_ldo_transient_beats():
                    '0;0;1;1', '0;0.84;0.89;1', y=650, size=13.2)
     save('ldo-transient-beats.svg', svg + '</svg>')
 
+# ======================= 图 91：555 无稳态四拍拆解（第 10 章 10.4） =======================
+def make_555_astable_beats():
+    """555 无稳态四拍：上电 → 充电(⅓→⅔) → 放电(⅔→⅓) → 无限循环。"""
+    DB = 12
+    T0, T1 = 80, 760
+    PER = 1012.0                        # 541 + 471 µs
+    tx = lambda t: T0 + t / PER * (T1 - T0)
+    vy = lambda v: 420 - v / 9 * 62     # V_C：9V→358，0V→420
+
+    def mini_stage(x, title, time_text, color, row1, row2, r1c, r2c, capc,
+                   flow_path=None, flow_color="#dc2626"):
+        fl = flow(flow_path, DB, n=2, color=flow_color, r=4.0) if flow_path else ''
+        return f'''<rect x="{x}" y="70" width="174" height="214" rx="10" fill="#f8fafc" stroke="{color}" stroke-width="1.8"/>
+<text x="{x+87}" y="94" text-anchor="middle" font-size="13" font-weight="bold" fill="{color}">{title}</text>
+<text x="{x+87}" y="113" text-anchor="middle" font-size="10.5" fill="#475569">{time_text}</text>
+<text x="{x+12}" y="130" font-size="9" font-weight="bold" fill="#b45309">VCC 9V</text>
+<line x1="{x+12}" y1="134" x2="{x+100}" y2="134" stroke="#334155" stroke-width="2.2"/>
+<line x1="{x+40}" y1="134" x2="{x+40}" y2="140" stroke="#334155" stroke-width="2.2"/>
+<rect x="{x+29}" y="140" width="22" height="24" fill="#f8fafc" stroke="{r1c}" stroke-width="2.2"/>
+<text x="{x+55}" y="156" font-size="9" fill="#475569">R1 1k</text>
+<line x1="{x+40}" y1="164" x2="{x+40}" y2="176" stroke="#334155" stroke-width="2.2"/>
+<circle cx="{x+40}" cy="178" r="3" fill="#334155"/>
+<text x="{x+47}" y="181" font-size="8" fill="#7c3aed">→7脚 DIS</text>
+<line x1="{x+40}" y1="180" x2="{x+40}" y2="186" stroke="#334155" stroke-width="2.2"/>
+<rect x="{x+29}" y="186" width="22" height="24" fill="#f8fafc" stroke="{r2c}" stroke-width="2.2"/>
+<text x="{x+55}" y="202" font-size="9" fill="#475569">R2 6.8k</text>
+<line x1="{x+40}" y1="210" x2="{x+40}" y2="216" stroke="#334155" stroke-width="2.2"/>
+<circle cx="{x+40}" cy="218" r="3" fill="#334155"/>
+<text x="{x+47}" y="221" font-size="8" fill="#7c3aed">→2/6脚</text>
+<line x1="{x+40}" y1="220" x2="{x+40}" y2="226" stroke="#334155" stroke-width="2.2"/>
+<line x1="{x+28}" y1="226" x2="{x+52}" y2="226" stroke="{capc}" stroke-width="3"/>
+<line x1="{x+28}" y1="234" x2="{x+52}" y2="234" stroke="{capc}" stroke-width="3"/>
+<line x1="{x+40}" y1="234" x2="{x+40}" y2="240" stroke="#334155" stroke-width="2.2"/>
+<line x1="{x+30}" y1="244" x2="{x+50}" y2="244" stroke="#334155" stroke-width="2.5"/>
+<line x1="{x+34}" y1="249" x2="{x+46}" y2="249" stroke="#334155" stroke-width="2.5"/>
+<text x="{x+58}" y="232" font-size="9" fill="#2563eb">C 100n</text>
+<rect x="{x+104}" y="150" width="54" height="60" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="{x+131}" y="180" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">555</text>
+<text x="{x+131}" y="198" text-anchor="middle" font-size="8" font-weight="bold" fill="#dc2626">OUT</text>
+<line x1="{x+158}" y1="180" x2="{x+166}" y2="180" stroke="#dc2626" stroke-width="2.4"/>
+<polygon points="{x+166},180 {x+161},176 {x+161},184" fill="#dc2626"/>
+{fl}
+<text x="{x+87}" y="266" text-anchor="middle" font-size="10.5" font-weight="bold" fill="{color}">{row1}</text>
+<text x="{x+87}" y="278" text-anchor="middle" font-size="10" fill="#475569">{row2}</text>'''
+
+    cards = [
+        mini_stage(20, '① 上电', 't=0 · 上电瞬间', '#64748b', 'OUT：高 · 放电管关', 'C：0V 起步',
+                   '#cbd5e1', '#cbd5e1', '#cbd5e1'),
+        mini_stage(212, '② 充电', 'V_C：3→6V', '#b45309', 'OUT：高', 't_充 = 541µs',
+                   '#f59e0b', '#f59e0b', '#2563eb', 'M252,134 L252,226', '#f59e0b'),
+        mini_stage(404, '③ 放电', 'V_C：6→3V', '#dc2626', 'OUT：低', 't_放 = 471µs',
+                   '#cbd5e1', '#dc2626', '#2563eb', 'M444,226 L444,178', '#dc2626'),
+        mini_stage(596, '④ 循环', 'V_C：3↔6V', '#059669', 'OUT：方波 ≈990Hz', '占空比 ≈53%',
+                   '#334155', '#334155', '#2563eb'),
+    ]
+
+    # ---- 波形：V_C 指数充放电夹在 3V↔6V；OUT 方波 ----
+    tc = np.linspace(0, 541, 48)
+    vcc_charge = 9 - 6 * np.exp(-tc / 780)          # τ1=(R1+R2)C=780µs
+    td = np.linspace(0, 471, 48)
+    vcc_dis = 6 * np.exp(-td / 680)                 # τ2=R2·C=680µs
+    vc_pts = list(zip(tc, vcc_charge)) + [(541 + t, v) for t, v in zip(td, vcc_dis)]
+    vc_d = "M" + " L".join(f"{tx(t):.0f},{vy(v):.0f}" for t, v in vc_pts)
+    out_d = f"M{T0},435 L{tx(541):.0f},435 L{tx(541):.0f},455 L{T1},455"
+
+    svg = svg_open('555 无稳态四拍：电容荡秋千，输出跳方波（R1=1k/R2=6.8k/C=100nF）', h=680)
+    svg += f'''
+<text x="400" y="51" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#334155">R1=1kΩ · R2=6.8kΩ · C=100nF · V_CC=9V：一个完整周期（≈1.01ms）的四拍</text>
+{cards[0]}
+{cards[1]}
+{cards[2]}
+{cards[3]}
+<text x="425" y="314" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">电容电压在 ⅓VCC↔⅔VCC 间荡秋千，输出同步跳方波</text>
+<rect x="{T0}" y="340" width="{T1-T0}" height="128" fill="#e2e8f0" opacity="0.15"/>
+<text x="24" y="392" font-size="11" font-weight="bold" fill="#2563eb">V_C</text>
+<text x="24" y="450" font-size="11" font-weight="bold" fill="#dc2626">OUT</text>
+<line x1="{T0}" y1="{vy(6):.0f}" x2="{T1}" y2="{vy(6):.0f}" stroke="#94a3b8" stroke-width="1" stroke-dasharray="5,4"/>
+<line x1="{T0}" y1="{vy(3):.0f}" x2="{T1}" y2="{vy(3):.0f}" stroke="#94a3b8" stroke-width="1" stroke-dasharray="5,4"/>
+<text x="{T1}" y="{vy(6)-4:.0f}" text-anchor="end" font-size="9" fill="#64748b">⅔VCC=6V</text>
+<text x="{T1}" y="{vy(3)-4:.0f}" text-anchor="end" font-size="9" fill="#64748b">⅓VCC=3V</text>
+<path d="{vc_d}" fill="none" stroke="#2563eb" stroke-width="2.6"/>
+<path d="{out_d}" fill="none" stroke="#dc2626" stroke-width="2.6"/>
+<line x1="{tx(541):.0f}" y1="340" x2="{tx(541):.0f}" y2="468" stroke="#dc2626" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="{tx(541)+6:.0f}" y="352" font-size="10" font-weight="bold" fill="#dc2626">THRES 触发 → 翻转</text>
+<text x="{T0+4}" y="484" font-size="10" fill="#475569">充电相 541µs（OUT 高）</text>
+<text x="{tx(541)+6:.0f}" y="484" font-size="10" fill="#475569">放电相 471µs（OUT 低）</text>
+<circle r="4.2" fill="#2563eb"><animateMotion dur="{DB}s" repeatCount="indefinite" path="{vc_d}"/></circle>
+<circle r="4.2" fill="#dc2626"><animateMotion dur="{DB}s" repeatCount="indefinite" path="{out_d}"/></circle>
+<rect x="22" y="515" width="756" height="87" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="40" y="540" font-size="12" font-weight="bold" fill="#2563eb">🧮 四拍账本：⅓→⅔ 恰好 0.693 个时间常数</text>
+<text x="40" y="563" font-size="11" fill="#475569">t_充 = 0.693(R1+R2)C = 0.693×7.8kΩ×100nF ≈ 541µs（OUT 高）；t_放 = 0.693·R2·C ≈ 471µs（OUT 低）</text>
+<text x="40" y="585" font-size="11" fill="#475569">f ≈ 1/1.012ms ≈ 990Hz；占空比 = 541/1012 ≈ 53%。充电走 R1+R2、放电只走 R2 → 占空比恒 &gt;50%</text>
+<text x="40" y="597" font-size="10.5" font-weight="bold" fill="#dc2626">要准 50%：R2 两端并一只二极管，充电时抄近路绕过 R2（经典 555 占空比补丁）</text>
+'''
+    svg += caption('四拍因果链：上电 → 经 R1+R2 充到 ⅔ → 经 R2 放到 ⅓ → 无限循环', '#7c3aed', DB,
+                   '0;0;1;1', '0;0.84;0.89;1', y=650, size=13.2)
+    save('555-astable-beats.svg', svg + '</svg>')
+
+
 
 
 
@@ -6879,4 +6978,5 @@ if __name__ == '__main__':
     make_rectifier_filter_beats()
     make_analog_switch_beats()
     make_ldo_transient_beats()
-    print('all 90 SVGs regenerated into', os.path.abspath(OUT))
+    make_555_astable_beats()
+    print('all 91 SVGs regenerated into', os.path.abspath(OUT))

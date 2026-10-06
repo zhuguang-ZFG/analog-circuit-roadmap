@@ -13,7 +13,7 @@
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-CC_BY--SA_4.0-lightgrey.svg" alt="License"></a>
-  <img src="https://img.shields.io/badge/SVG动画-90张-3fb950.svg" alt="SVG">
+  <img src="https://img.shields.io/badge/SVG动画-91张-3fb950.svg" alt="SVG">
   <img src="https://img.shields.io/badge/章节-8篇19章-58a6ff.svg" alt="chapters">
   <img src="https://img.shields.io/badge/最近更新-2026.10-f0883e.svg" alt="updated">
 </p>
@@ -71,7 +71,7 @@
 | 电源噪声让 ADC 读数跳 | [15.2 接地](#ch15) + [15.1 布局](#ch15) | 回流在脚下 + 去耦电容贴脸放 |
 | 板子偶发复位/莫名振荡 | [第 16 章 排故五步法](#ch16) → [第 17 章 速查总表](#ch17) | 症状对号入座，一次只改一个变量 |
 | 高频信号过不去/边沿变肉 | [第 1 章 无源元件](#ch1) + [12.5 Sallen-Key](#ch12) | 寄生电感电容的真实代价 |
-| 只想先看动画找感觉 | [第五篇 动画中心](#part5) | 90 张 SMIL 动画随便点开 |
+| 只想先看动画找感觉 | [第五篇 动画中心](#part5) | 91 张 SMIL 动画随便点开 |
 
 
 ## ⭐ 必读精选（编辑之选）
@@ -118,7 +118,7 @@ graph TD
   - [第 14 章 设计方法论](#ch14) · [第 15 章 PCB 注意事项](#ch15)
 - **[第四篇：故障分析与排故方法论](#part4)** 🩺
   - [第 16 章 排故五步法](#ch16) · [第 17 章 故障速查表](#ch17) · [第 18 章 大师智慧](#ch18)
-- **[第五篇：动画演示中心](#part5)** 🎬 — 90 张 SVG 动画 + Falstad 地图
+- **[第五篇：动画演示中心](#part5)** 🎬 — 91 张 SVG 动画 + Falstad 地图
 - **[第六篇：实物图鉴与速查](#part6)** 🧩 — 实物照片 · 参数速查 · [官方 datasheet 直达](#part6)
 - **[第七篇：视频资源](#part7)** 📺 — B站系统课 · YouTube 频道
 - **[第八篇：学习路线与资源索引](#part8)** 📚 — 路线图 · 书单 · 项目清单 · [官方资料](#sec88) · [经典论文](#sec89) · [术语表](#sec810) · [顺口溜总表](#sec811) · FAQ
@@ -1501,6 +1501,11 @@ $t_{充}=0.693(R_1+R_2)C = 0.693\times 7.8k\times 100nF ≈ 541µs$（输出高�
 $t_{放}=0.693\,R_2\,C ≈ 471µs$（输出低）
 → $f ≈ 990Hz$、占空比 ≈53%。**充电走 R1+R2、放电只走 R2，所以占空比永远 >50%**；想要准 50%：R2 两端并一只二极管，充电时抄近路绕过 R2。
 
+<p align="center"><img src="assets/svg/555-astable-beats.svg" width="720" alt="555无稳态四拍拆解SVG动画"></p>
+
+**看点**：四拍跟着电容走一圈——① 上电 OUT 高；② 经 R1+R2 充到 ⅔VCC（541µs）；③ 经 R2 放到 ⅓VCC（471µs）；④ 3V↔6V 三角波荡秋千、输出 ≈990Hz 方波。→ 本节 [10.4](#ch10)
+
+
 ### 10.5 动态分析：单稳态模式——一触发，亮一拍（四拍拆解）🔬
 
 <p align="center"><img src="assets/svg/ne555-monostable.svg" width="720" alt="555单稳态SVG动画：一触发亮一拍"></p>
@@ -2237,7 +2242,7 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 <a id="part5"></a>
 # 第五篇：动画演示中心 🎬
 
-> 全部 90 张 SVG 动画（SMIL，浏览器直接播放）位于 `assets/svg/` 目录，由 `scripts/generate_svgs.py` 一键生成（仓库铁律：两者始终同步）；配套 Falstad 在线电路可实时交互。
+> 全部 91 张 SVG 动画（SMIL，浏览器直接播放）位于 `assets/svg/` 目录，由 `scripts/generate_svgs.py` 一键生成（仓库铁律：两者始终同步）；配套 Falstad 在线电路可实时交互。
 
 ## 5.1 RC 充电 <a id="demo1"></a>
 
@@ -2764,8 +2769,14 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 
 **看点**：① ESR 瞬跳 25mV；② 电容放电 245mV；③ 环路接管回升；④ 重新锁定（可能过冲）。总跌落 270mV ＞ 3.3V 复位阈值 165mV。→ 正文 [9.5 动态分析](#ch9)
 
+## 5.86 555 无稳态四拍：电容荡秋千，输出跳方波 <a id="demo86"></a>
 
-## 5.86 Falstad 内置示例地图（全部带动画）
+<p align="center"><img src="assets/svg/555-astable-beats.svg" width="720" alt="555无稳态四拍拆解SVG动画"></p>
+
+**看点**：① 上电 OUT 高；② 充电 541µs（走 R1+R2）；③ 放电 471µs（只走 R2）；④ 循环 → ≈990Hz、占空比 53%。→ 正文 [10.4 动态分析](#ch10)
+
+
+## 5.87 Falstad 内置示例地图（全部带动画）
 
 | 主题 | 菜单路径 |
 |---|---|
@@ -2917,6 +2928,10 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 | 硬件工程师入门教程 | 硬件工程师入门 | [BV1gHSyY3E6q](https://www.bilibili.com/video/BV1gHSyY3E6q/) | 偏工程实践 |
 | **开关电源动画三连**（Buck/Boost/Buck-Boost） | 蓝指针科普 | [BV1QJSFBVEHu](https://www.bilibili.com/video/BV1QJSFBVEHu/) · [BV1egmQBWE9m](https://www.bilibili.com/video/BV1egmQBWE9m/) · [BV1CyZyBVEkg](https://www.bilibili.com/video/BV1CyZyBVEkg/) | 3 分钟一只拓扑，配 [13.2/13.3](#ch13) 服用 |
 | 零基础示波器使用入门 | 芯讲坛 | [BV1nrjM6NEr8](https://www.bilibili.com/video/BV1nrjM6NEr8/) | 排故实操第一课，配 [第 16 章](#ch16) |
+| **硬件工程师零基础入门到精通（114 讲）** | 凡亿教育 | [BV1bRi9YaE2R](https://www.bilibili.com/video/BV1bRi9YaE2R/) | 从元器件到实战，55 万播放，配 [第 14 章](#ch14) |
+| **电源大师系列**（DCDC 拓扑 / PCB layout / EMI） | 电源大师 | [BV1ef4y1n7x1](https://www.bilibili.com/video/BV1ef4y1n7x1/) | 开关电源实战，配 [第 13 章](#ch13) |
+| 高速 PCB 设计入门（2 小时 · 4 层板） | 嘉立创EDA | [BV1fUrSYmE7d](https://www.bilibili.com/video/BV1fUrSYmE7d/) | 布线实战，配 [第 15 章](#ch15) |
+| 全国电赛培训（立创EDA + 电源） | 唐老师讲电赛 | [BV1LKG7zxE2E](https://www.bilibili.com/video/BV1LKG7zxE2E/) | 电赛 / 毕业设计实战 |
 
 ## 7.2 YouTube（英文频道）
 
@@ -2931,6 +2946,12 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 | Analog Electronics 全课程 | [播放列表](https://www.youtube.com/playlist?list=PLgwJF8NK-2e7jeZYKrMQd1_Iq8_gJvG6RM) | OP-AMP/PLL/VCO/稳压器 |
 | w2aew 运放教程系列 | [播放列表](https://www.youtube.com/playlist?list=PLBCjWUUpRpOeAFKEPvkys15YvOt86qGnU) | #75 虚短虚断 / #79 单电源与虚地 / #172 GBW 与压摆率——白板书推导派 |
 | w2aew 示波器教程系列 | [播放列表](https://www.youtube.com/playlist?list=PLhtYYpsE3LzVUVSNHUVhfcoaI3mLEKSIx) | #9 探头 1X/10X 补偿 / #10 AC-DC 耦合 / #11 触发——仪器使用圣经 |
+| **GreatScott!** | [@GreatScott](https://www.youtube.com/@GreatScott) | 元件原理与项目科普，节奏明快、上手友好 |
+| **ElectroBOOM** | [@ElectroBOOM](https://www.youtube.com/@ElectroBOOM) | 电气安全与元件原理，笑着学会"别乱摸电容" |
+| **Phil's Lab** | [@PhilsLab](https://www.youtube.com/@PhilsLab) | 模拟/数字设计 + PCB layout，配 [第 14/15 章](#ch14) |
+| **The Signal Path** | [@TheSignalPath](https://www.youtube.com/@TheSignalPath) | 精密仪器与测量、射频/仪表深度拆解 |
+| **Mr Carlson's Lab** | [@MrCarlsonsLab](https://www.youtube.com/@MrCarlsonsLab) | 老设备修复，排故思路（配 [第 16 章](#ch16)） |
+| Neso Academy 模电全课程 | [播放列表](https://www.youtube.com/playlist?list=PLBlnK6fEyqRiw-GZRqfnlVIBz9dxrqHJS) | 从半导体到运放，158 讲系统课 |
 
 **MIT OCW 6.002 视频**：[课程主页](https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/) 内含 Anant Agarwal 全部讲课录像——MIT 新生第一门 EE 课，激情四射。
 
@@ -3127,7 +3148,8 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 
 | 版本 | 亮点 |
 |---|---|
-| **v3.2（当前）** | 动画 90 张：新增「LDO 负载瞬态四拍拆解」（9.5，AMS1117-5V/C_out=10µF，ESR 25mV + 放电 245mV = 270mV 跌落算一笔）+ 3 张低运动图补动（darlington/feedback-topo/mux-4051，10→16/16/14） |
+| **v3.3（当前）** | 动画 91 张：新增「555 无稳态四拍拆解」（10.4，R1=1k/R2=6.8k/C=100nF，541µs/471µs/≈990Hz 算一笔）+ 第七篇视频扩充（B 站 4 条 + YouTube 6 条） |
+| v3.2 | 动画 90 张：新增「LDO 负载瞬态四拍拆解」（9.5，AMS1117-5V/C_out=10µF，ESR 25mV + 放电 245mV = 270mV 跌落算一笔）+ 3 张低运动图补动（darlington/feedback-topo/mux-4051，10→16/16/14） |
 | v3.1 | 动画 89 张：新增「模拟开关开合四拍拆解」（8.6，5V 传输门/C_h=10pF，Q_ch=0.2pC、ΔV=10mV=20 LSB 算一笔） |
 | v3.0 | 动画 88 张：新增「整流滤波电源四拍拆解」（2.6，12V AC/4700µF/1A，导通角~20%、峰值电流 5~10A、纹波 2.1V 算一笔） |
 | v2.9 | 动画 87 张：新增「MOSFET 开通四拍」（4.6，20V/5A/10mA，700ns 四阶段与 $Q_{gd}=1.6nC$、$P_{sw}≈3.5W$ 算一笔） |
