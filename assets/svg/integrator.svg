@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="480" viewBox="0 0 800 480">
+<title>积分器：方波进、三角波出——电容在「攒」电压</title>
+<rect width="800" height="480" fill="#f8fafc"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+@media (prefers-color-scheme: dark){
+rect[fill="#f8fafc"]{fill:#0f172a}
+[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
+[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
+[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
+[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
+[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
+[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
+[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
+[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
+[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
+[fill="#cbd5e1"]{fill:#334155}[stroke="#cbd5e1"]{stroke:#475569}
+[fill="#ffffff"]{fill:#0f172a}[fill="#94a3b8"]{fill:#64748b}[stroke="#94a3b8"]{stroke:#64748b}
+[fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
+}
+</style>
+<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">积分器：方波进、三角波出——电容在「攒」电压</text>
+
+<circle cx="90" cy="180" r="21" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+<path d="M79,186 h6 v-9 h7 v9 h7 v-9 h8" fill="none" stroke="#2563eb" stroke-width="2"/>
+<text x="42" y="152" font-size="11.5" font-weight="bold" fill="#2563eb">vin ±1V 方波</text>
+<line x1="111" y1="180" x2="170" y2="180" stroke="#334155" stroke-width="2.5"/>
+<line x1="170" y1="180" x2="190" y2="180" stroke="#334155" stroke-width="2.5"/>
+<rect x="190" y="169" width="56" height="22" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<line x1="246" y1="180" x2="266" y2="180" stroke="#334155" stroke-width="2.5"/>
+<text x="218.0" y="163" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#b45309">Rin 10kΩ</text>
+<line x1="266" y1="180" x2="330" y2="180" stroke="#334155" stroke-width="2.5"/>
+<circle cx="330" cy="180" r="4" fill="#334155"/>
+<line x1="330" y1="180" x2="480" y2="180" stroke="#334155" stroke-width="2.5"/>
+<polygon points="480,158 480,242 566,200" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="492" y="186" font-size="15" font-weight="bold" fill="#dc2626">−</text>
+<text x="492" y="228" font-size="15" font-weight="bold" fill="#059669">+</text>
+<text x="500" y="262" font-size="11.5" fill="#475569">LM358</text>
+<line x1="440" y1="220" x2="480" y2="220" stroke="#334155" stroke-width="2.5"/>
+<line x1="440" y1="220" x2="440" y2="252" stroke="#334155" stroke-width="2.5"/>
+<line x1="440" y1="252" x2="440" y2="266" stroke="#334155" stroke-width="2.5"/><line x1="424" y1="266" x2="456" y2="266" stroke="#334155" stroke-width="3"/><line x1="430" y1="272" x2="450" y2="272" stroke="#334155" stroke-width="3"/><line x1="436" y1="278" x2="444" y2="278" stroke="#334155" stroke-width="3"/>
+<line x1="330" y1="180" x2="330" y2="140" stroke="#334155" stroke-width="2.5"/>
+<line x1="330" y1="140" x2="380" y2="140" stroke="#334155" stroke-width="2.5"/>
+<line x1="380" y1="128" x2="380" y2="152" stroke="#2563eb" stroke-width="3"/>
+<line x1="388" y1="128" x2="388" y2="152" stroke="#2563eb" stroke-width="3"/>
+<text x="384" y="110" text-anchor="middle" font-size="10" fill="#2563eb">C 100nF</text>
+<line x1="388" y1="140" x2="566" y2="140" stroke="#334155" stroke-width="2.5"/>
+<line x1="566" y1="140" x2="566" y2="200" stroke="#334155" stroke-width="2.5"/>
+<line x1="566" y1="200" x2="630" y2="200" stroke="#334155" stroke-width="2.5"/>
+<text x="640" y="205" font-size="13" font-weight="bold" fill="#dc2626">vout</text>
+<line x1="60" y1="350" x2="392" y2="350" stroke="#64748b" stroke-width="1.6"/>
+<path d="M60,330 L65,330 L70,330 L75,330 L81,330 L86,330 L91,330 L96,330 L101,330 L106,330 L112,330 L117,330 L122,330 L127,330 L132,330 L137,330 L142,370 L148,370 L153,370 L158,370 L163,370 L168,370 L173,370 L179,370 L184,370 L189,370 L194,370 L199,370 L204,370 L210,370 L215,370 L220,370 L225,330 L230,330 L235,330 L240,330 L246,330 L251,330 L256,330 L261,330 L266,330 L271,330 L277,330 L282,330 L287,330 L292,330 L297,330 L302,330 L308,370 L313,370 L318,370 L323,370 L328,370 L333,370 L338,370 L344,370 L349,370 L354,370 L359,370 L364,370 L369,370 L375,370 L380,370 L385,370 L390,330" fill="none" stroke="#2563eb" stroke-width="3"/>
+<text x="64" y="300" font-size="10" font-weight="bold" fill="#2563eb">输入 ±1V</text>
+<circle r="5.5" fill="#fff" stroke="#2563eb" stroke-width="3"><animateMotion dur="2.5s" repeatCount="indefinite" path="M60,330 L65,330 L70,330 L75,330 L81,330 L86,330 L91,330 L96,330 L101,330 L106,330 L112,330 L117,330 L122,330 L127,330 L132,330 L137,330 L142,370 L148,370 L153,370 L158,370 L163,370 L168,370 L173,370 L179,370 L184,370 L189,370 L194,370 L199,370 L204,370 L210,370 L215,370 L220,370 L225,330 L230,330 L235,330 L240,330 L246,330 L251,330 L256,330 L261,330 L266,330 L271,330 L277,330 L282,330 L287,330 L292,330 L297,330 L302,330 L308,370 L313,370 L318,370 L323,370 L328,370 L333,370 L338,370 L344,370 L349,370 L354,370 L359,370 L364,370 L369,370 L375,370 L380,370 L385,370 L390,330"/></circle>
+<line x1="430" y1="350" x2="772" y2="350" stroke="#64748b" stroke-width="1.6"/>
+<path d="M430,315 L435,319 L441,324 L446,328 L451,332 L457,337 L462,341 L467,346 L473,350 L478,354 L483,359 L489,363 L494,368 L499,372 L505,376 L510,381 L516,385 L521,381 L526,376 L532,372 L537,368 L542,363 L548,359 L553,354 L558,350 L564,346 L569,341 L574,337 L580,332 L585,328 L590,324 L596,319 L601,315 L606,319 L612,324 L617,328 L622,332 L628,337 L633,341 L638,346 L644,350 L649,354 L654,359 L660,363 L665,368 L670,372 L676,376 L681,381 L686,385 L692,381 L697,376 L703,372 L708,368 L713,363 L719,359 L724,354 L729,350 L735,346 L740,341 L745,337 L751,332 L756,328 L761,324 L767,319 L772,315" fill="none" stroke="#dc2626" stroke-width="3"/>
+<text x="434" y="290" font-size="10" font-weight="bold" fill="#dc2626">输出：匀速斜坡 → 三角波</text>
+<circle r="5.5" fill="#fff" stroke="#dc2626" stroke-width="3"><animateMotion dur="2.5s" repeatCount="indefinite" path="M430,315 L435,319 L441,324 L446,328 L451,332 L457,337 L462,341 L467,346 L473,350 L478,354 L483,359 L489,363 L494,368 L499,372 L505,376 L510,381 L516,385 L521,381 L526,376 L532,372 L537,368 L542,363 L548,359 L553,354 L558,350 L564,346 L569,341 L574,337 L580,332 L585,328 L590,324 L596,319 L601,315 L606,319 L612,324 L617,328 L622,332 L628,337 L633,341 L638,346 L644,350 L649,354 L654,359 L660,363 L665,368 L670,372 L676,376 L681,381 L686,385 L692,381 L697,376 L703,372 L708,368 L713,363 L719,359 L724,354 L729,350 L735,346 L740,341 L745,337 L751,332 L756,328 L761,324 L767,319 L772,315"/></circle>
+<g opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.02;0.2;0.26;1" dur="6s" repeatCount="indefinite"/><circle r="4" fill="#dc2626"><animateMotion dur="6s" begin="-0.50s" repeatCount="indefinite" path="M115,176 H326 V136 H376"/></circle>
+<circle r="4" fill="#dc2626"><animateMotion dur="6s" begin="1.00s" repeatCount="indefinite" path="M115,176 H326 V136 H376"/></circle>
+<circle r="4" fill="#dc2626"><animateMotion dur="6s" begin="2.50s" repeatCount="indefinite" path="M115,176 H326 V136 H376"/></circle>
+<circle r="4" fill="#dc2626"><animateMotion dur="6s" begin="4.00s" repeatCount="indefinite" path="M115,176 H326 V136 H376"/></circle></g><g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.26;0.32;0.5;0.56;1" dur="6s" repeatCount="indefinite"/><circle r="4" fill="#b45309"><animateMotion dur="6s" begin="-0.50s" repeatCount="indefinite" path="M376,136 H334 V184 H115"/></circle>
+<circle r="4" fill="#b45309"><animateMotion dur="6s" begin="1.00s" repeatCount="indefinite" path="M376,136 H334 V184 H115"/></circle>
+<circle r="4" fill="#b45309"><animateMotion dur="6s" begin="2.50s" repeatCount="indefinite" path="M376,136 H334 V184 H115"/></circle>
+<circle r="4" fill="#b45309"><animateMotion dur="6s" begin="4.00s" repeatCount="indefinite" path="M376,136 H334 V184 H115"/></circle></g><text x="400" y="418" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">① 方波 +1V：恒流 i = Vin/Rin 给 C 充电——vout 匀速下滑（斜坡就是「积累」）<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.02;0.2;0.26;1" dur="6s" repeatCount="indefinite"/></text><text x="400" y="418" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">② 方波翻到 −1V：电流反向，电容匀速放电——vout 匀速上爬<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.26;0.32;0.5;0.56;1" dur="6s" repeatCount="indefinite"/></text><text x="400" y="418" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">③ 一下一上接成三角波：积分器把「方块的快慢」变成「斜坡的高低」<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.5;0.56;0.78;0.84;1" dur="6s" repeatCount="indefinite"/></text><text x="400" y="418" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">④ 增益变成斜率 dVout/dt = −Vin/RC：不是放大倍数，是时间整形<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.84;0.9;1" dur="6s" repeatCount="indefinite"/></text><g opacity="0">
+<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.82;0.86;1" dur="6s" repeatCount="indefinite"/>
+<rect x="50" y="438" width="700" height="34" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+<text x="400" y="460" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">积分器的灵魂：恒流充电容 = 匀速斜坡。实战必记：并在 C 上一只 10MΩ 泄放 V_OS，否则输出慢慢爬向电源轨（漂移饱和）；微分器相反——高频增益无限上升 = 噪声放大器，输入串 R、反馈并 C 摁住它。</text>
+</g></svg>

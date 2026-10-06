@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="480" viewBox="0 0 800 480">
+<title>迟滞振荡器：方波从两只门槛之间自己「弹」出来</title>
+<rect width="800" height="480" fill="#f8fafc"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+@media (prefers-color-scheme: dark){
+rect[fill="#f8fafc"]{fill:#0f172a}
+[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
+[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
+[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
+[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
+[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
+[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
+[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
+[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
+[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
+[fill="#cbd5e1"]{fill:#334155}[stroke="#cbd5e1"]{stroke:#475569}
+[fill="#ffffff"]{fill:#0f172a}[fill="#94a3b8"]{fill:#64748b}[stroke="#94a3b8"]{stroke:#64748b}
+[fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
+}
+</style>
+<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">迟滞振荡器：方波从两只门槛之间自己「弹」出来</text>
+
+<polygon points="480,92 480,176 566,134" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="492" y="120" font-size="15" font-weight="bold" fill="#dc2626">−</text>
+<text x="492" y="158" font-size="15" font-weight="bold" fill="#059669">+</text>
+<line x1="480" y1="120" x2="330" y2="120" stroke="#334155" stroke-width="2.5"/>
+<circle cx="330" cy="120" r="4" fill="#334155"/>
+<line x1="330" y1="120" x2="330" y2="130" stroke="#334155" stroke-width="2"/>
+<line x1="318" y1="130" x2="342" y2="130" stroke="#2563eb" stroke-width="3"/>
+<line x1="318" y1="138" x2="342" y2="138" stroke="#2563eb" stroke-width="3"/>
+<line x1="330" y1="138" x2="330" y2="154" stroke="#334155" stroke-width="2"/>
+<line x1="330" y1="154" x2="330" y2="168" stroke="#334155" stroke-width="2.5"/><line x1="314" y1="168" x2="346" y2="168" stroke="#334155" stroke-width="3"/><line x1="320" y1="174" x2="340" y2="174" stroke="#334155" stroke-width="3"/><line x1="326" y1="180" x2="334" y2="180" stroke="#334155" stroke-width="3"/>
+<text x="352" y="136" font-size="10" fill="#2563eb">C 100nF</text>
+<line x1="450" y1="158" x2="480" y2="158" stroke="#334155" stroke-width="2.5"/>
+<circle cx="450" cy="158" r="4" fill="#334155"/>
+<line x1="450" y1="158" x2="450" y2="178" stroke="#334155" stroke-width="2.5"/>
+<rect x="439" y="178" width="22" height="32" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<line x1="450" y1="210" x2="450" y2="230" stroke="#334155" stroke-width="2.5"/>
+<text x="470" y="198.0" font-size="12.5" font-weight="bold" fill="#b45309">R2 10k</text>
+<line x1="450" y1="226" x2="450" y2="240" stroke="#334155" stroke-width="2.5"/><line x1="434" y1="240" x2="466" y2="240" stroke="#334155" stroke-width="3"/><line x1="440" y1="246" x2="460" y2="246" stroke="#334155" stroke-width="3"/><line x1="446" y1="252" x2="454" y2="252" stroke="#334155" stroke-width="3"/>
+<line x1="450" y1="54" x2="450" y2="74" stroke="#334155" stroke-width="2.5"/>
+<rect x="439" y="74" width="22" height="36" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<line x1="450" y1="110" x2="450" y2="130" stroke="#334155" stroke-width="2.5"/>
+<text x="428" y="98" text-anchor="end" font-size="12.5" font-weight="bold" fill="#b45309">R1 10k</text>
+<line x1="450" y1="130" x2="450" y2="158" stroke="#334155" stroke-width="2.5"/>
+<line x1="450" y1="54" x2="566" y2="54" stroke="#334155" stroke-width="2.5"/>
+<line x1="566" y1="54" x2="566" y2="134" stroke="#334155" stroke-width="2.5"/>
+<line x1="566" y1="134" x2="640" y2="134" stroke="#334155" stroke-width="2.5"/>
+<text x="646" y="139" font-size="12" font-weight="bold" fill="#dc2626">vout</text>
+<circle cx="610" cy="134" r="4" fill="#334155"/>
+<line x1="610" y1="134" x2="610" y2="200" stroke="#334155" stroke-width="2.5"/>
+<line x1="610" y1="200" x2="610" y2="220" stroke="#334155" stroke-width="2.5"/>
+<rect x="599" y="220" width="22" height="30" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<line x1="610" y1="250" x2="610" y2="270" stroke="#334155" stroke-width="2.5"/>
+<text x="630" y="239.0" font-size="12.5" font-weight="bold" fill="#b45309">R 10k</text>
+<line x1="610" y1="270" x2="240" y2="270" stroke="#334155" stroke-width="2.5"/>
+<line x1="240" y1="270" x2="240" y2="120" stroke="#334155" stroke-width="2.5"/>
+<line x1="240" y1="120" x2="330" y2="120" stroke="#334155" stroke-width="2.5"/>
+<line x1="60" y1="355" x2="392" y2="355" stroke="#64748b" stroke-width="1.6"/>
+<line x1="60" y1="325" x2="392" y2="325" stroke="#b45309" stroke-width="1" stroke-dasharray="5,4"/>
+<line x1="60" y1="385" x2="392" y2="385" stroke="#b45309" stroke-width="1" stroke-dasharray="5,4"/>
+<path d="M60,385.0 L62,382.6 L64,380.4 L66,378.1 L68,376.0 L70,373.8 L72,371.8 L74,369.8 L76,367.8 L78,365.9 L80,364.1 L82,362.3 L84,360.5 L86,358.8 L88,357.1 L90,355.5 L92,353.9 L94,352.4 L96,350.9 L98,349.4 L100,348.0 L102,346.6 L104,345.3 L106,344.0 L108,342.7 L110,341.4 L112,340.2 L114,339.0 L116,337.9 L118,336.8 L120,335.7 L122,334.6 L124,333.6 L126,332.6 L128,331.6 L130,330.6 L132,329.7 L134,328.8 L136,327.9 L138,327.1 L140,326.2 L142,325.4 L144,326.2 L146,328.5 L148,330.8 L150,333.0 L152,335.1 L154,337.2 L156,339.2 L158,341.2 L160,343.1 L162,345.0 L164,346.8 L166,348.6 L168,350.4 L170,352.0 L172,353.7 L174,355.3 L176,356.9 L178,358.4 L180,359.8 L182,361.3 L184,362.7 L186,364.1 L188,365.4 L190,366.7 L192,367.9 L194,369.2 L196,370.4 L198,371.5 L200,372.7 L202,373.8 L204,374.9 L206,375.9 L208,376.9 L210,377.9 L212,378.9 L214,379.8 L216,380.8 L218,381.6 L220,382.5 L222,383.4 L224,384.2 L226,385.0 L228,382.6 L230,380.4 L232,378.1 L234,376.0 L236,373.8 L238,371.8 L240,369.8 L242,367.8 L244,365.9 L246,364.1 L248,362.3 L250,360.5 L252,358.8 L254,357.1 L256,355.5 L258,353.9 L260,352.4 L262,350.9 L264,349.4 L266,348.0 L268,346.6 L270,345.3 L272,344.0 L274,342.7 L276,341.4 L278,340.2 L280,339.0 L282,337.9 L284,336.8 L286,335.7 L288,334.6 L290,333.6 L292,332.6 L294,331.6 L296,330.6 L298,329.7 L300,328.8 L302,327.9 L304,327.1 L306,326.2 L308,325.4 L310,326.2 L312,328.5 L314,330.8 L316,333.0 L318,335.1 L320,337.2 L322,339.2 L324,341.2 L326,343.1 L328,345.0 L330,346.8 L332,348.6 L334,350.4 L336,352.0 L338,353.7 L340,355.3 L342,356.9 L344,358.4 L346,359.8 L348,361.3 L350,362.7 L352,364.1 L354,365.4 L356,366.7 L358,367.9 L360,369.2 L362,370.4 L364,371.5 L366,372.7 L368,373.8 L370,374.9 L372,375.9 L374,376.9 L376,377.9 L378,378.9 L380,379.8 L382,380.8 L384,381.6 L386,382.5 L388,383.4 L390,384.2 L392,385.0" fill="none" stroke="#059669" stroke-width="3"/>
+<text x="64" y="301" font-size="10" font-weight="bold" fill="#059669">Vc ±3V 门槛间弹跳</text>
+<line x1="430" y1="355" x2="772" y2="355" stroke="#64748b" stroke-width="1.6"/>
+<path d="M430,305 L435,305 L441,305 L446,305 L451,305 L457,305 L462,305 L467,305 L473,305 L478,305 L483,305 L489,305 L494,305 L499,305 L505,305 L510,305 L516,405 L521,405 L526,405 L532,405 L537,405 L542,405 L548,405 L553,405 L558,405 L564,405 L569,405 L574,405 L580,405 L585,405 L590,405 L596,405 L601,305 L606,305 L612,305 L617,305 L622,305 L628,305 L633,305 L638,305 L644,305 L649,305 L654,305 L660,305 L665,305 L670,305 L676,305 L681,305 L686,405 L692,405 L697,405 L703,405 L708,405 L713,405 L719,405 L724,405 L729,405 L735,405 L740,405 L745,405 L751,405 L756,405 L761,405 L767,405 L772,305" fill="none" stroke="#dc2626" stroke-width="3"/>
+<text x="460" y="291" font-size="10" font-weight="bold" fill="#dc2626">vout ±6V 方波</text>
+<g opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.02;0.2;0.26;1" dur="6s" repeatCount="indefinite"/><circle r="4" fill="#dc2626"><animateMotion dur="6s" begin="-0.50s" repeatCount="indefinite" path="M566,138 H606 V266 H244 V124 H326"/></circle>
+<circle r="4" fill="#dc2626"><animateMotion dur="6s" begin="0.50s" repeatCount="indefinite" path="M566,138 H606 V266 H244 V124 H326"/></circle>
+<circle r="4" fill="#dc2626"><animateMotion dur="6s" begin="1.50s" repeatCount="indefinite" path="M566,138 H606 V266 H244 V124 H326"/></circle>
+<circle r="4" fill="#dc2626"><animateMotion dur="6s" begin="2.50s" repeatCount="indefinite" path="M566,138 H606 V266 H244 V124 H326"/></circle>
+<circle r="4" fill="#dc2626"><animateMotion dur="6s" begin="3.50s" repeatCount="indefinite" path="M566,138 H606 V266 H244 V124 H326"/></circle>
+<circle r="4" fill="#dc2626"><animateMotion dur="6s" begin="4.50s" repeatCount="indefinite" path="M566,138 H606 V266 H244 V124 H326"/></circle></g><g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.5;0.56;0.78;0.84;1" dur="6s" repeatCount="indefinite"/><circle r="4" fill="#059669"><animateMotion dur="6s" begin="-0.50s" repeatCount="indefinite" path="M326,124 H244 V266 H606 V138 H566"/></circle>
+<circle r="4" fill="#059669"><animateMotion dur="6s" begin="0.50s" repeatCount="indefinite" path="M326,124 H244 V266 H606 V138 H566"/></circle>
+<circle r="4" fill="#059669"><animateMotion dur="6s" begin="1.50s" repeatCount="indefinite" path="M326,124 H244 V266 H606 V138 H566"/></circle>
+<circle r="4" fill="#059669"><animateMotion dur="6s" begin="2.50s" repeatCount="indefinite" path="M326,124 H244 V266 H606 V138 H566"/></circle>
+<circle r="4" fill="#059669"><animateMotion dur="6s" begin="3.50s" repeatCount="indefinite" path="M326,124 H244 V266 H606 V138 H566"/></circle>
+<circle r="4" fill="#059669"><animateMotion dur="6s" begin="4.50s" repeatCount="indefinite" path="M326,124 H244 V266 H606 V138 H566"/></circle></g><text x="400" y="418" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">① 上电即 +6V：vout 经 R 给 C 充电，Vc 从 −3V 指数爬向 +6V<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.02;0.2;0.26;1" dur="6s" repeatCount="indefinite"/></text><text x="400" y="418" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">② 爬到上门槛 +3V：比较器翻转，vout 跳到 −6V——门槛被当场搬走<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.26;0.32;0.5;0.56;1" dur="6s" repeatCount="indefinite"/></text><text x="400" y="418" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">③ Vc 掉头冲向下门槛 −3V：vout 又跳回 +6V——来回弹，停不下来<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.5;0.56;0.78;0.84;1" dur="6s" repeatCount="indefinite"/></text><text x="400" y="418" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">④ T = 2RC·ln3 ≈ 2.2ms（f≈455Hz）：门槛越宽弹得越慢——555 无稳态的祖师爷<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.84;0.9;1" dur="6s" repeatCount="indefinite"/></text><g opacity="0">
+<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.82;0.86;1" dur="6s" repeatCount="indefinite"/>
+<rect x="50" y="438" width="700" height="34" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+<text x="400" y="460" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">不用晶振也能造时钟：迟滞管「状态」，RC 管「快慢」。口诀：门槛锁状态，电阻定快慢——窗口越宽弹得越慢，抗噪也越强。</text>
+</g></svg>

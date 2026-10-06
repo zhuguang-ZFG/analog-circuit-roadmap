@@ -2760,6 +2760,267 @@ def make_clipper_clamper():
     save('clipper-clamper.svg', svg + '</svg>')
 
 
+# ======================= 图 37：负反馈纠错 =======================
+# 增益核算：1+R2/R1 = 1+5k/1k = 6；±0.5V → ±3V；反馈系数 R1/(R1+R2)=1/6
+def make_neg_feedback():
+    DC = 6
+    vin_d = sine_path(60, 390, 320, 12)
+    vout_d = sine_path(430, 772, 320, 72)
+    svg = svg_open('负反馈：十万倍的蛮力，被一根线驯成 6 倍', h=480)
+    svg += f'''
+<circle cx="90" cy="220" r="21" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+<path d="M79,220 q5.5,-14 11,0 q5.5,14 11,0" fill="none" stroke="#2563eb" stroke-width="2"/>
+<text x="90" y="190" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#2563eb">vin ±0.5V</text>
+<line x1="111" y1="220" x2="480" y2="220" stroke="#334155" stroke-width="2.5"/>
+<polygon points="480,158 480,242 566,200" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="492" y="186" font-size="15" font-weight="bold" fill="#dc2626">−</text>
+<text x="492" y="228" font-size="15" font-weight="bold" fill="#059669">+</text>
+<text x="500" y="262" font-size="11.5" fill="#475569">LM358</text>
+<line x1="566" y1="200" x2="566" y2="140" stroke="#334155" stroke-width="2.5"/>
+{resistor_h(466, 140, 80, 'R2 5kΩ')}
+<line x1="330" y1="140" x2="446" y2="140" stroke="#334155" stroke-width="2.5"/>
+<circle cx="330" cy="140" r="4" fill="#334155"/>
+<line x1="330" y1="140" x2="330" y2="180" stroke="#334155" stroke-width="2.5"/>
+<circle cx="330" cy="180" r="4" fill="#334155"/>
+<line x1="330" y1="180" x2="480" y2="180" stroke="#334155" stroke-width="2.5"/>
+<line x1="330" y1="140" x2="40" y2="140" stroke="#334155" stroke-width="2.5"/>
+{resistor_v(40, 160, 50)}
+{gnd_sym(40, 244)}
+<text x="64" y="166" font-size="10" font-weight="bold" fill="#b45309">R1 1kΩ</text>
+<circle cx="330" cy="180" r="9" fill="none" stroke="#dc2626" stroke-width="2.5">
+<animate attributeName="opacity" values="0.25;1;0.25" dur="1.4s" repeatCount="indefinite"/></circle>
+<text x="322" y="170" text-anchor="end" font-size="11.5" font-weight="bold" fill="#dc2626">v− ≈ v+</text>
+<line x1="566" y1="200" x2="630" y2="200" stroke="#334155" stroke-width="2.5"/>
+<text x="640" y="205" font-size="13" font-weight="bold" fill="#dc2626">vout</text>
+<line x1="60" y1="320" x2="392" y2="320" stroke="#64748b" stroke-width="1.6"/>
+<path d="{vin_d}" fill="none" stroke="#2563eb" stroke-width="3"/>
+<text x="64" y="288" font-size="10" font-weight="bold" fill="#2563eb">输入 ±0.5V</text>
+<circle r="5.5" fill="#fff" stroke="#2563eb" stroke-width="3"><animateMotion dur="2.5s" repeatCount="indefinite" path="{vin_d}"/></circle>
+<line x1="430" y1="320" x2="772" y2="320" stroke="#64748b" stroke-width="1.6"/>
+<path d="{vout_d}" fill="none" stroke="#dc2626" stroke-width="3"/>
+<text x="434" y="290" font-size="10" font-weight="bold" fill="#dc2626">输出 ±3V（同相 ×6）</text>
+<circle r="5.5" fill="#fff" stroke="#dc2626" stroke-width="3"><animateMotion dur="2.5s" repeatCount="indefinite" path="{vout_d}"/></circle>
+'''
+    svg += f'<g opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.02;0.2;0.26;1" dur="{DC}s" repeatCount="indefinite"/>'
+    svg += flow("M115,224 H476", DC, n=4, color="#2563eb", r=4) + '</g>'
+    svg += f'<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.26;0.32;0.78;0.84;1" dur="{DC}s" repeatCount="indefinite"/>'
+    svg += flow("M562,196 V144 H334 V176", DC, n=5, color="#b45309", r=4) + '</g>'
+    svg += caption("① 开环蛮力：放大 10 万倍——输入刚抬 0.1V，输出瞬间撞上电源轨", "#dc2626", DC,
+                   "0;1;1;0;0", "0;0.02;0.2;0.26;1", y=418)
+    svg += caption("② 反馈线：把输出按 R1:(R1+R2) 切下 1/6，送回反相端 v−", "#b45309", DC,
+                   "0;0;1;1;0;0", "0;0.26;0.32;0.5;0.56;1", y=418)
+    svg += caption("③ 运放继续调 vout，直到 v− = v+——残余误差只有 µV 级", "#059669", DC,
+                   "0;0;1;1;0;0", "0;0.5;0.56;0.78;0.84;1", y=418)
+    svg += caption("④ 增益 = 1 + R2/R1 = 6：蛮力被驯成电阻的规矩——增益不靠芯片靠电阻", "#7c3aed", DC,
+                   "0;0;1;1", "0;0.84;0.9;1", y=418)
+    svg += note_box("负反馈的魔法：运放出十万倍的蛮力盯误差，电阻定结果——「增益不靠芯片靠电阻，误差不到调不停」。12.1 的两条公理，全部从这里来。", 462, DC, w=700)
+    save('neg-feedback.svg', svg + '</svg>')
+
+
+# ======================= 图 38：积分器 =======================
+# 方波 ±1V 进（周期 165px/半周 82.5px），RC=1ms：半周 ΔVout=−Vin·Δt/RC=±1V → 三角 ±1.75V 视觉夸张
+def make_integrator():
+    DC = 6
+    vin_pts, vout_pts = [], []
+    for i in range(65):
+        ph = (i / 64 * 2) % 1
+        x1 = 60 + 330 * i / 64
+        y1 = 330 if ph < 0.5 else 370
+        x2 = 430 + 342 * i / 64
+        y2 = 315 + 70 * (ph / 0.5) if ph < 0.5 else 385 - 70 * ((ph - 0.5) / 0.5)
+        vin_pts.append(f"{x1:.0f},{y1:.0f}")
+        vout_pts.append(f"{x2:.0f},{y2:.0f}")
+    vin_d = "M" + " L".join(vin_pts)
+    vout_d = "M" + " L".join(vout_pts)
+    svg = svg_open('积分器：方波进、三角波出——电容在「攒」电压', h=480)
+    svg += f'''
+<circle cx="90" cy="180" r="21" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+<path d="M79,186 h6 v-9 h7 v9 h7 v-9 h8" fill="none" stroke="#2563eb" stroke-width="2"/>
+<text x="42" y="152" font-size="11.5" font-weight="bold" fill="#2563eb">vin ±1V 方波</text>
+<line x1="111" y1="180" x2="170" y2="180" stroke="#334155" stroke-width="2.5"/>
+{resistor_h(190, 180, 56, 'Rin 10kΩ')}
+<line x1="266" y1="180" x2="330" y2="180" stroke="#334155" stroke-width="2.5"/>
+<circle cx="330" cy="180" r="4" fill="#334155"/>
+<line x1="330" y1="180" x2="480" y2="180" stroke="#334155" stroke-width="2.5"/>
+<polygon points="480,158 480,242 566,200" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="492" y="186" font-size="15" font-weight="bold" fill="#dc2626">−</text>
+<text x="492" y="228" font-size="15" font-weight="bold" fill="#059669">+</text>
+<text x="500" y="262" font-size="11.5" fill="#475569">LM358</text>
+<line x1="440" y1="220" x2="480" y2="220" stroke="#334155" stroke-width="2.5"/>
+<line x1="440" y1="220" x2="440" y2="252" stroke="#334155" stroke-width="2.5"/>
+{gnd_sym(440, 266)}
+<line x1="330" y1="180" x2="330" y2="140" stroke="#334155" stroke-width="2.5"/>
+<line x1="330" y1="140" x2="380" y2="140" stroke="#334155" stroke-width="2.5"/>
+<line x1="380" y1="128" x2="380" y2="152" stroke="#2563eb" stroke-width="3"/>
+<line x1="388" y1="128" x2="388" y2="152" stroke="#2563eb" stroke-width="3"/>
+<text x="384" y="110" text-anchor="middle" font-size="10" fill="#2563eb">C 100nF</text>
+<line x1="388" y1="140" x2="566" y2="140" stroke="#334155" stroke-width="2.5"/>
+<line x1="566" y1="140" x2="566" y2="200" stroke="#334155" stroke-width="2.5"/>
+<line x1="566" y1="200" x2="630" y2="200" stroke="#334155" stroke-width="2.5"/>
+<text x="640" y="205" font-size="13" font-weight="bold" fill="#dc2626">vout</text>
+<line x1="60" y1="350" x2="392" y2="350" stroke="#64748b" stroke-width="1.6"/>
+<path d="{vin_d}" fill="none" stroke="#2563eb" stroke-width="3"/>
+<text x="64" y="300" font-size="10" font-weight="bold" fill="#2563eb">输入 ±1V</text>
+<circle r="5.5" fill="#fff" stroke="#2563eb" stroke-width="3"><animateMotion dur="2.5s" repeatCount="indefinite" path="{vin_d}"/></circle>
+<line x1="430" y1="350" x2="772" y2="350" stroke="#64748b" stroke-width="1.6"/>
+<path d="{vout_d}" fill="none" stroke="#dc2626" stroke-width="3"/>
+<text x="434" y="290" font-size="10" font-weight="bold" fill="#dc2626">输出：匀速斜坡 → 三角波</text>
+<circle r="5.5" fill="#fff" stroke="#dc2626" stroke-width="3"><animateMotion dur="2.5s" repeatCount="indefinite" path="{vout_d}"/></circle>
+'''
+    svg += f'<g opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.02;0.2;0.26;1" dur="{DC}s" repeatCount="indefinite"/>'
+    svg += flow("M115,176 H326 V136 H376", DC, n=4, color="#dc2626", r=4) + '</g>'
+    svg += f'<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.26;0.32;0.5;0.56;1" dur="{DC}s" repeatCount="indefinite"/>'
+    svg += flow("M376,136 H334 V184 H115", DC, n=4, color="#b45309", r=4) + '</g>'
+    svg += caption("① 方波 +1V：恒流 i = Vin/Rin 给 C 充电——vout 匀速下滑（斜坡就是「积累」）", "#dc2626", DC,
+                   "0;1;1;0;0", "0;0.02;0.2;0.26;1", y=418)
+    svg += caption("② 方波翻到 −1V：电流反向，电容匀速放电——vout 匀速上爬", "#b45309", DC,
+                   "0;0;1;1;0;0", "0;0.26;0.32;0.5;0.56;1", y=418)
+    svg += caption("③ 一下一上接成三角波：积分器把「方块的快慢」变成「斜坡的高低」", "#059669", DC,
+                   "0;0;1;1;0;0", "0;0.5;0.56;0.78;0.84;1", y=418)
+    svg += caption("④ 增益变成斜率 dVout/dt = −Vin/RC：不是放大倍数，是时间整形", "#7c3aed", DC,
+                   "0;0;1;1", "0;0.84;0.9;1", y=418)
+    svg += note_box("积分器的灵魂：恒流充电容 = 匀速斜坡。实战必记：并在 C 上一只 10MΩ 泄放 V_OS，否则输出慢慢爬向电源轨（漂移饱和）；微分器相反——高频增益无限上升 = 噪声放大器，输入串 R、反馈并 C 摁住它。", 462, DC, w=700)
+    save('integrator.svg', svg + '</svg>')
+
+
+# ======================= 图 39：单电源虚地 =======================
+# 0~12V 映射 y=320→130（15.83px/V）；中点 6V→y225；vin ±1.5V→±23.7px
+def make_virtual_ground():
+    DC = 6
+    vin_d = sine_path(424, 760, 320, 23.7)
+    vout_d = sine_path(424, 760, 225, 23.7)
+    svg = svg_open('单电源运放：两只电阻造出「半个电源」的假地', h=480)
+    svg += f'''
+<text x="150" y="68" text-anchor="middle" font-size="11" font-weight="bold" fill="#dc2626">+12V</text>
+<line x1="90" y1="80" x2="320" y2="80" stroke="#334155" stroke-width="2.5"/>
+{resistor_v(150, 100, 50, 'R 10k')}
+<line x1="150" y1="170" x2="150" y2="220" stroke="#334155" stroke-width="2.5"/>
+<circle cx="150" cy="220" r="4" fill="#334155"/>
+{resistor_v(150, 240, 50, 'R 10k')}
+<line x1="150" y1="310" x2="150" y2="330" stroke="#334155" stroke-width="2.5"/>
+<line x1="90" y1="330" x2="320" y2="330" stroke="#334155" stroke-width="2.5"/>
+{gnd_sym(150, 344)}
+<text x="60" y="334" font-size="9.5" fill="#64748b">0V</text>
+<text x="168" y="212" font-size="11" font-weight="bold" fill="#b45309">6V 虚地</text>
+<line x1="150" y1="220" x2="236" y2="220" stroke="#334155" stroke-width="2.5"/>
+<circle cx="250" cy="220" r="14" fill="#f8fafc" stroke="#2563eb" stroke-width="2"/>
+<path d="M242,220 q4,-10 8,0 q4,10 8,0" fill="none" stroke="#2563eb" stroke-width="1.8"/>
+<text x="206" y="196" text-anchor="middle" font-size="10" fill="#2563eb">vin ±1.5V</text>
+<line x1="264" y1="220" x2="286" y2="220" stroke="#334155" stroke-width="2.5"/>
+<line x1="286" y1="208" x2="286" y2="232" stroke="#2563eb" stroke-width="3"/>
+<line x1="294" y1="208" x2="294" y2="232" stroke="#2563eb" stroke-width="3"/>
+<text x="290" y="200" text-anchor="middle" font-size="10" fill="#2563eb">C 10µF</text>
+<line x1="294" y1="220" x2="380" y2="220" stroke="#334155" stroke-width="2.5"/>
+<polygon points="380,158 380,242 466,200" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="392" y="186" font-size="15" font-weight="bold" fill="#dc2626">−</text>
+<text x="392" y="228" font-size="15" font-weight="bold" fill="#059669">+</text>
+<line x1="466" y1="200" x2="466" y2="150" stroke="#334155" stroke-width="2.5"/>
+<line x1="466" y1="150" x2="350" y2="150" stroke="#334155" stroke-width="2.5"/>
+<line x1="350" y1="150" x2="350" y2="186" stroke="#334155" stroke-width="2.5"/>
+<line x1="350" y1="186" x2="380" y2="186" stroke="#334155" stroke-width="2.5"/>
+<text x="460" y="142" text-anchor="end" font-size="10" fill="#475569">跟随器：vout = v+</text>
+<line x1="466" y1="200" x2="530" y2="200" stroke="#334155" stroke-width="2.5"/>
+<text x="546" y="190" font-size="12" font-weight="bold" fill="#059669">vout</text>
+<line x1="540" y1="120" x2="540" y2="330" stroke="#64748b" stroke-width="1.4"/>
+<line x1="540" y1="130" x2="760" y2="130" stroke="#b45309" stroke-width="1" stroke-dasharray="5,4"/>
+<line x1="540" y1="225" x2="760" y2="225" stroke="#2563eb" stroke-width="1" stroke-dasharray="5,4"/>
+<line x1="540" y1="320" x2="760" y2="320" stroke="#64748b" stroke-width="1.4"/>
+<path d="{vin_d}" fill="none" stroke="#94a3b8" stroke-width="2.2" stroke-dasharray="5,4"/>
+<path d="{vout_d}" fill="none" stroke="#059669" stroke-width="2.8"/>
+<circle r="5" fill="#fff" stroke="#059669" stroke-width="3"><animateMotion dur="2.5s" repeatCount="indefinite" path="{vout_d}"/></circle>
+<text x="544" y="288" font-size="10" fill="#64748b">直接进：负半周撞地</text>
+<text x="544" y="166" font-size="10" font-weight="bold" fill="#059669">骑上 6V：全程能走</text>
+<text x="780" y="133" text-anchor="end" font-size="9.5" fill="#b45309">12V</text>
+<text x="780" y="228" text-anchor="end" font-size="9.5" fill="#2563eb">6V</text>
+<text x="780" y="323" text-anchor="end" font-size="9.5" fill="#64748b">0V</text>
+'''
+    svg += f'<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.26;0.32;0.5;0.56;1" dur="{DC}s" repeatCount="indefinite"/>'
+    svg += flow("M146,84 V326", DC, n=4, color="#b45309", r=4) + '</g>'
+    svg += f'<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.5;0.56;0.78;0.84;1" dur="{DC}s" repeatCount="indefinite"/>'
+    svg += flow("M364,216 H476", DC, n=3, color="#059669", r=4) + '</g>'
+    svg += caption("① 单电源 0~12V：运放眼里没有负压——信号贴着 0V，负半周直接撞地被削没", "#dc2626", DC,
+                   "0;1;1;0;0", "0;0.02;0.2;0.26;1", y=418)
+    svg += caption("② 两只相等电阻分压：中点 = 6V——给信号造一个「假地」（虚地）", "#b45309", DC,
+                   "0;0;1;1;0;0", "0;0.26;0.32;0.5;0.56;1", y=418)
+    svg += caption("③ 交流经 C 骑上 6V：负半周落在 0V 之上，整条波形都能走", "#059669", DC,
+                   "0;0;1;1;0;0", "0;0.5;0.56;0.78;0.84;1", y=418)
+    svg += caption("④ 虚地不是真地：带载会被拖偏——讲究的场合上专用分压芯片", "#7c3aed", DC,
+                   "0;0;1;1", "0;0.84;0.9;1", y=418)
+    svg += note_box("口诀：没有负电源，两只电阻造中点；信号骑上虚地走，输出上下都不缺。提醒：虚地是信号基准、不是电源回流——大电流负载会把中点拖偏，讲究的场合用 TLE2426 这类分压芯片。", 462, DC, w=700)
+    save('virtual-ground.svg', svg + '</svg>')
+
+
+# ======================= 图 40：迟滞弛豫振荡器 =======================
+# β=R2/(R1+R2)=0.5 → 门槛 ±3V；T=2RC·ln3=2.2ms(RC=1ms)，f≈455Hz；Vc 指数轨迹 10px/V
+def make_schmitt_osc():
+    DC = 6
+    vc_pts = []
+    for i in range(167):
+        x = 60 + 332 * i / 166
+        u = (x - 60) % 166
+        x0 = 60 + ((x - 60) // 166) * 166
+        if u < 83:
+            vc = 6 - 9 * np.exp(-np.log(3) * u / 83)
+        else:
+            vc = -6 + 9 * np.exp(-np.log(3) * (u - 83) / 83)
+        vc_pts.append(f"{x:.0f},{355 - 10 * vc:.1f}")
+    vc_d = "M" + " L".join(vc_pts)
+    sq_d = square_path(430, 772, 405, 305, periods=2)
+    svg = svg_open('迟滞振荡器：方波从两只门槛之间自己「弹」出来', h=480)
+    svg += f'''
+<polygon points="480,92 480,176 566,134" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="492" y="120" font-size="15" font-weight="bold" fill="#dc2626">−</text>
+<text x="492" y="158" font-size="15" font-weight="bold" fill="#059669">+</text>
+<line x1="480" y1="120" x2="330" y2="120" stroke="#334155" stroke-width="2.5"/>
+<circle cx="330" cy="120" r="4" fill="#334155"/>
+<line x1="330" y1="120" x2="330" y2="130" stroke="#334155" stroke-width="2"/>
+<line x1="318" y1="130" x2="342" y2="130" stroke="#2563eb" stroke-width="3"/>
+<line x1="318" y1="138" x2="342" y2="138" stroke="#2563eb" stroke-width="3"/>
+<line x1="330" y1="138" x2="330" y2="154" stroke="#334155" stroke-width="2"/>
+{gnd_sym(330, 168)}
+<text x="352" y="136" font-size="10" fill="#2563eb">C 100nF</text>
+<line x1="450" y1="158" x2="480" y2="158" stroke="#334155" stroke-width="2.5"/>
+<circle cx="450" cy="158" r="4" fill="#334155"/>
+{resistor_v(450, 178, 32, 'R2 10k')}
+{gnd_sym(450, 240)}
+{resistor_v(450, 74, 36)}
+<text x="428" y="98" text-anchor="end" font-size="12.5" font-weight="bold" fill="#b45309">R1 10k</text>
+<line x1="450" y1="130" x2="450" y2="158" stroke="#334155" stroke-width="2.5"/>
+<line x1="450" y1="54" x2="566" y2="54" stroke="#334155" stroke-width="2.5"/>
+<line x1="566" y1="54" x2="566" y2="134" stroke="#334155" stroke-width="2.5"/>
+<line x1="566" y1="134" x2="640" y2="134" stroke="#334155" stroke-width="2.5"/>
+<text x="646" y="139" font-size="12" font-weight="bold" fill="#dc2626">vout</text>
+<circle cx="610" cy="134" r="4" fill="#334155"/>
+<line x1="610" y1="134" x2="610" y2="200" stroke="#334155" stroke-width="2.5"/>
+{resistor_v(610, 220, 30, 'R 10k')}
+<line x1="610" y1="270" x2="240" y2="270" stroke="#334155" stroke-width="2.5"/>
+<line x1="240" y1="270" x2="240" y2="120" stroke="#334155" stroke-width="2.5"/>
+<line x1="240" y1="120" x2="330" y2="120" stroke="#334155" stroke-width="2.5"/>
+<line x1="60" y1="355" x2="392" y2="355" stroke="#64748b" stroke-width="1.6"/>
+<line x1="60" y1="325" x2="392" y2="325" stroke="#b45309" stroke-width="1" stroke-dasharray="5,4"/>
+<line x1="60" y1="385" x2="392" y2="385" stroke="#b45309" stroke-width="1" stroke-dasharray="5,4"/>
+<path d="{vc_d}" fill="none" stroke="#059669" stroke-width="3"/>
+<text x="64" y="301" font-size="10" font-weight="bold" fill="#059669">Vc ±3V 门槛间弹跳</text>
+<line x1="430" y1="355" x2="772" y2="355" stroke="#64748b" stroke-width="1.6"/>
+<path d="{sq_d}" fill="none" stroke="#dc2626" stroke-width="3"/>
+<text x="460" y="291" font-size="10" font-weight="bold" fill="#dc2626">vout ±6V 方波</text>
+'''
+    svg += f'<g opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.02;0.2;0.26;1" dur="{DC}s" repeatCount="indefinite"/>'
+    svg += flow("M566,138 H606 V266 H244 V124 H326", DC, n=6, color="#dc2626", r=4) + '</g>'
+    svg += f'<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.5;0.56;0.78;0.84;1" dur="{DC}s" repeatCount="indefinite"/>'
+    svg += flow("M326,124 H244 V266 H606 V138 H566", DC, n=6, color="#059669", r=4) + '</g>'
+    svg += caption("① 上电即 +6V：vout 经 R 给 C 充电，Vc 从 −3V 指数爬向 +6V", "#dc2626", DC,
+                   "0;1;1;0;0", "0;0.02;0.2;0.26;1", y=418)
+    svg += caption("② 爬到上门槛 +3V：比较器翻转，vout 跳到 −6V——门槛被当场搬走", "#b45309", DC,
+                   "0;0;1;1;0;0", "0;0.26;0.32;0.5;0.56;1", y=418)
+    svg += caption("③ Vc 掉头冲向下门槛 −3V：vout 又跳回 +6V——来回弹，停不下来", "#059669", DC,
+                   "0;0;1;1;0;0", "0;0.5;0.56;0.78;0.84;1", y=418)
+    svg += caption("④ T = 2RC·ln3 ≈ 2.2ms（f≈455Hz）：门槛越宽弹得越慢——555 无稳态的祖师爷", "#7c3aed", DC,
+                   "0;0;1;1", "0;0.84;0.9;1", y=418)
+    svg += note_box("不用晶振也能造时钟：迟滞管「状态」，RC 管「快慢」。口诀：门槛锁状态，电阻定快慢——窗口越宽弹得越慢，抗噪也越强。", 462, DC, w=700)
+    save('schmitt-osc.svg', svg + '</svg>')
+
+
 if __name__ == '__main__':
     make_rc_charge()
     make_bridge_rectifier()
@@ -2797,4 +3058,8 @@ if __name__ == '__main__':
     make_ne555_monostable()
     make_h_bridge()
     make_clipper_clamper()
-    print('all 36 SVGs regenerated into', os.path.abspath(OUT))
+    make_neg_feedback()
+    make_integrator()
+    make_virtual_ground()
+    make_schmitt_osc()
+    print('all 40 SVGs regenerated into', os.path.abspath(OUT))
