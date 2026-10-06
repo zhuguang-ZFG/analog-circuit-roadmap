@@ -4005,12 +4005,14 @@ def make_noise_budget():
         flicker = 20*np.log10(corner/f)          # 1/f，−20dB/dec
         white = floor_db                          # 白噪声：平的
         return 10*np.log10(10**(flicker/10) + 10**(white/10))
+    dpaths = {}
     for corner, color, name in ((100.0, '#059669', 'BJT'), (1000.0, '#dc2626', 'MOSFET')):
         pts = []
         for f in fig_fs:
             db = rel(f, corner, 0.0)     # 轴已留 +25dB 余量，不再钳到 0
             pts.append(f"{fx(f):.0f},{ny(db):.0f}")
-        svg += (f'<path d="M' + " L".join(pts) + f'" fill="none" stroke="{color}" stroke-width="2.4"/>')
+        dpaths[corner] = "M" + " L".join(pts)
+        svg += (f'<path d="{dpaths[corner]}" fill="none" stroke="{color}" stroke-width="2.4"/>')
     svg += (f'<line x1="{fx(1e4):.0f}" y1="{ny(0):.0f}" x2="{fx(1e6):.0f}" y2="{ny(0):.0f}" '
             f'stroke="#64748b" stroke-width="2" stroke-dasharray="6,4"/>')
     svg += f'''
@@ -4022,6 +4024,15 @@ def make_noise_budget():
 <text x="{fx(12):.0f}" y="{ny(22)+16:.0f}" font-size="10.5" fill="#475569">1/f 段：−20dB/dec</text>
 <circle r="5" fill="#dc2626">
 <animateMotion dur="{DN}s" repeatCount="indefinite" path="M{fx(10):.0f},{ny(20):.0f} L{fx(1e6):.0f},{ny(-40):.0f}" keyPoints="0;1" keyTimes="0;1"/></circle>
++<circle r="5" fill="#059669"><animateMotion dur="{DN}s" begin="-0.6s" repeatCount="indefinite" path="{dpaths[100.0]}" keyPoints="0;1" keyTimes="0;1"/></circle>
++<circle cx="{fx(100):.0f}" cy="{ny(3):.0f}" r="5" fill="none" stroke="#059669" stroke-width="2.4">
++<animate attributeName="r" values="5;13;5" dur="1.8s" repeatCount="indefinite"/>
++<animate attributeName="opacity" values="0.95;0.15;0.95" dur="1.8s" repeatCount="indefinite"/></circle>
++<circle cx="{fx(1000):.0f}" cy="{ny(3):.0f}" r="5" fill="none" stroke="#dc2626" stroke-width="2.4">
++<animate attributeName="r" values="5;13;5" dur="1.8s" begin="-0.9s" repeatCount="indefinite"/>
++<animate attributeName="opacity" values="0.95;0.15;0.95" dur="1.8s" begin="-0.9s" repeatCount="indefinite"/></circle>
++{pulse(40, 292, 284, 60, '#059669', 2.0, 10)}
++<circle r="5" fill="#f59e0b"><animateMotion dur="{DN}s" begin="-0.4s" repeatCount="indefinite" path="M120,372 L210,372"/></circle>
 <text x="400" y="474" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#b45309">降噪的正确顺序：先压带宽 → 再降源阻 → 最后才换贵管子</text>
 <text x="400" y="496" text-anchor="middle" font-size="11" fill="#475569">后级的噪声会被前级增益「除回去」：整机噪声几乎只看第一级（Friis）</text>
 <text x="400" y="518" text-anchor="middle" font-size="11" fill="#475569">方向反了 = 先买低噪声运放、不管带宽源阻 → 钱花两倍，噪声只降一半</text>
