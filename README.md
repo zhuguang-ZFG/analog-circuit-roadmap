@@ -3258,7 +3258,8 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 
 | 版本 | 亮点 |
 |---|---|
-| **v3.11（当前）** | 验证加固：新增 GitHub Actions 测试工作流（推送/PR 自动运行 95 张 SVG 一致性检查与 Chromium 时间轴回归）；四拍图回归容差由 1.0px 收紧到 0.5px |
+| **v3.12（当前）** | 时间轴波形图 x-匀速配速修复：新增 `linear_x_motion`/`plain_motion` 辅助函数，19 处站点替换（comparator/wien/integrator/LDO/miller/peak/thermal/mosfet-curves/resistor-model/diode-iv），keyPoints 密度 n=512；修复 miller/diode-iv 丢失 `</circle>` 闭合标签（5 处）与 thermal-runaway 缺少 f-string 前缀导致 `{DT}`/`{pulse(...)}` 字面括号未解析；新增 Chromium 回归测试 `test_waveform_markers_advance_uniformly`（6 站点 x-匀速断言，delta=0.6px） |
+| v3.11 | 验证加固：新增 GitHub Actions 测试工作流（推送/PR 自动运行 95 张 SVG 一致性检查与 Chromium 时间轴回归）；四拍图回归容差由 1.0px 收紧到 0.5px |
 | v3.10 | 整流滤波图修复：波形圆点从 animateMotion 弧长配速改为共享匀速时间游标（实测漂移约 1.7px）；MOSFET 图同步统一为同一机制（旧实现全程亚像素级，属加固），两图纳入 Chromium 回归 |
 | v3.9 | 改进模拟开关、LDO、555 三张四拍图：新增共享时间游标与同步阶段字幕，修正波形圆点按曲线长度配速导致的时间错位；补充图注读法，并增加 Chromium 实际渲染回归（时间线性、跳变前后、循环重播） |
 | v3.8 | 动画 95 张：新增「电压降」（0.2，串联路径按阻值瓜分电压 + 电压剖面图）与「PCB 布线四招」（15.3，45° 拐角/过孔寄生/差分对/包地） |

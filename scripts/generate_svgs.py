@@ -6,6 +6,8 @@ generate_svgs.py — 一键再生成《通往模拟电路之路》全部 95 张 
 所有电路参数经过自洽核算（datasheet 级），详见各函数注释。
 """
 import os
+import re
+
 import numpy as np
 
 OUT = os.path.join(os.path.dirname(__file__), '..', 'assets', 'svg')
@@ -908,7 +910,7 @@ def make_ldo_feedback():
     svg += f'''
 <text x="64" y="300" font-size="11.5" font-weight="bold" fill="#059669">有反馈：跌落→拉回（振铃后稳定）</text>
 <path d="{fb_d}" fill="none" stroke="#059669" stroke-width="3"/>
-<circle cx="60" cy="340" r="5.5" fill="#fff" stroke="#059669" stroke-width="3"><animateMotion dur="{DL}s" repeatCount="indefinite" path="{fb_d}"/></circle>
+<circle cx="60" cy="340" r="5.5" fill="#fff" stroke="#059669" stroke-width="3">{linear_x_motion(DL, fb_d)}</circle>
 <line x1="60" y1="340" x2="384" y2="340" stroke="#64748b" stroke-width="1.5"/>
 <line x1="156" y1="320" x2="156" y2="366" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
 <text x="424" y="300" font-size="11.5" font-weight="bold" fill="#dc2626">若无反馈：一跌不起（负载调整率灾难）</text>
@@ -917,9 +919,9 @@ def make_ldo_feedback():
 <circle r="4.5" fill="#f59e0b"><animateMotion dur="{DL}s" begin="-0.8s" repeatCount="indefinite" path="M332,90 L400,90 L400,108"/></circle>
 <circle r="4.5" fill="#059669"><animateMotion dur="{DL}s" begin="-1.3s" repeatCount="indefinite" path="M400,158 L400,174"/></circle>
 <circle r="4.5" fill="#059669"><animateMotion dur="{DL}s" begin="-1.8s" repeatCount="indefinite" path="M400,188 L400,198"/></circle>
-<circle r="5" fill="#7c3aed"><animateMotion dur="{DL}s" begin="-2.3s" repeatCount="indefinite" path="{ol_d[9:]}" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#7c3aed">{linear_x_motion(DL, ol_d, begin='-2.3s')}</circle>
 
-<circle cx="420" cy="340" r="5.5" fill="#fff" stroke="#dc2626" stroke-width="3"><animateMotion dur="{DL}s" repeatCount="indefinite" path="{ol_d}"/></circle>
+<circle cx="420" cy="340" r="5.5" fill="#fff" stroke="#dc2626" stroke-width="3">{linear_x_motion(DL, ol_d)}</circle>
 <line x1="420" y1="340" x2="744" y2="340" stroke="#64748b" stroke-width="1.5"/>
 <line x1="516" y1="320" x2="516" y2="366" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
 '''
@@ -1363,7 +1365,7 @@ def make_wien_bridge():
 <text x="585" y="252" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#2563eb">起振过程：噪声种子 → 指数长大 → 稳幅</text>
 <path d="{osc_d}" fill="none" stroke="#2563eb" stroke-width="2.5"/>
 <path d="{env_d}" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="5,4"/>
-<circle cx="420" cy="320" r="5" fill="#fff" stroke="#2563eb" stroke-width="3"><animateMotion dur="{DW}s" repeatCount="indefinite" path="{osc_d}"/></circle>
+<circle cx="420" cy="320" r="5" fill="#fff" stroke="#2563eb" stroke-width="3">{linear_x_motion(DW, osc_d)}</circle>
 <circle cx="45" cy="140" r="5" fill="#fff" stroke="#7c3aed" stroke-width="3"><animateMotion dur="{DW}s" repeatCount="indefinite" path="M45,140 C20,140 20,310 200,310 C340,310 380,230 400,150"/></circle>
 <line x1="420" y1="320" x2="750" y2="320" stroke="#64748b" stroke-width="1.4"/>
 <line x1="420" y1="276" x2="750" y2="276" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
@@ -2483,7 +2485,7 @@ def make_peak_detector():
 <circle r="4.5" fill="#f59e0b"><animateMotion dur="{DPK}s" begin="-0.3s" repeatCount="indefinite" path="M48,140 L88,140"/></circle>
 <circle r="4.5" fill="#f59e0b"><animateMotion dur="{DPK}s" begin="-0.9s" repeatCount="indefinite" path="M152,140 L172,140"/></circle>
 <circle r="4.5" fill="#f59e0b"><animateMotion dur="{DPK}s" begin="-1.5s" repeatCount="indefinite" path="M200,140 L238,140 L240,104 L92,100"/></circle>
-<circle r="5" fill="#059669"><animateMotion dur="{DPK}s" begin="-2.1s" repeatCount="indefinite" path="{pk_d[9:]}" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#059669">{linear_x_motion(DPK, pk_d, begin='-2.1s')}</circle>
 <circle cx="560" cy="170" r="5" fill="none" stroke="#059669" stroke-width="2.4">
 <animate attributeName="r" values="5;12;5" dur="1.7s" repeatCount="indefinite"/>
 <animate attributeName="opacity" values="0.95;0.2;0.95" dur="1.7s" repeatCount="indefinite"/></circle>
@@ -2870,11 +2872,11 @@ def make_neg_feedback():
 <line x1="60" y1="320" x2="392" y2="320" stroke="#64748b" stroke-width="1.6"/>
 <path d="{vin_d}" fill="none" stroke="#2563eb" stroke-width="3"/>
 <text x="64" y="288" font-size="10" font-weight="bold" fill="#2563eb">输入 ±0.5V</text>
-<circle r="5.5" fill="#fff" stroke="#2563eb" stroke-width="3"><animateMotion dur="2.5s" repeatCount="indefinite" path="{vin_d}"/></circle>
+<circle r="5.5" fill="#fff" stroke="#2563eb" stroke-width="3">{linear_x_motion(2.5, vin_d)}</circle>
 <line x1="430" y1="320" x2="772" y2="320" stroke="#64748b" stroke-width="1.6"/>
 <path d="{vout_d}" fill="none" stroke="#dc2626" stroke-width="3"/>
 <text x="434" y="290" font-size="10" font-weight="bold" fill="#dc2626">输出 ±3V（同相 ×6）</text>
-<circle r="5.5" fill="#fff" stroke="#dc2626" stroke-width="3"><animateMotion dur="2.5s" repeatCount="indefinite" path="{vout_d}"/></circle>
+<circle r="5.5" fill="#fff" stroke="#dc2626" stroke-width="3">{linear_x_motion(2.5, vout_d)}</circle>
 '''
     svg += f'<g opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.02;0.2;0.26;1" dur="{DC}s" repeatCount="indefinite"/>'
     svg += flow("M115,224 H476", DC, n=4, color="#2563eb", r=4) + '</g>'
@@ -2936,11 +2938,11 @@ def make_integrator():
 <line x1="60" y1="350" x2="392" y2="350" stroke="#64748b" stroke-width="1.6"/>
 <path d="{vin_d}" fill="none" stroke="#2563eb" stroke-width="3"/>
 <text x="64" y="300" font-size="10" font-weight="bold" fill="#2563eb">输入 ±1V</text>
-<circle r="5.5" fill="#fff" stroke="#2563eb" stroke-width="3"><animateMotion dur="2.5s" repeatCount="indefinite" path="{vin_d}"/></circle>
+<circle r="5.5" fill="#fff" stroke="#2563eb" stroke-width="3">{linear_x_motion(2.5, vin_d)}</circle>
 <line x1="430" y1="350" x2="772" y2="350" stroke="#64748b" stroke-width="1.6"/>
 <path d="{vout_d}" fill="none" stroke="#dc2626" stroke-width="3"/>
 <text x="434" y="290" font-size="10" font-weight="bold" fill="#dc2626">输出：匀速斜坡 → 三角波</text>
-<circle r="5.5" fill="#fff" stroke="#dc2626" stroke-width="3"><animateMotion dur="2.5s" repeatCount="indefinite" path="{vout_d}"/></circle>
+<circle r="5.5" fill="#fff" stroke="#dc2626" stroke-width="3">{linear_x_motion(2.5, vout_d)}</circle>
 '''
     svg += f'<g opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.02;0.2;0.26;1" dur="{DC}s" repeatCount="indefinite"/>'
     svg += flow("M115,176 H326 V136 H376", DC, n=4, color="#dc2626", r=4) + '</g>'
@@ -3512,7 +3514,7 @@ def make_signal_chain():
 def make_thermal_runaway():
     DT = 10
     svg = svg_open('热失控：一只 BJT 自己把自己烧了（正反馈环）', h=640)
-    svg += '''
+    svg += f'''
 <circle cx="260" cy="230" r="110" fill="none" stroke="#fecaca" stroke-width="14" stroke-dasharray="10 10">
 <animateTransform attributeName="transform" type="rotate" values="0 260 230;360 260 230" dur="12s" repeatCount="indefinite"/>
 </circle>
@@ -3717,6 +3719,10 @@ def make_miller_plateau():
         return (f'<path d="M' + " L".join(pts) + f'" fill="none" stroke="{color}" '
                 f'stroke-width="{wid}" stroke-linejoin="round"/>')
     svg = svg_open('米勒平台：V_GS 为什么会在半路「停下来看戏」', h=620)
+    vgs_d = (f"M{tx(0):.0f},196 L{tx(150):.0f},175 L{tx(400):.0f},152 "
+             f"L{tx(560):.0f},152 L{tx(700):.0f},120 L{tx(800):.0f},120")
+    vds_d = f"M{tx(0):.0f},216 L{tx(400):.0f},216 L{tx(560):.0f},291 L{tx(800):.0f},291"
+    vgd_d = f"M{tx(100):.0f},84 L{tx(480):.0f},84 L{tx(480):.0f},152"
     svg += f'''
 <text x="425" y="50" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">20V 母线 · 5A 负载 · 10mA 驱动 · AO3400（Q_g≈7nC, Q_gd≈1.6nC）</text>
 <rect x="{tx(150):.0f}" y="70" width="{tx(400)-tx(150):.0f}" height="380" fill="#94a3b8" opacity="0.10"/>
@@ -3745,11 +3751,11 @@ def make_miller_plateau():
 <text x="{tx(275):.0f}" y="314" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#dc2626">V_DS 还满着 20V，I_D 已经上来了</text>
 <text x="{tx(600):.0f}" y="484" font-size="10.5" font-weight="bold" fill="#b45309">损耗 = 阴影面积 × f_sw</text>
 <circle r="5" fill="#2563eb">
-<animateMotion dur="{DS}s" repeatCount="indefinite" keyPoints="0;0.35;0.35;1" keyTimes="0;0.18;0.62;1" path="M{tx(0):.0f},196 L{tx(150):.0f},175 L{tx(400):.0f},152 L{tx(560):.0f},152 L{tx(700):.0f},120 L{tx(800):.0f},120"/></circle>
+{linear_x_motion(DS, vgs_d)}</circle>
 <circle r="5" fill="#dc2626">
-<animateMotion dur="{DS}s" repeatCount="indefinite" keyPoints="0;0.35;0.35;1" keyTimes="0;0.18;0.62;1" path="M{tx(0):.0f},216 L{tx(400):.0f},216 L{tx(560):.0f},291 L{tx(800):.0f},291"/></circle>
+{linear_x_motion(DS, vds_d)}</circle>
 <circle r="5" fill="#7c3aed">
-<animateMotion dur="{DS}s" repeatCount="indefinite" keyPoints="0;0.4;1" keyTimes="0;0.18;0.62" path="M{tx(100):.0f},84 L{tx(480):.0f},84 L{tx(480):.0f},152"/></circle>
+{linear_x_motion(DS, vgd_d)}</circle>
 <text x="{tx(400):.0f}" y="522" text-anchor="middle" font-size="10.5" fill="#475569">400ns</text>
 <text x="{tx(560):.0f}" y="522" text-anchor="middle" font-size="10.5" fill="#475569">560ns</text>
 <text x="{TX1}" y="522" text-anchor="end" font-size="10.5" fill="#475569">800ns</text>
@@ -3918,10 +3924,10 @@ def make_diode_iv():
 <text x="{px(0.42):.0f}" y="{py(1e-4)-8:.0f}" font-size="10.5" fill="#475569">↑ 每上升 60mV，电流爬一个十倍</text>
 <text x="{px(0.42):.0f}" y="{py(1e-5)-8:.0f}" font-size="10.5" fill="#475569">↑ 指数不是「快」，是「没有拐点」</text>
 <circle r="5" fill="#dc2626">
-<animateMotion dur="{DI}s" repeatCount="indefinite" path="{curve(0.0,'#dc2626')[9:]}" keyPoints="0;1" keyTimes="0;1"/></circle>
+{plain_motion(DI, curve(0.0, '#dc2626'))}</circle>
 <text x="587" y="474" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#dc2626">测温二极管、稳压二极管、温度传感器——全靠这条曲线</text>
 <text x="587" y="494" text-anchor="middle" font-size="11" fill="#475569">大功率管的「温度升→电流增→更热」正反馈，热失控从这里开始</text>
-<circle r="5" fill="#2563eb"><animateMotion dur="{DI}s" repeatCount="indefinite" path="{curve(0.07,'#2563eb')[9:]}" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#2563eb">{plain_motion(DI, curve(0.07, '#2563eb'))}</circle>
 <circle cx="{px(0.36):.0f}" cy="{py(1e-3):.0f}" r="4" fill="#dc2626"><animate attributeName="r" values="5;11;5" dur="1.6s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.9;0.2;0.9" dur="1.6s" repeatCount="indefinite"/></circle>
 <circle cx="{px(0.24):.0f}" cy="{py(1e-5):.0f}" r="4" fill="#b45309"><animate attributeName="r" values="3;7;3" dur="2.2s" repeatCount="indefinite"/></circle>
 <circle cx="{px(0.3):.0f}" cy="{py(1e-4):.0f}" r="4" fill="#b45309"><animate attributeName="r" values="3;7;3" dur="2.2s" begin="-0.7s" repeatCount="indefinite"/></circle>
@@ -3996,7 +4002,7 @@ def make_comparator_opamp():
 {curve(opamp, '#2563eb')}
 {curve(cmp_, '#059669')}
 <circle r="6" fill="#059669" stroke="#ffffff" stroke-width="2">
-<animateMotion dur="{DC}s" repeatCount="indefinite" path="{curve(cmp_,'#059669')[9:]}" keyPoints="0;1" keyTimes="0;1"/></circle>
+{linear_x_motion(DC, curve(cmp_, '#059669'))}</circle>
 <text x="400" y="392" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#dc2626">真正的坑不在速度，在输出级</text>
 <text x="400" y="414" text-anchor="middle" font-size="11" fill="#475569">LM393 是开漏：输出只能「拉低」，上电沿要靠外部上拉电阻</text>
 <rect x="60" y="436" width="300" height="86" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
@@ -4010,7 +4016,7 @@ def make_comparator_opamp():
 <text x="430" y="490" font-size="11" fill="#475569">靠输出级电流「灌」进负载，</text>
 <text x="430" y="510" font-size="11" fill="#475569">不受上拉电阻的 RC 拖累</text>
 <text x="430" y="536" font-size="11" font-weight="bold" fill="#b45309">所以：判决用比较器，驱动用运放</text>
-<circle r="5" fill="#2563eb"><animateMotion dur="{DC}s" repeatCount="indefinite" path="{curve(opamp,'#2563eb')[9:]}" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#2563eb">{linear_x_motion(DC, curve(opamp, '#2563eb'))}</circle>
 <circle r="5" fill="#f59e0b"><animateMotion dur="{DC}s" begin="-0.4s" repeatCount="indefinite" path="M92,170 L158,170"/></circle>
 <circle r="5" fill="#f59e0b"><animateMotion dur="{DC}s" begin="-0.7s" repeatCount="indefinite" path="M82,170 L118,170"/></circle>
 <circle r="5" fill="#2563eb"><animateMotion dur="{DC}s" begin="-1.5s" repeatCount="indefinite" path="M288,250 L232,250 L232,196 L172,194"/></circle>
@@ -4711,8 +4717,8 @@ def make_mosfet_curves():
 <line x1="{px(2):.0f}" y1="{Y0}" x2="{px(2):.0f}" y2="{Y1}" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
 <text x="{px(2)+6:.0f}" y="{Y0+16}" font-size="10" fill="#94a3b8">V_TH=2V</text>
 <path d="M{px(2):.0f},{py(1.8):.0f} L{px(4):.0f},{py(7.2):.0f} L{px(6):.0f},{py(16.2):.0f} L{px(8):.0f},{py(28.8):.0f}" fill="none" stroke="#dc2626" stroke-width="1.6" stroke-dasharray="5,4"/>
-<circle r="5" fill="#059669"><animateMotion dur="{DM}s" repeatCount="indefinite" path="{curve(5.0,'#059669')[9:]}" keyPoints="0;1" keyTimes="0;1"/></circle>
-<circle r="5" fill="#2563eb"><animateMotion dur="{DM}s" begin="-1.4s" repeatCount="indefinite" path="{curve(4.0,'#2563eb')[9:]}" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#059669">{plain_motion(DM, curve(5.0, '#059669'))}</circle>
+<circle r="5" fill="#2563eb">{plain_motion(DM, curve(4.0, '#2563eb'), begin='-1.4s')}</circle>
 <text x="{px(6.5):.0f}" y="{Y0+34}" font-size="10.5" font-weight="bold" fill="#dc2626">虚线上是夹断点：分界线</text>
 <text x="{X0+8}" y="{Y0-42}" font-size="11" font-weight="bold" fill="#2563eb">V_GS 越大，曲线越往上抬</text>
 <text x="{X0+8}" y="{Y0-24}" font-size="11" fill="#475569">抬升量 ∝ (V_GS−V_TH)² → 跨导 g_m</text>
@@ -4720,8 +4726,8 @@ def make_mosfet_curves():
 <text x="60" y="448" font-size="12" font-weight="bold" fill="#334155">河流比喻：沟道 = 河床</text>
 <text x="60" y="472" font-size="11.5" fill="#475569">V_DS 小：河水从源平缓流到漏，水流随坡度线性增加（线性区）</text>
 <text x="60" y="494" font-size="11.5" fill="#475569">V_DS 够大：漏端河床被「夹断」，水到断口被强电场直接甩过去——水量只由上游（V_GS）决定</text>
-<circle r="5" fill="#7c3aed"><animateMotion dur="{DM}s" begin="-0.7s" repeatCount="indefinite" path="{curve(6.0,'#7c3aed')[9:]}" keyPoints="0;1" keyTimes="0;1"/></circle>
-<circle r="5" fill="#94a3b8"><animateMotion dur="{DM}s" begin="-2.1s" repeatCount="indefinite" path="{curve(3.0,'#94a3b8')[9:]}" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#7c3aed">{plain_motion(DM, curve(6.0, '#7c3aed'), begin='-0.7s')}</circle>
+<circle r="5" fill="#94a3b8">{plain_motion(DM, curve(3.0, '#94a3b8'), begin='-2.1s')}</circle>
 <circle cx="{px(2):.0f}" cy="{py(1.8):.0f}" r="5" fill="none" stroke="#dc2626" stroke-width="2.4">
 <animate attributeName="r" values="5;12;5" dur="1.8s" repeatCount="indefinite"/>
 <animate attributeName="opacity" values="0.95;0.2;0.95" dur="1.8s" repeatCount="indefinite"/></circle>
@@ -4938,7 +4944,7 @@ def make_resistor_model():
 <text x="{px(fsrf):.0f}" y="{py(zmag(fsrf))+22:.0f}" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#059669">谷底 {zmag(fsrf):.0f}Ω @3.6GHz（LC 谐振把 R 短路）</text>
 <circle cx="{px(f2):.0f}" cy="{py(zmag(f2)):.0f}" r="5.5" fill="#dc2626"/>
 <text x="{px(f2):.0f}" y="{py(zmag(f2))-26:.0f}" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#dc2626">f₂=15.9GHz：L 接管</text>
-<circle r="5" fill="#2563eb"><animateMotion dur="{DR}s" repeatCount="indefinite" path="{real_d[9:]}" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#2563eb">{plain_motion(DR, real_d)}</circle>
 <circle r="4.5" fill="#f59e0b"><animateMotion dur="{DR}s" begin="-0.4s" repeatCount="indefinite" path="M114,92 L168,92"/></circle>
 <circle r="4.5" fill="#dc2626"><animateMotion dur="{DR}s" begin="-1.1s" repeatCount="indefinite" path="M252,92 L276,92"/></circle>
 <circle r="4.5" fill="#7c3aed"><animateMotion dur="{DR}s" begin="-1.8s" repeatCount="indefinite" path="M150,124 L191,124"/></circle>
@@ -6522,6 +6528,82 @@ def waveform_cursor(dur, span, series, phases, x0, x1, y0, y1):
         svg += f'''<text class="waveform-phase" x="400" y="501" text-anchor="middle" font-size="12" font-weight="bold" fill="{color}" opacity="{values[0]}">{text}
 <animate attributeName="opacity" values="{';'.join(values)}" keyTimes="{phase_times}" calcMode="discrete" dur="{dur}s" repeatCount="indefinite"/></text>'''
     return svg
+
+
+def _motion_path(source):
+    """animateMotion 的路径字符串：可传 <path d="…"> 元素或纯 'M…' 路径。"""
+    m = re.search(r'd="([^"]+)"', source)
+    return m.group(1) if m else source
+
+
+def plain_motion(dur, source, begin=None):
+    """干净的匀速弧长 animateMotion（导线流、非时间轴曲线用）。"""
+    b = f' begin="{begin}"' if begin else ''
+    return (f'<animateMotion dur="{dur}s"{b} repeatCount="indefinite" '
+            f'path="{_motion_path(source)}"/>')
+
+
+def linear_x_motion(dur, source, begin=None, n=512):
+    """时间轴波形面板用：x 随时间匀速前进。
+
+    折线且 x 单调时按真实时刻重配 keyPoints；其余情况退回匀速弧长。"""
+    path = _motion_path(source)
+    pts, cur = [], None
+    for cmd, nums in re.findall(r'([A-Za-z])([^A-Za-z]*)', path):
+        if cmd not in 'MLHV':
+            return plain_motion(dur, path, begin)
+        vals = [float(v) for v in nums.replace(',', ' ').split()]
+        if cmd == 'M':
+            if len(vals) < 2 or len(vals) % 2:
+                return plain_motion(dur, path, begin)
+            cur = (vals[0], vals[1])
+            pts.append(cur)
+            for i in range(2, len(vals), 2):
+                cur = (vals[i], vals[i + 1])
+                pts.append(cur)
+        elif cmd == 'L':
+            if len(vals) % 2:
+                return plain_motion(dur, path, begin)
+            for i in range(0, len(vals), 2):
+                cur = (vals[i], vals[i + 1])
+                pts.append(cur)
+        elif cmd == 'H':
+            for v in vals:
+                cur = (v, cur[1])
+                pts.append(cur)
+        elif cmd == 'V':
+            for v in vals:
+                cur = (cur[0], v)
+                pts.append(cur)
+    if len(pts) < 2 or any(b[0] < a[0] - 1e-9 for a, b in zip(pts, pts[1:])):
+        return plain_motion(dur, path, begin)
+    x0, x1 = pts[0][0], pts[-1][0]
+    segs = list(zip(pts, pts[1:]))
+    lens = [np.hypot(b[0] - a[0], b[1] - a[1]) for a, b in segs]
+    total = sum(lens)
+    if total <= 0 or x1 <= x0:
+        return plain_motion(dur, path, begin)
+    cum, acc = [0.0], 0.0
+    for ln in lens:
+        acc += ln
+        cum.append(acc)
+    kps, k = [], 0
+    for i in range(n + 1):
+        xt = x0 + (x1 - x0) * i / n
+        while k + 1 < len(pts) and pts[k + 1][0] <= xt + 1e-9:
+            k += 1
+        if k + 1 >= len(pts):
+            s = cum[k]
+        else:
+            a, b = pts[k], pts[k + 1]
+            dx = b[0] - a[0]
+            s = cum[k] + (xt - a[0]) / dx * lens[k]
+        kps.append(s / total)
+    b = f' begin="{begin}"' if begin else ''
+    kt = ';'.join(f'{i / n:.6f}' for i in range(n + 1))
+    kp = ';'.join(f'{v:.6f}' for v in kps)
+    return (f'<animateMotion dur="{dur}s"{b} repeatCount="indefinite" calcMode="linear" '
+            f'keyTimes="{kt}" keyPoints="{kp}" path="{path}"/>')
 
 
 # ======================= 图 89：模拟开关开合四拍（第 8 章 8.6） =======================

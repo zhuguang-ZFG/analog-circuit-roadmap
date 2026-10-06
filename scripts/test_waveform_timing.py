@@ -23,6 +23,14 @@ FOUR_BEATS = {
     "mosfet-four-beats": (10, 90, 760, 4),
     "rectifier-filter-beats": (12, 80, 760, 3),
 }
+LINEAR_X = {
+    "comparator-opamp": 2,
+    "wien-bridge": 1,
+    "integrator": 2,
+    "ldo-feedback": 3,
+    "miller-plateau": 3,
+    "peak-detector": 1,
+}
 
 
 def expected_y(name, time):
@@ -120,8 +128,43 @@ class WaveformTimingTests(unittest.TestCase):
                     self.assertEqual(len(frame["points"]), markers)
                     for point in frame["points"]:
                         self.assertAlmostEqual(
-                            point["x"], expected_x, delta=0.5,
+                            point["x"], expected_x, delta=0.2,
                             msg=f"marker {point['color']} must follow elapsed time")
+
+    def test_waveform_markers_advance_uniformly(self):
+        for name, expected in LINEAR_X.items():
+            self.page.goto((ASSETS / (name + ".svg")).as_uri())
+            self.page.locator("svg").wait_for()
+            markers = self.page.evaluate("""() => {
+                const svg = document.documentElement;
+                svg.pauseAnimations();
+                return Array.from(svg.querySelectorAll('circle')).filter(c => {
+                    const am = c.querySelector('animateMotion');
+                    const kp = am && am.getAttribute('keyPoints');
+                    return kp && kp.split(';').length >= 10;
+                }).map(c => {
+                    const dur = parseFloat(c.querySelector('animateMotion').getAttribute('dur'));
+                    const xs = [];
+                    for (let i = 0; i < 60; i++) {
+                        svg.setCurrentTime(dur * i / 60);
+                        const b = c.getBBox(), m = c.getCTM();
+                        const cx = b.x + b.width / 2, cy = b.y + b.height / 2;
+                        xs.push(m.a * cx + m.c * cy + m.e);
+                    }
+                    return xs;
+                });
+            }""")
+            with self.subTest(diagram=name):
+                self.assertEqual(len(markers), expected)
+                for xs in markers:
+                    steps = [b - a for a, b in zip(xs, xs[1:])]
+                    median = sorted(steps)[len(steps) // 2]
+                    kept = [s for s in steps if abs(s - median) <= abs(median)]
+                    self.assertGreaterEqual(len(kept), len(steps) - 1)
+                    for step in kept:
+                        self.assertAlmostEqual(
+                            step, median, delta=0.6,
+                            msg="waveform marker x must advance uniformly")
 
     def test_cycle_restart_and_seek(self):
         for name in CASES:
