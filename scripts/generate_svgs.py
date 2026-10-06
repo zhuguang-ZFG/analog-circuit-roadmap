@@ -2667,6 +2667,99 @@ def make_h_bridge():
     save('h-bridge.svg', svg + '</svg>')
 
 
+# ======================= 图 36：削波与钳位 =======================
+# 波形核算：限幅 ±4V 进、削平在 ±2.7V（基准±2V+0.7）；钳位 ±3V 进、整体垫高 2.3V（峰值 3−0.7）→ −0.7~5.3V
+def make_clipper_clamper():
+    DC = 6
+    inp1, out1 = [], []
+    for x in range(70, 331, 5):
+        y = 265 - 55*np.sin(2*np.pi*(x-70)/260)
+        inp1.append(f"{x},{y:.1f}")
+        out1.append(f"{x},{min(max(y, 224.5), 305.5):.1f}")
+    inp2, out2 = [], []
+    for x in range(430, 761, 5):
+        y = 270 - 45*np.sin(2*np.pi*(x-430)/260)
+        inp2.append(f"{x},{y:.1f}")
+        out2.append(f"{x},{y-34.5:.1f}")
+    d1in, d1out = "M" + " L".join(inp1), "M" + " L".join(out1)
+    d2in, d2out = "M" + " L".join(inp2), "M" + " L".join(out2)
+    svg = svg_open('削波与钳位：同一个 0.7V——一个当闸门，一个当垫脚石', h=460)
+    svg += f'''
+<text x="400" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">左：限幅（动幅度）　右：钳位（动直流）</text>
+<circle cx="70" cy="112" r="14" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+<text x="70" y="116" text-anchor="middle" font-size="9" font-weight="bold" fill="#334155">AC</text>
+<line x1="84" y1="112" x2="88" y2="112" stroke="#334155" stroke-width="2.5"/>
+{resistor_h(108, 112, 44, '1k')}
+<line x1="172" y1="112" x2="208" y2="112" stroke="#334155" stroke-width="2.5"/>
+<circle cx="208" cy="112" r="3.5" fill="#334155"/>
+<line x1="208" y1="112" x2="208" y2="98" stroke="#334155" stroke-width="2"/>
+<polygon points="208,86 202,98 214,98" fill="#dc2626"/>
+<line x1="202" y1="86" x2="214" y2="86" stroke="#dc2626" stroke-width="2.5"/>
+<line x1="208" y1="86" x2="208" y2="60" stroke="#334155" stroke-width="2"/>
+<line x1="160" y1="60" x2="256" y2="60" stroke="#334155" stroke-width="2.5"/>
+<text x="100" y="66" font-size="11" font-weight="bold" fill="#b45309">基准 +2V</text>
+<line x1="208" y1="112" x2="208" y2="138" stroke="#334155" stroke-width="2"/>
+<polygon points="208,138 202,150 214,150" fill="#dc2626"/>
+<line x1="202" y1="138" x2="214" y2="138" stroke="#dc2626" stroke-width="2.5"/>
+<line x1="208" y1="150" x2="208" y2="176" stroke="#334155" stroke-width="2"/>
+<line x1="160" y1="176" x2="256" y2="176" stroke="#334155" stroke-width="2.5"/>
+<text x="100" y="182" font-size="11" font-weight="bold" fill="#b45309">基准 −2V</text>
+<line x1="214" y1="112" x2="280" y2="112" stroke="#334155" stroke-width="2.5"/>
+<line x1="60" y1="200" x2="60" y2="330" stroke="#64748b" stroke-width="1.4"/>
+<line x1="60" y1="330" x2="340" y2="330" stroke="#64748b" stroke-width="1.4"/>
+<line x1="60" y1="265" x2="340" y2="265" stroke="#94a3b8" stroke-width="0.8" stroke-dasharray="3,4"/>
+<line x1="60" y1="224.5" x2="340" y2="224.5" stroke="#b45309" stroke-width="1" stroke-dasharray="5,4"/>
+<line x1="60" y1="305.5" x2="340" y2="305.5" stroke="#b45309" stroke-width="1" stroke-dasharray="5,4"/>
+<path d="{d1in}" fill="none" stroke="#94a3b8" stroke-width="2.2"/>
+<path d="{d1out}" fill="none" stroke="#059669" stroke-width="2.8"/>
+<text x="316" y="205" text-anchor="end" font-size="10" fill="#64748b">输入 ±4V</text>
+<text x="98" y="220" text-anchor="end" font-size="10.5" font-weight="bold" fill="#059669">输出</text>
+<text x="336" y="238" text-anchor="end" font-size="9.5" fill="#b45309">上限 +2.7V</text>
+<text x="250" y="299" font-size="9.5" fill="#b45309">下限 −2.7V</text>
+<circle cx="430" cy="112" r="14" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+<text x="430" y="116" text-anchor="middle" font-size="9" font-weight="bold" fill="#334155">AC</text>
+<line x1="444" y1="112" x2="458" y2="112" stroke="#334155" stroke-width="2.5"/>
+<line x1="458" y1="100" x2="458" y2="124" stroke="#2563eb" stroke-width="3"/>
+<line x1="466" y1="100" x2="466" y2="124" stroke="#2563eb" stroke-width="3"/>
+<text x="462" y="94" text-anchor="middle" font-size="10" fill="#2563eb">C 1µF</text>
+<line x1="466" y1="112" x2="560" y2="112" stroke="#334155" stroke-width="2.5"/>
+<circle cx="560" cy="112" r="3.5" fill="#334155"/>
+<line x1="560" y1="112" x2="560" y2="122" stroke="#334155" stroke-width="2"/>
+<line x1="554" y1="122" x2="566" y2="122" stroke="#059669" stroke-width="2.5"/>
+<polygon points="560,122 554,134 566,134" fill="#059669"/>
+<line x1="560" y1="134" x2="560" y2="158" stroke="#334155" stroke-width="2"/>
+{gnd_sym(560, 172)}
+<line x1="566" y1="112" x2="660" y2="112" stroke="#334155" stroke-width="2.5"/>
+<text x="668" y="116" font-size="10.5" font-weight="bold" fill="#059669">输出</text>
+<line x1="420" y1="185" x2="420" y2="335" stroke="#64748b" stroke-width="1.4"/>
+<line x1="420" y1="335" x2="780" y2="335" stroke="#64748b" stroke-width="1.4"/>
+<line x1="420" y1="270" x2="780" y2="270" stroke="#94a3b8" stroke-width="0.8" stroke-dasharray="3,4"/>
+<line x1="420" y1="280.5" x2="780" y2="280.5" stroke="#b45309" stroke-width="1" stroke-dasharray="5,4"/>
+<path d="{d2in}" fill="none" stroke="#94a3b8" stroke-width="2.2"/>
+<path d="{d2out}" fill="none" stroke="#0891b2" stroke-width="2.8"/>
+<text x="776" y="328" text-anchor="end" font-size="10" fill="#64748b">输入 ±3V</text>
+<text x="600" y="184" font-size="10" fill="#0891b2">输出 −0.7~5.3V</text>
+<text x="776" y="294" text-anchor="end" font-size="9.5" fill="#b45309">−0.7V</text>
+'''
+    svg += f'<g opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.02;0.2;0.26;1" dur="{DC}s" repeatCount="indefinite"/>'
+    svg += flow("M88,108 H204 V64", DC, n=4, color="#dc2626", r=4)
+    svg += flow("M204,172 V116 H88", DC, n=4, color="#dc2626", r=4) + '</g>'
+    svg += f'<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.56;0.62;0.78;0.84;1" dur="{DC}s" repeatCount="indefinite"/>'
+    svg += flow("M446,116 H552 V158", DC, n=4, color="#059669", r=4) + '</g>'
+    svg += f'<g opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.84;0.9;1" dur="{DC}s" repeatCount="indefinite"/>'
+    svg += flow("M566,108 H656", DC, n=3, color="#0891b2", r=4) + '</g>'
+    svg += caption("① 限幅：输出想越过 基准+0.7V，二极管开闸泄流——波形顶部被削平", "#dc2626", DC,
+                   "0;1;1;0;0", "0;0.02;0.2;0.26;1", y=400)
+    svg += caption("② 双向版就是 ADC 引脚保护：两只二极管把信号锁进 ±0.7V——第一道墙", "#b45309", DC,
+                   "0;0;1;1;0;0", "0;0.26;0.32;0.5;0.56;1", y=400)
+    svg += caption("③ 钳位：负半周瞬间 D 导通，C 充到峰值——此后 D 常关，C 变成串联电池", "#059669", DC,
+                   "0;0;1;1;0;0", "0;0.56;0.62;0.78;0.84;1", y=400)
+    svg += caption("④ 输出整体垫高：±3V 进来，−0.7~5.3V 出去——直流分量被恢复了", "#0891b2", DC,
+                   "0;0;1;1", "0;0.84;0.9;1", y=400)
+    svg += note_box("一句话分清：限幅动「幅度」（削顶），钳位动「直流」（垫高）。同一个 0.7V，闸门还是垫脚石，取决于二极管朝哪边、取样的是哪只。", 430, DC, w=690)
+    save('clipper-clamper.svg', svg + '</svg>')
+
+
 if __name__ == '__main__':
     make_rc_charge()
     make_bridge_rectifier()
@@ -2703,4 +2796,5 @@ if __name__ == '__main__':
     make_inverting_buckboost()
     make_ne555_monostable()
     make_h_bridge()
-    print('all 35 SVGs regenerated into', os.path.abspath(OUT))
+    make_clipper_clamper()
+    print('all 36 SVGs regenerated into', os.path.abspath(OUT))
