@@ -899,10 +899,12 @@ def make_ldo_feedback():
     svg += f'''
 <text x="64" y="300" font-size="11.5" font-weight="bold" fill="#059669">有反馈：跌落→拉回（振铃后稳定）</text>
 <path d="{fb_d}" fill="none" stroke="#059669" stroke-width="3"/>
+<circle cx="60" cy="340" r="5.5" fill="#fff" stroke="#059669" stroke-width="3"><animateMotion dur="{DL}s" repeatCount="indefinite" path="{fb_d}"/></circle>
 <line x1="60" y1="340" x2="384" y2="340" stroke="#64748b" stroke-width="1.5"/>
 <line x1="156" y1="320" x2="156" y2="366" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
 <text x="424" y="300" font-size="11.5" font-weight="bold" fill="#dc2626">若无反馈：一跌不起（负载调整率灾难）</text>
 <path d="{ol_d}" fill="none" stroke="#dc2626" stroke-width="3"/>
+<circle cx="420" cy="340" r="5.5" fill="#fff" stroke="#dc2626" stroke-width="3"><animateMotion dur="{DL}s" repeatCount="indefinite" path="{ol_d}"/></circle>
 <line x1="420" y1="340" x2="744" y2="340" stroke="#64748b" stroke-width="1.5"/>
 <line x1="516" y1="320" x2="516" y2="366" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
 '''
@@ -1346,6 +1348,8 @@ def make_wien_bridge():
 <text x="585" y="252" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#2563eb">起振过程：噪声种子 → 指数长大 → 稳幅</text>
 <path d="{osc_d}" fill="none" stroke="#2563eb" stroke-width="2.5"/>
 <path d="{env_d}" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="5,4"/>
+<circle cx="420" cy="320" r="5" fill="#fff" stroke="#2563eb" stroke-width="3"><animateMotion dur="{DW}s" repeatCount="indefinite" path="{osc_d}"/></circle>
+<circle cx="45" cy="140" r="5" fill="#fff" stroke="#7c3aed" stroke-width="3"><animateMotion dur="{DW}s" repeatCount="indefinite" path="M45,140 C20,140 20,310 200,310 C340,310 380,230 400,150"/></circle>
 <line x1="420" y1="320" x2="750" y2="320" stroke="#64748b" stroke-width="1.4"/>
 <line x1="420" y1="276" x2="750" y2="276" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
 <text x="700" y="270" font-size="10" fill="#7c3aed">灯泡稳幅</text>
@@ -1993,6 +1997,9 @@ def make_bandgap():
 <line x1="430" y1="270" x2="750" y2="270" stroke="#64748b" stroke-width="1.2"/>
 <text x="430" y="284" font-size="10" fill="#475569">−40°C</text>
 <text x="724" y="284" font-size="10" fill="#475569">125°C</text>
+<circle cx="430" cy="190" r="5.5" fill="#fff" stroke="#dc2626" stroke-width="3"><animateMotion dur="{DBG}s" repeatCount="indefinite" path="{vbe_d}"/></circle>
+<circle cx="430" cy="262" r="5.5" fill="#fff" stroke="#059669" stroke-width="3"><animateMotion dur="{DBG}s" repeatCount="indefinite" path="{dvbe_d}"/></circle>
+<circle cx="430" cy="226" r="5.5" fill="#fff" stroke="#2563eb" stroke-width="3"><animateMotion dur="{DBG}s" repeatCount="indefinite" path="M430,226 H750"/></circle>
 '''
     svg += caption("① V_BE 天生负温漂（−2mV/°C）——温度一升它就掉（PN 结特性，见 2.2）", "#dc2626", DBG,
                    "0;1;1;0;0", "0;0.03;0.22;0.28;1", y=430)
@@ -2210,7 +2217,13 @@ def make_rc_lowpass():
         pha_pts.append(f"{x:.0f},{295+65*pha/90:.0f}")
     mag_d = "M" + " L".join(mag_pts)
     pha_d = "M" + " L".join(pha_pts)
-    sin_hi_in = sine_path(430, 750, 416, 24, n=96)
+    hi_in_pts = []
+    for i in range(97):
+        u = i/96
+        x = 430 + 320*u
+        y = 416 - 22*np.sin(u*12*np.pi)
+        hi_in_pts.append(f"{x:.0f},{y:.0f}")
+    sin_hi_in = "M" + " L".join(hi_in_pts)
     hi_pts = []
     for i in range(97):
         u = i/96
@@ -2248,9 +2261,12 @@ def make_rc_lowpass():
 <text x="590" y="270" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#475569">相位：0° → −90°（fc 处恰 −45°）</text>
 <path d="{pha_d}" fill="none" stroke="#7c3aed" stroke-width="2.5"/>
 <line x1="430" y1="300" x2="750" y2="300" stroke="#64748b" stroke-width="1.2"/>
-<text x="440" y="388" font-size="10.5" font-weight="bold" fill="#475569">高频输入（灰）→ 输出（绿）：幅度缩、相位滞后</text>
+<text x="440" y="384" font-size="10.5" font-weight="bold" fill="#475569">高频输入（灰）→ 输出（绿）：频率不变、幅度缩、相位滞后</text>
 <path d="{sin_hi_in}" fill="none" stroke="#94a3b8" stroke-width="1.6"/>
 <path d="{sin_hi_out}" fill="none" stroke="#059669" stroke-width="2.5"/>
+<circle cx="430" cy="150" r="5.5" fill="#fff" stroke="#059669" stroke-width="3"><animateMotion dur="{DLP}s" repeatCount="indefinite" path="{mag_d}"/></circle>
+<circle cx="430" cy="297" r="5" fill="#fff" stroke="#7c3aed" stroke-width="3"><animateMotion dur="{DLP}s" repeatCount="indefinite" path="{pha_d}"/></circle>
+<circle cx="430" cy="424" r="5" fill="#fff" stroke="#059669" stroke-width="3"><animateMotion dur="{DLP}s" repeatCount="indefinite" path="{sin_hi_out}"/></circle>
 '''
     svg += caption("① fc=1/(2πRC)：此处容抗=电阻，输出恰好 −3dB（半功率点）、相位 −45°", "#059669", DLP,
                    "0;1;1;0;0", "0;0.03;0.2;0.26;1", y=460)
@@ -3021,6 +3037,161 @@ def make_schmitt_osc():
     save('schmitt-osc.svg', svg + '</svg>')
 
 
+# ======================= 图 41：阻抗随频率 =======================
+# C=1µF、L=1mH 的 |Z|-f 曲线；交点 f0=1/(2π√(LC))≈5kHz（Z≈32Ω）
+def make_impedance_freq():
+    DC = 6
+    x0, x1, y0, y1 = 100, 760, 90, 360
+    def px(f): return x0 + (np.log10(f) - 1) / 5.0 * (x1 - x0)
+    def py(z): return y0 + (6 - (np.log10(z) + 1)) * 45.0
+    fs = np.logspace(1, 6, 140)
+    def cpath(zs):
+        pts = [f"{px(f):.0f},{np.clip(py(z), y0, y1):.0f}" for f, z in zip(fs, zs)]
+        return "M" + " L".join(pts)
+    zc_d = cpath(1 / (2 * np.pi * fs * 1e-6))
+    zl_d = cpath(2 * np.pi * fs * 1e-3)
+    f0x, f0y = px(5033.0), py(31.6)
+    yl = ''
+    for k, lab in enumerate(['100kΩ', '10kΩ', '1kΩ', '100Ω', '10Ω', '1Ω', '0.1Ω']):
+        yl += f'<text x="{x0-8}" y="{y0+45*k+5}" text-anchor="end" font-size="10.5" fill="#475569">{lab}</text>\n'
+    grid = ''
+    for k in range(1, 5):
+        grid += f'<line x1="{x0+132*k}" y1="{y0}" x2="{x0+132*k}" y2="{y1}" stroke="#e2e8f0" stroke-width="1"/>\n'
+    for k in range(1, 6):
+        grid += f'<line x1="{x0}" y1="{y0+45*k}" x2="{x1}" y2="{y0+45*k}" stroke="#e2e8f0" stroke-width="1"/>\n'
+    svg = svg_open('阻抗随频率：电容降价、电感涨价——寄生在暗处登场', h=480)
+    svg += f'''
+{grid}<line x1="{x0}" y1="{y1}" x2="{x1}" y2="{y1}" stroke="#334155" stroke-width="2"/>
+<line x1="{x0}" y1="{y0}" x2="{x0}" y2="{y1}" stroke="#334155" stroke-width="2"/>
+{yl}<text x="{x0+2}" y="{y1+16}" font-size="10.5" fill="#475569">10Hz</text>
+<text x="{x0+132}" y="{y1+16}" text-anchor="middle" font-size="10.5" fill="#475569">100Hz</text>
+<text x="{x0+264}" y="{y1+16}" text-anchor="middle" font-size="10.5" fill="#475569">1k</text>
+<text x="{x0+396}" y="{y1+16}" text-anchor="middle" font-size="10.5" fill="#475569">10k</text>
+<text x="{x0+528}" y="{y1+16}" text-anchor="middle" font-size="10.5" fill="#475569">100k</text>
+<text x="{x1}" y="{y1+16}" text-anchor="end" font-size="10.5" fill="#475569">1MHz</text>
+<text x="{x0-8}" y="{y0-16}" text-anchor="end" font-size="11" fill="#475569">|Z|（对数）</text>
+<text x="{x1}" y="{y1+34}" text-anchor="end" font-size="11" fill="#475569">频率 f（对数轴）→</text>
+{trace2(zc_d, DC, color="#2563eb", plen=1400)}
+{trace2(zl_d, DC, color="#dc2626", plen=1400)}
+<text x="{x0+8}" y="84" font-size="11.5" font-weight="bold" fill="#2563eb">Zc = 1/(2πfC)｜C=1µF</text>
+<text x="{x1-6}" y="84" text-anchor="end" font-size="11.5" font-weight="bold" fill="#dc2626">Zl = 2πfL｜L=1mH</text>
+<line x1="{x0}" y1="{y0}" x2="{x0}" y2="{y1}" stroke="#f59e0b" stroke-width="2" opacity="0.75"><animate attributeName="x1" values="{x0};{x1}" dur="{DC}s" repeatCount="indefinite"/><animate attributeName="x2" values="{x0};{x1}" dur="{DC}s" repeatCount="indefinite"/></line>
+<circle cx="100" cy="126" r="6" fill="#fff" stroke="#2563eb" stroke-width="3"><animateMotion dur="{DC}s" repeatCount="indefinite" path="{zc_d}"/></circle>
+<circle cx="100" cy="360" r="6" fill="#fff" stroke="#dc2626" stroke-width="3"><animateMotion dur="{DC}s" repeatCount="indefinite" path="{zl_d}"/></circle>
+<circle cx="{f0x:.0f}" cy="{f0y:.0f}" r="5" fill="#f59e0b"/>
+<line x1="{f0x+4:.0f}" y1="{f0y-6:.0f}" x2="{f0x+20:.0f}" y2="{f0y-34:.0f}" stroke="#b45309" stroke-width="1.5" opacity="0.8"/>
+<text x="{f0x-77:.0f}" y="{f0y-36:.0f}" font-size="10.5" font-weight="bold" fill="#b45309">5kHz：Zc=Zl（谐振）</text>
+'''
+    svg += caption("① 低频区：电容≈断路、电感≈短路——两只元件都「没睡醒」", "#2563eb", DC, "0;1;1;0;0", "0;0.03;0.22;0.25;1", y=418)
+    svg += caption("② 高频区全反过来：电容≈短路、电感≈断路——寄生接管电路", "#dc2626", DC, "0;0;1;1;0;0", "0;0.25;0.28;0.47;0.5;1", y=418)
+    svg += caption("③ 交点 5kHz：Zc=Zl——LC 谐振，阻抗里只剩电阻（DCR/ESR）", "#b45309", DC, "0;0;1;1;0;0", "0;0.5;0.53;0.72;0.75;1", y=418)
+    svg += caption("④ 一切阻抗都是频率的函数——选元件先问「工作在哪个频段」", "#059669", DC, "0;0;1;1", "0;0.75;0.78;1", y=418)
+    svg += note_box("口诀：电容高频短路、电感低频短路——同一条线上寄生两头夹击。线≈1nH/mm、电容带 ESL，高频下它们反客为主（1.1-1.3 + 第 15 章去耦军规的物理根）。", 452, DC, x=400, w=690)
+    save('impedance-freq.svg', svg + '</svg>')
+
+
+# ======================= 图 42：运放内部三级流水线 =======================
+# 741 框图：①差分输入级 ×100 → ②中间增益级 ×2000（Cc 密勒补偿）→ ③输出级 ×1；④偏置电流镜
+def make_opamp_internals():
+    DC = 6
+    svg = svg_open('运放内部三级流水线：20 万倍增益是怎么攒出来的', h=480)
+    svg += f'''
+<text x="430" y="100" text-anchor="middle" font-size="13" font-weight="bold" fill="#7c3aed">总增益 = 各级相乘：100 × 2000 × 1 ≈ 20 万倍</text>
+<text x="95" y="200" text-anchor="end" font-size="12.5" font-weight="bold" fill="#2563eb">IN+</text>
+<text x="95" y="250" text-anchor="end" font-size="12.5" font-weight="bold" fill="#059669">IN−</text>
+<line x1="100" y1="205" x2="130" y2="205" stroke="#2563eb" stroke-width="2.5"/>
+<line x1="100" y1="245" x2="130" y2="245" stroke="#059669" stroke-width="2.5"/>
+<rect x="130" y="175" width="160" height="90" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="210" y="202" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1e293b">① 差分输入级</text>
+<text x="210" y="246" text-anchor="middle" font-size="10.5" fill="#475569">只放大差模 V+−V−</text>
+<line x1="290" y1="220" x2="333" y2="220" stroke="#334155" stroke-width="2.5"/>
+<polygon points="336,220 324,214 324,226" fill="#334155"/>
+<rect x="336" y="165" width="180" height="110" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="426" y="197" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1e293b">② 中间增益级</text>
+<text x="426" y="241" text-anchor="middle" font-size="10.5" fill="#475569">全部电压增益 ×2000</text>
+<line x1="516" y1="220" x2="556" y2="220" stroke="#334155" stroke-width="2.5"/>
+<polygon points="559,220 547,214 547,226" fill="#334155"/>
+<rect x="559" y="175" width="160" height="90" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="639" y="202" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1e293b">③ 输出级</text>
+<text x="639" y="246" text-anchor="middle" font-size="10.5" fill="#475569">推挽跟随 · 低阻输出</text>
+<line x1="719" y1="220" x2="756" y2="220" stroke="#334155" stroke-width="2.5"/>
+<polygon points="759,220 747,214 747,226" fill="#334155"/>
+<text x="766" y="224" font-size="12.5" font-weight="bold" fill="#dc2626">OUT</text>
+<line x1="370" y1="165" x2="370" y2="140" stroke="#7c3aed" stroke-width="2"/>
+<line x1="370" y1="140" x2="414" y2="140" stroke="#7c3aed" stroke-width="2"/>
+<line x1="414" y1="130" x2="414" y2="150" stroke="#7c3aed" stroke-width="3"/>
+<line x1="422" y1="130" x2="422" y2="150" stroke="#7c3aed" stroke-width="3"/>
+<line x1="422" y1="140" x2="480" y2="140" stroke="#7c3aed" stroke-width="2"/>
+<line x1="480" y1="140" x2="480" y2="165" stroke="#7c3aed" stroke-width="2"/>
+<text x="418" y="124" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#7c3aed">Cc 30pF 密勒补偿</text>
+<rect x="345" y="320" width="175" height="60" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="432" y="346" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1e293b">④ 偏置电流镜</text>
+<text x="432" y="367" text-anchor="middle" font-size="10.5" fill="#475569">全芯片的稳定偏流</text>
+<line x1="372" y1="320" x2="232" y2="267" stroke="#94a3b8" stroke-width="1.6" stroke-dasharray="5,4"/>
+<line x1="432" y1="320" x2="432" y2="267" stroke="#94a3b8" stroke-width="1.6" stroke-dasharray="5,4"/>
+<line x1="492" y1="320" x2="621" y2="267" stroke="#94a3b8" stroke-width="1.6" stroke-dasharray="5,4"/>
+{flow("M100,220 H755", DC, n=5, color="#2563eb", r=5)}
+{flow("M432,318 V272", DC, n=2, color="#b45309", r=4, stagger=1.5)}
+'''
+    svg += caption("① 输入级只认差模：共模被电流镜「踢」掉——这就是 CMRR 的出生地", "#2563eb", DC, "0;1;1;0;0", "0;0.03;0.22;0.25;1", y=418)
+    svg += caption("② 中间级扛下几乎所有增益；Cc 把主极点压到低频——换稳定，代价是压摆率", "#7c3aed", DC, "0;0;1;1;0;0", "0;0.25;0.28;0.47;0.5;1", y=418)
+    svg += caption("③ 输出级 ×1 却关键：推挽跟随给低阻，过流保护藏在里面", "#059669", DC, "0;0;1;1;0;0", "0;0.5;0.53;0.72;0.75;1", y=418)
+    svg += caption("④ 偏置镜像像自来水厂——每个 datasheet 参数都能对到具体位置", "#b45309", DC, "0;0;1;1", "0;0.75;0.78;1", y=418)
+    svg += note_box("看戏指南：Vos/Ib 出生在①；GBW/压摆率由②的 Cc 决定；带载与短路能力看③——看框图比背参数表管事。", 452, DC, x=400, w=680)
+    save('opamp-internals.svg', svg + '</svg>')
+
+
+# ======================= 图 43：排故五步法流程 =======================
+# 五步蛇形流程 + 巡游高亮框（10s 一圈，5 拍字幕同步）
+def make_debug_flow():
+    DC = 10
+    boxes = [
+        (80, 146, '① 症状确认', '先问后拆：偶发？温度？'),
+        (296, 146, '② 二分定位', '对半分：log₂n 次测量'),
+        (512, 146, '③ 单变量实验', '一次只改一个变量'),
+        (512, 276, '④ 修根因', '别「再换一颗试试」'),
+        (296, 276, '⑤ 回归验证', '全温全程全工况＋日志'),
+    ]
+    bx = ''
+    for x, y, t, s in boxes:
+        bx += f'<rect x="{x}" y="{y}" width="184" height="66" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>\n'
+        bx += f'<text x="{x+92}" y="{y+24}" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e293b">{t}</text>\n'
+        bx += f'<text x="{x+92}" y="{y+52}" text-anchor="middle" font-size="10.5" fill="#475569">{s}</text>\n'
+    beats = [
+        ('① 症状确认：先问五个问题——一直坏还是偶发？温度相关？最近改过什么？', '#dc2626'),
+        ('② 二分定位：中线一测去一半——64 个节点最多 6 次测量锁定', '#2563eb'),
+        ('③ 单变量实验：一次只改一个变量——「再换一颗试试」是排故头号时间杀手', '#7c3aed'),
+        ('④ 修根因不修症状：保险丝烧了，先问「为什么烧」再换', '#b45309'),
+        ('⑤ 回归验证：全温、全程、全工况跑过才算修好；写日志给团队攒资产', '#059669'),
+    ]
+    caps = ''
+    for i, (txt, col) in enumerate(beats):
+        a, b = i * 0.2, (i + 1) * 0.2
+        if i < 4:
+            caps += caption(txt, col, DC, "0;0;1;1;0;0", f"0;{a:.2f};{a+0.02:.2f};{b:.2f};{b+0.02:.2f};1", y=418) + '\n'
+        else:
+            caps += caption(txt, col, DC, "0;0;1;1", f"0;{a:.2f};{a+0.02:.2f};1", y=418) + '\n'
+    svg = svg_open('排故五步法：把「玄学」拆成实验', h=480)
+    svg += f'''
+{bx}<line x1="264" y1="179" x2="293" y2="179" stroke="#334155" stroke-width="2.5"/>
+<polygon points="296,179 284,173 284,185" fill="#334155"/>
+<line x1="480" y1="179" x2="509" y2="179" stroke="#334155" stroke-width="2.5"/>
+<polygon points="512,179 500,173 500,185" fill="#334155"/>
+<line x1="604" y1="212" x2="604" y2="273" stroke="#334155" stroke-width="2.5"/>
+<polygon points="604,276 598,264 610,264" fill="#334155"/>
+<line x1="512" y1="309" x2="483" y2="309" stroke="#334155" stroke-width="2.5"/>
+<polygon points="480,309 492,303 492,315" fill="#334155"/>
+<rect x="74" y="140" width="196" height="78" rx="12" fill="none" stroke="#f59e0b" stroke-width="3" opacity="0.9">
+<animate attributeName="x" values="74;290;506;506;290;74" keyTimes="0;0.2;0.4;0.6;0.8;1" dur="{DC}s" repeatCount="indefinite"/>
+<animate attributeName="y" values="140;140;140;270;270;140" keyTimes="0;0.2;0.4;0.6;0.8;1" dur="{DC}s" repeatCount="indefinite"/>
+</rect>
+{flow("M120,179 H604 V309 H380", DC, n=5, color="#2563eb", r=5)}
+'''
+    svg += caps
+    svg += note_box("五步都带「防自欺」设计：先问后拆 / 对数收敛 / 单变量 / 修根因 / 回归——排故不靠灵感，靠流程。", 452, DC, x=400, w=660)
+    save('debug-flow.svg', svg + '</svg>')
+
+
 if __name__ == '__main__':
     make_rc_charge()
     make_bridge_rectifier()
@@ -3062,4 +3233,7 @@ if __name__ == '__main__':
     make_integrator()
     make_virtual_ground()
     make_schmitt_osc()
-    print('all 40 SVGs regenerated into', os.path.abspath(OUT))
+    make_impedance_freq()
+    make_opamp_internals()
+    make_debug_flow()
+    print('all 43 SVGs regenerated into', os.path.abspath(OUT))

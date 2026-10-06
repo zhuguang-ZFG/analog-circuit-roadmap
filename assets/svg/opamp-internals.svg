@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="480" viewBox="0 0 800 480">
+<title>运放内部三级流水线：20 万倍增益是怎么攒出来的</title>
+<rect width="800" height="480" fill="#f8fafc"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+@media (prefers-color-scheme: dark){
+rect[fill="#f8fafc"]{fill:#0f172a}
+[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
+[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
+[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
+[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
+[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
+[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
+[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
+[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
+[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
+[fill="#cbd5e1"]{fill:#334155}[stroke="#cbd5e1"]{stroke:#475569}
+[fill="#ffffff"]{fill:#0f172a}[fill="#94a3b8"]{fill:#64748b}[stroke="#94a3b8"]{stroke:#64748b}
+[fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
+}
+</style>
+<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">运放内部三级流水线：20 万倍增益是怎么攒出来的</text>
+
+<text x="430" y="100" text-anchor="middle" font-size="13" font-weight="bold" fill="#7c3aed">总增益 = 各级相乘：100 × 2000 × 1 ≈ 20 万倍</text>
+<text x="95" y="200" text-anchor="end" font-size="12.5" font-weight="bold" fill="#2563eb">IN+</text>
+<text x="95" y="250" text-anchor="end" font-size="12.5" font-weight="bold" fill="#059669">IN−</text>
+<line x1="100" y1="205" x2="130" y2="205" stroke="#2563eb" stroke-width="2.5"/>
+<line x1="100" y1="245" x2="130" y2="245" stroke="#059669" stroke-width="2.5"/>
+<rect x="130" y="175" width="160" height="90" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="210" y="202" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1e293b">① 差分输入级</text>
+<text x="210" y="246" text-anchor="middle" font-size="10.5" fill="#475569">只放大差模 V+−V−</text>
+<line x1="290" y1="220" x2="333" y2="220" stroke="#334155" stroke-width="2.5"/>
+<polygon points="336,220 324,214 324,226" fill="#334155"/>
+<rect x="336" y="165" width="180" height="110" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="426" y="197" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1e293b">② 中间增益级</text>
+<text x="426" y="241" text-anchor="middle" font-size="10.5" fill="#475569">全部电压增益 ×2000</text>
+<line x1="516" y1="220" x2="556" y2="220" stroke="#334155" stroke-width="2.5"/>
+<polygon points="559,220 547,214 547,226" fill="#334155"/>
+<rect x="559" y="175" width="160" height="90" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="639" y="202" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1e293b">③ 输出级</text>
+<text x="639" y="246" text-anchor="middle" font-size="10.5" fill="#475569">推挽跟随 · 低阻输出</text>
+<line x1="719" y1="220" x2="756" y2="220" stroke="#334155" stroke-width="2.5"/>
+<polygon points="759,220 747,214 747,226" fill="#334155"/>
+<text x="766" y="224" font-size="12.5" font-weight="bold" fill="#dc2626">OUT</text>
+<line x1="370" y1="165" x2="370" y2="140" stroke="#7c3aed" stroke-width="2"/>
+<line x1="370" y1="140" x2="414" y2="140" stroke="#7c3aed" stroke-width="2"/>
+<line x1="414" y1="130" x2="414" y2="150" stroke="#7c3aed" stroke-width="3"/>
+<line x1="422" y1="130" x2="422" y2="150" stroke="#7c3aed" stroke-width="3"/>
+<line x1="422" y1="140" x2="480" y2="140" stroke="#7c3aed" stroke-width="2"/>
+<line x1="480" y1="140" x2="480" y2="165" stroke="#7c3aed" stroke-width="2"/>
+<text x="418" y="124" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#7c3aed">Cc 30pF 密勒补偿</text>
+<rect x="345" y="320" width="175" height="60" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="432" y="346" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1e293b">④ 偏置电流镜</text>
+<text x="432" y="367" text-anchor="middle" font-size="10.5" fill="#475569">全芯片的稳定偏流</text>
+<line x1="372" y1="320" x2="232" y2="267" stroke="#94a3b8" stroke-width="1.6" stroke-dasharray="5,4"/>
+<line x1="432" y1="320" x2="432" y2="267" stroke="#94a3b8" stroke-width="1.6" stroke-dasharray="5,4"/>
+<line x1="492" y1="320" x2="621" y2="267" stroke="#94a3b8" stroke-width="1.6" stroke-dasharray="5,4"/>
+<circle r="5" fill="#2563eb"><animateMotion dur="6s" begin="-0.50s" repeatCount="indefinite" path="M100,220 H755"/></circle>
+<circle r="5" fill="#2563eb"><animateMotion dur="6s" begin="0.70s" repeatCount="indefinite" path="M100,220 H755"/></circle>
+<circle r="5" fill="#2563eb"><animateMotion dur="6s" begin="1.90s" repeatCount="indefinite" path="M100,220 H755"/></circle>
+<circle r="5" fill="#2563eb"><animateMotion dur="6s" begin="3.10s" repeatCount="indefinite" path="M100,220 H755"/></circle>
+<circle r="5" fill="#2563eb"><animateMotion dur="6s" begin="4.30s" repeatCount="indefinite" path="M100,220 H755"/></circle>
+<circle r="4" fill="#b45309"><animateMotion dur="6s" begin="-0.50s" repeatCount="indefinite" path="M432,318 V272"/></circle>
+<circle r="4" fill="#b45309"><animateMotion dur="6s" begin="1.00s" repeatCount="indefinite" path="M432,318 V272"/></circle>
+<text x="400" y="418" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">① 输入级只认差模：共模被电流镜「踢」掉——这就是 CMRR 的出生地<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.22;0.25;1" dur="6s" repeatCount="indefinite"/></text><text x="400" y="418" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">② 中间级扛下几乎所有增益；Cc 把主极点压到低频——换稳定，代价是压摆率<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.28;0.47;0.5;1" dur="6s" repeatCount="indefinite"/></text><text x="400" y="418" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">③ 输出级 ×1 却关键：推挽跟随给低阻，过流保护藏在里面<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.5;0.53;0.72;0.75;1" dur="6s" repeatCount="indefinite"/></text><text x="400" y="418" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">④ 偏置镜像像自来水厂——每个 datasheet 参数都能对到具体位置<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.75;0.78;1" dur="6s" repeatCount="indefinite"/></text><g opacity="0">
+<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.82;0.86;1" dur="6s" repeatCount="indefinite"/>
+<rect x="60" y="428" width="680" height="34" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+<text x="400" y="450" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">看戏指南：Vos/Ib 出生在①；GBW/压摆率由②的 Cc 决定；带载与短路能力看③——看框图比背参数表管事。</text>
+</g></svg>
