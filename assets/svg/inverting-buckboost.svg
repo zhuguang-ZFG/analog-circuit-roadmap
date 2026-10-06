@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="520" viewBox="0 0 800 520">
+<title>反相 Buck-Boost：正电压进去，负电压出来</title>
+<rect width="800" height="520" fill="#f8fafc"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+@media (prefers-color-scheme: dark){
+rect[fill="#f8fafc"]{fill:#0f172a}
+[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
+[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
+[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
+[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
+[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
+[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
+[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
+[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
+[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
+[fill="#cbd5e1"]{fill:#334155}[stroke="#cbd5e1"]{stroke:#475569}
+[fill="#ffffff"]{fill:#0f172a}[fill="#94a3b8"]{fill:#64748b}[stroke="#94a3b8"]{stroke:#64748b}
+[fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
+}
+</style>
+<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">反相 Buck-Boost：正电压进去，负电压出来</text>
+
+<text x="230" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">+12V → −12V（占空比 50%）</text>
+<text x="18" y="102" font-size="12.5" font-weight="bold" fill="#b45309">+12V</text>
+<line x1="50" y1="96" x2="110" y2="96" stroke="#334155" stroke-width="2.5"/>
+<circle cx="120" cy="96" r="3.5" fill="#334155"/>
+<line x1="120" y1="96" x2="150" y2="68" stroke="#059669" stroke-width="3">
+<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.4;0.46;1" dur="6s" repeatCount="indefinite"/></line>
+<circle cx="156" cy="96" r="3.5" fill="#334155"/>
+<text x="100" y="62" font-size="11" font-weight="bold" fill="#334155">开关 SW</text>
+<line x1="156" y1="96" x2="200" y2="96" stroke="#334155" stroke-width="2.5"/>
+<circle cx="205" cy="96" r="4" fill="#334155"/>
+<text x="182" y="118" font-size="10" fill="#7c3aed">开关节点</text>
+<path d="M205,100 q-16,8 0,16 q16,8 0,16 q-16,8 0,16 q16,8 0,16" fill="none" stroke="#7c3aed" stroke-width="2.5"/>
+<text x="222" y="142" font-size="12" font-weight="bold" fill="#7c3aed">电感 L（下地）</text>
+<line x1="205" y1="96" x2="205" y2="136" stroke="#334155" stroke-width="2.5"/>
+<line x1="205" y1="176" x2="205" y2="196" stroke="#334155" stroke-width="2.5"/>
+<line x1="205" y1="196" x2="205" y2="210" stroke="#334155" stroke-width="2.5"/><line x1="189" y1="210" x2="221" y2="210" stroke="#334155" stroke-width="3"/><line x1="195" y1="216" x2="215" y2="216" stroke="#334155" stroke-width="3"/><line x1="201" y1="222" x2="209" y2="222" stroke="#334155" stroke-width="3"/>
+<line x1="205" y1="96" x2="260" y2="96" stroke="#334155" stroke-width="2.5"/>
+<polygon points="260,96 284,84 284,108" fill="none" stroke="#334155" stroke-width="2.5"/>
+<line x1="260" y1="84" x2="260" y2="108" stroke="#334155" stroke-width="3"/>
+<text x="248" y="78" font-size="10.5" fill="#dc2626">二极管（朝左吸）</text>
+<line x1="284" y1="96" x2="340" y2="96" stroke="#334155" stroke-width="2.5"/>
+<circle cx="340" cy="96" r="4" fill="#334155"/>
+<line x1="340" y1="96" x2="396" y2="96" stroke="#334155" stroke-width="2.5"/>
+<text x="344" y="86" font-size="12" font-weight="bold" fill="#2563eb">−12V 输出</text>
+<line x1="340" y1="96" x2="340" y2="140" stroke="#334155" stroke-width="2"/>
+<line x1="328" y1="140" x2="352" y2="140" stroke="#2563eb" stroke-width="3.5"/>
+<line x1="328" y1="152" x2="352" y2="152" stroke="#2563eb" stroke-width="3.5"/>
+<line x1="340" y1="152" x2="340" y2="170" stroke="#334155" stroke-width="2"/>
+<line x1="340" y1="170" x2="340" y2="184" stroke="#334155" stroke-width="2.5"/><line x1="324" y1="184" x2="356" y2="184" stroke="#334155" stroke-width="3"/><line x1="330" y1="190" x2="350" y2="190" stroke="#334155" stroke-width="3"/><line x1="336" y1="196" x2="344" y2="196" stroke="#334155" stroke-width="3"/>
+<text x="358" y="150" font-size="10.5" fill="#2563eb">C（下极板接地，上极板负压）</text>
+<text x="60" y="250" font-size="11" fill="#059669" opacity="0">闭合：电感从 +12V 储能
+<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.06;0.4;0.46;1" dur="6s" repeatCount="indefinite"/></text>
+<text x="60" y="274" font-size="11" fill="#dc2626" opacity="0">断开：电感经二极管把输出往下拽成负
+<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.52;0.56;0.9;0.96;1" dur="6s" repeatCount="indefinite"/></text>
+<g><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.4;0.46;1" dur="6s" repeatCount="indefinite"/><circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="-0.50s" repeatCount="indefinite" path="M54,92 H150 M160,92 H201 M205,100 V132"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="-0.10s" repeatCount="indefinite" path="M54,92 H150 M160,92 H201 M205,100 V132"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="0.30s" repeatCount="indefinite" path="M54,92 H150 M160,92 H201 M205,100 V132"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="0.70s" repeatCount="indefinite" path="M54,92 H150 M160,92 H201 M205,100 V132"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="1.10s" repeatCount="indefinite" path="M54,92 H150 M160,92 H201 M205,100 V132"/></circle></g><g><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.5;0.56;0.9;0.96;1" dur="6s" repeatCount="indefinite"/><circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="-0.50s" repeatCount="indefinite" path="M205,176 V140 M205,92 H256 M288,92 H336 M340,100 V136"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="-0.10s" repeatCount="indefinite" path="M205,176 V140 M205,92 H256 M288,92 H336 M340,100 V136"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="0.30s" repeatCount="indefinite" path="M205,176 V140 M205,92 H256 M288,92 H336 M340,100 V136"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="0.70s" repeatCount="indefinite" path="M205,176 V140 M205,92 H256 M288,92 H336 M340,100 V136"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="1.10s" repeatCount="indefinite" path="M205,176 V140 M205,92 H256 M288,92 H336 M340,100 V136"/></circle></g>
+<text x="440" y="252" font-size="11.5" font-weight="bold" fill="#7c3aed">电感电流（三角波）</text>
+<path d="M430,372 L433,370 L437,368 L440,366 L443,364 L447,363 L450,361 L453,359 L457,357 L460,355 L463,353 L467,351 L470,350 L473,348 L477,346 L480,344 L483,342 L487,344 L490,346 L493,348 L497,350 L500,351 L503,353 L507,355 L510,357 L513,359 L517,361 L520,363 L523,364 L527,366 L530,368 L533,370 L537,372 L540,370 L543,368 L547,366 L550,364 L553,363 L557,361 L560,359 L563,357 L567,355 L570,353 L573,351 L577,350 L580,348 L583,346 L587,344 L590,342 L593,344 L597,346 L600,348 L603,350 L607,351 L610,353 L613,355 L617,357 L620,359 L623,361 L627,363 L630,364 L633,366 L637,368 L640,370 L643,372 L647,370 L650,368 L653,366 L657,364 L660,363 L663,361 L667,359 L670,357 L673,355 L677,353 L680,351 L683,350 L687,348 L690,346 L693,344 L697,342 L700,344 L703,346 L707,348 L710,350 L713,351 L717,353 L720,355 L723,357 L727,359 L730,361 L733,363 L737,364 L740,366 L743,368 L747,370 L750,372" fill="none" stroke="#059669" stroke-width="2.8"/>
+<line x1="430" y1="392" x2="750" y2="392" stroke="#2563eb" stroke-width="2.8"/>
+<line x1="430" y1="300" x2="750" y2="300" stroke="#64748b" stroke-width="1.2"/>
+<text x="700" y="388" font-size="10.5" fill="#2563eb">−12V</text>
+<text x="440" y="412" font-size="11.5" font-weight="bold" fill="#2563eb">输出 = −D/(1−D) × Vin = −0.5/0.5 × 12 = −12V</text>
+<text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">① 开关闭合：+12V 全加在电感上（下端接地），电流斜坡上升——与 Boost 同款储能<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.26;1" dur="6s" repeatCount="indefinite"/></text><text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">② 开关断开：电感不许电流突变，把开关节点拽向负压——二极管接通，能量倒向负输出<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.28;0.33;0.5;0.56;1" dur="6s" repeatCount="indefinite"/></text><text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">③ Vout=−D/(1−D)·Vin：D=0.5 时 −Vin；D>0.5 幅值超过输入——升降压还能反相<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.58;0.64;1" dur="6s" repeatCount="indefinite"/></text><g opacity="0">
+<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.7;0.75;1" dur="6s" repeatCount="indefinite"/>
+<rect x="50" y="470" width="700" height="34" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+<text x="400" y="492" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">Buck/Boost/Buck-Boost 一个妈：开关、电感、二极管的三种摆法——运放负电源、RS-232 电平都这么生</text>
+</g></svg>

@@ -13,7 +13,7 @@
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-CC_BY--SA_4.0-lightgrey.svg" alt="License"></a>
-  <img src="https://img.shields.io/badge/SVG动画-31张-3fb950.svg" alt="SVG">
+  <img src="https://img.shields.io/badge/SVG动画-33张-3fb950.svg" alt="SVG">
   <img src="https://img.shields.io/badge/章节-8篇19章-58a6ff.svg" alt="chapters">
 </p>
 
@@ -82,7 +82,7 @@ graph TD
   - [第 14 章 设计方法论](#ch14) · [第 15 章 PCB 注意事项](#ch15)
 - **[第四篇：故障分析与排故方法论](#part4)** 🩺
   - [第 16 章 排故五步法](#ch16) · [第 17 章 故障速查表](#ch17) · [第 18 章 大师智慧](#ch18)
-- **[第五篇：动画演示中心](#part5)** 🎬 — 31 张 SVG 动画 + Falstad 地图
+- **[第五篇：动画演示中心](#part5)** 🎬 — 33 张 SVG 动画 + Falstad 地图
 - **[第六篇：实物图鉴与速查](#part6)** 🧩 — 实物照片 · 参数速查 · [官方 datasheet 直达](#part6)
 - **[第七篇：视频资源](#part7)** 📺 — B站系统课 · YouTube 频道
 - **[第八篇：学习路线与资源索引](#part8)** 📚 — 路线图 · 书单 · 项目清单 · [官方资料](#sec88) · [经典论文](#sec89) · FAQ
@@ -194,6 +194,10 @@ V ──[R1]──┬── Vout = V × R2/(R1+R2)
 电容的完整模型是 **C 串联 ESR（等效串联电阻）再串联 ESL（等效串联电感）**：
 
 - **电解电容**：容量大（µF~mF），ESR 大（0.1~10Ω），寿命随温度指数下降（每升 10°C 寿命减半），反接会爆炸
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/ElectrolyticCapacitorExploded.jpg" width="300" alt="反接爆炸的电解电容（Wikimedia Commons）">
+
+> 📷 反接或过压的电解电容——顶部防爆阀（刻痕）应声炸开，电解液喷溅。这就是为什么 1.2 节说"反接会爆炸"不是修辞：防爆阀是拿封装完整性换人身安全。换电容时先看耐压余量（≥1.5× 工作电压），再看极性。
 - **陶瓷电容**：MLCC，ESR 极小（mΩ 级），但 X7R/X5R 有直流偏压效应（标称 10µF 在 5V 偏压下可能只剩 4µF！）
 - **薄膜/C0G(NP0)**：性能最好，容量小
 
@@ -1061,6 +1065,10 @@ VIN ──[调整管 PMOS/PNP]── VOUT
 
 > 📚 **先修**：[第 7 章比较器](#ch7) + [RC 充电动画](assets/svg/rc-charge.svg)。
 
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/94/LM555-555-Timer_5734-480x452_%284791854328%29.jpg" width="240" alt="LM555 实物（Wikimedia Commons）">
+
+> 📷 传奇的 LM555——1971 年诞生至今累计销量以十亿计。8 个引脚里装着：3 个 5kΩ 分压电阻（"555"名字由来）、2 个比较器、1 个 RS 触发器、1 只放电管。
+
 
 ### 10.1 内部结构：一只 555 = 3 个电阻 + 2 个比较器 + 1 个触发器 + 1 个放电管
 
@@ -1331,6 +1339,8 @@ $$f_c = \frac{1}{2\pi\sqrt{R_1R_2C_1C_2}} \quad(\text{常用 } R_1{=}R_2{=}R,\ C
 
 **峰值检测**：精密整流 + 保持电容 + 跟随器缓冲 → 抓住峰值不放。泄放电阻决定"遗忘速度"。
 
+<p align="center"><img src="assets/svg/peak-detector.svg" width="720" alt="峰值检测动画：单向记忆"></p>
+
 ### 12.7 负反馈四种拓扑：稳定什么，就采样什么
 
 **问题**：都说"负反馈好"，可为什么有的电路反馈从输出电压取、有的从输出电流取？有的串联进输入、有的并联进输入？——不是玄学，是四种明确的分工。
@@ -1404,6 +1414,8 @@ $$(V_{in}-V_{out})\cdot D \cdot T = V_{out}\cdot(1-D)\cdot T \;\Rightarrow\; \bo
 **电荷泵**（无电感）：电容当"飞桶"——开关阵列先把电容并联到电源充电，再串联到输出放电：倍压（2×）、反压（−1×）。ICL7660 是经典负压发生器；优点无磁件、EMI 小，缺点带载能力弱（几十 mA）。
 
 <p align="center"><img src="assets/svg/charge-pump.svg" width="720" alt="电荷泵动画：电容斗提机"></p>
+
+<p align="center"><img src="assets/svg/inverting-buckboost.svg" width="720" alt="反相 Buck-Boost 动画：正进负出"></p>
 
 ### 13.4 文氏桥正弦振荡器：正弦从哪里来
 
@@ -1749,7 +1761,7 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 <a id="part5"></a>
 # 第五篇：动画演示中心 🎬
 
-> 全部 31 张 SVG 动画（SMIL，浏览器直接播放）位于 `assets/svg/` 目录，由 `scripts/generate_svgs.py` 一键生成（仓库铁律：两者始终同步）；配套 Falstad 在线电路可实时交互。
+> 全部 33 张 SVG 动画（SMIL，浏览器直接播放）位于 `assets/svg/` 目录，由 `scripts/generate_svgs.py` 一键生成（仓库铁律：两者始终同步）；配套 Falstad 在线电路可实时交互。
 
 ## 5.1 RC 充电 <a id="demo1"></a>
 
@@ -1921,7 +1933,19 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 
 **看点**：V_CE 扫过全程，I 线纹丝平躺——斜率≈0 就是"输出阻抗极高"的图形化。基准钉 V_B、R_E 钉电流、管子吸收全部波动。→ 正文 [13.5 恒流源](#ch13)
 
-## 5.27 Falstad 内置示例地图（全部带动画）
+## 5.27 峰值检测：单向记忆 <a id="demo27"></a>
+
+<p align="center"><img src="assets/svg/peak-detector.svg" width="720" alt="峰值检测SVG动画"></p>
+
+**看点**：灰波创新高，绿线立刻跳上跟住；灰波回落，绿线平台守住——泄放电阻让它缓缓遗忘。只许上不许下，这就是峰值表和 AGC 的心脏。→ 正文 [12.6 峰值检测](#ch12)
+
+## 5.28 反相 Buck-Boost：正进负出 <a id="demo28"></a>
+
+<p align="center"><img src="assets/svg/inverting-buckboost.svg" width="720" alt="反相Buck-Boost SVG动画"></p>
+
+**看点**：闭合时电感从 +12V 储能（绿粒子下灌），断开瞬间电感把节点拽向负压、经朝左二极管倒向负输出（红粒子）——输出电容下极板才是地。→ 正文 [13.3 Buck-Boost](#ch13)
+
+## 5.29 Falstad 内置示例地图（全部带动画）
 
 | 主题 | 菜单路径 |
 |---|---|
@@ -1943,6 +1967,14 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 | 分立晶体管（TO-92） | 电解电容家族 | 晶体管集合 |
 |---|---|---|
 | <img src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Generic_2N2222A.jpeg" width="200"> | <img src="https://upload.wikimedia.org/wikipedia/commons/f/f6/Electrolytic_capacitors-P1090328.JPG" width="220"> | <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Transistorer_(cropped).jpg" width="220"> |
+
+| 色环电阻识读 | LED（5mm RGB） | 功率管 TO-220 |
+|---|---|---|
+| <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/4-Band_Resistor.svg" width="220" alt="四色环电阻识读图"> | <img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/LED_5mm_RGB.jpg" width="180" alt="5mm RGB LED 实物"> | <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Jilin_Sino-Microelectronics_JCS4N65F-2383.jpg" width="220" alt="TO-220 封装功率 MOSFET"> |
+
+| 面包板（400 孔） | 数字万用表 | 示波器前面板 |
+|---|---|---|
+| <img src="https://upload.wikimedia.org/wikipedia/commons/7/73/400_points_breadboard.jpg" width="220" alt="400 孔面包板"> | <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Multimeter_Gossen_Metra_Hit.jpg" width="200" alt="数字万用表"> | <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Oscilloscope_Front_Panel_Numbered.svg" width="240" alt="示波器前面板分区图"> |
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Printed_circuit_board.jpg" width="420" alt="万用表内部 PCB（Wikimedia Commons）">
 

@@ -2224,7 +2224,7 @@ def make_rc_lowpass():
 <text x="590" y="76" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#475569">幅度：fc 后 −20dB/十倍频</text>
 <path d="{mag_d}" fill="none" stroke="#059669" stroke-width="2.8"/>
 <line x1="430" y1="150" x2="750" y2="150" stroke="#64748b" stroke-width="1.2"/>
-<line x1="573" y1="150" x2="573" y2="240" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
+<line x1="573" y1="150" x2="573" y2="340" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
 <line x1="430" y1="177" x2="750" y2="177" stroke="#94a3b8" stroke-width="0.8" stroke-dasharray="3,3"/>
 <text x="564" y="254" font-size="10.5" fill="#475569">fc</text>
 <text x="700" y="170" font-size="10" fill="#dc2626">−3dB</text>
@@ -2239,7 +2239,7 @@ def make_rc_lowpass():
                    "0;1;1;0;0", "0;0.03;0.2;0.26;1", y=460)
     svg += caption("② 每过十倍频，容抗小十倍、输出小十倍：−20dB/dec 直线——一颗极点的身份证", "#7c3aed", DLP,
                    "0;0;1;1;0;0", "0;0.28;0.33;0.55;0.61;1", y=460)
-    svg += caption("③ 相位最多拖到 −90°——一颗极点永远掀不翻反馈（[12.7](#) 稳定性），两颗就危险", "#dc2626", DLP,
+    svg += caption("③ 相位最多拖到 −90°——一颗极点永远掀不翻反馈（见 12.7 稳定性），两颗就危险", "#dc2626", DLP,
                    "0;0;1;1", "0;0.61;0.67;1", y=460)
     svg += note_box("Sallen-Key、有源滤波、运放主极点——全是这颗种子的繁殖；看懂它，波特图会读一半", 494, DLP, "0;0.7;0.75;1", w=680)
     save('rc-lowpass.svg', svg + '</svg>')
@@ -2285,7 +2285,7 @@ def make_zener_regulator():
                    "0;1;1;0;0", "0;0.03;0.22;0.28;1", y=430)
     svg += caption("② 负载加重抢电流，齐纳自动少吸让出份额——总流量恒定，分配自适应", "#059669", DZ,
                    "0;0;1;1;0;0", "0;0.3;0.35;0.58;0.64;1", y=430)
-    svg += caption("③ 代价全在功耗：负载不用电时齐纳全吃——所以齐纳只做基准/小功率，大功率去 [9.3 LDO](#)", "#b45309", DZ,
+    svg += caption("③ 代价全在功耗：负载不用电时齐纳全吃——所以齐纳只做基准/小功率，大功率去 9.3 LDO", "#b45309", DZ,
                    "0;0;1;1", "0;0.64;0.7;1", y=430)
     svg += note_box("水位一到就开闸放水——齐纳是电压的溢流阀；5.6V 附近温度系数最小（两种击穿机制温漂互消）", 474, DZ, "0;0.74;0.79;1", w=700)
     save('zener-regulator.svg', svg + '</svg>')
@@ -2332,10 +2332,150 @@ def make_constant_current():
                    "0;1;1;0;0", "0;0.03;0.22;0.28;1", y=430)
     svg += caption("② 负载变化只改 V_CE——管子默默吸收全部电压波动，电流纹丝不动", "#2563eb", DCC,
                    "0;0;1;1;0;0", "0;0.3;0.35;0.58;0.64;1", y=430)
-    svg += caption("③ 温度捣乱？R_E 负反馈摁住（[3.4](#) 偏置同款机制）——这就是 11.2 差分对的「尾巴」", "#7c3aed", DCC,
+    svg += caption("③ 温度捣乱？R_E 负反馈摁住（3.4 偏置同款机制）——这就是 11.2 差分对的「尾巴」", "#7c3aed", DCC,
                    "0;0;1;1", "0;0.64;0.7;1", y=430)
     svg += note_box("恒流源 = 会自适应的电阻：LED 驱动、传感器激励、电流镜负载、差分对长尾——四处都有它", 474, DCC, "0;0.74;0.79;1", w=690)
     save('constant-current.svg', svg + '</svg>')
+
+
+# ======================= 图 32：峰值检测 =======================
+def make_peak_detector():
+    DPK = 7
+    am_pts = []
+    for i in range(121):
+        u = i/120
+        x = 430 + 320*u
+        env = 0.55 + 0.45*np.sin(u*2*np.pi)
+        am_pts.append(f"{x:.0f},{170 - 40*env*np.sin(u*14*np.pi):.0f}")
+    am_d = "M" + " L".join(am_pts)
+    pk_pts = []
+    peak = 0.0
+    for i in range(121):
+        u = i/120
+        x = 430 + 320*u
+        env = 0.55 + 0.45*np.sin(u*2*np.pi)
+        cur = 40*env
+        peak = max(cur, peak - 6.0*(1/121)*40)
+        pk_pts.append(f"{x:.0f},{170-peak:.0f}")
+    pk_d = "M" + " L".join(pk_pts)
+    svg = svg_open('峰值检测：只许上、不许下的单向记忆', h=500)
+    svg += f'''
+<text x="230" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">精密整流 + 保持电容 + 缓冲（泄放电阻定遗忘速度）</text>
+<text x="16" y="145" font-size="11" fill="#475569">输入</text>
+<line x1="46" y1="140" x2="90" y2="140" stroke="#334155" stroke-width="2.5"/>
+<polygon points="90,110 90,170 150,140" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="96" y="134" font-size="12" font-weight="bold" fill="#dc2626">−</text>
+<text x="96" y="160" font-size="12" font-weight="bold" fill="#059669">+</text>
+<line x1="46" y1="140" x2="90" y2="155" stroke="#334155" stroke-width="2"/>
+<line x1="240" y1="140" x2="240" y2="100" stroke="#334155" stroke-width="2"/>
+<line x1="240" y1="100" x2="90" y2="100" stroke="#334155" stroke-width="2"/>
+<line x1="90" y1="100" x2="90" y2="125" stroke="#334155" stroke-width="2"/>
+<line x1="150" y1="140" x2="174" y2="140" stroke="#334155" stroke-width="2.5"/>
+<polygon points="198,140 174,128 174,152" fill="none" stroke="#334155" stroke-width="2.5"/>
+<line x1="198" y1="128" x2="198" y2="152" stroke="#334155" stroke-width="3"/>
+<line x1="198" y1="140" x2="240" y2="140" stroke="#334155" stroke-width="2.5"/>
+<circle cx="240" cy="140" r="4" fill="#334155"/>
+<line x1="240" y1="140" x2="240" y2="180" stroke="#334155" stroke-width="2"/>
+<line x1="228" y1="180" x2="252" y2="180" stroke="#2563eb" stroke-width="3"/>
+<line x1="228" y1="192" x2="252" y2="192" stroke="#2563eb" stroke-width="3"/>
+<line x1="240" y1="192" x2="240" y2="210" stroke="#334155" stroke-width="2"/>
+{gnd_sym(240, 224)}
+<text x="258" y="190" font-size="10.5" fill="#2563eb">C_hold</text>
+{resistor_v(300, 160, 30, 'R_bleed')}
+<line x1="300" y1="140" x2="300" y2="140" stroke="#334155" stroke-width="2"/>
+<line x1="240" y1="140" x2="300" y2="140" stroke="#334155" stroke-width="2"/>
+<line x1="300" y1="210" x2="300" y2="220" stroke="#334155" stroke-width="2"/>
+{gnd_sym(300, 234)}
+<line x1="300" y1="140" x2="360" y2="140" stroke="#334155" stroke-width="2.5"/>
+<text x="366" y="145" font-size="11" font-weight="bold" fill="#2563eb">峰值输出</text>
+'''
+    svg += f'<g><animate attributeName="opacity" values="1;1;0;0;1;1" keyTimes="0;0.3;0.36;0.86;0.92;1" dur="{DPK}s" repeatCount="indefinite"/>'
+    svg += flow("M154,136 H194 M202,136 H236 M240,144 V176", DPK/4, n=4, color="#059669", r=4.5) + '</g>'
+    svg += f'''
+<text x="590" y="86" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#475569">输入（灰，幅度渐变的正弦）vs 峰值输出（绿）</text>
+<path d="{am_d}" fill="none" stroke="#94a3b8" stroke-width="1.8"/>
+<path d="{pk_d}" fill="none" stroke="#059669" stroke-width="2.8"/>
+<line x1="430" y1="170" x2="750" y2="170" stroke="#64748b" stroke-width="1"/>
+<text x="440" y="290" font-size="10.5" fill="#059669">峰顶充电（跳上）→ 输入回落 → 电容记住（平台缓降=泄放）</text>
+'''
+    svg += caption("① 输入创「新高」：运放顶开二极管，C_hold 瞬间充到峰顶——只许上", "#059669", DPK,
+                   "0;1;1;0;0", "0;0.03;0.2;0.26;1", y=430)
+    svg += caption("② 输入回落：二极管反偏关断，电容孤立守住峰值——不许下", "#2563eb", DPK,
+                   "0;0;1;1;0;0", "0;0.28;0.33;0.55;0.61;1", y=430)
+    svg += caption("③ 泄放电阻决定遗忘速度：τ=R·C——表头要稳（τ≈1s），AGC 要快（τ≈10ms）", "#b45309", DPK,
+                   "0;0;1;1", "0;0.61;0.67;1", y=430)
+    svg += note_box("峰值表、振幅测量、音频 AGC、包络检波——全是「单向记忆」；二极管压降？运放已按 12.6 精密整流把它除掉了", 474, DPK, "0;0.7;0.75;1", w=720)
+    save('peak-detector.svg', svg + '</svg>')
+
+
+# ======================= 图 33：反相 Buck-Boost =======================
+def make_inverting_buckboost():
+    DBB = 6
+    il_pts = []
+    for i in range(97):
+        u = i/96
+        x = 430 + 320*u
+        seg = (u*3) % 1.0
+        y = 372 - (30*seg/0.5 if seg < 0.5 else 30*(1-seg)/0.5)
+        il_pts.append(f"{x:.0f},{y:.0f}")
+    il_d = "M" + " L".join(il_pts)
+    svg = svg_open('反相 Buck-Boost：正电压进去，负电压出来', h=520)
+    svg += f'''
+<text x="230" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">+12V → −12V（占空比 50%）</text>
+<text x="18" y="102" font-size="12.5" font-weight="bold" fill="#b45309">+12V</text>
+<line x1="50" y1="96" x2="110" y2="96" stroke="#334155" stroke-width="2.5"/>
+<circle cx="120" cy="96" r="3.5" fill="#334155"/>
+<line x1="120" y1="96" x2="150" y2="68" stroke="#059669" stroke-width="3">
+<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.4;0.46;1" dur="{DBB}s" repeatCount="indefinite"/></line>
+<circle cx="156" cy="96" r="3.5" fill="#334155"/>
+<text x="100" y="62" font-size="11" font-weight="bold" fill="#334155">开关 SW</text>
+<line x1="156" y1="96" x2="200" y2="96" stroke="#334155" stroke-width="2.5"/>
+<circle cx="205" cy="96" r="4" fill="#334155"/>
+<text x="182" y="118" font-size="10" fill="#7c3aed">开关节点</text>
+<path d="M205,100 q-16,8 0,16 q16,8 0,16 q-16,8 0,16 q16,8 0,16" fill="none" stroke="#7c3aed" stroke-width="2.5"/>
+<text x="222" y="142" font-size="12" font-weight="bold" fill="#7c3aed">电感 L（下地）</text>
+<line x1="205" y1="96" x2="205" y2="136" stroke="#334155" stroke-width="2.5"/>
+<line x1="205" y1="176" x2="205" y2="196" stroke="#334155" stroke-width="2.5"/>
+{gnd_sym(205, 210)}
+<line x1="205" y1="96" x2="260" y2="96" stroke="#334155" stroke-width="2.5"/>
+<polygon points="260,96 284,84 284,108" fill="none" stroke="#334155" stroke-width="2.5"/>
+<line x1="260" y1="84" x2="260" y2="108" stroke="#334155" stroke-width="3"/>
+<text x="248" y="78" font-size="10.5" fill="#dc2626">二极管（朝左吸）</text>
+<line x1="284" y1="96" x2="340" y2="96" stroke="#334155" stroke-width="2.5"/>
+<circle cx="340" cy="96" r="4" fill="#334155"/>
+<line x1="340" y1="96" x2="396" y2="96" stroke="#334155" stroke-width="2.5"/>
+<text x="344" y="86" font-size="12" font-weight="bold" fill="#2563eb">−12V 输出</text>
+<line x1="340" y1="96" x2="340" y2="140" stroke="#334155" stroke-width="2"/>
+<line x1="328" y1="140" x2="352" y2="140" stroke="#2563eb" stroke-width="3.5"/>
+<line x1="328" y1="152" x2="352" y2="152" stroke="#2563eb" stroke-width="3.5"/>
+<line x1="340" y1="152" x2="340" y2="170" stroke="#334155" stroke-width="2"/>
+{gnd_sym(340, 184)}
+<text x="358" y="150" font-size="10.5" fill="#2563eb">C（下极板接地，上极板负压）</text>
+<text x="60" y="250" font-size="11" fill="#059669" opacity="0">闭合：电感从 +12V 储能
+<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.06;0.4;0.46;1" dur="{DBB}s" repeatCount="indefinite"/></text>
+<text x="60" y="274" font-size="11" fill="#dc2626" opacity="0">断开：电感经二极管把输出往下拽成负
+<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.52;0.56;0.9;0.96;1" dur="{DBB}s" repeatCount="indefinite"/></text>
+'''
+    svg += f'<g><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.4;0.46;1" dur="{DBB}s" repeatCount="indefinite"/>'
+    svg += flow("M54,92 H150 M160,92 H201 M205,100 V132", DBB/3, n=5, color="#059669", r=5) + '</g>'
+    svg += f'<g><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.5;0.56;0.9;0.96;1" dur="{DBB}s" repeatCount="indefinite"/>'
+    svg += flow("M205,176 V140 M205,92 H256 M288,92 H336 M340,100 V136", DBB/3, n=5, color="#dc2626", r=5) + '</g>'
+    svg += f'''
+<text x="440" y="252" font-size="11.5" font-weight="bold" fill="#7c3aed">电感电流（三角波）</text>
+<path d="{il_d}" fill="none" stroke="#059669" stroke-width="2.8"/>
+<line x1="430" y1="392" x2="750" y2="392" stroke="#2563eb" stroke-width="2.8"/>
+<line x1="430" y1="300" x2="750" y2="300" stroke="#64748b" stroke-width="1.2"/>
+<text x="700" y="388" font-size="10.5" fill="#2563eb">−12V</text>
+<text x="440" y="412" font-size="11.5" font-weight="bold" fill="#2563eb">输出 = −D/(1−D) × Vin = −0.5/0.5 × 12 = −12V</text>
+'''
+    svg += caption("① 开关闭合：+12V 全加在电感上（下端接地），电流斜坡上升——与 Boost 同款储能", "#059669", DBB,
+                   "0;1;1;0;0", "0;0.03;0.2;0.26;1", y=460)
+    svg += caption("② 开关断开：电感不许电流突变，把开关节点拽向负压——二极管接通，能量倒向负输出", "#dc2626", DBB,
+                   "0;0;1;1;0;0", "0;0.28;0.33;0.5;0.56;1", y=460)
+    svg += caption("③ Vout=−D/(1−D)·Vin：D=0.5 时 −Vin；D>0.5 幅值超过输入——升降压还能反相", "#7c3aed", DBB,
+                   "0;0;1;1", "0;0.58;0.64;1", y=460)
+    svg += note_box("Buck/Boost/Buck-Boost 一个妈：开关、电感、二极管的三种摆法——运放负电源、RS-232 电平都这么生", 494, DBB, "0;0.7;0.75;1", w=700)
+    save('inverting-buckboost.svg', svg + '</svg>')
 
 if __name__ == '__main__':
     make_rc_charge()
@@ -2369,4 +2509,6 @@ if __name__ == '__main__':
     make_rc_lowpass()
     make_zener_regulator()
     make_constant_current()
-    print('all 31 SVGs regenerated into', os.path.abspath(OUT))
+    make_peak_detector()
+    make_inverting_buckboost()
+    print('all 33 SVGs regenerated into', os.path.abspath(OUT))
