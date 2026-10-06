@@ -185,7 +185,7 @@ V ──[R1]──┬── Vout = V × R2/(R1+R2)
 
 <p>
 <img src="https://upload.wikimedia.org/wikipedia/commons/8/86/Photo-SMDcapacitors.jpg" width="300" alt="SMD 电容与毫米尺（公有领域）">
-<img src="https://upload.wikimedia.org/wikipedia/commons/f/f8/Soldering_a_0805.jpg" width="300" alt="0805 贴片焊接（Wikimedia Commons）">
+<img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f8/Soldering_a_0805.jpg/500px-Soldering_a_0805.jpg" width="300" alt="0805 贴片焊接（Wikimedia Commons）">
 </p>
 
 > 📷 贴片元件有多小：0805 = 2.0×1.25mm（左图与毫米尺对比）。手焊 0805（右图）是模拟工程师的成年礼——烙铁尖+镊子+放大镜，一个周末就能练出来。
@@ -195,7 +195,7 @@ V ──[R1]──┬── Vout = V × R2/(R1+R2)
 
 - **电解电容**：容量大（µF~mF），ESR 大（0.1~10Ω），寿命随温度指数下降（每升 10°C 寿命减半），反接会爆炸
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/ElectrolyticCapacitorExploded.jpg" width="300" alt="反接爆炸的电解电容（Wikimedia Commons）">
+<img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c2/ElectrolyticCapacitorExploded.jpg/500px-ElectrolyticCapacitorExploded.jpg" width="300" alt="反接爆炸的电解电容（Wikimedia Commons）">
 
 > 📷 反接或过压的电解电容——顶部防爆阀（刻痕）应声炸开，电解液喷溅。这就是为什么 1.2 节说"反接会爆炸"不是修辞：防爆阀是拿封装完整性换人身安全。换电容时先看耐压余量（≥1.5× 工作电压），再看极性。
 - **陶瓷电容**：MLCC，ESR 极小（mΩ 级），但 X7R/X5R 有直流偏压效应（标称 10µF 在 5V 偏压下可能只剩 4µF！）
@@ -234,7 +234,7 @@ V ──[R1]──┬── Vout = V × R2/(R1+R2)
 
 > 📚 **先修**：[第 0 章单向阀比喻](#ch0) + [第 1 章寄生参数](#ch1)。
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Diode-closeup.jpg" width="260" alt="二极管特写（Wikimedia Commons）">
+<img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d5/Diode-closeup.jpg/500px-Diode-closeup.jpg" width="260" alt="二极管特写（Wikimedia Commons）">
 
 > 📷 二极管实物：玻璃壳里那截 tiny 的 PN 结，阳极进阴极出——阴极一端有**色环**标记。接反了？轻则不工作，重则放烟花。
 
@@ -357,7 +357,7 @@ $$I_D = I_S\left(e^{\frac{V_D}{nV_T}} - 1\right), \quad V_T = \frac{kT}{q} \appr
 
 ### 3.1 结构与载流子输运原理
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Generic_2N2222A.jpeg" width="180" alt="2N2222A NPN 晶体管 TO-92 封装实物（Wikimedia Commons）"> <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/2N2222A_and_schema.jpg" width="300" alt="2N2222A 与内部结构示意（公有领域）">
+<img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d4/Generic_2N2222A.jpeg/500px-Generic_2N2222A.jpeg" width="180" alt="2N2222A NPN 晶体管 TO-92 封装实物（Wikimedia Commons）"> <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/2N2222A_and_schema.jpg" width="300" alt="2N2222A 与内部结构示意（公有领域）">
 
 NPN 管 = 两块 N 型夹一块**极薄**的 P 型基区：
 
@@ -1026,7 +1026,7 @@ VIN ──[调整管 PMOS/PNP]── VOUT
 
 **稳定性大坑** 🔧：老式 LDO（LM1117 等 NPN 准 LDO）**依赖输出电容的 ESR 造零点**——要求 ESR 在 0.3~22Ω 区间。全贴陶瓷电容（ESR≈5mΩ）反而**振荡**！现代"陶瓷电容稳定"（ceramic-stable）LDO 才可以用 MLCC。→ 换料必查此项。
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/d/d8/TS7805_voltage_regulator.JPG" width="240" alt="7805 TO-220 实物（Wikimedia Commons，CC BY-SA）">
+<img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/TS7805_voltage_regulator.JPG/500px-TS7805_voltage_regulator.JPG" width="240" alt="7805 TO-220 实物（Wikimedia Commons，CC BY-SA）">
 
 > 📷 7805 实物（TO-220 封装）：金属背板是散热片安装面——还记得吗，$(V_{IN}-5V) \times I$ 全变成热，大电流必须上散热片。
 
@@ -1555,7 +1555,7 @@ PT100 ──恒流激励──> 仪放 ──> 低通滤波 ──> ADC ──> 
 
 > 📚 **先修**：[第 1 章寄生参数](#ch1) + [第 14 章设计流程](#ch14)——走线电感是本章主角之一。
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Macro_circuit_board.JPG" width="480" alt="PCB 微距：走线、过孔与焊盘（Wikimedia Commons）">
+<img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c4/Macro_circuit_board.JPG/500px-Macro_circuit_board.JPG" width="480" alt="PCB 微距：走线、过孔与焊盘（Wikimedia Commons）">
 
 ### 15.1 布局（Placement）——决定 80% 的成败
 
@@ -1630,7 +1630,7 @@ PT100 ──恒流激励──> 仪放 ──> 低通滤波 ──> ADC ──> 
 
 <p>
 <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Digital_Multimeter_Aka.jpg" width="240" alt="数字万用表（Wikimedia Commons，CC BY-SA）">
-<img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Digital_oscilloscope_in_use.jpg" width="360" alt="数字示波器实战（Wikimedia Commons）">
+<img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0b/Digital_oscilloscope_in_use.jpg/500px-Digital_oscilloscope_in_use.jpg" width="360" alt="数字示波器实战（Wikimedia Commons）">
 </p>
 
 > 📷 排故两大神器：万用表管"静态"（电压/通断/二极管档），示波器管"动态"（纹波/振荡/时序）。**先静后动**——80% 的故障万用表就够了。
@@ -1715,7 +1715,7 @@ PT100 ──恒流激励──> 仪放 ──> 低通滤波 ──> ADC ──> 
 
 ### 17.5 焊接与连接类（占比最高的真实故障）
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Electronics-White-Breadboard.jpg" width="340" alt="面包板实物（Wikimedia Commons，CC BY-SA）">
+<img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/1/19/Electronics-White-Breadboard.jpg/500px-Electronics-White-Breadboard.jpg" width="340" alt="面包板实物（Wikimedia Commons，CC BY-SA）">
 
 > 📷 面包板：入门神器，也是"随机故障发生器"——老化插孔接触不良会让你怀疑人生。**验证性电路请上焊接板。**
 
@@ -1966,17 +1966,17 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 
 | 分立晶体管（TO-92） | 电解电容家族 | 晶体管集合 |
 |---|---|---|
-| <img src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Generic_2N2222A.jpeg" width="200"> | <img src="https://upload.wikimedia.org/wikipedia/commons/f/f6/Electrolytic_capacitors-P1090328.JPG" width="220"> | <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Transistorer_(cropped).jpg" width="220"> |
+| <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d4/Generic_2N2222A.jpeg/500px-Generic_2N2222A.jpeg" width="200"> | <img src="https://upload.wikimedia.org/wikipedia/commons/f/f6/Electrolytic_capacitors-P1090328.JPG" width="220"> | <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/2/21/Transistorer_%28cropped%29.jpg/500px-Transistorer_%28cropped%29.jpg" width="220"> |
 
 | 色环电阻识读 | LED（5mm RGB） | 功率管 TO-220 |
 |---|---|---|
-| <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/4-Band_Resistor.svg" width="220" alt="四色环电阻识读图"> | <img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/LED_5mm_RGB.jpg" width="180" alt="5mm RGB LED 实物"> | <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Jilin_Sino-Microelectronics_JCS4N65F-2383.jpg" width="220" alt="TO-220 封装功率 MOSFET"> |
+| <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/4-Band_Resistor.svg" width="220" alt="四色环电阻识读图"> | <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0a/LED_5mm_RGB.jpg/500px-LED_5mm_RGB.jpg" width="180" alt="5mm RGB LED 实物"> | <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/3/39/Jilin_Sino-Microelectronics_JCS4N65F-2383.jpg/500px-Jilin_Sino-Microelectronics_JCS4N65F-2383.jpg" width="220" alt="TO-220 封装功率 MOSFET"> |
 
 | 面包板（400 孔） | 数字万用表 | 示波器前面板 |
 |---|---|---|
-| <img src="https://upload.wikimedia.org/wikipedia/commons/7/73/400_points_breadboard.jpg" width="220" alt="400 孔面包板"> | <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Multimeter_Gossen_Metra_Hit.jpg" width="200" alt="数字万用表"> | <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Oscilloscope_Front_Panel_Numbered.svg" width="240" alt="示波器前面板分区图"> |
+| <img src="https://upload.wikimedia.org/wikipedia/commons/7/73/400_points_breadboard.jpg" width="220" alt="400 孔面包板"> | <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/Multimeter_Gossen_Metra_Hit.jpg/500px-Multimeter_Gossen_Metra_Hit.jpg" width="200" alt="数字万用表"> | <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Oscilloscope_Front_Panel_Numbered.svg" width="240" alt="示波器前面板分区图"> |
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Printed_circuit_board.jpg" width="420" alt="万用表内部 PCB（Wikimedia Commons）">
+<img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0b/Printed_circuit_board.jpg/500px-Printed_circuit_board.jpg" width="420" alt="万用表内部 PCB（Wikimedia Commons）">
 
 *以上图片：Wikimedia Commons，公有领域/CC 授权*
 

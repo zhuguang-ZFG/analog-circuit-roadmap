@@ -2360,7 +2360,7 @@ def make_peak_detector():
     pk_d = "M" + " L".join(pk_pts)
     svg = svg_open('峰值检测：只许上、不许下的单向记忆', h=500)
     svg += f'''
-<text x="230" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">精密整流 + 保持电容 + 缓冲（泄放电阻定遗忘速度）</text>
+<text x="230" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">精密整流 + 保持电容 + 泄放电阻（缓冲级见 12.6）</text>
 <text x="16" y="145" font-size="11" fill="#475569">输入</text>
 <line x1="46" y1="140" x2="90" y2="140" stroke="#334155" stroke-width="2.5"/>
 <polygon points="90,110 90,170 150,140" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
@@ -2382,7 +2382,6 @@ def make_peak_detector():
 {gnd_sym(240, 224)}
 <text x="258" y="190" font-size="10.5" fill="#2563eb">C_hold</text>
 {resistor_v(300, 160, 30, 'R_bleed')}
-<line x1="300" y1="140" x2="300" y2="140" stroke="#334155" stroke-width="2"/>
 <line x1="240" y1="140" x2="300" y2="140" stroke="#334155" stroke-width="2"/>
 <line x1="300" y1="210" x2="300" y2="220" stroke="#334155" stroke-width="2"/>
 {gnd_sym(300, 234)}
@@ -2431,11 +2430,11 @@ def make_inverting_buckboost():
 <text x="100" y="62" font-size="11" font-weight="bold" fill="#334155">开关 SW</text>
 <line x1="156" y1="96" x2="200" y2="96" stroke="#334155" stroke-width="2.5"/>
 <circle cx="205" cy="96" r="4" fill="#334155"/>
-<text x="182" y="118" font-size="10" fill="#7c3aed">开关节点</text>
+<text x="166" y="86" font-size="10" fill="#7c3aed">开关节点</text>
 <path d="M205,100 q-16,8 0,16 q16,8 0,16 q-16,8 0,16 q16,8 0,16" fill="none" stroke="#7c3aed" stroke-width="2.5"/>
 <text x="222" y="142" font-size="12" font-weight="bold" fill="#7c3aed">电感 L（下地）</text>
-<line x1="205" y1="96" x2="205" y2="136" stroke="#334155" stroke-width="2.5"/>
-<line x1="205" y1="176" x2="205" y2="196" stroke="#334155" stroke-width="2.5"/>
+<line x1="205" y1="96" x2="205" y2="100" stroke="#334155" stroke-width="2.5"/>
+<line x1="205" y1="164" x2="205" y2="196" stroke="#334155" stroke-width="2.5"/>
 {gnd_sym(205, 210)}
 <line x1="205" y1="96" x2="260" y2="96" stroke="#334155" stroke-width="2.5"/>
 <polygon points="260,96 284,84 284,108" fill="none" stroke="#334155" stroke-width="2.5"/>
