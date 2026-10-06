@@ -22,7 +22,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">齐纳稳压：拿电流换电压的「溢流阀」</text>
 
 <text x="220" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">12V±波动 → Rs → 齐纳 5.6V</text>
-<text x="16" y="102" font-size="12" font-weight="bold" fill="#b45309">12V±</text>
+<text x="16" y="94" font-size="12" font-weight="bold" fill="#b45309">12V±</text>
 <line x1="40" y1="100" x2="60" y2="100" stroke="#334155" stroke-width="2.5"/>
 <rect x="60" y="89" width="40" height="22" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
 <line x1="100" y1="100" x2="120" y2="100" stroke="#334155" stroke-width="2.5"/>

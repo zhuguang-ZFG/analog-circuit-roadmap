@@ -22,7 +22,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">Buck 降压：电感是「水车惯性」，把断续水流碾成直流</text>
 
 <text x="220" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">Buck 变换器（12V → 5V，占空比 42%）</text>
-<text x="36" y="102" font-size="12.5" font-weight="bold" fill="#b45309">12V</text>
+<text x="44" y="102" font-size="12.5" font-weight="bold" fill="#b45309">12V</text>
 <line x1="70" y1="96" x2="130" y2="96" stroke="#334155" stroke-width="2.5"/>
 <circle cx="140" cy="96" r="3.5" fill="#334155"/>
 <line x1="140" y1="96" x2="170" y2="68" stroke="#059669" stroke-width="3">
@@ -31,7 +31,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="126" y="62" font-size="11" font-weight="bold" fill="#334155">开关 SW</text>
 <line x1="176" y1="96" x2="200" y2="96" stroke="#334155" stroke-width="2.5"/>
 <circle cx="205" cy="96" r="4" fill="#334155"/>
-<text x="180" y="118" font-size="10" fill="#7c3aed">开关节点</text>
+<text x="166" y="86" font-size="10" fill="#7c3aed">开关节点</text>
 <path d="M205,96 q8,-16 16,0 q8,16 16,0 q8,-16 16,0 q8,16 16,0 q8,-16 16,0" fill="none" stroke="#7c3aed" stroke-width="2.5"/>
 <text x="222" y="70" font-size="12" font-weight="bold" fill="#7c3aed">电感 L</text>
 <line x1="285" y1="96" x2="320" y2="96" stroke="#334155" stroke-width="2.5"/>

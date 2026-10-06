@@ -48,9 +48,9 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="210" y="281.0" font-size="12.5" font-weight="bold" fill="#b45309">R_E</text>
 <line x1="190" y1="312" x2="190" y2="318" stroke="#334155" stroke-width="2"/>
 <line x1="190" y1="318" x2="190" y2="332" stroke="#334155" stroke-width="2.5"/><line x1="174" y1="332" x2="206" y2="332" stroke="#334155" stroke-width="3"/><line x1="180" y1="338" x2="200" y2="338" stroke="#334155" stroke-width="3"/><line x1="186" y1="344" x2="194" y2="344" stroke="#334155" stroke-width="3"/>
-<rect x="60" y="176" width="46" height="40" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
-<text x="83" y="200" text-anchor="middle" font-size="10" font-weight="bold" fill="#2563eb">基准 V_B</text>
-<line x1="106" y1="196" x2="155" y2="196" stroke="#334155" stroke-width="2"/>
+<rect x="48" y="176" width="46" height="40" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="71" y="200" text-anchor="middle" font-size="10" font-weight="bold" fill="#2563eb">基准 V_B</text>
+<line x1="94" y1="196" x2="155" y2="196" stroke="#334155" stroke-width="2"/>
 <text x="240" y="140" font-size="10.5" fill="#dc2626" opacity="0">V_CE 随负载怎么变
 <animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.06;0.4;0.46;1" dur="6s" repeatCount="indefinite"/></text>
 <text x="240" y="280" font-size="10.5" fill="#059669" opacity="0">I 被 R_E 钉死：纹丝不动

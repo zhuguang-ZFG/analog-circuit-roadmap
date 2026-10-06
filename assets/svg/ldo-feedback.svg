@@ -22,11 +22,11 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">LDO 的本质：一个会「自我调节」的分压器（负反馈环路）</text>
 
 <text x="330" y="62" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">LDO 内部负反馈环路（AMS1117 同款结构）</text>
-<text x="56" y="96" font-size="13" font-weight="bold" fill="#b45309">VIN 8V</text>
+<text x="96" y="96" text-anchor="end" font-size="13" font-weight="bold" fill="#b45309">VIN 8V</text>
 <line x1="100" y1="90" x2="180" y2="90" stroke="#334155" stroke-width="2.5"/>
 <rect x="180" y="78" width="80" height="26" fill="#fffbeb" stroke="#b45309" stroke-width="2.5"/>
 <text x="220" y="95" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#b45309">调整管</text>
-<text x="220" y="118" text-anchor="middle" font-size="10" fill="#475569">≈ 自动可变电阻</text>
+<text x="216" y="118" text-anchor="end" font-size="10" fill="#475569">≈ 自动可变电阻</text>
 <line x1="260" y1="90" x2="330" y2="90" stroke="#334155" stroke-width="2.5"/>
 <circle cx="330" cy="90" r="4" fill="#334155"/>
 <line x1="330" y1="90" x2="400" y2="90" stroke="#334155" stroke-width="2.5"/>
@@ -48,7 +48,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="370" y="187.0" font-size="12.5" font-weight="bold" fill="#b45309">突加</text>
 <line x1="350" y1="200" x2="350" y2="214" stroke="#334155" stroke-width="2"/>
 <line x1="350" y1="214" x2="350" y2="228" stroke="#334155" stroke-width="2.5"/><line x1="334" y1="228" x2="366" y2="228" stroke="#334155" stroke-width="3"/><line x1="340" y1="234" x2="360" y2="234" stroke="#334155" stroke-width="3"/><line x1="346" y1="240" x2="354" y2="240" stroke="#334155" stroke-width="3"/>
-<text x="356" y="118" font-size="10" fill="#dc2626" text-anchor="middle">30%处加重</text>
+<text x="356" y="84" font-size="10" fill="#dc2626" text-anchor="middle">30%处加重</text>
 <line x1="330" y1="90" x2="330" y2="130" stroke="#334155" stroke-width="2.5"/>
 <line x1="330" y1="110" x2="330" y2="130" stroke="#334155" stroke-width="2.5"/>
 <rect x="319" y="130" width="22" height="34" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
@@ -65,9 +65,19 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <polygon points="180,170 180,222 240,196" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
 <text x="188" y="196" font-size="13" font-weight="bold" fill="#dc2626">−</text>
 <text x="188" y="216" font-size="13" font-weight="bold" fill="#059669">+</text>
-<text x="168" y="240" font-size="10.5" fill="#475569">误差放大器</text>
-<line x1="330" y1="186" x2="240" y2="186" stroke="#334155" stroke-width="2"/>
-<text x="262" y="178" font-size="10" fill="#7c3aed">采样 1.25V</text>
+<text x="150" y="164" font-size="10.5" fill="#475569">误差放大器</text>
+<line x1="296" y1="90" x2="296" y2="112" stroke="#334155" stroke-width="2.5"/>
+<line x1="282" y1="118" x2="310" y2="118" stroke="#2563eb" stroke-width="3"/>
+<line x1="282" y1="128" x2="310" y2="128" stroke="#2563eb" stroke-width="3"/>
+<line x1="296" y1="128" x2="296" y2="150" stroke="#334155" stroke-width="2"/>
+<line x1="296" y1="150" x2="296" y2="164" stroke="#334155" stroke-width="2.5"/><line x1="280" y1="164" x2="312" y2="164" stroke="#334155" stroke-width="3"/><line x1="286" y1="170" x2="306" y2="170" stroke="#334155" stroke-width="3"/><line x1="292" y1="176" x2="300" y2="176" stroke="#334155" stroke-width="3"/>
+<text x="292" y="142" text-anchor="end" font-size="10.5" fill="#2563eb">C_out</text>
+<line x1="330" y1="186" x2="300" y2="186" stroke="#334155" stroke-width="2"/>
+<line x1="300" y1="186" x2="300" y2="270" stroke="#334155" stroke-width="2"/>
+<line x1="300" y1="270" x2="140" y2="270" stroke="#334155" stroke-width="2"/>
+<line x1="140" y1="270" x2="140" y2="191" stroke="#334155" stroke-width="2"/>
+<line x1="140" y1="191" x2="180" y2="191" stroke="#334155" stroke-width="2"/>
+<text x="216" y="292" font-size="10" fill="#7c3aed">采样 1.25V</text>
 <rect x="150" y="230" width="70" height="24" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
 <text x="185" y="246" text-anchor="middle" font-size="11" font-weight="bold" fill="#2563eb">基准 1.25V</text>
 <line x1="185" y1="230" x2="185" y2="222" stroke="#334155" stroke-width="2"/>

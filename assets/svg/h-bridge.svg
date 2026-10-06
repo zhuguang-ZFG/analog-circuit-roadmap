@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="480" viewBox="0 0 800 480">
+<title>H 桥：四只开关让电流「听指挥」掉头</title>
+<rect width="800" height="480" fill="#f8fafc"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+@media (prefers-color-scheme: dark){
+rect[fill="#f8fafc"]{fill:#0f172a}
+[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
+[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
+[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
+[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
+[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
+[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
+[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
+[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
+[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
+[fill="#cbd5e1"]{fill:#334155}[stroke="#cbd5e1"]{stroke:#475569}
+[fill="#ffffff"]{fill:#0f172a}[fill="#94a3b8"]{fill:#64748b}[stroke="#94a3b8"]{stroke:#64748b}
+[fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
+}
+</style>
+<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">H 桥：四只开关让电流「听指挥」掉头</text>
+
+<text x="400" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">两对角线闭合 = 电流方向；同臂直通 = 短路烧管</text>
+<line x1="100" y1="80" x2="700" y2="80" stroke="#334155" stroke-width="2.5"/>
+<text x="64" y="86" font-size="12.5" font-weight="bold" fill="#b45309">+12V</text>
+<line x1="100" y1="340" x2="700" y2="340" stroke="#334155" stroke-width="2.5"/>
+<text x="68" y="346" font-size="12.5" font-weight="bold" fill="#334155">GND</text>
+<line x1="220" y1="80" x2="220" y2="110" stroke="#334155" stroke-width="2.5"/>
+<rect x="212" y="110" width="16" height="60" rx="3" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+<text x="208" y="144" text-anchor="end" font-size="11.5" font-weight="bold" fill="#334155">Q1</text>
+<line x1="220" y1="170" x2="220" y2="250" stroke="#334155" stroke-width="2.5"/>
+<rect x="212" y="250" width="16" height="60" rx="3" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+<text x="208" y="284" text-anchor="end" font-size="11.5" font-weight="bold" fill="#334155">Q2</text>
+<line x1="220" y1="310" x2="220" y2="340" stroke="#334155" stroke-width="2.5"/>
+<line x1="580" y1="80" x2="580" y2="110" stroke="#334155" stroke-width="2.5"/>
+<rect x="572" y="110" width="16" height="60" rx="3" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+<text x="604" y="144" font-size="11.5" font-weight="bold" fill="#334155">Q3</text>
+<line x1="580" y1="170" x2="580" y2="250" stroke="#334155" stroke-width="2.5"/>
+<rect x="572" y="250" width="16" height="60" rx="3" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+<text x="604" y="284" font-size="11.5" font-weight="bold" fill="#334155">Q4</text>
+<line x1="580" y1="310" x2="580" y2="340" stroke="#334155" stroke-width="2.5"/>
+<line x1="220" y1="210" x2="378" y2="210" stroke="#334155" stroke-width="2.5"/>
+<line x1="422" y1="210" x2="580" y2="210" stroke="#334155" stroke-width="2.5"/>
+<circle cx="400" cy="210" r="22" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="400" y="216" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">M</text>
+<text x="400" y="180" text-anchor="middle" font-size="10.5" fill="#475569">电机</text>
+<circle cx="220" cy="210" r="3.5" fill="#334155"/>
+<circle cx="580" cy="210" r="3.5" fill="#334155"/>
+<line x1="212" y1="125" x2="192" y2="125" stroke="#334155" stroke-width="1.5"/>
+<text x="188" y="129" text-anchor="end" font-size="11" font-weight="bold" fill="#2563eb">A</text>
+<line x1="212" y1="265" x2="192" y2="265" stroke="#334155" stroke-width="1.5"/>
+<text x="188" y="269" text-anchor="end" font-size="11" font-weight="bold" fill="#dc2626">B</text>
+<line x1="588" y1="125" x2="608" y2="125" stroke="#334155" stroke-width="1.5"/>
+<text x="612" y="129" font-size="11" font-weight="bold" fill="#dc2626">B</text>
+<line x1="588" y1="265" x2="608" y2="265" stroke="#334155" stroke-width="1.5"/>
+<text x="612" y="269" font-size="11" font-weight="bold" fill="#2563eb">A</text>
+<line x1="220" y1="80" x2="244" y2="80" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3"/>
+<line x1="244" y1="80" x2="244" y2="210" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3"/>
+<polygon points="244,120 238,134 250,134" fill="#94a3b8"/>
+<line x1="238" y1="138" x2="250" y2="138" stroke="#94a3b8" stroke-width="2"/>
+<line x1="220" y1="340" x2="244" y2="340" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3"/>
+<line x1="244" y1="210" x2="244" y2="340" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3"/>
+<polygon points="244,250 238,264 250,264" fill="#94a3b8"/>
+<line x1="238" y1="268" x2="250" y2="268" stroke="#94a3b8" stroke-width="2"/>
+<line x1="580" y1="80" x2="556" y2="80" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3"/>
+<line x1="556" y1="80" x2="556" y2="210" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3"/>
+<polygon points="556,120 550,134 562,134" fill="#94a3b8"/>
+<line x1="550" y1="138" x2="562" y2="138" stroke="#94a3b8" stroke-width="2"/>
+<line x1="580" y1="340" x2="556" y2="340" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3"/>
+<line x1="556" y1="210" x2="556" y2="340" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3"/>
+<polygon points="556,250 550,264 562,264" fill="#94a3b8"/>
+<line x1="550" y1="268" x2="562" y2="268" stroke="#94a3b8" stroke-width="2"/>
+<line x1="220" y1="210" x2="244" y2="210" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3"/>
+<line x1="580" y1="210" x2="556" y2="210" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3"/>
+<text x="256" y="112" font-size="9.5" fill="#94a3b8">体二极管（每管都有）</text>
+<g><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.44;0.5;1" dur="7s" repeatCount="indefinite"/><circle r="5" fill="#059669"><animateMotion dur="3.5s" begin="-0.50s" repeatCount="indefinite" path="M220,84 V206 H378"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="3.5s" begin="0.38s" repeatCount="indefinite" path="M220,84 V206 H378"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="3.5s" begin="1.25s" repeatCount="indefinite" path="M220,84 V206 H378"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="3.5s" begin="2.12s" repeatCount="indefinite" path="M220,84 V206 H378"/></circle><circle r="5" fill="#059669"><animateMotion dur="3.5s" begin="-0.50s" repeatCount="indefinite" path="M422,210 H580 V336"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="3.5s" begin="0.38s" repeatCount="indefinite" path="M422,210 H580 V336"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="3.5s" begin="1.25s" repeatCount="indefinite" path="M422,210 H580 V336"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="3.5s" begin="2.12s" repeatCount="indefinite" path="M422,210 H580 V336"/></circle></g><g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.46;0.52;0.92;0.98;1" dur="7s" repeatCount="indefinite"/><circle r="5" fill="#dc2626"><animateMotion dur="3.5s" begin="-0.50s" repeatCount="indefinite" path="M580,84 V206 H422"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="3.5s" begin="0.38s" repeatCount="indefinite" path="M580,84 V206 H422"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="3.5s" begin="1.25s" repeatCount="indefinite" path="M580,84 V206 H422"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="3.5s" begin="2.12s" repeatCount="indefinite" path="M580,84 V206 H422"/></circle><circle r="5" fill="#dc2626"><animateMotion dur="3.5s" begin="-0.50s" repeatCount="indefinite" path="M378,210 H220 V336"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="3.5s" begin="0.38s" repeatCount="indefinite" path="M378,210 H220 V336"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="3.5s" begin="1.25s" repeatCount="indefinite" path="M378,210 H220 V336"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="3.5s" begin="2.12s" repeatCount="indefinite" path="M378,210 H220 V336"/></circle></g><g opacity="0"><animate attributeName="opacity" values="0;0;0.9;0;0" keyTimes="0;0.54;0.6;0.7;1" dur="7s" repeatCount="indefinite"/><circle r="5" fill="#dc2626"><animateMotion dur="3.5s" begin="-0.50s" repeatCount="indefinite" path="M220,88 V332"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="3.5s" begin="0.20s" repeatCount="indefinite" path="M220,88 V332"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="3.5s" begin="0.90s" repeatCount="indefinite" path="M220,88 V332"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="3.5s" begin="1.60s" repeatCount="indefinite" path="M220,88 V332"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="3.5s" begin="2.30s" repeatCount="indefinite" path="M220,88 V332"/></circle></g><g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.72;0.78;0.9;0.96;1" dur="7s" repeatCount="indefinite"/><circle r="5" fill="#7c3aed"><animateMotion dur="7s" begin="-0.50s" repeatCount="indefinite" path="M422,206 H556 V88"/></circle>
+<circle r="5" fill="#7c3aed"><animateMotion dur="7s" begin="1.83s" repeatCount="indefinite" path="M422,206 H556 V88"/></circle>
+<circle r="5" fill="#7c3aed"><animateMotion dur="7s" begin="4.17s" repeatCount="indefinite" path="M422,206 H556 V88"/></circle><circle r="5" fill="#7c3aed"><animateMotion dur="7s" begin="-0.50s" repeatCount="indefinite" path="M244,332 V214 H378"/></circle>
+<circle r="5" fill="#7c3aed"><animateMotion dur="7s" begin="1.83s" repeatCount="indefinite" path="M244,332 V214 H378"/></circle>
+<circle r="5" fill="#7c3aed"><animateMotion dur="7s" begin="4.17s" repeatCount="indefinite" path="M244,332 V214 H378"/></circle><circle r="5" fill="#7c3aed"><animateMotion dur="7s" begin="-0.50s" repeatCount="indefinite" path="M378,210 H422"/></circle>
+<circle r="5" fill="#7c3aed"><animateMotion dur="7s" begin="3.00s" repeatCount="indefinite" path="M378,210 H422"/></circle></g><text x="400" y="424" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">① 正转：A=1 → Q1+Q4 导通，电流 +12V→Q1→电机→Q4→GND——M 右转<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.02;0.3;0.36;1" dur="7s" repeatCount="indefinite"/></text><text x="400" y="424" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">② 反转：B=1 → Q2+Q3 导通，电流整体掉头——换电机两根线就这么干<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.36;0.42;0.68;0.74;1" dur="7s" repeatCount="indefinite"/></text><text x="400" y="424" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">③ 致命错误：同臂齐开 = +12V 直通 GND，毫秒级烧管——换向必须死区 1~2µs<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.54;0.6;0.78;0.84;1" dur="7s" repeatCount="indefinite"/></text><text x="400" y="424" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">④ 全关滑行：电感电流没处去，体二极管搭桥流回电源——动能回收，这就是刹车<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.84;0.9;1" dur="7s" repeatCount="indefinite"/></text><g opacity="0">
+<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.82;0.86;1" dur="7s" repeatCount="indefinite"/>
+<rect x="50" y="428" width="700" height="34" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+<text x="400" y="450" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">四个开关两个状态位——这就是 H 桥。驱动芯片（DRV8833/L298）把死区、自举、过流保护全打包；高侧管源极悬在电机电压上，要靠自举电容「举」着栅极才开得动。</text>
+</g></svg>

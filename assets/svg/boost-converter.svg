@@ -22,13 +22,13 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">Boost 升压：电感「叠罗汉」把电压顶上去</text>
 
 <text x="230" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">Boost 变换器（12V → 24V，占空比 50%）</text>
-<text x="18" y="102" font-size="12.5" font-weight="bold" fill="#b45309">12V</text>
+<text x="14" y="102" font-size="12.5" font-weight="bold" fill="#b45309">12V</text>
 <line x1="48" y1="96" x2="90" y2="96" stroke="#334155" stroke-width="2.5"/>
 <path d="M90,96 q8,-16 16,0 q8,16 16,0 q8,-16 16,0 q8,16 16,0 q8,-16 16,0" fill="none" stroke="#7c3aed" stroke-width="2.5"/>
 <text x="106" y="70" font-size="12" font-weight="bold" fill="#7c3aed">电感 L</text>
 <line x1="170" y1="96" x2="205" y2="96" stroke="#334155" stroke-width="2.5"/>
 <circle cx="205" cy="96" r="4" fill="#334155"/>
-<text x="182" y="118" font-size="10" fill="#7c3aed">开关节点</text>
+<text x="166" y="86" font-size="10" fill="#7c3aed">开关节点</text>
 <line x1="205" y1="96" x2="230" y2="96" stroke="#334155" stroke-width="2.5"/>
 <polygon points="254,96 230,84 230,108" fill="none" stroke="#334155" stroke-width="2.5"/>
 <line x1="254" y1="84" x2="254" y2="108" stroke="#334155" stroke-width="3"/>

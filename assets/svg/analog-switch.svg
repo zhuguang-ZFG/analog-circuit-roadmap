@@ -39,6 +39,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <line x1="140" y1="210" x2="168" y2="186" stroke="#059669" stroke-width="3">
 <animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.6;0.64;1" dur="6s" repeatCount="indefinite"/></line>
 <circle cx="176" cy="210" r="3.5" fill="#334155"/>
+<line x1="176" y1="210" x2="210" y2="210" stroke="#334155" stroke-width="2.5"/>
 <text x="96" y="240" font-size="11" font-weight="bold" fill="#334155">PMOS</text>
 <text x="96" y="252" font-size="9.5" fill="#475569">传高电平好手</text>
 <text x="226" y="130" font-size="10.5" fill="#7c3aed">EN/EN̅ 互补控制</text>

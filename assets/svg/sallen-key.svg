@@ -51,7 +51,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="256" y="160" font-size="13" font-weight="bold" fill="#dc2626">−</text>
 <line x1="250" y1="140" x2="244" y2="140" stroke="#334155" stroke-width="2.5"/>
 <line x1="310" y1="140" x2="380" y2="140" stroke="#334155" stroke-width="2.5"/>
-<text x="316" y="126" font-size="11" font-weight="bold" fill="#2563eb">输出</text>
+<text x="336" y="126" font-size="11" font-weight="bold" fill="#2563eb">输出</text>
 <circle cx="350" cy="140" r="4" fill="#334155"/>
 <line x1="350" y1="140" x2="350" y2="195" stroke="#334155" stroke-width="2"/>
 <line x1="350" y1="195" x2="244" y2="195" stroke="#334155" stroke-width="2"/>
@@ -67,7 +67,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <line x1="420" y1="262" x2="750" y2="262" stroke="#64748b" stroke-width="1.4"/>
 <line x1="566" y1="230" x2="566" y2="370" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
 <text x="556" y="384" font-size="10.5" fill="#475569">fc</text>
-<text x="440" y="246" font-size="10.5" fill="#059669">Q=0.707 最平坦（Butterworth）</text>
+<text x="562" y="246" text-anchor="end" font-size="10.5" fill="#059669">Q=0.707 最平坦（Butterworth）</text>
 <text x="580" y="222" font-size="10.5" fill="#dc2626">Q=3 峰化鼓包→再大就振荡</text>
 <text x="648" y="330" font-size="10.5" fill="#475569">−40dB/dec</text>
 <text x="440" y="86" font-size="11.5" font-weight="bold" fill="#475569">高频输入（实线）→ 输出（衰减）</text>

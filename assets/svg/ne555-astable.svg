@@ -30,7 +30,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <rect x="92" y="180" width="16" height="40" fill="#fff" stroke="#64748b" stroke-width="2"/>
 <rect x="92" y="220" width="16" height="40" fill="#fff" stroke="#64748b" stroke-width="2"/>
 <line x1="100" y1="260" x2="100" y2="290" stroke="#64748b" stroke-width="2"/>
-<text x="66" y="152" font-size="9.5" fill="#475569">5kΩ×3</text>
+<text x="62" y="152" font-size="9.5" fill="#475569">5k×3</text>
 <text x="116" y="184" font-size="10" font-weight="bold" fill="#7c3aed">2/3=6V</text>
 <text x="116" y="244" font-size="10" font-weight="bold" fill="#7c3aed">1/3=3V</text>
 <polygon points="170,165 170,195 194,180" fill="#fff" stroke="#334155" stroke-width="2"/>

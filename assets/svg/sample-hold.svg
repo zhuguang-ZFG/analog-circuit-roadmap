@@ -36,7 +36,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <line x1="208" y1="192" x2="232" y2="192" stroke="#2563eb" stroke-width="3"/>
 <line x1="220" y1="192" x2="220" y2="210" stroke="#334155" stroke-width="2"/>
 <line x1="220" y1="210" x2="220" y2="224" stroke="#334155" stroke-width="2.5"/><line x1="204" y1="224" x2="236" y2="224" stroke="#334155" stroke-width="3"/><line x1="210" y1="230" x2="230" y2="230" stroke="#334155" stroke-width="3"/><line x1="216" y1="236" x2="224" y2="236" stroke="#334155" stroke-width="3"/>
-<text x="238" y="190" font-size="10.5" fill="#2563eb">C_hold</text>
+<text x="200" y="190" text-anchor="end" font-size="10.5" fill="#2563eb">C_hold</text>
 <polygon points="250,110 250,170 310,140" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
 <text x="256" y="134" font-size="12" font-weight="bold" fill="#059669">+</text>
 <text x="256" y="160" font-size="12" font-weight="bold" fill="#dc2626">−</text>

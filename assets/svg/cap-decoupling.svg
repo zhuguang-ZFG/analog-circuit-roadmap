@@ -43,7 +43,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <line x1="480" y1="96" x2="540" y2="96" stroke="#334155" stroke-width="2.5"/>
 <path d="M540,96 q6,-14 12,0 q6,14 12,0 q6,-14 12,0 q6,14 12,0 q6,-14 12,0" fill="none" stroke="#7c3aed" stroke-width="2.5" opacity="0.45"/>
 <line x1="600" y1="96" x2="650" y2="96" stroke="#334155" stroke-width="2.5"/>
-<text x="540" y="76" font-size="11" fill="#94a3b8">走线电感（远，无所谓）</text>
+<text x="644" y="76" text-anchor="end" font-size="11" fill="#94a3b8">走线电感（远，无所谓）</text>
 <rect x="650" y="76" width="90" height="40" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
 <text x="695" y="100" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">IC</text>
 <line x1="695" y1="116" x2="695" y2="146" stroke="#334155" stroke-width="2"/>
@@ -63,7 +63,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <circle r="4.5" fill="#059669"><animateMotion dur="1.0s" begin="0.00s" repeatCount="indefinite" path="M634,126 V100 H648 M654,96 H688"/></circle>
 <circle r="4.5" fill="#059669"><animateMotion dur="1.0s" begin="0.25s" repeatCount="indefinite" path="M634,126 V100 H648 M654,96 H688"/></circle>
 </g>
-<text x="470" y="136" font-size="11" font-weight="bold" fill="#059669" opacity="0">本地水库瞬时放水，电压纹丝不动
+<text x="608" y="136" text-anchor="end" font-size="11" font-weight="bold" fill="#059669" opacity="0">本地水库瞬时放水，电压纹丝不动
 <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.42;0.46;0.62;0.66;1" dur="5s" repeatCount="indefinite"/></text>
 
 <text x="64" y="290" font-size="11.5" font-weight="bold" fill="#dc2626">A：电源脚电压塌陷 0.5V+（复位/误触发温床）</text>

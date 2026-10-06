@@ -50,11 +50,11 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <polygon points="354,279 342,300 330,282" fill="#334155"/>
 <line x1="360" y1="288" x2="348" y2="270" stroke="#334155" stroke-width="3.5"/>
 <line x1="354" y1="279" x2="430" y2="230" stroke="#334155" stroke-width="2.5"/>
-<text x="352" y="302" font-size="12" font-weight="bold" fill="#475569">D4</text>
+<text x="356" y="302" font-size="12" font-weight="bold" fill="#475569">D4</text>
 <line x1="260" y1="120" x2="260" y2="70" stroke="#334155" stroke-width="2.5"/>
 <line x1="260" y1="70" x2="600" y2="70" stroke="#334155" stroke-width="2.5"/>
 <line x1="260" y1="340" x2="600" y2="340" stroke="#334155" stroke-width="2.5"/>
-<text x="272" y="76" font-size="14" font-weight="bold" fill="#059669">+</text>
+<text x="272" y="64" font-size="14" font-weight="bold" fill="#059669">+</text>
 <text x="272" y="344" font-size="14" font-weight="bold" fill="#dc2626">−</text>
 <line x1="600" y1="70" x2="600" y2="100" stroke="#334155" stroke-width="2.5"/>
 <line x1="600" y1="80" x2="600" y2="100" stroke="#334155" stroke-width="2.5"/>
