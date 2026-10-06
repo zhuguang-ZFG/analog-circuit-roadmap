@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-generate_svgs.py — 一键再生成《通往模拟电路之路》全部 60 张 SVG SMIL 动画
+generate_svgs.py — 一键再生成《通往模拟电路之路》全部 64 张 SVG SMIL 动画
 用法:  python generate_svgs.py            # 输出到 ../assets/svg/
 风格:  参考 BMS-Z 项目 —— 浅色底 + SMIL 节拍字幕 + 深色模式自适应 + 拟人化讲解
 所有电路参数经过自洽核算（datasheet 级），详见各函数注释。
@@ -1955,6 +1955,9 @@ def make_sar_adc():
 <polygon points="190,100 190,150 240,125" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
 <text x="196" y="118" font-size="11" font-weight="bold" fill="#059669">+</text>
 <text x="196" y="142" font-size="11" font-weight="bold" fill="#dc2626">−</text>
+<circle r="4.5" fill="#7c3aed"><animateMotion dur="{DA}s" begin="-0.5s" repeatCount="indefinite" path="M250,100 L242,100 L242,112"/></circle>
+<circle r="4.5" fill="#7c3aed"><animateMotion dur="{DA}s" begin="-1.3s" repeatCount="indefinite" path="M280,127 L280,188"/></circle>
+<circle r="4.5" fill="#059669"><animateMotion dur="{DA}s" begin="-2.1s" repeatCount="indefinite" path="M316,188 L316,62 L318,62"/></circle>
 <rect x="270" y="190" width="90" height="44" rx="6" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
 <text x="315" y="210" text-anchor="middle" font-size="11" fill="#334155">SAR 逻辑</text>
 <text x="315" y="226" text-anchor="middle" font-size="10" fill="#475569">留/退裁决</text>
@@ -3485,6 +3488,10 @@ def make_signal_chain():
 <text x="340" y="436" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#475569">INA333 ×40</text>
 <text x="580" y="436" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#475569">低通 fc=10Hz</text>
 <text x="760" y="436" text-anchor="end" font-size="10.5" font-weight="bold" fill="#475569">ADC</text>
+<circle r="5" fill="#f59e0b"><animateMotion dur="{DSL}s" begin="-0.7s" repeatCount="indefinite" path="M348,82 L444,82"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="{DSL}s" begin="-1.5s" repeatCount="indefinite" path="M92,417 L336,417"/></circle>
+<circle r="5" fill="#7c3aed"><animateMotion dur="{DSL}s" begin="-2.3s" repeatCount="indefinite" path="M588,82 L684,82"/></circle>
+{pulse(688, 50, 90, 84, '#7c3aed', 1.9, 8)}
 <rect x="446" y="500" width="340" height="60" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="1.5"/>
 <text x="462" y="524" font-size="11.5" font-weight="bold" fill="#b45309">不做前端处理会怎样？</text>
 <text x="462" y="548" font-size="11" fill="#475569">不放大：77 码 ≈ 6.3 位　放大后：3080 码 ≈ 11.6 位有效</text>
@@ -4000,6 +4007,9 @@ def make_comparator_opamp():
 <text x="430" y="536" font-size="11" font-weight="bold" fill="#b45309">所以：判决用比较器，驱动用运放</text>
 <circle r="5" fill="#2563eb"><animateMotion dur="{DC}s" repeatCount="indefinite" path="{curve(opamp,'#2563eb')[9:]}" keyPoints="0;1" keyTimes="0;1"/></circle>
 <circle r="5" fill="#f59e0b"><animateMotion dur="{DC}s" begin="-0.4s" repeatCount="indefinite" path="M92,170 L158,170"/></circle>
+<circle r="5" fill="#f59e0b"><animateMotion dur="{DC}s" begin="-0.7s" repeatCount="indefinite" path="M82,170 L118,170"/></circle>
+<circle r="5" fill="#2563eb"><animateMotion dur="{DC}s" begin="-1.5s" repeatCount="indefinite" path="M288,250 L232,250 L232,196 L172,194"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="{DC}s" begin="-2.3s" repeatCount="indefinite" path="M242,182 L288,182"/></circle>
 {pulse(58, 434, 304, 90, '#dc2626', 1.8, 10)}
 {pulse(tx(1.35), vy(4.9)+16, 150, 22, '#059669', 1.4, 6)}
 {pulse(408, 452, 300, 74, '#2563eb', 2.2, 10)}
@@ -4162,6 +4172,10 @@ def make_probe_loading():
 <circle r="5" fill="#f59e0b"><animateMotion dur="{DP}s" begin="-0.8s" repeatCount="indefinite" path="M202,150 L248,150"/></circle>
 <circle r="5" fill="#f59e0b"><animateMotion dur="{DP}s" begin="-1.3s" repeatCount="indefinite" path="M250,152 L250,166 L222,166 L222,180"/></circle>
 <circle r="5" fill="#2563eb"><animateMotion dur="{DP}s" begin="-1.8s" repeatCount="indefinite" path="M318,202 L318,244 L270,244 L270,258"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DP}s" begin="-0.6s" repeatCount="indefinite" path="M224,166 L316,166"/></circle>
+<circle r="4.5" fill="#dc2626"><animateMotion dur="{DP}s" begin="-1.1s" repeatCount="indefinite" path="M318,168 L318,200"/></circle>
+<circle r="4.5" fill="#059669"><animateMotion dur="{DP}s" begin="-1.6s" repeatCount="indefinite" path="M270,246 L270,262"/></circle>
+{pulse(216, 126, 90, 22, '#2563eb', 1.9, 6)}
 {pulse(52, 500, 96, 78, '#dc2626', 1.6, 12)}
 {pulse(52, 296, 300, 86, '#dc2626', 2.0, 10)}
 {pulse(400, 512, 380, 74, '#dc2626', 2.4, 10)}
@@ -4434,6 +4448,10 @@ def make_pushpull_stage():
 <text x="400" y="516" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">三兄弟对比：推挽 vs 开漏 vs 三态</text>
 <text x="400" y="542" text-anchor="middle" font-size="11.5" fill="#475569">推挽：两个方向都主动驱动，但**不能共享总线**　·　开漏：只能拉低，靠上拉出高，**可以线与**　·　三态：加了「隐身」态，**可以共享总线**</text>
 <text x="400" y="566" text-anchor="middle" font-size="11" fill="#64748b">选哪种，先问一句：这根线上会不会有第二个驱动器？</text>
+<circle r="5" fill="#f59e0b"><animateMotion dur="{DP}s" begin="-0.6s" repeatCount="indefinite" path="M98,92 L148,92"/></circle>
+<circle r="5" fill="#7c3aed"><animateMotion dur="{DP}s" begin="-1.6s" repeatCount="indefinite" path="M150,304 L150,312"/></circle>
+<circle r="4.5" fill="#2563eb"><animateMotion dur="{DP}s" begin="-2.4s" repeatCount="indefinite" path="M154,196 L286,196"/></circle>
+{pulse(290, 176, 70, 24, '#059669', 1.7, 6)}
 {pulse(40, 338, 330, 134, '#b91c1c', 1.9, 10)}
 '''
     svg += caption("① 上管导通 = 主动推高；下管导通 = 主动拉低——两个方向都有低阻通路", "#2563eb", DP,
@@ -4591,6 +4609,249 @@ def make_ref_showdown():
     save('ref-showdown.svg', svg + '</svg>')
 
 
+# ======================= 图 61：PN 结的形成（第 2 章 2.1） =======================
+def make_pn_junction():
+    DJ = 11
+    svg = svg_open('PN 结：一堵会自己调节高度的「电荷墙」', h=620)
+    svg += f'''
+<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">扩散想散开，电场往回推——平衡点就是内建电势</text>
+<rect x="60" y="80" width="230" height="120" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="175" y="106" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb">P 型（空穴多）</text>
+<text x="175" y="128" text-anchor="middle" font-size="11" fill="#475569">受主离子带负电（固定不动）</text>
+<text x="175" y="150" text-anchor="middle" font-size="11" fill="#475569">空穴 +</text>
+<rect x="300" y="80" width="230" height="120" rx="6" fill="#fef2f2" stroke="#dc2626" stroke-width="2"/>
+<text x="415" y="106" text-anchor="middle" font-size="13" font-weight="bold" fill="#dc2626">N 型（电子多）</text>
+<text x="415" y="128" text-anchor="middle" font-size="11" fill="#475569">施主离子带正电（固定不动）</text>
+<text x="415" y="150" text-anchor="middle" font-size="11" fill="#475569">电子 −</text>
+<rect x="270" y="80" width="50" height="120" fill="#f1f5f9" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4,3"/>
+<text x="295" y="72" text-anchor="middle" font-size="11" font-weight="bold" fill="#64748b">耗尽层</text>
+<line x1="270" y1="130" x2="250" y2="130" stroke="#2563eb" stroke-width="2.5"/>
+<line x1="320" y1="130" x2="340" y2="130" stroke="#dc2626" stroke-width="2.5"/>
+<circle r="6" fill="#dc2626"><animateMotion dur="{DJ}s" repeatCount="indefinite" path="M410,150 L316,150 L306,150"/></circle>
+<circle r="6" fill="#2563eb"><animateMotion dur="{DJ}s" begin="-0.8s" repeatCount="indefinite" path="M180,150 L274,150 L284,150"/></circle>
+<circle r="6" fill="#dc2626"><animateMotion dur="{DJ}s" begin="-1.6s" repeatCount="indefinite" path="M300,150 L340,150"/></circle>
+<line x1="295" y1="230" x2="295" y2="290" stroke="#7c3aed" stroke-width="2.5"/>
+<path d="M288,278 L295,292 L302,278 Z" fill="#7c3aed"/>
+<text x="306" y="246" font-size="11" font-weight="bold" fill="#7c3aed">内建电场 E</text>
+<text x="306" y="266" font-size="11" fill="#475569">把电子往回推</text>
+<line x1="60" y1="318" x2="740" y2="318" stroke="#cbd5e1" stroke-width="1"/>
+<text x="60" y="348" font-size="12.5" font-weight="bold" fill="#334155">三步认识它</text>
+<text x="60" y="376" font-size="11.5" fill="#475569">① <tspan font-weight="bold" fill="#dc2626">复合</tspan>：浓度差驱动扩散，交界处电子掉进空穴两两湮灭（同一滴墨水滴进清水的统计规律）</text>
+<text x="60" y="402" font-size="11.5" fill="#475569">② <tspan font-weight="bold" fill="#7c3aed">建墙</tspan>：跑掉的载流子留下不能动的带电离子 → 电荷墙 → 电场把后续电子往回推</text>
+<text x="60" y="428" font-size="11.5" fill="#475569">③ <tspan font-weight="bold" fill="#059669">平衡</tspan>：扩散多一分、墙厚一分、推力大一分 —— 最终恰好抵消，动态平衡</text>
+<rect x="60" y="452" width="680" height="76" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="1.8"/>
+<text x="76" y="478" font-size="12" font-weight="bold" fill="#b45309">正向导通不是「过了 0.7V 突然开」</text>
+<text x="76" y="502" font-size="11.5" fill="#475569">外加正压把内建电势垫高抵消一部分 → 墙变薄 → 扩散重新启动 → 电流爆发式增长。</text>
+<text x="76" y="520" font-size="11.5" fill="#475569">二极管是「外加电压与内建电势的拔河」，指数曲线就是拔河的比分牌（见 2.2）。</text>
+{pulse(268, 78, 54, 124, '#7c3aed', 2.0, 8)}
+<circle cx="295" cy="130" r="5" fill="none" stroke="#7c3aed" stroke-width="2.4">
+<animate attributeName="r" values="5;13;5" dur="1.8s" repeatCount="indefinite"/></circle>
+'''
+    svg += caption("① 浓度差驱动扩散：N 侧电子往 P 侧跑，P 侧空穴往 N 侧跑", "#dc2626", DJ,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=560)
+    svg += caption("② 复合掉的地方留下不能动的离子 → 变成一堵「电荷墙」（耗尽层）", "#7c3aed", DJ,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=560)
+    svg += caption("③ 墙越高推力越大：扩散多一分它就厚一分——直到势均力敌", "#2563eb", DJ,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=560)
+    svg += caption("④ 二极管不是开关，是拔河：外加电压抵掉多少内建电势，电流就涨多少", "#b45309", DJ,
+                   "0;0;1;1", "0;0.85;0.9;1", y=560)
+    svg += note_box("Si 的内建电势约 0.7V——记住它是「平衡态的墙高」，不是「导通门槛」", 600, DJ,
+                    "0;0.9;0.94;1", w=720)
+    save('pn-junction.svg', svg + '</svg>')
+
+
+# ======================= 图 62：MOSFET 输出特性（第 4 章 4.2） =======================
+def make_mosfet_curves():
+    DM = 11
+    X0, X1, Y0, Y1 = 400, 764, 116, 400
+    px = lambda vds: X0 + vds/10.0*(X1-X0)
+    py = lambda id_: Y1 - id_/30.0*(Y1-Y0)
+    VT, K = 2.0, 0.9
+    def curve(vgs, color, wid=2.4):
+        pts = []
+        for vds in np.linspace(0, 10, 240):
+            vov = vgs - VT
+            if vov <= 0:
+                i = 0.0
+            elif vds < vov:
+                i = K*(vov*vds - vds*vds/2)      # 线性区
+            else:
+                i = K*vov*vov/2                   # 饱和区（恒流）
+            pts.append(f"{px(vds):.0f},{py(min(i,30)):.0f}")
+        return f'<path d="M' + " L".join(pts) + f'" fill="none" stroke="{color}" stroke-width="{wid}"/>'
+    svg = svg_open('MOSFET 输出特性：「饱和」在这里恰恰是放大区', h=620)
+    svg += f'''
+<text x="200" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">一条曲线 = 一个 V_GS；夹断点连成虚线</text>
+<text x="40" y="96" font-size="11.5" font-weight="bold" fill="#2563eb">线性区（V_DS &lt; V_GS−V_TH）</text>
+<text x="52" y="116" font-size="11" fill="#475569">沟道没夹断，I_D 随 V_DS 近似线性</text>
+<text x="52" y="134" font-size="11" fill="#475569">→ 管子 = 受 V_GS 控制的<tspan font-weight="bold" fill="#2563eb">可变电阻</tspan></text>
+<text x="40" y="164" font-size="11.5" font-weight="bold" fill="#059669">饱和区（V_DS ≥ V_GS−V_TH）</text>
+<text x="52" y="184" font-size="11" fill="#475569">漏端夹断，再加 V_DS 也不增流</text>
+<text x="52" y="202" font-size="11" fill="#475569">→ 管子 = <tspan font-weight="bold" fill="#059669">恒流源</tspan>，放大就用这里</text>
+<text x="40" y="232" font-size="11.5" font-weight="bold" fill="#dc2626">词同义反的坑</text>
+<text x="52" y="252" font-size="11" fill="#475569">MOSFET 饱和 = 恒流源 = 放大区</text>
+<text x="52" y="270" font-size="11" fill="#475569">BJT 饱和 = 开关闭合 = 最小压降</text>
+<text x="52" y="292" font-size="11" font-weight="bold" fill="#b45309">记法：MOS 看沟道，BJT 看结</text>
+{curve(3.0, '#94a3b8', 2.0)}
+{curve(4.0, '#2563eb', 2.4)}
+{curve(5.0, '#059669', 2.4)}
+{curve(6.0, '#7c3aed', 2.4)}
+<line x1="{X0}" y1="{Y1}" x2="{X1}" y2="{Y1}" stroke="#64748b" stroke-width="1.6"/>
+<line x1="{X0}" y1="{Y0}" x2="{X0}" y2="{Y1}" stroke="#64748b" stroke-width="1.6"/>
+<text x="{X1}" y="{Y1+40}" text-anchor="end" font-size="11" fill="#475569">V_DS →</text>
+<text x="{X0-6}" y="{Y0+12}" text-anchor="end" font-size="10.5" fill="#475569">30mA</text>
+<text x="{X0-6}" y="{py(10)+4:.0f}" text-anchor="end" font-size="10.5" fill="#475569">10mA</text>
+<text x="{px(5):.0f}" y="{Y1+22}" text-anchor="middle" font-size="10" fill="#475569">5V</text>
+<text x="{px(10):.0f}" y="{Y1+22}" text-anchor="middle" font-size="10" fill="#475569">10V</text>
+<line x1="{px(2):.0f}" y1="{Y0}" x2="{px(2):.0f}" y2="{Y1}" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="{px(2)+6:.0f}" y="{Y0+16}" font-size="10" fill="#94a3b8">V_TH=2V</text>
+<path d="M{px(2):.0f},{py(0.9):.0f} L{px(4):.0f},{py(3.6):.0f} L{px(6):.0f},{py(8.1):.0f} L{px(8):.0f},{py(14.4):.0f}" fill="none" stroke="#dc2626" stroke-width="1.6" stroke-dasharray="5,4"/>
+<circle r="5" fill="#059669"><animateMotion dur="{DM}s" repeatCount="indefinite" path="{curve(5.0,'#059669')[9:]}" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#2563eb"><animateMotion dur="{DM}s" begin="-1.4s" repeatCount="indefinite" path="{curve(4.0,'#2563eb')[9:]}" keyPoints="0;1" keyTimes="0;1"/></circle>
+<text x="{px(6.5):.0f}" y="{Y0+34}" font-size="10.5" font-weight="bold" fill="#dc2626">虚线上是夹断点：分界线</text>
+<text x="{X0+8}" y="{Y0-42}" font-size="11" font-weight="bold" fill="#2563eb">V_GS 越大，曲线越往上抬</text>
+<text x="{X0+8}" y="{Y0-24}" font-size="11" fill="#475569">抬升量 ∝ (V_GS−V_TH)² → 跨导 g_m</text>
+<rect x="40" y="420" width="720" height="86" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,4"/>
+<text x="60" y="448" font-size="12" font-weight="bold" fill="#334155">河流比喻：沟道 = 河床</text>
+<text x="60" y="472" font-size="11.5" fill="#475569">V_DS 小：河水从源平缓流到漏，水流随坡度线性增加（线性区）</text>
+<text x="60" y="494" font-size="11.5" fill="#475569">V_DS 够大：漏端河床被「夹断」，水到断口被强电场直接甩过去——水量只由上游（V_GS）决定</text>
+{pulse(276, 114, 30, 288, '#dc2626', 2.0, 8)}
+'''
+    svg += caption("① 线性区：沟道没夹断，I_D 跟 V_DS 走——管子就是个可变电阻（模拟开关用这里）", "#2563eb", DM,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=556)
+    svg += caption("② 夹断点：V_DS = V_GS−V_TH 处开始「恒流」——虚线把两个区分开", "#dc2626", DM,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=556)
+    svg += caption("③ 饱和区里 I_D 只听 V_GS：曲线越高 = V_GS 越大，这就是跨导 g_m", "#059669", DM,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=556)
+    svg += caption("④ 别被「饱和」骗：MOS 的饱和 = 恒流源 = 放大区；BJT 的饱和 = 开关闭合", "#b45309", DM,
+                   "0;0;1;1", "0;0.85;0.9;1", y=556)
+    save('mosfet-curves.svg', svg + '</svg>')
+
+
+# ======================= 图 63：555 三种模式（第 10 章 10.2） =======================
+def make_555_modes():
+    DN = 11
+    svg = svg_open('555 的三种人格：无稳态、单稳态、双稳态', h=620)
+    svg += f'''
+<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">同一颗芯，接法不同 → 人格完全不同；区别只在「往哪个脚接 RC」</text>
+'''
+    cards = [
+        ('无稳态 Astable', '#2563eb', 'R1 + R2 + C 自由振荡', '自激，不需要触发', '时钟 / PWM / 蜂鸣器 / 闪光灯',
+         'f ≈ 1.44 / ((R1+2R2)·C)', True),
+        ('单稳态 Monostable', '#059669', 'TRIG 触发一次 → 定时脉冲', '按一下，亮一拍', '按键消抖 / 定时 / 看门狗',
+         't ≈ 1.1·R·C', False),
+        ('双稳态 Bistable', '#7c3aed', 'TRIG/THRES 当 S/R 用', '两个稳定态，靠触发翻转', '简易锁存开关',
+         '状态保持，无需 RC', False),
+    ]
+    x = 30
+    for name, col, mode, beh, use, formula, osc in cards:
+        svg += f'<rect x="{x}" y="76" width="240" height="300" rx="10" fill="#f8fafc" stroke="{col}" stroke-width="1.8"/>'
+        svg += f'<text x="{x+120}" y="104" text-anchor="middle" font-size="13.5" font-weight="bold" fill="{col}">{name}</text>'
+        svg += f'<line x1="{x+14}" y1="118" x2="{x+226}" y2="118" stroke="#cbd5e1" stroke-width="1"/>'
+        svg += f'<text x="{x+16}" y="144" font-size="11.5" fill="#475569">接法</text>'
+        svg += f'<text x="{x+16}" y="164" font-size="11" font-weight="bold" fill="#334155">{mode}</text>'
+        svg += f'<text x="{x+16}" y="196" font-size="11.5" fill="#475569">脾气</text>'
+        svg += f'<text x="{x+16}" y="216" font-size="11" font-weight="bold" fill="{col}">{beh}</text>'
+        svg += f'<text x="{x+16}" y="248" font-size="11.5" fill="#475569">用途</text>'
+        svg += f'<text x="{x+16}" y="268" font-size="10.5" fill="#334155">{use}</text>'
+        svg += f'<text x="{x+16}" y="300" font-size="11.5" fill="#475569">关键式</text>'
+        svg += f'<text x="{x+16}" y="322" font-size="11" font-weight="bold" fill="#b45309">{formula}</text>'
+        # 迷你波形
+        if osc:
+            pts = []
+            for i in range(121):
+                t = i/120
+                v = 1 if (t % 0.5) < 0.34 else 0
+                pts.append(f"{x+30+t*180:.0f},{352-v*22:.0f}")
+            svg += f'<path d="M' + " L".join(pts) + f'" fill="none" stroke="{col}" stroke-width="2.2"/>'
+            svg += f'<text x="{x+120}" y="368" text-anchor="middle" font-size="9.5" fill="#64748b">连续方波（自由跑）</text>'
+        else:
+            base = 352
+            svg += f'<line x1="{x+30}" y1="{base}" x2="{x+210}" y2="{base}" stroke="{col}" stroke-width="2.2"/>'
+            svg += f'<line x1="{x+80}" y1="{base}" x2="{x+80}" y2="{base-22}" stroke="{col}" stroke-width="2.2"/>'
+            svg += f'<line x1="{x+80}" y1="{base-22}" x2="{x+140}" y2="{base-22}" stroke="{col}" stroke-width="2.2"/>'
+            svg += f'<line x1="{x+140}" y1="{base-22}" x2="{x+140}" y2="{base}" stroke="{col}" stroke-width="2.2"/>'
+            svg += f'<line x1="{x+140}" y1="{base}" x2="{x+210}" y2="{base}" stroke="{col}" stroke-width="2.2"/>'
+            svg += f'<text x="{x+120}" y="368" text-anchor="middle" font-size="9.5" fill="#64748b">触发一次 → 一个脉冲（或保持）</text>'
+        x += 253
+    svg += f'''
+<line x1="30" y1="404" x2="770" y2="404" stroke="#cbd5e1" stroke-width="1"/>
+<text x="400" y="432" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">三个模式的「同一性」与「差异」</text>
+<text x="400" y="456" text-anchor="middle" font-size="11.5" fill="#475569">同一颗芯：内部两个比较器（1/3、2/3 Vcc）+ 一个 SR 触发器 + 一只放电管</text>
+<text x="400" y="478" text-anchor="middle" font-size="11.5" fill="#475569">差异只在：电容接哪个脚、阈值脚接不接 RC、触发脚是否被自由拉到阈值之间</text>
+<text x="400" y="504" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#b45309">记住这一句：无稳态 = 自己踩自己；单稳态 = 别人踩一脚；双稳态 = 两个门轮流锁</text>
+<circle r="6" fill="#2563eb"><animateMotion dur="{DN}s" repeatCount="indefinite" path="M60,330 L240,330" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="6" fill="#059669"><animateMotion dur="{DN}s" begin="-1.1s" repeatCount="indefinite" path="M312,368 L312,330 L392,330" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="6" fill="#7c3aed"><animateMotion dur="{DN}s" begin="-2.2s" repeatCount="indefinite" path="M565,330 L745,330" keyPoints="0;1" keyTimes="0;1"/></circle>
+{pulse(38, 130, 224, 60, '#2563eb', 2.0, 8)}
+{pulse(291, 130, 224, 60, '#059669', 2.0, 8)}
+{pulse(544, 130, 224, 60, '#7c3aed', 2.0, 8)}
+'''
+    svg += caption("① 无稳态：电容自己充放，输出永远在翻——不需要外部触发（时钟最爱）", "#2563eb", DN,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=552)
+    svg += caption("② 单稳态：平时静默，TRIG 来一脚就输出一个 t≈1.1RC 的脉冲", "#059669", DN,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=552)
+    svg += caption("③ 双稳态：TRIG/THRES 当置位/复位用，两个稳态之间来回锁", "#7c3aed", DN,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=552)
+    svg += caption("④ 三种模式的差异只在「电容接哪只脚」——同一颗芯，三副面孔", "#b45309", DN,
+                   "0;0;1;1", "0;0.85;0.9;1", y=552)
+    save('555-modes.svg', svg + '</svg>')
+
+
+# ======================= 图 64：负反馈四种拓扑（第 12 章 12.7） =======================
+def make_feedback_topo():
+    DF = 11
+    def cell(x, y, sample, mix, locks, sid, zin, zout, col):
+        p = f'<rect x="{x}" y="{y}" width="164" height="150" rx="9" fill="#f8fafc" stroke="{col}" stroke-width="1.8"/>'
+        p += f'<text x="{x+82}" y="{y+26}" text-anchor="middle" font-size="11.5" font-weight="bold" fill="{col}">采样{sample} · {mix}混合</text>'
+        p += f'<line x1="{x+12}" y1="{y+38}" x2="{x+152}" y2="{y+38}" stroke="#cbd5e1" stroke-width="1"/>'
+        p += f'<text x="{x+12}" y="{y+60}" font-size="10.5" fill="#475569">钉死的量</text>'
+        p += f'<text x="{x+82}" y="{y+82}" text-anchor="middle" font-size="12.5" font-weight="bold" fill="{col}">{locks}</text>'
+        p += f'<text x="{x+12}" y="{y+104}" font-size="10.5" fill="#475569">等效身份</text>'
+        p += f'<text x="{x+152}" y="{y+104}" text-anchor="end" font-size="10.5" font-weight="bold" fill="#334155">{sid}</text>'
+        p += f'<text x="{x+12}" y="{y+124}" font-size="10.5" fill="#475569">输入阻抗</text>'
+        p += f'<text x="{x+152}" y="{y+124}" text-anchor="end" font-size="10.5" font-weight="bold" fill="{col}">{zin}</text>'
+        p += f'<text x="{x+12}" y="{y+142}" font-size="10.5" fill="#475569">输出阻抗</text>'
+        p += f'<text x="{x+152}" y="{y+142}" text-anchor="end" font-size="10.5" font-weight="bold" fill="{col}">{zout}</text>'
+        return p
+    svg = svg_open('负反馈四种拓扑：稳定什么，就采样什么', h=620)
+    svg += f'''
+<text x="400" y="60" text-anchor="middle" font-size="11" fill="#64748b">反馈网络只干两件事：采样一个量、混合回输入 → 2×2 = 四种拓扑</text>
+{cell(30, 86, '电压', '串联', '电压增益 A_v', '压控压源', '↑', '↓', '#2563eb')}
+{cell(213, 86, '电压', '并联', '跨阻 V_out/I_in', '流控压源', '↓', '↓', '#059669')}
+{cell(396, 86, '电流', '串联', '跨导 I_out/V_in', '压控流源', '↑', '↑', '#7c3aed')}
+{cell(579, 86, '电流', '并联', '电流增益 A_i', '流控流源', '↓', '↑', '#b45309')}
+<line x1="30" y1="258" x2="770" y2="258" stroke="#cbd5e1" stroke-width="1"/>
+<text x="40" y="288" font-size="12.5" font-weight="bold" fill="#334155">判读口诀</text>
+<text x="40" y="314" font-size="11.5" fill="#475569">想稳<tspan font-weight="bold" fill="#059669">电压</tspan> → 采样电压（输出阻抗跟着<tspan font-weight="bold">降</tspan>）　·　想稳<tspan font-weight="bold" fill="#dc2626">电流</tspan> → 采样电流（输出阻抗跟着<tspan font-weight="bold">升</tspan>）</text>
+<text x="40" y="338" font-size="11.5" fill="#475569">想保<tspan font-weight="bold" fill="#2563eb">输入阻抗</tspan> → 串联混合　·　想泄放输入电流 → 并联混合</text>
+<rect x="40" y="362" width="720" height="88" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.6"/>
+<text x="58" y="388" font-size="12" font-weight="bold" fill="#2563eb">已经见过的一个例子：发射极电阻 Re（3.5 节）</text>
+<text x="58" y="412" font-size="11.5" fill="#475569">它从输出回路<tspan font-weight="bold">串联采样电流</tspan>、再<tspan font-weight="bold">串联混合</tspan>回输入 → 属于「电流串联」</text>
+<text x="58" y="436" font-size="11.5" fill="#475569">所以它钉死的是 I_C、把输出阻抗抬高了——这正是恒流源想要的性质</text>
+<line x1="40" y1="474" x2="760" y2="474" stroke="#cbd5e1" stroke-width="1"/>
+<text x="400" y="502" text-anchor="middle" font-size="12" font-weight="bold" fill="#b45309">反馈什么时候翻脸成振荡？</text>
+<text x="400" y="526" text-anchor="middle" font-size="11.5" fill="#475569">内部极点每级贡献最多 −90° 相移；攒够 −180° 时负反馈原地转正反馈</text>
+<text x="400" y="548" text-anchor="middle" font-size="11.5" fill="#475569">此时若 |Aβ| ≥ 1 → 自激振荡；|Aβ| &lt; 1 → 只是振铃。相位裕度底线 45°，舒适 60°</text>
+<text x="400" y="576" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#2563eb">救法：密勒补偿造一个足够低的主极点，让增益在危险相移攒够前先滚到 1 以下</text>
+{pulse(38, 118, 148, 60, '#2563eb', 2.0, 8)}
+{pulse(221, 118, 148, 60, '#059669', 2.0, 8)}
+{pulse(404, 118, 148, 60, '#7c3aed', 2.0, 8)}
+{pulse(587, 118, 148, 60, '#b45309', 2.0, 8)}
+<circle r="5" fill="#2563eb"><animateMotion dur="{DF}s" repeatCount="indefinite" path="M60,246 L196,246" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#b45309"><animateMotion dur="{DF}s" begin="-1.6s" repeatCount="indefinite" path="M610,246 L742,246" keyPoints="0;1" keyTimes="0;1"/></circle>
+'''
+    svg += caption("① 采样决定「稳什么」：采样电压稳电压、采样电流稳电流", "#2563eb", DF,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=606)
+    svg += caption("② 混合决定「阻抗往哪走」：串联升输入阻抗、并联降输入阻抗", "#059669", DF,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=606)
+    svg += caption("③ 四种拓扑各有身份：压控压源 / 流控压源 / 压控流源 / 流控流源", "#7c3aed", DF,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=606)
+    svg += caption("④ 别忘后半段：相移攒够 180° 且 |Aβ|≥1，负反馈就变振荡器", "#b45309", DF,
+                   "0;0;1;1", "0;0.85;0.9;1", y=606)
+    save('feedback-topo.svg', svg + '</svg>')
+
+
 if __name__ == '__main__':
     make_rc_charge()
     make_bridge_rectifier()
@@ -4652,4 +4913,8 @@ if __name__ == '__main__':
     make_pushpull_stage()
     make_lm393_inside()
     make_ref_showdown()
-    print('all 60 SVGs regenerated into', os.path.abspath(OUT))
+    make_pn_junction()
+    make_mosfet_curves()
+    make_555_modes()
+    make_feedback_topo()
+    print('all 64 SVGs regenerated into', os.path.abspath(OUT))

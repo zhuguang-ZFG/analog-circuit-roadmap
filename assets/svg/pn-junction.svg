@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="620" viewBox="0 0 800 620">
+<title>PN 结：一堵会自己调节高度的「电荷墙」</title>
+<rect width="800" height="620" fill="#f8fafc"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+@media (prefers-color-scheme: dark){
+rect[fill="#f8fafc"]{fill:#0f172a}
+[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
+[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
+[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
+[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
+[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
+[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
+[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
+[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
+[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
+[fill="#cbd5e1"]{fill:#334155}[stroke="#cbd5e1"]{stroke:#475569}
+[fill="#ffffff"]{fill:#0f172a}[fill="#94a3b8"]{fill:#64748b}[stroke="#94a3b8"]{stroke:#64748b}
+[fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
+}
+</style>
+<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">PN 结：一堵会自己调节高度的「电荷墙」</text>
+
+<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">扩散想散开，电场往回推——平衡点就是内建电势</text>
+<rect x="60" y="80" width="230" height="120" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="175" y="106" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb">P 型（空穴多）</text>
+<text x="175" y="128" text-anchor="middle" font-size="11" fill="#475569">受主离子带负电（固定不动）</text>
+<text x="175" y="150" text-anchor="middle" font-size="11" fill="#475569">空穴 +</text>
+<rect x="300" y="80" width="230" height="120" rx="6" fill="#fef2f2" stroke="#dc2626" stroke-width="2"/>
+<text x="415" y="106" text-anchor="middle" font-size="13" font-weight="bold" fill="#dc2626">N 型（电子多）</text>
+<text x="415" y="128" text-anchor="middle" font-size="11" fill="#475569">施主离子带正电（固定不动）</text>
+<text x="415" y="150" text-anchor="middle" font-size="11" fill="#475569">电子 −</text>
+<rect x="270" y="80" width="50" height="120" fill="#f1f5f9" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4,3"/>
+<text x="295" y="72" text-anchor="middle" font-size="11" font-weight="bold" fill="#64748b">耗尽层</text>
+<line x1="270" y1="130" x2="250" y2="130" stroke="#2563eb" stroke-width="2.5"/>
+<line x1="320" y1="130" x2="340" y2="130" stroke="#dc2626" stroke-width="2.5"/>
+<circle r="6" fill="#dc2626"><animateMotion dur="11s" repeatCount="indefinite" path="M410,150 L316,150 L306,150"/></circle>
+<circle r="6" fill="#2563eb"><animateMotion dur="11s" begin="-0.8s" repeatCount="indefinite" path="M180,150 L274,150 L284,150"/></circle>
+<circle r="6" fill="#dc2626"><animateMotion dur="11s" begin="-1.6s" repeatCount="indefinite" path="M300,150 L340,150"/></circle>
+<line x1="295" y1="230" x2="295" y2="290" stroke="#7c3aed" stroke-width="2.5"/>
+<path d="M288,278 L295,292 L302,278 Z" fill="#7c3aed"/>
+<text x="306" y="246" font-size="11" font-weight="bold" fill="#7c3aed">内建电场 E</text>
+<text x="306" y="266" font-size="11" fill="#475569">把电子往回推</text>
+<line x1="60" y1="318" x2="740" y2="318" stroke="#cbd5e1" stroke-width="1"/>
+<text x="60" y="348" font-size="12.5" font-weight="bold" fill="#334155">三步认识它</text>
+<text x="60" y="376" font-size="11.5" fill="#475569">① <tspan font-weight="bold" fill="#dc2626">复合</tspan>：浓度差驱动扩散，交界处电子掉进空穴两两湮灭（同一滴墨水滴进清水的统计规律）</text>
+<text x="60" y="402" font-size="11.5" fill="#475569">② <tspan font-weight="bold" fill="#7c3aed">建墙</tspan>：跑掉的载流子留下不能动的带电离子 → 电荷墙 → 电场把后续电子往回推</text>
+<text x="60" y="428" font-size="11.5" fill="#475569">③ <tspan font-weight="bold" fill="#059669">平衡</tspan>：扩散多一分、墙厚一分、推力大一分 —— 最终恰好抵消，动态平衡</text>
+<rect x="60" y="452" width="680" height="76" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="1.8"/>
+<text x="76" y="478" font-size="12" font-weight="bold" fill="#b45309">正向导通不是「过了 0.7V 突然开」</text>
+<text x="76" y="502" font-size="11.5" fill="#475569">外加正压把内建电势垫高抵消一部分 → 墙变薄 → 扩散重新启动 → 电流爆发式增长。</text>
+<text x="76" y="520" font-size="11.5" fill="#475569">二极管是「外加电压与内建电势的拔河」，指数曲线就是拔河的比分牌（见 2.2）。</text>
+<rect x="268" y="78" width="54" height="124" rx="8" fill="none" stroke="#7c3aed" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.0s" repeatCount="indefinite"/></rect>
+<circle cx="295" cy="130" r="5" fill="none" stroke="#7c3aed" stroke-width="2.4">
+<animate attributeName="r" values="5;13;5" dur="1.8s" repeatCount="indefinite"/></circle>
+<text x="400" y="560" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">① 浓度差驱动扩散：N 侧电子往 P 侧跑，P 侧空穴往 N 侧跑<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="560" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">② 复合掉的地方留下不能动的离子 → 变成一堵「电荷墙」（耗尽层）<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="560" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">③ 墙越高推力越大：扩散多一分它就厚一分——直到势均力敌<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="560" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">④ 二极管不是开关，是拔河：外加电压抵掉多少内建电势，电流就涨多少<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/></text><g opacity="0">
+<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.9;0.94;1" dur="11s" repeatCount="indefinite"/>
+<rect x="40" y="576" width="720" height="34" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+<text x="400" y="598" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">Si 的内建电势约 0.7V——记住它是「平衡态的墙高」，不是「导通门槛」</text>
+</g></svg>

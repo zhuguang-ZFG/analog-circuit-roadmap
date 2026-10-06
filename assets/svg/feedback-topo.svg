@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="620" viewBox="0 0 800 620">
+<title>负反馈四种拓扑：稳定什么，就采样什么</title>
+<rect width="800" height="620" fill="#f8fafc"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+@media (prefers-color-scheme: dark){
+rect[fill="#f8fafc"]{fill:#0f172a}
+[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
+[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
+[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
+[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
+[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
+[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
+[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
+[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
+[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
+[fill="#cbd5e1"]{fill:#334155}[stroke="#cbd5e1"]{stroke:#475569}
+[fill="#ffffff"]{fill:#0f172a}[fill="#94a3b8"]{fill:#64748b}[stroke="#94a3b8"]{stroke:#64748b}
+[fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
+}
+</style>
+<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">负反馈四种拓扑：稳定什么，就采样什么</text>
+
+<text x="400" y="60" text-anchor="middle" font-size="11" fill="#64748b">反馈网络只干两件事：采样一个量、混合回输入 → 2×2 = 四种拓扑</text>
+<rect x="30" y="86" width="164" height="150" rx="9" fill="#f8fafc" stroke="#2563eb" stroke-width="1.8"/><text x="112" y="112" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#2563eb">采样电压 · 串联混合</text><line x1="42" y1="124" x2="182" y2="124" stroke="#cbd5e1" stroke-width="1"/><text x="42" y="146" font-size="10.5" fill="#475569">钉死的量</text><text x="112" y="168" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#2563eb">电压增益 A_v</text><text x="42" y="190" font-size="10.5" fill="#475569">等效身份</text><text x="182" y="190" text-anchor="end" font-size="10.5" font-weight="bold" fill="#334155">压控压源</text><text x="42" y="210" font-size="10.5" fill="#475569">输入阻抗</text><text x="182" y="210" text-anchor="end" font-size="10.5" font-weight="bold" fill="#2563eb">↑</text><text x="42" y="228" font-size="10.5" fill="#475569">输出阻抗</text><text x="182" y="228" text-anchor="end" font-size="10.5" font-weight="bold" fill="#2563eb">↓</text>
+<rect x="213" y="86" width="164" height="150" rx="9" fill="#f8fafc" stroke="#059669" stroke-width="1.8"/><text x="295" y="112" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#059669">采样电压 · 并联混合</text><line x1="225" y1="124" x2="365" y2="124" stroke="#cbd5e1" stroke-width="1"/><text x="225" y="146" font-size="10.5" fill="#475569">钉死的量</text><text x="295" y="168" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#059669">跨阻 V_out/I_in</text><text x="225" y="190" font-size="10.5" fill="#475569">等效身份</text><text x="365" y="190" text-anchor="end" font-size="10.5" font-weight="bold" fill="#334155">流控压源</text><text x="225" y="210" font-size="10.5" fill="#475569">输入阻抗</text><text x="365" y="210" text-anchor="end" font-size="10.5" font-weight="bold" fill="#059669">↓</text><text x="225" y="228" font-size="10.5" fill="#475569">输出阻抗</text><text x="365" y="228" text-anchor="end" font-size="10.5" font-weight="bold" fill="#059669">↓</text>
+<rect x="396" y="86" width="164" height="150" rx="9" fill="#f8fafc" stroke="#7c3aed" stroke-width="1.8"/><text x="478" y="112" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#7c3aed">采样电流 · 串联混合</text><line x1="408" y1="124" x2="548" y2="124" stroke="#cbd5e1" stroke-width="1"/><text x="408" y="146" font-size="10.5" fill="#475569">钉死的量</text><text x="478" y="168" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#7c3aed">跨导 I_out/V_in</text><text x="408" y="190" font-size="10.5" fill="#475569">等效身份</text><text x="548" y="190" text-anchor="end" font-size="10.5" font-weight="bold" fill="#334155">压控流源</text><text x="408" y="210" font-size="10.5" fill="#475569">输入阻抗</text><text x="548" y="210" text-anchor="end" font-size="10.5" font-weight="bold" fill="#7c3aed">↑</text><text x="408" y="228" font-size="10.5" fill="#475569">输出阻抗</text><text x="548" y="228" text-anchor="end" font-size="10.5" font-weight="bold" fill="#7c3aed">↑</text>
+<rect x="579" y="86" width="164" height="150" rx="9" fill="#f8fafc" stroke="#b45309" stroke-width="1.8"/><text x="661" y="112" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#b45309">采样电流 · 并联混合</text><line x1="591" y1="124" x2="731" y2="124" stroke="#cbd5e1" stroke-width="1"/><text x="591" y="146" font-size="10.5" fill="#475569">钉死的量</text><text x="661" y="168" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#b45309">电流增益 A_i</text><text x="591" y="190" font-size="10.5" fill="#475569">等效身份</text><text x="731" y="190" text-anchor="end" font-size="10.5" font-weight="bold" fill="#334155">流控流源</text><text x="591" y="210" font-size="10.5" fill="#475569">输入阻抗</text><text x="731" y="210" text-anchor="end" font-size="10.5" font-weight="bold" fill="#b45309">↓</text><text x="591" y="228" font-size="10.5" fill="#475569">输出阻抗</text><text x="731" y="228" text-anchor="end" font-size="10.5" font-weight="bold" fill="#b45309">↑</text>
+<line x1="30" y1="258" x2="770" y2="258" stroke="#cbd5e1" stroke-width="1"/>
+<text x="40" y="288" font-size="12.5" font-weight="bold" fill="#334155">判读口诀</text>
+<text x="40" y="314" font-size="11.5" fill="#475569">想稳<tspan font-weight="bold" fill="#059669">电压</tspan> → 采样电压（输出阻抗跟着<tspan font-weight="bold">降</tspan>）　·　想稳<tspan font-weight="bold" fill="#dc2626">电流</tspan> → 采样电流（输出阻抗跟着<tspan font-weight="bold">升</tspan>）</text>
+<text x="40" y="338" font-size="11.5" fill="#475569">想保<tspan font-weight="bold" fill="#2563eb">输入阻抗</tspan> → 串联混合　·　想泄放输入电流 → 并联混合</text>
+<rect x="40" y="362" width="720" height="88" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.6"/>
+<text x="58" y="388" font-size="12" font-weight="bold" fill="#2563eb">已经见过的一个例子：发射极电阻 Re（3.5 节）</text>
+<text x="58" y="412" font-size="11.5" fill="#475569">它从输出回路<tspan font-weight="bold">串联采样电流</tspan>、再<tspan font-weight="bold">串联混合</tspan>回输入 → 属于「电流串联」</text>
+<text x="58" y="436" font-size="11.5" fill="#475569">所以它钉死的是 I_C、把输出阻抗抬高了——这正是恒流源想要的性质</text>
+<line x1="40" y1="474" x2="760" y2="474" stroke="#cbd5e1" stroke-width="1"/>
+<text x="400" y="502" text-anchor="middle" font-size="12" font-weight="bold" fill="#b45309">反馈什么时候翻脸成振荡？</text>
+<text x="400" y="526" text-anchor="middle" font-size="11.5" fill="#475569">内部极点每级贡献最多 −90° 相移；攒够 −180° 时负反馈原地转正反馈</text>
+<text x="400" y="548" text-anchor="middle" font-size="11.5" fill="#475569">此时若 |Aβ| ≥ 1 → 自激振荡；|Aβ| &lt; 1 → 只是振铃。相位裕度底线 45°，舒适 60°</text>
+<text x="400" y="576" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#2563eb">救法：密勒补偿造一个足够低的主极点，让增益在危险相移攒够前先滚到 1 以下</text>
+<rect x="38" y="118" width="148" height="60" rx="8" fill="none" stroke="#2563eb" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.0s" repeatCount="indefinite"/></rect>
+<rect x="221" y="118" width="148" height="60" rx="8" fill="none" stroke="#059669" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.0s" repeatCount="indefinite"/></rect>
+<rect x="404" y="118" width="148" height="60" rx="8" fill="none" stroke="#7c3aed" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.0s" repeatCount="indefinite"/></rect>
+<rect x="587" y="118" width="148" height="60" rx="8" fill="none" stroke="#b45309" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.0s" repeatCount="indefinite"/></rect>
+<circle r="5" fill="#2563eb"><animateMotion dur="11s" repeatCount="indefinite" path="M60,246 L196,246" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#b45309"><animateMotion dur="11s" begin="-1.6s" repeatCount="indefinite" path="M610,246 L742,246" keyPoints="0;1" keyTimes="0;1"/></circle>
+<text x="400" y="606" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">① 采样决定「稳什么」：采样电压稳电压、采样电流稳电流<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="606" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">② 混合决定「阻抗往哪走」：串联升输入阻抗、并联降输入阻抗<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="606" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">③ 四种拓扑各有身份：压控压源 / 流控压源 / 压控流源 / 流控流源<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="606" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">④ 别忘后半段：相移攒够 180° 且 |Aβ|≥1，负反馈就变振荡器<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/></text></svg>

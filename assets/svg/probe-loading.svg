@@ -72,6 +72,10 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <circle r="5" fill="#f59e0b"><animateMotion dur="{DP}s" begin="-0.8s" repeatCount="indefinite" path="M202,150 L248,150"/></circle>
 <circle r="5" fill="#f59e0b"><animateMotion dur="{DP}s" begin="-1.3s" repeatCount="indefinite" path="M250,152 L250,166 L222,166 L222,180"/></circle>
 <circle r="5" fill="#2563eb"><animateMotion dur="{DP}s" begin="-1.8s" repeatCount="indefinite" path="M318,202 L318,244 L270,244 L270,258"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DP}s" begin="-0.6s" repeatCount="indefinite" path="M224,166 L316,166"/></circle>
+<circle r="4.5" fill="#dc2626"><animateMotion dur="{DP}s" begin="-1.1s" repeatCount="indefinite" path="M318,168 L318,200"/></circle>
+<circle r="4.5" fill="#059669"><animateMotion dur="{DP}s" begin="-1.6s" repeatCount="indefinite" path="M270,246 L270,262"/></circle>
+{pulse(216, 126, 90, 22, '#2563eb', 1.9, 6)}
 {pulse(52, 500, 96, 78, '#dc2626', 1.6, 12)}
 {pulse(52, 296, 300, 86, '#dc2626', 2.0, 10)}
 {pulse(400, 512, 380, 74, '#dc2626', 2.4, 10)}

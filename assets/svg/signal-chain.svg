@@ -74,6 +74,10 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="340" y="436" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#475569">INA333 ×40</text>
 <text x="580" y="436" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#475569">低通 fc=10Hz</text>
 <text x="760" y="436" text-anchor="end" font-size="10.5" font-weight="bold" fill="#475569">ADC</text>
+<circle r="5" fill="#f59e0b"><animateMotion dur="9s" begin="-0.7s" repeatCount="indefinite" path="M348,82 L444,82"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="9s" begin="-1.5s" repeatCount="indefinite" path="M92,417 L336,417"/></circle>
+<circle r="5" fill="#7c3aed"><animateMotion dur="9s" begin="-2.3s" repeatCount="indefinite" path="M588,82 L684,82"/></circle>
+<rect x="688" y="50" width="90" height="84" rx="8" fill="none" stroke="#7c3aed" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="1.9s" repeatCount="indefinite"/></rect>
 <rect x="446" y="500" width="340" height="60" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="1.5"/>
 <text x="462" y="524" font-size="11.5" font-weight="bold" fill="#b45309">不做前端处理会怎样？</text>
 <text x="462" y="548" font-size="11" fill="#475569">不放大：77 码 ≈ 6.3 位　放大后：3080 码 ≈ 11.6 位有效</text>
