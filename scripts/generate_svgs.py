@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-generate_svgs.py — 一键再生成《通往模拟电路之路》全部 91 张 SVG SMIL 动画
+generate_svgs.py — 一键再生成《通往模拟电路之路》全部 93 张 SVG SMIL 动画
 用法:  python generate_svgs.py            # 输出到 ../assets/svg/
 风格:  参考 BMS-Z 项目 —— 浅色底 + SMIL 节拍字幕 + 深色模式自适应 + 拟人化讲解
 所有电路参数经过自洽核算（datasheet 级），详见各函数注释。
@@ -6760,6 +6760,115 @@ def make_555_astable_beats():
                    '0;0;1;1', '0;0.84;0.89;1', y=650, size=13.2)
     save('555-astable-beats.svg', svg + '</svg>')
 
+# ======================= 图 92：水路 = 电路（第 0 章 0.1） =======================
+def make_water_analogy():
+    """全书通用比喻：电压/电流/电阻/电容/电感/二极管/MOSFET/地 → 一套水路。"""
+    DW = 12
+    loop = ("M156,180 H644 Q680,180 680,216 V424 Q680,460 644,460 "
+            "H156 Q120,460 120,424 V216 Q120,180 156,180 Z")
+    svg = svg_open('水路 = 电路：一张图看懂全书通用比喻（第 0 章 0.1）', h=620)
+    svg += f'''
+<text x="400" y="48" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#334155">同一套直觉：水怎么流，电就怎么走——八个词，一张图</text>
+<path d="{loop}" fill="none" stroke="#dbeafe" stroke-width="24" stroke-linejoin="round"/>
+<path d="{loop}" fill="none" stroke="#93c5fd" stroke-width="15" stroke-linejoin="round"/>
+{flow(loop, DW, n=9, color="#38bdf8", r=4.6)}
+<circle cx="280" cy="180" r="27" fill="#e0f2fe" stroke="#0284c7" stroke-width="2.5"/>
+<g><animateTransform attributeName="transform" type="rotate" from="0 280 180" to="360 280 180" dur="4s" repeatCount="indefinite"/>
+<line x1="280" y1="180" x2="298" y2="168" stroke="#0284c7" stroke-width="2.6"/>
+<line x1="280" y1="180" x2="262" y2="168" stroke="#0284c7" stroke-width="2.6"/>
+<line x1="280" y1="180" x2="280" y2="201" stroke="#0284c7" stroke-width="2.6"/></g>
+<circle cx="280" cy="180" r="5" fill="#0284c7"/>
+<text x="280" y="144" text-anchor="middle" font-size="12" font-weight="bold" fill="#0369a1">水泵 = 电压 V</text>
+<text x="280" y="128" text-anchor="middle" font-size="10" fill="#64748b">推动水流的「势」</text>
+<rect x="474" y="164" width="92" height="32" rx="6" fill="#f8fafc"/>
+<path d="M478,170 H506 L514,177 H526 L534,170 H562" fill="none" stroke="#0284c7" stroke-width="2.6"/>
+<path d="M478,190 H506 L514,183 H526 L534,190 H562" fill="none" stroke="#0284c7" stroke-width="2.6"/>
+<text x="520" y="144" text-anchor="middle" font-size="12" font-weight="bold" fill="#0369a1">细水管 = 电阻 R</text>
+<text x="520" y="128" text-anchor="middle" font-size="10" fill="#64748b">管越细，同样水压流得越少</text>
+<rect x="654" y="276" width="54" height="88" rx="8" fill="#e0f2fe" stroke="#0284c7" stroke-width="2.5"/>
+<rect x="659" y="314" width="44" height="45" rx="3" fill="#7dd3fc" opacity="0.8"/>
+<path d="M659,314 q7.3,-5 14.7,0 q7.3,5 14.7,0 q7.3,-5 14.6,0" fill="none" stroke="#0284c7" stroke-width="1.6"/>
+<text x="681" y="384" text-anchor="middle" font-size="12" font-weight="bold" fill="#0369a1">蓄水池 = 电容 C</text>
+<text x="681" y="400" text-anchor="middle" font-size="10" fill="#64748b">攒水位，水位不能突变</text>
+<circle cx="520" cy="460" r="27" fill="#e0f2fe" stroke="#0284c7" stroke-width="2.5"/>
+<g><animateTransform attributeName="transform" type="rotate" from="0 520 460" to="360 520 460" dur="5s" repeatCount="indefinite"/>
+<line x1="520" y1="435" x2="520" y2="485" stroke="#0284c7" stroke-width="2.4"/>
+<line x1="495" y1="460" x2="545" y2="460" stroke="#0284c7" stroke-width="2.4"/>
+<line x1="502" y1="442" x2="538" y2="478" stroke="#0284c7" stroke-width="2.4"/>
+<line x1="538" y1="442" x2="502" y2="478" stroke="#0284c7" stroke-width="2.4"/></g>
+<circle cx="520" cy="460" r="4.5" fill="#0284c7"/>
+<text x="520" y="504" text-anchor="middle" font-size="12" font-weight="bold" fill="#0369a1">水车 = 电感 L</text>
+<text x="520" y="520" text-anchor="middle" font-size="10" fill="#64748b">转速不能突变，断电顶着冲</text>
+<circle cx="280" cy="460" r="27" fill="#e0f2fe" stroke="#0284c7" stroke-width="2.5"/>
+<polygon points="266,446 266,474 288,460" fill="#7dd3fc" stroke="#0284c7" stroke-width="2"/>
+<line x1="288" y1="445" x2="288" y2="475" stroke="#0284c7" stroke-width="3"/>
+<text x="280" y="504" text-anchor="middle" font-size="12" font-weight="bold" fill="#0369a1">单向阀 = 二极管</text>
+<text x="280" y="520" text-anchor="middle" font-size="10" fill="#64748b">只许水往一个方向流</text>
+<rect x="93" y="292" width="54" height="56" rx="6" fill="#e0f2fe" stroke="#0284c7" stroke-width="2.5"/>
+<rect x="97" y="296" width="46" height="26" rx="3" fill="#7dd3fc" opacity="0.8"/>
+<line x1="120" y1="292" x2="120" y2="276" stroke="#0284c7" stroke-width="2.5"/>
+<circle cx="120" cy="271" r="4.5" fill="#0284c7"/>
+<text x="92" y="312" text-anchor="end" font-size="12" font-weight="bold" fill="#0369a1">闸门 = MOSFET</text>
+<text x="92" y="330" text-anchor="end" font-size="10" fill="#64748b">栅压一声令下</text>
+<text x="400" y="252" text-anchor="middle" font-size="11" font-weight="bold" fill="#0284c7">水 流 = 电 流 I（必须成环）</text>
+<line x1="330" y1="330" x2="470" y2="330" stroke="#0ea5e9" stroke-width="1.8" stroke-dasharray="6,4"/>
+<text x="400" y="320" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#0369a1">海平面 = 地 GND</text>
+<text x="400" y="348" text-anchor="middle" font-size="10" fill="#64748b">所有水位的 0V 基准（不是下水道）</text>
+'''
+    svg += caption('同一套直觉：水泵推水位 · 细管卡流量 · 水池攒水位 · 水车扛惯性 · 单向阀防倒流 · 闸门听指挥', '#0284c7', DW,
+                   '0;0;1;1', '0;0.8;0.86;1', y=572, size=13)
+    save('water-analogy.svg', svg + '</svg>')
+
+# ======================= 图 93：树状供电（第 14 章 14.3） =======================
+def make_power_tree():
+    """树状供电：输入 → 板级储能 → 各模块 LDO/DCDC → 每芯片去耦，逐级净化。"""
+    DP = 12
+    rows = [118, 220, 322]
+    regs = [('LDO 3.3V', '#2563eb', '低噪，喂模拟'),
+            ('DCDC 5V', '#7c3aed', '高效，喂数字'),
+            ('LDO 1.8V', '#059669', '核心电压')]
+    chips = [('传感器（模拟）', '#2563eb'), ('MCU（数字）', '#7c3aed'), ('FPGA 核', '#059669')]
+    svg = svg_open('树状供电：输入 → 储能 → 稳压 → 去耦，逐级净化', h=500)
+    svg += f'''
+<text x="400" y="46" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#334155">电源不是「一根线拉到底」：每一级都在替下一级挡脏</text>
+<rect x="34" y="192" width="104" height="56" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="86" y="216" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#1e293b">输入 12V</text>
+<text x="86" y="234" text-anchor="middle" font-size="9.5" fill="#64748b">适配器 / 电池</text>
+<rect x="196" y="184" width="128" height="72" rx="10" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<text x="260" y="210" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#1e293b">板级储能</text>
+<text x="260" y="228" text-anchor="middle" font-size="10" fill="#b45309">10~100µF 大电解</text>
+<text x="260" y="244" text-anchor="middle" font-size="9.5" fill="#64748b">扛大电流脉冲</text>
+<line x1="138" y1="220" x2="196" y2="220" stroke="#94a3b8" stroke-width="2.5"/>
+<line x1="324" y1="220" x2="360" y2="220" stroke="#94a3b8" stroke-width="2.5"/>
+<line x1="360" y1="118" x2="360" y2="322" stroke="#94a3b8" stroke-width="2.5"/>
+{flow("M138,220 H196", DP, n=2, color="#f59e0b", r=4.5)}
+{flow("M324,220 H360", DP, n=2, color="#f59e0b", r=4.5)}
+{flow("M360,118 V322", DP, n=4, color="#f59e0b", r=4.5)}
+'''
+    for i, r in enumerate(rows):
+        reg, rc, rsub = regs[i]
+        ch, cc = chips[i]
+        svg += f'''
+<line x1="360" y1="{r}" x2="430" y2="{r}" stroke="#94a3b8" stroke-width="2.5"/>
+<rect x="430" y="{r-26}" width="104" height="52" rx="10" fill="#f8fafc" stroke="{rc}" stroke-width="2"/>
+<text x="482" y="{r-4}" text-anchor="middle" font-size="11.5" font-weight="bold" fill="{rc}">{reg}</text>
+<text x="482" y="{r+14}" text-anchor="middle" font-size="9.5" fill="#64748b">{rsub}</text>
+<line x1="534" y1="{r}" x2="650" y2="{r}" stroke="#94a3b8" stroke-width="2.5"/>
+<rect x="650" y="{r-26}" width="118" height="52" rx="10" fill="#f8fafc" stroke="{cc}" stroke-width="2"/>
+<text x="709" y="{r-2}" text-anchor="middle" font-size="11" font-weight="bold" fill="{cc}">{ch}</text>
+<text x="709" y="{r+16}" text-anchor="middle" font-size="9.5" fill="#64748b">+100nF 就近去耦</text>
+{flow(f"M534,{r} H650", DP, n=3, color="#38bdf8", r=4.5)}
+'''
+    svg += f'''
+<text x="400" y="384" text-anchor="middle" font-size="11" font-weight="bold" fill="#0369a1">逐级净化：大电解挡低频脉动 → 稳压器压掉纹波 → 100nF 兜住芯片开关瞬间的高频</text>
+<text x="400" y="406" text-anchor="middle" font-size="10.5" fill="#64748b">压差小/电流小/噪声敏感 → LDO；压差大/电流大 → DCDC（效率优先）+ 后级 LDO 净化</text>
+'''
+    svg += caption('口诀：输入 → 储能 → 稳压 → 去耦，一级替一级挡脏；去耦电容就近放，走线电感挡不住高频', '#2563eb', DP,
+                   '0;0;1;1', '0;0.82;0.88;1', y=452, size=13)
+    save('power-tree.svg', svg + '</svg>')
+
+
+
 
 
 
@@ -6979,4 +7088,6 @@ if __name__ == '__main__':
     make_analog_switch_beats()
     make_ldo_transient_beats()
     make_555_astable_beats()
-    print('all 91 SVGs regenerated into', os.path.abspath(OUT))
+    make_water_analogy()
+    make_power_tree()
+    print('all 93 SVGs regenerated into', os.path.abspath(OUT))
