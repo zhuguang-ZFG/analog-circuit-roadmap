@@ -13,7 +13,7 @@
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-CC_BY--SA_4.0-lightgrey.svg" alt="License"></a>
-  <img src="https://img.shields.io/badge/SVG动画-25张-3fb950.svg" alt="SVG">
+  <img src="https://img.shields.io/badge/SVG动画-28张-3fb950.svg" alt="SVG">
   <img src="https://img.shields.io/badge/章节-8篇19章-58a6ff.svg" alt="chapters">
 </p>
 
@@ -82,7 +82,7 @@ graph TD
   - [第 14 章 设计方法论](#ch14) · [第 15 章 PCB 注意事项](#ch15)
 - **[第四篇：故障分析与排故方法论](#part4)** 🩺
   - [第 16 章 排故五步法](#ch16) · [第 17 章 故障速查表](#ch17) · [第 18 章 大师智慧](#ch18)
-- **[第五篇：动画演示中心](#part5)** 🎬 — 25 张 SVG 动画 + Falstad 地图
+- **[第五篇：动画演示中心](#part5)** 🎬 — 28 张 SVG 动画 + Falstad 地图
 - **[第六篇：实物图鉴与速查](#part6)** 🧩 — 实物照片 · 参数速查 · [官方 datasheet 直达](#part6)
 - **[第七篇：视频资源](#part7)** 📺 — B站系统课 · YouTube 频道
 - **[第八篇：学习路线与资源索引](#part8)** 📚 — 路线图 · 书单 · 项目清单 · [官方资料](#sec88) · [经典论文](#sec89) · FAQ
@@ -911,7 +911,13 @@ IN ─────┤          ├───── OUT
 **⑤ 先断后合（Break-Before-Make）**
 - 多路复用器切换时先断开旧通道再接通新通道，防止两路信号源短路互怼（对比推挽冲突！）
 
-### 8.4 故障案例 🔧
+### 8.4 采样保持：模拟开关最重要的差事
+
+<p align="center"><img src="assets/svg/sample-hold.svg" width="720" alt="采样保持动画：给 SAR 按下暂停键"></p>
+
+模拟开关出场率最高的岗位不是"切换信号"，而是 ADC 前端的**采样保持**：开关闭合时 $C_{hold}$ 充电追踪输入（采样相），断开瞬间电容"记住"最后一刻的电压（保持相）——[13.6](#ch13) SAR 的四拍问答全靠这份"冻结"。两个非理想效应决定保持精度：**droop**（开关漏电 + 缓冲器偏流让保持电压斜坡下垂，$dV/dt=I_{leak}/C_{hold}$）与**电荷注入**（开关断开瞬间沟道电荷踢进 $C_{hold}$，[8.1](#ch8) 的 CMOS 传输门用 NMOS+PMOS 互补就是为了让它俩的注入互相抵消）。
+
+### 8.5 故障案例 🔧
 
 | 故障 | 根因 | 解法 |
 |---|---|---|
@@ -945,6 +951,8 @@ $$V_{REF} = \underbrace{V_{BE}}_{-2mV/°C} + \underbrace{K \cdot V_T \ln N}_{+0.
 ### 9.2 TL431：会"变身"的可调基准
 
 三端器件（阴极 K、阳极 A、参考端 REF），内部 = 带隙基准 + 运放 + 输出管：
+
+<p align="center"><img src="assets/svg/tl431.svg" width="720" alt="TL431 动画：自带标尺的比较器"></p>
 
 **工作原理**：内部运放持续比较 REF 与 2.5V 基准，驱动输出管调整阴极电流，**强制 REF = 2.5V**。外接两个电阻分压：
 $$V_{KA} = 2.5 \times \left(1 + \frac{R_1}{R_2}\right)$$
@@ -1362,6 +1370,8 @@ $$(V_{in}-V_{out})\cdot D \cdot T = V_{out}\cdot(1-D)\cdot T \;\Rightarrow\; \bo
 
 **电荷泵**（无电感）：电容当"飞桶"——开关阵列先把电容并联到电源充电，再串联到输出放电：倍压（2×）、反压（−1×）。ICL7660 是经典负压发生器；优点无磁件、EMI 小，缺点带载能力弱（几十 mA）。
 
+<p align="center"><img src="assets/svg/charge-pump.svg" width="720" alt="电荷泵动画：电容斗提机"></p>
+
 ### 13.4 文氏桥正弦振荡器：正弦从哪里来
 
 <p align="center"><img src="assets/svg/wien-bridge.svg" width="720" alt="文氏桥振荡器动画：起振与稳幅"></p>
@@ -1678,7 +1688,7 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 <a id="part5"></a>
 # 第五篇：动画演示中心 🎬
 
-> 全部 25 张 SVG 动画（SMIL，浏览器直接播放）位于 `assets/svg/` 目录，由 `scripts/generate_svgs.py` 一键生成（仓库铁律：两者始终同步）；配套 Falstad 在线电路可实时交互。
+> 全部 28 张 SVG 动画（SMIL，浏览器直接播放）位于 `assets/svg/` 目录，由 `scripts/generate_svgs.py` 一键生成（仓库铁律：两者始终同步）；配套 Falstad 在线电路可实时交互。
 
 ## 5.1 RC 充电 <a id="demo1"></a>
 
@@ -1814,7 +1824,25 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 
 **看点**：红线 V_BE 下坡、绿线 K·ΔV_BE 上坡——给绿线配好权重，两斜率恰好抵消，蓝线 1.25V 全温区纹丝不动。基准芯片的全部物理就这三条线。→ 正文 [9.1 带隙基准](#ch9)
 
-## 5.21 Falstad 内置示例地图（全部带动画）
+## 5.21 TL431：自带标尺的比较器 <a id="demo21"></a>
+
+<p align="center"><img src="assets/svg/tl431.svg" width="720" alt="TL431 SVG动画"></p>
+
+**看点**：REF 高过 2.5V 一瞬，红粒子从阴极猛灌——"会变身"的全貌：内部带隙当标尺、运放当裁判、NPN 当执行。分压采样一接，Vout=2.5×(1+R1/R2)。→ 正文 [9.2 TL431](#ch9)
+
+## 5.22 采样保持：给 SAR 按下暂停键 <a id="demo22"></a>
+
+<p align="center"><img src="assets/svg/sample-hold.svg" width="720" alt="采样保持SVG动画"></p>
+
+**看点**：绿粒子充电追踪（采样相）→ 开关断开电容记住（保持相）；阶梯波形微微下垂——那就是 droop，漏电正在偷走你记住的电压。→ 正文 [8.4 采样保持](#ch8)
+
+## 5.23 电荷泵：电容斗提机 <a id="demo23"></a>
+
+<p align="center"><img src="assets/svg/charge-pump.svg" width="720" alt="电荷泵SVG动画"></p>
+
+**看点**：相1 绿粒子灌满 C1（下端接地），相2 下端被抬到 Vin、上端 2Vin 红粒子倒进 C2 水库——几轮之后输出爬满 2Vin。不用电感的升压。→ 正文 [13.3 电荷泵](#ch13)
+
+## 5.24 Falstad 内置示例地图（全部带动画）
 
 | 主题 | 菜单路径 |
 |---|---|
@@ -1956,7 +1984,7 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 | 模电第六版课后习题精讲 | 清华教材配套 | [BV1XGSkYBESb](https://www.bilibili.com/video/BV1XGSkYBESb/) | 刷题必备 |
 | 数字电子技术基础 | 清华大学 王红 | [BV18p411Z7ce](https://www.bilibili.com/video/BV18p411Z7ce/) | 数电姐妹篇 |
 | 硬件工程师入门教程 | 硬件工程师入门 | [BV1gHSyY3E6q](https://www.bilibili.com/video/BV1gHSyY3E6q/) | 偏工程实践 |
-| **开关电源动画三连**（Buck/Boost/Buck-Boost） | 硬件杂谈类 UP | [BV1QJSFBVEHu](https://www.bilibili.com/video/BV1QJSFBVEHu/) · [BV1egmQBWE9m](https://www.bilibili.com/video/BV1egmQBWE9m/) · [BV1CyZyBVEkg](https://www.bilibili.com/video/BV1CyZyBVEkg/) | 3 分钟一只拓扑，配 [13.2/13.3](#ch13) 服用 |
+| **开关电源动画三连**（Buck/Boost/Buck-Boost） | 蓝指针科普 | [BV1QJSFBVEHu](https://www.bilibili.com/video/BV1QJSFBVEHu/) · [BV1egmQBWE9m](https://www.bilibili.com/video/BV1egmQBWE9m/) · [BV1CyZyBVEkg](https://www.bilibili.com/video/BV1CyZyBVEkg/) | 3 分钟一只拓扑，配 [13.2/13.3](#ch13) 服用 |
 
 ## 7.2 YouTube（英文频道）
 

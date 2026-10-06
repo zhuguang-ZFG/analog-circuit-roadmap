@@ -1766,13 +1766,13 @@ def make_instrumentation_amp():
 <circle cx="200" cy="130" r="3.5" fill="#334155"/>
 <line x1="200" y1="130" x2="200" y2="90" stroke="#334155" stroke-width="2"/>
 {resistor_h(130, 90, 30, 'R1')}
-<line x1="110" y1="90" x2="110" y2="100" stroke="#334155" stroke-width="2"/>
+<line x1="110" y1="90" x2="110" y2="148" stroke="#334155" stroke-width="2"/>
 <line x1="180" y1="90" x2="200" y2="90" stroke="#334155" stroke-width="2"/>
 <line x1="170" y1="250" x2="200" y2="250" stroke="#334155" stroke-width="2.5"/>
 <circle cx="200" cy="250" r="3.5" fill="#334155"/>
 <line x1="200" y1="250" x2="200" y2="290" stroke="#334155" stroke-width="2"/>
 {resistor_h(130, 290, 30, 'R2')}
-<line x1="110" y1="280" x2="110" y2="290" stroke="#334155" stroke-width="2"/>
+<line x1="110" y1="268" x2="110" y2="290" stroke="#334155" stroke-width="2"/>
 <line x1="180" y1="290" x2="200" y2="290" stroke="#334155" stroke-width="2"/>
 <text x="206" y="120" font-size="10.5" font-weight="bold" fill="#2563eb">v1</text>
 <text x="206" y="266" font-size="10.5" font-weight="bold" fill="#2563eb">v2</text>
@@ -1787,13 +1787,18 @@ def make_instrumentation_amp():
 {resistor_h(250, 214, 30, 'R')}
 <line x1="370" y1="200" x2="440" y2="200" stroke="#334155" stroke-width="2.5"/>
 <text x="400" y="186" font-size="11" font-weight="bold" fill="#2563eb">输出</text>
-<line x1="330" y1="222" x2="330" y2="250" stroke="#334155" stroke-width="2"/>
+<line x1="305" y1="214" x2="305" y2="232" stroke="#334155" stroke-width="2"/>
+<line x1="305" y1="232" x2="330" y2="232" stroke="#334155" stroke-width="2"/>
 {resistor_v(330, 250, 30, 'R')}
 {gnd_sym(330, 300)}
 <line x1="390" y1="200" x2="390" y2="150" stroke="#334155" stroke-width="2"/>
 {resistor_h(340, 150, 30, 'R')}
-<line x1="340" y1="150" x2="320" y2="150" stroke="#334155" stroke-width="2"/>
-<line x1="320" y1="150" x2="320" y2="170" stroke="#334155" stroke-width="2"/>
+<line x1="320" y1="150" x2="304" y2="150" stroke="#334155" stroke-width="2"/>
+<line x1="304" y1="150" x2="304" y2="186" stroke="#334155" stroke-width="2"/>
+<circle cx="304" cy="186" r="3.5" fill="#334155"/>
+<line x1="300" y1="186" x2="310" y2="186" stroke="#334155" stroke-width="2"/>
+<line x1="300" y1="214" x2="310" y2="214" stroke="#334155" stroke-width="2"/>
+<circle cx="305" cy="214" r="3.5" fill="#334155"/>
 <text x="100" y="330" font-size="11" fill="#dc2626" opacity="0">差模：R_G 有电流，v1/v2 反向拉大
 <animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.05;0.28;0.33;1" dur="{DI}s" repeatCount="indefinite"/></text>
 <text x="100" y="352" font-size="11" fill="#7c3aed" opacity="0">共模：R_G 两端同升同降→无电流→前级增益=1
@@ -1864,8 +1869,8 @@ def make_rlc_resonance():
 <path d="{hi_q}" fill="none" stroke="#dc2626" stroke-width="2.8"/>
 <path d="{lo_q}" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6,4"/>
 <line x1="420" y1="330" x2="740" y2="330" stroke="#64748b" stroke-width="1.4"/>
-<line x1="580" y1="150" x2="580" y2="330" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
-<text x="568" y="344" font-size="10.5" fill="#475569">f₀</text>
+<line x1="620" y1="150" x2="620" y2="330" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="608" y="344" font-size="10.5" fill="#475569">f₀</text>
 <text x="610" y="132" font-size="10.5" fill="#dc2626">Q 高：峰尖（选台准）</text>
 <text x="440" y="220" font-size="10.5" fill="#94a3b8">Q 低：峰胖（R 大衰减快）</text>
 '''
@@ -1982,6 +1987,199 @@ def make_bandgap():
     svg += note_box("1.25V 不是调出来的，是硅的带隙电压——两条物理曲线的交点写在材料常数里（Widlar 1971 / Brokaw 1974，见 8.9）", 474, DBG, "0;0.74;0.79;1", w=740)
     save('bandgap.svg', svg + '</svg>')
 
+
+# ======================= 图 26：TL431 可调基准 =======================
+def make_tl431():
+    DT = 6
+    svg = svg_open('TL431：会"变身"的基准——自带 2.5V 标尺的比较器', h=500)
+    svg += f'''
+<text x="250" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">TL431 内部：基准 + 运放 + 吸入级</text>
+<rect x="70" y="80" width="330" height="220" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+<text x="235" y="104" text-anchor="middle" font-size="11" fill="#94a3b8">TL431 内部框图</text>
+<text x="20" y="196" font-size="11.5" font-weight="bold" fill="#059669">REF</text>
+<line x1="52" y1="192" x2="120" y2="192" stroke="#334155" stroke-width="2.5"/>
+<polygon points="150,160 150,224 220,192" fill="#fff" stroke="#334155" stroke-width="2.5"/>
+<text x="156" y="184" font-size="12" font-weight="bold" fill="#059669">+</text>
+<text x="156" y="214" font-size="12" font-weight="bold" fill="#dc2626">−</text>
+<line x1="120" y1="192" x2="150" y2="176" stroke="#334155" stroke-width="2"/>
+<rect x="110" y="236" width="90" height="30" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="155" y="256" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#2563eb">带隙 2.5V</text>
+<line x1="155" y1="236" x2="155" y2="208" stroke="#334155" stroke-width="2"/>
+{npn_svg(280, 192)}
+<line x1="220" y1="192" x2="245" y2="192" stroke="#334155" stroke-width="2"/>
+<line x1="280" y1="137" x2="280" y2="110" stroke="#334155" stroke-width="2.5"/>
+<text x="292" y="116" font-size="11.5" font-weight="bold" fill="#dc2626">K（阴极吸流）</text>
+<line x1="280" y1="247" x2="280" y2="268" stroke="#334155" stroke-width="2"/>
+<text x="292" y="266" font-size="11.5" font-weight="bold" fill="#475569">A（阳极）</text>
+<line x1="280" y1="268" x2="280" y2="282" stroke="#334155" stroke-width="2"/>
+<text x="60" y="330" font-size="11" fill="#dc2626" opacity="0">REF &lt; 2.5V：调整管关，K 不吸流
+<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.06;0.4;0.46;1" dur="{DT}s" repeatCount="indefinite"/></text>
+<text x="60" y="354" font-size="11" fill="#059669" opacity="0">REF &gt; 2.5V：调整管开，K 猛吸流把电压拽下来
+<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.52;0.56;0.9;0.96;1" dur="{DT}s" repeatCount="indefinite"/></text>
+'''
+    svg += f'<g><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.5;0.56;0.9;0.96;1" dur="{DT}s" repeatCount="indefinite"/>'
+    svg += flow("M284,114 V160 V222 V264", DT/3, n=4, color="#dc2626", r=5) + '</g>'
+    svg += f'''
+<rect x="460" y="90" width="290" height="150" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="605" y="116" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">变身稳压器：分压采样闭环</text>
+<text x="480" y="146" font-size="11" fill="#475569">Vout ──[R1]──┬── REF</text>
+<text x="480" y="168" font-size="11" fill="#475569">            [R2]</text>
+<text x="480" y="190" font-size="11" fill="#475569">K 串电阻到 Vout，A 接地</text>
+<text x="480" y="218" font-size="11.5" font-weight="bold" fill="#2563eb">Vout = 2.5V × (1 + R1/R2)</text>
+'''
+    svg += caption("① REF 与内部 2.5V 带隙基准比大小——低于基准：运放关断调整管，阴极不吸流（高阻）", "#dc2626", DT,
+                   "0;1;1;0;0", "0;0.03;0.22;0.28;1", y=430)
+    svg += caption("② REF 高过 2.5V 一点点：运放立刻导通调整管——阴极大力吸流，把采样源头电压拽低", "#059669", DT,
+                   "0;0;1;1;0;0", "0;0.3;0.35;0.58;0.64;1", y=430)
+    svg += caption("③ 分压器把 Vout 按比例送到 REF——闭环自动停在 REF=2.5V：Vout=2.5×(1+R1/R2)，换电阻=换电压", "#2563eb", DT,
+                   "0;0;1;1", "0;0.64;0.7;1", y=430)
+    svg += note_box("阴极电压永远 ≥2.5V（吸流也压不到基准以下）——这是它与齐纳管最不一样的地方；并联稳压、精密恒流、光耦反馈全用它", 474, DT, "0;0.74;0.79;1", w=730)
+    save('tl431.svg', svg + '</svg>')
+
+
+# ======================= 图 27：采样保持 =======================
+def make_sample_hold():
+    DH = 7
+    sin_d = sine_path(430, 750, 150, 42, n=96)
+    hold_pts = []
+    for i in range(97):
+        u = i/96
+        x = 430 + 320*u
+        seg = int(u*8)
+        v = np.sin(seg/8*2*np.pi*1.5)
+        droop = (u*8 - seg)*0.12
+        hold_pts.append(f"{x:.0f},{300 - 44*(v - droop):.0f}")
+    hold_d = "M" + " L".join(hold_pts)
+    svg = svg_open('采样保持：给 SAR 四拍问答按下「暂停键」', h=500)
+    svg += f'''
+<text x="220" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">开关 + 保持电容 + 缓冲器</text>
+<text x="18" y="145" font-size="11" fill="#475569">模拟输入</text>
+<line x1="70" y1="140" x2="120" y2="140" stroke="#334155" stroke-width="2.5"/>
+<circle cx="130" cy="140" r="3.5" fill="#334155"/>
+<line x1="130" y1="140" x2="160" y2="112" stroke="#059669" stroke-width="3">
+<animate attributeName="opacity" values="1;1;0;0;1;1" keyTimes="0;0.2;0.26;0.9;0.94;1" dur="{DH}s" repeatCount="indefinite"/></line>
+<circle cx="166" cy="140" r="3.5" fill="#334155"/>
+<text x="108" y="106" font-size="11" font-weight="bold" fill="#334155">开关（第 8 章传输门）</text>
+<line x1="166" y1="140" x2="220" y2="140" stroke="#334155" stroke-width="2.5"/>
+<circle cx="220" cy="140" r="4" fill="#334155"/>
+<line x1="220" y1="140" x2="220" y2="180" stroke="#334155" stroke-width="2"/>
+<line x1="208" y1="180" x2="232" y2="180" stroke="#2563eb" stroke-width="3"/>
+<line x1="208" y1="192" x2="232" y2="192" stroke="#2563eb" stroke-width="3"/>
+<line x1="220" y1="192" x2="220" y2="210" stroke="#334155" stroke-width="2"/>
+{gnd_sym(220, 224)}
+<text x="238" y="190" font-size="10.5" fill="#2563eb">C_hold</text>
+<polygon points="250,110 250,170 310,140" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="256" y="134" font-size="12" font-weight="bold" fill="#059669">+</text>
+<text x="256" y="160" font-size="12" font-weight="bold" fill="#dc2626">−</text>
+<line x1="220" y1="140" x2="250" y2="125" stroke="#334155" stroke-width="2"/>
+<line x1="310" y1="140" x2="390" y2="140" stroke="#334155" stroke-width="2.5"/>
+<text x="330" y="126" font-size="11" font-weight="bold" fill="#2563eb">去 ADC</text>
+<circle cx="350" cy="140" r="3.5" fill="#334155"/>
+<line x1="350" y1="140" x2="350" y2="185" stroke="#334155" stroke-width="2"/>
+<line x1="350" y1="185" x2="244" y2="185" stroke="#334155" stroke-width="2"/>
+<line x1="244" y1="185" x2="244" y2="155" stroke="#334155" stroke-width="2"/>
+<line x1="244" y1="155" x2="250" y2="155" stroke="#334155" stroke-width="2"/>
+<text x="60" y="270" font-size="11" fill="#059669" opacity="0">采样：C 充电跟上输入
+<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.05;0.22;0.27;1" dur="{DH}s" repeatCount="indefinite"/></text>
+<text x="60" y="294" font-size="11" fill="#dc2626" opacity="0">保持：开关断开，C 记住最后一刻——但漏电让它慢慢下垂
+<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.3;0.34;0.88;0.93;1" dur="{DH}s" repeatCount="indefinite"/></text>
+'''
+    svg += f'<g><animate attributeName="opacity" values="1;1;0;0;1;1" keyTimes="0;0.2;0.26;0.9;0.94;1" dur="{DH}s" repeatCount="indefinite"/>'
+    svg += flow("M74,136 H126 M170,136 H216", DH/4, n=4, color="#059669", r=5) + '</g>'
+    svg += f'''
+<text x="590" y="86" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#475569">输入正弦（上）→ 采样保持输出（下）</text>
+<path d="{sin_d}" fill="none" stroke="#94a3b8" stroke-width="2"/>
+<path d="{hold_d}" fill="none" stroke="#059669" stroke-width="2.5"/>
+<line x1="430" y1="300" x2="750" y2="300" stroke="#64748b" stroke-width="1.2"/>
+<text x="440" y="352" font-size="10.5" fill="#dc2626">阶梯=记住的值 · 微微下垂=droop（漏电/C）</text>
+'''
+    svg += caption("① 采样相：开关闭合，C_hold 充电追踪输入——追踪带宽要远大于信号带宽", "#059669", DH,
+                   "0;1;1;0;0", "0;0.03;0.2;0.26;1", y=430)
+    svg += caption("② 保持相：开关断开，电容记住断开瞬间的电压——SAR 四拍问答期间输入被冻结", "#2563eb", DH,
+                   "0;0;1;1;0;0", "0;0.28;0.33;0.55;0.61;1", y=430)
+    svg += caption("③ 两个非理想：droop（漏电流让电压斜坡下垂）+ 电荷注入（开关断开踢进一份误差电荷）", "#dc2626", DH,
+                   "0;0;1;1", "0;0.61;0.67;1", y=430)
+    svg += note_box("droop 率 = I_leak / C_hold——电容大下垂慢，但充电也慢；这就是第 8 章电荷注入在 ADC 前端的现身", 474, DH, "0;0.7;0.75;1", w=710)
+    save('sample-hold.svg', svg + '</svg>')
+
+
+# ======================= 图 28：电荷泵 =======================
+def make_charge_pump():
+    DC3 = 6
+    ramp_pts = []
+    for i in range(81):
+        u = i/80
+        x = 430 + 320*u
+        ramp_pts.append(f"{x:.0f},{330-120*(1-np.exp(-3*u)):.0f}")
+    ramp_d = "M" + " L".join(ramp_pts)
+    svg = svg_open('电荷泵：电容当「斗提机」，不用电感也升压', h=500)
+    svg += f'''
+<text x="230" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">倍压电荷泵（两相时钟， Vin → 2Vin）</text>
+<text x="18" y="106" font-size="12.5" font-weight="bold" fill="#b45309">Vin</text>
+<line x1="50" y1="100" x2="110" y2="100" stroke="#334155" stroke-width="2.5"/>
+<circle cx="120" cy="100" r="3.5" fill="#334155"/>
+<line x1="120" y1="100" x2="150" y2="72" stroke="#059669" stroke-width="3">
+<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.4;0.46;1" dur="{DC3}s" repeatCount="indefinite"/></line>
+<circle cx="156" cy="100" r="3.5" fill="#334155"/>
+<text x="100" y="66" font-size="10.5" fill="#334155">S1（相1）</text>
+<line x1="156" y1="100" x2="190" y2="100" stroke="#334155" stroke-width="2.5"/>
+<line x1="192" y1="84" x2="192" y2="116" stroke="#7c3aed" stroke-width="3"/>
+<line x1="204" y1="84" x2="204" y2="116" stroke="#7c3aed" stroke-width="3"/>
+<text x="212" y="80" font-size="11" font-weight="bold" fill="#7c3aed">C1 飞跨</text>
+<line x1="214" y1="100" x2="250" y2="100" stroke="#334155" stroke-width="2.5"/>
+<circle cx="256" cy="100" r="3.5" fill="#334155"/>
+<line x1="256" y1="100" x2="286" y2="72" stroke="#dc2626" stroke-width="3">
+<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.5;0.56;0.9;0.96;1" dur="{DC3}s" repeatCount="indefinite"/></line>
+<circle cx="292" cy="100" r="3.5" fill="#334155"/>
+<text x="242" y="66" font-size="10.5" fill="#334155">S2（相2）</text>
+<line x1="292" y1="100" x2="350" y2="100" stroke="#334155" stroke-width="2.5"/>
+<circle cx="350" cy="100" r="4" fill="#334155"/>
+<line x1="350" y1="100" x2="400" y2="100" stroke="#334155" stroke-width="2.5"/>
+<text x="356" y="90" font-size="12" font-weight="bold" fill="#2563eb">2Vin 输出</text>
+<line x1="350" y1="100" x2="350" y2="140" stroke="#334155" stroke-width="2"/>
+<line x1="338" y1="140" x2="362" y2="140" stroke="#2563eb" stroke-width="3"/>
+<line x1="338" y1="152" x2="362" y2="152" stroke="#2563eb" stroke-width="3"/>
+<line x1="350" y1="152" x2="350" y2="170" stroke="#334155" stroke-width="2"/>
+{gnd_sym(350, 184)}
+<text x="368" y="150" font-size="10.5" fill="#2563eb">C2 水库</text>
+<line x1="202" y1="112" x2="202" y2="150" stroke="#334155" stroke-width="2"/>
+<circle cx="202" cy="150" r="3.5" fill="#334155"/>
+<line x1="202" y1="150" x2="176" y2="174" stroke="#059669" stroke-width="3">
+<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.4;0.46;1" dur="{DC3}s" repeatCount="indefinite"/></line>
+<text x="130" y="196" font-size="10.5" fill="#334155">S3（相1 接地）</text>
+<line x1="202" y1="150" x2="202" y2="196" stroke="#334155" stroke-width="2"/>
+<circle cx="202" cy="196" r="3.5" fill="#334155"/>
+<line x1="202" y1="196" x2="228" y2="172" stroke="#dc2626" stroke-width="3">
+<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.5;0.56;0.9;0.96;1" dur="{DC3}s" repeatCount="indefinite"/></line>
+<text x="212" y="216" font-size="10.5" fill="#334155">S4（相2 接 Vin）</text>
+<line x1="202" y1="196" x2="202" y2="220" stroke="#334155" stroke-width="2"/>
+{gnd_sym(202, 234)}
+<text x="60" y="280" font-size="11" fill="#059669" opacity="0">相1：C1 下端接地，上端充到 Vin
+<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.06;0.4;0.46;1" dur="{DC3}s" repeatCount="indefinite"/></text>
+<text x="60" y="304" font-size="11" fill="#dc2626" opacity="0">相2：C1 下端被抬到 Vin——上端=2Vin，向 C2 倒电荷
+<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.52;0.56;0.9;0.96;1" dur="{DC3}s" repeatCount="indefinite"/></text>
+'''
+    svg += f'<g><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.4;0.46;1" dur="{DC3}s" repeatCount="indefinite"/>'
+    svg += flow("M54,96 H150 M160,96 H196 M202,146 V156", DC3/3, n=5, color="#059669", r=5) + '</g>'
+    svg += f'<g><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.5;0.56;0.9;0.96;1" dur="{DC3}s" repeatCount="indefinite"/>'
+    svg += flow("M202,192 V160 M210,96 H250 M296,96 H346 M350,104 V136", DC3/3, n=5, color="#dc2626", r=5) + '</g>'
+    svg += f'''
+<text x="590" y="252" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#475569">输出电压：几个周期爬到 2Vin</text>
+<path d="{ramp_d}" fill="none" stroke="#2563eb" stroke-width="2.8"/>
+<line x1="430" y1="330" x2="750" y2="330" stroke="#64748b" stroke-width="1.4"/>
+<line x1="430" y1="210" x2="750" y2="210" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="700" y="204" font-size="10.5" fill="#2563eb">2Vin</text>
+<text x="440" y="352" font-size="10.5" fill="#475569">每个周期 C1 倒一勺，C2 水位逐渐涨满</text>
+'''
+    svg += caption("① 相1：S1/S3 闭合——C1 上端接 Vin、下端接地，充电到 Vin（绿粒子灌满斗）", "#059669", DC3,
+                   "0;1;1;0;0", "0;0.03;0.22;0.28;1", y=430)
+    svg += caption("② 相2：S2/S4 闭合——C1 下端被抬到 Vin，上端瞬间 2Vin，向 C2 倒电荷（斗提机倒斗）", "#dc2626", DC3,
+                   "0;0;1;1;0;0", "0;0.3;0.35;0.58;0.64;1", y=430)
+    svg += caption("③ 几轮之后 C2 涨到 2Vin——无电感、无反电动势、EMI 小，代价是只供得起小电流", "#2563eb", DC3,
+                   "0;0;1;1", "0;0.64;0.7;1", y=430)
+    svg += note_box("ICL7660 负压、MAX232 的 ±10V、运放负电源——都是这架斗提机；要电流大？请回 13.3 用电感 Boost", 474, DC3, "0;0.74;0.79;1", w=700)
+    save('charge-pump.svg', svg + '</svg>')
+
 if __name__ == '__main__':
     make_rc_charge()
     make_bridge_rectifier()
@@ -2008,4 +2206,7 @@ if __name__ == '__main__':
     make_rlc_resonance()
     make_sar_adc()
     make_bandgap()
-    print('all 25 SVGs regenerated into', os.path.abspath(OUT))
+    make_tl431()
+    make_sample_hold()
+    make_charge_pump()
+    print('all 28 SVGs regenerated into', os.path.abspath(OUT))

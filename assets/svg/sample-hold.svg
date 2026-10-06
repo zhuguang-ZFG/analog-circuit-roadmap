@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+<title>采样保持：给 SAR 四拍问答按下「暂停键」</title>
+<rect width="800" height="500" fill="#f8fafc"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+@media (prefers-color-scheme: dark){
+rect[fill="#f8fafc"]{fill:#0f172a}
+[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
+[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
+[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
+[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
+[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
+[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
+[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
+[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
+[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
+[fill="#cbd5e1"]{fill:#334155}[stroke="#cbd5e1"]{stroke:#475569}
+[fill="#ffffff"]{fill:#0f172a}[fill="#94a3b8"]{fill:#64748b}[stroke="#94a3b8"]{stroke:#64748b}
+[fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
+}
+</style>
+<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">采样保持：给 SAR 四拍问答按下「暂停键」</text>
+
+<text x="220" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">开关 + 保持电容 + 缓冲器</text>
+<text x="18" y="145" font-size="11" fill="#475569">模拟输入</text>
+<line x1="70" y1="140" x2="120" y2="140" stroke="#334155" stroke-width="2.5"/>
+<circle cx="130" cy="140" r="3.5" fill="#334155"/>
+<line x1="130" y1="140" x2="160" y2="112" stroke="#059669" stroke-width="3">
+<animate attributeName="opacity" values="1;1;0;0;1;1" keyTimes="0;0.2;0.26;0.9;0.94;1" dur="7s" repeatCount="indefinite"/></line>
+<circle cx="166" cy="140" r="3.5" fill="#334155"/>
+<text x="108" y="106" font-size="11" font-weight="bold" fill="#334155">开关（第 8 章传输门）</text>
+<line x1="166" y1="140" x2="220" y2="140" stroke="#334155" stroke-width="2.5"/>
+<circle cx="220" cy="140" r="4" fill="#334155"/>
+<line x1="220" y1="140" x2="220" y2="180" stroke="#334155" stroke-width="2"/>
+<line x1="208" y1="180" x2="232" y2="180" stroke="#2563eb" stroke-width="3"/>
+<line x1="208" y1="192" x2="232" y2="192" stroke="#2563eb" stroke-width="3"/>
+<line x1="220" y1="192" x2="220" y2="210" stroke="#334155" stroke-width="2"/>
+<line x1="220" y1="210" x2="220" y2="224" stroke="#334155" stroke-width="2.5"/><line x1="204" y1="224" x2="236" y2="224" stroke="#334155" stroke-width="3"/><line x1="210" y1="230" x2="230" y2="230" stroke="#334155" stroke-width="3"/><line x1="216" y1="236" x2="224" y2="236" stroke="#334155" stroke-width="3"/>
+<text x="238" y="190" font-size="10.5" fill="#2563eb">C_hold</text>
+<polygon points="250,110 250,170 310,140" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="256" y="134" font-size="12" font-weight="bold" fill="#059669">+</text>
+<text x="256" y="160" font-size="12" font-weight="bold" fill="#dc2626">−</text>
+<line x1="220" y1="140" x2="250" y2="125" stroke="#334155" stroke-width="2"/>
+<line x1="310" y1="140" x2="390" y2="140" stroke="#334155" stroke-width="2.5"/>
+<text x="330" y="126" font-size="11" font-weight="bold" fill="#2563eb">去 ADC</text>
+<circle cx="350" cy="140" r="3.5" fill="#334155"/>
+<line x1="350" y1="140" x2="350" y2="185" stroke="#334155" stroke-width="2"/>
+<line x1="350" y1="185" x2="244" y2="185" stroke="#334155" stroke-width="2"/>
+<line x1="244" y1="185" x2="244" y2="155" stroke="#334155" stroke-width="2"/>
+<line x1="244" y1="155" x2="250" y2="155" stroke="#334155" stroke-width="2"/>
+<text x="60" y="270" font-size="11" fill="#059669" opacity="0">采样：C 充电跟上输入
+<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.05;0.22;0.27;1" dur="7s" repeatCount="indefinite"/></text>
+<text x="60" y="294" font-size="11" fill="#dc2626" opacity="0">保持：开关断开，C 记住最后一刻——但漏电让它慢慢下垂
+<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.3;0.34;0.88;0.93;1" dur="7s" repeatCount="indefinite"/></text>
+<g><animate attributeName="opacity" values="1;1;0;0;1;1" keyTimes="0;0.2;0.26;0.9;0.94;1" dur="7s" repeatCount="indefinite"/><circle r="5" fill="#059669"><animateMotion dur="1.75s" begin="-0.50s" repeatCount="indefinite" path="M74,136 H126 M170,136 H216"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="1.75s" begin="-0.06s" repeatCount="indefinite" path="M74,136 H126 M170,136 H216"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="1.75s" begin="0.38s" repeatCount="indefinite" path="M74,136 H126 M170,136 H216"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="1.75s" begin="0.81s" repeatCount="indefinite" path="M74,136 H126 M170,136 H216"/></circle></g>
+<text x="590" y="86" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#475569">输入正弦（上）→ 采样保持输出（下）</text>
+<path d="M430,150 L433,153 L437,155 L440,158 L443,161 L447,164 L450,166 L453,169 L457,171 L460,173 L463,176 L467,178 L470,180 L473,182 L477,183 L480,185 L483,186 L487,188 L490,189 L493,190 L497,191 L500,191 L503,192 L507,192 L510,192 L513,192 L517,192 L520,191 L523,191 L527,190 L530,189 L533,188 L537,186 L540,185 L543,183 L547,182 L550,180 L553,178 L557,176 L560,173 L563,171 L567,169 L570,166 L573,164 L577,161 L580,158 L583,155 L587,153 L590,150 L593,147 L597,145 L600,142 L603,139 L607,136 L610,134 L613,131 L617,129 L620,127 L623,124 L627,122 L630,120 L633,118 L637,117 L640,115 L643,114 L647,112 L650,111 L653,110 L657,109 L660,109 L663,108 L667,108 L670,108 L673,108 L677,108 L680,109 L683,109 L687,110 L690,111 L693,112 L697,114 L700,115 L703,117 L707,118 L710,120 L713,122 L717,124 L720,127 L723,129 L727,131 L730,134 L733,136 L737,139 L740,142 L743,145 L747,147 L750,150" fill="none" stroke="#94a3b8" stroke-width="2"/>
+<path d="M430,300 L433,300 L437,301 L440,301 L443,302 L447,302 L450,303 L453,303 L457,304 L460,304 L463,304 L467,305 L470,259 L473,260 L477,260 L480,261 L483,261 L487,262 L490,262 L493,262 L497,263 L500,263 L503,264 L507,264 L510,269 L513,269 L517,270 L520,270 L523,271 L527,271 L530,272 L533,272 L537,272 L540,273 L543,273 L547,274 L550,317 L553,317 L557,318 L560,318 L563,319 L567,319 L570,319 L573,320 L577,320 L580,321 L583,321 L587,322 L590,344 L593,344 L597,345 L600,345 L603,346 L607,346 L610,347 L613,347 L617,348 L620,348 L623,348 L627,349 L630,317 L633,317 L637,318 L640,318 L643,319 L647,319 L650,319 L653,320 L657,320 L660,321 L663,321 L667,322 L670,269 L673,269 L677,270 L680,270 L683,271 L687,271 L690,272 L693,272 L697,272 L700,273 L703,273 L707,274 L710,259 L713,260 L717,260 L720,261 L723,261 L727,262 L730,262 L733,262 L737,263 L740,263 L743,264 L747,264 L750,300" fill="none" stroke="#059669" stroke-width="2.5"/>
+<line x1="430" y1="300" x2="750" y2="300" stroke="#64748b" stroke-width="1.2"/>
+<text x="440" y="352" font-size="10.5" fill="#dc2626">阶梯=记住的值 · 微微下垂=droop（漏电/C）</text>
+<text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">① 采样相：开关闭合，C_hold 充电追踪输入——追踪带宽要远大于信号带宽<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.26;1" dur="7s" repeatCount="indefinite"/></text><text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">② 保持相：开关断开，电容记住断开瞬间的电压——SAR 四拍问答期间输入被冻结<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.28;0.33;0.55;0.61;1" dur="7s" repeatCount="indefinite"/></text><text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">③ 两个非理想：droop（漏电流让电压斜坡下垂）+ 电荷注入（开关断开踢进一份误差电荷）<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.61;0.67;1" dur="7s" repeatCount="indefinite"/></text><g opacity="0">
+<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.7;0.75;1" dur="7s" repeatCount="indefinite"/>
+<rect x="45" y="450" width="710" height="34" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+<text x="400" y="472" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">droop 率 = I_leak / C_hold——电容大下垂慢，但充电也慢；这就是第 8 章电荷注入在 ADC 前端的现身</text>
+</g></svg>
