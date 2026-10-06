@@ -4877,75 +4877,84 @@ def make_feedback_topo():
 def make_resistor_model():
     DR = 11
     R, L, C = 1000.0, 10e-9, 0.2e-12
-    f1 = 1/(2*np.pi*R*C)          # 并联电容夺权点（极点）
-    f2 = R/(2*np.pi*L)            # 引线电感夺权点（零点）
+    f1 = 1/(2*np.pi*R*C)                # 体电容开始分流（R‖C 极点）
+    f2 = R/(2*np.pi*L)                  # 引线电感与 R 等量级
+    fsrf = 1/(2*np.pi*np.sqrt(L*C))     # L、C 谐振：|Z| 谷底
+
     def zmag(f):
-        zr = R + 2j*np.pi*f*L
-        zc = 1/(2j*np.pi*f*C)
-        return abs(zr*zc/(zr+zc))
+        w = 2*np.pi*f
+        zc = 1/(1j*w*C)
+        zp = R*zc/(R+zc)                # R ∥ C（体电容跨在电阻两端）
+        return abs(1j*w*L + zp)         # 再串引线电感 L
+
     X0, X1, Y0, Y1 = 400, 764, 120, 396
-    px = lambda f: X0 + (np.log10(f)-3)/7.0*(X1-X0)     # 1kHz .. 10GHz
-    py = lambda z: Y0 + (np.log10(2000)-np.log10(max(z, 10)))/np.log10(200)*(Y1-Y0)
-    ptss = []
-    for f in np.logspace(3, 10, 300):
-        ptss.append(f"{px(f):.0f},{py(zmag(f)):.0f}")
-    real_d = "M" + " L".join(ptss)
+    px = lambda f: X0 + (np.log10(f)-3)/8.0*(X1-X0)               # 1kHz .. 100GHz
+    py = lambda z: Y0 + (np.log10(2e4)-np.log10(max(z, 10)))/np.log10(2e3)*(Y1-Y0)
+    real_d = "M" + " L".join(f"{px(f):.0f},{py(zmag(f)):.0f}" for f in np.logspace(3, 11, 320))
     svg = svg_open('真实电阻：高频时它不再是「一个电阻」', h=620)
     svg += f'''
-<text x="190" y="50" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">等效模型：R 串 L，再并 C</text>
-<text x="70" y="96" font-size="11.5" fill="#475569">理想 R</text>
-<line x1="130" y1="92" x2="170" y2="92" stroke="#334155" stroke-width="2.5"/>
-<rect x="170" y="80" width="70" height="24" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
-<text x="205" y="97" text-anchor="middle" font-size="11" fill="#475569">1kΩ</text>
-<line x1="240" y1="92" x2="268" y2="92" stroke="#334155" stroke-width="2.5"/>
-<path d="M268,92 q8,12 16,0 q8,-12 16,0 q8,12 16,0" fill="none" stroke="#dc2626" stroke-width="2.5"/>
-<text x="300" y="76" font-size="11" font-weight="bold" fill="#dc2626">L 10nH</text>
-<line x1="316" y1="92" x2="350" y2="92" stroke="#334155" stroke-width="2.5"/>
-<line x1="205" y1="104" x2="205" y2="140" stroke="#334155" stroke-width="2"/>
-<line x1="193" y1="140" x2="217" y2="140" stroke="#7c3aed" stroke-width="3.5"/>
-<line x1="193" y1="152" x2="217" y2="152" stroke="#7c3aed" stroke-width="3.5"/>
-<line x1="205" y1="152" x2="205" y2="176" stroke="#334155" stroke-width="2"/>
-<line x1="130" y1="176" x2="350" y2="176" stroke="#334155" stroke-width="2.5"/>
-<text x="228" y="152" font-size="11" font-weight="bold" fill="#7c3aed">C 0.2pF</text>
-<text x="70" y="212" font-size="11.5" font-weight="bold" fill="#7c3aed">并联 C 先夺权（f₁）</text>
-<text x="70" y="234" font-size="11" fill="#475569">f₁ = 1/(2πRC) = 0.8GHz —— 这是</text>
-<text x="70" y="252" font-size="11" fill="#475569">「1kΩ 电阻拿来做高频负载」的真实上限</text>
-<text x="70" y="282" font-size="11.5" font-weight="bold" fill="#dc2626">串联 L 后夺权（f₂）</text>
-<text x="70" y="304" font-size="11" fill="#475569">f₂ = R/(2πL) = 15.9GHz —— 到那之后</text>
-<text x="70" y="322" font-size="11" fill="#475569">感抗接管，元件重新「变回电感」</text>
-<text x="70" y="352" font-size="11.5" font-weight="bold" fill="#b45309">选型结论</text>
-<text x="70" y="374" font-size="11" fill="#475569">高频用贴片（引线≈0），且元件值本身</text>
-<text x="70" y="392" font-size="11" fill="#475569">要按频率特性曲线复核</text>
+<text x="205" y="50" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">等效模型：R 并 C（体电容），再串 L（引线电感）</text>
+<text x="60" y="96" font-size="11.5" fill="#475569">理想 R</text>
+<line x1="112" y1="92" x2="150" y2="92" stroke="#334155" stroke-width="2.5"/>
+<circle cx="150" cy="92" r="3" fill="#334155"/>
+<line x1="150" y1="92" x2="170" y2="92" stroke="#334155" stroke-width="2.5"/>
+<rect x="170" y="80" width="60" height="24" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<text x="200" y="97" text-anchor="middle" font-size="11" fill="#475569">1kΩ</text>
+<line x1="230" y1="92" x2="250" y2="92" stroke="#334155" stroke-width="2.5"/>
+<circle cx="250" cy="92" r="3" fill="#334155"/>
+<line x1="150" y1="95" x2="150" y2="122" stroke="#334155" stroke-width="2"/>
+<line x1="150" y1="122" x2="191" y2="122" stroke="#334155" stroke-width="2"/>
+<line x1="191" y1="112" x2="191" y2="132" stroke="#7c3aed" stroke-width="3.5"/>
+<line x1="205" y1="112" x2="205" y2="132" stroke="#7c3aed" stroke-width="3.5"/>
+<line x1="205" y1="122" x2="250" y2="122" stroke="#334155" stroke-width="2"/>
+<line x1="250" y1="122" x2="250" y2="95" stroke="#334155" stroke-width="2"/>
+<text x="216" y="140" font-size="11" font-weight="bold" fill="#7c3aed">C 0.2pF</text>
+<line x1="250" y1="92" x2="278" y2="92" stroke="#334155" stroke-width="2.5"/>
+<path d="M278,92 q8,12 16,0 q8,-12 16,0 q8,12 16,0" fill="none" stroke="#dc2626" stroke-width="2.5"/>
+<text x="308" y="76" font-size="11" font-weight="bold" fill="#dc2626">L 10nH</text>
+<line x1="326" y1="92" x2="358" y2="92" stroke="#334155" stroke-width="2.5"/>
+<text x="60" y="212" font-size="11.5" font-weight="bold" fill="#7c3aed">体电容先分流（f₁）</text>
+<text x="60" y="234" font-size="11" fill="#475569">f₁ = 1/(2πRC) = 0.8GHz —— 这是</text>
+<text x="60" y="252" font-size="11" fill="#475569">「1kΩ 电阻拿来做高频负载」的真实上限</text>
+<text x="60" y="282" font-size="11.5" font-weight="bold" fill="#dc2626">引线电感接管（f₂）</text>
+<text x="60" y="304" font-size="11" fill="#475569">f₂ = R/(2πL) = 15.9GHz —— 到那之后</text>
+<text x="60" y="322" font-size="11" fill="#475569">感抗盖过电阻，元件重新「变回电感」</text>
+<text x="60" y="352" font-size="11.5" font-weight="bold" fill="#b45309">选型结论</text>
+<text x="60" y="374" font-size="11" fill="#475569">高频用贴片（引线≈0），且元件值本身</text>
+<text x="60" y="392" font-size="11" fill="#475569">要按频率特性曲线复核</text>
 <text x="{X0-6}" y="{py(1000)+4:.0f}" text-anchor="end" font-size="10.5" fill="#475569">1kΩ</text>
-<text x="{X0-6}" y="{py(300)+4:.0f}" text-anchor="end" font-size="10.5" fill="#475569">300Ω</text>
+<text x="{X0-6}" y="{py(100)+4:.0f}" text-anchor="end" font-size="10.5" fill="#475569">100Ω</text>
 <text x="{px(1e3):.0f}" y="{Y1+22}" text-anchor="middle" font-size="10" fill="#475569">1kHz</text>
 <text x="{px(1e6):.0f}" y="{Y1+22}" text-anchor="middle" font-size="10" fill="#475569">1MHz</text>
 <text x="{px(1e9):.0f}" y="{Y1+22}" text-anchor="middle" font-size="10" fill="#475569">1GHz</text>
+<text x="{px(1e11):.0f}" y="{Y1+22}" text-anchor="middle" font-size="10" fill="#475569">100GHz</text>
 <text x="{X1}" y="{Y1+40}" text-anchor="end" font-size="11" fill="#475569">频率 →</text>
 <line x1="{X0}" y1="{py(1000):.0f}" x2="{X1}" y2="{py(1000):.0f}" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6,4"/>
 <text x="{X0+6}" y="{py(1000)-8:.0f}" font-size="10.5" fill="#94a3b8">理想 1kΩ：一条直线</text>
 <path d="{real_d}" fill="none" stroke="#2563eb" stroke-width="3"/>
 <circle cx="{px(f1):.0f}" cy="{py(zmag(f1)):.0f}" r="5.5" fill="#7c3aed"/>
-<text x="{px(f1)-6:.0f}" y="{py(zmag(f1))+42:.0f}" text-anchor="end" font-size="10.5" font-weight="bold" fill="#7c3aed">f₁=0.8GHz 起下坠</text>
-<circle cx="{px(1e9):.0f}" cy="{py(zmag(1e9)):.0f}" r="5.5" fill="#dc2626"/>
-<text x="{px(1e9)-8:.0f}" y="{py(zmag(1e9))+16:.0f}" text-anchor="end" font-size="10.5" font-weight="bold" fill="#dc2626">1GHz：只剩 {zmag(1e9):.0f}Ω</text>
+<text x="{px(f1):.0f}" y="{py(zmag(f1))-26:.0f}" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#7c3aed">f₁=0.8GHz 起下坠</text>
+<circle cx="{px(fsrf):.0f}" cy="{py(zmag(fsrf)):.0f}" r="5.5" fill="#059669"/>
+<text x="{px(fsrf):.0f}" y="{py(zmag(fsrf))+22:.0f}" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#059669">谷底 {zmag(fsrf):.0f}Ω @3.6GHz（LC 谐振把 R 短路）</text>
+<circle cx="{px(f2):.0f}" cy="{py(zmag(f2)):.0f}" r="5.5" fill="#dc2626"/>
+<text x="{px(f2):.0f}" y="{py(zmag(f2))-26:.0f}" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#dc2626">f₂=15.9GHz：L 接管</text>
 <circle r="5" fill="#2563eb"><animateMotion dur="{DR}s" repeatCount="indefinite" path="{real_d[9:]}" keyPoints="0;1" keyTimes="0;1"/></circle>
-<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DR}s" begin="-0.4s" repeatCount="indefinite" path="M132,92 L168,92"/></circle>
-<circle r="4.5" fill="#dc2626"><animateMotion dur="{DR}s" begin="-1.1s" repeatCount="indefinite" path="M242,92 L266,92"/></circle>
-<circle r="4.5" fill="#7c3aed"><animateMotion dur="{DR}s" begin="-1.8s" repeatCount="indefinite" path="M205,154 L205,174"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DR}s" begin="-0.4s" repeatCount="indefinite" path="M114,92 L168,92"/></circle>
+<circle r="4.5" fill="#dc2626"><animateMotion dur="{DR}s" begin="-1.1s" repeatCount="indefinite" path="M252,92 L276,92"/></circle>
+<circle r="4.5" fill="#7c3aed"><animateMotion dur="{DR}s" begin="-1.8s" repeatCount="indefinite" path="M150,124 L191,124"/></circle>
 <circle cx="{px(f1):.0f}" cy="{py(zmag(f1)):.0f}" r="5" fill="none" stroke="#7c3aed" stroke-width="2.4">
 <animate attributeName="r" values="5;12;5" dur="1.9s" repeatCount="indefinite"/></circle>
-<circle cx="{px(f2/1e3):.0f}" cy="{py(zmag(f2)):.0f}" r="5" fill="none" stroke="#dc2626" stroke-width="2.4">
+<circle cx="{px(f2):.0f}" cy="{py(zmag(f2)):.0f}" r="5" fill="none" stroke="#dc2626" stroke-width="2.4">
 <animate attributeName="r" values="5;12;5" dur="1.9s" begin="-0.9s" repeatCount="indefinite"/></circle>
 {pulse(60, 60, 300, 124, '#94a3b8', 2.0, 10)}
 '''
-    svg += caption("① 低频：R 说了算——理想电阻的直线在 0.8GHz 之前都成立", "#94a3b8", DR,
+    svg += caption("① 低频：R 说了算——远低于 f₁ 时，蓝线与理想 1kΩ 几乎重合", "#94a3b8", DR,
                    "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=560)
-    svg += caption("② 中频：并联的 0.2pF 开始分流，曲线按 −20dB/dec 下坠", "#7c3aed", DR,
+    svg += caption("② 中频：体电容 0.2pF 开始分流，阻抗按约 −20dB/dec 下坠", "#7c3aed", DR,
                    "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=560)
-    svg += caption(f"③ 高频：1GHz 时「1kΩ 电阻」实际只剩 {zmag(1e9):.0f}Ω——它已经变成复合元件", "#2563eb", DR,
+    svg += caption(f"③ 谷底：3.6GHz 处只剩 {zmag(fsrf):.0f}Ω——L 与 C 谐振，把 R 整个短路掉", "#059669", DR,
                    "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=560)
-    svg += caption("④ 再往上（15.9GHz）引线电感接管：元件又「变回电感」", "#dc2626", DR,
+    svg += caption(f"④ 再往上：引线电感接管，阻抗重新爬升到 {zmag(1e11):.0f}Ω@100GHz——元件又「变回电感」", "#dc2626", DR,
                    "0;0;1;1", "0;0.85;0.9;1", y=560)
     svg += note_box("每个元件都有两个寄生夺权点：C 在 f₁=1/(2πRC) 开始、L 在 f₂=R/(2πL) 结束——中间才是它「当电阻」的区间", 600, DR,
                     "0;0.9;0.94;1", w=760)
