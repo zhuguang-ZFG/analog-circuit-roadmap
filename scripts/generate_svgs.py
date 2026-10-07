@@ -5001,7 +5001,7 @@ def make_diode_family():
         svg += f'<text x="{cx+dx:.0f}" y="{cy-14:.0f}" text-anchor="middle" font-size="11.5" font-weight="bold" fill="{col}">{nm}</text>'
         svg += f'<text x="{cx+dx:.0f}" y="{cy+28:.0f}" text-anchor="middle" font-size="10" fill="#475569">{use}</text>'
     svg += f'''
-<text x="400" y="456" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">五个成员，五条「不能忘」的规矩</text>
+<text x="400" y="456" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">五个成员 + 一个基准（普通硅管），五条「不能忘」的规矩</text>
 <text x="70" y="468" font-size="11.5" fill="#475569">① <tspan font-weight="bold" fill="#dc2626">LED 必须限流</tspan>：它是二极管，正向压降一旦建立，电流就指数暴涨——串电阻或上恒流</text>
 <text x="70" y="492" font-size="11.5" fill="#475569">② <tspan font-weight="bold" fill="#2563eb">肖特基快是因为「没有少子存储」</tspan>：金属-半导体结，反向恢复时间几乎为零</text>
 <text x="70" y="516" font-size="11.5" fill="#475569">③ <tspan font-weight="bold" fill="#7c3aed">TVS 拼的是「面积」</tspan>：大面积结承受浪涌能量，ns 级把电压钳住，接在接口最前线</text>
