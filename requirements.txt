@@ -1,4 +1,8 @@
 # 文档站点（MkDocs Material）
 mkdocs-material>=9.5
+# 中文搜索分词：Material 的 search 插件靠 jieba 把正文切成词，
+# 装不上它整条中文索引链会被静默跳过 —— 页面照常生成、搜索框照常出现，
+# 中文检索因此可能漏召回。实际搜索回归见 scripts/test_reading_journey.py
+jieba>=0.42
 # SVG 一致性测试
 numpy>=1.26

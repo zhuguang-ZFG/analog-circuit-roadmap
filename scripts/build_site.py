@@ -12,6 +12,7 @@
 from __future__ import annotations
 
 import argparse
+from html import escape
 import json
 import re
 import shutil
@@ -260,11 +261,21 @@ def page_description(text):
 
 
 def with_description(text):
-    """给站点产物的一页补上 meta description 的 front-matter（摘要为空则原样返回）。"""
+    """Explicit titles keep pre-heading anchors from confusing MkDocs' title lookup."""
     desc = page_description(text)
     if not desc:
         return text
-    return f"---\ndescription: {json.dumps(desc, ensure_ascii=False)}\n---\n\n" + text
+    title = content_title(text)
+    return (f"---\ndescription: {json.dumps(desc, ensure_ascii=False)}\n"
+            f"title: {json.dumps(title, ensure_ascii=False)}\n---\n\n" + text)
+
+
+def content_title(text):
+    for line in text.splitlines():
+        match = _HEADING.match(line)
+        if match:
+            return _plain(match.group(1))
+    return ''
 
 
 CHAPTER_LABEL = {
@@ -509,13 +520,13 @@ OVERRIDES_MAIN_HTML = """{% extends "base.html" %}
   {{ super() }}
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="{{ config.site_name }}">
-  <meta property="og:title" content="{{ page.title | default(config.site_name, true) }}">
+  <meta property="og:title" content="{{ page.title | default(config.site_name, true) | e }}">
   <meta property="og:description" content="{{ ((page.meta or {}).get('description') or config.site_description) | e }}">
   {% if page.canonical_url %}<meta property="og:url" content="{{ page.canonical_url }}">{% endif %}
   <meta property="og:image" content="__OG_IMAGE__">
   <meta property="og:locale" content="zh_CN">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{{ page.title | default(config.site_name, true) }}">
+  <meta name="twitter:title" content="{{ page.title | default(config.site_name, true) | e }}">
   <meta name="twitter:description" content="{{ ((page.meta or {}).get('description') or config.site_description) | e }}">
   <meta name="twitter:image" content="__OG_IMAGE__">
   <meta name="theme-color" content="#3f51b5">
@@ -569,6 +580,7 @@ use_directory_urls: false
 theme:
   name: material
   language: zh
+  font: false
   custom_dir: overrides
   features:
     - navigation.instant
@@ -580,6 +592,7 @@ theme:
     - content.code.copy
     - search.highlight
     - search.suggest
+    - search.share
     - toc.follow
   palette:
     - media: "(prefers-color-scheme: light)"
@@ -597,6 +610,21 @@ theme:
         icon: material/weather-sunny
         name: 切换到浅色
 
+# 中文搜索必须显式声明 search 插件：
+#   1. 分词靠 jieba，它在构建期把正文里的汉字串切成词、词间插 U+200B，
+#      再交给前端按 separator 切开建索引。jieba 没装时 Material 会静默跳过
+#      整条链路（页面照常生成、搜索框照常出现），任何中文关键词都返回 0 条。
+#      requirements.txt 声明 jieba，test_reading_journey.py 验证实际检索结果。
+#   2. lang 必须显式写 zh。主题语言虽是 zh，但 zh 语言包只定义了 separator、
+#      没有 search.config.lang 键，不写就会退回 en，拿不到 lunr 的中文
+#      trimmer / 停用词表。
+#   3. jieba_dict_user 是「本书术语表」，把相位裕度 / 共模抑制比 / 去耦电容
+#      这类被默认词典切碎的领域词钉成整词，否则整词检索必然落空。
+plugins:
+  - search:
+      lang: zh
+      jieba_dict_user: scripts/jieba_user_dict.txt
+
 extra:
   social:
     - icon: fontawesome/brands/github
@@ -609,12 +637,14 @@ extra:
 extra_css:
   - stylesheets/gallery.css
   - stylesheets/learning.css
+  - stylesheets/reading.css
 
 extra_javascript:
   - javascripts/mathjax.js
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
   - javascripts/gallery.js
   - javascripts/learning.js
+  - javascripts/reading.js
 
 markdown_extensions:
   - abbr
@@ -761,13 +791,7 @@ def render_gallery(items):
 
 
 def page_title(path):
-    for ln in path.read_text(encoding="utf-8").split("\n"):
-        if ln.startswith("#"):
-            t = re.sub(r"^#+\s*", "", ln)
-            t = re.sub(r"<a\s+id=[^>]*>.*", "", t).strip()
-            if t:
-                return t
-    return path.stem
+    return content_title(path.read_text(encoding="utf-8")) or path.stem
 
 
 def build_nav(pages):
@@ -814,6 +838,58 @@ def write_mkdocs_config():
     (BUILD / "mkdocs.yml").write_text(yml, encoding="utf-8", newline="\n")
 
 
+def chapter_routes():
+    """Derive the reading sequence from source pages, never from menu position."""
+    chapters = []
+    for path in DOCS.glob("*.md"):
+        match = re.fullmatch(r"p\d+-\d+-ch(\d+)\.md", path.name)
+        if match:
+            number = int(match.group(1))
+            chapters.append((number, path.name, page_title(path)))
+    return sorted(chapters)
+
+
+def reading_navigation(page_name, chapters):
+    """Close the chapter -> exercise -> next chapter loop in the online edition."""
+    for position, (number, name, _title) in enumerate(chapters):
+        if name != page_name:
+            continue
+        previous = ('index.html', '回到学习起点')
+        following = ('p8-03-s8-3.html', '接下来：动手验证')
+        if position:
+            n, file, label = chapters[position - 1]
+            previous = (file.replace('.md', '.html') + f'#ch{n}', '上一章：' + label)
+        if position + 1 < len(chapters):
+            n, file, label = chapters[position + 1]
+            following = (file.replace('.md', '.html') + f'#ch{n}', '下一章：' + label)
+        return (
+            '\n<div class="reading-checkpoint">\n'
+            f'<p><strong>学完第 {number} 章，检验一下理解</strong>'
+            f'<span>核心课程 {position + 1} / {len(chapters)}</span></p>\n'
+            '<p>先独立作答，再展开解析；做错的地方回到本章复习。</p>\n'
+            '<nav class="reading-nav" aria-label="章节学习导航">\n'
+            f'<a href="{escape(previous[0], quote=True)}">{escape(previous[1])}</a>\n'
+            f'<a class="reading-quiz" href="p9-00-quiz.html#quiz-ch{number}">做第 {number} 章自测 →</a>\n'
+            f'<a href="{escape(following[0], quote=True)}">{escape(following[1])}</a>\n'
+            '</nav>\n</div>\n'
+        )
+    return ''
+
+
+def legacy_anchor_links(page_name, redirects):
+    """Keep old shared URLs usable, including a visible fallback without JS."""
+    links = []
+    for source, target in redirects.items():
+        filename, anchor = source.split('#', 1)
+        if filename != Path(page_name).with_suffix('.html').name:
+            continue
+        links.append(
+            f'<div class="legacy-anchor" id="{escape(anchor, quote=True)}">'
+            f'<a href="{escape(target, quote=True)}">此内容已移到对应页面，继续阅读 →</a></div>'
+        )
+    return '\n'.join(links)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--build", action="store_true", help="生成后直接运行 mkdocs build")
@@ -826,16 +902,20 @@ def main():
         shutil.rmtree(OUT)
     OUT.mkdir(parents=True)
 
+    chapters = chapter_routes()
+    media = ROOT / "scripts" / "site_media"
+    redirects = json.loads((media / "legacy-anchors.json").read_text(encoding="utf-8"))
     for page in sorted(DOCS.glob("*.md")):
         text = page.read_text(encoding="utf-8")
-        # 原始 HTML 里的跨页链接 MkDocs 不会重写，这里统一 .md# -> .html#
-        text = re.sub(r'href="([\w\-]+)\.md#', r'href="\1.html#', text)
+        # MkDocs does not rewrite raw HTML links, with or without fragments.
+        text = re.sub(r'href="([\w\-]+)\.md(?=[#\"])', r'href="\1.html', text)
         # 动画 <img> 补懒加载 + 预留高度（只在站点产物里加）
         text = optimize_imgs(text)
         # SEO：每页一句独立的 meta description（front-matter，只加在站点产物里）
         text = with_description(text)
         # 每页页脚加「参与共建」闭环（只在站点产物里加，docs/ 保持单一数据源干净）
-        text = text.rstrip("\n") + "\n" + FEEDBACK_FOOTER
+        text = (text.rstrip("\n") + "\n" + reading_navigation(page.name, chapters)
+                + legacy_anchor_links(page.name, redirects) + "\n" + FEEDBACK_FOOTER)
         (OUT / page.name).write_text(text, encoding="utf-8", newline="\n")
     for extra in ("CONTRIBUTING.md", "CONTRIBUTORS.md"):
         src = ROOT / extra
@@ -849,15 +929,18 @@ def main():
     assets = ROOT / "assets"
     if assets.is_dir():
         shutil.copytree(assets, OUT / "assets", ignore=shutil.ignore_patterns("*.md"))
+    if (ROOT / "LICENSE").exists():
+        shutil.copyfile(ROOT / "LICENSE", OUT / "LICENSE")
 
     (OUT / "stylesheets").mkdir(exist_ok=True)
     (OUT / "javascripts").mkdir(exist_ok=True)
     (OUT / "stylesheets" / "gallery.css").write_text(GALLERY_CSS, encoding="utf-8")
     (OUT / "javascripts" / "gallery.js").write_text(GALLERY_JS, encoding="utf-8")
     (OUT / "javascripts" / "mathjax.js").write_text(MATHJAX_JS, encoding="utf-8")
-    media = ROOT / "scripts" / "site_media"
     shutil.copyfile(media / "learning.js", OUT / "javascripts" / "learning.js")
     shutil.copyfile(media / "learning.css", OUT / "stylesheets" / "learning.css")
+    shutil.copyfile(media / "reading.js", OUT / "javascripts" / "reading.js")
+    shutil.copyfile(media / "reading.css", OUT / "stylesheets" / "reading.css")
 
     # SEO：robots.txt（sitemap.xml 由 MkDocs 依据 site_url 自动生成）
     (OUT / "robots.txt").write_text(ROBOTS_TXT, encoding="utf-8", newline="\n")
@@ -877,7 +960,7 @@ def main():
           % (OUT, len(list(OUT.glob("*.md"))), len(items)))
 
     if args.build:
-        cmd = [sys.executable, "-m", "mkdocs", "build", "--config-file",
+        cmd = [sys.executable, "-X", "utf8", "-m", "mkdocs", "build", "--config-file",
                str(BUILD / "mkdocs.yml")]
         print("mkdocs build ->", " ".join(cmd))
         return subprocess.call(cmd, cwd=str(ROOT))

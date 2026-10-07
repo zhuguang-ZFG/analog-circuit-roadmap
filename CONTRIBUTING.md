@@ -29,6 +29,9 @@
 4. **统一结构**：新器件章遵循「物理原理 → 数学模型 → 内部电路 → 关键参数 → 典型应用 → 故障模式 → 动态分析 → 配套视频」
 5. **文风**：说人话、给数量级、每图配"💎 精髓"或"怎么看"段——参考现有章节
 6. **跨页跳转用锚点**：`docs/` 是多页站点，`#ch3` 这类锚点要写成 `p1-04-ch3.md#ch3`（拼回 README 时脚本会自动还原成 `#ch3`）
+7. **锚点必须与内容同页**：`#chN` 放在第 N 章页首、`#partN` 放在对应篇页首，节级锚点紧邻它的标题；不能留在上一页页尾。检查必须同时验证「存在」与「归属正确」。历史外链兼容记录在 `scripts/site_media/legacy-anchors.json`，只向站点产物注入兼容入口，不能在 `docs/` 重复定义锚点。
+8. **参数与结论要能核对**：涉及具体器件时写明型号、供电、负载、温度等相关条件，区分典型值与保证值；教学示意、仿真结果与实测数据分别说明。关键结论优先附厂商手册或应用笔记及章节，避免把经验值写成无条件规律。
+9. **学习目标可验证**：用「能解释什么、算出什么、测到什么」描述目标。自测用于定位薄弱环节，不把题目分数当成独立设计能力的认证。
 
 ## 三种产物，一条流水线
 
@@ -60,6 +63,21 @@ python -B -m unittest discover -s scripts -p 'test_svg_assets.py'   # SVG 与生
 使用 OMP 的 `task_verify` 时，从本仓库根目录启动会话。检查命令由本机 `task-verification-policy.json` 登记；新增或修改测试、检查参数和策略后，须审核并在下一用户轮建立基线。干净且本轮未修改的仓库返回 `not-required`，不表示测试已执行。
 
 ## 站点体验（`build_site.py` 生成，改这里就改全站）
+
+首页内容在 `docs/index.md`；路线卡片、章末学习导航和旧链接提示的样式在 `scripts/site_media/reading.css`。
+19 章的「上一章 → 本章自测 → 下一章」由章节文件自动生成；题库的 `#quiz-chN` 与返回复习链接在 `docs/p9-00-quiz.md` 维护。
+`reading.js` 只负责旧锚点跳转，禁用 JavaScript 时仍有可点击的兼容入口。构建器显式生成页面标题，避免页首 HTML 锚点让标题退化成文件名。
+
+修改学习路线或导航后运行：
+
+```bash
+python -B -m unittest discover -s scripts -p test_docs_links.py -v
+python -B -m unittest discover -s scripts -p test_split_readme.py -v
+python -B -m unittest discover -s scripts -p test_site_build.py -v
+python -B -m unittest discover -s scripts -p test_reading_journey.py -v
+```
+
+最后一组需要站点依赖、Playwright 和 Google Chrome，在临时目录构建完整站点，以子路径访问，检查首页入口、正文与题库往返、旧书签与浏览器返回、无 JavaScript 退化、手机明暗主题及真实搜索结果。外部请求全部拦截，不依赖线上部署。此组与拆分脚本回归均已纳入 CI。
 
 修改画廊交互后运行 `python -B -m unittest discover -s scripts -p test_gallery_interactions.py -v`。
 这组测试需要 Playwright 和 Google Chrome，直接加载生成器输出并拦截外部请求，覆盖弹窗焦点循环与恢复、单张结果、输入区域快捷键、筛选分享和空结果；CI 的 `svg-render` 作业会执行同一组检查。

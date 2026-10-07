@@ -48,7 +48,7 @@ class SiteBuildTests(unittest.TestCase):
         shutil.copytree(ROOT / "scripts" / "site_media", work / "scripts" / "site_media")
         shutil.copytree(ROOT / "docs", work / "docs")
         shutil.copytree(ROOT / "assets", work / "assets")
-        for extra in ("CONTRIBUTING.md", "CONTRIBUTORS.md"):
+        for extra in ("CONTRIBUTING.md", "CONTRIBUTORS.md", "LICENSE"):
             src = ROOT / extra
             if src.exists():
                 shutil.copyfile(src, work / extra)
@@ -193,13 +193,16 @@ class SiteBuildTests(unittest.TestCase):
         压不成文字的公式当成摘要。这里把「每页有、各不相同、无 Markdown/公式残渣」
         钉成红灯。
         """
-        pat = re.compile(r'^---\ndescription: ([^\n]*)\n---\n')
+        pat = re.compile(r'^---\ndescription: ([^\n]*)\ntitle: ([^\n]*)\n---\n')
         descs = {}
         for page in sorted(self.out.glob("*.md")):
             with self.subTest(page=page.name):
                 m = pat.match(page.read_text(encoding="utf-8"))
                 self.assertIsNotNone(m, "%s 没有 description（会退回全站同一句）" % page.name)
                 descs[page.name] = json.loads(m.group(1))
+                title = json.loads(m.group(2))
+                self.assertTrue(title)
+                self.assertNotEqual(page.stem, title)
 
         values = list(descs.values())
         dup = {v: [k for k, x in descs.items() if x == v] for v in values if values.count(v) > 1}
@@ -296,6 +299,47 @@ class SiteBuildTests(unittest.TestCase):
             self.assertNotIn("<iframe", text)
             self.assertIn(f"assets/photos/{photo}", text)
             self.assertTrue((self.out / "assets/photos" / photo).is_file())
+
+    def test_reading_navigation_connects_all_chapters_to_their_quizzes(self):
+        quiz = (self.out / 'p9-00-quiz.md').read_text(encoding='utf-8')
+        chapters = sorted((int(re.search(r'-ch(\d+)\.md$', p.name)[1]), p)
+                          for p in self.out.glob('*-ch[0-9]*.md'))
+        self.assertEqual(list(range(19)), [n for n, _ in chapters])
+        for position, (number, page) in enumerate(chapters):
+            content = page.read_text(encoding='utf-8')
+            self.assertIn(f'href="p9-00-quiz.html#quiz-ch{number}"', content)
+            self.assertIn(f'<a id="quiz-ch{number}"></a>', quiz)
+            if position + 1 < len(chapters):
+                next_number, next_page = chapters[position + 1]
+                self.assertIn(f'href="{next_page.stem}.html#ch{next_number}"', content)
+            if position:
+                previous_number, previous_page = chapters[position - 1]
+                self.assertIn(f'href="{previous_page.stem}.html#ch{previous_number}"', content)
+        self.assertIn('href="index.html"', chapters[0][1].read_text(encoding='utf-8'))
+        self.assertIn('href="p8-03-s8-3.html"', chapters[-1][1].read_text(encoding='utf-8'))
+
+    def test_legacy_links_resolve_to_canonical_source_anchors(self):
+        redirects = json.loads((self.work / 'scripts/site_media/legacy-anchors.json').read_text(encoding='utf-8'))
+        self.assertEqual(35, len(redirects))
+        for source, target in redirects.items():
+            old_page, old_anchor = source.split('#')
+            new_page, new_anchor = target.split('#')
+            old = (self.out / old_page.replace('.html', '.md')).read_text(encoding='utf-8')
+            canonical = (self.work / 'docs' / new_page.replace('.html', '.md')).read_text(encoding='utf-8')
+            self.assertIn(f'class="legacy-anchor" id="{old_anchor}"', old)
+            self.assertIn(f'href="{target}"', old)
+            self.assertIn(f'<a id="{new_anchor}"></a>', canonical)
+            self.assertNotIn(target, redirects, 'Redirect chains must not be introduced')
+
+    def test_homepage_local_html_links_and_reading_assets_are_published(self):
+        home = (self.out / 'index.md').read_text(encoding='utf-8')
+        self.assertNotRegex(home, r'href="[^"]*\.md(?:#|\")')
+        for filename in re.findall(r'href="([\w-]+)\.html', home):
+            self.assertTrue((self.out / f'{filename}.md').exists())
+        self.assertTrue((self.out / 'LICENSE').is_file())
+        for directory, filename in (('stylesheets', 'reading.css'), ('javascripts', 'reading.js')):
+            self.assertEqual((self.work / 'scripts/site_media' / filename).read_bytes(),
+                             (self.out / directory / filename).read_bytes())
 
     # ---------- 共建页脚 ----------
     def test_feedback_footer_on_every_page(self):

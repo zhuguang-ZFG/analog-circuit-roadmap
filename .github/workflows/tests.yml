@@ -30,6 +30,7 @@ jobs:
       - name: docs/ ↔ README.md 同步 + 跨页锚点可达
         run: python -B -m unittest discover -s scripts -p test_docs_sync.py -v
       - run: python -B -m unittest discover -s scripts -p test_docs_links.py -v
+      - run: python -B -m unittest discover -s scripts -p test_split_readme.py -v
 
   site-build:
     name: 站点可构建性
@@ -52,7 +53,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: pip install numpy playwright
+      - run: pip install -r requirements.txt playwright
+      - name: Reading routes, old bookmarks, mobile layout and search
+        run: python -B -m unittest discover -s scripts -p test_reading_journey.py -v
       - name: Gallery keyboard, modal focus and shareable filters
         run: python -B -m unittest discover -s scripts -p test_gallery_interactions.py -v
       - name: Lesson controls, video loading and mobile layout

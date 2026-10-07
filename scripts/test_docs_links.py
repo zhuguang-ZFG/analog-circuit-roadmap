@@ -48,6 +48,38 @@ class DocsLinks(unittest.TestCase):
             self.assertTrue(re.search(r"^#{1,2} ", text, re.M),
                             "%s 缺少标题（站点导航会退化成文件名）" % p.name)
 
+    def test_chapter_and_part_anchors_belong_to_their_content(self):
+        """A link existing on the previous page is still a broken learning route."""
+        for page in self.pages:
+            match = re.search(r'-(ch\d+|part\d+)\.md$', page.name)
+            if match:
+                with self.subTest(page=page.name):
+                    self.assertIn(match[1], self.anchors[page.name])
+                    prefix = page.read_text(encoding='utf-8').splitlines()[:4]
+                    self.assertIn(f'<a id="{match[1]}"></a>', prefix)
+            self.assertIsNone(re.search(r'<a id="[^"]+"></a>\s*\Z',
+                                       page.read_text(encoding='utf-8')),
+                              f'{page.name}: anchor stranded at the end of a page')
+
+    def test_source_anchors_are_unique_in_the_single_file_edition(self):
+        seen = set()
+        for page in self.pages:
+            for anchor in ANCHOR_DEF.findall(page.read_text(encoding='utf-8')):
+                self.assertNotIn(anchor, seen, f'Duplicate anchor #{anchor}')
+                seen.add(anchor)
+
+    def test_every_chapter_has_a_quiz_and_a_return_link(self):
+        quiz = (DOCS / 'p9-00-quiz.md').read_text(encoding='utf-8')
+        for page in self.pages:
+            match = re.search(r'-ch(\d+)\.md$', page.name)
+            if match:
+                number = match[1]
+                with self.subTest(chapter=number):
+                    section = re.search(rf'<a id="quiz-ch{number}"></a>\n(.*?)(?=\n## |\Z)',
+                                        quiz, re.S)
+                    self.assertIsNotNone(section, f'Missing quiz for chapter {number}')
+                    self.assertIn(f'({page.name}#ch{number})', section.group(1))
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -81,15 +81,30 @@ def split_sections(lines):
             return
         sections.append((cur_head, cur_body))
 
+    fence = None
     for line in lines:
-        if H1.match(line):
+        marker = re.match(r"^\s{0,3}(`{3,}|~{3,})", line)
+        if marker:
+            value = marker.group(1)
+            if fence is None:
+                fence = value
+            elif value[0] == fence[0] and len(value) >= len(fence):
+                fence = None
+            cur_body.append(line)
+            continue
+        if fence is None and (H1.match(line) or (H2.match(line) and not DEMO_H2.match(line))):
+            # Anchors immediately BEFORE a heading belong to the new section.
+            # Keeping them in the previous body made valid links open the wrong page.
+            boundary = len(cur_body)
+            while boundary and (not cur_body[boundary - 1].strip() or
+                    re.fullmatch(r'\s*<a\s+id="[^"]+"></a>\s*', cur_body[boundary - 1])):
+                boundary -= 1
+            anchors = [value for value in cur_body[boundary:] if value.strip()]
+            if anchors:
+                del cur_body[boundary:]
             flush()
             cur_head = line
-            cur_body = []
-        elif H2.match(line) and not DEMO_H2.match(line):
-            flush()
-            cur_head = line
-            cur_body = []
+            cur_body = anchors + ([""] if anchors else [])
         else:
             cur_body.append(line)
     flush()
@@ -160,8 +175,6 @@ def main():
         pages[name] = c
 
     DOCS.mkdir(exist_ok=True)
-    for stale in DOCS.glob("*.md"):      # 重跑时清掉旧页面，避免文件名残留
-        stale.unlink()
     for stale in DOCS.glob("*.md"):      # 重跑时清掉旧页面，避免文件名残留
         stale.unlink()
     for name, content in pages.items():
