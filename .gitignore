@@ -5,3 +5,6 @@ site/
 __pycache__/
 *.pyc
 .DS_Store
+# 本地草稿 / 截图（不参与发布）
+.tmp/
+.tmp_sec/

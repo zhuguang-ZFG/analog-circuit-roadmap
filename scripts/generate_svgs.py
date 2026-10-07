@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-generate_svgs.py — 一键再生成《通往模拟电路之路》全部 95 张 SVG SMIL 动画
+generate_svgs.py — 一键再生成《通往模拟电路之路》全部 102 张 SVG SMIL 动画
 用法:  python generate_svgs.py            # 输出到 ../assets/svg/
 风格:  参考 BMS-Z 项目 —— 浅色底 + SMIL 节拍字幕 + 深色模式自适应 + 拟人化讲解
 所有电路参数经过自洽核算（datasheet 级），详见各函数注释。
@@ -7608,6 +7608,100 @@ def make_ce_dynamic():
     save('ce-dynamic.svg', svg + '</svg>')
 
 
+# ======================= 图 102：排故决策树（第 17 章 17.8） =======================
+def make_diagnosis_tree():
+    DT = 12
+    SCX, SW, SH = 175, 270, 42          # 决策脊柱
+    BCX, BW = 590, 280                  # 「否」分支目标
+    LW, LH, LY = 175, 56, 438           # 底部四叶
+    BUS_Y = 410
+    spine = [
+        (92,  '① 上电无反应？'),
+        (160, '② 输入电压在不在？'),
+        (228, '③ 关键电源轨都对吗？'),
+        (296, '④ 复位 / 时钟正常吗？'),
+        (364, '⑤ 有电有复位 → 看表现'),
+    ]
+    branches = [
+        (160, '→ 17.1 电源类：保险 / 极性 / 连接', '#2563eb'),
+        (228, '→ 17.1：带载跌落 / 纹波 / 使能', '#dc2626'),
+        (296, '→ 17.3：复位 IC / 晶振 / 时序', '#b45309'),
+    ]
+    leaves = [
+        (30,  '完全不动', '17.3 接口 / 固件 / 挂死', '#7c3aed'),
+        (215, '读数不对', '17.2 反馈 / 校准 / 噪声', '#059669'),
+        (400, '时好时坏', '17.6 焊接连接 → 再查 17.4', '#dc2626'),
+        (585, '发热异常', '17.5 功耗 / 短路 / 散热', '#b45309'),
+    ]
+    body = ''
+    # ---- 脊柱节点 ----
+    for y, t in spine:
+        body += (f'<rect x="{SCX-SW//2}" y="{y-SH//2}" width="{SW}" height="{SH}" rx="10" '
+                 f'fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>'
+                 f'<text x="{SCX}" y="{y+5}" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1e293b">{t}</text>\n')
+    # ---- 竖箭头 + 「是」 ----
+    for i in range(len(spine) - 1):
+        y1 = spine[i][0] + SH // 2
+        y2 = spine[i + 1][0] - SH // 2
+        body += (f'<line x1="{SCX}" y1="{y1}" x2="{SCX}" y2="{y2-3}" stroke="#334155" stroke-width="2.2"/>'
+                 f'<polygon points="{SCX},{y2} {SCX-5},{y2-7} {SCX+5},{y2-7}" fill="#334155"/>'
+                 f'<text x="{SCX+14}" y="{(y1+y2)/2+4:.0f}" font-size="11" font-weight="bold" fill="#059669">是</text>\n')
+    # ---- 「否」分支 ----
+    for y, t, col in branches:
+        body += (f'<line x1="{SCX+SW//2}" y1="{y}" x2="{BCX-BW//2-3}" y2="{y}" stroke="{col}" stroke-width="2.2"/>'
+                 f'<polygon points="{BCX-BW//2},{y} {BCX-BW//2-8},{y-5} {BCX-BW//2-8},{y+5}" fill="{col}"/>'
+                 f'<text x="{SCX+SW//2+16}" y="{y-9}" font-size="11" font-weight="bold" fill="#dc2626">否</text>\n')
+        body += (f'<rect x="{BCX-BW//2}" y="{y-SH//2}" width="{BW}" height="{SH}" rx="10" '
+                 f'fill="#f8fafc" stroke="{col}" stroke-width="2.5"/>'
+                 f'<text x="{BCX}" y="{y+5}" text-anchor="middle" font-size="12" font-weight="bold" fill="{col}">{t}</text>\n')
+    # ---- 底部总线 + 四叶 ----
+    body += (f'<line x1="{SCX}" y1="{spine[-1][0]+SH//2}" x2="{SCX}" y2="{BUS_Y}" stroke="#334155" stroke-width="2.2"/>'
+             f'<line x1="{leaves[0][0]+LW//2}" y1="{BUS_Y}" x2="{leaves[-1][0]+LW//2}" y2="{BUS_Y}" stroke="#334155" stroke-width="2.2"/>')
+    for x, t, s, col in leaves:
+        cx = x + LW // 2
+        body += (f'<line x1="{cx}" y1="{BUS_Y}" x2="{cx}" y2="{LY-3}" stroke="{col}" stroke-width="2.2"/>'
+                 f'<polygon points="{cx},{LY} {cx-5},{LY-7} {cx+5},{LY-7}" fill="{col}"/>')
+        body += (f'<rect x="{x}" y="{LY}" width="{LW}" height="{LH}" rx="10" fill="#f8fafc" stroke="{col}" stroke-width="2.5"/>'
+                 f'<text x="{cx}" y="{LY+25}" text-anchor="middle" font-size="13" font-weight="bold" fill="{col}">{t}</text>'
+                 f'<text x="{cx}" y="{LY+45}" text-anchor="middle" font-size="9.5" fill="#475569">{s}</text>\n')
+    # ---- 连接段粒子（只走连线，不压文字） ----
+    for i in range(len(spine) - 1):
+        y1 = spine[i][0] + SH // 2
+        y2 = spine[i + 1][0] - SH // 2
+        body += flow(f'M{SCX},{y1} V{y2}', DT, n=2, color='#334155', r=4.5) + '\n'
+    for y, _, col in branches:
+        body += flow(f'M{SCX+SW//2},{y} H{BCX-BW//2}', DT, n=2, color=col, r=4.5) + '\n'
+    body += flow(f'M{SCX},{spine[-1][0]+SH//2} V{BUS_Y}', DT, n=2, color='#334155', r=4.5) + '\n'
+    for x, _, _, col in leaves:
+        body += flow(f'M{x+LW//2},{BUS_Y} V{LY}', DT, n=2, color=col, r=4.5) + '\n'
+    # ---- 起点呼吸圈 ----
+    body += (f'<rect x="{SCX-SW//2-5}" y="{92-SH//2-5}" width="{SW+10}" height="{SH+10}" rx="14" fill="none" '
+             f'stroke="#f59e0b" stroke-width="3" opacity="0">'
+             f'<animate attributeName="opacity" values="0.1;0.85;0.1" dur="2.4s" repeatCount="indefinite"/></rect>')
+    beats = [
+        ('① 上电无反应：别急着拆——先分清是「没电」「没复位」还是「没时钟」', '#2563eb'),
+        ('② 输入电压在不在：电源线 / 保险 / 极性 / 连接器——30 秒排除最常见的 17.1', '#dc2626'),
+        ('③ 关键电源轨都对吗：带载跌落、纹波、使能脚——静态对 ≠ 动态对', '#b45309'),
+        ('④ 复位与时钟正常吗：复位 IC、晶振起振、上电时序——数字电路的「心跳」', '#7c3aed'),
+        ('⑤ 有电有复位却功能异常：按表现分流——不动 / 读数错 / 时好时坏 / 发热，各归其表', '#059669'),
+    ]
+    caps = ''
+    for i, (txt, col) in enumerate(beats):
+        a, b = i * 0.2, (i + 1) * 0.2
+        if i < len(beats) - 1:
+            caps += caption(txt, col, DT, "0;0;1;1;0;0",
+                            f"0;{a:.2f};{a+0.02:.2f};{b:.2f};{b+0.02:.2f};1", y=530) + '\n'
+        else:
+            caps += caption(txt, col, DT, "0;0;1;1", f"0;{a:.2f};{a+0.02:.2f};1", y=530) + '\n'
+    svg = svg_open('排故决策树：从「上电无反应」到具体表项', h=575)
+    svg += f'''
+<text x="400" y="58" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">先定方向、再查细节——每一「否」都直接落到一张速查表，别在细节里迷路</text>
+{body}
+'''
+    svg += caps
+    save('diagnosis-tree.svg', svg + '</svg>')
+
+
 if __name__ == '__main__':
     make_rc_charge()
     make_bridge_rectifier()
@@ -7710,4 +7804,5 @@ if __name__ == '__main__':
     make_power_tree()
     make_voltage_drop()
     make_pcb_routing()
-    print('all 95 SVGs regenerated into', os.path.abspath(OUT))
+    make_diagnosis_tree()
+    print('all 102 SVGs regenerated into', os.path.abspath(OUT))

@@ -13,6 +13,13 @@
 | ✍️ 章节 | 新器件/新拓扑深度解析（遵循统一结构） | PR |
 | 🧪 题目 | 自测题库新增好题（含答案与解析） | PR |
 
+> 📮 **不想写代码？两条最快的路**：
+> 1. **提 Issue**——[纠错](https://github.com/zhuguang-ZFG/analog-circuit-roadmap/issues/new?template=content-fix.yml)（错别字 / 公式 / 事实 / 失效链接）
+>    或 [建议](https://github.com/zhuguang-ZFG/analog-circuit-roadmap/issues/new?template=new-topic.yml)（新增主题 / 动画 / 资源）。
+>    模板已把"位置 / 问题类型 / 依据"列好，填完即可，不需要懂 Git。
+> 2. **在线站每页右上角有 ✎「编辑此页」**，直接跳到该页对应的 `docs/xxx.md` 开 PR；
+>    页面底部还有「参与共建」快捷入口。发现一处错字，30 秒就能改完。
+
 ## 仓库铁律（PR 前自查）
 
 0. **`docs/` 是唯一数据源，不要直接改 `README.md`**——README 由 `scripts/build_readme.py` 从 `docs/` 拼出，改完必须重跑（CI 会比对，漂移即红灯）
@@ -37,17 +44,36 @@
 
 ## 本地检查
 
-在仓库根目录运行：
+在仓库根目录运行（四项检查与 CI 完全一致）：
 
 ```bash
-python -B -m unittest discover -s scripts -p 'test_*.py' -v
+python -B -m unittest discover -s scripts -p 'test_docs_sync.py'    # docs → README 可 1:1 重建
+python -B -m unittest discover -s scripts -p 'test_docs_links.py'   # 跨页锚点 / SVG 引用 / 标题
+python -B -m unittest discover -s scripts -p 'test_readme_links.py' # README 锚点完整性
+python -B -m unittest discover -s scripts -p 'test_svg_assets.py'   # SVG 与生成器逐字节一致
 ```
 
 `test_svg_assets.py` 使用生成器已有的 NumPy 依赖，在临时目录执行生成器，检查 SVG 文件集合、内容一致性和 XML 格式；不会覆盖仓库产物，忽略跨平台 LF/CRLF 差异。`test_waveform_timing.py` 需要 Playwright 和已安装的 Google Chrome，检查五张时间轴图（模拟开关、LDO、555、整流滤波、MOSFET 四拍）的时间轴、跳变、循环与圆点同步，以及 7 站点（comparator/wien/integrator/LDO/miller/peak/neg-feedback）的 x-匀速配速（delta=0.6px）。
 
-这组测试已在 CI 中强制执行：`.github/workflows/tests.yml` 在每次推送和 PR 上运行 SVG 一致性检查（NumPy）与 Chromium 时间轴回归。
+这组测试已在 CI 中强制执行：`.github/workflows/tests.yml` 在每次推送和 PR 上运行 SVG 一致性检查（NumPy）、docs 单一数据源校验、站点可构建性与 Chromium 时间轴回归；`.github/workflows/links.yml` 用 lychee 巡检全量外链；`.github/workflows/pages.yml` 在 `main` 推送后部署 GitHub Pages。
 
 使用 OMP 的 `task_verify` 时，从本仓库根目录启动会话。检查命令由本机 `task-verification-policy.json` 登记；新增或修改测试、检查参数和策略后，须审核并在下一用户轮建立基线。干净且本轮未修改的仓库返回 `not-required`，不表示测试已执行。
+
+## 站点体验（`build_site.py` 生成，改这里就改全站）
+
+| 能力 | 实现位置 | 说明 |
+|---|---|---|
+| 🎬 动画画廊 + 放大播放 | `gallery.md` / `gallery.js` / `gallery.css` | 102 张卡片，按章筛选 + 关键字搜索；「▶ 放大播放」弹窗全尺寸观看（SMIL 自动播放，Esc 关闭） |
+| ✎ 编辑此页 | `mkdocs.yml` 的 `edit_uri` | 每页右上角直达 `docs/` 里对应的 Markdown |
+| ✍️ 参与共建页脚 | `FEEDBACK_FOOTER` 常量 | 每页底部追加纠错 / 建议 / 共建指南入口（只加在站点产物，`docs/` 保持干净） |
+| 🔎 SEO | `OVERRIDES_MAIN_HTML` + `ROBOTS_TXT` | og/twitter 社交卡片 meta、`robots.txt`；`sitemap.xml` 由 MkDocs 依 `site_url` 自动生成 |
+| 📮 Issue 模板 | `.github/ISSUE_TEMPLATE/*.yml` | 纠错 / 建议两张表单 + 联系入口；PR 模板见 `.github/pull_request_template.md` |
+
+> 💬 **评论区（可选）**：本站预留了 giscus（GitHub Discussions 评论）的接入位置。
+> 仓库 ID 为 `R_kgDOU8y93w`。若要开启：① 在仓库 Settings 打开 Discussions 并建一个
+> `Announcements` 分类；② 在 <https://giscus.app> 授权 giscus App 并取得 `data-category-id`；
+> ③ 在 `scripts/build_site.py` 的 `FEEDBACK_FOOTER` 后追加 giscus 的 `<script>` 片段并重跑生成脚本。
+> 未安装 giscus App 时不要打开，否则页面上会出现报错的空评论框。
 
 ## 流程
 

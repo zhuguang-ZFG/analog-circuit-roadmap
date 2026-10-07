@@ -26,7 +26,8 @@ SVG_SRC = ROOT / "assets" / "svg"
 
 DEMO_HEAD = re.compile(r'^## (5\.\d+)\s+(.+?)\s*<a id="(demo\d+)"')
 DEMO_IMG = re.compile(r'<img src="assets/svg/([\w\-]+\.svg)"[^>]*alt="([^"]*)"')
-DEMO_LINK = re.compile(r"\[(5\.\d+)\]\(#(demo\d+)\)")
+# docs 迁移后锚点链接写作 p5-00-part5.md#demoN，拼回 README 时才是 #demoN——两种都要认
+DEMO_LINK = re.compile(r"\[(5\.\d+)\]\((?:[\w\-]+\.md)?#(demo\d+)\)")
 CHAPTER_ROW = re.compile(r"^\|\s*§(\d+)\s+(第\s*\d+\s*章[^|]*?)\s*\|")
 
 CHAPTER_LABEL = {
@@ -50,21 +51,38 @@ GALLERY_CSS = """
   border-color:var(--md-primary-fg-color)}
 .gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1rem}
 .gal-card{border:1px solid var(--md-default-fg-color--lightest);border-radius:.6rem;overflow:hidden;
-  background:var(--md-code-bg-color);transition:transform .15s ease,box-shadow .15s ease}
+  background:var(--md-code-bg-color);transition:transform .15s ease,box-shadow .15s ease;
+  display:flex;flex-direction:column}
 .gal-card:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(0,0,0,.18)}
-.gal-card a{display:block;text-decoration:none;color:inherit}
+.gal-card>a{display:block;text-decoration:none;color:inherit;flex:1 1 auto}
 .gal-card img{display:block;width:100%;height:auto;background:#fff}
 .gal-meta{padding:.5rem .7rem .7rem}
 .gal-title{font-weight:600;font-size:.85rem;line-height:1.35;margin-bottom:.25rem}
 .gal-tag{font-size:.7rem;opacity:.75}
 .gal-empty{opacity:.7;font-size:.9rem}
+.gal-actions{padding:0 .7rem .7rem}
+.gal-play{width:100%;padding:.35rem .6rem;border-radius:.4rem;cursor:pointer;font-size:.75rem;font-weight:600;
+  border:1px solid var(--md-primary-fg-color);background:transparent;color:var(--md-primary-fg-color)}
+.gal-play:hover{background:var(--md-primary-fg-color);color:var(--md-primary-bg-color)}
+.gal-modal{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.8);padding:2vh 2vw}
+.gal-modal.is-open{display:flex}
+.gal-modal-box{max-width:min(1100px,94vw);max-height:94vh;overflow:auto;padding:.8rem;border-radius:.6rem;
+  background:var(--md-default-bg-color)}
+.gal-modal-bar{display:flex;gap:.6rem;align-items:center;justify-content:space-between;flex-wrap:wrap;
+  margin-bottom:.5rem}
+.gal-modal-title{font-weight:700;font-size:.9rem}
+.gal-modal-close{padding:.25rem .6rem;border-radius:.4rem;cursor:pointer;font-size:.78rem;
+  border:1px solid var(--md-default-fg-color--lightest);background:transparent;color:inherit}
+.gal-modal-box img{display:block;width:100%;height:auto;background:#fff;border-radius:.35rem}
+.gal-modal-foot{margin-top:.5rem;font-size:.78rem}
+.gal-modal-foot a{font-weight:600}
 """
 
 GALLERY_JS = """
 (function () {
   function init() {
     var cards = Array.prototype.slice.call(document.querySelectorAll('.gal-card'));
-    if (!cards.length) { return; }
     var search = document.getElementById('gal-search');
     var chips = Array.prototype.slice.call(document.querySelectorAll('.gal-chip'));
     var empty = document.getElementById('gal-empty');
@@ -100,12 +118,84 @@ GALLERY_JS = """
       });
     });
     apply();
+
+    /* ---- 内嵌放大播放（lightbox）---- */
+    var modal = document.getElementById('gal-modal');
+    var mImg = document.getElementById('gal-modal-img');
+    var mTitle = document.getElementById('gal-modal-title');
+    var mLink = document.getElementById('gal-modal-link');
+    var mClose = document.getElementById('gal-modal-close');
+    if (!modal) { return; }
+
+    function openModal(svg, title, href) {
+      mImg.setAttribute('src', svg);
+      mImg.setAttribute('alt', title);
+      mTitle.textContent = title;
+      if (mLink) { mLink.setAttribute('href', href); }
+      modal.classList.add('is-open');
+      if (mClose) { mClose.focus(); }
+    }
+    function closeModal() {
+      modal.classList.remove('is-open');
+      mImg.setAttribute('src', '');
+    }
+    document.addEventListener('click', function (e) {
+      var t = e.target;
+      var btn = t && t.closest ? t.closest('.gal-play') : null;
+      if (btn) {
+        e.preventDefault();
+        openModal(btn.dataset.svg, btn.dataset.title, btn.dataset.href);
+        return;
+      }
+      if (t === modal || (mClose && t === mClose)) { closeModal(); }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') { closeModal(); }
+    });
   }
 
   if (document.readyState !== 'loading') { init(); }
   else { document.addEventListener('DOMContentLoaded', init); }
 })();
 """
+
+OVERRIDES_MAIN_HTML = """{% extends "base.html" %}
+
+{% block extrahead %}
+  {{ super() }}
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ config.site_name }}">
+  <meta property="og:title" content="{{ page.title | default(config.site_name, true) }}">
+  <meta property="og:description" content="{{ config.site_description }}">
+  {% if page.canonical_url %}<meta property="og:url" content="{{ page.canonical_url }}">{% endif %}
+  <meta property="og:image" content="__OG_IMAGE__">
+  <meta property="og:locale" content="zh_CN">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ page.title | default(config.site_name, true) }}">
+  <meta name="twitter:description" content="{{ config.site_description }}">
+  <meta name="twitter:image" content="__OG_IMAGE__">
+  <meta name="theme-color" content="#3f51b5">
+  <meta name="author" content="zhuguang-ZFG">
+{% endblock %}
+"""
+
+OG_IMAGE = ("https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/"
+            "Printed_circuit_board.jpg/500px-Printed_circuit_board.jpg")
+
+ROBOTS_TXT = """User-agent: *
+Allow: /
+
+Sitemap: https://zhuguang-ZFG.github.io/analog-circuit-roadmap/sitemap.xml
+"""
+
+FEEDBACK_FOOTER = """
+---
+
+> ✍️ **参与共建**：发现错别字、公式错误或失效链接？[提一个纠错 Issue](https://github.com/zhuguang-ZFG/analog-circuit-roadmap/issues/new?template=content-fix.yml) ·
+> 想补充新主题、新动画或新资源？[提个建议](https://github.com/zhuguang-ZFG/analog-circuit-roadmap/issues/new?template=new-topic.yml) ·
+> 想直接动手改：[共建指南](CONTRIBUTING.md) · [共建者墙](CONTRIBUTORS.md)
+"""
+
 
 MATHJAX_JS = r"""
 window.MathJax = {
@@ -120,29 +210,29 @@ window.MathJax = {
 """
 
 MKDOCS_YML = """site_name: 通往模拟电路之路
-site_description: 从欧姆定律到芯片内部结构 —— 原理推导 + 器件剖析 + 故障分析 + 101 张 SVG 动画
+site_description: 从欧姆定律到芯片内部结构 —— 原理推导 + 器件剖析 + 故障分析 + 102 张 SVG 动画
 site_url: https://zhuguang-ZFG.github.io/analog-circuit-roadmap/
 repo_url: https://github.com/zhuguang-ZFG/analog-circuit-roadmap
 repo_name: zhuguang-ZFG/analog-circuit-roadmap
+edit_uri: edit/main/docs/
 copyright: CC BY-SA 4.0
 
 docs_dir: docs
 site_dir: site
 # 页面保持平铺（不带目录 URL），使正文里相对路径的 SVG 引用在各页都能解析
 use_directory_urls: false
-# 页面保持平铺（不带目录 URL），使正文里相对路径的 SVG 引用在各页都能解析
-use_directory_urls: false
 
 theme:
   name: material
   language: zh
+  custom_dir: overrides
   features:
     - navigation.instant
     - navigation.tracking
     - navigation.sections
     - navigation.top
     - navigation.indexes
-    - navigation.indexes
+    - content.action.edit
     - content.code.copy
     - search.highlight
     - search.suggest
@@ -162,6 +252,15 @@ theme:
       toggle:
         icon: material/weather-sunny
         name: 切换到浅色
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/zhuguang-ZFG/analog-circuit-roadmap
+      name: GitHub 仓库
+    - icon: fontawesome/solid/pen-to-square
+      link: https://github.com/zhuguang-ZFG/analog-circuit-roadmap/issues/new/choose
+      name: 提 Issue（纠错 / 建议）
 
 extra_css:
   - stylesheets/gallery.css
@@ -247,25 +346,33 @@ def render_gallery(items):
     cards = []
     for it in items:
         title = it["title"].replace('"', "&quot;")
+        href = "p5-00-part5.html#%s" % it["anchor"]
         cards.append(
             '<div class="gal-card" data-ch="%s" data-title="%s" data-file="%s">\n'
-            '  <a href="p5-00-part5.html#%s" title="%s">\n'
+            '  <a href="%s" title="%s">\n'
             '    <img src="assets/svg/%s" alt="%s" loading="lazy">\n'
             '    <div class="gal-meta">\n'
             '      <div class="gal-title">%s %s</div>\n'
             '      <div class="gal-tag">%s</div>\n'
             '    </div>\n'
             '  </a>\n'
+            '  <div class="gal-actions">\n'
+            '    <button class="gal-play" type="button" data-svg="assets/svg/%s" '
+            'data-title="%s %s" data-href="%s">▶ 放大播放</button>\n'
+            '  </div>\n'
             '</div>'
-            % (it["ch"], title.lower(), it["svg"], it["anchor"], title,
+            % (it["ch"], title.lower(), it["svg"], href, title,
                it["svg"], it["alt"], it["num"], it["title"],
-               CHAPTER_LABEL.get(it["ch"], "动画")))
+               CHAPTER_LABEL.get(it["ch"], "动画"),
+               it["svg"], it["num"], title, href)
+        )
 
     return "\n".join([
         "# 🎬 动画画廊",
         "",
-        "> 全部 %d 张 SMIL 动画，可按章筛选、按标题搜索；点卡片直达该动画在"
-        "[动画演示中心](p5-00-part5.md)里的讲解与看点。" % len(items),
+        "> 全部 %d 张 SMIL 动画，可按章筛选、按标题搜索；"
+        "点「▶ 放大播放」在弹窗里全尺寸观看（动画会自动播放），"
+        "点卡片标题区直达该动画在 [动画演示中心](p5-00-part5.md)里的讲解与看点。" % len(items),
         "",
         '<div class="gal-bar">',
         '  <input id="gal-search" type="search" placeholder="搜索：米勒 / LDO / 迟滞 / mosfet …">',
@@ -280,7 +387,20 @@ def render_gallery(items):
         '<p class="gal-empty" id="gal-empty" style="display:none">'
         "没有匹配的动画，换个关键词试试。</p>",
         "",
+        '<div class="gal-modal" id="gal-modal" role="dialog" aria-modal="true" aria-label="动画放大播放">',
+        '  <div class="gal-modal-box">',
+        '    <div class="gal-modal-bar">',
+        '      <span class="gal-modal-title" id="gal-modal-title"></span>',
+        '      <button class="gal-modal-close" id="gal-modal-close" type="button">✕ 关闭（Esc）</button>',
+        "    </div>",
+        '    <img id="gal-modal-img" alt="">',
+        '    <div class="gal-modal-foot">'
+        '<a id="gal-modal-link" href="#">→ 查看这张动画的讲解与看点</a></div>',
+        "  </div>",
+        "</div>",
+        "",
     ]) + "\n"
+
 
 def page_title(path):
     for ln in path.read_text(encoding="utf-8").split("\n"):
@@ -352,6 +472,8 @@ def main():
         text = page.read_text(encoding="utf-8")
         # 原始 HTML 里的跨页链接 MkDocs 不会重写，这里统一 .md# -> .html#
         text = re.sub(r'href="([\w\-]+)\.md#', r'href="\1.html#', text)
+        # 每页页脚加「参与共建」闭环（只在站点产物里加，docs/ 保持单一数据源干净）
+        text = text.rstrip("\n") + "\n" + FEEDBACK_FOOTER
         (OUT / page.name).write_text(text, encoding="utf-8", newline="\n")
     for extra in ("CONTRIBUTING.md", "CONTRIBUTORS.md"):
         src = ROOT / extra
@@ -367,8 +489,18 @@ def main():
     (OUT / "javascripts" / "gallery.js").write_text(GALLERY_JS, encoding="utf-8")
     (OUT / "javascripts" / "mathjax.js").write_text(MATHJAX_JS, encoding="utf-8")
 
+    # SEO：robots.txt（sitemap.xml 由 MkDocs 依据 site_url 自动生成）
+    (OUT / "robots.txt").write_text(ROBOTS_TXT, encoding="utf-8", newline="\n")
+
+    # SEO：社交卡片 meta（og / twitter）通过主题覆写注入 <head>
+    ov = BUILD / "overrides"
+    ov.mkdir(parents=True, exist_ok=True)
+    (ov / "main.html").write_text(
+        OVERRIDES_MAIN_HTML.replace("__OG_IMAGE__", OG_IMAGE), encoding="utf-8", newline="\n")
+
     items, _ = parse_demos()
-    (OUT / "gallery.md").write_text(render_gallery(items), encoding="utf-8", newline="\n")
+    gallery = render_gallery(items).rstrip("\n") + "\n" + FEEDBACK_FOOTER
+    (OUT / "gallery.md").write_text(gallery, encoding="utf-8", newline="\n")
     write_mkdocs_config()
     print("站点源已生成：%s（%d 页 + %d 张动画卡片）"
           % (OUT, len(list(OUT.glob("*.md"))), len(items)))
