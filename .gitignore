@@ -1,0 +1,7 @@
+# 构建产物（docs/ 是唯一数据源，以下目录均由脚本生成）
+build/
+site/
+.pytest_cache/
+__pycache__/
+*.pyc
+.DS_Store

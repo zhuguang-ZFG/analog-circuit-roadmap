@@ -11,14 +11,29 @@
 | 📺 资源 | 高质量视频/论文/应用笔记（注明为什么好） | PR |
 | 🎬 动画 | 新主题 SVG 动画（见下方铁律） | PR |
 | ✍️ 章节 | 新器件/新拓扑深度解析（遵循统一结构） | PR |
+| 🧪 题目 | 自测题库新增好题（含答案与解析） | PR |
 
 ## 仓库铁律（PR 前自查）
 
+0. **`docs/` 是唯一数据源，不要直接改 `README.md`**——README 由 `scripts/build_readme.py` 从 `docs/` 拼出，改完必须重跑（CI 会比对，漂移即红灯）
 1. **`assets/svg/` 内文件必须 == `scripts/generate_svgs.py` 的输出**——改图先改脚本，再 `python3 generate_svgs.py` 重跑，绝不允许只改 SVG 文件不回灌脚本
 2. **外链必须可达**：提交前自行 HTTP 验证；CI（lychee）会对 README.md 全量外链做检查，红灯的 PR 无法合并
 3. **实物图仅用公有领域 / CC 授权**（Wikimedia Commons 优先），并在图注注明来源
 4. **统一结构**：新器件章遵循「物理原理 → 数学模型 → 内部电路 → 关键参数 → 典型应用 → 故障模式 → 动态分析 → 配套视频」
 5. **文风**：说人话、给数量级、每图配"💎 精髓"或"怎么看"段——参考现有章节
+6. **跨页跳转用锚点**：`docs/` 是多页站点，`#ch3` 这类锚点要写成 `p1-04-ch3.md#ch3`（拼回 README 时脚本会自动还原成 `#ch3`）
+
+## 三种产物，一条流水线
+
+| 产物 | 生成命令 | 说明 |
+|---|---|---|
+| `README.md` | `python scripts/build_readme.py` | 单文件版，给 GitHub 阅读 |
+| `build/docs/` + `build/mkdocs.yml` | `python scripts/build_site.py` | 站点源：内容页 + 动画画廊 + 主题配置 |
+| `build/site/`（在线站） | `python scripts/build_site.py --build` | MkDocs Material 静态站，`main` 推送后自动部署 Pages |
+
+新增一个章节 = 在 `docs/` 里加一个 `pN-MM-slug.md`（文件名前缀决定它在目录与侧栏里的位置），
+然后跑一次 `build_readme.py`；导航与动画卡片由脚本自动生成，无需手工维护索引。
+初次切分可复用 `python scripts/split_readme.py`（会把 README 拆成 docs 并改写锚点链接）。
 
 ## 本地检查
 

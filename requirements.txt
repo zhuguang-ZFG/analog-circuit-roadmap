@@ -1,0 +1,4 @@
+# 文档站点（MkDocs Material）
+mkdocs-material>=9.5
+# SVG 一致性测试
+numpy>=1.26

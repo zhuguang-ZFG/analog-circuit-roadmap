@@ -19,6 +19,29 @@ jobs:
       - run: python -B -m unittest discover -s scripts -p test_svg_assets.py -v
       - run: python -B -m unittest discover -s scripts -p test_readme_links.py -v
 
+  docs-sync:
+    name: docs 单一数据源校验
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: docs/ ↔ README.md 同步 + 跨页锚点可达
+        run: python -B -m unittest discover -s scripts -p test_docs_sync.py -v
+      - run: python -B -m unittest discover -s scripts -p test_docs_links.py -v
+
+  site-build:
+    name: 站点可构建性
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - run: python scripts/build_site.py --build
+
   waveform-timing:
     runs-on: ubuntu-latest
     steps:
