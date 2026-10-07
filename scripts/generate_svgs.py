@@ -3385,11 +3385,11 @@ def make_design_flow():
     DF = 12
     steps = [
         ('需求指标', '精度/带宽/功耗/温度', '#2563eb'),
-        ('拓扑选择', '差分 or 单端、LDO or DCDC', '#2563eb'),
-        ('器件选型', '绝对最大额定 → 电特性表', '#7c3aed'),
-        ('仿真验证', 'DC/瞬态/AC/温度四扫', '#7c3aed'),
-        ('降额与保护', '电容 50-80%、电阻 50%', '#b45309'),
-        ('打样测试', '指标对照，不过回炉', '#059669'),
+        ('拓扑选择', '差分/单端、LDO/DCDC', '#2563eb'),
+        ('器件选型', '绝对最大额定→电特性', '#7c3aed'),
+        ('仿真验证', 'DC/瞬态/AC/温度', '#7c3aed'),
+        ('降额与保护', '电容50-80%、电阻50%', '#b45309'),
+        ('打样测试', '指标对照、不过回炉', '#059669'),
     ]
     n = len(steps)
     w, gap = 116, 13
@@ -3426,15 +3426,57 @@ def make_design_flow():
             caps += caption(txt, col, DF, "0;0;1;1;0;0", f"0;{a:.2f};{a+0.02:.2f};{b:.2f};{b+0.02:.2f};1", y=330) + '\n'
         else:
             caps += caption(txt, col, DF, "0;0;1;1", f"0;{a:.2f};{a+0.02:.2f};1", y=330) + '\n'
-    svg = svg_open('设计流程五部曲：把"好用"翻译成数字', h=430)
+    svg = svg_open('从需求到打样：六步流程', h=430)
     svg += f'''
-<text x="400" y="40" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">设计流程五部曲：把"好用"翻译成数字</text>
+<text x="400" y="40" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">从需求到打样：六步流程</text>
 <text x="400" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">六步一链，粒子从头走到尾——仿真不过，沿橙色回环回炉</text>
 {body}
 <text x="400" y="400" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">流程是螺旋不是直线：仿真验证不过 → 回炉改选型/降额——指标逐条对照再进下一步</text>
 '''
     svg += caps
     save('design-flow.svg', svg + '</svg>')
+
+
+# ======================= 图 99：思维工具箱四暗器（第 16 章 16.2） =======================
+def make_thinking_toolbox():
+    DF = 12
+    cards = [
+        ('内外归因', '#2563eb', '先换"已知好的"电源/线缆/传感器，把故障域切成板内或板外', '开工第一步——30 秒排除一半嫌疑'),
+        ('对比法', '#dc2626', '好板并排同点测量——差异即线索，玄学变科学', '量产批次不良、玄学故障'),
+        ('极限法', '#b45309', '电压拉偏 ±10%、温度吹风/冷冻，把偶发故障逼成必现', '偶发不现形就没法测'),
+        ('隔离法', '#7c3aed', '断开疑似负载/后级，看前级是否恢复', '短路、过载、闩锁定位'),
+    ]
+    body = ''
+    for i, (name, col, how, when) in enumerate(cards):
+        x = 45 + (i % 2) * 370
+        y = 100 + (i // 2) * 160
+        body += (f'<rect x="{x}" y="{y}" width="340" height="130" rx="14" fill="#f8fafc" stroke="{col}" stroke-width="2.5"/>'
+                 f'<text x="{x+24}" y="{y+34}" font-size="15" font-weight="bold" fill="{col}">{name}</text>'
+                 f'<text x="{x+24}" y="{y+64}" font-size="11" fill="#334155">{how}</text>'
+                 f'<text x="{x+24}" y="{y+98}" font-size="10" fill="#64748b">何时用：{when}</text>')
+    body += flow('M60,105 H740 V385 H60 V105', DF, n=3, color='#059669', r=5)
+    beats = [
+        ('① 内外归因：先换已知好的电源/线缆/传感器——30 秒排除一半嫌疑', '#2563eb'),
+        ('② 对比法：好板并排同点测——差异即线索，玄学变科学', '#dc2626'),
+        ('③ 极限法：电压拉偏 ±10%、温度吹风冷冻——把偶发故障逼成必现', '#b45309'),
+        ('④ 隔离法：断开疑似负载/后级，看前级恢复——短路、闩锁现形', '#7c3aed'),
+    ]
+    caps = ''
+    for i, (txt, col) in enumerate(beats):
+        a, b = i * 0.25, (i + 1) * 0.25
+        if i < 3:
+            caps += caption(txt, col, DF, "0;0;1;1;0;0", f"0;{a:.2f};{a+0.02:.2f};{b:.2f};{b+0.02:.2f};1", y=445) + '\n'
+        else:
+            caps += caption(txt, col, DF, "0;0;1;1", f"0;{a:.2f};{a+0.02:.2f};1", y=445) + '\n'
+    svg = svg_open('思维工具箱：老手的四个暗器', h=500)
+    svg += f'''
+<text x="400" y="40" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">思维工具箱：老手的四个暗器</text>
+<text x="400" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">开工先归因 · 坏板找对比 · 偶发用极限 · 短路靠隔离</text>
+{body}
+<text x="400" y="478" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">四招组合就是老手的节奏——先内外、再对比、极限逼、隔离切</text>
+'''
+    svg += caps
+    save('thinking-toolbox.svg', svg + '</svg>')
 
 
 # ======================= 图 44：分压器与带载误差（第 0 章首图） =======================
@@ -7462,6 +7504,7 @@ if __name__ == '__main__':
     make_fault_lookup()
     make_master_wisdom()
     make_design_flow()
+    make_thinking_toolbox()
     make_divider_loading()
     make_bjt_regions()
     make_signal_chain()
