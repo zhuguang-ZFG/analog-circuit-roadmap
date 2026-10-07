@@ -9,8 +9,6 @@
 
 <p align="center">
   <img src="assets/svg/comparator-hysteresis.svg" width="720" alt="动画演示：比较器迟滞原理">
-
-🔗 [动画演示 5.4](#demo4)
 </p>
 
 <p align="center">
