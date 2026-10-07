@@ -3441,19 +3441,24 @@ def make_design_flow():
 def make_thinking_toolbox():
     DF = 12
     cards = [
-        ('内外归因', '#2563eb', '先换"已知好的"电源/线缆/传感器，把故障域切成板内或板外', '开工第一步——30 秒排除一半嫌疑'),
-        ('对比法', '#dc2626', '好板并排同点测量——差异即线索，玄学变科学', '量产批次不良、玄学故障'),
-        ('极限法', '#b45309', '电压拉偏 ±10%、温度吹风/冷冻，把偶发故障逼成必现', '偶发不现形就没法测'),
-        ('隔离法', '#7c3aed', '断开疑似负载/后级，看前级是否恢复', '短路、过载、闩锁定位'),
+        ('内外归因', '#2563eb', '先换"已知好的"电源/线缆', '传感器，把故障域切成板内/板外', '开工第一步——30 秒排除一半嫌疑'),
+        ('对比法', '#dc2626', '好板并排同点测量——差异即线索，玄学变科学', None, '量产批次不良、玄学故障'),
+        ('极限法', '#b45309', '电压拉偏 ±10%、温度吹风/冷冻', '把偶发故障逼成必现', '偶发不现形就没法测'),
+        ('隔离法', '#7c3aed', '断开疑似负载/后级，看前级是否恢复', None, '短路、过载、闩锁定位'),
     ]
     body = ''
-    for i, (name, col, how, when) in enumerate(cards):
+    for i, (name, col, how1, how2, when) in enumerate(cards):
         x = 45 + (i % 2) * 370
         y = 100 + (i // 2) * 160
         body += (f'<rect x="{x}" y="{y}" width="340" height="130" rx="14" fill="#f8fafc" stroke="{col}" stroke-width="2.5"/>'
-                 f'<text x="{x+24}" y="{y+34}" font-size="15" font-weight="bold" fill="{col}">{name}</text>'
-                 f'<text x="{x+24}" y="{y+64}" font-size="11" fill="#334155">{how}</text>'
-                 f'<text x="{x+24}" y="{y+98}" font-size="10" fill="#64748b">何时用：{when}</text>')
+                 f'<text x="{x+24}" y="{y+34}" font-size="15" font-weight="bold" fill="{col}">{name}</text>')
+        if how2:
+            body += (f'<text x="{x+24}" y="{y+64}" font-size="11" fill="#334155">{how1}</text>'
+                     f'<text x="{x+24}" y="{y+84}" font-size="11" fill="#334155">{how2}</text>'
+                     f'<text x="{x+24}" y="{y+106}" font-size="10" fill="#64748b">何时用：{when}</text>')
+        else:
+            body += (f'<text x="{x+24}" y="{y+64}" font-size="11" fill="#334155">{how1}</text>'
+                     f'<text x="{x+24}" y="{y+98}" font-size="10" fill="#64748b">何时用：{when}</text>')
     body += flow('M60,105 H740 V385 H60 V105', DF, n=3, color='#059669', r=5)
     beats = [
         ('① 内外归因：先换已知好的电源/线缆/传感器——30 秒排除一半嫌疑', '#2563eb'),
@@ -3477,6 +3482,79 @@ def make_thinking_toolbox():
 '''
     svg += caps
     save('thinking-toolbox.svg', svg + '</svg>')
+
+
+# ======================= 图 100：一点接地 vs 共用地线（第 15 章 15.2） =======================
+def make_ground_star():
+    DF = 12
+    # 左卡：共用地线（错误）
+    left = f'''
+<rect x="30" y="100" width="350" height="270" rx="14" fill="#f8fafc" stroke="#dc2626" stroke-width="2.5"/>
+<text x="54" y="132" font-size="15" font-weight="bold" fill="#dc2626">✗ 共用地线：压降踩进信号地</text>
+<rect x="60" y="150" width="120" height="26" rx="6" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+<text x="120" y="167" text-anchor="middle" font-size="11" fill="#1e293b">负载 R_L</text>
+<rect x="60" y="230" width="120" height="26" rx="6" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+<text x="120" y="247" text-anchor="middle" font-size="11" fill="#1e293b">放大器</text>
+<line x1="120" y1="176" x2="120" y2="192" stroke="#dc2626" stroke-width="3"/>
+<line x1="120" y1="256" x2="120" y2="192" stroke="#2563eb" stroke-width="1.5"/>
+<line x1="120" y1="192" x2="300" y2="192" stroke="#dc2626" stroke-width="3"/>
+<text x="210" y="176" text-anchor="middle" font-size="11" font-weight="bold" fill="#dc2626">共用段：R_地 · I×R = 100mV</text>
+<text x="108" y="208" font-size="9.5" fill="#475569">A</text>
+<text x="296" y="208" font-size="9.5" fill="#475569">B</text>
+<line x1="300" y1="192" x2="300" y2="204" stroke="#334155" stroke-width="2"/>
+<line x1="290" y1="204" x2="310" y2="204" stroke="#334155" stroke-width="2"/>
+<line x1="293" y1="208" x2="307" y2="208" stroke="#334155" stroke-width="2"/>
+<line x1="296" y1="212" x2="304" y2="212" stroke="#334155" stroke-width="2"/>
+<text x="205" y="352" text-anchor="middle" font-size="10" fill="#64748b">10A × 0.01Ω = 100mV——比 5µV 信号大 4 个数量级</text>
+{flow('M120,180 V192 H300', DF, n=2, color='#dc2626', r=5)}
+<circle cx="120" cy="192" r="5" fill="none" stroke="#dc2626" stroke-width="2">
+<animate attributeName="r" values="5;11;5" dur="1.6s" begin="0s" repeatCount="indefinite"/>
+<animate attributeName="opacity" values="1;0;1" dur="1.6s" begin="0s" repeatCount="indefinite"/>
+</circle>'''
+    # 右卡：星形一点接地（正确）
+    right = f'''
+<rect x="420" y="100" width="350" height="270" rx="14" fill="#f8fafc" stroke="#059669" stroke-width="2.5"/>
+<text x="444" y="132" font-size="15" font-weight="bold" fill="#059669">✓ 星形一点接地：各自到汇点</text>
+<rect x="450" y="150" width="120" height="26" rx="6" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+<text x="510" y="167" text-anchor="middle" font-size="11" fill="#1e293b">负载 R_L</text>
+<rect x="450" y="230" width="120" height="26" rx="6" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+<text x="510" y="247" text-anchor="middle" font-size="11" fill="#1e293b">放大器</text>
+<line x1="570" y1="176" x2="570" y2="188" stroke="#059669" stroke-width="3"/>
+<line x1="570" y1="256" x2="570" y2="188" stroke="#2563eb" stroke-width="1.5"/>
+<line x1="570" y1="188" x2="592" y2="188" stroke="#059669" stroke-width="3"/>
+<line x1="570" y1="188" x2="592" y2="188" stroke="#2563eb" stroke-width="1.5"/>
+<circle cx="592" cy="188" r="7" fill="#059669"/>
+<text x="592" y="192" text-anchor="middle" font-size="10" font-weight="bold" fill="#fff">★</text>
+<line x1="592" y1="195" x2="592" y2="204" stroke="#334155" stroke-width="2"/>
+<line x1="582" y1="204" x2="602" y2="204" stroke="#334155" stroke-width="2"/>
+<line x1="585" y1="208" x2="599" y2="208" stroke="#334155" stroke-width="2"/>
+<line x1="588" y1="212" x2="596" y2="212" stroke="#334155" stroke-width="2"/>
+<text x="595" y="352" text-anchor="middle" font-size="10" fill="#64748b">没有共用段——压降只落在自己那段，信号基准纹丝不动</text>
+{flow('M570,180 V188 H590', DF, n=1, color='#059669', r=5)}
+{flow('M570,250 V188 H590', DF, n=1, color='#2563eb', r=3.5)}'''
+    beats = [
+        ('① 共用地线：负载地与信号地共用一段 AB——大电流压降直接踩进信号基准', '#dc2626'),
+        ('② 算账：10A × 0.01Ω 共用段 = 100mV——比 5µV 信号大四个数量级', '#dc2626'),
+        ('③ 星形一点接地：大电流走自己的粗线到汇点，小信号单独走——互不污染', '#059669'),
+        ('④ 心法：地不是"0V 参考点"，是电流回家的路——别让大电流踩小信号的路', '#059669'),
+    ]
+    caps = ''
+    for i, (txt, col) in enumerate(beats):
+        a, b = i * 0.25, (i + 1) * 0.25
+        if i < 3:
+            caps += caption(txt, col, DF, "0;0;1;1;0;0", f"0;{a:.2f};{a+0.02:.2f};{b:.2f};{b+0.02:.2f};1", y=430) + '\n'
+        else:
+            caps += caption(txt, col, DF, "0;0;1;1", f"0;{a:.2f};{a+0.02:.2f};1", y=430) + '\n'
+    svg = svg_open('一点接地：让大电流别踩小信号的路', h=500)
+    svg += f'''
+<text x="400" y="40" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">一点接地：让大电流别踩小信号的路</text>
+<text x="400" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">共用地线 = 压降共享；星形一点接地 = 压降隔离——模拟工程师的终极命题</text>
+{left}
+{right}
+<text x="400" y="478" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">大电流回流与小信号地分开走，汇于星形点——避免大电流压降污染小信号基准</text>
+'''
+    svg += caps
+    save('ground-star.svg', svg + '</svg>')
 
 
 # ======================= 图 44：分压器与带载误差（第 0 章首图） =======================
@@ -7505,6 +7583,7 @@ if __name__ == '__main__':
     make_master_wisdom()
     make_design_flow()
     make_thinking_toolbox()
+    make_ground_star()
     make_divider_loading()
     make_bjt_regions()
     make_signal_chain()
