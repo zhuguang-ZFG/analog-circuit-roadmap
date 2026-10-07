@@ -168,12 +168,17 @@ class ReadingJourneyTests(unittest.TestCase):
             ('LM358', 'p1-07-ch6.html'),
         ):
             with self.subTest(query=query):
-                search.press('ControlOrMeta+A')
-                search.press_sequentially(query, delay=40)
+                # Playwright inserts non-Latin text without keyup. Material's
+                # query observer listens to keyup (not input), so finish the
+                # input with a real, non-editing key rather than depending on
+                # the worker-ready event happening after text insertion.
+                search.fill(query)
+                search.press('End')
+                expect(search).to_have_value(query)
                 result = self.page.locator('.md-search-result__link[href*="' + expected_page + '"]')
                 expect(result.first).to_be_visible(timeout=15000)
-        search.press('ControlOrMeta+A')
-        search.press_sequentially('zzzxqv987654', delay=40)
+        search.fill('zzzxqv987654')
+        search.press('End')
         expect(self.page.locator('.md-search-result__meta')).to_contain_text('没有找到')
 
 
