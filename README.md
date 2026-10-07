@@ -13,7 +13,7 @@
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-CC_BY--SA_4.0-lightgrey.svg" alt="License"></a>
-  <img src="https://img.shields.io/badge/SVG动画-97张-3fb950.svg" alt="SVG">
+  <img src="https://img.shields.io/badge/SVG动画-98张-3fb950.svg" alt="SVG">
   <img src="https://img.shields.io/badge/章节-8篇19章-58a6ff.svg" alt="chapters">
   <img src="https://img.shields.io/badge/最近更新-2026.10-f0883e.svg" alt="updated">
 </p>
@@ -71,7 +71,7 @@
 | 电源噪声让 ADC 读数跳 | [15.2 接地](#ch15) + [15.1 布局](#ch15) | 回流在脚下 + 去耦电容贴脸放 |
 | 板子偶发复位/莫名振荡 | [第 16 章 排故五步法](#ch16) → [第 17 章 速查总表](#ch17) | 症状对号入座，一次只改一个变量 |
 | 高频信号过不去/边沿变肉 | [第 1 章 无源元件](#ch1) + [12.5 Sallen-Key](#ch12) | 寄生电感电容的真实代价 |
-| 只想先看动画找感觉 | [第五篇 动画中心](#part5) | 97 张 SMIL 动画随便点开 |
+| 只想先看动画找感觉 | [第五篇 动画中心](#part5) | 98 张 SMIL 动画随便点开 |
 
 
 <a id="picks"></a>
@@ -119,7 +119,7 @@ graph TD
   - [第 14 章 设计方法论](#ch14) · [第 15 章 PCB 注意事项](#ch15)
 - **[第四篇：故障分析与排故方法论](#part4)** 🩺
   - [第 16 章 排故五步法](#ch16) · [第 17 章 故障速查表](#ch17) · [第 18 章 大师智慧](#ch18)
-- **[第五篇：动画演示中心](#part5)** 🎬 — 97 张 SVG 动画 + Falstad 地图
+- **[第五篇：动画演示中心](#part5)** 🎬 — 98 张 SVG 动画 + Falstad 地图
 - **[第六篇：实物图鉴与速查](#part6)** 🧩 — 实物照片 · 参数速查 · 元件标识速查 · [官方 datasheet 直达](#part6)
 - **[第七篇：视频资源](#part7)** 📺 — B站系统课 · YouTube 频道
 - **[第八篇：学习路线与资源索引](#part8)** 📚 — 路线图 · 书单 · 项目清单 · [官方资料](#sec88) · [经典论文](#sec89) · [术语表](#sec810) · [顺口溜总表](#sec811) · FAQ
@@ -2138,6 +2138,9 @@ $20mA\times500\Omega$（环路电阻）= 10V，加采样电阻 250Ω×20mA = 5V�
 ```
 需求指标 → 拓扑选择 → 器件选型 → 仿真验证 → 降额与保护 → 打样测试
 ```
+<p align="center"><img src="assets/svg/design-flow.svg" width="720" alt="设计流程五部曲SVG动画：六步一链加回炉回环"></p>
+
+**看点**：六步一链，粒子从头走到尾；仿真不过，沿橙色回环回炉改选型/降额。**流程是螺旋不是直线——指标逐条对照再进下一步。** → 第五篇 [动画 5.98](#demo98)
 
 1. **需求指标先行**：把"好用"翻译成数字——精度多少 mV？带宽多少 Hz？功耗多少 mA？温度范围？没有指标的设计就是赌博
 2. **拓扑选择**：先选架构再选器件。差分还是单端？LDO 还是 DCDC？反馈还是开环？
@@ -2464,7 +2467,7 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 <a id="part5"></a>
 # 第五篇：动画演示中心 🎬
 
-> 全部 97 张 SVG 动画（SMIL，浏览器直接播放）位于 `assets/svg/` 目录，由 `scripts/generate_svgs.py` 一键生成（仓库铁律：两者始终同步）；配套 Falstad 在线电路可实时交互。
+> 全部 98 张 SVG 动画（SMIL，浏览器直接播放）位于 `assets/svg/` 目录，由 `scripts/generate_svgs.py` 一键生成（仓库铁律：两者始终同步）；配套 Falstad 在线电路可实时交互。
 
 ## 5.1 RC 充电 <a id="demo1"></a>
 
@@ -3072,7 +3075,13 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 
 **看点**：Pease（先量电源/怀疑仪器）、Williams（预测波形/最小化复现）、共通（慢观察/快假设/严验证）三栏金句；底部军规条粒子链。**排故不是体力活，是科学方法。** → 正文 [18.1 Bob Pease](#ch18)
 
-## 5.98 Falstad 内置示例地图（全部带动画）
+## 5.98 设计流程五部曲：六步一链 <a id="demo98"></a>
+
+<p align="center"><img src="assets/svg/design-flow.svg" width="720" alt="设计流程五部曲SVG动画：六步一链加回炉回环"></p>
+
+**看点**：需求指标 → 拓扑选择 → 器件选型 → 仿真验证 → 降额与保护 → 打样测试六步一链，粒子从头走到尾；仿真不过沿橙色回环回炉。**流程是螺旋不是直线。** → 正文 [14.1 设计流程五部曲](#ch14)
+
+## 5.99 Falstad 内置示例地图（全部带动画）
 
 | 主题 | 菜单路径 |
 |---|---|
@@ -3503,7 +3512,8 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 
 | 版本 | 亮点 |
 |---|---|
-| **v3.15（当前）** | 新增「大师的排故智慧」（§18，Pease/Williams/共通三栏金句 + 军规清单粒子链 + 4 拍字幕，第 97 张）；动画中心补全 6 张章节图条目（故障速查 demo91 + mosfet-switch/opamp-inverting/analog-switch/ldo-feedback/cap-decoupling demo92–demo96）——全部 SVG 在第五篇可见，Falstad 地图顺延 5.98；正文 97 处图引用全部可点击化（🔗 动画演示 5.NN 直达 demo 锚点，97/97 全覆盖） |
+| **v3.16（当前）** | 新增「设计流程五部曲」（§14.1，六步一链 + 仿真不过橙色回环回炉 + 4 拍字幕，第 98 张）；SVG 计数 97→98、动画中心补 5.98 条目（demo98）、Falstad 地图顺延 5.99 |
+| v3.15 | 新增「大师的排故智慧」（§18，Pease/Williams/共通三栏金句 + 军规清单粒子链 + 4 拍字幕，第 97 张）；动画中心补全 6 张章节图条目（故障速查 demo91 + mosfet-switch/opamp-inverting/analog-switch/ldo-feedback/cap-decoupling demo92–demo96）——全部 SVG 在第五篇可见，Falstad 地图顺延 5.98；正文 97 处图引用全部可点击化（🔗 动画演示 5.NN 直达 demo 锚点，97/97 全覆盖） |
 | v3.14 | 新增「故障速查」（§17，症状→头号嫌疑→验证手段三列链路动画 + 振荡排查顺序粒子条 + 4 拍字幕，第 96 张）；diode-family 横轴改「特征电压」（TVS/稳压管/变容管为反向规格值，肖特基/LED 才是正向压降）；pcb-routing 敏感线护线对称夹住信号线；miller V_GD 平台斜坡（400→560ns 斜升 + 驻留）；README 锚点完整性测试 `test_readme_links.py` 上线（空 fragment/锚点漂移双断言，变异验证三档通过） |
 | v3.13 | 修复 probe-loading.svg 因缺 f-string 前缀导致 `{DP}`/`{pulse(...)}` 字面括号未解析、animateMotion 时长未展开、动画静默失效；test_svg_assets 新增 literal-brace 双路断言（属性值 `\{[A-Za-z_]\w*\}` + 文本节点 `\{[A-Za-z_]\w*\(`，遍历 `root.iter()` 检查 `attrib.values()` 与 `elem.text`/`elem.tail`）；LINEAR_X 注册表添加 neg-feedback: 2；添加 vacuous green 防护 `assertGreater(median, 0.5)` |
 | v3.12 | 时间轴波形图 x-匀速配速修复：新增 `linear_x_motion`/`plain_motion` 辅助函数，19 处站点替换（comparator/wien/integrator/LDO/miller/peak/thermal/mosfet-curves/resistor-model/diode-iv），keyPoints 密度 n=512；修复 miller/diode-iv 丢失 `</circle>` 闭合标签（5 处）与 thermal-runaway 缺少 f-string 前缀导致 `{DT}`/`{pulse(...)}` 字面括号未解析；新增 Chromium 回归测试 `test_waveform_markers_advance_uniformly`（6 站点 x-匀速断言，delta=0.6px） |

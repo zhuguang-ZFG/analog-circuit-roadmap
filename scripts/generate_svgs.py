@@ -3380,6 +3380,63 @@ def make_master_wisdom():
     save('master-wisdom.svg', svg + '</svg>')
 
 
+# ======================= 图 98：设计流程五部曲（第 14 章 14.1） =======================
+def make_design_flow():
+    DF = 12
+    steps = [
+        ('需求指标', '精度/带宽/功耗/温度', '#2563eb'),
+        ('拓扑选择', '差分 or 单端、LDO or DCDC', '#2563eb'),
+        ('器件选型', '绝对最大额定 → 电特性表', '#7c3aed'),
+        ('仿真验证', 'DC/瞬态/AC/温度四扫', '#7c3aed'),
+        ('降额与保护', '电容 50-80%、电阻 50%', '#b45309'),
+        ('打样测试', '指标对照，不过回炉', '#059669'),
+    ]
+    n = len(steps)
+    w, gap = 116, 13
+    x0 = (800 - (n * w + (n - 1) * gap)) // 2
+    y, h = 105, 120
+    body = ''
+    cx = []
+    for i, (name, sub, col) in enumerate(steps):
+        x = x0 + i * (w + gap)
+        cx.append(x + w // 2)
+        body += (f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="12" fill="#f8fafc" stroke="{col}" stroke-width="2.5"/>'
+                 f'<circle cx="{x+18}" cy="{y+22}" r="11" fill="{col}"/>'
+                 f'<text x="{x+18}" y="{y+26}" text-anchor="middle" font-size="11" font-weight="bold" fill="#fff">{i+1}</text>'
+                 f'<text x="{x+w//2}" y="{y+50}" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#1e293b">{name}</text>'
+                 f'<text x="{x+w//2}" y="{y+74}" text-anchor="middle" font-size="9.5" fill="#475569">{sub}</text>')
+        if i < n - 1:
+            body += (f'<line x1="{x+w}" y1="{y+h//2}" x2="{x+w+gap}" y2="{y+h//2}" stroke="#334155" stroke-width="2"/>'
+                     f'<polygon points="{x+w+gap+3},{y+h//2} {x+w+gap-4},{y+h//2-5} {x+w+gap-4},{y+h//2+5}" fill="#334155"/>')
+    body += flow(f'M{x0+10},{y+h//2} H{x0+n*w+(n-1)*gap-10}', DF, n=3, color='#059669', r=5)
+    # 迭代回环：仿真验证④ → 器件选型③（回炉）
+    m = (cx[3] + cx[2]) / 2
+    body += f'<path d="M{cx[3]},{y} Q{m},{y-25} {cx[2]},{y}" fill="none" stroke="#b45309" stroke-width="2" stroke-dasharray="4,3"/>'
+    body += flow(f'M{cx[3]},{y} Q{m},{y-25} {cx[2]},{y}', DF, n=1, color='#b45309', r=4.5)
+    beats = [
+        ('① 需求指标先行：把"好用"翻译成数字——精度 mV？带宽 Hz？功耗 mA？', '#2563eb'),
+        ('② 先选架构再选器件：差分还是单端？LDO 还是 DCDC？反馈还是开环？', '#2563eb'),
+        ('③ 读 datasheet：绝对最大额定值 → 电特性表 → 典型特性曲线', '#7c3aed'),
+        ('④ 降额设计：额定值是"会死的边界"，不是工作点——电容 50~80%、电阻 50%', '#b45309'),
+    ]
+    caps = ''
+    for i, (txt, col) in enumerate(beats):
+        a, b = i * 0.25, (i + 1) * 0.25
+        if i < 3:
+            caps += caption(txt, col, DF, "0;0;1;1;0;0", f"0;{a:.2f};{a+0.02:.2f};{b:.2f};{b+0.02:.2f};1", y=330) + '\n'
+        else:
+            caps += caption(txt, col, DF, "0;0;1;1", f"0;{a:.2f};{a+0.02:.2f};1", y=330) + '\n'
+    svg = svg_open('设计流程五部曲：把"好用"翻译成数字', h=430)
+    svg += f'''
+<text x="400" y="40" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">设计流程五部曲：把"好用"翻译成数字</text>
+<text x="400" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">六步一链，粒子从头走到尾——仿真不过，沿橙色回环回炉</text>
+{body}
+<text x="400" y="400" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">流程是螺旋不是直线：仿真验证不过 → 回炉改选型/降额——指标逐条对照再进下一步</text>
+'''
+    svg += caps
+    save('design-flow.svg', svg + '</svg>')
+
+
 # ======================= 图 44：分压器与带载误差（第 0 章首图） =======================
 def make_divider_loading():
     DD = 8
@@ -7404,6 +7461,7 @@ if __name__ == '__main__':
     make_debug_flow()
     make_fault_lookup()
     make_master_wisdom()
+    make_design_flow()
     make_divider_loading()
     make_bjt_regions()
     make_signal_chain()
