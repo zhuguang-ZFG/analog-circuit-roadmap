@@ -1,9 +1,51 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="620" viewBox="0 0 800 620">
 <title>555 的三种人格：无稳态、单稳态、双稳态</title>
-<rect width="800" height="620" fill="#f8fafc"/>
+<defs>
+<linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
+</linearGradient>
+<linearGradient id="bgD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#0a1020"/><stop offset="1" stop-color="#141d30"/>
+</linearGradient>
+<radialGradient id="vig" cx="0.5" cy="0.44" r="0.78">
+<stop offset="0.55" stop-color="#0f172a" stop-opacity="0"/><stop offset="1" stop-color="#0f172a" stop-opacity="0.065"/>
+</radialGradient>
+<linearGradient id="hdr" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2563eb" stop-opacity="0.10"/>
+<stop offset="0.55" stop-color="#2563eb" stop-opacity="0.030"/>
+<stop offset="1" stop-color="#2563eb" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="hdrD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#60a5fa" stop-opacity="0.13"/>
+<stop offset="0.55" stop-color="#60a5fa" stop-opacity="0.040"/>
+<stop offset="1" stop-color="#60a5fa" stop-opacity="0"/>
+</linearGradient>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+<circle cx="1.5" cy="1.5" r="1.05" fill="#cbd5e1"/>
+</pattern>
+<filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+<feDropShadow dx="0" dy="1.6" stdDeviation="2.4" flood-color="#0f172a" flood-opacity="0.17"/>
+</filter>
+<filter id="pglow" x="-70%" y="-70%" width="240%" height="240%">
+<feGaussianBlur stdDeviation="2.1" result="b"/>
+<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs>
+<rect class="page-bg" width="800" height="620" fill="url(#bgL)"/>
+<rect width="800" height="620" fill="url(#dots)" opacity="0.40"/>
+<rect class="page-vig" width="800" height="620" fill="url(#vig)"/>
+<rect class="page-hdr" width="800" height="72" fill="url(#hdr)"/>
 <style>
 text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+.page-bg{fill:url(#bgL)}
+.page-vig{opacity:1}
+.page-hdr{fill:url(#hdr)}
+line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
+rect[fill="#f8fafc"],rect[fill="#eff6ff"],rect[fill="#ecfdf5"],rect[fill="#fffbeb"],rect[fill="#fef2f2"],rect[fill="#dbeafe"]{filter:url(#soft)}
 @media (prefers-color-scheme: dark){
+.page-bg{fill:url(#bgD)}
+.page-vig{opacity:0.45}
+.page-hdr{fill:url(#hdrD)}
 rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
 [fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
@@ -19,7 +61,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
 }
 </style>
-<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">555 的三种人格：无稳态、单稳态、双稳态</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">555 的三种人格：无稳态、单稳态、双稳态</text>
 
 <text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">同一颗芯，接法不同 → 人格完全不同；区别只在「往哪个脚接 RC」</text>
 <rect x="30" y="76" width="240" height="300" rx="10" fill="#f8fafc" stroke="#2563eb" stroke-width="1.8"/><text x="150" y="104" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#2563eb">无稳态 Astable</text><line x1="44" y1="118" x2="256" y2="118" stroke="#cbd5e1" stroke-width="1"/><text x="46" y="144" font-size="11.5" fill="#475569">接法</text><text x="46" y="164" font-size="11" font-weight="bold" fill="#334155">R1 + R2 + C 自由振荡</text><text x="46" y="196" font-size="11.5" fill="#475569">脾气</text><text x="46" y="216" font-size="11" font-weight="bold" fill="#2563eb">自激，不需要触发</text><text x="46" y="248" font-size="11.5" fill="#475569">用途</text><text x="46" y="268" font-size="10.5" fill="#334155">时钟 / PWM / 蜂鸣器 / 闪光灯</text><text x="46" y="300" font-size="11.5" fill="#475569">关键式</text><text x="46" y="322" font-size="11" font-weight="bold" fill="#b45309">f ≈ 1.44 / ((R1+2R2)·C)</text><path d="M60,330 L62,330 L63,330 L64,330 L66,330 L68,330 L69,330 L70,330 L72,330 L74,330 L75,330 L76,330 L78,330 L80,330 L81,330 L82,330 L84,330 L86,330 L87,330 L88,330 L90,330 L92,330 L93,330 L94,330 L96,330 L98,330 L99,330 L100,330 L102,330 L104,330 L105,330 L106,330 L108,330 L110,330 L111,330 L112,330 L114,330 L116,330 L117,330 L118,330 L120,330 L122,352 L123,352 L124,352 L126,352 L128,352 L129,352 L130,352 L132,352 L134,352 L135,352 L136,352 L138,352 L140,352 L141,352 L142,352 L144,352 L146,352 L147,352 L148,352 L150,330 L152,330 L153,330 L154,330 L156,330 L158,330 L159,330 L160,330 L162,330 L164,330 L165,330 L166,330 L168,330 L170,330 L171,330 L172,330 L174,330 L176,330 L177,330 L178,330 L180,330 L182,330 L183,330 L184,330 L186,330 L188,330 L189,330 L190,330 L192,330 L194,330 L195,330 L196,330 L198,330 L200,330 L201,330 L202,330 L204,330 L206,330 L207,330 L208,330 L210,330 L212,352 L213,352 L214,352 L216,352 L218,352 L219,352 L220,352 L222,352 L224,352 L225,352 L226,352 L228,352 L230,352 L231,352 L232,352 L234,352 L236,352 L237,352 L238,352 L240,330" fill="none" stroke="#2563eb" stroke-width="2.2"/><text x="150" y="368" text-anchor="middle" font-size="9.5" fill="#64748b">连续方波（自由跑）</text><rect x="283" y="76" width="240" height="300" rx="10" fill="#f8fafc" stroke="#059669" stroke-width="1.8"/><text x="403" y="104" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">单稳态 Monostable</text><line x1="297" y1="118" x2="509" y2="118" stroke="#cbd5e1" stroke-width="1"/><text x="299" y="144" font-size="11.5" fill="#475569">接法</text><text x="299" y="164" font-size="11" font-weight="bold" fill="#334155">TRIG 触发一次 → 定时脉冲</text><text x="299" y="196" font-size="11.5" fill="#475569">脾气</text><text x="299" y="216" font-size="11" font-weight="bold" fill="#059669">按一下，亮一拍</text><text x="299" y="248" font-size="11.5" fill="#475569">用途</text><text x="299" y="268" font-size="10.5" fill="#334155">按键消抖 / 定时 / 看门狗</text><text x="299" y="300" font-size="11.5" fill="#475569">关键式</text><text x="299" y="322" font-size="11" font-weight="bold" fill="#b45309">t ≈ 1.1·R·C</text><line x1="313" y1="352" x2="493" y2="352" stroke="#059669" stroke-width="2.2"/><line x1="363" y1="352" x2="363" y2="330" stroke="#059669" stroke-width="2.2"/><line x1="363" y1="330" x2="423" y2="330" stroke="#059669" stroke-width="2.2"/><line x1="423" y1="330" x2="423" y2="352" stroke="#059669" stroke-width="2.2"/><line x1="423" y1="352" x2="493" y2="352" stroke="#059669" stroke-width="2.2"/><text x="403" y="368" text-anchor="middle" font-size="9.5" fill="#64748b">触发一次 → 一个脉冲（或保持）</text><rect x="536" y="76" width="240" height="300" rx="10" fill="#f8fafc" stroke="#7c3aed" stroke-width="1.8"/><text x="656" y="104" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#7c3aed">双稳态 Bistable</text><line x1="550" y1="118" x2="762" y2="118" stroke="#cbd5e1" stroke-width="1"/><text x="552" y="144" font-size="11.5" fill="#475569">接法</text><text x="552" y="164" font-size="11" font-weight="bold" fill="#334155">TRIG/THRES 当 S/R 用</text><text x="552" y="196" font-size="11.5" fill="#475569">脾气</text><text x="552" y="216" font-size="11" font-weight="bold" fill="#7c3aed">两个稳定态，靠触发翻转</text><text x="552" y="248" font-size="11.5" fill="#475569">用途</text><text x="552" y="268" font-size="10.5" fill="#334155">简易锁存开关</text><text x="552" y="300" font-size="11.5" fill="#475569">关键式</text><text x="552" y="322" font-size="11" font-weight="bold" fill="#b45309">状态保持，无需 RC</text><line x1="566" y1="352" x2="746" y2="352" stroke="#7c3aed" stroke-width="2.2"/><line x1="616" y1="352" x2="616" y2="330" stroke="#7c3aed" stroke-width="2.2"/><line x1="616" y1="330" x2="676" y2="330" stroke="#7c3aed" stroke-width="2.2"/><line x1="676" y1="330" x2="676" y2="352" stroke="#7c3aed" stroke-width="2.2"/><line x1="676" y1="352" x2="746" y2="352" stroke="#7c3aed" stroke-width="2.2"/><text x="656" y="368" text-anchor="middle" font-size="9.5" fill="#64748b">触发一次 → 一个脉冲（或保持）</text>
@@ -34,7 +76,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <circle r="4.5" fill="#f59e0b"><animateMotion dur="11s" begin="-0.5s" repeatCount="indefinite" path="M70,196 L158,196"/></circle>
 <circle r="4.5" fill="#f59e0b"><animateMotion dur="11s" begin="-1.3s" repeatCount="indefinite" path="M322,196 L410,196"/></circle>
 <circle r="4.5" fill="#f59e0b"><animateMotion dur="11s" begin="-2.1s" repeatCount="indefinite" path="M574,196 L662,196"/></circle>
-<rect x="38" y="130" width="224" height="60" rx="8" fill="none" stroke="#2563eb" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.0s" repeatCount="indefinite"/></rect>
-<rect x="291" y="130" width="224" height="60" rx="8" fill="none" stroke="#059669" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.0s" repeatCount="indefinite"/></rect>
-<rect x="544" y="130" width="224" height="60" rx="8" fill="none" stroke="#7c3aed" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.0s" repeatCount="indefinite"/></rect>
-<text x="400" y="552" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">① 无稳态：电容自己充放，输出永远在翻——不需要外部触发（时钟最爱）<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="552" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">② 单稳态：平时静默，TRIG 来一脚就输出一个 t≈1.1RC 的脉冲<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="552" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">③ 双稳态：TRIG/THRES 当置位/复位用，两个稳态之间来回锁<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="552" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">④ 三种模式的差异只在「电容接哪只脚」——同一颗芯，三副面孔<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/></text></svg>
+<rect x="38" y="130" width="224" height="60" rx="8" fill="none" stroke="#2563eb" stroke-width="2.5" opacity="0" filter="url(#pglow)"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.0s" repeatCount="indefinite"/></rect>
+<rect x="291" y="130" width="224" height="60" rx="8" fill="none" stroke="#059669" stroke-width="2.5" opacity="0" filter="url(#pglow)"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.0s" repeatCount="indefinite"/></rect>
+<rect x="544" y="130" width="224" height="60" rx="8" fill="none" stroke="#7c3aed" stroke-width="2.5" opacity="0" filter="url(#pglow)"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.0s" repeatCount="indefinite"/></rect>
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/><rect x="132.7" y="539.0" width="534.6" height="24.1" rx="12.0" fill="#2563eb" fill-opacity="0.09" stroke="#2563eb" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/></rect><text x="400" y="552" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">① 无稳态：电容自己充放，输出永远在翻——不需要外部触发（时钟最爱）<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/><rect x="165.7" y="539.0" width="468.7" height="24.1" rx="12.0" fill="#059669" fill-opacity="0.09" stroke="#059669" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/></rect><text x="400" y="552" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">② 单稳态：平时静默，TRIG 来一脚就输出一个 t≈1.1RC 的脉冲<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/><rect x="170.3" y="539.0" width="459.4" height="24.1" rx="12.0" fill="#7c3aed" fill-opacity="0.09" stroke="#7c3aed" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/></rect><text x="400" y="552" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">③ 双稳态：TRIG/THRES 当置位/复位用，两个稳态之间来回锁<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/><rect x="163.0" y="539.0" width="474.0" height="24.1" rx="12.0" fill="#b45309" fill-opacity="0.09" stroke="#b45309" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/></rect><text x="400" y="552" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">④ 三种模式的差异只在「电容接哪只脚」——同一颗芯，三副面孔<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/></text></g></svg>

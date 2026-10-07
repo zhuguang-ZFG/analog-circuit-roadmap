@@ -1,9 +1,51 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="480" viewBox="0 0 800 480">
 <title>去耦电容为什么要「贴脸」放？——走线电感 vs 本地水库</title>
-<rect width="800" height="480" fill="#f8fafc"/>
+<defs>
+<linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
+</linearGradient>
+<linearGradient id="bgD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#0a1020"/><stop offset="1" stop-color="#141d30"/>
+</linearGradient>
+<radialGradient id="vig" cx="0.5" cy="0.44" r="0.78">
+<stop offset="0.55" stop-color="#0f172a" stop-opacity="0"/><stop offset="1" stop-color="#0f172a" stop-opacity="0.065"/>
+</radialGradient>
+<linearGradient id="hdr" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2563eb" stop-opacity="0.10"/>
+<stop offset="0.55" stop-color="#2563eb" stop-opacity="0.030"/>
+<stop offset="1" stop-color="#2563eb" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="hdrD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#60a5fa" stop-opacity="0.13"/>
+<stop offset="0.55" stop-color="#60a5fa" stop-opacity="0.040"/>
+<stop offset="1" stop-color="#60a5fa" stop-opacity="0"/>
+</linearGradient>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+<circle cx="1.5" cy="1.5" r="1.05" fill="#cbd5e1"/>
+</pattern>
+<filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+<feDropShadow dx="0" dy="1.6" stdDeviation="2.4" flood-color="#0f172a" flood-opacity="0.17"/>
+</filter>
+<filter id="pglow" x="-70%" y="-70%" width="240%" height="240%">
+<feGaussianBlur stdDeviation="2.1" result="b"/>
+<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs>
+<rect class="page-bg" width="800" height="480" fill="url(#bgL)"/>
+<rect width="800" height="480" fill="url(#dots)" opacity="0.40"/>
+<rect class="page-vig" width="800" height="480" fill="url(#vig)"/>
+<rect class="page-hdr" width="800" height="72" fill="url(#hdr)"/>
 <style>
 text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+.page-bg{fill:url(#bgL)}
+.page-vig{opacity:1}
+.page-hdr{fill:url(#hdr)}
+line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
+rect[fill="#f8fafc"],rect[fill="#eff6ff"],rect[fill="#ecfdf5"],rect[fill="#fffbeb"],rect[fill="#fef2f2"],rect[fill="#dbeafe"]{filter:url(#soft)}
 @media (prefers-color-scheme: dark){
+.page-bg{fill:url(#bgD)}
+.page-vig{opacity:0.45}
+.page-hdr{fill:url(#hdrD)}
 rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
 [fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
@@ -19,7 +61,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
 }
 </style>
-<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">去耦电容为什么要「贴脸」放？——走线电感 vs 本地水库</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">去耦电容为什么要「贴脸」放？——走线电感 vs 本地水库</text>
 
 <text x="200" y="50" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#dc2626">场景 A：电容太远（或没有）</text>
 <text x="46" y="102" font-size="12" font-weight="bold" fill="#b45309">5V 源</text>
@@ -35,8 +77,8 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="130" y="136" font-size="11" font-weight="bold" fill="#dc2626" opacity="0">尖峰来了，电感「顶住」不给过！
 <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.42;0.46;0.62;0.66;1" dur="5s" repeatCount="indefinite"/></text>
 <g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.4;0.44;0.6;0.64;1" dur="5s" repeatCount="indefinite"/>
-<circle r="4" fill="#dc2626"><animateMotion dur="1.0s" begin="-0.50s" repeatCount="indefinite" path="M262,92 H300"/></circle>
-<circle r="4" fill="#dc2626"><animateMotion dur="1.0s" begin="0.00s" repeatCount="indefinite" path="M262,92 H300"/></circle>
+<g filter="url(#pglow)"><circle r="4" fill="#dc2626"><animateMotion dur="1.0s" begin="-0.50s" repeatCount="indefinite" path="M262,92 H300"/></circle>
+<circle r="4" fill="#dc2626"><animateMotion dur="1.0s" begin="0.00s" repeatCount="indefinite" path="M262,92 H300"/></circle></g>
 </g>
 <text x="590" y="50" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">场景 B：100nF 贴脸（&lt;3mm）</text>
 <text x="436" y="102" font-size="12" font-weight="bold" fill="#b45309">5V 源</text>
@@ -58,10 +100,10 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="584" y="130" font-size="11" font-weight="bold" fill="#059669">100nF</text>
 <text x="560" y="146" font-size="9.5" fill="#475569">本地水库</text>
 <g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.4;0.44;0.6;0.64;1" dur="5s" repeatCount="indefinite"/>
-<circle r="4.5" fill="#059669"><animateMotion dur="1.0s" begin="-0.50s" repeatCount="indefinite" path="M634,126 V100 H648 M654,96 H688"/></circle>
+<g filter="url(#pglow)"><circle r="4.5" fill="#059669"><animateMotion dur="1.0s" begin="-0.50s" repeatCount="indefinite" path="M634,126 V100 H648 M654,96 H688"/></circle>
 <circle r="4.5" fill="#059669"><animateMotion dur="1.0s" begin="-0.25s" repeatCount="indefinite" path="M634,126 V100 H648 M654,96 H688"/></circle>
 <circle r="4.5" fill="#059669"><animateMotion dur="1.0s" begin="0.00s" repeatCount="indefinite" path="M634,126 V100 H648 M654,96 H688"/></circle>
-<circle r="4.5" fill="#059669"><animateMotion dur="1.0s" begin="0.25s" repeatCount="indefinite" path="M634,126 V100 H648 M654,96 H688"/></circle>
+<circle r="4.5" fill="#059669"><animateMotion dur="1.0s" begin="0.25s" repeatCount="indefinite" path="M634,126 V100 H648 M654,96 H688"/></circle></g>
 </g>
 <text x="608" y="136" text-anchor="end" font-size="11" font-weight="bold" fill="#059669" opacity="0">本地水库瞬时放水，电压纹丝不动
 <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.42;0.46;0.62;0.66;1" dur="5s" repeatCount="indefinite"/></text>
@@ -72,8 +114,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="424" y="290" font-size="11.5" font-weight="bold" fill="#059669">B：微纹波（&lt;50mV），电路安心工作</text>
 <path d="M420,340.0 L424,340.0 L428,340.0 L432,340.0 L436,340.0 L440,340.0 L444,340.0 L448,340.0 L452,340.0 L456,340.0 L460,340.0 L464,340.0 L468,340.0 L472,340.0 L476,340.0 L480,340.0 L484,340.0 L488,340.0 L492,340.0 L496,340.0 L500,340.0 L504,340.0 L508,340.0 L512,340.0 L516,340.0 L520,340.1 L524,340.1 L528,340.3 L532,340.4 L536,340.7 L540,341.1 L544,341.7 L548,342.5 L552,343.5 L556,344.6 L560,345.8 L564,347.1 L568,348.2 L572,349.2 L576,349.8 L580,350.0 L584,349.8 L588,349.2 L592,348.2 L596,347.1 L600,345.8 L604,344.6 L608,343.5 L612,342.5 L616,341.7 L620,341.1 L624,340.7 L628,340.4 L632,340.3 L636,340.1 L640,340.1 L644,340.0 L648,340.0 L652,340.0 L656,340.0 L660,340.0 L664,340.0 L668,340.0 L672,340.0 L676,340.0 L680,340.0 L684,340.0 L688,340.0 L692,340.0 L696,340.0 L700,340.0 L704,340.0 L708,340.0 L712,340.0 L716,340.0 L720,340.0 L724,340.0 L728,340.0 L732,340.0 L736,340.0 L740,340.0" fill="none" stroke="#059669" stroke-width="3"/>
 <line x1="420" y1="340" x2="744" y2="340" stroke="#64748b" stroke-width="1.5"/>
-<text x="400" y="400" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">① IC 翻转瞬间要 100mA 尖峰电流，但只持续几 ns<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.24;1" dur="5s" repeatCount="indefinite"/></text><text x="400" y="400" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">② 走线电感：直流随便过，ns 尖峰面前=断路（V=L·di/dt）<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.24;0.28;0.42;0.46;1" dur="5s" repeatCount="indefinite"/></text><text x="400" y="400" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">③ 100nF 贴脸=本地水库：它距离近、电感小，尖峰由它顶上<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.46;0.5;0.68;0.72;1" dur="5s" repeatCount="indefinite"/></text><text x="400" y="400" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">④ 所以记住：距离&lt;3mm、先过电容再到 IC、电容回路越短越好<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.72;0.76;1" dur="5s" repeatCount="indefinite"/></text><g opacity="0">
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.03;0.2;0.24;1" dur="5s" repeatCount="indefinite"/><rect x="212.0" y="386.9" width="376.1" height="24.1" rx="12.0" fill="#b45309" fill-opacity="0.09" stroke="#b45309" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.24;1" dur="5s" repeatCount="indefinite"/></rect><text x="400" y="400" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">① IC 翻转瞬间要 100mA 尖峰电流，但只持续几 ns<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.24;1" dur="5s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.24;0.28;0.42;0.46;1" dur="5s" repeatCount="indefinite"/><rect x="177.1" y="386.9" width="445.8" height="24.1" rx="12.0" fill="#7c3aed" fill-opacity="0.09" stroke="#7c3aed" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.24;0.28;0.42;0.46;1" dur="5s" repeatCount="indefinite"/></rect><text x="400" y="400" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">② 走线电感：直流随便过，ns 尖峰面前=断路（V=L·di/dt）<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.24;0.28;0.42;0.46;1" dur="5s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.46;0.5;0.68;0.72;1" dur="5s" repeatCount="indefinite"/><rect x="177.4" y="386.9" width="445.2" height="24.1" rx="12.0" fill="#059669" fill-opacity="0.09" stroke="#059669" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.46;0.5;0.68;0.72;1" dur="5s" repeatCount="indefinite"/></rect><text x="400" y="400" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">③ 100nF 贴脸=本地水库：它距离近、电感小，尖峰由它顶上<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.46;0.5;0.68;0.72;1" dur="5s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0" keyTimes="0;0.72;0.76;1" dur="5s" repeatCount="indefinite"/><rect x="164.2" y="386.9" width="471.5" height="24.1" rx="12.0" fill="#2563eb" fill-opacity="0.09" stroke="#2563eb" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.72;0.76;1" dur="5s" repeatCount="indefinite"/></rect><text x="400" y="400" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">④ 所以记住：距离&lt;3mm、先过电容再到 IC、电容回路越短越好<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.72;0.76;1" dur="5s" repeatCount="indefinite"/></text></g><g opacity="0">
 <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.8;0.84;1" dur="5s" repeatCount="indefinite"/>
-<rect x="80" y="434" width="640" height="34" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
-<text x="400" y="456" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">100nF 管高频（ns 尖峰）· 10µF 管中频 · 大电解管低频——三级去耦，各司其职</text>
+<rect x="80" y="434" width="640" height="34.0" rx="9" fill="#ecfdf5" stroke="#059669" stroke-width="1.5" filter="url(#soft)"/><rect x="86" y="441" width="3" height="20.0" rx="1.5" fill="#059669"/><text x="400" y="456.0" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">100nF 管高频（ns 尖峰）· 10µF 管中频 · 大电解管低频——三级去耦，各司其职</text>
 </g></svg>

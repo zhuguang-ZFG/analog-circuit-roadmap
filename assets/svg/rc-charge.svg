@@ -1,9 +1,51 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="460" viewBox="0 0 800 460">
 <title>RC 充电：电容是"水桶"，电阻是"细水管"</title>
-<rect width="800" height="460" fill="#f8fafc"/>
+<defs>
+<linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
+</linearGradient>
+<linearGradient id="bgD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#0a1020"/><stop offset="1" stop-color="#141d30"/>
+</linearGradient>
+<radialGradient id="vig" cx="0.5" cy="0.44" r="0.78">
+<stop offset="0.55" stop-color="#0f172a" stop-opacity="0"/><stop offset="1" stop-color="#0f172a" stop-opacity="0.065"/>
+</radialGradient>
+<linearGradient id="hdr" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2563eb" stop-opacity="0.10"/>
+<stop offset="0.55" stop-color="#2563eb" stop-opacity="0.030"/>
+<stop offset="1" stop-color="#2563eb" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="hdrD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#60a5fa" stop-opacity="0.13"/>
+<stop offset="0.55" stop-color="#60a5fa" stop-opacity="0.040"/>
+<stop offset="1" stop-color="#60a5fa" stop-opacity="0"/>
+</linearGradient>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+<circle cx="1.5" cy="1.5" r="1.05" fill="#cbd5e1"/>
+</pattern>
+<filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+<feDropShadow dx="0" dy="1.6" stdDeviation="2.4" flood-color="#0f172a" flood-opacity="0.17"/>
+</filter>
+<filter id="pglow" x="-70%" y="-70%" width="240%" height="240%">
+<feGaussianBlur stdDeviation="2.1" result="b"/>
+<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs>
+<rect class="page-bg" width="800" height="460" fill="url(#bgL)"/>
+<rect width="800" height="460" fill="url(#dots)" opacity="0.40"/>
+<rect class="page-vig" width="800" height="460" fill="url(#vig)"/>
+<rect class="page-hdr" width="800" height="72" fill="url(#hdr)"/>
 <style>
 text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+.page-bg{fill:url(#bgL)}
+.page-vig{opacity:1}
+.page-hdr{fill:url(#hdr)}
+line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
+rect[fill="#f8fafc"],rect[fill="#eff6ff"],rect[fill="#ecfdf5"],rect[fill="#fffbeb"],rect[fill="#fef2f2"],rect[fill="#dbeafe"]{filter:url(#soft)}
 @media (prefers-color-scheme: dark){
+.page-bg{fill:url(#bgD)}
+.page-vig{opacity:0.45}
+.page-hdr{fill:url(#hdrD)}
 rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
 [fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
@@ -19,7 +61,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
 }
 </style>
-<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">RC 充电：电容是"水桶"，电阻是"细水管"</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">RC 充电：电容是"水桶"，电阻是"细水管"</text>
 
 <text x="200" y="70" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">电路</text>
 <line x1="60" y1="120" x2="60" y2="196" stroke="#334155" stroke-width="2.5"/>
@@ -51,10 +93,10 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <line x1="320" y1="265" x2="320" y2="300" stroke="#334155" stroke-width="2.5"/>
 <line x1="320" y1="300" x2="60" y2="300" stroke="#334155" stroke-width="2.5"/>
 <line x1="190" y1="286" x2="190" y2="300" stroke="#334155" stroke-width="2.5"/><line x1="174" y1="300" x2="206" y2="300" stroke="#334155" stroke-width="3"/><line x1="180" y1="306" x2="200" y2="306" stroke="#334155" stroke-width="3"/><line x1="186" y1="312" x2="194" y2="312" stroke="#334155" stroke-width="3"/>
-<circle r="5.5" fill="#f59e0b"><animateMotion dur="5s" begin="-0.50s" repeatCount="indefinite" path="M66,112 H314 V228" keyPoints="0;0.5;0.8;1" keyTimes="0;0.2;0.5;1" calcMode="linear"/></circle>
+<g filter="url(#pglow)"><circle r="5.5" fill="#f59e0b"><animateMotion dur="5s" begin="-0.50s" repeatCount="indefinite" path="M66,112 H314 V228" keyPoints="0;0.5;0.8;1" keyTimes="0;0.2;0.5;1" calcMode="linear"/></circle>
 <circle r="5.5" fill="#f59e0b"><animateMotion dur="5s" begin="0.75s" repeatCount="indefinite" path="M66,112 H314 V228" keyPoints="0;0.5;0.8;1" keyTimes="0;0.2;0.5;1" calcMode="linear"/></circle>
 <circle r="5.5" fill="#f59e0b"><animateMotion dur="5s" begin="2.00s" repeatCount="indefinite" path="M66,112 H314 V228" keyPoints="0;0.5;0.8;1" keyTimes="0;0.2;0.5;1" calcMode="linear"/></circle>
-<circle r="5.5" fill="#f59e0b"><animateMotion dur="5s" begin="3.25s" repeatCount="indefinite" path="M66,112 H314 V228" keyPoints="0;0.5;0.8;1" keyTimes="0;0.2;0.5;1" calcMode="linear"/></circle>
+<circle r="5.5" fill="#f59e0b"><animateMotion dur="5s" begin="3.25s" repeatCount="indefinite" path="M66,112 H314 V228" keyPoints="0;0.5;0.8;1" keyTimes="0;0.2;0.5;1" calcMode="linear"/></circle></g>
 <text x="120" y="152" font-size="11.5" fill="#b45309">电流（先快后慢）</text>
 
 <text x="585" y="70" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">电容电压 vC(t)</text>
@@ -73,8 +115,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="425" y="247" text-anchor="end" font-size="12" font-weight="bold" fill="#b45309" opacity="0">63.2%
  <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.62;0.66;1" dur="5s" repeatCount="indefinite"/></text>
 <path d="M430,350 L440,326 L450,305 L460,287 L470,272 L480,259 L490,248 L500,238 L510,230 L520,223 L530,217 L540,212 L550,208 L560,204 L570,201 L580,198 L590,196 L600,194 L610,192 L620,191 L630,189 L640,188 L650,187 L660,187 L670,186 L680,185 L690,185 L700,184 L710,184 L720,184 L730,184 L740,183 L750,183" fill="none" stroke="#2563eb" stroke-width="1.8" opacity="0.18"/><path d="M430,350 L440,326 L450,305 L460,287 L470,272 L480,259 L490,248 L500,238 L510,230 L520,223 L530,217 L540,212 L550,208 L560,204 L570,201 L580,198 L590,196 L600,194 L610,192 L620,191 L630,189 L640,188 L650,187 L660,187 L670,186 L680,185 L690,185 L700,184 L710,184 L720,184 L730,184 L740,183 L750,183" fill="none" stroke="#2563eb" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="700" stroke-dashoffset="700"><animate attributeName="stroke-dashoffset" values="700;700;0;0" keyTimes="0;0.85;1" dur="5s" repeatCount="indefinite"/></path>
-<text x="400" y="400" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">第 1 拍：刚合闸，桶是空的——电流最猛（粒子最密最快）<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.05;0.28;0.32;1" dur="5s" repeatCount="indefinite"/></text><text x="400" y="400" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">第 2 拍：水位上涨反顶着电流——越充越慢（指数曲线）<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.32;0.36;0.60;0.64;1" dur="5s" repeatCount="indefinite"/></text><text x="400" y="400" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">第 3 拍：1τ 充到 63%，3τ 到 95%——τ 就是电路的「性格」<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.64;0.68;1" dur="5s" repeatCount="indefinite"/></text><g opacity="0">
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.05;0.28;0.32;1" dur="5s" repeatCount="indefinite"/><rect x="186.0" y="386.9" width="427.9" height="24.1" rx="12.0" fill="#b45309" fill-opacity="0.09" stroke="#b45309" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.05;0.28;0.32;1" dur="5s" repeatCount="indefinite"/></rect><text x="400" y="400" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">第 1 拍：刚合闸，桶是空的——电流最猛（粒子最密最快）<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.05;0.28;0.32;1" dur="5s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.32;0.36;0.60;0.64;1" dur="5s" repeatCount="indefinite"/><rect x="193.6" y="386.9" width="412.8" height="24.1" rx="12.0" fill="#2563eb" fill-opacity="0.09" stroke="#2563eb" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.32;0.36;0.60;0.64;1" dur="5s" repeatCount="indefinite"/></rect><text x="400" y="400" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">第 2 拍：水位上涨反顶着电流——越充越慢（指数曲线）<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.32;0.36;0.60;0.64;1" dur="5s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0" keyTimes="0;0.64;0.68;1" dur="5s" repeatCount="indefinite"/><rect x="171.9" y="386.9" width="456.2" height="24.1" rx="12.0" fill="#059669" fill-opacity="0.09" stroke="#059669" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.64;0.68;1" dur="5s" repeatCount="indefinite"/></rect><text x="400" y="400" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">第 3 拍：1τ 充到 63%，3τ 到 95%——τ 就是电路的「性格」<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.64;0.68;1" dur="5s" repeatCount="indefinite"/></text></g><g opacity="0">
 <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.82;0.86;1" dur="5s" repeatCount="indefinite"/>
-<rect x="140" y="418" width="520" height="34" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
-<text x="400" y="440" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">τ = R×C：电阻大=水管细，电容大=水桶深，都让它更慢</text>
+<rect x="140" y="418" width="520" height="34.0" rx="9" fill="#ecfdf5" stroke="#059669" stroke-width="1.5" filter="url(#soft)"/><rect x="146" y="425" width="3" height="20.0" rx="1.5" fill="#059669"/><text x="400" y="440.0" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">τ = R×C：电阻大=水管细，电容大=水桶深，都让它更慢</text>
 </g></svg>

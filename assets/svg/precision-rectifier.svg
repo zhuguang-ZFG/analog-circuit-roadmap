@@ -1,9 +1,51 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="512" viewBox="0 0 800 512">
 <title>精密整流：运放「借增益」消灭二极管压降</title>
-<rect width="800" height="500" fill="#f8fafc"/>
+<defs>
+<linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
+</linearGradient>
+<linearGradient id="bgD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#0a1020"/><stop offset="1" stop-color="#141d30"/>
+</linearGradient>
+<radialGradient id="vig" cx="0.5" cy="0.44" r="0.78">
+<stop offset="0.55" stop-color="#0f172a" stop-opacity="0"/><stop offset="1" stop-color="#0f172a" stop-opacity="0.065"/>
+</radialGradient>
+<linearGradient id="hdr" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2563eb" stop-opacity="0.10"/>
+<stop offset="0.55" stop-color="#2563eb" stop-opacity="0.030"/>
+<stop offset="1" stop-color="#2563eb" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="hdrD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#60a5fa" stop-opacity="0.13"/>
+<stop offset="0.55" stop-color="#60a5fa" stop-opacity="0.040"/>
+<stop offset="1" stop-color="#60a5fa" stop-opacity="0"/>
+</linearGradient>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+<circle cx="1.5" cy="1.5" r="1.05" fill="#cbd5e1"/>
+</pattern>
+<filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+<feDropShadow dx="0" dy="1.6" stdDeviation="2.4" flood-color="#0f172a" flood-opacity="0.17"/>
+</filter>
+<filter id="pglow" x="-70%" y="-70%" width="240%" height="240%">
+<feGaussianBlur stdDeviation="2.1" result="b"/>
+<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs>
+<rect class="page-bg" width="800" height="512" fill="url(#bgL)"/>
+<rect width="800" height="512" fill="url(#dots)" opacity="0.40"/>
+<rect class="page-vig" width="800" height="512" fill="url(#vig)"/>
+<rect class="page-hdr" width="800" height="72" fill="url(#hdr)"/>
 <style>
 text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+.page-bg{fill:url(#bgL)}
+.page-vig{opacity:1}
+.page-hdr{fill:url(#hdr)}
+line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
+rect[fill="#f8fafc"],rect[fill="#eff6ff"],rect[fill="#ecfdf5"],rect[fill="#fffbeb"],rect[fill="#fef2f2"],rect[fill="#dbeafe"]{filter:url(#soft)}
 @media (prefers-color-scheme: dark){
+.page-bg{fill:url(#bgD)}
+.page-vig{opacity:0.45}
+.page-hdr{fill:url(#hdrD)}
 rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
 [fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
@@ -19,7 +61,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
 }
 </style>
-<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">精密整流：运放「借增益」消灭二极管压降</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">精密整流：运放「借增益」消灭二极管压降</text>
 
 <text x="210" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">精密半波整流器（反相型）</text>
 <text x="16" y="145" font-size="11" fill="#475569">输入</text>
@@ -55,12 +97,12 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <line x1="350" y1="210" x2="350" y2="150" stroke="#334155" stroke-width="2"/>
 <text x="120" y="245" font-size="11" fill="#dc2626" opacity="0">运放输出自动多抬 0.7V
 <animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.06;0.4;0.46;1" dur="6s" repeatCount="indefinite"/></text>
-<g><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.44;0.5;1" dur="6s" repeatCount="indefinite"/><circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="-0.50s" repeatCount="indefinite" path="M64,146 H160 M170,210 H200 M260,210 H346 V154 H396"/></circle>
+<g><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.44;0.5;1" dur="6s" repeatCount="indefinite"/><g filter="url(#pglow)"><circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="-0.50s" repeatCount="indefinite" path="M64,146 H160 M170,210 H200 M260,210 H346 V154 H396"/></circle>
 <circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="-0.17s" repeatCount="indefinite" path="M64,146 H160 M170,210 H200 M260,210 H346 V154 H396"/></circle>
 <circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="0.17s" repeatCount="indefinite" path="M64,146 H160 M170,210 H200 M260,210 H346 V154 H396"/></circle>
 <circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="0.50s" repeatCount="indefinite" path="M64,146 H160 M170,210 H200 M260,210 H346 V154 H396"/></circle>
 <circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="0.83s" repeatCount="indefinite" path="M64,146 H160 M170,210 H200 M260,210 H346 V154 H396"/></circle>
-<circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="1.17s" repeatCount="indefinite" path="M64,146 H160 M170,210 H200 M260,210 H346 V154 H396"/></circle></g>
+<circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="1.17s" repeatCount="indefinite" path="M64,146 H160 M170,210 H200 M260,210 H346 V154 H396"/></circle></g></g>
 <text x="590" y="66" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#475569">输入 ±100mV（太小，普通整流全丢）</text>
 <path d="M430,120 L434,122 L439,125 L443,127 L448,129 L452,131 L457,133 L461,135 L466,137 L470,138 L474,140 L479,141 L483,143 L488,144 L492,144 L497,145 L501,146 L506,146 L510,146 L514,146 L519,146 L523,145 L528,144 L532,144 L537,143 L541,141 L546,140 L550,138 L554,137 L559,135 L563,133 L568,131 L572,129 L577,127 L581,125 L586,122 L590,120 L594,118 L599,115 L603,113 L608,111 L612,109 L617,107 L621,105 L626,103 L630,102 L634,100 L639,99 L643,97 L648,96 L652,96 L657,95 L661,94 L666,94 L670,94 L674,94 L679,94 L683,95 L688,96 L692,96 L697,97 L701,99 L706,100 L710,102 L714,103 L719,105 L723,107 L728,109 L732,111 L737,113 L741,115 L746,118 L750,120" fill="none" stroke="#94a3b8" stroke-width="2"/>
 <text x="590" y="200" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#dc2626">普通二极管整流：0.7V 死区 → 输出=0</text>
@@ -68,8 +110,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="590" y="416" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#059669">精密整流输出：干净半波（基线=0V）</text>
 <path d="M430,280 L434,273 L439,266 L443,260 L448,254 L452,249 L457,245 L461,242 L466,241 L470,240 L474,241 L479,242 L483,245 L488,249 L492,254 L497,260 L501,266 L506,273 L510,280 L514,280 L519,280 L523,280 L528,280 L532,280 L537,280 L541,280 L546,280 L550,280 L554,280 L559,280 L563,280 L568,280 L572,280 L577,280 L581,280 L586,280 L590,280 L594,273 L599,266 L603,260 L608,254 L612,249 L617,245 L621,242 L626,241 L630,240 L634,241 L639,242 L643,245 L648,249 L652,254 L657,260 L661,266 L666,273 L670,280 L674,280 L679,280 L683,280 L688,280 L692,280 L697,280 L701,280 L706,280 L710,280 L714,280 L719,280 L723,280 L728,280 L732,280 L737,280 L741,280 L746,280 L750,280" fill="none" stroke="#059669" stroke-width="2.5" transform="translate(0,80)"/>
 <line x1="430" y1="360" x2="750" y2="360" stroke="#64748b" stroke-width="1.2"/>
-<text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">① 正半周：运放开环增益 10 万倍——输出只需多抬 0.7V，折算回输入仅 7µV 误差<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.22;0.28;1" dur="6s" repeatCount="indefinite"/></text><text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">② 负半周：二极管截止、运放饱和也无妨——输出被 Rf 锚在 0<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.3;0.35;0.58;0.64;1" dur="6s" repeatCount="indefinite"/></text><text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">③ 对比：普通二极管对 100mV 信号输出为零；精密整流分毫毕现——mV 级信号救星<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.64;0.7;1" dur="6s" repeatCount="indefinite"/></text><g opacity="0">
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.03;0.22;0.28;1" dur="6s" repeatCount="indefinite"/><rect x="102.4" y="426.9" width="595.2" height="24.1" rx="12.0" fill="#059669" fill-opacity="0.09" stroke="#059669" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.22;0.28;1" dur="6s" repeatCount="indefinite"/></rect><text x="400" y="440" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">① 正半周：运放开环增益 10 万倍——输出只需多抬 0.7V，折算回输入仅 7µV 误差<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.22;0.28;1" dur="6s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.3;0.35;0.58;0.64;1" dur="6s" repeatCount="indefinite"/><rect x="172.1" y="426.9" width="455.8" height="24.1" rx="12.0" fill="#dc2626" fill-opacity="0.09" stroke="#dc2626" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.3;0.35;0.58;0.64;1" dur="6s" repeatCount="indefinite"/></rect><text x="400" y="440" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">② 负半周：二极管截止、运放饱和也无妨——输出被 Rf 锚在 0<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.3;0.35;0.58;0.64;1" dur="6s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0" keyTimes="0;0.64;0.7;1" dur="6s" repeatCount="indefinite"/><rect x="99.7" y="426.9" width="600.6" height="24.1" rx="12.0" fill="#2563eb" fill-opacity="0.09" stroke="#2563eb" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.64;0.7;1" dur="6s" repeatCount="indefinite"/></rect><text x="400" y="440" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">③ 对比：普通二极管对 100mV 信号输出为零；精密整流分毫毕现——mV 级信号救星<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.64;0.7;1" dur="6s" repeatCount="indefinite"/></text></g><g opacity="0">
 <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.74;0.79;1" dur="6s" repeatCount="indefinite"/>
-<rect x="60" y="450" width="680" height="34" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
-<text x="400" y="472" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">0.7V ÷ 开环增益 = 等效死区 7µV——把非线性元件塞进反馈环，让增益替你买单</text>
+<rect x="60" y="462" width="680" height="34.0" rx="9" fill="#ecfdf5" stroke="#059669" stroke-width="1.5" filter="url(#soft)"/><rect x="66" y="469" width="3" height="20.0" rx="1.5" fill="#059669"/><text x="400" y="484.0" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">0.7V ÷ 开环增益 = 等效死区 7µV——把非线性元件塞进反馈环，让增益替你买单</text>
 </g></svg>

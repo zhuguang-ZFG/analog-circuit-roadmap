@@ -1,9 +1,51 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="640" viewBox="0 0 800 640">
 <title>热失控：一只 BJT 自己把自己烧了（正反馈环）</title>
-<rect width="800" height="640" fill="#f8fafc"/>
+<defs>
+<linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
+</linearGradient>
+<linearGradient id="bgD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#0a1020"/><stop offset="1" stop-color="#141d30"/>
+</linearGradient>
+<radialGradient id="vig" cx="0.5" cy="0.44" r="0.78">
+<stop offset="0.55" stop-color="#0f172a" stop-opacity="0"/><stop offset="1" stop-color="#0f172a" stop-opacity="0.065"/>
+</radialGradient>
+<linearGradient id="hdr" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2563eb" stop-opacity="0.10"/>
+<stop offset="0.55" stop-color="#2563eb" stop-opacity="0.030"/>
+<stop offset="1" stop-color="#2563eb" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="hdrD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#60a5fa" stop-opacity="0.13"/>
+<stop offset="0.55" stop-color="#60a5fa" stop-opacity="0.040"/>
+<stop offset="1" stop-color="#60a5fa" stop-opacity="0"/>
+</linearGradient>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+<circle cx="1.5" cy="1.5" r="1.05" fill="#cbd5e1"/>
+</pattern>
+<filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+<feDropShadow dx="0" dy="1.6" stdDeviation="2.4" flood-color="#0f172a" flood-opacity="0.17"/>
+</filter>
+<filter id="pglow" x="-70%" y="-70%" width="240%" height="240%">
+<feGaussianBlur stdDeviation="2.1" result="b"/>
+<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs>
+<rect class="page-bg" width="800" height="640" fill="url(#bgL)"/>
+<rect width="800" height="640" fill="url(#dots)" opacity="0.40"/>
+<rect class="page-vig" width="800" height="640" fill="url(#vig)"/>
+<rect class="page-hdr" width="800" height="72" fill="url(#hdr)"/>
 <style>
 text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+.page-bg{fill:url(#bgL)}
+.page-vig{opacity:1}
+.page-hdr{fill:url(#hdr)}
+line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
+rect[fill="#f8fafc"],rect[fill="#eff6ff"],rect[fill="#ecfdf5"],rect[fill="#fffbeb"],rect[fill="#fef2f2"],rect[fill="#dbeafe"]{filter:url(#soft)}
 @media (prefers-color-scheme: dark){
+.page-bg{fill:url(#bgD)}
+.page-vig{opacity:0.45}
+.page-hdr{fill:url(#hdrD)}
 rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
 [fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
@@ -19,7 +61,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
 }
 </style>
-<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">热失控：一只 BJT 自己把自己烧了（正反馈环）</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">热失控：一只 BJT 自己把自己烧了（正反馈环）</text>
 
 <circle cx="260" cy="230" r="110" fill="none" stroke="#fecaca" stroke-width="14" stroke-dasharray="10 10">
 <animateTransform attributeName="transform" type="rotate" values="0 260 230;360 260 230" dur="12s" repeatCount="indefinite"/>
@@ -85,12 +127,11 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <circle r="4.5" fill="#dc2626"><animateMotion dur="10s" begin="-2.4s" repeatCount="indefinite" path="M548,262 A104 104 0 0 1 360,372" keyPoints="0;1" keyTimes="0;1"/></circle>
 <circle r="4.5" fill="#dc2626"><animateMotion dur="10s" begin="-3.6s" repeatCount="indefinite" path="M170,372 A104 104 0 0 1 62,262" keyPoints="0;1" keyTimes="0;1"/></circle>
 <circle r="4.5" fill="#dc2626"><animateMotion dur="10s" begin="-4.8s" repeatCount="indefinite" path="M68,196 A104 104 0 0 1 162,92" keyPoints="0;1" keyTimes="0;1"/></circle>
-<rect x="236" y="206" width="48" height="48" rx="24" fill="none" stroke="#b91c1c" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="3.0s" repeatCount="indefinite"/></rect>
+<rect x="236" y="206" width="48" height="48" rx="24" fill="none" stroke="#b91c1c" stroke-width="2.5" opacity="0" filter="url(#pglow)"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="3.0s" repeatCount="indefinite"/></rect>
 <rect x="200" y="548" width="460" height="42" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="2.5"/>
 <text x="430" y="574" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#b91c1c">热失控不是「运气差」——是设计里少了一条负反馈</text>
 <text x="430" y="538" text-anchor="middle" font-size="11" fill="#475569">前两拍：I_C 慢慢涨（还没觉得烫）　后两拍：P 与温度互相加码，越快越失控</text>
-<text x="400" y="520" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">① 硅的脾气：V_BE 每升 1℃ 就低 2mV——同样的 V_B 会挤出更大的 I_C<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.26;1" dur="10s" repeatCount="indefinite"/></text><text x="400" y="520" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">② 恶性循环：更热 → I_C 更大 → 功耗更大 → 更热——自己给自己加速<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.26;0.32;0.48;0.54;1" dur="10s" repeatCount="indefinite"/></text><text x="400" y="520" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">③ 唯一能自己刹住车的是负反馈：Re 把 I_C 的增量变成 V_BE 的减量<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.54;0.6;0.78;0.84;1" dur="10s" repeatCount="indefinite"/></text><text x="400" y="520" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">④ 实战三招：射极电阻、散热片降 Rth、降额使用——别再靠「应该不会那么热」<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.84;0.9;1" dur="10s" repeatCount="indefinite"/></text><g opacity="0">
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.03;0.2;0.26;1" dur="10s" repeatCount="indefinite"/><rect x="138.5" y="506.9" width="523.1" height="24.1" rx="12.0" fill="#b45309" fill-opacity="0.09" stroke="#b45309" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.26;1" dur="10s" repeatCount="indefinite"/></rect><text x="400" y="520" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">① 硅的脾气：V_BE 每升 1℃ 就低 2mV——同样的 V_B 会挤出更大的 I_C<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.26;1" dur="10s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.26;0.32;0.48;0.54;1" dur="10s" repeatCount="indefinite"/><rect x="144.2" y="506.9" width="511.7" height="24.1" rx="12.0" fill="#dc2626" fill-opacity="0.09" stroke="#dc2626" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.26;0.32;0.48;0.54;1" dur="10s" repeatCount="indefinite"/></rect><text x="400" y="520" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">② 恶性循环：更热 → I_C 更大 → 功耗更大 → 更热——自己给自己加速<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.26;0.32;0.48;0.54;1" dur="10s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.54;0.6;0.78;0.84;1" dur="10s" repeatCount="indefinite"/><rect x="149.1" y="506.9" width="501.8" height="24.1" rx="12.0" fill="#2563eb" fill-opacity="0.09" stroke="#2563eb" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.54;0.6;0.78;0.84;1" dur="10s" repeatCount="indefinite"/></rect><text x="400" y="520" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">③ 唯一能自己刹住车的是负反馈：Re 把 I_C 的增量变成 V_BE 的减量<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.54;0.6;0.78;0.84;1" dur="10s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0" keyTimes="0;0.84;0.9;1" dur="10s" repeatCount="indefinite"/><rect x="109.1" y="506.9" width="581.9" height="24.1" rx="12.0" fill="#059669" fill-opacity="0.09" stroke="#059669" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.84;0.9;1" dur="10s" repeatCount="indefinite"/></rect><text x="400" y="520" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">④ 实战三招：射极电阻、散热片降 Rth、降额使用——别再靠「应该不会那么热」<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.84;0.9;1" dur="10s" repeatCount="indefinite"/></text></g><g opacity="0">
 <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.9;0.94;1" dur="10s" repeatCount="indefinite"/>
-<rect x="30" y="592" width="740" height="34" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
-<text x="400" y="614" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">对策：射极电阻 Re 负反馈 · 散热片降 Rth · 降额使用——负反馈是唯一能自动稳住的</text>
+<rect x="30" y="592" width="740" height="34.0" rx="9" fill="#ecfdf5" stroke="#059669" stroke-width="1.5" filter="url(#soft)"/><rect x="36" y="599" width="3" height="20.0" rx="1.5" fill="#059669"/><text x="400" y="614.0" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">对策：射极电阻 Re 负反馈 · 散热片降 Rth · 降额使用——负反馈是唯一能自动稳住的</text>
 </g></svg>

@@ -1,9 +1,51 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="520" viewBox="0 0 800 520">
 <title>电压降：同一股电流，谁 R 大谁分得多</title>
-<rect width="800" height="520" fill="#f8fafc"/>
+<defs>
+<linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
+</linearGradient>
+<linearGradient id="bgD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#0a1020"/><stop offset="1" stop-color="#141d30"/>
+</linearGradient>
+<radialGradient id="vig" cx="0.5" cy="0.44" r="0.78">
+<stop offset="0.55" stop-color="#0f172a" stop-opacity="0"/><stop offset="1" stop-color="#0f172a" stop-opacity="0.065"/>
+</radialGradient>
+<linearGradient id="hdr" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2563eb" stop-opacity="0.10"/>
+<stop offset="0.55" stop-color="#2563eb" stop-opacity="0.030"/>
+<stop offset="1" stop-color="#2563eb" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="hdrD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#60a5fa" stop-opacity="0.13"/>
+<stop offset="0.55" stop-color="#60a5fa" stop-opacity="0.040"/>
+<stop offset="1" stop-color="#60a5fa" stop-opacity="0"/>
+</linearGradient>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+<circle cx="1.5" cy="1.5" r="1.05" fill="#cbd5e1"/>
+</pattern>
+<filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+<feDropShadow dx="0" dy="1.6" stdDeviation="2.4" flood-color="#0f172a" flood-opacity="0.17"/>
+</filter>
+<filter id="pglow" x="-70%" y="-70%" width="240%" height="240%">
+<feGaussianBlur stdDeviation="2.1" result="b"/>
+<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs>
+<rect class="page-bg" width="800" height="520" fill="url(#bgL)"/>
+<rect width="800" height="520" fill="url(#dots)" opacity="0.40"/>
+<rect class="page-vig" width="800" height="520" fill="url(#vig)"/>
+<rect class="page-hdr" width="800" height="72" fill="url(#hdr)"/>
 <style>
 text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+.page-bg{fill:url(#bgL)}
+.page-vig{opacity:1}
+.page-hdr{fill:url(#hdr)}
+line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
+rect[fill="#f8fafc"],rect[fill="#eff6ff"],rect[fill="#ecfdf5"],rect[fill="#fffbeb"],rect[fill="#fef2f2"],rect[fill="#dbeafe"]{filter:url(#soft)}
 @media (prefers-color-scheme: dark){
+.page-bg{fill:url(#bgD)}
+.page-vig{opacity:0.45}
+.page-hdr{fill:url(#hdrD)}
 rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
 [fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
@@ -19,7 +61,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
 }
 </style>
-<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">电压降：同一股电流，谁 R 大谁分得多</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">电压降：同一股电流，谁 R 大谁分得多</text>
 
 <text x="400" y="46" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#334155">同一股电流流过所有电阻——每个电阻「留下」一份电压，加起来恰好等于电源</text>
 <text x="190" y="86" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">电路：5V → 4kΩ → 1kΩ → GND</text>
@@ -41,10 +83,10 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <line x1="140" y1="302" x2="180" y2="302" stroke="#334155" stroke-width="2.5"/>
 <line x1="146" y1="310" x2="174" y2="310" stroke="#334155" stroke-width="2.5"/>
 <line x1="152" y1="318" x2="168" y2="318" stroke="#334155" stroke-width="2.5"/>
-<circle r="5" fill="#f59e0b"><animateMotion dur="10s" begin="-0.50s" repeatCount="indefinite" path="M160,112 L160,298"/></circle>
+<g filter="url(#pglow)"><circle r="5" fill="#f59e0b"><animateMotion dur="10s" begin="-0.50s" repeatCount="indefinite" path="M160,112 L160,298"/></circle>
 <circle r="5" fill="#f59e0b"><animateMotion dur="10s" begin="2.00s" repeatCount="indefinite" path="M160,112 L160,298"/></circle>
 <circle r="5" fill="#f59e0b"><animateMotion dur="10s" begin="4.50s" repeatCount="indefinite" path="M160,112 L160,298"/></circle>
-<circle r="5" fill="#f59e0b"><animateMotion dur="10s" begin="7.00s" repeatCount="indefinite" path="M160,112 L160,298"/></circle>
+<circle r="5" fill="#f59e0b"><animateMotion dur="10s" begin="7.00s" repeatCount="indefinite" path="M160,112 L160,298"/></circle></g>
 <text x="128" y="202" text-anchor="end" font-size="11.5" font-weight="bold" fill="#2563eb">I = 1mA</text>
 <text x="190" y="338" text-anchor="middle" font-size="11" fill="#475569">5V ÷ (4k+1k) = 1mA —— 同一股电流，处处相等</text>
 <text x="600" y="86" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">沿回路走一圈，看电压怎么一级级掉下去</text>
@@ -65,4 +107,4 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <animate attributeName="r" values="5;12;5" dur="1.7s" repeatCount="indefinite"/></circle>
 <circle cx="160" cy="110" r="5" fill="none" stroke="#b45309" stroke-width="2">
 <animate attributeName="r" values="5;12;5" dur="1.7s" begin="-0.85s" repeatCount="indefinite"/></circle>
-<text x="400" y="452" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb" opacity="0">口诀：V = I×R —— 同一电流下电压按电阻成比例分配（4k:1k = 4:1 → 4V:1V）<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.8;0.86;1" dur="10s" repeatCount="indefinite"/></text></svg>
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0" keyTimes="0;0.8;0.86;1" dur="10s" repeatCount="indefinite"/><rect x="137.6" y="440.3" width="524.8" height="21.6" rx="10.8" fill="#2563eb" fill-opacity="0.09" stroke="#2563eb" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.8;0.86;1" dur="10s" repeatCount="indefinite"/></rect><text x="400" y="452" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb" opacity="0">口诀：V = I×R —— 同一电流下电压按电阻成比例分配（4k:1k = 4:1 → 4V:1V）<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.8;0.86;1" dur="10s" repeatCount="indefinite"/></text></g></svg>

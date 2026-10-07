@@ -1,9 +1,51 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="620" viewBox="0 0 800 620">
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="762" viewBox="0 0 800 762">
 <title>运放的六个经典坑：每一个都能复现、都能预防</title>
-<rect width="800" height="620" fill="#f8fafc"/>
+<defs>
+<linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
+</linearGradient>
+<linearGradient id="bgD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#0a1020"/><stop offset="1" stop-color="#141d30"/>
+</linearGradient>
+<radialGradient id="vig" cx="0.5" cy="0.44" r="0.78">
+<stop offset="0.55" stop-color="#0f172a" stop-opacity="0"/><stop offset="1" stop-color="#0f172a" stop-opacity="0.065"/>
+</radialGradient>
+<linearGradient id="hdr" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2563eb" stop-opacity="0.10"/>
+<stop offset="0.55" stop-color="#2563eb" stop-opacity="0.030"/>
+<stop offset="1" stop-color="#2563eb" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="hdrD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#60a5fa" stop-opacity="0.13"/>
+<stop offset="0.55" stop-color="#60a5fa" stop-opacity="0.040"/>
+<stop offset="1" stop-color="#60a5fa" stop-opacity="0"/>
+</linearGradient>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+<circle cx="1.5" cy="1.5" r="1.05" fill="#cbd5e1"/>
+</pattern>
+<filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+<feDropShadow dx="0" dy="1.6" stdDeviation="2.4" flood-color="#0f172a" flood-opacity="0.17"/>
+</filter>
+<filter id="pglow" x="-70%" y="-70%" width="240%" height="240%">
+<feGaussianBlur stdDeviation="2.1" result="b"/>
+<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs>
+<rect class="page-bg" width="800" height="762" fill="url(#bgL)"/>
+<rect width="800" height="762" fill="url(#dots)" opacity="0.40"/>
+<rect class="page-vig" width="800" height="762" fill="url(#vig)"/>
+<rect class="page-hdr" width="800" height="72" fill="url(#hdr)"/>
 <style>
 text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+.page-bg{fill:url(#bgL)}
+.page-vig{opacity:1}
+.page-hdr{fill:url(#hdr)}
+line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
+rect[fill="#f8fafc"],rect[fill="#eff6ff"],rect[fill="#ecfdf5"],rect[fill="#fffbeb"],rect[fill="#fef2f2"],rect[fill="#dbeafe"]{filter:url(#soft)}
 @media (prefers-color-scheme: dark){
+.page-bg{fill:url(#bgD)}
+.page-vig{opacity:0.45}
+.page-hdr{fill:url(#hdrD)}
 rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
 [fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
@@ -19,7 +61,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
 }
 </style>
-<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">运放的六个经典坑：每一个都能复现、都能预防</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">运放的六个经典坑：每一个都能复现、都能预防</text>
 
 <text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">症状 → 根因 → 解法，按现场出现频率排序</text>
 <rect x="40" y="82" width="720" height="80" rx="9" fill="#f8fafc" stroke="#dc2626" stroke-width="1.6"/><text x="58" y="110" font-size="12.5" font-weight="bold" fill="#dc2626">⚠ 输出锁定在电源轨</text><text x="58" y="134" font-size="11" fill="#475569">根因：输入超共模范围 / 反相端反馈开路</text><text x="58" y="152" font-size="11" font-weight="bold" fill="#334155">解法：查共模范围（LM358 是 0~Vcc−1.5V）；查反馈电阻焊接</text><circle cx="742" cy="122" r="5" fill="#dc2626" opacity="0.8"/><rect x="40" y="170" width="720" height="80" rx="9" fill="#f8fafc" stroke="#b45309" stroke-width="1.6"/><text x="58" y="198" font-size="12.5" font-weight="bold" fill="#b45309">⚠ 相位反转（跳到相反轨）</text><text x="58" y="222" font-size="11" fill="#475569">根因：老式运放输入超共模时内部结正偏</text><text x="58" y="240" font-size="11" font-weight="bold" fill="#334155">解法：选带相位反转保护的型号；输入端限幅/钳位</text><circle cx="742" cy="210" r="5" fill="#b45309" opacity="0.8"/><rect x="40" y="258" width="720" height="80" rx="9" fill="#f8fafc" stroke="#7c3aed" stroke-width="1.6"/><text x="58" y="286" font-size="12.5" font-weight="bold" fill="#7c3aed">⚠ 高频自激振荡</text><text x="58" y="310" font-size="11" fill="#475569">根因：驱动容性负载（长电缆）破坏相位裕度</text><text x="58" y="328" font-size="11" font-weight="bold" fill="#334155">解法：输出串 10~100Ω 隔离电阻 —— 最常用的急救措施</text><circle cx="742" cy="298" r="5" fill="#7c3aed" opacity="0.8"/><rect x="40" y="346" width="720" height="80" rx="9" fill="#f8fafc" stroke="#2563eb" stroke-width="1.6"/><text x="58" y="374" font-size="12.5" font-weight="bold" fill="#2563eb">⚠ 输出三角波化</text><text x="58" y="398" font-size="11" fill="#475569">根因：SR 不足（大信号被限速）</text><text x="58" y="416" font-size="11" font-weight="bold" fill="#334155">解法：降幅度或换高速运放；算 f_max = SR/(2πVp)</text><circle cx="742" cy="386" r="5" fill="#2563eb" opacity="0.8"/><rect x="40" y="434" width="720" height="80" rx="9" fill="#f8fafc" stroke="#059669" stroke-width="1.6"/><text x="58" y="462" font-size="12.5" font-weight="bold" fill="#059669">⚠ 直流误差超标</text><text x="58" y="486" font-size="11" fill="#475569">根因：V_OS×增益；I_B×源阻抗</text><text x="58" y="504" font-size="11" font-weight="bold" fill="#334155">解法：换精密运放（OP07/斩波）；降低源阻抗</text><circle cx="742" cy="474" r="5" fill="#059669" opacity="0.8"/><rect x="40" y="522" width="720" height="80" rx="9" fill="#f8fafc" stroke="#0ea5e9" stroke-width="1.6"/><text x="58" y="550" font-size="12.5" font-weight="bold" fill="#0ea5e9">⚠ 微音效应/杂音</text><text x="58" y="574" font-size="11" fill="#475569">根因：高增益受振动（陶瓷电容压电效应）</text><text x="58" y="592" font-size="11" font-weight="bold" fill="#334155">解法：换 C0G 电容；减振布局；避免机械应力</text><circle cx="742" cy="562" r="5" fill="#0ea5e9" opacity="0.8"/>
@@ -34,6 +76,6 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <circle r="5" fill="#f59e0b"><animateMotion dur="11s" begin="-4.5s" repeatCount="indefinite" path="M52,382 L748,382" keyPoints="0;1" keyTimes="0;1"/></circle>
 <circle r="5" fill="#f59e0b"><animateMotion dur="11s" begin="-6.0s" repeatCount="indefinite" path="M52,470 L748,470" keyPoints="0;1" keyTimes="0;1"/></circle>
 <circle r="5" fill="#f59e0b"><animateMotion dur="11s" begin="-7.5s" repeatCount="indefinite" path="M52,558 L748,558" keyPoints="0;1" keyTimes="0;1"/></circle>
-<rect x="38" y="432" width="724" height="84" rx="10" fill="none" stroke="#059669" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.0s" repeatCount="indefinite"/></rect>
-<rect x="38" y="80" width="724" height="84" rx="10" fill="none" stroke="#dc2626" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.0s" repeatCount="indefinite"/></rect>
-<text x="400" y="600" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">① 输出贴轨是最高频故障：先查共模范围与反馈回路，别急着换运放<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="600" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">② 容性负载自激：输出串 10~100Ω 隔离电阻是最常用的急救<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="600" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">③ 三角波化 = SR 不足；直流误差 = V_OS×增益 —— 两笔账都能提前算<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="600" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">④ 诊断顺序：输出电平 → 输入端压差 → 最后才怀疑运放本身<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/></text></svg>
+<rect x="38" y="432" width="724" height="84" rx="10" fill="none" stroke="#059669" stroke-width="2.5" opacity="0" filter="url(#pglow)"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.0s" repeatCount="indefinite"/></rect>
+<rect x="38" y="80" width="724" height="84" rx="10" fill="none" stroke="#dc2626" stroke-width="2.5" opacity="0" filter="url(#pglow)"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.0s" repeatCount="indefinite"/></rect>
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/><rect x="155.4" y="715.0" width="489.1" height="24.1" rx="12.0" fill="#dc2626" fill-opacity="0.09" stroke="#dc2626" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/></rect><text x="400" y="728" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">① 输出贴轨是最高频故障：先查共模范围与反馈回路，别急着换运放<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/><rect x="176.4" y="715.0" width="447.1" height="24.1" rx="12.0" fill="#7c3aed" fill-opacity="0.09" stroke="#7c3aed" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/></rect><text x="400" y="728" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">② 容性负载自激：输出串 10~100Ω 隔离电阻是最常用的急救<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/><rect x="139.6" y="715.0" width="520.8" height="24.1" rx="12.0" fill="#2563eb" fill-opacity="0.09" stroke="#2563eb" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/></rect><text x="400" y="728" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">③ 三角波化 = SR 不足；直流误差 = V_OS×增益 —— 两笔账都能提前算<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/><rect x="177.4" y="715.0" width="445.2" height="24.1" rx="12.0" fill="#b45309" fill-opacity="0.09" stroke="#b45309" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/></rect><text x="400" y="728" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">④ 诊断顺序：输出电平 → 输入端压差 → 最后才怀疑运放本身<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/></text></g></svg>

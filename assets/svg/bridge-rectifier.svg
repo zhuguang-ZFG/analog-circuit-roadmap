@@ -1,9 +1,51 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="560" viewBox="0 0 800 560">
 <title>桥式全波整流：四只二极管接力，负半周也「翻上来」（1N4007）</title>
-<rect width="800" height="560" fill="#f8fafc"/>
+<defs>
+<linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
+</linearGradient>
+<linearGradient id="bgD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#0a1020"/><stop offset="1" stop-color="#141d30"/>
+</linearGradient>
+<radialGradient id="vig" cx="0.5" cy="0.44" r="0.78">
+<stop offset="0.55" stop-color="#0f172a" stop-opacity="0"/><stop offset="1" stop-color="#0f172a" stop-opacity="0.065"/>
+</radialGradient>
+<linearGradient id="hdr" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2563eb" stop-opacity="0.10"/>
+<stop offset="0.55" stop-color="#2563eb" stop-opacity="0.030"/>
+<stop offset="1" stop-color="#2563eb" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="hdrD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#60a5fa" stop-opacity="0.13"/>
+<stop offset="0.55" stop-color="#60a5fa" stop-opacity="0.040"/>
+<stop offset="1" stop-color="#60a5fa" stop-opacity="0"/>
+</linearGradient>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+<circle cx="1.5" cy="1.5" r="1.05" fill="#cbd5e1"/>
+</pattern>
+<filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+<feDropShadow dx="0" dy="1.6" stdDeviation="2.4" flood-color="#0f172a" flood-opacity="0.17"/>
+</filter>
+<filter id="pglow" x="-70%" y="-70%" width="240%" height="240%">
+<feGaussianBlur stdDeviation="2.1" result="b"/>
+<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs>
+<rect class="page-bg" width="800" height="560" fill="url(#bgL)"/>
+<rect width="800" height="560" fill="url(#dots)" opacity="0.40"/>
+<rect class="page-vig" width="800" height="560" fill="url(#vig)"/>
+<rect class="page-hdr" width="800" height="72" fill="url(#hdr)"/>
 <style>
 text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+.page-bg{fill:url(#bgL)}
+.page-vig{opacity:1}
+.page-hdr{fill:url(#hdr)}
+line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
+rect[fill="#f8fafc"],rect[fill="#eff6ff"],rect[fill="#ecfdf5"],rect[fill="#fffbeb"],rect[fill="#fef2f2"],rect[fill="#dbeafe"]{filter:url(#soft)}
 @media (prefers-color-scheme: dark){
+.page-bg{fill:url(#bgD)}
+.page-vig{opacity:0.45}
+.page-hdr{fill:url(#hdrD)}
 rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
 [fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
@@ -19,7 +61,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
 }
 </style>
-<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">桥式全波整流：四只二极管接力，负半周也「翻上来」（1N4007）</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">桥式全波整流：四只二极管接力，负半周也「翻上来」（1N4007）</text>
 
 <text x="330" y="58" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">桥式整流电路</text>
 <circle cx="60" cy="230" r="21" fill="none" stroke="#2563eb" stroke-width="2.5"/>
@@ -75,37 +117,36 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="408" y="190" font-size="14" font-weight="bold" fill="#dc2626" opacity="0">− R<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.48;0.52;1" dur="4s" repeatCount="indefinite"/></text>
 <text x="96" y="190" font-size="14" font-weight="bold" fill="#dc2626" opacity="0">L −<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.48;0.52;1" dur="4s" repeatCount="indefinite"/></text>
 <text x="408" y="190" font-size="14" font-weight="bold" fill="#059669" opacity="0">+ R<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.48;0.52;1" dur="4s" repeatCount="indefinite"/></text>
-<g><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.46;0.5;1" dur="4s" repeatCount="indefinite"/><circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="-0.50s" repeatCount="indefinite" path="M96,224 L252,130"/></circle>
+<g><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.46;0.5;1" dur="4s" repeatCount="indefinite"/><g filter="url(#pglow)"><circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="-0.50s" repeatCount="indefinite" path="M96,224 L252,130"/></circle>
 <circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="0.17s" repeatCount="indefinite" path="M96,224 L252,130"/></circle>
-<circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="0.83s" repeatCount="indefinite" path="M96,224 L252,130"/></circle><circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="-0.50s" repeatCount="indefinite" path="M264,66 H592 V334"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="0.83s" repeatCount="indefinite" path="M96,224 L252,130"/></circle></g><g filter="url(#pglow)"><circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="-0.50s" repeatCount="indefinite" path="M264,66 H592 V334"/></circle>
 <circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="-0.17s" repeatCount="indefinite" path="M264,66 H592 V334"/></circle>
 <circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="0.17s" repeatCount="indefinite" path="M264,66 H592 V334"/></circle>
 <circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="0.50s" repeatCount="indefinite" path="M264,66 H592 V334"/></circle>
 <circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="0.83s" repeatCount="indefinite" path="M264,66 H592 V334"/></circle>
-<circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="1.17s" repeatCount="indefinite" path="M264,66 H592 V334"/></circle><circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="-0.50s" repeatCount="indefinite" path="M264,344 L426,236"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="1.17s" repeatCount="indefinite" path="M264,66 H592 V334"/></circle></g><g filter="url(#pglow)"><circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="-0.50s" repeatCount="indefinite" path="M264,344 L426,236"/></circle>
 <circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="0.17s" repeatCount="indefinite" path="M264,344 L426,236"/></circle>
-<circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="0.83s" repeatCount="indefinite" path="M264,344 L426,236"/></circle><circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="-0.50s" repeatCount="indefinite" path="M434,234 H462 V362"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="0.83s" repeatCount="indefinite" path="M264,344 L426,236"/></circle></g><g filter="url(#pglow)"><circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="-0.50s" repeatCount="indefinite" path="M434,234 H462 V362"/></circle>
 <circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="0.17s" repeatCount="indefinite" path="M434,234 H462 V362"/></circle>
-<circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="0.83s" repeatCount="indefinite" path="M434,234 H462 V362"/></circle></g><g><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.54;1" dur="4s" repeatCount="indefinite"/><circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="-0.50s" repeatCount="indefinite" path="M424,224 L268,130"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="0.83s" repeatCount="indefinite" path="M434,234 H462 V362"/></circle></g></g><g><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.54;1" dur="4s" repeatCount="indefinite"/><g filter="url(#pglow)"><circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="-0.50s" repeatCount="indefinite" path="M424,224 L268,130"/></circle>
 <circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="0.17s" repeatCount="indefinite" path="M424,224 L268,130"/></circle>
-<circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="0.83s" repeatCount="indefinite" path="M424,224 L268,130"/></circle><circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="-0.50s" repeatCount="indefinite" path="M264,66 H592 V334"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="0.83s" repeatCount="indefinite" path="M424,224 L268,130"/></circle></g><g filter="url(#pglow)"><circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="-0.50s" repeatCount="indefinite" path="M264,66 H592 V334"/></circle>
 <circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="-0.17s" repeatCount="indefinite" path="M264,66 H592 V334"/></circle>
 <circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="0.17s" repeatCount="indefinite" path="M264,66 H592 V334"/></circle>
 <circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="0.50s" repeatCount="indefinite" path="M264,66 H592 V334"/></circle>
 <circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="0.83s" repeatCount="indefinite" path="M264,66 H592 V334"/></circle>
-<circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="1.17s" repeatCount="indefinite" path="M264,66 H592 V334"/></circle><circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="-0.50s" repeatCount="indefinite" path="M256,344 L94,236"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="1.17s" repeatCount="indefinite" path="M264,66 H592 V334"/></circle></g><g filter="url(#pglow)"><circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="-0.50s" repeatCount="indefinite" path="M256,344 L94,236"/></circle>
 <circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="0.17s" repeatCount="indefinite" path="M256,344 L94,236"/></circle>
-<circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="0.83s" repeatCount="indefinite" path="M256,344 L94,236"/></circle><circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="-0.50s" repeatCount="indefinite" path="M86,234 H28 V362"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="0.83s" repeatCount="indefinite" path="M256,344 L94,236"/></circle></g><g filter="url(#pglow)"><circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="-0.50s" repeatCount="indefinite" path="M86,234 H28 V362"/></circle>
 <circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="0.17s" repeatCount="indefinite" path="M86,234 H28 V362"/></circle>
-<circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="0.83s" repeatCount="indefinite" path="M86,234 H28 V362"/></circle></g>
+<circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="0.83s" repeatCount="indefinite" path="M86,234 H28 V362"/></circle></g></g>
 <line x1="60" y1="452" x2="745" y2="452" stroke="#64748b" stroke-width="1.8"/>
 <text x="740" y="474" text-anchor="end" font-size="11.5" fill="#475569">t →</text>
 <path d="M60,452 L74,457 L88,463 L102,468 L117,473 L131,478 L145,482 L159,485 L173,488 L188,491 L202,493 L216,494 L230,494 L244,494 L258,493 L272,491 L287,488 L301,485 L315,482 L329,478 L343,473 L358,468 L372,463 L386,457 L400,452 L414,447 L428,441 L442,436 L457,431 L471,426 L485,422 L499,419 L513,416 L528,413 L542,411 L556,410 L570,410 L584,410 L598,411 L612,413 L627,416 L641,419 L655,422 L669,426 L683,431 L698,436 L712,441 L726,447 L740,452" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6,4"/>
 <text x="64" y="404" font-size="11.5" fill="#64748b">AC 输入（虚线）</text>
 <path d="M60,452 L67,449 L74,447 L81,444 L88,441 L95,438 L102,436 L110,433 L117,431 L124,429 L131,426 L138,424 L145,422 L152,420 L159,419 L166,417 L173,416 L180,414 L188,413 L195,412 L202,411 L209,411 L216,410 L223,410 L230,410 L237,410 L244,410 L251,411 L258,411 L265,412 L272,413 L280,414 L287,416 L294,417 L301,419 L308,420 L315,422 L322,424 L329,426 L336,429 L343,431 L350,433 L358,436 L365,438 L372,441 L379,444 L386,447 L393,449 L400,452 L407,449 L414,447 L421,444 L428,441 L435,438 L442,436 L450,433 L457,431 L464,429 L471,426 L478,424 L485,422 L492,420 L499,419 L506,417 L513,416 L520,414 L528,413 L535,412 L542,411 L549,411 L556,410 L563,410 L570,410 L577,410 L584,410 L591,411 L598,411 L605,412 L612,413 L620,414 L627,416 L634,417 L641,419 L648,420 L655,422 L662,424 L669,426 L676,429 L683,431 L690,433 L698,436 L705,438 L712,441 L719,444 L726,447 L733,449 L740,452" fill="none" stroke="#2563eb" stroke-width="3.2"/>
 <text x="400" y="404" font-size="11.5" font-weight="bold" fill="#2563eb">输出：脉动直流（实线）＝ |输入| − 1.4V</text>
-<text x="400" y="512" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">① 正半周（L+ R−）：D1、D4 导通——绿路走一遍<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.04;0.44;0.48;1" dur="4s" repeatCount="indefinite"/></text><text x="400" y="512" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">② 负半周（L− R+）：D2、D3 导通——走红路，负载电流方向不变！<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.52;0.56;1" dur="4s" repeatCount="indefinite"/></text><g opacity="0">
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.04;0.44;0.48;1" dur="4s" repeatCount="indefinite"/><rect x="210.6" y="498.9" width="378.8" height="24.1" rx="12.0" fill="#059669" fill-opacity="0.09" stroke="#059669" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.04;0.44;0.48;1" dur="4s" repeatCount="indefinite"/></rect><text x="400" y="512" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">① 正半周（L+ R−）：D1、D4 导通——绿路走一遍<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.04;0.44;0.48;1" dur="4s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0" keyTimes="0;0.52;0.56;1" dur="4s" repeatCount="indefinite"/><rect x="150.0" y="498.9" width="500.0" height="24.1" rx="12.0" fill="#dc2626" fill-opacity="0.09" stroke="#dc2626" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.52;0.56;1" dur="4s" repeatCount="indefinite"/></rect><text x="400" y="512" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">② 负半周（L− R+）：D2、D3 导通——走红路，负载电流方向不变！<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.52;0.56;1" dur="4s" repeatCount="indefinite"/></text></g><g opacity="0">
 <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.55;0.6;1" dur="4s" repeatCount="indefinite"/>
-<rect x="60" y="522" width="680" height="34" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
-<text x="400" y="544" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">代价：两只管压降 ≈1.4V · 纹波 = 2×市电 = 100Hz · 1N4007 耐压 1000V/1A</text>
+<rect x="60" y="522" width="680" height="34.0" rx="9" fill="#ecfdf5" stroke="#059669" stroke-width="1.5" filter="url(#soft)"/><rect x="66" y="529" width="3" height="20.0" rx="1.5" fill="#059669"/><text x="400" y="544.0" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">代价：两只管压降 ≈1.4V · 纹波 = 2×市电 = 100Hz · 1N4007 耐压 1000V/1A</text>
 </g></svg>

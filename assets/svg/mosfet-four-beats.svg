@@ -1,9 +1,51 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="680" viewBox="0 0 800 680">
 <title>MOSFET 开通四拍：栅极电荷如何变成热</title>
-<rect width="800" height="680" fill="#f8fafc"/>
+<defs>
+<linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
+</linearGradient>
+<linearGradient id="bgD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#0a1020"/><stop offset="1" stop-color="#141d30"/>
+</linearGradient>
+<radialGradient id="vig" cx="0.5" cy="0.44" r="0.78">
+<stop offset="0.55" stop-color="#0f172a" stop-opacity="0"/><stop offset="1" stop-color="#0f172a" stop-opacity="0.065"/>
+</radialGradient>
+<linearGradient id="hdr" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2563eb" stop-opacity="0.10"/>
+<stop offset="0.55" stop-color="#2563eb" stop-opacity="0.030"/>
+<stop offset="1" stop-color="#2563eb" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="hdrD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#60a5fa" stop-opacity="0.13"/>
+<stop offset="0.55" stop-color="#60a5fa" stop-opacity="0.040"/>
+<stop offset="1" stop-color="#60a5fa" stop-opacity="0"/>
+</linearGradient>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+<circle cx="1.5" cy="1.5" r="1.05" fill="#cbd5e1"/>
+</pattern>
+<filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+<feDropShadow dx="0" dy="1.6" stdDeviation="2.4" flood-color="#0f172a" flood-opacity="0.17"/>
+</filter>
+<filter id="pglow" x="-70%" y="-70%" width="240%" height="240%">
+<feGaussianBlur stdDeviation="2.1" result="b"/>
+<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs>
+<rect class="page-bg" width="800" height="680" fill="url(#bgL)"/>
+<rect width="800" height="680" fill="url(#dots)" opacity="0.40"/>
+<rect class="page-vig" width="800" height="680" fill="url(#vig)"/>
+<rect class="page-hdr" width="800" height="72" fill="url(#hdr)"/>
 <style>
 text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+.page-bg{fill:url(#bgL)}
+.page-vig{opacity:1}
+.page-hdr{fill:url(#hdr)}
+line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
+rect[fill="#f8fafc"],rect[fill="#eff6ff"],rect[fill="#ecfdf5"],rect[fill="#fffbeb"],rect[fill="#fef2f2"],rect[fill="#dbeafe"]{filter:url(#soft)}
 @media (prefers-color-scheme: dark){
+.page-bg{fill:url(#bgD)}
+.page-vig{opacity:0.45}
+.page-hdr{fill:url(#hdrD)}
 rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
 [fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
@@ -19,7 +61,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
 }
 </style>
-<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">MOSFET 开通四拍：栅极电荷如何变成热</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">MOSFET 开通四拍：栅极电荷如何变成热</text>
 
 <text x="400" y="51" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#334155">20V 母线 · 5A 负载 · 10mA 驱动 · AO3400：同一条电流路径，四种状态</text>
 <rect x="20" y="70" width="174" height="214" rx="10" fill="#f8fafc" stroke="#64748b" stroke-width="1.8"/>
@@ -57,9 +99,9 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <line x1="250" y1="239" x2="282" y2="239" stroke="#334155" stroke-width="2.5"/>
 <line x1="255" y1="245" x2="277" y2="245" stroke="#334155" stroke-width="2.5"/>
 <line x1="260" y1="251" x2="272" y2="251" stroke="#334155" stroke-width="2.5"/>
-<circle r="4.2" fill="#dc2626"><animateMotion dur="10s" begin="-0.50s" repeatCount="indefinite" path="M266,128 V239"/></circle>
-<circle r="4.2" fill="#dc2626"><animateMotion dur="10s" begin="4.50s" repeatCount="indefinite" path="M266,128 V239"/></circle><circle r="3.6" fill="#7c3aed"><animateMotion dur="10s" begin="-0.50s" repeatCount="indefinite" path="M215,213 H251"/></circle>
-<circle r="3.6" fill="#7c3aed"><animateMotion dur="10s" begin="4.50s" repeatCount="indefinite" path="M215,213 H251"/></circle>
+<g filter="url(#pglow)"><circle r="4.2" fill="#dc2626"><animateMotion dur="10s" begin="-0.50s" repeatCount="indefinite" path="M266,128 V239"/></circle>
+<circle r="4.2" fill="#dc2626"><animateMotion dur="10s" begin="4.50s" repeatCount="indefinite" path="M266,128 V239"/></circle></g><g filter="url(#pglow)"><circle r="3.6" fill="#7c3aed"><animateMotion dur="10s" begin="-0.50s" repeatCount="indefinite" path="M215,213 H251"/></circle>
+<circle r="3.6" fill="#7c3aed"><animateMotion dur="10s" begin="4.50s" repeatCount="indefinite" path="M215,213 H251"/></circle></g>
 <text x="299" y="266" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#dc2626">I_D：0→5A</text>
 <text x="299" y="278" text-anchor="middle" font-size="10" fill="#475569">V_DS：20V · V_GS：1.4→2.9V</text>
 <rect x="404" y="70" width="174" height="214" rx="10" fill="#f8fafc" stroke="#7c3aed" stroke-width="1.8"/>
@@ -78,9 +120,9 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <line x1="442" y1="239" x2="474" y2="239" stroke="#334155" stroke-width="2.5"/>
 <line x1="447" y1="245" x2="469" y2="245" stroke="#334155" stroke-width="2.5"/>
 <line x1="452" y1="251" x2="464" y2="251" stroke="#334155" stroke-width="2.5"/>
-<circle r="4.2" fill="#dc2626"><animateMotion dur="10s" begin="-0.50s" repeatCount="indefinite" path="M458,128 V239"/></circle>
-<circle r="4.2" fill="#dc2626"><animateMotion dur="10s" begin="4.50s" repeatCount="indefinite" path="M458,128 V239"/></circle><circle r="3.6" fill="#7c3aed"><animateMotion dur="10s" begin="-0.50s" repeatCount="indefinite" path="M407,213 H443"/></circle>
-<circle r="3.6" fill="#7c3aed"><animateMotion dur="10s" begin="4.50s" repeatCount="indefinite" path="M407,213 H443"/></circle>
+<g filter="url(#pglow)"><circle r="4.2" fill="#dc2626"><animateMotion dur="10s" begin="-0.50s" repeatCount="indefinite" path="M458,128 V239"/></circle>
+<circle r="4.2" fill="#dc2626"><animateMotion dur="10s" begin="4.50s" repeatCount="indefinite" path="M458,128 V239"/></circle></g><g filter="url(#pglow)"><circle r="3.6" fill="#7c3aed"><animateMotion dur="10s" begin="-0.50s" repeatCount="indefinite" path="M407,213 H443"/></circle>
+<circle r="3.6" fill="#7c3aed"><animateMotion dur="10s" begin="4.50s" repeatCount="indefinite" path="M407,213 H443"/></circle></g>
 <text x="491" y="266" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#dc2626">I_D：5A</text>
 <text x="491" y="278" text-anchor="middle" font-size="10" fill="#475569">V_DS：20→0.15V · V_GS：≈2.9V</text>
 <rect x="596" y="70" width="174" height="214" rx="10" fill="#f8fafc" stroke="#059669" stroke-width="1.8"/>
@@ -99,9 +141,9 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <line x1="634" y1="239" x2="666" y2="239" stroke="#334155" stroke-width="2.5"/>
 <line x1="639" y1="245" x2="661" y2="245" stroke="#334155" stroke-width="2.5"/>
 <line x1="644" y1="251" x2="656" y2="251" stroke="#334155" stroke-width="2.5"/>
-<circle r="4.2" fill="#dc2626"><animateMotion dur="10s" begin="-0.50s" repeatCount="indefinite" path="M650,128 V239"/></circle>
-<circle r="4.2" fill="#dc2626"><animateMotion dur="10s" begin="4.50s" repeatCount="indefinite" path="M650,128 V239"/></circle><circle r="3.6" fill="#7c3aed"><animateMotion dur="10s" begin="-0.50s" repeatCount="indefinite" path="M599,213 H635"/></circle>
-<circle r="3.6" fill="#7c3aed"><animateMotion dur="10s" begin="4.50s" repeatCount="indefinite" path="M599,213 H635"/></circle>
+<g filter="url(#pglow)"><circle r="4.2" fill="#dc2626"><animateMotion dur="10s" begin="-0.50s" repeatCount="indefinite" path="M650,128 V239"/></circle>
+<circle r="4.2" fill="#dc2626"><animateMotion dur="10s" begin="4.50s" repeatCount="indefinite" path="M650,128 V239"/></circle></g><g filter="url(#pglow)"><circle r="3.6" fill="#7c3aed"><animateMotion dur="10s" begin="-0.50s" repeatCount="indefinite" path="M599,213 H635"/></circle>
+<circle r="3.6" fill="#7c3aed"><animateMotion dur="10s" begin="4.50s" repeatCount="indefinite" path="M599,213 H635"/></circle></g>
 <text x="683" y="266" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#dc2626">I_D：5A</text>
 <text x="683" y="278" text-anchor="middle" font-size="10" fill="#475569">V_DS：0.15V · V_GS：2.9→5V</text>
 <text x="425" y="314" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">同一次开通：四条波形共用一条时间轴</text>
@@ -150,4 +192,4 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="40" y="563" font-size="11" fill="#475569">①150ns + ②250ns + ③160ns + ④140ns = 700ns；③ 平台：Q_gd = 10mA×160ns = 1.6nC</text>
 <text x="40" y="585" font-size="11" fill="#475569">稳态导通：P_cond = 5²×0.03Ω = 0.75W；保守重叠估算：P_sw≈½×20×5×700ns×100kHz≈3.5W</text>
 <text x="40" y="597" font-size="10.5" font-weight="bold" fill="#dc2626">所以栅极驱动不是「有没有电压」，而是「能不能把 Q_gd 搬得足够快」</text>
-<text x="400" y="650" text-anchor="middle" font-size="13.2" font-weight="bold" fill="#7c3aed" opacity="0">四阶段的因果链：C_GS 先充电 → I_D 上升 → C_GD 抢走驱动电流形成平台 → R_DS(on) 降到最低<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.84;0.89;1" dur="10s" repeatCount="indefinite"/></text></svg>
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0" keyTimes="0;0.84;0.89;1" dur="10s" repeatCount="indefinite"/><rect x="78.8" y="638.1" width="642.3" height="21.9" rx="11.0" fill="#7c3aed" fill-opacity="0.09" stroke="#7c3aed" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.84;0.89;1" dur="10s" repeatCount="indefinite"/></rect><text x="400" y="650" text-anchor="middle" font-size="13.2" font-weight="bold" fill="#7c3aed" opacity="0">四阶段的因果链：C_GS 先充电 → I_D 上升 → C_GD 抢走驱动电流形成平台 → R_DS(on) 降到最低<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.84;0.89;1" dur="10s" repeatCount="indefinite"/></text></g></svg>

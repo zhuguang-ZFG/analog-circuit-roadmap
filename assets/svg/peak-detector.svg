@@ -1,9 +1,51 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="522" viewBox="0 0 800 522">
 <title>峰值检测：只许上、不许下的单向记忆</title>
-<rect width="800" height="500" fill="#f8fafc"/>
+<defs>
+<linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
+</linearGradient>
+<linearGradient id="bgD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#0a1020"/><stop offset="1" stop-color="#141d30"/>
+</linearGradient>
+<radialGradient id="vig" cx="0.5" cy="0.44" r="0.78">
+<stop offset="0.55" stop-color="#0f172a" stop-opacity="0"/><stop offset="1" stop-color="#0f172a" stop-opacity="0.065"/>
+</radialGradient>
+<linearGradient id="hdr" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2563eb" stop-opacity="0.10"/>
+<stop offset="0.55" stop-color="#2563eb" stop-opacity="0.030"/>
+<stop offset="1" stop-color="#2563eb" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="hdrD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#60a5fa" stop-opacity="0.13"/>
+<stop offset="0.55" stop-color="#60a5fa" stop-opacity="0.040"/>
+<stop offset="1" stop-color="#60a5fa" stop-opacity="0"/>
+</linearGradient>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+<circle cx="1.5" cy="1.5" r="1.05" fill="#cbd5e1"/>
+</pattern>
+<filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+<feDropShadow dx="0" dy="1.6" stdDeviation="2.4" flood-color="#0f172a" flood-opacity="0.17"/>
+</filter>
+<filter id="pglow" x="-70%" y="-70%" width="240%" height="240%">
+<feGaussianBlur stdDeviation="2.1" result="b"/>
+<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs>
+<rect class="page-bg" width="800" height="522" fill="url(#bgL)"/>
+<rect width="800" height="522" fill="url(#dots)" opacity="0.40"/>
+<rect class="page-vig" width="800" height="522" fill="url(#vig)"/>
+<rect class="page-hdr" width="800" height="72" fill="url(#hdr)"/>
 <style>
 text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+.page-bg{fill:url(#bgL)}
+.page-vig{opacity:1}
+.page-hdr{fill:url(#hdr)}
+line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
+rect[fill="#f8fafc"],rect[fill="#eff6ff"],rect[fill="#ecfdf5"],rect[fill="#fffbeb"],rect[fill="#fef2f2"],rect[fill="#dbeafe"]{filter:url(#soft)}
 @media (prefers-color-scheme: dark){
+.page-bg{fill:url(#bgD)}
+.page-vig{opacity:0.45}
+.page-hdr{fill:url(#hdrD)}
 rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
 [fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
@@ -19,7 +61,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
 }
 </style>
-<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">峰值检测：只许上、不许下的单向记忆</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">峰值检测：只许上、不许下的单向记忆</text>
 
 <text x="230" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">精密整流 + 保持电容 + 泄放电阻（缓冲级见 12.6）</text>
 <text x="16" y="145" font-size="11" fill="#475569">输入</text>
@@ -51,10 +93,10 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <line x1="300" y1="220" x2="300" y2="234" stroke="#334155" stroke-width="2.5"/><line x1="284" y1="234" x2="316" y2="234" stroke="#334155" stroke-width="3"/><line x1="290" y1="240" x2="310" y2="240" stroke="#334155" stroke-width="3"/><line x1="296" y1="246" x2="304" y2="246" stroke="#334155" stroke-width="3"/>
 <line x1="300" y1="140" x2="360" y2="140" stroke="#334155" stroke-width="2.5"/>
 <text x="366" y="145" font-size="11" font-weight="bold" fill="#2563eb">峰值输出</text>
-<g><animate attributeName="opacity" values="1;1;0;0;1;1" keyTimes="0;0.3;0.36;0.86;0.92;1" dur="7s" repeatCount="indefinite"/><circle r="4.5" fill="#059669"><animateMotion dur="1.75s" begin="-0.50s" repeatCount="indefinite" path="M154,136 H194 M202,136 H236 M240,144 V176"/></circle>
+<g><animate attributeName="opacity" values="1;1;0;0;1;1" keyTimes="0;0.3;0.36;0.86;0.92;1" dur="7s" repeatCount="indefinite"/><g filter="url(#pglow)"><circle r="4.5" fill="#059669"><animateMotion dur="1.75s" begin="-0.50s" repeatCount="indefinite" path="M154,136 H194 M202,136 H236 M240,144 V176"/></circle>
 <circle r="4.5" fill="#059669"><animateMotion dur="1.75s" begin="-0.06s" repeatCount="indefinite" path="M154,136 H194 M202,136 H236 M240,144 V176"/></circle>
 <circle r="4.5" fill="#059669"><animateMotion dur="1.75s" begin="0.38s" repeatCount="indefinite" path="M154,136 H194 M202,136 H236 M240,144 V176"/></circle>
-<circle r="4.5" fill="#059669"><animateMotion dur="1.75s" begin="0.81s" repeatCount="indefinite" path="M154,136 H194 M202,136 H236 M240,144 V176"/></circle></g>
+<circle r="4.5" fill="#059669"><animateMotion dur="1.75s" begin="0.81s" repeatCount="indefinite" path="M154,136 H194 M202,136 H236 M240,144 V176"/></circle></g></g>
 <text x="590" y="86" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#475569">输入（灰，幅度渐变的正弦）vs 峰值输出（绿）</text>
 <path d="M430,170 L433,162 L435,154 L438,148 L441,144 L443,144 L446,148 L449,155 L451,164 L454,175 L457,185 L459,195 L462,201 L465,203 L467,201 L470,195 L473,184 L475,172 L478,159 L481,147 L483,137 L486,132 L489,132 L491,137 L494,147 L497,160 L499,174 L502,188 L505,200 L507,207 L510,210 L513,207 L515,200 L518,188 L521,174 L523,160 L526,147 L529,137 L531,132 L534,132 L537,137 L539,147 L542,159 L545,172 L547,184 L550,195 L553,201 L555,203 L558,201 L561,195 L563,186 L566,175 L569,164 L571,155 L574,148 L577,144 L579,144 L582,148 L585,154 L587,162 L590,170 L593,178 L595,183 L598,187 L601,188 L603,187 L606,183 L609,178 L611,173 L614,168 L617,163 L619,161 L622,159 L625,159 L627,161 L630,163 L633,166 L635,170 L638,172 L641,174 L643,176 L646,176 L649,175 L651,174 L654,173 L657,171 L659,170 L662,168 L665,167 L667,166 L670,166 L673,166 L675,167 L678,168 L681,170 L683,171 L686,173 L689,174 L691,175 L694,176 L697,176 L699,174 L702,172 L705,170 L707,166 L710,163 L713,161 L715,159 L718,159 L721,161 L723,163 L726,168 L729,173 L731,178 L734,183 L737,187 L739,188 L742,187 L745,183 L747,178 L750,170" fill="none" stroke="#94a3b8" stroke-width="1.8"/>
 <path d="M430,148 L433,147 L435,146 L438,145 L441,144 L443,143 L446,142 L449,142 L451,141 L454,140 L457,139 L459,138 L462,137 L465,137 L467,136 L470,135 L473,135 L475,134 L478,133 L481,133 L483,132 L486,132 L489,132 L491,131 L494,131 L497,131 L499,130 L502,130 L505,130 L507,130 L510,130 L513,130 L515,130 L518,130 L521,130 L523,131 L526,131 L529,131 L531,132 L534,132 L537,132 L539,133 L542,133 L545,134 L547,135 L550,135 L553,136 L555,137 L558,137 L561,138 L563,139 L566,140 L569,141 L571,142 L574,142 L577,143 L579,144 L582,145 L585,146 L587,147 L590,148 L593,149 L595,150 L598,151 L601,152 L603,153 L606,154 L609,154 L611,155 L614,156 L617,157 L619,158 L622,159 L625,159 L627,160 L630,161 L633,161 L635,162 L638,163 L641,163 L643,164 L646,164 L649,164 L651,165 L654,165 L657,165 L659,166 L662,166 L665,166 L667,166 L670,166 L673,166 L675,166 L678,166 L681,166 L683,165 L686,165 L689,165 L691,164 L694,164 L697,164 L699,163 L702,163 L705,162 L707,161 L710,161 L713,160 L715,159 L718,159 L721,158 L723,157 L726,156 L729,155 L731,154 L734,154 L737,153 L739,152 L742,151 L745,150 L747,149 L750,148" fill="none" stroke="#059669" stroke-width="2.8"/>
@@ -68,8 +110,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <animate attributeName="r" values="5;12;5" dur="1.7s" repeatCount="indefinite"/>
 <animate attributeName="opacity" values="0.95;0.2;0.95" dur="1.7s" repeatCount="indefinite"/></circle>
 
-<text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">① 输入创「新高」：运放顶开二极管，C_hold 瞬间充到峰顶——只许上<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.26;1" dur="7s" repeatCount="indefinite"/></text><text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">② 输入回落：二极管反偏关断，电容孤立守住峰值——不许下<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.28;0.33;0.55;0.61;1" dur="7s" repeatCount="indefinite"/></text><text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">③ 泄放电阻决定遗忘速度：τ=R·C——表头要稳（τ≈1s），AGC 要快（τ≈10ms）<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.61;0.67;1" dur="7s" repeatCount="indefinite"/></text><g opacity="0">
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.03;0.2;0.26;1" dur="7s" repeatCount="indefinite"/><rect x="143.5" y="416.9" width="513.1" height="24.1" rx="12.0" fill="#059669" fill-opacity="0.09" stroke="#059669" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.26;1" dur="7s" repeatCount="indefinite"/></rect><text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">① 输入创「新高」：运放顶开二极管，C_hold 瞬间充到峰顶——只许上<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.26;1" dur="7s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.28;0.33;0.55;0.61;1" dur="7s" repeatCount="indefinite"/><rect x="178.2" y="416.9" width="443.7" height="24.1" rx="12.0" fill="#2563eb" fill-opacity="0.09" stroke="#2563eb" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.28;0.33;0.55;0.61;1" dur="7s" repeatCount="indefinite"/></rect><text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">② 输入回落：二极管反偏关断，电容孤立守住峰值——不许下<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.28;0.33;0.55;0.61;1" dur="7s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0" keyTimes="0;0.61;0.67;1" dur="7s" repeatCount="indefinite"/><rect x="97.6" y="416.9" width="604.7" height="24.1" rx="12.0" fill="#b45309" fill-opacity="0.09" stroke="#b45309" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.61;0.67;1" dur="7s" repeatCount="indefinite"/></rect><text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">③ 泄放电阻决定遗忘速度：τ=R·C——表头要稳（τ≈1s），AGC 要快（τ≈10ms）<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.61;0.67;1" dur="7s" repeatCount="indefinite"/></text></g><g opacity="0">
 <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.7;0.75;1" dur="7s" repeatCount="indefinite"/>
-<rect x="40" y="450" width="720" height="34" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
-<text x="400" y="472" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">峰值表、振幅测量、音频 AGC、包络检波——全是「单向记忆」；二极管压降？运放已按 12.6 精密整流把它除掉了</text>
+<rect x="40" y="450" width="720" height="52.0" rx="9" fill="#ecfdf5" stroke="#059669" stroke-width="1.5" filter="url(#soft)"/><rect x="46" y="457" width="3" height="38.0" rx="1.5" fill="#059669"/><text x="400" y="472.0" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">峰值表、振幅测量、音频 AGC、包络检波——全是「单向</text><text x="400" y="490.0" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">记忆」；二极管压降？运放已按 12.6 精密整流把它除掉了</text>
 </g></svg>

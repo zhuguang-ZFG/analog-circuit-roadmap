@@ -1,9 +1,51 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
 <title>文氏桥振荡器：正弦波是怎么「无中生有」的</title>
-<rect width="800" height="500" fill="#f8fafc"/>
+<defs>
+<linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
+</linearGradient>
+<linearGradient id="bgD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#0a1020"/><stop offset="1" stop-color="#141d30"/>
+</linearGradient>
+<radialGradient id="vig" cx="0.5" cy="0.44" r="0.78">
+<stop offset="0.55" stop-color="#0f172a" stop-opacity="0"/><stop offset="1" stop-color="#0f172a" stop-opacity="0.065"/>
+</radialGradient>
+<linearGradient id="hdr" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2563eb" stop-opacity="0.10"/>
+<stop offset="0.55" stop-color="#2563eb" stop-opacity="0.030"/>
+<stop offset="1" stop-color="#2563eb" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="hdrD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#60a5fa" stop-opacity="0.13"/>
+<stop offset="0.55" stop-color="#60a5fa" stop-opacity="0.040"/>
+<stop offset="1" stop-color="#60a5fa" stop-opacity="0"/>
+</linearGradient>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+<circle cx="1.5" cy="1.5" r="1.05" fill="#cbd5e1"/>
+</pattern>
+<filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+<feDropShadow dx="0" dy="1.6" stdDeviation="2.4" flood-color="#0f172a" flood-opacity="0.17"/>
+</filter>
+<filter id="pglow" x="-70%" y="-70%" width="240%" height="240%">
+<feGaussianBlur stdDeviation="2.1" result="b"/>
+<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs>
+<rect class="page-bg" width="800" height="500" fill="url(#bgL)"/>
+<rect width="800" height="500" fill="url(#dots)" opacity="0.40"/>
+<rect class="page-vig" width="800" height="500" fill="url(#vig)"/>
+<rect class="page-hdr" width="800" height="72" fill="url(#hdr)"/>
 <style>
 text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+.page-bg{fill:url(#bgL)}
+.page-vig{opacity:1}
+.page-hdr{fill:url(#hdr)}
+line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
+rect[fill="#f8fafc"],rect[fill="#eff6ff"],rect[fill="#ecfdf5"],rect[fill="#fffbeb"],rect[fill="#fef2f2"],rect[fill="#dbeafe"]{filter:url(#soft)}
 @media (prefers-color-scheme: dark){
+.page-bg{fill:url(#bgD)}
+.page-vig{opacity:0.45}
+.page-hdr{fill:url(#hdrD)}
 rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
 [fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
@@ -19,7 +61,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
 }
 </style>
-<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">文氏桥振荡器：正弦波是怎么「无中生有」的</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">文氏桥振荡器：正弦波是怎么「无中生有」的</text>
 
 <text x="200" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">RC 选频 + 增益=3 的同相放大</text>
 <text x="14" y="145" font-size="11" fill="#475569">输入</text>
@@ -71,7 +113,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <line x1="300" y1="255" x2="300" y2="262" stroke="#334155" stroke-width="2"/>
 <line x1="300" y1="262" x2="300" y2="276" stroke="#334155" stroke-width="2.5"/><line x1="284" y1="276" x2="316" y2="276" stroke="#334155" stroke-width="3"/><line x1="290" y1="282" x2="310" y2="282" stroke="#334155" stroke-width="3"/><line x1="296" y1="288" x2="304" y2="288" stroke="#334155" stroke-width="3"/>
 <text x="296" y="250" text-anchor="end" font-size="10.5" fill="#475569">增益 = 1+Rf/R1 = 3</text>
-<text x="40" y="118" font-size="11" fill="#475569">反馈回 +端</text>
+<text x="40" y="104" font-size="11" fill="#475569">反馈回 +端</text>
 <path d="M45,140 C20,140 20,310 200,310 C340,310 380,230 400,150" fill="none" stroke="#7c3aed" stroke-width="1.8" stroke-dasharray="5,4">
 <animate attributeName="opacity" values="0.3;1;0.3" dur="1.8s" repeatCount="indefinite"/></path>
 
@@ -89,8 +131,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <circle r="4.5" fill="#7c3aed"><animateMotion dur="6s" begin="-1.5s" repeatCount="indefinite" path="M167,140 L298,140"/></circle>
 <circle r="4.5" fill="#7c3aed"><animateMotion dur="6s" begin="-2.1s" repeatCount="indefinite" path="M220,142 L220,158"/></circle>
 
-<text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">① RC 串并网络在 f₀=1/(2πRC) 处：相移恰好 0°、衰减恰好 1/3<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.22;0.28;1" dur="6s" repeatCount="indefinite"/></text><text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">② 同相放大器增益=3：3 × 1/3 = 1——环路增益=1、相移=0，巴克豪森判据成立<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.28;0.33;0.55;0.61;1" dur="6s" repeatCount="indefinite"/></text><text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">③ 起振靠噪声种子；幅度长大靠增益>1；停在多大？——灯泡发热升阻自动稳幅<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.61;0.67;1" dur="6s" repeatCount="indefinite"/></text><g opacity="0">
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.03;0.22;0.28;1" dur="6s" repeatCount="indefinite"/><rect x="153.3" y="416.9" width="493.4" height="24.1" rx="12.0" fill="#7c3aed" fill-opacity="0.09" stroke="#7c3aed" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.22;0.28;1" dur="6s" repeatCount="indefinite"/></rect><text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">① RC 串并网络在 f₀=1/(2πRC) 处：相移恰好 0°、衰减恰好 1/3<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.22;0.28;1" dur="6s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.28;0.33;0.55;0.61;1" dur="6s" repeatCount="indefinite"/><rect x="104.9" y="416.9" width="590.2" height="24.1" rx="12.0" fill="#059669" fill-opacity="0.09" stroke="#059669" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.28;0.33;0.55;0.61;1" dur="6s" repeatCount="indefinite"/></rect><text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">② 同相放大器增益=3：3 × 1/3 = 1——环路增益=1、相移=0，巴克豪森判据成立<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.28;0.33;0.55;0.61;1" dur="6s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0" keyTimes="0;0.61;0.67;1" dur="6s" repeatCount="indefinite"/><rect x="115.7" y="416.9" width="568.5" height="24.1" rx="12.0" fill="#2563eb" fill-opacity="0.09" stroke="#2563eb" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.61;0.67;1" dur="6s" repeatCount="indefinite"/></rect><text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">③ 起振靠噪声种子；幅度长大靠增益>1；停在多大？——灯泡发热升阻自动稳幅<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.61;0.67;1" dur="6s" repeatCount="indefinite"/></text></g><g opacity="0">
 <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.72;0.77;1" dur="6s" repeatCount="indefinite"/>
-<rect x="55" y="450" width="690" height="34" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
-<text x="400" y="472" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">惠普第一桶金 HP200A 就是这颗灯泡：幅度大→灯丝热→阻升→增益降，自稳在 3 倍</text>
+<rect x="55" y="450" width="690" height="34.0" rx="9" fill="#ecfdf5" stroke="#059669" stroke-width="1.5" filter="url(#soft)"/><rect x="61" y="457" width="3" height="20.0" rx="1.5" fill="#059669"/><text x="400" y="472.0" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">惠普第一桶金 HP200A 就是这颗灯泡：幅度大→灯丝热→阻升→增益降，自稳在 3 倍</text>
 </g></svg>

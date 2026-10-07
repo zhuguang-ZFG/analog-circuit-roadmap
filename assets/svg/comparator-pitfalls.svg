@@ -1,9 +1,51 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="620" viewBox="0 0 800 620">
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="732" viewBox="0 0 800 732">
 <title>比较器的五个坑：忘了上拉排第一</title>
-<rect width="800" height="620" fill="#f8fafc"/>
+<defs>
+<linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
+</linearGradient>
+<linearGradient id="bgD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#0a1020"/><stop offset="1" stop-color="#141d30"/>
+</linearGradient>
+<radialGradient id="vig" cx="0.5" cy="0.44" r="0.78">
+<stop offset="0.55" stop-color="#0f172a" stop-opacity="0"/><stop offset="1" stop-color="#0f172a" stop-opacity="0.065"/>
+</radialGradient>
+<linearGradient id="hdr" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2563eb" stop-opacity="0.10"/>
+<stop offset="0.55" stop-color="#2563eb" stop-opacity="0.030"/>
+<stop offset="1" stop-color="#2563eb" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="hdrD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#60a5fa" stop-opacity="0.13"/>
+<stop offset="0.55" stop-color="#60a5fa" stop-opacity="0.040"/>
+<stop offset="1" stop-color="#60a5fa" stop-opacity="0"/>
+</linearGradient>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+<circle cx="1.5" cy="1.5" r="1.05" fill="#cbd5e1"/>
+</pattern>
+<filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+<feDropShadow dx="0" dy="1.6" stdDeviation="2.4" flood-color="#0f172a" flood-opacity="0.17"/>
+</filter>
+<filter id="pglow" x="-70%" y="-70%" width="240%" height="240%">
+<feGaussianBlur stdDeviation="2.1" result="b"/>
+<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs>
+<rect class="page-bg" width="800" height="732" fill="url(#bgL)"/>
+<rect width="800" height="732" fill="url(#dots)" opacity="0.40"/>
+<rect class="page-vig" width="800" height="732" fill="url(#vig)"/>
+<rect class="page-hdr" width="800" height="72" fill="url(#hdr)"/>
 <style>
 text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+.page-bg{fill:url(#bgL)}
+.page-vig{opacity:1}
+.page-hdr{fill:url(#hdr)}
+line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
+rect[fill="#f8fafc"],rect[fill="#eff6ff"],rect[fill="#ecfdf5"],rect[fill="#fffbeb"],rect[fill="#fef2f2"],rect[fill="#dbeafe"]{filter:url(#soft)}
 @media (prefers-color-scheme: dark){
+.page-bg{fill:url(#bgD)}
+.page-vig{opacity:0.45}
+.page-hdr{fill:url(#hdrD)}
 rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
 [fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
@@ -19,7 +61,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
 }
 </style>
-<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">比较器的五个坑：忘了上拉排第一</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">比较器的五个坑：忘了上拉排第一</text>
 
 <text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">LM393 是开漏输出 —— 一半的「故障」都源于这件事</text>
 <rect x="40" y="84" width="720" height="88" rx="9" fill="#f8fafc" stroke="#dc2626" stroke-width="1.6"/><text x="58" y="112" font-size="12.5" font-weight="bold" fill="#dc2626">⚠ 输出一直为低</text><text x="640" y="112" font-size="10.5" font-weight="bold" fill="#dc2626">[最高频]</text><text x="58" y="136" font-size="11" fill="#475569">根因：LM393 忘接上拉电阻（开漏只会拉低）</text><text x="58" y="158" font-size="11" font-weight="bold" fill="#334155">解法：输出到 Vcc 接 4.7kΩ —— 没上拉就永远只有一个「0」</text><rect x="40" y="180" width="720" height="88" rx="9" fill="#f8fafc" stroke="#b45309" stroke-width="1.6"/><text x="58" y="208" font-size="12.5" font-weight="bold" fill="#b45309">⚠ 阈值附近连发误触发</text><text x="640" y="208" font-size="10.5" font-weight="bold" fill="#b45309">[经典]</text><text x="58" y="232" font-size="11" fill="#475569">根因：无迟滞 + 输入噪声（信号在阈值上抖动）</text><text x="58" y="254" font-size="11" font-weight="bold" fill="#334155">解法：加正反馈迟滞（见 7.3）；输入端并小电容</text><rect x="40" y="276" width="720" height="88" rx="9" fill="#f8fafc" stroke="#7c3aed" stroke-width="1.6"/><text x="58" y="304" font-size="12.5" font-weight="bold" fill="#7c3aed">⚠ 高频自激</text><text x="640" y="304" font-size="10.5" font-weight="bold" fill="#7c3aed">[布线问题]</text><text x="58" y="328" font-size="11" fill="#475569">根因：输出线耦合回输入（布线寄生）</text><text x="58" y="350" font-size="11" font-weight="bold" fill="#334155">解法：输入/输出走线远离；地平面隔离；串小电阻</text><rect x="40" y="372" width="720" height="88" rx="9" fill="#f8fafc" stroke="#2563eb" stroke-width="1.6"/><text x="58" y="400" font-size="12.5" font-weight="bold" fill="#2563eb">⚠ 判决点偏移</text><text x="640" y="400" font-size="10.5" font-weight="bold" fill="#2563eb">[精度问题]</text><text x="58" y="424" font-size="11" fill="#475569">根因：输入源阻抗过高，I_B 压降改变阈值</text><text x="58" y="446" font-size="11" font-weight="bold" fill="#334155">解法：降低源阻抗；两输入端加对称补偿电阻</text><rect x="40" y="468" width="720" height="88" rx="9" fill="#f8fafc" stroke="#059669" stroke-width="1.6"/><text x="58" y="496" font-size="12.5" font-weight="bold" fill="#059669">⚠ 上电瞬间误输出</text><text x="640" y="496" font-size="10.5" font-weight="bold" fill="#059669">[启动问题]</text><text x="58" y="520" font-size="11" fill="#475569">根因：电源爬升期内部状态未定</text><text x="58" y="542" font-size="11" font-weight="bold" fill="#334155">解法：加 RC 延时；或选带 POR（上电复位）的型号</text>
@@ -33,7 +75,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <circle r="5" fill="#7c3aed"><animateMotion dur="11s" begin="-3.0s" repeatCount="indefinite" path="M52,320 L748,320" keyPoints="0;1" keyTimes="0;1"/></circle>
 <circle r="5" fill="#dc2626"><animateMotion dur="11s" begin="-4.5s" repeatCount="indefinite" path="M52,416 L748,416" keyPoints="0;1" keyTimes="0;1"/></circle>
 <circle r="5" fill="#dc2626"><animateMotion dur="11s" begin="-6.0s" repeatCount="indefinite" path="M52,512 L748,512" keyPoints="0;1" keyTimes="0;1"/></circle>
-<rect x="38" y="84" width="724" height="92" rx="10" fill="none" stroke="#b45309" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.0s" repeatCount="indefinite"/></rect>
-<rect x="38" y="276" width="724" height="92" rx="10" fill="none" stroke="#7c3aed" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.0s" repeatCount="indefinite"/></rect>
-<rect x="38" y="82" width="724" height="92" rx="10" fill="none" stroke="#dc2626" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.0s" repeatCount="indefinite"/></rect>
-<text x="400" y="600" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">① 「输出一直低」九成是忘接上拉——开漏只会拉低，不会推高<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="600" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">② 阈值附近误触发：不是比较器坏，是缺迟滞——加正反馈造免疫区<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="600" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">③ 自激多是布线问题：输入输出走线远离、地平面隔离<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="600" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">④ 记住开漏的三个红利与一个义务：能转换电平/能与线/能当使能 —— 但必须给上拉<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/></text></svg>
+<rect x="38" y="84" width="724" height="92" rx="10" fill="none" stroke="#b45309" stroke-width="2.5" opacity="0" filter="url(#pglow)"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.0s" repeatCount="indefinite"/></rect>
+<rect x="38" y="276" width="724" height="92" rx="10" fill="none" stroke="#7c3aed" stroke-width="2.5" opacity="0" filter="url(#pglow)"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.0s" repeatCount="indefinite"/></rect>
+<rect x="38" y="82" width="724" height="92" rx="10" fill="none" stroke="#dc2626" stroke-width="2.5" opacity="0" filter="url(#pglow)"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.0s" repeatCount="indefinite"/></rect>
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/><rect x="170.6" y="677.0" width="458.8" height="24.1" rx="12.0" fill="#dc2626" fill-opacity="0.09" stroke="#dc2626" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/></rect><text x="400" y="690" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">① 「输出一直低」九成是忘接上拉——开漏只会拉低，不会推高<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/><rect x="155.4" y="677.0" width="489.1" height="24.1" rx="12.0" fill="#b45309" fill-opacity="0.09" stroke="#b45309" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/></rect><text x="400" y="690" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">② 阈值附近误触发：不是比较器坏，是缺迟滞——加正反馈造免疫区<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/><rect x="200.9" y="677.0" width="398.2" height="24.1" rx="12.0" fill="#7c3aed" fill-opacity="0.09" stroke="#7c3aed" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/></rect><text x="400" y="690" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">③ 自激多是布线问题：输入输出走线远离、地平面隔离<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/><rect x="96.6" y="677.0" width="606.7" height="24.1" rx="12.0" fill="#059669" fill-opacity="0.09" stroke="#059669" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/></rect><text x="400" y="690" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">④ 记住开漏的三个红利与一个义务：能转换电平/能与线/能当使能 —— 但必须给上拉<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/></text></g></svg>

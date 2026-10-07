@@ -1,9 +1,51 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="620" viewBox="0 0 800 620">
 <title>米勒平台：V_GS 为什么会在半路「停下来看戏」</title>
-<rect width="800" height="620" fill="#f8fafc"/>
+<defs>
+<linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
+</linearGradient>
+<linearGradient id="bgD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#0a1020"/><stop offset="1" stop-color="#141d30"/>
+</linearGradient>
+<radialGradient id="vig" cx="0.5" cy="0.44" r="0.78">
+<stop offset="0.55" stop-color="#0f172a" stop-opacity="0"/><stop offset="1" stop-color="#0f172a" stop-opacity="0.065"/>
+</radialGradient>
+<linearGradient id="hdr" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2563eb" stop-opacity="0.10"/>
+<stop offset="0.55" stop-color="#2563eb" stop-opacity="0.030"/>
+<stop offset="1" stop-color="#2563eb" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="hdrD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#60a5fa" stop-opacity="0.13"/>
+<stop offset="0.55" stop-color="#60a5fa" stop-opacity="0.040"/>
+<stop offset="1" stop-color="#60a5fa" stop-opacity="0"/>
+</linearGradient>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+<circle cx="1.5" cy="1.5" r="1.05" fill="#cbd5e1"/>
+</pattern>
+<filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+<feDropShadow dx="0" dy="1.6" stdDeviation="2.4" flood-color="#0f172a" flood-opacity="0.17"/>
+</filter>
+<filter id="pglow" x="-70%" y="-70%" width="240%" height="240%">
+<feGaussianBlur stdDeviation="2.1" result="b"/>
+<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs>
+<rect class="page-bg" width="800" height="620" fill="url(#bgL)"/>
+<rect width="800" height="620" fill="url(#dots)" opacity="0.40"/>
+<rect class="page-vig" width="800" height="620" fill="url(#vig)"/>
+<rect class="page-hdr" width="800" height="72" fill="url(#hdr)"/>
 <style>
 text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+.page-bg{fill:url(#bgL)}
+.page-vig{opacity:1}
+.page-hdr{fill:url(#hdr)}
+line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
+rect[fill="#f8fafc"],rect[fill="#eff6ff"],rect[fill="#ecfdf5"],rect[fill="#fffbeb"],rect[fill="#fef2f2"],rect[fill="#dbeafe"]{filter:url(#soft)}
 @media (prefers-color-scheme: dark){
+.page-bg{fill:url(#bgD)}
+.page-vig{opacity:0.45}
+.page-hdr{fill:url(#hdrD)}
 rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
 [fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
@@ -19,7 +61,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
 }
 </style>
-<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">米勒平台：V_GS 为什么会在半路「停下来看戏」</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">米勒平台：V_GS 为什么会在半路「停下来看戏」</text>
 
 <text x="425" y="50" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">20V 母线 · 5A 负载 · 10mA 驱动 · AO3400（Q_g≈7nC, Q_gd≈1.6nC）</text>
 <rect x="216" y="70" width="209" height="380" fill="#94a3b8" opacity="0.10"/>
@@ -65,4 +107,4 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <animate attributeName="opacity" values="0.95;0.2;0.95" dur="1.6s" begin="-0.8s" repeatCount="indefinite"/></circle>
 <circle r="5" fill="#b45309"><animateMotion dur="10s" begin="-0.7s" repeatCount="indefinite" path="M216,440 L559,440"/></circle>
 <circle r="5" fill="#059669"><animateMotion dur="10s" begin="-1.4s" repeatCount="indefinite" path="M559,356 L760,356"/></circle>
-<text x="400" y="584" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">① 前 400ns：栅极电流先填 C_GS，I_D 起来时 V_DS 还满着——最疼的一段<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="10s" repeatCount="indefinite"/></text><text x="400" y="584" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">② 平台期：驱动电流全被 C_GD 抽走，V_GS 被钉住，V_DS 一路雪崩下跌<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="10s" repeatCount="indefinite"/></text><text x="400" y="584" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">③ 平台结束才是 R_DS(on) 生效的时刻：0.75W 导通损耗此刻才开始<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="10s" repeatCount="indefinite"/></text><text x="400" y="584" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">④ 记住 Q_gd：它比 C_rss 更直接地告诉你「这管子开关有多肉」<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="10s" repeatCount="indefinite"/></text></svg>
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.03;0.2;0.25;1" dur="10s" repeatCount="indefinite"/><rect x="122.9" y="571.0" width="554.3" height="24.1" rx="12.0" fill="#dc2626" fill-opacity="0.09" stroke="#dc2626" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="10s" repeatCount="indefinite"/></rect><text x="400" y="584" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">① 前 400ns：栅极电流先填 C_GS，I_D 起来时 V_DS 还满着——最疼的一段<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="10s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="10s" repeatCount="indefinite"/><rect x="133.6" y="571.0" width="532.8" height="24.1" rx="12.0" fill="#7c3aed" fill-opacity="0.09" stroke="#7c3aed" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="10s" repeatCount="indefinite"/></rect><text x="400" y="584" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">② 平台期：驱动电流全被 C_GD 抽走，V_GS 被钉住，V_DS 一路雪崩下跌<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="10s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="10s" repeatCount="indefinite"/><rect x="150.0" y="571.0" width="500.0" height="24.1" rx="12.0" fill="#059669" fill-opacity="0.09" stroke="#059669" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="10s" repeatCount="indefinite"/></rect><text x="400" y="584" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">③ 平台结束才是 R_DS(on) 生效的时刻：0.75W 导通损耗此刻才开始<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="10s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0" keyTimes="0;0.85;0.9;1" dur="10s" repeatCount="indefinite"/><rect x="160.9" y="571.0" width="478.2" height="24.1" rx="12.0" fill="#2563eb" fill-opacity="0.09" stroke="#2563eb" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="10s" repeatCount="indefinite"/></rect><text x="400" y="584" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">④ 记住 Q_gd：它比 C_rss 更直接地告诉你「这管子开关有多肉」<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="10s" repeatCount="indefinite"/></text></g></svg>

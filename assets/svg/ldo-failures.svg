@@ -1,9 +1,51 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="620" viewBox="0 0 800 620">
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="742" viewBox="0 0 800 742">
 <title>7805/AMS1117 四种翻车：每一种都能事先算出来</title>
-<rect width="800" height="620" fill="#f8fafc"/>
+<defs>
+<linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
+</linearGradient>
+<linearGradient id="bgD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#0a1020"/><stop offset="1" stop-color="#141d30"/>
+</linearGradient>
+<radialGradient id="vig" cx="0.5" cy="0.44" r="0.78">
+<stop offset="0.55" stop-color="#0f172a" stop-opacity="0"/><stop offset="1" stop-color="#0f172a" stop-opacity="0.065"/>
+</radialGradient>
+<linearGradient id="hdr" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2563eb" stop-opacity="0.10"/>
+<stop offset="0.55" stop-color="#2563eb" stop-opacity="0.030"/>
+<stop offset="1" stop-color="#2563eb" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="hdrD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#60a5fa" stop-opacity="0.13"/>
+<stop offset="0.55" stop-color="#60a5fa" stop-opacity="0.040"/>
+<stop offset="1" stop-color="#60a5fa" stop-opacity="0"/>
+</linearGradient>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+<circle cx="1.5" cy="1.5" r="1.05" fill="#cbd5e1"/>
+</pattern>
+<filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+<feDropShadow dx="0" dy="1.6" stdDeviation="2.4" flood-color="#0f172a" flood-opacity="0.17"/>
+</filter>
+<filter id="pglow" x="-70%" y="-70%" width="240%" height="240%">
+<feGaussianBlur stdDeviation="2.1" result="b"/>
+<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs>
+<rect class="page-bg" width="800" height="742" fill="url(#bgL)"/>
+<rect width="800" height="742" fill="url(#dots)" opacity="0.40"/>
+<rect class="page-vig" width="800" height="742" fill="url(#vig)"/>
+<rect class="page-hdr" width="800" height="72" fill="url(#hdr)"/>
 <style>
 text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+.page-bg{fill:url(#bgL)}
+.page-vig{opacity:1}
+.page-hdr{fill:url(#hdr)}
+line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
+rect[fill="#f8fafc"],rect[fill="#eff6ff"],rect[fill="#ecfdf5"],rect[fill="#fffbeb"],rect[fill="#fef2f2"],rect[fill="#dbeafe"]{filter:url(#soft)}
 @media (prefers-color-scheme: dark){
+.page-bg{fill:url(#bgD)}
+.page-vig{opacity:0.45}
+.page-hdr{fill:url(#hdrD)}
 rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
 [fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
@@ -19,7 +61,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
 }
 </style>
-<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">7805/AMS1117 四种翻车：每一种都能事先算出来</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">7805/AMS1117 四种翻车：每一种都能事先算出来</text>
 
 <text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">线性稳压的四种死法 —— 根因都是「忘了算一笔账」</text>
 <rect x="34" y="80" width="732" height="112" rx="9" fill="#f8fafc" stroke="#dc2626" stroke-width="1.8"/><text x="52" y="106" font-size="13" font-weight="bold" fill="#dc2626">① 发烫关机</text><text x="52" y="128" font-size="11.5" fill="#475569">根因：线性稳压把「多余的电压」全变成热</text><text x="52" y="152" font-size="12" font-weight="bold" fill="#dc2626">P = (Vin − 5V) × I</text><text x="52" y="172" font-size="11" fill="#475569">12V→5V @300mA = 2.1W —— 无散热片必热关断</text><text x="52" y="187" font-size="11" font-weight="bold" fill="#059669">解法：降输入压差 / 加散热片 / 换 DCDC</text><circle cx="742" cy="136" r="6" fill="#dc2626" opacity="0.75"/><rect x="34" y="202" width="732" height="112" rx="9" fill="#f8fafc" stroke="#b45309" stroke-width="1.8"/><text x="52" y="228" font-size="13" font-weight="bold" fill="#b45309">② 输出有 100Hz 纹波</text><text x="52" y="250" font-size="11.5" fill="#475569">根因：整流谷值跌破「输出+压差」</text><text x="52" y="274" font-size="12" font-weight="bold" fill="#b45309">V_min = V_out + V_dropout</text><text x="52" y="294" font-size="11" fill="#475569">输入电容不足 → 谷值掉下去 → 调整管失去余量</text><text x="52" y="309" font-size="11" font-weight="bold" fill="#059669">解法：加大输入电容 / 核算纹波谷值</text><circle cx="742" cy="258" r="6" fill="#b45309" opacity="0.75"/><rect x="34" y="324" width="732" height="112" rx="9" fill="#f8fafc" stroke="#7c3aed" stroke-width="1.8"/><text x="52" y="350" font-size="13" font-weight="bold" fill="#7c3aed">③ AMS1117 输出振荡</text><text x="52" y="372" font-size="11.5" fill="#475569">根因：输出电容 ESR 不在规格窗口内</text><text x="52" y="396" font-size="12" font-weight="bold" fill="#7c3aed">ESR 太小或太大都会失稳</text><text x="52" y="416" font-size="11" fill="#475569">LDO 的环路补偿依赖输出电容的 ESR 零点</text><text x="52" y="431" font-size="11" font-weight="bold" fill="#059669">解法：按规格书选钽电容 / 换型号</text><circle cx="742" cy="380" r="6" fill="#7c3aed" opacity="0.75"/><rect x="34" y="446" width="732" height="112" rx="9" fill="#f8fafc" stroke="#0ea5e9" stroke-width="1.8"/><text x="52" y="472" font-size="13" font-weight="bold" fill="#0ea5e9">④ 上电过冲烧后级</text><text x="52" y="494" font-size="11.5" fill="#475569">根因：输入高压 + 快上电，调整管来不及响应</text><text x="52" y="518" font-size="12" font-weight="bold" fill="#0ea5e9">di/dt 与环路响应速度赛跑</text><text x="52" y="538" font-size="11" fill="#475569">输出瞬间冲高 → 打坏 3.3V 后级芯片</text><text x="52" y="553" font-size="11" font-weight="bold" fill="#059669">解法：软启动 / 选带过冲抑制的型号</text><circle cx="742" cy="502" r="6" fill="#0ea5e9" opacity="0.75"/>
@@ -36,5 +78,5 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <circle r="4.5" fill="#f59e0b"><animateMotion dur="11s" begin="-1.2s" repeatCount="indefinite" path="M48,318 L744,318"/></circle>
 <circle r="4.5" fill="#f59e0b"><animateMotion dur="11s" begin="-2.2s" repeatCount="indefinite" path="M48,440 L744,440"/></circle>
 <circle r="4.5" fill="#f59e0b"><animateMotion dur="11s" begin="-3.2s" repeatCount="indefinite" path="M48,562 L744,562"/></circle>
-<rect x="32" y="78" width="736" height="116" rx="10" fill="none" stroke="#dc2626" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.0s" repeatCount="indefinite"/></rect>
-<text x="400" y="600" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">① 热账：P=(Vin−Vout)×I —— 12V→5V@300mA 就是 2.1W，没有散热片必然关机<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="600" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">② 纹波账：输入谷值必须 ≥ Vout + 压差，否则 100Hz 纹波直接透到输出<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="600" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">③ 稳定性账：LDO 环路靠输出电容的 ESR 零点补偿，ESR 出窗口就振荡<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="600" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#0ea5e9" opacity="0">④ 上电账：快上电 + 大压差会过冲；软启动或换型号。大压差大电流请直接上 DCDC<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/></text></svg>
+<rect x="32" y="78" width="736" height="116" rx="10" fill="none" stroke="#dc2626" stroke-width="2.5" opacity="0" filter="url(#pglow)"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.0s" repeatCount="indefinite"/></rect>
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/><rect x="97.1" y="693.0" width="605.8" height="24.1" rx="12.0" fill="#dc2626" fill-opacity="0.09" stroke="#dc2626" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/></rect><text x="400" y="706" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">① 热账：P=(Vin−Vout)×I —— 12V→5V@300mA 就是 2.1W，没有散热片必然关机<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/><rect x="133.1" y="693.0" width="533.8" height="24.1" rx="12.0" fill="#b45309" fill-opacity="0.09" stroke="#b45309" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/></rect><text x="400" y="706" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">② 纹波账：输入谷值必须 ≥ Vout + 压差，否则 100Hz 纹波直接透到输出<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/><rect x="139.2" y="693.0" width="521.5" height="24.1" rx="12.0" fill="#7c3aed" fill-opacity="0.09" stroke="#7c3aed" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/></rect><text x="400" y="706" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">③ 稳定性账：LDO 环路靠输出电容的 ESR 零点补偿，ESR 出窗口就振荡<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/><rect x="101.5" y="693.0" width="597.0" height="24.1" rx="12.0" fill="#0ea5e9" fill-opacity="0.09" stroke="#0ea5e9" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/></rect><text x="400" y="706" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#0ea5e9" opacity="0">④ 上电账：快上电 + 大压差会过冲；软启动或换型号。大压差大电流请直接上 DCDC<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/></text></g></svg>

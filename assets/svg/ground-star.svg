@@ -1,9 +1,51 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
 <title>一点接地：让大电流别踩小信号的路</title>
-<rect width="800" height="500" fill="#f8fafc"/>
+<defs>
+<linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
+</linearGradient>
+<linearGradient id="bgD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#0a1020"/><stop offset="1" stop-color="#141d30"/>
+</linearGradient>
+<radialGradient id="vig" cx="0.5" cy="0.44" r="0.78">
+<stop offset="0.55" stop-color="#0f172a" stop-opacity="0"/><stop offset="1" stop-color="#0f172a" stop-opacity="0.065"/>
+</radialGradient>
+<linearGradient id="hdr" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2563eb" stop-opacity="0.10"/>
+<stop offset="0.55" stop-color="#2563eb" stop-opacity="0.030"/>
+<stop offset="1" stop-color="#2563eb" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="hdrD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#60a5fa" stop-opacity="0.13"/>
+<stop offset="0.55" stop-color="#60a5fa" stop-opacity="0.040"/>
+<stop offset="1" stop-color="#60a5fa" stop-opacity="0"/>
+</linearGradient>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+<circle cx="1.5" cy="1.5" r="1.05" fill="#cbd5e1"/>
+</pattern>
+<filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+<feDropShadow dx="0" dy="1.6" stdDeviation="2.4" flood-color="#0f172a" flood-opacity="0.17"/>
+</filter>
+<filter id="pglow" x="-70%" y="-70%" width="240%" height="240%">
+<feGaussianBlur stdDeviation="2.1" result="b"/>
+<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs>
+<rect class="page-bg" width="800" height="500" fill="url(#bgL)"/>
+<rect width="800" height="500" fill="url(#dots)" opacity="0.40"/>
+<rect class="page-vig" width="800" height="500" fill="url(#vig)"/>
+<rect class="page-hdr" width="800" height="72" fill="url(#hdr)"/>
 <style>
 text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+.page-bg{fill:url(#bgL)}
+.page-vig{opacity:1}
+.page-hdr{fill:url(#hdr)}
+line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
+rect[fill="#f8fafc"],rect[fill="#eff6ff"],rect[fill="#ecfdf5"],rect[fill="#fffbeb"],rect[fill="#fef2f2"],rect[fill="#dbeafe"]{filter:url(#soft)}
 @media (prefers-color-scheme: dark){
+.page-bg{fill:url(#bgD)}
+.page-vig{opacity:0.45}
+.page-hdr{fill:url(#hdrD)}
 rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
 [fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
@@ -19,15 +61,14 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
 }
 </style>
-<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">一点接地：让大电流别踩小信号的路</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">一点接地：让大电流别踩小信号的路</text>
 
-<text x="400" y="40" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">一点接地：让大电流别踩小信号的路</text>
 <text x="400" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">共用地线 = 压降共享；星形一点接地 = 压降隔离——模拟工程师的终极命题</text>
 
 <rect x="30" y="100" width="350" height="270" rx="14" fill="#f8fafc" stroke="#dc2626" stroke-width="2.5"/>
 <text x="54" y="132" font-size="15" font-weight="bold" fill="#dc2626">✗ 共用地线：压降踩进信号地</text>
 <rect x="60" y="150" width="120" height="26" rx="6" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
-<text x="120" y="167" text-anchor="middle" font-size="11" fill="#1e293b">负载 R_L</text>
+<text x="120" y="158" text-anchor="middle" font-size="11" fill="#1e293b">负载 R_L</text>
 <rect x="60" y="230" width="120" height="26" rx="6" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
 <text x="120" y="247" text-anchor="middle" font-size="11" fill="#1e293b">放大器</text>
 <line x1="120" y1="176" x2="120" y2="192" stroke="#dc2626" stroke-width="3"/>
@@ -41,8 +82,8 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <line x1="293" y1="208" x2="307" y2="208" stroke="#334155" stroke-width="2"/>
 <line x1="296" y1="212" x2="304" y2="212" stroke="#334155" stroke-width="2"/>
 <text x="205" y="352" text-anchor="middle" font-size="10" fill="#64748b">10A × 0.01Ω = 100mV——比 5µV 信号大 4 个数量级</text>
-<circle r="5" fill="#dc2626"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M120,180 V192 H300"/></circle>
-<circle r="5" fill="#dc2626"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M120,180 V192 H300"/></circle>
+<g filter="url(#pglow)"><circle r="5" fill="#dc2626"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M120,180 V192 H300"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M120,180 V192 H300"/></circle></g>
 <circle cx="120" cy="192" r="5" fill="none" stroke="#dc2626" stroke-width="2">
 <animate attributeName="r" values="5;11;5" dur="1.6s" begin="0s" repeatCount="indefinite"/>
 <animate attributeName="opacity" values="1;0;1" dur="1.6s" begin="0s" repeatCount="indefinite"/>
@@ -65,11 +106,11 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <line x1="585" y1="208" x2="599" y2="208" stroke="#334155" stroke-width="2"/>
 <line x1="588" y1="212" x2="596" y2="212" stroke="#334155" stroke-width="2"/>
 <text x="595" y="352" text-anchor="middle" font-size="10" fill="#64748b">没有共用段——压降只落在自己那段，信号基准纹丝不动</text>
-<circle r="5" fill="#059669"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M570,180 V188 H590"/></circle>
-<circle r="3.5" fill="#2563eb"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M570,250 V188 H590"/></circle>
+<g filter="url(#pglow)"><circle r="5" fill="#059669"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M570,180 V188 H590"/></circle></g>
+<g filter="url(#pglow)"><circle r="3.5" fill="#2563eb"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M570,250 V188 H590"/></circle></g>
 <text x="400" y="478" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">大电流回流与小信号地分开走，汇于星形点——避免大电流压降污染小信号基准</text>
-<text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">① 共用地线：负载地与信号地共用一段 AB——大电流压降直接踩进信号基准<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.00;0.02;0.25;0.27;1" dur="12s" repeatCount="indefinite"/></text>
-<text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">② 算账：10A × 0.01Ω 共用段 = 100mV——比 5µV 信号大四个数量级<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.27;0.50;0.52;1" dur="12s" repeatCount="indefinite"/></text>
-<text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">③ 星形一点接地：大电流走自己的粗线到汇点，小信号单独走——互不污染<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.50;0.52;0.75;0.77;1" dur="12s" repeatCount="indefinite"/></text>
-<text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">④ 心法：地不是"0V 参考点"，是电流回家的路——别让大电流踩小信号的路<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.75;0.77;1" dur="12s" repeatCount="indefinite"/></text>
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.00;0.02;0.25;0.27;1" dur="12s" repeatCount="indefinite"/><rect x="128.0" y="416.9" width="544.0" height="24.1" rx="12.0" fill="#dc2626" fill-opacity="0.09" stroke="#dc2626" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.00;0.02;0.25;0.27;1" dur="12s" repeatCount="indefinite"/></rect><text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">① 共用地线：负载地与信号地共用一段 AB——大电流压降直接踩进信号基准<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.00;0.02;0.25;0.27;1" dur="12s" repeatCount="indefinite"/></text></g>
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.25;0.27;0.50;0.52;1" dur="12s" repeatCount="indefinite"/><rect x="142.1" y="416.9" width="515.8" height="24.1" rx="12.0" fill="#dc2626" fill-opacity="0.09" stroke="#dc2626" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.27;0.50;0.52;1" dur="12s" repeatCount="indefinite"/></rect><text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">② 算账：10A × 0.01Ω 共用段 = 100mV——比 5µV 信号大四个数量级<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.27;0.50;0.52;1" dur="12s" repeatCount="indefinite"/></text></g>
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.50;0.52;0.75;0.77;1" dur="12s" repeatCount="indefinite"/><rect x="132.7" y="416.9" width="534.6" height="24.1" rx="12.0" fill="#059669" fill-opacity="0.09" stroke="#059669" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.50;0.52;0.75;0.77;1" dur="12s" repeatCount="indefinite"/></rect><text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">③ 星形一点接地：大电流走自己的粗线到汇点，小信号单独走——互不污染<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.50;0.52;0.75;0.77;1" dur="12s" repeatCount="indefinite"/></text></g>
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0" keyTimes="0;0.75;0.77;1" dur="12s" repeatCount="indefinite"/><rect x="126.8" y="416.9" width="546.4" height="24.1" rx="12.0" fill="#059669" fill-opacity="0.09" stroke="#059669" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.75;0.77;1" dur="12s" repeatCount="indefinite"/></rect><text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">④ 心法：地不是"0V 参考点"，是电流回家的路——别让大电流踩小信号的路<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.75;0.77;1" dur="12s" repeatCount="indefinite"/></text></g>
 </svg>

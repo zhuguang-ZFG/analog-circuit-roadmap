@@ -1,9 +1,51 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="520" viewBox="0 0 800 520">
 <title>SAR ADC：四位天平，四次称出答案</title>
-<rect width="800" height="520" fill="#f8fafc"/>
+<defs>
+<linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
+</linearGradient>
+<linearGradient id="bgD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#0a1020"/><stop offset="1" stop-color="#141d30"/>
+</linearGradient>
+<radialGradient id="vig" cx="0.5" cy="0.44" r="0.78">
+<stop offset="0.55" stop-color="#0f172a" stop-opacity="0"/><stop offset="1" stop-color="#0f172a" stop-opacity="0.065"/>
+</radialGradient>
+<linearGradient id="hdr" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2563eb" stop-opacity="0.10"/>
+<stop offset="0.55" stop-color="#2563eb" stop-opacity="0.030"/>
+<stop offset="1" stop-color="#2563eb" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="hdrD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#60a5fa" stop-opacity="0.13"/>
+<stop offset="0.55" stop-color="#60a5fa" stop-opacity="0.040"/>
+<stop offset="1" stop-color="#60a5fa" stop-opacity="0"/>
+</linearGradient>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+<circle cx="1.5" cy="1.5" r="1.05" fill="#cbd5e1"/>
+</pattern>
+<filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+<feDropShadow dx="0" dy="1.6" stdDeviation="2.4" flood-color="#0f172a" flood-opacity="0.17"/>
+</filter>
+<filter id="pglow" x="-70%" y="-70%" width="240%" height="240%">
+<feGaussianBlur stdDeviation="2.1" result="b"/>
+<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs>
+<rect class="page-bg" width="800" height="520" fill="url(#bgL)"/>
+<rect width="800" height="520" fill="url(#dots)" opacity="0.40"/>
+<rect class="page-vig" width="800" height="520" fill="url(#vig)"/>
+<rect class="page-hdr" width="800" height="72" fill="url(#hdr)"/>
 <style>
 text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+.page-bg{fill:url(#bgL)}
+.page-vig{opacity:1}
+.page-hdr{fill:url(#hdr)}
+line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
+rect[fill="#f8fafc"],rect[fill="#eff6ff"],rect[fill="#ecfdf5"],rect[fill="#fffbeb"],rect[fill="#fef2f2"],rect[fill="#dbeafe"]{filter:url(#soft)}
 @media (prefers-color-scheme: dark){
+.page-bg{fill:url(#bgD)}
+.page-vig{opacity:0.45}
+.page-hdr{fill:url(#hdrD)}
 rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
 [fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
@@ -19,7 +61,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
 }
 </style>
-<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">SAR ADC：四位天平，四次称出答案</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">SAR ADC：四位天平，四次称出答案</text>
 
 <text x="240" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">SAR = 二分查找的硬件版（4 位演示：满量程 16，输入 5.3）</text>
 <rect x="60" y="100" width="90" height="50" rx="6" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
@@ -69,8 +111,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <animateMotion dur="8s" repeatCount="indefinite" calcMode="linear"
   keyPoints="0;0.352;0.352;0.608;0.608;0.84;0.84;1;1" keyTimes="0;0.05;0.24;0.3;0.48;0.55;0.73;0.79;1"
   path="M430,300 V204 H510 V252 H590 V228 H670 V240 H750 "/></circle>
-<text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">① 拍1：先试最高位 8（半天平）——DAC=8 > 5.3，太沉，退掉这一位<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.26;1" dur="8s" repeatCount="indefinite"/></text><text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">② 拍2：试次高位 4——DAC=4 &lt; 5.3，太轻，留下（累计 4）<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.28;0.33;0.45;0.51;1" dur="8s" repeatCount="indefinite"/></text><text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">③ 拍3：试 4+2=6——6 &gt; 5.3，退；拍4：试 4+1=5——5 &lt; 5.3，留 → 0101<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.53;0.58;0.75;0.81;1" dur="8s" repeatCount="indefinite"/></text><text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">④ N 位只要 N 拍：12 位=12 拍——速度与精度折中里的「中」就是这么来的<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.81;0.86;1" dur="8s" repeatCount="indefinite"/></text><g opacity="0">
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.03;0.2;0.26;1" dur="8s" repeatCount="indefinite"/><rect x="143.0" y="446.9" width="514.0" height="24.1" rx="12.0" fill="#7c3aed" fill-opacity="0.09" stroke="#7c3aed" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.26;1" dur="8s" repeatCount="indefinite"/></rect><text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">① 拍1：先试最高位 8（半天平）——DAC=8 > 5.3，太沉，退掉这一位<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.26;1" dur="8s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.28;0.33;0.45;0.51;1" dur="8s" repeatCount="indefinite"/><rect x="164.7" y="446.9" width="470.6" height="24.1" rx="12.0" fill="#059669" fill-opacity="0.09" stroke="#059669" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.28;0.33;0.45;0.51;1" dur="8s" repeatCount="indefinite"/></rect><text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">② 拍2：试次高位 4——DAC=4 &lt; 5.3，太轻，留下（累计 4）<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.28;0.33;0.45;0.51;1" dur="8s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.53;0.58;0.75;0.81;1" dur="8s" repeatCount="indefinite"/><rect x="95.2" y="446.9" width="609.6" height="24.1" rx="12.0" fill="#dc2626" fill-opacity="0.09" stroke="#dc2626" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.53;0.58;0.75;0.81;1" dur="8s" repeatCount="indefinite"/></rect><text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">③ 拍3：试 4+2=6——6 &gt; 5.3，退；拍4：试 4+1=5——5 &lt; 5.3，留 → 0101<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.53;0.58;0.75;0.81;1" dur="8s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0" keyTimes="0;0.81;0.86;1" dur="8s" repeatCount="indefinite"/><rect x="124.8" y="446.9" width="550.3" height="24.1" rx="12.0" fill="#2563eb" fill-opacity="0.09" stroke="#2563eb" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.81;0.86;1" dur="8s" repeatCount="indefinite"/></rect><text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">④ N 位只要 N 拍：12 位=12 拍——速度与精度折中里的「中」就是这么来的<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.81;0.86;1" dur="8s" repeatCount="indefinite"/></text></g><g opacity="0">
 <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.88;0.92;1" dur="8s" repeatCount="indefinite"/>
-<rect x="55" y="470" width="690" height="34" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
-<text x="400" y="492" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">比较器是天平的指针，DAC 是砝码，SAR 逻辑是记录员——每拍只问一个问题：「重了还是轻了」</text>
+<rect x="55" y="470" width="690" height="34.0" rx="9" fill="#ecfdf5" stroke="#059669" stroke-width="1.5" filter="url(#soft)"/><rect x="61" y="477" width="3" height="20.0" rx="1.5" fill="#059669"/><text x="400" y="492.0" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">比较器是天平的指针，DAC 是砝码，SAR 逻辑是记录员——每拍只问一个问题：「重了还是轻了」</text>
 </g></svg>

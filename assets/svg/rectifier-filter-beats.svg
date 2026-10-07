@@ -1,9 +1,51 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="680" viewBox="0 0 800 680">
 <title>整流滤波电源四拍拆解：从空电容到稳态纹波</title>
-<rect width="800" height="680" fill="#f8fafc"/>
+<defs>
+<linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
+</linearGradient>
+<linearGradient id="bgD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#0a1020"/><stop offset="1" stop-color="#141d30"/>
+</linearGradient>
+<radialGradient id="vig" cx="0.5" cy="0.44" r="0.78">
+<stop offset="0.55" stop-color="#0f172a" stop-opacity="0"/><stop offset="1" stop-color="#0f172a" stop-opacity="0.065"/>
+</radialGradient>
+<linearGradient id="hdr" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2563eb" stop-opacity="0.10"/>
+<stop offset="0.55" stop-color="#2563eb" stop-opacity="0.030"/>
+<stop offset="1" stop-color="#2563eb" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="hdrD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#60a5fa" stop-opacity="0.13"/>
+<stop offset="0.55" stop-color="#60a5fa" stop-opacity="0.040"/>
+<stop offset="1" stop-color="#60a5fa" stop-opacity="0"/>
+</linearGradient>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+<circle cx="1.5" cy="1.5" r="1.05" fill="#cbd5e1"/>
+</pattern>
+<filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+<feDropShadow dx="0" dy="1.6" stdDeviation="2.4" flood-color="#0f172a" flood-opacity="0.17"/>
+</filter>
+<filter id="pglow" x="-70%" y="-70%" width="240%" height="240%">
+<feGaussianBlur stdDeviation="2.1" result="b"/>
+<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs>
+<rect class="page-bg" width="800" height="680" fill="url(#bgL)"/>
+<rect width="800" height="680" fill="url(#dots)" opacity="0.40"/>
+<rect class="page-vig" width="800" height="680" fill="url(#vig)"/>
+<rect class="page-hdr" width="800" height="72" fill="url(#hdr)"/>
 <style>
 text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+.page-bg{fill:url(#bgL)}
+.page-vig{opacity:1}
+.page-hdr{fill:url(#hdr)}
+line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
+rect[fill="#f8fafc"],rect[fill="#eff6ff"],rect[fill="#ecfdf5"],rect[fill="#fffbeb"],rect[fill="#fef2f2"],rect[fill="#dbeafe"]{filter:url(#soft)}
 @media (prefers-color-scheme: dark){
+.page-bg{fill:url(#bgD)}
+.page-vig{opacity:0.45}
+.page-hdr{fill:url(#hdrD)}
 rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
 [fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
@@ -19,7 +61,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
 }
 </style>
-<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">整流滤波电源四拍拆解：从空电容到稳态纹波</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">整流滤波电源四拍拆解：从空电容到稳态纹波</text>
 
 <text x="400" y="51" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#334155">12V AC（峰值 17V）· 桥式整流 · 4700µF · 1A 负载：一个周期的四拍</text>
 <rect x="20" y="70" width="174" height="214" rx="10" fill="#f8fafc" stroke="#64748b" stroke-width="1.8"/>
@@ -71,8 +113,8 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="325" y="170" font-size="9" font-weight="bold" fill="#475569">C</text>
 <text x="358" y="172" font-size="9" font-weight="bold" fill="#475569">R_L</text>
 <text x="264" y="141" font-size="9" font-weight="bold" fill="#475569">D</text>
-<circle r="4.2" fill="#dc2626"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M246,152 L310,152"/></circle>
-<circle r="4.2" fill="#dc2626"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M246,152 L310,152"/></circle>
+<g filter="url(#pglow)"><circle r="4.2" fill="#dc2626"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M246,152 L310,152"/></circle>
+<circle r="4.2" fill="#dc2626"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M246,152 L310,152"/></circle></g>
 <text x="299" y="266" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#dc2626">I_D：10~50A</text>
 <text x="299" y="278" text-anchor="middle" font-size="10" fill="#475569">V_C：0→15.6V</text>
 <rect x="404" y="70" width="174" height="214" rx="10" fill="#f8fafc" stroke="#7c3aed" stroke-width="1.8"/>
@@ -98,8 +140,8 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="517" y="170" font-size="9" font-weight="bold" fill="#475569">C</text>
 <text x="550" y="172" font-size="9" font-weight="bold" fill="#475569">R_L</text>
 <text x="456" y="141" font-size="9" font-weight="bold" fill="#475569">D</text>
-<circle r="4.2" fill="#dc2626"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M438,152 L502,152"/></circle>
-<circle r="4.2" fill="#dc2626"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M438,152 L502,152"/></circle>
+<g filter="url(#pglow)"><circle r="4.2" fill="#dc2626"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M438,152 L502,152"/></circle>
+<circle r="4.2" fill="#dc2626"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M438,152 L502,152"/></circle></g>
 <text x="491" y="266" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#dc2626">I_D：5~10A</text>
 <text x="491" y="278" text-anchor="middle" font-size="10" fill="#475569">V_C：13.5→15.6V</text>
 <rect x="596" y="70" width="174" height="214" rx="10" fill="#f8fafc" stroke="#059669" stroke-width="1.8"/>
@@ -125,8 +167,8 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="709" y="170" font-size="9" font-weight="bold" fill="#475569">C</text>
 <text x="742" y="172" font-size="9" font-weight="bold" fill="#475569">R_L</text>
 <text x="648" y="141" font-size="9" font-weight="bold" fill="#475569">D</text>
-<circle r="4.2" fill="#059669"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M630,152 L664,152 L664,190 L630,190"/></circle>
-<circle r="4.2" fill="#059669"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M630,152 L664,152 L664,190 L630,190"/></circle>
+<g filter="url(#pglow)"><circle r="4.2" fill="#059669"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M630,152 L664,152 L664,190 L630,190"/></circle>
+<circle r="4.2" fill="#059669"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M630,152 L664,152 L664,190 L630,190"/></circle></g>
 <text x="683" y="266" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#dc2626">I_D：0</text>
 <text x="683" y="278" text-anchor="middle" font-size="10" fill="#475569">V_C：15.6→13.5V</text>
 <text x="425" y="314" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">一个周期：AC 输入、电容电压、二极管电流</text>
@@ -162,4 +204,4 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="40" y="563" font-size="11" fill="#475569">纹波 ΔV = I·Δt/C = 1A×10ms/4700µF ≈ 2.1V；峰值电流 ≈ 10ms/2ms×1A = 5A</text>
 <text x="40" y="585" font-size="11" fill="#475569">所以选整流管看 I_FRM（重复峰值），不是标称平均电流——1A 电源用 1N4007 余量很紧</text>
 <text x="40" y="597" font-size="10.5" font-weight="bold" fill="#dc2626">上电浪涌 10~50A → 保险丝要选慢断型（T 型）</text>
-<text x="400" y="650" text-anchor="middle" font-size="13.2" font-weight="bold" fill="#7c3aed" opacity="0">四拍因果链：电容充电 → 二极管截止 → 电容放电 → 再充电<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.84;0.89;1" dur="12s" repeatCount="indefinite"/></text></svg>
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0" keyTimes="0;0.84;0.89;1" dur="12s" repeatCount="indefinite"/><rect x="201.2" y="638.1" width="397.6" height="21.9" rx="11.0" fill="#7c3aed" fill-opacity="0.09" stroke="#7c3aed" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.84;0.89;1" dur="12s" repeatCount="indefinite"/></rect><text x="400" y="650" text-anchor="middle" font-size="13.2" font-weight="bold" fill="#7c3aed" opacity="0">四拍因果链：电容充电 → 二极管截止 → 电容放电 → 再充电<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.84;0.89;1" dur="12s" repeatCount="indefinite"/></text></g></svg>

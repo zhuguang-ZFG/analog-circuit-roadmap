@@ -1,9 +1,51 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="575" viewBox="0 0 800 575">
 <title>排故决策树：从「上电无反应」到具体表项</title>
-<rect width="800" height="575" fill="#f8fafc"/>
+<defs>
+<linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
+</linearGradient>
+<linearGradient id="bgD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#0a1020"/><stop offset="1" stop-color="#141d30"/>
+</linearGradient>
+<radialGradient id="vig" cx="0.5" cy="0.44" r="0.78">
+<stop offset="0.55" stop-color="#0f172a" stop-opacity="0"/><stop offset="1" stop-color="#0f172a" stop-opacity="0.065"/>
+</radialGradient>
+<linearGradient id="hdr" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2563eb" stop-opacity="0.10"/>
+<stop offset="0.55" stop-color="#2563eb" stop-opacity="0.030"/>
+<stop offset="1" stop-color="#2563eb" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="hdrD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#60a5fa" stop-opacity="0.13"/>
+<stop offset="0.55" stop-color="#60a5fa" stop-opacity="0.040"/>
+<stop offset="1" stop-color="#60a5fa" stop-opacity="0"/>
+</linearGradient>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+<circle cx="1.5" cy="1.5" r="1.05" fill="#cbd5e1"/>
+</pattern>
+<filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+<feDropShadow dx="0" dy="1.6" stdDeviation="2.4" flood-color="#0f172a" flood-opacity="0.17"/>
+</filter>
+<filter id="pglow" x="-70%" y="-70%" width="240%" height="240%">
+<feGaussianBlur stdDeviation="2.1" result="b"/>
+<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs>
+<rect class="page-bg" width="800" height="575" fill="url(#bgL)"/>
+<rect width="800" height="575" fill="url(#dots)" opacity="0.40"/>
+<rect class="page-vig" width="800" height="575" fill="url(#vig)"/>
+<rect class="page-hdr" width="800" height="72" fill="url(#hdr)"/>
 <style>
 text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+.page-bg{fill:url(#bgL)}
+.page-vig{opacity:1}
+.page-hdr{fill:url(#hdr)}
+line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
+rect[fill="#f8fafc"],rect[fill="#eff6ff"],rect[fill="#ecfdf5"],rect[fill="#fffbeb"],rect[fill="#fef2f2"],rect[fill="#dbeafe"]{filter:url(#soft)}
 @media (prefers-color-scheme: dark){
+.page-bg{fill:url(#bgD)}
+.page-vig{opacity:0.45}
+.page-hdr{fill:url(#hdrD)}
 rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
 [fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
@@ -19,7 +61,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
 }
 </style>
-<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">排故决策树：从「上电无反应」到具体表项</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">排故决策树：从「上电无反应」到具体表项</text>
 
 <text x="400" y="58" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">先定方向、再查细节——每一「否」都直接落到一张速查表，别在细节里迷路</text>
 <rect x="40" y="71" width="270" height="42" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/><text x="175" y="97" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1e293b">① 上电无反应？</text>
@@ -41,34 +83,34 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <line x1="302" y1="410" x2="302" y2="435" stroke="#059669" stroke-width="2.2"/><polygon points="302,438 297,431 307,431" fill="#059669"/><rect x="215" y="438" width="175" height="56" rx="10" fill="#f8fafc" stroke="#059669" stroke-width="2.5"/><text x="302" y="463" text-anchor="middle" font-size="13" font-weight="bold" fill="#059669">读数不对</text><text x="302" y="483" text-anchor="middle" font-size="9.5" fill="#475569">17.2 反馈 / 校准 / 噪声</text>
 <line x1="487" y1="410" x2="487" y2="435" stroke="#dc2626" stroke-width="2.2"/><polygon points="487,438 482,431 492,431" fill="#dc2626"/><rect x="400" y="438" width="175" height="56" rx="10" fill="#f8fafc" stroke="#dc2626" stroke-width="2.5"/><text x="487" y="463" text-anchor="middle" font-size="13" font-weight="bold" fill="#dc2626">时好时坏</text><text x="487" y="483" text-anchor="middle" font-size="9.5" fill="#475569">17.6 焊接连接 → 再查 17.4</text>
 <line x1="672" y1="410" x2="672" y2="435" stroke="#b45309" stroke-width="2.2"/><polygon points="672,438 667,431 677,431" fill="#b45309"/><rect x="585" y="438" width="175" height="56" rx="10" fill="#f8fafc" stroke="#b45309" stroke-width="2.5"/><text x="672" y="463" text-anchor="middle" font-size="13" font-weight="bold" fill="#b45309">发热异常</text><text x="672" y="483" text-anchor="middle" font-size="9.5" fill="#475569">17.5 功耗 / 短路 / 散热</text>
-<circle r="4.5" fill="#334155"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M175,113 V139"/></circle>
-<circle r="4.5" fill="#334155"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M175,113 V139"/></circle>
-<circle r="4.5" fill="#334155"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M175,181 V207"/></circle>
-<circle r="4.5" fill="#334155"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M175,181 V207"/></circle>
-<circle r="4.5" fill="#334155"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M175,249 V275"/></circle>
-<circle r="4.5" fill="#334155"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M175,249 V275"/></circle>
-<circle r="4.5" fill="#334155"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M175,317 V343"/></circle>
-<circle r="4.5" fill="#334155"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M175,317 V343"/></circle>
-<circle r="4.5" fill="#2563eb"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M310,160 H450"/></circle>
-<circle r="4.5" fill="#2563eb"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M310,160 H450"/></circle>
-<circle r="4.5" fill="#dc2626"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M310,228 H450"/></circle>
-<circle r="4.5" fill="#dc2626"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M310,228 H450"/></circle>
-<circle r="4.5" fill="#b45309"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M310,296 H450"/></circle>
-<circle r="4.5" fill="#b45309"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M310,296 H450"/></circle>
-<circle r="4.5" fill="#334155"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M175,385 V410"/></circle>
-<circle r="4.5" fill="#334155"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M175,385 V410"/></circle>
-<circle r="4.5" fill="#7c3aed"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M117,410 V438"/></circle>
-<circle r="4.5" fill="#7c3aed"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M117,410 V438"/></circle>
-<circle r="4.5" fill="#059669"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M302,410 V438"/></circle>
-<circle r="4.5" fill="#059669"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M302,410 V438"/></circle>
-<circle r="4.5" fill="#dc2626"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M487,410 V438"/></circle>
-<circle r="4.5" fill="#dc2626"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M487,410 V438"/></circle>
-<circle r="4.5" fill="#b45309"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M672,410 V438"/></circle>
-<circle r="4.5" fill="#b45309"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M672,410 V438"/></circle>
+<g filter="url(#pglow)"><circle r="4.5" fill="#334155"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M175,113 V139"/></circle>
+<circle r="4.5" fill="#334155"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M175,113 V139"/></circle></g>
+<g filter="url(#pglow)"><circle r="4.5" fill="#334155"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M175,181 V207"/></circle>
+<circle r="4.5" fill="#334155"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M175,181 V207"/></circle></g>
+<g filter="url(#pglow)"><circle r="4.5" fill="#334155"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M175,249 V275"/></circle>
+<circle r="4.5" fill="#334155"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M175,249 V275"/></circle></g>
+<g filter="url(#pglow)"><circle r="4.5" fill="#334155"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M175,317 V343"/></circle>
+<circle r="4.5" fill="#334155"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M175,317 V343"/></circle></g>
+<g filter="url(#pglow)"><circle r="4.5" fill="#2563eb"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M310,160 H450"/></circle>
+<circle r="4.5" fill="#2563eb"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M310,160 H450"/></circle></g>
+<g filter="url(#pglow)"><circle r="4.5" fill="#dc2626"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M310,228 H450"/></circle>
+<circle r="4.5" fill="#dc2626"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M310,228 H450"/></circle></g>
+<g filter="url(#pglow)"><circle r="4.5" fill="#b45309"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M310,296 H450"/></circle>
+<circle r="4.5" fill="#b45309"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M310,296 H450"/></circle></g>
+<g filter="url(#pglow)"><circle r="4.5" fill="#334155"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M175,385 V410"/></circle>
+<circle r="4.5" fill="#334155"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M175,385 V410"/></circle></g>
+<g filter="url(#pglow)"><circle r="4.5" fill="#7c3aed"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M117,410 V438"/></circle>
+<circle r="4.5" fill="#7c3aed"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M117,410 V438"/></circle></g>
+<g filter="url(#pglow)"><circle r="4.5" fill="#059669"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M302,410 V438"/></circle>
+<circle r="4.5" fill="#059669"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M302,410 V438"/></circle></g>
+<g filter="url(#pglow)"><circle r="4.5" fill="#dc2626"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M487,410 V438"/></circle>
+<circle r="4.5" fill="#dc2626"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M487,410 V438"/></circle></g>
+<g filter="url(#pglow)"><circle r="4.5" fill="#b45309"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M672,410 V438"/></circle>
+<circle r="4.5" fill="#b45309"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M672,410 V438"/></circle></g>
 <rect x="35" y="66" width="280" height="52" rx="14" fill="none" stroke="#f59e0b" stroke-width="3" opacity="0"><animate attributeName="opacity" values="0.1;0.85;0.1" dur="2.4s" repeatCount="indefinite"/></rect>
-<text x="400" y="530" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">① 上电无反应：别急着拆——先分清是「没电」「没复位」还是「没时钟」<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.00;0.02;0.20;0.22;1" dur="12s" repeatCount="indefinite"/></text>
-<text x="400" y="530" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">② 输入电压在不在：电源线 / 保险 / 极性 / 连接器——30 秒排除最常见的 17.1<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.20;0.22;0.40;0.42;1" dur="12s" repeatCount="indefinite"/></text>
-<text x="400" y="530" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">③ 关键电源轨都对吗：带载跌落、纹波、使能脚——静态对 ≠ 动态对<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.40;0.42;0.60;0.62;1" dur="12s" repeatCount="indefinite"/></text>
-<text x="400" y="530" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">④ 复位与时钟正常吗：复位 IC、晶振起振、上电时序——数字电路的「心跳」<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.60;0.62;0.80;0.82;1" dur="12s" repeatCount="indefinite"/></text>
-<text x="400" y="530" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">⑤ 有电有复位却功能异常：按表现分流——不动 / 读数错 / 时好时坏 / 发热，各归其表<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.80;0.82;1" dur="12s" repeatCount="indefinite"/></text>
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.00;0.02;0.20;0.22;1" dur="12s" repeatCount="indefinite"/><rect x="132.7" y="517.0" width="534.6" height="24.1" rx="12.0" fill="#2563eb" fill-opacity="0.09" stroke="#2563eb" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.00;0.02;0.20;0.22;1" dur="12s" repeatCount="indefinite"/></rect><text x="400" y="530" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">① 上电无反应：别急着拆——先分清是「没电」「没复位」还是「没时钟」<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.00;0.02;0.20;0.22;1" dur="12s" repeatCount="indefinite"/></text></g>
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.20;0.22;0.40;0.42;1" dur="12s" repeatCount="indefinite"/><rect x="112.0" y="517.0" width="576.1" height="24.1" rx="12.0" fill="#dc2626" fill-opacity="0.09" stroke="#dc2626" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.20;0.22;0.40;0.42;1" dur="12s" repeatCount="indefinite"/></rect><text x="400" y="530" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">② 输入电压在不在：电源线 / 保险 / 极性 / 连接器——30 秒排除最常见的 17.1<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.20;0.22;0.40;0.42;1" dur="12s" repeatCount="indefinite"/></text></g>
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.40;0.42;0.60;0.62;1" dur="12s" repeatCount="indefinite"/><rect x="151.3" y="517.0" width="497.5" height="24.1" rx="12.0" fill="#b45309" fill-opacity="0.09" stroke="#b45309" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.40;0.42;0.60;0.62;1" dur="12s" repeatCount="indefinite"/></rect><text x="400" y="530" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">③ 关键电源轨都对吗：带载跌落、纹波、使能脚——静态对 ≠ 动态对<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.40;0.42;0.60;0.62;1" dur="12s" repeatCount="indefinite"/></text></g>
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.60;0.62;0.80;0.82;1" dur="12s" repeatCount="indefinite"/><rect x="123.2" y="517.0" width="553.7" height="24.1" rx="12.0" fill="#7c3aed" fill-opacity="0.09" stroke="#7c3aed" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.60;0.62;0.80;0.82;1" dur="12s" repeatCount="indefinite"/></rect><text x="400" y="530" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">④ 复位与时钟正常吗：复位 IC、晶振起振、上电时序——数字电路的「心跳」<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.60;0.62;0.80;0.82;1" dur="12s" repeatCount="indefinite"/></text></g>
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0" keyTimes="0;0.80;0.82;1" dur="12s" repeatCount="indefinite"/><rect x="90.7" y="517.0" width="618.5" height="24.1" rx="12.0" fill="#059669" fill-opacity="0.09" stroke="#059669" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.80;0.82;1" dur="12s" repeatCount="indefinite"/></rect><text x="400" y="530" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">⑤ 有电有复位却功能异常：按表现分流——不动 / 读数错 / 时好时坏 / 发热，各归其表<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.80;0.82;1" dur="12s" repeatCount="indefinite"/></text></g>
 </svg>

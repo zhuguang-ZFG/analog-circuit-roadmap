@@ -1,9 +1,51 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="480" viewBox="0 0 800 480">
 <title>运放反相放大器：「虚短虚断」是怎么回事（增益 = −Rf/Rin）</title>
-<rect width="800" height="480" fill="#f8fafc"/>
+<defs>
+<linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
+</linearGradient>
+<linearGradient id="bgD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#0a1020"/><stop offset="1" stop-color="#141d30"/>
+</linearGradient>
+<radialGradient id="vig" cx="0.5" cy="0.44" r="0.78">
+<stop offset="0.55" stop-color="#0f172a" stop-opacity="0"/><stop offset="1" stop-color="#0f172a" stop-opacity="0.065"/>
+</radialGradient>
+<linearGradient id="hdr" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2563eb" stop-opacity="0.10"/>
+<stop offset="0.55" stop-color="#2563eb" stop-opacity="0.030"/>
+<stop offset="1" stop-color="#2563eb" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="hdrD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#60a5fa" stop-opacity="0.13"/>
+<stop offset="0.55" stop-color="#60a5fa" stop-opacity="0.040"/>
+<stop offset="1" stop-color="#60a5fa" stop-opacity="0"/>
+</linearGradient>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+<circle cx="1.5" cy="1.5" r="1.05" fill="#cbd5e1"/>
+</pattern>
+<filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+<feDropShadow dx="0" dy="1.6" stdDeviation="2.4" flood-color="#0f172a" flood-opacity="0.17"/>
+</filter>
+<filter id="pglow" x="-70%" y="-70%" width="240%" height="240%">
+<feGaussianBlur stdDeviation="2.1" result="b"/>
+<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs>
+<rect class="page-bg" width="800" height="480" fill="url(#bgL)"/>
+<rect width="800" height="480" fill="url(#dots)" opacity="0.40"/>
+<rect class="page-vig" width="800" height="480" fill="url(#vig)"/>
+<rect class="page-hdr" width="800" height="72" fill="url(#hdr)"/>
 <style>
 text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+.page-bg{fill:url(#bgL)}
+.page-vig{opacity:1}
+.page-hdr{fill:url(#hdr)}
+line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
+rect[fill="#f8fafc"],rect[fill="#eff6ff"],rect[fill="#ecfdf5"],rect[fill="#fffbeb"],rect[fill="#fef2f2"],rect[fill="#dbeafe"]{filter:url(#soft)}
 @media (prefers-color-scheme: dark){
+.page-bg{fill:url(#bgD)}
+.page-vig{opacity:0.45}
+.page-hdr{fill:url(#hdrD)}
 rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
 [fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
@@ -19,7 +61,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
 }
 </style>
-<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">运放反相放大器：「虚短虚断」是怎么回事（增益 = −Rf/Rin）</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">运放反相放大器：「虚短虚断」是怎么回事（增益 = −Rf/Rin）</text>
 
 <text x="300" y="58" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">反相放大电路（LM358，±12V 供电）</text>
 <circle cx="90" cy="180" r="21" fill="none" stroke="#2563eb" stroke-width="2.5"/>
@@ -55,12 +97,12 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <animate attributeName="opacity" values="0.25;1;0.25" dur="1.4s" repeatCount="indefinite"/></circle>
 <text x="300" y="216" font-size="12" font-weight="bold" fill="#dc2626">虚地 v− ≈ 0V</text>
 <text x="390" y="108" text-anchor="middle" font-size="11.5" fill="#475569">i 全部走 Rf（运放不取流）</text>
-<circle r="5" fill="#f59e0b"><animateMotion dur="5s" begin="-0.50s" repeatCount="indefinite" path="M95,176 H326 V144 H562 V194"/></circle>
+<g filter="url(#pglow)"><circle r="5" fill="#f59e0b"><animateMotion dur="5s" begin="-0.50s" repeatCount="indefinite" path="M95,176 H326 V144 H562 V194"/></circle>
 <circle r="5" fill="#f59e0b"><animateMotion dur="5s" begin="0.33s" repeatCount="indefinite" path="M95,176 H326 V144 H562 V194"/></circle>
 <circle r="5" fill="#f59e0b"><animateMotion dur="5s" begin="1.17s" repeatCount="indefinite" path="M95,176 H326 V144 H562 V194"/></circle>
 <circle r="5" fill="#f59e0b"><animateMotion dur="5s" begin="2.00s" repeatCount="indefinite" path="M95,176 H326 V144 H562 V194"/></circle>
 <circle r="5" fill="#f59e0b"><animateMotion dur="5s" begin="2.83s" repeatCount="indefinite" path="M95,176 H326 V144 H562 V194"/></circle>
-<circle r="5" fill="#f59e0b"><animateMotion dur="5s" begin="3.67s" repeatCount="indefinite" path="M95,176 H326 V144 H562 V194"/></circle>
+<circle r="5" fill="#f59e0b"><animateMotion dur="5s" begin="3.67s" repeatCount="indefinite" path="M95,176 H326 V144 H562 V194"/></circle></g>
 <line x1="60" y1="350" x2="392" y2="350" stroke="#64748b" stroke-width="1.6"/>
 <path d="M60,350 L67,354 L74,358 L81,361 L88,365 L94,368 L101,371 L108,374 L115,376 L122,378 L129,379 L136,380 L142,380 L149,380 L156,379 L163,378 L170,376 L177,374 L184,371 L191,368 L198,365 L204,361 L211,358 L218,354 L225,350 L232,346 L239,342 L246,339 L252,335 L259,332 L266,329 L273,326 L280,324 L287,322 L294,321 L301,320 L308,320 L314,320 L321,321 L328,322 L335,324 L342,326 L349,329 L356,332 L362,335 L369,339 L376,342 L383,346 L390,350" fill="none" stroke="#2563eb" stroke-width="3"/>
 <text x="64" y="306" font-size="11.5" font-weight="bold" fill="#2563eb">输入 vin = ±0.5V</text>
@@ -69,8 +111,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <path d="M430,350 L437,343 L444,336 L451,329 L458,322 L465,317 L472,311 L480,306 L487,302 L494,299 L501,297 L508,295 L515,295 L522,295 L529,297 L536,299 L543,302 L550,306 L558,311 L565,317 L572,322 L579,329 L586,336 L593,343 L600,350 L607,357 L614,364 L621,371 L628,378 L635,383 L642,389 L650,394 L657,398 L664,401 L671,403 L678,405 L685,405 L692,405 L699,403 L706,401 L713,398 L720,394 L728,389 L735,383 L742,378 L749,371 L756,364 L763,357 L770,350" fill="none" stroke="#dc2626" stroke-width="3"/>
 <text x="434" y="286" font-size="11.5" font-weight="bold" fill="#dc2626">输出 vout = ∓5V（反相 ×10）</text>
 <circle r="5.5" fill="#fff" stroke="#dc2626" stroke-width="3"><animateMotion dur="2.5s" repeatCount="indefinite" path="M430,350 L437,343 L444,336 L451,329 L458,322 L465,317 L472,311 L480,306 L487,302 L494,299 L501,297 L508,295 L515,295 L522,295 L529,297 L536,299 L543,302 L550,306 L558,311 L565,317 L572,322 L579,329 L586,336 L593,343 L600,350 L607,357 L614,364 L621,371 L628,378 L635,383 L642,389 L650,394 L657,398 L664,401 L671,403 L678,405 L685,405 L692,405 L699,403 L706,401 L713,398 L720,394 L728,389 L735,383 L742,378 L749,371 L756,364 L763,357 L770,350"/></circle>
-<text x="400" y="418" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">① 虚断：运放输入端取流≈0——i_in 没地方去，只能全部流向 Rf<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.04;0.2;0.24;1" dur="5s" repeatCount="indefinite"/></text><text x="400" y="418" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">② 虚短：负反馈强迫 v−≈v+=0V——v− 被钉在地上（虚地）<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.24;0.28;0.48;0.52;1" dur="5s" repeatCount="indefinite"/></text><text x="400" y="418" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">③ 增益 = −Rf/Rin = −10k/1k = −10：只看两只电阻，与运放型号几乎无关<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.52;0.56;0.76;0.8;1" dur="5s" repeatCount="indefinite"/></text><text x="400" y="418" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">④ 本质：输出反过来「喂」输入端——负反馈让电路自己纠错<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.8;0.84;1" dur="5s" repeatCount="indefinite"/></text><g opacity="0">
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.04;0.2;0.24;1" dur="5s" repeatCount="indefinite"/><rect x="161.4" y="404.9" width="477.2" height="24.1" rx="12.0" fill="#b45309" fill-opacity="0.09" stroke="#b45309" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.04;0.2;0.24;1" dur="5s" repeatCount="indefinite"/></rect><text x="400" y="418" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">① 虚断：运放输入端取流≈0——i_in 没地方去，只能全部流向 Rf<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.04;0.2;0.24;1" dur="5s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.24;0.28;0.48;0.52;1" dur="5s" repeatCount="indefinite"/><rect x="178.7" y="404.9" width="442.6" height="24.1" rx="12.0" fill="#dc2626" fill-opacity="0.09" stroke="#dc2626" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.24;0.28;0.48;0.52;1" dur="5s" repeatCount="indefinite"/></rect><text x="400" y="418" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">② 虚短：负反馈强迫 v−≈v+=0V——v− 被钉在地上（虚地）<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.24;0.28;0.48;0.52;1" dur="5s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.52;0.56;0.76;0.8;1" dur="5s" repeatCount="indefinite"/><rect x="127.6" y="404.9" width="544.9" height="24.1" rx="12.0" fill="#2563eb" fill-opacity="0.09" stroke="#2563eb" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.52;0.56;0.76;0.8;1" dur="5s" repeatCount="indefinite"/></rect><text x="400" y="418" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">③ 增益 = −Rf/Rin = −10k/1k = −10：只看两只电阻，与运放型号几乎无关<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.52;0.56;0.76;0.8;1" dur="5s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0" keyTimes="0;0.8;0.84;1" dur="5s" repeatCount="indefinite"/><rect x="178.2" y="404.9" width="443.7" height="24.1" rx="12.0" fill="#059669" fill-opacity="0.09" stroke="#059669" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.8;0.84;1" dur="5s" repeatCount="indefinite"/></rect><text x="400" y="418" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">④ 本质：输出反过来「喂」输入端——负反馈让电路自己纠错<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.8;0.84;1" dur="5s" repeatCount="indefinite"/></text></g><g opacity="0">
 <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.86;0.9;1" dur="5s" repeatCount="indefinite"/>
-<rect x="50" y="438" width="700" height="34" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
-<text x="400" y="460" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">i = vin/Rin → vout = −i·Rf → vout = −vin·(Rf/Rin)：两条虚字规则推完整个电路</text>
+<rect x="50" y="438" width="700" height="34.0" rx="9" fill="#ecfdf5" stroke="#059669" stroke-width="1.5" filter="url(#soft)"/><rect x="56" y="445" width="3" height="20.0" rx="1.5" fill="#059669"/><text x="400" y="460.0" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">i = vin/Rin → vout = −i·Rf → vout = −vin·(Rf/Rin)：两条虚字规则推完整个电路</text>
 </g></svg>

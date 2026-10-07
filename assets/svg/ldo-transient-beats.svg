@@ -1,9 +1,51 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="680" viewBox="0 0 800 680">
 <title>LDO 负载瞬态四拍：一次唤醒为何把 MCU 打到复位（AMS1117-5V）</title>
-<rect width="800" height="680" fill="#f8fafc"/>
+<defs>
+<linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
+</linearGradient>
+<linearGradient id="bgD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#0a1020"/><stop offset="1" stop-color="#141d30"/>
+</linearGradient>
+<radialGradient id="vig" cx="0.5" cy="0.44" r="0.78">
+<stop offset="0.55" stop-color="#0f172a" stop-opacity="0"/><stop offset="1" stop-color="#0f172a" stop-opacity="0.065"/>
+</radialGradient>
+<linearGradient id="hdr" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2563eb" stop-opacity="0.10"/>
+<stop offset="0.55" stop-color="#2563eb" stop-opacity="0.030"/>
+<stop offset="1" stop-color="#2563eb" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="hdrD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#60a5fa" stop-opacity="0.13"/>
+<stop offset="0.55" stop-color="#60a5fa" stop-opacity="0.040"/>
+<stop offset="1" stop-color="#60a5fa" stop-opacity="0"/>
+</linearGradient>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+<circle cx="1.5" cy="1.5" r="1.05" fill="#cbd5e1"/>
+</pattern>
+<filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+<feDropShadow dx="0" dy="1.6" stdDeviation="2.4" flood-color="#0f172a" flood-opacity="0.17"/>
+</filter>
+<filter id="pglow" x="-70%" y="-70%" width="240%" height="240%">
+<feGaussianBlur stdDeviation="2.1" result="b"/>
+<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs>
+<rect class="page-bg" width="800" height="680" fill="url(#bgL)"/>
+<rect width="800" height="680" fill="url(#dots)" opacity="0.40"/>
+<rect class="page-vig" width="800" height="680" fill="url(#vig)"/>
+<rect class="page-hdr" width="800" height="72" fill="url(#hdr)"/>
 <style>
 text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+.page-bg{fill:url(#bgL)}
+.page-vig{opacity:1}
+.page-hdr{fill:url(#hdr)}
+line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
+rect[fill="#f8fafc"],rect[fill="#eff6ff"],rect[fill="#ecfdf5"],rect[fill="#fffbeb"],rect[fill="#fef2f2"],rect[fill="#dbeafe"]{filter:url(#soft)}
 @media (prefers-color-scheme: dark){
+.page-bg{fill:url(#bgD)}
+.page-vig{opacity:0.45}
+.page-hdr{fill:url(#hdrD)}
 rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
 [fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
@@ -19,7 +61,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
 }
 </style>
-<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">LDO 负载瞬态四拍：一次唤醒为何把 MCU 打到复位（AMS1117-5V）</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">LDO 负载瞬态四拍：一次唤醒为何把 MCU 打到复位（AMS1117-5V）</text>
 
 <text x="400" y="51" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#334155">AMS1117-5V · C_out=10µF(ESR 50mΩ) · 负载 10mA→500mA：一次唤醒的四拍</text>
 <rect x="20" y="70" width="174" height="214" rx="10" fill="#f8fafc" stroke="#dc2626" stroke-width="1.8"/>
@@ -75,8 +117,8 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="304" y="210" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#2563eb">C_out 10µF</text>
 <text x="346" y="210" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#475569">R_L</text>
 <text x="320" y="168" font-size="8" font-weight="bold" fill="#dc2626">ESR</text>
-<circle r="4.0" fill="#f59e0b"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M244,174 L316,182"/></circle>
-<circle r="4.0" fill="#f59e0b"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M244,174 L316,182"/></circle>
+<g filter="url(#pglow)"><circle r="4.0" fill="#f59e0b"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M244,174 L316,182"/></circle>
+<circle r="4.0" fill="#f59e0b"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M244,174 L316,182"/></circle></g>
 <text x="299" y="266" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#b45309">ΔV₂ = I·Δt/C</text>
 <text x="299" y="278" text-anchor="middle" font-size="10" fill="#475569">≈ 245mV</text>
 <rect x="404" y="70" width="174" height="214" rx="10" fill="#f8fafc" stroke="#059669" stroke-width="1.8"/>
@@ -104,8 +146,8 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="496" y="210" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#2563eb">C_out 10µF</text>
 <text x="538" y="210" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#475569">R_L</text>
 <text x="512" y="168" font-size="8" font-weight="bold" fill="#dc2626">ESR</text>
-<circle r="4.0" fill="#059669"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M438,153 L502,153"/></circle>
-<circle r="4.0" fill="#059669"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M438,153 L502,153"/></circle>
+<g filter="url(#pglow)"><circle r="4.0" fill="#059669"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M438,153 L502,153"/></circle>
+<circle r="4.0" fill="#059669"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M438,153 L502,153"/></circle></g>
 <text x="491" y="266" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#059669">调整管电阻↓</text>
 <text x="491" y="278" text-anchor="middle" font-size="10" fill="#475569">V_OUT 回升</text>
 <rect x="596" y="70" width="174" height="214" rx="10" fill="#f8fafc" stroke="#7c3aed" stroke-width="1.8"/>
@@ -169,4 +211,4 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="40" y="563" font-size="11" fill="#475569">① ESR 跳变（零延迟）：ΔV₁ = 490mA×50mΩ ≈ 25mV；② 电容放电（µs 级）：ΔV₂ = 0.49A×5µs/10µF ≈ 245mV</text>
 <text x="40" y="585" font-size="11" fill="#475569">总跌落 ≈ 25+245 = 270mV；3.3V 系统复位阈值 −5% = 165mV → 这次唤醒直接触发复位！</text>
 <text x="40" y="597" font-size="10.5" font-weight="bold" fill="#dc2626">对策三板斧：加大 C_out 摊薄 ΔV₂ / 换低 ESR 陶瓷压掉 ΔV₁ / 选快环路 LDO 缩短 Δt</text>
-<text x="400" y="650" text-anchor="middle" font-size="13.2" font-weight="bold" fill="#7c3aed" opacity="0">四拍因果链：ESR 瞬跳 → 电容独自扛 → 环路拉回调管 → 重新锁定（可能过冲）<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.84;0.89;1" dur="12s" repeatCount="indefinite"/></text></svg>
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0" keyTimes="0;0.84;0.89;1" dur="12s" repeatCount="indefinite"/><rect x="137.2" y="638.1" width="525.6" height="21.9" rx="11.0" fill="#7c3aed" fill-opacity="0.09" stroke="#7c3aed" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.84;0.89;1" dur="12s" repeatCount="indefinite"/></rect><text x="400" y="650" text-anchor="middle" font-size="13.2" font-weight="bold" fill="#7c3aed" opacity="0">四拍因果链：ESR 瞬跳 → 电容独自扛 → 环路拉回调管 → 重新锁定（可能过冲）<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.84;0.89;1" dur="12s" repeatCount="indefinite"/></text></g></svg>

@@ -15,7 +15,15 @@ os.makedirs(OUT, exist_ok=True)
 
 DARK_CSS = """<style>
 text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+.page-bg{fill:url(#bgL)}
+.page-vig{opacity:1}
+.page-hdr{fill:url(#hdr)}
+line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
+rect[fill="#f8fafc"],rect[fill="#eff6ff"],rect[fill="#ecfdf5"],rect[fill="#fffbeb"],rect[fill="#fef2f2"],rect[fill="#dbeafe"]{filter:url(#soft)}
 @media (prefers-color-scheme: dark){
+.page-bg{fill:url(#bgD)}
+.page-vig{opacity:0.45}
+.page-hdr{fill:url(#hdrD)}
 rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
 [fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
@@ -38,9 +46,43 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 def svg_open(title, w=800, h=460):
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}">
 <title>{title}</title>
-<rect width="{w}" height="{h}" fill="#f8fafc"/>
+<defs>
+<linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
+</linearGradient>
+<linearGradient id="bgD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#0a1020"/><stop offset="1" stop-color="#141d30"/>
+</linearGradient>
+<radialGradient id="vig" cx="0.5" cy="0.44" r="0.78">
+<stop offset="0.55" stop-color="#0f172a" stop-opacity="0"/><stop offset="1" stop-color="#0f172a" stop-opacity="0.065"/>
+</radialGradient>
+<linearGradient id="hdr" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2563eb" stop-opacity="0.10"/>
+<stop offset="0.55" stop-color="#2563eb" stop-opacity="0.030"/>
+<stop offset="1" stop-color="#2563eb" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="hdrD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#60a5fa" stop-opacity="0.13"/>
+<stop offset="0.55" stop-color="#60a5fa" stop-opacity="0.040"/>
+<stop offset="1" stop-color="#60a5fa" stop-opacity="0"/>
+</linearGradient>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+<circle cx="1.5" cy="1.5" r="1.05" fill="#cbd5e1"/>
+</pattern>
+<filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+<feDropShadow dx="0" dy="1.6" stdDeviation="2.4" flood-color="#0f172a" flood-opacity="0.17"/>
+</filter>
+<filter id="pglow" x="-70%" y="-70%" width="240%" height="240%">
+<feGaussianBlur stdDeviation="2.1" result="b"/>
+<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs>
+<rect class="page-bg" width="{w}" height="{h}" fill="url(#bgL)"/>
+<rect width="{w}" height="{h}" fill="url(#dots)" opacity="0.40"/>
+<rect class="page-vig" width="{w}" height="{h}" fill="url(#vig)"/>
+<rect class="page-hdr" width="{w}" height="72" fill="url(#hdr)"/>
 {DARK_CSS}
-<text x="{w//2}" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">{title}</text>
+<text x="{w//2}" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">{title}</text>
 '''
 
 
@@ -48,26 +90,96 @@ def flow(path, dur, n=3, color="#f59e0b", r=5.5, stagger=None, keypoints=None, k
     """沿路径的电流粒子；begin 负相位保证静态首帧可见；keypoints/keyTimes 可非匀速"""
     stagger = stagger if stagger is not None else dur / n
     kp = f' keyPoints="{keypoints}" keyTimes="{keytimes}" calcMode="linear"' if keypoints else ''
-    return '\n'.join(
+    inner = '\n'.join(
         f'<circle r="{r}" fill="{color}">'
         f'<animateMotion dur="{dur}s" begin="{i*stagger-0.5:.2f}s" repeatCount="indefinite" path="{path}"{kp}/></circle>'
         for i in range(n))
+    return f'<g filter="url(#pglow)">{inner}</g>'
 
 
-def caption(text, color, dur, kt_values, kt_times, y=400, x=400, size=14.5):
-    """节拍字幕：kt_values/kt_times 控制该幕的显隐窗口"""
-    return (f'<text x="{x}" y="{y}" text-anchor="middle" font-size="{size}" font-weight="bold" fill="{color}" opacity="0">'
-            f'{text}<animate attributeName="opacity" values="{kt_values}" keyTimes="{kt_times}" '
-            f'dur="{dur}s" repeatCount="indefinite"/></text>')
+def _text_w(s, size):
+    """粗略估算文本宽度（CJK/全角/圈号约 1.0em、数字/大写约 0.66em）——用于给字幕配药丸底衬"""
+    w = 0.0
+    for ch in s:
+        o = ord(ch)
+        if o >= 0x2E80 or 0x2460 <= o <= 0x24FF or ch in "—–…":
+            w += size
+        elif ch in "iljI.,:;'|! ":
+            w += size * 0.30
+        elif ch in "→←↑↓⇒⇔±×÷≈≠≤≥√∑∫∞∝°":
+            w += size * 0.95
+        elif 0x0370 <= o <= 0x03FF:            # 希腊字母（Ω、µ 等）
+            w += size * 0.75
+        elif ch.isupper() or ch.isdigit():
+            w += size * 0.66
+        else:
+            w += size * 0.58
+    return w * 1.045
 
 
-def note_box(text, y, dur, delay_kt="0;0.82;0.86;1", color="#059669", bg="#ecfdf5", x=400, w=560):
-    """延迟出现的要点注释框"""
-    return f'''<g opacity="0">
-<animate attributeName="opacity" values="0;0;1;1" keyTimes="{delay_kt}" dur="{dur}s" repeatCount="indefinite"/>
-<rect x="{x-w//2}" y="{y-24}" width="{w}" height="34" rx="8" fill="{bg}" stroke="{color}" stroke-width="1.5"/>
-<text x="{x}" y="{y-2}" text-anchor="middle" font-size="13.5" font-weight="bold" fill="{color}">{text}</text>
-</g>'''
+def caption(text, color, dur, kt_values, kt_times, y=400, x=400, size=14.5, w=800):
+    """节拍字幕：kt_values/kt_times 控制该幕的显隐窗口；配同相显隐的药丸底衬 + 轻微上浮"""
+    tw = _text_w(text, size)
+    pw, ph = tw + 30, size * 1.66
+    pill = ''
+    if pw <= w - 24:                       # 过长的字幕不配底衬，免得压到画面边
+            pill = (f'<rect x="{x-pw/2:.1f}" y="{y-size*0.9:.1f}" width="{pw:.1f}" height="{ph:.1f}" rx="{ph/2:.1f}" '
+                    f'fill="{color}" fill-opacity="0.09" stroke="{color}" stroke-opacity="0.38" stroke-width="1.3" '
+                    f'filter="url(#soft)" opacity="0">'
+                f'<animate attributeName="opacity" values="{kt_values}" keyTimes="{kt_times}" dur="{dur}s" repeatCount="indefinite"/></rect>')
+    txt = (f'<text x="{x}" y="{y}" text-anchor="middle" font-size="{size}" font-weight="bold" fill="{color}" opacity="0">'
+           f'{text}<animate attributeName="opacity" values="{kt_values}" keyTimes="{kt_times}" '
+           f'dur="{dur}s" repeatCount="indefinite"/></text>')
+    # 上浮量跟着淡入曲线走（0→1 对应 6→0px），避免与任意 keyTimes 打架
+    slide = ''
+    try:
+        vals = [float(v) for v in kt_values.split(';')]
+        if len(vals) == len(kt_times.split(';')):
+            tv = ';'.join(f'0 {6*(1-v):.1f}' for v in vals)
+            slide = (f'<animateTransform attributeName="transform" type="translate" values="{tv}" '
+                     f'keyTimes="{kt_times}" dur="{dur}s" repeatCount="indefinite"/>')
+    except ValueError:
+        pass
+    return f'<g>{slide}{pill}{txt}</g>'
+
+
+def _wrap(text, avail, size, maxlines=3):
+    """折行：优先用最少行数，行宽尽量均衡，并倾向在标点后断行"""
+    if _text_w(text, size) <= avail or maxlines <= 1:
+        return [text]
+    for n in range(2, maxlines + 1):               # 先试 2 行，塞不下再 3 行
+        target = _text_w(text, size) / n
+        best = None
+        for i in range(1, len(text)):
+            w1 = _text_w(text[:i], size)
+            if w1 > avail:
+                break
+            rest = text[i:]
+            if _text_w(rest, size) > avail * (n - 1):
+                continue
+            score = abs(w1 - target)
+            if text[i - 1] in "。；！？，、：）」】":   # 标点后断行更自然
+                score *= 0.7
+            if best is None or score < best[0]:
+                best = (score, i)
+        if best is not None:
+            i = best[1]
+            return [text[:i]] + _wrap(text[i:], avail, size, n - 1)
+    return [text]                                  # 实在塞不下，只能溢出
+
+
+def note_box(text, y, dur, delay_kt="0;0.82;0.86;1", color="#059669", bg="#ecfdf5", x=400, w=560, size=13.5):
+    """延迟出现的要点注释框（柔和投影 + 左侧色条；文案过长时自动折行，框高随之增长）"""
+    lines = _wrap(text, w - 34, size)
+    n, sp = len(lines), size + 4.5
+    h = 34 + (n - 1) * sp
+    rects = (f'<rect x="{x-w//2}" y="{y-24}" width="{w}" height="{h}" rx="9" fill="{bg}" stroke="{color}" '
+             f'stroke-width="1.5" filter="url(#soft)"/>'
+             f'<rect x="{x-w//2+6}" y="{y-17}" width="3" height="{h-14}" rx="1.5" fill="{color}"/>')
+    txt = ''.join(f'<text x="{x}" y="{y-2+i*sp:.1f}" text-anchor="middle" font-size="{size}" '
+                  f'font-weight="bold" fill="{color}">{ln}</text>' for i, ln in enumerate(lines))
+    return (f'<g opacity="0">\n<animate attributeName="opacity" values="0;0;1;1" keyTimes="{delay_kt}" '
+            f'dur="{dur}s" repeatCount="indefinite"/>\n{rects}{txt}\n</g>')
 
 
 def trace2(path_d, dur, color="#2563eb", width=3.5, kt="0;0.85;1", plen=700, ghost=True):
@@ -80,7 +192,7 @@ def trace2(path_d, dur, color="#2563eb", width=3.5, kt="0;0.85;1", plen=700, gho
 
 
 def pulse(x, y, w, h, color="#f59e0b", dur=1.2, rx=8):
-    return (f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{rx}" fill="none" stroke="{color}" stroke-width="2.5" opacity="0">'
+    return (f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{rx}" fill="none" stroke="{color}" stroke-width="2.5" opacity="0" filter="url(#pglow)">'
             f'<animate attributeName="opacity" values="0.15;0.9;0.15" dur="{dur}s" repeatCount="indefinite"/></rect>')
 
 
@@ -895,7 +1007,7 @@ def make_ldo_feedback():
 <line x1="300" y1="270" x2="140" y2="270" stroke="#334155" stroke-width="2"/>
 <line x1="140" y1="270" x2="140" y2="191" stroke="#334155" stroke-width="2"/>
 <line x1="140" y1="191" x2="180" y2="191" stroke="#334155" stroke-width="2"/>
-<text x="216" y="292" font-size="10" fill="#7c3aed">采样 1.25V</text>
+<text x="216" y="283" font-size="10" fill="#7c3aed">采样 1.25V</text>
 <rect x="150" y="230" width="70" height="24" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
 <text x="185" y="246" text-anchor="middle" font-size="11" font-weight="bold" fill="#2563eb">基准 1.25V</text>
 <line x1="185" y1="230" x2="185" y2="222" stroke="#334155" stroke-width="2"/>
@@ -967,7 +1079,7 @@ def make_analog_switch():
 <animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.6;0.64;1" dur="{DA}s" repeatCount="indefinite"/></line>
 <circle cx="176" cy="160" r="3.5" fill="#334155"/>
 <text x="118" y="128" font-size="11" font-weight="bold" fill="#334155">NMOS</text>
-<text x="118" y="118" font-size="9.5" fill="#475569">传低电平好手</text>
+<text x="118" y="110" font-size="9.5" fill="#475569">传低电平好手</text>
 <line x1="176" y1="160" x2="210" y2="160" stroke="#334155" stroke-width="2.5"/>
 <line x1="140" y1="160" x2="140" y2="210" stroke="#334155" stroke-width="2.5"/>
 <line x1="210" y1="160" x2="210" y2="210" stroke="#334155" stroke-width="2.5"/>
@@ -1089,7 +1201,7 @@ def make_pcb_return_path():
 # ======================= 图 13：差分对 =======================
 def make_diff_pair():
     DD = 6
-    svg = svg_open('差分对：只认「差」，不认「同」——运放第一级的灵魂', h=520)
+    svg = svg_open('差分对：只认「差」，不认「同」——运放第一级的灵魂', h=562)
     svg += f'''
 <text x="330" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">差分对（长尾对）：2mA 的零和游戏</text>
 <text x="56" y="76" font-size="12.5" font-weight="bold" fill="#b45309">VCC</text>
@@ -1152,7 +1264,7 @@ def make_diff_pair():
                    "0;0;1;1;0;0", "0;0.28;0.33;0.48;0.53;1", y=478)
     svg += caption("③ 温度漂移是同向的=共模——被结构天然免疫，这就是运放第一级必选它的原因", "#7c3aed", DD,
                    "0;0;1;1", "0;0.55;0.6;1", y=478)
-    svg += note_box("CMRR（共模抑制比）的全部秘密 = 尾电流源的内阻——内阻越大，共模越动弹不得", 500, DD, "0;0.66;0.71;1", w=700)
+    svg += note_box("CMRR（共模抑制比）的全部秘密 = 尾电流源的内阻——内阻越大，共模越动弹不得", 532, DD, "0;0.66;0.71;1", w=700)
     save('diff-pair.svg', svg + '</svg>')
 
 
@@ -1176,7 +1288,7 @@ def make_buck_converter():
 <line x1="140" y1="96" x2="170" y2="68" stroke="#059669" stroke-width="3">
 <animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.4;0.46;1" dur="{DB}s" repeatCount="indefinite"/></line>
 <circle cx="176" cy="96" r="3.5" fill="#334155"/>
-<text x="126" y="62" font-size="11" font-weight="bold" fill="#334155">开关 SW</text>
+<text x="126" y="69" font-size="11" font-weight="bold" fill="#334155">开关 SW</text>
 <line x1="176" y1="96" x2="200" y2="96" stroke="#334155" stroke-width="2.5"/>
 <circle cx="205" cy="96" r="4" fill="#334155"/>
 <text x="166" y="86" font-size="10" fill="#7c3aed">开关节点</text>
@@ -1357,7 +1469,7 @@ def make_wien_bridge():
 <line x1="300" y1="255" x2="300" y2="262" stroke="#334155" stroke-width="2"/>
 {gnd_sym(300, 276)}
 <text x="296" y="250" text-anchor="end" font-size="10.5" fill="#475569">增益 = 1+Rf/R1 = 3</text>
-<text x="40" y="118" font-size="11" fill="#475569">反馈回 +端</text>
+<text x="40" y="104" font-size="11" fill="#475569">反馈回 +端</text>
 <path d="M45,140 C20,140 20,310 200,310 C340,310 380,230 400,150" fill="none" stroke="#7c3aed" stroke-width="1.8" stroke-dasharray="5,4">
 <animate attributeName="opacity" values="0.3;1;0.3" dur="1.8s" repeatCount="indefinite"/></path>
 '''
@@ -1677,7 +1789,7 @@ def make_precision_rectifier():
         half_pts.append(f"{x:.0f},{280 - 40*max(0.0, s):.0f}")
     half_d = "M" + " L".join(half_pts)
     flat_d = f"M430,280 L750,280"
-    svg = svg_open('精密整流：运放「借增益」消灭二极管压降', h=500)
+    svg = svg_open('精密整流：运放「借增益」消灭二极管压降', h=512)
     svg += f'''
 <text x="210" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">精密半波整流器（反相型）</text>
 <text x="16" y="145" font-size="11" fill="#475569">输入</text>
@@ -1720,12 +1832,12 @@ def make_precision_rectifier():
 <line x1="430" y1="360" x2="750" y2="360" stroke="#64748b" stroke-width="1.2"/>
 '''
     svg += caption("① 正半周：运放开环增益 10 万倍——输出只需多抬 0.7V，折算回输入仅 7µV 误差", "#059669", DP,
-                   "0;1;1;0;0", "0;0.03;0.22;0.28;1", y=430)
+                   "0;1;1;0;0", "0;0.03;0.22;0.28;1", y=440)
     svg += caption("② 负半周：二极管截止、运放饱和也无妨——输出被 Rf 锚在 0", "#dc2626", DP,
-                   "0;0;1;1;0;0", "0;0.3;0.35;0.58;0.64;1", y=430)
+                   "0;0;1;1;0;0", "0;0.3;0.35;0.58;0.64;1", y=440)
     svg += caption("③ 对比：普通二极管对 100mV 信号输出为零；精密整流分毫毕现——mV 级信号救星", "#2563eb", DP,
-                   "0;0;1;1", "0;0.64;0.7;1", y=430)
-    svg += note_box("0.7V ÷ 开环增益 = 等效死区 7µV——把非线性元件塞进反馈环，让增益替你买单", 474, DP, "0;0.74;0.79;1", w=680)
+                   "0;0;1;1", "0;0.64;0.7;1", y=440)
+    svg += note_box("0.7V ÷ 开环增益 = 等效死区 7µV——把非线性元件塞进反馈环，让增益替你买单", 486, DP, "0;0.74;0.79;1", w=680)
     save('precision-rectifier.svg', svg + '</svg>')
 
 
@@ -2016,7 +2128,7 @@ def make_bandgap():
     DBG = 6
     vbe_d = "M430,190 " + " L".join(f"{430+320*i/80:.0f},{190+52*(i/80)**1.15:.0f}" for i in range(81))
     dvbe_d = "M430,262 " + " L".join(f"{430+320*i/80:.0f},{262-52*(i/80):.0f}" for i in range(81))
-    svg = svg_open('带隙基准：一正一负，凑出与温度无关的 1.25V', h=500)
+    svg = svg_open('带隙基准：一正一负，凑出与温度无关的 1.25V', h=520)
     svg += f'''
 <text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">V_REF = V_BE + K·ΔV_BE ≈ 1.25V（硅带隙电压）</text>
 <rect x="60" y="80" width="320" height="220" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
@@ -2183,7 +2295,7 @@ def make_charge_pump():
         x = 430 + 320*u
         ramp_pts.append(f"{x:.0f},{330-120*(1-np.exp(-3*u)):.0f}")
     ramp_d = "M" + " L".join(ramp_pts)
-    svg = svg_open('电荷泵：电容当「斗提机」，不用电感也升压', h=500)
+    svg = svg_open('电荷泵：电容当「斗提机」，不用电感也升压', h=522)
     svg += f'''
 <text x="230" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">倍压电荷泵（两相时钟， Vin → 2Vin）</text>
 <text x="18" y="106" font-size="12.5" font-weight="bold" fill="#b45309">Vin</text>
@@ -2444,7 +2556,7 @@ def make_peak_detector():
         peak = max(cur, peak - 6.0*(1/121)*40)
         pk_pts.append(f"{x:.0f},{170-peak:.0f}")
     pk_d = "M" + " L".join(pk_pts)
-    svg = svg_open('峰值检测：只许上、不许下的单向记忆', h=500)
+    svg = svg_open('峰值检测：只许上、不许下的单向记忆', h=522)
     svg += f'''
 <text x="230" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">精密整流 + 保持电容 + 泄放电阻（缓冲级见 12.6）</text>
 <text x="16" y="145" font-size="11" fill="#475569">输入</text>
@@ -2512,7 +2624,7 @@ def make_inverting_buckboost():
         y = 372 - (30*seg/0.5 if seg < 0.5 else 30*(1-seg)/0.5)
         il_pts.append(f"{x:.0f},{y:.0f}")
     il_d = "M" + " L".join(il_pts)
-    svg = svg_open('反相 Buck-Boost：正电压进去，负电压出来', h=520)
+    svg = svg_open('反相 Buck-Boost：正电压进去，负电压出来', h=542)
     svg += f'''
 <text x="230" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">+12V → −12V（占空比 50%）</text>
 <text x="18" y="102" font-size="12.5" font-weight="bold" fill="#b45309">+12V</text>
@@ -2521,7 +2633,7 @@ def make_inverting_buckboost():
 <line x1="120" y1="96" x2="150" y2="68" stroke="#059669" stroke-width="3">
 <animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.4;0.46;1" dur="{DBB}s" repeatCount="indefinite"/></line>
 <circle cx="156" cy="96" r="3.5" fill="#334155"/>
-<text x="100" y="62" font-size="11" font-weight="bold" fill="#334155">开关 SW</text>
+<text x="100" y="69" font-size="11" font-weight="bold" fill="#334155">开关 SW</text>
 <line x1="156" y1="96" x2="200" y2="96" stroke="#334155" stroke-width="2.5"/>
 <circle cx="205" cy="96" r="4" fill="#334155"/>
 <text x="166" y="86" font-size="10" fill="#7c3aed">开关节点</text>
@@ -2843,7 +2955,7 @@ def make_neg_feedback():
     DC = 6
     vin_d = sine_path(60, 390, 320, 12)
     vout_d = sine_path(430, 772, 320, 72)
-    svg = svg_open('负反馈：十万倍的蛮力，被一根线驯成 6 倍', h=480)
+    svg = svg_open('负反馈：十万倍的蛮力，被一根线驯成 6 倍', h=506)
     svg += f'''
 <circle cx="90" cy="220" r="21" fill="none" stroke="#2563eb" stroke-width="2.5"/>
 <path d="M79,220 q5.5,-14 11,0 q5.5,14 11,0" fill="none" stroke="#2563eb" stroke-width="2"/>
@@ -2909,7 +3021,7 @@ def make_integrator():
         vout_pts.append(f"{x2:.0f},{y2:.0f}")
     vin_d = "M" + " L".join(vin_pts)
     vout_d = "M" + " L".join(vout_pts)
-    svg = svg_open('积分器：方波进、三角波出——电容在「攒」电压', h=480)
+    svg = svg_open('积分器：方波进、三角波出——电容在「攒」电压', h=524)
     svg += f'''
 <circle cx="90" cy="180" r="21" fill="none" stroke="#2563eb" stroke-width="2.5"/>
 <path d="M79,186 h6 v-9 h7 v9 h7 v-9 h8" fill="none" stroke="#2563eb" stroke-width="2"/>
@@ -2966,7 +3078,7 @@ def make_virtual_ground():
     DC = 6
     vin_d = sine_path(424, 760, 320, 23.7)
     vout_d = sine_path(424, 760, 225, 23.7)
-    svg = svg_open('单电源运放：两只电阻造出「半个电源」的假地', h=480)
+    svg = svg_open('单电源运放：两只电阻造出「半个电源」的假地', h=506)
     svg += f'''
 <text x="150" y="68" text-anchor="middle" font-size="11" font-weight="bold" fill="#dc2626">+12V</text>
 <line x1="90" y1="80" x2="320" y2="80" stroke="#334155" stroke-width="2.5"/>
@@ -3043,7 +3155,7 @@ def make_schmitt_osc():
         vc_pts.append(f"{x:.0f},{355 - 10 * vc:.1f}")
     vc_d = "M" + " L".join(vc_pts)
     sq_d = square_path(430, 772, 405, 305, periods=2)
-    svg = svg_open('迟滞振荡器：方波从两只门槛之间自己「弹」出来', h=480)
+    svg = svg_open('迟滞振荡器：方波从两只门槛之间自己「弹」出来', h=506)
     svg += f'''
 <polygon points="480,92 480,176 566,134" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
 <text x="492" y="120" font-size="15" font-weight="bold" fill="#dc2626">−</text>
@@ -3307,7 +3419,6 @@ def make_fault_lookup():
             caps += caption(txt, col, DF, "0;0;1;1", f"0;{a:.2f};{a+0.02:.2f};1", y=530) + '\n'
     svg = svg_open('故障速查：症状 → 头号嫌疑 → 验证手段', h=560)
     svg += f'''
-<text x="400" y="40" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">故障速查：症状 → 头号嫌疑 → 验证手段</text>
 <text x="400" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">查案手册怎么用：三列对号入座，验证手段当场执行——每类故障一条链路</text>
 {body}
 '''
@@ -3371,7 +3482,6 @@ def make_master_wisdom():
             caps += caption(txt, col, DF, "0;0;1;1", f"0;{a:.2f};{a+0.02:.2f};1", y=440) + '\n'
     svg = svg_open('大师的排故智慧：三份心法，一条军规', h=520)
     svg += f'''
-<text x="400" y="40" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">大师的排故智慧：三份心法，一条军规</text>
 <text x="400" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">金句逐条读，粒子替你走流程——军规清单在底部</text>
 {body}
 <text x="400" y="478" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">排故不是体力活，是科学方法——观察 → 假设 → 实验 → 结论，一次循环逼近真相</text>
@@ -3428,7 +3538,6 @@ def make_design_flow():
             caps += caption(txt, col, DF, "0;0;1;1", f"0;{a:.2f};{a+0.02:.2f};1", y=330) + '\n'
     svg = svg_open('从需求到打样：六步流程', h=430)
     svg += f'''
-<text x="400" y="40" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">从需求到打样：六步流程</text>
 <text x="400" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">六步一链，粒子从头走到尾——仿真不过，沿橙色回环回炉</text>
 {body}
 <text x="400" y="400" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">流程是螺旋不是直线：仿真验证不过 → 回炉改选型/降额——指标逐条对照再进下一步</text>
@@ -3475,7 +3584,6 @@ def make_thinking_toolbox():
             caps += caption(txt, col, DF, "0;0;1;1", f"0;{a:.2f};{a+0.02:.2f};1", y=445) + '\n'
     svg = svg_open('思维工具箱：老手的四个暗器', h=500)
     svg += f'''
-<text x="400" y="40" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">思维工具箱：老手的四个暗器</text>
 <text x="400" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">开工先归因 · 坏板找对比 · 偶发用极限 · 短路靠隔离</text>
 {body}
 <text x="400" y="478" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">四招组合就是老手的节奏——先内外、再对比、极限逼、隔离切</text>
@@ -3492,7 +3600,7 @@ def make_ground_star():
 <rect x="30" y="100" width="350" height="270" rx="14" fill="#f8fafc" stroke="#dc2626" stroke-width="2.5"/>
 <text x="54" y="132" font-size="15" font-weight="bold" fill="#dc2626">✗ 共用地线：压降踩进信号地</text>
 <rect x="60" y="150" width="120" height="26" rx="6" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
-<text x="120" y="167" text-anchor="middle" font-size="11" fill="#1e293b">负载 R_L</text>
+<text x="120" y="158" text-anchor="middle" font-size="11" fill="#1e293b">负载 R_L</text>
 <rect x="60" y="230" width="120" height="26" rx="6" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
 <text x="120" y="247" text-anchor="middle" font-size="11" fill="#1e293b">放大器</text>
 <line x1="120" y1="176" x2="120" y2="192" stroke="#dc2626" stroke-width="3"/>
@@ -3547,7 +3655,6 @@ def make_ground_star():
             caps += caption(txt, col, DF, "0;0;1;1", f"0;{a:.2f};{a+0.02:.2f};1", y=430) + '\n'
     svg = svg_open('一点接地：让大电流别踩小信号的路', h=500)
     svg += f'''
-<text x="400" y="40" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">一点接地：让大电流别踩小信号的路</text>
 <text x="400" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">共用地线 = 压降共享；星形一点接地 = 压降隔离——模拟工程师的终极命题</text>
 {left}
 {right}
@@ -3607,7 +3714,6 @@ def make_transformer():
             caps += caption(txt, col, DT, "0;0;1;1", f"0;{a:.2f};{a+0.02:.2f};1", y=430) + '\n'
     svg = svg_open('变压器：电压换电流，能量原样过', h=520)
     svg += f'''
-<text x="400" y="40" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">变压器：电压换电流，能量原样过</text>
 <text x="400" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">变比 N₁:N₂ 决定电压电流的「汇率」——初次级之间没有导线相连</text>
 {body}
 <text x="400" y="490" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">磁通这根「无形的轴」把能量从初级搬到次级——这是隔离的物理根源</text>
@@ -3773,7 +3879,7 @@ def make_bjt_regions():
 <circle r="7" fill="#7c3aed" stroke="#ffffff" stroke-width="2">
 <animateMotion dur="{DB}s" repeatCount="indefinite" path="M456,214 L790,332" keyPoints="0;1;0" keyTimes="0;0.5;1"/></circle>
 <text x="600" y="254" font-size="11" font-weight="bold" fill="#7c3aed">Q（工作点）</text>
-<text x="620" y="374" text-anchor="middle" font-size="10.5" fill="#475569">蓝线=输出特性　紫虚线=负载线　圆点沿负载线来回扫：左端饱和、右端截止</text>
+<text x="612" y="374" text-anchor="middle" font-size="10.5" fill="#475569">蓝线=输出特性　紫虚线=负载线　圆点沿负载线来回扫：左端饱和、右端截止</text>
 <circle r="4.5" fill="#f59e0b"><animateMotion dur="{DB}s" begin="-0.2s" repeatCount="indefinite" path="M105,112 L105,138"/></circle>
 <circle r="4.5" fill="#f59e0b"><animateMotion dur="{DB}s" begin="-0.9s" repeatCount="indefinite" path="M70,112 L70,168"/></circle>
 <circle r="4.5" fill="#f59e0b"><animateMotion dur="{DB}s" begin="-1.6s" repeatCount="indefinite" path="M52,190 L93,190"/></circle>
@@ -3978,7 +4084,7 @@ def make_cap_parasitics():
         return f'<path d="M' + " L".join(pts) + f'" fill="none" stroke="{color}" stroke-width="{wid}"/>'
     srf_ml = 1/(2*np.pi*np.sqrt(ML[0]*ML[2]))
     srf_el = 1/(2*np.pi*np.sqrt(EL[0]*EL[2]))
-    svg = svg_open('真实电容的阻抗频谱：谷底有多低，决定它能救多高的频', h=600)
+    svg = svg_open('真实电容的阻抗频谱：谷底有多低，决定它能救多高的频', h=622)
     svg += f'''
 <text x="180" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">等效模型：C 串 ESR 串 ESL</text>
 <text x="40" y="120" font-size="11.5" fill="#475569">纹波源</text>
@@ -4198,7 +4304,7 @@ def make_opamp_slew():
 <text x="{px(3):.0f}" y="{Y1+20}" text-anchor="end" font-size="10" fill="#475569">3µs</text>
 <line x1="{px(2):.0f}" y1="{py(1):.0f}" x2="{px(2):.0f}" y2="{Y1}" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="4,3"/>
 <line x1="{X0}" y1="{py(0.999):.0f}" x2="{px(2.75):.0f}" y2="{py(0.999):.0f}" stroke="#059669" stroke-width="1" stroke-dasharray="3,3"/>
-<text x="{px(2.78):.0f}" y="{py(0.999)+4:.0f}" font-size="10.5" font-weight="bold" fill="#059669">0.1% 误差带</text>
+<text x="{X1}" y="{py(0.999)-6:.0f}" text-anchor="end" font-size="10.5" font-weight="bold" fill="#059669">0.1% 误差带</text>
 <path d="{slew_path(2.0, 0.16)}" fill="none" stroke="#2563eb" stroke-width="3"/>
 <path d="{slew_path(0.0, 0.16)}" fill="none" stroke="#64748b" stroke-width="2.4" stroke-dasharray="6,4"/>
 <text x="{px(2)-8:.0f}" y="{py(0.35):.0f}" text-anchor="end" font-size="10.5" fill="#64748b">若只有 GBW=1MHz 的小信号速度</text>
@@ -4911,7 +5017,7 @@ def make_lm393_inside():
 # ======================= 图 60：齐纳 vs 带隙（第 9 章 9.1） =======================
 def make_ref_showdown():
     DR = 11
-    svg = svg_open('齐纳 vs 带隙：两种基准，两套温漂账', h=620)
+    svg = svg_open('齐纳 vs 带隙：两种基准，两套温漂账', h=672)
     svg += f'''
 <text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">同一个问题（要一个不动的电压），两条技术路线</text>
 <rect x="34" y="76" width="350" height="240" rx="10" fill="#f8fafc" stroke="#b45309" stroke-width="1.8"/>
@@ -4978,7 +5084,7 @@ def make_ref_showdown():
                    "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=592)
     svg += caption("④ 选型口诀：粗基准看齐纳、精密基准看带隙——温漂差两个数量级", "#059669", DR,
                    "0;0;1;1", "0;0.85;0.9;1", y=592)
-    svg += note_box("带隙能赢不是因为「更复杂」，而是因为它把温漂做成了「两个比值之比」——IC 里比值天生好匹配", 610, DR,
+    svg += note_box("带隙能赢不是因为「更复杂」，而是因为它把温漂做成了「两个比值之比」——IC 里比值天生好匹配", 644, DR,
                     "0;0.9;0.94;1", w=740)
     save('ref-showdown.svg', svg + '</svg>')
 
@@ -5260,7 +5366,7 @@ def make_resistor_model():
     px = lambda f: X0 + (np.log10(f)-3)/8.0*(X1-X0)               # 1kHz .. 100GHz
     py = lambda z: Y0 + (np.log10(2e4)-np.log10(max(z, 10)))/np.log10(2e3)*(Y1-Y0)
     real_d = "M" + " L".join(f"{px(f):.0f},{py(zmag(f)):.0f}" for f in np.logspace(3, 11, 320))
-    svg = svg_open('真实电阻：高频时它不再是「一个电阻」', h=620)
+    svg = svg_open('真实电阻：高频时它不再是「一个电阻」', h=648)
     svg += f'''
 <text x="205" y="50" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">等效模型：R 并 C（体电容），再串 L（引线电感）</text>
 <text x="60" y="96" font-size="11.5" fill="#475569">理想 R</text>
@@ -5767,7 +5873,7 @@ def make_bjt_switch():
 <rect x="68" y="257" width="46" height="24" rx="3" fill="#f8fafc" stroke="#b45309" stroke-width="2.5"/>
 <text x="91" y="245" text-anchor="middle" font-size="11" font-weight="bold" fill="#b45309">R_b 360Ω</text>
 <line x1="68" y1="269" x2="30" y2="269" stroke="#334155" stroke-width="2.5"/>
-<text x="24" y="265" text-anchor="end" font-size="11.5" font-weight="bold" fill="#059669">MCU 3.3V</text>
+<text x="6" y="256" font-size="11.5" font-weight="bold" fill="#059669">MCU 3.3V</text>
 <circle r="5" fill="#059669"><animateMotion dur="{DS}s" begin="-0.3s" repeatCount="indefinite" path="M32,269 L66,269"/></circle>
 <circle r="5" fill="#059669"><animateMotion dur="{DS}s" begin="-1.0s" repeatCount="indefinite" path="M116,269 L148,269"/></circle>
 <circle r="5" fill="#2563eb"><animateMotion dur="{DS}s" begin="-1.7s" repeatCount="indefinite" path="M182,250 L182,288 L180,316"/></circle>
@@ -5879,7 +5985,7 @@ def make_body_diode():
 # ======================= 图 74：CD4051 多路复用（第 8 章 8.2） =======================
 def make_mux4051():
     DM = 11
-    svg = svg_open('CD4051：八路传感器共用一个 ADC', h=620)
+    svg = svg_open('CD4051：八路传感器共用一个 ADC', h=732)
     svg += f'''
 <text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">3 位地址选 8 路之一 —— 多路复用器就是「模拟旋转开关」</text>
 <text x="220" y="100" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">CD4051（8 选 1）</text>
@@ -5924,13 +6030,13 @@ def make_mux4051():
 <circle cx="320" cy="300" r="5" fill="none" stroke="#059669" stroke-width="2.2"><animate attributeName="r" values="5;12;5" dur="2.0s" begin="-1.0s" repeatCount="indefinite"/></circle>
 '''
     svg += caption("① 三位地址选通一路：8 个传感器轮流接到同一个 ADC——省掉 7 个 ADC", "#2563eb", DM,
-                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=596)
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=700)
     svg += caption("② 通道是双向的：COM 既能输出（送 ADC）、也能输入（做信号分配）", "#059669", DM,
-                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=596)
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=700)
     svg += caption("③ 切换瞬间有电荷注入与 Ron 变化——别在转换中途切通道（见 8.6）", "#dc2626", DM,
-                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=596)
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=700)
     svg += caption("④ 同族选型：4052 双 4 选 1、4053 三路 2 选 1、74HC4051 高速版", "#b45309", DM,
-                   "0;0;1;1", "0;0.85;0.9;1", y=596)
+                   "0;0;1;1", "0;0.85;0.9;1", y=700)
     save('mux-4051.svg', svg + '</svg>')
 
 
@@ -6084,7 +6190,7 @@ def make_opamp_map():
 # ======================= 图 77：Datasheet 六参数优先级（第 6 章 6.3） =======================
 def make_datasheet_params():
     DP = 11
-    svg = svg_open('Datasheet 五十页，先读这六行', h=620)
+    svg = svg_open('Datasheet 五十页，先读这六行', h=732)
     svg += f'''
 <text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">按「会咬人」的先后排序 —— 每一项都给出它咬在哪</text>
 '''
@@ -6120,20 +6226,20 @@ def make_datasheet_params():
 {pulse(38, 80, 724, 76, '#7c3aed', 2.0, 10)}
 '''
     svg += caption("① 第一行永远是 V_OS：它被增益放大，直流电路的头号杀手", "#7c3aed", DP,
-                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=600)
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=690)
     svg += caption("② I_B 只在「高源阻抗」时才咬人——>100kΩ 就必须换 FET 输入", "#2563eb", DP,
-                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=600)
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=690)
     svg += caption("③ GBW 与 SR 分工：小信号看 GBW、大信号看 SR（两条不同的路）", "#059669", DP,
-                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=600)
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=690)
     svg += caption("④ 读法总结：按「你电路会疼的地方」跳读，别从头翻到尾", "#b45309", DP,
-                   "0;0;1;1", "0;0.85;0.9;1", y=600)
+                   "0;0;1;1", "0;0.85;0.9;1", y=690)
     save('datasheet-params.svg', svg + '</svg>')
 
 
 # ======================= 图 78：7805/AMS1117 故障地图（第 9 章 9.4） =======================
 def make_ldo_failures():
     DF = 11
-    svg = svg_open('7805/AMS1117 四种翻车：每一种都能事先算出来', h=620)
+    svg = svg_open('7805/AMS1117 四种翻车：每一种都能事先算出来', h=742)
     svg += f'''
 <text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">线性稳压的四种死法 —— 根因都是「忘了算一笔账」</text>
 '''
@@ -6182,13 +6288,13 @@ def make_ldo_failures():
 {pulse(32, 78, 736, 116, '#dc2626', 2.0, 10)}
 '''
     svg += caption("① 热账：P=(Vin−Vout)×I —— 12V→5V@300mA 就是 2.1W，没有散热片必然关机", "#dc2626", DF,
-                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=600)
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=706)
     svg += caption("② 纹波账：输入谷值必须 ≥ Vout + 压差，否则 100Hz 纹波直接透到输出", "#b45309", DF,
-                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=600)
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=706)
     svg += caption("③ 稳定性账：LDO 环路靠输出电容的 ESR 零点补偿，ESR 出窗口就振荡", "#7c3aed", DF,
-                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=600)
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=706)
     svg += caption("④ 上电账：快上电 + 大压差会过冲；软启动或换型号。大压差大电流请直接上 DCDC", "#0ea5e9", DF,
-                   "0;0;1;1", "0;0.85;0.9;1", y=600)
+                   "0;0;1;1", "0;0.85;0.9;1", y=706)
     save('ldo-failures.svg', svg + '</svg>')
 
 
@@ -6271,7 +6377,7 @@ def make_bjt_diagnosis():
 # ======================= 图 80：运放六个经典坑（第 6 章 6.6） =======================
 def make_opamp_pitfalls():
     DO = 11
-    svg = svg_open('运放的六个经典坑：每一个都能复现、都能预防', h=620)
+    svg = svg_open('运放的六个经典坑：每一个都能复现、都能预防', h=762)
     svg += f'''
 <text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">症状 → 根因 → 解法，按现场出现频率排序</text>
 '''
@@ -6313,20 +6419,20 @@ def make_opamp_pitfalls():
 {pulse(38, 80, 724, 84, '#dc2626', 2.0, 10)}
 '''
     svg += caption("① 输出贴轨是最高频故障：先查共模范围与反馈回路，别急着换运放", "#dc2626", DO,
-                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=600)
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=728)
     svg += caption("② 容性负载自激：输出串 10~100Ω 隔离电阻是最常用的急救", "#7c3aed", DO,
-                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=600)
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=728)
     svg += caption("③ 三角波化 = SR 不足；直流误差 = V_OS×增益 —— 两笔账都能提前算", "#2563eb", DO,
-                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=600)
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=728)
     svg += caption("④ 诊断顺序：输出电平 → 输入端压差 → 最后才怀疑运放本身", "#b45309", DO,
-                   "0;0;1;1", "0;0.85;0.9;1", y=600)
+                   "0;0;1;1", "0;0.85;0.9;1", y=728)
     save('opamp-pitfalls.svg', svg + '</svg>')
 
 
 # ======================= 图 81：比较器五个坑（第 7 章 7.4） =======================
 def make_comparator_pitfalls():
     DC = 11
-    svg = svg_open('比较器的五个坑：忘了上拉排第一', h=620)
+    svg = svg_open('比较器的五个坑：忘了上拉排第一', h=732)
     svg += f'''
 <text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">LM393 是开漏输出 —— 一半的「故障」都源于这件事</text>
 '''
@@ -6366,13 +6472,13 @@ def make_comparator_pitfalls():
 {pulse(38, 82, 724, 92, '#dc2626', 2.0, 10)}
 '''
     svg += caption("① 「输出一直低」九成是忘接上拉——开漏只会拉低，不会推高", "#dc2626", DC,
-                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=600)
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=690)
     svg += caption("② 阈值附近误触发：不是比较器坏，是缺迟滞——加正反馈造免疫区", "#b45309", DC,
-                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=600)
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=690)
     svg += caption("③ 自激多是布线问题：输入输出走线远离、地平面隔离", "#7c3aed", DC,
-                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=600)
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=690)
     svg += caption("④ 记住开漏的三个红利与一个义务：能转换电平/能与线/能当使能 —— 但必须给上拉", "#059669", DC,
-                   "0;0;1;1", "0;0.85;0.9;1", y=600)
+                   "0;0;1;1", "0;0.85;0.9;1", y=690)
     save('comparator-pitfalls.svg', svg + '</svg>')
 
 

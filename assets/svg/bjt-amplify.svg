@@ -1,9 +1,51 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
 <title>共射放大器：偏置先算准，放大才不翻车（2N2222, β=100）</title>
-<rect width="800" height="500" fill="#f8fafc"/>
+<defs>
+<linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
+</linearGradient>
+<linearGradient id="bgD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#0a1020"/><stop offset="1" stop-color="#141d30"/>
+</linearGradient>
+<radialGradient id="vig" cx="0.5" cy="0.44" r="0.78">
+<stop offset="0.55" stop-color="#0f172a" stop-opacity="0"/><stop offset="1" stop-color="#0f172a" stop-opacity="0.065"/>
+</radialGradient>
+<linearGradient id="hdr" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2563eb" stop-opacity="0.10"/>
+<stop offset="0.55" stop-color="#2563eb" stop-opacity="0.030"/>
+<stop offset="1" stop-color="#2563eb" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="hdrD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#60a5fa" stop-opacity="0.13"/>
+<stop offset="0.55" stop-color="#60a5fa" stop-opacity="0.040"/>
+<stop offset="1" stop-color="#60a5fa" stop-opacity="0"/>
+</linearGradient>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+<circle cx="1.5" cy="1.5" r="1.05" fill="#cbd5e1"/>
+</pattern>
+<filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+<feDropShadow dx="0" dy="1.6" stdDeviation="2.4" flood-color="#0f172a" flood-opacity="0.17"/>
+</filter>
+<filter id="pglow" x="-70%" y="-70%" width="240%" height="240%">
+<feGaussianBlur stdDeviation="2.1" result="b"/>
+<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs>
+<rect class="page-bg" width="800" height="500" fill="url(#bgL)"/>
+<rect width="800" height="500" fill="url(#dots)" opacity="0.40"/>
+<rect class="page-vig" width="800" height="500" fill="url(#vig)"/>
+<rect class="page-hdr" width="800" height="72" fill="url(#hdr)"/>
 <style>
 text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+.page-bg{fill:url(#bgL)}
+.page-vig{opacity:1}
+.page-hdr{fill:url(#hdr)}
+line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
+rect[fill="#f8fafc"],rect[fill="#eff6ff"],rect[fill="#ecfdf5"],rect[fill="#fffbeb"],rect[fill="#fef2f2"],rect[fill="#dbeafe"]{filter:url(#soft)}
 @media (prefers-color-scheme: dark){
+.page-bg{fill:url(#bgD)}
+.page-vig{opacity:0.45}
+.page-hdr{fill:url(#hdrD)}
 rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
 [fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
@@ -19,7 +61,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
 }
 </style>
-<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">共射放大器：偏置先算准，放大才不翻车（2N2222, β=100）</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">共射放大器：偏置先算准，放大才不翻车（2N2222, β=100）</text>
 
 <text x="205" y="62" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">电路（固定偏置 · 可实搭）</text>
 <text x="36" y="92" font-size="13" font-weight="bold" fill="#b45309">+12V</text>
@@ -65,7 +107,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="150" y="262" font-size="11.5" font-weight="bold" fill="#dc2626">I_B ≈ 29µA</text>
 <text x="296" y="100" text-anchor="end" font-size="11.5" font-weight="bold" fill="#2563eb">I_C ≈ 2.9mA</text>
 <text x="322" y="192" font-size="11.5" font-weight="bold" fill="#059669">V_CE ≈ 6.2V</text>
-<circle r="6" fill="#2563eb"><animateMotion dur="6s" begin="-0.50s" repeatCount="indefinite" path="M74,82 H296 V300"/></circle>
+<g filter="url(#pglow)"><circle r="6" fill="#2563eb"><animateMotion dur="6s" begin="-0.50s" repeatCount="indefinite" path="M74,82 H296 V300"/></circle>
 <circle r="6" fill="#2563eb"><animateMotion dur="6s" begin="0.17s" repeatCount="indefinite" path="M74,82 H296 V300"/></circle>
 <circle r="6" fill="#2563eb"><animateMotion dur="6s" begin="0.83s" repeatCount="indefinite" path="M74,82 H296 V300"/></circle>
 <circle r="6" fill="#2563eb"><animateMotion dur="6s" begin="1.50s" repeatCount="indefinite" path="M74,82 H296 V300"/></circle>
@@ -73,9 +115,9 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <circle r="6" fill="#2563eb"><animateMotion dur="6s" begin="2.83s" repeatCount="indefinite" path="M74,82 H296 V300"/></circle>
 <circle r="6" fill="#2563eb"><animateMotion dur="6s" begin="3.50s" repeatCount="indefinite" path="M74,82 H296 V300"/></circle>
 <circle r="6" fill="#2563eb"><animateMotion dur="6s" begin="4.17s" repeatCount="indefinite" path="M74,82 H296 V300"/></circle>
-<circle r="6" fill="#2563eb"><animateMotion dur="6s" begin="4.83s" repeatCount="indefinite" path="M74,82 H296 V300"/></circle><circle r="4.5" fill="#dc2626"><animateMotion dur="6s" begin="-0.50s" repeatCount="indefinite" path="M180,92 V206 H212"/></circle>
+<circle r="6" fill="#2563eb"><animateMotion dur="6s" begin="4.83s" repeatCount="indefinite" path="M74,82 H296 V300"/></circle></g><g filter="url(#pglow)"><circle r="4.5" fill="#dc2626"><animateMotion dur="6s" begin="-0.50s" repeatCount="indefinite" path="M180,92 V206 H212"/></circle>
 <circle r="4.5" fill="#dc2626"><animateMotion dur="6s" begin="1.50s" repeatCount="indefinite" path="M180,92 V206 H212"/></circle>
-<circle r="4.5" fill="#dc2626"><animateMotion dur="6s" begin="3.50s" repeatCount="indefinite" path="M180,92 V206 H212"/></circle><g opacity="0"><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.2;0.24;1" dur="6s" repeatCount="indefinite"/>
+<circle r="4.5" fill="#dc2626"><animateMotion dur="6s" begin="3.50s" repeatCount="indefinite" path="M180,92 V206 H212"/></circle></g><g opacity="0"><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.2;0.24;1" dur="6s" repeatCount="indefinite"/>
 <rect x="163" y="100" width="34" height="68" rx="6" fill="none" stroke="#f59e0b" stroke-width="3">
 <animate attributeName="opacity" values="0.2;0.95;0.2" dur="1.1s" repeatCount="indefinite"/></rect></g>
 <g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.48;0.52;0.78;0.82;1" dur="6s" repeatCount="indefinite"/>
@@ -93,8 +135,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <line x1="440" y1="400" x2="760" y2="400" stroke="#64748b" stroke-width="1.8"/>
 <path d="M450,330 L456,322 L462,315 L469,308 L475,301 L481,295 L488,289 L494,284 L500,280 L506,276 L512,274 L519,272 L525,272 L531,272 L538,274 L544,276 L550,280 L556,284 L562,289 L569,295 L575,301 L581,308 L588,315 L594,322 L600,330 L606,338 L612,345 L619,352 L625,359 L631,365 L638,371 L644,376 L650,380 L656,384 L662,386 L669,388 L675,388 L681,388 L688,386 L694,384 L700,380 L706,376 L712,371 L719,365 L725,359 L731,352 L738,345 L744,338 L750,330" fill="none" stroke="#2563eb" stroke-width="3"/>
 <circle r="6" fill="#fff" stroke="#2563eb" stroke-width="3"><animateMotion dur="3s" repeatCount="indefinite" path="M450,330 L456,322 L462,315 L469,308 L475,301 L481,295 L488,289 L494,284 L500,280 L506,276 L512,274 L519,272 L525,272 L531,272 L538,274 L544,276 L550,280 L556,284 L562,289 L569,295 L575,301 L581,308 L588,315 L594,322 L600,330 L606,338 L612,345 L619,352 L625,359 L631,365 L638,371 L644,376 L650,380 L656,384 L662,386 L669,388 L675,388 L681,388 L688,386 L694,384 L700,380 L706,376 L712,371 L719,365 L725,359 L731,352 L738,345 L744,338 L750,330"/></circle>
-<text x="400" y="448" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">① 先偏置：R_B 从 12V 喂基流——没有偏置，信号再标准也放不出来<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.04;0.18;0.22;1" dur="6s" repeatCount="indefinite"/></text><text x="400" y="448" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">② 核算：I_B=(12−0.7)÷390k≈29µA → I_C=100×29µA≈2.9mA → V_CE=12−5.8≈6.2V<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.22;0.26;0.44;0.48;1" dur="6s" repeatCount="indefinite"/></text><text x="400" y="448" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">③ 放大：基极 ±10mV → 集电极 ∓2V——约 200 倍，方向相反<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.48;0.52;0.78;0.82;1" dur="6s" repeatCount="indefinite"/></text><text x="400" y="448" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">④ 能量全部来自 12V 电源——三极管是阀门，从不「创造」能量<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.82;0.86;1" dur="6s" repeatCount="indefinite"/></text><g opacity="0">
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.04;0.18;0.22;1" dur="6s" repeatCount="indefinite"/><rect x="149.5" y="434.9" width="500.9" height="24.1" rx="12.0" fill="#b45309" fill-opacity="0.09" stroke="#b45309" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.04;0.18;0.22;1" dur="6s" repeatCount="indefinite"/></rect><text x="400" y="448" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">① 先偏置：R_B 从 12V 喂基流——没有偏置，信号再标准也放不出来<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.04;0.18;0.22;1" dur="6s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.22;0.26;0.44;0.48;1" dur="6s" repeatCount="indefinite"/><rect x="62.8" y="434.9" width="674.4" height="24.1" rx="12.0" fill="#2563eb" fill-opacity="0.09" stroke="#2563eb" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.22;0.26;0.44;0.48;1" dur="6s" repeatCount="indefinite"/></rect><text x="400" y="448" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">② 核算：I_B=(12−0.7)÷390k≈29µA → I_C=100×29µA≈2.9mA → V_CE=12−5.8≈6.2V<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.22;0.26;0.44;0.48;1" dur="6s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.48;0.52;0.78;0.82;1" dur="6s" repeatCount="indefinite"/><rect x="169.5" y="434.9" width="460.9" height="24.1" rx="12.0" fill="#dc2626" fill-opacity="0.09" stroke="#dc2626" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.48;0.52;0.78;0.82;1" dur="6s" repeatCount="indefinite"/></rect><text x="400" y="448" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">③ 放大：基极 ±10mV → 集电极 ∓2V——约 200 倍，方向相反<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.48;0.52;0.78;0.82;1" dur="6s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0" keyTimes="0;0.82;0.86;1" dur="6s" repeatCount="indefinite"/><rect x="166.2" y="434.9" width="467.6" height="24.1" rx="12.0" fill="#059669" fill-opacity="0.09" stroke="#059669" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.82;0.86;1" dur="6s" repeatCount="indefinite"/></rect><text x="400" y="448" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">④ 能量全部来自 12V 电源——三极管是阀门，从不「创造」能量<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.82;0.86;1" dur="6s" repeatCount="indefinite"/></text></g><g opacity="0">
 <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.9;0.94;1" dur="6s" repeatCount="indefinite"/>
-<rect x="80" y="462" width="640" height="34" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
-<text x="400" y="484" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">2N2222 datasheet：hFE=75~300@10mA，设计时按 β=100 下限留余量</text>
+<rect x="80" y="462" width="640" height="34.0" rx="9" fill="#ecfdf5" stroke="#059669" stroke-width="1.5" filter="url(#soft)"/><rect x="86" y="469" width="3" height="20.0" rx="1.5" fill="#059669"/><text x="400" y="484.0" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">2N2222 datasheet：hFE=75~300@10mA，设计时按 β=100 下限留余量</text>
 </g></svg>

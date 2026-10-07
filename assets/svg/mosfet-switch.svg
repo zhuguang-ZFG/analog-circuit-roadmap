@@ -1,9 +1,51 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="470" viewBox="0 0 800 470">
 <title>MOSFET 开关：3.3V 单片机也能控制的「电压阀门」（AO3400）</title>
-<rect width="800" height="470" fill="#f8fafc"/>
+<defs>
+<linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
+</linearGradient>
+<linearGradient id="bgD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#0a1020"/><stop offset="1" stop-color="#141d30"/>
+</linearGradient>
+<radialGradient id="vig" cx="0.5" cy="0.44" r="0.78">
+<stop offset="0.55" stop-color="#0f172a" stop-opacity="0"/><stop offset="1" stop-color="#0f172a" stop-opacity="0.065"/>
+</radialGradient>
+<linearGradient id="hdr" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2563eb" stop-opacity="0.10"/>
+<stop offset="0.55" stop-color="#2563eb" stop-opacity="0.030"/>
+<stop offset="1" stop-color="#2563eb" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="hdrD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#60a5fa" stop-opacity="0.13"/>
+<stop offset="0.55" stop-color="#60a5fa" stop-opacity="0.040"/>
+<stop offset="1" stop-color="#60a5fa" stop-opacity="0"/>
+</linearGradient>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+<circle cx="1.5" cy="1.5" r="1.05" fill="#cbd5e1"/>
+</pattern>
+<filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+<feDropShadow dx="0" dy="1.6" stdDeviation="2.4" flood-color="#0f172a" flood-opacity="0.17"/>
+</filter>
+<filter id="pglow" x="-70%" y="-70%" width="240%" height="240%">
+<feGaussianBlur stdDeviation="2.1" result="b"/>
+<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs>
+<rect class="page-bg" width="800" height="470" fill="url(#bgL)"/>
+<rect width="800" height="470" fill="url(#dots)" opacity="0.40"/>
+<rect class="page-vig" width="800" height="470" fill="url(#vig)"/>
+<rect class="page-hdr" width="800" height="72" fill="url(#hdr)"/>
 <style>
 text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+.page-bg{fill:url(#bgL)}
+.page-vig{opacity:1}
+.page-hdr{fill:url(#hdr)}
+line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
+rect[fill="#f8fafc"],rect[fill="#eff6ff"],rect[fill="#ecfdf5"],rect[fill="#fffbeb"],rect[fill="#fef2f2"],rect[fill="#dbeafe"]{filter:url(#soft)}
 @media (prefers-color-scheme: dark){
+.page-bg{fill:url(#bgD)}
+.page-vig{opacity:0.45}
+.page-hdr{fill:url(#hdrD)}
 rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
 [fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
@@ -19,7 +61,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
 }
 </style>
-<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">MOSFET 开关：3.3V 单片机也能控制的「电压阀门」（AO3400）</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">MOSFET 开关：3.3V 单片机也能控制的「电压阀门」（AO3400）</text>
 
 <text x="220" y="58" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">低边开关电路</text>
 <text x="50" y="86" font-size="13" font-weight="bold" fill="#b45309">+5V</text>
@@ -65,13 +107,13 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="120" y="352" font-size="10.5" fill="#475569">下拉防浮空</text>
 <text x="360" y="290" font-size="12.5" font-weight="bold" fill="#dc2626" opacity="0">V_GS=0 &lt; V_TH=1.45V：沟道不存在<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.48;0.52;1" dur="4s" repeatCount="indefinite"/></text>
 <text x="360" y="290" font-size="12.5" font-weight="bold" fill="#059669" opacity="0">V_GS=3.3V &gt; V_TH：沟道打开，I_D=20mA<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.48;0.52;1" dur="4s" repeatCount="indefinite"/></text>
-<g><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.56;1" dur="4s" repeatCount="indefinite"/><circle r="5.5" fill="#2563eb"><animateMotion dur="2.0s" begin="-0.50s" repeatCount="indefinite" path="M88,76 H296 V306"/></circle>
+<g><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.56;1" dur="4s" repeatCount="indefinite"/><g filter="url(#pglow)"><circle r="5.5" fill="#2563eb"><animateMotion dur="2.0s" begin="-0.50s" repeatCount="indefinite" path="M88,76 H296 V306"/></circle>
 <circle r="5.5" fill="#2563eb"><animateMotion dur="2.0s" begin="-0.21s" repeatCount="indefinite" path="M88,76 H296 V306"/></circle>
 <circle r="5.5" fill="#2563eb"><animateMotion dur="2.0s" begin="0.07s" repeatCount="indefinite" path="M88,76 H296 V306"/></circle>
 <circle r="5.5" fill="#2563eb"><animateMotion dur="2.0s" begin="0.36s" repeatCount="indefinite" path="M88,76 H296 V306"/></circle>
 <circle r="5.5" fill="#2563eb"><animateMotion dur="2.0s" begin="0.64s" repeatCount="indefinite" path="M88,76 H296 V306"/></circle>
 <circle r="5.5" fill="#2563eb"><animateMotion dur="2.0s" begin="0.93s" repeatCount="indefinite" path="M88,76 H296 V306"/></circle>
-<circle r="5.5" fill="#2563eb"><animateMotion dur="2.0s" begin="1.21s" repeatCount="indefinite" path="M88,76 H296 V306"/></circle></g>
+<circle r="5.5" fill="#2563eb"><animateMotion dur="2.0s" begin="1.21s" repeatCount="indefinite" path="M88,76 H296 V306"/></circle></g></g>
 <text x="595" y="58" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">栅压与漏流（同步）</text>
 <text x="442" y="100" font-size="11.5" font-weight="bold" fill="#7c3aed">V_GS：0 / 3.3V</text>
 <path d="M430,160 L435,160 L440,160 L445,160 L451,160 L456,160 L461,160 L466,160 L471,160 L476,160 L482,160 L487,160 L492,160 L497,160 L502,160 L507,160 L512,120 L518,120 L523,120 L528,120 L533,120 L538,120 L543,120 L549,120 L554,120 L559,120 L564,120 L569,120 L574,120 L580,120 L585,120 L590,120 L595,160 L600,160 L605,160 L610,160 L616,160 L621,160 L626,160 L631,160 L636,160 L641,160 L647,160 L652,160 L657,160 L662,160 L667,160 L672,160 L678,120 L683,120 L688,120 L693,120 L698,120 L703,120 L708,120 L714,120 L719,120 L724,120 L729,120 L734,120 L739,120 L745,120 L750,120 L755,120 L760,160" fill="none" stroke="#7c3aed" stroke-width="3"/>
@@ -82,8 +124,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <line x1="430" y1="80" x2="430" y2="380" stroke="#f59e0b" stroke-width="2" opacity="0.8">
 <animate attributeName="x1" values="430;760;430" keyTimes="0;0.99;1" dur="4s" repeatCount="indefinite"/>
 <animate attributeName="x2" values="430;760;430" keyTimes="0;0.99;1" dur="4s" repeatCount="indefinite"/></line>
-<text x="400" y="410" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">① 栅压 0V：沟道不存在，LED 灭——漏源之间是「断开的开关」<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.04;0.44;0.5;1" dur="4s" repeatCount="indefinite"/></text><text x="400" y="410" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">② 栅压 3.3V > 阈值 1.45V：沟道形成，LED 亮，I_D=(5−2)÷150≈20mA<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.52;0.58;1" dur="4s" repeatCount="indefinite"/></text><g opacity="0">
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.04;0.44;0.5;1" dur="4s" repeatCount="indefinite"/><rect x="163.8" y="396.9" width="472.5" height="24.1" rx="12.0" fill="#dc2626" fill-opacity="0.09" stroke="#dc2626" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.04;0.44;0.5;1" dur="4s" repeatCount="indefinite"/></rect><text x="400" y="410" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">① 栅压 0V：沟道不存在，LED 灭——漏源之间是「断开的开关」<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.04;0.44;0.5;1" dur="4s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0" keyTimes="0;0.52;0.58;1" dur="4s" repeatCount="indefinite"/><rect x="125.9" y="396.9" width="548.2" height="24.1" rx="12.0" fill="#059669" fill-opacity="0.09" stroke="#059669" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.52;0.58;1" dur="4s" repeatCount="indefinite"/></rect><text x="400" y="410" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">② 栅压 3.3V > 阈值 1.45V：沟道形成，LED 亮，I_D=(5−2)÷150≈20mA<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.52;0.58;1" dur="4s" repeatCount="indefinite"/></text></g><g opacity="0">
 <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.6;0.65;1" dur="4s" repeatCount="indefinite"/>
-<rect x="30" y="428" width="740" height="34" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
-<text x="400" y="450" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">栅极只取 nA 级漏电——电压控制零功耗 · MCU 驱动必须选「逻辑电平」MOS（2N7000 在 3.3V 下不可靠）</text>
+<rect x="30" y="428" width="740" height="34.0" rx="9" fill="#ecfdf5" stroke="#059669" stroke-width="1.5" filter="url(#soft)"/><rect x="36" y="435" width="3" height="20.0" rx="1.5" fill="#059669"/><text x="400" y="450.0" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">栅极只取 nA 级漏电——电压控制零功耗 · MCU 驱动必须选「逻辑电平」MOS（2N7000 在 3.3V 下不可靠）</text>
 </g></svg>

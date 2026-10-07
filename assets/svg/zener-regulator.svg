@@ -1,9 +1,51 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
 <title>齐纳稳压：拿电流换电压的「溢流阀」</title>
-<rect width="800" height="500" fill="#f8fafc"/>
+<defs>
+<linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
+</linearGradient>
+<linearGradient id="bgD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#0a1020"/><stop offset="1" stop-color="#141d30"/>
+</linearGradient>
+<radialGradient id="vig" cx="0.5" cy="0.44" r="0.78">
+<stop offset="0.55" stop-color="#0f172a" stop-opacity="0"/><stop offset="1" stop-color="#0f172a" stop-opacity="0.065"/>
+</radialGradient>
+<linearGradient id="hdr" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2563eb" stop-opacity="0.10"/>
+<stop offset="0.55" stop-color="#2563eb" stop-opacity="0.030"/>
+<stop offset="1" stop-color="#2563eb" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="hdrD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#60a5fa" stop-opacity="0.13"/>
+<stop offset="0.55" stop-color="#60a5fa" stop-opacity="0.040"/>
+<stop offset="1" stop-color="#60a5fa" stop-opacity="0"/>
+</linearGradient>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+<circle cx="1.5" cy="1.5" r="1.05" fill="#cbd5e1"/>
+</pattern>
+<filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+<feDropShadow dx="0" dy="1.6" stdDeviation="2.4" flood-color="#0f172a" flood-opacity="0.17"/>
+</filter>
+<filter id="pglow" x="-70%" y="-70%" width="240%" height="240%">
+<feGaussianBlur stdDeviation="2.1" result="b"/>
+<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs>
+<rect class="page-bg" width="800" height="500" fill="url(#bgL)"/>
+<rect width="800" height="500" fill="url(#dots)" opacity="0.40"/>
+<rect class="page-vig" width="800" height="500" fill="url(#vig)"/>
+<rect class="page-hdr" width="800" height="72" fill="url(#hdr)"/>
 <style>
 text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+.page-bg{fill:url(#bgL)}
+.page-vig{opacity:1}
+.page-hdr{fill:url(#hdr)}
+line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
+rect[fill="#f8fafc"],rect[fill="#eff6ff"],rect[fill="#ecfdf5"],rect[fill="#fffbeb"],rect[fill="#fef2f2"],rect[fill="#dbeafe"]{filter:url(#soft)}
 @media (prefers-color-scheme: dark){
+.page-bg{fill:url(#bgD)}
+.page-vig{opacity:0.45}
+.page-hdr{fill:url(#hdrD)}
 rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
 [fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
@@ -19,7 +61,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
 }
 </style>
-<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">齐纳稳压：拿电流换电压的「溢流阀」</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">齐纳稳压：拿电流换电压的「溢流阀」</text>
 
 <text x="220" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">12V±波动 → Rs → 齐纳 5.6V</text>
 <text x="16" y="94" font-size="12" font-weight="bold" fill="#b45309">12V±</text>
@@ -43,23 +85,22 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.06;0.4;0.46;1" dur="6s" repeatCount="indefinite"/></text>
 <text x="60" y="294" font-size="11" fill="#059669" opacity="0">负载加重 → 齐纳少吸流让位——Vout 纹丝不动
 <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.52;0.56;0.9;0.96;1" dur="6s" repeatCount="indefinite"/></text>
-<g><animate attributeName="opacity" values="1;1;0.4;0.4;1;1" keyTimes="0;0.2;0.3;0.9;0.96;1" dur="6s" repeatCount="indefinite"/><circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="-0.50s" repeatCount="indefinite" path="M64,96 H176 M180,104 V146 V196"/></circle>
+<g><animate attributeName="opacity" values="1;1;0.4;0.4;1;1" keyTimes="0;0.2;0.3;0.9;0.96;1" dur="6s" repeatCount="indefinite"/><g filter="url(#pglow)"><circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="-0.50s" repeatCount="indefinite" path="M64,96 H176 M180,104 V146 V196"/></circle>
 <circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="-0.10s" repeatCount="indefinite" path="M64,96 H176 M180,104 V146 V196"/></circle>
 <circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="0.30s" repeatCount="indefinite" path="M64,96 H176 M180,104 V146 V196"/></circle>
 <circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="0.70s" repeatCount="indefinite" path="M64,96 H176 M180,104 V146 V196"/></circle>
-<circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="1.10s" repeatCount="indefinite" path="M64,96 H176 M180,104 V146 V196"/></circle></g><circle r="5" fill="#2563eb"><animateMotion dur="2.0s" begin="-0.50s" repeatCount="indefinite" path="M64,96 H176 M184,96 H256"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="1.10s" repeatCount="indefinite" path="M64,96 H176 M180,104 V146 V196"/></circle></g></g><g filter="url(#pglow)"><circle r="5" fill="#2563eb"><animateMotion dur="2.0s" begin="-0.50s" repeatCount="indefinite" path="M64,96 H176 M184,96 H256"/></circle>
 <circle r="5" fill="#2563eb"><animateMotion dur="2.0s" begin="-0.10s" repeatCount="indefinite" path="M64,96 H176 M184,96 H256"/></circle>
 <circle r="5" fill="#2563eb"><animateMotion dur="2.0s" begin="0.30s" repeatCount="indefinite" path="M64,96 H176 M184,96 H256"/></circle>
 <circle r="5" fill="#2563eb"><animateMotion dur="2.0s" begin="0.70s" repeatCount="indefinite" path="M64,96 H176 M184,96 H256"/></circle>
-<circle r="5" fill="#2563eb"><animateMotion dur="2.0s" begin="1.10s" repeatCount="indefinite" path="M64,96 H176 M184,96 H256"/></circle>
+<circle r="5" fill="#2563eb"><animateMotion dur="2.0s" begin="1.10s" repeatCount="indefinite" path="M64,96 H176 M184,96 H256"/></circle></g>
 <text x="590" y="86" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#475569">输入抖（灰）→ 输出稳（蓝）</text>
 <path d="M430,150 L433,151 L437,153 L440,154 L443,156 L447,157 L450,158 L453,160 L457,161 L460,162 L463,163 L467,165 L470,166 L473,167 L477,167 L480,168 L483,169 L487,170 L490,170 L493,171 L497,171 L500,172 L503,172 L507,172 L510,172 L513,172 L517,172 L520,172 L523,171 L527,171 L530,170 L533,170 L537,169 L540,168 L543,167 L547,167 L550,166 L553,165 L557,163 L560,162 L563,161 L567,160 L570,158 L573,157 L577,156 L580,154 L583,153 L587,151 L590,150 L593,149 L597,147 L600,146 L603,144 L607,143 L610,142 L613,140 L617,139 L620,138 L623,137 L627,135 L630,134 L633,133 L637,133 L640,132 L643,131 L647,130 L650,130 L653,129 L657,129 L660,128 L663,128 L667,128 L670,128 L673,128 L677,128 L680,128 L683,129 L687,129 L690,130 L693,130 L697,131 L700,132 L703,133 L707,133 L710,134 L713,135 L717,137 L720,138 L723,139 L727,140 L730,142 L733,143 L737,144 L740,146 L743,147 L747,149 L750,150" fill="none" stroke="#94a3b8" stroke-width="2"/>
 <line x1="430" y1="150" x2="750" y2="150" stroke="#2563eb" stroke-width="2.8"/>
 <text x="700" y="140" font-size="10.5" fill="#2563eb">5.6V</text>
 <text x="590" y="240" text-anchor="middle" font-size="11" fill="#475569">Rs 的账：Vin 最低时仍供 Iz_min；Vin 最高时齐纳吃掉差额</text>
 <text x="590" y="264" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#b45309">Rs = (Vin_min − 5.6) / (Iz_min + I_load_max)</text>
-<text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">① 齐纳击穿后电压钉在 5.6V——输入再涨，多余的压降全落在 Rs 上（齐纳多吸流）<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.22;0.28;1" dur="6s" repeatCount="indefinite"/></text><text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">② 负载加重抢电流，齐纳自动少吸让出份额——总流量恒定，分配自适应<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.3;0.35;0.58;0.64;1" dur="6s" repeatCount="indefinite"/></text><text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">③ 代价全在功耗：负载不用电时齐纳全吃——所以齐纳只做基准/小功率，大功率去 9.3 LDO<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.64;0.7;1" dur="6s" repeatCount="indefinite"/></text><g opacity="0">
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.03;0.22;0.28;1" dur="6s" repeatCount="indefinite"/><rect x="99.2" y="416.9" width="601.6" height="24.1" rx="12.0" fill="#dc2626" fill-opacity="0.09" stroke="#dc2626" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.22;0.28;1" dur="6s" repeatCount="indefinite"/></rect><text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">① 齐纳击穿后电压钉在 5.6V——输入再涨，多余的压降全落在 Rs 上（齐纳多吸流）<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.22;0.28;1" dur="6s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.3;0.35;0.58;0.64;1" dur="6s" repeatCount="indefinite"/><rect x="140.3" y="416.9" width="519.4" height="24.1" rx="12.0" fill="#059669" fill-opacity="0.09" stroke="#059669" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.3;0.35;0.58;0.64;1" dur="6s" repeatCount="indefinite"/></rect><text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">② 负载加重抢电流，齐纳自动少吸让出份额——总流量恒定，分配自适应<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.3;0.35;0.58;0.64;1" dur="6s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0" keyTimes="0;0.64;0.7;1" dur="6s" repeatCount="indefinite"/><rect x="73.8" y="416.9" width="652.5" height="24.1" rx="12.0" fill="#b45309" fill-opacity="0.09" stroke="#b45309" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.64;0.7;1" dur="6s" repeatCount="indefinite"/></rect><text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">③ 代价全在功耗：负载不用电时齐纳全吃——所以齐纳只做基准/小功率，大功率去 9.3 LDO<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.64;0.7;1" dur="6s" repeatCount="indefinite"/></text></g><g opacity="0">
 <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.74;0.79;1" dur="6s" repeatCount="indefinite"/>
-<rect x="50" y="450" width="700" height="34" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
-<text x="400" y="472" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">水位一到就开闸放水——齐纳是电压的溢流阀；5.6V 附近温度系数最小（两种击穿机制温漂互消）</text>
+<rect x="50" y="450" width="700" height="34.0" rx="9" fill="#ecfdf5" stroke="#059669" stroke-width="1.5" filter="url(#soft)"/><rect x="56" y="457" width="3" height="20.0" rx="1.5" fill="#059669"/><text x="400" y="472.0" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">水位一到就开闸放水——齐纳是电压的溢流阀；5.6V 附近温度系数最小（两种击穿机制温漂互消）</text>
 </g></svg>

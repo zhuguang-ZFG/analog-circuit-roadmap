@@ -1,9 +1,51 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="680" viewBox="0 0 800 680">
 <title>共射放大器四拍：一个正弦周期里，电流怎么「指挥」电压</title>
-<rect width="800" height="680" fill="#f8fafc"/>
+<defs>
+<linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
+</linearGradient>
+<linearGradient id="bgD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#0a1020"/><stop offset="1" stop-color="#141d30"/>
+</linearGradient>
+<radialGradient id="vig" cx="0.5" cy="0.44" r="0.78">
+<stop offset="0.55" stop-color="#0f172a" stop-opacity="0"/><stop offset="1" stop-color="#0f172a" stop-opacity="0.065"/>
+</radialGradient>
+<linearGradient id="hdr" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2563eb" stop-opacity="0.10"/>
+<stop offset="0.55" stop-color="#2563eb" stop-opacity="0.030"/>
+<stop offset="1" stop-color="#2563eb" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="hdrD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#60a5fa" stop-opacity="0.13"/>
+<stop offset="0.55" stop-color="#60a5fa" stop-opacity="0.040"/>
+<stop offset="1" stop-color="#60a5fa" stop-opacity="0"/>
+</linearGradient>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+<circle cx="1.5" cy="1.5" r="1.05" fill="#cbd5e1"/>
+</pattern>
+<filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+<feDropShadow dx="0" dy="1.6" stdDeviation="2.4" flood-color="#0f172a" flood-opacity="0.17"/>
+</filter>
+<filter id="pglow" x="-70%" y="-70%" width="240%" height="240%">
+<feGaussianBlur stdDeviation="2.1" result="b"/>
+<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs>
+<rect class="page-bg" width="800" height="680" fill="url(#bgL)"/>
+<rect width="800" height="680" fill="url(#dots)" opacity="0.40"/>
+<rect class="page-vig" width="800" height="680" fill="url(#vig)"/>
+<rect class="page-hdr" width="800" height="72" fill="url(#hdr)"/>
 <style>
 text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+.page-bg{fill:url(#bgL)}
+.page-vig{opacity:1}
+.page-hdr{fill:url(#hdr)}
+line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
+rect[fill="#f8fafc"],rect[fill="#eff6ff"],rect[fill="#ecfdf5"],rect[fill="#fffbeb"],rect[fill="#fef2f2"],rect[fill="#dbeafe"]{filter:url(#soft)}
 @media (prefers-color-scheme: dark){
+.page-bg{fill:url(#bgD)}
+.page-vig{opacity:0.45}
+.page-hdr{fill:url(#hdrD)}
 rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
 [fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
@@ -19,7 +61,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
 }
 </style>
-<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">共射放大器四拍：一个正弦周期里，电流怎么「指挥」电压</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">共射放大器四拍：一个正弦周期里，电流怎么「指挥」电压</text>
 
 <text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">12V 单电源 · R_C=2kΩ · Q 点 I_C=3mA —— 输入升，输出降</text>
 <line x1="372" y1="80" x2="372" y2="352" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="6,5"/>
@@ -120,11 +162,11 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="609" y="458" font-size="10.5" fill="#475569">底部削平（饱和失真）</text>
 <text x="609" y="478" font-size="10.5" fill="#475569">拉猛→i_B=0，v_C 挂 12V</text>
 <text x="609" y="498" font-size="10.5" fill="#475569">顶部削平（截止失真）</text>
-<rect x="217" y="390" width="178" height="126" rx="10" fill="none" stroke="#dc2626" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.2s" repeatCount="indefinite"/></rect>
-<rect x="593" y="390" width="178" height="126" rx="10" fill="none" stroke="#059669" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.2s" repeatCount="indefinite"/></rect>
+<rect x="217" y="390" width="178" height="126" rx="10" fill="none" stroke="#dc2626" stroke-width="2.5" opacity="0" filter="url(#pglow)"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.2s" repeatCount="indefinite"/></rect>
+<rect x="593" y="390" width="178" height="126" rx="10" fill="none" stroke="#059669" stroke-width="2.5" opacity="0" filter="url(#pglow)"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.2s" repeatCount="indefinite"/></rect>
 <rect x="29" y="526" width="742" height="102" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.6"/>
 <text x="45" y="550" font-size="12" font-weight="bold" fill="#2563eb">🧮 算一笔：两个余量，取小者</text>
 <text x="45" y="576" font-size="11" fill="#475569">上行 6V（到截止 12V）、下行 4V（到饱和 V_E+0.2V=2V）→ 最大不失真摆幅 = 2×min(6V, 4V) = 8.0Vpp</text>
 <text x="45" y="600" font-size="11" fill="#475569">增益 |A_v| = R_C/r_e ≈ 2kΩ/8.7Ω ≈ 230 → 满摆幅需输入 ≈35mVpp；本例 10mV → 输出 ≈2.3Vpp，远未削波</text>
 <text x="45" y="622" font-size="11" font-weight="bold" fill="#dc2626">摆幅由「更小的那份余量」决定 —— Q 点偏置就是余量分配器</text>
-<text x="400" y="652" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">① 输入升、输出降——反相不是公式，是 i_C 电流路径的必然<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="12s" repeatCount="indefinite"/></text><text x="400" y="652" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">② 正半周把 v_C 往下压，负半周镜像往上抬<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="12s" repeatCount="indefinite"/></text><text x="400" y="652" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">③ 两个余量：上行 6V、下行 4V —— 对称摆幅取小者 = 8.0Vpp<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="12s" repeatCount="indefinite"/></text><text x="400" y="652" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">④ 削波先发生在余量小的一侧：2V 的饱和底先被压平<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="12s" repeatCount="indefinite"/></text></svg>
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.03;0.2;0.25;1" dur="12s" repeatCount="indefinite"/><rect x="177.1" y="639.0" width="445.8" height="24.1" rx="12.0" fill="#059669" fill-opacity="0.09" stroke="#059669" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="12s" repeatCount="indefinite"/></rect><text x="400" y="652" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">① 输入升、输出降——反相不是公式，是 i_C 电流路径的必然<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="12s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="12s" repeatCount="indefinite"/><rect x="235.6" y="639.0" width="328.8" height="24.1" rx="12.0" fill="#dc2626" fill-opacity="0.09" stroke="#dc2626" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="12s" repeatCount="indefinite"/></rect><text x="400" y="652" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">② 正半周把 v_C 往下压，负半周镜像往上抬<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="12s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="12s" repeatCount="indefinite"/><rect x="167.1" y="639.0" width="465.8" height="24.1" rx="12.0" fill="#2563eb" fill-opacity="0.09" stroke="#2563eb" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="12s" repeatCount="indefinite"/></rect><text x="400" y="652" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">③ 两个余量：上行 6V、下行 4V —— 对称摆幅取小者 = 8.0Vpp<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="12s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0" keyTimes="0;0.85;0.9;1" dur="12s" repeatCount="indefinite"/><rect x="203.8" y="639.0" width="392.4" height="24.1" rx="12.0" fill="#b45309" fill-opacity="0.09" stroke="#b45309" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="12s" repeatCount="indefinite"/></rect><text x="400" y="652" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">④ 削波先发生在余量小的一侧：2V 的饱和底先被压平<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="12s" repeatCount="indefinite"/></text></g></svg>

@@ -1,9 +1,51 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="520" viewBox="0 0 800 520">
 <title>仪表放大器：三道防线挡住共模</title>
-<rect width="800" height="520" fill="#f8fafc"/>
+<defs>
+<linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
+</linearGradient>
+<linearGradient id="bgD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#0a1020"/><stop offset="1" stop-color="#141d30"/>
+</linearGradient>
+<radialGradient id="vig" cx="0.5" cy="0.44" r="0.78">
+<stop offset="0.55" stop-color="#0f172a" stop-opacity="0"/><stop offset="1" stop-color="#0f172a" stop-opacity="0.065"/>
+</radialGradient>
+<linearGradient id="hdr" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2563eb" stop-opacity="0.10"/>
+<stop offset="0.55" stop-color="#2563eb" stop-opacity="0.030"/>
+<stop offset="1" stop-color="#2563eb" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="hdrD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#60a5fa" stop-opacity="0.13"/>
+<stop offset="0.55" stop-color="#60a5fa" stop-opacity="0.040"/>
+<stop offset="1" stop-color="#60a5fa" stop-opacity="0"/>
+</linearGradient>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+<circle cx="1.5" cy="1.5" r="1.05" fill="#cbd5e1"/>
+</pattern>
+<filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+<feDropShadow dx="0" dy="1.6" stdDeviation="2.4" flood-color="#0f172a" flood-opacity="0.17"/>
+</filter>
+<filter id="pglow" x="-70%" y="-70%" width="240%" height="240%">
+<feGaussianBlur stdDeviation="2.1" result="b"/>
+<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs>
+<rect class="page-bg" width="800" height="520" fill="url(#bgL)"/>
+<rect width="800" height="520" fill="url(#dots)" opacity="0.40"/>
+<rect class="page-vig" width="800" height="520" fill="url(#vig)"/>
+<rect class="page-hdr" width="800" height="72" fill="url(#hdr)"/>
 <style>
 text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+.page-bg{fill:url(#bgL)}
+.page-vig{opacity:1}
+.page-hdr{fill:url(#hdr)}
+line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
+rect[fill="#f8fafc"],rect[fill="#eff6ff"],rect[fill="#ecfdf5"],rect[fill="#fffbeb"],rect[fill="#fef2f2"],rect[fill="#dbeafe"]{filter:url(#soft)}
 @media (prefers-color-scheme: dark){
+.page-bg{fill:url(#bgD)}
+.page-vig{opacity:0.45}
+.page-hdr{fill:url(#hdrD)}
 rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
 [fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
@@ -19,7 +61,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
 }
 </style>
-<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">仪表放大器：三道防线挡住共模</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">仪表放大器：三道防线挡住共模</text>
 
 <text x="240" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">三运放仪放：前级双同相 + 后级减法器</text>
 <text x="18" y="128" font-size="11" font-weight="bold" fill="#059669">IN+</text>
@@ -99,19 +141,18 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.05;0.28;0.33;1" dur="7s" repeatCount="indefinite"/></text>
 <text x="100" y="352" font-size="11" fill="#7c3aed" opacity="0">共模：R_G 两端同升同降→无电流→前级增益=1
 <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.36;0.4;0.62;0.67;1" dur="7s" repeatCount="indefinite"/></text>
-<g><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.3;0.35;1" dur="7s" repeatCount="indefinite"/><circle r="4.5" fill="#dc2626"><animateMotion dur="1.75s" begin="-0.50s" repeatCount="indefinite" path="M110,166 V210"/></circle>
+<g><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.3;0.35;1" dur="7s" repeatCount="indefinite"/><g filter="url(#pglow)"><circle r="4.5" fill="#dc2626"><animateMotion dur="1.75s" begin="-0.50s" repeatCount="indefinite" path="M110,166 V210"/></circle>
 <circle r="4.5" fill="#dc2626"><animateMotion dur="1.75s" begin="0.08s" repeatCount="indefinite" path="M110,166 V210"/></circle>
-<circle r="4.5" fill="#dc2626"><animateMotion dur="1.75s" begin="0.67s" repeatCount="indefinite" path="M110,166 V210"/></circle><circle r="4.5" fill="#059669"><animateMotion dur="1.75s" begin="-0.50s" repeatCount="indefinite" path="M204,130 H240 V186 M204,250 H240 V214"/></circle>
+<circle r="4.5" fill="#dc2626"><animateMotion dur="1.75s" begin="0.67s" repeatCount="indefinite" path="M110,166 V210"/></circle></g><g filter="url(#pglow)"><circle r="4.5" fill="#059669"><animateMotion dur="1.75s" begin="-0.50s" repeatCount="indefinite" path="M204,130 H240 V186 M204,250 H240 V214"/></circle>
 <circle r="4.5" fill="#059669"><animateMotion dur="1.75s" begin="-0.06s" repeatCount="indefinite" path="M204,130 H240 V186 M204,250 H240 V214"/></circle>
 <circle r="4.5" fill="#059669"><animateMotion dur="1.75s" begin="0.38s" repeatCount="indefinite" path="M204,130 H240 V186 M204,250 H240 V214"/></circle>
-<circle r="4.5" fill="#059669"><animateMotion dur="1.75s" begin="0.81s" repeatCount="indefinite" path="M204,130 H240 V186 M204,250 H240 V214"/></circle></g>
+<circle r="4.5" fill="#059669"><animateMotion dur="1.75s" begin="0.81s" repeatCount="indefinite" path="M204,130 H240 V186 M204,250 H240 V214"/></circle></g></g>
 <text x="610" y="66" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#475569">输入：毫伏差分 + 大共模干扰</text>
 <path d="M480,120 L484,123 L488,127 L492,130 L496,133 L500,136 L504,139 L508,142 L512,144 L517,146 L521,148 L525,150 L529,151 L533,153 L537,153 L541,154 L545,154 L549,154 L553,153 L557,153 L561,151 L565,150 L569,148 L573,146 L578,144 L582,142 L586,139 L590,136 L594,133 L598,130 L602,127 L606,123 L610,120 L614,117 L618,113 L622,110 L626,107 L630,104 L634,101 L638,98 L642,96 L647,94 L651,92 L655,90 L659,89 L663,87 L667,87 L671,86 L675,86 L679,86 L683,87 L687,87 L691,89 L695,90 L699,92 L703,94 L708,96 L712,98 L716,101 L720,104 L724,107 L728,110 L732,113 L736,117 L740,120" fill="none" stroke="#94a3b8" stroke-width="2"/>
 <text x="610" y="266" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#059669">输出：差分被放大，共模被扔掉</text>
 <path d="M480,340 L484,344 L488,349 L492,353 L496,357 L500,361 L504,364 L508,368 L512,371 L517,374 L521,377 L525,379 L529,381 L533,382 L537,383 L541,384 L545,384 L549,384 L553,383 L557,382 L561,381 L565,379 L569,377 L573,374 L578,371 L582,368 L586,364 L590,361 L594,357 L598,353 L602,349 L606,344 L610,340 L614,336 L618,331 L622,327 L626,323 L630,319 L634,316 L638,312 L642,309 L647,306 L651,303 L655,301 L659,299 L663,298 L667,297 L671,296 L675,296 L679,296 L683,297 L687,298 L691,299 L695,301 L699,303 L703,306 L708,309 L712,312 L716,316 L720,319 L724,323 L728,327 L732,331 L736,336 L740,340" fill="none" stroke="#059669" stroke-width="2.5"/>
 <line x1="480" y1="340" x2="740" y2="340" stroke="#64748b" stroke-width="1.2"/>
-<text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">① 差模信号：R_G 两端有电位差→电流流过→v1 升 v2 降，前级增益 = 1+2R1/R_G<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.02;0.2;0.25;1" dur="7s" repeatCount="indefinite"/></text><text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">② 共模信号：R_G 两端同升同降→电位差为零→无电流→前级对共模增益=1（不放大）<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.27;0.32;0.5;0.55;1" dur="7s" repeatCount="indefinite"/></text><text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">③ 减法器（A3+四只等值 R）：只认 v1−v2 的差——前级放行的共模在这里被减掉<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.78;0.83;1" dur="7s" repeatCount="indefinite"/></text><text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">④ 一只 R_G 调增益：换 R_G 不碰任何匹配网络——产线/现场单手调增益<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.83;0.88;1" dur="7s" repeatCount="indefinite"/></text><g opacity="0">
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.02;0.2;0.25;1" dur="7s" repeatCount="indefinite"/><rect x="99.7" y="446.9" width="600.6" height="24.1" rx="12.0" fill="#dc2626" fill-opacity="0.09" stroke="#dc2626" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.02;0.2;0.25;1" dur="7s" repeatCount="indefinite"/></rect><text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">① 差模信号：R_G 两端有电位差→电流流过→v1 升 v2 降，前级增益 = 1+2R1/R_G<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.02;0.2;0.25;1" dur="7s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.27;0.32;0.5;0.55;1" dur="7s" repeatCount="indefinite"/><rect x="92.6" y="446.9" width="614.7" height="24.1" rx="12.0" fill="#7c3aed" fill-opacity="0.09" stroke="#7c3aed" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.27;0.32;0.5;0.55;1" dur="7s" repeatCount="indefinite"/></rect><text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">② 共模信号：R_G 两端同升同降→电位差为零→无电流→前级对共模增益=1（不放大）<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.27;0.32;0.5;0.55;1" dur="7s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.55;0.6;0.78;0.83;1" dur="7s" repeatCount="indefinite"/><rect x="106.0" y="446.9" width="587.9" height="24.1" rx="12.0" fill="#059669" fill-opacity="0.09" stroke="#059669" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.78;0.83;1" dur="7s" repeatCount="indefinite"/></rect><text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">③ 减法器（A3+四只等值 R）：只认 v1−v2 的差——前级放行的共模在这里被减掉<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.78;0.83;1" dur="7s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0" keyTimes="0;0.83;0.88;1" dur="7s" repeatCount="indefinite"/><rect x="135.9" y="446.9" width="528.2" height="24.1" rx="12.0" fill="#2563eb" fill-opacity="0.09" stroke="#2563eb" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.83;0.88;1" dur="7s" repeatCount="indefinite"/></rect><text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">④ 一只 R_G 调增益：换 R_G 不碰任何匹配网络——产线/现场单手调增益<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.83;0.88;1" dur="7s" repeatCount="indefinite"/></text></g><g opacity="0">
 <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.88;0.92;1" dur="7s" repeatCount="indefinite"/>
-<rect x="50" y="470" width="700" height="34" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
-<text x="400" y="492" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">CMRR>100dB 的三道防线：前级对称结构 · R_G 不吸共模电流 · 减法器四 R 激光修调匹配</text>
+<rect x="50" y="470" width="700" height="34.0" rx="9" fill="#ecfdf5" stroke="#059669" stroke-width="1.5" filter="url(#soft)"/><rect x="56" y="477" width="3" height="20.0" rx="1.5" fill="#059669"/><text x="400" y="492.0" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">CMRR>100dB 的三道防线：前级对称结构 · R_G 不吸共模电流 · 减法器四 R 激光修调匹配</text>
 </g></svg>

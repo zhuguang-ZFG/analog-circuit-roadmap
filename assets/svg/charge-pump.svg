@@ -1,9 +1,51 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="522" viewBox="0 0 800 522">
 <title>电荷泵：电容当「斗提机」，不用电感也升压</title>
-<rect width="800" height="500" fill="#f8fafc"/>
+<defs>
+<linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
+</linearGradient>
+<linearGradient id="bgD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#0a1020"/><stop offset="1" stop-color="#141d30"/>
+</linearGradient>
+<radialGradient id="vig" cx="0.5" cy="0.44" r="0.78">
+<stop offset="0.55" stop-color="#0f172a" stop-opacity="0"/><stop offset="1" stop-color="#0f172a" stop-opacity="0.065"/>
+</radialGradient>
+<linearGradient id="hdr" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2563eb" stop-opacity="0.10"/>
+<stop offset="0.55" stop-color="#2563eb" stop-opacity="0.030"/>
+<stop offset="1" stop-color="#2563eb" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="hdrD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#60a5fa" stop-opacity="0.13"/>
+<stop offset="0.55" stop-color="#60a5fa" stop-opacity="0.040"/>
+<stop offset="1" stop-color="#60a5fa" stop-opacity="0"/>
+</linearGradient>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+<circle cx="1.5" cy="1.5" r="1.05" fill="#cbd5e1"/>
+</pattern>
+<filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+<feDropShadow dx="0" dy="1.6" stdDeviation="2.4" flood-color="#0f172a" flood-opacity="0.17"/>
+</filter>
+<filter id="pglow" x="-70%" y="-70%" width="240%" height="240%">
+<feGaussianBlur stdDeviation="2.1" result="b"/>
+<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs>
+<rect class="page-bg" width="800" height="522" fill="url(#bgL)"/>
+<rect width="800" height="522" fill="url(#dots)" opacity="0.40"/>
+<rect class="page-vig" width="800" height="522" fill="url(#vig)"/>
+<rect class="page-hdr" width="800" height="72" fill="url(#hdr)"/>
 <style>
 text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+.page-bg{fill:url(#bgL)}
+.page-vig{opacity:1}
+.page-hdr{fill:url(#hdr)}
+line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
+rect[fill="#f8fafc"],rect[fill="#eff6ff"],rect[fill="#ecfdf5"],rect[fill="#fffbeb"],rect[fill="#fef2f2"],rect[fill="#dbeafe"]{filter:url(#soft)}
 @media (prefers-color-scheme: dark){
+.page-bg{fill:url(#bgD)}
+.page-vig{opacity:0.45}
+.page-hdr{fill:url(#hdrD)}
 rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
 [fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
@@ -19,7 +61,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
 }
 </style>
-<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">电荷泵：电容当「斗提机」，不用电感也升压</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">电荷泵：电容当「斗提机」，不用电感也升压</text>
 
 <text x="230" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">倍压电荷泵（两相时钟， Vin → 2Vin）</text>
 <text x="18" y="106" font-size="12.5" font-weight="bold" fill="#b45309">Vin</text>
@@ -65,23 +107,22 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.06;0.4;0.46;1" dur="6s" repeatCount="indefinite"/></text>
 <text x="60" y="304" font-size="11" fill="#dc2626" opacity="0">相2：C1 下端被抬到 Vin——上端=2Vin，向 C2 倒电荷
 <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.52;0.56;0.9;0.96;1" dur="6s" repeatCount="indefinite"/></text>
-<g><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.4;0.46;1" dur="6s" repeatCount="indefinite"/><circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="-0.50s" repeatCount="indefinite" path="M54,96 H150 M160,96 H196 M202,146 V156"/></circle>
+<g><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.4;0.46;1" dur="6s" repeatCount="indefinite"/><g filter="url(#pglow)"><circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="-0.50s" repeatCount="indefinite" path="M54,96 H150 M160,96 H196 M202,146 V156"/></circle>
 <circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="-0.10s" repeatCount="indefinite" path="M54,96 H150 M160,96 H196 M202,146 V156"/></circle>
 <circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="0.30s" repeatCount="indefinite" path="M54,96 H150 M160,96 H196 M202,146 V156"/></circle>
 <circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="0.70s" repeatCount="indefinite" path="M54,96 H150 M160,96 H196 M202,146 V156"/></circle>
-<circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="1.10s" repeatCount="indefinite" path="M54,96 H150 M160,96 H196 M202,146 V156"/></circle></g><g><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.5;0.56;0.9;0.96;1" dur="6s" repeatCount="indefinite"/><circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="-0.50s" repeatCount="indefinite" path="M202,192 V160 M210,96 H250 M296,96 H346 M350,104 V136"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="2.0s" begin="1.10s" repeatCount="indefinite" path="M54,96 H150 M160,96 H196 M202,146 V156"/></circle></g></g><g><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.5;0.56;0.9;0.96;1" dur="6s" repeatCount="indefinite"/><g filter="url(#pglow)"><circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="-0.50s" repeatCount="indefinite" path="M202,192 V160 M210,96 H250 M296,96 H346 M350,104 V136"/></circle>
 <circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="-0.10s" repeatCount="indefinite" path="M202,192 V160 M210,96 H250 M296,96 H346 M350,104 V136"/></circle>
 <circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="0.30s" repeatCount="indefinite" path="M202,192 V160 M210,96 H250 M296,96 H346 M350,104 V136"/></circle>
 <circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="0.70s" repeatCount="indefinite" path="M202,192 V160 M210,96 H250 M296,96 H346 M350,104 V136"/></circle>
-<circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="1.10s" repeatCount="indefinite" path="M202,192 V160 M210,96 H250 M296,96 H346 M350,104 V136"/></circle></g>
+<circle r="5" fill="#dc2626"><animateMotion dur="2.0s" begin="1.10s" repeatCount="indefinite" path="M202,192 V160 M210,96 H250 M296,96 H346 M350,104 V136"/></circle></g></g>
 <text x="590" y="252" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#475569">输出电压：几个周期爬到 2Vin</text>
 <path d="M430,330 L434,326 L438,321 L442,317 L446,313 L450,309 L454,306 L458,302 L462,299 L466,296 L470,292 L474,289 L478,287 L482,284 L486,281 L490,278 L494,276 L498,273 L502,271 L506,269 L510,267 L514,265 L518,263 L522,261 L526,259 L530,257 L534,255 L538,254 L542,252 L546,250 L550,249 L554,248 L558,246 L562,245 L566,244 L570,242 L574,241 L578,240 L582,239 L586,238 L590,237 L594,236 L598,235 L602,234 L606,233 L610,232 L614,231 L618,231 L622,230 L626,229 L630,228 L634,228 L638,227 L642,226 L646,226 L650,225 L654,225 L658,224 L662,224 L666,223 L670,223 L674,222 L678,222 L682,221 L686,221 L690,220 L694,220 L698,220 L702,219 L706,219 L710,219 L714,218 L718,218 L722,218 L726,217 L730,217 L734,217 L738,217 L742,216 L746,216 L750,216" fill="none" stroke="#2563eb" stroke-width="2.8"/>
 <line x1="430" y1="330" x2="750" y2="330" stroke="#64748b" stroke-width="1.4"/>
 <line x1="430" y1="210" x2="750" y2="210" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
 <text x="700" y="204" font-size="10.5" fill="#2563eb">2Vin</text>
 <text x="440" y="352" font-size="10.5" fill="#475569">每个周期 C1 倒一勺，C2 水位逐渐涨满</text>
-<text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">① 相1：S1/S3 闭合——C1 上端接 Vin、下端接地，充电到 Vin（绿粒子灌满斗）<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.22;0.28;1" dur="6s" repeatCount="indefinite"/></text><text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">② 相2：S2/S4 闭合——C1 下端被抬到 Vin，上端瞬间 2Vin，向 C2 倒电荷（斗提机倒斗）<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.3;0.35;0.58;0.64;1" dur="6s" repeatCount="indefinite"/></text><text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">③ 几轮之后 C2 涨到 2Vin——无电感、无反电动势、EMI 小，代价是只供得起小电流<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.64;0.7;1" dur="6s" repeatCount="indefinite"/></text><g opacity="0">
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.03;0.22;0.28;1" dur="6s" repeatCount="indefinite"/><rect x="106.3" y="416.9" width="587.3" height="24.1" rx="12.0" fill="#059669" fill-opacity="0.09" stroke="#059669" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.22;0.28;1" dur="6s" repeatCount="indefinite"/></rect><text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">① 相1：S1/S3 闭合——C1 上端接 Vin、下端接地，充电到 Vin（绿粒子灌满斗）<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.22;0.28;1" dur="6s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.3;0.35;0.58;0.64;1" dur="6s" repeatCount="indefinite"/><rect x="71.6" y="416.9" width="656.7" height="24.1" rx="12.0" fill="#dc2626" fill-opacity="0.09" stroke="#dc2626" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.3;0.35;0.58;0.64;1" dur="6s" repeatCount="indefinite"/></rect><text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">② 相2：S2/S4 闭合——C1 下端被抬到 Vin，上端瞬间 2Vin，向 C2 倒电荷（斗提机倒斗）<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.3;0.35;0.58;0.64;1" dur="6s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0" keyTimes="0;0.64;0.7;1" dur="6s" repeatCount="indefinite"/><rect x="99.8" y="416.9" width="600.3" height="24.1" rx="12.0" fill="#2563eb" fill-opacity="0.09" stroke="#2563eb" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.64;0.7;1" dur="6s" repeatCount="indefinite"/></rect><text x="400" y="430" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">③ 几轮之后 C2 涨到 2Vin——无电感、无反电动势、EMI 小，代价是只供得起小电流<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.64;0.7;1" dur="6s" repeatCount="indefinite"/></text></g><g opacity="0">
 <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.74;0.79;1" dur="6s" repeatCount="indefinite"/>
-<rect x="50" y="450" width="700" height="34" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
-<text x="400" y="472" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">ICL7660 负压、MAX232 的 ±10V、运放负电源——都是这架斗提机；要电流大？请回 13.3 用电感 Boost</text>
+<rect x="50" y="450" width="700" height="52.0" rx="9" fill="#ecfdf5" stroke="#059669" stroke-width="1.5" filter="url(#soft)"/><rect x="56" y="457" width="3" height="38.0" rx="1.5" fill="#059669"/><text x="400" y="472.0" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">ICL7660 负压、MAX232 的 ±10V、运放负电源——</text><text x="400" y="490.0" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">都是这架斗提机；要电流大？请回 13.3 用电感 Boost</text>
 </g></svg>

@@ -1,9 +1,51 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="620" viewBox="0 0 800 620">
 <title>三态与高阻：总线上为什么必须有人「闭嘴」</title>
-<rect width="800" height="620" fill="#f8fafc"/>
+<defs>
+<linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
+</linearGradient>
+<linearGradient id="bgD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#0a1020"/><stop offset="1" stop-color="#141d30"/>
+</linearGradient>
+<radialGradient id="vig" cx="0.5" cy="0.44" r="0.78">
+<stop offset="0.55" stop-color="#0f172a" stop-opacity="0"/><stop offset="1" stop-color="#0f172a" stop-opacity="0.065"/>
+</radialGradient>
+<linearGradient id="hdr" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2563eb" stop-opacity="0.10"/>
+<stop offset="0.55" stop-color="#2563eb" stop-opacity="0.030"/>
+<stop offset="1" stop-color="#2563eb" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="hdrD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#60a5fa" stop-opacity="0.13"/>
+<stop offset="0.55" stop-color="#60a5fa" stop-opacity="0.040"/>
+<stop offset="1" stop-color="#60a5fa" stop-opacity="0"/>
+</linearGradient>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+<circle cx="1.5" cy="1.5" r="1.05" fill="#cbd5e1"/>
+</pattern>
+<filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+<feDropShadow dx="0" dy="1.6" stdDeviation="2.4" flood-color="#0f172a" flood-opacity="0.17"/>
+</filter>
+<filter id="pglow" x="-70%" y="-70%" width="240%" height="240%">
+<feGaussianBlur stdDeviation="2.1" result="b"/>
+<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs>
+<rect class="page-bg" width="800" height="620" fill="url(#bgL)"/>
+<rect width="800" height="620" fill="url(#dots)" opacity="0.40"/>
+<rect class="page-vig" width="800" height="620" fill="url(#vig)"/>
+<rect class="page-hdr" width="800" height="72" fill="url(#hdr)"/>
 <style>
 text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+.page-bg{fill:url(#bgL)}
+.page-vig{opacity:1}
+.page-hdr{fill:url(#hdr)}
+line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
+rect[fill="#f8fafc"],rect[fill="#eff6ff"],rect[fill="#ecfdf5"],rect[fill="#fffbeb"],rect[fill="#fef2f2"],rect[fill="#dbeafe"]{filter:url(#soft)}
 @media (prefers-color-scheme: dark){
+.page-bg{fill:url(#bgD)}
+.page-vig{opacity:0.45}
+.page-hdr{fill:url(#hdrD)}
 rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
 [fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
@@ -19,7 +61,7 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 [fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
 }
 </style>
-<text x="400" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">三态与高阻：总线上为什么必须有人「闭嘴」</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">三态与高阻：总线上为什么必须有人「闭嘴」</text>
 
 <text x="200" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">两个驱动器挂在同一根总线上</text>
 <line x1="60" y1="96" x2="60" y2="130" stroke="#334155" stroke-width="2.5"/>
@@ -56,8 +98,8 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <rect x="446" y="84" width="330" height="74" rx="8" fill="#f8fafc" stroke="#2563eb" stroke-width="1.8"/><text x="462" y="110" font-size="12.5" font-weight="bold" fill="#2563eb">① A 驱动、B 高阻</text><text x="462" y="132" font-size="11.5" font-weight="bold" fill="#1e293b">总线 = A 的电平</text><text x="462" y="150" font-size="11" fill="#475569">正常：一人说话，其他人闭嘴</text><rect x="446" y="172" width="330" height="74" rx="8" fill="#f8fafc" stroke="#dc2626" stroke-width="1.8"/><text x="462" y="198" font-size="12.5" font-weight="bold" fill="#dc2626">② B 驱动、A 高阻</text><text x="462" y="220" font-size="11.5" font-weight="bold" fill="#1e293b">总线 = B 的电平</text><text x="462" y="238" font-size="11" fill="#475569">正常：换人说话，电平随之改变</text><rect x="446" y="260" width="330" height="74" rx="8" fill="#f8fafc" stroke="#7c3aed" stroke-width="1.8"/><text x="462" y="286" font-size="12.5" font-weight="bold" fill="#7c3aed">③ 两个都高阻</text><text x="462" y="308" font-size="11.5" font-weight="bold" fill="#1e293b">总线悬空</text><text x="462" y="326" font-size="11" fill="#475569">只靠 10k 上拉+漏电漂移，τ=10k×20pF=0.2µs</text><rect x="446" y="348" width="330" height="74" rx="8" fill="#f8fafc" stroke="#b91c1c" stroke-width="1.8"/><text x="462" y="374" font-size="12.5" font-weight="bold" fill="#b91c1c">④ 两个同时驱动</text><text x="462" y="396" font-size="11.5" font-weight="bold" fill="#1e293b">电平打架</text><text x="462" y="414" font-size="11" fill="#475569">直通电流！毫安级到安培级，发热甚至烧管</text>
 <text x="400" y="510" text-anchor="middle" font-size="12" font-weight="bold" fill="#b45309">高阻态不是「输出低」，是「输出端几乎从电路里消失」——它让总线归别人管</text>
 <text x="400" y="534" text-anchor="middle" font-size="11.5" fill="#475569">代价：悬空的总线电平不定（要靠上拉/下拉定住），且悬空输入会让下游 CMOS 输入级两头导通、白耗电</text>
-<rect x="446" y="336" width="330" height="74" rx="10" fill="none" stroke="#b91c1c" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="1.8s" repeatCount="indefinite"/></rect>
+<rect x="446" y="336" width="330" height="74" rx="10" fill="none" stroke="#b91c1c" stroke-width="2.5" opacity="0" filter="url(#pglow)"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="1.8s" repeatCount="indefinite"/></rect>
 <circle cx="646" cy="373" r="5" fill="none" stroke="#b91c1c" stroke-width="2.4">
 <animate attributeName="r" values="5;13;5" dur="1.6s" repeatCount="indefinite"/>
 <animate attributeName="opacity" values="0.95;0.2;0.95" dur="1.6s" repeatCount="indefinite"/></circle>
-<text x="400" y="576" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">① 同一时刻只能有一个驱动器在说话——这就是「三态」存在的全部理由<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="576" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">② 关掉的那一方输出高阻：既不拉高也不拉低，等于从总线上「隐身」<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="576" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">③ 全部高阻：总线悬空 → 靠上拉定电平；没上拉就是天线，电平不定还白耗电<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/></text><text x="400" y="576" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b91c1c" opacity="0">④ 两个同时驱动且电平相反 = 直通电流——这是硬件上最容易烧片的错误之一<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/></text></svg>
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/><rect x="140.3" y="563.0" width="519.4" height="24.1" rx="12.0" fill="#2563eb" fill-opacity="0.09" stroke="#2563eb" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/></rect><text x="400" y="576" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">① 同一时刻只能有一个驱动器在说话——这就是「三态」存在的全部理由<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/><rect x="147.9" y="563.0" width="504.3" height="24.1" rx="12.0" fill="#059669" fill-opacity="0.09" stroke="#059669" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/></rect><text x="400" y="576" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">② 关掉的那一方输出高阻：既不拉高也不拉低，等于从总线上「隐身」<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/><rect x="121.0" y="563.0" width="558.1" height="24.1" rx="12.0" fill="#7c3aed" fill-opacity="0.09" stroke="#7c3aed" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/></rect><text x="400" y="576" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">③ 全部高阻：总线悬空 → 靠上拉定电平；没上拉就是天线，电平不定还白耗电<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/><rect x="123.8" y="563.0" width="552.5" height="24.1" rx="12.0" fill="#b91c1c" fill-opacity="0.09" stroke="#b91c1c" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/></rect><text x="400" y="576" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b91c1c" opacity="0">④ 两个同时驱动且电平相反 = 直通电流——这是硬件上最容易烧片的错误之一<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/></text></g></svg>
