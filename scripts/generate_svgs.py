@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-generate_svgs.py — 一键再生成《通往模拟电路之路》全部 102 张 SVG SMIL 动画
+generate_svgs.py — 一键再生成《通往模拟电路之路》全部 103 张 SVG SMIL 动画
 用法:  python generate_svgs.py            # 输出到 ../assets/svg/
 风格:  参考 BMS-Z 项目 —— 浅色底 + SMIL 节拍字幕 + 深色模式自适应 + 拟人化讲解
 所有电路参数经过自洽核算（datasheet 级），详见各函数注释。
@@ -154,6 +154,22 @@ def caption(text, color, dur, kt_values, kt_times, y=400, x=400, size=14.5, w=80
     except ValueError:
         pass
     return f'<g>{slide}{pill}{txt}</g>'
+
+
+def beat_captions(beats, dur, y):
+    """均分字幕时隙；淡入淡出均在各自时隙内，避免交接时两行压字。"""
+    if not beats or dur <= 0:
+        raise ValueError('beats must be nonempty and duration must be positive')
+    n = len(beats)
+    fade = min(0.02, 0.2 / n)
+    out = ''
+    for i, (txt, col) in enumerate(beats):
+        a, b = i / n, (i + 1) / n
+        times = ([0] if a else []) + [a, a + fade, b - fade, b] + ([1] if b < 1 else [])
+        values = ([0] if a else []) + [0, 1, 1, 0] + ([0] if b < 1 else [])
+        out += caption(txt, col, dur, ';'.join(map(str, values)),
+                       ';'.join(f'{t:.8g}' for t in times), y=y) + '\n'
+    return out
 
 
 def _wrap(text, avail, size, maxlines=3):
@@ -7821,6 +7837,62 @@ def make_diagnosis_tree():
     save('diagnosis-tree.svg', svg + '</svg>')
 
 
+# ======================= 图 103：电容直流偏压降容（第 1 章 §1.7） =======================
+def make_cap_derating():
+    """教学示例，非厂商实测：5V 时 10µF × 26% = 2.6µF。
+
+    曲线、扫压圆点、5V 工作点共用一组样本；不按介质代码规定降容百分比。
+    原理依据：https://article.murata.com/en-us/article/voltage-characteristics-of-electrostatic-capacitance
+    """
+    duration = 12
+    x0, x1, y0, y1 = 150, 690, 340, 140
+    samples = [(0, 1), (1, .93), (2, .80), (3, .62), (4, .43), (5, .26), (6.3, .15)]
+    points = [(x0 + v / 6.3 * (x1 - x0), y0 - r * (y0 - y1)) for v, r in samples]
+    curve = 'M' + ' L'.join(f'{x:.4f},{y:.4f}' for x, y in points)
+    times = ';'.join(f'{v / 6.3:.8f}' for v, _ in samples)
+    px, py = points[5]
+    svg = svg_open('电容直流偏压：标称容量 ≠ 工作容量', h=590)
+    svg += f'''<desc>教学示意曲线，不代表任何具体料号。假设 10µF 电容在 5V 下保持率为 26%，有效容量为 2.6µF。</desc>
+<text x="400" y="53" text-anchor="middle" font-size="12" fill="#475569">教学示例，非实测曲线；实际降容请查具体料号与测试条件</text>
+<rect x="60" y="76" width="680" height="330" rx="10" fill="#f8fafc" stroke="#64748b" stroke-width="1.6"/>
+<text x="400" y="100" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">纵轴：有效容量 / 零偏压容量（各自归一化）</text>
+<line x1="{x0}" y1="{y0}" x2="{x1}" y2="{y0}" stroke="#64748b" stroke-width="1.6"/>
+<line x1="{x0}" y1="{y0}" x2="{x0}" y2="{y1}" stroke="#64748b" stroke-width="1.6"/>
+<line x1="{x0}" y1="240" x2="{x1}" y2="240" stroke="#cbd5e1" stroke-dasharray="4,5"/>
+<text x="138" y="144" text-anchor="end" font-size="11" fill="#475569">100%</text>
+<text x="138" y="244" text-anchor="end" font-size="11" fill="#475569">50%</text>
+<text x="138" y="344" text-anchor="end" font-size="11" fill="#475569">0</text>
+<text x="{x0}" y="362" text-anchor="middle" font-size="11" fill="#475569">0V</text>
+<text x="{px:.4f}" y="362" text-anchor="middle" font-size="11" fill="#dc2626">5V</text>
+<text x="{x1}" y="362" text-anchor="middle" font-size="11" fill="#475569">6.3V</text>
+<text x="420" y="387" text-anchor="middle" font-size="11.5" fill="#475569">横轴：施加的直流偏压 →（圆点匀速扫压）</text>
+<path d="M{x0},{y1} L{x1},{y1}" fill="none" stroke="#059669" stroke-width="3"/>
+<text x="684" y="130" text-anchor="end" font-size="11" fill="#065f46">C0G 参考：基本不受直流偏压影响</text>
+<path id="cap-bias-curve" d="{curve}" fill="none" stroke="#dc2626" stroke-width="3"/>
+<text x="340" y="185" font-size="11" fill="#dc2626">II 类陶瓷：一条假设的降容曲线</text>
+<line x1="{px:.4f}" y1="{py:.4f}" x2="{px:.4f}" y2="{y0}" stroke="#dc2626" stroke-dasharray="4,4"/>
+<line x1="{x0}" y1="{py:.4f}" x2="{px:.4f}" y2="{py:.4f}" stroke="#dc2626" stroke-dasharray="4,4"/>
+<text x="138" y="{py + 4:.4f}" text-anchor="end" font-size="11" fill="#dc2626">26%</text>
+<circle id="cap-bias-point" cx="{px:.4f}" cy="{py:.4f}" r="6" fill="#dc2626"/>
+<text x="370" y="321" font-size="12" font-weight="bold" fill="#dc2626">5V 示例：10µF × 26% = 2.6µF</text>
+<circle id="cap-bias-sweep" cx="{x0}" cy="{y1}" r="5" fill="#b45309" filter="url(#pglow)">
+<animate attributeName="cx" values="{';'.join(f'{x:.4f}' for x, _ in points)}" keyTimes="{times}" calcMode="linear" dur="{duration}s" repeatCount="indefinite"/>
+<animate attributeName="cy" values="{';'.join(f'{y:.4f}' for _, y in points)}" keyTimes="{times}" calcMode="linear" dur="{duration}s" repeatCount="indefinite"/>
+</circle>
+'''
+    svg += note_box('X5R / X7R 是温度特性代码，不是降容等级。'
+                    '实际容量取决于料号、偏压、温度与测试条件；选型要查曲线。'
+                    '本例忽略 ESR 且纹波电流相同，容量降至 26% 时容性纹波约增至 3.85 倍。',
+                    y=439, dur=duration, w=650)
+    svg += '<g id="cap-bias-captions">' + beat_captions([
+        ('① 标称容量有测试条件；加上直流偏压后，有效容量可能下降', '#2563eb'),
+        ('② 匀速扫过偏压轴：II 类陶瓷降容，C0G 参考线基本平坦', '#b45309'),
+        ('③ 本例 5V 时保持率 26%：10µF 变为 2.6µF，并非实测值', '#dc2626'),
+        ('④ 同纹波电流、忽略 ESR：容性纹波约增至 1/0.26 = 3.85 倍', '#7c3aed'),
+    ], duration, y=548) + '</g>'
+    save('cap-derating.svg', svg + '</svg>')
+
+
 if __name__ == '__main__':
     make_rc_charge()
     make_bridge_rectifier()
@@ -7924,4 +7996,5 @@ if __name__ == '__main__':
     make_voltage_drop()
     make_pcb_routing()
     make_diagnosis_tree()
-    print('all 102 SVGs regenerated into', os.path.abspath(OUT))
+    make_cap_derating()
+    print('all 103 SVGs regenerated into', os.path.abspath(OUT))

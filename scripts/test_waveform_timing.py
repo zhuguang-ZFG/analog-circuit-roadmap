@@ -173,6 +173,51 @@ class WaveformTimingTests(unittest.TestCase):
             # Jump forwards and backwards; the second cycle must reproduce the first.
             self.check_positions(name, [24.01, 12, 12.01, 23.99, 0, 6])
 
+    def test_cap_bias_sweep_matches_voltage_and_retention(self):
+        self.page.goto((ASSETS / 'cap-derating.svg').as_uri())
+        times = [0, 12 * 5 / 6.3, 12 * 2.5 / 6.3, 11.99, 12, 12 + 12 * 5 / 6.3]
+        positions = self.page.evaluate("""times => {
+            const svg = document.documentElement;
+            svg.pauseAnimations();
+            const dot = document.getElementById('cap-bias-sweep');
+            const point = document.getElementById('cap-bias-point');
+            return {point: [point.cx.baseVal.value, point.cy.baseVal.value],
+                sweep: times.map(t => {
+                    svg.setCurrentTime(t);
+                    return [dot.cx.animVal.value, dot.cy.animVal.value];
+                })};
+        }""", times)
+        self.assertAlmostEqual(positions['point'][0], 150 + 540 * 5 / 6.3, delta=.01)
+        self.assertAlmostEqual(positions['point'][1], 340 - 200 * .26, delta=.01)
+        samples = [(0, 1), (1, .93), (2, .80), (3, .62), (4, .43), (5, .26), (6.3, .15)]
+        for t, (x, y) in zip(times, positions['sweep']):
+            voltage = (t % 12) / 12 * 6.3
+            for (a, ra), (b, rb) in zip(samples, samples[1:]):
+                if a <= voltage <= b:
+                    retention = ra + (rb - ra) * (voltage - a) / (b - a)
+                    break
+            with self.subTest(time=t):
+                self.assertAlmostEqual(x, 150 + 540 * voltage / 6.3, delta=.05)
+                self.assertAlmostEqual(y, 340 - 200 * retention, delta=.05)
+
+    def test_cap_bias_captions_never_overlap(self):
+        self.page.goto((ASSETS / 'cap-derating.svg').as_uri())
+        result = self.page.evaluate("""() => {
+            const svg = document.documentElement;
+            svg.pauseAnimations();
+            const captions = [...svg.querySelectorAll('#cap-bias-captions text')];
+            function visible(t) {
+                svg.setCurrentTime(t);
+                return captions.filter(e => +getComputedStyle(e).opacity > .01).length;
+            }
+            return {count: captions.length,
+                maximum: Math.max(...Array.from({length: 601}, (_, i) => visible(i * .04))),
+                midpoints: [1.5, 4.5, 7.5, 10.5, 13.5].map(visible)};
+        }""")
+        self.assertEqual(4, result['count'])
+        self.assertEqual(1, result['maximum'])
+        self.assertEqual([1] * 5, result['midpoints'])
+
 
 if __name__ == "__main__":
     unittest.main()

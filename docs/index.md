@@ -13,7 +13,7 @@
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-CC_BY--SA_4.0-lightgrey.svg" alt="License"></a>
-  <img src="https://img.shields.io/badge/SVG动画-102张-3fb950.svg" alt="SVG">
+  <img src="https://img.shields.io/badge/SVG动画-103张-3fb950.svg" alt="SVG">
   <img src="https://img.shields.io/badge/章节-9篇19章-58a6ff.svg" alt="chapters">
   <img src="https://img.shields.io/badge/最近更新-2026.10-f0883e.svg" alt="updated">
   <a href="https://zhuguang-ZFG.github.io/analog-circuit-roadmap/"><img src="https://img.shields.io/badge/在线站点-waytoagi式知识站-blueviolet.svg" alt="site"></a>
@@ -30,6 +30,7 @@
 
 | 日期 | 更新 | 直达 |
 |---|---|---|
+| 2026-10 | **v3.30 电容直流偏压动画上线**：新增第 103 张动画，曲线、5V 工作点与扫压圆点使用同一组教学数据；纠正把 X5R/X7R 当降容等级的表述，补充厂商原理说明与两项动画回归测试 | [5.103](p5-00-part5.md#demo103) · [更新日志](p9-12-changelog.md) |
 | 2026-10 | **v3.28 知识面加深（六个新小节 + 题库 25→34 题）**：**§1.7 电容直流偏压降容与介质地图**（标称 10µF 在 5V 下只剩 2~3µF、铝电解寿命公式、钽电容失效是短路）；**§12.13 运放输入级三口味**（BJT/CMOS/JFET，按源阻抗选，$I_bR_s$ 差四个数量级、RRIO 中点 $g_m$ 凹陷）；**§13.10 晶体振荡器**（$C_L$ 反算、牵引灵敏度 18ppm/pF、负阻判据 $R_{neg}\ge5ESR$）；**§13.11 光耦与隔离**（CTR 三大坑、数字隔离器 vs 光耦、爬电距离）；**§14.8 原型到量产 DFM/DFT**（误差预算 WC vs RSS、$3\sigma$ 折良率、探头地线环造假纹波）；**§16.5 排故实战三案例**（低温自激 / 装机就挂 / BGA 虚焊，各附复盘与记录表） | [v3.28](p9-12-changelog.md) |
 | 2026-10 | **v3.27 站点 SEO 与首屏性能补齐**：59 页从「共用一句摘要」改为**每页独立 meta description**（自动摘要器跳过代码围栏 / 压不动的公式 / 版权行，`og:`/`twitter:` 同步）；第五篇 102 张动画图（约 1.9MB）改**懒加载 + 按画布比例预留高度**，消除整页滚动抖动；新增 2 项站点回归测试 | [v3.27](p9-12-changelog.md) |
 | 2026-10 | **v3.26 明色模式可读性补齐**：修掉 `#94a3b8`/`#0ea5e9`/`#f59e0b` 三个弱化色当文字用太淡（19 张图）；新增「文字被后绘形状盖住」审计项，抓出 mosfet-curves 轴标题被面板整块盖住；全库最小字号提到 9px；对比度回归测试扩展为明暗两套主题 | [v3.26](p9-12-changelog.md) |
@@ -51,6 +52,6 @@
 | 2026-10 | 新增 **§12.9 稳定性实战**：容性负载/长电缆为什么会振，隔离电阻与噪声增益两招 | [12.9](p2-01-ch11.md#ch12) |
 | 2026-10 | 新增 **§15.6 EMC/EMI**：三要素、十条硬规矩、三个真实整改现场 | [15.6](p3-01-ch14.md#ch15) |
 
-**三个新入口**：🌐 [在线知识站](https://zhuguang-ZFG.github.io/analog-circuit-roadmap/)（可搜索、可深浅色切换）· 🎬 [动画画廊](p5-00-part5.md)（102 张按章筛选）· 🧪 [自测题库](p9-00-quiz.md)（19 章 58 题 + 34 道专题加练）
+**三个新入口**：🌐 [在线知识站](https://zhuguang-ZFG.github.io/analog-circuit-roadmap/)（可搜索、可深浅色切换）· 🎬 [动画画廊](p5-00-part5.md)（103 张按章筛选）· 🧪 [自测题库](p9-00-quiz.md)（19 章 58 题 + 34 道专题加练）
 
 <a id="preface"></a>

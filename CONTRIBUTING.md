@@ -66,7 +66,7 @@ python -B -m unittest discover -s scripts -p 'test_svg_assets.py'   # SVG 与生
 
 | 能力 | 实现位置 | 说明 |
 |---|---|---|
-| 🎬 动画画廊 + 放大播放 | `gallery.md` / `gallery.js` / `gallery.css` | 102 张卡片，按章筛选 + 关键字搜索；「▶ 放大播放」弹窗全尺寸观看（SMIL 自动播放，Esc 关闭） |
+| 🎬 动画画廊 + 放大播放 | `gallery.md` / `gallery.js` / `gallery.css` | 103 张卡片，按章筛选 + 关键字搜索；「▶ 放大播放」弹窗全尺寸观看（SMIL 自动播放，Esc 关闭） |
 | ✎ 编辑此页 | `mkdocs.yml` 的 `edit_uri` | 每页右上角直达 `docs/` 里对应的 Markdown |
 | ✍️ 参与共建页脚 | `FEEDBACK_FOOTER` 常量 | 每页底部追加纠错 / 建议 / 共建指南入口（只加在站点产物，`docs/` 保持干净） |
 | 🔎 SEO | `OVERRIDES_MAIN_HTML` + `ROBOTS_TXT` | og/twitter 社交卡片 meta、`robots.txt`；`sitemap.xml` 由 MkDocs 依 `site_url` 自动生成 |

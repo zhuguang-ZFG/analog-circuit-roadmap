@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="590" viewBox="0 0 800 590">
+<title>电容直流偏压：标称容量 ≠ 工作容量</title>
+<defs>
+<linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
+</linearGradient>
+<linearGradient id="bgD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#0a1020"/><stop offset="1" stop-color="#141d30"/>
+</linearGradient>
+<radialGradient id="vig" cx="0.5" cy="0.44" r="0.78">
+<stop offset="0.55" stop-color="#0f172a" stop-opacity="0"/><stop offset="1" stop-color="#0f172a" stop-opacity="0.065"/>
+</radialGradient>
+<linearGradient id="hdr" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2563eb" stop-opacity="0.10"/>
+<stop offset="0.55" stop-color="#2563eb" stop-opacity="0.030"/>
+<stop offset="1" stop-color="#2563eb" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="hdrD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#60a5fa" stop-opacity="0.13"/>
+<stop offset="0.55" stop-color="#60a5fa" stop-opacity="0.040"/>
+<stop offset="1" stop-color="#60a5fa" stop-opacity="0"/>
+</linearGradient>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+<circle cx="1.5" cy="1.5" r="1.05" fill="#cbd5e1"/>
+</pattern>
+<filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+<feDropShadow dx="0" dy="1.6" stdDeviation="2.4" flood-color="#0f172a" flood-opacity="0.17"/>
+</filter>
+<filter id="pglow" x="-70%" y="-70%" width="240%" height="240%">
+<feGaussianBlur stdDeviation="2.1" result="b"/>
+<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs>
+<rect class="page-bg" width="800" height="590" fill="url(#bgL)"/>
+<rect width="800" height="590" fill="url(#dots)" opacity="0.40"/>
+<rect class="page-vig" width="800" height="590" fill="url(#vig)"/>
+<rect class="page-hdr" width="800" height="72" fill="url(#hdr)"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+.page-bg{fill:url(#bgL)}
+.page-vig{opacity:1}
+.page-hdr{fill:url(#hdr)}
+line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
+rect[fill="#f8fafc"],rect[fill="#eff6ff"],rect[fill="#ecfdf5"],rect[fill="#fffbeb"],rect[fill="#fef2f2"],rect[fill="#dbeafe"]{filter:url(#soft)}
+/* 浅色下的「弱化色」文字偏淡（#94a3b8 在白底只有 2.6:1）→ 只压暗文字，不动同色的线/粒子 */
+@media (prefers-color-scheme: light){
+text[fill="#94a3b8"],tspan[fill="#94a3b8"]{fill:#64748b}
+text[fill="#0ea5e9"],tspan[fill="#0ea5e9"]{fill:#0284c7}
+text[fill="#f59e0b"],tspan[fill="#f59e0b"]{fill:#b45309}
+}
+@media (prefers-color-scheme: dark){
+.page-bg{fill:url(#bgD)}
+.page-vig{opacity:0.45}
+.page-hdr{fill:url(#hdrD)}
+[fill="#f8fafc"]{fill:#0f172a}
+[fill="#f1f5f9"]{fill:#1e293b}[fill="#e0f2fe"]{fill:#082f49}[fill="#fff7ed"]{fill:#431407}
+[fill="#d1fae5"]{fill:#022c22}[fill="#fee2e2"]{fill:#450a0a}
+[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
+[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
+[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
+[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
+[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
+[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
+[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
+[fill="#34d399"]{fill:#065f46}
+[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
+[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
+[fill="#cbd5e1"]{fill:#334155}[stroke="#cbd5e1"]{stroke:#475569}
+[fill="#ffffff"]{fill:#0f172a}[fill="#94a3b8"]{fill:#8497ad}[stroke="#94a3b8"]{stroke:#64748b}
+[fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
+[fill="#b91c1c"]{fill:#f87171}[stroke="#b91c1c"]{stroke:#f87171}
+[fill="#0369a1"]{fill:#7dd3fc}[stroke="#0369a1"]{stroke:#7dd3fc}
+[fill="#0284c7"]{fill:#7dd3fc}[stroke="#0284c7"]{stroke:#7dd3fc}
+text[fill="#fff"]{fill:#0f172a}
+}
+</style>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">电容直流偏压：标称容量 ≠ 工作容量</text>
+<desc>教学示意曲线，不代表任何具体料号。假设 10µF 电容在 5V 下保持率为 26%，有效容量为 2.6µF。</desc>
+<text x="400" y="53" text-anchor="middle" font-size="12" fill="#475569">教学示例，非实测曲线；实际降容请查具体料号与测试条件</text>
+<rect x="60" y="76" width="680" height="330" rx="10" fill="#f8fafc" stroke="#64748b" stroke-width="1.6"/>
+<text x="400" y="100" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">纵轴：有效容量 / 零偏压容量（各自归一化）</text>
+<line x1="150" y1="340" x2="690" y2="340" stroke="#64748b" stroke-width="1.6"/>
+<line x1="150" y1="340" x2="150" y2="140" stroke="#64748b" stroke-width="1.6"/>
+<line x1="150" y1="240" x2="690" y2="240" stroke="#cbd5e1" stroke-dasharray="4,5"/>
+<text x="138" y="144" text-anchor="end" font-size="11" fill="#475569">100%</text>
+<text x="138" y="244" text-anchor="end" font-size="11" fill="#475569">50%</text>
+<text x="138" y="344" text-anchor="end" font-size="11" fill="#475569">0</text>
+<text x="150" y="362" text-anchor="middle" font-size="11" fill="#475569">0V</text>
+<text x="578.5714" y="362" text-anchor="middle" font-size="11" fill="#dc2626">5V</text>
+<text x="690" y="362" text-anchor="middle" font-size="11" fill="#475569">6.3V</text>
+<text x="420" y="387" text-anchor="middle" font-size="11.5" fill="#475569">横轴：施加的直流偏压 →（圆点匀速扫压）</text>
+<path d="M150,140 L690,140" fill="none" stroke="#059669" stroke-width="3"/>
+<text x="684" y="130" text-anchor="end" font-size="11" fill="#065f46">C0G 参考：基本不受直流偏压影响</text>
+<path id="cap-bias-curve" d="M150.0000,140.0000 L235.7143,154.0000 L321.4286,180.0000 L407.1429,216.0000 L492.8571,254.0000 L578.5714,288.0000 L690.0000,310.0000" fill="none" stroke="#dc2626" stroke-width="3"/>
+<text x="340" y="185" font-size="11" fill="#dc2626">II 类陶瓷：一条假设的降容曲线</text>
+<line x1="578.5714" y1="288.0000" x2="578.5714" y2="340" stroke="#dc2626" stroke-dasharray="4,4"/>
+<line x1="150" y1="288.0000" x2="578.5714" y2="288.0000" stroke="#dc2626" stroke-dasharray="4,4"/>
+<text x="138" y="292.0000" text-anchor="end" font-size="11" fill="#dc2626">26%</text>
+<circle id="cap-bias-point" cx="578.5714" cy="288.0000" r="6" fill="#dc2626"/>
+<text x="370" y="321" font-size="12" font-weight="bold" fill="#dc2626">5V 示例：10µF × 26% = 2.6µF</text>
+<circle id="cap-bias-sweep" cx="150" cy="140" r="5" fill="#b45309" filter="url(#pglow)">
+<animate attributeName="cx" values="150.0000;235.7143;321.4286;407.1429;492.8571;578.5714;690.0000" keyTimes="0.00000000;0.15873016;0.31746032;0.47619048;0.63492063;0.79365079;1.00000000" calcMode="linear" dur="12s" repeatCount="indefinite"/>
+<animate attributeName="cy" values="140.0000;154.0000;180.0000;216.0000;254.0000;288.0000;310.0000" keyTimes="0.00000000;0.15873016;0.31746032;0.47619048;0.63492063;0.79365079;1.00000000" calcMode="linear" dur="12s" repeatCount="indefinite"/>
+</circle>
+<g opacity="0">
+<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.82;0.86;1" dur="12s" repeatCount="indefinite"/>
+<rect x="75" y="415" width="650" height="52.0" rx="9" fill="#ecfdf5" stroke="#059669" stroke-width="1.5" filter="url(#soft)"/><rect x="81" y="422" width="3" height="38.0" rx="1.5" fill="#059669"/><text x="400" y="437.0" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">X5R / X7R 是温度特性代码，不是降容等级。实际容量取决于料号、偏压、温度与测试条件；</text><text x="400" y="455.0" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">选型要查曲线。本例忽略 ESR 且纹波电流相同，容量降至 26% 时容性纹波约增至 3.85 倍。</text>
+</g><g id="cap-bias-captions"><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.02;0.23;0.25;1" dur="12s" repeatCount="indefinite"/><rect x="178.2" y="535.0" width="443.7" height="24.1" rx="12.0" fill="#2563eb" fill-opacity="0.09" stroke="#2563eb" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.02;0.23;0.25;1" dur="12s" repeatCount="indefinite"/></rect><text x="400" y="548" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">① 标称容量有测试条件；加上直流偏压后，有效容量可能下降<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.02;0.23;0.25;1" dur="12s" repeatCount="indefinite"/></text></g>
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.25;0.27;0.48;0.5;1" dur="12s" repeatCount="indefinite"/><rect x="192.0" y="535.0" width="416.1" height="24.1" rx="12.0" fill="#b45309" fill-opacity="0.09" stroke="#b45309" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.27;0.48;0.5;1" dur="12s" repeatCount="indefinite"/></rect><text x="400" y="548" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">② 匀速扫过偏压轴：II 类陶瓷降容，C0G 参考线基本平坦<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.27;0.48;0.5;1" dur="12s" repeatCount="indefinite"/></text></g>
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.5;0.52;0.73;0.75;1" dur="12s" repeatCount="indefinite"/><rect x="184.7" y="535.0" width="430.6" height="24.1" rx="12.0" fill="#dc2626" fill-opacity="0.09" stroke="#dc2626" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.5;0.52;0.73;0.75;1" dur="12s" repeatCount="indefinite"/></rect><text x="400" y="548" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">③ 本例 5V 时保持率 26%：10µF 变为 2.6µF，并非实测值<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.5;0.52;0.73;0.75;1" dur="12s" repeatCount="indefinite"/></text></g>
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0" keyTimes="0;0.75;0.77;0.98;1" dur="12s" repeatCount="indefinite"/><rect x="171.7" y="535.0" width="456.7" height="24.1" rx="12.0" fill="#7c3aed" fill-opacity="0.09" stroke="#7c3aed" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.75;0.77;0.98;1" dur="12s" repeatCount="indefinite"/></rect><text x="400" y="548" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">④ 同纹波电流、忽略 ESR：容性纹波约增至 1/0.26 = 3.85 倍<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.75;0.77;0.98;1" dur="12s" repeatCount="indefinite"/></text></g>
+</g></svg>
