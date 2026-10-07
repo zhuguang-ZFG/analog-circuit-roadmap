@@ -342,16 +342,19 @@ GALLERY_JS = """
     function readUrl() {
       var p;
       try { p = new URLSearchParams(window.location.search); } catch (e) { return; }
-      if (p.get('ch')) { state.ch = p.get('ch'); }
-      if (p.get('q')) { state.q = p.get('q').toLowerCase(); }
+      var chapter = p.get('ch');
+      if (chips.some(function (c) { return c.dataset.ch === chapter; })) { state.ch = chapter; }
+      if (p.get('q')) { state.q = p.get('q').trim().toLowerCase(); }
     }
     function writeUrl() {
       if (!window.history || !window.history.replaceState) { return; }
-      var p = new URLSearchParams();
+      var p = new URLSearchParams(window.location.search);
+      p.delete('ch'); p.delete('q');
       if (state.ch && state.ch !== 'all') { p.set('ch', state.ch); }
       if (state.q) { p.set('q', state.q); }
       var qs = p.toString();
-      window.history.replaceState(null, '', window.location.pathname + (qs ? '?' + qs : ''));
+      window.history.replaceState(window.history.state, '',
+        window.location.pathname + (qs ? '?' + qs : '') + window.location.hash);
     }
 
     function paintChips() {
@@ -371,6 +374,7 @@ GALLERY_JS = """
       });
       if (empty) { empty.style.display = visible.length ? 'none' : ''; }
       if (counter) { counter.textContent = visible.length + ' / ' + cards.length; }
+      if (randomBtn) { randomBtn.disabled = !visible.length; }
       paintChips();
     }
 
@@ -402,6 +406,8 @@ GALLERY_JS = """
     var mNext = document.getElementById('gal-modal-next');
     var mPos = document.getElementById('gal-modal-pos');
     var current = -1;
+    var returnFocus = null;
+    var previousOverflow = '';
 
     function show(card) {
       var btn = card.querySelector('.gal-play');
@@ -419,15 +425,22 @@ GALLERY_JS = """
     }
     function isOpen() { return modal.classList.contains('is-open'); }
     function openModal(card) {
+      if (!isOpen()) {
+        returnFocus = document.activeElement;
+        previousOverflow = document.body.style.overflow;
+      }
       show(card);
       modal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
       if (mClose) { mClose.focus(); }
     }
     function closeModal() {
       if (!isOpen()) { return; }
       modal.classList.remove('is-open');
-      mImg.setAttribute('src', '');
+      mImg.removeAttribute('src');
+      document.body.style.overflow = previousOverflow;
       current = -1;
+      if (returnFocus && returnFocus.isConnected) { returnFocus.focus(); }
     }
     function step(delta) {
       if (!isOpen() || !visible.length) { return; }
@@ -446,12 +459,30 @@ GALLERY_JS = """
     });
 
     document.addEventListener('keydown', function (e) {
+      if (e.defaultPrevented || e.isComposing || e.ctrlKey || e.altKey || e.metaKey) { return; }
       if (e.key === 'Escape') { closeModal(); return; }
       if (!isOpen()) {
-        if (e.key === '/' && search && document.activeElement !== search) {
+        var target = e.target;
+        var editing = target && (target.isContentEditable ||
+          (target.closest && target.closest('input, textarea, select, [role="textbox"]')));
+        if (e.key === '/' && search && !editing) {
           e.preventDefault(); search.focus();
         }
         return;
+      }
+      if (e.key === 'Tab') {
+        var focusable = Array.prototype.slice.call(modal.querySelectorAll('button, a[href]'))
+          .filter(function (el) {
+            return !el.disabled && el.getClientRects().length &&
+              window.getComputedStyle(el).visibility !== 'hidden';
+          });
+        var first = focusable[0], last = focusable[focusable.length - 1];
+        if (focusable.indexOf(document.activeElement) < 0 ||
+            (e.shiftKey && document.activeElement === first) ||
+            (!e.shiftKey && document.activeElement === last)) {
+          e.preventDefault();
+          (e.shiftKey ? last : first).focus();
+        }
       }
       if (e.key === 'ArrowLeft') { e.preventDefault(); step(-1); }
       else if (e.key === 'ArrowRight') { e.preventDefault(); step(1); }
@@ -690,10 +721,10 @@ def render_gallery(items):
         "点卡片标题区直达该动画在 [动画演示中心](p5-00-part5.md)里的讲解与看点。" % len(items),
         "",
         '<div class="gal-bar">',
-        '  <input id="gal-search" type="search" placeholder="搜索：米勒 / LDO / 迟滞 / mosfet …">',
+        '  <input id="gal-search" type="search" aria-label="搜索动画" placeholder="搜索：米勒 / LDO / 迟滞 / mosfet …">',
         "  " + "\n  ".join(chips),
         '  <button class="gal-random" id="gal-random" type="button">🎲 随机一张</button>',
-        '  <span class="gal-tag" id="gal-count"></span>',
+        '  <span class="gal-tag" id="gal-count" role="status" aria-live="polite"></span>',
         "</div>",
         "",
         '<p class="gal-hint">键盘：<kbd>/</kbd> 聚焦搜索 · 弹窗里 <kbd>←</kbd> <kbd>→</kbd> 翻页 · '

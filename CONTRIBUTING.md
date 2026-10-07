@@ -61,6 +61,9 @@ python -B -m unittest discover -s scripts -p 'test_svg_assets.py'   # SVG 与生
 
 ## 站点体验（`build_site.py` 生成，改这里就改全站）
 
+修改画廊交互后运行 `python -B -m unittest discover -s scripts -p test_gallery_interactions.py -v`。
+这组测试需要 Playwright 和 Google Chrome，直接加载生成器输出并拦截外部请求，覆盖弹窗焦点循环与恢复、单张结果、输入区域快捷键、筛选分享和空结果；CI 的 `svg-render` 作业会执行同一组检查。
+
 | 能力 | 实现位置 | 说明 |
 |---|---|---|
 | 🎬 动画画廊 + 放大播放 | `gallery.md` / `gallery.js` / `gallery.css` | 102 张卡片，按章筛选 + 关键字搜索；「▶ 放大播放」弹窗全尺寸观看（SMIL 自动播放，Esc 关闭） |
