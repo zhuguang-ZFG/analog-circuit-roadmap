@@ -3722,7 +3722,7 @@ def make_miller_plateau():
     vgs_d = (f"M{tx(0):.0f},196 L{tx(150):.0f},175 L{tx(400):.0f},152 "
              f"L{tx(560):.0f},152 L{tx(700):.0f},120 L{tx(800):.0f},120")
     vds_d = f"M{tx(0):.0f},216 L{tx(400):.0f},216 L{tx(560):.0f},291 L{tx(800):.0f},291"
-    vgd_d = f"M{tx(100):.0f},84 L{tx(400):.0f},84 L{tx(560):.0f},152"
+    vgd_d = f"M{tx(0):.0f},84 L{tx(400):.0f},84 L{tx(560):.0f},152 L{tx(800):.0f},152"
     svg += f'''
 <text x="425" y="50" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">20V 母线 · 5A 负载 · 10mA 驱动 · AO3400（Q_g≈7nC, Q_gd≈1.6nC）</text>
 <rect x="{tx(150):.0f}" y="70" width="{tx(400)-tx(150):.0f}" height="380" fill="#94a3b8" opacity="0.10"/>
