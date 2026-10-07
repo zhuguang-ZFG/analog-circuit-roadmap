@@ -10,6 +10,7 @@ CHAPTER_ROW）。docs/ 迁移成多页后，`DEMO_LINK` 只认 `](#demoN)`、认
 只用标准库；mkdocs.yml 的重复键检查需要 PyYAML（随 mkdocs-material 一起装）。
 """
 from pathlib import Path
+import json
 import re
 import shutil
 import subprocess
@@ -66,6 +67,7 @@ class SiteBuildTests(unittest.TestCase):
 
         cls.gallery = (cls.out / "gallery.md").read_text(encoding="utf-8")
         cls.part5 = (work / "docs" / PART5).read_text(encoding="utf-8")
+        cls._part5_built = (cls.out / PART5).read_text(encoding="utf-8")
         cls.cards = CARD.findall(cls.gallery)
         cls.chips = CHIP.findall(cls.gallery)
 
@@ -160,6 +162,57 @@ class SiteBuildTests(unittest.TestCase):
                 self.assertEqual((w, h), (m.group(1), m.group(2)),
                                  "卡片上的 width/height 与 SVG 画布不一致")
 
+    def test_animation_images_are_lazy_and_reserve_space(self):
+        """第五篇一页嵌 102 张 SVG（约 1.9MB）：必须懒加载，且按画布比例写 height 防抖动。"""
+        pat = re.compile(r'<img src="assets/svg/([\w\-]+\.svg)"[^>]*?>')
+        tags = pat.findall(self._part5_built)
+        self.assertGreaterEqual(len(tags), 100, "第五篇的动画 <img> 数量异常")
+        for m in pat.finditer(self._part5_built):
+            tag, name = m.group(0), m.group(1)
+            with self.subTest(svg=name):
+                self.assertIn('loading="lazy"', tag, "动画图片缺 loading=lazy")
+                self.assertIn('decoding="async"', tag, "动画图片缺 decoding=async")
+                hm = re.search(r'\bheight="(\d+)"', tag)
+                wm = re.search(r'\bwidth="(\d+)"', tag)
+                self.assertIsNotNone(hm, "动画图片缺 height（会整页抖动）")
+                head = (self.out / "assets" / "svg" / name).read_text(encoding="utf-8",
+                                                                     errors="replace")[:600]
+                sm = re.search(r'<svg[^>]*\bwidth="(\d+)"\s+height="(\d+)"', head)
+                self.assertIsNotNone(sm, "SVG 里读不到画布尺寸")
+                ratio = int(sm.group(2)) / int(sm.group(1))
+                expect = round(int(wm.group(1)) * ratio)
+                self.assertLessEqual(abs(int(hm.group(1)) - expect), 1,
+                                     f"height 与画布比例不符（{hm.group(1)} vs {expect}）")
+
+    def test_every_page_has_a_unique_description(self):
+        """59 个页面原先共用同一句 site_description：每页必须有自己的、干净的摘要。
+
+        摘要由正文自动摘取，很容易静默劣化——曾把 `p1-04-ch3.md` 里 ASCII 画的 BJT
+        结构图（`│ N ├───┬───┤ N+ │`）和 `\\dfrac{R_0}{V_{DD}-V_{IN}-V_{TH}}` 这类
+        压不成文字的公式当成摘要。这里把「每页有、各不相同、无 Markdown/公式残渣」
+        钉成红灯。
+        """
+        pat = re.compile(r'^---\ndescription: ([^\n]*)\n---\n')
+        descs = {}
+        for page in sorted(self.out.glob("*.md")):
+            with self.subTest(page=page.name):
+                m = pat.match(page.read_text(encoding="utf-8"))
+                self.assertIsNotNone(m, "%s 没有 description（会退回全站同一句）" % page.name)
+                descs[page.name] = json.loads(m.group(1))
+
+        values = list(descs.values())
+        dup = {v: [k for k, x in descs.items() if x == v] for v in values if values.count(v) > 1}
+        self.assertEqual({}, dup, "有页面共用同一句 description：%s" % dup)
+
+        for name, desc in descs.items():
+            with self.subTest(page=name):
+                self.assertGreaterEqual(len(desc), 8, "摘要太短：%r" % desc)
+                self.assertLessEqual(len(desc), 150, "摘要超长：%r" % desc)
+                # `"` 会把 <meta content="..."> 属性截断（p1-05-ch4 就因此整条 meta 消失），
+                # 所以摘要里必须已经换成中文弯引号
+                for bad in ("`", "*", "$", "\\", "|", "│", "├", "&lt;", "frac", "quad", '"'):
+                    self.assertNotIn(bad, desc, "摘要里混进了 Markdown/公式/ASCII 图残渣：%r" % desc)
+
     # ---------- 筛选 chips ----------
     def test_chips_cover_all_and_every_chapter(self):
         self.assertEqual("all", self.chips[0][0], "第一个 chip 必须是「全部」")
@@ -236,12 +289,19 @@ class SiteBuildTests(unittest.TestCase):
                 self.assertIn("issues/new?template=new-topic.yml", text)
 
     def test_docs_stay_clean(self):
-        """页脚 / lightbox 只进站点产物，docs/ 里不能出现这些标记。"""
+        """页脚 / lightbox / 懒加载属性 / description 只进站点产物，docs/ 里不能出现。
+
+        懒加载要按 `<img …loading="lazy">` 匹配——更新日志里会**用文字**提到这个属性，
+        只查字面量会把正常的文档表述误判成注入。
+        """
         for page in sorted((self.work / "docs").glob("*.md")):
             with self.subTest(page=page.name):
                 text = page.read_text(encoding="utf-8")
                 self.assertNotIn("issues/new?template=content-fix.yml", text)
                 self.assertNotIn("gal-card", text)
+                self.assertIsNone(re.search(r'<img[^>]*\bloading="lazy"', text),
+                                  "docs/ 里的 <img> 不该带懒加载属性")
+                self.assertFalse(text.startswith("---\n"), "docs/ 里不该有 front-matter")
 
     # ---------- 辅助 ----------
     @staticmethod

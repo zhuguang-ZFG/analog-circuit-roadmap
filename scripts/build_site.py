@@ -12,6 +12,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import re
 import shutil
 import subprocess
@@ -42,6 +43,228 @@ def svg_size(name):
         return 800, 460
     m = SVG_SIZE.search(head)
     return (int(m.group(1)), int(m.group(2))) if m else (800, 460)
+
+
+IMG_TAG = re.compile(r'<img\s+src="assets/svg/([\w\-]+\.svg)"([^>]*)>')
+IMG_ATTRS = 'loading="lazy" decoding="async"'
+
+
+def optimize_imgs(text):
+    """给站点产物里的动画 <img> 补 loading="lazy" + decoding="async" + 按画布比例写 height。
+
+    - 「动画演示中心」一页就嵌了 102 张 SVG（约 1.9MB），全部 eager 加载太浪费；
+    - 102 张图高度从 430 到 762 不等，只写 width 会让浏览器在下载完成前无从预留高度，
+      滚动时整页剧烈抖动（CLS）——补 height 后浏览器可提前按比例占位。
+    只在站点产物上做，`docs/` 保持单一数据源干净；README 由 GitHub 自行懒加载。
+    """
+    def repl(m):
+        name, rest = m.group(1), m.group(2)
+        if "loading=" in rest:
+            return m.group(0)
+        w, h = svg_size(name)
+        wm = re.search(r'\bwidth="(\d+)"', rest)
+        if wm and "height=" not in rest:
+            rest += f' height="{round(int(wm.group(1)) * h / w)}"'
+        return f'<img src="assets/svg/{name}"{rest} {IMG_ATTRS}>'
+    return IMG_TAG.sub(repl, text)
+
+
+FM_DESC_MAX = 150
+DESC_MIN = 30          # 摘要的最短可采纳长度（更短的几乎都是图注 / 链接行 / 残句）
+_MD_LINK = re.compile(r"\[([^\]]*)\]\([^)]*\)")
+_MD_CODE = re.compile(r"`([^`]*)`")
+_MD_NOISE = re.compile(r"[*`$\\]")
+# 只剥"认识"的标签：`I_C < 5mA, V > 2V` 这类含尖括号的正文不能被误删
+_HTML_TAG = re.compile(
+    r"</?(?:a|b|i|em|strong|code|kbd|sub|sup|br|p|span|div|img|figure|figcaption|"
+    r"center|details|summary|blockquote|table|thead|tbody|tr|td|th|ul|ol|li|hr)\b[^>]*/?>",
+    re.I)
+_MATH = re.compile(r"\$([^$]+)\$")
+_ENTITY = {"&lt;": "<", "&gt;": ">", "&amp;": "&", "&quot;": '"',
+           "&#39;": "'", "&nbsp;": " "}
+_ENTITY_RE = re.compile("|".join(map(re.escape, _ENTITY)))
+_LATEX = re.compile(r"\\([a-zA-Z]+)")
+_LATEX_MAP = {
+    "approx": "≈", "times": "×", "cdot": "·", "ge": "≥", "le": "≤", "ne": "≠",
+    "to": "→", "rightarrow": "→", "Rightarrow": "⇒", "pm": "±", "mu": "µ",
+    "alpha": "α", "beta": "β", "gamma": "γ", "delta": "δ", "Delta": "Δ",
+    "eta": "η", "theta": "θ", "lambda": "λ", "nu": "ν", "pi": "π", "rho": "ρ",
+    "sigma": "σ", "Sigma": "Σ", "tau": "τ", "phi": "φ", "omega": "ω",
+    "Omega": "Ω", "infty": "∞", "propto": "∝",
+}
+# 这些 LaTeX 结构压成纯文本必然走样（\frac{a}{b} -> fracab、\text{ms} -> textms），
+# 含它们的段落宁可不做摘要——否则搜索结果里会出现 `τ=RC=1textms,quad tr≈2.2τ`
+_HARD_TEX = re.compile(
+    r"\\(?:frac|dfrac|tfrac|sqrt|text|mathrm|mathbf|begin|end|sum|int|lim|left|"
+    r"right|overline|vec|hat|dot|partial|nabla)\b")
+_FENCE = re.compile(r"^\s*(?:```|~~~)")
+_HEADING = re.compile(r"^\s{0,3}#{1,6}\s+(.+?)\s*#*\s*$")
+_SEP_ROW = re.compile(r"^\|[\s\-:|]+\|$")
+# 图片版权声明行（"以上图片：Wikimedia Commons，公有领域/CC 授权"）不是页面摘要
+_CREDIT = re.compile(r"Wikimedia Commons|公有领域|CC[ -]?BY|版权|授权声明")
+_LAST_UPDATE = re.compile(r"[，,；;、\s]*最后更新[：:][^\s。；;]*\s*$")
+# ASCII 双引号 -> 中文弯引号：正文里写 "反型层"，直接塞进 <meta content="..."> 会把属性截断
+_QUOTE_PAIR = re.compile(r'"([^"]*)"')
+# 表格行 / 原始 HTML / admonition / 脚注 / 列表项 / 分隔线 —— 都不是正文段落
+_SKIP = re.compile(r"^(?:\||<|!|\^\[|\[\^|[-*+]\s|\d+[.)]\s|[-*_]{3,}\s*$)")
+
+
+def _demath(m):
+    r"""把行内公式压成可读纯文本：$V_{BE}\approx0.7V$ -> VBE≈0.7V。"""
+    s = _LATEX.sub(lambda g: _LATEX_MAP.get(g.group(1), g.group(1)), m.group(1))
+    return s.replace("{", "").replace("}", "").replace("_", "").replace("^", "")
+
+
+def _plain(s):
+    """把一行 Markdown 压成纯文本：去链接语法 / 行内代码 / 公式 / 标记 / HTML 标签。"""
+    s = _MD_LINK.sub(r"\1", s)
+    s = _MD_CODE.sub(r"\1", s)     # 先取出代码内容，否则 build_readme.py 会被压成 buildreadme.py
+    s = _ENTITY_RE.sub(lambda m: _ENTITY[m.group(0)], s)
+    s = _HTML_TAG.sub("", s)
+    s = _MATH.sub(_demath, s)
+    s = _MD_NOISE.sub("", s)
+    return re.sub(r"\s+", " ", s).strip()
+
+
+def _cells(row):
+    return [c.strip() for c in row.strip().strip("|").split("|")]
+
+
+_CJK = re.compile(r"[\u3000-\u303f\u4e00-\u9fff\uff00-\uffef]")
+
+
+def _join_lines(lines):
+    """按 CJK 排版规则拼行：中文之间的软换行不补空格，英文之间才补。
+
+    否则「…系统学习指南」+「仿《通往 AGI 之路》…」会拼成「指南 仿《…》」。
+    """
+    parts = [ln.strip() for ln in lines if ln.strip()]
+    if not parts:
+        return ""
+    out = parts[0]
+    for nxt in parts[1:]:
+        sep = "" if (_CJK.search(out[-1]) and _CJK.search(nxt[0])) else " "
+        out += sep + nxt
+    return out
+
+
+def _fit(s):
+    """截到 FM_DESC_MAX 以内，尽量落在句号 / 分号处，不要在句子中间硬切。"""
+    s = _LAST_UPDATE.sub("", s).strip()      # 末尾的「最后更新：2026-10」是噪声
+    s = _QUOTE_PAIR.sub("\u201c\\1\u201d", s).replace('"', "\u201d")
+    if len(s) <= FM_DESC_MAX:
+        return s.rstrip("，,、；;：: ")
+    cut = s[:FM_DESC_MAX]
+    for sep in "。！？；":
+        k = cut.rfind(sep)
+        if k >= DESC_MIN:
+            return cut[:k + 1]
+    return cut.rstrip("，,、；;：: ")
+
+
+def page_description(text):
+    """为每页摘一句 meta description（写进站点产物的 front-matter）。
+
+    SEO：原先 59 个页面共用同一句 site_description，搜索结果与社交卡片里全站摘要
+    一模一样；MkDocs Material 优先用 front-matter 的 `description`，所以这里为每页
+    生成一句独立的。
+
+    做法：按文档顺序扫描，取**第一个够长的正文块**（普通段落，或开篇的引用块——
+    篇首页 / 章首页的开场白正好写成 `>` 引用）。沿途跳过标题、表格、列表、原始
+    HTML，**以及代码围栏内的全部内容**——曾经把 `p1-04-ch3.md` 里 ASCII 画的 BJT
+    结构图当成了摘要（`│ N ├───┬───┤ N+ │`）；含 `\\frac` 之类压不成文字的公式的
+    段落也跳过，否则摘要里会出现 `dfracR0VDD-VIN-VTH`。
+    整页都是标题 + 表格/清单时（速查表、目录页），退回「标题（表格列名）」。
+    """
+    # 相邻的引用行合成一段（`> a` / `> b` 是同一段开场白），并去掉行首的 `>`
+    lines: list[str] = []
+    for raw in text.split("\n"):
+        if raw.strip().startswith(">") and lines and lines[-1].strip().startswith(">"):
+            lines[-1] = _join_lines([lines[-1], re.sub(r"^>+\s*", "", raw.strip())])
+        else:
+            lines.append(raw)
+
+    title = ""
+    cols: list[str] = []
+    bullet = ""
+    cands: list[tuple[int, str]] = []      # (在文中的行号, 候选摘要)
+    buf: list[str] = []
+    buf_at = 0
+    in_fence = False
+
+    def close_buf():
+        if buf:
+            raw = _join_lines(buf)
+            body = _plain(raw)
+            # 图片版权声明（"以上图片：Wikimedia Commons…"）不是页面摘要
+            if (len(body) >= DESC_MIN and not _HARD_TEX.search(raw)
+                    and not _CREDIT.search(body)):
+                cands.append((buf_at, body))
+            buf.clear()
+
+    for i, raw in enumerate(lines):
+        if _FENCE.match(raw):            # ``` / ~~~ 围栏：连同围栏内的内容整块丢弃
+            in_fence = not in_fence
+            close_buf()
+            continue
+        if in_fence:
+            continue
+        s = raw.strip()
+        if not s:
+            close_buf()
+            continue
+        m = _HEADING.match(s)
+        if m:
+            close_buf()
+            if not title:
+                title = _plain(m.group(1))
+            continue
+        if s.startswith(">"):
+            close_buf()
+            body = _plain(s.lstrip("> ").strip())
+            # 「📚 先修」这类提示块不是正文摘要
+            if (len(body) >= DESC_MIN and "📚" not in body and not _HARD_TEX.search(s)
+                    and not _CREDIT.search(body)):
+                cands.append((i, body))
+            continue
+        if s.startswith("|"):
+            close_buf()
+            if not cols:                 # 表头行 = 下一行是 |---|---| 分隔行
+                nxt = lines[i + 1].strip() if i + 1 < len(lines) else ""
+                if _SEP_ROW.match(nxt):
+                    cols = [c for c in map(_plain, _cells(s)) if c]
+            continue
+        if len(_MD_LINK.findall(s)) >= 3:     # 一串链接 = 导航行，不是正文
+            close_buf()
+            continue
+        if _SKIP.match(s):
+            close_buf()
+            if not bullet:
+                m2 = re.match(r"^(?:[-*+]|\d+[.)])\s+(.*)$", s)
+                if m2:
+                    body = _plain(m2.group(1))
+                    if 6 <= len(body) <= 40:
+                        bullet = body
+            continue
+        if not buf:
+            buf_at = i
+        buf.append(s)
+    close_buf()
+
+    if cands:
+        return _fit(min(cands, key=lambda c: c[0])[1])
+    if title:
+        tail = " · ".join(cols) if cols else bullet
+        return _fit(title + ("（%s）" % tail if tail else ""))
+    return ""
+
+
+def with_description(text):
+    """给站点产物的一页补上 meta description 的 front-matter（摘要为空则原样返回）。"""
+    desc = page_description(text)
+    if not desc:
+        return text
+    return f"---\ndescription: {json.dumps(desc, ensure_ascii=False)}\n---\n\n" + text
 
 
 CHAPTER_LABEL = {
@@ -256,13 +479,13 @@ OVERRIDES_MAIN_HTML = """{% extends "base.html" %}
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="{{ config.site_name }}">
   <meta property="og:title" content="{{ page.title | default(config.site_name, true) }}">
-  <meta property="og:description" content="{{ config.site_description }}">
+  <meta property="og:description" content="{{ ((page.meta or {}).get('description') or config.site_description) | e }}">
   {% if page.canonical_url %}<meta property="og:url" content="{{ page.canonical_url }}">{% endif %}
   <meta property="og:image" content="__OG_IMAGE__">
   <meta property="og:locale" content="zh_CN">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{ page.title | default(config.site_name, true) }}">
-  <meta name="twitter:description" content="{{ config.site_description }}">
+  <meta name="twitter:description" content="{{ ((page.meta or {}).get('description') or config.site_description) | e }}">
   <meta name="twitter:image" content="__OG_IMAGE__">
   <meta name="theme-color" content="#3f51b5">
   <meta name="author" content="zhuguang-ZFG">
@@ -574,13 +797,19 @@ def main():
         text = page.read_text(encoding="utf-8")
         # 原始 HTML 里的跨页链接 MkDocs 不会重写，这里统一 .md# -> .html#
         text = re.sub(r'href="([\w\-]+)\.md#', r'href="\1.html#', text)
+        # 动画 <img> 补懒加载 + 预留高度（只在站点产物里加）
+        text = optimize_imgs(text)
+        # SEO：每页一句独立的 meta description（front-matter，只加在站点产物里）
+        text = with_description(text)
         # 每页页脚加「参与共建」闭环（只在站点产物里加，docs/ 保持单一数据源干净）
         text = text.rstrip("\n") + "\n" + FEEDBACK_FOOTER
         (OUT / page.name).write_text(text, encoding="utf-8", newline="\n")
     for extra in ("CONTRIBUTING.md", "CONTRIBUTORS.md"):
         src = ROOT / extra
         if src.exists():
-            shutil.copy2(src, OUT / extra)
+            text = with_description(optimize_imgs(src.read_text(encoding="utf-8")))
+            text = text.rstrip("\n") + "\n" + FEEDBACK_FOOTER
+            (OUT / extra).write_text(text, encoding="utf-8", newline="\n")
 
     if SVG_SRC.is_dir():
         shutil.copytree(SVG_SRC, OUT / "assets" / "svg")
@@ -601,8 +830,9 @@ def main():
         OVERRIDES_MAIN_HTML.replace("__OG_IMAGE__", OG_IMAGE), encoding="utf-8", newline="\n")
 
     items, _ = parse_demos()
-    gallery = render_gallery(items).rstrip("\n") + "\n" + FEEDBACK_FOOTER
-    (OUT / "gallery.md").write_text(gallery, encoding="utf-8", newline="\n")
+    gallery = with_description(render_gallery(items).rstrip("\n"))
+    (OUT / "gallery.md").write_text(gallery + "\n" + FEEDBACK_FOOTER,
+                                    encoding="utf-8", newline="\n")
     write_mkdocs_config()
     print("站点源已生成：%s（%d 页 + %d 张动画卡片）"
           % (OUT, len(list(OUT.glob("*.md"))), len(items)))
