@@ -42,6 +42,12 @@ text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
 .page-hdr{fill:url(#hdr)}
 line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
 rect[fill="#f8fafc"],rect[fill="#eff6ff"],rect[fill="#ecfdf5"],rect[fill="#fffbeb"],rect[fill="#fef2f2"],rect[fill="#dbeafe"]{filter:url(#soft)}
+/* 浅色下的「弱化色」文字偏淡（#94a3b8 在白底只有 2.6:1）→ 只压暗文字，不动同色的线/粒子 */
+@media (prefers-color-scheme: light){
+text[fill="#94a3b8"],tspan[fill="#94a3b8"]{fill:#64748b}
+text[fill="#0ea5e9"],tspan[fill="#0ea5e9"]{fill:#0284c7}
+text[fill="#f59e0b"],tspan[fill="#f59e0b"]{fill:#b45309}
+}
 @media (prefers-color-scheme: dark){
 .page-bg{fill:url(#bgD)}
 .page-vig{opacity:0.45}
@@ -81,13 +87,13 @@ text[fill="#fff"]{fill:#0f172a}
 <text x="75" y="156" font-size="9" fill="#475569">R1 1k</text>
 <line x1="60" y1="164" x2="60" y2="176" stroke="#334155" stroke-width="2.2"/>
 <circle cx="60" cy="178" r="3" fill="#334155"/>
-<text x="67" y="181" font-size="8" fill="#7c3aed">→7脚 DIS</text>
+<text x="67" y="181" font-size="9" fill="#7c3aed">→7脚 DIS</text>
 <line x1="60" y1="180" x2="60" y2="186" stroke="#334155" stroke-width="2.2"/>
 <rect x="49" y="186" width="22" height="24" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2.2"/>
 <text x="75" y="202" font-size="9" fill="#475569">R2 6.8k</text>
 <line x1="60" y1="210" x2="60" y2="216" stroke="#334155" stroke-width="2.2"/>
 <circle cx="60" cy="218" r="3" fill="#334155"/>
-<text x="67" y="221" font-size="8" fill="#7c3aed">→2/6脚</text>
+<text x="67" y="221" font-size="9" fill="#7c3aed">→2/6脚</text>
 <line x1="60" y1="220" x2="60" y2="226" stroke="#334155" stroke-width="2.2"/>
 <line x1="48" y1="226" x2="72" y2="226" stroke="#cbd5e1" stroke-width="3"/>
 <line x1="48" y1="234" x2="72" y2="234" stroke="#cbd5e1" stroke-width="3"/>
@@ -97,7 +103,7 @@ text[fill="#fff"]{fill:#0f172a}
 <text x="78" y="232" font-size="9" fill="#2563eb">C 100n</text>
 <rect x="124" y="150" width="54" height="60" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
 <text x="151" y="180" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">555</text>
-<text x="151" y="198" text-anchor="middle" font-size="8" font-weight="bold" fill="#dc2626">OUT</text>
+<text x="151" y="198" text-anchor="middle" font-size="9" font-weight="bold" fill="#dc2626">OUT</text>
 <line x1="178" y1="180" x2="186" y2="180" stroke="#dc2626" stroke-width="2.4"/>
 <polygon points="186,180 181,176 181,184" fill="#dc2626"/>
 
@@ -113,13 +119,13 @@ text[fill="#fff"]{fill:#0f172a}
 <text x="267" y="156" font-size="9" fill="#475569">R1 1k</text>
 <line x1="252" y1="164" x2="252" y2="176" stroke="#334155" stroke-width="2.2"/>
 <circle cx="252" cy="178" r="3" fill="#334155"/>
-<text x="259" y="181" font-size="8" fill="#7c3aed">→7脚 DIS</text>
+<text x="259" y="181" font-size="9" fill="#7c3aed">→7脚 DIS</text>
 <line x1="252" y1="180" x2="252" y2="186" stroke="#334155" stroke-width="2.2"/>
 <rect x="241" y="186" width="22" height="24" fill="#f8fafc" stroke="#f59e0b" stroke-width="2.2"/>
 <text x="267" y="202" font-size="9" fill="#475569">R2 6.8k</text>
 <line x1="252" y1="210" x2="252" y2="216" stroke="#334155" stroke-width="2.2"/>
 <circle cx="252" cy="218" r="3" fill="#334155"/>
-<text x="259" y="221" font-size="8" fill="#7c3aed">→2/6脚</text>
+<text x="259" y="221" font-size="9" fill="#7c3aed">→2/6脚</text>
 <line x1="252" y1="220" x2="252" y2="226" stroke="#334155" stroke-width="2.2"/>
 <line x1="240" y1="226" x2="264" y2="226" stroke="#2563eb" stroke-width="3"/>
 <line x1="240" y1="234" x2="264" y2="234" stroke="#2563eb" stroke-width="3"/>
@@ -129,7 +135,7 @@ text[fill="#fff"]{fill:#0f172a}
 <text x="270" y="232" font-size="9" fill="#2563eb">C 100n</text>
 <rect x="316" y="150" width="54" height="60" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
 <text x="343" y="180" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">555</text>
-<text x="343" y="198" text-anchor="middle" font-size="8" font-weight="bold" fill="#dc2626">OUT</text>
+<text x="343" y="198" text-anchor="middle" font-size="9" font-weight="bold" fill="#dc2626">OUT</text>
 <line x1="370" y1="180" x2="378" y2="180" stroke="#dc2626" stroke-width="2.4"/>
 <polygon points="378,180 373,176 373,184" fill="#dc2626"/>
 <g filter="url(#pglow)"><circle r="4.0" fill="#f59e0b"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M252,134 L252,226"/></circle>
@@ -146,13 +152,13 @@ text[fill="#fff"]{fill:#0f172a}
 <text x="459" y="156" font-size="9" fill="#475569">R1 1k</text>
 <line x1="444" y1="164" x2="444" y2="176" stroke="#334155" stroke-width="2.2"/>
 <circle cx="444" cy="178" r="3" fill="#334155"/>
-<text x="451" y="181" font-size="8" fill="#7c3aed">→7脚 DIS</text>
+<text x="451" y="181" font-size="9" fill="#7c3aed">→7脚 DIS</text>
 <line x1="444" y1="180" x2="444" y2="186" stroke="#334155" stroke-width="2.2"/>
 <rect x="433" y="186" width="22" height="24" fill="#f8fafc" stroke="#dc2626" stroke-width="2.2"/>
 <text x="459" y="202" font-size="9" fill="#475569">R2 6.8k</text>
 <line x1="444" y1="210" x2="444" y2="216" stroke="#334155" stroke-width="2.2"/>
 <circle cx="444" cy="218" r="3" fill="#334155"/>
-<text x="451" y="221" font-size="8" fill="#7c3aed">→2/6脚</text>
+<text x="451" y="221" font-size="9" fill="#7c3aed">→2/6脚</text>
 <line x1="444" y1="220" x2="444" y2="226" stroke="#334155" stroke-width="2.2"/>
 <line x1="432" y1="226" x2="456" y2="226" stroke="#2563eb" stroke-width="3"/>
 <line x1="432" y1="234" x2="456" y2="234" stroke="#2563eb" stroke-width="3"/>
@@ -162,7 +168,7 @@ text[fill="#fff"]{fill:#0f172a}
 <text x="462" y="232" font-size="9" fill="#2563eb">C 100n</text>
 <rect x="508" y="150" width="54" height="60" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
 <text x="535" y="180" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">555</text>
-<text x="535" y="198" text-anchor="middle" font-size="8" font-weight="bold" fill="#dc2626">OUT</text>
+<text x="535" y="198" text-anchor="middle" font-size="9" font-weight="bold" fill="#dc2626">OUT</text>
 <line x1="562" y1="180" x2="570" y2="180" stroke="#dc2626" stroke-width="2.4"/>
 <polygon points="570,180 565,176 565,184" fill="#dc2626"/>
 <g filter="url(#pglow)"><circle r="4.0" fill="#dc2626"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M444,226 L444,178"/></circle>
@@ -179,13 +185,13 @@ text[fill="#fff"]{fill:#0f172a}
 <text x="651" y="156" font-size="9" fill="#475569">R1 1k</text>
 <line x1="636" y1="164" x2="636" y2="176" stroke="#334155" stroke-width="2.2"/>
 <circle cx="636" cy="178" r="3" fill="#334155"/>
-<text x="643" y="181" font-size="8" fill="#7c3aed">→7脚 DIS</text>
+<text x="643" y="181" font-size="9" fill="#7c3aed">→7脚 DIS</text>
 <line x1="636" y1="180" x2="636" y2="186" stroke="#334155" stroke-width="2.2"/>
 <rect x="625" y="186" width="22" height="24" fill="#f8fafc" stroke="#334155" stroke-width="2.2"/>
 <text x="651" y="202" font-size="9" fill="#475569">R2 6.8k</text>
 <line x1="636" y1="210" x2="636" y2="216" stroke="#334155" stroke-width="2.2"/>
 <circle cx="636" cy="218" r="3" fill="#334155"/>
-<text x="643" y="221" font-size="8" fill="#7c3aed">→2/6脚</text>
+<text x="643" y="221" font-size="9" fill="#7c3aed">→2/6脚</text>
 <line x1="636" y1="220" x2="636" y2="226" stroke="#334155" stroke-width="2.2"/>
 <line x1="624" y1="226" x2="648" y2="226" stroke="#2563eb" stroke-width="3"/>
 <line x1="624" y1="234" x2="648" y2="234" stroke="#2563eb" stroke-width="3"/>
@@ -195,7 +201,7 @@ text[fill="#fff"]{fill:#0f172a}
 <text x="654" y="232" font-size="9" fill="#2563eb">C 100n</text>
 <rect x="700" y="150" width="54" height="60" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
 <text x="727" y="180" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">555</text>
-<text x="727" y="198" text-anchor="middle" font-size="8" font-weight="bold" fill="#dc2626">OUT</text>
+<text x="727" y="198" text-anchor="middle" font-size="9" font-weight="bold" fill="#dc2626">OUT</text>
 <line x1="754" y1="180" x2="762" y2="180" stroke="#dc2626" stroke-width="2.4"/>
 <polygon points="762,180 757,176 757,184" fill="#dc2626"/>
 

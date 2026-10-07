@@ -45,7 +45,7 @@ jobs:
       - run: python scripts/build_site.py --build
 
   svg-render:
-    name: SVG 渲染回归（时间轴 + 版面几何 + 暗色对比度）
+    name: SVG 渲染回归（时间轴 + 版面几何 + 明暗对比度）
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -55,7 +55,7 @@ jobs:
       - run: pip install numpy playwright
       - name: 时间轴（波形游标按时间匀速推进）
         run: python -B -m unittest discover -s scripts -p test_waveform_timing.py -v
-      - name: 版面几何（内容出界 / 字幕压字 / 注释框溢出 / 文字被裁 / 静态压字）
+      - name: 版面几何（内容出界 / 字幕压字 / 注释框溢出 / 文字被裁 / 静态压字 / 文字被盖）
         run: python -B -m unittest discover -s scripts -p test_svg_layout.py -v
-      - name: 暗色可读性（prefers-color-scheme 为 dark 时文字对比度）
-        run: python -B -m unittest discover -s scripts -p test_svg_dark.py -v
+      - name: 明暗两套主题的文字对比度（light + dark 均须 ≥ 3.0）
+        run: python -B -m unittest discover -s scripts -p test_svg_contrast.py -v

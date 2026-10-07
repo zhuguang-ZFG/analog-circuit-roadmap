@@ -20,6 +20,12 @@ text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
 .page-hdr{fill:url(#hdr)}
 line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
 rect[fill="#f8fafc"],rect[fill="#eff6ff"],rect[fill="#ecfdf5"],rect[fill="#fffbeb"],rect[fill="#fef2f2"],rect[fill="#dbeafe"]{filter:url(#soft)}
+/* 浅色下的「弱化色」文字偏淡（#94a3b8 在白底只有 2.6:1）→ 只压暗文字，不动同色的线/粒子 */
+@media (prefers-color-scheme: light){
+text[fill="#94a3b8"],tspan[fill="#94a3b8"]{fill:#64748b}
+text[fill="#0ea5e9"],tspan[fill="#0ea5e9"]{fill:#0284c7}
+text[fill="#f59e0b"],tspan[fill="#f59e0b"]{fill:#b45309}
+}
 @media (prefers-color-scheme: dark){
 .page-bg{fill:url(#bgD)}
 .page-vig{opacity:0.45}
@@ -5185,7 +5191,7 @@ def make_mosfet_curves():
 {curve(6.0, '#7c3aed', 2.4)}
 <line x1="{X0}" y1="{Y1}" x2="{X1}" y2="{Y1}" stroke="#64748b" stroke-width="1.6"/>
 <line x1="{X0}" y1="{Y0}" x2="{X0}" y2="{Y1}" stroke="#64748b" stroke-width="1.6"/>
-<text x="{X1}" y="{Y1+40}" text-anchor="end" font-size="11" fill="#475569">V_DS →</text>
+<text x="{X1}" y="{Y1+36}" text-anchor="end" font-size="11" fill="#475569">V_DS →</text>
 <text x="{X0-6}" y="{Y0+12}" text-anchor="end" font-size="10.5" fill="#475569">30mA</text>
 <text x="{X0-6}" y="{py(10)+4:.0f}" text-anchor="end" font-size="10.5" fill="#475569">10mA</text>
 <text x="{px(5):.0f}" y="{Y1+22}" text-anchor="middle" font-size="10" fill="#475569">5V</text>
@@ -5198,10 +5204,10 @@ def make_mosfet_curves():
 <text x="{px(6.5):.0f}" y="{Y0+34}" font-size="10.5" font-weight="bold" fill="#dc2626">虚线上是夹断点：分界线</text>
 <text x="{X0+8}" y="{Y0-42}" font-size="11" font-weight="bold" fill="#2563eb">V_GS 越大，曲线越往上抬</text>
 <text x="{X0+8}" y="{Y0-24}" font-size="11" fill="#475569">抬升量 ∝ (V_GS−V_TH)² → 跨导 g_m</text>
-<rect x="40" y="420" width="720" height="86" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,4"/>
-<text x="60" y="448" font-size="12" font-weight="bold" fill="#334155">河流比喻：沟道 = 河床</text>
-<text x="60" y="472" font-size="11.5" fill="#475569">V_DS 小：河水从源平缓流到漏，水流随坡度线性增加（线性区）</text>
-<text x="60" y="494" font-size="11.5" fill="#475569">V_DS 够大：漏端河床被「夹断」，水到断口被强电场直接甩过去——水量只由上游（V_GS）决定</text>
+<rect x="40" y="446" width="720" height="86" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,4"/>
+<text x="60" y="474" font-size="12" font-weight="bold" fill="#334155">河流比喻：沟道 = 河床</text>
+<text x="60" y="498" font-size="11.5" fill="#475569">V_DS 小：河水从源平缓流到漏，水流随坡度线性增加（线性区）</text>
+<text x="60" y="520" font-size="11.5" fill="#475569">V_DS 够大：漏端河床被「夹断」，水到断口被强电场直接甩过去——水量只由上游（V_GS）决定</text>
 <circle r="5" fill="#7c3aed">{plain_motion(DM, curve(6.0, '#7c3aed'), begin='-0.7s')}</circle>
 <circle r="5" fill="#94a3b8">{plain_motion(DM, curve(3.0, '#94a3b8'), begin='-2.1s')}</circle>
 <circle cx="{px(2):.0f}" cy="{py(1.8):.0f}" r="5" fill="none" stroke="#dc2626" stroke-width="2.4">
@@ -7212,9 +7218,9 @@ def make_ldo_transient_beats():
 <line x1="{x+134}" y1="153" x2="{x+134}" y2="158" stroke="#334155" stroke-width="2.2"/>
 <line x1="{x+134}" y1="182" x2="{x+134}" y2="190" stroke="#334155" stroke-width="2.2"/>
 <line x1="{x+92}" y1="190" x2="{x+134}" y2="190" stroke="#334155" stroke-width="2.2"/>
-<text x="{x+92}" y="210" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#2563eb">C_out 10µF</text>
-<text x="{x+134}" y="210" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#475569">R_L</text>
-<text x="{x+108}" y="168" font-size="8" font-weight="bold" fill="#dc2626">ESR</text>
+<text x="{x+92}" y="210" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#2563eb">C_out 10µF</text>
+<text x="{x+134}" y="210" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#475569">R_L</text>
+<text x="{x+108}" y="168" font-size="9" font-weight="bold" fill="#dc2626">ESR</text>
 {fl}
 <text x="{x+87}" y="266" text-anchor="middle" font-size="10.5" font-weight="bold" fill="{color}">{row1}</text>
 <text x="{x+87}" y="278" text-anchor="middle" font-size="10" fill="#475569">{row2}</text>'''
@@ -7302,13 +7308,13 @@ def make_555_astable_beats():
 <text x="{x+55}" y="156" font-size="9" fill="#475569">R1 1k</text>
 <line x1="{x+40}" y1="164" x2="{x+40}" y2="176" stroke="#334155" stroke-width="2.2"/>
 <circle cx="{x+40}" cy="178" r="3" fill="#334155"/>
-<text x="{x+47}" y="181" font-size="8" fill="#7c3aed">→7脚 DIS</text>
+<text x="{x+47}" y="181" font-size="9" fill="#7c3aed">→7脚 DIS</text>
 <line x1="{x+40}" y1="180" x2="{x+40}" y2="186" stroke="#334155" stroke-width="2.2"/>
 <rect x="{x+29}" y="186" width="22" height="24" fill="#f8fafc" stroke="{r2c}" stroke-width="2.2"/>
 <text x="{x+55}" y="202" font-size="9" fill="#475569">R2 6.8k</text>
 <line x1="{x+40}" y1="210" x2="{x+40}" y2="216" stroke="#334155" stroke-width="2.2"/>
 <circle cx="{x+40}" cy="218" r="3" fill="#334155"/>
-<text x="{x+47}" y="221" font-size="8" fill="#7c3aed">→2/6脚</text>
+<text x="{x+47}" y="221" font-size="9" fill="#7c3aed">→2/6脚</text>
 <line x1="{x+40}" y1="220" x2="{x+40}" y2="226" stroke="#334155" stroke-width="2.2"/>
 <line x1="{x+28}" y1="226" x2="{x+52}" y2="226" stroke="{capc}" stroke-width="3"/>
 <line x1="{x+28}" y1="234" x2="{x+52}" y2="234" stroke="{capc}" stroke-width="3"/>
@@ -7318,7 +7324,7 @@ def make_555_astable_beats():
 <text x="{x+58}" y="232" font-size="9" fill="#2563eb">C 100n</text>
 <rect x="{x+104}" y="150" width="54" height="60" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
 <text x="{x+131}" y="180" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">555</text>
-<text x="{x+131}" y="198" text-anchor="middle" font-size="8" font-weight="bold" fill="#dc2626">OUT</text>
+<text x="{x+131}" y="198" text-anchor="middle" font-size="9" font-weight="bold" fill="#dc2626">OUT</text>
 <line x1="{x+158}" y1="180" x2="{x+166}" y2="180" stroke="#dc2626" stroke-width="2.4"/>
 <polygon points="{x+166},180 {x+161},176 {x+161},184" fill="#dc2626"/>
 {fl}

@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
-"""SVG 暗色模式可读性回归：102 张动画在 `prefers-color-scheme: dark` 下不得出现低对比度文字。
+"""SVG 明暗两套主题的可读性回归：102 张动画在 light / dark 下都不得出现低对比度文字。
 
-v3.25 修掉的一批暗色盲区由本测试长期兜底：
+v3.25 修掉的暗色盲区（由本测试长期兜底）：
 - 面板色 remap 只写了 `rect[fill="#f8fafc"]`，导致运放三角 / 反相泡等**非 rect 器件体**
   在暗色下仍是浅色，压在上面的红/绿 `+`/`−` 直接看不见；
-- `#f1f5f9 / #e0f2fe / #fff7ed / #d1fae5 / #fee2e2 / #34d399` 等浅底色根本没有 remap，
-  暗色下仍为浅色，配 `#1e293b`→`#f1f5f9` 的浅色文字 => 同色叠同色；
-- `fill="#fff"` 的器件体（555 的 RS 锁存器、TL431 的运放三角）不会 remap（短写不匹配
-  `[fill="#ffffff"]`），暗色下仍为纯白。
+- `#f1f5f9 / #e0f2fe / #fff7ed / #d1fae5 / #fee2e2 / #34d399` 等浅底色根本没有 remap；
+- `fill="#fff"` 的器件体不会 remap（短写不匹配 `[fill="#ffffff"]`），暗色下仍为纯白。
+
+v3.26 补上的浅色盲区：`#94a3b8`(2.6:1) / `#0ea5e9`(2.7:1) / `#f59e0b`(2.2:1) 这三个
+「弱化色」当**文字**用太淡（当线/粒子用没问题）——已用 `@media (prefers-color-scheme: light)`
+只压暗文字、不动同色的线。
 
 判定口径：对每个可见 `<text>`，用「文档序中最后一个 bbox 命中其中心、且有效不透明度 ≥0.5 的
 形状」作为真实底色（半透明药丸底衬/淡色蒙版按页面底色算），再算 WCAG 对比度，要求 ≥ 3.0。
@@ -20,6 +22,7 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 ASSETS = Path(__file__).resolve().parents[1] / "assets" / "svg"
+MODES = ("light", "dark")
 MIN_RATIO = 3.0
 
 PROBE = r"""
@@ -46,7 +49,18 @@ PROBE = r"""
              fillRaw: cs.fill };
   });
 
-  const PAGE = [20,29,48];        // 暗色底板较亮的一端（对浅色文字最不利）
+  // 页面底板色：解析 .page-bg 实际指向的那条渐变（明/暗各不相同）
+  let PAGE = [248,250,252];
+  try {
+    const bg = svg.querySelector('.page-bg');
+    const f = bg ? getComputedStyle(bg).fill : '';
+    const m = f.match(/url\(["']?#([^"')]+)/);
+    if (m) {
+      const st = svg.querySelector('#' + m[1] + ' stop');
+      if (st) PAGE = parse(getComputedStyle(st).stopColor) || PAGE;
+    }
+  } catch(_) {}
+
   const bad = []; let scanned = 0;
   info.forEach(t => {
     if (t.tag !== 'text' || !t.bb || t.bb.width === 0) return;
@@ -71,36 +85,49 @@ PROBE = r"""
 """
 
 
-class TestSvgDarkContrast(unittest.TestCase):
+class TestSvgContrast(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.report = {}
-        cls.scanned = 0
+        cls.report = {}          # mode -> {stem: [violations]}
+        cls.scanned = {}         # mode -> int
         with sync_playwright() as p:
             b = p.chromium.launch(channel="chrome", headless=True)
-            pg = b.new_page(viewport={"width": 1000, "height": 900}, color_scheme="dark")
-            for f in sorted(ASSETS.glob("*.svg")):
-                pg.goto(f.as_uri())
-                pg.wait_for_timeout(8)
-                r = pg.evaluate(PROBE)
-                cls.report[f.stem] = r["bad"]
-                cls.scanned += r["scanned"]
+            for mode in MODES:
+                pg = b.new_page(viewport={"width": 1000, "height": 900}, color_scheme=mode)
+                rep, total = {}, 0
+                for f in sorted(ASSETS.glob("*.svg")):
+                    pg.goto(f.as_uri())
+                    pg.wait_for_timeout(8)
+                    r = pg.evaluate(PROBE)
+                    if r["bad"]:
+                        rep[f.stem] = r["bad"]
+                    total += r["scanned"]
+                pg.close()
+                cls.report[mode] = rep
+                cls.scanned[mode] = total
             b.close()
 
     def test_probe_actually_scanned_text(self):
         """守卫：探针必须真的量到大量文字，否则本测试是「假绿」。"""
-        self.assertGreaterEqual(len(self.report), 100, "SVG 数量异常")
-        self.assertGreaterEqual(self.scanned, 1500,
-                                f"只量到 {self.scanned} 个文字，探针可能已失效")
+        for mode in MODES:
+            with self.subTest(mode=mode):
+                self.assertGreaterEqual(len(self.report[mode]), 0)
+                self.assertGreaterEqual(
+                    self.scanned[mode], 1500,
+                    f"{mode} 模式只量到 {self.scanned[mode]} 个文字，探针可能已失效")
 
-    def test_no_low_contrast_text_in_dark_mode(self):
-        bad = {k: v for k, v in self.report.items() if v}
-        msg = "\n".join(
-            f"  {k}: " + "; ".join(f"{x['txt']!r} fg={x['fg']} on bg={x['bg']} ratio={x['ratio']}"
-                                   for x in v[:4])
-            for k, v in bad.items())
-        self.assertEqual({}, bad,
-                         f"暗色模式下有 {len(bad)} 张图存在对比度 < {MIN_RATIO} 的文字：\n{msg}")
+    def test_no_low_contrast_text(self):
+        for mode in MODES:
+            with self.subTest(mode=mode):
+                bad = self.report[mode]
+                msg = "\n".join(
+                    f"  {k}: " + "; ".join(
+                        f"{x['txt']!r} fg={x['fg']} on bg={x['bg']} ratio={x['ratio']}"
+                        for x in v[:4])
+                    for k, v in bad.items())
+                self.assertEqual(
+                    {}, bad,
+                    f"{mode} 模式下有 {len(bad)} 张图存在对比度 < {MIN_RATIO} 的文字：\n{msg}")
 
 
 if __name__ == "__main__":

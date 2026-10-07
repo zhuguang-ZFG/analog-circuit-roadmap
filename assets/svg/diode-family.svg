@@ -42,6 +42,12 @@ text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
 .page-hdr{fill:url(#hdr)}
 line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
 rect[fill="#f8fafc"],rect[fill="#eff6ff"],rect[fill="#ecfdf5"],rect[fill="#fffbeb"],rect[fill="#fef2f2"],rect[fill="#dbeafe"]{filter:url(#soft)}
+/* 浅色下的「弱化色」文字偏淡（#94a3b8 在白底只有 2.6:1）→ 只压暗文字，不动同色的线/粒子 */
+@media (prefers-color-scheme: light){
+text[fill="#94a3b8"],tspan[fill="#94a3b8"]{fill:#64748b}
+text[fill="#0ea5e9"],tspan[fill="#0ea5e9"]{fill:#0284c7}
+text[fill="#f59e0b"],tspan[fill="#f59e0b"]{fill:#b45309}
+}
 @media (prefers-color-scheme: dark){
 .page-bg{fill:url(#bgD)}
 .page-vig{opacity:0.45}

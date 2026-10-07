@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-"""SVG 版面几何回归：102 张动画不得出现「内容出界 / 字幕压字 / 注释框溢出 / 文字被裁」。
+"""SVG 版面几何回归：102 张动画不得出现「内容出界 / 字幕压字 / 注释框溢出 / 文字被裁 / 文字被盖」。
 
 用 Playwright + 系统 Chrome 打开每张 SVG，跑 getBBox() 做只读几何断言（不写任何文件）。
-v3.24 一次性修掉的 30+ 处版面硬伤，由本测试长期兜底。
+v3.24 一次性修掉的 30+ 处版面硬伤、v3.26 的「轴标题被后画面板整块盖住」，由本测试长期兜底。
 
 判定口径（为消除假阳性而设）：
 - 全幅背景板（宽或高 ≥ 画布）与 `url(#…)` 底纹（渐变/点阵/暗角）一律不计；
@@ -56,7 +56,9 @@ PROBE = r"""
 
   const texts = all.filter(e => e.tagName === 'text');
   const capSet = new Set(capTexts);
-  const out = { W, H, below: [], capVsText: [], capVsShape: [], noteOver: [], clipped: [], staticHit: [] };
+  const hasAnimChild = e => Array.from(e.children)
+      .some(c => ['animate', 'animatemotion', 'animatetransform'].includes(c.tagName.toLowerCase()));
+  const out = { W, H, below: [], capVsText: [], capVsShape: [], noteOver: [], clipped: [], staticHit: [], covered: [] };
 
   // ① 内容超出画布底部
   for (const e of all) {
@@ -140,6 +142,32 @@ PROBE = r"""
                              ix: +ix.toFixed(1), iy: +iy.toFixed(1) });
     }
   }
+  // ⑦ 静态文字被「其后绘制」的不透明形状完整盖住 —— 真正看不见（mosfet-curves 的
+  //    轴标题 V_DS → 曾被后画的说明面板整块盖住；本项专门兜底这类「画了等于没画」）
+  for (const t of texts) {
+    if (capSet.has(t) || hasOpacityAnim(t) || hasAnimChild(t)) continue;
+    const tb = t.getBBox();
+    if (!tb.width) continue;
+    const cx = tb.x + tb.width / 2, cy = tb.y + tb.height / 2;
+    for (const e of all) {
+      if (e.__i <= t.__i) continue;                                  // 只看后绘制的
+      if (!['rect', 'path', 'polygon', 'circle', 'ellipse'].includes(e.tagName.toLowerCase())) continue;
+      if (isPlate(e) || hasAnimChild(e)) continue;
+      const cs = getComputedStyle(e);
+      if (!cs.fill || cs.fill === 'none') continue;                   // 描边曲线（波形/引线）不遮字
+      if ((cs.fill || '').indexOf('url(') >= 0) continue;            // 渐变/底纹不算实心遮盖
+      const m = (cs.fill || '').match(/rgba?\([^)]*?,\s*([\d.]+)\)/);
+      if (m && +m[1] < 0.9) continue;                                // 半透明不算
+      if (parseFloat(cs.opacity || '1') < 0.9) continue;
+      const b = e.getBBox();
+      if (b.width * b.height <= 200) continue;                       // 小色块允许压（药丸/色条）
+      if (cx >= b.x && cx <= b.x + b.width && cy >= b.y && cy <= b.y + b.height) {
+        out.covered.push({ txt: (t.textContent || '').slice(0, 24), tag: e.tagName,
+                           cov: `${b.width | 0}x${b.height | 0}` });
+        break;
+      }
+    }
+  }
   return out;
 }
 """
@@ -193,6 +221,10 @@ class TestSvgLayout(unittest.TestCase):
     def test_static_text_do_not_collide(self):
         bad = {n: r["staticHit"] for n, r in self.report.items() if r["staticHit"]}
         self.assertEqual(bad, {}, f"静态文字互相压字：{_fmt(list(bad.items()))}")
+
+    def test_text_not_covered_by_later_shape(self):
+        bad = {n: r["covered"] for n, r in self.report.items() if r["covered"]}
+        self.assertEqual(bad, {}, f"文字被其后绘制的形状盖住（看不见）：{_fmt(list(bad.items()))}")
 
 
 if __name__ == "__main__":
