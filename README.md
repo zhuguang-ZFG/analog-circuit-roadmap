@@ -749,6 +749,10 @@ $$\text{温度↑} \;\Rightarrow\; V_{BE}\text{↓（}-2\text{mV/°C）} \;\Righ
 
 **与 BJT 的本质区别**：MOSFET 是**电压控制**器件，栅极只取位移电流（pA 级），驱动功耗极低；靠多子导电，无少子存储 → 开关快；导通电阻 $R_{DS(on)}$ 正温度系数 → **并联自动均流**（BJT 并联会热失控抢流）。
 
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/69/MOSFET_transistors.jpg" width="480" alt="MOSFET 实物：TO-220/TO-247/SOT-223 等封装（Wikimedia Commons）">
+
+> 📷 **认封装猜功率**：TO-220 大块头是功率 MOSFET（几十 A、背部散热片孔），TO-247 更大；SOT-223/D2PAK 是贴片功率件；SOT-23 小不点是逻辑电平小管子——**脚越粗、身子越大，电流越大**。
+
 ### 4.2 输出特性与数学模型
 
 线性区（$V_{DS}$ 小）：$I_D = \mu_n C_{ox}\frac{W}{L}\left[(V_{GS}-V_{TH})V_{DS} - \frac{V_{DS}^2}{2}\right]$ —— 像可变电阻
@@ -1019,6 +1023,10 @@ IN- ──┘   │ (长尾对)  │   │ (共射+密勒) │   │(互补推�
 **看点**：蓝粒子从 IN 一路流到 OUT——①差分级只认"差"、②中间级扛下 20 万倍增益（密勒补偿换稳定）、③输出级给低阻，④偏置镜在底下供水。看框图比背参数表管事。→ 本节 [6.1 解剖一只 741](#ch6)
 
 ### 6.2 LM358：最常见的国产双运放
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/LM358N.jpg/960px-LM358N.jpg" width="360" alt="LM358N 双列直插（DIP-8）实物（Wikimedia Commons）">
+
+> 📷 这就是网上几毛钱一颗的 LM358N——DIP-8 双列直插，8 个脚：1/7 是两路输出，2/3 与 5/6 是两路输入，8 接 Vcc，4 接地。**认封装**：直插（DIP）方便面包板，贴片（SOIC）进量产。
 
 与 741 的差异：
 - **单电源设计**：输入级用 PNP 管，共模范围包含地（0V ~ Vcc-1.5V）→ 单电源 5V 系统直接可用
@@ -1991,6 +1999,10 @@ $$V_{out} = V_Z - 0.7V$$
 🔗 [动画演示 5.11](#demo11)
 
 > 📺 **配套视频**：[三分钟看懂！Buck 降压电路动画讲解](https://www.bilibili.com/video/BV1QJSFBVEHu/)（B站）——与上图互证：同一只电感，两种讲法。
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/LM2596_buck_converter_module%2C_MP1584_buck_converter_module%2C_and_SDB628_boost_converter_module.jpg/960px-LM2596_buck_converter_module%2C_MP1584_buck_converter_module%2C_and_SDB628_boost_converter_module.jpg" width="480" alt="DC-DC 模块实物：LM2596 Buck + MP1584 Buck + SDB628 Boost（Wikimedia Commons）">
+
+> 📷 电商几块钱的 DC-DC 模块：LM2596（大个、老派 Buck）、MP1584（小个、高效 Buck）、SDB628（Boost）。认电感：**Buck 模块的大电感 + 续流二极管就是上图那套伏秒平衡的实物化身**——电位器调分压反馈就是调 D。
 
 **问题**：12V→5V 用 LDO，效率只有 42%，7V 压差全烧在调整管上（第 9 章算过这笔账）。要效率，就不能让任何元件"顶着压差过电流"——改用开关。
 
