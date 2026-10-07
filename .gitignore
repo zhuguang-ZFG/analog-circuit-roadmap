@@ -4,6 +4,7 @@ site/
 .pytest_cache/
 __pycache__/
 *.pyc
+.venv/
 .DS_Store
 # 本地草稿 / 截图（不参与发布）
 .tmp/

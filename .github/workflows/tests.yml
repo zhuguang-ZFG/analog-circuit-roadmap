@@ -55,6 +55,8 @@ jobs:
       - run: pip install numpy playwright
       - name: Gallery keyboard, modal focus and shareable filters
         run: python -B -m unittest discover -s scripts -p test_gallery_interactions.py -v
+      - name: Lesson controls, video loading and mobile layout
+        run: python -B -m unittest discover -s scripts -p test_learning_interactions.py -v
       - name: 时间轴（波形游标按时间匀速推进）
         run: python -B -m unittest discover -s scripts -p test_waveform_timing.py -v
       - name: 版面几何（内容出界 / 字幕压字 / 注释框溢出 / 文字被裁 / 静态压字 / 文字被盖）

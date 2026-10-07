@@ -608,11 +608,13 @@ extra:
 
 extra_css:
   - stylesheets/gallery.css
+  - stylesheets/learning.css
 
 extra_javascript:
   - javascripts/mathjax.js
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
   - javascripts/gallery.js
+  - javascripts/learning.js
 
 markdown_extensions:
   - abbr
@@ -842,14 +844,20 @@ def main():
             text = text.rstrip("\n") + "\n" + FEEDBACK_FOOTER
             (OUT / extra).write_text(text, encoding="utf-8", newline="\n")
 
-    if SVG_SRC.is_dir():
-        shutil.copytree(SVG_SRC, OUT / "assets" / "svg")
+    # Photos and future local media must be published alongside the SVGs.
+    # Attribution lives in the chapter captions; asset README files are for contributors.
+    assets = ROOT / "assets"
+    if assets.is_dir():
+        shutil.copytree(assets, OUT / "assets", ignore=shutil.ignore_patterns("*.md"))
 
     (OUT / "stylesheets").mkdir(exist_ok=True)
     (OUT / "javascripts").mkdir(exist_ok=True)
     (OUT / "stylesheets" / "gallery.css").write_text(GALLERY_CSS, encoding="utf-8")
     (OUT / "javascripts" / "gallery.js").write_text(GALLERY_JS, encoding="utf-8")
     (OUT / "javascripts" / "mathjax.js").write_text(MATHJAX_JS, encoding="utf-8")
+    media = ROOT / "scripts" / "site_media"
+    shutil.copyfile(media / "learning.js", OUT / "javascripts" / "learning.js")
+    shutil.copyfile(media / "learning.css", OUT / "stylesheets" / "learning.css")
 
     # SEO：robots.txt（sitemap.xml 由 MkDocs 依据 site_url 自动生成）
     (OUT / "robots.txt").write_text(ROBOTS_TXT, encoding="utf-8", newline="\n")

@@ -45,6 +45,7 @@ class SiteBuildTests(unittest.TestCase):
         cls.work = work
         (work / "scripts").mkdir()
         shutil.copyfile(ROOT / "scripts" / "build_site.py", work / "scripts" / "build_site.py")
+        shutil.copytree(ROOT / "scripts" / "site_media", work / "scripts" / "site_media")
         shutil.copytree(ROOT / "docs", work / "docs")
         shutil.copytree(ROOT / "assets", work / "assets")
         for extra in ("CONTRIBUTING.md", "CONTRIBUTORS.md"):
@@ -279,6 +280,22 @@ class SiteBuildTests(unittest.TestCase):
         robots = (self.out / "robots.txt").read_text(encoding="utf-8")
         self.assertIn("Sitemap: https://zhuguang-ZFG.github.io/analog-circuit-roadmap/sitemap.xml",
                       robots)
+
+    def test_lesson_assets_and_three_entry_points_are_published(self):
+        config = (self.build / "mkdocs.yml").read_text(encoding="utf-8")
+        for kind, name in (("stylesheets", "learning.css"), ("javascripts", "learning.js")):
+            self.assertIn(f"{kind}/{name}", config)
+            self.assertEqual((self.work / "scripts/site_media" / name).read_bytes(),
+                             (self.out / kind / name).read_bytes())
+        for page, lesson, photo in (("p1-02-ch1.md", "rc", "capacitors.jpg"),
+                                    ("p1-05-ch4.md", "mosfet", "mosfets.jpg"),
+                                    ("p1-07-ch6.md", "lm358", "lm358n.jpg")):
+            text = (self.out / page).read_text(encoding="utf-8")
+            self.assertIn(f'data-study="{lesson}"', text)
+            self.assertIn("data-study-video", text)
+            self.assertNotIn("<iframe", text)
+            self.assertIn(f"assets/photos/{photo}", text)
+            self.assertTrue((self.out / "assets/photos" / photo).is_file())
 
     # ---------- 共建页脚 ----------
     def test_feedback_footer_on_every_page(self):

@@ -20,6 +20,8 @@
 
 </details>
 
+**动手样板**：[RC 充放电](p1-02-ch1.md#rc-study) · [MOSFET 开关](p1-05-ch4.md#mosfet-study) · [LM358 跟随器](p1-07-ch6.md#lm358-study) — 可控动画、实物编号、测量说明、视频与各 1 道自测。
+
 ---
 
 <a id="part1"></a>

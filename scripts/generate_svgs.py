@@ -5627,10 +5627,10 @@ def make_lm358_dual():
 <text x="366" y="156" text-anchor="middle" font-size="11" font-weight="bold" fill="#2563eb">PNP</text>
 <text x="366" y="174" text-anchor="middle" font-size="10" fill="#475569">输入级</text>
 <text x="416" y="118" font-size="11.5" font-weight="bold" fill="#059669">输入级用 PNP</text>
-<text x="416" y="138" font-size="11" fill="#475569">共模范围包含地（0 ~ Vcc−1.5V）</text>
-<text x="416" y="158" font-size="11" font-weight="bold" fill="#b45309">→ 单电源 5V 系统直接可用</text>
+<text x="416" y="138" font-size="11" fill="#475569">经典 LM358：0 ~ Vcc−1.5V（25℃）</text>
+<text x="416" y="158" font-size="11" font-weight="bold" fill="#b45309">→ 全温范围还要核对共模上限</text>
 <text x="416" y="182" font-size="11.5" font-weight="bold" fill="#dc2626">输出非轨到轨</text>
-<text x="416" y="202" font-size="11" fill="#475569">最高只能摆到 Vcc−1.5V</text>
+<text x="416" y="202" font-size="11" fill="#475569">正轨余量取决于负载、电源与温度</text>
 <text x="416" y="222" font-size="11" font-weight="bold" fill="#7c3aed">→ 想「摆到轨」要换轨到轨型号</text>
 <circle r="5" fill="#f59e0b"><animateMotion dur="{DL}s" begin="-0.3s" repeatCount="indefinite" path="M182,164 L330,150"/></circle>
 <circle r="5" fill="#dc2626"><animateMotion dur="{DL}s" begin="-1.1s" repeatCount="indefinite" path="M330,170 L182,188"/></circle>
@@ -5642,13 +5642,13 @@ def make_lm358_dual():
 <line x1="96" y1="376" x2="700" y2="376" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,4"/>
 <text x="700" y="372" text-anchor="end" font-size="10.5" fill="#94a3b8">GND（轨）</text>
 <line x1="96" y1="348" x2="700" y2="348" stroke="#dc2626" stroke-width="2.5"/>
-<text x="104" y="344" font-size="10.5" font-weight="bold" fill="#dc2626">实际最高约 3.5V（Vcc−1.5V）——够不到 5V 轨</text>
-<text x="400" y="404" text-anchor="middle" font-size="11" fill="#475569">所以 LM358 不能做「接近电源轨」的精密应用：要轨到轨就选 MCP6001 / TLV9001 这类</text>
+<text x="104" y="344" font-size="10.5" font-weight="bold" fill="#dc2626">3.5V 为摆幅示意；不是所有负载和温度下的保证值</text>
+<text x="400" y="404" text-anchor="middle" font-size="11" fill="#475569">先分别核对输入共模范围与输出摆幅，再判断信号是否会失真或削顶</text>
 <line x1="40" y1="428" x2="760" y2="428" stroke="#cbd5e1" stroke-width="1"/>
 <text x="400" y="456" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">与 741 的三处关键差异</text>
 <text x="90" y="486" font-size="11.5" fill="#475569">① <tspan font-weight="bold" fill="#059669">单电源能用</tspan>：PNP 输入级，共模含地——5V 系统不用再造负电源</text>
-<text x="90" y="510" font-size="11.5" fill="#475569">② <tspan font-weight="bold" fill="#dc2626">输出到不了轨</tspan>：最高 Vcc−1.5V，设计摆幅时要先扣掉</text>
-<text x="90" y="534" font-size="11.5" fill="#475569">③ <tspan font-weight="bold" fill="#b45309">速度不快</tspan>：GBW 1MHz、SR 0.5V/µs —— 低速够用、音频勉强、视频免谈</text>
+<text x="90" y="510" font-size="11.5" fill="#475569">② <tspan font-weight="bold" fill="#dc2626">输出非轨到轨</tspan>：按实际负载查规格，不统一扣 1.5V</text>
+<text x="90" y="534" font-size="11.5" fill="#475569">③ <tspan font-weight="bold" fill="#b45309">速度看型号</tspan>：TI 经典 LM358 典型 GBW 0.7MHz、SR 0.3V/µs</text>
 <circle r="4.5" fill="#059669"><animateMotion dur="{DL}s" begin="-0.5s" repeatCount="indefinite" path="M76,164 L158,164"/></circle>
 <circle r="4.5" fill="#dc2626"><animateMotion dur="{DL}s" begin="-1.2s" repeatCount="indefinite" path="M76,188 L160,180"/></circle>
 <circle r="4.5" fill="#2563eb"><animateMotion dur="{DL}s" begin="-1.9s" repeatCount="indefinite" path="M96,356 L696,356"/></circle>
@@ -5662,9 +5662,9 @@ def make_lm358_dual():
                    "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=590)
     svg += caption("② 输入级 PNP → 共模范围含地：这是它能吃单电源的根本原因", "#059669", DL,
                    "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=590)
-    svg += caption("③ 输出非轨到轨：最高只到 Vcc−1.5V，算摆幅时必须先扣掉这 1.5V", "#dc2626", DL,
+    svg += caption("③ 输出非轨到轨：余量随负载和温度变化，按具体型号手册核对", "#dc2626", DL,
                    "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=590)
-    svg += caption("④ 速度定位：GBW 1MHz / SR 0.5V/µs —— 低速信号链的默认答案", "#b45309", DL,
+    svg += caption("④ TI 经典 LM358：典型 GBW 0.7MHz / SR 0.3V/µs；B 版参数不同", "#b45309", DL,
                    "0;0;1;1", "0;0.85;0.9;1", y=590)
     save('lm358-dual.svg', svg + '</svg>')
 

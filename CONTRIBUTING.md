@@ -64,6 +64,8 @@ python -B -m unittest discover -s scripts -p 'test_svg_assets.py'   # SVG 与生
 修改画廊交互后运行 `python -B -m unittest discover -s scripts -p test_gallery_interactions.py -v`。
 这组测试需要 Playwright 和 Google Chrome，直接加载生成器输出并拦截外部请求，覆盖弹窗焦点循环与恢复、单张结果、输入区域快捷键、筛选分享和空结果；CI 的 `svg-render` 作业会执行同一组检查。
 
+教学样板的控制逻辑与样式在 `scripts/site_media/learning.js`、`learning.css`。正文用 `data-study="rc|mosfet|lm358"` 标记现有 SVG，用 `data-study-video` 标记 YouTube 原站链接；构建器复制脚本与样式，播放器只在点击后加载。新增阶段必须对照 SVG 的真实时序，不能把教学秒数当成电路时间。修改后运行 `python -B -m unittest discover -s scripts -p test_learning_interactions.py -v`（Playwright + Google Chrome）；覆盖真实 SVG 暂停、阶段定位、进度拖动、加载失败重试、手机放大和视频关闭。照片授权记录在 `assets/photos/README.md`，标注要在图注与 alt 中保留文字对应，以便无样式阅读。
+
 | 能力 | 实现位置 | 说明 |
 |---|---|---|
 | 🎬 动画画廊 + 放大播放 | `gallery.md` / `gallery.js` / `gallery.css` | 103 张卡片，按章筛选 + 关键字搜索；「▶ 放大播放」弹窗全尺寸观看（SMIL 自动播放，Esc 关闭） |
