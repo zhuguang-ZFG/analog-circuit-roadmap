@@ -9,6 +9,8 @@
 
 <p align="center">
   <img src="assets/svg/comparator-hysteresis.svg" width="720" alt="动画演示：比较器迟滞原理">
+
+🔗 [动画演示 5.4](#demo4)
 </p>
 
 <p align="center">
@@ -157,6 +159,8 @@ graph TD
 
 <p align="center"><img src="assets/svg/water-analogy.svg" width="720" alt="水路=电路通用比喻SVG动画"></p>
 
+🔗 [动画演示 5.87](#demo87)
+
 **看图**：环形水路一圈走完八个词——水泵推水位（电压）、细管卡流量（电阻）、水池攒水位（电容）、水车扛惯性（电感）、单向阀防倒流（二极管）、闸门听栅压指挥（MOSFET）、海平面当 0V 基准（地）；蓝色粒子就是必须成环的电流。→ 本节 [0.1](#ch0)
 
 
@@ -169,6 +173,8 @@ $$V = I \times R$$
 🧮 **算一笔**：5V 加在串联的 1kΩ+4kΩ（总 5kΩ）上 → I = 5V/5kΩ = **1mA**。同一股电流流过两电阻：4kΩ 降掉 4V，1kΩ 降掉 1V——加起来恰好 5V，不多不少。**谁 R 大，谁分的电压多**——这是分压器的全部秘密。
 
 <p align="center"><img src="assets/svg/voltage-drop.svg" width="720" alt="电压降SVG动画：串联路径上按阻值瓜分电压"></p>
+
+🔗 [动画演示 5.89](#demo89)
 
 **看图**：左边电路、右边「电压剖面」——同一股 1mA 电流依次流过 4kΩ 与 1kΩ，各自「留下」4V 与 1V，加起来恰好 5V；剖面图上每一段竖降就是跨过一个电阻的电压降，横走段是理想导线（不降压）。→ 本节 [0.2](#ch0)
 
@@ -190,6 +196,8 @@ V ──[R1]──┬── Vout = V × R2/(R1+R2)
 
 <p align="center"><img src="assets/svg/divider-loading.svg" width="720" alt="分压器带载塌陷SVG动画：空载6V到带载4V"></p>
 
+🔗 [动画演示 5.39](#demo39)
+
 上图把 12V÷2 的"稳稳 6V"和挂上 RL 后的"塌到 4V"并排画在一起：**电压指针矮了三分之一**，
 白算的 50% 只在空载时成立。三条活路：后级输入阻抗 ≫ R2、R1/R2 取小（代价是功耗）、
 **后面跟一级运放缓冲**（[12.1](#ch12) 虚短虚断）——教科书答案。
@@ -207,6 +215,8 @@ V ──[R1]──┬── Vout = V × R2/(R1+R2)
 ### 0.6 恒压源与恒流源：电源的两种性格
 
 <p align="center"><img src="assets/svg/source-types.svg" width="720" alt="恒压源与恒流源SVG动画：V-I曲线与内阻"></p>
+
+🔗 [动画演示 5.78](#demo78)
 
 看 **V-I 曲线**的形状，一眼分清两种源：
 
@@ -261,6 +271,8 @@ V ──[R1]──┬── Vout = V × R2/(R1+R2)
 
 <p align="center"><img src="assets/svg/resistor-model.svg" width="720" alt="真实电阻等效模型SVG动画：两个寄生夺权点"></p>
 
+🔗 [动画演示 5.60](#demo60)
+
 上图把「理想 1kΩ」（灰虚线）与「真实电阻」（蓝线）叠在一起：**远低于拐点（≈0.8GHz）时两条线几乎重合**，
 过了拐点体电容 0.2pF 开始分流、阻抗按约 −20dB/dec 下坠——到 1GHz 只剩 **575Ω**；继续往上在 **3.6GHz**
 （L 与 C 谐振）探到谷底 **≈49Ω**，之后引线电感接管、阻抗重新爬升——元件又「变回电感」。
@@ -292,6 +304,8 @@ V ──[R1]──┬── Vout = V × R2/(R1+R2)
 
 <p align="center"><img src="assets/svg/capacitor-parasitics.svg" width="720" alt="真实电容阻抗频谱SVG动画：谷底低且宽才叫去耦电容"></p>
 
+🔗 [动画演示 5.43](#demo43)
+
 上图把两种电容的 $|Z|$ 画在同一条对数频率轴上：**100nF MLCC 谷底 0.3Ω @ 22.5MHz，10µF 电解谷底 1Ω @ 356kHz**——
 到 100MHz 时电解已经涨回 **13Ω**，而 MLCC 还只有 0.42Ω。**去耦选电容 = 选谷底低、谷底宽的那条**，
 所以低频储能交给电解、高频去耦必须用小封装 MLCC，两者不能互相替代。
@@ -309,6 +323,8 @@ V ──[R1]──┬── Vout = V × R2/(R1+R2)
 - 继电器/电机断电时的**反电动势** $v = -L\frac{di}{dt}$ 可产生数百伏尖峰 → 必须并联续流二极管
 
 <p align="center"><img src="assets/svg/impedance-freq.svg" width="720" alt="阻抗随频率SVG动画：电容降价、电感涨价"></p>
+
+🔗 [动画演示 5.36](#demo36)
 
 **看点**：蓝色 Zc 一路降价、红色 Zl 一路涨价，5kHz 处狭路相逢（LC 谐振）——同一只元件在不同频段是完全不同的"人"。→ 本节 [1.1-1.3](#ch1)
 
@@ -331,6 +347,8 @@ V ──[R1]──┬── Vout = V × R2/(R1+R2)
 ### 1.4 戴维南与诺顿：把任何网络压成两个元件
 
 <p align="center"><img src="assets/svg/thevenin-norton.svg" width="720" alt="戴维南与诺顿等效SVG动画"></p>
+
+🔗 [动画演示 5.79](#demo79)
 
 **任何线性网络**，从任意两个端子看进去，都等价于：
 
@@ -371,6 +389,8 @@ P 型半导体（空穴多）与 N 型半导体（电子多）接触时：
 
 <p align="center"><img src="assets/svg/pn-junction.svg" width="720" alt="PN结形成SVG动画：电荷墙与内建电场"></p>
 
+🔗 [动画演示 5.56](#demo56)
+
 上图把三步画成一条线：**扩散想散开（载流子往里跑）→ 跑掉的地方留下不能动的离子（电荷墙）→
 墙的电场把后来的往回推**。三步的平衡点就是内建电势。
 
@@ -389,6 +409,8 @@ $$I_D = I_S\left(e^{\frac{V_D}{nV_T}} - 1\right), \quad V_T = \frac{kT}{q} \appr
 
 <p align="center"><img src="assets/svg/diode-iv.svg" width="720" alt="二极管伏安特性SVG动画：每60mV十倍频与温漂"></p>
 
+🔗 [动画演示 5.46](#demo46)
+
 上图把 25℃ 与 60℃ 两条曲线画在一起：**每上升 60mV 电流爬一个十倍**，而温度每升 35℃ 就让整条曲线
 **左移 70mV**——同一个 1mA，25℃ 要 0.36V，60℃ 只要 0.29V。这就是「二极管不能当精密基准」的根因：
 它的值只听温度的，温度一漂，电压就跟着跑。：① $V_T=26mV$ 是"热电压"——电压每增加约 60mV，电流翻 10 倍（十倍频/60mV 是模拟工程师的常用速算）；② $-2mV/°C$ 意味着**同样电流下，温度升 35°C，$V_D$ 就掉 70mV**——用 PN 结测温（几乎所有数字温度传感器内部就是它），也正因如此，大功率二极管要防"温度升→电流增→更热"的正反馈。
@@ -401,6 +423,8 @@ $$I_D = I_S\left(e^{\frac{V_D}{nV_T}} - 1\right), \quad V_T = \frac{kT}{q} \appr
 ### 2.3 整流原理
 
 <p align="center"><img src="assets/svg/bridge-rectifier.svg" width="720" alt="桥式整流动画：正负半周导通路径切换"></p>
+
+🔗 [动画演示 5.2](#demo2)
 
 
 **半波整流**：只用半个周期，输出脉动大，效率低
@@ -424,6 +448,8 @@ $$I_D = I_S\left(e^{\frac{V_D}{nV_T}} - 1\right), \quad V_T = \frac{kT}{q} \appr
 | 变容二极管 | 耗尽层宽度随反压变化→结电容可变 | VCO、调谐 |
 
 <p align="center"><img src="assets/svg/diode-family.svg" width="720" alt="特殊二极管家族SVG动画：特征电压与速度的取舍"></p>
+
+🔗 [动画演示 5.61](#demo61)
 
 上图把五族的**特征电压（横轴）与速度（纵轴）**摆成一张地图（肖特基/LED 标正向压降，稳压管/TVS/变容管标反向电压）：肖特基在左上（0.3V 且最快）、
 LED 在下方（压降大、速度慢，但唯一会发光）、TVS 在右上（面积换速度，专门替接口挨打）。
@@ -457,6 +483,8 @@ LED 在下方（压降大、速度慢，但唯一会发光）、TVS 在右上（
 🧮 **算一笔**：1A 负载、4700µF、全波 100Hz：$\Delta V = \frac{1A \times 10ms}{4700µF} ≈ 2.1V$ 纹波；二极管峰值电流 ≈ $\frac{10ms}{2ms}\times 1A = 5A$。**所以选整流管看的是 $I_{FRM}$（重复峰值），不是标称平均电流**——1A 电源用 1N4007（1A 均值）其实余量很紧。
 <p align="center"><img src="assets/svg/rectifier-filter-beats.svg" width="720" alt="整流滤波电源四拍拆解SVG动画"></p>
 
+🔗 [动画演示 5.83](#demo83)
+
 **看点**：四拍拆解从空电容到稳态纹波——初始态电容放空、浪涌充电 10~50A、稳态峰值充电 5~10A、谷值放电电容独供负载。→ 本节 [2.6](#ch2)
 
 
@@ -487,6 +515,8 @@ LED 在下方（压降大、速度慢，但唯一会发光）、TVS 在右上（
 🧮 **算一笔**：±3V 正弦进钳位电路（二极管阳极地）。负峰值 −3V 时 D 导通，节点被钳在 $-0.7V$，C 充到 **≈2.3V**（3V 峰 − 0.7V 管压降，左正右负）；之后任意时刻 $v_{out}=v_{in}+2.3V$——输出在 $-0.7V \sim 5.3V$ 摆动，最低点被"钳"在二极管压降处，这也是"钳位"名字的由来。
 
 <p align="center"><img src="assets/svg/clipper-clamper.svg" width="720" alt="削波钳位SVG动画：限幅削顶、钳位垫高"></p>
+
+🔗 [动画演示 5.31](#demo31)
 
 **看点**：左限幅——绿输出想冲过 ±2.7V 虚线（基准 ±2V+0.7），红粒子经二极管闸门泄走，顶底削平；右钳位——负半周绿粒子给 C 充到峰值，此后 C 变"串联电池"把整条波形垫高到 −0.7~5.3V。→ 上文 [2.7 限幅与钳位](#ch2)
 
@@ -525,6 +555,8 @@ NPN 管 = 两块 N 型夹一块**极薄**的 P 型基区：
 
 <p align="center"><img src="assets/svg/bjt-transport.svg" width="720" alt="BJT载流子输运SVG动画：为什么99%的电子成了IC"></p>
 
+🔗 [动画演示 5.66](#demo66)
+
 上图把五步物理图像画成一条流动路径：**发射结正偏注入电子 → 基区极薄（99% 来不及复合）→
 集电结反偏的强电场把电子扫走 → 只有约 1% 在基区复合形成 $I_B$**。
 所以 $\beta$ 的物理含义是「**漏网比例的倒数**」：$I_C=99\%I_E$、$I_B=1\%I_E$ → $\beta\approx99$。
@@ -542,6 +574,8 @@ NPN 管 = 两块 N 型夹一块**极薄**的 P 型基区：
 **临界记忆值**：$V_{BE}≈0.7V$（导通）、$V_{CE(sat)}≈0.2V$（饱和压降）
 
 <p align="center"><img src="assets/svg/bjt-regions.svg" width="720" alt="BJT三个工作区SVG动画：负载线切过输出特性"></p>
+
+🔗 [动画演示 5.40](#demo40)
 
 🧮 **算一笔**（图中那只管子）：$V_{CC}=12V$、$R_C=2k$、$R_B=300k$、$β=100$ → $I_B=(12-0.7)/300k≈38µA$，
 $I_C=βI_B≈3.8mA$，负载线 $I_C=(12-V_{CE})/2k$ 与 3.8mA 水平线交于 **$V_{CE}≈4.4V$**（图上紫色圆点 Q）。
@@ -561,9 +595,13 @@ $I_C=βI_B≈3.8mA$，负载线 $I_C=(12-V_{CE})/2k$ 与 3.8mA 水平线交于 *
 
 <p align="center"><img src="assets/svg/bjt-configs.svg" width="720" alt="BJT三种组态SVG动画"></p>
 
+🔗 [动画演示 5.64](#demo64)
+
 ### 3.4 偏置电路：为什么必须用分压偏置
 
 <p align="center"><img src="assets/svg/bjt-amplify.svg" width="720" alt="共射放大器动画：偏置核算与放大原理"></p>
+
+🔗 [动画演示 5.3](#demo3)
 
 > 💎 **精髓**：上图用**固定偏置**讲清放大的本质（结构最简、计算最透）。但请注意——固定偏置依赖 β 的准确值，而 β 离散 3 倍！它恰恰是本小节要"批判"的对象：看完它怎么工作，再看为什么工程上必须用分压偏置。
 
@@ -601,6 +639,8 @@ MCU ──[Rb]── B  Q1(NPN 2N2222/8050)
 
 <p align="center"><img src="assets/svg/bjt-switch.svg" width="720" alt="BJT驱动继电器SVG动画：Rb计算与续流二极管"></p>
 
+🔗 [动画演示 5.67](#demo67)
+
 上图把三步账摊开：**① 取强制 β=10**（深度饱和保险系数，不用标称 β）→ $I_B=70mA/10=7mA$；
 **② $R_B=(3.3V-0.7V)/7mA\approx371\Omega$（就近取标称 360Ω）** —— 分母是 $I_B$ 不是 $I_C$；
 **③ 感性负载必须加续流二极管**——线圈关断瞬间 $L\,di/dt$ 的反电动势能到上百伏，三极管扛不住。
@@ -612,6 +652,8 @@ MCU ──[Rb]── B  Q1(NPN 2N2222/8050)
 两级 NPN 级联：$β_{total} = β_1 × β_2$（可达 10000），代价：$V_{BE}$ 翻倍（1.4V）、$V_{CE(sat)}$ 升高（约 0.9V，第二级无法深度饱和）、速度慢。
 
 <p align="center"><img src="assets/svg/darlington.svg" width="720" alt="达林顿管SVG动画：β相乘与三笔代价"></p>
+
+🔗 [动画演示 5.70](#demo70)
 
 🧮 **算一笔**（β 相乘的机理）：$I_{C2}=\beta_2 I_{B2}=\beta_2 I_{E1}=\beta_2(1+\beta_1)I_{B1}$ →
 $\beta_{total}\approx\beta_1\beta_2$（可达 10000+）。三笔代价：**① $V_{BE}$ 翻倍到 1.4V**（3.3V 系统里不可忽略）、
@@ -625,6 +667,8 @@ $\beta_{total}\approx\beta_1\beta_2$（可达 10000+）。三笔代价：**① $
 $$\text{温度↑} \;\Rightarrow\; V_{BE}\text{↓（}-2\text{mV/°C）} \;\Rightarrow\; I_C\text{↑} \;\Rightarrow\; \text{功耗↑} \;\Rightarrow\; \text{温度↑↑}$$
 
 <p align="center"><img src="assets/svg/thermal-runaway.svg" width="720" alt="BJT热失控正反馈环SVG动画"></p>
+
+🔗 [动画演示 5.41](#demo41)
 
 上图的红色转圈箭头就是那个正反馈环：**结点越烧越大，转速越来越快**。
 唯一的刹车是负反馈——射极电阻 Re 让 $I_C$ 的增量变成 $V_{BE}$ 的减量（$I_C↑ → V_E↑ → V_{BE}↓$）。
@@ -643,6 +687,8 @@ $$\text{温度↑} \;\Rightarrow\; V_{BE}\text{↓（}-2\text{mV/°C）} \;\Righ
 | 过热 | 管壳烫手、参数漂移 | 核算功耗 $P=V_{CE}·I_C$ vs 散热 |
 
 <p align="center"><img src="assets/svg/bjt-diagnosis.svg" width="720" alt="BJT在线速判SVG动画：三个电压定故障"></p>
+
+🔗 [动画演示 5.74](#demo74)
 
 **在线速判口诀**（NPN，放大态）：$V_B≈0.7V$、$V_E≈0V$（直耦）或 $V_E=V_B-0.7$、$V_C$ 明显高于 $V_B$。三个电压一量，哪个不对查哪个回路。
 
@@ -671,6 +717,8 @@ $$\text{温度↑} \;\Rightarrow\; V_{BE}\text{↓（}-2\text{mV/°C）} \;\Righ
 
 <p align="center"><img src="assets/svg/ce-dynamic.svg" width="720" alt="共射放大器四拍拆解SVG动画"></p>
 
+🔗 [动画演示 5.81](#demo81)
+
 **看点**：蓝色输入与红色输出**反相**；右侧 6V/4V 两根余量箭头就是 8.0Vpp 摆幅上限的来历——红色波形此刻只用了 2.3Vpp，离削波还很远。→ 本节 [3.9](#ch3)
 
 
@@ -691,6 +739,8 @@ $$\text{温度↑} \;\Rightarrow\; V_{BE}\text{↓（}-2\text{mV/°C）} \;\Righ
 
 <p align="center"><img src="assets/svg/mosfet-switch.svg" width="720" alt="MOSFET 开关动画：沟道形成与导通"></p>
 
+🔗 [动画演示 5.92](#demo92)
+
 
 1. P 型衬底上两个 N+ 区（源 S、漏 D），中间隔栅氧层+栅极 G
 2. $V_{GS}=0$：两个背靠背 PN 结，不导通
@@ -709,6 +759,8 @@ $$\text{温度↑} \;\Rightarrow\; V_{BE}\text{↓（}-2\text{mV/°C）} \;\Righ
 
 <p align="center"><img src="assets/svg/mosfet-curves.svg" width="720" alt="MOSFET输出特性SVG动画：线性区与饱和区"></p>
 
+🔗 [动画演示 5.57](#demo57)
+
 上图四条曲线，每条对应一个 $V_{GS}$；**红色虚线是夹断点** $V_{DS}=V_{GS}-V_{TH}$，把平面切成两块：
 左边线性区（I_D 随 V_DS 涨）、右边饱和区（I_D 只认 V_GS）。曲线整体高度 ∝ $(V_{GS}-V_{TH})^2$——
 这个平方关系就是跨导 $g_m$ 的来源。
@@ -721,6 +773,8 @@ MOSFET 栅极充电时 $V_{GS}$ 波形出现的"平台"：此时 $V_{DS}$ 正在
 
 <p align="center"><img src="assets/svg/miller-plateau.svg" width="720" alt="MOSFET米勒平台SVG动画：开通四阶段与开关损耗"></p>
 
+🔗 [动画演示 5.44](#demo44)
+
 上图用的就是 [4.6](#ch4) 那套账（20V/5A/10mA/AO3400）：$V_{GS}$ 爬到约 2.9V 就被**钉住 160ns**——
 这段时间 $=Q_{gd}\div I_{drv}=1.6nC\div10mA$，$V_{DS}$ 从 20V 一路雪崩到 0.15V。
 真正的电压电流重叠区是 **150ns（过阈）到 560ns（$V_{DS}$ 到底）= 410ns**，
@@ -732,6 +786,8 @@ MOSFET 栅极充电时 $V_{GS}$ 波形出现的"平台"：此时 $V_{DS}$ 正在
 
 - MOSFET 结构天然寄生 S-D 体二极管 → 可做续流，也是"为什么 MOS 管不能反向阻断电压"
 <p align="center"><img src="assets/svg/body-diode.svg" width="720" alt="MOSFET体二极管与栅极保护SVG动画"></p>
+
+🔗 [动画演示 5.68](#demo68)
 
 - 栅氧层仅几十 nm，**耐压通常 ±20V**，ESD 极易击穿 → 未用的 MOS 栅极不得悬空；驱动回路串 10~100Ω 电阻抑制振铃
 
@@ -768,6 +824,8 @@ MOSFET 栅极充电时 $V_{GS}$ 波形出现的"平台"：此时 $V_{DS}$ 正在
 🧮 **算一笔**：AO3400 $Q_g≈7nC$，10mA 驱动 → 开关时间 $≈\frac{7nC}{10mA}=700ns$。母线 20V/5A、重叠区按 700ns 估、开关频率 100kHz：$P_{sw} = \frac{1}{2}\times 20\times 5\times 700ns\times 100kHz ≈ 3.5W$——**是导通损耗（0.75W）的 4 倍多！**这就是高频场合必须看 $Q_g$ 而不能只看 $R_{DS(on)}$ 的原因，也是栅极驱动器动辄 2A 峰值电流的原因：把平台期挤短，损耗就小。
 
 <p align="center"><img src="assets/svg/mosfet-four-beats.svg" width="720" alt="MOSFET开通四拍SVG动画：栅极电荷与开关损耗"></p>
+
+🔗 [动画演示 5.82](#demo82)
 
 **看点**：四张小电路把同一次开通钉在四个状态：$C_{GS}$ 先充、$I_D$ 再升、$C_{GD}$ 抢走驱动电流形成 Miller 平台，最后 $R_{DS(on)}$ 落到最低；底部时间轴把 700ns、$Q_{gd}=1.6nC$ 与约 3.5W 开关损耗串成一笔账。→ 本节 [4.6](#ch4)
 
@@ -816,6 +874,8 @@ MOSFET 栅极充电时 $V_{GS}$ 波形出现的"平台"：此时 $V_{DS}$ 正在
 
 <p align="center"><img src="assets/svg/pushpull-stage.svg" width="720" alt="推挽输出级SVG动画：图腾柱与直通电流"></p>
 
+🔗 [动画演示 5.53](#demo53)
+
 🧮 **算一笔**（两推挽直连有多狠）：5V 供电、上下管各 25Ω →
 $I=\dfrac{5V}{25\Omega+25\Omega}=100mA$——**这个电流不经过负载，纯粹在两只管子之间烧掉**。
 所以共享总线（I²C、多设备数据线）绝不能用推挽，必须用开漏或三态（[5.2](#ch5)、[5.4](#ch5)）。
@@ -827,6 +887,8 @@ $I=\dfrac{5V}{25\Omega+25\Omega}=100mA$——**这个电流不经过负载，纯
 ### 5.2 开漏输出（Open-Drain）
 
 <p align="center"><img src="assets/svg/pushpull-opendrain.svg" width="720" alt="推挽vs开漏动画：为什么I2C选慢的"></p>
+
+🔗 [动画演示 5.5](#demo5)
 
 > 💎 **精髓**：推挽是"两个人抢着开车"——独享时最快，共享时互撞；开漏+上拉是"大家都能踩刹车"——慢，但永不冲突。I2C 用速度换来了多主仲裁的能力。
 
@@ -886,6 +948,8 @@ OUT ────────────────┤
 
 <p align="center"><img src="assets/svg/pullup-sizing.svg" width="720" alt="上拉电阻取值SVG动画：上升沿与功耗的取舍"></p>
 
+🔗 [动画演示 5.62](#demo62)
+
 两条硬约束互相拉扯：**上升沿 $t_r\approx0.8473\cdot R_p\cdot C$（R 越大越慢）**、
 **低电平吸流 $I_{low}=V/R_p$（R 越小越费电）**。3.3V/100pF 下：
 1kΩ→85ns/3.3mA、**4.7kΩ→400ns/0.70mA（经典值）**、10kΩ→847ns/0.33mA、47kΩ→4µs（快速模式直接不合格）。
@@ -894,6 +958,8 @@ I²C 标准模式（100kHz）要求 $t_r<1000ns$ → $R_p\le11.8kΩ$；快速模
 ### 5.4 三态（Tri-State）与高阻态
 
 <p align="center"><img src="assets/svg/tristate-bus.svg" width="720" alt="三态总线SVG动画：谁说话谁闭嘴"></p>
+
+🔗 [动画演示 5.51](#demo51)
 
 第三种输出状态：上下管**都关断** → 高阻（Hi-Z），相当于与总线断开。配合片选信号，多个三态器件可共享并行总线（内存总线的原理）。⚠️ 三态总线必须有机制保证**同一时刻只有一个器件驱动**，否则回到推挽冲突的地狱。
 
@@ -950,6 +1016,8 @@ IN- ──┘   │ (长尾对)  │   │ (共射+密勒) │   │(互补推�
 
 <p align="center"><img src="assets/svg/opamp-internals.svg" width="720" alt="运放内部框图SVG动画：三级流水线攒出 20 万倍"></p>
 
+🔗 [动画演示 5.37](#demo37)
+
 **看点**：蓝粒子从 IN 一路流到 OUT——①差分级只认"差"、②中间级扛下 20 万倍增益（密勒补偿换稳定）、③输出级给低阻，④偏置镜在底下供水。看框图比背参数表管事。→ 本节 [6.1 解剖一只 741](#ch6)
 
 ### 6.2 LM358：最常见的国产双运放
@@ -959,6 +1027,8 @@ IN- ──┘   │ (长尾对)  │   │ (共射+密勒) │   │(互补推�
 - 输出非轨到轨：最高只能摆到 Vcc-1.5V
 <p align="center"><img src="assets/svg/lm358-dual.svg" width="720" alt="LM358双运放SVG动画：单电源与输出摆幅"></p>
 
+🔗 [动画演示 5.63](#demo63)
+
 - GBW 1MHz、SR 0.5V/µs —— 低速信号链够用，音频勉强，视频免谈
 
 上图把这个「脾气」画成了摆幅条：**Vcc=5V 供电时输出最高只能到约 3.5V（Vcc−1.5V）**——
@@ -967,6 +1037,8 @@ IN- ──┘   │ (长尾对)  │   │ (共射+密勒) │   │(互补推�
 ### 6.3 Datasheet 参数逐项解析 📋
 
 <p align="center"><img src="assets/svg/datasheet-params.svg" width="720" alt="Datasheet六参数优先级SVG动画"></p>
+
+🔗 [动画演示 5.71](#demo71)
 
 上图把六个关键参数按「会咬人」的先后排好，每一项都标出**它咬在哪里**：
 $V_{OS}$ 被增益放大、$I_B$ 只在高源阻抗时咬人、GBW 管小信号、SR 管大信号……
@@ -1023,6 +1095,8 @@ $V_{OS}$ 被增益放大、$I_B$ 只在高源阻抗时咬人、GBW 管小信号�
 
 <p align="center"><img src="assets/svg/opamp-map.svg" width="720" alt="运放选型地图SVG动画：速度×精度"></p>
 
+🔗 [动画演示 5.72](#demo72)
+
 上图把它们放进**「速度（横轴 GBW）× 直流精度（纵轴 $V_{OS}$）」**的坐标里：右上角是最贵的地盘（又快又准），
 左下角是便宜的通用件。**两把尺子先量清楚再挑型号**：GBW ≥ 增益×最高频率×10；$V_{OS}$×增益 = 输出端误差。
 别忘了 $I_B$：源阻抗 >100kΩ 必须 FET 输入（TL072 的 30pA vs LM358 的 45nA，**差 1000 倍**）。
@@ -1030,6 +1104,8 @@ $V_{OS}$ 被增益放大、$I_B$ 只在高源阻抗时咬人、GBW 管小信号�
 ### 6.5 经典应用电路原理
 
 <p align="center"><img src="assets/svg/opamp-inverting.svg" width="720" alt="反相放大器动画：虚短虚断"></p>
+
+🔗 [动画演示 5.93](#demo93)
 
 
 **先讲透两条公理"凭什么"成立**，再看电路——否则五个拓扑只是五个需要背的形状：
@@ -1056,6 +1132,8 @@ $V_{OS}$ 被增益放大、$I_B$ 只在高源阻抗时咬人、GBW 管小信号�
 | 微音效应/杂音 | 高增益电路受振动（陶瓷电容压电效应） | C0G 电容、减振布局 |
 
 <p align="center"><img src="assets/svg/opamp-pitfalls.svg" width="720" alt="运放六个经典坑SVG动画"></p>
+
+🔗 [动画演示 5.75](#demo75)
 
 上图把六个坑按**现场出现频率**排好（症状 → 根因 → 解法）。诊断顺序很关键：
 **① 先看输出直流电平**（贴轨 → 查共模范围与反馈回路；居中但抖 → 查自激与去耦）→
@@ -1087,6 +1165,8 @@ $V_{OS}$ 被增益放大、$I_B$ 只在高源阻抗时咬人、GBW 管小信号�
 
 <p align="center"><img src="assets/svg/opamp-slew.svg" width="720" alt="运放阶跃响应SVG动画：压摆率直线爬坡与建立时间"></p>
 
+🔗 [动画演示 5.45](#demo45)
+
 上图把大信号实线和"只受 GBW 限制"的灰色虚线画在一起：**2µs 的直线爬坡**把总建立时间
 从约 1.1µs 拖到 **2.6µs**。所以 ADC 多路切换前端要挑**大信号压摆率**够快的运放，
 光看 GBW=1MHz 会严重乐观。
@@ -1113,6 +1193,8 @@ $V_{OS}$ 被增益放大、$I_B$ 只在高源阻抗时咬人、GBW 管小信号�
 
 <p align="center"><img src="assets/svg/comparator-opamp.svg" width="720" alt="运放与比较器对比SVG动画：速度差与开漏输出级"></p>
 
+🔗 [动画演示 5.47](#demo47)
+
 上图同一个 0→2V 阶跃：运放被压摆率限死，**4µs 才爬到 2V**；LM393 无补偿，**1.3µs 就跳到 4.9V**。
 但真正的坑不在速度，在输出级——LM393 是**开漏**，上电沿靠外部上拉：10kΩ 上拉带 100nF 就是
 $$\tau=RC=1\text{ms},\quad t_r\approx2.2\tau=2.2\text{ms}$$
@@ -1127,6 +1209,8 @@ $$\tau=RC=1\text{ms},\quad t_r\approx2.2\tau=2.2\text{ms}$$
 - 多路比较器输出可线与（窗口检测器）
 
 <p align="center"><img src="assets/svg/lm393-inside.svg" width="720" alt="LM393内部解剖SVG动画：PNP输入+开漏输出"></p>
+
+🔗 [动画演示 5.54](#demo54)
 
 **看结构就懂脾气**：输入级用 **PNP 差分对**，所以共模范围能一路到地（0~Vcc−1.5V）——
 单电源接地信号直接能比；输出级只有**一只对地 NPN**（开漏），所以它「只会拉低、不会推高」，
@@ -1163,6 +1247,8 @@ $$V_{TH+} = V_{REF}\left(1+\frac{R_1}{R_2}\right) - \frac{R_1}{R_2}V_{OL},\qquad
 
 <p align="center"><img src="assets/svg/schmitt-osc.svg" width="720" alt="迟滞振荡器SVG动画：Vc 在两只门槛间弹跳、方波自激"></p>
 
+🔗 [动画演示 5.35](#demo35)
+
 **看点**：迟滞比较器加一根 RC 就是振荡器——C 在两门槛间指数充放，每碰一次门槛输出翻转、充放方向跟着掉头，方波自己"弹"出来：$T=2RC\ln 3\approx2.2\text{ms}$（≈455Hz）。→ 本节 [7.3 迟滞](#ch7)
 
 🧮 **算一笔**：现场噪声峰峰 20mV → 迟滞窗口要 ≥40mV。取 $V_{OH}-V_{OL}=10V$、$R_2/R_1=100$：$\Delta V = \frac{1}{100}\times10V = 100mV$ ✓ 覆盖噪声还留 2.5 倍余量。若现场噪声到 100mV：换 $R_2/R_1=50$ 得 200mV——**先量噪声，再定电阻。**
@@ -1178,6 +1264,8 @@ $$V_{TH+} = V_{REF}\left(1+\frac{R_1}{R_2}\right) - \frac{R_1}{R_2}V_{OL},\qquad
 | 上电瞬间误输出 | 电源爬升期内部状态未定 | 加 RC 延时/选带 POR 的型号 |
 
 <p align="center"><img src="assets/svg/comparator-pitfalls.svg" width="720" alt="比较器五个坑SVG动画"></p>
+
+🔗 [动画演示 5.76](#demo76)
 
 上图把五个坑按频率排序，**第一名就是"忘接上拉"**——根源都在"LM393 是开漏输出"这一件事：
 开漏 = 一只对地开关，**没有上拉就没有高电平**；而高电平的值由"上拉接到哪"决定 → 天然电平转换；
@@ -1208,6 +1296,8 @@ IN ─────┤          ├───── OUT
 - **单 PMOS 相反**：低电平传不干净
 <p align="center"><img src="assets/svg/transfer-gate.svg" width="720" alt="CMOS传输门SVG动画：N管传低P管传高"></p>
 
+🔗 [动画演示 5.50](#demo50)
+
 - **并联互补**：NMOS 负责传输低电平、PMOS 负责传输高电平 → 全摆幅无损导通
 
 🧮 **算一笔**（图上那条曲线）：设 $V_{DD}=5V$、$V_{TH}=1V$、两管 $k$ 相同，则
@@ -1233,6 +1323,8 @@ $R_{on,N}=\dfrac{R_0}{V_{DD}-V_{IN}-V_{TH}}$、$R_{on,P}=\dfrac{R_0}{V_{IN}-V_{T
 
 <p align="center"><img src="assets/svg/mux-4051.svg" width="720" alt="CD4051多路复用SVG动画：8路共用1个ADC"></p>
 
+🔗 [动画演示 5.69](#demo69)
+
 上图是 4051 的典型用法：**8 路传感器各自接 Y0~Y7，由 3 位地址（A0/A1/A2）选通一路接到 COM**，
 COM 再送 ADC——**省掉 7 个 ADC 通道**。两个要点：① 通道是**双向**的（COM 也能当输入做信号分配）；
 ② 切换瞬间有**电荷注入与 $R_{on}$ 变化**，别在 ADC 转换中途切通道（机理见 [8.6](#ch8)）。
@@ -1240,6 +1332,8 @@ COM 再送 ADC——**省掉 7 个 ADC 通道**。两个要点：① 通道是**
 ### 8.3 关键参数解析 📋
 
 <p align="center"><img src="assets/svg/analog-switch.svg" width="720" alt="模拟开关动画：电荷注入"></p>
+
+🔗 [动画演示 5.94](#demo94)
 
 > 💎 **精髓**：模拟开关不是理想开关——关断瞬间沟道里攒的电荷"无家可归"，被挤进保持电容。ΔV=Q/C，这是采样电路里最隐蔽的误差源，数据手册里叫 Charge Injection。
 
@@ -1265,6 +1359,8 @@ COM 再送 ADC——**省掉 7 个 ADC 通道**。两个要点：① 通道是**
 ### 8.4 采样保持：模拟开关最重要的差事
 
 <p align="center"><img src="assets/svg/sample-hold.svg" width="720" alt="采样保持动画：给 SAR 按下暂停键"></p>
+
+🔗 [动画演示 5.22](#demo22)
 
 模拟开关出场率最高的岗位不是"切换信号"，而是 ADC 前端的**采样保持**：开关闭合时 $C_{hold}$ 充电追踪输入（采样相），断开瞬间电容"记住"最后一刻的电压（保持相）——[13.6](#ch13) SAR 的四拍问答全靠这份"冻结"。两个非理想效应决定保持精度：**droop**（开关漏电 + 缓冲器偏流让保持电压斜坡下垂，$dV/dt=I_{leak}/C_{hold}$）与**电荷注入**（开关断开瞬间沟道电荷踢进 $C_{hold}$，[8.1](#ch8) 的 CMOS 传输门用 NMOS+PMOS 互补就是为了让它俩的注入互相抵消）。
 
@@ -1304,6 +1400,8 @@ COM 再送 ADC——**省掉 7 个 ADC 通道**。两个要点：① 通道是**
 🧮 **算一笔**：$\Delta V=Q_{ch}/2C_h$ ——误差反比于 $C_h$。把 $C_h$ 从 10pF 加到 100pF，$\Delta V$ 从 10mV 降到 1mV，代价是**采样时间要长 10 倍**（$\tau=R_{on}C_h$ 同样放大 10 倍）。**精度与速度的取舍，在模拟开关这一级就已经定了。**
 <p align="center"><img src="assets/svg/analog-switch-beats.svg" width="720" alt="模拟开关开合四拍拆解SVG动画"></p>
 
+🔗 [动画演示 5.84](#demo84)
+
 **看点**：四拍把一次采样钉在四个状态——① 栅极驱动开启、$R_{on}$ 落到 45Ω；② 沟道存下 $Q_{ch}=0.2pC$；③ 关断瞬间一半电荷注入 $C_h$，$\Delta V=10mV$（=20 个 LSB）；④ dummy 半尺寸管反向抵消。→ 本节 [8.6](#ch8)
 
 
@@ -1320,15 +1418,21 @@ COM 再送 ADC——**省掉 7 个 ADC 通道**。两个要点：① 通道是**
 
 <p align="center"><img src="assets/svg/ref-showdown.svg" width="720" alt="齐纳与带隙温漂对比SVG动画"></p>
 
+🔗 [动画演示 5.55](#demo55)
+
 上图把两条路线的温漂画在同一条温度轴上：**齐纳是抛物线（只有 5.6V 附近才触底），
 带隙修调后能压到 3ppm/℃ 的平直线**——差了约两个数量级。选型口诀：粗基准看齐纳、精密基准看带隙。
 
 <p align="center"><img src="assets/svg/zener-regulator.svg" width="720" alt="齐纳稳压动画：溢流阀"></p>
 
+🔗 [动画演示 5.25](#demo25)
+
 **带隙基准（Bandgap）**：利用两个温度特性相反的电压互相补偿：
 $$V_{REF} = \underbrace{V_{BE}}_{-2mV/°C} + \underbrace{K \cdot V_T \ln N}_{+0.085mV/°C \times K} \approx 1.25V$$
 
 <p align="center"><img src="assets/svg/bandgap.svg" width="720" alt="带隙基准动画：正负温漂抵消出 1.25V"></p>
+
+🔗 [动画演示 5.20](#demo20)
 - $V_{BE}$ 随温度下降，热电压 $V_T$ 随温度上升 → 调好比例 K，零温漂
 - 1.25V ≈ 硅的带隙电压 → 名字由来。这是**所有现代电压基准芯片的核心**
 
@@ -1340,6 +1444,8 @@ $$V_{REF} = \underbrace{V_{BE}}_{-2mV/°C} + \underbrace{K \cdot V_T \ln N}_{+0.
 
 <p align="center"><img src="assets/svg/tl431.svg" width="720" alt="TL431 动画：自带标尺的比较器"></p>
 
+🔗 [动画演示 5.21](#demo21)
+
 **工作原理**：内部运放持续比较 REF 与 2.5V 基准，驱动输出管调整阴极电流，**强制 REF = 2.5V**。外接两个电阻分压：
 $$V_{KA} = 2.5 \times \left(1 + \frac{R_1}{R_2}\right)$$
 
@@ -1350,6 +1456,8 @@ $$V_{KA} = 2.5 \times \left(1 + \frac{R_1}{R_2}\right)$$
 ### 9.3 LDO 线性稳压器剖析
 
 <p align="center"><img src="assets/svg/ldo-feedback.svg" width="720" alt="LDO负反馈动画"></p>
+
+🔗 [动画演示 5.95](#demo95)
 
 > 💎 **精髓**：LDO 不是"稳压元件"，而是一个**闭环控制系统**——误差放大器每秒钟纠正几千次。理解这一点，你就理解了为什么输出电容的 ESR 能把它逼疯（环路稳定性）。
 
@@ -1393,6 +1501,8 @@ VIN ──[调整管 PMOS/PNP]── VOUT
 
 <p align="center"><img src="assets/svg/ldo-failures.svg" width="720" alt="7805/AMS1117故障地图SVG动画"></p>
 
+🔗 [动画演示 5.73](#demo73)
+
 上图把四种死法的账都摊开：**① 热账 $P=(V_{IN}-5V)\times I$**（12V→5V@300mA = **2.1W**，无散热片必热关断）、
 **② 纹波账**（输入谷值必须 ≥ $V_{OUT}+V_{DROP}$）、**③ 稳定性账**（AMS1117 的环路补偿依赖输出电容 ESR，出窗口就振荡）、
 **④ 上电账**（大压差+快上电会过冲）。**结论：大压差 × 大电流 = 直接上 DCDC，别跟线性稳压较劲。**
@@ -1415,6 +1525,8 @@ VIN ──[调整管 PMOS/PNP]── VOUT
 🧮 **算一笔**：总跌落 ≈25+245=270mV。若这是 3.3V 系统、复位阈值 −5%（165mV）——**这次唤醒直接触发复位**。对策三板斧：加大输出电容（摊薄 ΔV₂）、换低 ESR 陶瓷电容（压掉 ΔV₁）、选快环路 LDO（缩短 Δt）。**"MCU 一跑大程序就复位"，十之五六是这个剧本。**
 <p align="center"><img src="assets/svg/ldo-transient-beats.svg" width="720" alt="LDO负载瞬态四拍拆解SVG动画"></p>
 
+🔗 [动画演示 5.85](#demo85)
+
 **看点**：四拍把一次唤醒钉在四个状态——① ESR 零延迟瞬跳 25mV；② 电容独自扛、跌落 245mV；③ 环路拉回调管、V_OUT 回升；④ 过冲振铃后重新锁定。→ 本节 [9.5](#ch9)
 
 
@@ -1435,6 +1547,8 @@ VIN ──[调整管 PMOS/PNP]── VOUT
 ### 10.1 内部结构：一只 555 = 3 个电阻 + 2 个比较器 + 1 个触发器 + 1 个放电管
 
 <p align="center"><img src="assets/svg/ne555-astable.svg" width="720" alt="555 无稳态振荡动画"></p>
+
+🔗 [动画演示 5.6](#demo6)
 
 
 ```
@@ -1477,6 +1591,8 @@ $$f = \frac{1.44}{(R_1 + 2R_2)\,C}, \qquad 占空比 = \frac{R_1+R_2}{R_1+2R_2} 
 
 <p align="center"><img src="assets/svg/555-modes.svg" width="720" alt="555三种模式SVG动画"></p>
 
+🔗 [动画演示 5.58](#demo58)
+
 🧮 **算一笔**（一眼分清三个模式的接法账）：
 - **无稳态**：$f\approx\dfrac{1.44}{(R_1+2R_2)C}$，电容在 1/3Vcc 与 2/3Vcc 之间来回充放——**自己踩自己**
 - **单稳态**：$t\approx1.1RC$，TRIG 来一脚输出一个脉冲——**别人踩一脚**（精度与 R、C 的绝对误差直接挂钩）
@@ -1489,6 +1605,8 @@ $$f = \frac{1.44}{(R_1 + 2R_2)\,C}, \qquad 占空比 = \frac{R_1+R_2}{R_1+2R_2} 
 - 双极版 NE555：电源 4.5~16V，输出电流 200mA（可直接驱动继电器！），静态功耗大、输出非轨到轨
 - CMOS 版（TLC555/LMC555）：2~15V，低功耗，输出电流小
 <p align="center"><img src="assets/svg/ne555-params.svg" width="720" alt="555参数与三个坑SVG动画"></p>
+
+🔗 [动画演示 5.77](#demo77)
 
 - 常见故障：5 脚（CTRL）悬空拾取干扰导致频率漂移 → **标准做法接 10nF 到地**；输出驱动容性负载振荡；双极版电源毛刺需大容量去耦
 
@@ -1516,12 +1634,16 @@ $t_{放}=0.693\,R_2\,C ≈ 471µs$（输出低）
 
 <p align="center"><img src="assets/svg/555-astable-beats.svg" width="720" alt="555无稳态四拍拆解SVG动画"></p>
 
+🔗 [动画演示 5.86](#demo86)
+
 **看点**：四拍跟着电容走一圈——① 上电 OUT 高；② 经 R1+R2 充到 ⅔VCC（541µs）；③ 经 R2 放到 ⅓VCC（471µs）；④ 在 3V↔6V 间指数充放电、输出 ≈990Hz 方波。→ 本节 [10.4](#ch10)
 
 
 ### 10.5 动态分析：单稳态模式——一触发，亮一拍（四拍拆解）🔬
 
 <p align="center"><img src="assets/svg/ne555-monostable.svg" width="720" alt="555单稳态SVG动画：一触发亮一拍"></p>
+
+🔗 [动画演示 5.30](#demo30)
 
 **单稳的四拍**（对照上方动画，RA=100kΩ、C=10µF）：① **稳态**：OUT=低、放电管导通，C 被钉在 0V，它就这么睡着；② **触发**：2 脚被按钮瞬间拉到地（<⅓VCC）→ RS 翻转，OUT=高、放电管断开；③ **充电**：电流经 RA 给 C 充值，OUT 全程保持高——**触发脉冲多窄都无所谓，输出宽度只认 RC**；④ **终点**：C 爬到 ⅔VCC → RS 复位，OUT=低，放电管瞬间把 C 放空，回稳态。
 
@@ -1559,6 +1681,8 @@ $t_{放}=0.693\,R_2\,C ≈ 471µs$（输出低）
 
 <p align="center"><img src="assets/svg/bjt-configs.svg" width="720" alt="BJT三种组态SVG动画"></p>
 
+🔗 [动画演示 5.64](#demo64)
+
 三种组态并排看：**同一只管子，只是「信号从哪进、从哪出、哪个极做交流公共端」不同**——
 共射电压增益最高但阻抗平庸且反相；共集电压增益 ≈1 却换来「高进低出」；共基牺牲输入阻抗换高频性能。
 级联心法：**共射打头阵放大、射随器垫后驱动、共基守高频前线**。
@@ -1568,6 +1692,8 @@ $t_{放}=0.693\,R_2\,C ≈ 471µs$（输出低）
 ### 11.2 差分对：为什么所有运放的第一级都是它
 
 <p align="center"><img src="assets/svg/diff-pair.svg" width="720" alt="差分对动画：差模放大共模抑制，CMRR 的秘密是尾巴"></p>
+
+🔗 [动画演示 5.8](#demo8)
 
 **问题**：要放大传感器 10mV 的**差**信号，同时扛住两根线上共同的 5V 电源噪声和温度漂移——单管放大器把差模共模一起放大，完蛋。
 
@@ -1582,6 +1708,8 @@ $t_{放}=0.693\,R_2\,C ≈ 471µs$（输出低）
 ### 11.3 电流镜：模拟 IC 的"复印机"
 
 <p align="center"><img src="assets/svg/current-mirror.svg" width="720" alt="电流镜动画：共用 V_BE 复印电流"></p>
+
+🔗 [动画演示 5.13](#demo13)
 
 **问题**：芯片里做不出大电阻（占面积），而放大器处处需要偏置电流和高阻负载，怎么办？
 
@@ -1600,6 +1728,8 @@ $t_{放}=0.693\,R_2\,C ≈ 471µs$（输出低）
 **达林顿**：两管级联（前管发射极直接喂后管基极），等效 $\beta = \beta_1 \times \beta_2$——50×50=2500，微安级输入驱动安培级负载。代价：$V_{BE}$ 翻倍（1.4V）、饱和压降大（≥0.9V，不能像单管压到 0.2V）、关断慢。ULN2003 内部就是 7 路达林顿。
 
 <p align="center"><img src="assets/svg/class-b-crossover.svg" width="720" alt="乙类推挽动画：交越失真的豁口与消除"></p>
+
+🔗 [动画演示 5.9](#demo9)
 
 **乙类推挽**（功放输出级）：
 ```
@@ -1634,6 +1764,8 @@ $t_{放}=0.693\,R_2\,C ≈ 471µs$（输出低）
 
 <p align="center"><img src="assets/svg/miller-effect.svg" width="720" alt="米勒效应动画：10pF 变身 1nF"></p>
 
+🔗 [动画演示 5.16](#demo16)
+
 🧮 **算一笔**：信号源内阻 $R_{sig}=10k\Omega$，$C_{bc}=10pF$，增益 $A=100$ → $C_{eff}\approx 1.01nF$。它与 $R_{sig}$ 形成低通：$f_H = \frac{1}{2\pi R_{sig}C_{eff}} = \frac{1}{2\pi\times10^4\times1.01\times10^{-9}} \approx 15.8kHz$。你以为这级能放到 MHz？其实 16kHz 就开始滚降——**米勒效应是高频增益的第一杀手**。
 
 **三个必须分清的概念**：
@@ -1648,6 +1780,8 @@ $t_{放}=0.693\,R_2\,C ≈ 471µs$（输出低）
 **问题**：麦克风前级增益 1000 倍，信号还没说话，喇叭先"嘶——"——噪声从哪来？能不能消灭？
 
 <p align="center"><img src="assets/svg/noise-budget.svg" width="720" alt="噪声三税种与噪声预算SVG动画"></p>
+
+🔗 [动画演示 5.48](#demo48)
 
 **答案**：不能消灭，只能谈判。噪声是电子热运动收物理税，三大税种：
 
@@ -1693,6 +1827,8 @@ $$\frac{V_{in}-0}{R_{in}} = \frac{0-V_{out}}{R_f} \;\Rightarrow\; V_{out} = -\fr
 
 <p align="center"><img src="assets/svg/neg-feedback.svg" width="720" alt="负反馈同相放大SVG动画：十万倍被驯成 6 倍"></p>
 
+🔗 [动画演示 5.32](#demo32)
+
 **看点**：同一根反馈线，把开环十万倍的蛮力驯成 $1+R_2/R_1=6$ 倍——±0.5V 进、±3V 出，vin 与 vout 波形完全重合，只是"长大"了 6 倍。→ 本节 [12.1 虚短 + 虚断](#ch12)
 
 ### 12.2 三个基本拓扑对比
@@ -1704,6 +1840,8 @@ $$\frac{V_{in}-0}{R_{in}} = \frac{0-V_{out}}{R_f} \;\Rightarrow\; V_{out} = -\fr
 | 跟随器 | =1 | 极高 | 同相 $R_f$=0 特例：阻抗变换器 |
 
 <p align="center"><img src="assets/svg/three-topologies.svg" width="720" alt="三种基本拓扑对比SVG动画"></p>
+
+🔗 [动画演示 5.52](#demo52)
 
 三者用的是**同一只运放、同一组电阻比例**（图中都取 10 倍），增益公式各自从虚短虚断一步推出——
 真正的差别在**输入阻抗、共模范围与服务代价**：反相把输入阻抗钉死在 $R_{in}$；同相输入阻抗接近无穷、
@@ -1722,6 +1860,8 @@ $$\frac{V_{in}-0}{R_{in}} = \frac{0-V_{out}}{R_f} \;\Rightarrow\; V_{out} = -\fr
 
 <p align="center"><img src="assets/svg/instrumentation-amp.svg" width="720" alt="仪表放大器动画：三道防线挡共模"></p>
 
+🔗 [动画演示 5.17](#demo17)
+
 ### 12.4 积分器与微分器
 
 **积分器**：反馈电阻换电容 → $V_{out} = -\frac{1}{RC}\int V_{in}\,dt$。
@@ -1733,14 +1873,20 @@ $$\frac{V_{in}-0}{R_{in}} = \frac{0-V_{out}}{R_f} \;\Rightarrow\; V_{out} = -\fr
 
 <p align="center"><img src="assets/svg/integrator.svg" width="720" alt="积分器SVG动画：方波积分成三角波"></p>
 
+🔗 [动画演示 5.33](#demo33)
+
 **看点**：输入方波、输出三角波——恒定的输入让 RC 灌恒定电流，输出匀速爬坡；方波跳高，三角波下坡，相位严丝合缝。→ 本节 [12.4 积分器与微分器](#ch12)
 
 ### 12.5 有源滤波：Sallen-Key 二阶低通
 
 <p align="center"><img src="assets/svg/rc-lowpass.svg" width="720" alt="一阶 RC 低通与波特图动画"></p>
 
+🔗 [动画演示 5.24](#demo24)
+
 
 <p align="center"><img src="assets/svg/sallen-key.svg" width="720" alt="Sallen-Key 滤波器动画：Q 值峰化与滚降"></p>
+
+🔗 [动画演示 5.10](#demo10)
 
 **问题**：一级无源 RC 只有 −20dB/十倍频，滚降太肉；两级无源级联互相拖累。怎么办？把无源网络接进运放（跟随器隔离+反馈），互不拖累还能提 Q。
 
@@ -1752,6 +1898,8 @@ $$f_c = \frac{1}{2\pi\sqrt{R_1R_2C_1C_2}} \quad(\text{常用 } R_1{=}R_2{=}R,\ C
 
 <p align="center"><img src="assets/svg/precision-rectifier.svg" width="720" alt="精密整流动画：增益消灭二极管压降"></p>
 
+🔗 [动画演示 5.15](#demo15)
+
 **问题**：普通二极管整流有 0.7V 死区——整 50mV 的小信号？全军覆没。
 
 **精密整流**：把二极管放进运放反馈环里。运放会自动把输出多顶 0.7V，恰好抵消二极管压降 → 整流精度到 mV 级。**"把非理想元件关进反馈的笼子"——这是运放应用最深的思想之一。**
@@ -1759,6 +1907,8 @@ $$f_c = \frac{1}{2\pi\sqrt{R_1R_2C_1C_2}} \quad(\text{常用 } R_1{=}R_2{=}R,\ C
 **峰值检测**：精密整流 + 保持电容 + 跟随器缓冲 → 抓住峰值不放。泄放电阻决定"遗忘速度"。
 
 <p align="center"><img src="assets/svg/peak-detector.svg" width="720" alt="峰值检测动画：单向记忆"></p>
+
+🔗 [动画演示 5.27](#demo27)
 
 ### 12.7 负反馈四种拓扑：稳定什么，就采样什么
 
@@ -1774,6 +1924,8 @@ $$f_c = \frac{1}{2\pi\sqrt{R_1R_2C_1C_2}} \quad(\text{常用 } R_1{=}R_2{=}R,\ C
 | 电流 | 并联比流 | **电流增益** $A_i$ | 流控流源 | 输入阻抗↓、输出阻抗↑ |
 
 <p align="center"><img src="assets/svg/feedback-topo.svg" width="720" alt="负反馈四种拓扑SVG动画"></p>
+
+🔗 [动画演示 5.59](#demo59)
 
 四格卡片就是 2×2 的全展开：采样（电压/电流）× 混合（串联/并联），每一格钉死一个量、
 对应一个受控源身份、并决定输入/输出阻抗各往哪边走。
@@ -1807,6 +1959,8 @@ $$V_{mid} = \frac{R_2}{R_1+R_2}\cdot V_{CC} = 6\text{V},\qquad \text{耦合电�
 
 <p align="center"><img src="assets/svg/virtual-ground.svg" width="720" alt="单电源虚地SVG动画：分压造 6V 中点、耦合电容、波形骑上 6V"></p>
 
+🔗 [动画演示 5.34](#demo34)
+
 **看点**：灰虚线信号（直接进）负半周撞 0V 被削平；绿实线信号经耦合电容骑上 6V 后全程完好——同一个信号，只多了一只电容和一个中点。→ 见 [12.1](#ch12) 的另一种"虚地"：那里是运放"摁"出来的，这里是人造的 6V 偏置。
 
 > 🎯 **通关打卡**：虚短虚断两公理能当堂推导反相/同相/加法/差分四式；差放的电阻精度=CMRR 这条血坑记住；积分器并泄放电阻、微分器限高频成为本能；反馈四拓扑"稳定什么采样什么"判读如流；单电源会用中点偏置给信号造个假地；相位裕度 45°/60° 两条线记住。
@@ -1824,6 +1978,8 @@ $$V_{mid} = \frac{R_2}{R_1+R_2}\cdot V_{CC} = 6\text{V},\qquad \text{耦合电�
 $$V_{out} = V_Z - 0.7V$$
 <p align="center"><img src="assets/svg/discrete-ldo.svg" width="720" alt="分立串联稳压SVG动画：LDO的祖爷爷"></p>
 
+🔗 [动画演示 5.65](#demo65)
+
 齐纳管出 μA 级参考，射随器出 A 级负载电流——稳压的本质：**基准电压 + 误差放大 + 调整管**，和第 9 章 LDO 内部框图一模一样。
 
 🧮 **算一笔**（直流账）：$V_{out}=V_Z-0.7V$，取 $V_Z=6.2V$ → 输出 **5.5V**。凑 5V 就选 5.6V 齐纳（5.6V 恰好是
@@ -1833,6 +1989,8 @@ $$V_{out} = V_Z - 0.7V$$
 ### 13.2 Buck 降压：电感是能量搬运工
 
 <p align="center"><img src="assets/svg/buck-converter.svg" width="720" alt="Buck 降压动画：电感惯性碾平方波"></p>
+
+🔗 [动画演示 5.11](#demo11)
 
 > 📺 **配套视频**：[三分钟看懂！Buck 降压电路动画讲解](https://www.bilibili.com/video/BV1QJSFBVEHu/)（B站）——与上图互证：同一只电感，两种讲法。
 
@@ -1853,6 +2011,8 @@ $$(V_{in}-V_{out})\cdot D \cdot T = V_{out}\cdot(1-D)\cdot T \;\Rightarrow\; \bo
 
 <p align="center"><img src="assets/svg/boost-converter.svg" width="720" alt="Boost 升压动画：电感叠罗汉"></p>
 
+🔗 [动画演示 5.14](#demo14)
+
 > 📺 **配套视频**：[开关电源如何升压？超形象 Boost 动画](https://www.bilibili.com/video/BV1egmQBWE9m/)（B站）。
 
 **Boost**：把 Buck 的电感和开关换个位置——开关闭合时电感对地储能；断开瞬间，电感电压**叠加**在输入电压上，经二极管泵向输出：$V_{out} = \dfrac{V_{in}}{1-D}$（理想）。升压的物理图像：**电感是个"憋气弹簧"，先充电再猛地松手把电压顶上去**。
@@ -1861,11 +2021,17 @@ $$(V_{in}-V_{out})\cdot D \cdot T = V_{out}\cdot(1-D)\cdot T \;\Rightarrow\; \bo
 
 <p align="center"><img src="assets/svg/charge-pump.svg" width="720" alt="电荷泵动画：电容斗提机"></p>
 
+🔗 [动画演示 5.23](#demo23)
+
 <p align="center"><img src="assets/svg/inverting-buckboost.svg" width="720" alt="反相 Buck-Boost 动画：正进负出"></p>
+
+🔗 [动画演示 5.28](#demo28)
 
 ### 13.4 文氏桥正弦振荡器：正弦从哪里来
 
 <p align="center"><img src="assets/svg/wien-bridge.svg" width="720" alt="文氏桥振荡器动画：起振与稳幅"></p>
+
+🔗 [动画演示 5.12](#demo12)
 
 **问题**：信号源里的正弦波，最初是怎么"无中生有"的？
 
@@ -1881,9 +2047,13 @@ $$\text{环路增益}=3\times\frac{1}{3}=1,\quad \text{环路相移}=0°$$
 
 <p align="center"><img src="assets/svg/rlc-resonance.svg" width="720" alt="LC 谐振动画：电场磁场荡秋千"></p>
 
+🔗 [动画演示 5.18](#demo18)
+
 ### 13.5 恒流源家族
 
 <p align="center"><img src="assets/svg/constant-current.svg" width="720" alt="恒流源动画：电压横扫电流平躺"></p>
+
+🔗 [动画演示 5.26](#demo26)
 
 
 | 电路 | 原理 | 用在哪 |
@@ -1896,6 +2066,8 @@ $$\text{环路增益}=3\times\frac{1}{3}=1,\quad \text{环路相移}=0°$$
 ### 13.5.1 恒流源的合规电压：它也有天花板
 
 <p align="center"><img src="assets/svg/compliance-voltage.svg" width="720" alt="恒流源合规电压SVG动画"></p>
+
+🔗 [动画演示 5.80](#demo80)
 
 恒流源不是"万能"——它需要**合规电压**（compliance voltage）：
 
@@ -1928,6 +2100,8 @@ $20mA\times500\Omega$（环路电阻）= 10V，加采样电阻 250Ω×20mA = 5V�
 
 <p align="center"><img src="assets/svg/sar-adc.svg" width="720" alt="SAR ADC 动画：四位天平四次称出答案"></p>
 
+🔗 [动画演示 5.19](#demo19)
+
 **SAR 的四拍工作流**（对照上方动画）：拍 1 把最高位砝码（半天平）放上去——比较器只说一个字："沉了"还是"轻了"；沉了退掉这位，轻了留下；然后放一半小的砝码再问一次……N 位就是 N 次问答。注意两个工程细节：① **采样保持先行**——四拍问答期间输入必须被"冻结"，否则答案是移动靶（这就是第 8 章采样保持电路存在的原因）；② **DAC 是 SAR 的心脏**——它的精度直接等于 ADC 精度，所以 SAR 里那只电容阵列/R-2R 的匹配度是生死线（又是"比值可靠"哲学的应用）。
 
 **DAC 两条路**：
@@ -1941,6 +2115,8 @@ $20mA\times500\Omega$（环路电阻）= 10V，加采样电阻 250Ω×20mA = 5V�
 ### 13.7 H 桥：四只开关让电流「听指挥」掉头
 
 <p align="center"><img src="assets/svg/h-bridge.svg" width="720" alt="H桥SVG动画：四拍换向与体二极管回流"></p>
+
+🔗 [动画演示 5.29](#demo29)
 
 **H 桥的四拍**（对照上方动画）：① **正转**：A=1 → Q1+Q4 导通，电流 +12V→Q1→电机→Q4→GND；② **反转**：B=1 → Q2+Q3 导通，电流整体掉头——"换电机两根线"就是这么自动化掉的；③ **致命错误**：同臂（Q1+Q2）齐开 = +12V 直通 GND，毫秒级烧管——所以换向必须插 1~2µs **死区**，驱动芯片替你管这事；④ **全关滑行**：电机电感电流没处去，体二极管搭桥流回电源——动能回收，这就是刹车。
 
@@ -1994,6 +2170,8 @@ $20mA\times500\Omega$（环路电阻）= 10V，加采样电阻 250Ω×20mA = 5V�
 
 <p align="center"><img src="assets/svg/power-tree.svg" width="720" alt="树状供电逐级净化SVG动画"></p>
 
+🔗 [动画演示 5.88](#demo88)
+
 **看图**：输入 12V 先经板级储能（大电解扛脉冲），再分流到各模块稳压器（模拟走 LDO、数字走 DCDC），最后每颗芯片就近 100nF 去耦——**一级替一级挡脏**。→ 本节 [14.3](#ch14)
 
 
@@ -2004,6 +2182,8 @@ $20mA\times500\Omega$（环路电阻）= 10V，加采样电阻 250Ω×20mA = 5V�
 把前五篇的零件串成一台真机器——PT100 铂电阻测温（0.1°C 分辨），看每一环怎么选、为什么：
 
 <p align="center"><img src="assets/svg/signal-chain.svg" width="720" alt="PT100信号链全链SVG动画：逐级放大到接近满量程"></p>
+
+🔗 [动画演示 5.42](#demo42)
 
 ```
 PT100 ──恒流激励──> 仪放 ──> 低通滤波 ──> ADC ──> MCU
@@ -2048,6 +2228,8 @@ PT100 ──恒流激励──> 仪放 ──> 低通滤波 ──> ADC ──> 
 
 <p align="center"><img src="assets/svg/cap-decoupling.svg" width="720" alt="去耦电容动画：贴脸放的真正原因"></p>
 
+🔗 [动画演示 5.96](#demo96)
+
 > 💎 **精髓**：去耦电容不是"滤波"，是**本地水库**——ns 级电流尖峰面前，10cm 走线电感就是断路。所以"100nF 贴脸 &lt;3mm"不是建议，是铁律。
 
 
@@ -2063,6 +2245,8 @@ PT100 ──恒流激励──> 仪放 ──> 低通滤波 ──> ADC ──> 
 - **回流路径**：高速信号的回流电流在地平面上贴着信号线正下方流动（最小环路阻抗路径 = 最小电感路径）。地平面开槽 → 回流绕路 → 环路面积暴增 → 变成天线辐射 EMI
 
 <p align="center"><img src="assets/svg/pcb-return-path.svg" width="720" alt="回流路径动画：信号回家路"></p>
+
+🔗 [动画演示 5.7](#demo7)
 
 > 💎 **精髓**：高频回流是"镜像电流"——它不认识原理图上的 GND 符号，只认电感最小的路，那就是信号线的正下方。地平面开一道槽，等于把回流的桥拆了：绕路=大环路=天线。**布线前先问：这条信号的回家路通吗？**
 
@@ -2084,6 +2268,8 @@ PT100 ──恒流激励──> 仪放 ──> 低通滤波 ──> ADC ──> 
 | 阻抗控制 | USB 90Ω、RF 50Ω | 与板厂确认叠层参数计算线宽 |
 
 <p align="center"><img src="assets/svg/pcb-routing.svg" width="720" alt="PCB布线四招SVG动画"></p>
+
+🔗 [动画演示 5.90](#demo90)
 
 **看图**：四条规则一张图——45° 折角让线宽连续、过孔每只带 ≈1nH+0.5pF、差分对等长等距紧邻、敏感线两侧包地；每一条背后都是「电感与耦合」在说话。→ 本节 [15.3](#ch15)
 
@@ -2160,6 +2346,8 @@ PT100 ──恒流激励──> 仪放 ──> 低通滤波 ──> ADC ──> 
 
 <p align="center"><img src="assets/svg/debug-flow.svg" width="720" alt="排故五步法SVG动画：把玄学拆成实验"></p>
 
+🔗 [动画演示 5.38](#demo38)
+
 **看点**：橙框每 2 秒巡游一步，粒子沿流程走一圈——五步都带"防自欺"设计：先问后拆 / 对数收敛 / 单变量 / 修根因 / 回归。→ 本节 [16.1 五步法详解](#ch16)
 
 ### 16.2 思维工具箱：老手的四个暗器
@@ -2174,6 +2362,8 @@ PT100 ──恒流激励──> 仪放 ──> 低通滤波 ──> ADC ──> 
 ### 16.3 测量本身不破坏电路（Jim Williams 铁律）
 
 <p align="center"><img src="assets/svg/probe-loading.svg" width="720" alt="探头负载与测量破坏电路SVG动画"></p>
+
+🔗 [动画演示 5.49](#demo49)
 
 - **探头是负载**：示波器 ×1 档 1MΩ‖~100pF，测高阻节点直接压垮电路——测模拟节点一律 ×10 档（10MΩ‖~10pF）
   🧮 **算一笔**：源阻 100kΩ 的节点挂 ×1 探头，分压系数 $1\text{M}/(100\text{k}+1\text{M})=0.909$——**误差 9%**，
@@ -2194,6 +2384,8 @@ PT100 ──恒流激励──> 仪放 ──> 低通滤波 ──> ADC ──> 
 > 📚 **先修**：[第 16 章五步法](#ch16)——本表是查案手册，配合方法论使用。
 
 <p align="center"><img src="assets/svg/fault-lookup.svg" width="720" alt="故障速查SVG动画：症状→嫌疑→验证三列链路"></p>
+
+🔗 [动画演示 5.91](#demo91)
 
 **看点**：四条链路四种颜色，粒子从症状流向嫌疑再到验证——每类故障一行；底部紫色条是「不该振荡却振荡」的固定排查顺序。**先量电源——近一半故障藏在这里。** → 本节 [17.1 电源类](#ch17)
 
@@ -2239,6 +2431,8 @@ PT100 ──恒流激励──> 仪放 ──> 低通滤波 ──> ADC ──> 
 > 📚 **先修**：[第 16/17 章](#ch16)——大师心法在有基本方法后读，收获最大。
 
 <p align="center"><img src="assets/svg/master-wisdom.svg" width="720" alt="大师排故智慧SVG动画：三份心法一条军规"></p>
+
+🔗 [动画演示 5.97](#demo97)
 
 **看点**：三栏金句三种颜色，粒子沿栏内流动；底部橙色军规条是共通军规：先量电源 → 预测波形 → 最小化复现 → 示波器复核。**慢观察、快假设、严验证。** → 本节 [18.1 Bob Pease](#ch18)
 
@@ -3311,7 +3505,7 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 
 | 版本 | 亮点 |
 |---|---|
-| **v3.15（当前）** | 新增「大师的排故智慧」（§18，Pease/Williams/共通三栏金句 + 军规清单粒子链 + 4 拍字幕，第 97 张）；动画中心补全 6 张章节图条目（故障速查 demo91 + mosfet-switch/opamp-inverting/analog-switch/ldo-feedback/cap-decoupling demo92–demo96）——全部 SVG 在第五篇可见，Falstad 地图顺延 5.98 |
+| **v3.15（当前）** | 新增「大师的排故智慧」（§18，Pease/Williams/共通三栏金句 + 军规清单粒子链 + 4 拍字幕，第 97 张）；动画中心补全 6 张章节图条目（故障速查 demo91 + mosfet-switch/opamp-inverting/analog-switch/ldo-feedback/cap-decoupling demo92–demo96）——全部 SVG 在第五篇可见，Falstad 地图顺延 5.98；正文 97 处图引用全部可点击化（🔗 动画演示 5.NN 直达 demo 锚点，97/97 全覆盖） |
 | v3.14 | 新增「故障速查」（§17，症状→头号嫌疑→验证手段三列链路动画 + 振荡排查顺序粒子条 + 4 拍字幕，第 96 张）；diode-family 横轴改「特征电压」（TVS/稳压管/变容管为反向规格值，肖特基/LED 才是正向压降）；pcb-routing 敏感线护线对称夹住信号线；miller V_GD 平台斜坡（400→560ns 斜升 + 驻留）；README 锚点完整性测试 `test_readme_links.py` 上线（空 fragment/锚点漂移双断言，变异验证三档通过） |
 | v3.13 | 修复 probe-loading.svg 因缺 f-string 前缀导致 `{DP}`/`{pulse(...)}` 字面括号未解析、animateMotion 时长未展开、动画静默失效；test_svg_assets 新增 literal-brace 双路断言（属性值 `\{[A-Za-z_]\w*\}` + 文本节点 `\{[A-Za-z_]\w*\(`，遍历 `root.iter()` 检查 `attrib.values()` 与 `elem.text`/`elem.tail`）；LINEAR_X 注册表添加 neg-feedback: 2；添加 vacuous green 防护 `assertGreater(median, 0.5)` |
 | v3.12 | 时间轴波形图 x-匀速配速修复：新增 `linear_x_motion`/`plain_motion` 辅助函数，19 处站点替换（comparator/wien/integrator/LDO/miller/peak/thermal/mosfet-curves/resistor-model/diode-iv），keyPoints 密度 n=512；修复 miller/diode-iv 丢失 `</circle>` 闭合标签（5 处）与 thermal-runaway 缺少 f-string 前缀导致 `{DT}`/`{pulse(...)}` 字面括号未解析；新增 Chromium 回归测试 `test_waveform_markers_advance_uniformly`（6 站点 x-匀速断言，delta=0.6px） |
