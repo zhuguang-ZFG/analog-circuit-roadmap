@@ -5312,6 +5312,7 @@ def make_diode_family():
 <text x="70" y="540" font-size="11.5" fill="#475569">④ <tspan font-weight="bold" fill="#b45309">稳压管工作在击穿区</tspan>：这是唯一「故意让它击穿」的用法，5.6V 附近温漂最小</text>
 <text x="70" y="564" font-size="11.5" fill="#475569">⑤ <tspan font-weight="bold" fill="#059669">变容管是「电压控电容」</tspan>：反压越大耗尽层越宽、结电容越小——VCO 靠它调频</text>
 <circle r="4.5" fill="#f59e0b"><animateMotion dur="{DD}s" begin="-0.5s" repeatCount="indefinite" path="M{px(0.2):.0f},{Y0+PH-6} L{px(2.0):.0f},{Y0+PH-6}"/></circle>
+<circle r="4.5" fill="#f59e0b" opacity="0.55"><animateMotion dur="{DD}s" begin="-{DD/2+0.5:.1f}s" repeatCount="indefinite" path="M{px(0.2):.0f},{Y0+PH-6} L{px(2.0):.0f},{Y0+PH-6}"/></circle>
 <circle cx="{px(fam[0][1]):.0f}" cy="{py(fam[0][2]):.0f}" r="5" fill="none" stroke="#475569" stroke-width="2.2">
 <animate attributeName="r" values="5;12;5" dur="2.0s" repeatCount="indefinite"/></circle>
 <circle cx="{px(fam[1][1]):.0f}" cy="{py(fam[1][2]):.0f}" r="5" fill="none" stroke="#2563eb" stroke-width="2.2">
@@ -5322,6 +5323,10 @@ def make_diode_family():
 {pulse(196, 300, 130, 60, '#dc2626', 2.0, 10)}
 <circle cx="{px(fam[3][1]):.0f}" cy="{py(fam[3][2]):.0f}" r="5" fill="none" stroke="#7c3aed" stroke-width="2.4">
 <animate attributeName="r" values="5;12;5" dur="1.9s" repeatCount="indefinite"/></circle>
+<circle cx="{px(fam[2][1]):.0f}" cy="{py(fam[2][2]):.0f}" r="5" fill="none" stroke="#dc2626" stroke-width="2.2">
+<animate attributeName="r" values="5;12;5" dur="1.9s" begin="-0.6s" repeatCount="indefinite"/></circle>
+<circle cx="{px(fam[4][1]):.0f}" cy="{py(fam[4][2]):.0f}" r="5" fill="none" stroke="#b45309" stroke-width="2.2">
+<animate attributeName="r" values="5;12;5" dur="1.9s" begin="-1.3s" repeatCount="indefinite"/></circle>
 '''
     svg += caption("① 肖特基：0.3V 又最快——高频整流与防反接首选（但耐压低）", "#2563eb", DD,
                    "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=596)
@@ -5995,12 +6000,15 @@ def make_opamp_map():
 <text x="70" y="554" font-size="11.5" fill="#475569">④ 最后才比价格与封装——<tspan font-weight="bold">先定需求，再挑型号，别反过来</tspan></text>
 <circle r="5" fill="#f59e0b"><animateMotion dur="{DO}s" repeatCount="indefinite" path="M{X0},{Y0+PH-2} L{X0+PW},{Y0+PH-2}" keyPoints="0;1" keyTimes="0;1"/></circle>
 <circle r="5" fill="#7c3aed"><animateMotion dur="{DO}s" begin="-1.6s" repeatCount="indefinite" path="M{X0+2},{Y0+PH} L{X0+2},{Y0}" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="4.5" fill="#f59e0b"><animateMotion dur="{DO}s" begin="-0.8s" repeatCount="indefinite" path="M{X0},{Y0+PH} L{X0+PW},{Y0}" keyPoints="0;1" keyTimes="0;1"/></circle>
 <circle cx="{px(10.0):.0f}" cy="{py(5e-4):.0f}" r="5" fill="none" stroke="#b45309" stroke-width="2.2">
 <animate attributeName="r" values="5;13;5" dur="1.9s" repeatCount="indefinite"/></circle>
 <circle cx="{px(2.0):.0f}" cy="{py(1e-6):.0f}" r="5" fill="none" stroke="#dc2626" stroke-width="2.2">
 <animate attributeName="r" values="5;13;5" dur="1.9s" begin="-0.9s" repeatCount="indefinite"/></circle>
 <circle cx="{px(0.6):.0f}" cy="{py(7.5e-5):.0f}" r="5" fill="none" stroke="#7c3aed" stroke-width="2.2">
 <animate attributeName="r" values="5;13;5" dur="1.9s" begin="-1.4s" repeatCount="indefinite"/></circle>
+<circle cx="{px(1.0):.0f}" cy="{py(2e-3):.0f}" r="5" fill="none" stroke="#2563eb" stroke-width="2.2">
+<animate attributeName="r" values="5;13;5" dur="1.9s" begin="-0.5s" repeatCount="indefinite"/></circle>
 {pulse(80, 90, 660, 312, '#94a3b8', 2.2, 10)}
 '''
     svg += caption("① 横轴速度、纵轴精度：先判断自己站哪个区域，再挑型号", "#2563eb", DO,
@@ -7353,6 +7361,12 @@ def make_voltage_drop():
 <text x="594" y="{(vy(1)+vy(0))//2}" font-size="11.5" font-weight="bold" fill="#dc2626">1kΩ 分到 1V</text>
 <text x="600" y="404" text-anchor="middle" font-size="11" fill="#475569">每一段竖降 = 跨过一个电阻的电压降；横走 = 沿理想导线（不降压）</text>
 <circle r="4.5" fill="#2563eb"><animateMotion dur="{DV}s" repeatCount="indefinite" path="M432,{vy(5)} L510,{vy(5)} L510,{vy(1)} L590,{vy(1)} L590,{vy(0)} L770,{vy(0)}"/></circle>
+<circle r="4.5" fill="#2563eb" opacity="0.6"><animateMotion dur="{DV}s" begin="-{DV/3:.2f}s" repeatCount="indefinite" path="M432,{vy(5)} L510,{vy(5)} L510,{vy(1)} L590,{vy(1)} L590,{vy(0)} L770,{vy(0)}"/></circle>
+<circle r="4.5" fill="#2563eb" opacity="0.35"><animateMotion dur="{DV}s" begin="-{2*DV/3:.2f}s" repeatCount="indefinite" path="M432,{vy(5)} L510,{vy(5)} L510,{vy(1)} L590,{vy(1)} L590,{vy(0)} L770,{vy(0)}"/></circle>
+<circle cx="160" cy="202" r="5" fill="none" stroke="#059669" stroke-width="2">
+<animate attributeName="r" values="5;12;5" dur="1.7s" repeatCount="indefinite"/></circle>
+<circle cx="160" cy="110" r="5" fill="none" stroke="#b45309" stroke-width="2">
+<animate attributeName="r" values="5;12;5" dur="1.7s" begin="-0.85s" repeatCount="indefinite"/></circle>
 '''
     svg += caption('口诀：V = I×R —— 同一电流下电压按电阻成比例分配（4k:1k = 4:1 → 4V:1V）', '#2563eb', DV,
                    '0;0;1;1', '0;0.8;0.86;1', y=452, size=13)

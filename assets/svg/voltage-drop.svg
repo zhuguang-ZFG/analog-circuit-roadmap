@@ -59,4 +59,10 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="594" y="330.0" font-size="11.5" font-weight="bold" fill="#dc2626">1kΩ 分到 1V</text>
 <text x="600" y="404" text-anchor="middle" font-size="11" fill="#475569">每一段竖降 = 跨过一个电阻的电压降；横走 = 沿理想导线（不降压）</text>
 <circle r="4.5" fill="#2563eb"><animateMotion dur="10s" repeatCount="indefinite" path="M432,150.0 L510,150.0 L510,310.0 L590,310.0 L590,350.0 L770,350.0"/></circle>
+<circle r="4.5" fill="#2563eb" opacity="0.6"><animateMotion dur="10s" begin="-3.33s" repeatCount="indefinite" path="M432,150.0 L510,150.0 L510,310.0 L590,310.0 L590,350.0 L770,350.0"/></circle>
+<circle r="4.5" fill="#2563eb" opacity="0.35"><animateMotion dur="10s" begin="-6.67s" repeatCount="indefinite" path="M432,150.0 L510,150.0 L510,310.0 L590,310.0 L590,350.0 L770,350.0"/></circle>
+<circle cx="160" cy="202" r="5" fill="none" stroke="#059669" stroke-width="2">
+<animate attributeName="r" values="5;12;5" dur="1.7s" repeatCount="indefinite"/></circle>
+<circle cx="160" cy="110" r="5" fill="none" stroke="#b45309" stroke-width="2">
+<animate attributeName="r" values="5;12;5" dur="1.7s" begin="-0.85s" repeatCount="indefinite"/></circle>
 <text x="400" y="452" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb" opacity="0">口诀：V = I×R —— 同一电流下电压按电阻成比例分配（4k:1k = 4:1 → 4V:1V）<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.8;0.86;1" dur="10s" repeatCount="indefinite"/></text></svg>
