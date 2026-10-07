@@ -4,6 +4,7 @@ Run: python -B -m unittest discover -s scripts -p test_svg_assets.py -v
 Requires the generator's existing NumPy dependency. No repository file is written.
 """
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import sys
@@ -55,6 +56,10 @@ class SvgAssetTests(unittest.TestCase):
             with self.subTest(asset=name):
                 root = ET.parse(path).getroot()
                 self.assertEqual(root.tag, "{http://www.w3.org/2000/svg}svg")
+                for elem in root.iter():
+                    for v in elem.attrib.values():
+                        self.assertNotRegex(v, r'\{[A-Za-z_]\w*\}',
+                                            f"{name}: literal brace marker in attribute")
 
 
 if __name__ == "__main__":

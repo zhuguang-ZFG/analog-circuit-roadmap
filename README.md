@@ -3258,7 +3258,8 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 
 | 版本 | 亮点 |
 |---|---|
-| **v3.12（当前）** | 时间轴波形图 x-匀速配速修复：新增 `linear_x_motion`/`plain_motion` 辅助函数，19 处站点替换（comparator/wien/integrator/LDO/miller/peak/thermal/mosfet-curves/resistor-model/diode-iv），keyPoints 密度 n=512；修复 miller/diode-iv 丢失 `</circle>` 闭合标签（5 处）与 thermal-runaway 缺少 f-string 前缀导致 `{DT}`/`{pulse(...)}` 字面括号未解析；新增 Chromium 回归测试 `test_waveform_markers_advance_uniformly`（6 站点 x-匀速断言，delta=0.6px） |
+| **v3.13（当前）** | 修复 probe-loading.svg 因缺 f-string 前缀导致 `{DP}`/`{pulse(...)}` 字面括号未解析、animateMotion 时长未展开、动画静默失效；test_svg_assets 新增 literal-brace 属性值断言（遍历 `root.iter()` 检查 `attrib.values()`，避免文本内容中的合法花括号误报）；LINEAR_X 注册表添加 neg-feedback: 2；添加 vacuous green 防护 `assertGreater(median, 0.5)` |
+| v3.12 | 时间轴波形图 x-匀速配速修复：新增 `linear_x_motion`/`plain_motion` 辅助函数，19 处站点替换（comparator/wien/integrator/LDO/miller/peak/thermal/mosfet-curves/resistor-model/diode-iv），keyPoints 密度 n=512；修复 miller/diode-iv 丢失 `</circle>` 闭合标签（5 处）与 thermal-runaway 缺少 f-string 前缀导致 `{DT}`/`{pulse(...)}` 字面括号未解析；新增 Chromium 回归测试 `test_waveform_markers_advance_uniformly`（6 站点 x-匀速断言，delta=0.6px） |
 | v3.11 | 验证加固：新增 GitHub Actions 测试工作流（推送/PR 自动运行 95 张 SVG 一致性检查与 Chromium 时间轴回归）；四拍图回归容差由 1.0px 收紧到 0.5px |
 | v3.10 | 整流滤波图修复：波形圆点从 animateMotion 弧长配速改为共享匀速时间游标（实测漂移约 1.7px）；MOSFET 图同步统一为同一机制（旧实现全程亚像素级，属加固），两图纳入 Chromium 回归 |
 | v3.9 | 改进模拟开关、LDO、555 三张四拍图：新增共享时间游标与同步阶段字幕，修正波形圆点按曲线长度配速导致的时间错位；补充图注读法，并增加 Chromium 实际渲染回归（时间线性、跳变前后、循环重播） |
