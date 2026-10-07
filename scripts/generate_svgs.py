@@ -3253,6 +3253,68 @@ def make_debug_flow():
     save('debug-flow.svg', svg + '</svg>')
 
 
+# ======================= 图 96：故障速查：症状→嫌疑→验证（第 17 章 17.1-17.4） =======================
+def make_fault_lookup():
+    DF = 12
+    rows = [
+        ('电源', '#2563eb', '输出为 0', '保险丝/调整管开路', '断电测通断'),
+        ('放大', '#dc2626', '高频尖叫（自激）', '容性负载/布局耦合', '输出串 47Ω 试验'),
+        ('放大', '#7c3aed', '输出顶到电源轨', '反馈开路/输入超共模', '虚短检验：反相≈同相'),
+        ('电源', '#b45309', '芯片反复重启', '电源跌落触发复位', '负载阶跃抓电源波形'),
+    ]
+    body = ''
+    for i, (cat, col, sym, sus, ver) in enumerate(rows):
+        y = 105 + i * 78
+        cy = y + 28
+        body += (f'<rect x="80" y="{y}" width="190" height="56" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2"/>'
+                 f'<text x="175" y="{y+24}" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e293b">{sym}</text>'
+                 f'<text x="175" y="{y+46}" text-anchor="middle" font-size="10" fill="#64748b">{cat}类</text>')
+        body += (f'<rect x="305" y="{y}" width="190" height="56" rx="10" fill="#f8fafc" stroke="{col}" stroke-width="2.5"/>'
+                 f'<text x="400" y="{y+24}" text-anchor="middle" font-size="13" font-weight="bold" fill="{col}">{sus}</text>'
+                 f'<text x="400" y="{y+46}" text-anchor="middle" font-size="10" fill="#64748b">头号嫌疑</text>')
+        body += (f'<rect x="530" y="{y}" width="190" height="56" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2"/>'
+                 f'<text x="625" y="{y+24}" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e293b">{ver}</text>'
+                 f'<text x="625" y="{y+46}" text-anchor="middle" font-size="10" fill="#64748b">验证手段</text>')
+        body += (f'<line x1="270" y1="{cy}" x2="303" y2="{cy}" stroke="#334155" stroke-width="2"/>'
+                 f'<polygon points="305,{cy} 294,{cy-6} 294,{cy+6}" fill="#334155"/>'
+                 f'<line x1="495" y1="{cy}" x2="528" y2="{cy}" stroke="#334155" stroke-width="2"/>'
+                 f'<polygon points="530,{cy} 519,{cy-6} 519,{cy+6}" fill="#334155"/>')
+        p = f'M88,{cy} H712'
+        body += flow(p, DF, n=2, color=col, r=5)
+        body += (f'<circle cx="625" cy="{cy}" r="4.5" fill="none" stroke="{col}" stroke-width="2">'
+                 f'<animate attributeName="r" values="4.5;9;4.5" dur="1.8s" begin="{-0.4*i}s" repeatCount="indefinite"/></circle>')
+    oy = 425
+    for j, step in enumerate(['电源去耦', '反馈相位裕度', '布线寄生耦合', '接地环路']):
+        x = 60 + j * 170
+        body += (f'<rect x="{x}" y="{oy}" width="150" height="40" rx="9" fill="#f8fafc" stroke="#7c3aed" stroke-width="2"/>'
+                 f'<text x="{x+75}" y="{oy+25}" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#7c3aed">{step}</text>')
+        if j < 3:
+            body += (f'<line x1="{x+150}" y1="{oy+20}" x2="{x+168}" y2="{oy+20}" stroke="#334155" stroke-width="2"/>'
+                     f'<polygon points="{x+170},{oy+20} {x+159},{oy+14} {x+159},{oy+26}" fill="#334155"/>')
+    body += flow("M68,445 H712", DF, n=2, color="#7c3aed", r=5)
+    beats = [
+        ('① 电源类：输出为 0/反复重启 → 先查保险丝与电容——断电测通断、负载阶跃抓波形', '#2563eb'),
+        ('② 放大类：顶轨/尖叫 → 虚短检验（反相≈同相）与 47Ω 试验', '#dc2626'),
+        ('③ 振荡类：先去耦、再查相位裕度、后查布线寄生、最后接地环路——顺序即排查顺序', '#7c3aed'),
+        ('④ 先量电源：Bob Pease 的维修记录里，近一半故障藏在这里', '#b45309'),
+    ]
+    caps = ''
+    for i, (txt, col) in enumerate(beats):
+        a, b = i * 0.25, (i + 1) * 0.25
+        if i < 3:
+            caps += caption(txt, col, DF, "0;0;1;1;0;0", f"0;{a:.2f};{a+0.02:.2f};{b:.2f};{b+0.02:.2f};1", y=530) + '\n'
+        else:
+            caps += caption(txt, col, DF, "0;0;1;1", f"0;{a:.2f};{a+0.02:.2f};1", y=530) + '\n'
+    svg = svg_open('故障速查：症状 → 头号嫌疑 → 验证手段', h=560)
+    svg += f'''
+<text x="400" y="40" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">故障速查：症状 → 头号嫌疑 → 验证手段</text>
+<text x="400" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">查案手册怎么用：三列对号入座，验证手段当场执行——每类故障一条链路</text>
+{body}
+'''
+    svg += caps
+    save('fault-lookup.svg', svg + '</svg>')
+
+
 # ======================= 图 44：分压器与带载误差（第 0 章首图） =======================
 def make_divider_loading():
     DD = 8
@@ -7275,6 +7337,7 @@ if __name__ == '__main__':
     make_impedance_freq()
     make_opamp_internals()
     make_debug_flow()
+    make_fault_lookup()
     make_divider_loading()
     make_bjt_regions()
     make_signal_chain()
