@@ -17,6 +17,7 @@ jobs:
           python-version: '3.12'
       - run: pip install numpy
       - run: python -B -m unittest discover -s scripts -p test_svg_assets.py -v
+      - run: python -B -m unittest discover -s scripts -p test_readme_links.py -v
 
   waveform-timing:
     runs-on: ubuntu-latest

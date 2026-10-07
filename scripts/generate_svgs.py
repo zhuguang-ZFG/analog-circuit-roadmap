@@ -3722,7 +3722,7 @@ def make_miller_plateau():
     vgs_d = (f"M{tx(0):.0f},196 L{tx(150):.0f},175 L{tx(400):.0f},152 "
              f"L{tx(560):.0f},152 L{tx(700):.0f},120 L{tx(800):.0f},120")
     vds_d = f"M{tx(0):.0f},216 L{tx(400):.0f},216 L{tx(560):.0f},291 L{tx(800):.0f},291"
-    vgd_d = f"M{tx(100):.0f},84 L{tx(480):.0f},84 L{tx(480):.0f},152"
+    vgd_d = f"M{tx(100):.0f},84 L{tx(400):.0f},84 L{tx(560):.0f},152"
     svg += f'''
 <text x="425" y="50" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">20V 母线 · 5A 负载 · 10mA 驱动 · AO3400（Q_g≈7nC, Q_gd≈1.6nC）</text>
 <rect x="{tx(150):.0f}" y="70" width="{tx(400)-tx(150):.0f}" height="380" fill="#94a3b8" opacity="0.10"/>
@@ -4972,10 +4972,10 @@ def make_diode_family():
     DD = 11
     svg = svg_open('特殊二极管家族：一族五口，各管一段活', h=620)
     svg += f'''
-<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">横轴：正向压降　纵轴：速度　—— 每颗管子占的位置就说明了它的岗位</text>
+<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">横轴：特征电压（V_F 或反向工作电压）　纵轴：速度　—— 每颗管子占的位置就说明了它的岗位</text>
 '''
     fam = [
-        ('普通硅管', 0.7, 1.0, '#475569', '整流/钳位（慢）', 700),
+        ('普通硅管（基准）', 0.7, 1.0, '#475569', '整流/钳位（慢）', 700),
         ('肖特基', 0.3, 9.0, '#2563eb', '高频整流 / 防反接', 200),
         ('LED', 2.4, 0.7, '#dc2626', '发光（必须限流）', 120),
         ('TVS', 6.0, 8.5, '#7c3aed', 'ESD/浪涌 ns 级钳位', 60),
@@ -4988,7 +4988,7 @@ def make_diode_family():
     def py(s): return Y0 + PH - s/10.0*PH
     svg += f'<line x1="{X0}" y1="{Y0+PH}" x2="{X0+PW}" y2="{Y0+PH}" stroke="#64748b" stroke-width="1.6"/>'
     svg += f'<line x1="{X0}" y1="{Y0}" x2="{X0}" y2="{Y0+PH}" stroke="#64748b" stroke-width="1.6"/>'
-    svg += f'<text x="{X0+PW}" y="{Y0+PH+46}" text-anchor="end" font-size="11" fill="#475569">正向压降 V_F →</text>'
+    svg += f'<text x="{X0+PW}" y="{Y0+PH+46}" text-anchor="end" font-size="11" fill="#475569">特征电压 →</text>'
     svg += f'<text x="{X0-8}" y="{Y0+14}" text-anchor="end" font-size="11" fill="#475569">快</text>'
     svg += f'<text x="{X0-8}" y="{Y0+PH}" text-anchor="end" font-size="11" fill="#475569">慢</text>'
     for v in (1, 3, 5, 7):
@@ -7087,14 +7087,14 @@ def make_pcb_routing():
 <text x="210" y="480" text-anchor="middle" font-size="10" fill="#475569">等长保证两线同时到达；紧邻让共模干扰同相抵消</text>
 <!-- 4: 敏感线包地 -->
 <text x="610" y="320" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">④ 敏感线：远离时钟，必要时包地</text>
-<path d="M470,380 H540 L560,400 H700" fill="none" stroke="#dc2626" stroke-width="5"/>
-<text x="470" y="370" font-size="10" font-weight="bold" fill="#dc2626">时钟 / 开关节点</text>
+<path d="M470,358 H540 L560,378 H700" fill="none" stroke="#dc2626" stroke-width="5"/>
+<text x="470" y="348" font-size="10" font-weight="bold" fill="#dc2626">时钟 / 开关节点</text>
+<path d="M470,396 H700" fill="none" stroke="#94a3b8" stroke-width="3" stroke-dasharray="6,4"/>
 <path d="M470,440 H700" fill="none" stroke="#94a3b8" stroke-width="3" stroke-dasharray="6,4"/>
-<path d="M470,462 H700" fill="none" stroke="#94a3b8" stroke-width="3" stroke-dasharray="6,4"/>
 <path d="M470,418 H700" fill="none" stroke="#2563eb" stroke-width="5"/>
 <text x="470" y="412" font-size="10" font-weight="bold" fill="#2563eb">敏感模拟线（两侧包地）</text>
 <text x="610" y="490" text-anchor="middle" font-size="10" fill="#475569">平行走线越长、越近，串扰越大——包地是「屏蔽墙」</text>
-{flow("M472,380 H538 L558,400 H698", DP, n=3, color="#dc2626", r=4.5)}
+{flow("M472,358 H538 L558,378 H698", DP, n=3, color="#dc2626", r=4.5)}
 {flow("M472,418 H698", DP, n=4, color="#2563eb", r=4.5)}
 '''
     svg += caption('口诀：45° 拐角、少打过孔、差分等长紧邻、敏感线包地——四条都源自「电感与耦合」', '#2563eb', DP,

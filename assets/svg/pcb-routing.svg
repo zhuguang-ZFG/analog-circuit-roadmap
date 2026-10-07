@@ -47,16 +47,16 @@ rect[fill="#f8fafc"]{fill:#0f172a}
 <text x="210" y="480" text-anchor="middle" font-size="10" fill="#475569">等长保证两线同时到达；紧邻让共模干扰同相抵消</text>
 <!-- 4: 敏感线包地 -->
 <text x="610" y="320" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">④ 敏感线：远离时钟，必要时包地</text>
-<path d="M470,380 H540 L560,400 H700" fill="none" stroke="#dc2626" stroke-width="5"/>
-<text x="470" y="370" font-size="10" font-weight="bold" fill="#dc2626">时钟 / 开关节点</text>
+<path d="M470,358 H540 L560,378 H700" fill="none" stroke="#dc2626" stroke-width="5"/>
+<text x="470" y="348" font-size="10" font-weight="bold" fill="#dc2626">时钟 / 开关节点</text>
+<path d="M470,396 H700" fill="none" stroke="#94a3b8" stroke-width="3" stroke-dasharray="6,4"/>
 <path d="M470,440 H700" fill="none" stroke="#94a3b8" stroke-width="3" stroke-dasharray="6,4"/>
-<path d="M470,462 H700" fill="none" stroke="#94a3b8" stroke-width="3" stroke-dasharray="6,4"/>
 <path d="M470,418 H700" fill="none" stroke="#2563eb" stroke-width="5"/>
 <text x="470" y="412" font-size="10" font-weight="bold" fill="#2563eb">敏感模拟线（两侧包地）</text>
 <text x="610" y="490" text-anchor="middle" font-size="10" fill="#475569">平行走线越长、越近，串扰越大——包地是「屏蔽墙」</text>
-<circle r="4.5" fill="#dc2626"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M472,380 H538 L558,400 H698"/></circle>
-<circle r="4.5" fill="#dc2626"><animateMotion dur="12s" begin="3.50s" repeatCount="indefinite" path="M472,380 H538 L558,400 H698"/></circle>
-<circle r="4.5" fill="#dc2626"><animateMotion dur="12s" begin="7.50s" repeatCount="indefinite" path="M472,380 H538 L558,400 H698"/></circle>
+<circle r="4.5" fill="#dc2626"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M472,358 H538 L558,378 H698"/></circle>
+<circle r="4.5" fill="#dc2626"><animateMotion dur="12s" begin="3.50s" repeatCount="indefinite" path="M472,358 H538 L558,378 H698"/></circle>
+<circle r="4.5" fill="#dc2626"><animateMotion dur="12s" begin="7.50s" repeatCount="indefinite" path="M472,358 H538 L558,378 H698"/></circle>
 <circle r="4.5" fill="#2563eb"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M472,418 H698"/></circle>
 <circle r="4.5" fill="#2563eb"><animateMotion dur="12s" begin="2.50s" repeatCount="indefinite" path="M472,418 H698"/></circle>
 <circle r="4.5" fill="#2563eb"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M472,418 H698"/></circle>
