@@ -30,6 +30,7 @@ LINEAR_X = {
     "ldo-feedback": 3,
     "miller-plateau": 3,
     "peak-detector": 1,
+    "neg-feedback": 2,
 }
 
 
@@ -161,6 +162,7 @@ class WaveformTimingTests(unittest.TestCase):
                     median = sorted(steps)[len(steps) // 2]
                     kept = [s for s in steps if abs(s - median) <= abs(median)]
                     self.assertGreaterEqual(len(kept), len(steps) - 1)
+                    self.assertGreater(median, 0.5, msg="marker must actually move")
                     for step in kept:
                         self.assertAlmostEqual(
                             step, median, delta=0.6,

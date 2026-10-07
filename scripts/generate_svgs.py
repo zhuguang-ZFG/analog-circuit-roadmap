@@ -4131,7 +4131,7 @@ def make_noise_budget():
 def make_probe_loading():
     DP = 11
     svg = svg_open('探头是负载：测量的动作本身就会改电路', h=640)
-    svg += '''
+    svg += f'''
 <text x="270" y="50" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">① 探头一碰上去，电路就变了</text>
 <line x1="60" y1="150" x2="120" y2="150" stroke="#334155" stroke-width="2.5"/>
 <circle cx="120" cy="150" r="4" fill="#334155"/>
