@@ -21,6 +21,7 @@ PAGE_RE = re.compile(r"^p(\d+)-(\d+)-.+\.md$")
 MD_LINK = re.compile(r"\]\(([\w\-]+\.md)#([^)/]+)\)")
 HTML_HREF = re.compile(r'href="([\w\-]+\.md)#([^"]+)"')
 PAGE_LINK = re.compile(r"\]\(([\w\-]+\.md)\)")
+HTML_PAGE = re.compile(r'href="([\w\-]+\.md)"')
 
 
 def page_order(path: Path) -> tuple:
@@ -56,6 +57,10 @@ def build() -> str:
         # 无锚点的整页链接（如 自测题库页）：单文件版要指向 docs/ 下的真实文件
         text = PAGE_LINK.sub(
             lambda m: "](docs/%s)" % m.group(1) if m.group(1) in page_names else m.group(0),
+            text)
+        # 同理：HTML 导航条里的 href="page.md" 也要指向 docs/
+        text = HTML_PAGE.sub(
+            lambda m: 'href="docs/%s"' % m.group(1) if m.group(1) in page_names else m.group(0),
             text)
         all_lines.append(text)
     return "\n".join(all_lines) + "\n"

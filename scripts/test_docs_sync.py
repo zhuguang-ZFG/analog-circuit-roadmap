@@ -41,7 +41,11 @@ class DocsReadmeSync(unittest.TestCase):
         pages = {p.name for p in build_readme.collect_pages()}
         bare = [m for m in re.findall(r"\]\(([\w\-]+\.md)\)", text) if m in pages]
         self.assertEqual([], bare, "README 中残留裸页面链接：%s" % bare[:5])
+        bare_html = [m for m in re.findall(r'href="([\w\-]+\.md)"', text) if m in pages]
+        self.assertEqual([], bare_html, "README 中残留裸页面 href：%s" % bare_html[:5])
         for rel in re.findall(r"\]\(docs/([\w\-]+\.md)\)", text):
+            self.assertTrue((ROOT / "docs" / rel).exists(), "缺少目标页 docs/%s" % rel)
+        for rel in re.findall(r'href="docs/([\w\-]+\.md)"', text):
             self.assertTrue((ROOT / "docs" / rel).exists(), "缺少目标页 docs/%s" % rel)
 
 

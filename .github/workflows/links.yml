@@ -27,7 +27,6 @@ jobs:
             --exclude 'onsemi\.com'
             --exclude 'microchip\.com'
             --exclude 'analog\.com'
-            --exclude 'zhuguang-ZFG\.github\.io'
             './README.md'
             './CONTRIBUTORS.md'
             './CONTRIBUTING.md'

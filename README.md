@@ -20,7 +20,7 @@
 </p>
 
 <p align="center">
-🧭 <a href="#roadmap">路线图</a> · 📑 <a href="#toc">目录</a> · 🔬 <a href="#part1">器件原理</a> · ⚡ <a href="#part2">电路拓扑</a> · 🛠️ <a href="#part3">设计与PCB</a> · 🩺 <a href="#part4">排故方法</a> · 🎬 <a href="#part5">动画中心</a> · 🧩 <a href="#part6">图鉴速查</a> · 📺 <a href="#part7">视频</a> · 📚 <a href="#part8">路线索引</a> · 🧪 <a href="p9-00-quiz.md">自测题库</a>
+🧭 <a href="#roadmap">路线图</a> · 📑 <a href="#toc">目录</a> · 🔬 <a href="#part1">器件原理</a> · ⚡ <a href="#part2">电路拓扑</a> · 🛠️ <a href="#part3">设计与PCB</a> · 🩺 <a href="#part4">排故方法</a> · 🎬 <a href="#part5">动画中心</a> · 🧩 <a href="#part6">图鉴速查</a> · 📺 <a href="#part7">视频</a> · 📚 <a href="#part8">路线索引</a> · 🧪 <a href="docs/p9-00-quiz.md">自测题库</a>
 </p>
 
 <a id="news"></a>
