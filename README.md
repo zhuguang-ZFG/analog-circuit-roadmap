@@ -13,7 +13,7 @@
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-CC_BY--SA_4.0-lightgrey.svg" alt="License"></a>
-  <img src="https://img.shields.io/badge/SVG动画-96张-3fb950.svg" alt="SVG">
+  <img src="https://img.shields.io/badge/SVG动画-97张-3fb950.svg" alt="SVG">
   <img src="https://img.shields.io/badge/章节-8篇19章-58a6ff.svg" alt="chapters">
   <img src="https://img.shields.io/badge/最近更新-2026.10-f0883e.svg" alt="updated">
 </p>
@@ -71,7 +71,7 @@
 | 电源噪声让 ADC 读数跳 | [15.2 接地](#ch15) + [15.1 布局](#ch15) | 回流在脚下 + 去耦电容贴脸放 |
 | 板子偶发复位/莫名振荡 | [第 16 章 排故五步法](#ch16) → [第 17 章 速查总表](#ch17) | 症状对号入座，一次只改一个变量 |
 | 高频信号过不去/边沿变肉 | [第 1 章 无源元件](#ch1) + [12.5 Sallen-Key](#ch12) | 寄生电感电容的真实代价 |
-| 只想先看动画找感觉 | [第五篇 动画中心](#part5) | 96 张 SMIL 动画随便点开 |
+| 只想先看动画找感觉 | [第五篇 动画中心](#part5) | 97 张 SMIL 动画随便点开 |
 
 
 <a id="picks"></a>
@@ -119,7 +119,7 @@ graph TD
   - [第 14 章 设计方法论](#ch14) · [第 15 章 PCB 注意事项](#ch15)
 - **[第四篇：故障分析与排故方法论](#part4)** 🩺
   - [第 16 章 排故五步法](#ch16) · [第 17 章 故障速查表](#ch17) · [第 18 章 大师智慧](#ch18)
-- **[第五篇：动画演示中心](#part5)** 🎬 — 96 张 SVG 动画 + Falstad 地图
+- **[第五篇：动画演示中心](#part5)** 🎬 — 97 张 SVG 动画 + Falstad 地图
 - **[第六篇：实物图鉴与速查](#part6)** 🧩 — 实物照片 · 参数速查 · 元件标识速查 · [官方 datasheet 直达](#part6)
 - **[第七篇：视频资源](#part7)** 📺 — B站系统课 · YouTube 频道
 - **[第八篇：学习路线与资源索引](#part8)** 📚 — 路线图 · 书单 · 项目清单 · [官方资料](#sec88) · [经典论文](#sec89) · [术语表](#sec810) · [顺口溜总表](#sec811) · FAQ
@@ -2238,6 +2238,10 @@ PT100 ──恒流激励──> 仪放 ──> 低通滤波 ──> ADC ──> 
 
 > 📚 **先修**：[第 16/17 章](#ch16)——大师心法在有基本方法后读，收获最大。
 
+<p align="center"><img src="assets/svg/master-wisdom.svg" width="720" alt="大师排故智慧SVG动画：三份心法一条军规"></p>
+
+**看点**：三栏金句三种颜色，粒子沿栏内流动；底部橙色军规条是共通军规：先量电源 → 预测波形 → 最小化复现 → 示波器复核。**慢观察、快假设、严验证。** → 本节 [18.1 Bob Pease](#ch18)
+
 ### 18.1 Bob Pease：模拟排故的「老中医」
 
 国家半导体（NSC）首席科学家，《Pease Porridge》专栏写了十余年（约 1991–2004），《Troubleshooting Analog Circuits》（1991）是排故方法论的开山之作。他的经验之谈（转述）：
@@ -2268,7 +2272,7 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 <a id="part5"></a>
 # 第五篇：动画演示中心 🎬
 
-> 全部 96 张 SVG 动画（SMIL，浏览器直接播放）位于 `assets/svg/` 目录，由 `scripts/generate_svgs.py` 一键生成（仓库铁律：两者始终同步）；配套 Falstad 在线电路可实时交互。
+> 全部 97 张 SVG 动画（SMIL，浏览器直接播放）位于 `assets/svg/` 目录，由 `scripts/generate_svgs.py` 一键生成（仓库铁律：两者始终同步）；配套 Falstad 在线电路可实时交互。
 
 ## 5.1 RC 充电 <a id="demo1"></a>
 
@@ -2840,7 +2844,43 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 
 **看点**：四类故障四条链路，粒子从症状流向头号嫌疑再到验证手段；底部紫色条是「不该振荡却振荡」的固定排查顺序。**先量电源——近一半故障藏在这里。** → 正文 [17.1 电源类](#ch17)
 
-## 5.92 Falstad 内置示例地图（全部带动画）
+## 5.92 MOSFET 开关：沟道形成与导通 <a id="demo92"></a>
+
+<p align="center"><img src="assets/svg/mosfet-switch.svg" width="720" alt="MOSFET 开关动画：沟道形成与导通"></p>
+
+**看点**：$V_{GS}=0$ 两个背靠背 PN 结挡路；$V_{GS}>V_{TH}$ 栅极电场召唤电子形成 N 型沟道，S-D 导通——沟道电阻随 $V_{GS}$ 连续可调。**电压控制，不取栅流。** → 正文 [4.1 沟道形成原理](#ch4)
+
+## 5.93 反相放大器：虚短虚断 <a id="demo93"></a>
+
+<p align="center"><img src="assets/svg/opamp-inverting.svg" width="720" alt="反相放大器动画：虚短虚断"></p>
+
+**看点**：$V_+≈V_-$ 与输入端不取电流，两条公理把五个拓扑变成五个"不用背的形状"。**先讲清公理凭什么成立，再看电路。** → 正文 [6.5 经典应用电路原理](#ch6)
+
+## 5.94 模拟开关：电荷注入 <a id="demo94"></a>
+
+<p align="center"><img src="assets/svg/analog-switch.svg" width="720" alt="模拟开关动画：电荷注入"></p>
+
+**看点**：关断瞬间沟道里攒的电荷"无家可归"，被挤进保持电容——$ΔV=Q/C$ 是采样电路里最隐蔽的误差源（Charge Injection）。**别在 ADC 转换中途切通道。** → 正文 [8.3 关键参数解析](#ch8)
+
+## 5.95 LDO 负反馈：闭环控制 <a id="demo95"></a>
+
+<p align="center"><img src="assets/svg/ldo-feedback.svg" width="720" alt="LDO负反馈动画"></p>
+
+**看点**：LDO 不是"稳压元件"而是闭环控制系统——误差放大器每秒纠正几千次。**输出电容 ESR 为什么能把它逼疯（环路稳定性），一眼看懂。** → 正文 [9.3 LDO 线性稳压器剖析](#ch9)
+
+## 5.96 去耦电容：本地水库 <a id="demo96"></a>
+
+<p align="center"><img src="assets/svg/cap-decoupling.svg" width="720" alt="去耦电容动画：贴脸放的真正原因"></p>
+
+**看点**：去耦电容不是"滤波"而是**本地水库**——ns 级电流尖峰面前，10cm 走线电感就是断路。**"100nF 贴脸 <3mm"不是建议，是铁律。** → 正文 [15.1 布局](#ch15)
+
+## 5.97 大师的排故智慧：三份心法，一条军规 <a id="demo97"></a>
+
+<p align="center"><img src="assets/svg/master-wisdom.svg" width="720" alt="大师排故智慧SVG动画：三份心法一条军规"></p>
+
+**看点**：Pease（先量电源/怀疑仪器）、Williams（预测波形/最小化复现）、共通（慢观察/快假设/严验证）三栏金句；底部军规条粒子链。**排故不是体力活，是科学方法。** → 正文 [18.1 Bob Pease](#ch18)
+
+## 5.98 Falstad 内置示例地图（全部带动画）
 
 | 主题 | 菜单路径 |
 |---|---|
@@ -3271,7 +3311,8 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 
 | 版本 | 亮点 |
 |---|---|
-| **v3.14（当前）** | 新增「故障速查」（§17，症状→头号嫌疑→验证手段三列链路动画 + 振荡排查顺序粒子条 + 4 拍字幕，第 96 张）；demo 引用可点击化；diode-family 横轴改「特征电压」（TVS/稳压管/变容管为反向规格值，肖特基/LED 才是正向压降）；pcb-routing 敏感线护线对称夹住信号线；miller V_GD 平台斜坡（400→560ns 斜升 + 驻留）；README 锚点完整性测试 `test_readme_links.py` 上线（空 fragment/锚点漂移双断言，变异验证三档通过） |
+| **v3.15（当前）** | 新增「大师的排故智慧」（§18，Pease/Williams/共通三栏金句 + 军规清单粒子链 + 4 拍字幕，第 97 张）；动画中心补全 6 张章节图条目（故障速查 demo91 + mosfet-switch/opamp-inverting/analog-switch/ldo-feedback/cap-decoupling demo92–demo96）——全部 SVG 在第五篇可见，Falstad 地图顺延 5.98 |
+| v3.14 | 新增「故障速查」（§17，症状→头号嫌疑→验证手段三列链路动画 + 振荡排查顺序粒子条 + 4 拍字幕，第 96 张）；diode-family 横轴改「特征电压」（TVS/稳压管/变容管为反向规格值，肖特基/LED 才是正向压降）；pcb-routing 敏感线护线对称夹住信号线；miller V_GD 平台斜坡（400→560ns 斜升 + 驻留）；README 锚点完整性测试 `test_readme_links.py` 上线（空 fragment/锚点漂移双断言，变异验证三档通过） |
 | v3.13 | 修复 probe-loading.svg 因缺 f-string 前缀导致 `{DP}`/`{pulse(...)}` 字面括号未解析、animateMotion 时长未展开、动画静默失效；test_svg_assets 新增 literal-brace 双路断言（属性值 `\{[A-Za-z_]\w*\}` + 文本节点 `\{[A-Za-z_]\w*\(`，遍历 `root.iter()` 检查 `attrib.values()` 与 `elem.text`/`elem.tail`）；LINEAR_X 注册表添加 neg-feedback: 2；添加 vacuous green 防护 `assertGreater(median, 0.5)` |
 | v3.12 | 时间轴波形图 x-匀速配速修复：新增 `linear_x_motion`/`plain_motion` 辅助函数，19 处站点替换（comparator/wien/integrator/LDO/miller/peak/thermal/mosfet-curves/resistor-model/diode-iv），keyPoints 密度 n=512；修复 miller/diode-iv 丢失 `</circle>` 闭合标签（5 处）与 thermal-runaway 缺少 f-string 前缀导致 `{DT}`/`{pulse(...)}` 字面括号未解析；新增 Chromium 回归测试 `test_waveform_markers_advance_uniformly`（6 站点 x-匀速断言，delta=0.6px） |
 | v3.11 | 验证加固：新增 GitHub Actions 测试工作流（推送/PR 自动运行 95 张 SVG 一致性检查与 Chromium 时间轴回归）；四拍图回归容差由 1.0px 收紧到 0.5px |

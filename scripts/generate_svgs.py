@@ -3315,6 +3315,71 @@ def make_fault_lookup():
     save('fault-lookup.svg', svg + '</svg>')
 
 
+# ======================= 图 97：大师的排故智慧（第 18 章 18.1-18.3） =======================
+def make_master_wisdom():
+    DF = 12
+    cols = [
+        ('Bob Pease · 老中医', '#2563eb', [
+            '先量电源——近一半故障藏在这里',
+            '怀疑一切，包括你的仪器',
+            '数字表测不出振荡 → 示波器复核',
+            '记录一切：症状-假设-结果存档']),
+        ('Jim Williams · 手术刀', '#dc2626', [
+            '先想透，再动手',
+            '测量前先在脑子里预测波形',
+            '测量链不能改变被测对象',
+            '把故障做小：最小可复现电路']),
+        ('共通心法', '#7c3aed', [
+            '慢观察',
+            '快假设',
+            '严验证',
+            '电路永远是对的，错的是你的模型']),
+    ]
+    body = ''
+    for i, (name, col, lines) in enumerate(cols):
+        x = 35 + i * 250
+        cx = x + 115
+        body += f'<rect x="{x}" y="100" width="230" height="210" rx="12" fill="#f8fafc" stroke="{col}" stroke-width="2.5"/>'
+        body += f'<text x="{cx}" y="126" text-anchor="middle" font-size="14.5" font-weight="bold" fill="{col}">{name}</text>'
+        body += f'<line x1="{x+14}" y1="138" x2="{x+216}" y2="138" stroke="{col}" stroke-width="1.5" opacity="0.4"/>'
+        for j, line in enumerate(lines):
+            y = 166 + j * 38
+            body += f'<circle cx="{x+20}" cy="{y-5}" r="3.5" fill="{col}"/>'
+            body += f'<text x="{x+34}" y="{y}" font-size="11.5" fill="#334155">{line}</text>'
+        body += flow(f'M{cx},110 V295', DF, n=2, color=col, r=5)
+    oy = 345
+    for j, step in enumerate(['先量电源', '预测波形再测量', '最小化复现', '示波器复核']):
+        x = 60 + j * 170
+        body += (f'<rect x="{x}" y="{oy}" width="150" height="44" rx="9" fill="#f8fafc" stroke="#b45309" stroke-width="2"/>'
+                 f'<text x="{x+75}" y="{oy+27}" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#b45309">{step}</text>')
+        if j < 3:
+            body += (f'<line x1="{x+150}" y1="{oy+22}" x2="{x+168}" y2="{oy+22}" stroke="#334155" stroke-width="2"/>'
+                     f'<polygon points="{x+170},{oy+22} {x+159},{oy+16} {x+159},{oy+28}" fill="#334155"/>')
+    body += flow('M68,367 H712', DF, n=2, color='#b45309', r=5)
+    beats = [
+        ('① Pease：先量电源——他的维修记录里近一半故障藏在这里', '#2563eb'),
+        ('② Williams：测量前预测波形，预测与实测不符处就是理解缺口', '#dc2626'),
+        ('③ 共通：慢观察、快假设、严验证——观察→假设→实验→结论', '#7c3aed'),
+        ('④ 军规：先量电源、预测波形、最小化复现、示波器复核——现场最冷静的人', '#b45309'),
+    ]
+    caps = ''
+    for i, (txt, col) in enumerate(beats):
+        a, b = i * 0.25, (i + 1) * 0.25
+        if i < 3:
+            caps += caption(txt, col, DF, "0;0;1;1;0;0", f"0;{a:.2f};{a+0.02:.2f};{b:.2f};{b+0.02:.2f};1", y=440) + '\n'
+        else:
+            caps += caption(txt, col, DF, "0;0;1;1", f"0;{a:.2f};{a+0.02:.2f};1", y=440) + '\n'
+    svg = svg_open('大师的排故智慧：三份心法，一条军规', h=520)
+    svg += f'''
+<text x="400" y="40" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">大师的排故智慧：三份心法，一条军规</text>
+<text x="400" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">金句逐条读，粒子替你走流程——军规清单在底部</text>
+{body}
+<text x="400" y="478" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">排故不是体力活，是科学方法——观察 → 假设 → 实验 → 结论，一次循环逼近真相</text>
+'''
+    svg += caps
+    save('master-wisdom.svg', svg + '</svg>')
+
+
 # ======================= 图 44：分压器与带载误差（第 0 章首图） =======================
 def make_divider_loading():
     DD = 8
@@ -7338,6 +7403,7 @@ if __name__ == '__main__':
     make_opamp_internals()
     make_debug_flow()
     make_fault_lookup()
+    make_master_wisdom()
     make_divider_loading()
     make_bjt_regions()
     make_signal_chain()
