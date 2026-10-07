@@ -3557,6 +3557,65 @@ def make_ground_star():
     save('ground-star.svg', svg + '</svg>')
 
 
+# ======================= 图 101：变压器：电压换电流（第 1 章 1.3） =======================
+def make_transformer():
+    DT = 12
+    body = ''
+    # 磁芯
+    body += '<rect x="150" y="142" width="500" height="36" rx="8" fill="#cbd5e1" stroke="#64748b" stroke-width="1.5"/>'
+    # 初级线圈（左，N1）
+    body += '<rect x="130" y="100" width="26" height="140" rx="4" fill="#f1f5f9" stroke="#2563eb" stroke-width="2.5"/>'
+    for k in range(7):
+        y = 112 + k * 19
+        body += f'<line x1="134" y1="{y}" x2="152" y2="{y}" stroke="#94a3b8" stroke-width="1.2"/>'
+    body += '<text x="100" y="90" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#2563eb">V₁ · I₁</text>'
+    body += '<text x="143" y="262" text-anchor="middle" font-size="11" font-weight="bold" fill="#2563eb">N₁ = 10T</text>'
+    # 次级线圈（右，N2）
+    body += '<rect x="644" y="100" width="26" height="140" rx="4" fill="#f1f5f9" stroke="#059669" stroke-width="2.5"/>'
+    for k in range(7):
+        y = 112 + k * 19
+        body += f'<line x1="648" y1="{y}" x2="666" y2="{y}" stroke="#94a3b8" stroke-width="1.2"/>'
+    body += '<text x="700" y="90" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#059669">V₂ = 2×V₁</text>'
+    body += '<text x="657" y="262" text-anchor="middle" font-size="11" font-weight="bold" fill="#059669">N₂ = 20T</text>'
+    # 初次级导线
+    body += '<line x1="70" y1="170" x2="130" y2="170" stroke="#334155" stroke-width="2.5"/>'
+    body += '<line x1="670" y1="170" x2="730" y2="170" stroke="#334155" stroke-width="2.5"/>'
+    body += '<text x="40" y="186" font-size="11" fill="#475569">交流输入</text>'
+    body += '<text x="740" y="186" font-size="11" fill="#475569">负载</text>'
+    # 磁通箭头（磁芯内）
+    body += '<path d="M160,160 L640,160" fill="none" stroke="#7c3aed" stroke-width="2" stroke-dasharray="5,3"/>'
+    body += '<text x="400" y="130" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#7c3aed">磁通 Φ —— 连接两边的「无形轴」</text>'
+    # 能量守恒条
+    body += '<rect x="60" y="300" width="680" height="46" rx="9" fill="#fffbeb" stroke="#b45309" stroke-width="1.8"/>'
+    body += '<text x="400" y="328" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#b45309">V₁·I₁ = V₂·I₂ —— 电压翻倍的地方电流减半，功率原样过（理想）</text>'
+    # 粒子：磁通 + 初/次级电流（同步）
+    body += flow('M166,160 H634', DT, n=2, color='#7c3aed', r=4.5)
+    body += flow('M75,170 H128', DT, n=2, color='#dc2626', r=5)
+    body += flow('M672,170 H728', DT, n=2, color='#059669', r=5)
+    beats = [
+        ('① 变比是「汇率」：V₂/V₁ = N₂/N₁ —— 匝数翻倍，电压就翻倍（这里 1:2 升压）', '#2563eb'),
+        ('② 电流反着来：I₂/I₁ = N₁/N₂ —— 电压升高的地方，电流减半', '#059669'),
+        ('③ 能量守恒：V₁·I₁ ≈ V₂·I₂ —— 变压器不产生能量，只换「形态」', '#b45309'),
+        ('④ 隔离：初次级只有磁通耦合、没有导线相连——隔离电源与信号的地', '#7c3aed'),
+    ]
+    caps = ''
+    for i, (txt, col) in enumerate(beats):
+        a, b = i * 0.25, (i + 1) * 0.25
+        if i < 3:
+            caps += caption(txt, col, DT, "0;0;1;1;0;0", f"0;{a:.2f};{a+0.02:.2f};{b:.2f};{b+0.02:.2f};1", y=430) + '\n'
+        else:
+            caps += caption(txt, col, DT, "0;0;1;1", f"0;{a:.2f};{a+0.02:.2f};1", y=430) + '\n'
+    svg = svg_open('变压器：电压换电流，能量原样过', h=520)
+    svg += f'''
+<text x="400" y="40" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">变压器：电压换电流，能量原样过</text>
+<text x="400" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">变比 N₁:N₂ 决定电压电流的「汇率」——初次级之间没有导线相连</text>
+{body}
+<text x="400" y="490" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">磁通这根「无形的轴」把能量从初级搬到次级——这是隔离的物理根源</text>
+'''
+    svg += caps
+    save('transformer.svg', svg + '</svg>')
+
+
 # ======================= 图 44：分压器与带载误差（第 0 章首图） =======================
 def make_divider_loading():
     DD = 8
@@ -7598,6 +7657,7 @@ if __name__ == '__main__':
     make_design_flow()
     make_thinking_toolbox()
     make_ground_star()
+    make_transformer()
     make_divider_loading()
     make_bjt_regions()
     make_signal_chain()
