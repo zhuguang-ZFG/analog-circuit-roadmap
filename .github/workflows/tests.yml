@@ -44,7 +44,8 @@ jobs:
         run: python -B -m unittest discover -s scripts -p test_site_build.py -v
       - run: python scripts/build_site.py --build
 
-  waveform-timing:
+  svg-render:
+    name: SVG 渲染回归（时间轴 + 版面几何 + 暗色对比度）
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -52,4 +53,9 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install numpy playwright
-      - run: python -B -m unittest discover -s scripts -p test_waveform_timing.py -v
+      - name: 时间轴（波形游标按时间匀速推进）
+        run: python -B -m unittest discover -s scripts -p test_waveform_timing.py -v
+      - name: 版面几何（内容出界 / 字幕压字 / 注释框溢出 / 文字被裁 / 静态压字）
+        run: python -B -m unittest discover -s scripts -p test_svg_layout.py -v
+      - name: 暗色可读性（prefers-color-scheme: dark 下文字对比度）
+        run: python -B -m unittest discover -s scripts -p test_svg_dark.py -v
