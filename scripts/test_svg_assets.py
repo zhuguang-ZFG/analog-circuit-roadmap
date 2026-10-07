@@ -4,7 +4,6 @@ Run: python -B -m unittest discover -s scripts -p test_svg_assets.py -v
 Requires the generator's existing NumPy dependency. No repository file is written.
 """
 from pathlib import Path
-import re
 import shutil
 import subprocess
 import sys
@@ -60,6 +59,10 @@ class SvgAssetTests(unittest.TestCase):
                     for v in elem.attrib.values():
                         self.assertNotRegex(v, r'\{[A-Za-z_]\w*\}',
                                             f"{name}: literal brace marker in attribute")
+                    for t in (elem.text, elem.tail):
+                        if t:
+                            self.assertNotRegex(t, r'\{[A-Za-z_]\w*\(',
+                                                f"{name}: literal brace marker in text")
 
 
 if __name__ == "__main__":
