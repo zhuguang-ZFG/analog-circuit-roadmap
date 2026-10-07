@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-generate_svgs.py — 一键再生成《通往模拟电路之路》全部 103 张 SVG SMIL 动画
+generate_svgs.py — 一键再生成《通往模拟电路之路》全部 108 张 SVG SMIL 动画
 用法:  python generate_svgs.py            # 输出到 ../assets/svg/
 风格:  参考 BMS-Z 项目 —— 浅色底 + SMIL 节拍字幕 + 深色模式自适应 + 拟人化讲解
 所有电路参数经过自洽核算（datasheet 级），详见各函数注释。
@@ -7893,6 +7893,330 @@ def make_cap_derating():
     save('cap-derating.svg', svg + '</svg>')
 
 
+# ======================= 图 104：运放输入级选型（第 12 章 §12.13） =======================
+def make_opamp_input_stage():
+    """低源阻抗比 e_n，高源阻抗比 I_b·R_s —— 数据取自第 12 章 §12.13。
+
+    R_s=1MΩ：BJT（I_b=20nA）→ 20mV，CMOS（I_b=1pA）→ 1µV，差四个数量级；
+    R_s=10kΩ：热噪声 √(4kTR_s)≈12.9 nV/√Hz 是地板，BJT(e_n=5) 总噪声 13.8 胜 CMOS(e_n=20) 的 23.8。
+    """
+    duration = 12
+    svg = svg_open('运放输入级选型：源阻抗决定一切', h=590)
+    svg += ('<text x="400" y="53" text-anchor="middle" font-size="12" fill="#475569">'
+            '判据只有一条：V_err = I_b × R_s —— 低阻比 e_n，高阻比 I_b</text>\n')
+
+    cards = [
+        ('BJT 输入级', '#dc2626', ('偏置电流 I_b', '10 nA ~ 1 µA'),
+         ('电压噪声 e_n', '3 ~ 10 nV/√Hz'), ('电流噪声 i_n', '较高'),
+         'Rs &lt; 30 kΩ', '低阻下 e_n 主导'),
+        ('CMOS 输入级', '#2563eb', ('偏置电流 I_b', '1 pA ~ 1 nA'),
+         ('电压噪声 e_n', '10 ~ 30 nV/√Hz'), ('电流噪声 i_n', '极低'),
+         'Rs &gt; 300 kΩ', 'I_b·R_s 几乎为零'),
+        ('JFET 输入级', '#059669', ('偏置电流 I_b', '1 pA ~ 30 pA'),
+         ('电压噪声 e_n', '10 ~ 20 nV/√Hz'), ('电流噪声 i_n', '极低'),
+         '30 kΩ ~ 300 kΩ', 'e_n 与 I_b 都低'),
+    ]
+    for i, (name, col, r1, r2, r3, best, why) in enumerate(cards):
+        x0 = 40 + i * 243
+        svg += (f'<rect x="{x0}" y="80" width="234" height="220" rx="10" fill="#f8fafc" '
+                f'stroke="{col}" stroke-width="2"/>\n')
+        svg += (f'<text x="{x0+117}" y="109" text-anchor="middle" font-size="15" font-weight="bold" '
+                f'fill="{col}">{name}</text>\n')
+        svg += (f'<line x1="{x0+16}" y1="121" x2="{x0+218}" y2="121" stroke="{col}" '
+                f'stroke-opacity="0.35" stroke-width="1.5"/>\n')
+        for j, (lab, val) in enumerate((r1, r2, r3)):
+            yy = 148 + j * 26
+            svg += f'<text x="{x0+16}" y="{yy}" font-size="11.5" fill="#475569">{lab}</text>\n'
+            svg += (f'<text x="{x0+218}" y="{yy}" text-anchor="end" font-size="12" font-weight="bold" '
+                    f'fill="#1e293b">{val}</text>\n')
+        svg += (f'<line x1="{x0+16}" y1="226" x2="{x0+218}" y2="226" stroke="{col}" '
+                f'stroke-opacity="0.35" stroke-width="1.5"/>\n')
+        svg += f'<text x="{x0+16}" y="248" font-size="11.5" fill="#475569">最佳区间</text>\n'
+        svg += f'<text x="{x0+16}" y="270" font-size="13" font-weight="bold" fill="{col}">{best}</text>\n'
+        svg += f'<text x="{x0+16}" y="290" font-size="11" fill="#475569">{why}</text>\n'
+
+    svg += ('<rect x="40" y="320" width="720" height="112" rx="10" fill="#eff6ff" '
+            'stroke="#2563eb" stroke-opacity="0.45" stroke-width="1.5"/>\n')
+    svg += ('<text x="400" y="344" text-anchor="middle" font-size="12" font-weight="bold" '
+            'fill="#1d4ed8">按源阻抗选输入级（横轴为对数刻度）</text>\n')
+    svg += ('<line x1="70" y1="396" x2="730" y2="396" stroke="#64748b" stroke-width="1.4" '
+            'stroke-dasharray="3,4"/>\n')
+    for x1, x2, col, lab, cx in ((70, 314, '#dc2626', 'BJT 最佳', 192),
+                                 (314, 479, '#059669', 'JFET 过渡区', 396),
+                                 (479, 730, '#2563eb', 'CMOS 最佳', 604)):
+        svg += f'<line x1="{x1}" y1="396" x2="{x2}" y2="396" stroke="{col}" stroke-width="9"/>\n'
+        svg += (f'<text x="{cx}" y="372" text-anchor="middle" font-size="11.5" font-weight="bold" '
+                f'fill="{col}">{lab}</text>\n')
+    for tx, lab in ((70, '1 kΩ'), (314, '30 kΩ'), (479, '300 kΩ'), (730, '10 MΩ')):
+        svg += f'<text x="{tx}" y="418" text-anchor="middle" font-size="10.5" fill="#475569">{lab}</text>\n'
+    svg += ('<circle r="6" fill="#b45309" filter="url(#pglow)">'
+            '<animateMotion dur="12s" begin="-3s" repeatCount="indefinite" path="M70,396 L730,396"/></circle>\n')
+
+    svg += note_box('低阻源看 e_n（BJT 胜），高阻源看 I_b（CMOS / JFET 胜）：'
+                    '1 MΩ 配 20 nA 就是 20 mV 直流误差，比运放自身的 V_os 大两个数量级。',
+                    y=470, dur=duration, w=680)
+    svg += beat_captions([
+        ('① 三种输入级：先看 I_b、e_n、i_n 三个数，别看"低噪声"三个字', '#2563eb'),
+        ('② 低源阻抗：热噪声 12.9 nV/√Hz 是地板，比的是 e_n → BJT 赢 1.7 倍', '#dc2626'),
+        ('③ 高源阻抗 1 MΩ：BJT 的 I_b·R_s = 20 mV，CMOS 只有 1 µV —— 差四个数量级', '#059669'),
+        ('④ RRIO 的代价：互补输入对在中点 g_m 凹陷 → 交越失真 + 失调台阶', '#7c3aed'),
+    ], duration, y=555)
+    save('opamp-input-stage.svg', svg + '</svg>')
+
+
+# ======================= 图 105：晶体振荡器 Pierce 拓扑（第 13 章 §13.10） =======================
+def make_crystal_pierce():
+    """Pierce 拓扑 + 负阻判据：数据取自第 13 章 §13.10。
+
+    22pF+22pF、C_stray=4pF → C_L=15pF；牵引灵敏度 18 ppm/pF（32.768kHz）；
+    g_m,crit：8MHz 0.26 mA/V、32.768kHz 1.7 µA/V（这就是 RTC 能把功耗做到 µA 级的根因）。
+    """
+    duration = 12
+    svg = svg_open('晶体振荡器：把频率钉在石英上', h=520)
+    svg += ('<text x="400" y="53" text-anchor="middle" font-size="12" fill="#475569">'
+            'Pierce 拓扑：一只反相器 + 反馈电阻 + 晶体 + 两只负载电容</text>\n')
+
+    # ---- 左：电路 ----
+    svg += ('<rect x="36" y="76" width="384" height="286" rx="10" fill="#f8fafc" '
+            'stroke="#64748b" stroke-width="1.6"/>\n')
+    svg += ('<text x="228" y="100" text-anchor="middle" font-size="12.5" font-weight="bold" '
+            'fill="#334155">Pierce（皮尔斯）拓扑</text>\n')
+    svg += '<line x1="150" y1="146" x2="160" y2="146" stroke="#334155" stroke-width="2.5"/>\n'
+    svg += resistor_h(180, 146, 100, label='R_f 1~10 MΩ') + '\n'
+    svg += '<line x1="300" y1="146" x2="310" y2="146" stroke="#334155" stroke-width="2.5"/>\n'
+    svg += '<text x="226" y="190" text-anchor="middle" font-size="11" fill="#475569">反相器</text>\n'
+    svg += '<polygon points="200,198 200,234 252,216" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>\n'
+    svg += '<circle cx="256" cy="216" r="4" fill="#f8fafc" stroke="#334155" stroke-width="2"/>\n'
+    svg += '<line x1="150" y1="216" x2="200" y2="216" stroke="#334155" stroke-width="2.5"/>\n'
+    svg += '<line x1="260" y1="216" x2="310" y2="216" stroke="#334155" stroke-width="2.5"/>\n'
+    svg += '<line x1="150" y1="146" x2="150" y2="306" stroke="#334155" stroke-width="2.5"/>\n'
+    svg += '<line x1="310" y1="146" x2="310" y2="306" stroke="#334155" stroke-width="2.5"/>\n'
+    # 晶体符号：两片电极板夹一块石英
+    svg += '<line x1="150" y1="276" x2="214" y2="276" stroke="#334155" stroke-width="2.5"/>\n'
+    svg += '<line x1="214" y1="264" x2="214" y2="288" stroke="#334155" stroke-width="2.5"/>\n'
+    svg += '<rect x="220" y="260" width="20" height="32" rx="2" fill="#f8fafc" stroke="#334155" stroke-width="2"/>\n'
+    svg += '<line x1="246" y1="264" x2="246" y2="288" stroke="#334155" stroke-width="2.5"/>\n'
+    svg += '<line x1="246" y1="276" x2="310" y2="276" stroke="#334155" stroke-width="2.5"/>\n'
+    svg += '<text x="230" y="252" text-anchor="middle" font-size="11" fill="#475569">XTAL 8 MHz</text>\n'
+    for cx in (150, 310):
+        svg += f'<line x1="{cx-12}" y1="306" x2="{cx+12}" y2="306" stroke="#334155" stroke-width="2.5"/>\n'
+        svg += f'<line x1="{cx-12}" y1="316" x2="{cx+12}" y2="316" stroke="#334155" stroke-width="2.5"/>\n'
+        svg += f'<line x1="{cx}" y1="316" x2="{cx}" y2="330" stroke="#334155" stroke-width="2.5"/>\n'
+        svg += gnd_sym(cx, 344) + '\n'
+    svg += '<text x="130" y="312" text-anchor="end" font-size="11.5" fill="#475569">C1</text>\n'
+    svg += '<text x="130" y="326" text-anchor="end" font-size="10.5" fill="#475569">22 pF</text>\n'
+    svg += '<text x="330" y="312" font-size="11.5" fill="#475569">C2</text>\n'
+    svg += '<text x="330" y="326" font-size="10.5" fill="#475569">22 pF</text>\n'
+
+    # ---- 右：为什么准 ----
+    svg += ('<rect x="432" y="76" width="332" height="286" rx="10" fill="#eff6ff" '
+            'stroke="#2563eb" stroke-opacity="0.45" stroke-width="1.5"/>\n')
+    svg += ('<text x="598" y="104" text-anchor="middle" font-size="13" font-weight="bold" '
+            'fill="#1d4ed8">为什么晶体准得离谱</text>\n')
+    svg += ('<line x1="448" y1="116" x2="748" y2="116" stroke="#2563eb" '
+            'stroke-opacity="0.3" stroke-width="1.5"/>\n')
+    for j, txt in enumerate([
+        '· Q 值 10⁴ ~ 10⁶（LC 只有 10 ~ 100）',
+        '· 温漂 ±0.5 ppm/℃ 以内',
+        '· C_L = C₁C₂/(C₁+C₂) + C_stray',
+        '· 牵引灵敏度 ≈ 18 ppm/pF',
+        '· 判据 R_neg ≥ 5 × ESR_max',
+        '· g_m,crit = 4·ESR·ω²·(C₀+C_L)²',
+        '· 8 MHz → 0.26 mA/V',
+        '· 32.768 kHz → 1.7 µA/V',
+    ]):
+        svg += f'<text x="452" y="{142 + j*26}" font-size="11.5" fill="#334155">{txt}</text>\n'
+
+    svg += note_box('别拿示波器探针直接量晶振引脚——10pF 探头会把 C_L 拉偏，'
+                    '严重时直接停振；想测就量缓冲后的输出。',
+                    y=400, dur=duration, w=660)
+    svg += beat_captions([
+        ('① 石英是机械谐振：Q 值 10⁴~10⁶，频率对元件容差极不敏感', '#2563eb'),
+        ('② 唯一必须算的数：C_L = C₁C₂/(C₁+C₂) + C_stray，22pF+22pF → 15pF', '#059669'),
+        ('③ 起振判据 R_neg ≥ 5×ESR；32.768kHz 只要 1.7 µA/V —— RTC 省电的根因', '#b45309'),
+        ('④ 配错 C_L：18 ppm/pF × 3pF = 55 ppm → 每天差 4.8 秒', '#dc2626'),
+    ], duration, y=485)
+    save('crystal-pierce.svg', svg + '</svg>')
+
+
+# ======================= 图 106：光耦与隔离（第 13 章 §13.11） =======================
+def make_optocoupler_ctr():
+    """CTR 是设计变量：按档位最小值 + 老化余量设计。数据取自第 13 章 §13.11。"""
+    duration = 12
+    svg = svg_open('光耦与隔离：CTR 是设计变量，不是常数', h=500)
+    svg += ('<text x="400" y="53" text-anchor="middle" font-size="12" fill="#475569">'
+            '信号能过，电流不能过：I_C = CTR × I_F</text>\n')
+
+    svg += ('<rect x="36" y="76" width="400" height="268" rx="10" fill="#f8fafc" '
+            'stroke="#64748b" stroke-width="1.6"/>\n')
+    svg += ('<rect x="52" y="96" width="150" height="204" rx="8" fill="#fef2f2" '
+            'stroke="#dc2626" stroke-width="1.6"/>\n')
+    svg += ('<rect x="210" y="96" width="52" height="204" rx="6" fill="#eff6ff" '
+            'stroke="#2563eb" stroke-width="1.6" stroke-dasharray="5,4"/>\n')
+    svg += ('<rect x="270" y="96" width="150" height="204" rx="8" fill="#eff6ff" '
+            'stroke="#2563eb" stroke-width="1.6"/>\n')
+    svg += '<text x="127" y="120" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#dc2626">输入侧</text>\n'
+    svg += '<text x="345" y="120" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#2563eb">输出侧</text>\n'
+    svg += '<line x1="127" y1="142" x2="127" y2="166" stroke="#dc2626" stroke-width="2.5"/>\n'
+    svg += '<polygon points="115,166 139,166 127,190" fill="#dc2626"/>\n'
+    svg += '<line x1="115" y1="194" x2="139" y2="194" stroke="#dc2626" stroke-width="3.5"/>\n'
+    svg += '<line x1="127" y1="194" x2="127" y2="216" stroke="#dc2626" stroke-width="2.5"/>\n'
+    svg += '<text x="127" y="240" text-anchor="middle" font-size="11.5" fill="#334155">I_F = 4.5 mA</text>\n'
+    svg += '<text x="127" y="260" text-anchor="middle" font-size="11" fill="#475569">V_F ≈ 1.2 V</text>\n'
+    svg += '<text x="236" y="196" text-anchor="middle" font-size="11.5" fill="#1d4ed8">隔离栅</text>\n'
+    svg += '<text x="236" y="216" text-anchor="middle" font-size="10" fill="#2563eb">kV 级</text>\n'
+    svg += flow('M146,180 L300,180', duration, n=4, color='#f59e0b', r=4.5) + '\n'
+    svg += ('<rect x="311" y="146" width="68" height="52" rx="6" fill="#f8fafc" '
+            'stroke="#2563eb" stroke-width="1.8"/>\n')
+    svg += '<text x="345" y="170" text-anchor="middle" font-size="11.5" fill="#2563eb">光敏</text>\n'
+    svg += '<text x="345" y="188" text-anchor="middle" font-size="11.5" fill="#2563eb">三极管</text>\n'
+    svg += '<text x="345" y="234" text-anchor="middle" font-size="11.5" fill="#334155">I_C = CTR × I_F</text>\n'
+    svg += '<text x="345" y="256" text-anchor="middle" font-size="11" fill="#475569">CTR 50% ~ 600%</text>\n'
+    svg += ('<text x="236" y="322" text-anchor="middle" font-size="11" fill="#334155">'
+            '两个地之间没有欧姆通路：信号能过，电流不能过</text>\n')
+
+    svg += ('<rect x="452" y="76" width="312" height="268" rx="10" fill="#fffbeb" '
+            'stroke="#b45309" stroke-opacity="0.5" stroke-width="1.5"/>\n')
+    svg += ('<text x="608" y="104" text-anchor="middle" font-size="13" font-weight="bold" '
+            'fill="#92400e">CTR 的三个坑</text>\n')
+    svg += ('<line x1="468" y1="116" x2="748" y2="116" stroke="#b45309" '
+            'stroke-opacity="0.35" stroke-width="1.5"/>\n')
+    for j, txt in enumerate([
+        '① 同一型号分档：50% ~ 600%',
+        '   设计按该档最小值算',
+        '② 随温度与时间衰减',
+        '   100℃ / 20mA 十年可能掉一半',
+        '③ I_F &lt; 1mA 时 CTR 明显下降',
+        '结论：最小值 × 2 倍老化余量',
+        'R_in 470Ω → I_F = 4.5 mA',
+    ]):
+        svg += f'<text x="468" y="{144 + j*26}" font-size="11.5" fill="#334155">{txt}</text>\n'
+
+    svg += note_box('隔离侧电源必须来自隔离侧——借原边的地，隔离就白做了。',
+                    y=390, dur=duration, w=660)
+    svg += beat_captions([
+        ('① 隔离的本质：信号能过，电流不能过——两个地之间没有欧姆通路', '#2563eb'),
+        ('② 光耦 = LED + 光敏三极管，中间隔着 kV 级绝缘', '#b45309'),
+        ('③ CTR 按档位最小值算：50% 与 600% 是同一型号的两个档', '#dc2626'),
+        ('④ 老化后 CTR 掉一半：R_in 从 1kΩ 改 470Ω，I_F 由 2.1mA 提到 4.5mA', '#059669'),
+    ], duration, y=460)
+    save('optocoupler-ctr.svg', svg + '</svg>')
+
+
+# ======================= 图 107：误差预算 WC vs RSS（第 14 章 §14.8） =======================
+def make_error_budget():
+    """Buck 反馈分压的误差预算：WC ±2.7%，1σ ±0.45% → 3σ ±1.35%。数据取自 §14.8。"""
+    duration = 12
+    svg = svg_open('误差预算：最坏情况 vs 统计叠加', h=490)
+    svg += ('<text x="400" y="53" text-anchor="middle" font-size="12" fill="#475569">'
+            'Buck 反馈分压：WC ±2.7%，1σ ±0.45% → 3σ ±1.35%</text>\n')
+
+    svg += ('<rect x="36" y="76" width="372" height="252" rx="10" fill="#f8fafc" '
+            'stroke="#64748b" stroke-width="1.6"/>\n')
+    svg += ('<text x="222" y="102" text-anchor="middle" font-size="12.5" font-weight="bold" '
+            'fill="#334155">误差源与贡献</text>\n')
+    svg += '<text x="56" y="130" font-size="11" fill="#475569">误差源</text>\n'
+    svg += '<text x="272" y="130" text-anchor="end" font-size="11" fill="#475569">WC 贡献</text>\n'
+    svg += '<text x="392" y="130" text-anchor="end" font-size="11" fill="#475569">1σ 贡献</text>\n'
+    svg += '<line x1="52" y1="140" x2="392" y2="140" stroke="#cbd5e1" stroke-width="1.5"/>\n'
+    for j, (a, b, c) in enumerate([
+        ('反馈电阻容差 ±1%', '±1.0%', '±0.24%'),
+        ('V_ref 初始精度 ±1%', '±1.0%', '±0.33%'),
+        ('V_ref 温漂 50ppm/℃ × 40℃', '±0.2%', '±0.07%'),
+        ('负载调整率', '±0.5%', '±0.17%'),
+    ]):
+        yy = 166 + j * 26
+        svg += f'<text x="56" y="{yy}" font-size="11.5" fill="#334155">{a}</text>\n'
+        svg += f'<text x="272" y="{yy}" text-anchor="end" font-size="11.5" fill="#1e293b">{b}</text>\n'
+        svg += f'<text x="392" y="{yy}" text-anchor="end" font-size="11.5" fill="#1e293b">{c}</text>\n'
+    svg += '<line x1="52" y1="260" x2="392" y2="260" stroke="#cbd5e1" stroke-width="1.5"/>\n'
+    svg += '<text x="56" y="286" font-size="12" font-weight="bold" fill="#dc2626">合计</text>\n'
+    svg += '<text x="272" y="286" text-anchor="end" font-size="12" font-weight="bold" fill="#dc2626">±2.7%</text>\n'
+    svg += '<text x="392" y="286" text-anchor="end" font-size="12" font-weight="bold" fill="#2563eb">±0.45%</text>\n'
+
+    svg += ('<rect x="428" y="76" width="336" height="252" rx="10" fill="#eff6ff" '
+            'stroke="#2563eb" stroke-opacity="0.45" stroke-width="1.5"/>\n')
+    svg += ('<text x="596" y="102" text-anchor="middle" font-size="12.5" font-weight="bold" '
+            'fill="#1d4ed8">同一规格，两种结论</text>\n')
+    svg += ('<rect x="504" y="170" width="184" height="22" rx="5" fill="#fef2f2" '
+            'stroke="#dc2626" stroke-width="2"/>\n')
+    svg += ('<rect x="550" y="202" width="92" height="22" rx="5" fill="#dbeafe" '
+            'stroke="#2563eb" stroke-width="2"/>\n')
+    svg += ('<line x1="596" y1="162" x2="596" y2="232" stroke="#334155" stroke-width="1.6" '
+            'stroke-dasharray="4,4"/>\n')
+    svg += '<text x="492" y="186" text-anchor="end" font-size="11.5" fill="#dc2626">WC</text>\n'
+    svg += '<text x="492" y="218" text-anchor="end" font-size="11.5" fill="#2563eb">3σ</text>\n'
+    svg += '<text x="694" y="186" font-size="11" fill="#dc2626">±2.7%</text>\n'
+    svg += '<text x="648" y="218" font-size="11" fill="#2563eb">±1.35%</text>\n'
+    svg += ('<text x="596" y="252" text-anchor="middle" font-size="11" fill="#334155">'
+            '规格 ±1% → 良率 ≈ 97.5%（每千块 25 块超规）</text>\n')
+    svg += '<text x="596" y="278" text-anchor="middle" font-size="11" fill="#475569">规格 ±2% → 良率 &gt; 99.7%</text>\n'
+    svg += '<text x="596" y="304" text-anchor="middle" font-size="11" fill="#475569">3σ 大约只有 WC 的一半</text>\n'
+
+    svg += note_box('车规 / 医疗按 WC 定规格，消费类按 RSS 的 3σ 估良率——'
+                    '"留 20% 裕量"不是拍脑袋，是算出来的。',
+                    y=360, dur=duration, w=660)
+    svg += beat_captions([
+        ('① WC：所有元件同时往同一方向偏到极限 —— 悲观，但概率极低', '#dc2626'),
+        ('② RSS：各项独立随机，按 σ 平方和开根 —— 接近真实', '#2563eb'),
+        ('③ 本例：WC ±2.7%，1σ ±0.45% → 3σ ±1.35%，约只有 WC 的一半', '#b45309'),
+        ('④ 良率：规格 ±1% → 2Φ(2.24)−1 ≈ 97.5%，每千块 25 块超规', '#7c3aed'),
+    ], duration, y=450)
+    save('error-budget.svg', svg + '</svg>')
+
+
+# ======================= 图 108：探头地线环（第 14 章 §14.8） =======================
+def make_probe_ground_loop():
+    """量到的纹波可能是假的：长地线夹形成大环路，拾取开关磁场。数据取自 §14.8。"""
+    duration = 12
+    svg = svg_open('探头地线环：量到的纹波可能是假的', h=500)
+    svg += ('<text x="400" y="53" text-anchor="middle" font-size="12" fill="#475569">'
+            '地夹夹在远处的地上 → 大环路 → 开关磁场在环里感应出电压</text>\n')
+
+    svg += ('<rect x="36" y="76" width="356" height="248" rx="10" fill="#fef2f2" '
+            'stroke="#dc2626" stroke-width="1.6"/>\n')
+    svg += ('<text x="214" y="102" text-anchor="middle" font-size="12" font-weight="bold" '
+            'fill="#dc2626">① 长地线夹：环路大</text>\n')
+    svg += ('<path d="M170,152 C 240,132 310,152 330,214 L330,220 L170,220 Z" '
+            'fill="#dc2626" fill-opacity="0.10"/>\n')
+    svg += '<line x1="60" y1="220" x2="368" y2="220" stroke="#334155" stroke-width="3"/>\n'
+    svg += ('<path d="M170,152 C 240,132 310,152 330,214" fill="none" '
+            'stroke="#dc2626" stroke-width="2.2"/>\n')
+    svg += '<line x1="170" y1="152" x2="170" y2="220" stroke="#dc2626" stroke-width="2.5"/>\n'
+    svg += ('<rect x="156" y="118" width="28" height="34" rx="4" fill="#f8fafc" '
+            'stroke="#334155" stroke-width="2"/>\n')
+    svg += '<rect x="324" y="208" width="12" height="12" fill="#dc2626"/>\n'
+    svg += pulse(240, 158, 60, 46, '#b45309', 1.4, 8) + '\n'
+    svg += '<text x="270" y="188" text-anchor="middle" font-size="10.5" fill="#b45309">磁通</text>\n'
+    svg += f'<path d="{sine_path(70, 360, 282, 14)}" fill="none" stroke="#dc2626" stroke-width="2.5"/>\n'
+    svg += '<text x="214" y="316" text-anchor="middle" font-size="11" fill="#dc2626">量到 ~200 mV 假纹波</text>\n'
+
+    svg += ('<rect x="408" y="76" width="356" height="248" rx="10" fill="#ecfdf5" '
+            'stroke="#059669" stroke-width="1.6"/>\n')
+    svg += ('<text x="586" y="102" text-anchor="middle" font-size="12" font-weight="bold" '
+            'fill="#059669">② 弹簧地针：环路小</text>\n')
+    svg += '<line x1="432" y1="220" x2="740" y2="220" stroke="#334155" stroke-width="3"/>\n'
+    svg += '<path d="M596,206 L608,206 L608,220 L596,220 Z" fill="#059669" fill-opacity="0.20"/>\n'
+    svg += '<line x1="596" y1="152" x2="596" y2="220" stroke="#059669" stroke-width="2.5"/>\n'
+    svg += ('<rect x="582" y="118" width="28" height="34" rx="4" fill="#f8fafc" '
+            'stroke="#334155" stroke-width="2"/>\n')
+    svg += '<line x1="596" y1="206" x2="608" y2="206" stroke="#059669" stroke-width="2.2"/>\n'
+    svg += '<line x1="608" y1="206" x2="608" y2="220" stroke="#059669" stroke-width="2.2"/>\n'
+    svg += f'<path d="{sine_path(442, 730, 282, 5)}" fill="none" stroke="#059669" stroke-width="2.5"/>\n'
+    svg += '<text x="586" y="316" text-anchor="middle" font-size="11" fill="#059669">量到真实纹波</text>\n'
+
+    svg += note_box('地夹夹在远处的地上就形成大环路，开关电源的磁场在里面感应出电压；'
+                    '弹簧地针把环路面积缩十倍以上。',
+                    y=360, dur=duration, w=660)
+    svg += beat_captions([
+        ('① 探头的地夹也是导线：夹在远处的地上，就形成一个天线', '#dc2626'),
+        ('② 开关电源的磁场穿过这个大环路 → 感应出假的 200 mV', '#b45309'),
+        ('③ 弹簧地针把环路面积缩十倍以上，读数立刻干净', '#059669'),
+        ('④ 高共模节点（高侧检测、H 桥输出）必须用差分探头', '#7c3aed'),
+    ], duration, y=460)
+    save('probe-ground-loop.svg', svg + '</svg>')
+
+
 if __name__ == '__main__':
     make_rc_charge()
     make_bridge_rectifier()
@@ -7997,4 +8321,9 @@ if __name__ == '__main__':
     make_pcb_routing()
     make_diagnosis_tree()
     make_cap_derating()
-    print('all 103 SVGs regenerated into', os.path.abspath(OUT))
+    make_opamp_input_stage()
+    make_crystal_pierce()
+    make_optocoupler_ctr()
+    make_error_budget()
+    make_probe_ground_loop()
+    print('all 108 SVGs regenerated into', os.path.abspath(OUT))

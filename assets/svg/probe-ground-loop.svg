@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+<title>探头地线环：量到的纹波可能是假的</title>
+<defs>
+<linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
+</linearGradient>
+<linearGradient id="bgD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#0a1020"/><stop offset="1" stop-color="#141d30"/>
+</linearGradient>
+<radialGradient id="vig" cx="0.5" cy="0.44" r="0.78">
+<stop offset="0.55" stop-color="#0f172a" stop-opacity="0"/><stop offset="1" stop-color="#0f172a" stop-opacity="0.065"/>
+</radialGradient>
+<linearGradient id="hdr" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2563eb" stop-opacity="0.10"/>
+<stop offset="0.55" stop-color="#2563eb" stop-opacity="0.030"/>
+<stop offset="1" stop-color="#2563eb" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="hdrD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#60a5fa" stop-opacity="0.13"/>
+<stop offset="0.55" stop-color="#60a5fa" stop-opacity="0.040"/>
+<stop offset="1" stop-color="#60a5fa" stop-opacity="0"/>
+</linearGradient>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+<circle cx="1.5" cy="1.5" r="1.05" fill="#cbd5e1"/>
+</pattern>
+<filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+<feDropShadow dx="0" dy="1.6" stdDeviation="2.4" flood-color="#0f172a" flood-opacity="0.17"/>
+</filter>
+<filter id="pglow" x="-70%" y="-70%" width="240%" height="240%">
+<feGaussianBlur stdDeviation="2.1" result="b"/>
+<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs>
+<rect class="page-bg" width="800" height="500" fill="url(#bgL)"/>
+<rect width="800" height="500" fill="url(#dots)" opacity="0.40"/>
+<rect class="page-vig" width="800" height="500" fill="url(#vig)"/>
+<rect class="page-hdr" width="800" height="72" fill="url(#hdr)"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+.page-bg{fill:url(#bgL)}
+.page-vig{opacity:1}
+.page-hdr{fill:url(#hdr)}
+line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
+rect[fill="#f8fafc"],rect[fill="#eff6ff"],rect[fill="#ecfdf5"],rect[fill="#fffbeb"],rect[fill="#fef2f2"],rect[fill="#dbeafe"]{filter:url(#soft)}
+/* 浅色下的「弱化色」文字偏淡（#94a3b8 在白底只有 2.6:1）→ 只压暗文字，不动同色的线/粒子 */
+@media (prefers-color-scheme: light){
+text[fill="#94a3b8"],tspan[fill="#94a3b8"]{fill:#64748b}
+text[fill="#0ea5e9"],tspan[fill="#0ea5e9"]{fill:#0284c7}
+text[fill="#f59e0b"],tspan[fill="#f59e0b"]{fill:#b45309}
+}
+@media (prefers-color-scheme: dark){
+.page-bg{fill:url(#bgD)}
+.page-vig{opacity:0.45}
+.page-hdr{fill:url(#hdrD)}
+[fill="#f8fafc"]{fill:#0f172a}
+[fill="#f1f5f9"]{fill:#1e293b}[fill="#e0f2fe"]{fill:#082f49}[fill="#fff7ed"]{fill:#431407}
+[fill="#d1fae5"]{fill:#022c22}[fill="#fee2e2"]{fill:#450a0a}
+[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
+[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
+[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
+[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
+[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
+[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
+[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
+[fill="#34d399"]{fill:#065f46}
+[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
+[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
+[fill="#cbd5e1"]{fill:#334155}[stroke="#cbd5e1"]{stroke:#475569}
+[fill="#ffffff"]{fill:#0f172a}[fill="#94a3b8"]{fill:#8497ad}[stroke="#94a3b8"]{stroke:#64748b}
+[fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
+[fill="#b91c1c"]{fill:#f87171}[stroke="#b91c1c"]{stroke:#f87171}
+[fill="#0369a1"]{fill:#7dd3fc}[stroke="#0369a1"]{stroke:#7dd3fc}
+[fill="#0284c7"]{fill:#7dd3fc}[stroke="#0284c7"]{stroke:#7dd3fc}
+text[fill="#fff"]{fill:#0f172a}
+}
+</style>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">探头地线环：量到的纹波可能是假的</text>
+<text x="400" y="53" text-anchor="middle" font-size="12" fill="#475569">地夹夹在远处的地上 → 大环路 → 开关磁场在环里感应出电压</text>
+<rect x="36" y="76" width="356" height="248" rx="10" fill="#fef2f2" stroke="#dc2626" stroke-width="1.6"/>
+<text x="214" y="102" text-anchor="middle" font-size="12" font-weight="bold" fill="#dc2626">① 长地线夹：环路大</text>
+<path d="M170,152 C 240,132 310,152 330,214 L330,220 L170,220 Z" fill="#dc2626" fill-opacity="0.10"/>
+<line x1="60" y1="220" x2="368" y2="220" stroke="#334155" stroke-width="3"/>
+<path d="M170,152 C 240,132 310,152 330,214" fill="none" stroke="#dc2626" stroke-width="2.2"/>
+<line x1="170" y1="152" x2="170" y2="220" stroke="#dc2626" stroke-width="2.5"/>
+<rect x="156" y="118" width="28" height="34" rx="4" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+<rect x="324" y="208" width="12" height="12" fill="#dc2626"/>
+<rect x="240" y="158" width="60" height="46" rx="8" fill="none" stroke="#b45309" stroke-width="2.5" opacity="0" filter="url(#pglow)"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="1.4s" repeatCount="indefinite"/></rect>
+<text x="270" y="188" text-anchor="middle" font-size="10.5" fill="#b45309">磁通</text>
+<path d="M70,282 L76,284 L82,286 L88,287 L94,289 L100,291 L106,292 L112,293 L118,294 L124,295 L130,296 L136,296 L142,296 L149,296 L155,296 L161,295 L167,294 L173,293 L179,292 L185,291 L191,289 L197,287 L203,286 L209,284 L215,282 L221,280 L227,278 L233,277 L239,275 L245,273 L251,272 L257,271 L263,270 L269,269 L275,268 L281,268 L288,268 L294,268 L300,268 L306,269 L312,270 L318,271 L324,272 L330,273 L336,275 L342,277 L348,278 L354,280 L360,282" fill="none" stroke="#dc2626" stroke-width="2.5"/>
+<text x="214" y="316" text-anchor="middle" font-size="11" fill="#dc2626">量到 ~200 mV 假纹波</text>
+<rect x="408" y="76" width="356" height="248" rx="10" fill="#ecfdf5" stroke="#059669" stroke-width="1.6"/>
+<text x="586" y="102" text-anchor="middle" font-size="12" font-weight="bold" fill="#059669">② 弹簧地针：环路小</text>
+<line x1="432" y1="220" x2="740" y2="220" stroke="#334155" stroke-width="3"/>
+<path d="M596,206 L608,206 L608,220 L596,220 Z" fill="#059669" fill-opacity="0.20"/>
+<line x1="596" y1="152" x2="596" y2="220" stroke="#059669" stroke-width="2.5"/>
+<rect x="582" y="118" width="28" height="34" rx="4" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+<line x1="596" y1="206" x2="608" y2="206" stroke="#059669" stroke-width="2.2"/>
+<line x1="608" y1="206" x2="608" y2="220" stroke="#059669" stroke-width="2.2"/>
+<path d="M442,282 L448,283 L454,283 L460,284 L466,284 L472,285 L478,286 L484,286 L490,286 L496,287 L502,287 L508,287 L514,287 L520,287 L526,287 L532,287 L538,286 L544,286 L550,286 L556,285 L562,284 L568,284 L574,283 L580,283 L586,282 L592,281 L598,281 L604,280 L610,280 L616,279 L622,278 L628,278 L634,278 L640,277 L646,277 L652,277 L658,277 L664,277 L670,277 L676,277 L682,278 L688,278 L694,278 L700,279 L706,280 L712,280 L718,281 L724,281 L730,282" fill="none" stroke="#059669" stroke-width="2.5"/>
+<text x="586" y="316" text-anchor="middle" font-size="11" fill="#059669">量到真实纹波</text>
+<g opacity="0">
+<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.82;0.86;1" dur="12s" repeatCount="indefinite"/>
+<rect x="70" y="336" width="660" height="52.0" rx="9" fill="#ecfdf5" stroke="#059669" stroke-width="1.5" filter="url(#soft)"/><rect x="76" y="343" width="3" height="38.0" rx="1.5" fill="#059669"/><text x="400" y="358.0" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">地夹夹在远处的地上就形成大环路，开关电源的磁场在</text><text x="400" y="376.0" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">里面感应出电压；弹簧地针把环路面积缩十倍以上。</text>
+</g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.02;0.23;0.25;1" dur="12s" repeatCount="indefinite"/><rect x="185.7" y="446.9" width="428.5" height="24.1" rx="12.0" fill="#dc2626" fill-opacity="0.09" stroke="#dc2626" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.02;0.23;0.25;1" dur="12s" repeatCount="indefinite"/></rect><text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">① 探头的地夹也是导线：夹在远处的地上，就形成一个天线<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.02;0.23;0.25;1" dur="12s" repeatCount="indefinite"/></text></g>
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.25;0.27;0.48;0.5;1" dur="12s" repeatCount="indefinite"/><rect x="190.5" y="446.9" width="419.0" height="24.1" rx="12.0" fill="#b45309" fill-opacity="0.09" stroke="#b45309" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.27;0.48;0.5;1" dur="12s" repeatCount="indefinite"/></rect><text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">② 开关电源的磁场穿过这个大环路 → 感应出假的 200 mV<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.27;0.48;0.5;1" dur="12s" repeatCount="indefinite"/></text></g>
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.5;0.52;0.73;0.75;1" dur="12s" repeatCount="indefinite"/><rect x="216.0" y="446.9" width="367.9" height="24.1" rx="12.0" fill="#059669" fill-opacity="0.09" stroke="#059669" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.5;0.52;0.73;0.75;1" dur="12s" repeatCount="indefinite"/></rect><text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">③ 弹簧地针把环路面积缩十倍以上，读数立刻干净<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.5;0.52;0.73;0.75;1" dur="12s" repeatCount="indefinite"/></text></g>
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0" keyTimes="0;0.75;0.77;0.98;1" dur="12s" repeatCount="indefinite"/><rect x="201.2" y="446.9" width="397.6" height="24.1" rx="12.0" fill="#7c3aed" fill-opacity="0.09" stroke="#7c3aed" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.75;0.77;0.98;1" dur="12s" repeatCount="indefinite"/></rect><text x="400" y="460" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">④ 高共模节点（高侧检测、H 桥输出）必须用差分探头<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.75;0.77;0.98;1" dur="12s" repeatCount="indefinite"/></text></g>
+</svg>

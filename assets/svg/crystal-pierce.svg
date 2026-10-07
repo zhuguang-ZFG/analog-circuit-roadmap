@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="520" viewBox="0 0 800 520">
+<title>晶体振荡器：把频率钉在石英上</title>
+<defs>
+<linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
+</linearGradient>
+<linearGradient id="bgD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#0a1020"/><stop offset="1" stop-color="#141d30"/>
+</linearGradient>
+<radialGradient id="vig" cx="0.5" cy="0.44" r="0.78">
+<stop offset="0.55" stop-color="#0f172a" stop-opacity="0"/><stop offset="1" stop-color="#0f172a" stop-opacity="0.065"/>
+</radialGradient>
+<linearGradient id="hdr" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2563eb" stop-opacity="0.10"/>
+<stop offset="0.55" stop-color="#2563eb" stop-opacity="0.030"/>
+<stop offset="1" stop-color="#2563eb" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="hdrD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#60a5fa" stop-opacity="0.13"/>
+<stop offset="0.55" stop-color="#60a5fa" stop-opacity="0.040"/>
+<stop offset="1" stop-color="#60a5fa" stop-opacity="0"/>
+</linearGradient>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+<circle cx="1.5" cy="1.5" r="1.05" fill="#cbd5e1"/>
+</pattern>
+<filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+<feDropShadow dx="0" dy="1.6" stdDeviation="2.4" flood-color="#0f172a" flood-opacity="0.17"/>
+</filter>
+<filter id="pglow" x="-70%" y="-70%" width="240%" height="240%">
+<feGaussianBlur stdDeviation="2.1" result="b"/>
+<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs>
+<rect class="page-bg" width="800" height="520" fill="url(#bgL)"/>
+<rect width="800" height="520" fill="url(#dots)" opacity="0.40"/>
+<rect class="page-vig" width="800" height="520" fill="url(#vig)"/>
+<rect class="page-hdr" width="800" height="72" fill="url(#hdr)"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+.page-bg{fill:url(#bgL)}
+.page-vig{opacity:1}
+.page-hdr{fill:url(#hdr)}
+line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
+rect[fill="#f8fafc"],rect[fill="#eff6ff"],rect[fill="#ecfdf5"],rect[fill="#fffbeb"],rect[fill="#fef2f2"],rect[fill="#dbeafe"]{filter:url(#soft)}
+/* 浅色下的「弱化色」文字偏淡（#94a3b8 在白底只有 2.6:1）→ 只压暗文字，不动同色的线/粒子 */
+@media (prefers-color-scheme: light){
+text[fill="#94a3b8"],tspan[fill="#94a3b8"]{fill:#64748b}
+text[fill="#0ea5e9"],tspan[fill="#0ea5e9"]{fill:#0284c7}
+text[fill="#f59e0b"],tspan[fill="#f59e0b"]{fill:#b45309}
+}
+@media (prefers-color-scheme: dark){
+.page-bg{fill:url(#bgD)}
+.page-vig{opacity:0.45}
+.page-hdr{fill:url(#hdrD)}
+[fill="#f8fafc"]{fill:#0f172a}
+[fill="#f1f5f9"]{fill:#1e293b}[fill="#e0f2fe"]{fill:#082f49}[fill="#fff7ed"]{fill:#431407}
+[fill="#d1fae5"]{fill:#022c22}[fill="#fee2e2"]{fill:#450a0a}
+[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
+[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
+[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
+[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
+[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
+[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
+[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
+[fill="#34d399"]{fill:#065f46}
+[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
+[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
+[fill="#cbd5e1"]{fill:#334155}[stroke="#cbd5e1"]{stroke:#475569}
+[fill="#ffffff"]{fill:#0f172a}[fill="#94a3b8"]{fill:#8497ad}[stroke="#94a3b8"]{stroke:#64748b}
+[fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
+[fill="#b91c1c"]{fill:#f87171}[stroke="#b91c1c"]{stroke:#f87171}
+[fill="#0369a1"]{fill:#7dd3fc}[stroke="#0369a1"]{stroke:#7dd3fc}
+[fill="#0284c7"]{fill:#7dd3fc}[stroke="#0284c7"]{stroke:#7dd3fc}
+text[fill="#fff"]{fill:#0f172a}
+}
+</style>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">晶体振荡器：把频率钉在石英上</text>
+<text x="400" y="53" text-anchor="middle" font-size="12" fill="#475569">Pierce 拓扑：一只反相器 + 反馈电阻 + 晶体 + 两只负载电容</text>
+<rect x="36" y="76" width="384" height="286" rx="10" fill="#f8fafc" stroke="#64748b" stroke-width="1.6"/>
+<text x="228" y="100" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">Pierce（皮尔斯）拓扑</text>
+<line x1="150" y1="146" x2="160" y2="146" stroke="#334155" stroke-width="2.5"/>
+<line x1="160" y1="146" x2="180" y2="146" stroke="#334155" stroke-width="2.5"/>
+<rect x="180" y="135" width="100" height="22" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<line x1="280" y1="146" x2="300" y2="146" stroke="#334155" stroke-width="2.5"/>
+<text x="230.0" y="129" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#b45309">R_f 1~10 MΩ</text>
+<line x1="300" y1="146" x2="310" y2="146" stroke="#334155" stroke-width="2.5"/>
+<text x="226" y="190" text-anchor="middle" font-size="11" fill="#475569">反相器</text>
+<polygon points="200,198 200,234 252,216" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+<circle cx="256" cy="216" r="4" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+<line x1="150" y1="216" x2="200" y2="216" stroke="#334155" stroke-width="2.5"/>
+<line x1="260" y1="216" x2="310" y2="216" stroke="#334155" stroke-width="2.5"/>
+<line x1="150" y1="146" x2="150" y2="306" stroke="#334155" stroke-width="2.5"/>
+<line x1="310" y1="146" x2="310" y2="306" stroke="#334155" stroke-width="2.5"/>
+<line x1="150" y1="276" x2="214" y2="276" stroke="#334155" stroke-width="2.5"/>
+<line x1="214" y1="264" x2="214" y2="288" stroke="#334155" stroke-width="2.5"/>
+<rect x="220" y="260" width="20" height="32" rx="2" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+<line x1="246" y1="264" x2="246" y2="288" stroke="#334155" stroke-width="2.5"/>
+<line x1="246" y1="276" x2="310" y2="276" stroke="#334155" stroke-width="2.5"/>
+<text x="230" y="252" text-anchor="middle" font-size="11" fill="#475569">XTAL 8 MHz</text>
+<line x1="138" y1="306" x2="162" y2="306" stroke="#334155" stroke-width="2.5"/>
+<line x1="138" y1="316" x2="162" y2="316" stroke="#334155" stroke-width="2.5"/>
+<line x1="150" y1="316" x2="150" y2="330" stroke="#334155" stroke-width="2.5"/>
+<line x1="150" y1="330" x2="150" y2="344" stroke="#334155" stroke-width="2.5"/><line x1="134" y1="344" x2="166" y2="344" stroke="#334155" stroke-width="3"/><line x1="140" y1="350" x2="160" y2="350" stroke="#334155" stroke-width="3"/><line x1="146" y1="356" x2="154" y2="356" stroke="#334155" stroke-width="3"/>
+<line x1="298" y1="306" x2="322" y2="306" stroke="#334155" stroke-width="2.5"/>
+<line x1="298" y1="316" x2="322" y2="316" stroke="#334155" stroke-width="2.5"/>
+<line x1="310" y1="316" x2="310" y2="330" stroke="#334155" stroke-width="2.5"/>
+<line x1="310" y1="330" x2="310" y2="344" stroke="#334155" stroke-width="2.5"/><line x1="294" y1="344" x2="326" y2="344" stroke="#334155" stroke-width="3"/><line x1="300" y1="350" x2="320" y2="350" stroke="#334155" stroke-width="3"/><line x1="306" y1="356" x2="314" y2="356" stroke="#334155" stroke-width="3"/>
+<text x="130" y="312" text-anchor="end" font-size="11.5" fill="#475569">C1</text>
+<text x="130" y="326" text-anchor="end" font-size="10.5" fill="#475569">22 pF</text>
+<text x="330" y="312" font-size="11.5" fill="#475569">C2</text>
+<text x="330" y="326" font-size="10.5" fill="#475569">22 pF</text>
+<rect x="432" y="76" width="332" height="286" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-opacity="0.45" stroke-width="1.5"/>
+<text x="598" y="104" text-anchor="middle" font-size="13" font-weight="bold" fill="#1d4ed8">为什么晶体准得离谱</text>
+<line x1="448" y1="116" x2="748" y2="116" stroke="#2563eb" stroke-opacity="0.3" stroke-width="1.5"/>
+<text x="452" y="142" font-size="11.5" fill="#334155">· Q 值 10⁴ ~ 10⁶（LC 只有 10 ~ 100）</text>
+<text x="452" y="168" font-size="11.5" fill="#334155">· 温漂 ±0.5 ppm/℃ 以内</text>
+<text x="452" y="194" font-size="11.5" fill="#334155">· C_L = C₁C₂/(C₁+C₂) + C_stray</text>
+<text x="452" y="220" font-size="11.5" fill="#334155">· 牵引灵敏度 ≈ 18 ppm/pF</text>
+<text x="452" y="246" font-size="11.5" fill="#334155">· 判据 R_neg ≥ 5 × ESR_max</text>
+<text x="452" y="272" font-size="11.5" fill="#334155">· g_m,crit = 4·ESR·ω²·(C₀+C_L)²</text>
+<text x="452" y="298" font-size="11.5" fill="#334155">· 8 MHz → 0.26 mA/V</text>
+<text x="452" y="324" font-size="11.5" fill="#334155">· 32.768 kHz → 1.7 µA/V</text>
+<g opacity="0">
+<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.82;0.86;1" dur="12s" repeatCount="indefinite"/>
+<rect x="70" y="376" width="660" height="52.0" rx="9" fill="#ecfdf5" stroke="#059669" stroke-width="1.5" filter="url(#soft)"/><rect x="76" y="383" width="3" height="38.0" rx="1.5" fill="#059669"/><text x="400" y="398.0" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">别拿示波器探针直接量晶振引脚——10pF 探头会把 C</text><text x="400" y="416.0" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">_L 拉偏，严重时直接停振；想测就量缓冲后的输出。</text>
+</g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.02;0.23;0.25;1" dur="12s" repeatCount="indefinite"/><rect x="172.1" y="471.9" width="455.8" height="24.1" rx="12.0" fill="#2563eb" fill-opacity="0.09" stroke="#2563eb" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.02;0.23;0.25;1" dur="12s" repeatCount="indefinite"/></rect><text x="400" y="485" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">① 石英是机械谐振：Q 值 10⁴~10⁶，频率对元件容差极不敏感<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.02;0.23;0.25;1" dur="12s" repeatCount="indefinite"/></text></g>
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.25;0.27;0.48;0.5;1" dur="12s" repeatCount="indefinite"/><rect x="111.4" y="471.9" width="577.2" height="24.1" rx="12.0" fill="#059669" fill-opacity="0.09" stroke="#059669" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.27;0.48;0.5;1" dur="12s" repeatCount="indefinite"/></rect><text x="400" y="485" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">② 唯一必须算的数：C_L = C₁C₂/(C₁+C₂) + C_stray，22pF+22pF → 15pF<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.27;0.48;0.5;1" dur="12s" repeatCount="indefinite"/></text></g>
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.5;0.52;0.73;0.75;1" dur="12s" repeatCount="indefinite"/><rect x="104.5" y="471.9" width="590.9" height="24.1" rx="12.0" fill="#b45309" fill-opacity="0.09" stroke="#b45309" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.5;0.52;0.73;0.75;1" dur="12s" repeatCount="indefinite"/></rect><text x="400" y="485" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">③ 起振判据 R_neg ≥ 5×ESR；32.768kHz 只要 1.7 µA/V —— RTC 省电的根因<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.5;0.52;0.73;0.75;1" dur="12s" repeatCount="indefinite"/></text></g>
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0" keyTimes="0;0.75;0.77;0.98;1" dur="12s" repeatCount="indefinite"/><rect x="177.1" y="471.9" width="445.8" height="24.1" rx="12.0" fill="#dc2626" fill-opacity="0.09" stroke="#dc2626" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.75;0.77;0.98;1" dur="12s" repeatCount="indefinite"/></rect><text x="400" y="485" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">④ 配错 C_L：18 ppm/pF × 3pF = 55 ppm → 每天差 4.8 秒<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.75;0.77;0.98;1" dur="12s" repeatCount="indefinite"/></text></g>
+</svg>

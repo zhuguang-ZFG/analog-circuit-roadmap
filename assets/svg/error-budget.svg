@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="490" viewBox="0 0 800 490">
+<title>误差预算：最坏情况 vs 统计叠加</title>
+<defs>
+<linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
+</linearGradient>
+<linearGradient id="bgD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#0a1020"/><stop offset="1" stop-color="#141d30"/>
+</linearGradient>
+<radialGradient id="vig" cx="0.5" cy="0.44" r="0.78">
+<stop offset="0.55" stop-color="#0f172a" stop-opacity="0"/><stop offset="1" stop-color="#0f172a" stop-opacity="0.065"/>
+</radialGradient>
+<linearGradient id="hdr" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2563eb" stop-opacity="0.10"/>
+<stop offset="0.55" stop-color="#2563eb" stop-opacity="0.030"/>
+<stop offset="1" stop-color="#2563eb" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="hdrD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#60a5fa" stop-opacity="0.13"/>
+<stop offset="0.55" stop-color="#60a5fa" stop-opacity="0.040"/>
+<stop offset="1" stop-color="#60a5fa" stop-opacity="0"/>
+</linearGradient>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+<circle cx="1.5" cy="1.5" r="1.05" fill="#cbd5e1"/>
+</pattern>
+<filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+<feDropShadow dx="0" dy="1.6" stdDeviation="2.4" flood-color="#0f172a" flood-opacity="0.17"/>
+</filter>
+<filter id="pglow" x="-70%" y="-70%" width="240%" height="240%">
+<feGaussianBlur stdDeviation="2.1" result="b"/>
+<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs>
+<rect class="page-bg" width="800" height="490" fill="url(#bgL)"/>
+<rect width="800" height="490" fill="url(#dots)" opacity="0.40"/>
+<rect class="page-vig" width="800" height="490" fill="url(#vig)"/>
+<rect class="page-hdr" width="800" height="72" fill="url(#hdr)"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
+.page-bg{fill:url(#bgL)}
+.page-vig{opacity:1}
+.page-hdr{fill:url(#hdr)}
+line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
+rect[fill="#f8fafc"],rect[fill="#eff6ff"],rect[fill="#ecfdf5"],rect[fill="#fffbeb"],rect[fill="#fef2f2"],rect[fill="#dbeafe"]{filter:url(#soft)}
+/* 浅色下的「弱化色」文字偏淡（#94a3b8 在白底只有 2.6:1）→ 只压暗文字，不动同色的线/粒子 */
+@media (prefers-color-scheme: light){
+text[fill="#94a3b8"],tspan[fill="#94a3b8"]{fill:#64748b}
+text[fill="#0ea5e9"],tspan[fill="#0ea5e9"]{fill:#0284c7}
+text[fill="#f59e0b"],tspan[fill="#f59e0b"]{fill:#b45309}
+}
+@media (prefers-color-scheme: dark){
+.page-bg{fill:url(#bgD)}
+.page-vig{opacity:0.45}
+.page-hdr{fill:url(#hdrD)}
+[fill="#f8fafc"]{fill:#0f172a}
+[fill="#f1f5f9"]{fill:#1e293b}[fill="#e0f2fe"]{fill:#082f49}[fill="#fff7ed"]{fill:#431407}
+[fill="#d1fae5"]{fill:#022c22}[fill="#fee2e2"]{fill:#450a0a}
+[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
+[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
+[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
+[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
+[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
+[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
+[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
+[fill="#34d399"]{fill:#065f46}
+[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
+[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
+[fill="#cbd5e1"]{fill:#334155}[stroke="#cbd5e1"]{stroke:#475569}
+[fill="#ffffff"]{fill:#0f172a}[fill="#94a3b8"]{fill:#8497ad}[stroke="#94a3b8"]{stroke:#64748b}
+[fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
+[fill="#b91c1c"]{fill:#f87171}[stroke="#b91c1c"]{stroke:#f87171}
+[fill="#0369a1"]{fill:#7dd3fc}[stroke="#0369a1"]{stroke:#7dd3fc}
+[fill="#0284c7"]{fill:#7dd3fc}[stroke="#0284c7"]{stroke:#7dd3fc}
+text[fill="#fff"]{fill:#0f172a}
+}
+</style>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">误差预算：最坏情况 vs 统计叠加</text>
+<text x="400" y="53" text-anchor="middle" font-size="12" fill="#475569">Buck 反馈分压：WC ±2.7%，1σ ±0.45% → 3σ ±1.35%</text>
+<rect x="36" y="76" width="372" height="252" rx="10" fill="#f8fafc" stroke="#64748b" stroke-width="1.6"/>
+<text x="222" y="102" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">误差源与贡献</text>
+<text x="56" y="130" font-size="11" fill="#475569">误差源</text>
+<text x="272" y="130" text-anchor="end" font-size="11" fill="#475569">WC 贡献</text>
+<text x="392" y="130" text-anchor="end" font-size="11" fill="#475569">1σ 贡献</text>
+<line x1="52" y1="140" x2="392" y2="140" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="56" y="166" font-size="11.5" fill="#334155">反馈电阻容差 ±1%</text>
+<text x="272" y="166" text-anchor="end" font-size="11.5" fill="#1e293b">±1.0%</text>
+<text x="392" y="166" text-anchor="end" font-size="11.5" fill="#1e293b">±0.24%</text>
+<text x="56" y="192" font-size="11.5" fill="#334155">V_ref 初始精度 ±1%</text>
+<text x="272" y="192" text-anchor="end" font-size="11.5" fill="#1e293b">±1.0%</text>
+<text x="392" y="192" text-anchor="end" font-size="11.5" fill="#1e293b">±0.33%</text>
+<text x="56" y="218" font-size="11.5" fill="#334155">V_ref 温漂 50ppm/℃ × 40℃</text>
+<text x="272" y="218" text-anchor="end" font-size="11.5" fill="#1e293b">±0.2%</text>
+<text x="392" y="218" text-anchor="end" font-size="11.5" fill="#1e293b">±0.07%</text>
+<text x="56" y="244" font-size="11.5" fill="#334155">负载调整率</text>
+<text x="272" y="244" text-anchor="end" font-size="11.5" fill="#1e293b">±0.5%</text>
+<text x="392" y="244" text-anchor="end" font-size="11.5" fill="#1e293b">±0.17%</text>
+<line x1="52" y1="260" x2="392" y2="260" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="56" y="286" font-size="12" font-weight="bold" fill="#dc2626">合计</text>
+<text x="272" y="286" text-anchor="end" font-size="12" font-weight="bold" fill="#dc2626">±2.7%</text>
+<text x="392" y="286" text-anchor="end" font-size="12" font-weight="bold" fill="#2563eb">±0.45%</text>
+<rect x="428" y="76" width="336" height="252" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-opacity="0.45" stroke-width="1.5"/>
+<text x="596" y="102" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1d4ed8">同一规格，两种结论</text>
+<rect x="504" y="170" width="184" height="22" rx="5" fill="#fef2f2" stroke="#dc2626" stroke-width="2"/>
+<rect x="550" y="202" width="92" height="22" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+<line x1="596" y1="162" x2="596" y2="232" stroke="#334155" stroke-width="1.6" stroke-dasharray="4,4"/>
+<text x="492" y="186" text-anchor="end" font-size="11.5" fill="#dc2626">WC</text>
+<text x="492" y="218" text-anchor="end" font-size="11.5" fill="#2563eb">3σ</text>
+<text x="694" y="186" font-size="11" fill="#dc2626">±2.7%</text>
+<text x="648" y="218" font-size="11" fill="#2563eb">±1.35%</text>
+<text x="596" y="252" text-anchor="middle" font-size="11" fill="#334155">规格 ±1% → 良率 ≈ 97.5%（每千块 25 块超规）</text>
+<text x="596" y="278" text-anchor="middle" font-size="11" fill="#475569">规格 ±2% → 良率 &gt; 99.7%</text>
+<text x="596" y="304" text-anchor="middle" font-size="11" fill="#475569">3σ 大约只有 WC 的一半</text>
+<g opacity="0">
+<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.82;0.86;1" dur="12s" repeatCount="indefinite"/>
+<rect x="70" y="336" width="660" height="52.0" rx="9" fill="#ecfdf5" stroke="#059669" stroke-width="1.5" filter="url(#soft)"/><rect x="76" y="343" width="3" height="38.0" rx="1.5" fill="#059669"/><text x="400" y="358.0" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">车规 / 医疗按 WC 定规格，消费类按 RSS 的 3σ 估</text><text x="400" y="376.0" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">良率——"留 20% 裕量"不是拍脑袋，是算出来的。</text>
+</g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.02;0.23;0.25;1" dur="12s" repeatCount="indefinite"/><rect x="163.6" y="436.9" width="472.8" height="24.1" rx="12.0" fill="#dc2626" fill-opacity="0.09" stroke="#dc2626" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.02;0.23;0.25;1" dur="12s" repeatCount="indefinite"/></rect><text x="400" y="450" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">① WC：所有元件同时往同一方向偏到极限 —— 悲观，但概率极低<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.02;0.23;0.25;1" dur="12s" repeatCount="indefinite"/></text></g>
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.25;0.27;0.48;0.5;1" dur="12s" repeatCount="indefinite"/><rect x="193.9" y="436.9" width="412.3" height="24.1" rx="12.0" fill="#2563eb" fill-opacity="0.09" stroke="#2563eb" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.27;0.48;0.5;1" dur="12s" repeatCount="indefinite"/></rect><text x="400" y="450" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">② RSS：各项独立随机，按 σ 平方和开根 —— 接近真实<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.27;0.48;0.5;1" dur="12s" repeatCount="indefinite"/></text></g>
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.5;0.52;0.73;0.75;1" dur="12s" repeatCount="indefinite"/><rect x="145.7" y="436.9" width="508.5" height="24.1" rx="12.0" fill="#b45309" fill-opacity="0.09" stroke="#b45309" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.5;0.52;0.73;0.75;1" dur="12s" repeatCount="indefinite"/></rect><text x="400" y="450" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">③ 本例：WC ±2.7%，1σ ±0.45% → 3σ ±1.35%，约只有 WC 的一半<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.5;0.52;0.73;0.75;1" dur="12s" repeatCount="indefinite"/></text></g>
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0" keyTimes="0;0.75;0.77;0.98;1" dur="12s" repeatCount="indefinite"/><rect x="159.5" y="436.9" width="480.9" height="24.1" rx="12.0" fill="#7c3aed" fill-opacity="0.09" stroke="#7c3aed" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.75;0.77;0.98;1" dur="12s" repeatCount="indefinite"/></rect><text x="400" y="450" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#7c3aed" opacity="0">④ 良率：规格 ±1% → 2Φ(2.24)−1 ≈ 97.5%，每千块 25 块超规<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.75;0.77;0.98;1" dur="12s" repeatCount="indefinite"/></text></g>
+</svg>

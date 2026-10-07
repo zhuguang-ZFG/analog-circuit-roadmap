@@ -5,7 +5,7 @@
     python scripts/build_site.py --build    # 生成后直接调用 mkdocs build
 
 内容页原样拷贝，另生成：
-  * gallery.md —— 103 张动画卡片墙（按章筛选 + 关键字搜索，waytoagi 式卡片导航）
+  * gallery.md —— 108 张动画卡片墙（按章筛选 + 关键字搜索，waytoagi 式卡片导航）
   * stylesheets/gallery.css、javascripts/gallery.js、javascripts/mathjax.js
   * build/mkdocs.yml —— 按篇分组的导航与 Material 主题配置
 """
@@ -52,8 +52,8 @@ IMG_ATTRS = 'loading="lazy" decoding="async"'
 def optimize_imgs(text):
     """给站点产物里的动画 <img> 补 loading="lazy" + decoding="async" + 按画布比例写 height。
 
-    - 「动画演示中心」一页就嵌了 103 张 SVG（约 1.9MB），全部 eager 加载太浪费；
-    - 103 张图高度从 430 到 762 不等，只写 width 会让浏览器在下载完成前无从预留高度，
+    - 「动画演示中心」一页就嵌了全部 108 张 SVG（约 1.7MB），全部 eager 加载太浪费；
+    - 108 张图高度从 430 到 762 不等，只写 width 会让浏览器在下载完成前无从预留高度，
       滚动时整页剧烈抖动（CLS）——补 height 后浏览器可提前按比例占位。
     只在站点产物上做，`docs/` 保持单一数据源干净；README 由 GitHub 自行懒加载。
     """
@@ -554,7 +554,7 @@ window.MathJax = {
 """
 
 MKDOCS_YML = """site_name: 通往模拟电路之路
-site_description: 从欧姆定律到芯片内部结构 —— 原理推导 + 器件剖析 + 故障分析 + 103 张 SVG 动画
+site_description: 从欧姆定律到芯片内部结构 —— 原理推导 + 器件剖析 + 故障分析 + 108 张 SVG 动画
 site_url: https://zhuguang-ZFG.github.io/analog-circuit-roadmap/
 repo_url: https://github.com/zhuguang-ZFG/analog-circuit-roadmap
 repo_name: zhuguang-ZFG/analog-circuit-roadmap

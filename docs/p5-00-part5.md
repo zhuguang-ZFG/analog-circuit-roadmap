@@ -1,9 +1,9 @@
 # 第五篇：动画演示中心 🎬
 
-> 全部 103 张 SVG 动画（SMIL，浏览器直接播放）位于 `assets/svg/` 目录，由 `scripts/generate_svgs.py` 一键生成（仓库铁律：两者始终同步）；配套 Falstad 在线电路可实时交互。
+> 全部 108 张 SVG 动画（SMIL，浏览器直接播放）位于 `assets/svg/` 目录，由 `scripts/generate_svgs.py` 一键生成（仓库铁律：两者始终同步）；配套 Falstad 在线电路可实时交互。
 
 <details>
-<summary>🗺️ 动画速查：按章节 —— 103 张全索引（点击展开）</summary>
+<summary>🗺️ 动画速查：按章节 —— 108 张全索引（点击展开）</summary>
 
 | 章 | 动画（点击直达） |
 |---|---|
@@ -19,9 +19,9 @@
 | §9 第 9 章 电压基准与稳压器：系统的"定盘星" | [5.20](p5-00-part5.md#demo20) · [5.21](p5-00-part5.md#demo21) · [5.25](p5-00-part5.md#demo25) · [5.55](p5-00-part5.md#demo55) · [5.73](p5-00-part5.md#demo73) · [5.85](p5-00-part5.md#demo85) · [5.95](p5-00-part5.md#demo95) |
 | §10 第 10 章 555 定时器：最经典的混合信号芯片 | [5.1](p5-00-part5.md#demo1) · [5.6](p5-00-part5.md#demo6) · [5.30](p5-00-part5.md#demo30) · [5.58](p5-00-part5.md#demo58) · [5.77](p5-00-part5.md#demo77) · [5.86](p5-00-part5.md#demo86) |
 | §11 第 11 章 放大电路拓扑：三种组态与四大积木 | [5.8](p5-00-part5.md#demo8) · [5.9](p5-00-part5.md#demo9) · [5.13](p5-00-part5.md#demo13) · [5.16](p5-00-part5.md#demo16) · [5.48](p5-00-part5.md#demo48) · [5.64](p5-00-part5.md#demo64) |
-| §12 第 12 章 运放应用电路族：两条公理推演一切 | [5.10](p5-00-part5.md#demo10) · [5.15](p5-00-part5.md#demo15) · [5.17](p5-00-part5.md#demo17) · [5.24](p5-00-part5.md#demo24) · [5.27](p5-00-part5.md#demo27) · [5.32](p5-00-part5.md#demo32) · [5.33](p5-00-part5.md#demo33) · [5.34](p5-00-part5.md#demo34) · [5.52](p5-00-part5.md#demo52) · [5.59](p5-00-part5.md#demo59) |
-| §13 第 13 章 电源与信号产生电路 | [5.11](p5-00-part5.md#demo11) · [5.12](p5-00-part5.md#demo12) · [5.14](p5-00-part5.md#demo14) · [5.18](p5-00-part5.md#demo18) · [5.19](p5-00-part5.md#demo19) · [5.23](p5-00-part5.md#demo23) · [5.26](p5-00-part5.md#demo26) · [5.28](p5-00-part5.md#demo28) · [5.29](p5-00-part5.md#demo29) · [5.65](p5-00-part5.md#demo65) · [5.80](p5-00-part5.md#demo80) |
-| §14 第 14 章 电路设计方法论 | [5.42](p5-00-part5.md#demo42) · [5.88](p5-00-part5.md#demo88) · [5.98](p5-00-part5.md#demo98) |
+| §12 第 12 章 运放应用电路族：两条公理推演一切 | [5.10](p5-00-part5.md#demo10) · [5.15](p5-00-part5.md#demo15) · [5.17](p5-00-part5.md#demo17) · [5.24](p5-00-part5.md#demo24) · [5.27](p5-00-part5.md#demo27) · [5.32](p5-00-part5.md#demo32) · [5.33](p5-00-part5.md#demo33) · [5.34](p5-00-part5.md#demo34) · [5.52](p5-00-part5.md#demo52) · [5.59](p5-00-part5.md#demo59) · [5.104](p5-00-part5.md#demo104) |
+| §13 第 13 章 电源与信号产生电路 | [5.11](p5-00-part5.md#demo11) · [5.12](p5-00-part5.md#demo12) · [5.14](p5-00-part5.md#demo14) · [5.18](p5-00-part5.md#demo18) · [5.19](p5-00-part5.md#demo19) · [5.23](p5-00-part5.md#demo23) · [5.26](p5-00-part5.md#demo26) · [5.28](p5-00-part5.md#demo28) · [5.29](p5-00-part5.md#demo29) · [5.65](p5-00-part5.md#demo65) · [5.80](p5-00-part5.md#demo80) · [5.105](p5-00-part5.md#demo105) · [5.106](p5-00-part5.md#demo106) |
+| §14 第 14 章 电路设计方法论 | [5.42](p5-00-part5.md#demo42) · [5.88](p5-00-part5.md#demo88) · [5.98](p5-00-part5.md#demo98) · [5.107](p5-00-part5.md#demo107) · [5.108](p5-00-part5.md#demo108) |
 | §15 第 15 章 PCB 绘制注意事项 | [5.7](p5-00-part5.md#demo7) · [5.90](p5-00-part5.md#demo90) · [5.96](p5-00-part5.md#demo96) · [5.100](p5-00-part5.md#demo100) |
 | §16 第 16 章 排故五步法 | [5.38](p5-00-part5.md#demo38) · [5.49](p5-00-part5.md#demo49) · [5.99](p5-00-part5.md#demo99) |
 | §17 第 17 章 故障模式速查总表 | [5.91](p5-00-part5.md#demo91) · [5.102](p5-00-part5.md#demo102) |
@@ -670,7 +670,37 @@
 
 **看点**：圆点匀速扫过偏压轴，红线和 5V 工作点来自同一组教学数据；假设保持率为 26%，10µF 就变为 2.6µF，同纹波电流且忽略 ESR 时容性纹波增至约 3.85 倍。**曲线不是实测值，X5R/X7R 也不是降容等级**；C0G 仅作归一化参考。→ 正文 [1.7 电容直流偏压降容](p1-02-ch1.md#cap-dc-bias)
 
-## 5.104 Falstad 内置示例地图（全部带动画）
+## 5.104 运放输入级选型：源阻抗决定一切 <a id="demo104"></a>
+
+<p align="center"><img src="assets/svg/opamp-input-stage.svg" width="720" alt="运放输入级选型教学动画：BJT / CMOS / JFET 按源阻抗分工"></p>
+
+**看点**：三张卡片摊开 $I_b$、$e_n$、$i_n$，下面的横轴按**源阻抗**分段——低阻段比的是 $e_n$（BJT 赢 1.7 倍），高阻段比的是 $I_b\cdot R_s$（1MΩ 下 BJT 20mV vs CMOS 1µV，**差四个数量级**）。**别看"低噪声"三个字，先看源阻抗。** → 正文 [12.13 运放输入级的三种口味](p2-02-ch12.md#sec1213)
+
+## 5.105 晶体振荡器：Pierce 拓扑与负阻判据 <a id="demo105"></a>
+
+<p align="center"><img src="assets/svg/crystal-pierce.svg" width="720" alt="晶体振荡器教学动画：Pierce 拓扑 + 负载电容 + 负阻判据"></p>
+
+**看点**：左边把 Pierce 拓扑的四个元件各司其职画清楚（$R_f$ 偏置、晶体选频、$C_1/C_2$ 定 $C_L$）；右边给出唯一必须算的数 $C_L=C_1C_2/(C_1+C_2)+C_{stray}$，以及**起振判据 $R_{neg}\ge5\times ESR$**——32.768kHz 只要 **1.7 µA/V** 的跨导，这就是 RTC 能把功耗做到 µA 级的根因。→ 正文 [13.10 晶体振荡器](p2-03-ch13.md#sec1310)
+
+## 5.106 光耦与隔离：CTR 是设计变量 <a id="demo106"></a>
+
+<p align="center"><img src="assets/svg/optocoupler-ctr.svg" width="720" alt="光耦隔离教学动画：LED + 隔离栅 + 光敏三极管，CTR 的三个坑"></p>
+
+**看点**：橙色光粒子穿过 kV 级隔离栅——**信号能过、电流不能过**；右边列出 CTR 的三个坑（同型号分档 50%~600%、随温与时间衰减、小电流非线性），结论是**按档位最小值 × 2 倍老化余量**反算驱动电流（$R_{in}$ 从 1kΩ 改 470Ω）。→ 正文 [13.11 光耦与隔离](p2-03-ch13.md#sec1311)
+
+## 5.107 误差预算：最坏情况 vs 统计叠加 <a id="demo107"></a>
+
+<p align="center"><img src="assets/svg/error-budget.svg" width="720" alt="误差预算教学动画：WC ±2.7% 与 3σ ±1.35% 的对比"></p>
+
+**看点**：左侧把 Buck 反馈分压的四项误差逐条列成预算表，右侧把 WC 与 3σ 画成两条同心带——**3σ 大约只有 WC 的一半**；再用 $2\Phi(k)-1$ 折良率：规格 ±1% 时约 **97.5%**，每千块 25 块超规。→ 正文 [14.8 原型到量产 DFM/DFT](p3-01-ch14.md#sec148)
+
+## 5.108 探头地线环：量到的纹波可能是假的 <a id="demo108"></a>
+
+<p align="center"><img src="assets/svg/probe-ground-loop.svg" width="720" alt="探头地线环教学动画：长地线夹 vs 弹簧地针"></p>
+
+**看点**：左右对照——**长地线夹**在探头与远端地之间围出一个大环路，开关电源的磁场在里面感应出假的 200mV 纹波；换成**弹簧地针**，环路面积缩十倍以上，读数立刻干净。**排故时先怀疑测量，再怀疑电路。** → 正文 [14.8 原型到量产 DFM/DFT](p3-01-ch14.md#sec148)
+
+## 5.109 Falstad 内置示例地图（全部带动画）
 
 | 主题 | 菜单路径 |
 |---|---|
