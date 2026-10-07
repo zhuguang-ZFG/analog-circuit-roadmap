@@ -57,5 +57,5 @@ jobs:
         run: python -B -m unittest discover -s scripts -p test_waveform_timing.py -v
       - name: 版面几何（内容出界 / 字幕压字 / 注释框溢出 / 文字被裁 / 静态压字）
         run: python -B -m unittest discover -s scripts -p test_svg_layout.py -v
-      - name: 暗色可读性（prefers-color-scheme: dark 下文字对比度）
+      - name: 暗色可读性（prefers-color-scheme 为 dark 时文字对比度）
         run: python -B -m unittest discover -s scripts -p test_svg_dark.py -v
