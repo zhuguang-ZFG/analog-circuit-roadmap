@@ -40,6 +40,8 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install -r requirements.txt
+      - name: 站点源自洽性（画廊卡片/章节筛选/导航/SEO/共建页脚）
+        run: python -B -m unittest discover -s scripts -p test_site_build.py -v
       - run: python scripts/build_site.py --build
 
   waveform-timing:

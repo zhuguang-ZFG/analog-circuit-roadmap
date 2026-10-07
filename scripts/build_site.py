@@ -5,7 +5,7 @@
     python scripts/build_site.py --build    # 生成后直接调用 mkdocs build
 
 内容页原样拷贝，另生成：
-  * gallery.md —— 101 张动画卡片墙（按章筛选 + 关键字搜索，waytoagi 式卡片导航）
+  * gallery.md —— 102 张动画卡片墙（按章筛选 + 关键字搜索，waytoagi 式卡片导航）
   * stylesheets/gallery.css、javascripts/gallery.js、javascripts/mathjax.js
   * build/mkdocs.yml —— 按篇分组的导航与 Material 主题配置
 """
@@ -29,6 +29,20 @@ DEMO_IMG = re.compile(r'<img src="assets/svg/([\w\-]+\.svg)"[^>]*alt="([^"]*)"')
 # docs 迁移后锚点链接写作 p5-00-part5.md#demoN，拼回 README 时才是 #demoN——两种都要认
 DEMO_LINK = re.compile(r"\[(5\.\d+)\]\((?:[\w\-]+\.md)?#(demo\d+)\)")
 CHAPTER_ROW = re.compile(r"^\|\s*§(\d+)\s+(第\s*\d+\s*章[^|]*?)\s*\|")
+SVG_SIZE = re.compile(r'<svg[^>]*\bwidth="(\d+)"\s+height="(\d+)"')
+
+
+def svg_size(name):
+    """读出 SVG 的画布尺寸，给 <img> 写 width/height 预留空间（消除画廊的布局抖动）。"""
+    if not name:
+        return 800, 460
+    try:
+        head = (SVG_SRC / name).read_text(encoding="utf-8", errors="replace")[:600]
+    except OSError:
+        return 800, 460
+    m = SVG_SIZE.search(head)
+    return (int(m.group(1)), int(m.group(2))) if m else (800, 460)
+
 
 CHAPTER_LABEL = {
     "0": "§0 电路直觉", "1": "§1 无源元件", "2": "§2 二极管", "3": "§3 BJT",
@@ -49,6 +63,12 @@ GALLERY_CSS = """
   background:transparent;color:var(--md-default-fg-color);cursor:pointer;font-size:.75rem}
 .gal-chip[aria-pressed=true]{background:var(--md-primary-fg-color);color:var(--md-primary-bg-color);
   border-color:var(--md-primary-fg-color)}
+.gal-random{padding:.3rem .7rem;border-radius:999px;cursor:pointer;font-size:.75rem;font-weight:600;
+  border:1px dashed var(--md-primary-fg-color);background:transparent;color:var(--md-primary-fg-color)}
+.gal-random:hover{background:var(--md-primary-fg-color);color:var(--md-primary-bg-color)}
+.gal-hint{margin:-.6rem 0 1rem;font-size:.72rem;opacity:.72}
+.gal-hint kbd{border:1px solid var(--md-default-fg-color--lightest);border-radius:.25rem;
+  padding:0 .3rem;font-size:.7rem}
 .gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1rem}
 .gal-card{border:1px solid var(--md-default-fg-color--lightest);border-radius:.6rem;overflow:hidden;
   background:var(--md-code-bg-color);transition:transform .15s ease,box-shadow .15s ease;
@@ -72,8 +92,11 @@ GALLERY_CSS = """
 .gal-modal-bar{display:flex;gap:.6rem;align-items:center;justify-content:space-between;flex-wrap:wrap;
   margin-bottom:.5rem}
 .gal-modal-title{font-weight:700;font-size:.9rem}
-.gal-modal-close{padding:.25rem .6rem;border-radius:.4rem;cursor:pointer;font-size:.78rem;
+.gal-modal-tools{display:flex;gap:.4rem;align-items:center;flex-wrap:wrap}
+.gal-pos{font-size:.72rem;opacity:.75;min-width:4.2rem;text-align:center}
+.gal-nav,.gal-modal-close{padding:.25rem .6rem;border-radius:.4rem;cursor:pointer;font-size:.78rem;
   border:1px solid var(--md-default-fg-color--lightest);background:transparent;color:inherit}
+.gal-nav:hover{border-color:var(--md-primary-fg-color);color:var(--md-primary-fg-color)}
 .gal-modal-box img{display:block;width:100%;height:auto;background:#fff;border-radius:.35rem}
 .gal-modal-foot{margin-top:.5rem;font-size:.78rem}
 .gal-modal-foot a{font-weight:600}
@@ -83,75 +106,142 @@ GALLERY_JS = """
 (function () {
   function init() {
     var cards = Array.prototype.slice.call(document.querySelectorAll('.gal-card'));
+    if (!cards.length) { return; }
     var search = document.getElementById('gal-search');
     var chips = Array.prototype.slice.call(document.querySelectorAll('.gal-chip'));
     var empty = document.getElementById('gal-empty');
     var counter = document.getElementById('gal-count');
+    var randomBtn = document.getElementById('gal-random');
     var state = { ch: 'all', q: '' };
+    var visible = cards.slice();
 
+    /* ---------- 筛选状态可分享：?ch=12&q=米勒 ---------- */
+    function readUrl() {
+      var p;
+      try { p = new URLSearchParams(window.location.search); } catch (e) { return; }
+      if (p.get('ch')) { state.ch = p.get('ch'); }
+      if (p.get('q')) { state.q = p.get('q').toLowerCase(); }
+    }
+    function writeUrl() {
+      if (!window.history || !window.history.replaceState) { return; }
+      var p = new URLSearchParams();
+      if (state.ch && state.ch !== 'all') { p.set('ch', state.ch); }
+      if (state.q) { p.set('q', state.q); }
+      var qs = p.toString();
+      window.history.replaceState(null, '', window.location.pathname + (qs ? '?' + qs : ''));
+    }
+
+    function paintChips() {
+      chips.forEach(function (c) {
+        c.setAttribute('aria-pressed', String(c.dataset.ch === state.ch));
+      });
+    }
     function apply() {
-      var shown = 0;
+      visible = [];
       cards.forEach(function (c) {
         var okCh = (state.ch === 'all') || (c.dataset.ch === state.ch);
         var hay = ((c.dataset.title || '') + ' ' + (c.dataset.file || '')).toLowerCase();
         var okQ = !state.q || hay.indexOf(state.q) >= 0;
         var ok = okCh && okQ;
         c.style.display = ok ? '' : 'none';
-        if (ok) { shown++; }
+        if (ok) { visible.push(c); }
       });
-      if (empty) { empty.style.display = shown ? 'none' : ''; }
-      if (counter) { counter.textContent = shown + ' / ' + cards.length; }
+      if (empty) { empty.style.display = visible.length ? 'none' : ''; }
+      if (counter) { counter.textContent = visible.length + ' / ' + cards.length; }
+      paintChips();
     }
+
+    readUrl();
+    if (search) { search.value = state.q; }
+    apply();
 
     if (search) {
       search.addEventListener('input', function () {
         state.q = search.value.trim().toLowerCase();
-        apply();
+        apply(); writeUrl();
       });
     }
     chips.forEach(function (chip) {
       chip.addEventListener('click', function () {
-        chips.forEach(function (c) { c.setAttribute('aria-pressed', 'false'); });
-        chip.setAttribute('aria-pressed', 'true');
         state.ch = chip.dataset.ch;
-        apply();
+        apply(); writeUrl();
       });
     });
-    apply();
 
-    /* ---- 内嵌放大播放（lightbox）---- */
+    /* ---------- lightbox：放大播放 + 上一张/下一张 ---------- */
     var modal = document.getElementById('gal-modal');
+    if (!modal) { return; }
     var mImg = document.getElementById('gal-modal-img');
     var mTitle = document.getElementById('gal-modal-title');
     var mLink = document.getElementById('gal-modal-link');
     var mClose = document.getElementById('gal-modal-close');
-    if (!modal) { return; }
+    var mPrev = document.getElementById('gal-modal-prev');
+    var mNext = document.getElementById('gal-modal-next');
+    var mPos = document.getElementById('gal-modal-pos');
+    var current = -1;
 
-    function openModal(svg, title, href) {
-      mImg.setAttribute('src', svg);
-      mImg.setAttribute('alt', title);
-      mTitle.textContent = title;
-      if (mLink) { mLink.setAttribute('href', href); }
+    function show(card) {
+      var btn = card.querySelector('.gal-play');
+      if (!btn) { return; }
+      mImg.setAttribute('src', btn.dataset.svg);
+      mImg.setAttribute('alt', btn.dataset.title);
+      mTitle.textContent = btn.dataset.title;
+      if (mLink) { mLink.setAttribute('href', btn.dataset.href); }
+      /* current 是"当前可见列表"里的下标；被筛掉的卡片开出来时没有位置信息 */
+      current = visible.indexOf(card);
+      var many = current >= 0 && visible.length > 1;
+      if (mPos) { mPos.textContent = current >= 0 ? (current + 1) + ' / ' + visible.length : ''; }
+      if (mPrev) { mPrev.style.visibility = many ? '' : 'hidden'; }
+      if (mNext) { mNext.style.visibility = many ? '' : 'hidden'; }
+    }
+    function isOpen() { return modal.classList.contains('is-open'); }
+    function openModal(card) {
+      show(card);
       modal.classList.add('is-open');
       if (mClose) { mClose.focus(); }
     }
     function closeModal() {
+      if (!isOpen()) { return; }
       modal.classList.remove('is-open');
       mImg.setAttribute('src', '');
+      current = -1;
     }
+    function step(delta) {
+      if (!isOpen() || !visible.length) { return; }
+      var base = current < 0 ? (delta > 0 ? -1 : 0) : current;
+      show(visible[(base + delta + visible.length) % visible.length]);
+    }
+
     document.addEventListener('click', function (e) {
       var t = e.target;
-      var btn = t && t.closest ? t.closest('.gal-play') : null;
-      if (btn) {
-        e.preventDefault();
-        openModal(btn.dataset.svg, btn.dataset.title, btn.dataset.href);
+      var closest = (t && t.closest) ? function (sel) { return t.closest(sel); } : function () { return null; };
+      var play = closest('.gal-play');
+      if (play) { e.preventDefault(); openModal(play.closest('.gal-card')); return; }
+      if (closest('#gal-modal-prev')) { step(-1); return; }
+      if (closest('#gal-modal-next')) { step(1); return; }
+      if (t === modal || closest('#gal-modal-close')) { closeModal(); }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') { closeModal(); return; }
+      if (!isOpen()) {
+        if (e.key === '/' && search && document.activeElement !== search) {
+          e.preventDefault(); search.focus();
+        }
         return;
       }
-      if (t === modal || (mClose && t === mClose)) { closeModal(); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); step(-1); }
+      else if (e.key === 'ArrowRight') { e.preventDefault(); step(1); }
     });
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') { closeModal(); }
-    });
+
+    if (randomBtn) {
+      randomBtn.addEventListener('click', function () {
+        if (!visible.length) { return; }
+        var pick = visible[Math.floor(Math.random() * visible.length)];
+        if (pick.scrollIntoView) { pick.scrollIntoView({ block: 'center' }); }
+        openModal(pick);
+      });
+    }
   }
 
   if (document.readyState !== 'loading') { init(); }
@@ -328,6 +418,7 @@ def parse_demos():
         items.append(cur)
     for it in items:
         it["ch"] = chapter_of.get(it["anchor"], "")
+        it["w"], it["h"] = svg_size(it.get("svg", ""))
     return items, chapter_of
 
 
@@ -350,7 +441,8 @@ def render_gallery(items):
         cards.append(
             '<div class="gal-card" data-ch="%s" data-title="%s" data-file="%s">\n'
             '  <a href="%s" title="%s">\n'
-            '    <img src="assets/svg/%s" alt="%s" loading="lazy">\n'
+            '    <img src="assets/svg/%s" alt="%s" width="%d" height="%d" '
+            'loading="lazy" decoding="async">\n'
             '    <div class="gal-meta">\n'
             '      <div class="gal-title">%s %s</div>\n'
             '      <div class="gal-tag">%s</div>\n'
@@ -362,7 +454,7 @@ def render_gallery(items):
             '  </div>\n'
             '</div>'
             % (it["ch"], title.lower(), it["svg"], href, title,
-               it["svg"], it["alt"], it["num"], it["title"],
+               it["svg"], it["alt"], it["w"], it["h"], it["num"], it["title"],
                CHAPTER_LABEL.get(it["ch"], "动画"),
                it["svg"], it["num"], title, href)
         )
@@ -377,8 +469,13 @@ def render_gallery(items):
         '<div class="gal-bar">',
         '  <input id="gal-search" type="search" placeholder="搜索：米勒 / LDO / 迟滞 / mosfet …">',
         "  " + "\n  ".join(chips),
+        '  <button class="gal-random" id="gal-random" type="button">🎲 随机一张</button>',
         '  <span class="gal-tag" id="gal-count"></span>',
         "</div>",
+        "",
+        '<p class="gal-hint">键盘：<kbd>/</kbd> 聚焦搜索 · 弹窗里 <kbd>←</kbd> <kbd>→</kbd> 翻页 · '
+        '<kbd>Esc</kbd> 关闭。筛选状态会写进地址栏（如 '
+        '<code>gallery.html?ch=12&q=米勒</code>），可以直接分享。</p>',
         "",
         '<div class="gal-grid">',
         "\n".join(cards),
@@ -391,7 +488,12 @@ def render_gallery(items):
         '  <div class="gal-modal-box">',
         '    <div class="gal-modal-bar">',
         '      <span class="gal-modal-title" id="gal-modal-title"></span>',
-        '      <button class="gal-modal-close" id="gal-modal-close" type="button">✕ 关闭（Esc）</button>',
+        '      <span class="gal-modal-tools">',
+        '        <span class="gal-pos" id="gal-modal-pos"></span>',
+        '        <button class="gal-nav" id="gal-modal-prev" type="button">← 上一张</button>',
+        '        <button class="gal-nav" id="gal-modal-next" type="button">下一张 →</button>',
+        '        <button class="gal-modal-close" id="gal-modal-close" type="button">✕ 关闭（Esc）</button>',
+        "      </span>",
         "    </div>",
         '    <img id="gal-modal-img" alt="">',
         '    <div class="gal-modal-foot">'
