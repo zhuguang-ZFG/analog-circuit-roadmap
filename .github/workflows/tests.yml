@@ -2,7 +2,9 @@ name: tests
 
 on:
   push:
+    branches-ignore: [main]
   pull_request:
+  workflow_call:
 
 permissions:
   contents: read
@@ -32,6 +34,18 @@ jobs:
       - run: python -B -m unittest discover -s scripts -p test_docs_links.py -v
       - run: python -B -m unittest discover -s scripts -p test_split_readme.py -v
 
+  lab-simulations:
+    name: 实验包 SPICE 仿真与可重建性
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ngspice
+        run: sudo apt-get update && sudo apt-get install -y ngspice
+      - run: python -B -m unittest discover -s scripts -p test_lab_packages.py -v
+
   site-build:
     name: 站点可构建性
     runs-on: ubuntu-latest
@@ -41,6 +55,7 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install -r requirements.txt
+      - run: python -B -m unittest discover -s scripts -p test_release_gate.py -v
       - name: 站点源自洽性（画廊卡片/章节筛选/导航/SEO/共建页脚）
         run: python -B -m unittest discover -s scripts -p test_site_build.py -v
       - run: python scripts/build_site.py --build

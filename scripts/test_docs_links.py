@@ -68,6 +68,16 @@ class DocsLinks(unittest.TestCase):
                 self.assertNotIn(anchor, seen, f'Duplicate anchor #{anchor}')
                 seen.add(anchor)
 
+    def test_numbered_section_links_point_to_the_same_chapter(self):
+        pattern = re.compile(r'\[([^\]]+)\]\((p\d+-\d+-ch(\d+)\.md)#[^)]+\)')
+        for page in self.pages:
+            if page.name == 'p9-12-changelog.md':
+                continue
+            for match in pattern.finditer(page.read_text(encoding='utf-8')):
+                number = re.match(r'^§?(\d+)\.\d+(?:\D|$)', match[1])
+                if number:
+                    self.assertEqual(int(number[1]), int(match[3]), f'{page.name}: {match[1]} -> {match[2]}')
+
     def test_every_chapter_has_a_quiz_and_a_return_link(self):
         quiz = (DOCS / 'p9-00-quiz.md').read_text(encoding='utf-8')
         for page in self.pages:

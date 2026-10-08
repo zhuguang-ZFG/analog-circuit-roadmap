@@ -7,16 +7,26 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
   group: pages
   cancel-in-progress: false
 
 jobs:
+  tests:
+    if: github.ref == 'refs/heads/main'
+    uses: ./.github/workflows/tests.yml
+
+  links:
+    if: github.ref == 'refs/heads/main'
+    uses: ./.github/workflows/links.yml
+
   build:
+    needs: [tests, links]
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: read
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -33,6 +43,10 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

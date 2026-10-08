@@ -341,6 +341,20 @@ class SiteBuildTests(unittest.TestCase):
             self.assertEqual((self.work / 'scripts/site_media' / filename).read_bytes(),
                              (self.out / directory / filename).read_bytes())
 
+    def test_learning_catalog_covers_all_chapters_and_question_anchors(self):
+        data = (self.out / 'javascripts/learning-catalog.js').read_text(encoding='utf-8')
+        catalog = json.loads(data.split(' = ', 1)[1].rstrip(';\n'))
+        self.assertEqual(19, len(catalog['chapters']))
+        self.assertEqual(92, len(catalog['questions']))
+        quiz = (self.out / 'p9-00-quiz.md').read_text(encoding='utf-8')
+        ids = [question['id'] for question in catalog['questions']]
+        self.assertEqual(len(ids), len(set(ids)))
+        for question in catalog['questions']:
+            self.assertIn(f'id="{question["id"]}"', quiz)
+            self.assertEqual('p9-00-quiz.html#' + question['id'], question['href'])
+        self.assertEqual((self.work / 'scripts/site_media/progress.js').read_bytes(),
+                         (self.out / 'javascripts/progress.js').read_bytes())
+
     # ---------- 共建页脚 ----------
     def test_feedback_footer_on_every_page(self):
         for page in sorted(self.out.glob("*.md")):

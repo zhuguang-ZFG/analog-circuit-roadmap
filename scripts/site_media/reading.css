@@ -42,6 +42,20 @@
 .md-typeset .legacy-anchor { display: none; }
 .md-typeset .legacy-anchor:target { display: block; padding: 1rem; margin: 1rem 0; border: 2px solid var(--md-primary-fg-color); }
 .md-typeset a[id] { scroll-margin-top: 5rem; }
+.md-typeset .learning-dashboard { padding: 1rem; border: 1px solid var(--md-default-fg-color--lightest); border-radius: .5rem; margin: 1rem 0 2rem; }
+.md-typeset .learning-dashboard h2 { margin-top: 0; font-size: 1rem; }
+.md-typeset .learning-dashboard progress { display: block; width: 100%; height: .6rem; margin-bottom: 1rem; accent-color: var(--md-primary-fg-color); }
+.md-typeset .learning-resume { display: inline-flex; align-items: center; min-height: 44px; font-weight: 700; }
+.md-typeset .learning-storage-note { color: var(--md-default-fg-color--light); font-size: .7rem; }
+.md-typeset .chapter-done-button,
+.md-typeset .question-bookmark { min-height: 44px; padding: .5rem .8rem; border: 1px solid var(--md-default-fg-color--lightest); border-radius: .3rem; cursor: pointer; color: var(--md-typeset-a-color); background: var(--md-code-bg-color); }
+.md-typeset .chapter-done-button { margin-top: .8rem; }
+.md-typeset .question-tools { margin: .4rem 0 1rem; }
+.md-typeset .question-bookmark { font-size: .7rem; }
+.md-typeset .chapter-done-button[aria-pressed=true],
+.md-typeset .question-bookmark[aria-pressed=true] { border-color: var(--md-primary-fg-color); font-weight: 700; }
+.md-typeset .chapter-done-button:focus-visible,
+.md-typeset .question-bookmark:focus-visible { outline: 3px solid var(--md-accent-fg-color); outline-offset: 3px; }
 @media (max-width: 760px) {
   .md-typeset .learning-hero { padding: 1rem; }
   .md-typeset .learning-paths,

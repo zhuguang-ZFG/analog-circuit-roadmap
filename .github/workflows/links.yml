@@ -2,7 +2,9 @@ name: links
 
 on:
   push:
+    branches-ignore: [main]
   pull_request:
+  workflow_call:
   schedule:
     - cron: '17 3 * * 1'   # 每周一例行巡检，防链接腐烂
 

@@ -181,6 +181,74 @@ class ReadingJourneyTests(unittest.TestCase):
         search.press('End')
         expect(self.page.locator('.md-search-result__meta')).to_contain_text('没有找到')
 
+    def test_chapter_completion_and_resume_survive_reload_and_can_be_undone(self):
+        self.page.goto(self.base + 'p1-02-ch1.html#rc-study')
+        complete = self.page.locator('.chapter-done-button')
+        expect(complete).to_have_attribute('aria-pressed', 'false')
+        complete.click()
+        expect(complete).to_have_attribute('aria-pressed', 'true')
+        self.page.reload()
+        expect(self.page.locator('.chapter-done-button')).to_have_attribute('aria-pressed', 'true')
+        self.page.goto(self.base)
+        expect(self.page.locator('.learning-dashboard')).to_contain_text('已完成 1 / 19 章')
+        resume = self.page.locator('.learning-resume')
+        expect(resume).to_contain_text('第 1 章')
+        resume.click()
+        self.assertIn('p1-02-ch1.html', self.page.url)
+        expect(self.page.locator('.chapter-done-button')).to_have_count(1)
+        self.page.locator('.chapter-done-button').click()
+        expect(self.page.locator('.chapter-done-button')).to_have_attribute('aria-pressed', 'false')
+
+    def test_question_bookmarks_are_independent_stable_and_survive_navigation(self):
+        self.page.goto(self.base + 'p9-00-quiz.html#q-ch0-01')
+        expect(self.page.locator('.question-bookmark')).to_have_count(92)
+        first = self.page.locator('.question-bookmark[data-question="q-ch0-01"]')
+        extra = self.page.locator('.question-bookmark[data-question="q-extra-26"]')
+        first.click()
+        extra.click()
+        self.page.reload()
+        expect(first).to_have_attribute('aria-pressed', 'true')
+        expect(extra).to_have_attribute('aria-pressed', 'true')
+        self.page.goto(self.base)
+        self.page.locator('.learning-dashboard summary').click()
+        expect(self.page.locator('.learning-dashboard details a')).to_have_count(2)
+        self.page.locator('.learning-dashboard a[href$="#q-ch0-01"]').click()
+        expect(self.page).to_have_url(self.base + 'p9-00-quiz.html#q-ch0-01')
+        self.page.locator('.question-bookmark[data-question="q-ch0-01"]').click()
+        expect(self.page.locator('.question-bookmark[data-question="q-extra-26"]')).to_have_attribute('aria-pressed', 'true')
+
+    def test_corrupt_or_unavailable_storage_does_not_break_reading(self):
+        self.page.add_init_script("localStorage.setItem('analog-learning:v1:/site/', '{broken');")
+        self.page.goto(self.base + 'p1-01-ch0.html#ch0')
+        expect(self.page.locator('.chapter-done-button')).to_have_attribute('aria-pressed', 'false')
+        self.page.locator('.chapter-done-button').click()
+        expect(self.page.locator('.chapter-done-button')).to_have_attribute('aria-pressed', 'true')
+        context = self.browser.new_context()
+        self.addCleanup(context.close)
+        context.route('**/*', lambda route: route.continue_() if route.request.url.startswith(self.base) else route.abort())
+        context.add_init_script("""for (const method of ['getItem', 'setItem']) {
+          const original = Storage.prototype[method];
+          Storage.prototype[method] = function(key, ...args) {
+            if (key.startsWith('analog-learning:')) throw new DOMException('Blocked', 'SecurityError');
+            return original.call(this, key, ...args);
+          };
+        }""")
+        page = context.new_page()
+        page.on('pageerror', lambda error: self.errors.append(str(error)))
+        page.goto(self.base + 'p1-01-ch0.html#ch0')
+        page.locator('.chapter-done-button').click()
+        expect(page.locator('.chapter-done-button')).to_have_attribute('aria-pressed', 'true')
+        expect(page.locator('.learning-storage-note')).to_contain_text('仅临时保留')
+
+    def test_downloadable_labs_are_served_under_the_project_subpath(self):
+        self.page.goto(self.base + 'p8-03-s8-3.html#lab-rc')
+        for lab in ('rc', 'mosfet', 'lm358'):
+            link = self.page.locator(f'.md-content a[href$="assets/labs/{lab}-lab.zip"]')
+            expect(link).to_have_count(1)
+            response = self.context.request.get(link.evaluate('el => el.href'))
+            self.assertEqual(200, response.status)
+            self.assertTrue(response.body().startswith(b'PK'))
+
 
 if __name__ == '__main__':
     unittest.main()

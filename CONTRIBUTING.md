@@ -45,9 +45,18 @@
 然后跑一次 `build_readme.py`；导航与动画卡片由脚本自动生成，无需手工维护索引。
 初次切分可复用 `python scripts/split_readme.py`（会把 README 拆成 docs 并改写锚点链接）。
 
+实验说明的唯一来源是 `docs/p8-03-s8-3.md` 中的 `labs:common` 和 `lab:<id>` 注释区间。
+`assets/labs/<id>/` 保存源电路、BOM、教学参考值和空白测量表。修改后运行
+`python scripts/build_lab_packages.py` 重建三个 ZIP；ZIP 使用固定元数据和无压缩存储，可跨平台逐字节验证。
+`python -B -m unittest discover -s scripts -p test_lab_packages.py -v` 会执行真实 ngspice 并比较参考采样点；
+先安装 ngspice，或将 `NGSPICE` 环境变量指向其控制台可执行文件。不要用实测表伪装参考值，不要把教学模型标成厂商模型。
+
+发布由 `pages.yml` 编排：同一提交的可复用 `tests.yml` 和 `links.yml` 都成功后，才能构建和部署。
+main 推送只运行这条带门禁的发布流程；其他分支、PR 和每周链接巡检保留各自入口。
+
 ## 本地检查
 
-在仓库根目录运行（四项检查与 CI 完全一致）：
+在仓库根目录运行以下基础检查（完整检查由 CI 的各作业执行）：
 
 ```bash
 python -B -m unittest discover -s scripts -p 'test_docs_sync.py'    # docs → README 可 1:1 重建
@@ -65,6 +74,10 @@ python -B -m unittest discover -s scripts -p 'test_svg_assets.py'   # SVG 与生
 ## 站点体验（`build_site.py` 生成，改这里就改全站）
 
 首页内容在 `docs/index.md`；路线卡片、章末学习导航和旧链接提示的样式在 `scripts/site_media/reading.css`。
+
+`progress.js` 管理本地阅读位置、手动完成状态和错题收藏，使用按站点路径隔离的 `analog-learning:v1:` 存储键。
+题目 ID（`q-chN-NN` / `q-extra-NN`）写在源文档中，重排题目时必须保留；新增题目分配新 ID，不能按当前题号批量重编号。
+标题与跳转目标由 `learning-catalog.js` 从文档生成，禁止信任存储中的标题或 URL。存储失败、JSON 损坏和禁用 JS 时阅读仍须可用。
 19 章的「上一章 → 本章自测 → 下一章」由章节文件自动生成；题库的 `#quiz-chN` 与返回复习链接在 `docs/p9-00-quiz.md` 维护。
 `reading.js` 只负责旧锚点跳转，禁用 JavaScript 时仍有可点击的兼容入口。构建器显式生成页面标题，避免页首 HTML 锚点让标题退化成文件名。
 

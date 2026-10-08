@@ -645,6 +645,8 @@ extra_javascript:
   - javascripts/gallery.js
   - javascripts/learning.js
   - javascripts/reading.js
+  - javascripts/learning-catalog.js
+  - javascripts/progress.js
 
 markdown_extensions:
   - abbr
@@ -890,6 +892,17 @@ def legacy_anchor_links(page_name, redirects):
     return '\n'.join(links)
 
 
+def learning_catalog(chapters):
+    questions = []
+    pattern = re.compile(r'^\d+\. <a id="(q-[\w-]+)" data-quiz-question="true"></a>(.+)$', re.M)
+    for match in pattern.finditer((DOCS / 'p9-00-quiz.md').read_text(encoding='utf-8')):
+        questions.append({'id': match[1], 'title': _plain(match[2])[:100],
+                          'href': 'p9-00-quiz.html#' + match[1]})
+    return {'chapters': [{'id': f'ch{number}', 'title': title,
+                          'href': name.replace('.md', '.html')}
+                         for number, name, title in chapters], 'questions': questions}
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--build", action="store_true", help="生成后直接运行 mkdocs build")
@@ -941,6 +954,10 @@ def main():
     shutil.copyfile(media / "learning.css", OUT / "stylesheets" / "learning.css")
     shutil.copyfile(media / "reading.js", OUT / "javascripts" / "reading.js")
     shutil.copyfile(media / "reading.css", OUT / "stylesheets" / "reading.css")
+    shutil.copyfile(media / "progress.js", OUT / "javascripts" / "progress.js")
+    catalog = json.dumps(learning_catalog(chapters), ensure_ascii=False).replace('<', '\\u003c')
+    (OUT / 'javascripts/learning-catalog.js').write_text(
+        'window.ANALOG_LEARNING_CATALOG = ' + catalog + ';\n', encoding='utf-8', newline='\n')
 
     # SEO：robots.txt（sitemap.xml 由 MkDocs 依据 site_url 自动生成）
     (OUT / "robots.txt").write_text(ROBOTS_TXT, encoding="utf-8", newline="\n")
