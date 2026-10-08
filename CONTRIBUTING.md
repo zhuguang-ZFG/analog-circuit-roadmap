@@ -76,6 +76,9 @@ python -B -m unittest discover -s scripts -p 'test_svg_assets.py'   # SVG 与生
 首页内容在 `docs/index.md`；路线卡片、章末学习导航和旧链接提示的样式在 `scripts/site_media/reading.css`。
 
 `progress.js` 管理本地阅读位置、手动完成状态和错题收藏，使用按站点路径隔离的 `analog-learning:v1:` 存储键。
+旧版整份记录仍作为读取基线；新增完成状态和错题按 `completed:<章 ID>` / `bookmarks:<题 ID>` 后缀分别同步写入，阅读位置使用 `last` 后缀，均追加在原存储键后。
+各条目独立保存，避免两个标签页写回旧快照互相覆盖，也避免异步保存被立即刷新取消。撤销写入 `false`，不能删除覆盖键，否则旧版基线中的记录会复活。
+保存失败的条目留在本页内存，下次操作重试；首页、章末与题库提示存储状态。首页章节进度列表和错题列表更新时保留展开状态与键盘焦点。
 题目 ID（`q-chN-NN` / `q-extra-NN`）写在源文档中，重排题目时必须保留；新增题目分配新 ID，不能按当前题号批量重编号。
 标题与跳转目标由 `learning-catalog.js` 从文档生成，禁止信任存储中的标题或 URL。存储失败、JSON 损坏和禁用 JS 时阅读仍须可用。
 19 章的「上一章 → 本章自测 → 下一章」由章节文件自动生成；题库的 `#quiz-chN` 与返回复习链接在 `docs/p9-00-quiz.md` 维护。

@@ -46,6 +46,15 @@
 .md-typeset .learning-dashboard h2 { margin-top: 0; font-size: 1rem; }
 .md-typeset .learning-dashboard progress { display: block; width: 100%; height: .6rem; margin-bottom: 1rem; accent-color: var(--md-primary-fg-color); }
 .md-typeset .learning-resume { display: inline-flex; align-items: center; min-height: 44px; font-weight: 700; }
+.md-typeset .learning-dashboard [hidden] { display: none; }
+.md-typeset .learning-dashboard details summary { min-height: 44px; }
+.md-typeset .learning-chapters ul { list-style: none; margin-left: 0; }
+.md-typeset .learning-chapters li { display: flex; align-items: center; gap: .75rem; margin-left: 0; }
+.md-typeset .learning-chapters a { flex: 1; min-width: 0; min-height: 44px; display: flex; align-items: center; overflow-wrap: anywhere; }
+.md-typeset .learning-chapter-status { flex-shrink: 0; font-size: .7rem; color: var(--md-default-fg-color--light); }
+.md-typeset .learning-chapter-status[data-done=true] { font-weight: 700; color: var(--md-typeset-a-color); }
+.md-typeset .learning-dashboard a:focus-visible,
+.md-typeset .learning-dashboard summary:focus-visible { outline: 3px solid var(--md-accent-fg-color); outline-offset: 3px; }
 .md-typeset .learning-storage-note { color: var(--md-default-fg-color--light); font-size: .7rem; }
 .md-typeset .chapter-done-button,
 .md-typeset .question-bookmark { min-height: 44px; padding: .5rem .8rem; border: 1px solid var(--md-default-fg-color--lightest); border-radius: .3rem; cursor: pointer; color: var(--md-typeset-a-color); background: var(--md-code-bg-color); }

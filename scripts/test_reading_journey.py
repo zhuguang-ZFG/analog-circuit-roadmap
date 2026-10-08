@@ -157,6 +157,12 @@ class ReadingJourneyTests(unittest.TestCase):
                             self.assertGreaterEqual(link.bounding_box()['height'], 44)
                         links.first.focus()
                         expect(links.first).to_be_focused()
+                        if not path:
+                            page.locator('.learning-chapters summary').click()
+                            expect(page.locator('.learning-chapters a')).to_have_count(19)
+                            self.assertFalse(page.evaluate('document.documentElement.scrollWidth > innerWidth'))
+                            for chapter in page.locator('.learning-chapters a').all():
+                                self.assertGreaterEqual(chapter.bounding_box()['height'], 44)
 
     def test_real_search_returns_relevant_chinese_and_model_number_results(self):
         self.page.goto(self.base)
@@ -191,6 +197,9 @@ class ReadingJourneyTests(unittest.TestCase):
         expect(self.page.locator('.chapter-done-button')).to_have_attribute('aria-pressed', 'true')
         self.page.goto(self.base)
         expect(self.page.locator('.learning-dashboard')).to_contain_text('已完成 1 / 19 章')
+        self.page.locator('.learning-chapters summary').click()
+        expect(self.page.locator('.learning-chapter-status[data-chapter="ch1"]')).to_have_text('已完成')
+        expect(self.page.locator('.learning-chapter-status[data-done="false"]')).to_have_count(18)
         resume = self.page.locator('.learning-resume')
         expect(resume).to_contain_text('第 1 章')
         resume.click()
@@ -210,8 +219,8 @@ class ReadingJourneyTests(unittest.TestCase):
         expect(first).to_have_attribute('aria-pressed', 'true')
         expect(extra).to_have_attribute('aria-pressed', 'true')
         self.page.goto(self.base)
-        self.page.locator('.learning-dashboard summary').click()
-        expect(self.page.locator('.learning-dashboard details a')).to_have_count(2)
+        self.page.locator('.learning-bookmarks summary').click()
+        expect(self.page.locator('.learning-bookmarks a')).to_have_count(2)
         self.page.locator('.learning-dashboard a[href$="#q-ch0-01"]').click()
         expect(self.page).to_have_url(self.base + 'p9-00-quiz.html#q-ch0-01')
         self.page.locator('.question-bookmark[data-question="q-ch0-01"]').click()
@@ -239,6 +248,125 @@ class ReadingJourneyTests(unittest.TestCase):
         page.locator('.chapter-done-button').click()
         expect(page.locator('.chapter-done-button')).to_have_attribute('aria-pressed', 'true')
         expect(page.locator('.learning-storage-note')).to_contain_text('仅临时保留')
+
+    def test_tabs_save_independent_actions_before_storage_events_arrive(self):
+        self.page.goto(self.base + 'p1-01-ch0.html#ch0')
+        with self.page.expect_popup() as opened:
+            self.page.evaluate("url => { window.studyTab = window.open(url); }",
+                               self.base + 'p9-00-quiz.html#q-ch0-01')
+        other = opened.value
+        other.on('pageerror', lambda error: self.errors.append(str(error)))
+        expect(other.locator('.question-bookmark')).to_have_count(92)
+        # Both clicks happen in one task, before either page can process the
+        # asynchronous storage event from the other page's write.
+        self.page.evaluate("""() => {
+          studyTab.document.querySelector('[data-question="q-ch0-01"]').click();
+          document.querySelector('.chapter-done-button').click();
+        }""")
+        expect(self.page.locator('.chapter-done-button')).to_have_attribute('aria-pressed', 'true')
+        expect(other.locator('[data-question="q-ch0-01"]')).to_have_attribute('aria-pressed', 'true')
+        # Removing independent records must not resurrect the other tab's
+        # removal while its storage event is still queued.
+        self.page.evaluate("""() => {
+          studyTab.document.querySelector('[data-question="q-ch0-01"]').click();
+          document.querySelector('.chapter-done-button').click();
+        }""")
+        expect(self.page.locator('.chapter-done-button')).to_have_attribute('aria-pressed', 'false')
+        expect(other.locator('[data-question="q-ch0-01"]')).to_have_attribute('aria-pressed', 'false')
+        self.page.reload()
+        other.reload()
+        expect(self.page.locator('.chapter-done-button')).to_have_attribute('aria-pressed', 'false')
+        expect(other.locator('[data-question="q-ch0-01"]')).to_have_attribute('aria-pressed', 'false')
+
+    def test_two_tabs_marking_the_same_chapter_do_not_undo_each_other(self):
+        self.page.goto(self.base + 'p1-01-ch0.html#ch0')
+        with self.page.expect_popup() as opened:
+            self.page.evaluate("url => { window.studyTab = window.open(url); }", self.page.url)
+        other = opened.value
+        other.on('pageerror', lambda error: self.errors.append(str(error)))
+        expect(other.locator('.chapter-done-button')).to_have_attribute('aria-pressed', 'false')
+        self.page.evaluate("""() => {
+          studyTab.document.querySelector('.chapter-done-button').click();
+          document.querySelector('.chapter-done-button').click();
+        }""")
+        for page in (self.page, other):
+            expect(page.locator('.chapter-done-button')).to_have_attribute('aria-pressed', 'true')
+            page.reload()
+            expect(page.locator('.chapter-done-button')).to_have_attribute('aria-pressed', 'true')
+
+    def test_dashboard_keeps_expanded_sections_and_keyboard_focus_on_tab_updates(self):
+        self.page.goto(self.base)
+        expect(self.page.locator('.learning-resume')).to_be_hidden()
+        other = self.context.new_page()
+        other.on('pageerror', lambda error: self.errors.append(str(error)))
+        other.goto(self.base + 'p1-01-ch0.html#ch0')
+        expect(other.locator('.chapter-done-button')).to_be_visible()
+        chapter_summary = self.page.locator('.learning-chapters summary')
+        chapter_summary.click()
+        self.page.locator('.learning-bookmarks summary').click()
+        chapter_link = self.page.locator('.learning-chapters a').first
+        chapter_link.focus()
+        other.locator('.chapter-done-button').click()
+        expect(self.page.locator('.learning-chapter-status[data-chapter="ch0"]')).to_have_text('已完成')
+        expect(chapter_link).to_be_focused()
+        for selector in ('.learning-chapters', '.learning-bookmarks'):
+            expect(self.page.locator(selector)).to_have_attribute('open', '')
+        chapter_link.click()
+        expect(self.page).to_have_url(self.base + 'p1-01-ch0.html#ch0')
+        self.page.locator('.chapter-done-button').click()
+        self.page.goto(self.base)
+        expect(self.page.locator('.learning-chapter-status[data-chapter="ch0"]')).to_have_text('未完成')
+
+    def test_write_only_storage_failure_keeps_multiple_temporary_bookmarks(self):
+        self.page.add_init_script("""window.failLearningWrites = true;
+          const original = Storage.prototype.setItem;
+          Storage.prototype.setItem = function(key, value) {
+            if (window.failLearningWrites && key.startsWith('analog-learning:'))
+              throw new DOMException('Full', 'QuotaExceededError');
+            return original.call(this, key, value);
+          };""")
+        self.page.goto(self.base + 'p9-00-quiz.html#q-ch0-01')
+        first = self.page.locator('[data-question="q-ch0-01"]')
+        extra = self.page.locator('[data-question="q-extra-26"]')
+        first.click()
+        expect(first).to_have_attribute('aria-pressed', 'true')
+        extra.click()
+        expect(extra).to_have_attribute('aria-pressed', 'true')
+        expect(first).to_have_attribute('aria-pressed', 'true')
+        first.click()
+        expect(first).to_have_attribute('aria-pressed', 'false')
+        expect(extra).to_have_attribute('aria-pressed', 'true')
+        expect(self.page.locator('.quiz-storage-note')).to_contain_text('仅临时保留')
+        self.page.evaluate('window.failLearningWrites = false')
+        first.click()
+        expect(self.page.locator('.quiz-storage-note')).not_to_contain_text('仅临时保留')
+        self.page.reload()
+        expect(first).to_have_attribute('aria-pressed', 'true')
+        expect(extra).to_have_attribute('aria-pressed', 'true')
+
+    def test_legacy_records_survive_upgrade_and_removals_survive_reload(self):
+        self.page.goto(self.base)
+        self.page.evaluate("""() => localStorage.setItem('analog-learning:v1:/site/', JSON.stringify({
+          version: 1, completed: ['ch0', 'ch0', 'unknown'], bookmarks: ['q-ch0-01'],
+          last: {chapter: 'ch0', anchor: 'ch0'}
+        }))""")
+        self.page.reload()
+        expect(self.page.locator('.learning-count')).to_have_text('已完成 1 / 19 章')
+        expect(self.page.locator('.learning-bookmarks summary')).to_have_text('错题收藏（1）')
+        self.page.locator('.learning-resume').click()
+        self.page.locator('.chapter-done-button').click()
+        self.page.reload()
+        expect(self.page.locator('.chapter-done-button')).to_have_attribute('aria-pressed', 'false')
+        self.page.goto(self.base + 'p9-00-quiz.html#q-ch0-01')
+        mark = self.page.locator('[data-question="q-ch0-01"]')
+        expect(mark).to_have_attribute('aria-pressed', 'true')
+        mark.click()
+        self.page.reload()
+        expect(mark).to_have_attribute('aria-pressed', 'false')
+        self.page.goto(self.base)
+        expect(self.page.locator('.learning-count')).to_have_text('已完成 0 / 19 章')
+        expect(self.page.locator('.learning-bookmarks summary')).to_have_text('错题收藏（0）')
+
 
     def test_downloadable_labs_are_served_under_the_project_subpath(self):
         self.page.goto(self.base + 'p8-03-s8-3.html#lab-rc')
