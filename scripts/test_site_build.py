@@ -35,6 +35,13 @@ CARD = re.compile(
     r'data-title="([^"]*)" data-href="([^"]*)"[^>]*>')
 CHIP = re.compile(r'<button class="gal-chip" data-ch="([^"]*)" aria-pressed="[^"]*">([^<]*)</button>')
 
+# 篇级落地页 → 子页文件名前缀：落地页必须把本篇每个子页都链接一遍
+PART_LANDING_PREFIX = {
+    "p1-00-part1.md": "p1-", "p2-00-part2.md": "p2-", "p3-00-part3.md": "p3-",
+    "p4-00-part4.md": "p4-", "p6-00-part6.md": "p6-", "p7-00-part7.md": "p7-",
+    "p8-00-part8.md": "p8-",
+}
+
 
 class SiteBuildTests(unittest.TestCase):
     @classmethod
@@ -375,6 +382,28 @@ class SiteBuildTests(unittest.TestCase):
                          chapter_q, 'hero 章节题数与 q-ch* 题目不符')
         self.assertEqual(sum(1 for q in catalog['questions'] if re.fullmatch(r'q-extra-\d+', q['id'])),
                          extra_q, 'hero 专题题数与 q-extra-* 题目不符')
+
+
+    # ---------- 篇级落地页与章级验收 ----------
+    def test_part_landing_pages_link_all_children(self):
+        """篇级落地页不能退化成一句标题：必须给出「怎么读」并链接本篇全部子页。"""
+        for landing, prefix in sorted(PART_LANDING_PREFIX.items()):
+            with self.subTest(page=landing):
+                text = (self.work / "docs" / landing).read_text(encoding="utf-8")
+                self.assertIn("怎么读", text)
+                children = [p.name for p in sorted((self.work / "docs").glob(prefix + "*.md"))
+                            if p.name != landing]
+                self.assertTrue(children, f"{landing} 没有找到任何子页")
+                for child in children:
+                    self.assertIn(f"({child}", text, f"{landing} 缺少子页链接 {child}")
+
+    def test_every_chapter_declares_verifiable_outcomes(self):
+        """章首「学完你应能」落实共建铁律 9：新增章节忘写验收标准即红灯。"""
+        chapters = sorted(p.name for p in (self.work / "docs").glob("p[1-4]-*-ch*.md"))
+        self.assertGreaterEqual(len(chapters), 19)
+        for page in chapters:
+            with self.subTest(page=page):
+                self.assertIn("学完你应能", (self.work / "docs" / page).read_text(encoding="utf-8"))
 
     # ---------- 共建页脚 ----------
     def test_feedback_footer_on_every_page(self):
