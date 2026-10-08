@@ -51,6 +51,8 @@
 `python -B -m unittest discover -s scripts -p test_lab_packages.py -v` 会执行真实 ngspice 并比较参考采样点；
 先安装 ngspice，或将 `NGSPICE` 环境变量指向其控制台可执行文件。不要用实测表伪装参考值，不要把教学模型标成厂商模型。
 
+`assets/examples/` 的运放稳定性与积分器教学网表由 `test_circuit_examples.py` 执行，验证返回比、阶跃与幅值。它们是标明假设的线性教学模型，不是厂商宏模型；相关正文结论须保持模型条件一致。
+
 发布由 `pages.yml` 编排：同一提交的可复用 `tests.yml` 和 `links.yml` 都成功后，才能构建和部署。
 main 推送只运行这条带门禁的发布流程；其他分支、PR 和每周链接巡检保留各自入口。
 
@@ -79,6 +81,7 @@ python -B -m unittest discover -s scripts -p 'test_svg_assets.py'   # SVG 与生
 旧版整份记录仍作为读取基线；新增完成状态和错题按 `completed:<章 ID>` / `bookmarks:<题 ID>` 后缀分别同步写入，阅读位置使用 `last` 后缀，均追加在原存储键后。
 各条目独立保存，避免两个标签页写回旧快照互相覆盖，也避免异步保存被立即刷新取消。撤销写入 `false`，不能删除覆盖键，否则旧版基线中的记录会复活。
 保存失败的条目留在本页内存，下次操作重试；首页、章末与题库提示存储状态。首页章节进度列表和错题列表更新时保留展开状态与键盘焦点。
+导出使用 `format=analog-circuit-learning, version=1` 的 JSON，包含完成章节、错题与阅读位置。导入先校验整个文件（上限 256KB），仅接受已知稳定 ID，合并完成/收藏状态，已有阅读位置优先；不读取文件里的标题或 URL，不上传。失败的临时条目也须可以导出。
 题目 ID（`q-chN-NN` / `q-extra-NN`）写在源文档中，重排题目时必须保留；新增题目分配新 ID，不能按当前题号批量重编号。
 标题与跳转目标由 `learning-catalog.js` 从文档生成，禁止信任存储中的标题或 URL。存储失败、JSON 损坏和禁用 JS 时阅读仍须可用。
 19 章的「上一章 → 本章自测 → 下一章」由章节文件自动生成；题库的 `#quiz-chN` 与返回复习链接在 `docs/p9-00-quiz.md` 维护。
@@ -94,6 +97,10 @@ python -B -m unittest discover -s scripts -p test_reading_journey.py -v
 ```
 
 最后一组需要站点依赖、Playwright 和 Google Chrome，在临时目录构建完整站点，以子路径访问，检查首页入口、正文与题库往返、旧书签与浏览器返回、无 JavaScript 退化、手机明暗主题及真实搜索结果。外部请求全部拦截，不依赖线上部署。此组与拆分脚本回归均已纳入 CI。
+
+测试构建的 sitemap 必须改写为测试 origin；否则 Material 不使用即时导航，测试会悄悄退回整页刷新。关键往返用页面内标记确认 document 未被重建，并验证真实 MathJax 产物。MathJax 配置在 `build_site.py`，等待首次排版后订阅 `document$`，串行处理后续排版并跳过已失效的页面。
+引擎和字体固定在 `assets/vendor/mathjax/`，保留上游授权与版本记录；不要只替换引擎而漏掉字体。长行内公式须局部滚动，不能撑宽页面。Markdown 列表与前段之间须有空行；题库的小节引用必须落到相应标题，章首返回入口仍指向章首。
+题库折叠答案使用 `<details markdown="1">`，内容上下留空行，并保持在所属列表项内缩进四空格；否则答案里的强调、公式与链接会变成不可用的原文。必须用浏览器实际展开答案并点击复习链接验证。
 
 修改画廊交互后运行 `python -B -m unittest discover -s scripts -p test_gallery_interactions.py -v`。
 这组测试需要 Playwright 和 Google Chrome，直接加载生成器输出并拦截外部请求，覆盖弹窗焦点循环与恢复、单张结果、输入区域快捷键、筛选分享和空结果；CI 的 `svg-render` 作业会执行同一组检查。

@@ -702,7 +702,7 @@ def make_opamp_inverting():
 
 
 # ======================= 图 6：比较器迟滞 =======================
-# 参数：LM393 开漏+4.7k 上拉；R1=R2=10k 分压 2.5V；R3=1MΩ 正反馈 → 窗口≈1V
+# 参数：LM393 开集电极+4.7k 上拉；R1=R2=10k 分压 2.5V；R3=1MΩ 正反馈 → 窗口≈1V
 def make_comparator_hysteresis():
     D5 = 5
     svg = svg_open('比较器迟滞：正反馈造出 1V「免疫区」（LM393，R1=R2=10k）', h=470)
@@ -795,7 +795,7 @@ def make_comparator_hysteresis():
                    "0;0;1;1;0;0", "0;0.54;0.58;0.78;0.82;1", y=400)
     svg += caption("④ 噪声在 1V 窗口里随便闹——输出纹丝不动", "#2563eb", D5,
                    "0;0;1;1", "0;0.82;0.86;1", y=400)
-    svg += note_box("窗口 ≈ (Rin÷R3)·(VOH−VOL) · LM393 开漏输出必须接上拉电阻 4.7kΩ", 448, D5,
+    svg += note_box("窗口 ≈ (Rin÷R3)·(VOH−VOL) · LM393 开集电极输出必须接上拉电阻 4.7kΩ", 448, D5,
                     "0;0.88;0.92;1", w=620)
     save('comparator-hysteresis.svg', svg + '</svg>')
 
@@ -3063,7 +3063,7 @@ def make_integrator():
 <polygon points="480,158 480,242 566,200" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
 <text x="492" y="186" font-size="15" font-weight="bold" fill="#dc2626">−</text>
 <text x="492" y="228" font-size="15" font-weight="bold" fill="#059669">+</text>
-<text x="500" y="262" font-size="11.5" fill="#475569">LM358</text>
+<text x="500" y="262" font-size="11.5" fill="#475569">理想运放</text>
 <line x1="440" y1="220" x2="480" y2="220" stroke="#334155" stroke-width="2.5"/>
 <line x1="440" y1="220" x2="440" y2="252" stroke="#334155" stroke-width="2.5"/>
 {gnd_sym(440, 266)}
@@ -3071,18 +3071,18 @@ def make_integrator():
 <line x1="330" y1="140" x2="380" y2="140" stroke="#334155" stroke-width="2.5"/>
 <line x1="380" y1="128" x2="380" y2="152" stroke="#2563eb" stroke-width="3"/>
 <line x1="388" y1="128" x2="388" y2="152" stroke="#2563eb" stroke-width="3"/>
-<text x="384" y="110" text-anchor="middle" font-size="10" fill="#2563eb">C 100nF</text>
+<text x="384" y="110" text-anchor="middle" font-size="10" fill="#2563eb">C 10nF</text>
 <line x1="388" y1="140" x2="566" y2="140" stroke="#334155" stroke-width="2.5"/>
 <line x1="566" y1="140" x2="566" y2="200" stroke="#334155" stroke-width="2.5"/>
 <line x1="566" y1="200" x2="630" y2="200" stroke="#334155" stroke-width="2.5"/>
 <text x="640" y="205" font-size="13" font-weight="bold" fill="#dc2626">vout</text>
 <line x1="60" y1="350" x2="392" y2="350" stroke="#64748b" stroke-width="1.6"/>
 <path d="{vin_d}" fill="none" stroke="#2563eb" stroke-width="3"/>
-<text x="64" y="300" font-size="10" font-weight="bold" fill="#2563eb">输入 ±1V</text>
+<text x="64" y="300" font-size="10" font-weight="bold" fill="#2563eb">输入 ±1V · 1kHz</text>
 <circle r="5.5" fill="#fff" stroke="#2563eb" stroke-width="3">{linear_x_motion(2.5, vin_d)}</circle>
 <line x1="430" y1="350" x2="772" y2="350" stroke="#64748b" stroke-width="1.6"/>
 <path d="{vout_d}" fill="none" stroke="#dc2626" stroke-width="3"/>
-<text x="434" y="290" font-size="10" font-weight="bold" fill="#dc2626">输出：匀速斜坡 → 三角波</text>
+<text x="434" y="290" font-size="10" font-weight="bold" fill="#dc2626">输出 ±2.5V · 5Vpp（零均值示意）</text>
 <circle r="5.5" fill="#fff" stroke="#dc2626" stroke-width="3">{linear_x_motion(2.5, vout_d)}</circle>
 '''
     svg += f'<g opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.02;0.2;0.26;1" dur="{DC}s" repeatCount="indefinite"/>'
@@ -4269,7 +4269,7 @@ def make_miller_plateau():
 '''
     svg += caption("① 前 400ns：栅极电流先填 C_GS，I_D 起来时 V_DS 还满着——最疼的一段", "#dc2626", DS,
                    "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=584)
-    svg += caption("② 平台期：驱动电流全被 C_GD 抽走，V_GS 被钉住，V_DS 一路雪崩下跌", "#7c3aed", DS,
+    svg += caption("② 平台期：驱动电流全被 C_GD 抽走，V_GS 被钉住，V_DS 快速下降", "#7c3aed", DS,
                    "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=584)
     svg += caption("③ 平台结束才是 R_DS(on) 生效的时刻：0.75W 导通损耗此刻才开始", "#059669", DS,
                    "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=584)
@@ -4502,9 +4502,9 @@ def make_comparator_opamp():
 <circle r="6" fill="#059669" stroke="#ffffff" stroke-width="2">
 {linear_x_motion(DC, curve(cmp_, '#059669'))}</circle>
 <text x="400" y="392" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#dc2626">真正的坑不在速度，在输出级</text>
-<text x="400" y="414" text-anchor="middle" font-size="11" fill="#475569">LM393 是开漏：输出只能「拉低」，上电沿要靠外部上拉电阻</text>
+<text x="400" y="414" text-anchor="middle" font-size="11" fill="#475569">LM393 是开集电极：输出只能「拉低」，上电沿要靠外部上拉电阻</text>
 <rect x="60" y="436" width="300" height="86" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
-<text x="74" y="460" font-size="11.5" font-weight="bold" fill="#b91c1c">开漏 + 大电容 = 慢到离谱</text>
+<text x="74" y="460" font-size="11.5" font-weight="bold" fill="#b91c1c">开集电极 + 大电容 = 慢到离谱</text>
 <text x="74" y="482" font-size="11" fill="#475569">10k 上拉带 100nF：τ = 1ms</text>
 <text x="74" y="502" font-size="11" fill="#475569">上升沿 ≈ 2.2τ = 2.2ms——</text>
 <text x="74" y="518" font-size="11" fill="#475569">判决再快也被电容拖住</text>
@@ -4525,11 +4525,11 @@ def make_comparator_opamp():
 '''
     svg += caption("① 速度差：运放被压摆率限死（4µs 爬 2V），比较器 1.3µs 直接跳", "#059669", DC,
                    "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=584)
-    svg += caption("② 但快不等于能驱动：开漏输出的上电沿是 RC，不是 MOS 管", "#dc2626", DC,
+    svg += caption("② 但快不等于能驱动：开集电极输出的上电沿是 RC，不是 MOS 管", "#dc2626", DC,
                    "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=584)
     svg += caption("③ 用运放当比较器：翻转慢、饱和恢复拖尾、相位裕度不够还会自激", "#2563eb", DC,
                    "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=584)
-    svg += caption("④ 用比较器当放大器：开漏 + 饱和恢复慢，线性增益根本稳不住", "#b45309", DC,
+    svg += caption("④ 用比较器当放大器：开集电极 + 饱和恢复慢，线性增益根本稳不住", "#b45309", DC,
                    "0;0;1;1", "0;0.85;0.9;1", y=584)
     save('comparator-opamp.svg', svg + '</svg>')
 
@@ -4977,9 +4977,9 @@ def make_pushpull_stage():
 # ======================= 图 59：LM393 内部解剖（第 7 章 7.2） =======================
 def make_lm393_inside():
     DL = 11
-    svg = svg_open('解剖 LM393：四级里最关键是那只「只会拉低」的输出管', h=620)
+    svg = svg_open('解剖 LM393：关键是那只「只会拉低」的输出管', h=620)
     svg += f'''
-<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">PNP 差分输入 → 增益级 → 开漏输出管</text>
+<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">PNP 差分输入 → 增益级 → 开集电极输出管</text>
 <rect x="40" y="90" width="150" height="80" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5"/>
 <text x="115" y="118" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#2563eb">① PNP 差分输入</text>
 <text x="115" y="140" text-anchor="middle" font-size="10.5" fill="#475569">共模 0 ~ Vcc−1.5V</text>
@@ -4993,12 +4993,12 @@ def make_lm393_inside():
 <line x1="370" y1="130" x2="410" y2="130" stroke="#334155" stroke-width="2.5"/>
 <circle r="5" fill="#334155"><animateMotion dur="{DL}s" begin="-0.9s" repeatCount="indefinite" path="M372,130 L408,130"/></circle>
 <rect x="410" y="90" width="160" height="80" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="2.5"/>
-<text x="490" y="118" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#dc2626">③ 开漏输出管</text>
+<text x="490" y="118" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#dc2626">③ 开集电极输出管</text>
 <text x="490" y="140" text-anchor="middle" font-size="10.5" fill="#475569">只有一只 NPN 对地</text>
 <text x="490" y="158" text-anchor="middle" font-size="10.5" fill="#475569">只会拉低，不会推高</text>
 <rect x="410" y="210" width="160" height="60" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
 <text x="490" y="234" text-anchor="middle" font-size="11" font-weight="bold" fill="#b45309">上拉电阻 10k</text>
-<text x="490" y="254" text-anchor="middle" font-size="10.5" fill="#475569">可接任意电压 → 电平转换</text>
+<text x="490" y="254" text-anchor="middle" font-size="10.5" fill="#475569">额定范围内选上拉电压</text>
 <line x1="490" y1="170" x2="490" y2="210" stroke="#dc2626" stroke-width="2.5"/>
 <line x1="490" y1="270" x2="490" y2="300" stroke="#334155" stroke-width="2.5"/>
 <circle cx="490" cy="300" r="4.5" fill="#334155"/>
@@ -5007,9 +5007,9 @@ def make_lm393_inside():
 <circle r="5" fill="#b45309"><animateMotion dur="{DL}s" begin="-1.5s" repeatCount="indefinite" path="M490,272 L490,212"/></circle>
 <text x="584" y="222" font-size="11.5" font-weight="bold" fill="#dc2626">输出管导通 → OUT 拉到地</text>
 <text x="584" y="244" font-size="11" fill="#475569">输出管关断 → 10k 拉到高</text>
-<text x="584" y="266" font-size="11" fill="#475569">这就是「开漏」的全部含义</text>
+<text x="584" y="266" font-size="11" fill="#475569">NPN 集电极输出，需外接上拉</text>
 <rect x="40" y="200" width="260" height="120" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,4"/>
-<text x="56" y="226" font-size="11.5" font-weight="bold" fill="#334155">开漏的三个红利</text>
+<text x="56" y="226" font-size="11.5" font-weight="bold" fill="#334155">开集电极的三个红利</text>
 <text x="56" y="250" font-size="11" fill="#475569">① 上拉接 3.3V → 5V 器件直接比 3.3V 逻辑</text>
 <text x="56" y="272" font-size="11" fill="#475569">② 多个输出并联 = 线与（谁拉低谁说了算）</text>
 <text x="56" y="294" font-size="11" fill="#475569">③ 不接上拉就没有高电平——这也能当使能</text>
@@ -5034,11 +5034,11 @@ def make_lm393_inside():
                    "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=468)
     svg += caption("② 输出只有一只对地 NPN：只会拉低、不会推高，所以必须外接上拉", "#dc2626", DL,
                    "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=468)
-    svg += caption("③ 开漏不是缺点：上拉接任意电压 → 天然电平转换 + 多路可与（窗口检测器）", "#059669", DL,
+    svg += caption("③ 开集电极不是缺点：上拉电压须符合额定值 → 天然电平转换 + 多路可与（窗口检测器）", "#059669", DL,
                    "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=468)
     svg += caption("④ 选型只看五行：V_OS、共模范围、传播延迟、供电范围、静态电流", "#b45309", DL,
                    "0;0;1;1", "0;0.85;0.9;1", y=468)
-    svg += note_box("LM393 的全部脾气都来自「PNP 输入 + 开漏输出」这两个选择——先看结构，再看参数表", 510, DL,
+    svg += note_box("LM393 的全部脾气都来自「PNP 输入 + 开集电极输出」这两个选择——先看结构，再看参数表", 510, DL,
                     "0;0.9;0.94;1", w=740)
     save('lm393-inside.svg', svg + '</svg>')
 
@@ -6463,11 +6463,11 @@ def make_comparator_pitfalls():
     DC = 11
     svg = svg_open('比较器的五个坑：忘了上拉排第一', h=732)
     svg += f'''
-<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">LM393 是开漏输出 —— 一半的「故障」都源于这件事</text>
+<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">LM393 是开集电极输出 —— 一半的「故障」都源于这件事</text>
 '''
     pits = [
-        ('输出一直为低', '#dc2626', 'LM393 忘接上拉电阻（开漏只会拉低）',
-         '输出到 Vcc 接 4.7kΩ —— 没上拉就永远只有一个「0」', '最高频'),
+        ('输出一直为低', '#dc2626', 'LM393 忘接上拉电阻（开集电极只会拉低）',
+         '输出加合适上拉 —— 没上拉，截止电位不受保证', '最高频'),
         ('阈值附近连发误触发', '#b45309', '无迟滞 + 输入噪声（信号在阈值上抖动）',
          '加正反馈迟滞（见 7.3）；输入端并小电容', '经典'),
         ('高频自激', '#7c3aed', '输出线耦合回输入（布线寄生）',
@@ -6487,9 +6487,9 @@ def make_comparator_pitfalls():
         y += 96
     svg += f'''
 <line x1="40" y1="{y+2}" x2="760" y2="{y+2}" stroke="#cbd5e1" stroke-width="1"/>
-<text x="400" y="{y+30}" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">开漏这件事，一次说清</text>
-<text x="400" y="{y+54}" text-anchor="middle" font-size="11.5" fill="#475569">开漏输出 = 一只对地开关。<b>没有上拉就没有高电平</b>，而高电平的值由「上拉接到哪」决定 → 天然电平转换。</text>
-<text x="400" y="{y+76}" text-anchor="middle" font-size="11.5" fill="#475569">多个开漏输出可并联 = <b>线与</b>：谁拉低谁说了算 —— 窗口检测器就这么搭。</text>
+<text x="400" y="{y+30}" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">开集电极这件事，一次说清</text>
+<text x="400" y="{y+54}" text-anchor="middle" font-size="11.5" fill="#475569">开集电极输出 = 一只对地开关。<b>没有上拉就没有高电平</b>，而高电平的值由「上拉接到哪」决定 → 天然电平转换。</text>
+<text x="400" y="{y+76}" text-anchor="middle" font-size="11.5" fill="#475569">多个开集电极输出可并联 = <b>线与</b>：谁拉低谁说了算 —— 窗口检测器就这么搭。</text>
 <text x="400" y="{y+98}" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#b45309">上拉取值要算：t_r≈0.8473·R·C（见 5.3），I²C 标准模式 R≤11.8kΩ</text>
 <circle r="5" fill="#f59e0b"><animateMotion dur="{DC}s" repeatCount="indefinite" path="M52,128 L748,128" keyPoints="0;1" keyTimes="0;1"/></circle>
 <circle r="5" fill="#059669"><animateMotion dur="{DC}s" begin="-1.5s" repeatCount="indefinite" path="M52,224 L748,224" keyPoints="0;1" keyTimes="0;1"/></circle>
@@ -6500,13 +6500,13 @@ def make_comparator_pitfalls():
 {pulse(38,276,724,92,'#7c3aed',2.0,10)}
 {pulse(38, 82, 724, 92, '#dc2626', 2.0, 10)}
 '''
-    svg += caption("① 「输出一直低」九成是忘接上拉——开漏只会拉低，不会推高", "#dc2626", DC,
+    svg += caption("① 先查上拉：开集电极只能拉低，截止后的电位需要外部确定", "#dc2626", DC,
                    "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=690)
     svg += caption("② 阈值附近误触发：不是比较器坏，是缺迟滞——加正反馈造免疫区", "#b45309", DC,
                    "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=690)
     svg += caption("③ 自激多是布线问题：输入输出走线远离、地平面隔离", "#7c3aed", DC,
                    "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=690)
-    svg += caption("④ 记住开漏的三个红利与一个义务：能转换电平/能与线/能当使能 —— 但必须给上拉", "#059669", DC,
+    svg += caption("④ 记住开集电极的三个红利与一个义务：能转换电平/能与线/能当使能 —— 但必须给上拉", "#059669", DC,
                    "0;0;1;1", "0;0.85;0.9;1", y=690)
     save('comparator-pitfalls.svg', svg + '</svg>')
 

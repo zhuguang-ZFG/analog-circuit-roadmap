@@ -3,6 +3,12 @@
   --md-text-font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
   --md-code-font: ui-monospace, Consolas, monospace;
 }
+/* Long inline equations must scroll locally instead of widening the page. */
+.md-typeset span.arithmatex { display: inline-block; max-width: 100%; overflow-x: auto; vertical-align: middle; }
+.md-typeset .learning-backup { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1rem; }
+.md-typeset .learning-backup button { min-height: 44px; padding: .5rem .8rem; border: 1px solid var(--md-default-fg-color--lightest); border-radius: .3rem; color: var(--md-typeset-a-color); background: var(--md-code-bg-color); cursor: pointer; }
+.md-typeset .learning-backup button:focus-visible { outline: 3px solid var(--md-accent-fg-color); outline-offset: 3px; }
+.md-typeset .learning-backup-message { font-size: .7rem; }
 .md-typeset .learning-hero {
   padding: 1.5rem;
   margin: 1.25rem 0 2rem;

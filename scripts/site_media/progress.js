@@ -62,8 +62,13 @@
   }
   var state = read();
   function save(change) {
-    var slot = key + change.field + (change.id ? ':' + change.id : '');
-    pending.set(slot, change);
+    saveChanges([change]);
+  }
+  function saveChanges(changes) {
+    changes.forEach(function (change) {
+      var slot = key + change.field + (change.id ? ':' + change.id : '');
+      pending.set(slot, change);
+    });
     state = read();
     // One atomic, synchronous write per record: unrelated tab actions cannot
     // overwrite each other, and an immediate reload cannot cancel a save.
@@ -101,6 +106,67 @@
     el.addEventListener('click', handler);
     return el;
   }
+  function backupMessage(message) {
+    var note = document.querySelector('.learning-backup-message');
+    if (note) note.textContent = message;
+  }
+  function exportRecords() {
+    state = read();
+    var data = { format: 'analog-circuit-learning', version: 1,
+      exportedAt: new Date().toISOString(), completed: state.completed,
+      bookmarks: state.bookmarks, last: state.last };
+    var blob = new Blob([JSON.stringify(data, null, 2) + '\n'], { type: 'application/json' });
+    var url = URL.createObjectURL(blob);
+    var download = element('a');
+    download.href = url;
+    download.download = 'analog-learning-' + data.exportedAt.slice(0, 10) + '.json';
+    document.body.appendChild(download);
+    download.click();
+    download.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+    backupMessage('已导出当前学习记录，可在另一浏览器导入。');
+  }
+  function importRecords(file) {
+    if (!file) return;
+    if (file.size > 256 * 1024) {
+      backupMessage('文件过大，请选择本站导出的学习记录（不超过 256KB）。');
+      return;
+    }
+    file.text().then(function (text) {
+      var raw = JSON.parse(text);
+      function validList(list) {
+        return Array.isArray(list) && list.length <= 1000 && list.every(function (id) {
+          return typeof id === 'string' && id.length <= 150;
+        });
+      }
+      if (!raw || raw.format !== 'analog-circuit-learning' || raw.version !== 1 ||
+          !validList(raw.completed) || !validList(raw.bookmarks) ||
+          !(raw.last === null || (raw.last && typeof raw.last.chapter === 'string' &&
+            typeof raw.last.anchor === 'string' && raw.last.anchor.length <= 150 &&
+            !/[\u0000-\u001f]/.test(raw.last.anchor)))) {
+        throw new Error('Unsupported learning record');
+      }
+      // Validate the entire file before applying anything; titles and URLs are
+      // never imported. Unknown IDs from other editions are simply ignored.
+      state = read();
+      var completed = uniqueKnown(raw.completed, chapters);
+      var bookmarks = uniqueKnown(raw.bookmarks, questions);
+      var changes = [];
+      [['completed', completed], ['bookmarks', bookmarks]].forEach(function (group) {
+        group[1].forEach(function (id) {
+          if (!state[group[0]].includes(id)) changes.push({ field: group[0], id: id, value: true });
+        });
+      });
+      var last = knownLast(raw.last);
+      if (!state.last && last) changes.push({ field: 'last', value: last });
+      saveChanges(changes);
+      var ignored = raw.completed.length + raw.bookmarks.length - completed.length - bookmarks.length;
+      backupMessage('记录已合并，已有进度保留。' + (ignored ? '已忽略重复或未知编号。' : '') +
+        (temporary ? '浏览器未能保存，当前记录可先导出备份。' : ''));
+    }).catch(function () {
+      backupMessage('无法导入：请使用本站导出的有效版本 1 JSON 文件。已有记录未更改。');
+    });
+  }
   function dashboard() {
     var root = document.querySelector('.learning-dashboard');
     if (!root) return;
@@ -130,6 +196,24 @@
       bookmarks.appendChild(element('p', '在自测题旁点击“收藏为错题”，下次从这里复习。'));
       bookmarks.appendChild(element('ul'));
       root.appendChild(bookmarks);
+      var controls = element('div', '', 'learning-backup');
+      var picker = element('input');
+      picker.type = 'file';
+      picker.accept = '.json,application/json';
+      picker.hidden = true;
+      picker.setAttribute('aria-label', '选择学习记录文件');
+      picker.addEventListener('change', function () {
+        var file = picker.files[0];
+        picker.value = '';
+        importRecords(file);
+      });
+      controls.appendChild(button('导出学习记录', exportRecords));
+      controls.appendChild(button('导入学习记录', function () { picker.click(); }));
+      controls.appendChild(picker);
+      root.appendChild(controls);
+      var backupNote = element('p', '导入会合并完成章节与错题，保留当前阅读位置；文件仅在本机处理。', 'learning-backup-message');
+      backupNote.setAttribute('role', 'status');
+      root.appendChild(backupNote);
       var note = element('p', '', 'learning-storage-note');
       note.setAttribute('role', 'status');
       root.appendChild(note);
@@ -206,7 +290,7 @@
       var anchor;
       try { anchor = decodeURIComponent(location.hash.slice(1)); } catch (_) { anchor = ''; }
       var target = document.getElementById(anchor);
-      if (!target || !target.classList.contains('legacy-anchor')) remember(anchor || current.id);
+      if (!target || !target.classList.contains('legacy-anchor')) remember(target ? anchor : current.id);
       var checkpoint = document.querySelector('.reading-checkpoint');
       if (checkpoint && !checkpoint.querySelector('.chapter-done-button')) {
         var chapterId = current.id;

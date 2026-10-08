@@ -560,7 +560,34 @@ window.MathJax = {
     processEscapes: true,
     processEnvironments: true
   },
-  options: { ignoreHtmlClass: ".*|", processHtmlClass: "arithmatex" }
+  options: { ignoreHtmlClass: ".*|", processHtmlClass: "arithmatex" },
+  startup: {
+    pageReady: function () {
+      var rendered = document.querySelector('.md-content__inner');
+      return MathJax.startup.defaultPageReady().then(function () {
+        var queue = Promise.resolve();
+        var revision = 0;
+        function typesetPage() {
+          var content = document.querySelector('.md-content__inner');
+          var ticket = ++revision;
+          queue = queue.then(function () {
+            if (!content || !content.isConnected || ticket !== revision || content === rendered) return;
+            MathJax.typesetClear();
+            MathJax.texReset();
+            return MathJax.typesetPromise([content]).then(function () { rendered = content; });
+          }).catch(function () {
+            if (!content || !content.isConnected || content.querySelector('.math-status')) return;
+            var note = document.createElement('p');
+            note.className = 'math-status';
+            note.setAttribute('role', 'status');
+            note.textContent = '部分公式未能排版，可刷新重试。';
+            content.prepend(note);
+          });
+        }
+        if (typeof document$ !== 'undefined') document$.subscribe(typesetPage);
+      });
+    }
+  }
 };
 """
 
@@ -641,7 +668,7 @@ extra_css:
 
 extra_javascript:
   - javascripts/mathjax.js
-  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - assets/vendor/mathjax/tex-chtml-full.js
   - javascripts/gallery.js
   - javascripts/learning.js
   - javascripts/reading.js

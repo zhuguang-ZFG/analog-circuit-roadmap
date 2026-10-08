@@ -90,6 +90,20 @@ class DocsLinks(unittest.TestCase):
                     self.assertIsNotNone(section, f'Missing quiz for chapter {number}')
                     self.assertIn(f'({page.name}#ch{number})', section.group(1))
 
+    def test_quiz_numbered_references_land_at_the_named_section(self):
+        quiz = (DOCS / 'p9-00-quiz.md').read_text(encoding='utf-8')
+        checked = 0
+        for label, filename, anchor in re.findall(r'\[([^\]]+)\]\((p\d+-\d+-ch\d+\.md)#([^)]+)\)', quiz):
+            number = re.match(r'^§?(\d+(?:\.\d+)+)', label)
+            if not number:
+                continue
+            checked += 1
+            target = (DOCS / filename).read_text(encoding='utf-8').split(f'<a id="{anchor}"></a>', 1)[1]
+            heading = re.match(r'\s*#{2,4} (\d+(?:\.\d+)+)(?=\s)', target)
+            self.assertIsNotNone(heading, f'{label}: #{anchor} must immediately precede its section')
+            self.assertEqual(number[1], heading[1], f'{label} -> {filename}#{anchor}')
+        self.assertGreater(checked, 80)
+
 
 if __name__ == "__main__":
     unittest.main()

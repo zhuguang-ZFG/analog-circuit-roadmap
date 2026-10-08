@@ -6,6 +6,7 @@ All external requests are blocked; no deployed site or external player is needed
 from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
+import json
 import shutil
 import subprocess
 import sys
@@ -55,6 +56,11 @@ class ReadingJourneyTests(unittest.TestCase):
             thread.join(timeout=5)
         cls.addClassCleanup(stop_server)
         cls.base = f'http://127.0.0.1:{server.server_port}/site/'
+        # Material only uses instant navigation for URLs in the sitemap.
+        # Production-domain entries silently turned these tests into full loads.
+        sitemap = work / 'build/site/sitemap.xml'
+        sitemap.write_text(sitemap.read_text(encoding='utf-8').replace(
+            'https://zhuguang-ZFG.github.io/analog-circuit-roadmap/', cls.base), encoding='utf-8')
         playwright = sync_playwright().start()
         cls.addClassCleanup(playwright.stop)
         cls.browser = playwright.chromium.launch(channel='chrome', headless=True)
@@ -84,6 +90,7 @@ class ReadingJourneyTests(unittest.TestCase):
 
     def test_chapter_quiz_review_and_next_chapter_form_a_round_trip(self):
         self.page.goto(self.base + 'p1-07-ch6.html#ch6')
+        self.page.evaluate('window.readingJourneyMarker = true')
         self.page.get_by_role('link', name='做第 6 章自测 →', exact=True).click()
         expect(self.page).to_have_url(self.base + 'p9-00-quiz.html#quiz-ch6')
         expect(self.page.locator('p:has(> #quiz-ch6) + h2')).to_contain_text('第 6 章')
@@ -92,6 +99,41 @@ class ReadingJourneyTests(unittest.TestCase):
         expect(self.page.locator('.reading-nav')).to_have_count(1)
         self.page.locator('.reading-nav a').last.click()
         expect(self.page).to_have_url(self.base + 'p1-08-ch7.html#ch7')
+        self.assertTrue(self.page.evaluate('window.readingJourneyMarker === true'), 'Must use instant navigation')
+
+    def assert_math_rendered(self):
+        self.page.wait_for_function('window.MathJax && MathJax.startup && MathJax.startup.promise')
+        self.page.evaluate('MathJax.startup.promise')
+        self.assertGreater(self.page.locator('.arithmatex').count(), 0)
+        expect(self.page.locator('.arithmatex:not(:has(mjx-container))')).to_have_count(0)
+        expect(self.page.locator('mjx-merror, .math-status')).to_have_count(0)
+
+    def test_actual_mathjax_renders_after_instant_navigation_and_back(self):
+        self.page.goto(self.base + 'p1-01-ch0.html#ch0')
+        self.assert_math_rendered()
+        self.page.evaluate('window.mathJourneyMarker = true')
+        self.page.locator('.reading-nav a').last.click()
+        expect(self.page).to_have_url(self.base + 'p1-02-ch1.html#ch1')
+        self.assertTrue(self.page.evaluate('window.mathJourneyMarker === true'))
+        self.assert_math_rendered()
+        self.page.go_back()
+        expect(self.page).to_have_url(self.base + 'p1-01-ch0.html#ch0')
+        self.assert_math_rendered()
+        self.page.reload()
+        self.assert_math_rendered()
+
+    def test_mathjax_starting_after_navigation_typesets_the_current_page(self):
+        held = []
+        self.page.route('**/tex-chtml-full.js', lambda route: held.append(route))
+        self.page.goto(self.base + 'p1-01-ch0.html#ch0', wait_until='commit')
+        expect(self.page.locator('.reading-nav')).to_be_visible()
+        self.page.evaluate('window.mathJourneyMarker = true')
+        self.page.locator('.reading-nav a').last.click(no_wait_after=True)
+        expect(self.page).to_have_url(self.base + 'p1-02-ch1.html#ch1')
+        self.assertTrue(self.page.evaluate('window.mathJourneyMarker === true'))
+        self.assertEqual(1, len(held))
+        held[0].continue_()
+        self.assert_math_rendered()
 
     def test_page_titles_and_social_metadata_survive_pre_heading_anchors(self):
         for filename, title in (
@@ -376,6 +418,85 @@ class ReadingJourneyTests(unittest.TestCase):
             response = self.context.request.get(link.evaluate('el => el.href'))
             self.assertEqual(200, response.status)
             self.assertTrue(response.body().startswith(b'PK'))
+
+    def test_export_and_import_merge_progress_without_overwriting_existing_records(self):
+        self.page.goto(self.base + 'p1-01-ch0.html#ch0')
+        self.page.locator('.chapter-done-button').click()
+        self.page.goto(self.base + 'p9-00-quiz.html#q-ch0-01')
+        self.page.locator('[data-question="q-ch0-01"]').click()
+        self.page.goto(self.base)
+        with self.page.expect_download() as download:
+            self.page.get_by_role('button', name='导出学习记录', exact=True).click()
+        payload = json.loads(Path(download.value.path()).read_text(encoding='utf-8'))
+        self.assertEqual('analog-circuit-learning', payload['format'])
+        self.assertEqual(['ch0'], payload['completed'])
+        self.assertEqual(['q-ch0-01'], payload['bookmarks'])
+        self.page.evaluate('localStorage.clear()')
+        self.page.goto(self.base + 'p1-02-ch1.html#ch1')
+        self.page.locator('.chapter-done-button').click()
+        self.page.goto(self.base)
+        resume = self.page.locator('.learning-resume').get_attribute('href')
+        payload['completed'] += ['unknown', 'ch0']
+        payload['title'] = '<img src=x onerror=alert(1)>'
+        payload['url'] = 'https://example.invalid/'
+        for _ in range(2):
+            self.page.get_by_label('选择学习记录文件').set_input_files({
+                'name': 'learning.json', 'mimeType': 'application/json',
+                'buffer': json.dumps(payload).encode()})
+            expect(self.page.locator('.learning-backup-message')).to_contain_text('记录已合并')
+        expect(self.page.locator('.learning-count')).to_have_text('已完成 2 / 19 章')
+        expect(self.page.locator('.learning-bookmarks summary')).to_have_text('错题收藏（1）')
+        expect(self.page.locator('.learning-resume')).to_have_attribute('href', resume)
+        expect(self.page.locator('.learning-dashboard img')).to_have_count(0)
+        self.page.reload()
+        expect(self.page.locator('.learning-count')).to_have_text('已完成 2 / 19 章')
+        expect(self.page.locator('.learning-bookmarks summary')).to_have_text('错题收藏（1）')
+
+    def test_invalid_or_oversized_import_does_not_change_learning_records(self):
+        self.page.goto(self.base + 'p1-01-ch0.html#ch0')
+        self.page.locator('.chapter-done-button').click()
+        self.page.goto(self.base)
+        for body in (b'{broken', json.dumps({'format': 'analog-circuit-learning', 'version': 2,
+                     'completed': [], 'bookmarks': [], 'last': None}).encode(),
+                     json.dumps({'format': 'analog-circuit-learning', 'version': 1,
+                     'completed': ['ch1'], 'bookmarks': [None], 'last': None}).encode()):
+            self.page.get_by_label('选择学习记录文件').set_input_files({
+                'name': 'invalid.json', 'mimeType': 'application/json', 'buffer': body})
+            expect(self.page.locator('.learning-backup-message')).to_contain_text('无法导入')
+            expect(self.page.locator('.learning-count')).to_have_text('已完成 1 / 19 章')
+        self.page.get_by_label('选择学习记录文件').set_input_files({
+            'name': 'large.json', 'mimeType': 'application/json', 'buffer': b' ' * (256 * 1024 + 1)})
+        expect(self.page.locator('.learning-backup-message')).to_contain_text('文件过大')
+        self.page.reload()
+        expect(self.page.locator('.learning-count')).to_have_text('已完成 1 / 19 章')
+
+    def test_unsaved_records_can_be_exported_after_instant_navigation(self):
+        self.context.add_init_script("""const original = Storage.prototype.setItem;
+          Storage.prototype.setItem = function(key, value) {
+            if (key.startsWith('analog-learning:')) throw new DOMException('Full', 'QuotaExceededError');
+            return original.call(this, key, value);
+          };""")
+        self.page.goto(self.base + 'p1-01-ch0.html#ch0')
+        self.page.locator('.chapter-done-button').click()
+        self.page.locator('.reading-nav a').first.click()
+        expect(self.page.locator('.learning-count')).to_have_text('已完成 1 / 19 章')
+        with self.page.expect_download() as download:
+            self.page.get_by_role('button', name='导出学习记录', exact=True).click()
+        payload = json.loads(Path(download.value.path()).read_text(encoding='utf-8'))
+        self.assertEqual(['ch0'], payload['completed'])
+
+    def test_quiz_review_targets_the_section_and_source_lists_render_as_lists(self):
+        self.page.goto(self.base + 'p9-00-quiz.html#q-ch12-03')
+        self.assert_math_rendered()
+        answer = self.page.locator('li:has(a#q-ch12-03) details')
+        answer.locator('summary').click()
+        answer.get_by_role('link', name='12.9', exact=True).click()
+        expect(self.page).to_have_url(self.base + 'p2-02-ch12.html#sec129')
+        expect(self.page.locator('p:has(> #sec129) + h3')).to_contain_text('稳定性实战')
+        self.page.goto(self.base + 'p1-01-ch0.html#ch0')
+        item = self.page.locator('.md-content li').filter(has_text='实验室电源')
+        expect(item).to_have_count(1)
+        expect(item.locator('xpath=..').locator(':scope > li')).to_have_count(3)
 
 
 if __name__ == '__main__':

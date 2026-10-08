@@ -45,6 +45,7 @@ jobs:
       - name: Install ngspice
         run: sudo apt-get update && sudo apt-get install -y ngspice
       - run: python -B -m unittest discover -s scripts -p test_lab_packages.py -v
+      - run: python -B -m unittest discover -s scripts -p test_circuit_examples.py -v
 
   site-build:
     name: 站点可构建性

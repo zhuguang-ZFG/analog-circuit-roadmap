@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="620" viewBox="0 0 800 620">
-<title>解剖 LM393：四级里最关键是那只「只会拉低」的输出管</title>
+<title>解剖 LM393：关键是那只「只会拉低」的输出管</title>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
@@ -74,9 +74,9 @@ text[fill="#f59e0b"],tspan[fill="#f59e0b"]{fill:#b45309}
 text[fill="#fff"]{fill:#0f172a}
 }
 </style>
-<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">解剖 LM393：四级里最关键是那只「只会拉低」的输出管</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">解剖 LM393：关键是那只「只会拉低」的输出管</text>
 
-<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">PNP 差分输入 → 增益级 → 开漏输出管</text>
+<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">PNP 差分输入 → 增益级 → 开集电极输出管</text>
 <rect x="40" y="90" width="150" height="80" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5"/>
 <text x="115" y="118" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#2563eb">① PNP 差分输入</text>
 <text x="115" y="140" text-anchor="middle" font-size="10.5" fill="#475569">共模 0 ~ Vcc−1.5V</text>
@@ -90,12 +90,12 @@ text[fill="#fff"]{fill:#0f172a}
 <line x1="370" y1="130" x2="410" y2="130" stroke="#334155" stroke-width="2.5"/>
 <circle r="5" fill="#334155"><animateMotion dur="11s" begin="-0.9s" repeatCount="indefinite" path="M372,130 L408,130"/></circle>
 <rect x="410" y="90" width="160" height="80" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="2.5"/>
-<text x="490" y="118" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#dc2626">③ 开漏输出管</text>
+<text x="490" y="118" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#dc2626">③ 开集电极输出管</text>
 <text x="490" y="140" text-anchor="middle" font-size="10.5" fill="#475569">只有一只 NPN 对地</text>
 <text x="490" y="158" text-anchor="middle" font-size="10.5" fill="#475569">只会拉低，不会推高</text>
 <rect x="410" y="210" width="160" height="60" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
 <text x="490" y="234" text-anchor="middle" font-size="11" font-weight="bold" fill="#b45309">上拉电阻 10k</text>
-<text x="490" y="254" text-anchor="middle" font-size="10.5" fill="#475569">可接任意电压 → 电平转换</text>
+<text x="490" y="254" text-anchor="middle" font-size="10.5" fill="#475569">额定范围内选上拉电压</text>
 <line x1="490" y1="170" x2="490" y2="210" stroke="#dc2626" stroke-width="2.5"/>
 <line x1="490" y1="270" x2="490" y2="300" stroke="#334155" stroke-width="2.5"/>
 <circle cx="490" cy="300" r="4.5" fill="#334155"/>
@@ -104,9 +104,9 @@ text[fill="#fff"]{fill:#0f172a}
 <circle r="5" fill="#b45309"><animateMotion dur="11s" begin="-1.5s" repeatCount="indefinite" path="M490,272 L490,212"/></circle>
 <text x="584" y="222" font-size="11.5" font-weight="bold" fill="#dc2626">输出管导通 → OUT 拉到地</text>
 <text x="584" y="244" font-size="11" fill="#475569">输出管关断 → 10k 拉到高</text>
-<text x="584" y="266" font-size="11" fill="#475569">这就是「开漏」的全部含义</text>
+<text x="584" y="266" font-size="11" fill="#475569">NPN 集电极输出，需外接上拉</text>
 <rect x="40" y="200" width="260" height="120" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,4"/>
-<text x="56" y="226" font-size="11.5" font-weight="bold" fill="#334155">开漏的三个红利</text>
+<text x="56" y="226" font-size="11.5" font-weight="bold" fill="#334155">开集电极的三个红利</text>
 <text x="56" y="250" font-size="11" fill="#475569">① 上拉接 3.3V → 5V 器件直接比 3.3V 逻辑</text>
 <text x="56" y="272" font-size="11" fill="#475569">② 多个输出并联 = 线与（谁拉低谁说了算）</text>
 <text x="56" y="294" font-size="11" fill="#475569">③ 不接上拉就没有高电平——这也能当使能</text>
@@ -126,7 +126,7 @@ text[fill="#fff"]{fill:#0f172a}
 <rect x="408" y="88" width="164" height="84" rx="8" fill="none" stroke="#dc2626" stroke-width="2.5" opacity="0" filter="url(#pglow)"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.0s" repeatCount="indefinite"/></rect>
 <circle cx="490" cy="130" r="5" fill="none" stroke="#dc2626" stroke-width="2.4">
 <animate attributeName="r" values="5;12;5" dur="1.8s" repeatCount="indefinite"/></circle>
-<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/><rect x="153.3" y="454.9" width="493.4" height="24.1" rx="12.0" fill="#2563eb" fill-opacity="0.09" stroke="#2563eb" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/></rect><text x="400" y="468" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">① 输入级用 PNP：共模范围能一路到地——单电源接地信号直接能比<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/><rect x="153.3" y="454.9" width="493.4" height="24.1" rx="12.0" fill="#dc2626" fill-opacity="0.09" stroke="#dc2626" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/></rect><text x="400" y="468" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">② 输出只有一只对地 NPN：只会拉低、不会推高，所以必须外接上拉<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/><rect x="119.6" y="454.9" width="560.8" height="24.1" rx="12.0" fill="#059669" fill-opacity="0.09" stroke="#059669" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/></rect><text x="400" y="468" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">③ 开漏不是缺点：上拉接任意电压 → 天然电平转换 + 多路可与（窗口检测器）<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/><rect x="151.2" y="454.9" width="497.6" height="24.1" rx="12.0" fill="#b45309" fill-opacity="0.09" stroke="#b45309" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/></rect><text x="400" y="468" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">④ 选型只看五行：V_OS、共模范围、传播延迟、供电范围、静态电流<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/></text></g><g opacity="0">
+<g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/><rect x="153.3" y="454.9" width="493.4" height="24.1" rx="12.0" fill="#2563eb" fill-opacity="0.09" stroke="#2563eb" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/></rect><text x="400" y="468" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2563eb" opacity="0">① 输入级用 PNP：共模范围能一路到地——单电源接地信号直接能比<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.2;0.25;1" dur="11s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/><rect x="153.3" y="454.9" width="493.4" height="24.1" rx="12.0" fill="#dc2626" fill-opacity="0.09" stroke="#dc2626" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/></rect><text x="400" y="468" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#dc2626" opacity="0">② 输出只有一只对地 NPN：只会拉低、不会推高，所以必须外接上拉<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.3;0.5;0.55;1" dur="11s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0;0 6.0;0 6.0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/><rect x="81.7" y="454.9" width="636.6" height="24.1" rx="12.0" fill="#059669" fill-opacity="0.09" stroke="#059669" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/></rect><text x="400" y="468" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#059669" opacity="0">③ 开集电极不是缺点：上拉电压须符合额定值 → 天然电平转换 + 多路可与（窗口检测器）<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.8;0.85;1" dur="11s" repeatCount="indefinite"/></text></g><g><animateTransform attributeName="transform" type="translate" values="0 6.0;0 6.0;0 0.0;0 0.0" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/><rect x="151.2" y="454.9" width="497.6" height="24.1" rx="12.0" fill="#b45309" fill-opacity="0.09" stroke="#b45309" stroke-opacity="0.38" stroke-width="1.3" filter="url(#soft)" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/></rect><text x="400" y="468" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b45309" opacity="0">④ 选型只看五行：V_OS、共模范围、传播延迟、供电范围、静态电流<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.9;1" dur="11s" repeatCount="indefinite"/></text></g><g opacity="0">
 <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.9;0.94;1" dur="11s" repeatCount="indefinite"/>
-<rect x="30" y="486" width="740" height="34.0" rx="9" fill="#ecfdf5" stroke="#059669" stroke-width="1.5" filter="url(#soft)"/><rect x="36" y="493" width="3" height="20.0" rx="1.5" fill="#059669"/><text x="400" y="508.0" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">LM393 的全部脾气都来自「PNP 输入 + 开漏输出」这两个选择——先看结构，再看参数表</text>
+<rect x="30" y="486" width="740" height="34.0" rx="9" fill="#ecfdf5" stroke="#059669" stroke-width="1.5" filter="url(#soft)"/><rect x="36" y="493" width="3" height="20.0" rx="1.5" fill="#059669"/><text x="400" y="508.0" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#059669">LM393 的全部脾气都来自「PNP 输入 + 开集电极输出」这两个选择——先看结构，再看参数表</text>
 </g></svg>
