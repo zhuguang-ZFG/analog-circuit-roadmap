@@ -355,6 +355,27 @@ class SiteBuildTests(unittest.TestCase):
         self.assertEqual((self.work / 'scripts/site_media/progress.js').read_bytes(),
                          (self.out / 'javascripts/progress.js').read_bytes())
 
+    def test_homepage_hero_counts_match_the_real_inventory(self):
+        """首页宣传行的数字必须由真实清单推导：加动画/题目/样板忘改首页即红灯。"""
+        home = (self.out / 'index.md').read_text(encoding='utf-8')
+        hero = re.search(r'\*\*(\d+) 章核心内容\*\* · \*\*(\d+) 张原理动画\*\* · '
+                         r'\*\*(\d+) 个可控教学样板\*\* · \*\*(\d+) 道章节题 \+ (\d+) 道专题题\*\*', home)
+        self.assertIsNotNone(hero, '首页 hero 宣传行缺失或格式改变')
+        claimed_chapters, animations, lessons, chapter_q, extra_q = map(int, hero.groups())
+        data = (self.out / 'javascripts/learning-catalog.js').read_text(encoding='utf-8')
+        catalog = json.loads(data.split(' = ', 1)[1].rstrip(';\n'))
+        studies = []
+        for page in self.out.glob('*.md'):
+            studies += re.findall(r'<a id="(\w+)-study"></a>', page.read_text(encoding='utf-8'))
+        self.assertEqual(len(catalog['chapters']), claimed_chapters, 'hero 章数与学习目录不符')
+        self.assertEqual(len(list((self.work / 'assets/svg').glob('*.svg'))), animations,
+                         'hero 动画张数与 assets/svg 实际文件数不符')
+        self.assertEqual(len(set(studies)), lessons, 'hero 样板数与 *-study 互动课锚点不符')
+        self.assertEqual(sum(1 for q in catalog['questions'] if re.fullmatch(r'q-ch\d+-\d+', q['id'])),
+                         chapter_q, 'hero 章节题数与 q-ch* 题目不符')
+        self.assertEqual(sum(1 for q in catalog['questions'] if re.fullmatch(r'q-extra-\d+', q['id'])),
+                         extra_q, 'hero 专题题数与 q-extra-* 题目不符')
+
     # ---------- 共建页脚 ----------
     def test_feedback_footer_on_every_page(self):
         for page in sorted(self.out.glob("*.md")):
