@@ -930,6 +930,19 @@ def learning_catalog(chapters):
                          for number, name, title in chapters], 'questions': questions}
 
 
+def render_quiz_answers(text):
+    """Keep GFM details in the source; use native details blocks for MkDocs.
+
+    Python-Markdown's HTML preprocessor does not handle HTML indented inside
+    list items. Without this conversion it emits details inside a paragraph.
+    """
+    pattern = r'^    <details markdown="1">\n    <summary>答案</summary>\n\n(.*?)\n\n    </details>'
+    def replace(match):
+        body = '\n'.join('    ' + line if line else '' for line in match[1].splitlines())
+        return '    ??? note "答案"\n\n' + body + '\n'
+    return re.sub(pattern, replace, text, flags=re.M | re.S)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--build", action="store_true", help="生成后直接运行 mkdocs build")
@@ -947,6 +960,8 @@ def main():
     redirects = json.loads((media / "legacy-anchors.json").read_text(encoding="utf-8"))
     for page in sorted(DOCS.glob("*.md")):
         text = page.read_text(encoding="utf-8")
+        if page.name == 'p9-00-quiz.md':
+            text = render_quiz_answers(text)
         # MkDocs does not rewrite raw HTML links, with or without fragments.
         text = re.sub(r'href="([\w\-]+)\.md(?=[#\"])', r'href="\1.html', text)
         # 动画 <img> 补懒加载 + 预留高度（只在站点产物里加）

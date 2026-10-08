@@ -488,6 +488,9 @@ class ReadingJourneyTests(unittest.TestCase):
     def test_quiz_review_targets_the_section_and_source_lists_render_as_lists(self):
         self.page.goto(self.base + 'p9-00-quiz.html#q-ch12-03')
         self.assert_math_rendered()
+        # md_in_html consumes this attribute. If it survives, the block was
+        # not parsed and the browser may be silently repairing invalid HTML.
+        expect(self.page.locator('.md-content details[markdown]')).to_have_count(0)
         answer = self.page.locator('li:has(a#q-ch12-03) details')
         answer.locator('summary').click()
         answer.get_by_role('link', name='12.9', exact=True).click()

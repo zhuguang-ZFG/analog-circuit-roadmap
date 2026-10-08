@@ -5280,6 +5280,7 @@ Vin ──● CH1 ──── 3脚 IN1+
 [← 返回第 0 章复习](#ch0)
 
 1. <a id="q-ch0-01" data-quiz-question="true"></a>12V 电源串 3kΩ（上臂）与 6kΩ（下臂）分压，空载输出是多少？在下臂并联一个 6kΩ 负载后又变成多少？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5288,6 +5289,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 2. <a id="q-ch0-02" data-quiz-question="true"></a>「地」到底是什么？为什么说它不是下水道？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5296,6 +5298,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 3. <a id="q-ch0-03" data-quiz-question="true"></a>理想恒压源与恒流源的内阻分别是多少？现实里的近似物是啥？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5309,6 +5312,7 @@ Vin ──● CH1 ──── 3脚 IN1+
 [← 返回第 1 章复习](#ch1)
 
 1. <a id="q-ch1-01" data-quiz-question="true"></a>10µF 电解电容在 1MHz 为什么"不像电容"？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5317,6 +5321,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 2. <a id="q-ch1-02" data-quiz-question="true"></a>真实电阻的高频等效模型是什么？三个元件分别在什么频率段说话？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5325,6 +5330,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 3. <a id="q-ch1-03" data-quiz-question="true"></a>品质因数 Q 怎么定义？Q 越高越好吗？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5338,6 +5344,7 @@ Vin ──● CH1 ──── 3脚 IN1+
 [← 返回第 2 章复习](#ch2)
 
 1. <a id="q-ch2-01" data-quiz-question="true"></a>室温下硅二极管电流增大 10 倍，正向压降变化多少？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5346,6 +5353,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 2. <a id="q-ch2-02" data-quiz-question="true"></a>12V 交流经桥式整流 + 4700µF 滤波、1A 负载，纹波峰峰值大概多少？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5354,6 +5362,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 3. <a id="q-ch2-03" data-quiz-question="true"></a>限幅与钳位的本质区别是什么？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5362,6 +5371,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 4. <a id="q-ch2-04" data-quiz-question="true"></a>接口保护为什么"TVS 必须贴着接口放"？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5375,6 +5385,7 @@ Vin ──● CH1 ──── 3脚 IN1+
 [← 返回第 3 章复习](#ch3)
 
 1. <a id="q-ch3-01" data-quiz-question="true"></a>判断 BJT 三个工作区，看什么？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5383,6 +5394,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 2. <a id="q-ch3-02" data-quiz-question="true"></a>为什么必须用分压偏置而不是单电阻基极偏置？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5391,6 +5403,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 3. <a id="q-ch3-03" data-quiz-question="true"></a>热失控的正反馈链条怎么写？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5404,6 +5417,7 @@ Vin ──● CH1 ──── 3脚 IN1+
 [← 返回第 4 章复习](#ch4)
 
 1. <a id="q-ch4-01" data-quiz-question="true"></a>米勒平台期间 MOSFET 工作在哪个区？为什么这是"最贵的几百纳秒"？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5412,6 +5426,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 2. <a id="q-ch4-02" data-quiz-question="true"></a>栅极为什么绝不能悬空？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5420,6 +5435,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 3. <a id="q-ch4-03" data-quiz-question="true"></a>体二极管在什么场合是"救命"的，什么场合是"麻烦"的？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5433,6 +5449,7 @@ Vin ──● CH1 ──── 3脚 IN1+
 [← 返回第 5 章复习](#ch5)
 
 1. <a id="q-ch5-01" data-quiz-question="true"></a>I²C 为什么规定开漏 + 上拉？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5441,6 +5458,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 2. <a id="q-ch5-02" data-quiz-question="true"></a>上拉电阻 4.7kΩ 是怎么权衡出来的？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5449,6 +5467,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 3. <a id="q-ch5-03" data-quiz-question="true"></a>推挽输出上下管同时导通叫什么？怎么防？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5462,6 +5481,7 @@ Vin ──● CH1 ──── 3脚 IN1+
 [← 返回第 6 章复习](#ch6)
 
 1. <a id="q-ch6-01" data-quiz-question="true"></a>「虚短虚断」成立的前提是什么？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5470,6 +5490,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 2. <a id="q-ch6-02" data-quiz-question="true"></a>GBW = 1MHz 的运放做 100 倍同相放大，-3dB 带宽是多少？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5478,6 +5499,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 3. <a id="q-ch6-03" data-quiz-question="true"></a>压摆率 0.5V/µs 的运放输出 10V 阶跃，最快需要多久？还缺什么参数？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5491,6 +5513,7 @@ Vin ──● CH1 ──── 3脚 IN1+
 [← 返回第 7 章复习](#ch7)
 
 1. <a id="q-ch7-01" data-quiz-question="true"></a>为什么"拿运放当比较器"是坏习惯（至少三条理由）？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5499,6 +5522,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 2. <a id="q-ch7-02" data-quiz-question="true"></a>迟滞的两个门限由什么决定？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5507,6 +5531,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 3. <a id="q-ch7-03" data-quiz-question="true"></a>LM393 输出必须接什么？忘了会怎样？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5520,6 +5545,7 @@ Vin ──● CH1 ──── 3脚 IN1+
 [← 返回第 8 章复习](#ch8)
 
 1. <a id="q-ch8-01" data-quiz-question="true"></a>传输门为什么必须 NMOS 与 PMOS 并联？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5528,6 +5554,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 2. <a id="q-ch8-02" data-quiz-question="true"></a>采样保持电路的两大误差源是什么？各自怎么缓解？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5536,6 +5563,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 3. <a id="q-ch8-03" data-quiz-question="true"></a>CD4051 是干什么用的？用它做多路采集要注意什么？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5549,6 +5577,7 @@ Vin ──● CH1 ──── 3脚 IN1+
 [← 返回第 9 章复习](#ch9)
 
 1. <a id="q-ch9-01" data-quiz-question="true"></a>齐纳与带隙基准的温漂本质差别是什么？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5557,6 +5586,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 2. <a id="q-ch9-02" data-quiz-question="true"></a>LDO 的 dropout 电压是什么？为什么它决定电池能用到多低？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5565,6 +5595,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 3. <a id="q-ch9-03" data-quiz-question="true"></a>线性稳压输出端最容易忽视的一个参数是什么？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5578,6 +5609,7 @@ Vin ──● CH1 ──── 3脚 IN1+
 [← 返回第 10 章复习](#ch10)
 
 1. <a id="q-ch10-01" data-quiz-question="true"></a>555 无稳态振荡的频率公式？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5586,6 +5618,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 2. <a id="q-ch10-02" data-quiz-question="true"></a>单稳态模式的输出脉宽？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5594,6 +5627,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 3. <a id="q-ch10-03" data-quiz-question="true"></a>555 内部那三个 5kΩ 电阻是干嘛的？（名字的由来）
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5607,6 +5641,7 @@ Vin ──● CH1 ──── 3脚 IN1+
 [← 返回第 11 章复习](#ch11)
 
 1. <a id="q-ch11-01" data-quiz-question="true"></a>三种组态里，哪个电压增益≈1、哪个高频特性最好、哪个既能放大又反相？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5615,6 +5650,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 2. <a id="q-ch11-02" data-quiz-question="true"></a>电流镜在模拟 IC 里的两个作用？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5623,6 +5659,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 3. <a id="q-ch11-03" data-quiz-question="true"></a>米勒效应把 $C_{gd}$ 等效放大多少倍？后果是什么？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5636,6 +5673,7 @@ Vin ──● CH1 ──── 3脚 IN1+
 [← 返回第 12 章复习](#ch12)
 
 1. <a id="q-ch12-01" data-quiz-question="true"></a>反相放大器的增益公式？输入阻抗由什么决定？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5644,6 +5682,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 2. <a id="q-ch12-02" data-quiz-question="true"></a>相位裕度的工程底线与舒适区分别是多少度？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5652,6 +5691,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 3. <a id="q-ch12-03" data-quiz-question="true"></a>运放跟随器驱动 100nF 长电缆就振荡，最省事的两招是什么？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5665,6 +5705,7 @@ Vin ──● CH1 ──── 3脚 IN1+
 [← 返回第 13 章复习](#ch13)
 
 1. <a id="q-ch13-01" data-quiz-question="true"></a>Buck 的伏秒平衡怎么写？由此得到占空比？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5673,6 +5714,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 2. <a id="q-ch13-02" data-quiz-question="true"></a>电荷泵相对电感的 DC-DC 有什么优缺点？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5681,6 +5723,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 3. <a id="q-ch13-03" data-quiz-question="true"></a>H 桥为什么要设死区时间？恒流源的"合规电压"又是什么？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5694,6 +5737,7 @@ Vin ──● CH1 ──── 3脚 IN1+
 [← 返回第 14 章复习](#ch14)
 
 1. <a id="q-ch14-01" data-quiz-question="true"></a>从需求到打样的六步是什么？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5702,6 +5746,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 2. <a id="q-ch14-02" data-quiz-question="true"></a>PT100 为什么要三线/四线制？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5710,6 +5755,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 3. <a id="q-ch14-03" data-quiz-question="true"></a>十条军规里"一次只改一个变量"为什么排得上号？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5723,6 +5769,7 @@ Vin ──● CH1 ──── 3脚 IN1+
 [← 返回第 15 章复习](#ch15)
 
 1. <a id="q-ch15-01" data-quiz-question="true"></a>去耦电容为什么必须贴着电源引脚放？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5731,6 +5778,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 2. <a id="q-ch15-02" data-quiz-question="true"></a>高速信号的回流电流走哪里？地平面开槽会怎样？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5739,6 +5787,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 3. <a id="q-ch15-03" data-quiz-question="true"></a>星形接地适用于什么场合？高频为什么反而不推荐分割地？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5752,6 +5801,7 @@ Vin ──● CH1 ──── 3脚 IN1+
 [← 返回第 16 章复习](#ch16)
 
 1. <a id="q-ch16-01" data-quiz-question="true"></a>排故五步是哪五步？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5760,6 +5810,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 2. <a id="q-ch16-02" data-quiz-question="true"></a>示波器探头对被测电路意味着什么？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5768,6 +5819,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 3. <a id="q-ch16-03" data-quiz-question="true"></a>「对数切半法」适用于什么？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5781,6 +5833,7 @@ Vin ──● CH1 ──── 3脚 IN1+
 [← 返回第 17 章复习](#ch17)
 
 1. <a id="q-ch17-01" data-quiz-question="true"></a>故障排查永远第一步查什么？为什么？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5789,6 +5842,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 2. <a id="q-ch17-02" data-quiz-question="true"></a>"不该振荡却振荡"的排查顺序是什么？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5797,6 +5851,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 3. <a id="q-ch17-03" data-quiz-question="true"></a>真实故障中占比最高的一类是什么？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5810,6 +5865,7 @@ Vin ──● CH1 ──── 3脚 IN1+
 [← 返回第 18 章复习](#ch18)
 
 1. <a id="q-ch18-01" data-quiz-question="true"></a>Bob Pease 那条最该记住的态度是什么？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5818,6 +5874,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 2. <a id="q-ch18-02" data-quiz-question="true"></a>Jim Williams 的测量铁律是什么？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5826,6 +5883,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 3. <a id="q-ch18-03" data-quiz-question="true"></a>两位大师的共通心法是哪三条？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5840,6 +5898,7 @@ Vin ──● CH1 ──── 3脚 IN1+
 > 这 34 题对应 v3.21~v3.23 补入的小节与加深内容：§1.6 LC 谐振四拍、§12.10 TIA、§13.8 电流检测、§13.9 功放与 THD、§14.5 热设计、§14.6 LTspice、§16.4 排故记录与复盘、§18.4 设计评审清单，以及六节「四拍动态分析」与第 17 章故障总表；v3.23 再加 **§11.5 相位裕度/极点分裂、§11.6 噪声预算、§12.5 Sallen-Key 理论、§12.12 开关电容、§13.6 量化噪声与 ENOB** 五组；v3.28 再加 **§1.7 直流偏压降容与铝电解寿命、§12.13 运放输入级三口味与 RRIO、§13.10 晶体振荡器（$C_L$/牵引/负阻）、§13.11 光耦 CTR、§14.8 误差预算与良率、§16.5 排故实战三案例** 六组。全部是能算的题。
 
 1. <a id="q-extra-01" data-quiz-question="true"></a>**§13.8** 12V 电机额定 5A，用 10mΩ 分流电阻做高侧检测、要求 1% 精度——放大器至少要多大的 CMRR？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5848,6 +5907,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 2. <a id="q-extra-02" data-quiz-question="true"></a>**§13.8** 负载与系统共地，且要求能测"负载对地短路"——低侧还是高侧？为什么？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5856,6 +5916,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 3. <a id="q-extra-03" data-quiz-question="true"></a>**§13.9** 8Ω 喇叭输出 10W，B 类功放（实际效率 60%）电源要供多少瓦？有多少变热？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5864,6 +5925,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 4. <a id="q-extra-04" data-quiz-question="true"></a>**§13.9** 输出级为什么要加 $V_{BE}$ 倍增偏置？为什么偏置管必须贴在散热器上？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5872,6 +5934,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 5. <a id="q-extra-05" data-quiz-question="true"></a>**§14.5** LDO 12V→5V、1A；TO-220 的 $\theta_{JC}=2$、硅脂 $\theta_{CS}=1$、$T_A=40°C$、要求 $T_J\le125°C$——散热器热阻最多多大？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5880,6 +5943,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 6. <a id="q-extra-06" data-quiz-question="true"></a>**§14.5** 为什么同一颗 SOT-23 的 $\theta_{JA}$，在不同板子上能差一倍？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5888,6 +5952,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 7. <a id="q-extra-07" data-quiz-question="true"></a>**§14.6** 为什么不能用"理想运放"模型验证压摆率与相位裕度？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5896,6 +5961,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 8. <a id="q-extra-08" data-quiz-question="true"></a>**§14.6** `.tran` 跑出来看不到开关尖峰，最可能是哪两处设置？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5904,6 +5970,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 9. <a id="q-extra-09" data-quiz-question="true"></a>**§5.6** ±12V、8Ω 的推挽若上下管同时导通（直通），电流和瞬时功耗约多少？为什么毫秒级烧管？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5912,6 +5979,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 10. <a id="q-extra-10" data-quiz-question="true"></a>**§7.5** $R_1=100k$、$R_2=10k$、$V_{ref}=2.5V$、$V_{OH}=5V$、$V_{OL}=0V$——迟滞宽度多少？能免疫多大幅度的毛刺？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5920,6 +5988,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 11. <a id="q-extra-11" data-quiz-question="true"></a>**§11.7** 差分对为什么在共模输入时输出差几乎为零？靠什么抑制共模？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5928,6 +5997,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 12. <a id="q-extra-12" data-quiz-question="true"></a>**§12.11** 积分器 $R=10k$、$C=10n$，输入 ±1V 方波（半周期 500µs）——输出三角波峰峰值多少？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5936,6 +6006,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 13. <a id="q-extra-13" data-quiz-question="true"></a>**§14.7** 为什么"Buck + 后级 LDO"是常用组合？代价是什么？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5944,6 +6015,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 14. <a id="q-extra-14" data-quiz-question="true"></a>**§15.7** 地平面被切开后回程绕远，回路面积从 0.5cm² 变成 15cm²——辐射大约涨多少？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5952,6 +6024,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 15. <a id="q-extra-15" data-quiz-question="true"></a>**§17** 拿到"上电无反应"，决策树的前两问是什么？各自的"否"落到哪张表？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5960,6 +6033,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 16. <a id="q-extra-16" data-quiz-question="true"></a>**§1.6** 串联回路 $R=1\Omega$、$L=1mH$、$C=10\mu F$，谐振频率多少？谐振时电感/电容上的电压是多少（电源 1V）？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5968,6 +6042,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 17. <a id="q-extra-17" data-quiz-question="true"></a>**§16.4** 排故记录表里"根因"一栏最容易写成什么？正确的写法应该落到哪一层？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5976,6 +6051,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 18. <a id="q-extra-18" data-quiz-question="true"></a>**§18.4** 设计评审四道关口是哪四道？每条评审项要配一句什么问句？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5984,6 +6060,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 19. <a id="q-extra-19" data-quiz-question="true"></a>**§11.5** 两级运放跨接补偿电容 $C_c$ 后，主极点和次极点分别往哪个方向走？为什么？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -5992,6 +6069,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 20. <a id="q-extra-20" data-quiz-question="true"></a>**§11.6** 源阻抗 1MΩ、信号带宽 10kHz——源电阻热噪声多大？为什么换"低噪声运放"没用？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -6000,6 +6078,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 21. <a id="q-extra-21" data-quiz-question="true"></a>**§11.6** 一阶低通 −3dB 带宽 10kHz，白噪声的等效噪声带宽是多少？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -6008,6 +6087,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 22. <a id="q-extra-22" data-quiz-question="true"></a>**§13.6** 满量程正弦输入时，12 位理想 ADC 的理论 SNR 是多少 dB？实际 ADC 在相同条件下测得 SINAD 为 68dB，ENOB 是多少？仅知道不含谐波的 SNR 为 68dB，能否确定 ENOB？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -6016,6 +6096,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 23. <a id="q-extra-23" data-quiz-question="true"></a>**§13.6** SAR ADC：$f_s=1\text{Msps}$、$C_{in}=20\text{pF}$、12 位——源阻抗上限大约多少？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -6024,6 +6105,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 24. <a id="q-extra-24" data-quiz-question="true"></a>**§12.5** 等值元件的 Sallen-Key 低通（$R_1{=}R_2$、$C_1{=}C_2$）Q 是多少？要 Butterworth 怎么改？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -6032,6 +6114,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 25. <a id="q-extra-25" data-quiz-question="true"></a>**§12.12** 1pF 电容 + 100kHz 时钟等效多大电阻？为什么开关电容滤波器前面必须加抗混叠？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -6040,6 +6123,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 26. <a id="q-extra-26" data-quiz-question="true"></a>**§1.7** 只知道电容标称 10µF / 6.3V、0805、X5R，能确定它在 5V 偏压下的容量吗？若某具体料号在指定测试条件下的曲线显示保持率为 26%，有效容量是多少？若下降的是 50～70%，又剩多少？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -6048,6 +6132,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 27. <a id="q-extra-27" data-quiz-question="true"></a>**§1.7** 105℃/2000h 的铝电解实际工作在 65℃——预期寿命多少？对"设计寿命 10 年、24h 连续运行"的设备够不够？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -6056,6 +6141,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 28. <a id="q-extra-28" data-quiz-question="true"></a>**§12.13** 源阻抗 1MΩ、信号只有 0~10mV。BJT 输入运放 $I_b=20\text{nA}$、CMOS 输入 $I_b=1\text{pA}$——各引入多大偏置误差？选谁？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -6064,6 +6150,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 29. <a id="q-extra-29" data-quiz-question="true"></a>**§12.13** 轨到轨输入（RRIO）运放的互补输入对，为什么会在共模中点附近出现交越失真与失调台阶？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -6072,6 +6159,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 30. <a id="q-extra-30" data-quiz-question="true"></a>**§13.10** 32.768kHz 的 RTC 晶体标称 $C_L=12\text{pF}$，随手焊了两只 22pF（实际 $C_L\approx15\text{pF}$，$C_0=1.5\text{pF}$、$C_1=10\text{fF}$）——每天快慢多少秒？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -6080,6 +6168,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 31. <a id="q-extra-31" data-quiz-question="true"></a>**§13.10** 8MHz 晶体 $ESR=80\Omega$、$C_0=3\text{pF}$、$C_L=15\text{pF}$——起振需要的临界跨导 $g_{m,crit}$ 多少？为什么 32.768kHz 的 RTC 振荡器反而能做进 µA 级？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -6088,6 +6177,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 32. <a id="q-extra-32" data-quiz-question="true"></a>**§13.11** 3.3V 逻辑经 PC817 光耦驱动（$V_F=1.2\text{V}$、$R_{in}=1\text{k}\Omega$、该档 CTR 最小 50%、下拉 4.7kΩ 需 $I_C\ge0.7\text{mA}$）——够不够？为什么最终该选 470Ω？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -6096,6 +6186,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 33. <a id="q-extra-33" data-quiz-question="true"></a>**§14.8** Buck 反馈分压 $V_{out}=V_{ref}(1+R_1/R_2)$、$R_1=R_2$：电阻容差 ±1%、$V_{ref}$ 初始 ±1%、温漂 ±0.2%、负载调整率 ±0.5%——最坏情况与 RSS $3\sigma$ 各多少？规格定 ±1% 时良率大约多少？
+
     <details markdown="1">
     <summary>答案</summary>
 
@@ -6104,6 +6195,7 @@ Vin ──● CH1 ──── 3脚 IN1+
     </details>
 
 34. <a id="q-extra-34" data-quiz-question="true"></a>**§16.5** 一块板"台架上好好的、装进机箱 2 小时就复位"，开盖正常——五步法怎么走？为什么说"温度"和"耦合"缺一不可？
+
     <details markdown="1">
     <summary>答案</summary>
 

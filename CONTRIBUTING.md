@@ -100,7 +100,7 @@ python -B -m unittest discover -s scripts -p test_reading_journey.py -v
 
 测试构建的 sitemap 必须改写为测试 origin；否则 Material 不使用即时导航，测试会悄悄退回整页刷新。关键往返用页面内标记确认 document 未被重建，并验证真实 MathJax 产物。MathJax 配置在 `build_site.py`，等待首次排版后订阅 `document$`，串行处理后续排版并跳过已失效的页面。
 引擎和字体固定在 `assets/vendor/mathjax/`，保留上游授权与版本记录；不要只替换引擎而漏掉字体。长行内公式须局部滚动，不能撑宽页面。Markdown 列表与前段之间须有空行；题库的小节引用必须落到相应标题，章首返回入口仍指向章首。
-题库折叠答案使用 `<details markdown="1">`，内容上下留空行，并保持在所属列表项内缩进四空格；否则答案里的强调、公式与链接会变成不可用的原文。必须用浏览器实际展开答案并点击复习链接验证。
+题库源文件保留 GitHub 可读的 `<details markdown="1">`，与前面的题干、内部答案之间均留空行，保持在所属列表项内缩进四空格。构建器将该结构转换为原生 `pymdownx.details` 块，避免 Python-Markdown 把列表内的 HTML 包进段落。必须用浏览器实际展开答案并点击复习链接验证，同时确认产物不残留未处理的 `markdown` 属性。
 
 修改画廊交互后运行 `python -B -m unittest discover -s scripts -p test_gallery_interactions.py -v`。
 这组测试需要 Playwright 和 Google Chrome，直接加载生成器输出并拦截外部请求，覆盖弹窗焦点循环与恢复、单张结果、输入区域快捷键、筛选分享和空结果；CI 的 `svg-render` 作业会执行同一组检查。
