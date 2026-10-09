@@ -405,6 +405,15 @@ class SiteBuildTests(unittest.TestCase):
             with self.subTest(page=page):
                 self.assertIn("学完你应能", (self.work / "docs" / page).read_text(encoding="utf-8"))
 
+    def test_cheatsheet_cites_every_chapter(self):
+        """公式速查表是全站的「算」入口：19 章每章至少贡献一条，新增章节漏入表即红灯。"""
+        text = (self.work / "docs" / "p0-08-cheatsheet.md").read_text(encoding="utf-8")
+        chapters = sorted(p.name for p in (self.work / "docs").glob("p[1-4]-*-ch*.md"))
+        self.assertGreaterEqual(len(chapters), 19)
+        for page in chapters:
+            with self.subTest(page=page):
+                self.assertIn(f"]({page}#", text, f"速查表没有引用 {page}")
+
     # ---------- 共建页脚 ----------
     def test_feedback_footer_on_every_page(self):
         for page in sorted(self.out.glob("*.md")):
