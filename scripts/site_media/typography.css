@@ -190,6 +190,44 @@
 .md-typeset blockquote > :last-child { margin-bottom: 0; }
 
 /* ----------------------------------------------------------------------------
+   5.5 首页顶部：三段收成一层
+   ----------------------------------------------------------------------------
+   首页正文开头原本是「h1 + 引子 blockquote + hero」三个各自带底子的块：h1 底下
+   一条通栏横线，引子一块灰底 —— 前两块吃掉首屏约 250px，真正该抓住视线的 hero
+   被挤到折叠线以下。这里把前两段**去盒化**：h1 只留字号（去掉通栏下划线、放大），
+   引子退成一行淡色副标题。于是整页第一块带底子的东西就是 hero，视线一步到位。
+
+   用 `:has(.learning-hero)` 而不是给首页单独加 class：hero 只在 docs/index.md
+   出现，它本身就是「这是首页」的判据，不必再往 Markdown 里塞一个只有在线站用得到
+   的属性（那份文件还要喂 GitHub 渲染的 README）。不支持 :has() 的浏览器退回原样，
+   只是首屏没那么收，不影响任何内容与可读性。
+   -------------------------------------------------------------------------- */
+
+.md-typeset:has(.learning-hero) > h1 {
+  margin: 0 0 .3rem;
+  padding-bottom: 0;
+  border-bottom: 0;
+  font-size: 2.1em;
+  letter-spacing: -.022em;
+  line-height: 1.22;
+}
+
+.md-typeset:has(.learning-hero) > h1 + blockquote {
+  margin: 0 0 .2rem;
+  padding: 0;
+  border-left: 0;
+  border-radius: 0;
+  background: none;
+}
+
+.md-typeset:has(.learning-hero) > h1 + blockquote > p {
+  margin: 0;
+  font-size: .8rem;
+  line-height: 1.8;
+  color: var(--md-default-fg-color--light);
+}
+
+/* ----------------------------------------------------------------------------
    6. 首页卡片
    ----------------------------------------------------------------------------
    **hero（.learning-hero）的视觉不在这里，在 `reading.css`。**
@@ -197,26 +235,94 @@
    而 `background` 是**简写**，会把这里设的 background-image 整个重置掉；两张表
    又同特异性，reading.css 在 extra_css 里排在后面，谁后加载谁赢。
    与其在这里堆特异性硬顶，不如让「hero 归 reading.css、排版归 typography.css」，
-   一处一个主人。下面两条只管学习路线卡片的底色与悬停。
+   一处一个主人。这里管三件事：卡片的底色与悬停、三条路线各自的配色、
+   以及卡内「适合 / 阶段目标」两行的层级。
    -------------------------------------------------------------------------- */
 
 .md-typeset .learning-path,
 .md-typeset .learning-lesson {
   background: color-mix(in srgb, var(--md-default-fg-color) 2.5%, transparent);
-  transition: border-color .15s, transform .15s;
+  transition: border-color .15s, transform .15s, box-shadow .15s;
 }
 
 .md-typeset .learning-path:hover,
 .md-typeset .learning-lesson:hover {
-  border-color: color-mix(in srgb, var(--md-primary-fg-color) 45%, transparent);
-  transform: translateY(-.1rem);
+  border-color: color-mix(in srgb, var(--pc, var(--md-primary-fg-color)) 45%, transparent);
+  box-shadow: 0 .5rem 1.3rem color-mix(in srgb, var(--md-default-fg-color) 11%, transparent);
+  transform: translateY(-.12rem);
 }
+
+/* 三条路线各配一色。卡片是等权的灰盒，第一眼分不出「这是三条不同的路」——
+   顶部色带（reading.css 的 .learning-path::before）、悬停描边、「适合」标签
+   都吃这一个 --pc，改配色只改这里。深色下换成同色系的亮版，否则色带在
+   深底上等于没画。 */
+.md-typeset .learning-paths > .learning-path:nth-child(1) { --pc: #4338ca; }
+.md-typeset .learning-paths > .learning-path:nth-child(2) { --pc: #0f766e; }
+.md-typeset .learning-paths > .learning-path:nth-child(3) { --pc: #b45309; }
+[data-md-color-scheme="slate"] .md-typeset .learning-paths > .learning-path:nth-child(1) { --pc: #a5b4fc; }
+[data-md-color-scheme="slate"] .md-typeset .learning-paths > .learning-path:nth-child(2) { --pc: #2dd4bf; }
+[data-md-color-scheme="slate"] .md-typeset .learning-paths > .learning-path:nth-child(3) { --pc: #fbbf24; }
+
+/* 「适合」压成一枚小标签，跟后面的说明文字拉开一级。
+   ⚠️ 只圈「适合」两个字、不圈整句：整句当标签会撑成两行的胶囊（实测踩过），
+   三张卡的下沿就乱了。Markdown 里写成 `**适合** · 刚开始学电路。`，
+   GitHub 上读起来同样是「适合 · 什么人来走这条路」。 */
+.md-typeset .learning-path > p:first-of-type > strong:first-child {
+  display: inline-block;
+  padding: .1rem .5rem;
+  border: 1px solid color-mix(in srgb, var(--pc) 32%, transparent);
+  border-radius: 2rem;
+  background: color-mix(in srgb, var(--pc) 11%, transparent);
+  color: color-mix(in srgb, var(--pc) 52%, var(--md-default-fg-color));
+  font-size: .68rem;
+  font-weight: 700;
+}
+[data-md-color-scheme="slate"] .md-typeset .learning-path > p:first-of-type > strong:first-child {
+  /* 深色下 --pc 本身已经很亮，掺进正文色反而会糊；直接取标签主色 */
+  color: var(--pc);
+}
+
+/* 阶段目标 = 这一条路线的验收线，做成脚注：一条虚线把它和正文隔开，
+   并钉在卡片底部 —— 三张卡文字长短不一，不这么做就是三个参差的下沿。 */
+.md-typeset .learning-path > p:nth-of-type(3) { margin-bottom: .75rem; }
+.md-typeset .learning-path > p:last-child {
+  margin-top: auto;
+  padding-top: .55rem;
+  border-top: 1px dashed color-mix(in srgb, var(--pc) 38%, transparent);
+  font-size: .7rem;
+  color: var(--md-default-fg-color--light);
+}
+.md-typeset .learning-path > p:last-child > strong { color: var(--pc); }
+
+/* 路线链（电路直觉 → 无源元件 → 二极管）：每个词不许被折行劈成两半，
+   行距放宽一点，箭头才有呼吸 */
+.md-typeset .learning-path a { font-weight: 700; white-space: nowrap; }
+
+/* 样板课卡的出口 */
+.md-typeset .learning-lesson > p:last-child a { font-weight: 700; }
 
 @media (prefers-reduced-motion: reduce) {
   .md-typeset .learning-path,
   .md-typeset .learning-lesson { transition: none; }
   .md-typeset .learning-path:hover,
   .md-typeset .learning-lesson:hover { transform: none; }
+  .md-typeset .learning-lesson:hover > p:first-child img { transform: none; }
+}
+
+/* ----------------------------------------------------------------------------
+   6.5 顶栏：给纯色块一点纵深
+   ----------------------------------------------------------------------------
+   Material 把顶栏刷成一块**完全平**的品牌色，跟正文的白底之间只有一条硬边。
+   叠两层极淡的渐变：上缘一线高光 + 右侧往强调色偏一点，顶栏就从「一条色块」
+   变成「一条有厚度的横档」。只画 background-image，`--md-primary-fg-color`
+   仍是底色 —— hero、h2 色条、提示卡那些吃这个变量的地方一概不受影响。
+   -------------------------------------------------------------------------- */
+
+.md-header {
+  background-image:
+    linear-gradient(180deg, color-mix(in srgb, #fff 9%, transparent), transparent 58%),
+    linear-gradient(100deg, transparent 26%,
+      color-mix(in srgb, var(--md-accent-fg-color) 30%, transparent));
 }
 
 /* ----------------------------------------------------------------------------

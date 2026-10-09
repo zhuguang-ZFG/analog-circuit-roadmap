@@ -534,7 +534,9 @@ class SiteBuildTests(unittest.TestCase):
         self.assertEqual(4, len(items), '首页 hero 规模清单应恰好四项，实际 %d 项' % len(items))
 
         def number(pattern, text):
-            m = re.search(pattern, text)
+            # chip 里的数字包在 <strong> 里（reading.css 把它做成「读数」字重），
+            # 先剥标签再匹配 —— 本测试钉的是「数字必须来自真实清单」，不是标签形状。
+            m = re.search(pattern, re.sub(r"</?\w+>", "", text))
             self.assertIsNotNone(m, '首页 hero 规模清单格式改变：%r 不匹配 %r' % (pattern, text))
             return int(m.group(1))
 

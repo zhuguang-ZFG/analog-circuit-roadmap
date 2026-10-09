@@ -19,6 +19,9 @@ Run: python -B -m unittest discover -s scripts -p test_first_screen.py -v
      纯 CSS 计算结果：Material 的 `.md-header__button.md-logo :is(img,svg)
      {fill:currentcolor}` 会压掉根 <svg> 上的 fill 属性，而 `.md-header__source`
      在桌面上宽度写死 11.5rem、跟视口无关。两条都是「构建不报错、只有人看得见」。
+  5. **hero 底部那条走线的正弦**（v3.50）与**首页顶部的去盒化**（§5.5 的 `:has()`）
+     也一样：mask 的 data URI 转义坏一个字符，波形就整条消失；`:has()` 那几条失效，
+     h1 与引子重新长出盒子，hero 被推下折叠线。两种都不会让构建报错。
 
 对比度口径：截图取元素区域，**众数色当底色、离底色最远的像素当字芯**，
 按 WCAG 算比值，正文级要求 ≥4.5（比 SVG 那套 ≥3.0 严，因为 chip 是正文字号）。
@@ -113,9 +116,10 @@ class FirstScreenTests(unittest.TestCase):
         cls.addClassCleanup(cls.playwright.stop)
         cls.addClassCleanup(cls.browser.close)
 
-    def homepage(self, scheme="light", width=1280, height=900):
+    def homepage(self, scheme="light", width=1280, height=900, reduced_motion="no-preference"):
         context = self.browser.new_context(viewport={"width": width, "height": height},
-                                           color_scheme=scheme)
+                                           color_scheme=scheme,
+                                           reduced_motion=reduced_motion)
         self.addCleanup(context.close)
         page = context.new_page()
         page.goto(self.base + "index.html", wait_until="load")
@@ -146,6 +150,85 @@ class FirstScreenTests(unittest.TestCase):
                 self.assertEqual("-1", skin["glowZ"], "辉光的 z-index 变了，可能盖住文字")
                 self.assertEqual("isolate", skin["isolation"],
                                  "少了 isolation:isolate，z-index:-1 会跑到页面底板后面")
+
+    # ---------- ①-b 底部走线的正弦 ----------
+    def test_hero_signal_trace_is_masked_and_only_loops_when_allowed(self):
+        """hero 底部那条正弦必须**画得出来**，并且只在无偏好下走线。
+
+        形状画在 `mask-image` 的一张 data-URI SVG 上、颜色画在 `background` 上 ——
+        这样它才能跟着主题的品牌色走。两处都会静默翻车：
+          * data URI 里少转义一个字符 → mask 解析失败，`mask-image` 变 none，
+            整条波形**直接消失**，页面照常构建；
+          * 周期与位移量对不上（SVG 的 width ≠ @keyframes 的 translateX）→
+            每循环一次波形**跳一下**，一眼就能看出不是连续的。
+        所以三样一起钉：mask 命中、动画在跑、周期与位移相等。
+        另外 reduce 下动画必须停（本站对「减弱动效」的承诺是「静止但内容完整」，
+        波形是装饰，停了不该连带把形状也撤掉）。
+        """
+        page = self.homepage("light")
+        trace = page.evaluate("""() => {
+          const after = getComputedStyle(document.querySelector('.learning-hero'), '::after');
+          const tile = /width='(\\d+)'/.exec(after.maskImage || after.webkitMaskImage || '');
+          const key = [...document.styleSheets].flatMap(s => {
+            try { return [...s.cssRules]; } catch { return []; }
+          }).filter(r => r.type === CSSRule.KEYFRAMES_RULE && r.name === 'hero-signal');
+          const to = key.length ? [...key[0].cssRules].find(r => r.keyText === '100%') : null;
+          const shift = to ? /translate3d\\(-?(\\d+)px/.exec(to.style.transform) : null;
+          return {mask: after.maskImage || after.webkitMaskImage, size: after.maskSize,
+                  anim: after.animationName, tile: tile && tile[1],
+                  shift: shift && shift[1],
+                  running: document.getAnimations().some(a =>
+                    a.animationName === 'hero-signal' && a.playState === 'running')};
+        }""")
+        self.assertIn("data:image/svg", trace["mask"], "波形的 mask 没了（多半是 data URI 转义坏了）")
+        self.assertTrue(trace["tile"], "读不出 mask 图块的周期")
+        self.assertEqual(trace["tile"] + "px", trace["shift"] + "px",
+                         "走线位移量和图块周期对不上，每循环会跳一下")
+        self.assertEqual("hero-signal", trace["anim"])
+        self.assertTrue(trace["running"], "无偏好下波形没有在走")
+
+        page = self.homepage("light", reduced_motion="reduce")
+        still = page.evaluate("""() => {
+          const after = getComputedStyle(document.querySelector('.learning-hero'), '::after');
+          return {anim: after.animationName,
+                  mask: after.maskImage || after.webkitMaskImage};
+        }""")
+        self.assertEqual("none", still["anim"], "减弱动效下波形仍在走线")
+        self.assertIn("data:image/svg", still["mask"],
+                      "减弱动效应该是静止、不是把波形撤掉")
+
+    # ---------- ①-c 首页顶部三段收成一层 ----------
+    def test_homepage_top_three_blocks_compose_as_one(self):
+        """首页开头必须是「标题 → 副标题 → hero」，前两段不带自己的盒子。
+
+        h1 的通栏下划线、引子 blockquote 的灰底 + 左色条，都是 typography.css
+        §5.5 用 `:has(.learning-hero)` 压掉的。这类规则失效是**无声**的：选择器
+        写错、或者有人把 §5 的通用规则挪到 §5.5 之后，页面照样构建，只是首屏
+        又变回三块各自带底子的东西，hero 被挤到折叠线以下。
+        """
+        page = self.homepage("light")
+        top = page.evaluate("""() => {
+          const h1 = document.querySelector('.md-typeset > h1');
+          const quote = document.querySelector('.md-typeset > h1 + blockquote');
+          const hero = document.querySelector('.learning-hero');
+          const q = getComputedStyle(quote);
+          // 引子的灰底是 `background: color-mix(… 4%, transparent)` —— 一个背景
+          // **颜色**，不是背景图。只看 backgroundImage 会永远读到 none，
+          // 于是这条护栏对它其实是瞎的（变异验证 M5 就是这么暴露的）。
+          // rgba() 缺第 4 位要按**不透明**算，否则 rgb(…) 这种实心底又漏过去了。
+          const chan = q.backgroundColor.match(/[\\d.]+/g) ?? [];
+          const alpha = chan.length ? Number(chan[3] ?? 1) : 0;
+          return {h1Border: getComputedStyle(h1).borderBottomWidth,
+                  quoteBoxed: q.backgroundImage !== 'none' || alpha > 0,
+                  quoteBorder: q.borderLeftWidth,
+                  heroTop: Math.round(hero.getBoundingClientRect().top),
+                  fold: window.innerHeight};
+        }""")
+        self.assertEqual("0px", top["h1Border"], "首页 h1 又长出通栏下划线了")
+        self.assertFalse(top["quoteBoxed"], "首页引子又变回一块灰底")
+        self.assertEqual("0px", top["quoteBorder"], "首页引子又长出左色条")
+        self.assertLess(top["heroTop"], top["fold"] // 2,
+                        f"hero 起点掉到 {top['heroTop']}px，首屏一半被顶部吃掉了")
 
     # ---------- ② 文字读得出来 ----------
     def test_hero_text_meets_body_contrast_in_both_themes(self):
