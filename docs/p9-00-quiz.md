@@ -17,6 +17,8 @@
 <a id="quiz-ch0"></a>
 ## 📝 第 0 章 电路直觉学前班
 
+> 还不知道从哪章测起？先做 3 分钟 [入场诊断](p0-09-diagnostic.md#diagnostic) 定路线。
+
 [← 返回第 0 章复习](p1-01-ch0.md#ch0) · [🧮 卡住先查公式：速查表·直流基础](p0-08-cheatsheet.md#dc)
 
 1. <a id="q-ch0-01" data-quiz-question="true"></a>12V 电源串 3kΩ（上臂）与 6kΩ（下臂）分压，空载输出是多少？在下臂并联一个 6kΩ 负载后又变成多少？

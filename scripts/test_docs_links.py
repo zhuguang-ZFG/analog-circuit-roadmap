@@ -130,6 +130,17 @@ class DocsLinks(unittest.TestCase):
                     self.assertEqual(shown, anchor)
                     self.assertIn(f'<a id="quiz-ch{shown}"></a>', quiz)
 
+    def test_every_chapter_links_its_cheatsheet_section(self):
+        sheet = (DOCS / 'p0-08-cheatsheet.md').read_text(encoding='utf-8')
+        for page in self.pages:
+            match = re.search(r'-ch(\d+)\.md$', page.name)
+            if match:
+                with self.subTest(chapter=match[1]):
+                    text = page.read_text(encoding='utf-8')
+                    ref = re.search(r'\[速查表·[^\]]*\]\(p0-08-cheatsheet\.md#([a-z]+)\)', text)
+                    self.assertIsNotNone(ref, 'chapter must link its cheatsheet section')
+                    self.assertIn(f'<a id="{ref[1]}"></a>', sheet)
+
 
 if __name__ == "__main__":
     unittest.main()
