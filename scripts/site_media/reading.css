@@ -9,16 +9,106 @@
 .md-typeset .learning-backup button { min-height: 44px; padding: .5rem .8rem; border: 1px solid var(--md-default-fg-color--lightest); border-radius: .3rem; color: var(--md-typeset-a-color); background: var(--md-code-bg-color); cursor: pointer; }
 .md-typeset .learning-backup button:focus-visible { outline: 3px solid var(--md-accent-fg-color); outline-offset: 3px; }
 .md-typeset .learning-backup-message { font-size: .7rem; }
+/* 首页 hero —— 首屏的「惊鸿一瞥」全押在这一块上。
+   原来是「浅灰底 + 细左色条」，跟正文里的普通卡片分不出来。现在给它三样东西：
+     ① 品牌色**真的参与底色**：斜向渐变从「品牌色 15% 混进代码底色」走到纯底色；
+     ② **蓝图点阵**：用 radial-gradient 平铺 1px 圆点 —— 和 108 张动画共用的
+        点阵底纹是同一套视觉语言，一眼就知道这是个工程向的站；
+     ③ 右上角**辉光** + 卡片投影，把整块从页面里「抬」起来，视线有落点。
+   点阵与辉光都画在文字**之下**：::before 用 z-index:-1，配 isolation:isolate
+   把负层级关在本卡片内部（否则会跑到页面底板后面去）。因此它们既不参与
+   文字对比度，也不挡链接点击。
+   ⚠️ 这份规则必须在 reading.css 里，不能挪回 typography.css：那张表排在
+   extra_css 前面，而这里的 `background-color` 与 `border` 都是会覆盖它的后加载规则。 */
 .md-typeset .learning-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   padding: 1.5rem;
   margin: 1.25rem 0 2rem;
-  border: 1px solid var(--md-default-fg-color--lightest);
+  border: 1px solid color-mix(in srgb, var(--md-primary-fg-color) 26%, transparent);
   border-left: 4px solid var(--md-primary-fg-color);
-  border-radius: .65rem;
-  background: var(--md-code-bg-color);
+  border-radius: .9rem;
+  background-color: var(--md-code-bg-color);
+  background-image:
+    radial-gradient(circle at 50% 50%,
+      color-mix(in srgb, var(--md-primary-fg-color) 26%, transparent) 1px,
+      transparent 1.5px),
+    linear-gradient(135deg,
+      color-mix(in srgb, var(--md-primary-fg-color) 15%, var(--md-code-bg-color)) 0%,
+      color-mix(in srgb, var(--md-primary-fg-color) 5%, var(--md-code-bg-color)) 52%,
+      var(--md-code-bg-color) 100%);
+  background-size: 14px 14px, 100% 100%;
+  box-shadow: 0 .4rem 1.5rem color-mix(in srgb, var(--md-primary-fg-color) 15%, transparent);
 }
-.md-typeset .learning-hero h2 { margin: .5rem 0 .8rem; font-weight: 750; }
-.md-typeset .learning-eyebrow { font-size: .7rem; letter-spacing: .1em; color: var(--md-default-fg-color--light); }
+.md-typeset .learning-hero::before {
+  content: "";
+  position: absolute;
+  inset: -34% -14% auto auto;
+  width: 64%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%,
+    color-mix(in srgb, var(--md-primary-fg-color) 30%, transparent), transparent 68%);
+  z-index: -1;
+  pointer-events: none;
+}
+.md-typeset .learning-hero h2 { margin: .5rem 0 .8rem; font-weight: 800; font-size: 1.5em; }
+/* eyebrow 做成真正的「引题」：一段短横线 + 拉开字距 + 品牌色。
+   文字色用 `60% --md-typeset-a-color + 40% --md-default-fg-color`，不是直接取
+   --md-primary-fg-color —— 后者在暗色主题下**不变**（仍是 #4051b5），压在本站的
+   深靛底色上只有 2.56:1，肉眼能看出「糊」。Material 为每个主题单独提供了可读的
+   品牌色 `--md-typeset-a-color`（暗色下自动变 #5488e8），再掺四成正文色兜底。
+   实测（截图取众数色为底、离底最远的像素为字芯）：明 7.93 / 暗 5.03，两套都过 4.5。 */
+.md-typeset .learning-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  margin: 0;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  color: color-mix(in srgb, var(--md-typeset-a-color) 60%, var(--md-default-fg-color));
+}
+.md-typeset .learning-eyebrow::before {
+  content: "";
+  width: 1.6rem;
+  height: .12rem;
+  border-radius: 1rem;
+  background: currentColor;
+  opacity: .75;
+}
+/* 首页 hero 的四项规模数据：做成药丸 chip。
+   它们在 og 分享卡（build_og_image.py）里本来就是 chip，线上 hero 却是一行
+   粗体文字 —— 这里补齐一致性。用 <ul>/<li> 而不是裸 <span>，是因为 docs/index.md
+   同时喂 README：列表在 GitHub 上渲染成四条干净的条目，比挤成一行更好读。
+
+   ⚠️ 选择器必须写成 `ul.learning-stats:not([hidden])`：Material 有一条
+   `.md-typeset ol:not([hidden]),.md-typeset ul:not([hidden]){display:flow-root}`，
+   特异性 (0,2,1)。只写 `.md-typeset .learning-stats` 是 (0,2,0)，**会被它压掉**，
+   chip 就退化成四条占满整行的方块（实测踩过，hero 因此高了 94px）。
+   这里照抄它的结构再加自己的类名，特异性 (0,3,1) —— 与加载顺序无关，稳赢。 */
+.md-typeset ul.learning-stats:not([hidden]) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem .42rem;
+  margin: 1.15rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.md-typeset ul.learning-stats:not([hidden]) > li {
+  margin: 0;
+  padding: .2rem .56rem;
+  border: 1px solid color-mix(in srgb, var(--md-primary-fg-color) 24%, transparent);
+  border-radius: 2rem;
+  background: color-mix(in srgb, var(--md-primary-fg-color) 11%, transparent);
+  /* 同 eyebrow：品牌色取 --md-typeset-a-color（随主题变化），掺四成正文色兜底。
+     实测 明 7.43 / 暗 4.80，两套都过正文级 4.5。 */
+  color: color-mix(in srgb, var(--md-typeset-a-color) 60%, var(--md-default-fg-color));
+  font-size: .7rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
 .md-typeset .learning-actions { display: flex; align-items: center; flex-wrap: wrap; gap: .6rem 1rem; margin: 1.2rem 0; }
 .md-typeset .learning-actions a { display: inline-flex; align-items: center; min-height: 44px; padding: .55rem .85rem; border-radius: .35rem; font-weight: 650; }
 .md-typeset .learning-actions .learning-primary { color: var(--md-primary-bg-color); background: var(--md-primary-fg-color); }

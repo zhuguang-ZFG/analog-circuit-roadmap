@@ -754,6 +754,68 @@ GALLERY_JS = """
 })();
 """
 
+# ---------------------------------------------------------------------------
+# Material 主题补丁：让「篇首页」真的当上节首页（navigation.indexes）
+# ---------------------------------------------------------------------------
+# Material 的 navigation.indexes 只认 MkDocs 的 `Page.is_index`，而那个属性的
+# 定义就是 `self.file.name == 'index'`（README.md 会被归一成 index）。本站的篇首页
+# 叫 `p1-00-part1.md`，主干是 `p1-00-part1` —— 于是这个特性**完全没生效**：
+#   ① 节标题退化成纯折叠标签（点它只能展开，进不了篇首页）；
+#   ② 篇首页又以普通子项出现在列表首位，标题与节标题**一字不差**。
+# 结果：侧栏里每个篇标题都重复一行，9 篇共 9 处。而 build_nav() 里那句
+# 「配合 navigation.indexes，点击节名即进入该页」的意图其实一直没兑现。
+#
+# 修法：不重命名文件（那会动 URL、锚点与 README），而是对上游模板打一个最小补丁 ——
+# 把「**首个标题与节标题相同的叶子页**」也算作该节的 index。判据挑「标题相同」是因为
+# 重复的根源正是这两处标题相同；`not item.children` 保证它必须是页面而不是子节。
+# 这样节标题变成链接（点进篇首页）、右侧只留一个展开箭头，篇首页不再重复出现在子列表。
+#
+# **刻意不复制整份模板**：每次构建都从已安装的 Material 取原文再打补丁，
+# 所以升级 Material 不会留下过期的副本；上游一旦改了这段锚点，
+# nav_item_override() 会直接抛错（而不是静默产出一个不对的侧栏），
+# `test_site_build.py` 也会变红。
+NAV_ITEM_ANCHOR = '''    {% set _ = namespace(index = none) %}
+    {% if "navigation.indexes" in features %}
+      {% for item in nav_item.children %}
+        {% if item.is_index and _.index is none %}
+          {% set _.index = item %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+    {% set index = _.index %}'''
+
+NAV_ITEM_PATCHED = '''    {% set _ = namespace(index = none) %}
+    {% if "navigation.indexes" in features %}
+      {% for item in nav_item.children %}
+        {% if _.index is none and (item.is_index or (not item.children and item.title == nav_item.title)) %}
+          {% set _.index = item %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+    {% set index = _.index %}'''
+
+
+def nav_item_override(source=None):
+    """取上游 nav-item.html，打上「篇首页即节首页」的补丁后返回。
+
+    锚点必须**恰好出现一次**：找不到（Material 改了结构）就抛错，
+    宁可构建失败也不要静默生成一个篇标题重复的侧栏。
+
+    `source` 只给测试用（喂一份没有锚点的文本，验证它确实会响亮地失败）。
+    """
+    import material
+    src = Path(source) if source else (
+        Path(material.__file__).parent / "templates" / "partials" / "nav-item.html")
+    text = src.read_text(encoding="utf-8")
+    if text.count(NAV_ITEM_ANCHOR) != 1:
+        raise SystemExit(
+            "Material 的 partials/nav-item.html 结构变了："
+            "navigation.indexes 那段锚点找不到或出现多次。\n"
+            "请重新核对 build_site.NAV_ITEM_ANCHOR / NAV_ITEM_PATCHED 这对补丁"
+            "（补丁的作用见上方注释），改完再构建。")
+    return text.replace(NAV_ITEM_ANCHOR, NAV_ITEM_PATCHED)
+
+
 OVERRIDES_MAIN_HTML = """{% extends "base.html" %}
 
 {% block extrahead %}
@@ -1314,6 +1376,12 @@ def main():
         .replace("__OG_WIDTH__", str(OG_WIDTH))
         .replace("__OG_HEIGHT__", str(OG_HEIGHT)),
         encoding="utf-8", newline="\n")
+
+    # 主题补丁：让「篇首页」成为节标题本身的链接（否则篇标题在侧栏里重复一行）
+    partials = ov / "partials"
+    partials.mkdir(parents=True, exist_ok=True)
+    (partials / "nav-item.html").write_text(
+        nav_item_override(), encoding="utf-8", newline="\n")
 
     items, _ = parse_demos()
     gallery = with_description(render_gallery(items).rstrip("\n"))

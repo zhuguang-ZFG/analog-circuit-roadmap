@@ -317,6 +317,30 @@ class SiteBuildTests(unittest.TestCase):
         for extra in ("gallery.md", "CONTRIBUTING.md", "CONTRIBUTORS.md"):
             self.assertIn(extra, nav, "%s 没进导航" % extra)
 
+    def test_sidebar_part_titles_are_links_not_duplicated_rows(self):
+        """侧栏里每个篇标题只占一行，而且它本身就是进入篇首页的链接。
+
+        背景：Material 的 `navigation.indexes` 只认 MkDocs 的 `Page.is_index`，
+        而那个属性的定义就是 `self.file.name == 'index'`。本站的篇首页叫
+        `p1-00-part1.md` —— 命不中，于是节标题退化成纯折叠标签（点它只能展开），
+        篇首页又以普通子项出现在列表首位，两处标题**一字不差**，于是每个篇标题
+        在侧栏里重复两行（实测 9 处）。`build_site.nav_item_override()` 给上游
+        模板打了补丁，这里锁住渲染结果：补丁一旦失效就会退回重复。
+        """
+        html = self.rendered("index.html")
+        heads = sorted(p.stem for p in (self.work / "docs").glob("p?-00-*.md"))
+        self.assertGreaterEqual(len(heads), 8, "篇首页数量异常，测试前提不成立")
+
+        # 补丁生效时，节标题被包进 md-nav__container（指向篇首页的 <a> + 展开箭头）；
+        # 未生效时它是裸 <label>，容器一个都不会出现。
+        self.assertEqual(len(heads), html.count("md-nav__container"),
+                         "侧栏篇标题没有变成指向篇首页的链接（navigation.indexes 未生效）")
+
+        nav = html[html.index("md-nav--primary"):html.index("md-sidebar--secondary")]
+        for stem in heads:
+            self.assertEqual(1, len(re.findall(r'href="%s\.html"' % stem, nav)),
+                             "%s 在侧栏里出现了多次（篇标题与篇首页链接重复）" % stem)
+
     def test_no_placeholders_left(self):
         nav = (self.build / "mkdocs.yml").read_text(encoding="utf-8")
         self.assertNotIn("__NAV__", nav)
@@ -430,12 +454,28 @@ class SiteBuildTests(unittest.TestCase):
                          (self.out / 'javascripts/progress.js').read_bytes())
 
     def test_homepage_hero_counts_match_the_real_inventory(self):
-        """首页宣传行的数字必须由真实清单推导：加动画/题目/样板忘改首页即红灯。"""
+        """首页规模清单的数字必须由真实清单推导：加动画/题目/样板忘改首页即红灯。
+
+        清单在 docs/index.md 里是一段 `<ul class="learning-stats">`，四项各占一个
+        `<li>`（站点产物里再被 reading.css 渲染成药丸 chip）。最后一项
+        「N 道章节题 + M 道专题题」含两个数，单独取。
+        """
         home = (self.out / 'index.md').read_text(encoding='utf-8')
-        hero = re.search(r'\*\*(\d+) 章核心内容\*\* · \*\*(\d+) 张原理动画\*\* · '
-                         r'\*\*(\d+) 个可控教学样板\*\* · \*\*(\d+) 道章节题 \+ (\d+) 道专题题\*\*', home)
-        self.assertIsNotNone(hero, '首页 hero 宣传行缺失或格式改变')
-        claimed_chapters, animations, lessons, chapter_q, extra_q = map(int, hero.groups())
+        block = re.search(r'<ul class="learning-stats">(.*?)</ul>', home, re.S)
+        self.assertIsNotNone(block, '首页 hero 规模清单缺失或格式改变')
+        items = re.findall(r'<li>\s*(.*?)\s*</li>', block.group(1), re.S)
+        self.assertEqual(4, len(items), '首页 hero 规模清单应恰好四项，实际 %d 项' % len(items))
+
+        def number(pattern, text):
+            m = re.search(pattern, text)
+            self.assertIsNotNone(m, '首页 hero 规模清单格式改变：%r 不匹配 %r' % (pattern, text))
+            return int(m.group(1))
+
+        claimed_chapters = number(r'^(\d+) 章核心内容$', items[0])
+        animations = number(r'^(\d+) 张原理动画$', items[1])
+        lessons = number(r'^(\d+) 个可控教学样板$', items[2])
+        chapter_q = number(r'^(\d+) 道章节题', items[3])
+        extra_q = number(r'\+ (\d+) 道专题题$', items[3])
         data = (self.out / 'javascripts/learning-catalog.js').read_text(encoding='utf-8')
         catalog = json.loads(data.split(' = ', 1)[1].rstrip(';\n'))
         studies = []
