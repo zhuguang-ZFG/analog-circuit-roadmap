@@ -346,6 +346,68 @@ class SiteBuildTests(unittest.TestCase):
             self.assertEqual(1, len(re.findall(r'href="%s\.html"' % stem, nav)),
                              "%s 在侧栏里出现了多次（篇标题与篇首页链接重复）" % stem)
 
+    # ---------- 品牌标识（顶栏 logo / favicon / 仓库链接文案） ----------
+    def test_header_logo_is_ours_not_the_theme_default(self):
+        """顶栏标识必须是我们自己的「节点圈 + 正弦」，不能退回 Material 默认的书本图标。
+
+        为什么值得钉：Material 默认那个 `material/library` 图标跟模拟电路毫无关系，
+        而它「静默生效」—— `theme.icon.logo` 一旦丢了或名字写错，主题会**悄悄**
+        回退到默认图标，构建照样成功、其他测试照样绿。
+
+        `fill="none"` 那一条是硬性的：Material 有
+        `.md-header__button.md-logo :is(img,svg){fill:currentcolor}`，CSS 声明压得过
+        根 <svg> 上的同名呈现属性。写在根上 = 圈变成实心盘（渲染结果由
+        test_first_screen.py 按像素占比验）。
+        """
+        nav = (self.build / "mkdocs.yml").read_text(encoding="utf-8")
+        self.assertIn("logo: analog-circuit", nav, "主题配置里没有指向自绘标识")
+
+        icon = self.build / "overrides" / ".icons" / "analog-circuit.svg"
+        self.assertTrue(icon.is_file(), "品牌标识没有被写进 custom_dir 的 .icons/")
+        mark = icon.read_text(encoding="utf-8")
+        self.assertEqual(2, mark.count('fill="none"'),
+                         'fill="none" 必须分别写在 circle 与 path 两个子元素上')
+        self.assertNotIn("<!--", mark,
+                         "生成的主题图标里还留着注释（设计说明会被内联进 61 页 HTML）")
+
+        html = self.rendered("index.html")
+        start = html.index("md-header__button md-logo")
+        header_logo = html[start:html.index("</a>", start)]
+        self.assertIn("M6.3 12c1.5-3.5", header_logo, "顶栏没有内联我们的标识")
+        self.assertNotIn("M12 8a3 3 0 0 0 3-3", header_logo,
+                         "顶栏退回 Material 默认的书本图标了")
+        self.assertNotIn("品牌标识", header_logo, "logo.svg 的设计说明被内联进页面了")
+
+    def test_favicon_is_ours_not_the_theme_default(self):
+        """favicon 必须是自绘的那张（品牌渐变 + 标识），不能是 Material 默认的深色书本。
+
+        Material 自带 `assets/images/favicon.png`，而 MkDocs 收集静态文件时是
+        「docs_dir 先、主题目录后」，同名文件里 docs_dir 赢。所以只要仓库里的
+        `assets/images/favicon.png` 还在、`assets/` 还被整棵拷进站点源，产物就
+        应当与它**逐字节相同**；哪天有人挪了路径或改了名字，产物会静默换回
+        主题默认图 —— 同样不影响构建、不影响其他测试。
+        """
+        ours = (ROOT / "assets" / "images" / "favicon.png").read_bytes()
+        built = (self.site / "assets" / "images" / "favicon.png").read_bytes()
+        self.assertEqual(ours, built, "产物里的 favicon 不是仓库里那份（被主题默认图盖掉了）")
+
+        nav = (self.build / "mkdocs.yml").read_text(encoding="utf-8")
+        self.assertIn("favicon: assets/images/favicon.png", nav)
+        self.assertIn('rel="icon" href="assets/images/favicon.png"',
+                      self.rendered("index.html"))
+
+    def test_header_repo_name_has_no_path(self):
+        """顶栏仓库链接的文案里不能带 `/`。
+
+        Material 给 `.md-header__source` 的宽度在桌面上写死 11.5rem（跟视口无关），
+        所以 `zhuguang-ZFG/analog-circuit-roadmap` 会被 CSS 截成
+        `zhuguang-ZFG/analog-ci…` —— 每页顶栏都挂一个省略号。
+        （真实渲染由 test_first_screen.py 比 scrollWidth/clientWidth 验。）
+        """
+        nav = (self.build / "mkdocs.yml").read_text(encoding="utf-8")
+        line = next(ln for ln in nav.splitlines() if ln.startswith("repo_name:"))
+        self.assertNotIn("/", line, f"仓库链接文案带了路径，会被顶栏截断：{line!r}")
+
     def test_no_placeholders_left(self):
         nav = (self.build / "mkdocs.yml").read_text(encoding="utf-8")
         self.assertNotIn("__NAV__", nav)

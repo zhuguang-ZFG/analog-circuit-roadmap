@@ -941,7 +941,12 @@ MKDOCS_YML = """site_name: 通往模拟电路之路
 site_description: 从欧姆定律到芯片内部结构 —— 原理推导 + 器件剖析 + 故障分析 + 108 张 SVG 动画
 site_url: https://zhuguang-ZFG.github.io/analog-circuit-roadmap/
 repo_url: https://github.com/zhuguang-ZFG/analog-circuit-roadmap
-repo_name: zhuguang-ZFG/analog-circuit-roadmap
+# 顶栏右上角那个仓库链接显示的就是这个串，而 Material 给它的宽度是**固定**的
+# （`.md-header__source` 在桌面上限死 11.5rem，跟视口宽度无关），所以写全路径
+# `zhuguang-ZFG/analog-circuit-roadmap` 会被 CSS 截成 `zhuguang-ZFG/analog-ci…`
+# —— 顶栏上挂着一个省略号，是每页都看得见的一处毛刺。GitHub 图标已经说明了
+# 平台，文字只留平台名即可（这也是 MkDocs 在 host 为 github.com 时的默认值）。
+repo_name: GitHub
 edit_uri: edit/main/docs/
 copyright: CC BY-SA 4.0
 
@@ -955,6 +960,16 @@ theme:
   language: zh
   font: false
   custom_dir: overrides
+  # 品牌标识：不用 Material 自带的「一本白书」（跟模拟电路毫无关系）。
+  # 这里的值对应 custom_dir 下的 `.icons/analog-circuit.svg` —— 由 main()
+  # 从 scripts/site_media/logo.svg 拷进去。写成 icon.logo 而不是 theme.logo，
+  # 是为了让 SVG **内联**进 HTML：logo 就能用 currentColor 跟着顶栏文字色走，
+  # 浅色/深色主题与悬停态都不用再管。
+  icon:
+    logo: analog-circuit
+  # favicon 也是自绘的（scripts/build_favicon.py 渲染、产物提交进仓库）。
+  # 路径相对 docs_dir；assets/ 由 main() 整棵拷进站点源，所以这里指得到。
+  favicon: assets/images/favicon.png
   features:
     - navigation.instant
     - navigation.tracking
@@ -1385,6 +1400,20 @@ def main():
     partials.mkdir(parents=True, exist_ok=True)
     (partials / "nav-item.html").write_text(
         nav_item_override(), encoding="utf-8", newline="\n")
+
+    # 品牌标识：Material 的 `theme.icon.logo` 会在 custom_dir 的 `.icons/` 下找
+    # `<名字>.svg`。放在这里而不是写进仓库的 overrides/ —— 本项目的 overrides
+    # 一律由构建生成（见上方注释），仓库里不留第二份主题目录。
+    #
+    # 顺手剥掉 XML 注释：logo.svg 里那段「为什么是圈 + 正弦、fill 为什么必须写在
+    # 子元素上」是给改图的人看的，但它会被**内联**进 61 页的 HTML，等于把设计说明
+    # 当成正文发出去。注释留在源文件里，产物只带图形。
+    icons = ov / ".icons"
+    icons.mkdir(parents=True, exist_ok=True)
+    mark = (media / "logo.svg").read_text(encoding="utf-8")
+    mark = re.sub(r"<!--.*?-->", "", mark, flags=re.S)      # 去掉设计说明
+    mark = re.sub(r"\n[ \t]*\n+", "\n", mark)               # 顺手清掉留下的空行
+    (icons / "analog-circuit.svg").write_text(mark, encoding="utf-8", newline="\n")
 
     items, _ = parse_demos()
     gallery = with_description(render_gallery(items).rstrip("\n"))

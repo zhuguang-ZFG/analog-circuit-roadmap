@@ -1,6 +1,6 @@
-"""首页 hero（首屏）的视觉护栏 —— 三件事都**只能在浏览器里**验。
+"""首屏（顶栏 + 首页 hero）的视觉护栏 —— 这些只能在浏览器里验。
 
-Run: python -B -m unittest discover -s scripts -p test_home_hero.py -v
+Run: python -B -m unittest discover -s scripts -p test_first_screen.py -v
 
 为什么不能靠静态检查：
   1. **hero 皮肤有没有真的贴上**。`reading.css` 里 hero 的底色是
@@ -15,6 +15,10 @@ Run: python -B -m unittest discover -s scripts -p test_home_hero.py -v
      {margin-left:1.25em}`，特异性 (0,2,2) 比 `.md-typeset .learning-stats > li`
      的 (0,2,1) 高 —— 每个 chip 会凭空多 17.5px 左外边距（四个共 70px），
      刚好把第四枚挤到第二行。这类「差 1px」的排版事故静态查不出来。
+  4. **顶栏那两处**（品牌标识是描边还是实心盘、仓库链接有没有被截断）同样是
+     纯 CSS 计算结果：Material 的 `.md-header__button.md-logo :is(img,svg)
+     {fill:currentcolor}` 会压掉根 <svg> 上的 fill 属性，而 `.md-header__source`
+     在桌面上宽度写死 11.5rem、跟视口无关。两条都是「构建不报错、只有人看得见」。
 
 对比度口径：截图取元素区域，**众数色当底色、离底色最远的像素当字芯**，
 按 WCAG 算比值，正文级要求 ≥4.5（比 SVG 那套 ≥3.0 严，因为 chip 是正文字号）。
@@ -38,6 +42,9 @@ ROOT = Path(__file__).resolve().parents[1]
 
 # 正文字号的门槛（WCAG AA）。SVG 那套用 3.0 是因为图里的标注算"大号图形文字"。
 MIN_RATIO = 4.5
+
+# 顶栏 logo 框里「接近白色」的像素占比上限。实测：描边 0.198、实心盘 0.535。
+LOGO_MAX_INK = 0.35
 
 
 class QuietHandler(SimpleHTTPRequestHandler):
@@ -69,7 +76,17 @@ def measured_contrast(page, selector):
     return background, glyph, contrast(background, glyph)
 
 
-class HomeHeroTests(unittest.TestCase):
+def ink_fraction(page, selector, threshold=190):
+    """元素区域里「接近白色」的像素占比 —— 用来分辨「描边图形」与「实心色块」。"""
+    box = page.eval_on_selector(selector, "e => e.getBoundingClientRect().toJSON()")
+    shot = page.screenshot(clip={"x": box["x"], "y": box["y"],
+                                 "width": box["width"], "height": box["height"]})
+    pixels = list(Image.open(io.BytesIO(shot)).convert("RGB").get_flattened_data())
+    white = sum(1 for pixel in pixels if min(pixel) > threshold)
+    return white / max(1, len(pixels))
+
+
+class FirstScreenTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         temporary = tempfile.TemporaryDirectory(prefix="analog-hero-")
@@ -176,6 +193,75 @@ class HomeHeroTests(unittest.TestCase):
         overflow = page.evaluate(
             "() => document.documentElement.scrollWidth > window.innerWidth + 1")
         self.assertFalse(overflow, "手机宽度下 chip 撑出了横向滚动")
+
+    # ---------- ④ 顶栏品牌（每页都有，属于首屏的一部分） ----------
+    def test_header_logo_is_an_outline_not_a_filled_disc(self):
+        """顶栏标识必须是「圈 + 正弦」的**描边**，不能糊成一个实心圆盘。
+
+        为什么专门钉这个：Material 有
+        `.md-header__button.md-logo :is(img,svg){fill:currentcolor}` —— CSS 声明
+        压得过根 <svg> 上的 `fill="none"`（呈现属性优先级最低）。所以只要有人把
+        `fill="none"` 从**子元素**挪到根元素上（看起来更「整洁」），圆就变成实心盘。
+        构建不报错、静态检查也看不出来，只有人眼发现「logo 变成一个白点」。
+
+        实测 24×24 的 logo 框：描边时白像素占比 0.198，实心盘 0.535 ——
+        门槛取 0.35，两边都留足余量。
+        """
+        for scheme in ("light", "dark"):
+            with self.subTest(scheme=scheme):
+                page = self.homepage(scheme)
+                size = page.eval_on_selector(
+                    ".md-header__button.md-logo svg",
+                    "e => { const r = e.getBoundingClientRect();"
+                    "       return {w: r.width, h: r.height}; }")
+                self.assertGreater(size["w"], 8, "顶栏标识没渲染出来")
+                ink = ink_fraction(page, ".md-header__button.md-logo svg")
+                self.assertLess(
+                    ink, LOGO_MAX_INK,
+                    f"{scheme} 主题下顶栏标识有 {ink:.3f} 的像素是白的（上限 {LOGO_MAX_INK}）——"
+                    "多半是 fill=\"none\" 被挪到根 <svg> 上、又被 Material 的 "
+                    "fill:currentcolor 覆盖了，圈糊成了实心盘")
+
+    def test_header_repo_link_is_not_truncated(self):
+        """顶栏右上角的仓库链接不能被截断。
+
+        Material 给 `.md-header__source` 的宽度在桌面上是**写死的 11.5rem**，
+        跟视口宽度无关 —— 所以写全路径 `zhuguang-ZFG/analog-circuit-roadmap`
+        会被 CSS 截成 `zhuguang-ZFG/analog-ci…`：每页顶栏都挂着一个省略号。
+        这里直接比 scrollWidth 与 clientWidth（截断时前者更大）。
+        """
+        for width in (1440, 1280, 1024):
+            with self.subTest(width=width):
+                page = self.homepage(width=width)
+                box = page.evaluate("""() => {
+                  const e = document.querySelector('.md-source__repository');
+                  return {scroll: e.scrollWidth, client: e.clientWidth,
+                          text: e.textContent.trim()};
+                }""")
+                self.assertTrue(box["text"], "顶栏仓库链接是空的")
+                self.assertLessEqual(
+                    box["scroll"], box["client"] + 1,
+                    f"{width}px 下仓库链接「{box['text']}」被截断了"
+                    f"（内容 {box['scroll']}px > 容器 {box['client']}px）")
+
+    def test_header_text_meets_body_contrast_in_both_themes(self):
+        """顶栏的站点标题与仓库链接在明暗两套主题下都要 ≥4.5。
+
+        顶栏底色是固定的品牌色（`--md-primary-fg-color` 在 slate 下也不变），
+        文字是白色 —— 理论上够用，但这条线此前**没有任何测试覆盖**
+        （SVG 那套管的是图里的文字，hero 那套管的是首页正文）。
+        """
+        targets = [("站点标题", ".md-header__title"),
+                   ("仓库链接", ".md-source__repository")]
+        for scheme in ("light", "dark"):
+            page = self.homepage(scheme)
+            for name, selector in targets:
+                with self.subTest(scheme=scheme, target=name):
+                    background, glyph, ratio = measured_contrast(page, selector)
+                    self.assertGreaterEqual(
+                        ratio, MIN_RATIO,
+                        f"{scheme} 主题下顶栏{name}对比度只有 {ratio:.2f}"
+                        f"（底={background} 字={glyph}），低于正文级 {MIN_RATIO}")
 
 
 if __name__ == "__main__":

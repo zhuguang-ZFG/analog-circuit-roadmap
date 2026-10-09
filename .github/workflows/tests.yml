@@ -75,8 +75,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      # Pillow 是 test_home_hero.py 用的：它按 WCAG 量首页 hero 上 chip / eyebrow
-      # 的对比度，需要把截图解成像素（众数色当底、离底最远的像素当字芯）。
+      # Pillow 是 test_first_screen.py 用的：它按 WCAG 量首屏（顶栏 + 首页 hero）
+      # 上文字的对比度，需要把截图解成像素（众数色当底、离底最远的像素当字芯）。
       - run: pip install -r requirements.txt playwright Pillow
       - name: Reading routes, old bookmarks, mobile layout and search
         run: python -B -m unittest discover -s scripts -p test_reading_journey.py -v
@@ -92,5 +92,5 @@ jobs:
         run: python -B -m unittest discover -s scripts -p test_svg_contrast.py -v
       - name: 减弱动效（<picture> 选源正确、静止版粒子全停、字幕不误伤）
         run: python -B -m unittest discover -s scripts -p test_reduced_motion.py -v
-      - name: 首页 hero 视觉（皮肤生效 / 文字对比度 ≥4.5 / chip 不换行）
-        run: python -B -m unittest discover -s scripts -p test_home_hero.py -v
+      - name: 首屏视觉（顶栏标识是描边 / 仓库链接不截断 / hero 皮肤 / 对比度 ≥4.5 / chip 不换行）
+        run: python -B -m unittest discover -s scripts -p test_first_screen.py -v
