@@ -21,6 +21,11 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 PART5 = "p5-00-part5.md"
 
+# 侧栏「节首页补丁」的单元测试要读已安装的 Material 模板，所以直接 import
+# build_site（本文件所在的 site-build 作业本来就装了 mkdocs-material）。
+sys.path.insert(0, str(ROOT / "scripts"))
+from build_site import NAV_ITEM_ANCHOR, NAV_ITEM_PATCHED, nav_item_override  # noqa: E402
+
 DEMO_HEAD = re.compile(r'^## (5\.\d+)\s+(.+?)\s*<a id="(demo\d+)"')
 ANCHOR = re.compile(r'<a\s+id="(demo\d+)"')
 CHAPTER_ROW = re.compile(r"^\|\s*§(\d+)\s+(第\s*\d+\s*章[^|]*?)\s*\|")
@@ -790,6 +795,56 @@ class SiteBuildTests(unittest.TestCase):
     @staticmethod
     def _n(demo_anchor):
         return int(re.sub(r"\D", "", demo_anchor))
+
+
+class NavIndexPatchTests(unittest.TestCase):
+    """Material 的 navigation.indexes 对「篇首页」不生效，得给上游模板打补丁。
+
+    `navigation.indexes` 只认 MkDocs 的 `Page.is_index`，而那个属性的定义就是
+    `self.file.name == 'index'`（README.md 会被归一成 index）。本站的篇首页叫
+    `p1-00-part1.md` —— 命不中，于是节标题退化成纯折叠标签（点它只能展开）、
+    篇首页又以普通子项出现在列表首位，两处标题**一字不差**，侧栏里每个篇标题
+    都重复一行（实测 9 处）。补丁把「首个标题与节标题相同的叶子页」也算作该节的
+    index，于是标题变成链接、篇首页不再重复出现。
+
+    这组测试**不构建站点**（快），只钉住补丁本身；渲染结果由
+    `SiteBuildTests.test_sidebar_part_titles_are_links_not_duplicated_rows` 验。
+    """
+
+    @staticmethod
+    def _upstream():
+        import material
+        return (Path(material.__file__).parent / "templates" / "partials"
+                / "nav-item.html").read_text(encoding="utf-8")
+
+    def test_the_anchor_appears_exactly_once_upstream(self):
+        self.assertEqual(
+            1, self._upstream().count(NAV_ITEM_ANCHOR),
+            "Material 的 partials/nav-item.html 结构变了：锚点找不到或出现多次，"
+            "请重新核对 build_site.NAV_ITEM_ANCHOR / NAV_ITEM_PATCHED 这对补丁")
+
+    def test_the_patch_teaches_it_about_part_index_pages(self):
+        """判据是「标题相同」——因为重复的根源正是这两处标题相同。"""
+        self.assertIn("item.title == nav_item.title", NAV_ITEM_PATCHED)
+        self.assertNotIn("item.title == nav_item.title", NAV_ITEM_ANCHOR)
+
+    def test_the_patch_only_accepts_a_leaf_page(self):
+        """必须限定 `not item.children`，否则会把子节也当成 index。"""
+        self.assertIn("not item.children and item.title == nav_item.title",
+                      NAV_ITEM_PATCHED)
+
+    def test_the_override_differs_from_upstream_only_at_the_anchor(self):
+        self.assertEqual(self._upstream().replace(NAV_ITEM_ANCHOR, NAV_ITEM_PATCHED),
+                         nav_item_override())
+
+    def test_a_missing_anchor_fails_loudly_instead_of_patching_blindly(self):
+        with tempfile.TemporaryDirectory(prefix="nav-item-") as tmp:
+            broken = Path(tmp) / "nav-item.html"
+            broken.write_text("{% macro render(nav_item, path, level, parent) %}{% endmacro %}",
+                              encoding="utf-8")
+            with self.assertRaises(SystemExit) as caught:
+                nav_item_override(broken)
+            self.assertIn("nav-item.html", str(caught.exception))
 
 
 if __name__ == "__main__":

@@ -35,7 +35,7 @@ jobs:
         run: python -B -m unittest discover -s scripts -p test_docs_sync.py -v
       - run: python -B -m unittest discover -s scripts -p test_docs_links.py -v
       - run: python -B -m unittest discover -s scripts -p test_split_readme.py -v
-      - name: 标题层级归一 + 提示卡切分 + 侧栏节首页补丁（站点产物的三处结构变换）
+      - name: 标题层级归一 + 提示卡切分（站点产物的两处正文结构变换）
         run: python -B -m unittest discover -s scripts -p test_page_structure.py -v
 
   lab-simulations:
@@ -75,7 +75,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: pip install -r requirements.txt playwright
+      # Pillow 是 test_home_hero.py 用的：它按 WCAG 量首页 hero 上 chip / eyebrow
+      # 的对比度，需要把截图解成像素（众数色当底、离底最远的像素当字芯）。
+      - run: pip install -r requirements.txt playwright Pillow
       - name: Reading routes, old bookmarks, mobile layout and search
         run: python -B -m unittest discover -s scripts -p test_reading_journey.py -v
       - name: Gallery keyboard, modal focus and shareable filters

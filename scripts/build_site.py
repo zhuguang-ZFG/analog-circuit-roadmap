@@ -801,11 +801,14 @@ def nav_item_override(source=None):
     锚点必须**恰好出现一次**：找不到（Material 改了结构）就抛错，
     宁可构建失败也不要静默生成一个篇标题重复的侧栏。
 
-    `source` 只给测试用（喂一份没有锚点的文本，验证它确实会响亮地失败）。
+    `source` 只给测试用（喂一份没有锚点的文本，验证它确实会响亮地失败）——
+    因此 `import material` 只在真的要去读上游模板时才做。
     """
-    import material
-    src = Path(source) if source else (
-        Path(material.__file__).parent / "templates" / "partials" / "nav-item.html")
+    if source:
+        src = Path(source)
+    else:
+        import material
+        src = (Path(material.__file__).parent / "templates" / "partials" / "nav-item.html")
     text = src.read_text(encoding="utf-8")
     if text.count(NAV_ITEM_ANCHOR) != 1:
         raise SystemExit(
