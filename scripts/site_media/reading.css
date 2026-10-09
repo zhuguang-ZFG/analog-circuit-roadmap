@@ -85,4 +85,10 @@
   .md-typeset .learning-lessons { display: block; }
   .md-typeset .learning-path,
   .md-typeset .learning-lesson { break-inside: avoid; margin-bottom: 1rem; }
+  .md-sidebar, .md-header, .md-footer, .reading-nav, .gal-modal { display: none !important; }
+  .md-content__inner { max-width: 100%; }
+  .md-typeset table:not([class]) { font-size: 10pt; }
+  .md-typeset thead { display: table-header-group; }
+  .md-typeset tr, .md-typeset blockquote { break-inside: avoid; }
+  .md-typeset h3 { break-after: avoid; }
 }
