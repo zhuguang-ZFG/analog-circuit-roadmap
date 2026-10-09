@@ -32,6 +32,11 @@
       ['拆块真板子对着量', 2],
       ['照成品项目直接焊一个', 3]] }
   ];
+  var TIMELINES = [
+    ['t-min', '5 分钟'],
+    ['t-1h', '1 小时'],
+    ['t-week', '一周末']
+  ];
   var RESULTS = [
     { id: 'practice', title: '⚡ 工程实战线：从方法论切入',
       who: '你在调真板子，最缺的是章法而不是知识。',
@@ -39,34 +44,37 @@
         ['第 14 章：设计方法论——需求 → 规格 → 器件', 'p3-01-ch14.html#ch14'],
         ['第 16 章：排故五步法，一次只改一个变量', 'p4-01-ch16.html#ch16'],
         ['第 17 章：症状 → 原因 → 对策速查总表', 'p4-02-ch17.html#ch17']],
-      time: ['⏱️ 时间不够？看三条时间线的「一周末」档', 'p0-03-timeline.html#timeline'] },
+      timeNote: '按你的时间预算，把 14/16/17 章排进' },
     { id: 'deep', title: '🎯 模拟设计深造线：打穿器件与拓扑',
       who: '目标是模拟设计岗：定性直觉 + 定量估算两条腿都要。',
       steps: [
         ['第 0～4 章快速过：只精读第 3/4 章（BJT/MOS）', 'p1-04-ch3.html#ch3'],
         ['第 11 章：三种组态与电流镜——IC 设计的语言', 'p2-01-ch11.html#ch11'],
         ['沿路线图 ⑥ → 方向深化（板级 / IC 分支）', 'p0-06-roadmap.html#roadmap']],
-      time: ['⏱️ 每周 8 小时以上的排法见三条时间线', 'p0-03-timeline.html#timeline'] },
+      timeNote: '深造靠的是复利，把 3/4/11 章排进' },
     { id: 'weekend', title: '🔧 一周末硬件线：先让它动起来',
       who: '有工具、想动手：最短路径是「读一章 → 焊一章」。',
       steps: [
         ['第 0 章：水路比喻 + 分压带载（半天）', 'p1-01-ch0.html#ch0'],
         ['第 1 章 + 第 5 章：无源件与推挽开漏（一天）', 'p1-02-ch1.html#ch1'],
         ['焊一个里程碑项目，卡住就翻第 16 章', 'p4-01-ch16.html#ch16']],
-      time: ['⏱️ 完整安排看三条时间线的「一周末」档', 'p0-03-timeline.html#timeline'] },
+      timeNote: '读一章焊一章，按预算执行' },
     { id: 'intuition', title: '🌊 5 分钟直觉线：先建立画面感',
       who: '时间紧或零基础：别碰公式，先看动画建立直觉。',
       steps: [
         ['0.1 水路比喻：电压/电流/回路三件套', 'p1-01-ch0.html#ch0'],
         ['动画中心：108 张 SMIL 动画随便点', 'p5-00-part5.html#part5'],
         ['⭐ 必读精选：虚短虚断等 5 分钟套餐', 'p0-05-picks.html#picks']],
-      time: ['⏱️ 有了感觉再看「1 小时」档', 'p0-03-timeline.html#timeline'] }
+      timeNote: '先花最小的成本建立画面，从' }
   ];
   function decide(a) {
     if (a.g === 2 && a.f >= 2) return RESULTS[0];
     if (a.g === 3 && a.f >= 2 && a.m >= 2) return RESULTS[1];
     if (a.e >= 2 && a.t >= 1 && (a.g === 1 || a.g === 3 || a.s >= 2)) return RESULTS[2];
     return RESULTS[3];
+  }
+  function timelineFor(t) {
+    return TIMELINES[t >= 2 ? 2 : t];
   }
   function el(tag, cls, text) {
     var n = document.createElement(tag);
@@ -91,9 +99,10 @@
       card.append(el('h3', null, r.title), el('p', 'diag-who', r.who));
       var steps = el('ol', 'diag-steps');
       r.steps.forEach(function (s) { linkRow(steps, s); });
+      var tl = timelineFor(answers.t);
       var time = el('p', 'diag-time');
-      var ta = el('a', null, r.time[0]);
-      ta.href = r.time[1];
+      var ta = el('a', null, '⏱️ ' + r.timeNote + '「' + tl[1] + '」档 → 三条时间线');
+      ta.href = 'p0-03-timeline.html#' + tl[0];
       time.append(ta);
       card.append(steps, time);
       var again = el('button', 'diag-btn', '重测一次');

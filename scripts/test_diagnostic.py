@@ -111,6 +111,21 @@ class DiagnosticTests(unittest.TestCase):
         for route in ('直觉线', '硬件线', '实战线', '深造线'):
             self.assertIn(route, body)
 
+    def test_time_budget_selects_matching_timeline_row(self):
+        page = self.open_page()
+        self.answer_all(page, [3, 2, 2, 2, 3, 2])  # 每周 6～8 小时 → 一周末档
+        href = page.locator('.diag-time a').get_attribute('href')
+        self.assertTrue(href.endswith('p0-03-timeline.html#t-week'), href)
+        page.goto(self.base + 'p0-09-diagnostic.html')
+        self.answer_all(page, [0] * 6)  # 每周不到 1 小时 → 5 分钟档
+        href = page.locator('.diag-time a').get_attribute('href')
+        self.assertTrue(href.endswith('p0-03-timeline.html#t-min'), href)
+        page.goto(self.base + href.split('/')[-1])
+        page.wait_for_timeout(300)
+        row = page.evaluate("() => document.getElementById('t-min').closest('tr').innerText")
+        self.assertIn('5 分钟', row)
+        self.assertIn('水路比喻', row)
+
 
 if __name__ == '__main__':
     unittest.main()
