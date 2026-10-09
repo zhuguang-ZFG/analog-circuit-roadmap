@@ -49,9 +49,42 @@ def svg_size(name):
 IMG_TAG = re.compile(r'<img\s+src="assets/svg/([\w\-]+\.svg)"([^>]*)>')
 IMG_ATTRS = 'loading="lazy" decoding="async"'
 
+# 静止版的规则：与「动画版」同源，只是把"会飞"的东西（电流粒子 / 波形游标 /
+# 扫压圆点 / 脉冲辉光圈）**无条件**关掉。节拍字幕与器件状态变化保留 —— 字幕是
+# 多路复用（同一行轮流显示），一起显示反而互相压字、更读不了。
+#
+# 为什么不用 `@media (prefers-reduced-motion: reduce)` 写在 SVG 里？
+# 因为 SVG 作为 <img> 载入时，Chrome 把 `prefers-reduced-motion` **恒判为 reduce**：
+# 页面自己明明是无偏好，图片文档里却是 reduce（有头/无头、data:/http、独立启动的
+# Chrome 155 均实测一致）。于是 SVG 内的 media query 要么恒不生效、要么恒生效；
+# 一旦恒生效，全站 108 张动画对**所有人**都是静止的 —— v3.45 正是踩了这个坑。
+# 正确做法是让**页面**选源：`<source media>` 在页面上下文里求值，因此是准的。
+REDUCE_CSS = (
+    "\n:has(> animateMotion):not(:has(text)),"
+    "\n:has(> animateTransform):not(:has(text)),"
+    '\n:has(> animate:not([attributeName="opacity"])):not(:has(text)){display:none}\n'
+)
+
+
+def reduce_variant(name):
+    """动画文件名 → 对应的静止版文件名。"""
+    return name[:-4] + ".reduce.svg"
+
+
+def wrap_picture(name, img):
+    """把动画 <img> 包进 <picture>，由 <source media> 在页面上下文里挑「静止版」。
+
+    只在站点产物上做；`docs/` 与 README 保持原样（那里的 <img> 走默认的动画版）。
+    """
+    return ('<picture>'
+            f'<source srcset="assets/svg/{reduce_variant(name)}" '
+            'media="(prefers-reduced-motion: reduce)">'
+            f'{img}</picture>')
+
 
 def optimize_imgs(text):
-    """给站点产物里的动画 <img> 补 loading="lazy" + decoding="async" + 按画布比例写 height。
+    """给站点产物里的动画 <img> 补 loading="lazy" + decoding="async" + 按画布比例写 height，
+    并包进 <picture>（由 <source media> 挑「减弱动效」下的静止版）。
 
     - 「动画演示中心」一页就嵌了全部 108 张 SVG（约 1.7MB），全部 eager 加载太浪费；
     - 108 张图高度从 430 到 762 不等，只写 width 会让浏览器在下载完成前无从预留高度，
@@ -66,8 +99,33 @@ def optimize_imgs(text):
         wm = re.search(r'\bwidth="(\d+)"', rest)
         if wm and "height=" not in rest:
             rest += f' height="{round(int(wm.group(1)) * h / w)}"'
-        return f'<img src="assets/svg/{name}"{rest} {IMG_ATTRS}>'
+        return wrap_picture(name, f'<img src="assets/svg/{name}"{rest} {IMG_ATTRS}>')
     return IMG_TAG.sub(repl, text)
+
+
+def write_reduce_variants(dst=None):
+    """为每张动画生成一份「静止版」`<stem>.reduce.svg`（只进站点产物，不进仓库）。
+
+    做法是给动画版**追加**一段无条件生效的 REDUCE_CSS；选择器按结构匹配，所以新增
+    动画无需登记。放进独立 <style> 追加在 </svg> 前，避免与原有样式块纠缠。
+
+    `dst` 默认为站点产物的 `assets/svg/`；测试会传一个临时目录进来复用同一段逻辑。
+    """
+    dst = Path(dst) if dst is not None else (OUT / "assets" / "svg")
+    if not dst.is_dir():
+        return 0
+    written = 0
+    for svg in sorted(dst.glob("*.svg")):
+        if svg.name.endswith(".reduce.svg"):
+            continue
+        text = svg.read_text(encoding="utf-8")
+        i = text.rfind("</svg>")
+        if i < 0:
+            continue
+        out = text[:i] + f"<style>{REDUCE_CSS}</style>\n" + text[i:]
+        (dst / reduce_variant(svg.name)).write_text(out, encoding="utf-8", newline="\n")
+        written += 1
+    return written
 
 
 FM_DESC_MAX = 150
@@ -289,6 +347,9 @@ CHAPTER_LABEL = {
 APPENDIX = {"p9-12-changelog.md", "p9-13-thanks.md"}
 
 GALLERY_CSS = """
+/* 动画 <img> 被包进 <picture>（为了让 <source media> 能在页面上下文里挑「静止版」）。
+   display:contents 让 <picture> 对布局完全透明，img 的排版与包之前一模一样。 */
+picture{display:contents}
 .gal-bar{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;margin:.6rem 0 1.2rem}
 .gal-bar input[type=search]{flex:1 1 220px;min-width:180px;padding:.45rem .7rem;border-radius:.5rem;
   border:1px solid var(--md-default-fg-color--lightest);background:var(--md-code-bg-color);
@@ -334,8 +395,9 @@ GALLERY_CSS = """
 .gal-modal-box img{display:block;width:100%;height:auto;background:#fff;border-radius:.35rem}
 .gal-modal-foot{margin-top:.5rem;font-size:.78rem}
 .gal-modal-foot a{font-weight:600}
-/* 尊重系统的「减弱动效」偏好：卡片悬停不再位移，只换阴影（SVG 内部的动效
-   由每张图自带的 prefers-reduced-motion 块处理，见 scripts/generate_svgs.py） */
+/* 尊重系统的「减弱动效」偏好：卡片悬停不再位移，只换阴影。
+   动画 SVG 自身的动效不在这里管 —— 那由 <picture><source media> 挑静止版，
+   见本文件顶部的 REDUCE_CSS / wrap_picture()。 */
 @media (prefers-reduced-motion: reduce){
 .gal-card{transition:none}
 .gal-card:hover{transform:none}
@@ -426,10 +488,19 @@ GALLERY_JS = """
     var returnFocus = null;
     var previousOverflow = '';
 
+    /* 弹窗里是 <img>，没法用 <picture>，所以在这里手动挑源。
+       SVG 作为 <img> 载入时 Chrome 恒把 prefers-reduced-motion 判为 reduce，
+       偏好只能由页面来判 —— 与卡片上的 <source media> 同一个道理。 */
+    function pickSvg(src) {
+      var q = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
+      /* 用切片而不是正则：GALLERY_JS 是普通字符串，正则里的转义点号会触发 Python 告警 */
+      return (q && q.matches) ? src.slice(0, -4) + '.reduce.svg' : src;
+    }
+
     function show(card) {
       var btn = card.querySelector('.gal-play');
       if (!btn) { return; }
-      mImg.setAttribute('src', btn.dataset.svg);
+      mImg.setAttribute('src', pickSvg(btn.dataset.svg));
       mImg.setAttribute('alt', btn.dataset.title);
       mTitle.textContent = btn.dataset.title;
       if (mLink) { mLink.setAttribute('href', btn.dataset.href); }
@@ -764,8 +835,10 @@ def render_gallery(items):
         cards.append(
             '<div class="gal-card" data-ch="%s" data-title="%s" data-file="%s">\n'
             '  <a href="%s" title="%s">\n'
-            '    <img src="assets/svg/%s" alt="%s" width="%d" height="%d" '
-            'loading="lazy" decoding="async">\n'
+            '    <picture><source srcset="assets/svg/%s" '
+            'media="(prefers-reduced-motion: reduce)">'
+            '<img src="assets/svg/%s" alt="%s" width="%d" height="%d" '
+            'loading="lazy" decoding="async"></picture>\n'
             '    <div class="gal-meta">\n'
             '      <div class="gal-title">%s %s</div>\n'
             '      <div class="gal-tag">%s</div>\n'
@@ -777,7 +850,8 @@ def render_gallery(items):
             '  </div>\n'
             '</div>'
             % (it["ch"], title.lower(), it["svg"], href, title,
-               it["svg"], it["alt"], it["w"], it["h"], it["num"], it["title"],
+               reduce_variant(it["svg"]), it["svg"], it["alt"], it["w"], it["h"],
+               it["num"], it["title"],
                CHAPTER_LABEL.get(it["ch"], "动画"),
                it["svg"], it["num"], title, href)
         )
@@ -994,6 +1068,10 @@ def main():
         shutil.copytree(assets, OUT / "assets", ignore=shutil.ignore_patterns("*.md"))
     if (ROOT / "LICENSE").exists():
         shutil.copyfile(ROOT / "LICENSE", OUT / "LICENSE")
+
+    # 「减弱动效」的静止版：跟着动画一起发布（只进站点产物，仓库里不留第二份）。
+    # 必须在上面的 copytree 之后 —— 它写的就是 OUT/assets/svg/ 下的副本。
+    write_reduce_variants()
 
     (OUT / "stylesheets").mkdir(exist_ok=True)
     (OUT / "javascripts").mkdir(exist_ok=True)

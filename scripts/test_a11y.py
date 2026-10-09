@@ -1,5 +1,4 @@
-"""无障碍静态护栏：SVG 的可读名称与描述、图片 alt、减弱动效开关。
-
+"""无障碍静态护栏：SVG 的可读名称与描述、图片 alt、减弱动效的落点。
 Run: python -B -m unittest discover -s scripts -p test_a11y.py -v
 
 为什么需要这组测试：全站 313 张 `<img>` 里有 108 张是自动播放的 SMIL 动画，
@@ -7,11 +6,12 @@ Run: python -B -m unittest discover -s scripts -p test_a11y.py -v
 读屏用户拿到的是一个"没有名字的图形"。更糟的是 3 张实物图连 `alt` 都没有，
 读屏会直接念出文件 URL。
 
-这里把三件事钉成红灯（都不需要浏览器，纯静态检查）：
+这里把四件事钉成红灯（都不需要浏览器，纯静态检查）：
   1. 每张 SVG 有 role="img" + aria-labelledby + 非空 <title> + 非空 <desc>；
   2. <desc> 里带上这张图自己的节拍字幕（不许串到别的图），
      且描述文案与图内字幕逐字一致；
-  3. 每张 SVG 都带 prefers-reduced-motion 块（真行为由
+  3. **SVG 里不得出现 `prefers-reduced-motion` 的 media query** ——
+     这条是踩过坑的红线，理由见该测试的 docstring（真行为由
      test_reduced_motion.py 在 Chromium 里验证）；
   4. docs/ 里每个 <img> 都有非空 alt（代码围栏与行内代码里的 `<img>`
      是文档在讲语法，不是真标签，必须先剥掉再查）。
@@ -30,12 +30,6 @@ TITLE = re.compile(r'<title id="ttl">(.*?)</title>', re.S)
 DESC = re.compile(r"<desc>(.*?)</desc>", re.S)
 IMG = re.compile(r"<img\b[^>]*>", re.I)
 ALT = re.compile(r'\balt="([^"]*)"', re.I)
-
-MOTION_SELECTORS = (
-    ":has(> animateMotion):not(:has(text))",
-    ":has(> animateTransform):not(:has(text))",
-    ':has(> animate:not([attributeName="opacity"])):not(:has(text))',
-)
 
 
 def strip_code(text):
@@ -96,11 +90,28 @@ class SvgAccessibilityTests(unittest.TestCase):
         self.assertGreaterEqual(with_beats, 90,
                                 "带节拍描述的图太少，说明字幕登记（_BEATS）没生效")
 
-    def test_every_svg_ships_the_reduced_motion_block(self):
-        missing = [name for name, text in self.sources.items()
-                   if "prefers-reduced-motion: reduce" not in text
-                   or not all(sel in text for sel in MOTION_SELECTORS)]
-        self.assertEqual([], missing, "这些图缺减弱动效块：" + repr(missing[:10]))
+    def test_no_svg_uses_an_in_svg_reduced_motion_media_query(self):
+        """SVG 里**不得**出现 `prefers-reduced-motion` 的 media query。
+
+        这是一条踩过坑的红线。SVG 作为 `<img>` 载入时（本站 108 张动画就是这么嵌的），
+        Chrome 把 `prefers-reduced-motion` **恒判为 reduce** —— 页面自己明明是无偏好，
+        图片文档里却是 reduce（有头/无头、data: / http、独立启动的 Chrome 155 均实测一致）。
+        于是写在 SVG 里的 media query 只有两种结局：要么恒不生效，要么恒生效；
+        一旦恒生效，全站动画对**所有人**都是静止的 —— v3.45 正是这么翻车的，
+        而且因为测试当时是"把 SVG 当顶层文档打开"（那种上下文里偏好是正常的），
+        全套测试都绿灯放行。
+
+        正确做法是让**页面**选源：`build_site.py` 生成 `<stem>.reduce.svg` 静止版，
+        再用 `<picture><source media="(prefers-reduced-motion: reduce)">` 挑；
+        `<source media>` 在页面上下文里求值，所以是准的。护栏见
+        test_site_build.py 的 picture 包装断言与 test_reduced_motion.py 的渲染断言。
+        """
+        offenders = [name for name, text in self.sources.items()
+                     if "prefers-reduced-motion" in text]
+        self.assertEqual(
+            [], offenders,
+            "这些 SVG 里又出现了 SVG 内部的减弱动效 media query（在 <img> 下恒真/恒假，"
+            "会把动画对所有人冻住）：" + repr(offenders[:10]))
 
     def test_every_docs_image_has_a_non_empty_alt(self):
         offenders = []

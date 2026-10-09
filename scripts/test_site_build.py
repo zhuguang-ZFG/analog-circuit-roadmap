@@ -28,7 +28,12 @@ DEMO_LINK = re.compile(r"\[(5\.\d+)\]\((?:[\w\-]+\.md)?#(demo\d+)\)")
 
 CARD = re.compile(
     r'<div class="gal-card" data-ch="([^"]*)" data-title="([^"]*)" data-file="([^"]*)">\s*'
-    r'<a href="([^"]+)"[^>]*>\s*<img src="([^"]+)"[^>]*>\s*'
+    r'<a href="([^"]+)"[^>]*>\s*'
+    # 动画 <img> 现在包在 <picture> 里（<source media> 负责挑「减弱动效」的静止版）；
+    # 用非捕获组，保持下面的分组下标不变。
+    r'(?:<picture><source srcset="[^"]+"\s+media="[^"]*">)?'
+    r'<img src="([^"]+)"[^>]*>\s*'
+    r'(?:</picture>\s*)?'
     r'<div class="gal-meta">\s*<div class="gal-title">([^<]*)</div>\s*'
     r'<div class="gal-tag">([^<]*)</div>\s*</div>\s*</a>\s*'
     r'<div class="gal-actions">\s*<button class="gal-play"[^>]*data-svg="([^"]+)"\s*'
@@ -191,6 +196,51 @@ class SiteBuildTests(unittest.TestCase):
                 expect = round(int(wm.group(1)) * ratio)
                 self.assertLessEqual(abs(int(hm.group(1)) - expect), 1,
                                      f"height 与画布比例不符（{hm.group(1)} vs {expect}）")
+
+    # ---------- 减弱动效（<picture> 选源） ----------
+    def test_every_animation_image_is_wrapped_in_a_reduce_picture(self):
+        """每个动画 <img> 都要包进 <picture>，且 <source> 指向静止版。
+
+        为什么必须由页面选源：SVG 作为 `<img>` 载入时 Chrome 把
+        `prefers-reduced-motion` **恒判为 reduce**，所以 SVG 内部的 media query
+        是恒真/恒假的（v3.45 因此把全站动画冻住过）。`<source media>` 在页面
+        上下文里求值，才是准的。漏包一个，那张图在「减弱动效」下就照常乱飞。
+        """
+        for page in (PART5, "gallery.md"):
+            text = (self.out / page).read_text(encoding="utf-8")
+            imgs = re.findall(r'<img src="assets/svg/[\w\-]+\.svg"[^>]*>', text)
+            wrapped = re.findall(
+                r'<picture><source srcset="assets/svg/[\w\-]+\.reduce\.svg" '
+                r'media="\(prefers-reduced-motion: reduce\)">'
+                r'<img src="assets/svg/[\w\-]+\.svg"[^>]*></picture>', text)
+            with self.subTest(page=page):
+                self.assertGreaterEqual(len(imgs), 100, f"{page} 的动画图太少，覆盖面不对")
+                self.assertEqual(len(imgs), len(wrapped),
+                                 f"{page} 有 {len(imgs) - len(wrapped)} 张动画图没包 <picture>")
+
+    def test_reduce_variants_exist_and_actually_freeze_the_particles(self):
+        """每个静止版都要真的存在，且带上无条件生效的三条运动选择器。
+
+        静止版由 build_site.py 从动画版追加 REDUCE_CSS 生成；这里同时守住
+        「文件确实生成了」和「规则确实是那三条」——少了任何一条，
+        对应类别的粒子（animateMotion / animateTransform / 非透明度 animate）就漏网。
+        """
+        svg_dir = self.out / "assets" / "svg"
+        animated = sorted(p for p in svg_dir.glob("*.svg")
+                          if not p.name.endswith(".reduce.svg"))
+        self.assertGreaterEqual(len(animated), 108, "动画 SVG 数量不对")
+        for svg in animated:
+            variant = svg_dir / (svg.stem + ".reduce.svg")
+            with self.subTest(svg=svg.name):
+                self.assertTrue(variant.exists(), f"{svg.name} 没有对应的静止版")
+                text = variant.read_text(encoding="utf-8")
+                for sel in (":has(> animateMotion):not(:has(text))",
+                            ":has(> animateTransform):not(:has(text))",
+                            ':has(> animate:not([attributeName="opacity"])):not(:has(text))'):
+                    self.assertIn(sel, text, f"{variant.name} 缺选择器 {sel}")
+                # 静止版里不能再出现 media query——那正是 v3.45 的坑
+                self.assertNotIn("prefers-reduced-motion", text,
+                                 f"{variant.name} 的规则被包进了 media query")
 
     def test_every_page_has_a_unique_description(self):
         """59 个页面原先共用同一句 site_description：每页必须有自己的、干净的摘要。

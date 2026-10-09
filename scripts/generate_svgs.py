@@ -51,17 +51,21 @@ text[fill="#f59e0b"],tspan[fill="#f59e0b"]{fill:#b45309}
 [fill="#0284c7"]{fill:#7dd3fc}[stroke="#0284c7"]{stroke:#7dd3fc}
 text[fill="#fff"]{fill:#0f172a}
 }
-/* 尊重系统的「减弱动效」偏好：把"会飞"的东西关掉 —— 电流粒子、波形游标、
-   扫压圆点、脉冲辉光圈，它们是前庭不适的根源。器件状态变化与节拍字幕保留：
-   字幕是多路复用（同一行轮流显示），若一起显示反而互相压字、更读不了。
-   选择器靠结构而非类名，所以新增动画无需额外登记；老浏览器不支持 :has()
-   时整块被忽略，退化为"照常播放"，不会白屏。 */
-@media (prefers-reduced-motion: reduce){
-:has(> animateMotion):not(:has(text)),
-:has(> animateTransform):not(:has(text)),
-:has(> animate:not([attributeName="opacity"])):not(:has(text)){display:none}
-}
 </style>"""
+
+# ⚠️ 「减弱动效」的规则**故意不写在这里**。
+#
+# SVG 作为 <img> 载入时（本站 108 张动画就是这么嵌的），Chrome 会把
+# `prefers-reduced-motion` **恒判为 reduce** —— 页面自己明明是无偏好，图片文档里
+# 却是 reduce（有头/无头、data: / http、独立启动的 Chrome 155 均实测一致）。
+# 所以写在 SVG 里的 media query 只有两种结局：要么恒不生效，要么恒生效；
+# 一旦恒生效，全站动画对**所有人**都是静止的（v3.45 正是踩了这个坑）。
+#
+# 正确做法是在**页面**上下文里选源：`build_site.py` 生成一份静止版
+# `<stem>.reduce.svg`，再把每个动画包进
+#   <picture><source srcset="…reduce.svg" media="(prefers-reduced-motion: reduce)">…
+# 由 <source media> 决定加载哪一份。因此 SVG 自身必须是「无 media query 的动画版」。
+# 详见 scripts/build_site.py 的 REDUCE_CSS / wrap_reduce_picture()。
 
 # 当前这张图的节拍字幕文案（供 <desc> 使用：让读屏用户也能听到"讲了什么"）。
 # caption() 追加，save() 落盘后清空。**svg_open() 故意不清空**——见那里的注释。

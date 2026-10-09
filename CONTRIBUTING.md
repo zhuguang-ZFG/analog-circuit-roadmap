@@ -112,21 +112,35 @@ python -B -m unittest discover -s scripts -p test_reading_journey.py -v
 
 全站 251 张正文图片都有非空 `alt`；108 张动画 SVG 自带 `role="img"`、`aria-labelledby` 与非空 `<desc>`——`<desc>` 的节拍文案由 `caption()` 自动登记、`save()` 落盘时写进描述，读屏用户因此能听到这张图"讲了哪几拍"，而不只是一个文件名。
 
-`prefers-reduced-motion` 分两处落实：每张 SVG 自带一个 reduce 块，关掉**位移类**动画（电流粒子 / 波形游标 / 扫压圆点 / 脉冲辉光圈），但**保留节拍字幕与器件状态变化**——字幕是多路复用的（同一行轮流显示），一起显示反而互相压字、更读不了；站点自身的悬停位移在 `build_site.py` 的画廊 CSS 与 `scripts/site_media/diag.css` 里各自关掉。
+### ⚠️ 减弱动效**不能**写在 SVG 里（v3.45 的翻车点）
 
-两条容易踩的规矩：
+SVG 作为 `<img>` 载入时——**本站 108 张动画就是这么嵌的**——Chrome 把 `prefers-reduced-motion` **恒判为 reduce**：页面自己明明是无偏好，图片文档里却是 reduce。有头/无头、`data:`/`http`、以及独立启动的 Chrome 155 都实测一致。
 
-1. **新增动画不需要登记**——减弱动效的选择器按结构匹配（`:has(> animateMotion):not(:has(text))` 等），任何"带位移子节点且不含文字"的元素都会被关掉；反过来，**不要把位移动画挂在含正文文字的组上**，否则它会被当成字幕保留下来继续动。
-2. **`svg_open()` 不能清空节拍登记**——有 8 张图（debug-flow / design-flow / diagnosis-tree / fault-lookup / ground-star / master-wisdom / thinking-toolbox / transformer）是先拼字幕、后调 `svg_open` 的；清空只放在 `save()` 落盘之后。字幕文案在生成器里已按 XML 转义（如 `距离&lt;3mm`），写进 `<desc>` 时**不能再转义一次**。
+后果是写在 SVG 里的 media query 只有两种结局：**要么恒不生效，要么恒生效**。v3.45 就是后者——全站动画对**所有人**都是静止的。更糟的是当时全套测试都绿灯，因为那些测试是"把 SVG 当**顶层文档**打开"的，而在那种上下文里偏好是正常的。
+
+正确做法是让**页面**选源：`build_site.py` 用 `REDUCE_CSS` 生成一份静止版 `<stem>.reduce.svg`（只进站点产物，仓库里不留第二份），再把每个动画 `<img>` 包进
+
+```html
+<picture><source srcset="assets/svg/X.reduce.svg" media="(prefers-reduced-motion: reduce)"><img src="assets/svg/X.svg" …></picture>
+```
+
+`<source media>` 在**页面**上下文里求值，所以是准的。画廊弹窗里的 `<img>` 用不了 `<picture>`，由 `gallery.js` 的 `pickSvg()` 用 `matchMedia` 手动挑源。站点自身的悬停位移另在 `GALLERY_CSS` 与 `scripts/site_media/diag.css` 里各自关掉。
+
+### 三条容易踩的规矩
+
+1. **别把 media query 写回 SVG**——`test_a11y.py` 会把这条钉成红灯。想改减弱动效的行为，改 `build_site.py` 的 `REDUCE_CSS`，不要动 `generate_svgs.py`。
+2. **新增动画不需要登记**——静止版的选择器按结构匹配（`:has(> animateMotion):not(:has(text))` 等），任何"带位移子节点且不含文字"的元素都会被关掉；反过来，**不要把位移动画挂在含正文文字的组上**，否则它会被当成字幕保留下来继续动。
+3. **`svg_open()` 不能清空节拍登记**——有 8 张图（debug-flow / design-flow / diagnosis-tree / fault-lookup / ground-star / master-wisdom / thinking-toolbox / transformer）是先拼字幕、后调 `svg_open` 的；清空只放在 `save()` 落盘之后。字幕文案在生成器里已按 XML 转义（如 `距离&lt;3mm`），写进 `<desc>` 时**不能再转义一次**。
 
 修改后运行：
 
 ```bash
-python -B -m unittest discover -s scripts -p test_a11y.py -v             # 静态：role / desc / alt / reduce 块
-python -B -m unittest discover -s scripts -p test_reduced_motion.py -v   # Chromium：粒子全停、字幕不误伤
+python -B -m unittest discover -s scripts -p test_a11y.py -v             # 静态：role / desc / alt / 禁止 SVG 内 media query
+python -B -m unittest discover -s scripts -p test_site_build.py -v       # 静态：每个动画都包了 <picture>、静止版都在
+python -B -m unittest discover -s scripts -p test_reduced_motion.py -v   # Chromium：选源正确、粒子全停、字幕不误伤
 ```
 
-第二组需要 Playwright 和 Google Chrome，逐张打开 108 个 SVG，分别在 `no-preference` 与 `reduce` 下断言：reduce 时没有任何非字幕的运动载体可见，且节拍字幕组一个都没被藏掉；`no-preference` 时必须真能看到上千个运动载体（防假绿），否则"没漏"只是选择器没命中。注意无头 Chrome 把 `<img>` 里的 SVG 当作 reduce 渲染，而测试是把 SVG 当顶层文档打开的——这正好让两种偏好都能被确定性地断言。
+第三组需要 Playwright 和 Google Chrome，分两步走：先在**页面**里断言 `<picture>` 在 reduce 下确实挑中静止版（这是机制本身），再把 SVG 当**顶层文档**逐张打开量 computed style——静止版必须零可见运动载体、节拍字幕一个不少，动画版必须真能看到上千个运动载体（防假绿）。只测后者正是 v3.45 漏掉的那一半。
 
 | 能力 | 实现位置 | 说明 |
 |---|---|---|

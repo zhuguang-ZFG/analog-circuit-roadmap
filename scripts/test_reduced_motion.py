@@ -3,25 +3,34 @@
 Run: python -B -m unittest discover -s scripts -p test_reduced_motion.py -v
 
 为什么需要它：108 张 SVG 全是自动播放的 SMIL 动画，前庭敏感的用户打开站点
-没有任何开关能停下来。现在每张图内置了 @media (prefers-reduced-motion: reduce)
-块，关掉"会飞"的东西（电流粒子 / 波形游标 / 扫压圆点 / 脉冲辉光圈），
-但**保留节拍字幕**——字幕是多路复用的（同一行轮流显示），若一起显示会互相压字，
-反而更读不了；同理器件状态变化也保留，那是教学内容本身。
+没有任何开关能停下来。正确做法**不是**在 SVG 里写 media query ——
+SVG 作为 `<img>` 载入时（本站就是这么嵌的）Chrome 把 `prefers-reduced-motion`
+**恒判为 reduce**，于是 SVG 内部的 media query 要么恒不生效、要么恒生效；
+一旦恒生效，全站动画对**所有人**都是静止的（v3.45 正是这么翻车的）。
+所以改成由**页面**选源：`build_site.py` 生成 `<stem>.reduce.svg` 静止版，
+再用 `<picture><source media="(prefers-reduced-motion: reduce)">` 挑。
 
-这里用真实 Chromium 断言三件事：
-  1. reduce 下，108 张图里**没有任何可见的运动载体**；
-  2. reduce 下，**节拍字幕组一个都没被误伤**（仍可见）；
-  3. no-preference 下同一个探针必须真能看见大量运动元素 —— 防假绿：
+这里用真实 Chromium 断言四件事：
+  1. `<picture>` 在 reduce 下**确实选中**静止版、无偏好下选中动画版（选源是机制本身）；
+  2. 静止版里**没有任何可见的运动载体**（108 张逐张查）；
+  3. 静止版里**节拍字幕组一个都没被误伤**（仍可见）；
+  4. 动画版里同一个探针必须真能看见上千个运动载体 —— 防假绿：
      否则"没漏"可能只是因为选择器根本没命中。
 另外验证站点自身的悬停位移在 reduce 下也停掉。
+
+⚠️ 探针必须把 SVG 当**顶层文档**打开才量得到 computed style；而"选源"那一步
+必须在**页面**里做。两者各司其职，缺一不可 —— 只测前者正是 v3.45 漏掉的那一半。
 """
 from pathlib import Path
 import re
+import shutil
+import tempfile
 import unittest
 
 from playwright.sync_api import sync_playwright
 
-from build_site import GALLERY_CSS, GALLERY_JS, parse_demos, render_gallery
+from build_site import (GALLERY_CSS, GALLERY_JS, parse_demos, render_gallery,
+                        wrap_picture, write_reduce_variants)
 
 ROOT = Path(__file__).resolve().parents[1]
 SVGS = sorted((ROOT / "assets" / "svg").glob("*.svg"))
@@ -47,10 +56,39 @@ PROBE = """() => {
   return { carriers, visibleMotion, captions, captionsVisible, samples };
 }"""
 
+# 把 108 张图各自的 <picture> 摆在一个页面里，好让浏览器自己挑源
+HARNESS = """<!doctype html><meta charset="utf-8"><body>
+%s
+<script>
+window.selected = () => Array.prototype.map.call(
+  document.querySelectorAll('picture img'),
+  function (i) { return i.currentSrc.split('/').pop(); });
+</script>
+"""
+
 
 class ReducedMotionTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
+        # 把真实 SVG 复制到临时目录，再用 build_site 的同一段逻辑生成静止版 ——
+        # 测的就是线上那对文件，不是另造的样本。
+        temporary = tempfile.TemporaryDirectory(prefix="analog-reduce-")
+        cls.addClassCleanup(temporary.cleanup)
+        cls.svg_dir = Path(temporary.name) / "svg"
+        cls.svg_dir.mkdir(parents=True)
+        for svg in SVGS:
+            shutil.copyfile(svg, cls.svg_dir / svg.name)
+        cls.written = write_reduce_variants(cls.svg_dir)
+
+        # 用 build_site 的**真实**包装函数拼 <picture>，而不是手写一份 —— 否则
+        # srcset 写错源这类 bug 就绕过了这组测试（变异验证时踩过）。
+        blocks = "\n".join(
+            wrap_picture(svg.name, '<img src="%s" alt="">' % svg.name)
+            for svg in SVGS)
+        harness = cls.svg_dir / "_harness.html"
+        harness.write_text(HARNESS % blocks, encoding="utf-8")
+        cls.harness = harness.as_uri()
+
         playwright = sync_playwright().start()
         cls.addClassCleanup(playwright.stop)
         cls.browser = playwright.chromium.launch(channel="chrome", headless=True)
@@ -59,13 +97,22 @@ class ReducedMotionTests(unittest.TestCase):
         cls.addClassCleanup(page.close)
         cls.page = page
 
-        cls.report = {}
+        # ① 选源：在**页面**上下文里看 <picture> 挑了哪一份
+        cls.selected = {}
         for mode in ("no-preference", "reduce"):
             page.emulate_media(reduced_motion=mode)
+            page.goto(cls.harness)
+            cls.selected[mode] = page.evaluate("() => window.selected()")
+
+        # ② 逐张量运动载体：这里必须把 SVG 当顶层文档打开才读得到 computed style
+        cls.report = {}
+        for mode, names in (("animated", [s.name for s in SVGS]),
+                            ("reduce", [s.stem + ".reduce.svg" for s in SVGS])):
+            page.emulate_media(reduced_motion="no-preference")
             rows = {}
-            for svg in SVGS:
-                page.goto(svg.as_uri())
-                rows[svg.name] = page.evaluate(PROBE)
+            for name in names:
+                page.goto((cls.svg_dir / name).as_uri())
+                rows[name] = page.evaluate(PROBE)
             cls.report[mode] = rows
 
     def totals(self, mode):
@@ -75,29 +122,50 @@ class ReducedMotionTests(unittest.TestCase):
                 sum(r["captions"] for r in rows),
                 sum(r["captionsVisible"] for r in rows))
 
-    def test_probe_sees_motion_when_the_user_wants_motion(self):
-        """防假绿：默认偏好下必须能看见大量运动载体，否则下面的"没漏"是空转。"""
-        carriers, visible, captions, captions_visible = self.totals("no-preference")
-        self.assertGreaterEqual(carriers, 1000, f"只找到 {carriers} 个运动载体，探针失效")
-        self.assertGreaterEqual(captions, 350, f"只找到 {captions} 个字幕组")
-        self.assertEqual(captions, captions_visible, "默认偏好下字幕组不该被隐藏")
-        self.assertEqual(carriers - captions, visible,
-                         "默认偏好下不该有被隐藏的运动载体："
-                         f"{carriers} 个载体 - {captions} 个字幕组 != {visible} 个可见")
+    # ---------- 选源：机制本身 ----------
+    def test_picture_picks_the_still_version_when_reduced_motion_is_on(self):
+        """reduce 下每个 <picture> 都必须挑中静止版。
 
-    def test_reduced_motion_stops_every_particle_in_every_diagram(self):
+        这是整条链路的命门：包了 <picture> 但 srcset 写错（或没生成静止版），
+        浏览器会回落到动画版 —— 页面照常渲染、测试若只查"文件在不在"也照常绿。
+        """
+        names = self.selected["reduce"]
+        self.assertEqual(len(SVGS), len(names), "探针没看到全部 <picture>")
+        wrong = [n for n in names if not n.endswith(".reduce.svg")]
+        self.assertEqual([], wrong, "这些图在减弱动效下没走静止版：" + repr(wrong[:8]))
+
+    def test_picture_picks_the_animated_version_without_the_preference(self):
+        """防假绿：无偏好下必须挑**动画版**，否则整站会一直是静止的。"""
+        names = self.selected["no-preference"]
+        self.assertEqual(len(SVGS), len(names), "探针没看到全部 <picture>")
+        wrong = [n for n in names if n.endswith(".reduce.svg")]
+        self.assertEqual([], wrong, "这些图在无偏好下也走了静止版：" + repr(wrong[:8]))
+
+    # ---------- 静止版 / 动画版的内容 ----------
+    def test_the_still_version_has_no_visible_motion_at_all(self):
         _, visible, _, _ = self.totals("reduce")
         leaked = {name: r["samples"] for name, r in self.report["reduce"].items()
                   if r["visibleMotion"]}
         self.assertEqual(0, visible,
-                         f"减弱动效下仍有 {visible} 个运动元素可见：" + repr(list(leaked.items())[:5]))
+                         f"静止版里仍有 {visible} 个运动元素可见：" + repr(list(leaked.items())[:5]))
 
-    def test_reduced_motion_keeps_beat_captions_readable(self):
+    def test_the_still_version_keeps_beat_captions_readable(self):
         _, _, captions, captions_visible = self.totals("reduce")
-        self.assertGreaterEqual(captions, 350, f"reduce 下只找到 {captions} 个字幕组")
+        self.assertGreaterEqual(captions, 350, f"静止版里只找到 {captions} 个字幕组")
         self.assertEqual(captions, captions_visible,
-                         "减弱动效把节拍字幕也藏掉了——字幕是多路复用的，藏了就整段读不到")
+                         "静止版把节拍字幕也藏掉了——字幕是多路复用的，藏了就整段读不到")
 
+    def test_the_animated_version_really_moves(self):
+        """防假绿：动画版必须能看见大量运动载体，否则上面的"没漏"是空转。"""
+        carriers, visible, captions, captions_visible = self.totals("animated")
+        self.assertGreaterEqual(carriers, 1000, f"只找到 {carriers} 个运动载体，探针失效")
+        self.assertGreaterEqual(captions, 350, f"只找到 {captions} 个字幕组")
+        self.assertEqual(captions, captions_visible, "动画版里字幕组不该被隐藏")
+        self.assertEqual(carriers - captions, visible,
+                         "动画版里不该有被隐藏的运动载体："
+                         f"{carriers} 个载体 - {captions} 个字幕组 != {visible} 个可见")
+
+    # ---------- 站点自身的动效 ----------
     def test_gallery_cards_do_not_slide_under_reduced_motion(self):
         html = ('<!doctype html><html><head><meta charset="utf-8"><style>'
                 + GALLERY_CSS + '</style></head><body>'
