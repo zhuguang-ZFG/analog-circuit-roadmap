@@ -40,3 +40,6 @@
 @media (max-width: 600px) {
   .diag-card, .diag-result { padding: 1rem; }
 }
+@media (prefers-reduced-motion: reduce) {
+  .diag-btn { transition: none; }
+}

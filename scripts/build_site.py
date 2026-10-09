@@ -334,6 +334,12 @@ GALLERY_CSS = """
 .gal-modal-box img{display:block;width:100%;height:auto;background:#fff;border-radius:.35rem}
 .gal-modal-foot{margin-top:.5rem;font-size:.78rem}
 .gal-modal-foot a{font-weight:600}
+/* 尊重系统的「减弱动效」偏好：卡片悬停不再位移，只换阴影（SVG 内部的动效
+   由每张图自带的 prefers-reduced-motion 块处理，见 scripts/generate_svgs.py） */
+@media (prefers-reduced-motion: reduce){
+.gal-card{transition:none}
+.gal-card:hover{transform:none}
+}
 """
 
 GALLERY_JS = """

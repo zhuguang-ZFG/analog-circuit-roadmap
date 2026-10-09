@@ -1,5 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="732" viewBox="0 0 800 732">
-<title>CD4051：八路传感器共用一个 ADC</title>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="732" viewBox="0 0 800 732" role="img" aria-labelledby="ttl">
+<title id="ttl">CD4051：八路传感器共用一个 ADC</title>
+<desc>CD4051：八路传感器共用一个 ADC；节拍：① 三位地址选通一路：8 个传感器轮流接到同一个 ADC——省掉 7 个 ADC；② 通道是双向的：COM 既能输出（送 ADC）、也能输入（做信号分配）；③ 切换瞬间有电荷注入与 Ron 变化——别在转换中途切通道（见 8.6）；④ 同族选型：4052 双 4 选 1、4053 三路 2 选 1、74HC4051 高速版</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
@@ -72,6 +73,16 @@ text[fill="#f59e0b"],tspan[fill="#f59e0b"]{fill:#b45309}
 [fill="#0369a1"]{fill:#7dd3fc}[stroke="#0369a1"]{stroke:#7dd3fc}
 [fill="#0284c7"]{fill:#7dd3fc}[stroke="#0284c7"]{stroke:#7dd3fc}
 text[fill="#fff"]{fill:#0f172a}
+}
+/* 尊重系统的「减弱动效」偏好：把"会飞"的东西关掉 —— 电流粒子、波形游标、
+   扫压圆点、脉冲辉光圈，它们是前庭不适的根源。器件状态变化与节拍字幕保留：
+   字幕是多路复用（同一行轮流显示），若一起显示反而互相压字、更读不了。
+   选择器靠结构而非类名，所以新增动画无需额外登记；老浏览器不支持 :has()
+   时整块被忽略，退化为"照常播放"，不会白屏。 */
+@media (prefers-reduced-motion: reduce){
+:has(> animateMotion):not(:has(text)),
+:has(> animateTransform):not(:has(text)),
+:has(> animate:not([attributeName="opacity"])):not(:has(text)){display:none}
 }
 </style>
 <text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">CD4051：八路传感器共用一个 ADC</text>

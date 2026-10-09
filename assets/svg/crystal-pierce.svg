@@ -1,5 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="520" viewBox="0 0 800 520">
-<title>晶体振荡器：把频率钉在石英上</title>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="520" viewBox="0 0 800 520" role="img" aria-labelledby="ttl">
+<title id="ttl">晶体振荡器：把频率钉在石英上</title>
+<desc>晶体振荡器：把频率钉在石英上；节拍：① 石英是机械谐振：Q 值 10⁴~10⁶，频率对元件容差极不敏感；② 唯一必须算的数：C_L = C₁C₂/(C₁+C₂) + C_stray，22pF+22pF → 15pF；③ 起振判据 R_neg ≥ 5×ESR；32.768kHz 只要 1.7 µA/V —— RTC 省电的根因；④ 配错 C_L：18 ppm/pF × 3pF = 55 ppm → 每天差 4.8 秒</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
@@ -72,6 +73,16 @@ text[fill="#f59e0b"],tspan[fill="#f59e0b"]{fill:#b45309}
 [fill="#0369a1"]{fill:#7dd3fc}[stroke="#0369a1"]{stroke:#7dd3fc}
 [fill="#0284c7"]{fill:#7dd3fc}[stroke="#0284c7"]{stroke:#7dd3fc}
 text[fill="#fff"]{fill:#0f172a}
+}
+/* 尊重系统的「减弱动效」偏好：把"会飞"的东西关掉 —— 电流粒子、波形游标、
+   扫压圆点、脉冲辉光圈，它们是前庭不适的根源。器件状态变化与节拍字幕保留：
+   字幕是多路复用（同一行轮流显示），若一起显示反而互相压字、更读不了。
+   选择器靠结构而非类名，所以新增动画无需额外登记；老浏览器不支持 :has()
+   时整块被忽略，退化为"照常播放"，不会白屏。 */
+@media (prefers-reduced-motion: reduce){
+:has(> animateMotion):not(:has(text)),
+:has(> animateTransform):not(:has(text)),
+:has(> animate:not([attributeName="opacity"])):not(:has(text)){display:none}
 }
 </style>
 <text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">晶体振荡器：把频率钉在石英上</text>

@@ -20,6 +20,8 @@ jobs:
       - run: pip install numpy
       - run: python -B -m unittest discover -s scripts -p test_svg_assets.py -v
       - run: python -B -m unittest discover -s scripts -p test_readme_links.py -v
+      - name: 无障碍静态护栏（role/desc/alt/减弱动效块）
+        run: python -B -m unittest discover -s scripts -p test_a11y.py -v
 
   docs-sync:
     name: docs 单一数据源校验
@@ -82,3 +84,5 @@ jobs:
         run: python -B -m unittest discover -s scripts -p test_svg_layout.py -v
       - name: 明暗两套主题的文字对比度（light + dark 均须 ≥ 3.0）
         run: python -B -m unittest discover -s scripts -p test_svg_contrast.py -v
+      - name: 减弱动效（108 张图的粒子全停、字幕不误伤、画廊悬停不位移）
+        run: python -B -m unittest discover -s scripts -p test_reduced_motion.py -v

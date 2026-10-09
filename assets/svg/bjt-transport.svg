@@ -1,5 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="620" viewBox="0 0 800 620">
-<title>BJT 放大原理：99% 的电子来不及复合，就成了 I_C</title>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="620" viewBox="0 0 800 620" role="img" aria-labelledby="ttl">
+<title id="ttl">BJT 放大原理：99% 的电子来不及复合，就成了 I_C</title>
+<desc>BJT 放大原理：99% 的电子来不及复合，就成了 I_C；节拍：① 发射结正偏注入电子——这是「源」；电子多少由 V_BE 决定；② 基区极薄是关键：电子「来不及」复合就被扫走了——这是 β 的物理来源；③ 集电结反偏提供清扫电场：结构决定它「只能放大、不能反过来」；④ 记住 β 是「漏网比例的倒数」——离散大、随温度变，设计绝不依赖它</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
@@ -72,6 +73,16 @@ text[fill="#f59e0b"],tspan[fill="#f59e0b"]{fill:#b45309}
 [fill="#0369a1"]{fill:#7dd3fc}[stroke="#0369a1"]{stroke:#7dd3fc}
 [fill="#0284c7"]{fill:#7dd3fc}[stroke="#0284c7"]{stroke:#7dd3fc}
 text[fill="#fff"]{fill:#0f172a}
+}
+/* 尊重系统的「减弱动效」偏好：把"会飞"的东西关掉 —— 电流粒子、波形游标、
+   扫压圆点、脉冲辉光圈，它们是前庭不适的根源。器件状态变化与节拍字幕保留：
+   字幕是多路复用（同一行轮流显示），若一起显示反而互相压字、更读不了。
+   选择器靠结构而非类名，所以新增动画无需额外登记；老浏览器不支持 :has()
+   时整块被忽略，退化为"照常播放"，不会白屏。 */
+@media (prefers-reduced-motion: reduce){
+:has(> animateMotion):not(:has(text)),
+:has(> animateTransform):not(:has(text)),
+:has(> animate:not([attributeName="opacity"])):not(:has(text)){display:none}
 }
 </style>
 <text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">BJT 放大原理：99% 的电子来不及复合，就成了 I_C</text>

@@ -65,6 +65,7 @@ python -B -m unittest discover -s scripts -p 'test_docs_sync.py'    # docs → R
 python -B -m unittest discover -s scripts -p 'test_docs_links.py'   # 跨页锚点 / SVG 引用 / 标题
 python -B -m unittest discover -s scripts -p 'test_readme_links.py' # README 锚点完整性
 python -B -m unittest discover -s scripts -p 'test_svg_assets.py'   # SVG 与生成器逐字节一致
+python -B -m unittest discover -s scripts -p 'test_a11y.py'         # SVG 可读名称/描述 + 图片 alt
 ```
 
 `test_svg_assets.py` 使用生成器已有的 NumPy 依赖，在临时目录执行生成器，检查 SVG 文件集合、内容一致性和 XML 格式；不会覆盖仓库产物，忽略跨平台 LF/CRLF 差异。`test_waveform_timing.py` 需要 Playwright 和已安装的 Google Chrome，检查五张时间轴图（模拟开关、LDO、555、整流滤波、MOSFET 四拍）的时间轴、跳变、循环与圆点同步，以及 7 站点（comparator/wien/integrator/LDO/miller/peak/neg-feedback）的 x-匀速配速（delta=0.6px）。
@@ -106,6 +107,26 @@ python -B -m unittest discover -s scripts -p test_reading_journey.py -v
 这组测试需要 Playwright 和 Google Chrome，直接加载生成器输出并拦截外部请求，覆盖弹窗焦点循环与恢复、单张结果、输入区域快捷键、筛选分享和空结果；CI 的 `svg-render` 作业会执行同一组检查。
 
 教学样板的控制逻辑与样式在 `scripts/site_media/learning.js`、`learning.css`。正文用 `data-study="rc|mosfet|lm358"` 标记现有 SVG，用 `data-study-video` 标记 YouTube 原站链接；构建器复制脚本与样式，播放器只在点击后加载。新增阶段必须对照 SVG 的真实时序，不能把教学秒数当成电路时间。修改后运行 `python -B -m unittest discover -s scripts -p test_learning_interactions.py -v`（Playwright + Google Chrome）；覆盖真实 SVG 暂停、阶段定位、进度拖动、加载失败重试、手机放大和视频关闭。照片授权记录在 `assets/photos/README.md`，标注要在图注与 alt 中保留文字对应，以便无样式阅读。
+
+## 无障碍与「减弱动效」
+
+全站 251 张正文图片都有非空 `alt`；108 张动画 SVG 自带 `role="img"`、`aria-labelledby` 与非空 `<desc>`——`<desc>` 的节拍文案由 `caption()` 自动登记、`save()` 落盘时写进描述，读屏用户因此能听到这张图"讲了哪几拍"，而不只是一个文件名。
+
+`prefers-reduced-motion` 分两处落实：每张 SVG 自带一个 reduce 块，关掉**位移类**动画（电流粒子 / 波形游标 / 扫压圆点 / 脉冲辉光圈），但**保留节拍字幕与器件状态变化**——字幕是多路复用的（同一行轮流显示），一起显示反而互相压字、更读不了；站点自身的悬停位移在 `build_site.py` 的画廊 CSS 与 `scripts/site_media/diag.css` 里各自关掉。
+
+两条容易踩的规矩：
+
+1. **新增动画不需要登记**——减弱动效的选择器按结构匹配（`:has(> animateMotion):not(:has(text))` 等），任何"带位移子节点且不含文字"的元素都会被关掉；反过来，**不要把位移动画挂在含正文文字的组上**，否则它会被当成字幕保留下来继续动。
+2. **`svg_open()` 不能清空节拍登记**——有 8 张图（debug-flow / design-flow / diagnosis-tree / fault-lookup / ground-star / master-wisdom / thinking-toolbox / transformer）是先拼字幕、后调 `svg_open` 的；清空只放在 `save()` 落盘之后。字幕文案在生成器里已按 XML 转义（如 `距离&lt;3mm`），写进 `<desc>` 时**不能再转义一次**。
+
+修改后运行：
+
+```bash
+python -B -m unittest discover -s scripts -p test_a11y.py -v             # 静态：role / desc / alt / reduce 块
+python -B -m unittest discover -s scripts -p test_reduced_motion.py -v   # Chromium：粒子全停、字幕不误伤
+```
+
+第二组需要 Playwright 和 Google Chrome，逐张打开 108 个 SVG，分别在 `no-preference` 与 `reduce` 下断言：reduce 时没有任何非字幕的运动载体可见，且节拍字幕组一个都没被藏掉；`no-preference` 时必须真能看到上千个运动载体（防假绿），否则"没漏"只是选择器没命中。注意无头 Chrome 把 `<img>` 里的 SVG 当作 reduce 渲染，而测试是把 SVG 当顶层文档打开的——这正好让两种偏好都能被确定性地断言。
 
 | 能力 | 实现位置 | 说明 |
 |---|---|---|

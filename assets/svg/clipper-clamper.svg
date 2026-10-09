@@ -1,5 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="460" viewBox="0 0 800 460">
-<title>削波与钳位：同一个 0.7V——一个当闸门，一个当垫脚石</title>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="460" viewBox="0 0 800 460" role="img" aria-labelledby="ttl">
+<title id="ttl">削波与钳位：同一个 0.7V——一个当闸门，一个当垫脚石</title>
+<desc>削波与钳位：同一个 0.7V——一个当闸门，一个当垫脚石；节拍：① 限幅：输出想越过 基准+0.7V，二极管开闸泄流——波形顶部被削平；② 双向版就是 ADC 引脚保护：两只二极管把信号锁进 ±0.7V——第一道墙；③ 钳位：负半周瞬间 D 导通，C 充到 ≈2.3V（峰值 3V − 0.7V）——此后 D 常关，C 变成串联电池；④ 输出整体垫高：±3V 进来，−0.7~5.3V 出去——直流分量被恢复了</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
@@ -72,6 +73,16 @@ text[fill="#f59e0b"],tspan[fill="#f59e0b"]{fill:#b45309}
 [fill="#0369a1"]{fill:#7dd3fc}[stroke="#0369a1"]{stroke:#7dd3fc}
 [fill="#0284c7"]{fill:#7dd3fc}[stroke="#0284c7"]{stroke:#7dd3fc}
 text[fill="#fff"]{fill:#0f172a}
+}
+/* 尊重系统的「减弱动效」偏好：把"会飞"的东西关掉 —— 电流粒子、波形游标、
+   扫压圆点、脉冲辉光圈，它们是前庭不适的根源。器件状态变化与节拍字幕保留：
+   字幕是多路复用（同一行轮流显示），若一起显示反而互相压字、更读不了。
+   选择器靠结构而非类名，所以新增动画无需额外登记；老浏览器不支持 :has()
+   时整块被忽略，退化为"照常播放"，不会白屏。 */
+@media (prefers-reduced-motion: reduce){
+:has(> animateMotion):not(:has(text)),
+:has(> animateTransform):not(:has(text)),
+:has(> animate:not([attributeName="opacity"])):not(:has(text)){display:none}
 }
 </style>
 <text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">削波与钳位：同一个 0.7V——一个当闸门，一个当垫脚石</text>

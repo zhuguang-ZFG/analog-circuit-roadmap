@@ -1,5 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
-<title>LC 谐振：电场与磁场的「荡秋千」</title>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500" role="img" aria-labelledby="ttl">
+<title id="ttl">LC 谐振：电场与磁场的「荡秋千」</title>
+<desc>LC 谐振：电场与磁场的「荡秋千」；节拍：① f₀=1/(2π√LC)：感抗与容抗恰好相等、正负抵消——回路只剩 R，电流冲到最大；② 能量的秋千：电场能（C）与磁场能（L）每周期来回倒两次——R 只是倒腾途中的摩擦；③ Q=ω₀L/R：R 越小 Q 越高、峰越尖——收音机选台、晶振稳频靠的都是高 Q</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
@@ -72,6 +73,16 @@ text[fill="#f59e0b"],tspan[fill="#f59e0b"]{fill:#b45309}
 [fill="#0369a1"]{fill:#7dd3fc}[stroke="#0369a1"]{stroke:#7dd3fc}
 [fill="#0284c7"]{fill:#7dd3fc}[stroke="#0284c7"]{stroke:#7dd3fc}
 text[fill="#fff"]{fill:#0f172a}
+}
+/* 尊重系统的「减弱动效」偏好：把"会飞"的东西关掉 —— 电流粒子、波形游标、
+   扫压圆点、脉冲辉光圈，它们是前庭不适的根源。器件状态变化与节拍字幕保留：
+   字幕是多路复用（同一行轮流显示），若一起显示反而互相压字、更读不了。
+   选择器靠结构而非类名，所以新增动画无需额外登记；老浏览器不支持 :has()
+   时整块被忽略，退化为"照常播放"，不会白屏。 */
+@media (prefers-reduced-motion: reduce){
+:has(> animateMotion):not(:has(text)),
+:has(> animateTransform):not(:has(text)),
+:has(> animate:not([attributeName="opacity"])):not(:has(text)){display:none}
 }
 </style>
 <text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">LC 谐振：电场与磁场的「荡秋千」</text>

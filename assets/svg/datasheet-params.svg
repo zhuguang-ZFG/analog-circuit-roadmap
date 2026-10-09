@@ -1,5 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="732" viewBox="0 0 800 732">
-<title>Datasheet 五十页，先读这六行</title>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="732" viewBox="0 0 800 732" role="img" aria-labelledby="ttl">
+<title id="ttl">Datasheet 五十页，先读这六行</title>
+<desc>Datasheet 五十页，先读这六行；节拍：① 第一行永远是 V_OS：它被增益放大，直流电路的头号杀手；② I_B 只在「高源阻抗」时才咬人——>100kΩ 就必须换 FET 输入；③ GBW 与 SR 分工：小信号看 GBW、大信号看 SR（两条不同的路）；④ 读法总结：按「你电路会疼的地方」跳读，别从头翻到尾</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
@@ -72,6 +73,16 @@ text[fill="#f59e0b"],tspan[fill="#f59e0b"]{fill:#b45309}
 [fill="#0369a1"]{fill:#7dd3fc}[stroke="#0369a1"]{stroke:#7dd3fc}
 [fill="#0284c7"]{fill:#7dd3fc}[stroke="#0284c7"]{stroke:#7dd3fc}
 text[fill="#fff"]{fill:#0f172a}
+}
+/* 尊重系统的「减弱动效」偏好：把"会飞"的东西关掉 —— 电流粒子、波形游标、
+   扫压圆点、脉冲辉光圈，它们是前庭不适的根源。器件状态变化与节拍字幕保留：
+   字幕是多路复用（同一行轮流显示），若一起显示反而互相压字、更读不了。
+   选择器靠结构而非类名，所以新增动画无需额外登记；老浏览器不支持 :has()
+   时整块被忽略，退化为"照常播放"，不会白屏。 */
+@media (prefers-reduced-motion: reduce){
+:has(> animateMotion):not(:has(text)),
+:has(> animateTransform):not(:has(text)),
+:has(> animate:not([attributeName="opacity"])):not(:has(text)){display:none}
 }
 </style>
 <text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">Datasheet 五十页，先读这六行</text>

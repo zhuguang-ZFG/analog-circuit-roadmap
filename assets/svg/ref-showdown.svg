@@ -1,5 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="672" viewBox="0 0 800 672">
-<title>齐纳 vs 带隙：两种基准，两套温漂账</title>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="672" viewBox="0 0 800 672" role="img" aria-labelledby="ttl">
+<title id="ttl">齐纳 vs 带隙：两种基准，两套温漂账</title>
+<desc>齐纳 vs 带隙：两种基准，两套温漂账；节拍：① 齐纳：靠击穿电压，简单粗暴便宜——但 5.6V 之外温漂就上去了；② 带隙：用一正一负两条温漂曲线相加，让它们互相抵消；③ 配比 K 不是魔数：它等于 2mV/℃ ÷ (0.085mV/℃ × ln8) ≈ 11.3；④ 选型口诀：粗基准看齐纳、精密基准看带隙——温漂差两个数量级</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
@@ -72,6 +73,16 @@ text[fill="#f59e0b"],tspan[fill="#f59e0b"]{fill:#b45309}
 [fill="#0369a1"]{fill:#7dd3fc}[stroke="#0369a1"]{stroke:#7dd3fc}
 [fill="#0284c7"]{fill:#7dd3fc}[stroke="#0284c7"]{stroke:#7dd3fc}
 text[fill="#fff"]{fill:#0f172a}
+}
+/* 尊重系统的「减弱动效」偏好：把"会飞"的东西关掉 —— 电流粒子、波形游标、
+   扫压圆点、脉冲辉光圈，它们是前庭不适的根源。器件状态变化与节拍字幕保留：
+   字幕是多路复用（同一行轮流显示），若一起显示反而互相压字、更读不了。
+   选择器靠结构而非类名，所以新增动画无需额外登记；老浏览器不支持 :has()
+   时整块被忽略，退化为"照常播放"，不会白屏。 */
+@media (prefers-reduced-motion: reduce){
+:has(> animateMotion):not(:has(text)),
+:has(> animateTransform):not(:has(text)),
+:has(> animate:not([attributeName="opacity"])):not(:has(text)){display:none}
 }
 </style>
 <text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">齐纳 vs 带隙：两种基准，两套温漂账</text>

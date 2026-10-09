@@ -51,14 +51,34 @@ text[fill="#f59e0b"],tspan[fill="#f59e0b"]{fill:#b45309}
 [fill="#0284c7"]{fill:#7dd3fc}[stroke="#0284c7"]{stroke:#7dd3fc}
 text[fill="#fff"]{fill:#0f172a}
 }
+/* 尊重系统的「减弱动效」偏好：把"会飞"的东西关掉 —— 电流粒子、波形游标、
+   扫压圆点、脉冲辉光圈，它们是前庭不适的根源。器件状态变化与节拍字幕保留：
+   字幕是多路复用（同一行轮流显示），若一起显示反而互相压字、更读不了。
+   选择器靠结构而非类名，所以新增动画无需额外登记；老浏览器不支持 :has()
+   时整块被忽略，退化为"照常播放"，不会白屏。 */
+@media (prefers-reduced-motion: reduce){
+:has(> animateMotion):not(:has(text)),
+:has(> animateTransform):not(:has(text)),
+:has(> animate:not([attributeName="opacity"])):not(:has(text)){display:none}
+}
 </style>"""
+
+# 当前这张图的节拍字幕文案（供 <desc> 使用：让读屏用户也能听到"讲了什么"）。
+# caption() 追加，save() 落盘后清空。**svg_open() 故意不清空**——见那里的注释。
+_BEATS = []
 
 
 # ======================= 模板与元件库 =======================
 
 def svg_open(title, w=800, h=460):
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}">
-<title>{title}</title>
+    # 注意：这里**不能**清空 _BEATS。有 8 张图（debug-flow / design-flow /
+    # diagnosis-tree / fault-lookup / ground-star / master-wisdom /
+    # thinking-toolbox / transformer）是先拼字幕、后调 svg_open 的，
+    # 在 svg_open 里清零会把它们的节拍从 <desc> 里抹掉。
+    # 清空只放在 save() 落盘之后——每张图恰好 save 一次，因此不会串图。
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}" role="img" aria-labelledby="ttl">
+<title id="ttl">{title}</title>
+<desc>{title}</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
@@ -132,6 +152,7 @@ def _text_w(s, size):
 
 def caption(text, color, dur, kt_values, kt_times, y=400, x=400, size=14.5, w=800):
     """节拍字幕：kt_values/kt_times 控制该幕的显隐窗口；配同相显隐的药丸底衬 + 轻微上浮"""
+    _BEATS.append(text)
     tw = _text_w(text, size)
     pw, ph = tw + 30, size * 1.66
     pill = ''
@@ -330,6 +351,12 @@ def sq_out(x0, x1, yhi, ylo, cycles=2):
 
 
 def save(name, svg):
+    global _BEATS
+    if _BEATS:
+        # 字幕文案在生成器里已经是 XML 转义过的（例如 `距离&lt;3mm`），这里不能再
+        # 转义一次，否则 <desc> 会读成字面的 "&lt;"。
+        svg = svg.replace('</desc>', '；节拍：' + '；'.join(_BEATS) + '</desc>', 1)
+    _BEATS = []
     path = os.path.join(OUT, name)
     with open(path, 'w', encoding='utf-8') as f:
         f.write(svg)

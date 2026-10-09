@@ -1,5 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="522" viewBox="0 0 800 522">
-<title>电荷泵：电容当「斗提机」，不用电感也升压</title>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="522" viewBox="0 0 800 522" role="img" aria-labelledby="ttl">
+<title id="ttl">电荷泵：电容当「斗提机」，不用电感也升压</title>
+<desc>电荷泵：电容当「斗提机」，不用电感也升压；节拍：① 相1：S1/S3 闭合——C1 上端接 Vin、下端接地，充电到 Vin（绿粒子灌满斗）；② 相2：S2/S4 闭合——C1 下端被抬到 Vin，上端瞬间 2Vin，向 C2 倒电荷（斗提机倒斗）；③ 几轮之后 C2 涨到 2Vin——无电感、无反电动势、EMI 小，代价是只供得起小电流</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
@@ -72,6 +73,16 @@ text[fill="#f59e0b"],tspan[fill="#f59e0b"]{fill:#b45309}
 [fill="#0369a1"]{fill:#7dd3fc}[stroke="#0369a1"]{stroke:#7dd3fc}
 [fill="#0284c7"]{fill:#7dd3fc}[stroke="#0284c7"]{stroke:#7dd3fc}
 text[fill="#fff"]{fill:#0f172a}
+}
+/* 尊重系统的「减弱动效」偏好：把"会飞"的东西关掉 —— 电流粒子、波形游标、
+   扫压圆点、脉冲辉光圈，它们是前庭不适的根源。器件状态变化与节拍字幕保留：
+   字幕是多路复用（同一行轮流显示），若一起显示反而互相压字、更读不了。
+   选择器靠结构而非类名，所以新增动画无需额外登记；老浏览器不支持 :has()
+   时整块被忽略，退化为"照常播放"，不会白屏。 */
+@media (prefers-reduced-motion: reduce){
+:has(> animateMotion):not(:has(text)),
+:has(> animateTransform):not(:has(text)),
+:has(> animate:not([attributeName="opacity"])):not(:has(text)){display:none}
 }
 </style>
 <text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">电荷泵：电容当「斗提机」，不用电感也升压</text>
