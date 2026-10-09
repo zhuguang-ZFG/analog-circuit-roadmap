@@ -8,7 +8,7 @@
   box-shadow: 0 1px 4px rgba(0, 0, 0, .07);
 }
 .diag-progress { margin: 0; color: var(--md-default-fg-color--light); font-size: .8rem; }
-.diag-card h3, .diag-result h3 { margin: .35rem 0 .9rem; }
+.diag-card h2, .diag-result h2 { margin: .35rem 0 .9rem; }
 .diag-opts { display: grid; gap: .55rem; }
 .diag-btn {
   text-align: left;

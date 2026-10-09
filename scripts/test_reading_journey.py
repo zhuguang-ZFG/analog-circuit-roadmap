@@ -86,7 +86,9 @@ class ReadingJourneyTests(unittest.TestCase):
         expect(start).to_be_in_viewport()
         start.click()
         expect(self.page).to_have_url(self.base + 'p1-01-ch0.html#ch0')
-        expect(self.page.locator('p:has(> #ch0) + h2')).to_contain_text('第 0 章')
+        # 章标题在站点产物里是 h1（build_site.shift_headings 把 48 个页面的
+        # `##` 章标题归一成 `#`），所以锚点后面跟的是 h1 而不是 h2。
+        expect(self.page.locator('p:has(> #ch0) + h1')).to_contain_text('第 0 章')
 
     def test_chapter_quiz_review_and_next_chapter_form_a_round_trip(self):
         self.page.goto(self.base + 'p1-07-ch6.html#ch6')
@@ -495,7 +497,8 @@ class ReadingJourneyTests(unittest.TestCase):
         answer.locator('summary').click()
         answer.get_by_role('link', name='12.9', exact=True).click()
         expect(self.page).to_have_url(self.base + 'p2-02-ch12.html#sec129')
-        expect(self.page.locator('p:has(> #sec129) + h3')).to_contain_text('稳定性实战')
+        # §12.9 是 `###`，归一后升一级变 h2（见 test_page_structure.py）。
+        expect(self.page.locator('p:has(> #sec129) + h2')).to_contain_text('稳定性实战')
         self.page.goto(self.base + 'p1-01-ch0.html#ch0')
         item = self.page.locator('.md-content li').filter(has_text='实验室电源')
         expect(item).to_have_count(1)

@@ -66,23 +66,40 @@ class SiteBuildTests(unittest.TestCase):
                 shutil.copyfile(src, work / extra)
 
         result = subprocess.run(
-            [sys.executable, "-B", str(work / "scripts" / "build_site.py")],
+            [sys.executable, "-B", str(work / "scripts" / "build_site.py"), "--build"],
             cwd=str(work), capture_output=True, text=True,
-            encoding="utf-8", errors="replace", timeout=180,
+            encoding="utf-8", errors="replace", timeout=600,
         )
         if result.returncode:
             raise RuntimeError("build_site.py failed:\n" + result.stdout + result.stderr)
         cls.stdout = result.stdout
         cls.out = work / "build" / "docs"
         cls.build = work / "build"
+        cls.site = work / "build" / "site"
         if not cls.out.is_dir():
             raise AssertionError("build_site.py 没有产出 build/docs")
+        if not cls.site.is_dir():
+            raise AssertionError("build_site.py --build 没有产出 build/site")
 
         cls.gallery = (cls.out / "gallery.md").read_text(encoding="utf-8")
         cls.part5 = (work / "docs" / PART5).read_text(encoding="utf-8")
         cls._part5_built = (cls.out / PART5).read_text(encoding="utf-8")
         cls.cards = CARD.findall(cls.gallery)
         cls.chips = CHIP.findall(cls.gallery)
+        cls._rendered = {}
+
+    def rendered(self, name):
+        """按需读取渲染后的 HTML（62 页全读一遍也就几 MB，读一次就缓存）。"""
+        if name not in self._rendered:
+            self._rendered[name] = (self.site / name).read_text(encoding="utf-8")
+        return self._rendered[name]
+
+    def body_html(self, name):
+        """只取 <article class="md-content__inner"> 里的正文，避开导航/目录里的同名文字。"""
+        text = self.rendered(name)
+        i = text.find('<article class="md-content__inner')
+        j = text.find("</article>", i)
+        return text[i:j] if i >= 0 and j > i else text
 
     # ---------- 画廊卡片 ----------
     def test_card_inventory_matches_animation_headings(self):
@@ -473,7 +490,7 @@ class SiteBuildTests(unittest.TestCase):
                 self.assertIn("issues/new?template=new-topic.yml", text)
 
     def test_docs_stay_clean(self):
-        """页脚 / lightbox / 懒加载属性 / description 只进站点产物，docs/ 里不能出现。
+        """页脚 / lightbox / 懒加载属性 / description / 提示卡只进站点产物，docs/ 里不能出现。
 
         懒加载要按 `<img …loading="lazy">` 匹配——更新日志里会**用文字**提到这个属性，
         只查字面量会把正常的文档表述误判成注入。
@@ -483,9 +500,251 @@ class SiteBuildTests(unittest.TestCase):
                 text = page.read_text(encoding="utf-8")
                 self.assertNotIn("issues/new?template=content-fix.yml", text)
                 self.assertNotIn("gal-card", text)
+                self.assertNotIn('<div class="callout callout-', text,
+                                 "docs/ 里要能直接读，提示卡是站点产物才有的")
                 self.assertIsNone(re.search(r'<img[^>]*\bloading="lazy"', text),
                                   "docs/ 里的 <img> 不该带懒加载属性")
                 self.assertFalse(text.startswith("---\n"), "docs/ 里不该有 front-matter")
+
+    # ---------- 标题层级 ----------
+    HEADING = re.compile(r"<h([1-6])(?:\s[^>]*)?>(.*?)</h\1>", re.S)
+    CALL_TAG = re.compile(r"<[^>]+>")
+    SIGNATURE = re.compile(r"^> *(?:💎|🧮|🎯|📚|📺|📷|📎|🔧|⚠️|💡|📌|🎬|🔗)")
+
+    def headings(self, name):
+        return [(int(m.group(1)), self.CALL_TAG.sub("", m.group(2)).replace("&para;", "").strip())
+                for m in self.HEADING.finditer(self.body_html(name))]
+
+    def test_every_page_renders_exactly_one_h1(self):
+        """正文里必须恰好一个 h1。
+
+        48 个页面原本用 `##` 当章标题，正文里没有 h1，Material 就补一个来自 nav 的
+        `<h1>`，正文再渲染一个**同名**的 `<h2>` —— 标题在页面上出现两遍，
+        而且文档大纲里根本没有「这一页的主题」。修法是 build_site.shift_headings()。
+        """
+        for page in sorted(self.site.glob("*.html")):
+            with self.subTest(page=page.name):
+                h1 = [t for lv, t in self.headings(page.name) if lv == 1]
+                self.assertEqual(1, len(h1), f"h1 个数应为 1，实际 {len(h1)}：{h1}")
+
+    def test_no_page_repeats_its_title_as_h1_plus_h2(self):
+        for page in sorted(self.site.glob("*.html")):
+            with self.subTest(page=page.name):
+                hs = self.headings(page.name)
+                dup = [a[1] for a, b in zip(hs, hs[1:])
+                       if a[0] == 1 and b[0] == 2 and a[1] and a[1] == b[1]]
+                self.assertEqual([], dup, f"标题重复（主题 h1 与正文首个 h2 同名）：{dup}")
+
+    def test_no_page_skips_a_heading_level(self):
+        """h1 → h3 这种跳级会让屏幕阅读器读不出层级（WCAG 1.3.1）。
+
+        实测踩过一次：入场诊断组件用 h3 当「第 N 题」的题面，而它长在页面最顶部，
+        于是每页第一条标题就是 h1 → h3。
+        """
+        for page in sorted(self.site.glob("*.html")):
+            with self.subTest(page=page.name):
+                levels = [lv for lv, _t in self.headings(page.name)]
+                for a, b in zip(levels, levels[1:]):
+                    self.assertLessEqual(b, a + 1,
+                                         f"标题层级从 h{a} 跳到 h{b}：{self.headings(page.name)}")
+
+    # ---------- 标志性提示卡 ----------
+    def test_signature_blockquotes_become_cards(self):
+        """💎/🧮/🎯… 开头的引用块必须被包成彩色卡片，且四类都要有。"""
+        counts = {}
+        for page in sorted(self.out.glob("*.md")):
+            text = page.read_text(encoding="utf-8")
+            for kind in re.findall(r'<div class="callout callout-([a-z]+)" markdown="1">', text):
+                counts[kind] = counts.get(kind, 0) + 1
+        self.assertGreaterEqual(sum(counts.values()), 160,
+                                f"提示卡总数偏少，可能有一类没被包上：{counts}")
+        for kind in ("gem", "calc", "goal", "prereq", "video", "photo", "attach", "fix",
+                     "warn", "idea", "pin", "link"):
+            with self.subTest(kind=kind):
+                self.assertGreater(counts.get(kind, 0), 0, f"{kind} 类一张都没有：{counts}")
+
+    def test_no_signature_blockquote_is_left_unwrapped(self):
+        """包完不该还剩 `> 💎` 这种——漏一张就是「同一类提示两种长相」。"""
+        leftovers = []
+        for page in sorted(self.out.glob("*.md")):
+            text = page.read_text(encoding="utf-8")
+            for num, line in enumerate(text.split("\n"), 1):
+                if self.SIGNATURE.match(line):
+                    leftovers.append(f"{page.name}:{num} {line[:40]}")
+        self.assertEqual([], leftovers, "还有没被包成卡片的标志性引用块：\n  "
+                         + "\n  ".join(leftovers))
+
+    def test_card_count_equals_the_number_of_signature_prompts_in_docs(self):
+        """独立数一遍 docs/ 里的提示行，和产物里的卡片数对上——防「切多 / 切少」。
+
+        切分规则是「每一行**自己**以标志性 emoji 开头就另起一张卡」，所以
+        「签名行数」与「卡片数」必须一一对应。这条不复用 build_site 的函数，
+        是照着规则独立数一遍——两边一起漂移才可能同时错。
+        """
+        expected = 0
+        for page in sorted((self.work / "docs").glob("*.md")):
+            in_fence = False
+            for line in page.read_text(encoding="utf-8").split("\n"):
+                s = line.strip()
+                if s.startswith("```") or s.startswith("~~~"):
+                    in_fence = not in_fence
+                    continue
+                if in_fence or not line.startswith(">"):
+                    continue
+                if self.SIGNATURE.match(line):
+                    expected += 1
+        got = sum(len(re.findall(r'<div class="callout callout-[a-z]+" markdown="1">',
+                                 p.read_text(encoding="utf-8")))
+                  for p in self.out.glob("*.md"))
+        self.assertGreater(expected, 160, f"docs/ 里只数到 {expected} 个提示行，扫描器可能坏了")
+        self.assertEqual(expected, got, "卡片数与 docs/ 里的提示行数不一致（切多或切少）")
+
+    def test_no_card_is_empty(self):
+        """空卡片 = 切割切错了（把提示行切走、只剩空行）。"""
+        for page in sorted(self.out.glob("*.md")):
+            text = page.read_text(encoding="utf-8")
+            for m in re.finditer(r'<div class="callout callout-([a-z]+)" markdown="1">\n(.*?)\n</div>',
+                                 text, re.S):
+                with self.subTest(page=page.name, kind=m.group(1)):
+                    self.assertTrue(m.group(2).strip(), "空的提示卡")
+
+    # ---------- 社交卡片与结构化数据 ----------
+    @staticmethod
+    def _png_size(path):
+        raw = path.read_bytes()[:33]
+        if raw[:8] != b"\x89PNG\r\n\x1a\n":
+            raise AssertionError(f"{path} 不是 PNG")
+        return (int.from_bytes(raw[16:20], "big"), int.from_bytes(raw[20:24], "big"))
+
+    def test_social_card_is_self_hosted_and_the_right_size(self):
+        """og:image 必须指向本站的产物，且真是一张 1200×630 的 PNG。
+
+        原来外链 Wikimedia 的电路板照片：抓取方要跨域取第三方资源（国内常超时），
+        而且那张图与本站内容无关。自托管后还要防「只改了 URL、忘了提交图片」——
+        所以这里既查 meta 也查文件本体。
+        """
+        from build_site import OG_HEIGHT, OG_IMAGE, OG_WIDTH
+        self.assertTrue(OG_IMAGE.startswith("https://zhuguang-ZFG.github.io/analog-circuit-roadmap/"),
+                        f"og:image 必须自托管：{OG_IMAGE}")
+        self.assertNotIn("wikimedia", OG_IMAGE)
+        page = self.rendered("p1-02-ch1.html")
+        for tag, attr in (("og:image", "property"), ("twitter:image", "name")):
+            with self.subTest(tag=tag):
+                m = re.search(rf'<meta {attr}="{tag}" content="([^"]+)"', page)
+                self.assertIsNotNone(m, f"缺少 {tag}")
+                self.assertEqual(OG_IMAGE, m.group(1), f"{tag} 必须指向自托管产物")
+        local = self.site / OG_IMAGE.split("/analog-circuit-roadmap/", 1)[1]
+        self.assertTrue(local.is_file(), f"站点产物里没有 {local}")
+        self.assertEqual((OG_WIDTH, OG_HEIGHT), self._png_size(local))
+        self.assertEqual((1200, 630), self._png_size(local),
+                         "og:image 应当是 1200×630（社交卡片的 1.91:1）")
+        for tag in ("og:image:width", "og:image:height", "twitter:image:alt"):
+            self.assertIn(tag, page)
+
+    def test_every_page_ships_parseable_json_ld(self):
+        """结构化数据必须能被 json.loads 直接吃下（转义错一个字符就整块失效）。"""
+        for page in sorted(self.site.glob("*.html")):
+            with self.subTest(page=page.name):
+                blocks = re.findall(r'<script type="application/ld\+json">(.*?)</script>',
+                                    self.rendered(page.name), re.S)
+                self.assertEqual(1, len(blocks), "每页应当恰好一块 JSON-LD")
+                data = json.loads(blocks[0])
+                graph = data.get("@graph", [])
+                self.assertEqual("https://schema.org", data.get("@context"))
+                self.assertEqual(2, len(graph), f"应当有 WebSite + 页面节点：{graph}")
+                self.assertEqual("WebSite", graph[0]["@type"])
+                self.assertIn(graph[1]["@type"], ("WebPage", "TechArticle"))
+                self.assertTrue(graph[1]["headline"].strip(), "headline 不能为空")
+                self.assertTrue(graph[1]["description"].strip(), "description 不能为空")
+                self.assertEqual("zh-CN", graph[1]["inLanguage"])
+
+    def test_homepage_is_a_webpage_and_the_rest_are_articles(self):
+        home = json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',
+                                    self.rendered("index.html"), re.S).group(1))
+        self.assertEqual("WebPage", home["@graph"][1]["@type"])
+        ch1 = json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',
+                                   self.rendered("p1-02-ch1.html"), re.S).group(1))
+        self.assertEqual("TechArticle", ch1["@graph"][1]["@type"])
+
+    def test_json_ld_escapes_html_specials(self):
+        """把模板里的 JSON-LD 表达式抠出来，喂一份恶意摘要，直接看它转义没有。
+
+        真站点目前**没有任何一页**的标题/摘要含 `<` `>` `&`（实测 62 页 0 命中），
+        所以「扫产物里有没有裸尖括号」这条断言永远为真——是个假绿。
+        摘要器会把 `&lt;` 还原成 `<`，所以这个风险是真的、只是暂时没被触发。
+        这里单独渲染那段表达式，才真的能红。
+        """
+        import jinja2
+        from build_site import OVERRIDES_MAIN_HTML
+
+        m = re.search(r'<script type="application/ld\+json">\{\{(.*?)\}\}</script>',
+                      OVERRIDES_MAIN_HTML, re.S)
+        self.assertIsNotNone(m, "模板里找不到 JSON-LD 的 {{ … }} 表达式")
+        expr = m.group(1)
+        self.assertIn("tojson", expr, "JSON-LD 必须走 tojson（它把 < > & 转成 \\uXXXX）")
+
+        class _Config:
+            site_url = "https://example.test/x/"
+            site_name = "站点"
+            site_description = "描述"
+
+        class _Page:
+            is_homepage = False
+            canonical_url = "https://example.test/x/a.html"
+            title = "标题"
+            meta = {"description": "危险 </script><script>alert(1)</script> & <b>粗</b>"}
+
+        out = jinja2.Environment(autoescape=True).from_string(
+            "{{" + expr + "}}").render(config=_Config(), page=_Page())
+        for ch in "<>&":
+            with self.subTest(char=ch):
+                self.assertNotIn(ch, out, f"JSON-LD 里出现了裸 {ch!r}，会截断 <script>")
+        data = json.loads(out)
+        self.assertEqual("TechArticle", data["@graph"][1]["@type"])
+        self.assertIn("</script>", data["@graph"][1]["description"],
+                      "转义应当是「JSON 层面可还原」的，而不是把内容删掉")
+
+    # ---------- 排版层 ----------
+    def test_typography_layer_is_published_and_linked(self):
+        from build_site import MKDOCS_YML
+        self.assertRegex(MKDOCS_YML,
+                         re.compile(r"^[ \t]*-[ \t]*stylesheets/typography\.css[ \t]*$", re.M),
+                         "typography.css 必须在 extra_css 里被真正引用（注释不算）")
+        css = self.site / "stylesheets" / "typography.css"
+        self.assertTrue(css.is_file(), "typography.css 没有发布到站点")
+        text = css.read_text(encoding="utf-8")
+        for kind in ("callout-gem", "callout-warn", "callout-calc"):
+            self.assertIn(kind, text)
+        self.assertIn("stylesheets/typography.css", self.rendered("p1-02-ch1.html"))
+
+    def test_every_callout_kind_has_light_and_dark_colours(self):
+        """13 类提示卡**每一类**都要有浅色与深色两套 `--co`。
+
+        只查「文件里出现过 `data-md-color-scheme="slate"`」是假绿：漏掉某一类，
+        那一类在深色主题下就是深色文字落在深色卡片上——等于没写，而且没人看得出来
+        （变异验证时踩过这个坑）。
+        """
+        from build_site import CALLOUT_KINDS
+        kinds = sorted(set(CALLOUT_KINDS.values()))
+        raw = (self.site / "stylesheets" / "typography.css").read_text(encoding="utf-8")
+        # 先剥掉 /* … */ —— 否则「被注释掉的那条规则」仍然能被正则匹配到，
+        # 漏配一整类颜色却照样绿灯（变异验证时踩过这个坑）。
+        text = re.sub(r"/\*.*?\*/", " ", raw, flags=re.S)
+        dark_rules = re.findall(r'\[data-md-color-scheme="slate"\][^{]*\{[^}]*\}', text)
+        dark = "\n".join(dark_rules)
+        # 浅色那边必须先把深色规则**整条摘掉**：`[data-md-color-scheme="slate"] … .callout-warn { --co }`
+        # 里同样含 `.callout-warn { --co`，不摘掉的话浅色漏配也照样绿灯
+        # （变异验证时踩过这个坑）。
+        light = text
+        for rule in dark_rules:
+            light = light.replace(rule, " ")
+        self.assertGreaterEqual(len(kinds), 13, f"词表缩水了：{kinds}")
+        for slug in kinds:
+            with self.subTest(kind=slug):
+                self.assertRegex(light, rf"\.callout-{slug}\s*\{{[^}}]*--co",
+                                 f"{slug} 没有浅色配色")
+                self.assertRegex(dark, rf"\.callout-{slug}\b[^{{]*\{{[^}}]*--co",
+                                 f"{slug} 没有深色配色")
 
     # ---------- 辅助 ----------
     @staticmethod

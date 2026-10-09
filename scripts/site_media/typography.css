@@ -1,0 +1,239 @@
+/* ============================================================================
+   站点级排版层 —— 只在在线站生效；docs/ 里的 Markdown 保持原样可直接在 GitHub 读。
+
+   为什么单开一个文件而不是塞进 learning/reading/diag：那三个是「某个功能组件的
+   样式」，这份是「整站正文的排版」。前者加功能时改，后者改版式时改，混在一起
+   下次想调字距就得先读完 94 行 reading.css。
+   ========================================================================== */
+
+/* ----------------------------------------------------------------------------
+   1. 标志性提示卡
+   ----------------------------------------------------------------------------
+   正文里 `> 💎 **精髓**：…` 这类引用块，在生成阶段被 build_site.py 的
+   wrap_callouts() 包成 `<div class="callout callout-gem">`，全站共 168 张。
+   配色只用一个变量 `--co`：卡片底色 = --co 掺进当前主题背景色，
+   所以浅色/深色两套主题共用一份规则，不用维护两张调色板。
+   -------------------------------------------------------------------------- */
+
+.md-typeset .callout {
+  --co: var(--md-primary-fg-color);
+  --co-mix: 8%;
+  position: relative;
+  margin: 1.15rem 0;
+  padding: .8rem 1.05rem .8rem 1.1rem;
+  border: .05rem solid color-mix(in srgb, var(--co) 26%, transparent);
+  border-left: .2rem solid var(--co);
+  border-radius: .4rem;
+  background: var(--md-code-bg-color);            /* color-mix 不可用时的兜底 */
+  background: color-mix(in srgb, var(--co) var(--co-mix), var(--md-default-bg-color));
+}
+
+/* 卡内首尾段落不留边距，免得卡片上下各鼓出一块 */
+.md-typeset .callout > :first-child { margin-top: 0; }
+.md-typeset .callout > :last-child { margin-bottom: 0; }
+.md-typeset .callout > p { margin: .45rem 0; }
+
+/* 第一行开头的粗体标签（精髓 / 算一笔 / 学完你应能 …）跟着卡片主色走 */
+.md-typeset .callout > p:first-child > strong:first-of-type {
+  color: var(--co);
+  font-weight: 800;
+}
+
+/* 卡片里的表格沿用正文表格样式，只把外框收进卡片内边距 */
+.md-typeset .callout table:not([class]) { margin: .6rem 0; }
+
+/* 浅色主题下的主色（白底对比度均 ≥4.5:1，正文级） */
+.md-typeset .callout-gem    { --co: #6d28d9; }   /* 💎 精髓 */
+.md-typeset .callout-calc   { --co: #1d4ed8; }   /* 🧮 算一笔 / 公式速查 */
+.md-typeset .callout-goal   { --co: #047857; }   /* 🎯 学完你应能 */
+.md-typeset .callout-prereq { --co: #475569; }   /* 📚 先修 */
+.md-typeset .callout-video  { --co: #be185d; }   /* 📺 配套视频 */
+.md-typeset .callout-photo  { --co: #0e7490; }   /* 📷 实物照片 */
+.md-typeset .callout-attach { --co: #b45309; }   /* 📎 附件 / 资料 */
+.md-typeset .callout-fix    { --co: #c2410c; }   /* 🔧 动手 / 排故 */
+.md-typeset .callout-warn   { --co: #b91c1c; --co-mix: 11%; }   /* ⚠️ 坑 */
+.md-typeset .callout-idea   { --co: #a16207; }   /* 💡 补充想法 */
+.md-typeset .callout-pin    { --co: #0369a1; }   /* 📌 记号 */
+.md-typeset .callout-demo   { --co: #0f766e; }   /* 🎬 动画 */
+.md-typeset .callout-link   { --co: #4338ca; }   /* 🔗 相关链接 */
+
+/* 深色主题：换成更亮的同色系，否则深底上的深色文字等于没写 */
+[data-md-color-scheme="slate"] .md-typeset .callout-gem    { --co: #a78bfa; }
+[data-md-color-scheme="slate"] .md-typeset .callout-calc   { --co: #60a5fa; }
+[data-md-color-scheme="slate"] .md-typeset .callout-goal   { --co: #34d399; }
+[data-md-color-scheme="slate"] .md-typeset .callout-prereq { --co: #cbd5e1; }
+[data-md-color-scheme="slate"] .md-typeset .callout-video  { --co: #f472b6; }
+[data-md-color-scheme="slate"] .md-typeset .callout-photo  { --co: #22d3ee; }
+[data-md-color-scheme="slate"] .md-typeset .callout-attach { --co: #fbbf24; }
+[data-md-color-scheme="slate"] .md-typeset .callout-fix    { --co: #fb923c; }
+[data-md-color-scheme="slate"] .md-typeset .callout-warn   { --co: #f87171; }
+[data-md-color-scheme="slate"] .md-typeset .callout-idea   { --co: #facc15; }
+[data-md-color-scheme="slate"] .md-typeset .callout-pin    { --co: #38bdf8; }
+[data-md-color-scheme="slate"] .md-typeset .callout-demo   { --co: #2dd4bf; }
+[data-md-color-scheme="slate"] .md-typeset .callout-link   { --co: #a5b4fc; }
+
+/* 深色下 8% 的掺色几乎看不出来，调到 14% 才与浅色主题的观感对齐 */
+[data-md-color-scheme="slate"] .md-typeset .callout { --co-mix: 14%; }
+
+/* ----------------------------------------------------------------------------
+   2. 标题节奏
+   ----------------------------------------------------------------------------
+   Material 把 h1/h2 都设成 font-weight:300 —— 那是为拉丁字母设计的；
+   汉字没有小写字母的笔画对比，300 字重在屏幕上会「糊成一片灰」。
+   实测：h1 提上去之后，58 个页面的 h1 才第一次真正代表「这一页的主题」。
+   -------------------------------------------------------------------------- */
+
+.md-typeset h1 {
+  color: var(--md-default-fg-color);
+  font-size: 1.7em;
+  font-weight: 800;
+  letter-spacing: -.005em;
+  line-height: 1.35;
+  margin: 0 0 1.15rem;
+  padding-bottom: .45rem;
+  border-bottom: .12rem solid color-mix(in srgb, var(--md-primary-fg-color) 30%, transparent);
+}
+
+.md-typeset h2 {
+  font-size: 1.42em;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.4;
+  margin: 2.2rem 0 .8rem;
+  padding-left: .55rem;
+  border-left: .2rem solid var(--md-primary-fg-color);
+}
+
+.md-typeset h3 {
+  font-size: 1.16em;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.5;
+  margin: 1.7rem 0 .7rem;
+}
+
+.md-typeset h4 {
+  font-weight: 700;
+  color: var(--md-default-fg-color);
+}
+
+/* 首页 hero 与卡片自己管标题，别被上面两条（左色条 / 下划线）串味 */
+.md-typeset .learning-hero h2,
+.md-typeset .learning-path h3,
+.md-typeset .learning-lesson h3 {
+  border-left: 0;
+  padding-left: 0;
+}
+
+/* 入场诊断组件用 h2 当「第 N 题」的题面（原本是 h3，会造成 h1→h3 跳级），
+   但它长在卡片里，不能带章节标题那条左色条 */
+.md-typeset .diag-card h2,
+.md-typeset .diag-result h2 {
+  border-left: 0;
+  padding-left: 0;
+  font-size: 1.16em;
+  font-weight: 700;
+  margin: .35rem 0 .9rem;
+}
+
+/* ----------------------------------------------------------------------------
+   3. 表格
+   ----------------------------------------------------------------------------
+   速查表是全站信息密度最高的地方，Material 默认 .64rem（≈10px）对汉字偏小。
+   字号提到 .7rem 的同时把单元格内边距收一点，净宽度基本不变（不会多出横向滚动）。
+   -------------------------------------------------------------------------- */
+
+.md-typeset table:not([class]) {
+  font-size: .7rem;
+  border-radius: .35rem;
+}
+
+.md-typeset table:not([class]) thead th {
+  background: color-mix(in srgb, var(--md-primary-fg-color) 10%, var(--md-default-bg-color));
+  border-bottom: .08rem solid color-mix(in srgb, var(--md-primary-fg-color) 30%, transparent);
+  font-weight: 700;
+}
+
+.md-typeset table:not([class]) th,
+.md-typeset table:not([class]) td {
+  padding: .7em 1em;
+}
+
+/* 斑马纹：长表横向读一行时不容易串到上一行 */
+.md-typeset table:not([class]) tbody tr:nth-child(2n) {
+  background: color-mix(in srgb, var(--md-default-fg-color) 3.5%, transparent);
+}
+
+/* ----------------------------------------------------------------------------
+   4. 代码
+   -------------------------------------------------------------------------- */
+
+.md-typeset pre > code { border-radius: .35rem; }
+.md-typeset .highlight { border-radius: .35rem; }
+.md-typeset code { border-radius: .2rem; }
+
+/* ----------------------------------------------------------------------------
+   5. 普通引用块
+   ----------------------------------------------------------------------------
+   不是标志性 emoji 开头的引用块（章首的「这一章没有公式推导…」、页脚的「参与共建」）
+   统一给一层很淡的主色底 —— 与提示卡同族但明显更弱，不会喧宾夺主。
+   -------------------------------------------------------------------------- */
+
+.md-typeset blockquote {
+  border-left: .2rem solid color-mix(in srgb, var(--md-primary-fg-color) 42%, transparent);
+  border-radius: 0 .3rem .3rem 0;
+  padding: .55rem .9rem;
+  background: color-mix(in srgb, var(--md-primary-fg-color) 4%, transparent);
+}
+
+.md-typeset blockquote > :first-child { margin-top: 0; }
+.md-typeset blockquote > :last-child { margin-bottom: 0; }
+
+/* ----------------------------------------------------------------------------
+   6. 首页 hero 精修
+   -------------------------------------------------------------------------- */
+
+.md-typeset .learning-hero {
+  border-left-width: .25rem;
+  border-radius: .8rem;
+  background:
+    radial-gradient(120% 140% at 0% 0%,
+      color-mix(in srgb, var(--md-primary-fg-color) 12%, transparent), transparent 62%),
+    var(--md-code-bg-color);
+}
+
+.md-typeset .learning-hero h2 {
+  font-size: 1.5em;
+  font-weight: 800;
+  margin: .55rem 0 .85rem;
+}
+
+.md-typeset .learning-path,
+.md-typeset .learning-lesson {
+  background: color-mix(in srgb, var(--md-default-fg-color) 2.5%, transparent);
+  transition: border-color .15s, transform .15s;
+}
+
+.md-typeset .learning-path:hover,
+.md-typeset .learning-lesson:hover {
+  border-color: color-mix(in srgb, var(--md-primary-fg-color) 45%, transparent);
+  transform: translateY(-.1rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .md-typeset .learning-path,
+  .md-typeset .learning-lesson { transition: none; }
+  .md-typeset .learning-path:hover,
+  .md-typeset .learning-lesson:hover { transform: none; }
+}
+
+/* ----------------------------------------------------------------------------
+   7. 打印：提示卡别被切断
+   -------------------------------------------------------------------------- */
+
+@media print {
+  .md-typeset .callout { break-inside: avoid; border-color: #999; background: #fafafa; }
+  .md-typeset .callout > p:first-child > strong:first-of-type { color: #000; }
+  .md-typeset h2 { border-left-color: #666; }
+  .md-typeset h1 { border-bottom-color: #666; }
+}

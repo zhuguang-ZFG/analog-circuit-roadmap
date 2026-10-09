@@ -128,6 +128,169 @@ def write_reduce_variants(dst=None):
     return written
 
 
+# 标志性提示块：正文里以这些 emoji 开头的引用块，在**站点产物**里会被包成彩色卡片。
+# 这套 emoji 就是本教程的固定语汇（💎 精髓 / 🧮 算一笔 / 🎯 通关打卡 / 📚 先修…），
+# 全站各出现几十次，是最该被一眼认出来的东西。
+CALLOUT_KINDS = {
+    "💎": "gem",      # 精髓：本节最该记住的一句
+    "🧮": "calc",     # 算一笔 / 公式速查
+    "🎯": "goal",     # 学完你应能 / 通关打卡
+    "📚": "prereq",   # 先修
+    "📺": "video",    # 配套视频
+    "📷": "photo",    # 实物照片
+    "📎": "attach",   # 附件 / 资料
+    "🔧": "fix",      # 动手 / 排故
+    "⚠️": "warn",     # 坑
+    "💡": "idea",     # 补充想法
+    "📌": "pin",      # 记号
+    "🎬": "demo",     # 动画
+    "🔗": "link",     # 相关链接
+}
+
+
+def _callout_kind(body):
+    """引用块首行开头是不是标志性 emoji？是就返回对应的 slug。"""
+    for emoji, slug in CALLOUT_KINDS.items():
+        if body.startswith(emoji):
+            return slug
+    return None
+
+
+def wrap_callouts(text):
+    """把标志性 emoji 开头的引用块包成 `<div class="callout callout-…">`（站点产物专用）。
+
+    为什么不在 `docs/` 里直接写 div：`.md` 在 GitHub 上要能直接读，
+    `<div markdown="1">` 会把原文切碎、也会让 `docs/` 的 diff 变吵。
+    放生成阶段还有个好处：将来换视觉风格只改 CSS，不用动 58 个正文文件。
+
+    `md_in_html` 的 `markdown="1"` 保证块内的粗体 / 链接 / 公式照常渲染。
+    代码围栏内的 `>` 不动；不以标志性 emoji 开头的引用块原样保留（它们仍会被
+    theme.css 当作普通引用块统一排版）。
+
+    **一个引用块里可以并排放着好几个提示**——章首固定是
+    `> 🎯 学完你应能…` 紧跟一行 `> 🧮 公式速查…`（19 章全都如此）。所以按
+    「这一行自身是不是以标志性 emoji 开头」把块再切成子块，各自成卡；
+    否则 19 个 🧮 会被吞进 🎯 卡里，白丢一类视觉信号（实测：切之前 calc 卡 0 张）。
+    """
+    lines = text.split("\n")
+    out = []
+    i, n = 0, len(lines)
+    fence = None
+    while i < n:
+        line = lines[i]
+        stripped = line.lstrip()
+        if stripped.startswith("```") or stripped.startswith("~~~"):
+            fence = None if fence else stripped[:3]
+            out.append(line)
+            i += 1
+            continue
+        if fence or not line.startswith(">"):
+            out.append(line)
+            i += 1
+            continue
+        # 一整段引用块 = 连续的 '>' 行（单独一个 '>' 是块内空行）
+        j = i
+        while j < n and lines[j].startswith(">"):
+            j += 1
+        # 按「该行自身以标志性 emoji 开头」切子块（首行永远算新子块的开头）
+        segs = []
+        cur = []
+        for b in lines[i:j]:
+            if cur and _callout_kind(b[1:].lstrip()) is not None:
+                segs.append(cur)
+                cur = []
+            cur.append(b)
+        if cur:
+            segs.append(cur)
+        for seg in segs:
+            head = next((b[1:].lstrip() for b in seg if b[1:].strip()), "")
+            kind = _callout_kind(head)
+            if kind is None:
+                out.extend(seg)
+                continue
+            inner = [(b[1:][1:] if b[1:].startswith(" ") else b[1:]) for b in seg]
+            while inner and not inner[-1].strip():
+                inner.pop()
+            out.append(f'<div class="callout callout-{kind}" markdown="1">')
+            out.append("")
+            out.extend(inner)
+            out.append("")
+            out.append("</div>")
+        i = j
+    return "\n".join(out)
+
+
+# ---------------------------------------------------------------- 标题层级归一
+# 48 个页面（含全部 19 个正文章 + 6.x/7.x/8.x 分节页 + 前言/目录/更新日志）
+# 用 `## 第 N 章 …` 当章标题，正文里一个 `# ` 都没有。后果是 Material 的
+# `partials/content.html` 见 `page.content` 里没有 `<h1`，就先补一个来自 nav 的
+# `<h1>`，正文再渲染一个**同名**的 `<h2>` —— 页面上标题出现两遍（实测 48/62 页）。
+# 把正文标题整体上提一级后：① 同名重复消失（正文里有了 <h1>，主题就不再补）；
+# ② 文档大纲变成规范的 h1→h2→h3（原来是 h2→h3→h4，凭空跳了一级，
+# 屏幕阅读器与搜索引擎都读不到「这一页的主题」）。
+_FRONT_MATTER = re.compile(r"\A---\n.*?\n---\n", re.S)
+_ATX = re.compile(r"^( {0,3})(#{1,6})(?=\s|$)(.*)$")
+_FENCE_OPEN = re.compile(r"^[ \t]*(```|~~~)")
+_ATX_H1 = re.compile(r"^ {0,3}#(?=\s|$)")
+
+
+def shift_headings(text):
+    """正文里没有 h1 时，把整页标题层级归一（站点产物专用）。
+
+    规则两条：
+      ① **第一个标题升为 `#`** —— 它就是这一页的主题；
+      ② 其余标题各升一级，但**不高于 `##`**。
+
+    第 ② 条不是凑数：「🙏 致谢」页有 `## 致谢` 与 `## 共建者墙` 两个同级标题，
+    如果无脑全升一级，那一页会出**两个 h1**（实测踩过）。把第二个压在 `##` 上，
+    「致谢 = 页标题、共建者墙 = 其中的一节」这层意思才落对。
+
+    **只动真正的 ATX 标题行**：front-matter、代码围栏内、4 空格缩进的代码块、
+    `>` 引用块、表格行一律不碰（正则锚在行首且只允许 ≤3 个前导空格）。
+    整页**一个 `# ` 标题都没有**时才生效，有 h1 的 10 个篇首页原样返回 ——
+    这样既不会和 `docs/` 里已有的 `#` 风格打架，也不会出现「一半归一一半没归」。
+    """
+    m = _FRONT_MATTER.match(text)
+    fm, body = (m.group(0), text[m.end():]) if m else ("", text)
+    lines = body.split("\n")
+
+    def scan(lines):
+        """产出 (行, 是否在围栏内) —— 两次扫描的围栏判定必须一致。
+
+        围栏按「同一种围栏字符」配对：``` 里的 ~~~ 只是普通文本，反之亦然。
+        """
+        fence = None
+        for ln in lines:
+            f = _FENCE_OPEN.match(ln)
+            if f:
+                ch = f.group(1)[0]
+                if fence is None:
+                    fence = ch
+                elif fence == ch:
+                    fence = None
+                yield ln, True
+                continue
+            yield ln, bool(fence)
+
+    if any(_ATX_H1.match(ln) for ln, in_fence in scan(lines) if not in_fence):
+        return text
+
+    out = []
+    seen_first = False
+    for ln, in_fence in scan(lines):
+        m2 = _ATX.match(ln) if not in_fence else None
+        if not m2:
+            out.append(ln)
+            continue
+        if not seen_first:
+            seen_first = True
+            level = 1
+        else:
+            level = max(len(m2.group(2)) - 1, 2)
+        out.append(m2.group(1) + "#" * level + m2.group(3))
+    return fm + "\n".join(out)
+
+
 FM_DESC_MAX = 150
 DESC_MIN = 30          # 摘要的最短可采纳长度（更短的几乎都是图注 / 链接行 / 残句）
 _MD_LINK = re.compile(r"\[([^\]]*)\]\([^)]*\)")
@@ -601,18 +764,59 @@ OVERRIDES_MAIN_HTML = """{% extends "base.html" %}
   <meta property="og:description" content="{{ ((page.meta or {}).get('description') or config.site_description) | e }}">
   {% if page.canonical_url %}<meta property="og:url" content="{{ page.canonical_url }}">{% endif %}
   <meta property="og:image" content="__OG_IMAGE__">
+  <meta property="og:image:width" content="__OG_WIDTH__">
+  <meta property="og:image:height" content="__OG_HEIGHT__">
+  <meta property="og:image:alt" content="{{ config.site_name }} —— {{ config.site_description }}">
   <meta property="og:locale" content="zh_CN">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{ page.title | default(config.site_name, true) | e }}">
   <meta name="twitter:description" content="{{ ((page.meta or {}).get('description') or config.site_description) | e }}">
   <meta name="twitter:image" content="__OG_IMAGE__">
+  <meta name="twitter:image:alt" content="{{ config.site_name }} —— {{ config.site_description }}">
   <meta name="theme-color" content="#3f51b5">
   <meta name="author" content="zhuguang-ZFG">
+
+  {# 结构化数据：站点一个 WebSite 节点 + 每页一个 WebPage/TechArticle 节点。
+     用 Jinja 的 tojson 而不是手拼字符串 —— 它会把 < > & 转成 \\uXXXX，
+     正文里出现的尖括号（公式、标签）不会把 <script> 提前截断。
+     不写 SearchAction：本站搜索是主题的模态框，没有 ?q= 形式的 URL，
+     声明了就是骗爬虫。 #}
+  <script type="application/ld+json">{{ {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": config.site_url ~ "#website",
+        "url": config.site_url,
+        "name": config.site_name,
+        "description": config.site_description,
+        "inLanguage": "zh-CN",
+        "license": "https://creativecommons.org/licenses/by-sa/4.0/"
+      },
+      {
+        "@type": "WebPage" if page.is_homepage else "TechArticle",
+        "@id": (page.canonical_url or config.site_url) ~ "#page",
+        "headline": page.title | default(config.site_name, true),
+        "description": (page.meta or {}).get('description') or config.site_description,
+        "url": page.canonical_url or config.site_url,
+        "inLanguage": "zh-CN",
+        "isPartOf": {"@id": config.site_url ~ "#website"},
+        "author": {"@type": "Person", "name": "zhuguang-ZFG"},
+        "publisher": {"@type": "Organization", "name": config.site_name,
+                      "url": config.site_url},
+        "license": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "image": "__OG_IMAGE__"
+      }
+    ]
+  } | tojson }}</script>
 {% endblock %}
 """
 
-OG_IMAGE = ("https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/"
-            "Printed_circuit_board.jpg/500px-Printed_circuit_board.jpg")
+# 自托管分享卡：scripts/build_og_image.py 渲染的 1200×630 卡片，产物提交进仓库
+# （assets/og-cover.png），随站点一起发布。原来外链 Wikimedia 的电路板照片：
+# 跨域抓取常超时、且与本站内容无关，分享出去看不出是「模拟电路教程」。
+OG_IMAGE = "https://zhuguang-ZFG.github.io/analog-circuit-roadmap/assets/og-cover.png"
+OG_WIDTH, OG_HEIGHT = 1200, 630
 
 ROBOTS_TXT = """User-agent: *
 Allow: /
@@ -739,6 +943,7 @@ extra:
       name: 提 Issue（纠错 / 建议）
 
 extra_css:
+  - stylesheets/typography.css
   - stylesheets/gallery.css
   - stylesheets/learning.css
   - stylesheets/reading.css
@@ -777,6 +982,10 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.tabbed:
       alternate_style: true
+  # ASCII → 排版符号：(c) → ©、+/- → ±、--> → →、3rd → 3<sup>rd</sup>、1/2 → ½。
+  # ⚠️ 它也会把「第 3/4 章」这种**章号区间**误当成 ¾ —— 见 scripts/test_smartsymbols.py
+  # 的护栏（docs/ 里出现裸分数即红灯，逼作者改写成「第 3、4 章」）。
+  - pymdownx.smartsymbols
 
 nav:
 __NAV__
@@ -1050,6 +1259,10 @@ def main():
         text = optimize_imgs(text)
         # SEO：每页一句独立的 meta description（front-matter，只加在站点产物里）
         text = with_description(text)
+        # 标题层级归一：正文没有 h1 的页面整体上提一级，消掉「同名 h1+h2」重复
+        text = shift_headings(text)
+        # 标志性引用块 → 彩色提示卡（放在 with_description 之后：摘要仍按原文摘）
+        text = wrap_callouts(text)
         # 每页页脚加「参与共建」闭环（只在站点产物里加，docs/ 保持单一数据源干净）
         text = (text.rstrip("\n") + "\n" + reading_navigation(page.name, chapters)
                 + legacy_anchor_links(page.name, redirects) + "\n" + FEEDBACK_FOOTER)
@@ -1078,6 +1291,7 @@ def main():
     (OUT / "stylesheets" / "gallery.css").write_text(GALLERY_CSS, encoding="utf-8")
     (OUT / "javascripts" / "gallery.js").write_text(GALLERY_JS, encoding="utf-8")
     (OUT / "javascripts" / "mathjax.js").write_text(MATHJAX_JS, encoding="utf-8")
+    shutil.copyfile(media / "typography.css", OUT / "stylesheets" / "typography.css")
     shutil.copyfile(media / "learning.js", OUT / "javascripts" / "learning.js")
     shutil.copyfile(media / "learning.css", OUT / "stylesheets" / "learning.css")
     shutil.copyfile(media / "reading.js", OUT / "javascripts" / "reading.js")
@@ -1096,7 +1310,10 @@ def main():
     ov = BUILD / "overrides"
     ov.mkdir(parents=True, exist_ok=True)
     (ov / "main.html").write_text(
-        OVERRIDES_MAIN_HTML.replace("__OG_IMAGE__", OG_IMAGE), encoding="utf-8", newline="\n")
+        OVERRIDES_MAIN_HTML.replace("__OG_IMAGE__", OG_IMAGE)
+        .replace("__OG_WIDTH__", str(OG_WIDTH))
+        .replace("__OG_HEIGHT__", str(OG_HEIGHT)),
+        encoding="utf-8", newline="\n")
 
     items, _ = parse_demos()
     gallery = with_description(render_gallery(items).rstrip("\n"))

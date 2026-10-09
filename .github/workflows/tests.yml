@@ -35,6 +35,8 @@ jobs:
         run: python -B -m unittest discover -s scripts -p test_docs_sync.py -v
       - run: python -B -m unittest discover -s scripts -p test_docs_links.py -v
       - run: python -B -m unittest discover -s scripts -p test_split_readme.py -v
+      - name: 标题层级归一 + 提示卡切分（站点产物的两处正文结构变换）
+        run: python -B -m unittest discover -s scripts -p test_page_structure.py -v
 
   lab-simulations:
     name: 实验包 SPICE 仿真与可重建性
@@ -59,8 +61,10 @@ jobs:
           python-version: '3.12'
       - run: pip install -r requirements.txt
       - run: python -B -m unittest discover -s scripts -p test_release_gate.py -v
-      - name: 站点源自洽性（画廊卡片/章节筛选/导航/SEO/共建页脚）
+      - name: 站点源自洽性（画廊卡片/章节筛选/导航/SEO/共建页脚/标题层级/提示卡/JSON-LD）
         run: python -B -m unittest discover -s scripts -p test_site_build.py -v
+      - name: smartsymbols 护栏（斜杠区间不会被排成分数）
+        run: python -B -m unittest discover -s scripts -p test_smartsymbols.py -v
       - run: python scripts/build_site.py --build
 
   svg-render:

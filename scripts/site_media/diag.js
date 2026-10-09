@@ -48,7 +48,7 @@
     { id: 'deep', title: '🎯 模拟设计深造线：打穿器件与拓扑',
       who: '目标是模拟设计岗：定性直觉 + 定量估算两条腿都要。',
       steps: [
-        ['第 0～4 章快速过：只精读第 3/4 章（BJT/MOS）', 'p1-04-ch3.html#ch3'],
+        ['第 0～4 章快速过：只精读第 3、4 章（BJT/MOS）', 'p1-04-ch3.html#ch3'],
         ['第 11 章：三种组态与电流镜——IC 设计的语言', 'p2-01-ch11.html#ch11'],
         ['沿路线图 ⑥ → 方向深化（板级 / IC 分支）', 'p0-06-roadmap.html#roadmap']],
       timeNote: '深造靠的是复利，把 3/4/11 章排进' },
@@ -96,7 +96,7 @@
     function renderResult(r) {
       var card = el('div', 'diag-result');
       card.dataset.diagResult = r.id;
-      card.append(el('h3', null, r.title), el('p', 'diag-who', r.who));
+      card.append(el('h2', null, r.title), el('p', 'diag-who', r.who));
       var steps = el('ol', 'diag-steps');
       r.steps.forEach(function (s) { linkRow(steps, s); });
       var tl = timelineFor(answers.t);
@@ -120,7 +120,7 @@
       var item = QUESTIONS[i];
       var card = el('div', 'diag-card');
       var head = el('p', 'diag-progress', '第 ' + (i + 1) + ' / ' + QUESTIONS.length + ' 题');
-      card.append(head, el('h3', null, item.q));
+      card.append(head, el('h2', null, item.q));
       var list = el('div', 'diag-opts');
       item.opts.forEach(function (opt) {
         var b = el('button', 'diag-btn', opt[0]);

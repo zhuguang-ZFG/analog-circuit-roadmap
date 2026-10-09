@@ -86,7 +86,8 @@ class DiagnosticTests(unittest.TestCase):
         self.assertIn('p3-01-ch14.html#ch14', first.get_attribute('href'))
         first.click()
         page.wait_for_timeout(300)
-        self.assertIn('设计方法论', page.locator('h2').first.inner_text())
+        # 章标题现在是 h1（标题层级归一），别再用 h2 找。
+        self.assertIn('设计方法论', page.locator('h1').first.inner_text())
 
     def test_zero_basis_time_poor_defaults_to_intuition_route(self):
         page = self.open_page()
