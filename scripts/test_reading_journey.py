@@ -90,6 +90,25 @@ class ReadingJourneyTests(unittest.TestCase):
         # `##` 章标题归一成 `#`），所以锚点后面跟的是 h1 而不是 h2。
         expect(self.page.locator('p:has(> #ch0) + h1')).to_contain_text('第 0 章')
 
+    def test_scrolling_and_page_switch_keep_the_link_target_in_the_url(self):
+        # 地址只该跟着「去了哪」变，不该跟着「滚到哪一段」变。
+        # Material 的 navigation.tracking 会在滚动约 250ms 后把当前目录项
+        # replaceState 进 URL，而 navigation.instant 换页时又会把**上一页** URL
+        # 上的哈希搬进新页 —— 两个叠起来，从滚动过的首页点进第 0 章会落地成
+        # p1-01-ch0.html#_2 或干脆丢掉片段：`_2` 是首页自动生成的标题 id，
+        # 章节页根本没有它，复制出去只会让读者回到页首。
+        # test_dashboard_keeps_expanded_sections… 在 CI 上的间歇性红就是这个；
+        # 重新打开 navigation.tracking，这里第一段断言就会稳定红。
+        self.page.goto(self.base)
+        self.page.locator('.learning-chapters summary').click()
+        chapter_link = self.page.locator('.learning-chapters a').first
+        expect(chapter_link).to_be_visible()
+        self.page.wait_for_timeout(1500)  # 越过 tracking 的 250ms 节流窗
+        expect(self.page).to_have_url(self.base)
+        chapter_link.click()
+        self.page.wait_for_timeout(1500)
+        expect(self.page).to_have_url(self.base + 'p1-01-ch0.html#ch0')
+
     def test_chapter_quiz_review_and_next_chapter_form_a_round_trip(self):
         self.page.goto(self.base + 'p1-07-ch6.html#ch6')
         self.page.evaluate('window.readingJourneyMarker = true')

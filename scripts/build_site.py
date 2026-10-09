@@ -972,7 +972,17 @@ theme:
   favicon: assets/images/favicon.png
   features:
     - navigation.instant
-    - navigation.tracking
+    # 刻意**不开** navigation.tracking。它会把「读到哪一段」实时写进 URL
+    # （滚动 250ms 后 replaceState 成当前目录项的 #锚点），而 navigation.instant
+    # 换页时会把**上一个页面** URL 上的哈希搬到新页面来 —— 于是从滚动过的首页
+    # 点进第 0 章，落地地址可能是 p1-01-ch0.html#_2，而 `_2` 是首页的自动标题 id，
+    # 在章节页根本不存在：复制这个地址出去，读者落在页首、还带个莫名碎片。
+    # 正常节奏下本地复现不了那个搬运窗口，CPU 节流 8× 就够了：滚动过的首页地址
+    # 6/6 挂着 #_2（关掉 tracking 后 6/6 干净），换页落地 3 次里 2 次地址被改写。
+    # 护栏是 test_reading_journey 的
+    # test_scrolling_and_page_switch_keep_the_link_target_in_the_url。
+    # 「记录阅读位置」这件事本站已经用自己的 progress.js 做得更准
+    # （remember() + 首页「继续上次阅读」），不需要 URL 再承担一遍。
     - navigation.sections
     - navigation.top
     - navigation.indexes
