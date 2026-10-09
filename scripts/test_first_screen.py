@@ -236,9 +236,14 @@ class FirstScreenTests(unittest.TestCase):
 
         暗色主题是重灾区：`--md-primary-fg-color` 在 slate 下**不变**，
         直接拿它当文字色只有 2.56:1。修法是改用随主题变化的
-        `--md-typeset-a-color`，再掺四成正文色兜底。
+        `--md-typeset-a-color`，再掺正文色兜底。
+
+        chip 的数字**单独量一枚目标**：这个办法取的是「离底色最远的像素」当字芯，
+        所以只要同一元素里有较亮的一段，量到的永远是它 —— 给 `<strong>` 掺更多品牌色
+        （饱和度高、亮度低）时，数字成了整枚 chip 最读不清的一段，而测试一路绿灯。
         """
         targets = [("chip 文字", ".learning-stats > li"),
+                   ("chip 数字", ".learning-stats > li > strong"),
                    ("eyebrow", ".learning-eyebrow")]
         for scheme in ("light", "dark"):
             page = self.homepage(scheme)

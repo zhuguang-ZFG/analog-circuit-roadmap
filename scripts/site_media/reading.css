@@ -156,23 +156,34 @@
 }
 .md-typeset ul.learning-stats:not([hidden]) > li {
   margin: 0;
-  padding: .2rem .52rem;
+  padding: .18rem .5rem;
   border: 1px solid color-mix(in srgb, var(--md-primary-fg-color) 24%, transparent);
   border-radius: 2rem;
   background: color-mix(in srgb, var(--md-primary-fg-color) 11%, transparent);
   box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 14%, transparent);
-  /* 同 eyebrow：品牌色取 --md-typeset-a-color（随主题变化），掺四成正文色兜底。
-     实测 明 7.43 / 暗 4.80，两套都过正文级 4.5。 */
+  /* 同 eyebrow：品牌色取 --md-typeset-a-color（随主题变化），掺正文色兜底。
+     ⚠️ 暗色掺得更多（50% vs 60%）：chip 只有 .7rem，中文笔画在这个字号上铺不满
+     一个像素，「离底色最远的像素」永远到不了合成色的理论值。而这个缺口**跟渲染器
+     走** —— 同一份 CSS，本地量到 4.80，CI 的 Linux Chromium 只有 3.98（v3.50 就是
+     这么红的；`--disable-lcd-text` 复现不了，差异在字形光栅化而不是次像素 AA：
+     CI 没有微软雅黑，回退到 Noto CJK）。60% 在 .7rem/700 下是**线上验证过**的，
+     这里再往亮的方向让一档，给最悲观的那个渲染器留余量。 */
   color: color-mix(in srgb, var(--md-typeset-a-color) 60%, var(--md-default-fg-color));
-  font-size: .68rem;
-  font-weight: 600;
+  font-size: .7rem;
+  font-weight: 700;
   white-space: nowrap;
 }
+[data-md-color-scheme="slate"] .md-typeset ul.learning-stats:not([hidden]) > li {
+  color: color-mix(in srgb, var(--md-typeset-a-color) 50%, var(--md-default-fg-color));
+}
+/* 数字只靠字重和等宽数字做强调，**不再单独改颜色**：掺更多品牌色在明暗两套里
+   都是往「饱和度换对比度」的方向走 —— 数字反而成了整枚 chip 最读不清的一段，
+   而按像素量对比度的老办法取的是「离底色最远的像素」，永远量到较亮的标签，
+   恰好看不见这个问题（护栏现在两截都量）。 */
 .md-typeset ul.learning-stats:not([hidden]) > li > strong {
   font-weight: 800;
   font-variant-numeric: tabular-nums;
   letter-spacing: 0;
-  color: color-mix(in srgb, var(--md-typeset-a-color) 88%, var(--md-default-fg-color));
 }
 .md-typeset .learning-actions { display: flex; align-items: center; flex-wrap: wrap; gap: .6rem 1rem; margin: 1.5rem 0 .2rem; }
 .md-typeset .learning-actions a {
