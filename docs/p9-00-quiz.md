@@ -17,7 +17,7 @@
 <a id="quiz-ch0"></a>
 ## 📝 第 0 章 电路直觉学前班
 
-[← 返回第 0 章复习](p1-01-ch0.md#ch0)
+[← 返回第 0 章复习](p1-01-ch0.md#ch0) · [🧮 卡住先查公式：速查表·直流基础](p0-08-cheatsheet.md#dc)
 
 1. <a id="q-ch0-01" data-quiz-question="true"></a>12V 电源串 3kΩ（上臂）与 6kΩ（下臂）分压，空载输出是多少？在下臂并联一个 6kΩ 负载后又变成多少？
 
@@ -49,7 +49,7 @@
 <a id="quiz-ch1"></a>
 ## 📝 第 1 章 无源元件
 
-[← 返回第 1 章复习](p1-02-ch1.md#ch1)
+[← 返回第 1 章复习](p1-02-ch1.md#ch1) · [🧮 卡住先查公式：速查表·无源与频域](p0-08-cheatsheet.md#passive)
 
 1. <a id="q-ch1-01" data-quiz-question="true"></a>10µF 电解电容在 1MHz 为什么"不像电容"？
 
@@ -81,7 +81,7 @@
 <a id="quiz-ch2"></a>
 ## 📝 第 2 章 二极管
 
-[← 返回第 2 章复习](p1-03-ch2.md#ch2)
+[← 返回第 2 章复习](p1-03-ch2.md#ch2) · [🧮 卡住先查公式：速查表·二极管](p0-08-cheatsheet.md#diode)
 
 1. <a id="q-ch2-01" data-quiz-question="true"></a>室温下硅二极管电流增大 10 倍，正向压降变化多少？
 
@@ -122,7 +122,7 @@
 <a id="quiz-ch3"></a>
 ## 📝 第 3 章 BJT
 
-[← 返回第 3 章复习](p1-04-ch3.md#ch3)
+[← 返回第 3 章复习](p1-04-ch3.md#ch3) · [🧮 卡住先查公式：速查表·BJT](p0-08-cheatsheet.md#bjt)
 
 1. <a id="q-ch3-01" data-quiz-question="true"></a>判断 BJT 三个工作区，看什么？
 
@@ -154,7 +154,7 @@
 <a id="quiz-ch4"></a>
 ## 📝 第 4 章 MOSFET
 
-[← 返回第 4 章复习](p1-05-ch4.md#ch4)
+[← 返回第 4 章复习](p1-05-ch4.md#ch4) · [🧮 卡住先查公式：速查表·MOSFET](p0-08-cheatsheet.md#mos)
 
 1. <a id="q-ch4-01" data-quiz-question="true"></a>米勒平台期间 MOSFET 工作在哪个区？为什么这是"最贵的几百纳秒"？
 
@@ -186,7 +186,7 @@
 <a id="quiz-ch5"></a>
 ## 📝 第 5 章 推挽与开漏
 
-[← 返回第 5 章复习](p1-06-ch5.md#ch5)
+[← 返回第 5 章复习](p1-06-ch5.md#ch5) · [🧮 卡住先查公式：速查表·输出级](p0-08-cheatsheet.md#outstage)
 
 1. <a id="q-ch5-01" data-quiz-question="true"></a>I²C 为什么规定开漏 + 上拉？
 
@@ -218,7 +218,7 @@
 <a id="quiz-ch6"></a>
 ## 📝 第 6 章 运算放大器
 
-[← 返回第 6 章复习](p1-07-ch6.md#ch6)
+[← 返回第 6 章复习](p1-07-ch6.md#ch6) · [🧮 卡住先查公式：速查表·运放](p0-08-cheatsheet.md#opamp)
 
 1. <a id="q-ch6-01" data-quiz-question="true"></a>「虚短虚断」成立的前提是什么？
 
@@ -250,7 +250,7 @@
 <a id="quiz-ch7"></a>
 ## 📝 第 7 章 比较器
 
-[← 返回第 7 章复习](p1-08-ch7.md#ch7)
+[← 返回第 7 章复习](p1-08-ch7.md#ch7) · [🧮 卡住先查公式：速查表·比较器](p0-08-cheatsheet.md#cmp)
 
 1. <a id="q-ch7-01" data-quiz-question="true"></a>为什么"拿运放当比较器"是坏习惯（至少三条理由）？
 
@@ -282,7 +282,7 @@
 <a id="quiz-ch8"></a>
 ## 📝 第 8 章 模拟开关
 
-[← 返回第 8 章复习](p1-09-ch8.md#ch8)
+[← 返回第 8 章复习](p1-09-ch8.md#ch8) · [🧮 卡住先查公式：速查表·模拟开关](p0-08-cheatsheet.md#switch)
 
 1. <a id="q-ch8-01" data-quiz-question="true"></a>传输门为什么必须 NMOS 与 PMOS 并联？
 
@@ -314,7 +314,7 @@
 <a id="quiz-ch9"></a>
 ## 📝 第 9 章 基准与稳压
 
-[← 返回第 9 章复习](p1-10-ch9.md#ch9)
+[← 返回第 9 章复习](p1-10-ch9.md#ch9) · [🧮 卡住先查公式：速查表·基准与稳压](p0-08-cheatsheet.md#ref)
 
 1. <a id="q-ch9-01" data-quiz-question="true"></a>齐纳与带隙基准的温漂本质差别是什么？
 
@@ -346,7 +346,7 @@
 <a id="quiz-ch10"></a>
 ## 📝 第 10 章 555 定时器
 
-[← 返回第 10 章复习](p1-11-ch10.md#ch10)
+[← 返回第 10 章复习](p1-11-ch10.md#ch10) · [🧮 卡住先查公式：速查表·555](p0-08-cheatsheet.md#timer)
 
 1. <a id="q-ch10-01" data-quiz-question="true"></a>555 无稳态振荡的频率公式？
 
@@ -378,7 +378,7 @@
 <a id="quiz-ch11"></a>
 ## 📝 第 11 章 放大电路拓扑
 
-[← 返回第 11 章复习](p2-01-ch11.md#ch11)
+[← 返回第 11 章复习](p2-01-ch11.md#ch11) · [🧮 卡住先查公式：速查表·拓扑·噪声·稳定](p0-08-cheatsheet.md#topo)
 
 1. <a id="q-ch11-01" data-quiz-question="true"></a>三种组态里，哪个电压增益≈1、哪个高频特性最好、哪个既能放大又反相？
 
@@ -410,7 +410,7 @@
 <a id="quiz-ch12"></a>
 ## 📝 第 12 章 运放应用电路族
 
-[← 返回第 12 章复习](p2-02-ch12.md#ch12)
+[← 返回第 12 章复习](p2-02-ch12.md#ch12) · [🧮 卡住先查公式：速查表·运放](p0-08-cheatsheet.md#opamp)
 
 1. <a id="q-ch12-01" data-quiz-question="true"></a>反相放大器的增益公式？输入阻抗由什么决定？
 
@@ -442,7 +442,7 @@
 <a id="quiz-ch13"></a>
 ## 📝 第 13 章 电源与信号产生
 
-[← 返回第 13 章复习](p2-03-ch13.md#ch13)
+[← 返回第 13 章复习](p2-03-ch13.md#ch13) · [🧮 卡住先查公式：速查表·电源与信号](p0-08-cheatsheet.md#power)
 
 1. <a id="q-ch13-01" data-quiz-question="true"></a>Buck 的伏秒平衡怎么写？由此得到占空比？
 
@@ -474,7 +474,7 @@
 <a id="quiz-ch14"></a>
 ## 📝 第 14 章 设计方法论
 
-[← 返回第 14 章复习](p3-01-ch14.md#ch14)
+[← 返回第 14 章复习](p3-01-ch14.md#ch14) · [🧮 卡住先查公式：速查表·设计与可靠性](p0-08-cheatsheet.md#design)
 
 1. <a id="q-ch14-01" data-quiz-question="true"></a>从需求到打样的六步是什么？
 
@@ -506,7 +506,7 @@
 <a id="quiz-ch15"></a>
 ## 📝 第 15 章 PCB
 
-[← 返回第 15 章复习](p3-02-ch15.md#ch15)
+[← 返回第 15 章复习](p3-02-ch15.md#ch15) · [🧮 卡住先查公式：速查表·PCB](p0-08-cheatsheet.md#pcb)
 
 1. <a id="q-ch15-01" data-quiz-question="true"></a>去耦电容为什么必须贴着电源引脚放？
 
@@ -538,7 +538,7 @@
 <a id="quiz-ch16"></a>
 ## 📝 第 16 章 排故五步法
 
-[← 返回第 16 章复习](p4-01-ch16.md#ch16)
+[← 返回第 16 章复习](p4-01-ch16.md#ch16) · [🧮 卡住先查公式：速查表·排故](p0-08-cheatsheet.md#debug)
 
 1. <a id="q-ch16-01" data-quiz-question="true"></a>排故五步是哪五步？
 
@@ -570,7 +570,7 @@
 <a id="quiz-ch17"></a>
 ## 📝 第 17 章 故障速查
 
-[← 返回第 17 章复习](p4-02-ch17.md#ch17)
+[← 返回第 17 章复习](p4-02-ch17.md#ch17) · [🧮 卡住先查公式：速查表·排故](p0-08-cheatsheet.md#debug)
 
 1. <a id="q-ch17-01" data-quiz-question="true"></a>故障排查永远第一步查什么？为什么？
 
@@ -602,7 +602,7 @@
 <a id="quiz-ch18"></a>
 ## 📝 第 18 章 大师的排故智慧
 
-[← 返回第 18 章复习](p4-03-ch18.md#ch18)
+[← 返回第 18 章复习](p4-03-ch18.md#ch18) · [🧮 卡住先查公式：速查表·排故](p0-08-cheatsheet.md#debug)
 
 1. <a id="q-ch18-01" data-quiz-question="true"></a>Bob Pease 那条最该记住的态度是什么？
 

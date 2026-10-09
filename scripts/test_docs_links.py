@@ -104,6 +104,32 @@ class DocsLinks(unittest.TestCase):
             self.assertEqual(number[1], heading[1], f'{label} -> {filename}#{anchor}')
         self.assertGreater(checked, 80)
 
+    def test_quiz_return_rows_link_to_cheatsheet_section(self):
+        quiz = (DOCS / 'p9-00-quiz.md').read_text(encoding='utf-8')
+        sheet = (DOCS / 'p0-08-cheatsheet.md').read_text(encoding='utf-8')
+        for page in self.pages:
+            match = re.search(r'-ch(\d+)\.md$', page.name)
+            if match:
+                with self.subTest(chapter=match[1]):
+                    section = re.search(rf'<a id="quiz-ch{match[1]}"></a>\n(.*?)(?=\n## |\Z)', quiz, re.S)
+                    self.assertIsNotNone(section)
+                    ref = re.search(r'\[🧮 [^\]]*\]\(p0-08-cheatsheet\.md#([a-z]+)\)', section.group(1))
+                    self.assertIsNotNone(ref, 'each quiz chapter must link to the formula cheatsheet')
+                    self.assertIn(f'<a id="{ref[1]}"></a>', sheet)
+
+    def test_cheatsheet_sections_link_back_to_quizzes(self):
+        sheet = (DOCS / 'p0-08-cheatsheet.md').read_text(encoding='utf-8')
+        quiz = (DOCS / 'p9-00-quiz.md').read_text(encoding='utf-8')
+        blocks = re.findall(r'<a id="([a-z]+)"></a>\n### [^\n]+\n(.*?)(?=\n<a id="|\n📌 |\Z)', sheet, re.S)
+        self.assertEqual(len(blocks), 16)
+        for sid, body in blocks:
+            with self.subTest(section=sid):
+                rows = re.findall(r'\[第 (\d+) 章\]\(p9-00-quiz\.md#quiz-ch(\d+)\)', body)
+                self.assertTrue(rows, f'{sid} must link to chapter quizzes')
+                for shown, anchor in rows:
+                    self.assertEqual(shown, anchor)
+                    self.assertIn(f'<a id="quiz-ch{shown}"></a>', quiz)
+
 
 if __name__ == "__main__":
     unittest.main()
