@@ -189,6 +189,20 @@ class DocsLinks(unittest.TestCase):
         stale = [p.name for p in self.pages if '速查四件套' in p.read_text(encoding='utf-8')]
         self.assertEqual([], stale, f'「四件套」旧称未更新：{stale}')
 
+    def test_cheatsheet_calc_links_land_on_real_widgets(self):
+        """速查表的 🔧 就地算链接必须落在真的长着计算器的章节小节。"""
+        sheet = (DOCS / 'p0-08-cheatsheet.md').read_text(encoding='utf-8')
+        links = re.findall(r'\[🔧 就地算\]\(([\w\-]+\.md)#([\w\-]+)\)', sheet)
+        self.assertGreaterEqual(len(links), 6, '速查表的就地算出口少于 6 个——互链网缩水了')
+        pages = {p.name: p.read_text(encoding='utf-8') for p in self.pages}
+        for target, anchor in links:
+            with self.subTest(target=target):
+                self.assertIn(target, pages, f'就地算目标页不存在：{target}')
+                self.assertIn(f'<a id="{anchor}"></a>', pages[target],
+                              f'就地算锚点不存在：{target}#{anchor}')
+                self.assertIn('class="calc" data-calc=', pages[target],
+                              f'{target} 里没有计算器——链接成了空头支票')
+
     PICK_ITEMS = re.compile(r'<a id="(pick-[a-z]+)"></a>.*?\[速查表·[^\]]*\]\(p0-08-cheatsheet\.md#([a-z]+)\)')
 
     def test_picks_items_link_to_cheatsheet_section(self):
