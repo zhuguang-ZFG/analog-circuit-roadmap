@@ -210,9 +210,21 @@ class DocsLinks(unittest.TestCase):
             title = re.search(r'(?m)^### .+（(\d+) 条）', body)
             self.assertIsNotNone(title, f'组 {anchor} 缺带条数的标题（右侧目录会瞎）')
             self.assertEqual(int(title.group(1)), len(rows), f'组 {anchor} 标题条数与实际行数不符')
+            versions = re.findall(r'^\| \**(v\d+(?:\.\d+)+)', body, re.M)
+            bounds = sorted(versions, key=lambda version: tuple(map(int, version[1:].split('.'))))
+            expected_range = (bounds[0], bounds[-1])
+            title_range = re.search(r'^### (v[\d.]+) → (v[\d.]+)', body, re.M)
+            self.assertIsNotNone(title_range, f'组 {anchor} 缺版本范围')
+            self.assertEqual(expected_range, title_range.groups(), f'组 {anchor} 标题范围不符')
+            quick_range = re.search(
+                rf'\[(v[\d.]+) → (v[\d.]+)\]\(#{re.escape(anchor)}\)', parts[0])
+            self.assertIsNotNone(quick_range, f'组 {anchor} 缺速览范围')
+            self.assertEqual(expected_range, quick_range.groups(), f'组 {anchor} 速览范围不符')
             counts[anchor] = len(rows)
             covered += rows
         self.assertEqual(covered, version_row.findall(page), '各组行数拼起来必须等于全表、不多不少')
+        versions = re.findall(r'^\| \**(v\d+(?:\.\d+)+)', page, re.M)
+        self.assertEqual(len(versions), len(set(versions)), '同一版本不能出现在多个系列组中')
         declared = dict((m[0], int(m[1])) for m in
                         re.findall(r'\]\(#(log-[\w\-]+)\) \| [^|]+\| (\d+) \|', page))
         self.assertEqual(declared, counts, '速览的条数与组内实际行数不一致（发版忘同步速览）')

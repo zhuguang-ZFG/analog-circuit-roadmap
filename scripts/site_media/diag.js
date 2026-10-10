@@ -44,6 +44,7 @@
         ['第 14 章：设计方法论——需求 → 规格 → 器件', 'p3-01-ch14.html#ch14'],
         ['第 16 章：排故五步法，一次只改一个变量', 'p4-01-ch16.html#ch16'],
         ['第 17 章：症状 → 原因 → 对策速查总表', 'p4-02-ch17.html#ch17']],
+      calc: [['速查表·设计与可靠性', '#design'], ['速查表·排故', '#debug']],
       timeNote: '按你的时间预算，把 14/16/17 章排进' },
     { id: 'deep', title: '🎯 模拟设计深造线：打穿器件与拓扑',
       who: '目标是模拟设计岗：定性直觉 + 定量估算两条腿都要。',
@@ -51,6 +52,7 @@
         ['第 0～4 章快速过：只精读第 3、4 章（BJT/MOS）', 'p1-04-ch3.html#ch3'],
         ['第 11 章：三种组态与电流镜——IC 设计的语言', 'p2-01-ch11.html#ch11'],
         ['沿路线图 ⑥ → 方向深化（板级 / IC 分支）', 'p0-06-roadmap.html#roadmap']],
+      calc: [['速查表·MOSFET', '#mos'], ['速查表·拓扑·噪声·稳定', '#topo']],
       timeNote: '深造靠的是复利，把 3/4/11 章排进' },
     { id: 'weekend', title: '🔧 一周末硬件线：先让它动起来',
       who: '有工具、想动手：最短路径是「读一章 → 焊一章」。',
@@ -58,6 +60,7 @@
         ['第 0 章：水路比喻 + 分压带载（半天）', 'p1-01-ch0.html#ch0'],
         ['第 1 章 + 第 5 章：无源件与推挽开漏（一天）', 'p1-02-ch1.html#ch1'],
         ['焊一个里程碑项目，卡住就翻第 16 章', 'p4-01-ch16.html#ch16']],
+      calc: [['速查表·直流基础', '#dc'], ['速查表·输出级', '#outstage']],
       timeNote: '读一章焊一章，按预算执行' },
     { id: 'intuition', title: '🌊 5 分钟直觉线：先建立画面感',
       who: '时间紧或零基础：别碰公式，先看动画建立直觉。',
@@ -65,6 +68,7 @@
         ['0.1 水路比喻：电压/电流/回路三件套', 'p1-01-ch0.html#ch0'],
         ['动画中心：108 张 SMIL 动画随便点', 'p5-00-part5.html#part5'],
         ['⭐ 必读精选：虚短虚断等 5 分钟套餐', 'p0-05-picks.html#picks']],
+      calc: [['速查表·直流基础', '#dc']],
       timeNote: '先花最小的成本建立画面，从' }
   ];
   function decide(a) {
@@ -104,7 +108,15 @@
       var ta = el('a', null, '⏱️ ' + r.timeNote + '「' + tl[1] + '」档 → 三条时间线');
       ta.href = 'p0-03-timeline.html#' + tl[0];
       time.append(ta);
-      card.append(steps, time);
+      var calc = el('p', 'diag-calc');
+      calc.append(el('span', null, '🧮 顺手算：'));
+      r.calc.forEach(function (c, i) {
+        if (i) { calc.append(document.createTextNode(' · ')); }
+        var ca = el('a', null, c[0]);
+        ca.href = 'p0-08-cheatsheet.html' + c[1];
+        calc.append(ca);
+      });
+      card.append(steps, time, calc);
       var again = el('button', 'diag-btn', '重测一次');
       again.type = 'button';
       again.addEventListener('click', function () { start(); });

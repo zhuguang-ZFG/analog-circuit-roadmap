@@ -80,6 +80,8 @@ jobs:
       - run: pip install -r requirements.txt playwright Pillow
       - name: Reading routes, old bookmarks, mobile layout and search
         run: python -B -m unittest discover -s scripts -p test_reading_journey.py -v
+      - name: Diagnostic routes, cheat sheet exits and no-JS fallback
+        run: python -B -m unittest discover -s scripts -p test_diagnostic.py -v
       - name: Gallery keyboard, modal focus and shareable filters
         run: python -B -m unittest discover -s scripts -p test_gallery_interactions.py -v
       - name: Lesson controls, video loading and mobile layout
