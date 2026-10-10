@@ -159,6 +159,11 @@ class ReadingJourneyTests(unittest.TestCase):
 
     def test_mobile_formula_exit_keeps_glyphs_and_anchor_after_back(self):
         self.page.set_viewport_size({'width': 390, 'height': 844})
+        self.page.goto(self.base + 'p0-08-cheatsheet.html')
+        self.assert_math_rendered()
+        self.page.evaluate('document.fonts.ready')
+        glyphs = "nodes => nodes.map(node => [node.className, getComputedStyle(node, '::before').content])"
+        expected_glyphs = self.page.locator('mjx-c').evaluate_all(glyphs)
         self.page.goto(self.base + 'p0-09-diagnostic.html')
         self.page.evaluate('MathJax.startup.promise')
         self.page.evaluate('window.mathJourneyMarker = true')
@@ -169,10 +174,9 @@ class ReadingJourneyTests(unittest.TestCase):
             self.assertTrue(self.page.evaluate('window.mathJourneyMarker === true'))
             self.assert_math_rendered()
             self.page.evaluate('document.fonts.ready')
-            invisible = self.page.locator('mjx-c').evaluate_all(
-                "nodes => nodes.filter(node => ['none', 'normal', '\"\"'].includes("
-                "getComputedStyle(node, '::before').content)).map(node => node.className)")
-            self.assertEqual([], invisible, 'SPA 换页后公式字形缺少有效样式')
+            actual_glyphs = self.page.locator('mjx-c').evaluate_all(glyphs)
+            self.assertTrue(expected_glyphs == actual_glyphs,
+                            'SPA 换页后的公式字形必须与完整加载一致')
             self.page.wait_for_function(
                 "() => { const top = document.getElementById('outstage').getBoundingClientRect().top; "
                 "return top >= 0 && top < innerHeight / 2; }")

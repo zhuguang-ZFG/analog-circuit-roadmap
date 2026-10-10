@@ -104,6 +104,7 @@ python -B -m unittest discover -s scripts -p test_reading_journey.py -v
 最后一组需要站点依赖、Playwright 和 Google Chrome，在临时目录构建完整站点，以子路径访问，检查首页入口、正文与题库往返、旧书签与浏览器返回、无 JavaScript 退化、手机明暗主题及真实搜索结果。外部请求全部拦截，不依赖线上部署。此组与拆分脚本回归均已纳入 CI。
 
 测试构建的 sitemap 必须改写为测试 origin；否则 Material 不使用即时导航，测试会悄悄退回整页刷新。关键往返用页面内标记确认 document 未被重建，并验证真实 MathJax 产物。MathJax 配置在 `build_site.py`，等待首次排版后订阅 `document$`，串行处理后续排版并跳过已失效的页面。
+Material 即时导航会替换 `<head>`，MathJax 的 CHTML 输出对象仍可能缓存已脱离文档的样式节点；因此每次后续排版在 `typesetPromise` 前执行 `MathJax.startup.output.clearCache()`，不能只清除公式和编号。仅检查 `mjx-container` 存在不足以证明公式可见：`test_mobile_formula_exit_keeps_glyphs_and_anchor_after_back` 在 390px 下比较完整加载与连续 SPA 往返的每个字形计算样式，并检查速查锚点落在视口内。函数应用符 U+2061 本来就是空字形，不可把“所有字形必须非空”当成正确性断言。
 引擎和字体固定在 `assets/vendor/mathjax/`，保留上游授权与版本记录；不要只替换引擎而漏掉字体。长行内公式须局部滚动，不能撑宽页面。Markdown 列表与前段之间须有空行；题库的小节引用必须落到相应标题，章首返回入口仍指向章首。
 题库源文件保留 GitHub 可读的 `<details markdown="1">`，与前面的题干、内部答案之间均留空行，保持在所属列表项内缩进四空格。构建器将该结构转换为原生 `pymdownx.details` 块，避免 Python-Markdown 把列表内的 HTML 包进段落。必须用浏览器实际展开答案并点击复习链接验证，同时确认产物不残留未处理的 `markdown` 属性。
 
