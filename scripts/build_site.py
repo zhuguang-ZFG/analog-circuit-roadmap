@@ -1157,6 +1157,7 @@ extra_javascript:
   - javascripts/learning-catalog.js
   - javascripts/progress.js
   - javascripts/diag.js
+  - javascripts/calc.js
 
 markdown_extensions:
   - abbr
@@ -1504,6 +1505,7 @@ def main():
     shutil.copyfile(media / "reading.css", OUT / "stylesheets" / "reading.css")
     shutil.copyfile(media / "progress.js", OUT / "javascripts" / "progress.js")
     shutil.copyfile(media / "diag.js", OUT / "javascripts/diag.js")
+    shutil.copyfile(media / "calc.js", OUT / "javascripts/calc.js")
     shutil.copyfile(media / "diag.css", OUT / "stylesheets/diag.css")
     catalog = json.dumps(learning_catalog(chapters), ensure_ascii=False).replace('<', '\\u003c')
     (OUT / 'javascripts/learning-catalog.js').write_text(

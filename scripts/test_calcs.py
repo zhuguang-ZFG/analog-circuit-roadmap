@@ -1,0 +1,155 @@
+"""「就地算」互动计算器的浏览器回归（v3.58）。
+
+每个型号的默认值 = 正文算例的原数，这条铁律在这里变成红灯：加载章节页、
+不碰输入，输出必须与正文 🧮 算一笔里的数一致；再拨一次参数验证教学点
+（负载越轻塌得越少、×10 档救回带宽）。计算器是教学承诺的一部分——
+书上算例和屏上计算器对不上，比没有计算器更糟。
+"""
+from functools import partial
+from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+import math
+from pathlib import Path
+import shutil
+import subprocess
+import sys
+import tempfile
+import threading
+import unittest
+
+from playwright.sync_api import sync_playwright
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+class QuietHandler(SimpleHTTPRequestHandler):
+    def log_message(self, *_):
+        pass
+
+
+def read_outputs(page):
+    """把当前计算器的结果读成 {label: float}。"""
+    return page.evaluate("""() => {
+      const out = {};
+      document.querySelectorAll('.calc .calc-out').forEach(chip => {
+        const value = parseFloat(chip.querySelector('b').textContent);
+        const label = chip.querySelector('.calc-out-label').textContent.trim();
+        out[label] = value;
+      });
+      return out;
+    }""")
+
+
+class CalcTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        temporary = tempfile.TemporaryDirectory(prefix='analog-calc-')
+        cls.addClassCleanup(temporary.cleanup)
+        work = Path(temporary.name)
+        for folder in ('docs', 'assets', 'scripts'):
+            shutil.copytree(ROOT / folder, work / folder,
+                            ignore=shutil.ignore_patterns('__pycache__'))
+        for filename in ('CONTRIBUTING.md', 'CONTRIBUTORS.md', 'LICENSE'):
+            shutil.copyfile(ROOT / filename, work / filename)
+        result = subprocess.run([sys.executable, '-X', 'utf8', 'scripts/build_site.py', '--build'],
+                                cwd=work, capture_output=True, text=True, encoding='utf8',
+                                errors='replace', timeout=300)
+        if result.returncode:
+            raise RuntimeError(result.stdout + result.stderr)
+        server = ThreadingHTTPServer(('127.0.0.1', 0),
+                                     partial(QuietHandler, directory=str(work / 'build')))
+        thread = threading.Thread(target=server.serve_forever, daemon=True)
+        thread.start()
+
+        def stop_server():
+            server.shutdown()
+            server.server_close()
+            thread.join(timeout=5)
+        cls.addClassCleanup(stop_server)
+        cls.base = f'http://127.0.0.1:{server.server_port}/site/'
+        playwright = sync_playwright().start()
+        cls.addClassCleanup(playwright.stop)
+        cls.browser = playwright.chromium.launch(channel='chrome', headless=True)
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.browser.close
+
+    def setUp(self):
+        self.errors = []
+        self.context = self.browser.new_context(viewport={'width': 1280, 'height': 900})
+        self.addCleanup(self.context.close)
+        self.context.route('**/*', lambda route: route.continue_()
+                           if route.request.url.startswith(self.base) else route.abort())
+        self.page = self.context.new_page()
+        self.page.on('pageerror', lambda error: self.errors.append(str(error)))
+
+    def tearDown(self):
+        self.assertEqual([], self.errors)
+
+    def open(self, path, calc):
+        self.page.goto(self.base + path)
+        box = self.page.locator(f'.calc[data-calc="{calc}"] .calc-box')
+        box.wait_for(state='visible')
+        return box
+
+    def test_divider_defaults_match_the_book_example(self):
+        """§0.3：10V ÷ 10k/10k 接 10k 负载 → 空载 5V、带载 3.33V、塌 33%。"""
+        self.open('p1-01-ch0.html', 'divider')
+        out = read_outputs(self.page)
+        self.assertAlmostEqual(out['空载输出'], 5.0, delta=0.01)
+        self.assertAlmostEqual(out['带载输出'], 3.33, delta=0.01)
+        self.assertAlmostEqual(out['塌陷'], 33.3, delta=0.2)
+
+    def test_divider_lighter_load_collapses_less(self):
+        """教学点：负载阻抗 ≫ R2 时几乎不塌——RL 提到 1MΩ，塌陷 ≤1%。"""
+        box = self.open('p1-01-ch0.html', 'divider')
+        box.locator('input').nth(3).fill('1000')
+        out = read_outputs(self.page)
+        self.assertAlmostEqual(out['带载输出'], 4.98, delta=0.02)
+        self.assertLessEqual(out['塌陷'], 1.0)
+
+    def test_electrolyte_life_matches_the_book_example(self):
+        """§1.7：105℃/2000h 的电解在 65℃ → 32000h ≈ 3.7 年。"""
+        self.open('p1-02-ch1.html', 'electrolyte')
+        out = read_outputs(self.page)
+        self.assertAlmostEqual(out['预期寿命'], 32000, delta=1)
+        self.assertAlmostEqual(out['约合'], 3.7, delta=0.05)
+
+    def test_hysteresis_window_matches_the_book_example(self):
+        """§7.3：R2/R1=100、摆幅 10V → 窗口 100mV。"""
+        self.open('p1-08-ch7.html', 'hysteresis')
+        out = read_outputs(self.page)
+        self.assertAlmostEqual(out['窗口 ΔV'], 0.100, delta=0.001)
+        self.assertAlmostEqual(out['上门槛 VTH+'], 2.515, delta=0.01)
+        self.assertAlmostEqual(out['下门槛 VTH−'], 2.415, delta=0.01)
+
+    def test_probe_modes_match_the_book_example(self):
+        """§16.3：100kΩ 源阻 ×1 → 误差 9%、截止 16kHz；×10 → 1%、159kHz。"""
+        self.open('p4-01-ch16.html', 'probe')
+        out = read_outputs(self.page)
+        self.assertAlmostEqual(out['分压系数'], 0.909, delta=0.001)
+        self.assertAlmostEqual(out['幅度误差'], 9.1, delta=0.1)
+        self.assertAlmostEqual(out['带宽截止'], 15.9, delta=0.2)
+        self.page.locator('.calc[data-calc="probe"] select').select_option('x10')
+        out = read_outputs(self.page)
+        self.assertAlmostEqual(out['幅度误差'], 1.0, delta=0.1)
+        self.assertAlmostEqual(out['带宽截止'], 159.2, delta=0.5)
+
+    def test_every_registered_calc_ships_and_renders(self):
+        """calc.js 注册的每个型号都必须有容器、能渲染出输入与结果。"""
+        self.open('p1-01-ch0.html', 'divider')
+        registered = self.page.evaluate("""() => {
+          return fetch('javascripts/calc.js').then(r => r.text()).then(t =>
+            [...t.matchAll(/^\\s{4}(\\w+): \\{$/gm)].map(m => m[1]));
+        }""")
+        self.assertEqual(['divider', 'electrolyte', 'hysteresis', 'probe'], registered)
+        for path, calc in (('p1-01-ch0.html', 'divider'), ('p1-02-ch1.html', 'electrolyte'),
+                           ('p1-08-ch7.html', 'hysteresis'), ('p4-01-ch16.html', 'probe')):
+            with self.subTest(calc=calc):
+                box = self.open(path, calc)
+                self.assertGreaterEqual(box.locator('.calc-inputs input, .calc-inputs select').count(), 2)
+                self.assertGreaterEqual(box.locator('.calc-out').count(), 2)
+
+
+if __name__ == '__main__':
+    unittest.main()
