@@ -15,7 +15,7 @@ import tempfile
 import threading
 import unittest
 
-from playwright.sync_api import expect, sync_playwright
+from playwright.sync_api import TimeoutError as PlaywrightTimeoutError, expect, sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -124,6 +124,17 @@ class ReadingJourneyTests(unittest.TestCase):
         self.assertTrue(self.page.evaluate('window.readingJourneyMarker === true'), 'Must use instant navigation')
 
     def assert_math_rendered(self):
+        # 即时导航**先改地址、再换正文**：6× CPU 节流下点同一个速查出口，6 次里 4 次看到
+        # URL 已经是 p0-08-cheatsheet.html#outstage，正文标题却还是「🧭 入场诊断」、
+        # .arithmatex 计数 0。原来这里只等到「地址变了 + startup.promise 在」就断言，
+        # 把「正文还没换过来」读成「公式没排版」——CI 上这条间歇性红就是这么来的
+        # （改动前的同一提交原样重跑 CI 也复现，见 v3.55.2）。同步点挪到被测对象本身：
+        # 先等公式真的排进当前正文，断言一条不减；真没排版时仍由下面的断言报出可读的错。
+        try:
+            self.page.wait_for_function(
+                '() => document.querySelector(".arithmatex mjx-container")', timeout=15000)
+        except PlaywrightTimeoutError:
+            pass
         self.page.wait_for_function('window.MathJax && MathJax.startup && MathJax.startup.promise')
         self.page.evaluate('MathJax.startup.promise')
         self.assertGreater(self.page.locator('.arithmatex').count(), 0)
