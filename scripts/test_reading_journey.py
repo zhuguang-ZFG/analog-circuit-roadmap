@@ -157,6 +157,28 @@ class ReadingJourneyTests(unittest.TestCase):
         held[0].continue_()
         self.assert_math_rendered()
 
+    def test_mobile_formula_exit_keeps_glyphs_and_anchor_after_back(self):
+        self.page.set_viewport_size({'width': 390, 'height': 844})
+        self.page.goto(self.base + 'p0-09-diagnostic.html')
+        self.page.evaluate('MathJax.startup.promise')
+        self.page.evaluate('window.mathJourneyMarker = true')
+        for _ in range(3):
+            row = self.page.locator('.md-content tbody tr').filter(has_text='硬件线')
+            row.get_by_role('link', name='输出级', exact=True).click()
+            expect(self.page).to_have_url(self.base + 'p0-08-cheatsheet.html#outstage')
+            self.assertTrue(self.page.evaluate('window.mathJourneyMarker === true'))
+            self.assert_math_rendered()
+            self.page.evaluate('document.fonts.ready')
+            invisible = self.page.locator('mjx-c').evaluate_all(
+                "nodes => nodes.filter(node => ['none', 'normal', '\"\"'].includes("
+                "getComputedStyle(node, '::before').content)).map(node => node.className)")
+            self.assertEqual([], invisible, 'SPA 换页后公式字形缺少有效样式')
+            self.page.wait_for_function(
+                "() => { const top = document.getElementById('outstage').getBoundingClientRect().top; "
+                "return top >= 0 && top < innerHeight / 2; }")
+            self.page.go_back()
+            expect(self.page.locator('.diag-progress')).to_have_text('第 1 / 6 题')
+
     def test_page_titles_and_social_metadata_survive_pre_heading_anchors(self):
         for filename, title in (
             ('p1-00-part1.html', '第一篇：器件深度原理解析 🔬'),
