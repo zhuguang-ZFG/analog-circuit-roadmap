@@ -17,7 +17,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from build_site import shift_headings, wrap_callouts, wrap_chapter_hero  # noqa: E402
+from build_site import shift_headings, wrap_callouts, wrap_chapter_hero, wrap_part_hero, wrap_demo_links  # noqa: E402
 
 
 class ShiftHeadingsTests(unittest.TestCase):
@@ -206,6 +206,64 @@ class WrapChapterHeroTests(unittest.TestCase):
         self.assertEqual(2, hero.count('<div class="callout'),
                          "两张开场卡都要整块进舞台")
         self.assertEqual(out.count("<div "), out.count("</div>"))
+
+
+class WrapPartHeroTests(unittest.TestCase):
+    """篇首舞台：9 个篇级落地页与章首舞台同一套包装，水印是篇号。"""
+
+    def test_a_part_page_gets_a_stage_with_part_number(self):
+        src = ('<a id="part2"></a>\n'
+               "# 第二篇：经典电路拓扑原理 ⚡\n\n"
+               "> 器件是「字」，拓扑是「句」。\n\n"
+               "## 本篇地图\n\n表格。\n")
+        out = wrap_part_hero(src, "p2-00-part2.md")
+        self.assertIn('<div class="part-hero" data-part="2" markdown="1">', out)
+        self.assertIn('<p class="part-hero-num" aria-hidden="true">2</p>', out)
+        self.assertIn("# 第二篇：经典电路拓扑原理 ⚡", out.split("</div>")[0])
+        self.assertIn("## 本篇地图", out.split("</div>")[-1])
+        self.assertEqual(out.count("<div "), out.count("</div>"))
+
+    def test_body_headings_after_intro_stay_outside(self):
+        src = ("# 第五篇：动画演示中心 🎬\n\n"
+               "> 全部 108 张 SVG 动画。\n\n"
+               "<details>\n<summary>速查</summary>\n\n表格\n\n</details>\n")
+        out = wrap_part_hero(src, "p5-00-part5.md")
+        self.assertIn('<div class="part-hero" data-part="5" markdown="1">', out)
+        self.assertNotIn("<details>", out.split("</div>")[0],
+                         "details 正文块不能被卷进舞台")
+
+    def test_non_part_pages_are_untouched(self):
+        src = "# 首页\n\n> 引子。\n"
+        self.assertEqual(src, wrap_part_hero(src, "index.md"))
+        self.assertEqual(src, wrap_part_hero(src, "p1-04-ch3.md"))
+
+
+class WrapDemoLinksTests(unittest.TestCase):
+    """「🔗 动画演示」独立行 → .demo-link 药丸；只沾整行都是动画链接的行。"""
+
+    def test_a_bare_demo_line_becomes_a_pill(self):
+        src = "正文。\n\n🔗 [动画演示 5.66](p5-00-part5.md#demo66)\n\n继续。\n"
+        out = wrap_demo_links(src)
+        self.assertIn('<div class="demo-link" markdown="1">', out)
+        self.assertIn("🔗 [动画演示 5.66](p5-00-part5.md#demo66)", out)
+        self.assertEqual(out.count("<div "), out.count("</div>"))
+
+    def test_a_combo_line_with_two_links_becomes_one_pill(self):
+        src = ("🔗 [动画演示 5.107](p5-00-part5.md#demo107) · "
+               "[5.108](p5-00-part5.md#demo108)\n")
+        out = wrap_demo_links(src)
+        self.assertEqual(1, out.count('<div class="demo-link" markdown="1">'),
+                         "一行双链也要整行进一个药丸")
+
+    def test_falstad_and_inline_links_are_untouched(self):
+        src = ("🔗 Falstad 交互：`Circuits → Basics → RC Circuit`\n\n"
+               "原理见 🔗 [动画演示 5.3](p5-00-part5.md#demo3) 一句中间。\n")
+        self.assertEqual(src, wrap_demo_links(src))
+
+    def test_trailing_carriage_return_is_tolerated(self):
+        """Windows 检出会给行尾带 \\r——$ 锚点不认它，漏包会让本地与 CI 产物不一致。"""
+        src = "🔗 [动画演示 5.66](p5-00-part5.md#demo66)\r\n"
+        self.assertIn('<div class="demo-link" markdown="1">', wrap_demo_links(src))
 
 
 if __name__ == "__main__":

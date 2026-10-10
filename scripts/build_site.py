@@ -234,13 +234,17 @@ def wrap_callouts(text):
 #
 # 只包「章页」（pN-MM-chNN.md）且只在 h1 之后**连续**吞：普通引用块 + 提示卡
 # div 块。一旦遇到第一个正文标题/图片/段落就停手——正文中间的提示卡一概不动。
+#
+# v3.57 把同一套包装推广到 9 个篇级落地页（pN-00-*.md → .part-hero，
+# 水印是篇号）：首页 → 篇 → 章 三级开屏从此说同一种视觉语言。
 _HERO_CALLOUT_OPEN = re.compile(r'^<div class="callout callout-[a-z]+" markdown="1">$')
 
 
-def wrap_chapter_hero(text, page_name):
-    m = re.fullmatch(r"p\d+-\d+-ch(\d+)\.md", page_name)
+def _wrap_stage(text, page_name, page_re, kind, attr):
+    m = page_re.fullmatch(page_name)
     if not m:
         return text
+    number = m.group(1)
     lines = text.split("\n")
     start = next((k for k, ln in enumerate(lines) if ln.startswith("# ")), None)
     if start is None:
@@ -271,15 +275,56 @@ def wrap_chapter_hero(text, page_name):
     if not consumed:
         return text          # h1 后面没有引导句 / 提示卡，没有舞台可包
     hero = [
-        '<div class="chapter-hero" data-chapter="%s" markdown="1">' % m.group(1),
+        '<div class="%s" data-%s="%s" markdown="1">' % (kind, attr, number),
         "",
     ] + lines[start:j]
     hero += [
         "",
-        '<p class="chapter-hero-num" aria-hidden="true">%s</p>' % m.group(1),
+        '<p class="%s-num" aria-hidden="true">%s</p>' % (kind, number),
         "</div>",
     ]
     return "\n".join(lines[:start] + hero + lines[j:])
+
+
+def wrap_chapter_hero(text, page_name):
+    """章页章首包成「章首舞台」（站点产物专用，见上方块注释）。"""
+    return _wrap_stage(text, page_name, re.compile(r"p\d+-\d+-ch(\d+)\.md"),
+                       "chapter-hero", "chapter")
+
+
+def wrap_part_hero(text, page_name):
+    """篇级落地页（pN-00-*.md，共 9 个）章首包成「篇首舞台」（站点产物专用）。
+
+    与章首舞台同一套吞块规则与视觉语言，水印是篇号（1~9）。9 个篇首页都有
+    引言引用块，所以「h1 后面必须有引导内容」的规则与章页共用；
+    新篇页没写引言会被 test_site_build 的 9/9 舞台断言红出来提醒补上。
+    """
+    return _wrap_stage(text, page_name, re.compile(r"p(\d+)-00-[a-z0-9\-]+\.md"),
+                       "part-hero", "part")
+
+
+# 正文里每张动画下方都跟着一行 `🔗 [动画演示 N](p5-00-part5.md#demoNN)`，
+# 此前渲染成普通段落，混在图与正文之间毫无存在感。v3.57 把这种**独立成行、
+# 且只链到动画中心**的行（全站 107 处）包成 .demo-link 药丸（站点产物专用）。
+# 一行双链的 combo 行（`…](#demo107) · [5.108](#demo108)`）同样整行入药丸；
+# 只认「整行恰好由动画演示链接组成」：🔗 Falstad 交互、句中出现的链接一概不动。
+_DEMO_LINK = re.compile(
+    r"^(🔗 \[动画演示[^\]]*\]\(p5-00-part5\.md#demo\d+\)"
+    r"(?: · \[[^\]]*\]\(p5-00-part5\.md#demo\d+\))*"
+    r")$")
+
+
+def wrap_demo_links(text):
+    out = []
+    for line in text.split("\n"):
+        # rstrip 掉行尾空白（含 Windows 检出带来的 \r）：本地工作区可能是
+        # CRLF，$ 锚点对 \r 不买账就会漏包，本地与 CI 的产物会差两行
+        m = _DEMO_LINK.match(line.rstrip())
+        if m:
+            out += ['<div class="demo-link" markdown="1">', "", m.group(1), "", "</div>"]
+        else:
+            out.append(line)
+    return "\n".join(out)
 
 
 # ---------------------------------------------------------------- 标题层级归一
@@ -1420,6 +1465,10 @@ def main():
         # 章页章首包成「章首舞台」（h1 + 引导句 + 开场提示卡；放在 wrap_callouts
         # 之后：舞台吞的就是它产出的提示卡 div）
         text = wrap_chapter_hero(text, page.name)
+        # 篇级落地页包成「篇首舞台」——与章首舞台同语言（v3.57）
+        text = wrap_part_hero(text, page.name)
+        # 「🔗 动画演示」独立行 → 图下药丸（v3.57）
+        text = wrap_demo_links(text)
         # 每页页脚加「参与共建」闭环（只在站点产物里加，docs/ 保持单一数据源干净）
         text = (text.rstrip("\n") + "\n" + reading_navigation(page.name, chapters)
                 + legacy_anchor_links(page.name, redirects) + "\n" + FEEDBACK_FOOTER)
