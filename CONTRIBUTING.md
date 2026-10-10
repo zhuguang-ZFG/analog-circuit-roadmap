@@ -88,6 +88,10 @@ python -B -m unittest discover -s scripts -p 'test_a11y.py'         # SVG 可读
 19 章的「上一章 → 本章自测 → 下一章」由章节文件自动生成；题库的 `#quiz-chN` 与返回复习链接在 `docs/p9-00-quiz.md` 维护。
 `reading.js` 只负责旧锚点跳转，禁用 JavaScript 时仍有可点击的兼容入口。构建器显式生成页面标题，避免页首 HTML 锚点让标题退化成文件名。
 
+打印样式在 `scripts/site_media/reading.css` 的 `@media print` 中维护：更新日志按系列、速查表按场景、题库按章节及专题组另起一页，长组允许续页；通过页面独有锚点限定范围，不给全站 h2 强制分页。精选保留连续排版。屏幕的 `body` 最小高度不能直接用于纸张：`min-height:100%` 加正文顶距曾使六条精选之后多打一张空白页；打印时设为 `0`。修改后既要检查 print 计算样式，也要实际生成 A4 PDF，核对组标题页首、正文完整性和末尾空白页；`test_picks_print_without_a_trailing_blank_page` 覆盖这个回归。
+
+入场诊断的结果卡与无 JS 对照表必须提供同路线的速查出口，目标段以章首「公式速查」链接为准。`test_diagnostic.py` 实际回答四条路线、比较两种入口、点开目标并重测；修改路线时不要只核对 JS 源码里的字符串。
+
 修改学习路线或导航后运行：
 
 ```bash

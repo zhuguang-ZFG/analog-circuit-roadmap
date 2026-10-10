@@ -6,6 +6,7 @@ and the no-JS fallback table must stay readable.
 """
 from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+import re
 from pathlib import Path
 import shutil
 import subprocess
@@ -14,7 +15,7 @@ import tempfile
 import threading
 import unittest
 
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import expect, sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -126,6 +127,56 @@ class DiagnosticTests(unittest.TestCase):
         row = page.evaluate("() => document.getElementById('t-min').closest('tr').innerText")
         self.assertIn('5 分钟', row)
         self.assertIn('水路比喻', row)
+
+    CALC_CASES = (
+        ('practice', [3, 2, 2, 2, 3, 2], '实战线',
+         ('p3-01-ch14.md', 'p4-01-ch16.md')),
+        ('deep', [2, 2, 2, 3, 3, 2], '深造线',
+         ('p1-05-ch4.md', 'p2-01-ch11.md')),
+        ('weekend', [0, 0, 1, 1, 2, 3], '硬件线',
+         ('p1-01-ch0.md', 'p1-06-ch5.md')),
+        ('intuition', [0] * 6, '直觉线', ('p1-01-ch0.md',)),
+    )
+
+    def test_calc_exits_follow_routes_with_and_without_javascript(self):
+        """实际答题、重测、无 JS 表格和落地段均遵守章首的公式速查映射。"""
+        page = self.open_page()
+        static = self.open_page(js=False)
+        for route, answers, label, chapters in self.CALC_CASES:
+            with self.subTest(route=route):
+                expected = []
+                for chapter in chapters:
+                    source = (ROOT / 'docs' / chapter).read_text(encoding='utf-8')
+                    match = re.search(r'^> .*公式速查.*?\((p0-08-cheatsheet\.md#[^)]+)\)',
+                                      source, re.M)
+                    self.assertIsNotNone(match, chapter)
+                    expected.append(match.group(1).replace('.md#', '.html#'))
+                self.answer_all(page, answers)
+                self.assertEqual(route, self.result_id(page))
+                calc = page.locator('.diag-calc a')
+                expect(calc).to_have_count(len(expected))
+                self.assertEqual(expected, calc.evaluate_all(
+                    'links => links.map(a => a.getAttribute("href"))'))
+                row = static.locator('.md-content tbody tr').filter(has_text=label)
+                expect(row).to_have_count(1)
+                fallback = row.locator('td').last.locator('a')
+                self.assertEqual(expected, fallback.evaluate_all(
+                    'links => links.map(a => a.getAttribute("href"))'))
+                for link in calc.all() + fallback.all():
+                    expect(link).to_be_visible()
+                target = expected[-1].split('#')[1]
+                calc.last.click()
+                expect(page).to_have_url(self.base + expected[-1])
+                heading = page.locator(f'p:has(> #{target}) + h2')
+                expect(heading).to_be_visible()
+                page.wait_for_function(
+                    'id => { const r = document.getElementById(id).getBoundingClientRect(); '
+                    'return r.top >= 0 && r.top < innerHeight / 2; }', arg=target)
+                page.goto(self.base + 'p0-09-diagnostic.html')
+                self.answer_all(page, answers)
+                page.get_by_role('button', name='重测一次').click()
+                expect(page.locator('.diag-result')).to_have_count(0)
+                expect(page.locator('.diag-progress')).to_have_text('第 1 / 6 题')
 
 
 if __name__ == '__main__':

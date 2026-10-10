@@ -345,6 +345,8 @@
   .md-typeset .learning-actions .learning-primary:hover { transform: none; }
 }
 @media print {
+  /* 屏幕的 100% 最小高度叠加正文顶距会多打一页；纸张按内容自然分页。 */
+  body { min-height: 0; }
   .md-typeset .legacy-anchor { display: none; }
   /* hero 的点阵、辉光、走线、渐变都是**屏幕上**的纵深手段，打印机只会把它们
      糊成一片脏底；连同路线卡顶部的色带一起撤掉，只留盒子和文字。
@@ -374,4 +376,8 @@
      break-before: page 会把每一章的每个 h2 都拆到新页。第一条 h2 前也断，
      第一页就只剩「系列速览」，等于打印稿自带的目录页。 */
   .md-content:has(#log-v345) .md-typeset h2 { break-before: page; break-after: avoid; }
+  /* 速查表按场景段、题库按章节（含专题加练）另起一页，长组仍可自然续页。
+     用页面独有锚点限定范围；精选只有六条，保持连续排版，不强行拆页。 */
+  .md-content:has(#cheatsheet) .md-typeset h2,
+  .md-content:has(#part9) .md-typeset h2 { break-before: page; break-after: avoid; }
 }
