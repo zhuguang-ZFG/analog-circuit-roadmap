@@ -750,7 +750,9 @@ class SiteBuildTests(unittest.TestCase):
     CALC_SPOTS = {
         "p1-01-ch0.md": "divider",
         "p1-02-ch1.md": "electrolyte",
+        "p1-07-ch6.md": "opamp",
         "p1-08-ch7.md": "hysteresis",
+        "p2-03-ch13.md": "buck",
         "p4-01-ch16.md": "probe",
     }
 
@@ -761,7 +763,7 @@ class SiteBuildTests(unittest.TestCase):
                 text = (self.out / name).read_text(encoding="utf-8")
                 hits = re.findall(r'<div class="calc" data-calc="([a-z]+)"></div>', text)
                 self.assertEqual([calc], hits, f"{name} 的计算器容器缺失或型号不对")
-        self.assertEqual(4, len(self.CALC_SPOTS), "型号表变了就同步这条对账")
+        self.assertEqual(6, len(self.CALC_SPOTS), "型号表变了就同步这条对账")
 
     def test_inline_calc_scripts_are_published_and_wired(self):
         """calc.js 要随产物发布、被 mkdocs 引用，且四个型号都有渲染逻辑。"""

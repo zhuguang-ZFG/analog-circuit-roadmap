@@ -94,6 +94,49 @@
           { label: '带宽截止', value: fmt(fc / 1e3, 1), unit: 'kHz' }
         ];
       }
+    },
+    opamp: {
+      name: '运放选型双判据',
+      note: '小信号看 GBW：闭环带宽 ≈ GBW ÷ 增益，选型留 10 倍（GBW ≥ 增益×f×10）；大信号看 SR：满功率带宽 = SR/(2π·Vp)，不够正弦变三角。',
+      inputs: [
+        { key: 'av', label: '闭环增益', unit: 'V/V', value: 100, step: 10, min: 1 },
+        { key: 'f', label: '信号频率', unit: 'kHz', value: 10, step: 1, min: 0.1 },
+        { key: 'vpp', label: '输出峰峰值', unit: 'V', value: 10, step: 1, min: 0.1 },
+        { key: 'gbw', label: 'GBW', unit: 'MHz', value: 0.7, step: 0.1, min: 0.01 },
+        { key: 'sr', label: '压摆率', unit: 'V/µs', value: 0.5, step: 0.1, min: 0.01 }
+      ],
+      compute: function (x) {
+        var fb = (x.gbw * 1e6) / x.av;
+        var need = x.av * (x.f * 1e3) * 10;
+        var vp = x.vpp / 2;
+        var fp = (x.sr * 1e6) / (2 * Math.PI * vp);
+        return [
+          { label: '闭环带宽', value: fmt(fb / 1e3, 1), unit: 'kHz' },
+          { label: 'GBW 需 ≥', value: fmt(need / 1e6, 1), unit: 'MHz' },
+          { label: '满功率带宽', value: fmt(fp / 1e3, 1), unit: 'kHz' }
+        ];
+      }
+    },
+    buck: {
+      name: 'Buck 占空比与纹波',
+      note: '伏秒平衡给 D = Vout/Vin；电感纹波 ΔIL = (Vin−Vout)·D/(L·fsw)；输出纹波 ΔV = ΔIL/(8·fsw·C)（容性项，ESR 另算）。',
+      inputs: [
+        { key: 'vin', label: '输入电压', unit: 'V', value: 12, step: 1, min: 0.5 },
+        { key: 'vout', label: '输出电压', unit: 'V', value: 5, step: 0.5, min: 0.5 },
+        { key: 'fsw', label: '开关频率', unit: 'kHz', value: 150, step: 10, min: 1 },
+        { key: 'l', label: '电感量', unit: 'µH', value: 22, step: 1, min: 0.1 },
+        { key: 'c', label: '输出电容', unit: 'µF', value: 100, step: 10, min: 0.1 }
+      ],
+      compute: function (x) {
+        var d = x.vout / x.vin;
+        var dIl = (x.vin - x.vout) * d / ((x.l * 1e-6) * (x.fsw * 1e3));
+        var dv = dIl / (8 * (x.fsw * 1e3) * (x.c * 1e-6));
+        return [
+          { label: '占空比 D', value: fmt(d, 3), unit: '' },
+          { label: '电感纹波 ΔIL', value: fmt(dIl, 3), unit: 'A' },
+          { label: '输出纹波 ΔV', value: fmt(dv * 1e3, 1), unit: 'mV' }
+        ];
+      }
     }
   };
 

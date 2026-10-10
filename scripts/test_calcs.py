@@ -135,6 +135,23 @@ class CalcTests(unittest.TestCase):
         self.assertAlmostEqual(out['幅度误差'], 1.0, delta=0.1)
         self.assertAlmostEqual(out['带宽截止'], 159.2, delta=0.5)
 
+    def test_opamp_dual_criteria_match_the_book_example(self):
+        """§6.3：LM358（GBW 0.7MHz / SR 0.5V/µs）增益 100 @ 10kHz、10Vpp
+        → 闭环带宽 7kHz（正文原数）、GBW 需 ≥10MHz、满功率带宽 ≈16kHz。"""
+        self.open('p1-07-ch6.html', 'opamp')
+        out = read_outputs(self.page)
+        self.assertAlmostEqual(out['闭环带宽'], 7.0, delta=0.1)
+        self.assertAlmostEqual(out['GBW 需 ≥'], 10.0, delta=0.1)
+        self.assertAlmostEqual(out['满功率带宽'], 15.9, delta=0.2)
+
+    def test_buck_matches_the_book_example(self):
+        """§13.2：12V→5V、150kHz、22µH、100µF → D 0.417、ΔIL 0.884A、ΔV 7.4mV。"""
+        self.open('p2-03-ch13.html', 'buck')
+        out = read_outputs(self.page)
+        self.assertAlmostEqual(out['占空比 D'], 0.417, delta=0.001)
+        self.assertAlmostEqual(out['电感纹波 ΔIL'], 0.884, delta=0.001)
+        self.assertAlmostEqual(out['输出纹波 ΔV'], 7.4, delta=0.1)
+
     def test_every_registered_calc_ships_and_renders(self):
         """calc.js 注册的每个型号都必须有容器、能渲染出输入与结果。"""
         self.open('p1-01-ch0.html', 'divider')
@@ -142,9 +159,11 @@ class CalcTests(unittest.TestCase):
           return fetch('javascripts/calc.js').then(r => r.text()).then(t =>
             [...t.matchAll(/^\\s{4}(\\w+): \\{$/gm)].map(m => m[1]));
         }""")
-        self.assertEqual(['divider', 'electrolyte', 'hysteresis', 'probe'], registered)
+        self.assertEqual(
+            ['divider', 'electrolyte', 'hysteresis', 'probe', 'opamp', 'buck'], registered)
         for path, calc in (('p1-01-ch0.html', 'divider'), ('p1-02-ch1.html', 'electrolyte'),
-                           ('p1-08-ch7.html', 'hysteresis'), ('p4-01-ch16.html', 'probe')):
+                           ('p1-07-ch6.html', 'opamp'), ('p1-08-ch7.html', 'hysteresis'),
+                           ('p2-03-ch13.html', 'buck'), ('p4-01-ch16.html', 'probe')):
             with self.subTest(calc=calc):
                 box = self.open(path, calc)
                 self.assertGreaterEqual(box.locator('.calc-inputs input, .calc-inputs select').count(), 2)
