@@ -203,6 +203,15 @@ class DocsLinks(unittest.TestCase):
                 self.assertIn('class="calc" data-calc=', pages[target],
                               f'{target} 里没有计算器——链接成了空头支票')
 
+    def test_model_limits_card_inventory(self):
+        """模型边界页的卡与目录必须对账：每张卡都该在目录里有一格。"""
+        limits = (DOCS / 'p0-10-model-limits.md').read_text(encoding='utf-8')
+        cards = re.findall(r'<a id="(limits-[a-z]+)"></a>', limits)
+        self.assertEqual(18, len(cards), f'边界卡应是 18 张（页首 limits 除外），实为 {len(cards)}')
+        toc_targets = re.findall(r'\]\(#(limits-[a-z]+)\)', limits)
+        missing = sorted(set(cards) - set(toc_targets))
+        self.assertEqual([], missing, f'目录漏了这些卡：{missing}')
+
     PICK_ITEMS = re.compile(r'<a id="(pick-[a-z]+)"></a>.*?\[速查表·[^\]]*\]\(p0-08-cheatsheet\.md#([a-z]+)\)')
 
     def test_picks_items_link_to_cheatsheet_section(self):
