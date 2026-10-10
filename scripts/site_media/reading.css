@@ -369,4 +369,9 @@
   .md-typeset thead { display: table-header-group; }
   .md-typeset tr, .md-typeset blockquote { break-inside: avoid; }
   .md-typeset h3 { break-after: avoid; }
+  /* 更新日志打印：每个系列组另起一页 —— 8 组各自成段，翻打印稿不用数滚动条。
+     范围靠该页独有的 #log-v345 锚点用 :has() 圈定：h2 全站在用，全局
+     break-before: page 会把每一章的每个 h2 都拆到新页。第一条 h2 前也断，
+     第一页就只剩「系列速览」，等于打印稿自带的目录页。 */
+  .md-content:has(#log-v345) .md-typeset h2 { break-before: page; break-after: avoid; }
 }

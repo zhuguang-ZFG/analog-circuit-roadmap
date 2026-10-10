@@ -169,6 +169,19 @@ class DocsLinks(unittest.TestCase):
                 actual[sid] = m.group(1)
         self.assertEqual(forward, actual, '精选 ↔ 速查表映射不对称（一侧改了另一侧没跟）')
 
+    def test_learning_path_cards_link_to_cheatsheet_sections(self):
+        """首页三条路线卡各带「🧮 顺手算」速查表出口，指向的段必须存在。"""
+        index = (DOCS / 'index.md').read_text(encoding='utf-8')
+        sheet = (DOCS / 'p0-08-cheatsheet.md').read_text(encoding='utf-8')
+        cards = re.findall(r'<div class="learning-path"[^\n]*\n\n(.*?)\n</div>', index, re.S)
+        self.assertEqual(3, len(cards), '首页路线卡不是 3 张——解析瞎了')
+        for i, body in enumerate(cards, 1):
+            with self.subTest(card=i):
+                secs = re.findall(r'\(p0-08-cheatsheet\.md#([a-z]+)\)', body)
+                self.assertTrue(secs, f'路线卡 {i} 缺速查表出口')
+                for sec in secs:
+                    self.assertIn(f'<a id="{sec}"></a>', sheet, f'路线卡 {i} 指向缺段 {sec}')
+
     def test_changelog_quick_view_jumps_resolve(self):
         """更新日志「系列速览」必须真能跳：每个 (#锚点) 都落在本页的 <a id> 上。"""
         page = (DOCS / 'p9-12-changelog.md').read_text(encoding='utf-8')

@@ -523,6 +523,33 @@ class ReadingJourneyTests(unittest.TestCase):
         expect(item).to_have_count(1)
         expect(item.locator('xpath=..').locator(':scope > li')).to_have_count(3)
 
+    def test_changelog_prints_one_page_per_series_group(self):
+        """打印介质下，更新日志的 8 个系列组标题必须各自另起一页。
+
+        分页范围靠该页独有的 #log-v345 用 :has() 圈定 —— 光断言 changelog 页
+        是红的半边：规则若写成全局 h2，首页/章节页会被拆得满地碎片而这里全绿。
+        所以第二条断言盯着速查表页：它的 h2 在打印下必须还是 auto。
+        """
+        self.page.goto(self.base + 'p9-12-changelog.html')
+        expect(self.page.locator('.md-content h2')).to_have_count(8)
+        self.page.emulate_media(media='print')
+        breaks = self.page.eval_on_selector_all(
+            '.md-content h2', 'els => els.map(e => getComputedStyle(e).breakBefore)')
+        self.assertEqual(['page'] * 8, breaks, '更新日志打印分页没生效')
+        self.page.goto(self.base + 'p0-08-cheatsheet.html')
+        self.page.emulate_media(media='print')
+        other = self.page.eval_on_selector_all(
+            '.md-content h2', 'els => [...new Set(els.map(e => getComputedStyle(e).breakBefore))]')
+        self.assertEqual(['auto'], other, '打印分页范围泄漏：其它页的 h2 也被拆页了')
+
+    def test_route_cards_on_the_homepage_offer_a_cheatsheet_exit(self):
+        """三条路线卡的「顺手算」链接必须真的落到速查表的段上（SPA 换页 + 锚点落地）。"""
+        self.page.goto(self.base)
+        card = self.page.locator('.learning-path').first
+        card.get_by_role('link', name='无源与频域').click()
+        expect(self.page).to_have_url(self.base + 'p0-08-cheatsheet.html#passive')
+        expect(self.page.locator('p:has(> #passive) + h2')).to_contain_text('无源元件')
+
 
 if __name__ == '__main__':
     unittest.main()
