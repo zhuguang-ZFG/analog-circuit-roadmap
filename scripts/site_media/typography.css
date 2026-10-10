@@ -331,6 +331,112 @@
 }
 
 /* ----------------------------------------------------------------------------
+   4.7 就地算（inline calculator）
+   ----------------------------------------------------------------------------
+   正文算例旁的可调参数小计算器：docs/ 只放空容器
+   `<div class="calc" data-calc="型号">`，calc.js 在客户端画输入与结果。
+   配色吃 .callout-calc 同族的蓝——它本来就是「算」的语言；关闭 JS 时容器
+   为空、不占位，紧挨着的 🧮 算一笔就是兜底算例。
+   -------------------------------------------------------------------------- */
+
+.md-typeset .calc { margin: .2rem 0 1.2rem; }
+
+.md-typeset .calc-box {
+  padding: .8rem 1rem .9rem;
+  border: 1px solid color-mix(in srgb, var(--md-primary-fg-color) 28%, transparent);
+  border-radius: .55rem;
+  background: color-mix(in srgb, var(--md-primary-fg-color) 5%, var(--md-default-bg-color));
+}
+
+.md-typeset .calc-title {
+  margin: 0 0 .6rem;
+  font-size: .74rem;
+  font-weight: 800;
+  color: color-mix(in srgb, var(--md-primary-fg-color) 62%, var(--md-default-fg-color));
+  letter-spacing: .01em;
+}
+
+.md-typeset .calc-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem .9rem;
+  align-items: end;
+}
+
+.md-typeset .calc-field {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  font-size: .72rem;
+  color: var(--md-default-fg-color--light);
+}
+
+.md-typeset .calc-field input[type="number"],
+.md-typeset .calc-field select {
+  width: 5rem;
+  padding: .22rem .4rem;
+  font-size: .78rem;
+  border: 1px solid color-mix(in srgb, var(--md-primary-fg-color) 34%, transparent);
+  border-radius: .3rem;
+  background: var(--md-default-bg-color);
+  color: var(--md-default-fg-color);
+}
+
+.md-typeset .calc-field input[type="number"]:focus,
+.md-typeset .calc-field select:focus {
+  border-color: var(--md-primary-fg-color);
+  outline: none;
+}
+
+.md-typeset .calc-unit { font-size: .68rem; color: var(--md-default-fg-color--lighter, var(--md-default-fg-color--light)); }
+
+.md-typeset .calc-outputs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem .7rem;
+  margin-top: .7rem;
+}
+
+.md-typeset .calc-out {
+  display: inline-flex;
+  align-items: baseline;
+  gap: .3rem;
+  padding: .28rem .7rem;
+  border: 1px solid color-mix(in srgb, var(--md-primary-fg-color) 24%, transparent);
+  border-radius: 2rem;
+  background: color-mix(in srgb, var(--md-primary-fg-color) 9%, var(--md-default-bg-color));
+  font-size: .7rem;
+}
+
+.md-typeset .calc-out b {
+  font-size: .88rem;
+  font-variant-numeric: tabular-nums;
+  color: color-mix(in srgb, var(--md-primary-fg-color) 55%, var(--md-default-fg-color));
+}
+
+.md-typeset .calc-out-unit { color: var(--md-default-fg-color--light); }
+
+.md-typeset .calc-out-label {
+  color: var(--md-default-fg-color--light);
+  font-size: .66rem;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .calc-box {
+  background: color-mix(in srgb, var(--md-primary-fg-color) 11%, var(--md-default-bg-color));
+}
+
+[data-md-color-scheme="slate"] .md-typeset .calc-out b {
+  color: var(--md-typeset-a-color);
+}
+
+.md-typeset .calc-note {
+  margin: .65rem 0 0;
+  font-size: .68rem;
+  line-height: 1.7;
+  color: var(--md-default-fg-color--light);
+}
+
+/* ----------------------------------------------------------------------------
    5. 普通引用块
    ----------------------------------------------------------------------------
    不是标志性 emoji 开头的引用块（章首的「这一章没有公式推导…」、页脚的「参与共建」）

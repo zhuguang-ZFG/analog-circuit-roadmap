@@ -746,6 +746,34 @@ class SiteBuildTests(unittest.TestCase):
         self.assertIn(".demo-link", css)
         self.assertIn("@media print", css)
 
+    # ---------- 就地算计算器 ----------
+    CALC_SPOTS = {
+        "p1-01-ch0.md": "divider",
+        "p1-02-ch1.md": "electrolyte",
+        "p1-08-ch7.md": "hysteresis",
+        "p4-01-ch16.md": "probe",
+    }
+
+    def test_inline_calcs_are_placed_next_to_their_worked_examples(self):
+        """每个计算器容器都要长在它对应算例的章节里，型号一个不重不漏。"""
+        for name, calc in self.CALC_SPOTS.items():
+            with self.subTest(calc=calc):
+                text = (self.out / name).read_text(encoding="utf-8")
+                hits = re.findall(r'<div class="calc" data-calc="([a-z]+)"></div>', text)
+                self.assertEqual([calc], hits, f"{name} 的计算器容器缺失或型号不对")
+        self.assertEqual(4, len(self.CALC_SPOTS), "型号表变了就同步这条对账")
+
+    def test_inline_calc_scripts_are_published_and_wired(self):
+        """calc.js 要随产物发布、被 mkdocs 引用，且四个型号都有渲染逻辑。"""
+        js = (self.site / "javascripts" / "calc.js").read_text(encoding="utf-8")
+        for calc in self.CALC_SPOTS.values():
+            with self.subTest(calc=calc):
+                self.assertIn(f"{calc}: {{", js, f"calc.js 缺型号 {calc}")
+        yml = (self.build / "mkdocs.yml").read_text(encoding="utf-8")
+        self.assertIn("javascripts/calc.js", yml, "mkdocs 没有加载 calc.js")
+        css = (self.site / "stylesheets" / "typography.css").read_text(encoding="utf-8")
+        self.assertIn(".calc-box", css, "计算器样式没随产物发布")
+
     # ---------- 标志性提示卡 ----------
     def test_signature_blockquotes_become_cards(self):
         """💎/🧮/🎯… 开头的引用块必须被包成彩色卡片，且四类都要有。"""
