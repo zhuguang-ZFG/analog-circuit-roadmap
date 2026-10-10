@@ -722,7 +722,7 @@
 
     </details>
 
-10. <a id="q-extra-10" data-quiz-question="true"></a>**§7.5** $R_1=100k$、$R_2=10k$、$V_{ref}=2.5V$、$V_{OH}=5V$、$V_{OL}=0V$——迟滞宽度多少？能免疫多大幅度的毛刺？
+10. <a id="q-extra-10" data-quiz-question="true"></a>**§7.5** $R_1=10k$（同相端到基准）、$R_2=100k$（输出反馈）、$V_{ref}=2.5V$、$V_{OH}=5V$、$V_{OL}=0V$——迟滞宽度多少？能免疫多大幅度的毛刺？
 
     <details markdown="1">
     <summary>答案</summary>
@@ -844,7 +844,7 @@
     <details markdown="1">
     <summary>答案</summary>
 
-    半周期 $500\text{ns}$，建立到 0.02% 需 $(N+1)\ln2\approx9$ 个 $\tau$ → $\tau\approx55\text{ns}$ → $R_{max}=\tau/C_{in}\approx\mathbf{2.75k\Omega}$。超过就掉码——所以 ADC 前必须加运放缓冲。见 [13.6](p2-03-ch13.md#sec136)。
+    半周期 $500\text{ns}$，建立到 0.012%（半 LSB，$1/2^{N+1}$）需 $(N+1)\ln2\approx9$ 个 $\tau$ → $\tau\approx55\text{ns}$ → $R_{max}=\tau/C_{in}\approx\mathbf{2.75k\Omega}$。超过就掉码——所以 ADC 前必须加运放缓冲。见 [13.6](p2-03-ch13.md#sec136)。
 
     </details>
 
