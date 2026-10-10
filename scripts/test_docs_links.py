@@ -141,6 +141,41 @@ class DocsLinks(unittest.TestCase):
                     self.assertIsNotNone(ref, 'chapter must link its cheatsheet section')
                     self.assertIn(f'<a id="{ref[1]}"></a>', sheet)
 
+    def test_changelog_quick_view_jumps_resolve(self):
+        """更新日志「系列速览」必须真能跳：每个 (#锚点) 都落在本页的 <a id> 上。"""
+        page = (DOCS / 'p9-12-changelog.md').read_text(encoding='utf-8')
+        jumps = re.findall(r'\]\(#([^)]+)\)', page)
+        self.assertGreaterEqual(len(jumps), 8, '速览至少覆盖 8 个系列组——速览表塌了就是护栏瞎了')
+        ids = set(ANCHOR_DEF.findall(page))
+        missing = sorted({j for j in jumps if j not in ids})
+        self.assertEqual([], missing, f'速览跳转缺少锚点：{missing}')
+
+    def test_changelog_series_groups_hold_every_version(self):
+        """每个版本行必须恰好落在一个系列组里；速览与组标题的条数必须等于实际行数。
+
+        发版仪式新增版本行时，速览条数、组标题条数、组范围都要跟着动——
+        这一条把「忘了同步」直接变红，而不是让速览悄悄说谎。
+        """
+        page = (DOCS / 'p9-12-changelog.md').read_text(encoding='utf-8')
+        version_row = re.compile(r'^\| \**v\d', re.M)
+        parts = re.split(r'^<a id="(log-[\w\-]+)"></a>$', page, flags=re.M)
+        groups = list(zip(parts[1::2], parts[2::2]))
+        self.assertGreaterEqual(len(groups), 8, '系列组塌回单表——分组本身被删了')
+        self.assertEqual([], version_row.findall(parts[0]), '第一组之前不允许出现版本行')
+        counts, covered = {}, []
+        for anchor, body in groups:
+            rows = version_row.findall(body)
+            self.assertTrue(rows, f'组 {anchor} 里没有版本行')
+            title = re.search(r'(?m)^### .+（(\d+) 条）', body)
+            self.assertIsNotNone(title, f'组 {anchor} 缺带条数的标题（右侧目录会瞎）')
+            self.assertEqual(int(title.group(1)), len(rows), f'组 {anchor} 标题条数与实际行数不符')
+            counts[anchor] = len(rows)
+            covered += rows
+        self.assertEqual(covered, version_row.findall(page), '各组行数拼起来必须等于全表、不多不少')
+        declared = dict((m[0], int(m[1])) for m in
+                        re.findall(r'\]\(#(log-[\w\-]+)\) \| [^|]+\| (\d+) \|', page))
+        self.assertEqual(declared, counts, '速览的条数与组内实际行数不一致（发版忘同步速览）')
+
 
 if __name__ == "__main__":
     unittest.main()
