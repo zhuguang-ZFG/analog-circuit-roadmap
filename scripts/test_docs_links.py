@@ -141,6 +141,34 @@ class DocsLinks(unittest.TestCase):
                     self.assertIsNotNone(ref, 'chapter must link its cheatsheet section')
                     self.assertIn(f'<a id="{ref[1]}"></a>', sheet)
 
+    PICK_ITEMS = re.compile(r'<a id="(pick-[a-z]+)"></a>.*?\[速查表·[^\]]*\]\(p0-08-cheatsheet\.md#([a-z]+)\)')
+
+    def test_picks_items_link_to_cheatsheet_section(self):
+        """必读精选每条必须带行级锚点 + 🧮 速查表直达链接，且目标段存在。"""
+        picks = (DOCS / 'p0-05-picks.md').read_text(encoding='utf-8')
+        sheet = (DOCS / 'p0-08-cheatsheet.md').read_text(encoding='utf-8')
+        items = self.PICK_ITEMS.findall(picks)
+        self.assertEqual(6, len(items), '精选共 6 条，每条都要有 <a id="pick-*"> 行级锚点和速查表链接')
+        for anchor, sec in items:
+            with self.subTest(pick=anchor):
+                self.assertIn(f'<a id="{sec}"></a>', sheet, f'速查表缺段：{sec}')
+
+    def test_cheatsheet_sections_link_back_to_picks_symmetrically(self):
+        """速查表段的 ⭐ 回链与精选条的 🧮 正链必须互指 —— 只改一侧（映射漂移）即红。"""
+        sheet = (DOCS / 'p0-08-cheatsheet.md').read_text(encoding='utf-8')
+        picks = (DOCS / 'p0-05-picks.md').read_text(encoding='utf-8')
+        forward = dict()
+        for anchor, sec in self.PICK_ITEMS.findall(picks):
+            forward[sec] = anchor
+        self.assertEqual(6, len(forward), '正链的 段→条 映射塌缩——两条精选指向了同一段')
+        actual = dict()
+        for sid, body in re.findall(r'<a id="([a-z]+)"></a>\n### [^\n]+\n(.*?)(?=\n<a id="|\n📌 |\Z)', sheet, re.S):
+            m = re.search(r'⭐ \[[^\]]*\]\(p0-05-picks\.md#(pick-[a-z]+)\)', body)
+            if m:
+                self.assertIn(f'<a id="{m.group(1)}"></a>', picks, f'{sid} 的回链锚点在精选页不存在')
+                actual[sid] = m.group(1)
+        self.assertEqual(forward, actual, '精选 ↔ 速查表映射不对称（一侧改了另一侧没跟）')
+
     def test_changelog_quick_view_jumps_resolve(self):
         """更新日志「系列速览」必须真能跳：每个 (#锚点) 都落在本页的 <a id> 上。"""
         page = (DOCS / 'p9-12-changelog.md').read_text(encoding='utf-8')
