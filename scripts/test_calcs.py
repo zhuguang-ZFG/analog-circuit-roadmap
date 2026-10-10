@@ -152,6 +152,13 @@ class CalcTests(unittest.TestCase):
         self.assertAlmostEqual(out['电感纹波 ΔIL'], 0.884, delta=0.001)
         self.assertAlmostEqual(out['输出纹波 ΔV'], 7.4, delta=0.1)
 
+    def test_noise_matches_the_book_example(self):
+        """§11.6：1kΩ、1MHz 带宽、室温 → 密度 ≈4.1nV/√Hz、总噪声 ≈4.1µV。"""
+        self.open('p2-01-ch11.html', 'noise')
+        out = read_outputs(self.page)
+        self.assertAlmostEqual(out['噪声密度'], 4.1, delta=0.1)
+        self.assertAlmostEqual(out['总噪声'], 4.07, delta=0.05)
+
     def test_every_registered_calc_ships_and_renders(self):
         """calc.js 注册的每个型号都必须有容器、能渲染出输入与结果。"""
         self.open('p1-01-ch0.html', 'divider')
@@ -160,10 +167,12 @@ class CalcTests(unittest.TestCase):
             [...t.matchAll(/^\\s{4}(\\w+): \\{$/gm)].map(m => m[1]));
         }""")
         self.assertEqual(
-            ['divider', 'electrolyte', 'hysteresis', 'probe', 'opamp', 'buck'], registered)
+            ['divider', 'electrolyte', 'hysteresis', 'probe', 'opamp', 'buck', 'noise'],
+            registered)
         for path, calc in (('p1-01-ch0.html', 'divider'), ('p1-02-ch1.html', 'electrolyte'),
                            ('p1-07-ch6.html', 'opamp'), ('p1-08-ch7.html', 'hysteresis'),
-                           ('p2-03-ch13.html', 'buck'), ('p4-01-ch16.html', 'probe')):
+                           ('p2-01-ch11.html', 'noise'), ('p2-03-ch13.html', 'buck'),
+                           ('p4-01-ch16.html', 'probe')):
             with self.subTest(calc=calc):
                 box = self.open(path, calc)
                 self.assertGreaterEqual(box.locator('.calc-inputs input, .calc-inputs select').count(), 2)
