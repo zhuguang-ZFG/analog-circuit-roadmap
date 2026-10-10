@@ -688,6 +688,7 @@ class SiteBuildTests(unittest.TestCase):
 
         注意匹配的是**开标签** `<div class="chapter-hero"`：更新日志正文里
         提到过这个词（转义文本也含 `chapter-hero` 子串），只查子串会假红。
+        篇首页有它们自己的 `.part-hero`（下一条测试），不算误包。
         """
         for name in ("index.html", "p0-08-cheatsheet.html", "p5-00-part5.html",
                      "p1-00-part1.html", "p9-12-changelog.html"):
@@ -695,11 +696,54 @@ class SiteBuildTests(unittest.TestCase):
                 self.assertNotIn('<div class="chapter-hero"', self.body_html(name),
                                  f"{name} 被误包了章首舞台")
 
+    def test_every_part_opens_with_a_stage(self):
+        """9 个篇级落地页各有一只篇首舞台：篇号、h1 与水印一个不少。"""
+        parts = sorted(p.name for p in self.out.glob("*.md")
+                       if re.fullmatch(r"p\d+-00-[a-z0-9\-]+\.md", p.name))
+        self.assertEqual(9, len(parts), f"篇首页数量异常：{parts}")
+        for name in parts:
+            with self.subTest(page=name):
+                html = self.body_html(name.replace(".md", ".html"))
+                m = re.search(r'<div class="part-hero" data-part="(\d+)">', html)
+                self.assertIsNotNone(m, "篇首页没有篇首舞台")
+                num = None
+                for pm in re.finditer(r"<p ([^>]*)>(\d+)</p>", html):
+                    attrs = pm.group(1)
+                    if "part-hero-num" in attrs and 'aria-hidden="true"' in attrs:
+                        num = pm
+                        break
+                self.assertIsNotNone(num, "舞台缺篇号水印（或水印不是 aria-hidden）")
+                self.assertEqual(m.group(1), num.group(2), "篇号水印与 data-part 不一致")
+
+    def test_demo_links_all_become_pills(self):
+        """docs/ 里整行动画演示链接必须逐行成为产物药丸，一行不多一行不少。"""
+        pattern = re.compile(
+            r"^🔗 \[动画演示[^\]]*\]\(p5-00-part5\.md#demo\d+\)"
+            r"(?: · \[[^\]]*\]\(p5-00-part5\.md#demo\d+\))*$")
+        expected = 0
+        for page in sorted((self.work / "docs").glob("*.md")):
+            in_fence = False
+            for line in page.read_text(encoding="utf-8").split("\n"):
+                s = line.strip()
+                if s.startswith("```") or s.startswith("~~~"):
+                    in_fence = not in_fence
+                    continue
+                if in_fence:
+                    continue
+                if pattern.match(s.rstrip()):
+                    expected += 1
+        self.assertGreater(expected, 100, f"docs/ 里只数到 {expected} 行动画链接，扫描器坏了")
+        got = sum(p.read_text(encoding="utf-8").count('<div class="demo-link" markdown="1">')
+                  for p in self.out.glob("*.md"))
+        self.assertEqual(expected, got, "药丸数与 docs/ 的动画链接行数不一致（漏包或多包）")
+
     def test_hero_stage_css_is_published(self):
-        """章首舞台的样式与打印降级必须跟着产物走。"""
+        """章首/篇首舞台与动画药丸的样式、打印降级必须跟着产物走。"""
         css = (self.site / "stylesheets" / "typography.css").read_text(encoding="utf-8")
         self.assertIn(".chapter-hero", css)
+        self.assertIn(".part-hero", css)
         self.assertIn(".chapter-hero-num", css)
+        self.assertIn(".demo-link", css)
         self.assertIn("@media print", css)
 
     # ---------- 标志性提示卡 ----------
