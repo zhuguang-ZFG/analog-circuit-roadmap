@@ -920,6 +920,8 @@ window.MathJax = {
             if (!content || !content.isConnected || ticket !== revision || content === rendered) return;
             MathJax.typesetClear();
             MathJax.texReset();
+            // Instant navigation replaces <head>; cached CHTML styles are detached.
+            MathJax.startup.output.clearCache();
             return MathJax.typesetPromise([content]).then(function () { rendered = content; });
           }).catch(function () {
             if (!content || !content.isConnected || content.querySelector('.math-status')) return;
