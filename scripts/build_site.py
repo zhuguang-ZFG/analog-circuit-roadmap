@@ -134,6 +134,7 @@ def write_reduce_variants(dst=None):
 CALLOUT_KINDS = {
     "💎": "gem",      # 精髓：本节最该记住的一句
     "🧮": "calc",     # 算一笔 / 公式速查
+    "🔬": "limit",    # 模型边界：理想模型什么时候失效（v3.56 起 19 章章首一行）
     "🎯": "goal",     # 学完你应能 / 通关打卡
     "📚": "prereq",   # 先修
     "📺": "video",    # 配套视频
@@ -218,6 +219,67 @@ def wrap_callouts(text):
             out.append("</div>")
         i = j
     return "\n".join(out)
+
+
+# ---------------------------------------------------------------- 章首舞台
+# 首页在 v3.50 就有了「舞台 + 点阵 + 辉光」的 hero，而 19 个正文章的开屏仍是
+# 「光秃秃的 h1 + 三张灰底卡」，和首页相比落差最大的一处版面。v3.56 把每章
+# 开头的 h1、引导句（普通引用块）与紧随其后的提示卡包进一层
+# `<div class="chapter-hero" data-chapter="N">`，由 typography.css 画成与
+# 首页同语言的章级舞台：品牌渐变底 + 蓝图点阵 + 右下角一枚巨大章号水印
+# （水印是独立元素并 aria-hidden，读屏不会把「3」当正文念两遍）。
+#
+# 为什么在生成阶段包：docs/ 的 Markdown 还要直接喂 GitHub 渲染 README，
+# 不能为了在线站外观塞 div（与 wrap_callouts 同一条理由）。
+#
+# 只包「章页」（pN-MM-chNN.md）且只在 h1 之后**连续**吞：普通引用块 + 提示卡
+# div 块。一旦遇到第一个正文标题/图片/段落就停手——正文中间的提示卡一概不动。
+_HERO_CALLOUT_OPEN = re.compile(r'^<div class="callout callout-[a-z]+" markdown="1">$')
+
+
+def wrap_chapter_hero(text, page_name):
+    m = re.fullmatch(r"p\d+-\d+-ch(\d+)\.md", page_name)
+    if not m:
+        return text
+    lines = text.split("\n")
+    start = next((k for k, ln in enumerate(lines) if ln.startswith("# ")), None)
+    if start is None:
+        return text
+    j = start + 1
+    consumed = False
+    while j < len(lines):
+        line = lines[j]
+        if not line.strip():
+            j += 1
+            continue
+        if line.startswith(">"):
+            consumed = True
+            j += 1
+            continue
+        if _HERO_CALLOUT_OPEN.match(line):
+            consumed = True
+            depth = 1
+            j += 1
+            while j < len(lines) and depth:
+                if lines[j].startswith("<div "):
+                    depth += 1
+                elif lines[j].startswith("</div>"):
+                    depth -= 1
+                j += 1
+            continue
+        break
+    if not consumed:
+        return text          # h1 后面没有引导句 / 提示卡，没有舞台可包
+    hero = [
+        '<div class="chapter-hero" data-chapter="%s" markdown="1">' % m.group(1),
+        "",
+    ] + lines[start:j]
+    hero += [
+        "",
+        '<p class="chapter-hero-num" aria-hidden="true">%s</p>' % m.group(1),
+        "</div>",
+    ]
+    return "\n".join(lines[:start] + hero + lines[j:])
 
 
 # ---------------------------------------------------------------- 标题层级归一
@@ -1355,6 +1417,9 @@ def main():
         text = shift_headings(text)
         # 标志性引用块 → 彩色提示卡（放在 with_description 之后：摘要仍按原文摘）
         text = wrap_callouts(text)
+        # 章页章首包成「章首舞台」（h1 + 引导句 + 开场提示卡；放在 wrap_callouts
+        # 之后：舞台吞的就是它产出的提示卡 div）
+        text = wrap_chapter_hero(text, page.name)
         # 每页页脚加「参与共建」闭环（只在站点产物里加，docs/ 保持单一数据源干净）
         text = (text.rstrip("\n") + "\n" + reading_navigation(page.name, chapters)
                 + legacy_anchor_links(page.name, redirects) + "\n" + FEEDBACK_FOOTER)

@@ -17,7 +17,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from build_site import shift_headings, wrap_callouts  # noqa: E402
+from build_site import shift_headings, wrap_callouts, wrap_chapter_hero  # noqa: E402
 
 
 class ShiftHeadingsTests(unittest.TestCase):
@@ -134,6 +134,78 @@ class WrapCalloutsTests(unittest.TestCase):
         out = wrap_callouts(src)
         self.assertEqual(out.count("<div class=\"callout"), out.count("</div>"))
         self.assertEqual(2, out.count("<div class=\"callout"))
+
+
+class WrapChapterHeroTests(unittest.TestCase):
+    """章首舞台：只包章页开头（h1 + 引导句 + 开场提示卡），正文一概不碰。"""
+
+    def test_a_chapter_opening_gets_wrapped_with_chapter_number(self):
+        src = ("<a id=\"ch3\"></a>\n"
+               "# 第 3 章 BJT\n\n"
+               "> 📚 **先修**：第 2 章。\n\n"
+               "> 🎯 **学完你应能**：三件事。\n\n"
+               "### 3.1 正文开始\n\n段落。\n")
+        out = wrap_chapter_hero(src, "p1-04-ch3.md")
+        self.assertIn('<div class="chapter-hero" data-chapter="3" markdown="1">', out)
+        self.assertIn('<p class="chapter-hero-num" aria-hidden="true">3</p>', out)
+        # 舞台吞掉 h1 与两张开场卡；正文标题留在舞台外
+        self.assertIn("# 第 3 章 BJT", out.split("</div>")[0])
+        self.assertIn('### 3.1 正文开始', out.split("</div>")[-1])
+        # div 配平
+        self.assertEqual(out.count("<div "), out.count("</div>"))
+
+    def test_intro_blockquote_rides_in_the_stage(self):
+        """第 0 章式开头：h1 后面跟着普通引用块再接提示卡——引导句也在舞台里。"""
+        src = ("# 第 0 章 学前班\n\n"
+               "> 这一章没有公式推导。\n\n"
+               "> 🎯 **学完你应能**：建立直觉。\n\n"
+               "### 0.1 正文\n")
+        out = wrap_chapter_hero(src, "p1-01-ch0.md")
+        self.assertIn('<div class="chapter-hero" data-chapter="0" markdown="1">', out)
+        head = out.split("</div>")[0]
+        self.assertIn("> 这一章没有公式推导。", head)
+        self.assertIn("> 🎯 **学完你应能**：建立直觉。", head)
+
+    def test_body_callouts_after_first_heading_stay_outside(self):
+        """舞台只吞 h1 之后的连续开场块；正文标题后面的提示卡不能被卷进来。"""
+        src = ("# 第 5 章 输出\n\n"
+               "> 🎯 **学完你应能**：两种输出。\n\n"
+               "### 5.1 推挽\n\n"
+               "> 💎 **精髓**：图腾柱。\n\n"
+               "### 5.2 开漏\n")
+        out = wrap_chapter_hero(src, "p1-06-ch5.md")
+        hero = out.split("</div>")[0]
+        self.assertIn("> 🎯 **学完你应能**：两种输出。", hero)
+        self.assertNotIn("图腾柱", hero)
+        self.assertIn("> 💎 **精髓**：图腾柱。", out)
+
+    def test_non_chapter_pages_are_untouched(self):
+        src = "# 首页\n\n> 引子。\n\n> 🎯 学完你应能。\n"
+        self.assertEqual(src, wrap_chapter_hero(src, "index.md"))
+        self.assertEqual(src, wrap_chapter_hero(src, "p0-08-cheatsheet.md"))
+
+    def test_h1_without_followup_gets_no_stage(self):
+        src = "# 第 9 章 基准\n\n正文直接开始。\n"
+        self.assertEqual(src, wrap_chapter_hero(src, "p1-10-ch9.md"))
+
+    def test_wrapped_callout_blocks_keep_their_inner_divs_intact(self):
+        """提示卡 div 是成对的嵌套结构——舞台必须整块吞、不能拦腰截断。"""
+        src = ("# 第 12 章 电路族\n\n"
+               '<div class="callout callout-goal" markdown="1">\n\n'
+               "🎯 学完你应能。\n\n"
+               "</div>\n\n"
+               '<div class="callout callout-calc" markdown="1">\n\n'
+               "🧮 公式速查。\n\n"
+               "</div>\n\n"
+               "### 12.1 方法论\n")
+        out = wrap_chapter_hero(src, "p2-02-ch12.md")
+        start = out.find('<div class="chapter-hero"')
+        end = out.rfind("</div>")
+        self.assertTrue(0 <= start < end)
+        hero = out[start:end]
+        self.assertEqual(2, hero.count('<div class="callout'),
+                         "两张开场卡都要整块进舞台")
+        self.assertEqual(out.count("<div "), out.count("</div>"))
 
 
 if __name__ == "__main__":
