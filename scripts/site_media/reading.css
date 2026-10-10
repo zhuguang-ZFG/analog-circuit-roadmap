@@ -222,9 +222,12 @@
   background: color-mix(in srgb, var(--md-default-bg-color) 72%, transparent);
 }
 .md-typeset .learning-paths,
-.md-typeset .learning-lessons { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .85rem; margin: 1rem 0 1.75rem; }
+.md-typeset .learning-lessons,
+.md-typeset .learning-depth { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .85rem; margin: 1rem 0 1.75rem; }
+.md-typeset .learning-depth { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem; }
 .md-typeset .learning-path,
-.md-typeset .learning-lesson {
+.md-typeset .learning-lesson,
+.md-typeset .learning-depth-step {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -243,10 +246,46 @@
   border-radius: .6rem .6rem 0 0;
   background: linear-gradient(90deg, var(--pc), color-mix(in srgb, var(--pc) 12%, transparent));
 }
+/* 知识阶梯不是四张等权卡片，而是一条阅读路径：--pc 由 typography.css 逐层配，
+   顶部色带负责层级感，桌面用 ::after 箭头连接相邻层。箭头放在盒外，因此
+   .learning-depth 的列间距必须给 1.5rem；手机改由 ::after 画向下箭头。 */
+.md-typeset .learning-depth-step::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: .18rem;
+  border-radius: .6rem .6rem 0 0;
+  background: linear-gradient(90deg, var(--pc), color-mix(in srgb, var(--pc) 12%, transparent));
+}
+.md-typeset .learning-depth-step::after {
+  content: "";
+  position: absolute;
+  right: -1.05rem;
+  top: calc(50% - .25rem);
+  width: .55rem;
+  height: .55rem;
+  border-top: .13rem solid var(--pc);
+  border-right: .13rem solid var(--pc);
+  transform: rotate(45deg);
+  pointer-events: none;
+}
+.md-typeset .learning-depth-step:last-child::after { display: none; }
+.md-typeset .learning-depth-step h3 { margin: 0 0 .55rem; }
+.md-typeset .learning-depth-step p { margin: 0; }
+/* markdown="1" 里单独一行的链接会包成 <p><a>，所以出口样式挂在末段上，
+   靠 margin-top:auto 顶到卡底，四张卡文字长短不一也有齐平的下沿。 */
+.md-typeset .learning-depth-step > p:last-child {
+  margin-top: auto;
+  padding-top: .7rem;
+  border-top: 1px dashed color-mix(in srgb, var(--pc) 38%, transparent);
+  font-size: .72rem;
+}
+.md-typeset .learning-depth-step > p:last-child a { font-weight: 700; }
 .md-typeset .learning-path h3,
 .md-typeset .learning-lesson h3 { margin: 0 0 .7rem; font-weight: 700; }
 .md-typeset .learning-path p,
-.md-typeset .learning-lesson p { font-size: .76rem; line-height: 1.8; }
+.md-typeset .learning-lesson p,
+.md-typeset .learning-depth-step p { font-size: .76rem; line-height: 1.8; }
 .md-typeset .learning-path p:last-child,
 .md-typeset .learning-lesson p:last-child { margin-bottom: 0; }
 /* 样板课卡与路线卡都是竖列，最后一行（互动课入口）顶到卡片底部 —— 三张卡
@@ -285,6 +324,7 @@
 .md-typeset .learning-actions a:focus-visible,
 .md-typeset .learning-path a:focus-visible,
 .md-typeset .learning-lesson a:focus-visible,
+.md-typeset .learning-depth-step a:focus-visible,
 .md-typeset .reading-nav a:focus-visible { outline: 3px solid var(--md-accent-fg-color); outline-offset: 4px; }
 .md-typeset .legacy-anchor { display: none; }
 .md-typeset .legacy-anchor:target { display: block; padding: 1rem; margin: 1rem 0; border: 2px solid var(--md-primary-fg-color); }
@@ -333,7 +373,16 @@
   .md-typeset .learning-lessons,
   .md-typeset .reading-nav { grid-template-columns: 1fr; }
   .md-typeset .learning-path p,
-  .md-typeset .learning-lesson p { font-size: .8rem; }
+  .md-typeset .learning-lesson p,
+  .md-typeset .learning-depth-step p { font-size: .8rem; }
+  .md-typeset .learning-depth { grid-template-columns: 1fr; gap: 2.25rem; }
+  .md-typeset .learning-depth-step::after {
+    right: auto;
+    left: calc(50% - .25rem);
+    top: auto;
+    bottom: -1.45rem;
+    transform: rotate(135deg);
+  }
   .md-typeset .learning-dashboard { grid-template-columns: 1fr; }
 }
 /* 「减弱动效」下正弦静止 —— 注意动画是**页面**的 @keyframes，不是 SVG 自带的
@@ -360,9 +409,13 @@
   .md-typeset .learning-hero::before,
   .md-typeset .learning-hero::after { display: none; }
   .md-typeset .learning-path::before { display: none; }
+  .md-typeset .learning-depth-step::before,
+  .md-typeset .learning-depth-step::after { display: none; }
   .md-typeset .learning-lesson img { transform: none; }
   .md-typeset .learning-paths,
   .md-typeset .learning-lessons { display: block; }
+  .md-typeset .learning-depth { display: block; margin: 1.25rem 0; }
+  .md-typeset .learning-depth-step { break-inside: avoid; margin-bottom: 1rem; }
   .md-typeset .learning-path,
   .md-typeset .learning-lesson { break-inside: avoid; margin-bottom: 1rem; }
   .md-sidebar, .md-header, .md-footer, .reading-nav, .gal-modal { display: none !important; }

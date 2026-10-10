@@ -281,6 +281,77 @@ class FirstScreenTests(unittest.TestCase):
         overflow = page.evaluate(
             "() => document.documentElement.scrollWidth > window.innerWidth + 1")
         self.assertFalse(overflow, "手机宽度下 chip 撑出了横向滚动")
+    def test_learning_depth_steps_form_a_visual_and_conceptual_ladder(self):
+        """首页知识阶梯在桌面横排、手机纵排，并保留四层学习语义。"""
+        for width, columns in ((1280, 4), (390, 1)):
+            with self.subTest(width=width):
+                page = self.homepage(width=width)
+                snapshot = page.evaluate("""() => {
+                  const root = document.querySelector('.learning-depth');
+                  const steps = [...root.querySelectorAll('.learning-depth-step')];
+                  const cs = getComputedStyle(root);
+                  return {
+                    count: steps.length,
+                    titles: steps.map(e => {
+                      // Material 给每个标题塞了 .headerlink（¶）；opacity 隐藏不是
+                      // 不可见，textContent/innerText 都读得到。按意图剥掉锚再比，
+                      // 不去钉「¶ 长什么样」。
+                      const h = e.querySelector('h3');
+                      if (!h) return undefined;
+                      const clone = h.cloneNode(true);
+                      clone.querySelectorAll('.headerlink').forEach(n => n.remove());
+                      return clone.textContent.trim();
+                    }),
+                    columns: cs.gridTemplateColumns.split(' ').filter(Boolean).length,
+                    overflow: document.documentElement.scrollWidth > innerWidth + 1,
+                    links: root.querySelectorAll('a').length
+                  };
+                }""")
+                self.assertEqual(4, snapshot["count"], "知识阶梯应有四层")
+                self.assertEqual(["01 现象", "02 模型", "03 数量级", "04 边界"],
+                                 snapshot["titles"])
+                self.assertEqual(columns, snapshot["columns"],
+                                 f"{width}px 下知识阶梯列数不符合响应式设计")
+                self.assertGreaterEqual(snapshot["links"], 4, "每层应有可继续阅读的出口")
+                self.assertFalse(snapshot["overflow"], f"{width}px 下知识阶梯产生横向滚动")
+
+    def test_learning_depth_body_text_matches_the_other_cards(self):
+        """阶梯正文必须与路线卡/样板课卡同一号排印（字号+行高）。
+
+        四层阶梯是首页卡组家族的一员，正文文字却继承了正文默认字号
+        （16px/25.6px），比兄弟卡的 15.2px/27.36px 更大、行距更紧 ——
+        同一屏里三种卡片三种排版。样式失效是无声的：改一个选择器就能把阶梯
+        排印整块丢掉，构建照常。
+        """
+        page = self.homepage(width=1280)
+        for name, selector in (("阶梯正文", ".learning-depth-step > p:nth-of-type(1)"),
+                               ("路线卡正文", ".learning-path > p:nth-of-type(1)"),
+                               ("样板课卡正文", ".learning-lesson > p:nth-of-type(2)")):
+            with self.subTest(card=name):
+                style = page.eval_on_selector(selector, "e => { const c = getComputedStyle(e); return [c.fontSize, c.lineHeight]; }")
+                self.assertEqual(["15.2px", "27.36px"], style,
+                                 f"{name} 排印与兄弟卡不一致，卡片家族出现了第二套字号")
+
+    def test_learning_depth_step_headings_meet_body_contrast_in_both_themes(self):
+        """四层标题在明暗两套主题下都必须 ≥4.5（正文级门槛）。
+
+        四层各配一色（靛/青/琥珀/紫），标题直接吃 `--pc` 当文字色 ——
+        这是本站唯一一处「品牌色当标题文字」的用法，明色下琥珀 #b45309
+        余量最小（实测 4.77），最经不起渲染器差异（v3.50.1 的 chip 就是
+        同一份 CSS 在 CI 的 Linux 渲染器上掉到 3.98）。
+        """
+        for scheme in ("light", "dark"):
+            page = self.homepage(scheme=scheme)
+            for index in (1, 2, 3, 4):
+                with self.subTest(scheme=scheme, step=index):
+                    selector = f".learning-depth > .learning-depth-step:nth-child({index}) > h3"
+                    page.eval_on_selector(selector, "e => e.scrollIntoView({block:'center'})")
+                    background, glyph, ratio = measured_contrast(page, selector)
+                    self.assertGreaterEqual(
+                        ratio, MIN_RATIO,
+                        f"{scheme} 主题第 {index} 层标题对比度只有 {ratio:.2f}"
+                        f"（底={background} 字={glyph}），低于正文级 {MIN_RATIO}")
+
 
     # ---------- ④ 顶栏品牌（每页都有，属于首屏的一部分） ----------
     def test_header_logo_is_an_outline_not_a_filled_disc(self):

@@ -240,13 +240,15 @@
    -------------------------------------------------------------------------- */
 
 .md-typeset .learning-path,
-.md-typeset .learning-lesson {
+.md-typeset .learning-lesson,
+.md-typeset .learning-depth-step {
   background: color-mix(in srgb, var(--md-default-fg-color) 2.5%, transparent);
   transition: border-color .15s, transform .15s, box-shadow .15s;
 }
 
 .md-typeset .learning-path:hover,
-.md-typeset .learning-lesson:hover {
+.md-typeset .learning-lesson:hover,
+.md-typeset .learning-depth-step:hover {
   border-color: color-mix(in srgb, var(--pc, var(--md-primary-fg-color)) 45%, transparent);
   box-shadow: 0 .5rem 1.3rem color-mix(in srgb, var(--md-default-fg-color) 11%, transparent);
   transform: translateY(-.12rem);
@@ -262,6 +264,26 @@
 [data-md-color-scheme="slate"] .md-typeset .learning-paths > .learning-path:nth-child(1) { --pc: #a5b4fc; }
 [data-md-color-scheme="slate"] .md-typeset .learning-paths > .learning-path:nth-child(2) { --pc: #2dd4bf; }
 [data-md-color-scheme="slate"] .md-typeset .learning-paths > .learning-path:nth-child(3) { --pc: #fbbf24; }
+
+/* 知识阶梯四层各配一色：现象（靛）、模型（青）、数量级（琥珀）、边界（紫），
+   顺序与阅读方向一致——色带、箭头、悬停描边、出口虚线都吃同一个 --pc。
+   标题色按**亮度**选，不按「看起来更深」选：--pc 直接当标题文字色吃，
+   每色对卡底都要过正文级 4.5 并给渲染器差异留余量（v3.50.1 的 chip 就是
+   本地 4.80、CI 的 Linux 渲染器 Noto CJK 只有 3.98）。两条实测教训：
+   ① 绿色占亮度权重 71.5% —— 「减红加绿式加深」总亮度反升、对比度反降
+      （#0f766e→#a16207 观感更深，实测 4.77→4.68）；只有压绿通道才降亮度。
+   ② 现取值实测（卡底 #f9f9f9）：靛 7.51 / 青 7.20 / 琥珀 6.73 / 紫 6.75，
+      四层余量均 ≥2.7。紫取 #6d28d9 与 callout-gem 同色；青、琥珀是同色相
+      深一档（teal/amber-800），不给全站添第三套琥珀。 */
+.md-typeset .learning-depth > .learning-depth-step:nth-child(1) { --pc: #4338ca; }
+.md-typeset .learning-depth > .learning-depth-step:nth-child(2) { --pc: #115e59; }
+.md-typeset .learning-depth > .learning-depth-step:nth-child(3) { --pc: #92400e; }
+.md-typeset .learning-depth > .learning-depth-step:nth-child(4) { --pc: #6d28d9; }
+[data-md-color-scheme="slate"] .md-typeset .learning-depth > .learning-depth-step:nth-child(1) { --pc: #a5b4fc; }
+[data-md-color-scheme="slate"] .md-typeset .learning-depth > .learning-depth-step:nth-child(2) { --pc: #2dd4bf; }
+[data-md-color-scheme="slate"] .md-typeset .learning-depth > .learning-depth-step:nth-child(3) { --pc: #fbbf24; }
+[data-md-color-scheme="slate"] .md-typeset .learning-depth > .learning-depth-step:nth-child(4) { --pc: #c4b5fd; }
+.md-typeset .learning-depth-step h3 { color: var(--pc); }
 
 /* 「适合」压成一枚小标签，跟后面的说明文字拉开一级。
    ⚠️ 只圈「适合」两个字、不圈整句：整句当标签会撑成两行的胶囊（实测踩过），
@@ -303,9 +325,11 @@
 
 @media (prefers-reduced-motion: reduce) {
   .md-typeset .learning-path,
-  .md-typeset .learning-lesson { transition: none; }
+  .md-typeset .learning-lesson,
+  .md-typeset .learning-depth-step { transition: none; }
   .md-typeset .learning-path:hover,
-  .md-typeset .learning-lesson:hover { transform: none; }
+  .md-typeset .learning-lesson:hover,
+  .md-typeset .learning-depth-step:hover { transform: none; }
   .md-typeset .learning-lesson:hover > p:first-child img { transform: none; }
 }
 
