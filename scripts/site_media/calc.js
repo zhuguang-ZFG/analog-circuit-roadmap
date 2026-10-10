@@ -137,6 +137,24 @@
           { label: '输出纹波 ΔV', value: fmt(dv * 1e3, 1), unit: 'mV' }
         ];
       }
+    },
+    noise: {
+      name: '热噪声预算',
+      note: '约翰逊噪声只看 R、T、B：e_n=√(4kTR) 是密度（nV/√Hz），总噪声 = e_n×√B；一阶系统的噪声带宽 ≈1.57×(−3dB 带宽)，别拿 −3dB 带宽直接乘。',
+      inputs: [
+        { key: 'r', label: '源电阻', unit: 'kΩ', value: 1, step: 0.5, min: 0.01 },
+        { key: 'b', label: '带宽', unit: 'kHz', value: 1000, step: 100, min: 0.1 }
+      ],
+      compute: function (x) {
+        var k = 1.38e-23;
+        var r = x.r * 1e3;
+        var b = x.b * 1e3;
+        var en = Math.sqrt(4 * k * 300 * r);
+        return [
+          { label: '噪声密度', value: fmt(en * 1e9, 1), unit: 'nV/√Hz' },
+          { label: '总噪声', value: fmt(en * Math.sqrt(b) * 1e6, 2), unit: 'µV' }
+        ];
+      }
     }
   };
 

@@ -2,6 +2,12 @@
 
 > 从欧姆定律到芯片内部结构，一份把原理推导、器件剖析、故障分析和动画演示连起来的模拟电路学习指南。
 
+<div class="repo-badges" markdown="1">
+
+[![tests](https://github.com/zhuguang-ZFG/analog-circuit-roadmap/actions/workflows/tests.yml/badge.svg)](https://github.com/zhuguang-ZFG/analog-circuit-roadmap/actions/workflows/tests.yml)
+
+</div>
+
 <div class="learning-hero" markdown="1">
 
 <p class="learning-eyebrow">理解原理 · 观察变化 · 动手验证</p>
@@ -194,6 +200,7 @@
 <a id="news"></a>
 ## 最近更新
 
+- **v3.61 · 含金量轮**：全书 217 个小节号链接对账零错标并上了护栏；[热噪声预算](p2-01-ch11.md#sec-11-6)成为第七只就地算（1kΩ、1MHz → 4.1µV，正文原数）；README 挂上 CI 徽章（站点端不显示，不碰首页的干净顶屏）。
 - **v3.60 · 章末通关台 + 模型边界 18 张**：每章的最后一屏升级成与章首舞台呼应的收尾 band——「做第 N 章自测」变成品牌色主按钮；模型边界速查补上[振荡与起振](p0-10-model-limits.md#limits-oscillator)、[光耦与隔离](p0-10-model-limits.md#limits-optocoupler)、[传感器与自热](p0-10-model-limits.md#limits-sensor)三张卡（晶振偏 3pF 每天差 4.8 秒、PC817 的 CTR 十年掉一半、PT100 自热随电流平方涨）。
 - **v3.59 · 就地算扩到六只 + 速查表互链**：新增[运放选型双判据](p1-07-ch6.md#sec-6-3)（GBW 与压摆率分开验，默认 LM358 的账：增益 100 @ 10kHz 时小信号不够、大信号够）和[Buck 占空比与纹波](p2-03-ch13.md#sec-13-2)（D、ΔIL、ΔV 一改参数立刻重算）；公式速查表里六行对应的公式行各加一枚 🔧 就地算直达——查到公式顺手就能改参数试。
 - **v3.58 · 「就地算」互动计算器**：正文算例旁长出了可调参数的小计算器——[分压器带载](p1-01-ch0.md#sec-0-3)（拖动负载看输出塌多少）、[电解电容寿命](p1-02-ch1.md#cap-dc-bias)（拖动温度看 10℃ 法则）、[迟滞窗口](p1-08-ch7.md#sec-7-3)（改电阻比看双门槛撕开多宽）、[探头负载](p4-01-ch16.md#sec163)（×1 与 ×10 档的误差与带宽账）。铁律：每个计算器的默认值就是正文算例的原数，书上的数永远能当场对上；关闭 JavaScript 时正文算例即兜底。

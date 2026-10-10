@@ -212,6 +212,45 @@ class DocsLinks(unittest.TestCase):
         missing = sorted(set(cards) - set(toc_targets))
         self.assertEqual([], missing, f'目录漏了这些卡：{missing}')
 
+    SECTION_LABEL = re.compile(r'\[§(\d+(?:\.\d+)+)\]\(([\w\-]+\.md)?#([\w\-]+)\)')
+
+    def test_section_labels_match_the_landing_section(self):
+        """[§N.M](page#anchor) 的标签小节号必须与落点小节的真号一致。
+
+        锚点存在性由 test_cross_page_anchors_exist 管，章号匹配由
+        test_numbered_section_links_point_to_the_same_chapter 管——但
+        「标签写着 §6.5、锚点却落在 6.3」这一类**权威性硬伤**此前没人管：
+        读者按标签跳过去看到的是另一节，查证时先怀疑的是自己。审计时
+        全书 217 个小节号链接零错标，这条护栏负责让它在 218 也继续成立。
+        """
+        headings = {}
+        for p in self.pages:
+            current = None
+            page_map = {}
+            for line in p.read_text(encoding='utf-8').split('\n'):
+                m = re.match(r'<a id="([^"]+)"></a>', line)
+                if m:
+                    current = m.group(1)
+                    continue
+                h = re.match(r'#{2,4} (.+)', line)
+                if h and current:
+                    page_map[current] = h.group(1)
+                    current = None
+            headings[p.name] = page_map
+        checked, mismatches = 0, []
+        for p in self.pages:
+            for label, target, anchor in self.SECTION_LABEL.findall(
+                    p.read_text(encoding='utf-8')):
+                fname = target or p.name
+                head = headings.get(fname, {}).get(anchor)
+                if head is None:
+                    continue          # 无显式锚点的小节（如 §3.5）落章首，另有人管
+                checked += 1
+                if not head.startswith(label):
+                    mismatches.append(f'{p.name}: [§{label}] → {fname}#{anchor} 实为「{head[:30]}」')
+        self.assertGreater(checked, 180, f'只对账了 {checked} 个链接——扫描器瞎了')
+        self.assertEqual([], mismatches, '小节号标签与落点不符：\n' + '\n'.join(mismatches[:10]))
+
     PICK_ITEMS = re.compile(r'<a id="(pick-[a-z]+)"></a>.*?\[速查表·[^\]]*\]\(p0-08-cheatsheet\.md#([a-z]+)\)')
 
     def test_picks_items_link_to_cheatsheet_section(self):
