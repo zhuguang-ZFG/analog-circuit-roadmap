@@ -315,12 +315,71 @@
 }
 .md-typeset .learning-lesson:hover > p:first-child img { transform: scale(1.035); }
 .md-typeset .learning-lesson h3 { margin-top: .8rem; }
-.md-typeset .reading-checkpoint { border-top: 2px solid var(--md-primary-fg-color); margin-top: 2.5rem; padding-top: .7rem; }
-.md-typeset .reading-checkpoint > p:first-child { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .4rem; }
+.md-typeset .reading-checkpoint {
+  /* 章末通关台（v3.60）：与 v3.56 章首舞台前后呼应——每章以舞台开场、
+     以品牌化的「检验理解」收尾。原来只是一条细色线加三个描边盒，
+     「读完了，去检验」这个时刻毫无仪式感。 */
+  margin: 2.5rem 0 1.5rem;
+  padding: 1.05rem 1.2rem 1.15rem;
+  border: 1px solid color-mix(in srgb, var(--md-primary-fg-color) 26%, transparent);
+  border-radius: .7rem;
+  background:
+    radial-gradient(120% 100% at 100% 0%,
+      color-mix(in srgb, var(--md-accent-fg-color) 8%, transparent), transparent 60%),
+    color-mix(in srgb, var(--md-primary-fg-color) 5%, var(--md-default-bg-color));
+}
+.md-typeset .reading-checkpoint > p:first-child {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .4rem;
+  margin: 0 0 .2rem;
+}
+.md-typeset .reading-checkpoint > p:first-child strong {
+  color: color-mix(in srgb, var(--md-primary-fg-color) 58%, var(--md-default-fg-color));
+}
+[data-md-color-scheme="slate"] .md-typeset .reading-checkpoint > p:first-child strong {
+  color: var(--md-typeset-a-color);
+}
 .md-typeset .reading-checkpoint span { font-size: .7rem; color: var(--md-default-fg-color--light); }
+.md-typeset .reading-checkpoint > p:nth-of-type(2) {
+  margin: 0 0 .85rem;
+  font-size: .74rem;
+  color: var(--md-default-fg-color--light);
+}
 .md-typeset .reading-nav { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .6rem; }
-.md-typeset .reading-nav a { display: flex; align-items: center; padding: .75rem; min-height: 44px; border: 1px solid var(--md-default-fg-color--lightest); border-radius: .4rem; font-size: .75rem; }
-.md-typeset .reading-nav .reading-quiz { background: var(--md-code-bg-color); font-weight: 700; }
+.md-typeset .reading-nav a {
+  display: flex;
+  align-items: center;
+  padding: .75rem;
+  min-height: 44px;
+  border: 1px solid color-mix(in srgb, var(--md-primary-fg-color) 30%, transparent);
+  border-radius: .5rem;
+  background: var(--md-default-bg-color);
+  font-size: .75rem;
+  transition: border-color .15s, box-shadow .15s;
+}
+.md-typeset .reading-nav a:hover {
+  border-color: color-mix(in srgb, var(--md-primary-fg-color) 55%, transparent);
+  box-shadow: 0 .25rem .8rem color-mix(in srgb, var(--md-default-fg-color) 9%, transparent);
+}
+.md-typeset .reading-nav .reading-quiz {
+  background: color-mix(in srgb, var(--md-primary-fg-color) 86%, var(--md-default-bg-color));
+  border-color: transparent;
+  color: #fff;
+  font-weight: 700;
+}
+[data-md-color-scheme="slate"] .md-typeset .reading-nav .reading-quiz {
+  background: color-mix(in srgb, var(--md-primary-fg-color) 72%, var(--md-default-bg-color));
+}
+@media screen and (max-width: 768px) {
+  .md-typeset .reading-nav { grid-template-columns: 1fr; }
+}
+/* 题库的题号：品牌色加粗——92 道题扫下去，编号是唯一的锚 */
+.md-typeset li:has(> a[id^="q-"])::marker {
+  color: var(--md-primary-fg-color);
+  font-weight: 700;
+}
 .md-typeset .learning-actions a:focus-visible,
 .md-typeset .learning-path a:focus-visible,
 .md-typeset .learning-lesson a:focus-visible,
