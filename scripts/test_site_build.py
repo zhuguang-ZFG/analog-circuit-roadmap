@@ -78,6 +78,7 @@ class SiteBuildTests(unittest.TestCase):
         if result.returncode:
             raise RuntimeError("build_site.py failed:\n" + result.stdout + result.stderr)
         cls.stdout = result.stdout
+        cls.stderr = result.stderr
         cls.out = work / "build" / "docs"
         cls.build = work / "build"
         cls.site = work / "build" / "site"
@@ -854,6 +855,22 @@ class SiteBuildTests(unittest.TestCase):
                                  f"{slug} 没有浅色配色")
                 self.assertRegex(dark, rf"\.callout-{slug}\b[^{{]*\{{[^}}]*--co",
                                  f"{slug} 没有深色配色")
+
+    def test_build_log_reports_no_missing_anchors(self):
+        """mkdocs 的站内锚点校验必须一条不报，同时更新日志的 8 个锚点仍在产物里。
+
+        正文里写字面的 script / title 这类「原始文本」标签——哪怕裹在反引号里——
+        会让 mkdocs 的 HTML 预处理器进入 raw-text 模式，把其后每个 id 属性都吞掉，
+        于是**真实存在**的 a 锚点被逐条报成死链（v3.55.1 之前实测 7 条）。这条噪声
+        真正的代价是把真死链埋在已知误报里：站内锚点只有这一路在全量校验。
+        「删锚点」或「忽略校验」也能消音，但那样速览跳转就塌了，所以同时钉产物。
+        """
+        noise = [line for line in f"{self.stdout}\n{self.stderr}".splitlines()
+                 if "no such anchor" in line]
+        self.assertEqual([], noise, "mkdocs 报出锚点缺失：正文里的字面标签会吞掉后续 id")
+        page = self.rendered("p9-12-changelog.html")
+        self.assertEqual(8, len(re.findall(r'<a id="log-v[\w-]+"></a>', page)),
+                         "更新日志的系列锚点必须留在产物里——别拿删锚点当消音")
 
     # ---------- 辅助 ----------
     @staticmethod
