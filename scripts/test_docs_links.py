@@ -141,6 +141,54 @@ class DocsLinks(unittest.TestCase):
                     self.assertIsNotNone(ref, 'chapter must link its cheatsheet section')
                     self.assertIn(f'<a id="{ref[1]}"></a>', sheet)
 
+    LIMITS_ROW = re.compile(
+        r'🔬 \*\*模型边界\*\*：\[边界速查·[^\]]*\]\(p0-10-model-limits\.md#(limits-[a-z]+)\)')
+
+    def test_every_chapter_links_the_model_limits_card(self):
+        """19 章章首各带一行 🔬 模型边界，指向的卡锚点必须真的在模型边界页。"""
+        limits = (DOCS / 'p0-10-model-limits.md').read_text(encoding='utf-8')
+        cards = set(re.findall(r'<a id="(limits-[a-z]+)"></a>', limits))
+        chapters = 0
+        for page in self.pages:
+            match = re.search(r'-ch(\d+)\.md$', page.name)
+            if not match:
+                continue
+            chapters += 1
+            with self.subTest(chapter=match[1]):
+                text = page.read_text(encoding='utf-8')
+                refs = self.LIMITS_ROW.findall(text)
+                self.assertEqual(1, len(refs), '章首必须恰好一行 🔬 模型边界')
+                self.assertIn(refs[0], cards, f'模型边界页缺卡：{refs[0]}')
+        self.assertEqual(19, chapters, '章节文件数异常——模型边界行覆盖检查失真了')
+
+    def test_model_limits_cards_cite_every_chapter(self):
+        """模型边界页必须把 19 章都引一遍：漏一章，那一章的失效点就没有落点。"""
+        limits = (DOCS / 'p0-10-model-limits.md').read_text(encoding='utf-8')
+        cited = set(re.findall(r'\(p\d+-\d+-ch(\d+)\.md', limits))
+        expected = {str(n) for n in range(19)}
+        self.assertEqual(expected, cited,
+                         f'缺章：{sorted(expected - cited)} / 多章：{sorted(cited - expected)}')
+
+    def test_model_limits_is_wired_into_the_lookup_family(self):
+        """五件套互链：目录页速查族、速查表头尾、首页工具行与阶梯出口。"""
+        limits = (DOCS / 'p0-10-model-limits.md').read_text(encoding='utf-8')
+        self.assertIn('<a id="limits"></a>', limits, '模型边界页缺页首锚点')
+        for name, needle in (
+            ('目录页', '**速查五件套**'),
+            ('速查表头', '查失效去[模型边界速查]'),
+            ('速查表尾', '构成五件套速查族'),
+        ):
+            text = (DOCS / {'目录页': 'p0-07-toc.md',
+                            '速查表头': 'p0-08-cheatsheet.md',
+                            '速查表尾': 'p0-08-cheatsheet.md'}[name]).read_text(encoding='utf-8')
+            self.assertIn(needle, text, f'{name}没有把模型边界速查编进速查族')
+        index = (DOCS / 'index.md').read_text(encoding='utf-8')
+        self.assertIn('(p0-10-model-limits.md#limits)', index,
+                      '首页没有通往模型边界速查的出口（工具行 / 阶梯「边界」层）')
+        # 旧称「四件套」不得残留在任何一页
+        stale = [p.name for p in self.pages if '速查四件套' in p.read_text(encoding='utf-8')]
+        self.assertEqual([], stale, f'「四件套」旧称未更新：{stale}')
+
     PICK_ITEMS = re.compile(r'<a id="(pick-[a-z]+)"></a>.*?\[速查表·[^\]]*\]\(p0-08-cheatsheet\.md#([a-z]+)\)')
 
     def test_picks_items_link_to_cheatsheet_section(self):

@@ -619,7 +619,7 @@ class SiteBuildTests(unittest.TestCase):
     # ---------- 标题层级 ----------
     HEADING = re.compile(r"<h([1-6])(?:\s[^>]*)?>(.*?)</h\1>", re.S)
     CALL_TAG = re.compile(r"<[^>]+>")
-    SIGNATURE = re.compile(r"^> *(?:💎|🧮|🎯|📚|📺|📷|📎|🔧|⚠️|💡|📌|🎬|🔗)")
+    SIGNATURE = re.compile(r"^> *(?:💎|🧮|🔬|🎯|📚|📺|📷|📎|🔧|⚠️|💡|📌|🎬|🔗)")
 
     def headings(self, name):
         return [(int(m.group(1)), self.CALL_TAG.sub("", m.group(2)).replace("&para;", "").strip())
@@ -657,6 +657,50 @@ class SiteBuildTests(unittest.TestCase):
                 for a, b in zip(levels, levels[1:]):
                     self.assertLessEqual(b, a + 1,
                                          f"标题层级从 h{a} 跳到 h{b}：{self.headings(page.name)}")
+
+    # ---------- 章首舞台 ----------
+    def test_every_chapter_opens_with_a_hero_stage(self):
+        """19 个章页产物各有一只章首舞台：章号、h1、开场提示卡与水印一个不少。"""
+        chapters = [p.name for p in self.out.glob("*.md")
+                    if re.fullmatch(r"p\d+-\d+-ch\d+\.md", p.name)]
+        self.assertGreaterEqual(len(chapters), 19, "章页数量异常")
+        for name in sorted(chapters):
+            with self.subTest(page=name):
+                html = self.body_html(name.replace(".md", ".html"))
+                m = re.search(r'<div class="chapter-hero" data-chapter="(\d+)">', html)
+                self.assertIsNotNone(m, "章页没有章首舞台")
+                hero = html[m.start():html.find("</div>", html.find(
+                    'class="chapter-hero-num"', m.start()))]
+                self.assertIn("<h1", hero, "舞台里没有章标题")
+                self.assertGreaterEqual(hero.count('<div class="callout callout-'), 2,
+                                        "舞台至少要有两张开场提示卡")
+                num = None
+                for pm in re.finditer(r"<p ([^>]*)>(\d+)</p>", hero):
+                    attrs = pm.group(1)
+                    if "chapter-hero-num" in attrs and 'aria-hidden="true"' in attrs:
+                        num = pm
+                        break
+                self.assertIsNotNone(num, "舞台缺章号水印（或水印不是 aria-hidden）")
+                self.assertEqual(m.group(1), num.group(2), "章号水印与 data-chapter 不一致")
+
+    def test_non_chapter_pages_have_no_hero_stage(self):
+        """舞台是章页专属：首页/速查表/动画中心/篇首页不得被误包。
+
+        注意匹配的是**开标签** `<div class="chapter-hero"`：更新日志正文里
+        提到过这个词（转义文本也含 `chapter-hero` 子串），只查子串会假红。
+        """
+        for name in ("index.html", "p0-08-cheatsheet.html", "p5-00-part5.html",
+                     "p1-00-part1.html", "p9-12-changelog.html"):
+            with self.subTest(page=name):
+                self.assertNotIn('<div class="chapter-hero"', self.body_html(name),
+                                 f"{name} 被误包了章首舞台")
+
+    def test_hero_stage_css_is_published(self):
+        """章首舞台的样式与打印降级必须跟着产物走。"""
+        css = (self.site / "stylesheets" / "typography.css").read_text(encoding="utf-8")
+        self.assertIn(".chapter-hero", css)
+        self.assertIn(".chapter-hero-num", css)
+        self.assertIn("@media print", css)
 
     # ---------- 标志性提示卡 ----------
     def test_signature_blockquotes_become_cards(self):

@@ -89,7 +89,9 @@ class ReadingJourneyTests(unittest.TestCase):
         expect(self.page).to_have_url(self.base + 'p1-01-ch0.html#ch0')
         # 章标题在站点产物里是 h1（build_site.shift_headings 把 48 个页面的
         # `##` 章标题归一成 `#`），所以锚点后面跟的是 h1 而不是 h2。
-        expect(self.page.locator('p:has(> #ch0) + h1')).to_contain_text('第 0 章')
+        # v3.56 起章页开头被 wrap_chapter_hero 包进 .chapter-hero 舞台，
+        # h1 是锚点段兄弟 div 的直接子元素。
+        expect(self.page.locator('p:has(> #ch0) + .chapter-hero > h1')).to_contain_text('第 0 章')
 
     def test_scrolling_and_page_switch_keep_the_link_target_in_the_url(self):
         # 地址只该跟着「去了哪」变，不该跟着「滚到哪一段」变。
