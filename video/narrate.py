@@ -104,7 +104,8 @@ def main() -> int:
     subprocess.run([sys.executable, str(Path(__file__).parent / "director.py"),
                     "--shots", str(adjusted_file), "--size", args.size],
                    check=True)
-    silent = SAMPLES / f"{name}-draft.webm"
+    suffix = "" if args.size == "vertical" else "-h"
+    silent = SAMPLES / f"{name}-draft{suffix}.webm"
 
     # 4) 按同一时间轴拼整条音轨（24kHz 单声道）
     print("拼音轨…")
@@ -130,7 +131,8 @@ def main() -> int:
         w.writeframes(timeline.tobytes())
 
     # 5) 合成（vp8 → h264，音轨 AAC）
-    out = SAMPLES / f"{name}-vo.mp4"
+    suffix = "" if args.size == "vertical" else "-h"
+    out = SAMPLES / f"{name}-vo{suffix}.mp4"
     subprocess.run([ff, "-y", "-i", str(silent), "-i", str(narration),
                     "-c:v", "libx264", "-preset", "medium", "-pix_fmt", "yuv420p",
                     "-c:a", "aac", "-b:a", "128k", "-shortest", str(out)],
