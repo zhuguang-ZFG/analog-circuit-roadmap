@@ -17,7 +17,8 @@
       "seconds": 14,
       "file": "probe-loading",
       "caption": "探头是负载：1MΩ‖100pF 不请自来",
-      "voice": "一倍档的探头，等于往被测点挂了一只 1 兆欧电阻和 100 皮法电容——它不请自来，还理直气壮。"
+      "voice": "一倍档的探头，等于往被测点挂了一只 1 兆欧电阻和 100 皮法电容——它不请自来，还理直气壮。",
+      "mascot": "happy"
     },
     {
       "type": "num",
@@ -48,7 +49,7 @@
       "sub": "口诀 · Jim Williams 铁律",
       "voice": "解法一步：模拟节点一律 10 倍档。10 兆欧并 10 皮法，误差回到 1%，带宽回到 159k。测量本身不能改变电路，这是 Jim Williams 的铁律。",
       "bgSvg": "probe-loading",
-      "mascot": "happy"
+      "mascot": "cheer"
     },
     {
       "type": "card",

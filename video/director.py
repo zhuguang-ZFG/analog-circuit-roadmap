@@ -123,8 +123,15 @@ PAGE = """<!DOCTYPE html>
                     to   {{ opacity:1; transform:translateY(0); }} }}
   .card .sub {{ position:relative; color:#aab7e8; font-size:var(--fs-sub,30px); line-height:1.75; max-width:86%;
     animation:rise .6s .42s both; }}
+  .mwrap {{ display:inline-block; animation:bounceIn .55s .5s both; }}
+  @keyframes bounceIn {{ 0% {{ transform:scale(0); }} 62% {{ transform:scale(1.16); }}
+                         82% {{ transform:scale(.94); }} 100% {{ transform:scale(1); }} }}
   .mascot {{ width:170px; height:auto; animation:bob 2.2s ease-in-out infinite;
     filter:drop-shadow(0 10px 22px rgba(10,16,40,.45)); }}
+  .m-cheer {{ animation:bob 1.1s ease-in-out infinite; }}
+  @keyframes cheerhop {{ 0%,100% {{ transform:translateY(0) rotate(-3deg); }}
+                         50% {{ transform:translateY(-18px) rotate(3deg); }} }}
+  .m-cheer {{ animation:cheerhop .9s ease-in-out infinite; }}
   @keyframes bob {{ 0%,100% {{ transform:translateY(0) rotate(-2deg); }}
                     50% {{ transform:translateY(-12px) rotate(2deg); }} }}
   .mascot .eyes {{ animation:blink 3.4s infinite; transform-origin:60px 64px; }}
@@ -164,6 +171,10 @@ PAGE = """<!DOCTYPE html>
                         50% {{ box-shadow:0 0 26px rgba(255,143,107,.55); }} }}
   .numrow .n.bad {{ text-shadow:0 8px 34px rgba(10,16,40,.6); }}
   .count {{ animation:countGlow 2.6s 1.9s ease-in-out infinite; }}
+  .count.landed {{ animation:pop .5s cubic-bezier(.3,1.7,.4,1) 1,
+                            countGlow 2.6s 1.2s ease-in-out infinite; }}
+  @keyframes pop {{ 0% {{ transform:scale(1); }} 38% {{ transform:scale(1.24); }}
+                    100% {{ transform:scale(1); }} }}
   @keyframes countGlow {{ 0%,100% {{ text-shadow:0 8px 34px rgba(10,16,40,.6); }}
                           50% {{ text-shadow:0 0 30px rgba(255,143,107,.65); }} }}
   /* ---- SVG 幕：舞台缩放入场 + 字幕条上滑 ---- */
@@ -177,6 +188,10 @@ PAGE = """<!DOCTYPE html>
     animation:kenburns var(--dur,12s) ease-in-out infinite alternate; }}
   @keyframes kenburns {{ from {{ transform:scale(1); }}
                          to {{ transform:scale(1.045); }} }}
+  .cam {{ position:absolute; right:16px; bottom:122px; width:104px;
+    animation:bounceIn .55s .8s both; }}
+  .cam .mascot {{ width:104px; }}
+  body.h .cam {{ right:calc(32% + 26px); bottom:34px; }}
   .svgshot .caption {{ height:110px; display:flex; align-items:center; justify-content:center;
     width:100%; background:#1b2447; color:#fff; font-size:34px; font-weight:700;
     animation:capUp .5s .25s cubic-bezier(.22,.9,.3,1) both; }}
@@ -225,6 +240,7 @@ PAGE = """<!DOCTYPE html>
         const e = 1 - Math.pow(1 - p, 3);
         el.textContent = (from + (to - from) * e).toFixed(dec);
         if (p < 1) requestAnimationFrame(tick);
+        else el.classList.add('landed');
       }}
       requestAnimationFrame(tick);
     }});
@@ -243,9 +259,10 @@ def hl(text: str) -> str:
 def mascot(mood: str = "happy") -> str:
     """「小电」：电子小人（内联 SVG，无外部素材）。
 
-    圆身 + 呆毛闪电 + 会眨的大眼 + 腮红；mood：
-    happy（微笑）/ shocked（O 嘴瞪眼，被数字吓到）/ wave（挥手道别）。
-    动画全在 CSS：bob 浮动、blink 眨眼、wave 挥手。
+    圆身 + 呆毛闪电 + 会眨的大眼 + 腮红 + 小黄手；四种情绪：
+    happy（微笑）/ shocked（O 嘴瞪眼，被数字吓到）/
+    cheer（双臂高举欢呼，口诀与胜利时刻）/ wave（挥手道别）。
+    动画全在 CSS：bob 浮动、blink 眨眼、wavearm 挥手、入场弹跳在外层包装。
     """
     ink, blush = "#0f1830", "#ff9d84"
     if mood == "shocked":
@@ -258,6 +275,24 @@ def mascot(mood: str = "happy") -> str:
                 '<circle cx="74" cy="64" r="7.5" fill="' + ink + '"/>'
                 '<circle cx="48.5" cy="61.5" r="2.6" fill="#fff"/>'
                 '<circle cx="76.5" cy="61.5" r="2.6" fill="#fff"/>')
+        arm = ('<circle cx="102" cy="82" r="8" fill="#ffc247" stroke="' + ink +
+               '" stroke-width="3"/>')
+    elif mood == "cheer":
+        brows = ""
+        mouth = ('<path d="M47 85 Q60 103 73 85 Q60 93 47 85 Z" fill="' + ink + '"/>')
+        eyes = ('<g class="eyes"><path d="M40 64 Q46 58 52 64" stroke="' + ink +
+                '" stroke-width="4" fill="none" stroke-linecap="round"/>'
+                '<path d="M68 64 Q74 58 80 64" stroke="' + ink +
+                '" stroke-width="4" fill="none" stroke-linecap="round"/></g>')
+        arm = ('<g class="cheerarms">'
+               '<path d="M99 78 Q114 70 116 50" stroke="' + ink +
+               '" stroke-width="6" fill="none" stroke-linecap="round"/>'
+               '<circle cx="117" cy="47" r="8" fill="#ffc247" stroke="' + ink +
+               '" stroke-width="3"/>'
+               '<path d="M21 78 Q6 70 4 50" stroke="' + ink +
+               '" stroke-width="6" fill="none" stroke-linecap="round"/>'
+               '<circle cx="3" cy="47" r="8" fill="#ffc247" stroke="' + ink +
+               '" stroke-width="3"/></g>')
     else:
         brows = ""
         curve = 96 if mood == "happy" else 92
@@ -267,24 +302,27 @@ def mascot(mood: str = "happy") -> str:
                 '<circle cx="74" cy="64" r="6.5" fill="' + ink + '"/>'
                 '<circle cx="48.5" cy="61.5" r="2.3" fill="#fff"/>'
                 '<circle cx="76.5" cy="61.5" r="2.3" fill="#fff"/></g>')
-    if mood == "wave":
-        arm = ('<g class="wavearm"><path d="M97 74 Q116 62 112 42" stroke="' + ink +
-               '" stroke-width="6" fill="none" stroke-linecap="round"/>'
-               '<circle cx="112" cy="40" r="8" fill="#ffc247" stroke="' + ink +
-               '" stroke-width="3"/></g>')
-    else:
-        arm = ('<circle cx="102" cy="82" r="8" fill="#ffc247" stroke="' + ink +
-               '" stroke-width="3"/>')
+        if mood == "wave":
+            arm = ('<g class="wavearm"><path d="M97 74 Q116 62 112 42" stroke="' + ink +
+                   '" stroke-width="6" fill="none" stroke-linecap="round"/>'
+                   '<circle cx="112" cy="40" r="8" fill="#ffc247" stroke="' + ink +
+                   '" stroke-width="3"/></g>')
+        else:
+            arm = ('<circle cx="102" cy="82" r="8" fill="#ffc247" stroke="' + ink +
+                   '" stroke-width="3"/>')
     left_arm = ('<circle cx="18" cy="82" r="8" fill="#ffc247" stroke="' + ink +
                 '" stroke-width="3"/>')
+    if mood == "cheer":
+        left_arm = ""          # 欢呼时双臂都在 cheerarms 里
     parts = [
-        '<svg class="mascot" viewBox="0 0 130 132" role="img" aria-label="小电">',
-        '<defs><linearGradient id="mg" x1="0" y1="0" x2="1" y2="1">',
+        '<svg class="mascot m-' + mood + '" viewBox="0 0 130 132" role="img" aria-label="小电">',
+        '<defs><linearGradient id="mg' + mood + '" x1="0" y1="0" x2="1" y2="1">',
         '<stop offset="0" stop-color="#5e7aff"/><stop offset="1" stop-color="#27357a"/>',
         '</linearGradient></defs>',
         '<path d="M60 4 L50 20 L59 18 L53 33" fill="none" stroke="#ffc247" '
         'stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>',
-        '<circle cx="60" cy="76" r="46" fill="url(#mg)" stroke="' + ink + '" stroke-width="4"/>',
+        '<circle cx="60" cy="76" r="46" fill="url(#mg' + mood + ')" stroke="' + ink +
+        '" stroke-width="4"/>',
         '<ellipse cx="30" cy="92" rx="9" ry="6" fill="#fff" opacity=".25"/>',
         brows, eyes,
         '<ellipse cx="33" cy="84" rx="8" ry="5" fill="' + blush + '" opacity=".6"/>',
@@ -316,11 +354,11 @@ def build_html(storyboard: dict, w: int = W, h: int = H, cls: str = "v") -> str:
                     inner = (f"{eyebrow}<div class=\"lines\">{lines}</div>"
                              f'<div class="rule"></div>'
                              f'<div class="pair"><div class="bubble">{s["bubble"]}</div>'
-                             f"{mascot(mood)}</div>{cta}")
+                             f'<span class="mwrap">{mascot(mood)}</span></div>{cta}')
                 else:
                     inner = (f"{eyebrow}<div class=\"lines\">{lines}</div>"
                              f'<div class="rule"></div><div class="sub">{tail}</div>'
-                             f'<div class="pair">{mascot(mood)}</div>{cta}')
+                             f'<div class="pair"><span class="mwrap">{mascot(mood)}</span></div>{cta}')
             else:
                 inner = (f"{eyebrow}<div class=\"lines\">{lines}</div>"
                          f'<div class="rule"></div><div class="sub">{tail}</div>'
@@ -336,7 +374,7 @@ def build_html(storyboard: dict, w: int = W, h: int = H, cls: str = "v") -> str:
                 pct = bar[1] / bar[0] * 100 if bar[0] else 100
                 bar_html = (f'<div class="bar"><i style="'
                             f"animation-duration:{dur}s;--end:{pct / 100:.2f}\"></i></div>")
-            co = mascot(s.get("mascot", "")) if s.get("mascot") else ""
+            co = ('<span class="mwrap">' + mascot(s["mascot"]) + '</span>') if s.get("mascot") else ""
             shots_html.append(
                 f'<div class="shot card" style="--dur:{dur}s"><div class="bg"></div>'
                 f'<div class="numrow"><span class="n" data-static="{s["from"]:.{dec}f}">'
@@ -349,9 +387,12 @@ def build_html(storyboard: dict, w: int = W, h: int = H, cls: str = "v") -> str:
         elif s["type"] == "svg":
             svg = (SVG_DIR / (s["file"] + ".svg")).read_text(encoding="utf-8")
             caption = f'<div class="caption">{s.get("caption", "")}</div>'
+            cam = ('<div class="cam"><span class="mwrap">'
+                   + mascot(s.get("mascot", "happy")) + '</span></div>'
+                   ) if s.get("mascot") else ""
             shots_html.append(
                 f'<div class="shot svgshot" style="--dur:{dur}s">'
-                f'<div class="stage">{svg}</div>{caption}{beat}</div>')
+                f'<div class="stage">{svg}</div>{caption}{cam}{beat}</div>')
         else:
             raise SystemExit(f"未知镜头类型：{s['type']}")
     total = sum(s["seconds"] for s in storyboard["shots"])
