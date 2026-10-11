@@ -2,6 +2,14 @@
   "name": "ep05-probe",
   "shots": [
     {
+      "type": "intro",
+      "seconds": 1.6,
+      "ep": "EP05",
+      "title": "探头负载",
+      "series": "模拟电路动画课",
+      "progress": "合集连载中 · 已更新 5 集"
+    },
+    {
       "type": "card",
       "seconds": 3,
       "eyebrow": "模拟电路动画课 · EP05",
@@ -62,7 +70,8 @@
       "cta": "关注 · 看下一集",
       "voice": "彩蛋预警：万用表电流档内阻约等于零，并联到电源上等于放炮。下一集，讲 BJT 怎么把自己烧死。关注不迷路。",
       "mascot": "wave",
-      "bubble": "下集见！"
+      "bubble": "下集见！",
+      "progress": "合集连载中 · 已更新 5 集"
     }
   ]
 }

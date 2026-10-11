@@ -51,6 +51,22 @@ def ding(dur: float = 0.6) -> np.ndarray:
     return out * np.exp(-t * 6) * 0.4
 
 
+def sting(dur: float = 0.8) -> np.ndarray:
+    """品牌片头 sting：A4→E5 上行双音，轻快「开讲」信号。"""
+    n = int(dur * SR)
+    t = np.arange(n) / SR
+    out = np.zeros(n)
+    for start, f, g in ((0.0, 440.0, 0.5), (0.12, 659.25, 0.7)):
+        i0 = int(start * SR)
+        seg_t = t[: n - i0]
+        tone = (np.sin(2 * np.pi * f * seg_t)
+                + 0.4 * np.sin(2 * np.pi * f * 2 * seg_t))
+        env = np.exp(-seg_t * 7)
+        env[: int(0.01 * SR)] *= np.linspace(0, 1, int(0.01 * SR))
+        out[i0:] += tone * env * g
+    return out * 0.5
+
+
 def thud(dur: float = 0.26) -> np.ndarray:
     n = int(dur * SR)
     t = np.arange(n) / SR

@@ -114,11 +114,13 @@ def main() -> int:
                     str(vo_wav)], check=True, capture_output=True)
 
     # SFX 时间轴：标题幕 thud；其余幕转场 whoosh；数字幕跳数落定 pop
-    from sfx import whoosh, pop, thud, place
+    from sfx import whoosh, pop, thud, sting, place
     sfx_track = np.zeros(int(total * SR) + SR)
     t0 = 0.0
     for shot in board["shots"]:
-        if shot.get("eyebrow"):
+        if shot["type"] == "intro":
+            place(sfx_track, sting(), t0 + 0.05)
+        elif shot.get("eyebrow"):
             place(sfx_track, thud(), t0 + 0.02)
         else:
             place(sfx_track, whoosh(), t0)

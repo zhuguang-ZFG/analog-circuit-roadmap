@@ -126,6 +126,10 @@ PAGE = """<!DOCTYPE html>
   .mwrap {{ display:inline-block; animation:bounceIn .55s .5s both; }}
   @keyframes bounceIn {{ 0% {{ transform:scale(0); }} 62% {{ transform:scale(1.16); }}
                          82% {{ transform:scale(.94); }} 100% {{ transform:scale(1); }} }}
+  .intro .mascot {{ width:230px; }}
+  .intro .series {{ position:relative; color:#8fa5ff; font-size:34px;
+    font-weight:800; letter-spacing:.3em; text-indent:.3em; }}
+  .intro .lines div {{ font-size:52px; }}
   .mascot {{ width:170px; height:auto; animation:bob 2.2s ease-in-out infinite;
     filter:drop-shadow(0 10px 22px rgba(10,16,40,.45)); }}
   .m-cheer {{ animation:bob 1.1s ease-in-out infinite; }}
@@ -384,6 +388,17 @@ def build_html(storyboard: dict, w: int = W, h: int = H, cls: str = "v") -> str:
                 f'data-dec="{dec}">{s["from"]:.{dec}f}</span>'
                 f'<span class="n bad unit">{s["unit"]}</span></div>{co}</div>'
                 f'{bar_html}<div class="sub">{hl(s.get("sub", ""))}</div>{beat}</div>')
+        elif s["type"] == "intro":
+            big = mascot("happy")
+            shots_html.append(
+                f'<div class="shot card" style="--dur:{dur}s"><div class="bg"></div>'
+                f'<div class="stack intro">'
+                f'<span class="mwrap">{big}</span>'
+                f'<div class="series">{s.get("series", "模拟电路动画课")}</div>'
+                f'<div class="lines"><div>{s.get("ep", "")}'
+                f' · <span class="hl">{s.get("title", "")}</span></div></div>'
+                f'<div class="sub">{s.get("progress", "")}</div>'
+                f"</div>{beat}</div>")
         elif s["type"] == "svg":
             svg = (SVG_DIR / (s["file"] + ".svg")).read_text(encoding="utf-8")
             caption = f'<div class="caption">{s.get("caption", "")}</div>'
@@ -419,7 +434,10 @@ def main() -> int:
     w, h = (W, H) if args.size == "vertical" else (1920, 1080)
     cls = "v" if args.size == "vertical" else "h"
     if args.cover:
-        storyboard = {**storyboard, "shots": storyboard["shots"][:1]}
+        lead = next((s for s in storyboard["shots"] if s["type"] != "intro"),
+                    storyboard["shots"][0])
+        storyboard = {**storyboard, "shots": [lead, {**lead, "seconds": 2}]}
+        storyboard["shots"] = storyboard["shots"][:1]
         storyboard["shots"][0] = {**storyboard["shots"][0], "seconds": 2}
     html = build_html(storyboard, w=w, h=h, cls=cls)
     with tempfile.TemporaryDirectory() as tmp:
