@@ -150,6 +150,12 @@ PAGE = """<!DOCTYPE html>
   .bubble::after {{ content:""; position:absolute; right:-12px; bottom:20px;
     width:20px; height:20px; background:#fff; transform:rotate(45deg);
     border-radius:4px; }}
+  .confetti {{ position:absolute; inset:0; overflow:hidden; }}
+  .confetti i {{ position:absolute; top:-24px; width:13px; height:19px;
+    border-radius:3px; opacity:.92;
+    animation:confFall var(--fall,5s) var(--dl,0s) linear infinite; }}
+  @keyframes confFall {{ from {{ transform:translateY(-30px) rotate(0deg); }}
+                         to {{ transform:translateY({h}px) rotate(540deg); }} }}
   .card .rule {{ position:relative; width:0; height:6px; border-radius:3px;
     background:linear-gradient(90deg,#5e7aff,#ffc247);
     animation:sweep .7s .3s cubic-bezier(.22,.9,.3,1) forwards; }}
@@ -182,9 +188,13 @@ PAGE = """<!DOCTYPE html>
   @keyframes countGlow {{ 0%,100% {{ text-shadow:0 8px 34px rgba(10,16,40,.6); }}
                           50% {{ text-shadow:0 0 30px rgba(255,143,107,.65); }} }}
   /* ---- SVG 幕：舞台缩放入场 + 字幕条上滑 ---- */
-  .svgshot {{ flex-direction:column; background:#eef1f9; }}
+  .svgshot {{ flex-direction:column; }}
+  .svgshot .bg {{ background:
+      radial-gradient(120% 90% at 0% 0%, rgba(94,122,255,.30), transparent 55%),
+      linear-gradient(200deg,#1b2447 0%,#27357a 100%); }}
   .svgshot .stage {{ flex:1; display:flex; align-items:center; justify-content:center;
-    width:100%; animation:stageIn .6s cubic-bezier(.22,.9,.3,1) both; }}
+    width:100%; padding:26px 0 10px;
+    animation:stageIn .6s cubic-bezier(.22,.9,.3,1) both; }}
   @keyframes stageIn {{ from {{ opacity:0; transform:scale(.965); }}
                        to   {{ opacity:1; transform:scale(1); }} }}
   .svgshot svg {{ width:94%; height:auto; border-radius:14px;
@@ -367,9 +377,16 @@ def build_html(storyboard: dict, w: int = W, h: int = H, cls: str = "v") -> str:
                 inner = (f"{eyebrow}<div class=\"lines\">{lines}</div>"
                          f'<div class="rule"></div><div class="sub">{tail}</div>'
                          f"{cta}")
+            confetti = ""
+            if s.get("mascot") == "cheer":
+                bits = "".join(
+                    f'<i style="left:{8 + (k * 83) % 640}px;--dl:{(k * 0.13) % 1.4:.2f}s;'
+                    f'background:{["#ffc247", "#5e7aff", "#ff8f6b", "#7ce3c8"][k % 4]};'
+                    f'--fall:{dur}s"></i>' for k in range(14))
+                confetti = f'<div class="confetti">{bits}</div>'
             shots_html.append(
                 f'<div class="shot card" style="--dur:{dur}s"><div class="bg"></div>'
-                f'{bgart}<div class="stack">{inner}</div>{beat}</div>')
+                f'{bgart}{confetti}<div class="stack">{inner}</div>{beat}</div>')
         elif s["type"] == "num":
             dec = s.get("dec", 1)
             bar = s.get("bar")
@@ -406,7 +423,7 @@ def build_html(storyboard: dict, w: int = W, h: int = H, cls: str = "v") -> str:
                    + mascot(s.get("mascot", "happy")) + '</span></div>'
                    ) if s.get("mascot") else ""
             shots_html.append(
-                f'<div class="shot svgshot" style="--dur:{dur}s">'
+                f'<div class="shot svgshot" style="--dur:{dur}s"><div class="bg"></div>'
                 f'<div class="stage">{svg}</div>{caption}{cam}{beat}</div>')
         else:
             raise SystemExit(f"未知镜头类型：{s['type']}")
