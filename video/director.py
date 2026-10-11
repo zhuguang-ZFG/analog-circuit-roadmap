@@ -123,6 +123,22 @@ PAGE = """<!DOCTYPE html>
                     to   {{ opacity:1; transform:translateY(0); }} }}
   .card .sub {{ position:relative; color:#aab7e8; font-size:var(--fs-sub,30px); line-height:1.75; max-width:86%;
     animation:rise .6s .42s both; }}
+  .mascot {{ width:170px; height:auto; animation:bob 2.2s ease-in-out infinite;
+    filter:drop-shadow(0 10px 22px rgba(10,16,40,.45)); }}
+  @keyframes bob {{ 0%,100% {{ transform:translateY(0) rotate(-2deg); }}
+                    50% {{ transform:translateY(-12px) rotate(2deg); }} }}
+  .mascot .eyes {{ animation:blink 3.4s infinite; transform-origin:60px 64px; }}
+  @keyframes blink {{ 0%,90%,100% {{ transform:scaleY(1); }} 94% {{ transform:scaleY(.08); }} }}
+  .mascot .wavearm {{ animation:wavearm .9s ease-in-out infinite; transform-origin:97px 74px; }}
+  @keyframes wavearm {{ 0%,100% {{ transform:rotate(-14deg); }} 50% {{ transform:rotate(16deg); }} }}
+  .pair {{ position:relative; display:flex; align-items:flex-end; justify-content:center;
+    gap:6px; animation:rise .6s .5s both; }}
+  .bubble {{ position:relative; max-width:330px; padding:.65rem 1.1rem;
+    background:#fff; color:#1b2447; font-size:28px; font-weight:700;
+    border-radius:20px; line-height:1.5; text-align:left; }}
+  .bubble::after {{ content:""; position:absolute; right:-12px; bottom:20px;
+    width:20px; height:20px; background:#fff; transform:rotate(45deg);
+    border-radius:4px; }}
   .card .rule {{ position:relative; width:0; height:6px; border-radius:3px;
     background:linear-gradient(90deg,#5e7aff,#ffc247);
     animation:sweep .7s .3s cubic-bezier(.22,.9,.3,1) forwards; }}
@@ -224,6 +240,61 @@ def hl(text: str) -> str:
     return re.sub(r"&#42;&#42;(.+?)&#42;&#42;", r'<span class="hl">\1</span>', text)
 
 
+def mascot(mood: str = "happy") -> str:
+    """「小电」：电子小人（内联 SVG，无外部素材）。
+
+    圆身 + 呆毛闪电 + 会眨的大眼 + 腮红；mood：
+    happy（微笑）/ shocked（O 嘴瞪眼，被数字吓到）/ wave（挥手道别）。
+    动画全在 CSS：bob 浮动、blink 眨眼、wave 挥手。
+    """
+    ink, blush = "#0f1830", "#ff9d84"
+    if mood == "shocked":
+        brows = ('<path d="M38 50 L54 46" stroke="' + ink + '" stroke-width="4" '
+                 'stroke-linecap="round"/>'
+                 '<path d="M82 50 L66 46" stroke="' + ink + '" stroke-width="4" '
+                 'stroke-linecap="round"/>')
+        mouth = '<ellipse cx="60" cy="90" rx="9" ry="12" fill="' + ink + '"/>'
+        eyes = ('<circle cx="46" cy="64" r="7.5" fill="' + ink + '"/>'
+                '<circle cx="74" cy="64" r="7.5" fill="' + ink + '"/>'
+                '<circle cx="48.5" cy="61.5" r="2.6" fill="#fff"/>'
+                '<circle cx="76.5" cy="61.5" r="2.6" fill="#fff"/>')
+    else:
+        brows = ""
+        curve = 96 if mood == "happy" else 92
+        mouth = ('<path d="M49 87 Q60 ' + str(curve) + ' 71 87" stroke="' + ink +
+                 '" stroke-width="4" fill="none" stroke-linecap="round"/>')
+        eyes = ('<g class="eyes"><circle cx="46" cy="64" r="6.5" fill="' + ink + '"/>'
+                '<circle cx="74" cy="64" r="6.5" fill="' + ink + '"/>'
+                '<circle cx="48.5" cy="61.5" r="2.3" fill="#fff"/>'
+                '<circle cx="76.5" cy="61.5" r="2.3" fill="#fff"/></g>')
+    if mood == "wave":
+        arm = ('<g class="wavearm"><path d="M97 74 Q116 62 112 42" stroke="' + ink +
+               '" stroke-width="6" fill="none" stroke-linecap="round"/>'
+               '<circle cx="112" cy="40" r="8" fill="#ffc247" stroke="' + ink +
+               '" stroke-width="3"/></g>')
+    else:
+        arm = ('<circle cx="102" cy="82" r="8" fill="#ffc247" stroke="' + ink +
+               '" stroke-width="3"/>')
+    left_arm = ('<circle cx="18" cy="82" r="8" fill="#ffc247" stroke="' + ink +
+                '" stroke-width="3"/>')
+    parts = [
+        '<svg class="mascot" viewBox="0 0 130 132" role="img" aria-label="小电">',
+        '<defs><linearGradient id="mg" x1="0" y1="0" x2="1" y2="1">',
+        '<stop offset="0" stop-color="#5e7aff"/><stop offset="1" stop-color="#27357a"/>',
+        '</linearGradient></defs>',
+        '<path d="M60 4 L50 20 L59 18 L53 33" fill="none" stroke="#ffc247" '
+        'stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>',
+        '<circle cx="60" cy="76" r="46" fill="url(#mg)" stroke="' + ink + '" stroke-width="4"/>',
+        '<ellipse cx="30" cy="92" rx="9" ry="6" fill="#fff" opacity=".25"/>',
+        brows, eyes,
+        '<ellipse cx="33" cy="84" rx="8" ry="5" fill="' + blush + '" opacity=".6"/>',
+        '<ellipse cx="87" cy="84" rx="8" ry="5" fill="' + blush + '" opacity=".6"/>',
+        mouth, left_arm, arm,
+        '</svg>',
+    ]
+    return "".join(parts)
+
+
 def build_html(storyboard: dict, w: int = W, h: int = H, cls: str = "v") -> str:
     shots_html, durs = [], []
     for s in storyboard["shots"]:
@@ -238,9 +309,22 @@ def build_html(storyboard: dict, w: int = W, h: int = H, cls: str = "v") -> str:
                 bgart = f'<div class="bgart">{art}</div>'
             lines = "".join(f"<div>{hl(ln)}</div>" for ln in s["lines"])
             cta = f'<div class="cta">{s["cta"]}</div>' if s.get("cta") else ""
-            inner = (f"{eyebrow}<div class=\"lines\">{lines}</div>"
-                     f'<div class="rule"></div><div class="sub">{s.get("sub", "")}</div>'
-                     f"{cta}")
+            tail = s.get("sub", "")
+            if s.get("mascot"):
+                mood = s["mascot"]
+                if s.get("bubble"):
+                    inner = (f"{eyebrow}<div class=\"lines\">{lines}</div>"
+                             f'<div class="rule"></div>'
+                             f'<div class="pair"><div class="bubble">{s["bubble"]}</div>'
+                             f"{mascot(mood)}</div>{cta}")
+                else:
+                    inner = (f"{eyebrow}<div class=\"lines\">{lines}</div>"
+                             f'<div class="rule"></div><div class="sub">{tail}</div>'
+                             f'<div class="pair">{mascot(mood)}</div>{cta}')
+            else:
+                inner = (f"{eyebrow}<div class=\"lines\">{lines}</div>"
+                         f'<div class="rule"></div><div class="sub">{tail}</div>'
+                         f"{cta}")
             shots_html.append(
                 f'<div class="shot card" style="--dur:{dur}s"><div class="bg"></div>'
                 f'{bgart}<div class="stack">{inner}</div>{beat}</div>')
@@ -252,6 +336,7 @@ def build_html(storyboard: dict, w: int = W, h: int = H, cls: str = "v") -> str:
                 pct = bar[1] / bar[0] * 100 if bar[0] else 100
                 bar_html = (f'<div class="bar"><i style="'
                             f"animation-duration:{dur}s;--end:{pct / 100:.2f}\"></i></div>")
+            co = mascot(s.get("mascot", "")) if s.get("mascot") else ""
             shots_html.append(
                 f'<div class="shot card" style="--dur:{dur}s"><div class="bg"></div>'
                 f'<div class="numrow"><span class="n" data-static="{s["from"]:.{dec}f}">'
@@ -259,7 +344,7 @@ def build_html(storyboard: dict, w: int = W, h: int = H, cls: str = "v") -> str:
                 f'<span class="arrow">→</span>'
                 f'<span class="n bad count" data-from="{s["from"]}" data-to="{s["to"]}" '
                 f'data-dec="{dec}">{s["from"]:.{dec}f}</span>'
-                f'<span class="n bad unit">{s["unit"]}</span></div>'
+                f'<span class="n bad unit">{s["unit"]}</span></div>{co}</div>'
                 f'{bar_html}<div class="sub">{hl(s.get("sub", ""))}</div>{beat}</div>')
         elif s["type"] == "svg":
             svg = (SVG_DIR / (s["file"] + ".svg")).read_text(encoding="utf-8")
