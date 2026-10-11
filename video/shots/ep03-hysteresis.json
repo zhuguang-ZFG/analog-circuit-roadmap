@@ -17,7 +17,8 @@
       "seconds": 14,
       "file": "comparator-hysteresis",
       "caption": "一条门槛 → 两条门槛",
-      "voice": "因为输入在门槛附近来回穿越：信号加噪声，每次过线都翻一次。判决边界只有一条，就是这么脆。"
+      "voice": "因为输入在门槛附近来回穿越：信号加噪声，每次过线都翻一次。判决边界只有一条，就是这么脆。",
+      "mascot": "happy"
     },
     {
       "type": "num",
@@ -37,7 +38,8 @@
       ],
       "sub": "太大丢灵敏度；R2/R1=100 常用（约电源的 1%）",
       "voice": "窗口多宽？R1 比 R2 乘上输出摆幅。R2 比 R1 取 100、摆幅 10 伏，窗口就是 0.1 伏。现场噪声峰峰 20 毫伏，覆盖它还剩 5 倍余量。",
-      "bgSvg": "comparator-hysteresis"
+      "bgSvg": "comparator-hysteresis",
+      "mascot": "cheer"
     },
     {
       "type": "card",

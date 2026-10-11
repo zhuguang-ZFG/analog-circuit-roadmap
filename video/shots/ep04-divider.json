@@ -17,7 +17,8 @@
       "seconds": 13,
       "file": "divider-loading",
       "caption": "分压公式只在空载成立",
-      "voice": "10V 分压，两只 10k，输出 5V，完美。但分压公式有个没写出来的前提：后面什么都没接。"
+      "voice": "10V 分压，两只 10k，输出 5V，完美。但分压公式有个没写出来的前提：后面什么都没接。",
+      "mascot": "happy"
     },
     {
       "type": "num",
@@ -42,7 +43,7 @@
       "sub": "口诀",
       "voice": "记住这句：分压器的带载能力，约等于它自己的内阻，也就是 R1 并 R2。负载一重，输出就往内阻上塌。",
       "bgSvg": "divider-loading",
-      "mascot": "happy",
+      "mascot": "cheer",
       "bubble": "记这句！"
     },
     {

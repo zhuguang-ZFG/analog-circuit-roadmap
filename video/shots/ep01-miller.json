@@ -17,14 +17,16 @@
       "seconds": 15,
       "file": "mosfet-four-beats",
       "caption": "① 充电 → ② 到平台 → ③ 米勒平台 → ④ 完全增强",
-      "voice": "开通 MOSFET 要给栅极充电。本来电压一路往上爬——爬着爬着，突然不动了。"
+      "voice": "开通 MOSFET 要给栅极充电。本来电压一路往上爬——爬着爬着，突然不动了。",
+      "mascot": "happy"
     },
     {
       "type": "svg",
       "seconds": 13,
       "file": "miller-plateau",
       "caption": "平台期：V、I 同时不为零",
-      "voice": "这就是米勒平台：漏极电压从母线电压掉到零，这段 dv/dt 把驱动电流全部抽走，喂给米勒电容。平台期间，电压和电流同时不为零。"
+      "voice": "这就是米勒平台：漏极电压从母线电压掉到零，这段 dv/dt 把驱动电流全部抽走，喂给米勒电容。平台期间，电压和电流同时不为零。",
+      "mascot": "shocked"
     },
     {
       "type": "card",
@@ -58,7 +60,7 @@
       ],
       "sub": "口诀",
       "voice": "栅电阻小，平台就短，损耗就小，但 EMI 变大。快和安静，永远是一对买卖。",
-      "mascot": "happy"
+      "mascot": "cheer"
     },
     {
       "type": "card",
