@@ -99,7 +99,12 @@ PAGE = """<!DOCTYPE html>
     background:radial-gradient(140% 110% at 50% 50%, transparent 60%, rgba(8,12,28,.5) 100%); }}
   /* ---- 文字入场：逐行错峰上滑；首行带强调色下划扫过 ---- */
   .card {{ flex-direction:column; justify-content:center; align-items:center;
-    gap:30px; text-align:center; padding:60px; }}
+    text-align:center; padding:60px; }}
+  .stack {{ position:relative; display:flex; flex-direction:column;
+    align-items:center; gap:30px;
+    animation:floaty 7s ease-in-out infinite alternate; }}
+  @keyframes floaty {{ from {{ transform:translateY(-7px); }}
+                      to   {{ transform:translateY(7px); }} }}
   .card .eyebrow {{ position:relative; color:#8fa5ff; font-size:var(--fs-eyebrow,26px); font-weight:700;
     letter-spacing:.35em; text-indent:.35em; animation:rise .55s .05s both; }}
   .card .lines {{ position:relative; }}
@@ -132,8 +137,15 @@ PAGE = """<!DOCTYPE html>
   .bar i {{ position:absolute; inset:0; width:100%;
     background:linear-gradient(90deg,#5e7aff,#ff8f6b);
     border-radius:13px;
-    animation:barShrink var(--dur,4s) .5s cubic-bezier(.25,.8,.3,1) forwards; }}
+    animation:barShrink 1.5s .4s cubic-bezier(.25,.8,.3,1) forwards,
+              barGlow 2.6s 2s ease-in-out infinite; }}
   @keyframes barShrink {{ from {{ transform:scaleX(1); }} to {{ transform:scaleX(var(--end,.67)); }} }}
+  @keyframes barGlow {{ 0%,100% {{ box-shadow:0 0 0 rgba(255,143,107,0); }}
+                        50% {{ box-shadow:0 0 26px rgba(255,143,107,.55); }} }}
+  .numrow .n.bad {{ text-shadow:0 8px 34px rgba(10,16,40,.6); }}
+  .count {{ animation:countGlow 2.6s 1.9s ease-in-out infinite; }}
+  @keyframes countGlow {{ 0%,100% {{ text-shadow:0 8px 34px rgba(10,16,40,.6); }}
+                          50% {{ text-shadow:0 0 30px rgba(255,143,107,.65); }} }}
   /* ---- SVG 幕：舞台缩放入场 + 字幕条上滑 ---- */
   .svgshot {{ flex-direction:column; background:#eef1f9; }}
   .svgshot .stage {{ flex:1; display:flex; align-items:center; justify-content:center;
@@ -141,7 +153,10 @@ PAGE = """<!DOCTYPE html>
   @keyframes stageIn {{ from {{ opacity:0; transform:scale(.965); }}
                        to   {{ opacity:1; transform:scale(1); }} }}
   .svgshot svg {{ width:94%; height:auto; border-radius:14px;
-    box-shadow:0 12px 38px rgba(23,32,64,.20); }}
+    box-shadow:0 12px 38px rgba(23,32,64,.20);
+    animation:kenburns var(--dur,12s) ease-in-out infinite alternate; }}
+  @keyframes kenburns {{ from {{ transform:scale(1); }}
+                         to {{ transform:scale(1.045); }} }}
   .svgshot .caption {{ height:110px; display:flex; align-items:center; justify-content:center;
     width:100%; background:#1b2447; color:#fff; font-size:34px; font-weight:700;
     animation:capUp .5s .25s cubic-bezier(.22,.9,.3,1) both; }}
@@ -209,11 +224,12 @@ def build_html(storyboard: dict, w: int = W, h: int = H, cls: str = "v") -> str:
             eyebrow = (f'<div class="eyebrow">{s["eyebrow"]}</div>' if s.get("eyebrow") else "")
             lines = "".join(f"<div>{hl(ln)}</div>" for ln in s["lines"])
             cta = f'<div class="cta">{s["cta"]}</div>' if s.get("cta") else ""
+            inner = (f"{eyebrow}<div class=\"lines\">{lines}</div>"
+                     f'<div class="rule"></div><div class="sub">{s.get("sub", "")}</div>'
+                     f"{cta}")
             shots_html.append(
                 f'<div class="shot card" style="--dur:{dur}s"><div class="bg"></div>'
-                f"{eyebrow}<div class=\"lines\">{lines}</div>"
-                f'<div class="rule"></div><div class="sub">{s.get("sub", "")}</div>'
-                f"{cta}{beat}</div>")
+                f'<div class="stack">{inner}</div>{beat}</div>')
         elif s["type"] == "num":
             dec = s.get("dec", 1)
             bar = s.get("bar")
