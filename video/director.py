@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import tempfile
 import time
 from pathlib import Path
@@ -31,32 +32,38 @@ W, H = 720, 1280
 SHOTS_DOC = {
     "name": "输出文件名前缀",
     "shots": [
-        {"type": "card", "seconds": 3,
-         "lines": ["接上负载那一刻", "5V 就没了"], "sub": "EP04 · 分压器带载"},
+        {"type": "card", "seconds": 3, "eyebrow": "模拟电路动画课",
+         "lines": ["接上负载那一刻", "5V 就没了"],
+         "sub": "EP04 · 分压器带载"},
         {"type": "svg", "seconds": 12, "file": "divider-loading",
-         "caption": "空载公式，只在空载成立"},
+         "caption": "分压公式只在空载成立"},
+        {"type": "num", "seconds": 4, "from": 5.0, "to": 3.3, "unit": "V",
+         "sub": "R2∥RL = 5k · 塌了 33%", "bar": [1.0, 0.67]},
         {"type": "card", "seconds": 4,
-         "lines": ["空载 5V → 带载 3.3V"], "sub": "塌了 33%"},
-        {"type": "card", "seconds": 4,
-         "lines": ["带载能力 ≈ R1∥R2"], "sub": "口诀"},
+         "lines": ["带载能力 ≈ **R1∥R2**"], "sub": "口诀"},
     ],
 }
+# lines 里用 **文字** 标重点（渲染成琥珀色大字）；num 镜头自动做
+# 「从 from 数到 to」的计数动画，bar=[起,止] 画一根塌陷比例条。
 
 EP04 = {
     "name": "ep04-divider",
     "shots": [
-        {"type": "card", "seconds": 3,
-         "lines": ["接上负载那一刻", "5V 就没了"], "sub": "模拟电路动画课 · EP04"},
+        {"type": "card", "seconds": 3, "eyebrow": "模拟电路动画课 · EP04",
+         "lines": ["接上负载那一刻", "**5V 就没了**"]},
         {"type": "svg", "seconds": 13, "file": "divider-loading",
          "caption": "分压公式只在空载成立"},
-        {"type": "card", "seconds": 4,
-         "lines": ["空载 5V → 带载 3.3V"], "sub": "R2∥RL = 5k · 塌了 33%"},
-        {"type": "card", "seconds": 4,
-         "lines": ["带载能力 ≈ R1∥R2"], "sub": "口诀"},
-        {"type": "card", "seconds": 6,
-         "lines": ["三条活路"], "sub": "负载阻抗 ≫ R2 · R1/R2 取小 · 后面跟一级运放缓冲"},
-        {"type": "card", "seconds": 4,
-         "lines": ["下一集", "你看到的怪波形", "可能是探头画的"], "sub": "合集：模拟电路动画课 · 全书开源免费"},
+        {"type": "num", "seconds": 4.5, "from": 5.0, "to": 3.3, "unit": "V",
+         "sub": "R2∥RL = 5k · 塌了 **33%**", "bar": [1.0, 0.67]},
+        {"type": "card", "seconds": 4.5,
+         "lines": ["带载能力 ≈ **R1∥R2**"], "sub": "口诀"},
+        {"type": "card", "seconds": 5,
+         "lines": ["三条活路"],
+         "sub": "负载阻抗 ≫ R2 · R1/R2 取小 · 后面跟一级运放缓冲"},
+        {"type": "card", "seconds": 4.5,
+         "lines": ["下一集", "你看到的怪波形", "可能是探头画的"],
+         "sub": "合集：模拟电路动画课 · 全书开源免费",
+         "cta": "关注 · 看下一集"},
     ],
 }
 
@@ -64,29 +71,88 @@ PAGE = """<!DOCTYPE html>
 <html lang="zh"><head><meta charset="utf-8">
 <style>
   html,body {{ margin:0; width:{w}px; height:{h}px; overflow:hidden;
-    font-family:"Microsoft YaHei",system-ui,sans-serif; }}
+    font-family:"Microsoft YaHei",system-ui,sans-serif;
+    background:#141c38; }}
+  /* ---- 幕容器与过渡：切幕 = 淡入 + 轻微缩放（1.04 → 1.0） ---- */
   .shot {{ position:fixed; inset:0; display:none; }}
-  .shot.active {{ display:flex; }}
-  .card {{ flex-direction:column; justify-content:center; align-items:center;
-    gap:28px; text-align:center; padding:60px;
+  .shot.active {{ display:flex; animation:shotIn .5s cubic-bezier(.22,.9,.3,1) both; }}
+  @keyframes shotIn {{ from {{ opacity:0; transform:scale(1.045); }}
+                      to   {{ opacity:1; transform:scale(1); }} }}
+  /* ---- 背景：靛蓝渐变 + 点阵缓慢漂移 + 底部晕影，静止画面永不死板 ---- */
+  .bg {{ position:absolute; inset:0;
     background:
-      radial-gradient(120% 90% at 100% 0%, rgba(94,122,255,.25), transparent 55%),
+      radial-gradient(120% 90% at 100% 0%, rgba(94,122,255,.30), transparent 55%),
       linear-gradient(165deg,#1b2447 0%,#27357a 100%); }}
-  .card::before {{ content:""; position:absolute; inset:0;
+  .bg::before {{ content:""; position:absolute; inset:-40px;
     background-image:radial-gradient(rgba(255,255,255,.13) 1px, transparent 1.2px);
     background-size:18px 18px;
-    -webkit-mask-image:linear-gradient(180deg,#000,transparent 80%);
-    mask-image:linear-gradient(180deg,#000,transparent 80%); }}
+    -webkit-mask-image:linear-gradient(180deg,#000,transparent 85%);
+    mask-image:linear-gradient(180deg,#000,transparent 85%);
+    animation:drift 26s linear infinite; }}
+  @keyframes drift {{ from {{ transform:translate(0,0); }} to {{ transform:translate(-18px,-18px); }} }}
+  .bg::after {{ content:""; position:absolute; inset:0;
+    background:radial-gradient(140% 110% at 50% 50%, transparent 60%, rgba(8,12,28,.5) 100%); }}
+  /* ---- 文字入场：逐行错峰上滑；首行带强调色下划扫过 ---- */
+  .card {{ flex-direction:column; justify-content:center; align-items:center;
+    gap:30px; text-align:center; padding:60px; }}
+  .card .eyebrow {{ position:relative; color:#8fa5ff; font-size:26px; font-weight:700;
+    letter-spacing:.35em; text-indent:.35em; animation:rise .55s .05s both; }}
   .card .lines {{ position:relative; }}
-  .card .lines div {{ color:#fff; font-size:64px; font-weight:800;
-    line-height:1.35; letter-spacing:.01em; }}
-  .card .sub {{ position:relative; color:#aab7e8; font-size:28px; line-height:1.6; }}
-  .svgshot {{ flex-direction:column; background:#f6f7fb; }}
-  .svgshot .stage {{ flex:1; display:flex; align-items:center; justify-content:center; width:100%; }}
+  .card .lines div {{ color:#fff; font-weight:800; line-height:1.32;
+    font-size:var(--fs,72px); letter-spacing:.01em;
+    text-shadow:0 6px 30px rgba(10,16,40,.55);
+    animation:rise .6s both; }}
+  .card .lines div:nth-child(2) {{ animation-delay:.14s; }}
+  .card .lines div:nth-child(3) {{ animation-delay:.28s; }}
+  .card .lines .hl {{ color:#ffc247; }}
+  @keyframes rise {{ from {{ opacity:0; transform:translateY(46px); }}
+                    to   {{ opacity:1; transform:translateY(0); }} }}
+  .card .sub {{ position:relative; color:#aab7e8; font-size:30px; line-height:1.7;
+    animation:rise .6s .42s both; }}
+  .card .rule {{ position:relative; width:0; height:6px; border-radius:3px;
+    background:linear-gradient(90deg,#5e7aff,#ffc247);
+    animation:sweep .7s .3s cubic-bezier(.22,.9,.3,1) forwards; }}
+  @keyframes sweep {{ to {{ width:220px; }} }}
+  /* ---- 数字卡：计数跳字 + 塌陷条 ---- */
+  .numrow {{ position:relative; display:flex; align-items:baseline; gap:26px;
+    animation:rise .6s both; }}
+  .numrow .n {{ font-size:120px; font-weight:800; color:#fff;
+    font-variant-numeric:tabular-nums; text-shadow:0 8px 34px rgba(10,16,40,.6); }}
+  .numrow .unit {{ font-size:52px; color:#aab7e8; }}
+  .numrow .n.bad {{ color:#ff8f6b; }}
+  .numrow .arrow {{ font-size:72px; color:#ffc247; font-weight:800; }}
+  .bar {{ position:relative; width:420px; height:26px; border-radius:13px;
+    background:rgba(255,255,255,.14); overflow:hidden;
+    animation:rise .6s .35s both; }}
+  .bar i {{ position:absolute; inset:0; width:100%;
+    background:linear-gradient(90deg,#5e7aff,#ff8f6b);
+    border-radius:13px;
+    animation:barShrink var(--dur,4s) .5s cubic-bezier(.25,.8,.3,1) forwards; }}
+  @keyframes barShrink {{ from {{ transform:scaleX(1); }} to {{ transform:scaleX(var(--end,.67)); }} }}
+  /* ---- SVG 幕：舞台缩放入场 + 字幕条上滑 ---- */
+  .svgshot {{ flex-direction:column; background:#eef1f9; }}
+  .svgshot .stage {{ flex:1; display:flex; align-items:center; justify-content:center;
+    width:100%; animation:stageIn .6s cubic-bezier(.22,.9,.3,1) both; }}
+  @keyframes stageIn {{ from {{ opacity:0; transform:scale(.965); }}
+                       to   {{ opacity:1; transform:scale(1); }} }}
   .svgshot svg {{ width:94%; height:auto; border-radius:14px;
-    box-shadow:0 10px 34px rgba(23,32,64,.18); }}
+    box-shadow:0 12px 38px rgba(23,32,64,.20); }}
   .svgshot .caption {{ height:96px; display:flex; align-items:center; justify-content:center;
-    width:100%; background:#1b2447; color:#fff; font-size:32px; font-weight:700; }}
+    width:100%; background:#1b2447; color:#fff; font-size:34px; font-weight:700;
+    animation:capUp .5s .25s cubic-bezier(.22,.9,.3,1) both; }}
+  @keyframes capUp {{ from {{ transform:translateY(100%); }} to {{ transform:translateY(0); }} }}
+  /* ---- 结尾卡：关注脉动 ---- */
+  .card .cta {{ position:relative; margin-top:6px; padding:.5rem 1.6rem;
+    border:2px solid #ffc247; border-radius:999px; color:#ffc247;
+    font-size:30px; font-weight:800; animation:pulse 2s ease-in-out infinite; }}
+  @keyframes pulse {{ 0%,100% {{ transform:scale(1); opacity:1; }}
+                      50% {{ transform:scale(1.05); opacity:.82; }} }}
+  /* ---- 每幕底部节奏条：进度即时长的体感 ---- */
+  .shot .beat {{ position:absolute; left:0; bottom:0; height:8px; width:100%;
+    background:linear-gradient(90deg,#5e7aff,#ffc247);
+    transform-origin:left center; transform:scaleX(0); }}
+  .shot.active .beat {{ animation:beat var(--dur,4s) linear forwards; }}
+  @keyframes beat {{ from {{ transform:scaleX(0); }} to {{ transform:scaleX(1); }} }}
 </style></head>
 <body>
 {shots}
@@ -96,33 +162,80 @@ PAGE = """<!DOCTYPE html>
   let i = 0;
   function show() {{
     shots.forEach((s, k) => s.classList.toggle('active', k === i));
+    runCounts(shots[i]);
     /* 第 i 幕停留 durs[i]——写 durs[i-1] 会整体错一拍：
        首幕 0ms 直接跳过、每幕都播上一幕的时长（实测踩过）。 */
     if (i + 1 < shots.length) setTimeout(() => {{ i += 1; show(); }}, durs[i]);
+  }}
+  /* 数字卡：激活瞬间从 from 跳数到 to（ease-out，1.5s）——
+     跳数的「动」是短视频数字表达的底线，静态两个数没有冲击力 */
+  function runCounts(shot) {{
+    shot.querySelectorAll('.count').forEach(el => {{
+      const from = parseFloat(el.dataset.from), to = parseFloat(el.dataset.to);
+      const dec = parseInt(el.dataset.dec || '1', 10);
+      const t0 = performance.now(), D = 1500;
+      function tick(t) {{
+        const p = Math.min((t - t0) / D, 1);
+        const e = 1 - Math.pow(1 - p, 3);
+        el.textContent = (from + (to - from) * e).toFixed(dec);
+        if (p < 1) requestAnimationFrame(tick);
+      }}
+      requestAnimationFrame(tick);
+    }});
   }}
   show();
 </script>
 </body></html>"""
 
 
+def hl(text: str) -> str:
+    """lines 里的 **文字** → 琥珀色强调（`*` 先转义防误吞）。"""
+    text = text.replace("*", "&#42;")
+    return re.sub(r"&#42;&#42;(.+?)&#42;&#42;", r'<span class="hl">\1</span>', text)
+
+
 def build_html(storyboard: dict) -> str:
     shots_html, durs = [], []
     for s in storyboard["shots"]:
-        durs.append(int(s["seconds"] * 1000))
+        dur = s["seconds"]
+        durs.append(int(dur * 1000))
+        beat = f'<div class="beat" style="--dur:{dur}s"></div>'
         if s["type"] == "card":
-            lines = "".join(f"<div>{ln}</div>" for ln in s["lines"])
+            eyebrow = (f'<div class="eyebrow">{s["eyebrow"]}</div>' if s.get("eyebrow") else "")
+            lines = "".join(f"<div>{hl(ln)}</div>" for ln in s["lines"])
+            cta = f'<div class="cta">{s["cta"]}</div>' if s.get("cta") else ""
             shots_html.append(
-                f'<div class="shot card"><div class="lines">{lines}</div>'
-                f'<div class="sub">{s.get("sub", "")}</div></div>')
+                f'<div class="shot card" style="--dur:{dur}s"><div class="bg"></div>'
+                f"{eyebrow}<div class=\"lines\">{lines}</div>"
+                f'<div class="rule"></div><div class="sub">{s.get("sub", "")}</div>'
+                f"{cta}{beat}</div>")
+        elif s["type"] == "num":
+            dec = s.get("dec", 1)
+            bar = s.get("bar")
+            bar_html = ""
+            if bar:
+                pct = bar[1] / bar[0] * 100 if bar[0] else 100
+                bar_html = (f'<div class="bar"><i style="'
+                            f"animation-duration:{dur}s;--end:{pct / 100:.2f}\"></i></div>")
+            shots_html.append(
+                f'<div class="shot card" style="--dur:{dur}s"><div class="bg"></div>'
+                f'<div class="numrow"><span class="n" data-static="{s["from"]:.{dec}f}">'
+                f'{s["from"]:.{dec}f}</span><span class="n unit">{s["unit"]}</span>'
+                f'<span class="arrow">→</span>'
+                f'<span class="n bad count" data-from="{s["from"]}" data-to="{s["to"]}" '
+                f'data-dec="{dec}">{s["from"]:.{dec}f}</span>'
+                f'<span class="n bad unit">{s["unit"]}</span></div>'
+                f'{bar_html}<div class="sub">{hl(s.get("sub", ""))}</div>{beat}</div>')
         elif s["type"] == "svg":
             svg = (SVG_DIR / (s["file"] + ".svg")).read_text(encoding="utf-8")
             caption = f'<div class="caption">{s.get("caption", "")}</div>'
             shots_html.append(
-                f'<div class="shot svgshot"><div class="stage">{svg}</div>{caption}</div>')
+                f'<div class="shot svgshot" style="--dur:{dur}s">'
+                f'<div class="stage">{svg}</div>{caption}{beat}</div>')
         else:
             raise SystemExit(f"未知镜头类型：{s['type']}")
     total = sum(s["seconds"] for s in storyboard["shots"])
-    print(f"分镜 {len(durs)} 幕，总时长 {total:.0f}s")
+    print(f"分镜 {len(durs)} 幕，总时长 {total:.1f}s")
     return PAGE.format(w=W, h=H, shots="\n".join(shots_html), durs=json.dumps(durs))
 
 
