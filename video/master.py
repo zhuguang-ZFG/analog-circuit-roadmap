@@ -31,25 +31,56 @@ def wrap(text: str, width: int = 17) -> str:
     return "\n".join(text[i:i + width] for i in range(0, len(text), width))
 
 
-def subtitle_filters(board: dict, tmp: Path) -> list[str]:
-    """逐幕 drawtext（textfile 免转义；窗口 = 幕时间轴）。"""
+def chunk_voice(text: str, max_len: int = 30) -> list[str]:
+    """口播文本按句切分，长句再按逗号二次切分到 ≤max_len。"""
+    import re
+    sentences = [s for s in re.split(r"(?<=[。！？；])", text) if s.strip()]
+    chunks = []
+    for s in sentences:
+        if len(s) <= max_len:
+            chunks.append(s)
+            continue
+        parts = [x for x in re.split(r"(?<=[，、])", s) if x.strip()]
+        cur = ""
+        for part in parts:
+            if len(cur) + len(part) <= max_len:
+                cur += part
+            else:
+                if cur:
+                    chunks.append(cur)
+                cur = part
+        if cur:
+            chunks.append(cur)
+    return chunks
+
+
+def subtitle_filters(board: dict, tmp: Path, size: int, y: str) -> list[str]:
+    """句子级字幕：幕内按字数比例分配窗口——字幕节奏跟着口播走，
+    不是一幕一条挂十秒（实测过，太钝）。"""
     filters = []
     t0 = 0.0
-    for i, shot in enumerate(board["shots"]):
+    idx = 0
+    for shot in board["shots"]:
         dur = shot["seconds"]
         text = shot.get("voice", "")
         if text:
-            tf = tmp / f"sub-{i}.txt"
-            tf.write_text(wrap(text), encoding="utf-8")
-            tf_q = str(tf).replace("\\", "/").replace(":", "\\:")
-            enable = f"between(t,{t0 + 0.2:.2f},{t0 + dur - 0.15:.2f})"
-            size = 38
-            y = "h-330" if "horizontal" not in board.get("name", "") else "h-190"
-            filters.append(
-                f"drawtext=fontfile='{FONT}':textfile='{tf_q}':"
-                f"fontsize={size}:fontcolor=white:borderw=4:"
-                f"bordercolor=black@0.75:line_spacing=10:"
-                f"x=(w-text_w)/2:y={y}:enable='{enable}'")
+            chunks = chunk_voice(text)
+            total_chars = sum(len(c) for c in chunks)
+            speakable = max(dur - 0.35, 0.5)     # 幕首 0.2s + 尾 0.15s 不压字
+            clock = t0 + 0.2
+            for chunk in chunks:
+                share = speakable * len(chunk) / total_chars
+                tf = tmp / f"sub-{idx}.txt"
+                idx += 1
+                tf.write_text(wrap(chunk), encoding="utf-8")
+                tf_q = str(tf).replace("\\", "/").replace(":", "\:")
+                enable = f"between(t,{clock:.2f},{min(clock + share, t0 + dur - 0.1):.2f})"
+                filters.append(
+                    f"drawtext=fontfile='{FONT}':textfile='{tf_q}':"
+                    f"fontsize={size}:fontcolor=white:borderw=4:"
+                    f"bordercolor=black@0.75:line_spacing=10:"
+                    f"x=(w-text_w)/2:y={y}:enable='{enable}'")
+                clock += share
         t0 += dur
     return filters
 
@@ -57,11 +88,13 @@ def subtitle_filters(board: dict, tmp: Path) -> list[str]:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--shots", required=True, help="video/shots/*.json（名称来源）")
+    ap.add_argument("--size", choices=["vertical", "horizontal"], default="vertical")
     ap.add_argument("--no-subs", action="store_true")
     args = ap.parse_args()
 
+    suffix = "" if args.size == "vertical" else "-h"
     name = Path(args.shots).stem
-    vo = SAMPLES / f"{name}-vo.mp4"
+    vo = SAMPLES / f"{name}-vo{suffix}.mp4"
     timeline = SAMPLES / f"{name}-timeline.json"
     if not vo.is_file() or not timeline.is_file():
         print("缺输入：先跑 narrate.py 生成 -vo.mp4 与 -timeline.json", file=sys.stderr)
@@ -84,11 +117,12 @@ def main() -> int:
         w.writeframes(data.tobytes())
 
     import tempfile
-    out = SAMPLES / f"{name}-final.mp4"
+    out = SAMPLES / f"{name}-final{suffix}.mp4"
     with tempfile.TemporaryDirectory() as tmp:
         vf = "drawtext=fontfile='" + FONT + "':text=' ':x=0:y=0"
         if not args.no_subs:
-            subs = subtitle_filters(board, Path(tmp))
+            sub_size, sub_y = (38, "h-330") if args.size == "vertical" else (52, "h-175")
+            subs = subtitle_filters(board, Path(tmp), sub_size, sub_y)
             vf = ",".join(subs) if subs else vf
         cmd = [ff, "-y", "-i", str(vo), "-i", str(bgm_wav),
                "-filter_complex",
@@ -99,8 +133,8 @@ def main() -> int:
                "-c:v", "libx264", "-preset", "medium", "-pix_fmt", "yuv420p",
                "-c:a", "aac", "-b:a", "160k", "-shortest", str(out)]
         subprocess.run(cmd, check=True, capture_output=True)
-    print(f"发布成片：{out.name}（{out.stat().st_size / 1048576:.1f}MB，{total:.1f}s，"
-          f"含 BGM{' + 烧录字幕' if not args.no_subs else ''}）")
+    print(f"发布成片：{out.name}（{args.size}，{out.stat().st_size / 1048576:.1f}MB，"
+          f"{total:.1f}s，含 BGM{' + 烧录字幕' if not args.no_subs else ''}）")
     return 0
 
 
