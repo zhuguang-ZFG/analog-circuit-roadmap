@@ -1,0 +1,65 @@
+{
+  "name": "ep02-virtual-short",
+  "shots": [
+    {
+      "type": "card",
+      "seconds": 3,
+      "eyebrow": "模拟电路动画课 · EP02",
+      "lines": [
+        "运放电路不用背",
+        "**虚短 · 虚断**"
+      ]
+    },
+    {
+      "type": "svg",
+      "seconds": 14,
+      "file": "opamp-inverting",
+      "caption": "两条公理推演一切"
+    },
+    {
+      "type": "card",
+      "seconds": 4.5,
+      "lines": [
+        "输出 10V",
+        "输入差只有 **10~100µV**"
+      ],
+      "sub": "开环增益 10⁵~10⁶ → 虚短"
+    },
+    {
+      "type": "card",
+      "seconds": 4,
+      "lines": [
+        "输入 pA~nA 级",
+        "**虚断**"
+      ],
+      "sub": "不取电流"
+    },
+    {
+      "type": "card",
+      "seconds": 5,
+      "lines": [
+        "前提：**负反馈在线性区**"
+      ],
+      "sub": "反馈一断，虚短当场失效——比较器就是故意反着用"
+    },
+    {
+      "type": "card",
+      "seconds": 4.5,
+      "lines": [
+        "小信号看 **GBW**",
+        "大信号看 **SR**"
+      ],
+      "sub": "LM358：0.7MHz / 0.3V/µs——两个都要验算"
+    },
+    {
+      "type": "card",
+      "seconds": 4.5,
+      "lines": [
+        "下一集",
+        "给判决**撕开一条缝**"
+      ],
+      "sub": "合集：模拟电路动画课 · 全书开源免费",
+      "cta": "关注 · 看下一集"
+    }
+  ]
+}
