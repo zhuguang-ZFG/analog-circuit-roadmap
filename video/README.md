@@ -55,11 +55,11 @@
 | 03 | 迟滞 ✅ | 毛刺一串冒？不是芯片坏了 | 7.3 | comparator-hysteresis / schmitt-osc |
 | 04 | 分压器带载 ✅ | 接上负载那一刻，5V 就没了 | 0.3 | divider-loading |
 | 05 | 探头负载 ✅ | 怪波形可能是探头画的 | 16.3 | probe-loading |
-| 06 | 热失控 | BJT 的死因：自己把自己烧了 | 3.7 | bjt-transport（热失控链） |
-| 07 | 上拉电阻 | 开漏没上拉 = 没出口 | 5.2 | 555-modes？→ 用 open-drain 帧截图 |
-| 08 | 去耦电容 | 贴脸放不是玄学 | 1.2 | cap-decoupling |
-| 09 | 电解寿命 | 10℃ 翻倍：电源里第一个死的总是它 | 1.7 | cap-derating |
-| 10 | 续流二极管 | 继电器断电瞬间的几百伏去哪了 | 2/3.5 | body-diode |
+| 06 | ✅ 热失控 | BJT 的死因：自己把自己烧了 | 3.7 | bjt-transport（热失控链） |
+| 07 | ✅ 上拉电阻 | 开漏没上拉 = 没出口 | 5.2 | 555-modes？→ 用 open-drain 帧截图 |
+| 08 | ✅ 去耦电容 | 贴脸放不是玄学 | 1.2 | cap-decoupling |
+| 09 | ✅ 电解寿命 | 10℃ 翻倍：电源里第一个死的总是它 | 1.7 | cap-derating |
+| 10 | ✅ 续流二极管 | 继电器断电瞬间的几百伏去哪了 | 2/3.5 | body-diode |
 | 11 | 相位裕度 | 振铃不是玄学，是裕度在报警 | 12.9 | comparator-pitfalls？→ 环路帧 |
 | 12 | 555 内部 | 三电阻两比较器撑起半个电子圈 | 10.1 | 555-astable-beats |
 | 13 | Buck 电感 | 开关电源的主角不是开关 | 13.2 | buck-converter |
