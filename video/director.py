@@ -105,6 +105,10 @@ PAGE = """<!DOCTYPE html>
     animation:floaty 7s ease-in-out infinite alternate; }}
   @keyframes floaty {{ from {{ transform:translateY(-7px); }}
                       to   {{ transform:translateY(7px); }} }}
+  .bgart {{ position:absolute; inset:0; opacity:.22;
+    filter:saturate(.8) blur(0.6px);
+    animation:kenburns var(--dur,8s) ease-in-out infinite alternate; }}
+  .bgart svg {{ width:100%; height:100%; }}
   .card .eyebrow {{ position:relative; color:#8fa5ff; font-size:var(--fs-eyebrow,26px); font-weight:700;
     letter-spacing:.35em; text-indent:.35em; animation:rise .55s .05s both; }}
   .card .lines {{ position:relative; }}
@@ -160,6 +164,12 @@ PAGE = """<!DOCTYPE html>
   .svgshot .caption {{ height:110px; display:flex; align-items:center; justify-content:center;
     width:100%; background:#1b2447; color:#fff; font-size:34px; font-weight:700;
     animation:capUp .5s .25s cubic-bezier(.22,.9,.3,1) both; }}
+  body.h .svgshot {{ flex-direction:row; }}
+  body.h .svgshot .stage {{ flex:1.45; padding:44px; }}
+  body.h .svgshot .caption {{ width:32%; height:auto; flex-direction:column;
+    justify-content:center; gap:18px; padding:0 40px;
+    animation:rise .6s .25s both; }}
+  body.h .svgshot .caption::before {{ content:"🎬"; font-size:44px; }}
   @keyframes capUp {{ from {{ transform:translateY(100%); }} to {{ transform:translateY(0); }} }}
   /* ---- 结尾卡：关注脉动 ---- */
   .card .cta {{ position:relative; margin-top:6px; padding:.5rem 1.6rem;
@@ -222,6 +232,10 @@ def build_html(storyboard: dict, w: int = W, h: int = H, cls: str = "v") -> str:
         beat = f'<div class="beat" style="--dur:{dur}s"></div>'
         if s["type"] == "card":
             eyebrow = (f'<div class="eyebrow">{s["eyebrow"]}</div>' if s.get("eyebrow") else "")
+            bgart = ""
+            if s.get("bgSvg"):
+                art = (SVG_DIR / (s["bgSvg"] + ".svg")).read_text(encoding="utf-8")
+                bgart = f'<div class="bgart">{art}</div>'
             lines = "".join(f"<div>{hl(ln)}</div>" for ln in s["lines"])
             cta = f'<div class="cta">{s["cta"]}</div>' if s.get("cta") else ""
             inner = (f"{eyebrow}<div class=\"lines\">{lines}</div>"
@@ -229,7 +243,7 @@ def build_html(storyboard: dict, w: int = W, h: int = H, cls: str = "v") -> str:
                      f"{cta}")
             shots_html.append(
                 f'<div class="shot card" style="--dur:{dur}s"><div class="bg"></div>'
-                f'<div class="stack">{inner}</div>{beat}</div>')
+                f'{bgart}<div class="stack">{inner}</div>{beat}</div>')
         elif s["type"] == "num":
             dec = s.get("dec", 1)
             bar = s.get("bar")
@@ -289,7 +303,8 @@ def main() -> int:
         from playwright.sync_api import sync_playwright
 
         OUT_DIR.mkdir(exist_ok=True)
-        out = OUT_DIR / (storyboard['name'] + '-draft.webm')
+        suffix = "" if args.size == "vertical" else "-h"
+        out = OUT_DIR / (storyboard['name'] + f'-draft{suffix}.webm')
         with sync_playwright() as pw:
             browser = pw.chromium.launch(channel="chrome", headless=True)
             if args.cover:
