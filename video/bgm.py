@@ -67,6 +67,22 @@ def make_bgm(duration: float) -> np.ndarray:
             e1 = min(i1 + len(p), len(total))
             if e1 > i1:
                 total[i1:e1] += p[:e1 - i1] * 0.5
+            # 节奏骨架：1/3 拍底鼓（低频正弦顿），2/4 拍轻镲（噪声瞬态）
+            beat = k * 60 / BPM / 2
+            i2 = int((pos + beat) * SR)
+            kb = int(0.11 * SR)
+            tb = np.arange(kb) / SR
+            kick = np.sin(2 * np.pi * (62 - 25 * tb / 0.11) * tb) * np.exp(-tb * 30)
+            e2 = min(i2 + kb, len(total))
+            if e2 > i2:
+                total[i2:e2] += kick[:e2 - i2] * 0.30
+            if k % 2 == 1:
+                hb = int(0.03 * SR)
+                rng_h = np.random.default_rng(int(pos * 1000) + k)
+                hat = rng_h.standard_normal(hb) * np.exp(-np.arange(hb) / SR * 90)
+                e3 = min(i2 + hb, len(total))
+                if e3 > i2:
+                    total[i2:e3] += hat[:e3 - i2] * 0.06
         pos += step
         bar_i += 1
     # 收尾淡出

@@ -12,6 +12,7 @@
 from __future__ import annotations
 
 import argparse
+import array
 import json
 import subprocess
 import sys
@@ -103,11 +104,31 @@ def main() -> int:
     total = sum(s["seconds"] for s in board["shots"])
 
     import imageio_ffmpeg
+    import numpy as np
     ff = imageio_ffmpeg.get_ffmpeg_exe()
+    SR = 44100
+
+    # 口播轨：从 vo.mp4 解码到 wav
+    vo_wav = SAMPLES / f"{name}-vo-narr.wav"
+    subprocess.run([ff, "-y", "-i", str(vo), "-ar", "44100", "-ac", "1",
+                    str(vo_wav)], check=True, capture_output=True)
+
+    # SFX 时间轴：标题幕 thud；其余幕转场 whoosh；数字幕跳数落定 pop
+    from sfx import whoosh, pop, thud, place
+    sfx_track = np.zeros(int(total * SR) + SR)
+    t0 = 0.0
+    for shot in board["shots"]:
+        if shot.get("eyebrow"):
+            place(sfx_track, thud(), t0 + 0.02)
+        else:
+            place(sfx_track, whoosh(), t0)
+        if shot["type"] == "num":
+            place(sfx_track, pop(), t0 + 1.5)
+        t0 += shot["seconds"]
+    sfx_track = sfx_track[:int(total * SR)] * 0.5
 
     # BGM：与成片等长，淡出收尾
     from bgm import make_bgm
-    import numpy as np
     data = (make_bgm(total) * 32767 * 0.9).astype(np.int16)
     bgm_wav = SAMPLES / f"{name}-bgm.wav"
     with wave.open(str(bgm_wav), "wb") as w:
@@ -115,6 +136,30 @@ def main() -> int:
         w.setsampwidth(2)
         w.setframerate(44100)
         w.writeframes(data.tobytes())
+
+    # 三轨 Python 混音：口播全量 + BGM 0.16 + SFX 0.5（简单限幅）
+    with wave.open(str(vo_wav), "rb") as w:
+        nar_rate = w.getframerate()
+        narr = np.array(array.array("h", w.readframes(w.getnframes())), dtype=np.float64)
+    if nar_rate != 44100:
+        ratio = 44100 / nar_rate
+        n_new = int(len(narr) * ratio)
+        narr = np.interp(np.linspace(0, len(narr) - 1, n_new),
+                         np.arange(len(narr)), narr)
+    mix_len = max(len(narr), len(sfx_track), len(data))
+    mix = np.zeros(mix_len)
+    mix[:len(narr)] += narr
+    mix[:len(data)] += data / 32767 * BGM_GAIN
+    mix[:len(sfx_track)] += sfx_track
+    peak = float(np.max(np.abs(mix))) or 1.0
+    if peak > 0.97:
+        mix *= 0.97 / peak
+    final_wav = SAMPLES / f"{name}-final-audio.wav"
+    with wave.open(str(final_wav), "wb") as w:
+        w.setnchannels(1)
+        w.setsampwidth(2)
+        w.setframerate(44100)
+        w.writeframes((mix * 32767).astype(np.int16).tobytes())
 
     import tempfile
     out = SAMPLES / f"{name}-final{suffix}.mp4"
@@ -124,17 +169,14 @@ def main() -> int:
             sub_size, sub_y = (38, "h-330") if args.size == "vertical" else (52, "h-175")
             subs = subtitle_filters(board, Path(tmp), sub_size, sub_y)
             vf = ",".join(subs) if subs else vf
-        cmd = [ff, "-y", "-i", str(vo), "-i", str(bgm_wav),
-               "-filter_complex",
-               f"[1:a]volume={BGM_GAIN}[bg];[0:a][bg]amix=inputs=2:"
-               f"duration=first:dropout_transition=0[a];"
-               f"[0:v]{vf}[v]",
-               "-map", "[v]", "-map", "[a]",
+        cmd = [ff, "-y", "-i", str(vo), "-i", str(final_wav),
+               "-vf", vf,
+               "-map", "0:v", "-map", "1:a",
                "-c:v", "libx264", "-preset", "medium", "-pix_fmt", "yuv420p",
                "-c:a", "aac", "-b:a", "160k", "-shortest", str(out)]
         subprocess.run(cmd, check=True, capture_output=True)
     print(f"发布成片：{out.name}（{args.size}，{out.stat().st_size / 1048576:.1f}MB，"
-          f"{total:.1f}s，含 BGM{' + 烧录字幕' if not args.no_subs else ''}）")
+          f"{total:.1f}s，含 BGM + 音效卡点{' + 烧录字幕' if not args.no_subs else ''}）")
     return 0
 
 
