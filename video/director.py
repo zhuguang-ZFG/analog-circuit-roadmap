@@ -73,6 +73,11 @@ PAGE = """<!DOCTYPE html>
   html,body {{ margin:0; width:{w}px; height:{h}px; overflow:hidden;
     font-family:"Microsoft YaHei",system-ui,sans-serif;
     background:#141c38; }}
+  /* ---- 方向适配：横屏（B 站）字号整体上浮，SVG 舞台留边更多 ---- */
+  body {{ --fs-line:72px; --fs-num:120px; --fs-sub:30px; --fs-eyebrow:26px;
+         --fs-arrow:72px; --fs-caption:34px; }}
+  body.h {{ --fs-line:92px; --fs-num:170px; --fs-sub:38px; --fs-eyebrow:30px;
+          --fs-arrow:96px; --fs-caption:42px; }}
   /* ---- 幕容器与过渡：切幕 = 淡入 + 轻微缩放（1.04 → 1.0） ---- */
   .shot {{ position:fixed; inset:0; display:none; }}
   .shot.active {{ display:flex; animation:shotIn .5s cubic-bezier(.22,.9,.3,1) both; }}
@@ -95,11 +100,11 @@ PAGE = """<!DOCTYPE html>
   /* ---- 文字入场：逐行错峰上滑；首行带强调色下划扫过 ---- */
   .card {{ flex-direction:column; justify-content:center; align-items:center;
     gap:30px; text-align:center; padding:60px; }}
-  .card .eyebrow {{ position:relative; color:#8fa5ff; font-size:26px; font-weight:700;
+  .card .eyebrow {{ position:relative; color:#8fa5ff; font-size:var(--fs-eyebrow,26px); font-weight:700;
     letter-spacing:.35em; text-indent:.35em; animation:rise .55s .05s both; }}
   .card .lines {{ position:relative; }}
   .card .lines div {{ color:#fff; font-weight:800; line-height:1.32;
-    font-size:var(--fs,72px); letter-spacing:.01em;
+    font-size:var(--fs-line,72px); letter-spacing:.01em;
     text-shadow:0 6px 30px rgba(10,16,40,.55);
     animation:rise .6s both; }}
   .card .lines div:nth-child(2) {{ animation-delay:.14s; }}
@@ -107,7 +112,7 @@ PAGE = """<!DOCTYPE html>
   .card .lines .hl {{ color:#ffc247; }}
   @keyframes rise {{ from {{ opacity:0; transform:translateY(46px); }}
                     to   {{ opacity:1; transform:translateY(0); }} }}
-  .card .sub {{ position:relative; color:#aab7e8; font-size:30px; line-height:1.7;
+  .card .sub {{ position:relative; color:#aab7e8; font-size:var(--fs-sub,30px); line-height:1.75; max-width:86%;
     animation:rise .6s .42s both; }}
   .card .rule {{ position:relative; width:0; height:6px; border-radius:3px;
     background:linear-gradient(90deg,#5e7aff,#ffc247);
@@ -116,11 +121,11 @@ PAGE = """<!DOCTYPE html>
   /* ---- 数字卡：计数跳字 + 塌陷条 ---- */
   .numrow {{ position:relative; display:flex; align-items:baseline; gap:26px;
     animation:rise .6s both; }}
-  .numrow .n {{ font-size:120px; font-weight:800; color:#fff;
+  .numrow .n {{ font-size:var(--fs-num,120px); font-weight:800; color:#fff;
     font-variant-numeric:tabular-nums; text-shadow:0 8px 34px rgba(10,16,40,.6); }}
-  .numrow .unit {{ font-size:52px; color:#aab7e8; }}
+  .numrow .unit {{ font-size:calc(var(--fs-num,120px) * .42); color:#aab7e8; }}
   .numrow .n.bad {{ color:#ff8f6b; }}
-  .numrow .arrow {{ font-size:72px; color:#ffc247; font-weight:800; }}
+  .numrow .arrow {{ font-size:var(--fs-arrow,72px); color:#ffc247; font-weight:800; }}
   .bar {{ position:relative; width:420px; height:26px; border-radius:13px;
     background:rgba(255,255,255,.14); overflow:hidden;
     animation:rise .6s .35s both; }}
@@ -137,7 +142,7 @@ PAGE = """<!DOCTYPE html>
                        to   {{ opacity:1; transform:scale(1); }} }}
   .svgshot svg {{ width:94%; height:auto; border-radius:14px;
     box-shadow:0 12px 38px rgba(23,32,64,.20); }}
-  .svgshot .caption {{ height:96px; display:flex; align-items:center; justify-content:center;
+  .svgshot .caption {{ height:110px; display:flex; align-items:center; justify-content:center;
     width:100%; background:#1b2447; color:#fff; font-size:34px; font-weight:700;
     animation:capUp .5s .25s cubic-bezier(.22,.9,.3,1) both; }}
   @keyframes capUp {{ from {{ transform:translateY(100%); }} to {{ transform:translateY(0); }} }}
@@ -154,7 +159,7 @@ PAGE = """<!DOCTYPE html>
   .shot.active .beat {{ animation:beat var(--dur,4s) linear forwards; }}
   @keyframes beat {{ from {{ transform:scaleX(0); }} to {{ transform:scaleX(1); }} }}
 </style></head>
-<body>
+<body class="{cls}">
 {shots}
 <script>
   const durs = {durs};
@@ -194,7 +199,7 @@ def hl(text: str) -> str:
     return re.sub(r"&#42;&#42;(.+?)&#42;&#42;", r'<span class="hl">\1</span>', text)
 
 
-def build_html(storyboard: dict) -> str:
+def build_html(storyboard: dict, w: int = W, h: int = H, cls: str = "v") -> str:
     shots_html, durs = [], []
     for s in storyboard["shots"]:
         dur = s["seconds"]
@@ -236,13 +241,17 @@ def build_html(storyboard: dict) -> str:
             raise SystemExit(f"未知镜头类型：{s['type']}")
     total = sum(s["seconds"] for s in storyboard["shots"])
     print(f"分镜 {len(durs)} 幕，总时长 {total:.1f}s")
-    return PAGE.format(w=W, h=H, shots="\n".join(shots_html), durs=json.dumps(durs))
+    return PAGE.format(w=w, h=h, cls=cls, shots="\n".join(shots_html), durs=json.dumps(durs))
 
 
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--demo", choices=["ep04"], help="内置分镜：ep04 分压器带载")
-    ap.add_argument("--shots", help="自定义分镜 JSON（结构见文件头 SHOTS_DOC）")
+    ap.add_argument("--shots", help="自定义分镜 JSON（结构见文件头 SHOTS_DOC；建议放 video/shots/）")
+    ap.add_argument("--size", choices=["vertical", "horizontal"], default="vertical",
+                    help="vertical=抖音 720x1280；horizontal=B 站 1920x1080")
+    ap.add_argument("--cover", action="store_true",
+                    help="只渲染首张标题卡并截图出封面 PNG（1080x1920 / 1620x910）")
     args = ap.parse_args()
     if args.demo == "ep04":
         storyboard = EP04
@@ -251,7 +260,12 @@ def main() -> int:
     else:
         ap.error("--demo 或 --shots 二选一")
 
-    html = build_html(storyboard)
+    w, h = (W, H) if args.size == "vertical" else (1920, 1080)
+    cls = "v" if args.size == "vertical" else "h"
+    if args.cover:
+        storyboard = {**storyboard, "shots": storyboard["shots"][:1]}
+        storyboard["shots"][0] = {**storyboard["shots"][0], "seconds": 2}
+    html = build_html(storyboard, w=w, h=h, cls=cls)
     with tempfile.TemporaryDirectory() as tmp:
         page_file = Path(tmp) / "director.html"
         page_file.write_text(html, encoding="utf-8")
@@ -259,13 +273,27 @@ def main() -> int:
         from playwright.sync_api import sync_playwright
 
         OUT_DIR.mkdir(exist_ok=True)
-        out = OUT_DIR / f"{storyboard['name']}-draft.webm"
+        out = OUT_DIR / (storyboard['name'] + '-draft.webm')
         with sync_playwright() as pw:
             browser = pw.chromium.launch(channel="chrome", headless=True)
+            if args.cover:
+                # 封面：同版式放大 1.5 倍截图（720x1280 → 1080x1920）
+                scale = 1.5 if args.size == "vertical" else 1.0
+                context = browser.new_context(
+                    viewport={"width": w, "height": h}, device_scale_factor=scale)
+                page = context.new_page()
+                page.goto(page_file.as_uri())
+                page.wait_for_timeout(1600)
+                out = OUT_DIR / f"{storyboard['name']}-cover.png"
+                page.screenshot(path=str(out))
+                context.close()
+                print(f"封面已出：{out.name}（{int(w * scale)}x{int(h * scale)}）")
+                browser.close()
+                return 0
             context = browser.new_context(
-                viewport={"width": W, "height": H},
+                viewport={"width": w, "height": h},
                 record_video_dir=str(OUT_DIR),
-                record_video_size={"width": W, "height": H},
+                record_video_size={"width": w, "height": h},
             )
             page = context.new_page()
             page.goto(page_file.as_uri())
@@ -276,7 +304,7 @@ def main() -> int:
             browser.close()
             saved.replace(out)
     size_mb = out.stat().st_size / 1048576
-    print(f"草片已出：{out.name}（{W}x{H}，{total:.0f}s，{size_mb:.1f}MB）")
+    print(f"草片已出：{out.name}（{w}x{h}，{total:.0f}s，{size_mb:.1f}MB）")
     return 0
 
 

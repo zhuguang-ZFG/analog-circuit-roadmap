@@ -35,7 +35,11 @@
 3. **素材**：`assets/svg/*.svg` 是 SMIL 动画，浏览器打开即播。三条录制路线：
    - 快：**OBS 录屏**浏览器全屏（F11），按脚本节拍用「←/→」手动推进（SVG 内置左右箭头按钮可切拍）；
    - 稳：`video/record_clip.py` 把单张动画直录成 WebM 素材（`--svg miller-plateau --seconds 12`，file:// 无需服务器）；
-   - **一键草片（推荐）**：`video/director.py` 按分镜表把 **标题卡 → 动画 → 数字卡 → 口诀卡 → 结尾卡** 串成完整竖屏草片（720×1280）——`python video/director.py --demo ep04`，自定义分镜用 `--shots my.json`（结构见文件头）。草片 = 节拍与字幕核对基准 + 直接配音的底版。
+   - **一键草片（推荐）**：`video/director.py` 按分镜表把 **标题卡 → 动画 → 数字/口诀卡 → 结尾卡** 串成完整草片，带运动版式（错峰入场、跳数计数、节奏条、点阵漂移、CTA 脉动）：
+     - `python video/director.py --shots video/shots/ep04-divider.json` —— 竖屏 720×1280（抖音）
+     - `python video/director.py --shots video/shots/ep01-miller.json --size horizontal` —— 横屏 1920×1080（B 站）
+     - `python video/director.py --shots video/shots/ep01-miller.json --cover` —— 出 1080×1920 封面 PNG
+     - `--demo ep04` 为内置演示；五集分镜已备好在 `video/shots/`，新集照抄结构写 JSON。草片 = 节拍与字幕核对基准 + 直接配音的底版。
 4. **配音**：人声优先（工程师口吻、语速 240~280 字/分钟）；TTS 备选（豆包/火山音色较自然，注意「运放/压摆率」等专业词读音校对）。
 5. **剪辑**：剪映自动字幕 + 关键词大字换色；**数字出场时停 0.5 秒**（这是课，不是快剪）。
 6. **发布**：每集脚本末尾的发布包（标题候选 / 封面字 / 话题 / 置顶评论）直接抄。

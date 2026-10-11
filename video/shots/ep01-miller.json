@@ -1,0 +1,63 @@
+{
+  "name": "ep01-miller",
+  "shots": [
+    {
+      "type": "card",
+      "seconds": 3,
+      "eyebrow": "模拟电路动画课 · EP01",
+      "lines": [
+        "你 MOSFET 发烫的原因",
+        "藏在这 **几百纳秒**"
+      ]
+    },
+    {
+      "type": "svg",
+      "seconds": 15,
+      "file": "mosfet-four-beats",
+      "caption": "① 充电 → ② 到平台 → ③ 米勒平台 → ④ 完全增强"
+    },
+    {
+      "type": "svg",
+      "seconds": 13,
+      "file": "miller-plateau",
+      "caption": "平台期：V、I 同时不为零"
+    },
+    {
+      "type": "card",
+      "seconds": 4.5,
+      "lines": [
+        "P = V × I",
+        "损耗 = **阴影面积**"
+      ],
+      "sub": "平台期间电压电流同时在线"
+    },
+    {
+      "type": "card",
+      "seconds": 4.5,
+      "lines": [
+        "频率越高",
+        "损耗 **线性放大**"
+      ],
+      "sub": "datasheet 上 Qgd 比 Ciss 更诚实"
+    },
+    {
+      "type": "card",
+      "seconds": 4.5,
+      "lines": [
+        "栅阻越小越快",
+        "越大越静"
+      ],
+      "sub": "口诀"
+    },
+    {
+      "type": "card",
+      "seconds": 4.5,
+      "lines": [
+        "下一集",
+        "四个字推掉一整章运放"
+      ],
+      "sub": "合集：模拟电路动画课 · 全书开源免费",
+      "cta": "关注 · 看下一集"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "name": "ep05-probe",
+  "shots": [
+    {
+      "type": "card",
+      "seconds": 3,
+      "eyebrow": "模拟电路动画课 · EP05",
+      "lines": [
+        "这条怪波形",
+        "可能是**探头画的**"
+      ]
+    },
+    {
+      "type": "svg",
+      "seconds": 14,
+      "file": "probe-loading",
+      "caption": "探头是负载：1MΩ‖100pF 不请自来"
+    },
+    {
+      "type": "num",
+      "seconds": 4.5,
+      "from": 9.0,
+      "to": 1.0,
+      "unit": "%",
+      "sub": "×1 → ×10 档：**幅度误差**（100kΩ 源阻）"
+    },
+    {
+      "type": "card",
+      "seconds": 4.5,
+      "lines": [
+        "带宽 16kHz → **159kHz**"
+      ],
+      "sub": "100k×100pF=10µs 的账——高频信号不再被削圆"
+    },
+    {
+      "type": "card",
+      "seconds": 4,
+      "lines": [
+        "模拟节点一律 **×10**"
+      ],
+      "sub": "口诀 · Jim Williams 铁律"
+    },
+    {
+      "type": "card",
+      "seconds": 4.5,
+      "lines": [
+        "下一集",
+        "BJT 怎么**烧死自己**"
+      ],
+      "sub": "合集：模拟电路动画课 · 全书开源免费",
+      "cta": "关注 · 看下一集"
+    }
+  ]
+}
