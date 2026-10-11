@@ -40,9 +40,9 @@
      - `python video/director.py --shots video/shots/ep01-miller.json --size horizontal` —— 横屏 1920×1080（B 站）
      - `python video/director.py --shots video/shots/ep01-miller.json --cover` —— 出 1080×1920 封面 PNG
      - `--demo ep04` 为内置演示；五集分镜已备好在 `video/shots/`，新集照抄结构写 JSON。草片 = 节拍与字幕核对基准 + 直接配音的底版。
-4. **配音**：人声优先（工程师口吻、语速 240~280 字/分钟）；TTS 备选（豆包/火山音色较自然，注意「运放/压摆率」等专业词读音校对）。
+4. **配音**：`video/narrate.py` 一条命令全自动——逐镜取分镜表里的 `voice` 字段，edge-tts 合成口播（默认 zh-CN-YunxiNeural、语速 +12%），**按口播时长自动重排时间轴**（幕秒数 = max(原秒数, 口播+0.7s)，动画幕保底原节拍），重录视频并把音轨按幕首对齐、ffmpeg 合成：`python video/narrate.py --shots video/shots/ep04-divider.json` → `samples/<name>-vo.mp4`（带口播成片，可直接上传试水）。无声草片保留，剪映精剪换真人声时对轨更灵活。依赖：`pip install edge-tts imageio-ffmpeg`（开发侧工具，不进 requirements）。人声优先级永远高于 TTS——成片阶段换真人声，管线不变。
 5. **剪辑**：剪映自动字幕 + 关键词大字换色；**数字出场时停 0.5 秒**（这是课，不是快剪）。
-6. **发布**：每集脚本末尾的发布包（标题候选 / 封面字 / 话题 / 置顶评论）直接抄。
+6. **发布**：每集脚本末尾的发布包（标题候选 / 封面字 / 话题 / 置顶评论）直接抄，封面用 `director.py --cover` 出图。
 
 ## 4. 第一季选题矩阵（20 集）
 
