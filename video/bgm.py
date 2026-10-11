@@ -31,8 +31,8 @@ def pad(chord: list, dur: float) -> np.ndarray:
         out += np.sin(2 * np.pi * f * t)
         out += 0.35 * np.sin(2 * np.pi * f * 2 * t)
     env = np.ones(n)
-    a = int(0.45 * SR)
-    r = int(0.7 * SR)
+    a = min(int(0.45 * SR), n)
+    r = min(int(0.7 * SR), n)
     env[:a] = np.linspace(0, 1, a) ** 2
     env[-r:] *= np.linspace(1, 0, r) ** 1.5
     return out * env / len(chord) * 0.34
