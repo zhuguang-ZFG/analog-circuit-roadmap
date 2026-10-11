@@ -94,7 +94,7 @@ def main() -> int:
     total = sum(s["seconds"] for s in board["shots"])
     print(f"口播合计 {total_voice:.1f}s → 成片 {total:.1f}s")
 
-    adjusted_file = TMP / f"{name}-adjusted.json"
+    adjusted_file = SAMPLES / f"{name}-timeline.json"
     adjusted_file.write_text(json.dumps(board, ensure_ascii=False), encoding="utf-8")
     if args.no_render:
         return 0
