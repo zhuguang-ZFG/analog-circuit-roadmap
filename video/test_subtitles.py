@@ -104,5 +104,46 @@ class TestNumCards(unittest.TestCase):
         self.assertEqual(bad, [])
 
 
+class TestNumRowFit(unittest.TestCase):
+    """数字行不出边：全量分镜双尺寸页面级量测（playwright）。
+    回归三层历史缺陷：字体解码与量测赛跑（采集端 fonts.ready 门控）、
+    跳数 from/to 宽度赛跑（落定值测量）、scrollWidth 低估（改用渲染盒）。"""
+
+    def test_all_num_rows_fit(self):
+        from playwright.sync_api import sync_playwright
+        sys.path.insert(0, str(Path(__file__).parent))
+        import director
+        bad = []
+        with sync_playwright() as pw:
+            browser = pw.chromium.launch(channel="chrome", headless=True)
+            try:
+                for sj in sorted((Path(__file__).parent / "shots").glob("ep*.json")):
+                    board = json.loads(sj.read_text(encoding="utf-8"))
+                    if not any(s["type"] == "num" for s in board["shots"]):
+                        continue
+                    for w, h, cls in ((720, 1280, "v"), (1920, 1080, "h")):
+                        html = director.build_html(board, w=w, h=h, cls=cls)
+                        page = browser.new_page(viewport={"width": w, "height": h})
+                        page.add_init_script("window.__det = true;")
+                        page.goto("about:blank")
+                        page.set_content(html)
+                        page.evaluate("() => document.fonts.ready")
+                        t = 0.0
+                        for i, s in enumerate(board["shots"], 1):
+                            if s["type"] == "num":
+                                page.evaluate(f"window.__seek({int((t + s['seconds'] / 2) * 1000)})")
+                                r = page.evaluate(
+                                    "() => { const q = document.querySelectorAll('.shot.active')[0]"
+                                    ".querySelector('.numrow').getBoundingClientRect();"
+                                    " return { l: Math.round(q.left), r: Math.round(q.right) }; }")
+                                if r["l"] < 2 or r["r"] > w - 2:
+                                    bad.append(f"{board['name']} 幕{i} [{cls}]: {r}")
+                            t += s["seconds"]
+                        page.close()
+            finally:
+                browser.close()
+        self.assertEqual(bad, [])
+
+
 if __name__ == "__main__":
     unittest.main()
