@@ -25,7 +25,19 @@ HERE = Path(__file__).resolve().parent
 SAMPLES = HERE / "samples"
 sys.path.insert(0, str(HERE))
 
-FONT = "C\\:/Windows/Fonts/msyh.ttc"
+FONT = "C\\:/Windows/Fonts/msyh.ttc"   # 兜底字体（含 β 等快乐体缺字的分块）
+# 字幕主字体：站酷快乐体（ZCOOL KuaiLe，OFL 1.1 免费商用，授权见 fonts/OFL-ZCOOL-KuaiLe.txt）
+# 对全量口播文本做过字形覆盖核验：仅 β 缺字，命中 MISSING_KL 的分块回退 msyh
+KUAI_LE = (HERE / "fonts" / "ZCOOLKuaiLe-Regular.ttf").resolve()
+MISSING_KL = set("β")
+
+
+def sub_font(text: str) -> str:
+    """挑字幕字体：快乐体为主，含缺字的分块回退微软雅黑。"""
+    path = FONT if any(c in MISSING_KL for c in text) else str(KUAI_LE)
+    return path.replace("\\", "/").replace(":", "\\:")
+
+
 BGM_GAIN = 0.16
 
 
@@ -126,7 +138,7 @@ def subtitle_filters(board: dict, tmp: Path, size: int, y: str) -> list[str]:
                 tf_q = str(tf).replace("\\", "/").replace(":", "\\:")
                 enable = f"between(t,{clock:.2f},{min(clock + share, t0 + dur - 0.1):.2f})"
                 filters.append(
-                    f"drawtext=fontfile='{FONT}':textfile='{tf_q}':"
+                    f"drawtext=fontfile='{sub_font(chunk)}':textfile='{tf_q}':"
                     f"fontsize={size}:fontcolor=white:borderw=4:"
                     f"bordercolor=black@0.75:line_spacing=10:"
                     f"box=1:boxcolor=black@0.32:boxborderw=16:"
