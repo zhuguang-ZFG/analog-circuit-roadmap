@@ -11,5 +11,6 @@ __pycache__/
 .tmp_sec/
 # 视频中间稿（narrate.py 可随时重出；入仓只留 -final.mp4 成片、封面与时间轴）
 video/samples/*-draft*.mp4
+video/.vo-cache/
 video/samples/*-vo*.mp4
 video/samples/*.wav

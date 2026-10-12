@@ -24,7 +24,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SAMPLES = Path(__file__).resolve().parent / "samples"
-TMP = Path(tempfile.gettempdir()) / "analog-vo"
+# 口播缓存放项目内而非系统 TEMP：Windows 计划任务每周清 TEMP，
+# 缓存丢失会静默回退 TTS 合成（2026-10-12 实证被 cleaner 清掉 24 个文件）
+TMP = Path(__file__).parent / ".vo-cache"
 
 LEAD = 0.35   # 每幕口播前的呼吸（秒）
 TAIL = 0.35   # 口播后的收尾（秒）

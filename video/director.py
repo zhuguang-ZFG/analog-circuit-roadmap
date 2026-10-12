@@ -11,7 +11,7 @@ record_clip.py 解决的是「单镜头素材」（裸动画循环）；本脚�
     python video/director.py --demo ep04        # 内置 EP04《分压器带载》抖音草片
     python video/director.py --shots my.json    # 自定义分镜表，结构见 SHOTS_DOC
 
-产出 video/samples/<name>-draft.mp4（逐帧确定性采集，见 main 内注释）。
+产出 video/samples/<name>-draft{,-h}.webm（逐帧确定性采集，见 main 内注释）。
 草片 = 节拍与字幕的核对基准 + 可以直接配音的底版。
 """
 from __future__ import annotations
