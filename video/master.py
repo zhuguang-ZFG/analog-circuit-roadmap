@@ -25,9 +25,11 @@ HERE = Path(__file__).resolve().parent
 SAMPLES = HERE / "samples"
 sys.path.insert(0, str(HERE))
 
-FONT = "C\\:/Windows/Fonts/msyh.ttc"   # 兜底字体（含 β 等快乐体缺字的分块）
+FONT = "C:/Windows/Fonts/msyh.ttc"   # 兜底字体原始路径（含 β 等快乐体缺字的分块）
 # 字幕主字体：站酷快乐体（ZCOOL KuaiLe，OFL 1.1 免费商用，授权见 fonts/OFL-ZCOOL-KuaiLe.txt）
-# 对全量口播文本做过字形覆盖核验：仅 β 缺字，命中 MISSING_KL 的分块回退 msyh
+# 对全量口播文本做过字形覆盖核验：仅 β 缺字，命中 MISSING_KL 的分块回退 msyh。
+# 注意：FONT 必须是未转义的原始路径——drawtext 的 ':'/'\\' 转义统一在 sub_font 做，
+# 曾经把预转义的 "C\:/..." 再过一遍 replace 链得到 "C/\:/..." 双残路径，整段豆腐（ep15 实证）
 KUAI_LE = (HERE / "fonts" / "ZCOOLKuaiLe-Regular.ttf").resolve()
 MISSING_KL = set("β")
 
@@ -57,10 +59,10 @@ def wrap(text: str, width: int = 16) -> str:
         if len(cur) == width:
             # 不在 ASCII 串中间断（数字/型号：0.01、1N4148 不能拆成 0.0|.01）：
             # 断点两侧都是 ASCII 字符时把断点后移过整个串（上限 width+8，防超长串顶穿）
-            if i < n and cur[-1].isascii() and (cur[-1].isalnum() or cur[-1] == ".") \
-                    and text[i].isascii() and (text[i].isalnum() or text[i] == "."):
+            if i < n and cur[-1].isascii() and (cur[-1].isalnum() or cur[-1] in "._") \
+                    and text[i].isascii() and (text[i].isalnum() or text[i] in "._"):
                 while i < n and len(cur) < width + 8 \
-                        and text[i].isascii() and (text[i].isalnum() or text[i] == "."):
+                        and text[i].isascii() and (text[i].isalnum() or text[i] in "._"):
                     cur += text[i]
                     i += 1
             pulled = 0
@@ -103,8 +105,8 @@ def chunk_voice(text: str, max_len: int = 30) -> list[str]:
             cut = next((j for j in range(max_len, int(max_len * 0.6), -1)
                         if c[j - 1] in "，、："), max_len)
             # 同样不在数字/型号中间断
-            while cut > 1 and c[cut - 1].isascii() and (c[cut - 1].isalnum() or c[cut - 1] == ".") \
-                    and (c[cut].isalnum() or c[cut] == "."):
+            while cut > 1 and c[cut - 1].isascii() and (c[cut - 1].isalnum() or c[cut - 1] in "._") \
+                    and c[cut].isascii() and (c[cut].isalnum() or c[cut] in "._"):
                 cut -= 1
             flat.append(c[:cut])
             c = c[cut:]
@@ -243,7 +245,7 @@ def main() -> int:
     import tempfile
     out = SAMPLES / f"{name}-final{suffix}.mp4"
     with tempfile.TemporaryDirectory() as tmp:
-        vf = "drawtext=fontfile='" + FONT + "':text=' ':x=0:y=0"
+        vf = "drawtext=fontfile='" + sub_font(" ") + "':text=' ':x=0:y=0"
         if not args.no_subs:
             # 横屏两行字幕块高约 175px，h-175 会把第二行推出底边（旧片已裁），h-240 留边
             sub_size, sub_y = (57, "h-495") if args.size == "vertical" else (52, "h-240")
