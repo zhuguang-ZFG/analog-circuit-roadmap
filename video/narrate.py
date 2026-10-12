@@ -10,7 +10,7 @@
   4. 按同一时间轴把逐镜口播拼成整条音轨（幕首对齐，其余补静音）；
   5. ffmpeg 合成音视频 → video/samples/<name>-vo.mp4。
 
-无声草片（<name>-draft.webm）保留：剪映精剪时对轨更灵活。
+无声草片（<name>-draft.mp4）保留：剪映精剪时对轨更灵活。
 """
 from __future__ import annotations
 
@@ -69,6 +69,10 @@ def main() -> int:
     name = board["name"]
     ff = ffmpeg_exe()
     TMP.mkdir(exist_ok=True)
+    # 清陈旧产物：失败时绝不让 master 把新字幕烧到旧视频上（试点实测踩过）
+    _sf = "" if args.size == "vertical" else "-h"
+    for stale in (SAMPLES / f"{name}-draft{_sf}.mp4", SAMPLES / f"{name}-vo{_sf}.mp4"):
+        stale.unlink(missing_ok=True)
 
     # 1) 逐镜配音 + 2) 时间轴对齐
     wavs, adjusted = [], []
@@ -77,14 +81,25 @@ def main() -> int:
         text = shot.get("voice", "")
         if text:
             mp3 = TMP / f"{name}-{i}.mp3"
-            synth(text, mp3, args.voice, args.rate)
-            secs, wav = mp3_secs(mp3, ff)
-            wavs.append((wav, secs))
-            total_voice += secs
+            wav = mp3.with_suffix(".wav")
+            if mp3.is_file() and wav.is_file():
+                # 缓存复用：口播文本未变时不重复调 edge-tts（服务侧偶发 403 也能重渲）；
+                # 改了 voice 文本就删 TMP 里对应 mp3/wav 让它重合成
+                with wave.open(str(wav), "rb") as wf:
+                    secs = wf.getnframes() / wf.getframerate()
+                print(f"  幕{i}: 口播 {secs:.1f}s（缓存复用）")
+            else:
+                synth(text, mp3, args.voice, args.rate)
+                secs, wav = mp3_secs(mp3, ff)
+                mark = ""
+                need = secs + LEAD + TAIL
+                new_secs = max(shot["seconds"], round(need, 2))
+                mark = "" if new_secs <= shot["seconds"] + 0.01 else f"（原 {shot['seconds']}s → {new_secs}s）"
+                print(f"  幕{i}: 口播 {secs:.1f}s{mark}")
             need = secs + LEAD + TAIL
             new_secs = max(shot["seconds"], round(need, 2))
-            mark = "" if new_secs <= shot["seconds"] + 0.01 else f"（原 {shot['seconds']}s → {new_secs}s）"
-            print(f"  幕{i}: 口播 {secs:.1f}s{mark}")
+            wavs.append((wav, secs))
+            total_voice += secs
             adjusted.append({**shot, "seconds": new_secs})
         else:
             wavs.append((None, shot["seconds"]))
@@ -105,7 +120,7 @@ def main() -> int:
                     "--shots", str(adjusted_file), "--size", args.size],
                    check=True)
     suffix = "" if args.size == "vertical" else "-h"
-    silent = SAMPLES / f"{name}-draft{suffix}.webm"
+    silent = SAMPLES / f"{name}-draft{suffix}.mp4"
 
     # 4) 按同一时间轴拼整条音轨（24kHz 单声道）
     print("拼音轨…")
@@ -130,12 +145,11 @@ def main() -> int:
         w.setframerate(rate)
         w.writeframes(timeline.tobytes())
 
-    # 5) 合成（vp8 → h264，音轨 AAC）
+    # 5) 合成：视频流直拷（director 已出 CRF12 高质中间片，不二次压缩），只封 AAC 音轨
     suffix = "" if args.size == "vertical" else "-h"
     out = SAMPLES / f"{name}-vo{suffix}.mp4"
     subprocess.run([ff, "-y", "-i", str(silent), "-i", str(narration),
-                    "-c:v", "libx264", "-preset", "medium", "-pix_fmt", "yuv420p",
-                    "-c:a", "aac", "-b:a", "128k", "-shortest", str(out)],
+                    "-c:v", "copy", "-c:a", "aac", "-b:a", "128k", "-shortest", str(out)],
                    check=True, capture_output=True)
     print(f"带配音成片：{out.name}（{out.stat().st_size / 1048576:.1f}MB）")
     return 0

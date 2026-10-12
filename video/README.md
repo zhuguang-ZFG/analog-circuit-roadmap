@@ -34,14 +34,16 @@
 2. **脚本**：按 `episodes/` 里的模板写，数字一律取自书里算例（逐字）。
 3. **素材**：`assets/svg/*.svg` 是 SMIL 动画，浏览器打开即播。三条录制路线：
    - 快：**OBS 录屏**浏览器全屏（F11），按脚本节拍用「←/→」手动推进（SVG 内置左右箭头按钮可切拍）；
-   - 稳：`video/record_clip.py` 把单张动画直录成 WebM 素材（`--svg miller-plateau --seconds 12`，file:// 无需服务器）；
-   - **一键草片（推荐）**：`video/director.py` 按分镜表把 **标题卡 → 动画 → 数字/口诀卡 → 结尾卡** 串成完整草片，带运动版式（错峰入场、跳数计数、节奏条、点阵漂移、CTA 脉动）：
-     - `python video/director.py --shots video/shots/ep04-divider.json` —— 竖屏 720×1280（抖音）
+   - 稳：`video/record_clip.py` 把单张动画逐帧直录成 MP4 样片（`--svg miller-plateau --seconds 12`，file:// 无需服务器；SMIL 时钟逐帧推进，与 director.py 同款确定性采集）——旧版 Chromium 内置录屏的 WebM 样片（VP8 低码率）已淘汰；
+   - **一键草片（推荐）**：`video/director.py` 按分镜表把 **标题卡 → 动画 → 数字/口诀卡 → 结尾卡** 串成完整草片，带运动版式（错峰入场、跳数计数、节奏条、点阵漂移、卡片慢速漂移、CTA 脉动）。**逐帧确定性采集**：注入 `window.__seek` 暂停全部 CSS/SMIL 动画时钟、按帧号推进，截图吞吐与轴解耦、零漂移；竖屏 1.5× 出**原生 1080×1920**（抖音平台分辨率，不再被平台放大发虚），JPEG q95 帧直送 x264 CRF12 高质中间片：
+     - `python video/director.py --shots video/shots/ep04-divider.json` —— 竖屏 1080×1920（抖音）
      - `python video/director.py --shots video/shots/ep01-miller.json --size horizontal` —— 横屏 1920×1080（B 站）
      - `python video/director.py --shots video/shots/ep01-miller.json --cover` —— 出 1080×1920 封面 PNG
-     - `--demo ep04` 为内置演示；五集分镜已备好在 `video/shots/`，新集照抄结构写 JSON。草片 = 节拍与字幕核对基准 + 直接配音的底版。
+     - `--demo ep04` 为内置演示；20 集分镜已备好在 `video/shots/`，新集照抄结构写 JSON。草片（`-draft.mp4`）= 节拍与字幕核对基准 + 直接配音的底版。
 4. **配音**：`video/narrate.py` 一条命令全自动——逐镜取分镜表里的 `voice` 字段，edge-tts 合成口播（默认 zh-CN-YunxiNeural、语速 +12%），**按口播时长自动重排时间轴**（幕秒数 = max(原秒数, 口播+0.7s)，动画幕保底原节拍），重录视频并把音轨按幕首对齐、ffmpeg 合成：`python video/narrate.py --shots video/shots/ep04-divider.json` → `samples/<name>-vo.mp4`（带口播成片，可直接上传试水）。无声草片保留，剪映精剪换真人声时对轨更灵活。依赖：`pip install edge-tts imageio-ffmpeg`（开发侧工具，不进 requirements）。人声优先级永远高于 TTS——成片阶段换真人声，管线不变。
-5. **母带**：`video/master.py --shots video/shots/epNN.json` 把成片推到发布标准——**烧录字幕**（按 timeline 逐幕 drawtext，静音刷抖音也能看）+ **程序化 BGM**（bgm.py 合成的 Am-F-C-G 琶音垫乐，0.16 倍压在口播下、零版权）→ `samples/<name>-final.mp4`。依赖同 narrate（edge-tts / imageio-ffmpeg 为开发侧工具）。
+5. **母带**：`video/master.py --shots video/shots/epNN.json` 把成片推到发布标准——**烧录字幕**（按 timeline 逐幕 drawtext，静音刷抖音也能看；竖屏 1080p 下字号 57）+ **程序化 BGM**（bgm.py 合成的 Am-F-C-G 琶音垫乐，0.16 倍压在口播下、零版权）+ 音效卡点 → `samples/<name>-final.mp4`。编码 **x264 CRF18 + preset slow + faststart**（全程唯一一次有损编码：narrate 段视频流直拷不二次压缩）。依赖同 narrate（edge-tts / imageio-ffmpeg 为开发侧工具）。
+
+> **入仓约定**：git 只跟踪 `-final.mp4` 成片、封面 PNG 与 `-timeline.json`；`-draft* / -vo* / *.wav` 中间稿已被 .gitignore 排除（随时可用 narrate.py 重出，别把几百 MB 中间稿提交进仓库）。
 6. **发布**：每集脚本末尾的发布包（标题候选 / 封面字 / 话题 / 置顶评论）直接抄，封面用 `director.py --cover` 出图。
 
 ## 4. 第一季选题矩阵（20 集）

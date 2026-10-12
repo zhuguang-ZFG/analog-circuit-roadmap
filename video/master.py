@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """成片母带：无声/口播草片 + 程序化 BGM + 烧录字幕 → 可发布 MP4。
 
-发布标准的三块最后拼图，一条命令补齐：
+发布标准的几块最后拼图，一条命令补齐：
   1. **烧录字幕**：按 timeline（narrate.py 落盘的对齐时间轴）给每一幕的
      口播文本烧 drawtext 字幕（抖音大量静音观看场景，字幕是硬需求）；
   2. **BGM**：bgm.py 程序化合成的垫乐压到口播之下（0.16 倍，零版权）；
-  3. **封装**：h264 + AAC，输出 video/samples/<name>-final.mp4。
+  3. **响度归一化**：三轨混音后两遍 loudnorm 抬到 -16 LUFS / 真峰值 -1.5 dBTP，
+     与短视频平台主流响度对齐（raw 混音约 -22 LUFS，手机上偏轻）；
+  4. **封装**：h264（crf 20，扁平矢量画面足够）+ AAC，输出 video/samples/<name>-final.mp4。
 
 输入：samples/<name>-vo.mp4（narrate.py 产物）+ <name>-timeline.json。
 """
@@ -74,12 +76,13 @@ def subtitle_filters(board: dict, tmp: Path, size: int, y: str) -> list[str]:
                 tf = tmp / f"sub-{idx}.txt"
                 idx += 1
                 tf.write_text(wrap(chunk), encoding="utf-8")
-                tf_q = str(tf).replace("\\", "/").replace(":", "\:")
+                tf_q = str(tf).replace("\\", "/").replace(":", "\\:")
                 enable = f"between(t,{clock:.2f},{min(clock + share, t0 + dur - 0.1):.2f})"
                 filters.append(
                     f"drawtext=fontfile='{FONT}':textfile='{tf_q}':"
                     f"fontsize={size}:fontcolor=white:borderw=4:"
                     f"bordercolor=black@0.75:line_spacing=10:"
+                    f"box=1:boxcolor=black@0.32:boxborderw=16:"
                     f"x=(w-text_w)/2:y={y}:enable='{enable}'")
                 clock += share
         t0 += dur
@@ -163,18 +166,35 @@ def main() -> int:
         w.setframerate(44100)
         w.writeframes((mix * 32767).astype(np.int16).tobytes())
 
+    # 响度归一化：混音 raw ~-22 LUFS，抬到平台主流 -16 LUFS / 真峰值 -1.5 dBTP
+    # （两遍 loudnorm：先测后线性增益，口播+垫乐内容 LRA≈6<7 不需要动态压）
+    p1 = subprocess.run([ff, "-i", str(final_wav), "-af",
+                         "loudnorm=I=-16:TP=-1.5:LRA=7:print_format=json",
+                         "-f", "null", "-"], capture_output=True, text=True)
+    stats = json.loads(p1.stderr[p1.stderr.rindex("{"):p1.stderr.rindex("}") + 1])
+    ln = (f"loudnorm=I=-16:TP=-1.5:LRA=7:measured_I={stats['input_i']}"
+          f":measured_TP={stats['input_tp']}:measured_LRA={stats['input_lra']}"
+          f":measured_thresh={stats['input_thresh']}:offset={stats['target_offset']}"
+          ":linear=true,aresample=44100")
+    normed = final_wav.with_suffix(".norm.wav")
+    subprocess.run([ff, "-y", "-i", str(final_wav), "-af", ln, str(normed)],
+                   check=True, capture_output=True)
+    normed.replace(final_wav)
+
     import tempfile
     out = SAMPLES / f"{name}-final{suffix}.mp4"
     with tempfile.TemporaryDirectory() as tmp:
         vf = "drawtext=fontfile='" + FONT + "':text=' ':x=0:y=0"
         if not args.no_subs:
-            sub_size, sub_y = (38, "h-330") if args.size == "vertical" else (52, "h-175")
+            # 横屏两行字幕块高约 175px，h-175 会把第二行推出底边（旧片已裁），h-240 留边
+            sub_size, sub_y = (57, "h-495") if args.size == "vertical" else (52, "h-240")
             subs = subtitle_filters(board, Path(tmp), sub_size, sub_y)
             vf = ",".join(subs) if subs else vf
         cmd = [ff, "-y", "-i", str(vo), "-i", str(final_wav),
                "-vf", vf,
                "-map", "0:v", "-map", "1:a",
-               "-c:v", "libx264", "-preset", "medium", "-pix_fmt", "yuv420p",
+               "-c:v", "libx264", "-preset", "slow", "-crf", "20",
+               "-pix_fmt", "yuv420p", "-movflags", "+faststart",
                "-c:a", "aac", "-b:a", "160k", "-shortest", str(out)]
         subprocess.run(cmd, check=True, capture_output=True)
     print(f"发布成片：{out.name}（{args.size}，{out.stat().st_size / 1048576:.1f}MB，"
