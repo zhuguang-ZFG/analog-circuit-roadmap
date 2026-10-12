@@ -277,10 +277,25 @@ PAGE = """<!DOCTYPE html>
     if (shot.dataset.numfit) return;
     const row = shot.querySelector('.numrow');
     if (!row) return;
+    /* 与跳数赛跑（ep09 实证两侧裁字）：首次量测发生在幕首，count 还在 from 值
+     （4 位），落定后到 to 值（5 位）更宽。测量前临时换成落定值（最宽状态），
+     量完恢复动画当前值。 */
+    const counts = [...row.querySelectorAll('.count')];
+    const saved = counts.map(el => el.textContent);
+    counts.forEach(el => {{
+      const to = parseFloat(el.dataset.to), dec = parseInt(el.dataset.dec || '1', 10);
+      el.textContent = to.toFixed(dec);
+    }});
     const w = shot.clientWidth || window.innerWidth;
-    if (row.scrollWidth > w) row.style.zoom = (w * 0.94 / row.scrollWidth).toFixed(4);
+    /* 用渲染盒而非 scrollWidth：flex 内容下 scrollWidth 会低估约 30px
+       （ep07 实证 scrollWidth=703 但实际盒宽 735，两边裁字） */
+    const rw = row.getBoundingClientRect().width;
+    if (rw > w) row.style.zoom = (w * 0.94 / rw).toFixed(4);
+    counts.forEach((el, k) => {{ el.textContent = saved[k]; }});
     shot.dataset.numfit = '1';
   }}
+  /* 不设 fonts.ready 失效重测：其时全部幕 display:none，量出来是 0 反而把
+     numfit 缓存成坏值。正确做法在采集端：采第一帧前等 document.fonts.ready。 */
   window.__seek = (t) => {{
     let acc = 0, idx = durs.length - 1;
     for (let k = 0; k < durs.length; k++) {{ if (t < acc + durs[k]) {{ idx = k; break; }} acc += durs[k]; }}
@@ -565,6 +580,9 @@ def main() -> int:
             page = context.new_page()
             page.add_init_script("window.__det = true;")
             page.goto(page_file.as_uri())
+            # 等内嵌字体解码完再采第一帧：fitNumrow 的字宽测量若跑在字体解码前
+            # 会拿到雅黑回退的度量（快乐体更宽），放大后溢出画面（ep09 实证两侧裁字）
+            page.evaluate("() => document.fonts.ready")
             t0 = time.perf_counter()
             for k in range(n_frames):
                 page.evaluate("(t) => window.__seek(t)", int(k * 1000 / FPS))
