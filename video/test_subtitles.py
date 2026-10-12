@@ -79,5 +79,19 @@ class TestAllTimelineSubtitles(unittest.TestCase):
         self.assertEqual(bad, [])
 
 
+class TestNumCards(unittest.TestCase):
+    SHOTS = Path(__file__).parent / "shots"
+
+    def test_from_to_distinct(self):
+        # from==to 会让跳数卡显示「990 → 990」（ep12 实证），退化失去冲击力
+        bad = []
+        for sj in sorted(self.SHOTS.glob("ep*.json")):
+            board = json.loads(sj.read_text(encoding="utf-8"))
+            for i, s in enumerate(board["shots"], 1):
+                if s["type"] == "num" and s.get("from") == s.get("to"):
+                    bad.append(f"{board['name']} 幕{i}: {s['from']} -> {s['to']}")
+        self.assertEqual(bad, [])
+
+
 if __name__ == "__main__":
     unittest.main()
