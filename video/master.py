@@ -29,13 +29,44 @@ FONT = "C\\:/Windows/Fonts/msyh.ttc"
 BGM_GAIN = 0.16
 
 
-def wrap(text: str, width: int = 17) -> str:
-    """口播文本按字数折行（CJK 无空格，按字符切）。"""
-    return "\n".join(text[i:i + width] for i in range(0, len(text), width))
+PUNC = "，。！？；、：…—"   # CJK 标点：折行避头点用
+
+
+def wrap(text: str, width: int = 16) -> str:
+    """口播文本按字数折行（CJK 无空格，按字符切）。
+    行首不留标点：满宽时下一个是标点就连同后续标点（至多 2 个，防 ……/—— 拆开）
+    一起归到上一行行尾（避头点）。宽度 16 + 最多 2 个标点 = 18 字 × 57px + 托板边距
+    仍小于 1080，不会溢出竖屏。"""
+    lines, cur = [], ""
+    i, n = 0, len(text)
+    while i < n:
+        cur += text[i]
+        i += 1
+        if len(cur) == width:
+            # 不在 ASCII 串中间断（数字/型号：0.01、1N4148 不能拆成 0.0|.01）：
+            # 断点两侧都是 ASCII 字符时把断点后移过整个串（上限 width+8，防超长串顶穿）
+            if i < n and cur[-1].isascii() and (cur[-1].isalnum() or cur[-1] == ".") \
+                    and text[i].isascii() and (text[i].isalnum() or text[i] == "."):
+                while i < n and len(cur) < width + 8 \
+                        and text[i].isascii() and (text[i].isalnum() or text[i] == "."):
+                    cur += text[i]
+                    i += 1
+            pulled = 0
+            while i < n and pulled < 2 and text[i] in PUNC:
+                cur += text[i]
+                i += 1
+                pulled += 1
+            lines.append(cur)
+            cur = ""
+    if cur:
+        lines.append(cur)
+    return "\n".join(lines)
 
 
 def chunk_voice(text: str, max_len: int = 30) -> list[str]:
-    """口播文本按句切分，长句再按逗号二次切分到 ≤max_len。"""
+    """口播文本按句切分，长句再按逗号二次切分到 ≤max_len。
+    无逗号超长段（如 0.01 这类数字密集的句子）兜底按 max_len 硬切，
+    保证任何字幕块 ≤2 行（wrap 宽 16 + 避头点 2 = 18 上限）。"""
     import re
     sentences = [s for s in re.split(r"(?<=[。！？；])", text) if s.strip()]
     chunks = []
@@ -54,7 +85,23 @@ def chunk_voice(text: str, max_len: int = 30) -> list[str]:
                 cur = part
         if cur:
             chunks.append(cur)
-    return chunks
+    flat = []
+    for c in chunks:
+        while len(c) > max_len:
+            cut = next((j for j in range(max_len, int(max_len * 0.6), -1)
+                        if c[j - 1] in "，、："), max_len)
+            # 同样不在数字/型号中间断
+            while cut > 1 and c[cut - 1].isascii() and (c[cut - 1].isalnum() or c[cut - 1] == ".") \
+                    and (c[cut].isalnum() or c[cut] == "."):
+                cut -= 1
+            flat.append(c[:cut])
+            c = c[cut:]
+        if not c.strip(PUNC):   # 尾段只剩标点：并入上一块，不留孤标点块
+            if flat:
+                flat[-1] += c
+        else:
+            flat.append(c)
+    return flat
 
 
 def subtitle_filters(board: dict, tmp: Path, size: int, y: str) -> list[str]:
