@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""「自动导演」：把分镜表渲染成定时切换的导播页，直录成竖屏草片。
+"""「自动导演」：把分镜表渲染成定时切换的导播页，逐帧直录成竖屏草片。
 
 record_clip.py 解决的是「单镜头素材」（裸动画循环）；本脚本往上走一层——
 按分镜表把 **标题卡 → 动画 → 数字卡 → 口诀卡 → 结尾卡** 串成一条完整的
-竖屏草片（抖音 720x1280）。卡片沿用站点视觉语言：品牌靛蓝渐变 + 蓝图点阵 +
+竖屏草片（抖音竖屏 / B 站横屏）。卡片沿用站点视觉语言：品牌靛蓝渐变 + 蓝图点阵 +
 大字白字；动画以**内联 SVG**嵌进页面（SMIL 在页面上下文正常播放，
 也避免了 file:// 子资源限制）。
 
@@ -11,14 +11,15 @@ record_clip.py 解决的是「单镜头素材」（裸动画循环）；本脚�
     python video/director.py --demo ep04        # 内置 EP04《分压器带载》抖音草片
     python video/director.py --shots my.json    # 自定义分镜表，结构见 SHOTS_DOC
 
-产出 video/samples/<name>-draft.webm。草片 = 节拍与字幕的核对基准 +
-可以直接配音的底版；正式成片建议在剪映里用草片对轨后重排。
+产出 video/samples/<name>-draft.mp4（逐帧确定性采集，见 main 内注释）。
+草片 = 节拍与字幕的核对基准 + 可以直接配音的底版。
 """
 from __future__ import annotations
 
 import argparse
 import json
 import re
+import subprocess
 import tempfile
 import time
 from pathlib import Path
@@ -28,6 +29,7 @@ SVG_DIR = ROOT / "assets" / "svg"
 OUT_DIR = Path(__file__).resolve().parent / "samples"
 
 W, H = 720, 1280
+FPS = 30   # 逐帧采集帧率：平台原生 30fps（避免 25→30 补帧抖动）；与时间轴秒数无关
 
 SHOTS_DOC = {
     "name": "输出文件名前缀",
@@ -202,6 +204,8 @@ PAGE = """<!DOCTYPE html>
     animation:kenburns var(--dur,12s) ease-in-out infinite alternate; }}
   @keyframes kenburns {{ from {{ transform:scale(1); }}
                          to {{ transform:scale(1.045); }} }}
+  /* 卡片/标题幕的内容区同款慢漂移：入场的 0.6s 后起步，静态文字幕也有「活着」的观感 */
+  .card .stack {{ animation:kenburns var(--dur,12s) ease-in-out .6s infinite alternate; }}
   .cam {{ position:absolute; right:16px; bottom:122px; width:104px;
     animation:bounceIn .55s .8s both; }}
   .cam .mascot {{ width:104px; }}
@@ -237,6 +241,7 @@ PAGE = """<!DOCTYPE html>
   let i = 0;
   function show() {{
     shots.forEach((s, k) => s.classList.toggle('active', k === i));
+    fitNumrow(shots[i]);
     runCounts(shots[i]);
     /* 第 i 幕停留 durs[i]——写 durs[i-1] 会整体错一拍：
        首幕 0ms 直接跳过、每幕都播上一幕的时长（实测踩过）。 */
@@ -259,7 +264,40 @@ PAGE = """<!DOCTYPE html>
       requestAnimationFrame(tick);
     }});
   }}
-  show();
+  /* 确定性逐帧采集（director.py --shots 渲染路径）：暂停所有动画时钟，
+     由采集端按帧号推进——截图吞吐不再影响时间轴，逐帧无漂移。
+     交互打开（浏览器直看）时不注入 __det，走原始实时流程。 */
+  /* 数字行超宽自动收缩（zoom 与 transform 动画不冲突）：长数字如
+     0.05→0.45 在竖屏 720 宽下原生抽不下，旧片两边裁字；激活时量一次。 */
+  function fitNumrow(shot) {{
+    if (shot.dataset.numfit) return;
+    const row = shot.querySelector('.numrow');
+    if (!row) return;
+    const w = shot.clientWidth || window.innerWidth;
+    if (row.scrollWidth > w) row.style.zoom = (w * 0.94 / row.scrollWidth).toFixed(4);
+    shot.dataset.numfit = '1';
+  }}
+  window.__seek = (t) => {{
+    let acc = 0, idx = durs.length - 1;
+    for (let k = 0; k < durs.length; k++) {{ if (t < acc + durs[k]) {{ idx = k; break; }} acc += durs[k]; }}
+    const local = Math.max(t - acc, 0);
+    shots.forEach((s, k) => s.classList.toggle('active', k === idx));
+    fitNumrow(shots[idx]);
+    document.getAnimations().forEach(a => {{ a.pause(); try {{ a.currentTime = local; }} catch (e) {{}} }});
+    document.querySelectorAll('svg').forEach(s => {{
+      /* SMIL 时钟从页面加载起走（与旧实时录屏一致），用全局 t；
+         CSS 动画随幕激活才开始，用幕内 local——两套时钟不能混。 */
+      try {{ s.pauseAnimations(); s.setCurrentTime(t / 1000); }} catch (e) {{}}
+    }});
+    shots[idx].querySelectorAll('.count').forEach(el => {{
+      const from = parseFloat(el.dataset.from), to = parseFloat(el.dataset.to);
+      const dec = parseInt(el.dataset.dec || '1', 10);
+      const p = Math.min(local / 1500, 1), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = (from + (to - from) * e).toFixed(dec);
+      el.classList.toggle('landed', p >= 1);
+    }});
+  }};
+  if (!window.__det) show();
 </script>
 </body></html>"""
 
@@ -403,7 +441,7 @@ def build_html(storyboard: dict, w: int = W, h: int = H, cls: str = "v") -> str:
                 f'<span class="arrow">→</span>'
                 f'<span class="n bad count" data-from="{s["from"]}" data-to="{s["to"]}" '
                 f'data-dec="{dec}">{s["from"]:.{dec}f}</span>'
-                f'<span class="n bad unit">{s["unit"]}</span></div>{co}</div>'
+                f'<span class="n bad unit">{s["unit"]}</span></div>{co}'
                 f'{bar_html}<div class="sub">{hl(s.get("sub", ""))}</div>{beat}</div>')
         elif s["type"] == "intro":
             big = mascot("happy")
@@ -482,21 +520,41 @@ def main() -> int:
                 print(f"封面已出：{out.name}（{int(w * scale)}x{int(h * scale)}）")
                 browser.close()
                 return 0
-            context = browser.new_context(
-                viewport={"width": w, "height": h},
-                record_video_dir=str(OUT_DIR),
-                record_video_size={"width": w, "height": h},
-            )
-            page = context.new_page()
-            page.goto(page_file.as_uri())
+            # 逐帧确定性采集：截图吞吐与帧时间轴解耦（__seek 推进动画时钟），
+            # 竖屏 1.5× 出原生 1080x1920（抖音平台分辨率，不再被平台放大发虚）；
+            # JPEG q95 帧直送 x264 CRF12——只有母带一次有损编码。
+            scale = 1.5 if args.size == "vertical" else 1.0
+            fw, fh = int(w * scale), int(h * scale)
             total = sum(s["seconds"] for s in storyboard["shots"])
-            page.wait_for_timeout(int((total + 0.8) * 1000))
-            saved = Path(page.video.path())
+            n_frames = int(round((total + 0.8) * FPS))
+            import imageio_ffmpeg
+            ff = imageio_ffmpeg.get_ffmpeg_exe()
+            out = out.with_suffix(".mp4")
+            proc = subprocess.Popen(
+                [ff, "-y", "-f", "image2pipe", "-framerate", str(FPS), "-i", "-",
+                 "-c:v", "libx264", "-preset", "medium", "-crf", "12",
+                 "-pix_fmt", "yuv420p", str(out)],
+                stdin=subprocess.PIPE,
+                stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            context = browser.new_context(
+                viewport={"width": w, "height": h}, device_scale_factor=scale)
+            page = context.new_page()
+            page.add_init_script("window.__det = true;")
+            page.goto(page_file.as_uri())
+            t0 = time.perf_counter()
+            for k in range(n_frames):
+                page.evaluate("(t) => window.__seek(t)", int(k * 1000 / FPS))
+                proc.stdin.write(page.screenshot(type="jpeg", quality=95))
+                if (k + 1) % 250 == 0:
+                    el = time.perf_counter() - t0
+                    print(f"  采帧 {k + 1}/{n_frames}（{el:.0f}s，{n_frames / el:.1f} fps）")
+            proc.stdin.close()
+            if proc.wait() != 0:
+                raise SystemExit(f"ffmpeg 编码失败：{out.name}")
             context.close()
             browser.close()
-            saved.replace(out)
     size_mb = out.stat().st_size / 1048576
-    print(f"草片已出：{out.name}（{w}x{h}，{total:.0f}s，{size_mb:.1f}MB）")
+    print(f"草片已出：{out.name}（{fw}x{fh}，{total:.0f}s，{size_mb:.1f}MB）")
     return 0
 
 
