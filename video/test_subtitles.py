@@ -15,6 +15,21 @@ from master import wrap, chunk_voice, PUNC  # noqa: E402
 SAMPLES = Path(__file__).parent / "samples"
 
 
+def est_px(line: str, fs: int = 57) -> float:
+    """快乐体近似渲染宽度：CJK/全角 ≈ fs，ASCII 字母数字 ≈ 0.55fs，空格 ≈ 0.3fs。
+    纯 len×57 会把含数字/空格的行高估约 20%（ep17 实证：19 字含 V_BE
+    被误报溢出，真实宽度 881px）。"""
+    w = 0.0
+    for c in line:
+        if c == " ":
+            w += fs * 0.3
+        elif ord(c) < 128:
+            w += fs * 0.55
+        else:
+            w += fs
+    return w
+
+
 class TestWrap(unittest.TestCase):
     def test_no_line_leading_punctuation(self):
         # 旧实现 17 字硬切会在行首留下 ，。——（避头点）
@@ -33,10 +48,9 @@ class TestWrap(unittest.TestCase):
         self.assertLessEqual(len(lines), 2)
 
     def test_no_vertical_overflow(self):
-        # 最长行 18 字 × 57px + 托板 32px < 1080
-        for n in (16, 17, 18, 30):
+        for n in (16, 17, 18, 24, 30):
             for ln in wrap("字" * n).split("\n"):
-                self.assertLess(len(ln) * 57 + 32, 1080, f"溢出: {len(ln)} 字")
+                self.assertLess(est_px(ln) + 32, 1080, f"溢出: {len(ln)} 字")
 
     def test_ascii_run_not_split(self):
         # 数字不能被拆成 0.0|.01（ep18 实证缺陷）
@@ -44,7 +58,8 @@ class TestWrap(unittest.TestCase):
         for chunk in chunk_voice(board["shots"][2]["voice"]):
             lines = wrap(chunk).split("\n")
             for a, b in zip(lines, lines[1:]):
-                self.assertFalse(a[-1].isascii() and a[-1].isalnum() and b[0].isalnum(),
+                self.assertFalse(a[-1].isascii() and (a[-1].isalnum() or a[-1] in "._")
+                             and b[0].isascii() and (b[0].isalnum() or b[0] in "._"),
                                  f"ASCII 串被拆: {a!r} | {b!r}")
 
 
@@ -72,7 +87,7 @@ class TestAllTimelineSubtitles(unittest.TestCase):
                         bad.append(f"{tl.name} 幕{i} 行首标点")
                     if len(lines) > 2:
                         bad.append(f"{tl.name} 幕{i} 超两行")
-                    if max(len(l) for l in lines) * 57 + 32 >= 1080:
+                    if max(est_px(l) for l in lines) + 32 >= 1080:
                         bad.append(f"{tl.name} 幕{i} 溢出")
                     if not chunk.strip(PUNC):
                         bad.append(f"{tl.name} 幕{i} 孤标点块")
@@ -85,9 +100,13 @@ class TestSubFont(unittest.TestCase):
         self.assertIn("ZCOOLKuaiLe", sub_font("本来电压一路往上爬"))
 
     def test_beta_fallback(self):
-        # 快乐体缺 β（全量口播文本覆盖核验的唯一缺字），命中分块回退雅黑
-        from master import sub_font, FONT
-        self.assertEqual(sub_font("强制 β=10"), FONT.replace("\\", "/").replace(":", "\\:"))
+        # 快乐体缺 β（全量口播文本覆盖核验的缺字之一），命中分块回退雅黑。
+        # 断言写死期望字符串——上一轮用 FONT.replace() 计算期望值，
+        # 与实现同源同错（"C\:/" 再过转义链成 "C/\:/" 双残），等于没测。
+        from master import sub_font
+        self.assertEqual(sub_font("强制 β=10"), "C\\:/Windows/Fonts/msyh.ttc")
+        self.assertEqual(sub_font("分立管子的 β 和 V_BE 离散太大"),
+                         "C\\:/Windows/Fonts/msyh.ttc")
 
 
 class TestNumCards(unittest.TestCase):
