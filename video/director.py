@@ -72,6 +72,7 @@ EP04 = {
 PAGE = """<!DOCTYPE html>
 <html lang="zh"><head><meta charset="utf-8">
 <style>
+  {font_face}
   html,body {{ margin:0; width:{w}px; height:{h}px; overflow:hidden;
     font-family:"Microsoft YaHei",system-ui,sans-serif;
     background:#141c38; }}
@@ -115,6 +116,7 @@ PAGE = """<!DOCTYPE html>
     letter-spacing:.35em; text-indent:.35em; animation:rise .55s .05s both; }}
   .card .lines {{ position:relative; }}
   .card .lines div {{ color:#fff; font-weight:800; line-height:1.32;
+    font-family:"ZCOOL KuaiLe","Microsoft YaHei",sans-serif;
     font-size:var(--fs-line,72px); letter-spacing:.01em;
     text-shadow:0 6px 30px rgba(10,16,40,.55);
     animation:rise .6s both; }}
@@ -165,7 +167,8 @@ PAGE = """<!DOCTYPE html>
   /* ---- 数字卡：计数跳字 + 塌陷条 ---- */
   .numrow {{ position:relative; display:flex; align-items:baseline; gap:26px;
     animation:rise .6s both; }}
-  .numrow .n {{ font-size:var(--fs-num,120px); font-weight:800; color:#fff;
+  .numrow .n {{ font-family:"ZCOOL KuaiLe","Microsoft YaHei",sans-serif;
+    font-size:var(--fs-num,120px); font-weight:800; color:#fff;
     font-variant-numeric:tabular-nums; text-shadow:0 8px 34px rgba(10,16,40,.6); }}
   .numrow .unit {{ font-size:calc(var(--fs-num,120px) * .42); color:#aab7e8; }}
   .numrow .n.bad {{ color:#ff8f6b; }}
@@ -212,6 +215,7 @@ PAGE = """<!DOCTYPE html>
   body.h .cam {{ right:calc(32% + 26px); bottom:34px; }}
   .svgshot .caption {{ height:110px; display:flex; align-items:center; justify-content:center;
     width:100%; background:#1b2447; color:#fff; font-size:34px; font-weight:700;
+    font-family:"ZCOOL KuaiLe","Microsoft YaHei",sans-serif;
     animation:capUp .5s .25s cubic-bezier(.22,.9,.3,1) both; }}
   body.h .svgshot {{ flex-direction:row; }}
   body.h .svgshot .stage {{ flex:1.45; padding:44px; }}
@@ -467,7 +471,27 @@ def build_html(storyboard: dict, w: int = W, h: int = H, cls: str = "v") -> str:
             raise SystemExit(f"未知镜头类型：{s['type']}")
     total = sum(s["seconds"] for s in storyboard["shots"])
     print(f"分镜 {len(durs)} 幕，总时长 {total:.1f}s")
-    return PAGE.format(w=w, h=h, cls=cls, shots="\n".join(shots_html), durs=json.dumps(durs))
+    return PAGE.format(w=w, h=h, cls=cls, shots="\n".join(shots_html),
+                       durs=json.dumps(durs), font_face=kuaile_face())
+
+
+_KUAILE = None
+
+
+def kuaile_face() -> str:
+    """@font-face 内嵌站酷快乐体（OFL 1.1，video/fonts/ 随仓）。
+    Chromium 对 file:// 页面的本地字体加载走 CORS 不透明源，外链引用不可靠，
+    直接 base64 内嵌（模板每次装配生成，1.5MB → ~2MB，一次性开销可接受）。
+    大字展示面用它；缺字（β 等符号）由浏览器逐字形回退到雅黑。"""
+    global _KUAILE
+    if _KUAILE is None:
+        import base64
+        ttf = (Path(__file__).parent / "fonts" / "ZCOOLKuaiLe-Regular.ttf").read_bytes()
+        b64 = base64.b64encode(ttf).decode("ascii")
+        _KUAILE = ('@font-face { font-family:"ZCOOL KuaiLe"; '
+                   f'src:url("data:font/ttf;base64,{b64}") format("truetype"); '
+                   'font-display:block; }')
+    return _KUAILE
 
 
 def main() -> int:
