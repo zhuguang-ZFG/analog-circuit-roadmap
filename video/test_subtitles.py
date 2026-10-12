@@ -79,6 +79,17 @@ class TestAllTimelineSubtitles(unittest.TestCase):
         self.assertEqual(bad, [])
 
 
+class TestSubFont(unittest.TestCase):
+    def test_kuaile_default(self):
+        from master import sub_font, KUAI_LE
+        self.assertIn("ZCOOLKuaiLe", sub_font("本来电压一路往上爬"))
+
+    def test_beta_fallback(self):
+        # 快乐体缺 β（全量口播文本覆盖核验的唯一缺字），命中分块回退雅黑
+        from master import sub_font, FONT
+        self.assertEqual(sub_font("强制 β=10"), FONT.replace("\\", "/").replace(":", "\\:"))
+
+
 class TestNumCards(unittest.TestCase):
     SHOTS = Path(__file__).parent / "shots"
 
