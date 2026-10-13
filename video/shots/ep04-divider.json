@@ -52,7 +52,8 @@
       "voice": "记住这句：分压器的带载能力，约等于它自己的内阻，也就是 R1 并 R2。负载一重，输出就往内阻上塌。",
       "bgSvg": "divider-loading",
       "mascot": "cheer",
-      "bubble": "记这句！"
+      "bubble": "记这句！",
+      "chip": "10k ∥ 10k → 5k"
     },
     {
       "type": "card",

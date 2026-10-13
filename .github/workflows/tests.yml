@@ -67,6 +67,25 @@ jobs:
         run: python -B -m unittest discover -s scripts -p test_smartsymbols.py -v
       - run: python scripts/build_site.py --build
 
+  remotion-smoke:
+    name: Remotion 渲染冒烟（tsc + ep04 单帧渲染）
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: video/remotion/package-lock.json
+      - run: npm ci
+        working-directory: video/remotion
+      - name: 类型检查
+        run: npx tsc --noEmit -p tsconfig.json
+        working-directory: video/remotion
+      - name: ep04 单帧渲染（900 帧：戏眼坍塌幕 + 卡拉OK字幕路径）
+        run: npx remotion still src/index.ts ep04 out/smoke.png --frame=900
+        working-directory: video/remotion
+
   svg-render:
     name: SVG 渲染回归（时间轴 + 版面几何 + 明暗对比度）
     runs-on: ubuntu-latest

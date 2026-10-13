@@ -14,3 +14,6 @@ video/samples/*-draft*.mp4
 video/.vo-cache/
 video/samples/*-vo*.mp4
 video/samples/*.wav
+# Remotion 试点工程：依赖与成片不入仓（remix.py 随时可出）；public wav 是渲染必需资产
+video/remotion/node_modules/
+video/remotion/out/

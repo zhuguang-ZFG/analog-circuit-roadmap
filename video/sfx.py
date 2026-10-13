@@ -36,6 +36,21 @@ def whoosh(dur: float = 0.32) -> np.ndarray:
     return out * _env(n, 0.02, dur * 0.9) * 0.55
 
 
+def riser(dur: float = 0.75) -> np.ndarray:
+    """高潮前上升音：噪声幅度渐强 + 200→1400Hz 扫频，末尾急停（接重音）。
+    用在数字卡/塌落幕开场前 0.75s，把「要出事了」的紧张感拉起来。"""
+    n = int(dur * SR)
+    t = np.arange(n) / SR
+    rng = np.random.default_rng(11)
+    noise = rng.standard_normal(n)
+    ramp = (t / dur) ** 2.2                      # 幅度加速上扬
+    sweep = np.sin(2 * np.pi * (200 * t + 600 / dur * t ** 2))
+    out = noise * ramp * 0.35 + sweep * ramp * 0.30
+    tail = int(0.03 * SR)                        # 末尾 30ms 急停（呼吸断点）
+    out[-tail:] *= np.linspace(1, 0, tail)
+    return out * 0.6
+
+
 def pop(dur: float = 0.14) -> np.ndarray:
     n = int(dur * SR)
     t = np.arange(n) / SR
