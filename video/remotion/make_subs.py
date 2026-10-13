@@ -59,10 +59,34 @@ def envelope_quantiles(pcm: np.ndarray, sr: int, t0: float, t1: float) -> list[f
     return out
 
 
+def build_windows(name: str) -> list[dict]:
+    """字幕窗口生成（master.py subtitle_filters 同款逻辑，无 drawtext 化的 JSON 版）：
+    幕内 chunk_voice 切句 → wrap 折行 → 按字数比例分窗（幕首 0.2s 起、尾 0.1s 止）。"""
+    sys.path.insert(0, str(ROOT))
+    from master import chunk_voice, wrap  # noqa: PLC0415 —— 复用产线同源切句
+    board = json.loads((SAMPLES / f"{name}-timeline.json").read_text(encoding="utf-8"))
+    subs: list[dict] = []
+    t0 = 0.0
+    for shot in board["shots"]:
+        dur = shot["seconds"]
+        text = shot.get("voice", "")
+        if text:
+            chunks = chunk_voice(text)
+            total_chars = sum(len(c) for c in chunks)
+            speakable = max(dur - 0.35, 0.5)
+            clock = t0 + 0.2
+            for chunk in chunks:
+                share = speakable * len(chunk) / total_chars
+                end = min(clock + share, t0 + dur - 0.1)
+                subs.append({"from": round(clock * FPS), "to": round(end * FPS), "text": wrap(chunk)})
+                clock += share
+        t0 += dur
+    return subs
+
 def main() -> int:
     name = sys.argv[1] if len(sys.argv) > 1 else "ep04-divider"
     subs_p = DATA / f"{name.split('-')[0]}-subs.json"
-    subs = json.loads(subs_p.read_text(encoding="utf-8"))
+    subs = json.loads(subs_p.read_text(encoding="utf-8")) if subs_p.is_file() else build_windows(name)
     with wave.open(str(SAMPLES / f"{name}-vo-narr.wav"), "rb") as w:
         sr = w.getframerate()
         pcm = np.array(array.array("h", w.readframes(w.getnframes())), dtype=np.float64) / 32767

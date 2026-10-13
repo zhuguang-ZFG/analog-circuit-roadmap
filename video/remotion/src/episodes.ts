@@ -1,4 +1,6 @@
 import React from "react";
+import ep01Board from "./data/ep01.json";
+import ep01Subs from "./data/ep01-subs.json";
 import ep04Board from "./data/ep04.json";
 import ep04Subs from "./data/ep04-subs.json";
 import {DividerDemo} from "./components/DividerDemo";
@@ -19,6 +21,12 @@ export type EpisodeDef = {
 };
 
 export const EPISODES: Record<string, EpisodeDef> = {
+  ep01: {
+    board: ep01Board as {shots: Shot[]},
+    subs: ep01Subs as SubEntry[],
+    audio: "audio/ep01-miller-remix.wav",
+    customShots: {},
+  },
   ep04: {
     board: ep04Board as {shots: Shot[]},
     subs: ep04Subs as SubEntry[],
