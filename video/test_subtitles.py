@@ -164,5 +164,42 @@ class TestNumRowFit(unittest.TestCase):
         self.assertEqual(bad, [])
 
 
+class TestIntroProgressSingleLine(unittest.TestCase):
+    """封面进度行（合集连载中 · 已更新 N 集）必须单行：横屏首帧即 B 站封面候选。
+    回归历史缺陷：.card .sub 的 max-width:86% 相对 shrink-to-fit 的 .stack
+    （宽度=最宽子元素，通常是标题行），标题短 → stack 窄 → 横向 fs-sub 38px
+    下进度行折行（「已更新 5/集」）；竖屏 30px 恰好不折，属临界点隐患。"""
+
+    def test_progress_never_wraps(self):
+        from playwright.sync_api import sync_playwright
+        sys.path.insert(0, str(Path(__file__).parent))
+        import director
+        bad = []
+        with sync_playwright() as pw:
+            browser = pw.chromium.launch(channel="chrome", headless=True)
+            try:
+                for sj in sorted((Path(__file__).parent / "shots").glob("ep*.json")):
+                    board = json.loads(sj.read_text(encoding="utf-8"))
+                    if not board["shots"] or board["shots"][0].get("type") != "intro":
+                        continue
+                    for w, h, cls, fs_sub in ((720, 1280, "v", 30), (1920, 1080, "h", 38)):
+                        html = director.build_html(board, w=w, h=h, cls=cls)
+                        page = browser.new_page(viewport={"width": w, "height": h})
+                        page.add_init_script("window.__det = true;")
+                        page.goto("about:blank")
+                        page.set_content(html)
+                        page.evaluate("() => document.fonts.ready")
+                        page.evaluate("window.__seek(0)")
+                        r = page.evaluate(
+                            "() => document.querySelectorAll('.shot.active')[0]"
+                            ".querySelector('.intro .sub').getBoundingClientRect().height")
+                        if r > fs_sub * 1.75 * 1.4:  # 单行高≈1.75×fs；两行必然超阈值
+                            bad.append(f"{sj.stem} {cls}: 进度行高 {r:.0f}px（折行）")
+                        page.close()
+            finally:
+                browser.close()
+        self.assertEqual(bad, [])
+
+
 if __name__ == "__main__":
     unittest.main()
