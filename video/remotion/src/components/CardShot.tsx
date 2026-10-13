@@ -19,7 +19,8 @@ export const CardShot: React.FC<{
   cta?: string;
 }> = ({durFrames, index, eyebrow, lines = [], sub, chip, mascot, bubble, cta}) => {
   const frame = useCurrentFrame();
-  const {fps} = useVideoConfig();
+  const {fps, width, height} = useVideoConfig();
+  const wide = width > height; // 横版：吉祥物上移避开底部字幕带
   // 内容区慢推（kenburns 1→1.06），入场 0.6s 后起步
   const kb = interpolate(frame, [18, durFrames], [1, 1.06], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
   const popAt = 24;
@@ -119,8 +120,8 @@ export const CardShot: React.FC<{
           ) : null}
         </div>
         {mascot ? (
-          <div style={{position: "absolute", right: 40, bottom: 130, transform: `scale(${mPop})`, textAlign: "center"}}>
-            <Mascot mood={mascot} width={150} />
+          <div style={{position: "absolute", right: 40, bottom: wide ? 230 : 130, transform: `scale(${mPop})`, textAlign: "center"}}>
+            <Mascot mood={mascot} width={wide ? 120 : 150} />
             {bubble ? (
               <div
                 style={{

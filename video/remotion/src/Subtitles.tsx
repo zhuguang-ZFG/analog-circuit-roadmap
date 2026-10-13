@@ -19,17 +19,18 @@ const LEAD = 2; // 提前 2 帧点亮——视觉先于听觉一点，同步感�
  *  窗口由构建期预计算（master.py chunk_voice/wrap 同款逻辑），竖屏 top=1425。 */
 const Pill: React.FC<{text: string; dur: number; env?: number[]}> = ({text, dur, env}) => {
   const frame = useCurrentFrame();
-  const {fps} = useVideoConfig();
+  const {fps, width, height} = useVideoConfig();
+  const wide = width > height; // 横版 1920×1080：字幕带贴底、字号按 16:9 收一档
   const s = spring({frame, fps, config: {damping: 13, stiffness: 220, mass: 0.7}});
   const lines = text.split("\n");
   const N = lines.join("").length;
   let base = 0;
   return (
-    <div style={{position: "absolute", top: 1425, width: "100%", display: "flex", justifyContent: "center"}}>
+    <div style={{position: "absolute", top: wide ? height - 215 : 1425, width: "100%", display: "flex", justifyContent: "center"}}>
       <div
         style={{
           fontFamily: '"ZCOOL KuaiLe","Microsoft YaHei",sans-serif',
-          fontSize: 57,
+          fontSize: wide ? 46 : 57,
           lineHeight: 1.35,
           color: "#fff",
           textAlign: "center",

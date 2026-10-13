@@ -47,7 +47,8 @@ const zigzag = (x: number, y1: number, y2: number): string => {
 
 export const DividerDemo: React.FC<{durFrames: number}> = ({durFrames}) => {
   const frame = useCurrentFrame();
-  const {fps} = useVideoConfig();
+  const {fps, width, height} = useVideoConfig();
+  const wide = width > height; // 横版：电路左 + 算账右
   const pop = (d: number, stiff = 170) =>
     spring({frame: frame - d, fps, config: {damping: 11, stiffness: stiff, mass: 0.8}});
 
@@ -92,8 +93,10 @@ export const DividerDemo: React.FC<{durFrames: number}> = ({durFrames}) => {
 
   return (
     <ShotShell durFrames={durFrames}>
-      <AbsoluteFill style={{justifyContent: "flex-start", alignItems: "center", display: "flex", paddingTop: 130, transform: `scale(${push})`}}>
-        <svg viewBox="0 0 900 760" width="94%">
+      <AbsoluteFill style={wide
+        ? {flexDirection: "row", alignItems: "center", justifyContent: "center", display: "flex", padding: "0 60px", transform: `scale(${push})`}
+        : {justifyContent: "flex-start", alignItems: "center", display: "flex", paddingTop: 130, transform: `scale(${push})`}}>
+        <svg viewBox="0 0 900 760" width={wide ? "56%" : "94%"}>
           {/* 回路导线：逐段描画 */}
           {SEGS.map(([x1, y1, x2, y2], i) => (
             <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke={wire} strokeWidth={6} strokeLinecap="round"
@@ -165,13 +168,14 @@ export const DividerDemo: React.FC<{durFrames: number}> = ({durFrames}) => {
           )}
         </svg>
 
-        {/* 公式算账面板：四步现场推导 */}
+        {/* 公式算账面板：四步现场推导（横版右侧纵排） */}
         <div style={{
-          marginTop: 30, display: "flex", flexDirection: "column", alignItems: "center", gap: 10,
+          marginTop: wide ? 0 : 30, marginLeft: wide ? 50 : 0,
+          display: "flex", flexDirection: "column", alignItems: wide ? "flex-start" : "center", gap: 10,
           fontFamily: FONT_MAIN, fontWeight: 800,
         }}>
           <div style={{opacity: f1, transform: `translateY(${interpolate(f1, [0, 1], [30, 0])}px)`,
-            fontSize: 40, color: C.sub}}>
+            fontSize: 40, color: C.sub, whiteSpace: wide ? "nowrap" : undefined}}>
             Vout = V × R2 / (R1 + R2)
           </div>
           <div style={{opacity: f2, transform: `translateY(${interpolate(f2, [0, 1], [30, 0])}px)`,

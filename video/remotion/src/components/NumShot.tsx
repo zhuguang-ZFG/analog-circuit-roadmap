@@ -18,7 +18,8 @@ export const NumShot: React.FC<{
   mascot?: string;
 }> = ({durFrames, from, to, unit, dec = 1, sub, bar, mascot}) => {
   const frame = useCurrentFrame();
-  const {fps} = useVideoConfig();
+  const {fps, width, height} = useVideoConfig();
+  const wide = width > height; // 横版：吉祥物上移避开底部字幕带
   const D = 45; // 1.5s @30fps
   const p = Math.min(frame / D, 1);
   const e = 1 - Math.pow(1 - p, 3);
@@ -86,8 +87,8 @@ export const NumShot: React.FC<{
           </div>
         ) : null}
         {mascot ? (
-          <div style={{position: "absolute", right: 40, bottom: 130}}>
-            <Mascot mood={mascot} width={150} />
+          <div style={{position: "absolute", right: 40, bottom: wide ? 230 : 130}}>
+            <Mascot mood={mascot} width={wide ? 120 : 150} />
           </div>
         ) : null}
       </AbsoluteFill>
