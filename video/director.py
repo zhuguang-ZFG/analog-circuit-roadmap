@@ -133,6 +133,8 @@ PAGE = """<!DOCTYPE html>
   .intro .mascot {{ width:230px; }}
   .intro .series {{ position:relative; color:#8fa5ff; font-size:34px;
     font-weight:800; letter-spacing:.3em; text-indent:.3em; }}
+  .intro .sub {{ white-space:nowrap; }}  /* 进度行不可折：max-width:86% 相对
+    shrink-to-fit 的 .stack（宽=标题行宽），标题短就会把「已更新 N 集」折断 */
   .intro .lines div {{ font-size:52px; }}
   .mascot {{ width:170px; height:auto; animation:bob 2.2s ease-in-out infinite;
     filter:drop-shadow(0 10px 22px rgba(10,16,40,.45)); }}
