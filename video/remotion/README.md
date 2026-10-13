@@ -1,7 +1,9 @@
-# remotion/ —— 竖屏成片产线（EP01–EP20）
+# remotion/ —— 竖屏 + 横屏双产线（EP01–EP20）
 
-程序化短视频产线：`samples/<name>-final.mp4`（抖音竖屏 1080×1920@30）由本目录产出。
-替代旧管线（`../master.py`）的竖屏部分；横屏 `-final-h.mp4` 仍走旧管线。
+程序化短视频产线，每集双组合：`epNN`（竖屏 1080×1920，抖音）/ `epNN-h`（横屏 1920×1080，B 站）。
+同一 `Episode` 组件 + 同一 board/字幕/音频数据，画幅由 `useVideoConfig()` 探测，组件内按
+`wide = width > height` 分支排版（图左文右、字幕带贴底、吉祥物避让）。竖屏成片 `samples/<name>-final.mp4`
+已全量换代；横屏 `-final-h.mp4` 目前仍是旧管线母带，换代按集渲染 `epNN-h` 后原位替换即可。
 
 ## 一次性安装
 
@@ -26,8 +28,9 @@ python gen_registry.py        # 4. 重建 episodes.ts（生成文件，勿手改
 ## 渲染
 
 ```bash
-npx remotion compositions src/index.ts          # 列出全部组合
-npx remotion render src/index.ts epNN out/xxx.mp4   # 全片（约 3 分钟/集）
+npx remotion compositions src/index.ts               # 列出全部组合（epNN + epNN-h × 20 集）
+npx remotion render src/index.ts epNN out/xxx.mp4   # 竖屏全片（约 3 分钟/集）
+npx remotion render src/index.ts epNN-h out/xxx-h.mp4  # 横屏全片（同一数据，零额外步骤）
 npx remotion still src/index.ts epNN out/xxx.png --frame=900   # 抽帧检查
 ```
 
@@ -43,5 +46,5 @@ npx remotion still src/index.ts epNN out/xxx.png --frame=900   # 抽帧检查
 ## 验证
 
 - `npx tsc --noEmit`；
-- CI 闸（`.github/workflows/tests.yml` remotion-smoke）：tsc + ep04 单帧实渲；
+- CI 闸（`.github/workflows/tests.yml` remotion-smoke）：tsc + ep04 竖/横各一帧实渲；
 - 抽帧像素探针：`std > 8` 判内容在位（视觉 QA 通道对本机模型不可用时的替代）。

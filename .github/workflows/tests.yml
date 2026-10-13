@@ -68,7 +68,7 @@ jobs:
       - run: python scripts/build_site.py --build
 
   remotion-smoke:
-    name: Remotion 渲染冒烟（tsc + ep04 单帧渲染）
+    name: Remotion 渲染冒烟（tsc + ep04 竖/横单帧渲染）
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -84,6 +84,9 @@ jobs:
         working-directory: video/remotion
       - name: ep04 单帧渲染（900 帧：戏眼坍塌幕 + 卡拉OK字幕路径）
         run: npx remotion still src/index.ts ep04 out/smoke.png --frame=900
+        working-directory: video/remotion
+      - name: ep04-h 横屏单帧渲染（900 帧：横版戏眼 + 卡拉OK字幕路径）
+        run: npx remotion still src/index.ts ep04-h out/smoke-h.png --frame=900
         working-directory: video/remotion
 
   svg-render:

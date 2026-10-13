@@ -58,7 +58,8 @@ const zigzag = (x: number, y1: number, y2: number): string => {
 
 export const DividerCollapse: React.FC<{durFrames: number}> = ({durFrames}) => {
   const frame = useCurrentFrame();
-  const {fps} = useVideoConfig();
+  const {fps, width, height} = useVideoConfig();
+  const wide = width > height; // 横版：电路左 + 算账右
   const pop = (d: number, stiff = 170) =>
     spring({frame: frame - d, fps, config: {damping: 11, stiffness: stiff, mass: 0.8}});
 
@@ -89,9 +90,12 @@ export const DividerCollapse: React.FC<{durFrames: number}> = ({durFrames}) => {
   const driftX = interpolate(frame, [0, durFrames], [0, -26], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
   return (
     <ShotShell durFrames={durFrames}>
-      <AbsoluteFill style={{justifyContent: "flex-start", alignItems: "center", display: "flex", paddingTop: 130,
-        transform: `scale(${push}) translateX(${driftX}px)`}}>
-        <svg viewBox="0 0 900 760" width="94%" style={{transform: `translateX(${shake}px)`}}>
+      <AbsoluteFill style={wide
+        ? {flexDirection: "row", alignItems: "center", justifyContent: "center", display: "flex", padding: "0 60px",
+          transform: `scale(${push}) translateX(${driftX}px)`}
+        : {justifyContent: "flex-start", alignItems: "center", display: "flex", paddingTop: 130,
+          transform: `scale(${push}) translateX(${driftX}px)`}}>
+        <svg viewBox="0 0 900 760" width={wide ? "56%" : "94%"} style={{transform: `translateX(${shake}px)`}}>
           {/* 主回路（幕3 遗产：全亮静态） */}
           {MAIN.map(([x1, y1, x2, y2], i) => (
             <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#8fa5ff" strokeWidth={6} strokeLinecap="round" />
@@ -144,8 +148,9 @@ export const DividerCollapse: React.FC<{durFrames: number}> = ({durFrames}) => {
           )}
         </svg>
 
-        {/* 算账面板：并联 → 重算 */}
-        <div style={{marginTop: 30, display: "flex", flexDirection: "column", alignItems: "center", gap: 10,
+        {/* 算账面板：并联 → 重算（横版右侧纵排） */}
+        <div style={{marginTop: wide ? 0 : 30, marginLeft: wide ? 50 : 0,
+          display: "flex", flexDirection: "column", alignItems: wide ? "flex-start" : "center", gap: 10,
           fontFamily: FONT_MAIN, fontWeight: 800, transform: `translateX(${shake}px)`}}>
           <div style={{opacity: fPar1, transform: `translateY(${interpolate(fPar1, [0, 1], [30, 0])}px)`, fontSize: 44, color: "#fff"}}>
             R2 ∥ RL = 10k ∥ 10k
