@@ -50,7 +50,7 @@ const BrandBadge: React.FC<{series: string; ep: string}> = ({series, ep}) => {
 /** 逐幕精确时长（累计取整防漂移），Series 硬切保证音画对齐。
  *  音频用母带级混音成品 wav（口播+BGM+音效已过两遍 loudnorm）。
  *  ep prop 选集（注册表见 episodes.ts）；音画内容全部数据驱动。 */
-export const Episode: React.FC<{ep?: string}> = ({ep = "ep04"}) => {
+export const Episode: React.FC<{ep?: string; cover?: boolean}> = ({ep = "ep04", cover = false}) => {
   const def = EPISODES[ep];
   if (!def) throw new Error(`unknown episode: ${ep}`);
 
@@ -145,7 +145,7 @@ export const Episode: React.FC<{ep?: string}> = ({ep = "ep04"}) => {
         })}
       </TransitionSeries>
       <BrandBadge series={(shots[0].series as string) ?? ""} ep={(shots[0].ep as string) ?? ""} />
-      <Subtitles data={def.subs} />
+      {cover ? null : <Subtitles data={def.subs} />}
       <Audio src={staticFile(def.audio)} />
     </AbsoluteFill>
   );
