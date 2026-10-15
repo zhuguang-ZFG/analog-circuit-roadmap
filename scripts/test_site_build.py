@@ -440,14 +440,14 @@ class SiteBuildTests(unittest.TestCase):
         DupCheck.add_multi_constructor("tag:yaml.org,2002:python/name:", lambda l, s, n: None)
         text = (self.build / "mkdocs.yml").read_text(encoding="utf-8")
         cfg = yaml.load(text, Loader=DupCheck)
-        self.assertEqual("https://zhuguang-ZFG.github.io/analog-circuit-roadmap/", cfg["site_url"])
+        self.assertEqual("https://aliyun-hutuji.donglicao.com/analog-circuit-roadmap/", cfg["site_url"])
         self.assertIn("edit_uri", cfg)
         self.assertEqual("overrides", cfg["theme"]["custom_dir"])
         self.assertIn("content.action.edit", cfg["theme"]["features"])
 
     def test_seo_files(self):
         robots = (self.out / "robots.txt").read_text(encoding="utf-8")
-        self.assertIn("Sitemap: https://zhuguang-ZFG.github.io/analog-circuit-roadmap/sitemap.xml",
+        self.assertIn("Sitemap: https://aliyun-hutuji.donglicao.com/analog-circuit-roadmap/sitemap.xml",
                       robots)
 
     def test_lesson_assets_and_three_entry_points_are_published(self):
@@ -853,7 +853,7 @@ class SiteBuildTests(unittest.TestCase):
         所以这里既查 meta 也查文件本体。
         """
         from build_site import OG_HEIGHT, OG_IMAGE, OG_WIDTH
-        self.assertTrue(OG_IMAGE.startswith("https://zhuguang-ZFG.github.io/analog-circuit-roadmap/"),
+        self.assertTrue(OG_IMAGE.startswith("https://aliyun-hutuji.donglicao.com/analog-circuit-roadmap/"),
                         f"og:image 必须自托管：{OG_IMAGE}")
         self.assertNotIn("wikimedia", OG_IMAGE)
         page = self.rendered("p1-02-ch1.html")

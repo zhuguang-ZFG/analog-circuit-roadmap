@@ -61,7 +61,7 @@ class ReadingJourneyTests(unittest.TestCase):
         # Production-domain entries silently turned these tests into full loads.
         sitemap = work / 'build/site/sitemap.xml'
         sitemap.write_text(sitemap.read_text(encoding='utf-8').replace(
-            'https://zhuguang-ZFG.github.io/analog-circuit-roadmap/', cls.base), encoding='utf-8')
+            'https://aliyun-hutuji.donglicao.com/analog-circuit-roadmap/', cls.base), encoding='utf-8')
         playwright = sync_playwright().start()
         cls.addClassCleanup(playwright.stop)
         cls.browser = playwright.chromium.launch(channel='chrome', headless=True)

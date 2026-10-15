@@ -4,7 +4,7 @@
 
 **📖 在线免费阅读：<https://aliyun-hutuji.donglicao.com/analog-circuit-roadmap/>**（国内直连，无需构建）
 
-配套 20 集动画课：B站/抖音搜「模拟电路动画课」或「本机实跑」。
+配套 20 集动画课（[逐章目录](#s7-3)）：B站/抖音搜「模拟电路动画课」或「本机实跑」。
 
 <div class="repo-badges" markdown="1">
 
@@ -1047,6 +1047,8 @@ V ──[R1]──┬── Vout = V × R2/(R1+R2)
 > 🎯 **通关打卡**：你现在有了一套通用语言（水路八词）、一个第一电路（分压器带载塌陷的账）、三个思维习惯，以及**电源的两种性格**。**从这里开始，每一章都在给这套直觉添砖加瓦。**
 
 > 📺 **配套视频**：[模拟电子技术（4K 降噪）· 上海交大 郑益慧](https://www.bilibili.com/video/BV1qA5DzWEVh/)（B站）——把物理图像讲透，第 0 章的「直觉」部分配它最顺——先建立感觉，再上公式。见 [7.1 视频资源汇总](#part7)。
+
+> 🎬 **60 秒动画版**：[EP04 接上负载那一刻，5V 就没了](https://www.bilibili.com/video/BV1d8pq6oEYe/)（[全 20 集](#s7-3)）
 <a id="ch1"></a>
 ## 第 1 章 无源元件的真实面目
 
@@ -1328,6 +1330,8 @@ $$L = L_0 \times 2^{\frac{T_0 - T}{10}}$$
 
 > 📺 想系统跟一门课：[模拟电子技术基础（56 讲全）· 清华 华成英](https://www.bilibili.com/video/BV19s411a7KL/)（B站）——无源元件与 RLC 谐振、Q 值在系统课里逐节推导，与 1.3~1.6 对应。更多见 [7.1 视频资源汇总](#part7)。
 
+> 🎬 **60 秒动画版**：[EP08 去耦电容不是滤波，是本地水库](https://www.bilibili.com/video/BV178pq6oE3o/) · [EP09 开关电源里第一个坏的总是它](https://www.bilibili.com/video/BV1L8pq6oERf/)（[全 20 集](#s7-3)）
+
 ---
 <a id="ch2"></a>
 ## 第 2 章 二极管：单向导电的物理本质
@@ -1522,6 +1526,8 @@ LED 在下方（压降大、速度慢，但唯一会发光）、TVS 在右上（
 > 🎯 **通关打卡**：PN 结不再神秘——你能从载流子扩散讲到 0.7V 的由来，知道接反会怎样，也记住了续流二极管救过多少驱动管。；接口保护三件套（TVS + 限流 + 钳位）能在画板时一次选对
 
 > 📺 **配套视频**：[模拟电子技术基础（56 讲全）· 清华 华成英](https://www.bilibili.com/video/BV19s411a7KL/)（B站）——二极管一节在系统课里讲得最完整（PN 结 → 整流 → 稳压），与本章逐条对应。见 [7.1 视频资源汇总](#part7)。
+
+> 🎬 **60 秒动画版**：[EP10 继电器断电瞬间，数百伏反冲](https://www.bilibili.com/video/BV1pBpm6wEkj/)（[全 20 集](#s7-3)）
 
 ---
 <a id="ch3"></a>
@@ -1738,6 +1744,8 @@ $$\text{温度↑} \;\Rightarrow\; V_{BE}\text{↓（}-2\text{mV/°C）} \;\Righ
 
 - 🅱️ [模拟电子技术基础（华成英，56 讲全）](https://www.bilibili.com/video/BV19s411a7KL/)——第 10~20 讲正是 BJT 放大，配合本章食用
 
+> 🎬 **60 秒动画版**：[EP06 BJT 最常见的死法：自己烧自己](https://www.bilibili.com/video/BV1j8pq6oEiw/)（[全 20 集](#s7-3)）
+
 > 🎯 **通关打卡**：β 离散再也坑不到你——分压偏置闭眼能算，三个电压一量就知道管子活没活。
 
 ---
@@ -1900,6 +1908,8 @@ MOSFET 栅极充电时 $V_{GS}$ 波形出现的"平台"：此时 $V_{DS}$ 正在
 </details>
 
 > **Afrotechmods《Transistor / MOSFET tutorial》**：N 沟 MOSFET 开关实战入门最佳短片——面包板实拍，看完就能点亮第一个 LED 负载。（别忘了他说的：栅极对地接 100k，默认保持关断）
+
+> 🎬 **60 秒动画版**：[EP01 你 MOSFET 发烫的原因，藏在这几百纳秒](https://www.bilibili.com/video/BV1L8pq6oErR/)（[全 20 集](#s7-3)）
 
 > 🎯 **通关打卡**：MOSFET 在你手里是"电压阀门"——选型会同时看 $V_{th}$、$R_{DS(on)}$、$Q_g$ 三项，不会再让 3.3V GPIO 硬推 10V 驱动的管子。
 
@@ -2084,6 +2094,8 @@ $\tau=RC=0.2\mu s$。也就是**全部驱动器高阻后，总线电平在 0.2µ
 > 🎯 **通关打卡**：I2C 为什么慢、为什么要上拉、为什么能线与——你能给同事讲明白，还敢在总线上挂第二个主机；推挽一个周期四拍——谁值班、什么时候漏岗（交越）、什么时候两人同时上岗（直通），说得清
 
 > 📺 **配套视频**：[硬件工程师入门教程](https://www.bilibili.com/video/BV1gHSyY3E6q/)（B站）——推挽/开漏属于数字接口常识，工程向课程里讲得最接地气（I2C 上拉、总线冲突都有实例）。见 [7.1 视频资源汇总](#part7)。
+
+> 🎬 **60 秒动画版**：[EP07 开漏输出没上拉 = 没输出](https://www.bilibili.com/video/BV1j8pq6oEvm/)（[全 20 集](#s7-3)）
 
 
 ---
@@ -2312,6 +2324,8 @@ $V_{OS}$ 被增益放大、$I_B$ 只在高源阻抗时咬人、GBW 管小信号�
 > **w2aew #75《Basics of Opamp circuits》**：用"运放会拼命让两个输入相等"一句话讲透所有运放电路的分析法——78 万播放的 9 分钟，胜过教材一章。
 > 🅱️ 中文字幕平替：[上海交大 郑益慧 模电（4K）](https://www.bilibili.com/video/BV1qA5DzWEVh/)——运放章节的物理图像讲得极好。
 
+> 🎬 **60 秒动画版**：[EP02 运放电路不用背！虚短·虚断四个字通杀](https://www.bilibili.com/video/BV1j8pq6oEJN/)（[全 20 集](#s7-3)）
+
 <a id="sec-6-7"></a>
 ### 6.7 动态分析：运放阶跃响应——压摆率与建立时间（四拍拆解）🔬
 
@@ -2477,6 +2491,8 @@ $$V_{TH+} = V_{REF}\left(1+\frac{R_1}{R_2}\right) - \frac{R_1}{R_2}V_{OL},\qquad
 > 🎯 **通关打卡**：迟滞=正反馈造免疫区——三个电阻算阈值，再抖的输入信号到你手里都干净利落；一个噪声毛刺的四拍命运能讲成故事——迟滞宽度就是抗噪护城河的宽度
 
 > 📺 **配套视频**：[模电 4K 高清重制版（189P）· 华成英](https://www.bilibili.com/video/BV1Vp411f71S/)（B站）——比较器与迟滞在运放章节里讲，带完整目录，可按节跳看。见 [7.1 视频资源汇总](#part7)。
+
+> 🎬 **60 秒动画版**：[EP03 输出疯成毛刺？真凶不是芯片](https://www.bilibili.com/video/BV1j8pq6oEJF/)（[全 20 集](#s7-3)）
 
 ---
 <a id="ch8"></a>
@@ -2762,6 +2778,8 @@ VIN ──[调整管 PMOS/PNP]── VOUT
 
 > 📺 **配套视频**：[电源大师系列（DCDC 拓扑 / PCB layout / EMI）](https://www.bilibili.com/video/BV1ef4y1n7x1/)（B站）——基准与稳压是电源的地基——这门课从稳压器一路讲到 EMI，本章是它的第一站。见 [7.1 视频资源汇总](#part7)。
 
+> 🎬 **60 秒动画版**：[EP14 想拿 5V 先喂 7V：7805 的账](https://www.bilibili.com/video/BV1X7pm61E7Q/) · [EP17 1.26V 从哪来？两只管子的吵架](https://www.bilibili.com/video/BV1igpm6nEro/)（[全 20 集](#s7-3)）
+
 ---
 <a id="ch10"></a>
 ## 第 10 章 555 定时器：最经典的混合信号芯片
@@ -2894,6 +2912,8 @@ $t_{放}=0.693\,R_2\,C ≈ 471µs$（输出低）
 > 🎯 **通关打卡**：3 电阻+2 比较器+1 触发器+1 放电管刻进脑子——单稳/无稳/双稳三种模式随手搭，5 脚记得接 10nF。
 
 > 📺 **配套视频**：[模拟电子技术（4K 降噪）· 上海交大 郑益慧](https://www.bilibili.com/video/BV1qA5DzWEVh/)（B站）——555 内部那两个比较器 + 触发器，郑老师按「物理图像」讲得最清楚。见 [7.1 视频资源汇总](#part7)。
+
+> 🎬 **60 秒动画版**：[EP12 三电阻两比较器，撑起半个电子圈](https://www.bilibili.com/video/BV1hJpm65E2D/)（[全 20 集](#s7-3)）
 
 ---
 <a id="part2"></a>
@@ -3155,6 +3175,8 @@ $$F_{total}=F_1+\frac{F_2-1}{G_1}+\frac{F_3-1}{G_1G_2}+\cdots$$
 > 🎯 **通关打卡**：三态组态表能默写；差分对"长尾"的作用一句话说清；电流镜两大用途（偏置/有源负载）刻进脑子；看到乙类推挽立刻想到交越失真和二极管偏置；米勒效应 $(1+A)C$ 会算；**相位裕度 ↔ ζ ↔ 过冲三者的换算张口就来，还能讲清"密勒补偿靠极点分裂换裕度"**；降噪顺序"带宽→源阻→管子"背得出，**并能从源阻热噪声起手做完整噪声预算、一路算到 SNR 与 ENOB**；差分对四拍——共模被尾电流源「拒收」、差模被「重新分配」放大，能讲透
 
 > 📺 **配套视频**：[模电 4K 高清重制版（189P）· 华成英](https://www.bilibili.com/video/BV1Vp411f71S/)（B站）——三种组态、差分对、电流镜是系统课的重头戏，本章与之逐节对应。见 [7.1 视频资源汇总](#part7)。
+
+> 🎬 **60 秒动画版**：[EP11 功放音量开大没事，小音量却发毛](https://www.bilibili.com/video/BV1aJpm65EJE/) · [EP15 模拟 IC 的复印机：电流镜](https://www.bilibili.com/video/BV1G7pm62EUJ/) · [EP16 所有运放的第一级都是它](https://www.bilibili.com/video/BV1dgpm6nEvL/)（[全 20 集](#s7-3)）
 
 ---
 <a id="ch12"></a>
@@ -3568,6 +3590,8 @@ $$V_{out} = V_Z - 0.7V$$
 🔗 [动画演示 5.11](#demo11)
 
 > 📺 **配套视频**：[三分钟看懂！Buck 降压电路动画讲解](https://www.bilibili.com/video/BV1QJSFBVEHu/)（B站）——与上图互证：同一只电感，两种讲法。
+
+> 🎬 **60 秒动画版**：[EP13 开关电源的主角不是开关，是电感](https://www.bilibili.com/video/BV1QJpm65E9v/)（[全 20 集](#s7-3)）
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/LM2596_buck_converter_module%2C_MP1584_buck_converter_module%2C_and_SDB628_boost_converter_module.jpg/960px-LM2596_buck_converter_module%2C_MP1584_buck_converter_module%2C_and_SDB628_boost_converter_module.jpg" width="480" alt="DC-DC 模块实物：LM2596 Buck + MP1584 Buck + SDB628 Boost（Wikimedia Commons）">
 
@@ -4212,6 +4236,8 @@ $$T_J = T_A + P \times (\theta_{JC} + \theta_{CS} + \theta_{SA})$$
 > 🎯 **通关打卡**：设计五部曲+降额+裕量——你的第一块板子，就有老师傅级别的稳健；PT100 全链四环（激励/放大/滤波/转换）的选型理由能各说一句；**会算 $T_J = T_A + P\times\sum\theta$ 并倒推散热器；LTspice 五种分析各回答什么问题、四个必备指令、五个常见坑说得出**；电源树四拍——按时间尺度分工（ms/kHz/MHz/ns），能指出每一级管哪一段；**会做误差预算（WC 与 RSS 两种算法）、用 $3\sigma$ 折良率，知道关键节点要留测试点、探头地线环会造出假纹波**
 
 > 📺 **配套视频**：[硬件工程师零基础入门到精通（114 讲）· 凡亿教育](https://www.bilibili.com/video/BV1bRi9YaE2R/)（B站）——从元器件到实战的完整工程视角，与本章「从需求到打样」的六步流程互补。见 [7.1 视频资源汇总](#part7)。
+
+> 🎬 **60 秒动画版**：[EP20 还没说话，喇叭先嘶](https://www.bilibili.com/video/BV1qMpm6QEgW/)（[全 20 集](#s7-3)）
 <a id="ch15"></a>
 ## 第 15 章 PCB 绘制注意事项
 
@@ -4356,6 +4382,8 @@ EMC 的三要素永远是一句话：**干扰源 → 耦合路径 → 敏感设�
 > 🎯 **通关打卡**：布局定 80%、回流在脚下、去耦贴脸放——你的板子 EMC 一次过的概率翻倍；EMC 三要素里你唯一能掐断的是路径与天线；回流路径四拍——高频只认「最小回路面积」，回路面积放大 30 倍 = 辐射涨 30dB
 
 > 📺 **配套视频**：[高速 PCB 设计入门（2 小时 · 4 层板）· 嘉立创EDA](https://www.bilibili.com/video/BV1fUrSYmE7d/)（B站）——布线实战：叠层、阻抗、过孔、差分对——本章 15.3 的规则在这门课里都有实物演示。见 [7.1 视频资源汇总](#part7)。
+
+> 🎬 **60 秒动画版**：[EP18 地不是 0V，是电流回家的路](https://www.bilibili.com/video/BV1dgpm6nE99/)（[全 20 集](#s7-3)）
 
 ---
 <a id="part4"></a>
@@ -4567,6 +4595,8 @@ EMC 的三要素永远是一句话：**干扰源 → 耦合路径 → 敏感设�
 > 🎯 **通关打卡**：你现在拿到一块故障板，会先问 5 个问题、按对数切半定位、一次只改一个变量——而不是抓起烙铁就换芯片；修完还会填一张排故记录表、过一遍复盘三问，把这次的坑变成团队的免疫；**还能独立走完设计/环境/工艺三类故障各一例——从现象 → 隔离 → 根因 → 修复 → 回归，并填出一张完整排故记录表**。
 
 > 📺 **配套视频**：[零基础示波器使用入门 · 芯讲坛](https://www.bilibili.com/video/BV1nrjM6NEr8/)（B站）——排故实操第一课——第 16 章「五步法」的每一步都要靠示波器落地。见 [7.1 视频资源汇总](#part7)。
+
+> 🎬 **60 秒动画版**：[EP05 这条怪波形，可能是探头自己画的](https://www.bilibili.com/video/BV1q8pq6oEK5/) · [EP19 最贵的是烙铁，最便宜的是嘴上的问题](https://www.bilibili.com/video/BV1qMpm6QEhc/)（[全 20 集](#s7-3)）
 <a id="ch17"></a>
 ## 第 17 章 故障模式速查总表
 
@@ -5770,6 +5800,7 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 |---|---|
 | [7.1 B 站（中文系统课程）](docs/p7-01-s7-1.md) | 清华华成英、上交郑益慧等系统课与习题精讲 |
 | [7.2 YouTube（英文频道）](docs/p7-02-s7-2.md) | EEVblog、w2aew、Ben Eater 等实测与深度频道 |
+| [7.3 自研《模拟电路动画课》（20 集）](#s7-3) | 每集 60 秒的动画课：先看现象，再回本章算账 |
 
 ## 怎么读这一篇
 
@@ -5781,6 +5812,7 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 
 | 课程 | 讲师/来源 | 链接 | 特点 |
 |---|---|---|---|
+| **模拟电路动画课（自研 · 20 集）** | 小电讲电路 | [20 集目录](#s7-3) | 每集 60 秒，配本书逐章食用 |
 | **模拟电子技术基础（56 讲全）** | 清华大学 华成英 | [BV19s411a7KL](https://www.bilibili.com/video/BV19s411a7KL/) | 国内模电第一课，体系严谨 |
 | **模电 4K 高清重制版（189P）** | 华成英 | [BV1Vp411f71S](https://www.bilibili.com/video/BV1Vp411f71S/) | 画质修复版，带目录 |
 | **模拟电子技术（4K 降噪）** | 上海交大 郑益慧 | [BV1qA5DzWEVh](https://www.bilibili.com/video/BV1qA5DzWEVh/) | 讲透物理图像，口碑炸裂 |
@@ -5815,6 +5847,43 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 | Neso Academy 模电全课程 | [播放列表](https://www.youtube.com/playlist?list=PLBlnK6fEyqRiw-GZRqfnlVIBz9dxrqHJS) | 从半导体到运放，158 讲系统课 |
 
 **MIT OCW 6.002 视频**：[课程主页](https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/) 内含 Anant Agarwal 全部讲课录像——MIT 新生第一门 EE 课，激情四射。
+
+---
+<a id="s7-3"></a>
+## 7.3 自研《模拟电路动画课》：20 集，每集 60 秒
+
+> 系统课把体系讲全，这套动画课把单个现象讲穿：每集 60 秒，先演现象、再给一笔账，看完回到本章把公式对上号。发布在 B 站（横屏 20 集，搜「模拟电路动画课」）与抖音（竖屏同题版）。
+
+| 集 | 主题（B 站标题） | 对应章节 |
+|---|---|---|
+| EP01 | [你 MOSFET 发烫的原因，藏在这几百纳秒｜米勒平台](https://www.bilibili.com/video/BV1L8pq6oErR/) | [第 4 章](#ch4) · 4.6 米勒平台 |
+| EP02 | [运放电路不用背！虚短·虚断四个字通杀](https://www.bilibili.com/video/BV1j8pq6oEJN/) | [第 6 章](#ch6) · 6.2 虚短虚断 |
+| EP03 | [输出疯成毛刺？真凶不是芯片｜迟滞比较器](https://www.bilibili.com/video/BV1j8pq6oEJF/) | [第 7 章](#ch7) · 7.3 迟滞 |
+| EP04 | [接上负载那一刻，5V 就没了｜分压器带载](https://www.bilibili.com/video/BV1d8pq6oEYe/) | [第 0 章](#ch0) · 0.3 分压器带载 |
+| EP05 | [这条怪波形，可能是探头自己画的｜探头负载](https://www.bilibili.com/video/BV1q8pq6oEK5/) | [第 16 章](#ch16) · 16.3 探头负载 |
+| EP06 | [BJT 最常见的死法：自己烧自己｜热失控](https://www.bilibili.com/video/BV1j8pq6oEiw/) | [第 3 章](#ch3) · 热失控 |
+| EP07 | [开漏输出没上拉 = 没输出](https://www.bilibili.com/video/BV1j8pq6oEvm/) | [第 5 章](#ch5) · 开漏与上拉 |
+| EP08 | [去耦电容不是滤波，是本地水库](https://www.bilibili.com/video/BV178pq6oE3o/) | [第 1 章](#ch1) 选型 · [15.1](#ch15) 摆放 |
+| EP09 | [开关电源里第一个坏的总是它｜电解电容](https://www.bilibili.com/video/BV1L8pq6oERf/) | [第 1 章](#ch1) · 1.7 电解寿命 |
+| EP10 | [继电器断电瞬间，数百伏反冲｜续流二极管](https://www.bilibili.com/video/BV1pBpm6wEkj/) | [第 2 章](#ch2) · 2.8 接口保护 |
+| EP11 | [功放音量开大没事，小音量却发毛｜交越失真](https://www.bilibili.com/video/BV1aJpm65EJE/) | [第 11 章](#ch11) · 11.4 推挽输出级 |
+| EP12 | [三电阻两比较器，撑起半个电子圈｜555定时器](https://www.bilibili.com/video/BV1hJpm65E2D/) | [第 10 章](#ch10) · 555 内部 |
+| EP13 | [开关电源的主角不是开关，是电感｜Buck](https://www.bilibili.com/video/BV1QJpm65E9v/) | [第 13 章](#ch13) · 电感储能 |
+| EP14 | [想拿 5V 先喂 7V：7805 的账｜LDO压差](https://www.bilibili.com/video/BV1X7pm61E7Q/) | [第 9 章](#ch9) · LDO 压差 |
+| EP15 | [模拟 IC 的复印机：电流镜](https://www.bilibili.com/video/BV1G7pm62EUJ/) | [第 11 章](#ch11) · 11.3 电流镜 |
+| EP16 | [所有运放的第一级都是它｜差分对](https://www.bilibili.com/video/BV1dgpm6nEvL/) | [第 11 章](#ch11) · 11.2 差分对 |
+| EP17 | [1.26V 从哪来？两只管子的吵架｜带隙基准](https://www.bilibili.com/video/BV1igpm6nEro/) | [第 9 章](#ch9) · 带隙基准 |
+| EP18 | [地不是 0V，是电流回家的路｜回流路径](https://www.bilibili.com/video/BV1dgpm6nE99/) | [第 15 章](#ch15) · 15.7 回流路径 |
+| EP19 | [最贵的是烙铁，最便宜的是嘴上的问题｜排故五步法](https://www.bilibili.com/video/BV1qMpm6QEhc/) | [第 16 章](#ch16) · 排故五步法 |
+| EP20 | [还没说话，喇叭先嘶｜噪声预算](https://www.bilibili.com/video/BV1qMpm6QEgW/) | [第 14 章](#ch14) · 14.4 噪声预算 |
+
+### 怎么配合正文用
+
+- **先读后看**：正文把账算完，再看动画对照直觉——哪一步对不上，回到对应小节复读。
+- **先看后读**：完全陌生的章节，先刷 60 秒动画建立画面，再回正文补公式。
+- 每章末尾的 🎬 卡片就是对应集的直达入口；20 集连刷约 20 分钟。
+
+> 💡 视频随书修订，与本章节一一对应；发现对不上号的地方，欢迎用页面底部的反馈入口告诉我们。
 
 ---
 <a id="part8"></a>

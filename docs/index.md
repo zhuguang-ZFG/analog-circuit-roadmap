@@ -4,7 +4,7 @@
 
 **📖 在线免费阅读：<https://aliyun-hutuji.donglicao.com/analog-circuit-roadmap/>**（国内直连，无需构建）
 
-配套 20 集动画课：B站/抖音搜「模拟电路动画课」或「本机实跑」。
+配套 20 集动画课（[逐章目录](p7-03-s7-3.md#s7-3)）：B站/抖音搜「模拟电路动画课」或「本机实跑」。
 
 <div class="repo-badges" markdown="1">
 
