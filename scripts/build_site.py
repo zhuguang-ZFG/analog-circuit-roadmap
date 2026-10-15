@@ -987,13 +987,13 @@ OVERRIDES_MAIN_HTML = """{% extends "base.html" %}
 # 自托管分享卡：scripts/build_og_image.py 渲染的 1200×630 卡片，产物提交进仓库
 # （assets/og-cover.png），随站点一起发布。原来外链 Wikimedia 的电路板照片：
 # 跨域抓取常超时、且与本站内容无关，分享出去看不出是「模拟电路教程」。
-OG_IMAGE = "https://zhuguang-ZFG.github.io/analog-circuit-roadmap/assets/og-cover.png"
+OG_IMAGE = "https://aliyun-hutuji.donglicao.com/analog-circuit-roadmap/assets/og-cover.png"
 OG_WIDTH, OG_HEIGHT = 1200, 630
 
 ROBOTS_TXT = """User-agent: *
 Allow: /
 
-Sitemap: https://zhuguang-ZFG.github.io/analog-circuit-roadmap/sitemap.xml
+Sitemap: https://aliyun-hutuji.donglicao.com/analog-circuit-roadmap/sitemap.xml
 """
 
 FEEDBACK_FOOTER = """
@@ -1048,7 +1048,7 @@ window.MathJax = {
 
 MKDOCS_YML = """site_name: 通往模拟电路之路
 site_description: 从欧姆定律到芯片内部结构 —— 原理推导 + 器件剖析 + 故障分析 + 108 张 SVG 动画
-site_url: https://zhuguang-ZFG.github.io/analog-circuit-roadmap/
+site_url: https://aliyun-hutuji.donglicao.com/analog-circuit-roadmap/
 repo_url: https://github.com/zhuguang-ZFG/analog-circuit-roadmap
 # 顶栏右上角那个仓库链接显示的就是这个串，而 Material 给它的宽度是**固定**的
 # （`.md-header__source` 在桌面上限死 11.5rem，跟视口宽度无关），所以写全路径
