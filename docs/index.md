@@ -2,6 +2,10 @@
 
 > 从欧姆定律到芯片内部结构，一份把原理推导、器件剖析、故障分析和动画演示连起来的模拟电路学习指南。
 
+**📖 在线免费阅读：<https://aliyun-hutuji.donglicao.com/analog-circuit-roadmap/>**（国内直连，无需构建）
+
+配套 20 集动画课：B站/抖音搜「模拟电路动画课」或「本机实跑」。
+
 <div class="repo-badges" markdown="1">
 
 [![tests](https://github.com/zhuguang-ZFG/analog-circuit-roadmap/actions/workflows/tests.yml/badge.svg)](https://github.com/zhuguang-ZFG/analog-circuit-roadmap/actions/workflows/tests.yml)
