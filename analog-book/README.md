@@ -2,6 +2,8 @@
 
 从 `docs/` 构建《通往模拟电路之路》的单文件 HTML 与 A4 PDF。内容源仍在 `docs/`，本目录只放构建器、清单与样式。
 
+**直接下载**：<https://zhuguang-zfg.github.io/analog-circuit-roadmap/book/>（每次 main 分支构建自动更新，无需本地安装）。
+
 ## 构建
 
 在仓库根目录运行：

@@ -4,7 +4,7 @@
 
 **📖 在线免费阅读：<https://aliyun-hutuji.donglicao.com/analog-circuit-roadmap/>**（国内直连，无需构建）
 
-**📚 离线整书**：单文件 HTML + A4 PDF，断网可读，内置 `Ctrl+K` 全文搜索与 290 页书签导航；构建方式见 [analog-book](https://github.com/zhuguang-ZFG/analog-circuit-roadmap/tree/main/analog-book)。
+**📚 离线整书**：单文件 HTML + A4 PDF，断网可读，内置 `Ctrl+K` 全文搜索与 290 页书签导航；[直接下载](https://zhuguang-zfg.github.io/analog-circuit-roadmap/book/)，构建方式见 [analog-book](https://github.com/zhuguang-ZFG/analog-circuit-roadmap/tree/main/analog-book)。
 
 配套 20 集动画课（[逐章目录](p7-03-s7-3.md#s7-3)）：B站/抖音搜「模拟电路动画课」或「本机实跑」。
 
