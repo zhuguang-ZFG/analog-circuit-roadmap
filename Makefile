@@ -27,6 +27,7 @@ test-static:
 	$(PY) -B -m unittest discover -s scripts -p "test_split_readme.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_page_structure.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_release_gate.py" -v
+	$(PY) -B -m unittest discover -s scripts -p "test_publish_book.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_site_build.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_smartsymbols.py" -v
 	$(PY) -B -m unittest discover -s analog-book/tests -p "test_build.py" -v
