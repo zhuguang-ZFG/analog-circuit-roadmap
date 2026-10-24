@@ -170,6 +170,7 @@ Fork → 特性分支 → 提交（commit message 中英文皆可，说明 why�
 
 ## 整书与离线产物
 
+- 已发布整书（每次 main 构建更新）：<https://zhuguang-zfg.github.io/analog-circuit-roadmap/book/>；`pages` 复用 `book` 作业的产物，tests/links/book 全绿才部署。
 - 改 `docs/` 后先 `make readme`；涉及整书标题或页面范围时运行 `make book`。
 - 新增内容页必须加入 `analog-book/manifest.json`，否则整书审计红灯。
 - 新增第三方图片/字体/代码资产必须更新 `docs/p9-14-credits.md`。
