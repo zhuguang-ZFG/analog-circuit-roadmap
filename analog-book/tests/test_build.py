@@ -186,6 +186,16 @@ class AssemblyTests(unittest.TestCase):
         self.assertIn('aria-label="回到顶部"', self.document)
         self.assertIn('getElementById("book-top")', self.document)
 
+    def test_print_layout_avoids_page_shrink(self):
+        css = (build_book.BOOK_DIR / "styles" / "book.css").read_text(encoding="utf-8")
+        self.assertNotIn("@media (max-width: 720px)", css,
+                         "移动端样式不能泄漏到 A4 打印")
+        self.assertIn("@media screen and (max-width: 720px)", css)
+        print_block = css.split("@media print", 1)[1]
+        self.assertIn("table-layout: fixed", print_block)
+        self.assertIn("word-break: break-word", print_block)
+        self.assertIn(".book-copyright { font-size: 10.5pt; }", print_block)
+
     def test_no_remote_or_site_only_assets(self):
         self.assertNotRegex(self.document, r'<script[^>]+src=')
         self.assertNotRegex(self.document, r'<link[^>]+rel="stylesheet"')

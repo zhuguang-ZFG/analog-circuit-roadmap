@@ -50,6 +50,13 @@ class PdfBook(unittest.TestCase):
             self.assertRegex(toc_text, r"\b[1-9]\d*\b")
             # 正文页有页码
             self.assertIn(" / ", document[document.page_count - 1].get_text())
+            first_body = min(page for level, _title, page in toc if level == 2)
+            sizes = [round(span["size"], 1)
+                     for block in document[first_body - 1].get_text("dict")["blocks"]
+                     for line in block.get("lines", [])
+                     for span in line["spans"]]
+            self.assertTrue(any(10.2 <= size <= 10.8 for size in sizes),
+                            f"正文未按 10.5pt 排版：{sorted(set(sizes))[:8]}")
             self.assertIn("来源与许可",
                           "".join(document[i].get_text()
                                   for i in range(document.page_count - 10,
