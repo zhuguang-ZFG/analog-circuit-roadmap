@@ -167,6 +167,14 @@ class AssemblyTests(unittest.TestCase):
         self.assertEqual(60, toc.count('<a href="#page-'))
         self.assertEqual(11, toc.count("<h2"))
 
+    def test_offline_search_is_wired(self):
+        self.assertEqual(60, self.document.count('data-part-title="'))
+        self.assertIn('id="book-search-input"', self.document)
+        self.assertIn('id="book-search-results"', self.document)
+        self.assertIn("buildIndex", self.document)
+        self.assertIn("Ctrl+K", self.document)
+        self.assertNotRegex(self.document, r'<script[^>]+src=')
+
     def test_no_remote_or_site_only_assets(self):
         self.assertNotRegex(self.document, r'<script[^>]+src=')
         self.assertNotRegex(self.document, r'<link[^>]+rel="stylesheet"')

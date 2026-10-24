@@ -20,6 +20,7 @@ Windows 上装了 GNU Make 时可用 `make book` / `make book-pdf` / `make book-
 - 产物在 `analog-book/dist/`（gitignored）：`analog-circuit-book.html`、`analog-circuit-book.pdf`。
 - 新增/删除内容页必须同步 `manifest.json`，否则整书审计失败。
 - 书内禁止远程图片、外链样式/脚本、iframe/video；第三方资产先本地化并登记 `docs/p9-14-credits.md`。
+- 页眉内置离线全文搜索：`Ctrl/Cmd+K` 或 `/` 聚焦，方向键选择、回车跳转；索引在首次输入时从正文构建，不增加网络依赖。
 - Mermaid 路线图使用 `static/roadmap.svg`；改 `docs/p0-06-roadmap.md` 后必须重新生成 `roadmap.source.txt` / `roadmap.svg`。
 - 缺 Playwright/PyMuPDF 时 HTML 仍可构建；PDF 相关测试自动 skip。
 - PDF 默认优先本机 Edge/Chrome，找不到时回退 Playwright 自带 Chromium；可用 `--browser <path>` 指定浏览器。

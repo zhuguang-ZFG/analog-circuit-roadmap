@@ -32,6 +32,8 @@ jobs:
         run: python analog-book/build_book.py --no-build --pdf
       - name: PDF 结构测试
         run: python -B -m unittest discover -s analog-book/tests -p "test_pdf.py" -v
+      - name: 浏览器离线回归（公式、计算器、目录与全文搜索）
+        run: python -B -m unittest discover -s analog-book/tests -p "test_browser_book.py" -v
       - uses: actions/upload-artifact@v4
         with:
           name: analog-circuit-book

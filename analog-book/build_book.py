@@ -229,6 +229,13 @@ def inline_scripts(site_dir: Path = SITE_DIR) -> str:
     return "\n".join(chunks)
 
 
+def inline_search() -> str:
+    path = BOOK_DIR / "static" / "book-search.js"
+    if not path.is_file():
+        raise BookError(f"缺少离线搜索脚本: {path}")
+    return path.read_text(encoding="utf-8")
+
+
 MATHJAX_CONFIG = r"""<script>
 window.MathJax = {
   tex: {
@@ -312,10 +319,11 @@ def wrap_tables(fragment: str) -> str:
                   fragment, flags=re.S)
 
 
-def _page_section(page: dict) -> str:
+def _page_section(page: dict, part_title: str) -> str:
     return (
         f'<section class="book-page" id="page-{page["stem"]}" '
-        f'data-page="{page["stem"]}" data-title="{html.escape(page["title"], quote=True)}">\n'
+        f'data-page="{page["stem"]}" data-title="{html.escape(page["title"], quote=True)}" '
+        f'data-part-title="{html.escape(part_title, quote=True)}">\n'
         f'<div class="md-typeset">\n{page["html"]}\n</div>\n'
         '<p class="book-page-back"><a href="#book-toc">↑ 返回目录</a></p>\n'
         '</section>'
@@ -367,10 +375,11 @@ def assemble_book(manifest: dict, parts: list[dict],
     body = [_cover(manifest), _copyright(manifest), _toc(parts)]
     for part in parts:
         body.append(f'<section class="book-part" data-part="{part["id"]}">')
-        body.extend(_page_section(page) for page in part["pages"])
+        body.extend(_page_section(page, part["title"]) for page in part["pages"])
         body.append("</section>")
     css = inline_css(site_dir)
     scripts = inline_scripts(site_dir)
+    search = inline_search()
     mathjax = inline_mathjax()
     document = f"""<!doctype html>
 <html lang="{manifest["language"]}">
@@ -385,14 +394,21 @@ def assemble_book(manifest: dict, parts: list[dict],
 <style>{css}</style>
 </head>
 <body data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
-<header class="book-header"><span>{html.escape(manifest["title"])}</span>
-<a href="#book-toc">目录</a></header>
+<header class="book-header"><span class="book-header-title">{html.escape(manifest["title"])}</span>
+<div class="book-search" id="book-search" role="search">
+<label class="visually-hidden" for="book-search-input">搜索全书</label>
+<input id="book-search-input" type="search" placeholder="搜索全书（Ctrl+K）" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="false" aria-autocomplete="list" aria-controls="book-search-results">
+<ul class="book-search-results" id="book-search-results" role="listbox" hidden></ul>
+<p class="book-search-status visually-hidden" id="book-search-status" role="status" aria-live="polite"></p>
+</div>
+<a class="book-header-toc" href="#book-toc">目录</a></header>
 <main class="book">
 {''.join(body)}
 </main>
 <footer class="book-footer">离线整书 · 由 docs/ 构建 · {manifest["license"]}</footer>
 {mathjax}
 <script>{scripts}</script>
+<script>{search}</script>
 </body>
 </html>
 """

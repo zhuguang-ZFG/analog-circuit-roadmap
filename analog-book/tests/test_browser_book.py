@@ -53,6 +53,29 @@ class BrowserBook(unittest.TestCase):
             page.click('a[href="#page-p1-01-ch0"]')
             page.wait_for_function(
                 "document.getElementById('page-p1-01-ch0').getBoundingClientRect().top < 300")
+            page.keyboard.press("Control+k")
+            self.assertEqual("book-search-input",
+                             page.evaluate("document.activeElement.id"))
+            page.fill("#book-search-input", "米勒")
+            page.wait_for_selector("#book-search-results li[role=option]")
+            self.assertGreater(
+                page.locator("#book-search-results li[role=option]").count(), 0)
+            page.keyboard.press("ArrowDown")
+            page.wait_for_function(
+                "document.getElementById('book-search-input')"
+                ".getAttribute('aria-activedescendant')")
+            page.keyboard.press("Enter")
+            page.wait_for_function(
+                "document.getElementById('book-search-results').hidden")
+            self.assertRegex(page.evaluate("location.hash"), r"^#.+")
+            self.assertIsNotNone(page.evaluate(
+                "document.getElementById(decodeURIComponent(location.hash.slice(1)))"))
+            page.keyboard.press("Control+k")
+            self.assertEqual("book-search-input",
+                             page.evaluate("document.activeElement.id"))
+            page.keyboard.press("Escape")
+            self.assertNotEqual("book-search-input",
+                                page.evaluate("document.activeElement.id"))
             self.assertEqual([], errors[:5])
             browser.close()
 
