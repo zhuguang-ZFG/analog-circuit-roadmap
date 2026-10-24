@@ -3,9 +3,10 @@
 
   const search = document.getElementById("book-search");
   const input = document.getElementById("book-search-input");
-  const panel = document.getElementById("book-search-results");
+  const panel = document.getElementById("book-search-panel");
+  const list = document.getElementById("book-search-results");
   const status = document.getElementById("book-search-status");
-  if (!search || !input || !panel || !status) return;
+  if (!search || !input || !panel || !list || !status) return;
 
   const MAX_RESULTS = 18;
   let entries = null;
@@ -71,6 +72,29 @@
     return (start > 0 ? "…" : "") + text + (start + 120 < entry.bodyKey.length ? "…" : "");
   }
 
+  function appendHighlighted(parent, text, tokens) {
+    const pattern = tokens
+      .slice()
+      .sort((a, b) => b.length - a.length)
+      .map((token) => token.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
+      .join("|");
+    if (!pattern) {
+      parent.append(text);
+      return;
+    }
+    const re = new RegExp("(" + pattern + ")", "gi");
+    let last = 0;
+    let match;
+    while ((match = re.exec(text)) !== null) {
+      if (match.index > last) parent.append(text.slice(last, match.index));
+      const mark = document.createElement("mark");
+      mark.textContent = match[0];
+      parent.append(mark);
+      last = match.index + match[0].length;
+    }
+    if (last < text.length) parent.append(text.slice(last));
+  }
+
   function find(raw) {
     const query = normalize(raw);
     if (!query) return [];
@@ -93,11 +117,11 @@
     }
     found.sort((a, b) => b.score - a.score
       || a.entry.anchor.localeCompare(b.entry.anchor));
-    return found.slice(0, MAX_RESULTS);
+    return found;
   }
 
   function setActive(index) {
-    const options = Array.from(panel.children);
+    const options = Array.from(list.children);
     if (!options.length) return;
     active = (index + options.length) % options.length;
     options.forEach((option, optionIndex) => {
@@ -109,7 +133,7 @@
 
   function close() {
     panel.hidden = true;
-    panel.replaceChildren();
+    list.replaceChildren();
     input.setAttribute("aria-expanded", "false");
     input.removeAttribute("aria-activedescendant");
     status.textContent = "";
@@ -135,25 +159,26 @@
 
   function render() {
     const found = find(input.value);
-    panel.replaceChildren();
-    results = found;
+    const tokens = normalize(input.value).split(" ").filter(Boolean);
+    const visible = found.slice(0, MAX_RESULTS);
+    list.replaceChildren();
+    results = visible;
     active = -1;
     input.removeAttribute("aria-activedescendant");
     if (!found.length) {
-      const empty = document.createElement("li");
-      empty.className = "book-search-empty";
-      empty.textContent = "没有找到匹配的章节";
-      panel.append(empty);
       status.textContent = "没有找到匹配的章节";
     } else {
-      found.forEach(({ entry, snippet }, index) => {
+      status.textContent = found.length > MAX_RESULTS
+        ? "找到 " + found.length + " 条结果，显示前 " + MAX_RESULTS + " 条"
+        : "找到 " + found.length + " 条结果";
+      visible.forEach(({ entry, snippet }, index) => {
         const option = document.createElement("li");
         option.id = "book-search-option-" + index;
         option.setAttribute("role", "option");
         option.setAttribute("aria-selected", "false");
         const title = document.createElement("span");
         title.className = "book-search-hit";
-        title.textContent = entry.heading;
+        appendHighlighted(title, entry.heading, tokens);
         const crumb = document.createElement("span");
         crumb.className = "book-search-crumb";
         crumb.textContent = [entry.partTitle, entry.pageTitle].filter(Boolean).join(" · ");
@@ -161,16 +186,15 @@
         if (snippet) {
           const text = document.createElement("span");
           text.className = "book-search-snippet";
-          text.textContent = snippet;
+          appendHighlighted(text, snippet, tokens);
           option.append(text);
         }
         option.addEventListener("mousedown", (event) => {
           event.preventDefault();
           choose(index);
         });
-        panel.append(option);
+        list.append(option);
       });
-      status.textContent = found.length + " 个结果";
     }
     panel.hidden = false;
     input.setAttribute("aria-expanded", "true");

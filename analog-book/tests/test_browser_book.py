@@ -60,13 +60,18 @@ class BrowserBook(unittest.TestCase):
             page.wait_for_selector("#book-search-results li[role=option]")
             self.assertGreater(
                 page.locator("#book-search-results li[role=option]").count(), 0)
+            self.assertGreater(
+                page.locator("#book-search-results mark").count(), 0,
+                "命中的查询词应高亮")
+            self.assertIn("结果", page.locator("#book-search-status").inner_text())
+            self.assertTrue(page.locator("#book-search-status").is_visible())
             page.keyboard.press("ArrowDown")
             page.wait_for_function(
                 "document.getElementById('book-search-input')"
                 ".getAttribute('aria-activedescendant')")
             page.keyboard.press("Enter")
             page.wait_for_function(
-                "document.getElementById('book-search-results').hidden")
+                "document.getElementById('book-search-panel').hidden")
             self.assertRegex(page.evaluate("location.hash"), r"^#.+")
             self.assertIsNotNone(page.evaluate(
                 "document.getElementById(decodeURIComponent(location.hash.slice(1)))"))
@@ -76,6 +81,12 @@ class BrowserBook(unittest.TestCase):
             page.keyboard.press("Escape")
             self.assertNotEqual("book-search-input",
                                 page.evaluate("document.activeElement.id"))
+            page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
+            page.wait_for_selector("#book-top:not([hidden])")
+            page.click("#book-top")
+            page.wait_for_function("window.scrollY < 60")
+            page.wait_for_function(
+                "document.getElementById('book-top').hidden")
             self.assertEqual([], errors[:5])
             browser.close()
 

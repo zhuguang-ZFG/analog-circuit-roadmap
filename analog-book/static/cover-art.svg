@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 420" width="760" height="420" role="presentation" focusable="false">
+<defs>
+<pattern id="cover-dots" width="26" height="26" patternUnits="userSpaceOnUse">
+<circle cx="1.2" cy="1.2" r="1.2" fill="#e7e0d2"/>
+</pattern>
+</defs>
+<rect x="16" y="16" width="728" height="388" rx="24" fill="#fffdf8" stroke="#e3dbcc" stroke-width="1.5"/>
+<rect x="16" y="16" width="728" height="388" rx="24" fill="url(#cover-dots)"/>
+<g fill="none" stroke="#1f2933" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+<path d="M210 230H292"/>
+<path d="M292 168V292L416 230Z" fill="#fffdf8"/>
+<path d="M416 230H470"/>
+<path d="M306 204h16M314 196v16" stroke-width="2.5"/>
+<path d="M306 256h16" stroke-width="2.5"/>
+<path d="M470 230V118H420l-12-10-16 20-16-20-16 20-12-10H250V256H292" stroke="#52606d" stroke-width="2.5"/>
+</g>
+<g fill="none" stroke-width="3.5" stroke-linecap="round">
+<path d="M60 230Q75 204 90 230T120 230T150 230T180 230T210 230" stroke="#b45309"/>
+<path d="M470 230Q492 176 514 230T558 230T602 230T646 230T690 230" stroke="#0f766e"/>
+</g>
+<g fill="#fffdf8" stroke="#1f2933" stroke-width="2.5">
+<circle cx="210" cy="230" r="5"/>
+<circle cx="470" cy="230" r="5"/>
+</g>
+<g fill="none" stroke="#1f2933" stroke-width="2.5" stroke-linecap="round">
+<path d="M70 340H96M108 340H134"/>
+<path d="M96 322V358M108 322V358"/>
+<path d="M650 318V338"/>
+<path d="M628 338H672M636 347H664M644 356H656"/>
+</g>
+</svg>

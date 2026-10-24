@@ -11,7 +11,10 @@ BOOK_HTML = """<!doctype html>
 <html><head>
 <meta name="book-version" content="1.2.3">
 <meta name="book-date" content="2026-10-24">
-</head><body><h1>整书</h1></body></html>
+</head><body>
+<section class="book-page" data-part-title="第一篇"><img alt=""></section>
+<section class="book-page" data-part-title="第一篇"><span class="arithmatex"></span></section>
+</body></html>
 """
 
 
@@ -41,6 +44,23 @@ class PublishBookTests(unittest.TestCase):
         self.assertIn('href="analog-circuit-book.pdf"', landing)
         self.assertIn("4 KB", landing)
         self.assertIn('href="../index.html"', landing)
+
+    def test_landing_shows_cover_stats_and_share_metadata(self):
+        landing = (publish(self.html, self.pdf, self.site) / "index.html").read_text(
+            encoding="utf-8")
+        self.assertIn('class="cover-card"', landing)
+        self.assertIn("<svg", landing)
+        self.assertIn("cover-dots", landing)
+        for label in ("页正文", "篇结构", "张图表", "个公式"):
+            self.assertIn(label, landing)
+        self.assertEqual(1, landing.count("<strong>2</strong>"), "两页同属一篇")
+        self.assertEqual(3, landing.count("<strong>1</strong>"), "一篇、一张图、一个公式")
+        self.assertIn("单文件 HTML", landing)
+        self.assertIn("A4 PDF", landing)
+        self.assertIn('name="description"', landing)
+        self.assertIn('property="og:title"', landing)
+        self.assertIn('rel="icon"', landing)
+        self.assertIn("prefers-color-scheme: dark", landing)
 
     def test_rejects_missing_artifact(self):
         self.pdf.unlink()

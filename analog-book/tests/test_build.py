@@ -170,10 +170,21 @@ class AssemblyTests(unittest.TestCase):
     def test_offline_search_is_wired(self):
         self.assertEqual(60, self.document.count('data-part-title="'))
         self.assertIn('id="book-search-input"', self.document)
+        self.assertIn('id="book-search-panel"', self.document)
         self.assertIn('id="book-search-results"', self.document)
+        self.assertIn('id="book-search-status"', self.document)
         self.assertIn("buildIndex", self.document)
+        self.assertIn("appendHighlighted", self.document)
         self.assertIn("Ctrl+K", self.document)
         self.assertNotRegex(self.document, r'<script[^>]+src=')
+
+    def test_cover_art_and_back_to_top_are_wired(self):
+        self.assertIn('class="book-cover-art"', self.document)
+        self.assertIn('class="book-cover-rule"', self.document)
+        self.assertNotIn("cover-art.svg", self.document, "封面插图必须内联")
+        self.assertIn('id="book-top"', self.document)
+        self.assertIn('aria-label="回到顶部"', self.document)
+        self.assertIn('getElementById("book-top")', self.document)
 
     def test_no_remote_or_site_only_assets(self):
         self.assertNotRegex(self.document, r'<script[^>]+src=')

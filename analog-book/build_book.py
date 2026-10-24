@@ -229,10 +229,10 @@ def inline_scripts(site_dir: Path = SITE_DIR) -> str:
     return "\n".join(chunks)
 
 
-def inline_search() -> str:
-    path = BOOK_DIR / "static" / "book-search.js"
+def inline_static(name: str) -> str:
+    path = BOOK_DIR / "static" / name
     if not path.is_file():
-        raise BookError(f"缺少离线搜索脚本: {path}")
+        raise BookError(f"缺少离线脚本: {path}")
     return path.read_text(encoding="utf-8")
 
 
@@ -330,11 +330,20 @@ def _page_section(page: dict, part_title: str) -> str:
     )
 
 
+def _cover_art() -> str:
+    path = BOOK_DIR / "static" / "cover-art.svg"
+    if not path.is_file():
+        raise BookError(f"缺少封面插图: {path}")
+    return path.read_text(encoding="utf-8")
+
+
 def _cover(manifest: dict) -> str:
     return (
         '<section class="book-cover" data-part="front">'
+        f'<div class="book-cover-art" aria-hidden="true">{_cover_art()}</div>'
         f'<p class="book-cover-kicker">{html.escape(manifest["subtitle"])}</p>'
         f'<h1 class="book-cover-title">{html.escape(manifest["title"])}</h1>'
+        '<p class="book-cover-rule" aria-hidden="true"></p>'
         f'<p class="book-cover-version">版本 {manifest["version"]} · {manifest["date"]}</p>'
         f'<p class="book-cover-site">{html.escape(manifest["site_url"])}</p>'
         f'<p class="book-cover-repo">{html.escape(manifest["repository"])}</p>'
@@ -379,7 +388,8 @@ def assemble_book(manifest: dict, parts: list[dict],
         body.append("</section>")
     css = inline_css(site_dir)
     scripts = inline_scripts(site_dir)
-    search = inline_search()
+    search = inline_static("book-search.js")
+    ui = inline_static("book-ui.js")
     mathjax = inline_mathjax()
     document = f"""<!doctype html>
 <html lang="{manifest["language"]}">
@@ -398,17 +408,21 @@ def assemble_book(manifest: dict, parts: list[dict],
 <div class="book-search" id="book-search" role="search">
 <label class="visually-hidden" for="book-search-input">搜索全书</label>
 <input id="book-search-input" type="search" placeholder="搜索全书（Ctrl+K）" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="false" aria-autocomplete="list" aria-controls="book-search-results">
-<ul class="book-search-results" id="book-search-results" role="listbox" hidden></ul>
-<p class="book-search-status visually-hidden" id="book-search-status" role="status" aria-live="polite"></p>
+<div class="book-search-panel" id="book-search-panel" hidden>
+<p class="book-search-status" id="book-search-status" role="status" aria-live="polite"></p>
+<ul class="book-search-results" id="book-search-results" role="listbox"></ul>
+</div>
 </div>
 <a class="book-header-toc" href="#book-toc">目录</a></header>
 <main class="book">
 {''.join(body)}
 </main>
 <footer class="book-footer">离线整书 · 由 docs/ 构建 · {manifest["license"]}</footer>
+<button class="book-top" id="book-top" type="button" aria-label="回到顶部" hidden>↑</button>
 {mathjax}
 <script>{scripts}</script>
 <script>{search}</script>
+<script>{ui}</script>
 </body>
 </html>
 """
