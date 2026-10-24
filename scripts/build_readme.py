@@ -67,6 +67,10 @@ def build() -> str:
 
 
 def main() -> int:
+    # Windows 管道默认 GBK，中文与 ✔ 会直接抛 UnicodeEncodeError。
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8")
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true", help="只检查 docs 与 README 是否一致")
     args = ap.parse_args()

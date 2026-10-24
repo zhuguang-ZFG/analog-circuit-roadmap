@@ -1,6 +1,7 @@
 # 构建产物（docs/ 是唯一数据源，以下目录均由脚本生成）
 build/
 site/
+analog-book/dist/
 .pytest_cache/
 __pycache__/
 *.pyc
@@ -17,3 +18,4 @@ video/samples/*.wav
 # Remotion 试点工程：依赖与成片不入仓（remix.py 随时可出）；public wav 是渲染必需资产
 video/remotion/node_modules/
 video/remotion/out/
+video/remotion/out_*/

@@ -1,0 +1,142 @@
+@page { size: A4; margin: 18mm 16mm 20mm; }
+
+:root {
+  --book-ink: #1f2933;
+  --book-muted: #52606d;
+  --book-brand: #b45309;
+  --book-line: #d9e2ec;
+  --book-paper: #fffdf8;
+  --book-code: #f4f7fa;
+}
+
+html, body {
+  margin: 0;
+  background: var(--book-paper);
+  color: var(--book-ink);
+  font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei",
+    "Noto Sans CJK SC", sans-serif;
+  line-height: 1.75;
+}
+
+.book { max-width: 860px; margin: 0 auto; padding: 24px 28px 64px; }
+.book .md-typeset { max-width: none; font-size: 16.5px; line-height: 1.75; }
+.book .md-typeset p, .book .md-typeset li { color: var(--book-ink); }
+.book a { color: var(--book-brand); }
+
+.book-header {
+  position: sticky; top: 0; z-index: 20; display: flex; gap: 16px;
+  align-items: center; justify-content: space-between;
+  padding: 10px 28px; background: rgba(255, 253, 248, .94);
+  border-bottom: 1px solid var(--book-line); backdrop-filter: blur(6px);
+}
+.book-header a { color: var(--book-brand); text-decoration: none; font-weight: 600; }
+.book-footer { color: var(--book-muted); text-align: center; padding: 24px; font-size: 13px; }
+
+.book-cover {
+  min-height: 225mm; display: flex; flex-direction: column;
+  justify-content: center; align-items: flex-start; gap: 18px;
+  break-after: page;
+}
+.book-cover-kicker { color: var(--book-brand); font-size: 20px; letter-spacing: .08em; }
+.book-cover-title { font-size: 56px; line-height: 1.15; margin: 0; }
+.book-cover-version, .book-cover-site, .book-cover-repo {
+  color: var(--book-muted); font-size: 15px; margin: 0; word-break: break-all;
+}
+.book-copyright { break-before: page; break-after: page; }
+.book-copyright h1 { font-size: 30px; }
+.book-toc { break-before: page; }
+.book-toc h1 { font-size: 34px; margin: 0 0 20px; }
+.book-toc-part { margin: 0 0 18px; break-inside: avoid; }
+.book-toc-part h2 { font-size: 19px; margin: 0 0 6px; color: var(--book-brand); }
+.book-toc ul { margin: 0; padding-left: 20px; columns: 2; column-gap: 32px; }
+.book-toc li { break-inside: avoid; font-size: 14px; line-height: 1.6; }
+.book-toc a { color: var(--book-ink); text-decoration: none; }
+
+.book-part { break-before: page; }
+.book-page { break-before: page; scroll-margin-top: 56px; }
+.book-toc { scroll-margin-top: 56px; }
+.book-part > .book-page:first-of-type { break-before: auto; }
+.book-page h1 { margin-top: 0; }
+.book-page-back { margin: 28px 0 0; text-align: right; font-size: 13px; }
+.book-page-back a { color: var(--book-muted); text-decoration: none; }
+
+.book .md-typeset h1 { color: var(--book-ink); font-size: 2em; font-weight: 600; }
+.book .md-typeset h2 {
+  color: var(--book-ink); font-size: 1.5em; font-weight: 600;
+  border-bottom: 1px solid var(--book-line); padding-bottom: .2em;
+}
+.book .md-typeset h3 { color: var(--book-ink); font-size: 1.2em; font-weight: 600; }
+.book .md-typeset h4 { color: var(--book-muted); font-weight: 600; }
+.book .md-typeset img, .book .md-typeset svg { max-width: 100%; height: auto; }
+.book .md-typeset img { display: block; margin: 1em auto; }
+.book .md-typeset figure { max-width: 100%; overflow-x: auto; }
+.book .md-typeset table { width: 100%; border-collapse: collapse; font-size: .85em; }
+.table-wrap { overflow-x: auto; margin: 1em 0; }
+.book .md-typeset .table-wrap table {
+  display: table; width: 100%; min-width: 0; margin: 0; overflow: visible;
+}
+.book .md-typeset th, .book .md-typeset td {
+  border: 1px solid var(--book-line); padding: 6px 8px; vertical-align: top;
+}
+.book .md-typeset th { background: var(--book-code); text-align: left; }
+.book .md-typeset summary { font-weight: 600; }
+.book .md-typeset pre {
+  overflow-x: auto; padding: 12px 14px; background: var(--book-code); border-radius: 6px;
+}
+.book .md-typeset code { font-family: "Cascadia Mono", Consolas, monospace; font-size: .92em; }
+.book .md-typeset blockquote {
+  border-left: 4px solid var(--book-brand); margin-left: 0;
+  padding-left: 14px; color: var(--book-muted);
+}
+
+.book-roadmap { text-align: center; }
+.book-roadmap svg { display: block; margin: 0 auto; max-width: 100%; height: auto; }
+
+.book .arithmatex { overflow-x: auto; overflow-y: hidden; }
+.book .calc {
+  border: 1px solid var(--book-line); border-radius: 8px;
+  padding: 12px 14px; break-inside: avoid;
+}
+.book .calc input[type="range"] { max-width: 100%; }
+.book .reading-checkpoint {
+  border-top: 1px solid var(--book-line); margin-top: 24px; padding-top: 12px;
+}
+.book .gal-card { break-inside: avoid; }
+
+.gal-bar, .gal-actions, .gal-hint, .gal-modal, .gal-play, .learning-backup {
+  display: none !important;
+}
+
+@media print {
+  .book-header, .book-footer, .book-page-back, .reading-nav { display: none !important; }
+  .book { max-width: none; padding: 0; }
+  .book .md-typeset { font-size: 10.5pt; line-height: 1.65; }
+  .book .md-typeset a { color: inherit; text-decoration: none; }
+  .book .md-typeset pre { white-space: pre-wrap; word-break: break-word; }
+  .book .md-typeset .arithmatex { overflow: visible; }
+  .book .md-typeset .study-player .study-controls,
+  .book .md-typeset .study-player figcaption,
+  .book .md-typeset .study-player > a,
+  .book .md-typeset .study-video button,
+  .book .md-typeset .study-video p,
+  .book .md-typeset .study-video .study-video-slot {
+    display: none !important;
+  }
+  .book .md-typeset .table-wrap { overflow: visible; }
+  .book .md-typeset table { font-size: .78em; }
+  .book .md-typeset th, .book .md-typeset td { overflow-wrap: anywhere; padding: 4px 5px; }
+  .book .md-typeset tr { break-inside: avoid; }
+  .book-roadmap svg { width: 92mm; height: 205mm; max-width: 100%; }
+  .book-toc ul { columns: 1; }
+  .book-toc li { padding-right: 2.6em; }
+  .book-toc-part { margin-bottom: 12px; }
+  html, body { background: #fff !important; }
+  .calc input, .calc button { display: none !important; }
+  h1, h2, h3, .calc, .book-toc-part, .reading-checkpoint, .study-photo {
+    break-inside: avoid;
+  }
+  h2, h3 { break-after: avoid; }
+  [data-page="p0-08-cheatsheet"] h2,
+  [data-page="p9-00-quiz"] h2 { break-before: page; }
+  [data-page="p5-00-part5"] .gal-card { break-inside: avoid; }
+}

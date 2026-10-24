@@ -9,6 +9,11 @@
 <div class="repo-badges" markdown="1">
 
 [![tests](https://github.com/zhuguang-ZFG/analog-circuit-roadmap/actions/workflows/tests.yml/badge.svg)](https://github.com/zhuguang-ZFG/analog-circuit-roadmap/actions/workflows/tests.yml)
+[![docs](https://img.shields.io/badge/docs-60%20%E9%A1%B5-blue)](p0-07-toc.md#toc)
+[![SVG animations](https://img.shields.io/badge/SVG%20%E5%8A%A8%E7%94%BB-108-ff69b4)](p5-00-part5.md#part5)
+[![video](https://img.shields.io/badge/%E8%A7%86%E9%A2%91%E8%AF%BE-20%20%E9%9B%86-red)](p7-03-s7-3.md#s7-3)
+[![book](https://img.shields.io/badge/%E7%A6%BB%E7%BA%BF%E6%95%B4%E4%B9%A6-HTML%20%2B%20PDF-success)](https://github.com/zhuguang-ZFG/analog-circuit-roadmap/tree/main/analog-book)
+[![license](https://img.shields.io/badge/%E6%8E%88%E6%9D%83-CC%20BY--SA%204.0-lightgrey)](LICENSE)
 
 </div>
 
@@ -33,6 +38,23 @@
 </ul>
 
 </div>
+
+## 卡住了？按现象直查
+
+板子不工作、波形不对、读数在跳——先对号入座，再回到原理。完整故障表见[第 17 章](p4-02-ch17.md#ch17)，按需求找电路见[情景导航](p0-04-by-need.md)。
+
+| 你看到的现象 | 最可能的原因 | 先看这里 |
+|---|---|---|
+| 上电没反应、整机不工作 | 电源、极性、保险丝、地没接 | [第 16 章 排故五步法](p4-01-ch16.md#ch16) · [第 17 章 速查](p4-02-ch17.md#ch17) |
+| 输出比算出来的低，一接负载就塌 | 内阻与带载效应 | [第 0 章 电路直觉](p1-01-ch0.md#ch0) · [速查表·直流](p0-08-cheatsheet.md#dc) |
+| 波形顶部/底部被削平 | 限幅、钳位、输出轨限 | [第 2 章 二极管](p1-03-ch2.md#ch2) · [第 12 章 运放电路族](p2-02-ch12.md#ch12) |
+| 运放输出贴轨、不放大 | 供电、共模范围、反馈接错 | [第 6 章 运放](p1-07-ch6.md#ch6) · [第 12 章](p2-02-ch12.md#ch12) |
+| 三极管/MOSFET 发烫 | 驱动不足、导通损耗、米勒振荡 | [第 3 章 BJT](p1-04-ch3.md#ch3) · [第 4 章 MOSFET](p1-05-ch4.md#ch4) |
+| 输出自激、莫名振荡 | 容性负载、相位裕度、布局 | [第 6 章 运放](p1-07-ch6.md#ch6) · [第 15 章 PCB](p3-02-ch15.md#ch15) |
+| ADC 读数在跳、噪声大 | 地线、去耦、基准 | [第 9 章 基准](p1-10-ch9.md#ch9) · [第 15 章 接地](p3-02-ch15.md#ch15) |
+| 高频信号过不去、边沿变肉 | 寄生参数、带宽、探头负载 | [第 1 章 无源](p1-02-ch1.md#ch1) · [第 12 章 Sallen-Key](p2-02-ch12.md#ch12) |
+| MCU 引脚推不动、总线通信失败 | 上拉、开漏、总线电容 | [第 5 章 推挽与开漏](p1-06-ch5.md#ch5) |
+| 板子偶发复位、上电烧器件 | 电源跌落、地弹、浪涌 | [第 16 章](p4-01-ch16.md#ch16) · [第 17 章](p4-02-ch17.md#ch17) |
 
 ## 找到适合你的起点
 
@@ -200,6 +222,22 @@
 | 检验自己是否理解 | [章节自测与专题加练](p9-00-quiz.md#part9) · [动手项目](p8-03-s8-3.md) |
 
 在线站顶部支持全文搜索，可以从“去耦电容”“相位裕度”“LM358”等具体术语开始。
+
+## 常用命令
+
+| 目标 | 命令 |
+|---|---|
+| 重建 README | `make readme` |
+| 构建在线站 | `make site` |
+| 构建离线整书 HTML | `make book` |
+| 构建 HTML + PDF | `make book-pdf` |
+| 审计已有整书产物 | `make book-check` |
+| 静态测试（无需浏览器） | `make test-static` |
+| 浏览器回归 | `make test-browser` |
+| 全量校验 | `make verify` |
+| 内容规模统计 | `make stats` |
+
+Windows 无 `make` 时用 `mingw32-make <目标>`，或直接运行 `Makefile` 中对应的 `python` 命令。
 
 <a id="news"></a>
 ## 最近更新

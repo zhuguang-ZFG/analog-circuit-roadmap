@@ -339,6 +339,35 @@ class DocsLinks(unittest.TestCase):
                         re.findall(r'\]\(#(log-[\w\-]+)\) \| [^|]+\| (\d+) \|', page))
         self.assertEqual(declared, counts, '速览的条数与组内实际行数不一致（发版忘同步速览）')
 
+    REMOTE_IMG = re.compile(r'<img[^>]+src="(https?://[^"]+)"')
+    ALLOWED_REMOTE_IMG = re.compile(
+        r"https://img\.youtube\.com/vi/[\w-]+/[a-z]+\.jpg")
+    LOCAL_PHOTO_IMG = re.compile(r'<img[^>]+src="(assets/photos/[^"]+)"')
+
+    def test_only_youtube_thumbnails_may_stay_remote(self):
+        bad = []
+        for page in self.pages:
+            for url in self.REMOTE_IMG.findall(page.read_text(encoding="utf-8")):
+                if not self.ALLOWED_REMOTE_IMG.fullmatch(url):
+                    bad.append(f"{page.name}: {url}")
+        self.assertEqual([], bad,
+                         "远程图片必须本地化到 assets/photos/：\n" + "\n".join(bad[:10]))
+
+    def test_local_photo_references_exist(self):
+        missing = []
+        for page in self.pages:
+            for rel in self.LOCAL_PHOTO_IMG.findall(page.read_text(encoding="utf-8")):
+                if not (ROOT / rel).is_file():
+                    missing.append(f"{page.name}: {rel}")
+        self.assertEqual([], missing,
+                         "引用了不存在的照片：\n" + "\n".join(missing[:10]))
+
+    def test_credits_page_lists_every_web_photo(self):
+        credits = (DOCS / "p9-14-credits.md").read_text(encoding="utf-8")
+        photos = sorted(p.name for p in (ROOT / "assets/photos/web").glob("*"))
+        missing = [name for name in photos if name not in credits]
+        self.assertEqual([], missing, f"来源页漏登记：{missing[:10]}")
+
 
 if __name__ == "__main__":
     unittest.main()

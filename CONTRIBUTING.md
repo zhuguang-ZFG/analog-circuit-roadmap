@@ -167,3 +167,12 @@ python -B -m unittest discover -s scripts -p test_reduced_motion.py -v   # Chrom
 
 Fork → 特性分支 → 提交（commit message 中英文皆可，说明 why）→ PR。
 文档许可 CC BY-SA 4.0，贡献即表示同意按此许可发布。
+
+## 整书与离线产物
+
+- 改 `docs/` 后先 `make readme`；涉及整书标题或页面范围时运行 `make book`。
+- 新增内容页必须加入 `analog-book/manifest.json`，否则整书审计红灯。
+- 新增第三方图片/字体/代码资产必须更新 `docs/p9-14-credits.md`。
+- 不直接编辑 `README.md`、`build/`、`analog-book/dist/`。
+- 提交前跑 `make verify`；改了交互/样式再跑 `make test-browser`。
+- Windows 没有 `make` 时用 `mingw32-make`，目标名一致。

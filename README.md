@@ -9,6 +9,11 @@
 <div class="repo-badges" markdown="1">
 
 [![tests](https://github.com/zhuguang-ZFG/analog-circuit-roadmap/actions/workflows/tests.yml/badge.svg)](https://github.com/zhuguang-ZFG/analog-circuit-roadmap/actions/workflows/tests.yml)
+[![docs](https://img.shields.io/badge/docs-60%20%E9%A1%B5-blue)](#toc)
+[![SVG animations](https://img.shields.io/badge/SVG%20%E5%8A%A8%E7%94%BB-108-ff69b4)](#part5)
+[![video](https://img.shields.io/badge/%E8%A7%86%E9%A2%91%E8%AF%BE-20%20%E9%9B%86-red)](#s7-3)
+[![book](https://img.shields.io/badge/%E7%A6%BB%E7%BA%BF%E6%95%B4%E4%B9%A6-HTML%20%2B%20PDF-success)](https://github.com/zhuguang-ZFG/analog-circuit-roadmap/tree/main/analog-book)
+[![license](https://img.shields.io/badge/%E6%8E%88%E6%9D%83-CC%20BY--SA%204.0-lightgrey)](LICENSE)
 
 </div>
 
@@ -33,6 +38,23 @@
 </ul>
 
 </div>
+
+## 卡住了？按现象直查
+
+板子不工作、波形不对、读数在跳——先对号入座，再回到原理。完整故障表见[第 17 章](#ch17)，按需求找电路见[情景导航](docs/p0-04-by-need.md)。
+
+| 你看到的现象 | 最可能的原因 | 先看这里 |
+|---|---|---|
+| 上电没反应、整机不工作 | 电源、极性、保险丝、地没接 | [第 16 章 排故五步法](#ch16) · [第 17 章 速查](#ch17) |
+| 输出比算出来的低，一接负载就塌 | 内阻与带载效应 | [第 0 章 电路直觉](#ch0) · [速查表·直流](#dc) |
+| 波形顶部/底部被削平 | 限幅、钳位、输出轨限 | [第 2 章 二极管](#ch2) · [第 12 章 运放电路族](#ch12) |
+| 运放输出贴轨、不放大 | 供电、共模范围、反馈接错 | [第 6 章 运放](#ch6) · [第 12 章](#ch12) |
+| 三极管/MOSFET 发烫 | 驱动不足、导通损耗、米勒振荡 | [第 3 章 BJT](#ch3) · [第 4 章 MOSFET](#ch4) |
+| 输出自激、莫名振荡 | 容性负载、相位裕度、布局 | [第 6 章 运放](#ch6) · [第 15 章 PCB](#ch15) |
+| ADC 读数在跳、噪声大 | 地线、去耦、基准 | [第 9 章 基准](#ch9) · [第 15 章 接地](#ch15) |
+| 高频信号过不去、边沿变肉 | 寄生参数、带宽、探头负载 | [第 1 章 无源](#ch1) · [第 12 章 Sallen-Key](#ch12) |
+| MCU 引脚推不动、总线通信失败 | 上拉、开漏、总线电容 | [第 5 章 推挽与开漏](#ch5) |
+| 板子偶发复位、上电烧器件 | 电源跌落、地弹、浪涌 | [第 16 章](#ch16) · [第 17 章](#ch17) |
 
 ## 找到适合你的起点
 
@@ -200,6 +222,22 @@
 | 检验自己是否理解 | [章节自测与专题加练](#part9) · [动手项目](docs/p8-03-s8-3.md) |
 
 在线站顶部支持全文搜索，可以从“去耦电容”“相位裕度”“LM358”等具体术语开始。
+
+## 常用命令
+
+| 目标 | 命令 |
+|---|---|
+| 重建 README | `make readme` |
+| 构建在线站 | `make site` |
+| 构建离线整书 HTML | `make book` |
+| 构建 HTML + PDF | `make book-pdf` |
+| 审计已有整书产物 | `make book-check` |
+| 静态测试（无需浏览器） | `make test-static` |
+| 浏览器回归 | `make test-browser` |
+| 全量校验 | `make verify` |
+| 内容规模统计 | `make stats` |
+
+Windows 无 `make` 时用 `mingw32-make <目标>`，或直接运行 `Makefile` 中对应的 `python` 命令。
 
 <a id="news"></a>
 ## 最近更新
@@ -1151,8 +1189,8 @@ GND ─────────────────── C 负极、探头�
 #### 回到真实电容：高频下还藏着电阻与电感
 
 <p>
-<img src="https://upload.wikimedia.org/wikipedia/commons/8/86/Photo-SMDcapacitors.jpg" width="300" alt="SMD 电容与毫米尺（公有领域）">
-<img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f8/Soldering_a_0805.jpg/500px-Soldering_a_0805.jpg" width="300" alt="0805 贴片焊接（Wikimedia Commons）">
+<img src="assets/photos/capacitors.jpg" width="300" alt="SMD 电容与毫米尺（公有领域）">
+<img src="assets/photos/web/soldering-0805.jpg" width="300" alt="0805 贴片焊接（Wikimedia Commons）">
 </p>
 
 > 📷 贴片元件有多小：0805 = 2.0×1.25mm（左图与毫米尺对比）。手焊 0805（右图）是模拟工程师的成年礼——烙铁尖+镊子+放大镜，一个周末就能练出来。
@@ -1162,7 +1200,7 @@ GND ─────────────────── C 负极、探头�
 
 - **电解电容**：容量大（µF~mF），ESR 大（0.1~10Ω），寿命随温度指数下降（每升 10°C 寿命减半），反接会爆炸
 
-<img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c2/ElectrolyticCapacitorExploded.jpg/500px-ElectrolyticCapacitorExploded.jpg" width="300" alt="反接爆炸的电解电容（Wikimedia Commons）">
+<img src="assets/photos/web/electrolytic-exploded.jpg" width="300" alt="反接爆炸的电解电容（Wikimedia Commons）">
 
 > 📷 反接或过压的电解电容——顶部防爆阀（刻痕）应声炸开，电解液喷溅。这就是为什么 1.2 节说"反接会爆炸"不是修辞：防爆阀是拿封装完整性换人身安全。换电容时先看耐压余量（≥1.5× 工作电压），再看极性。
 
@@ -1322,8 +1360,8 @@ $$L = L_0 \times 2^{\frac{T_0 - T}{10}}$$
 ### 📺 配套视频
 
 <p>
-<a href="https://www.youtube.com/watch?v=BcJ6UdDx1vg"><img src="https://img.youtube.com/vi/BcJ6UdDx1vg/mqdefault.jpg" width="230" alt="EEVblog #859 去耦电容教程"></a>
-<a href="https://www.youtube.com/watch?v=1xicZF9glH0"><img src="https://img.youtube.com/vi/1xicZF9glH0/mqdefault.jpg" width="230" alt="EEVblog #1085 去耦电容可视化"></a>
+<a data-study-video href="https://www.youtube.com/watch?v=BcJ6UdDx1vg">▶ EEVblog #859 去耦电容教程</a>
+<a data-study-video href="https://www.youtube.com/watch?v=1xicZF9glH0">▶ EEVblog #1085 去耦电容可视化</a>
 </p>
 
 > **EEVblog #859 / #1085**（Dave Jones）：去耦电容为什么用、怎么放、封装的影响——先用阻抗分析仪实测验证理论，再可视化给你看。与本章 1.2 节 + 第 15 章"贴脸放"军规绝配。
@@ -1344,7 +1382,7 @@ $$L = L_0 \times 2^{\frac{T_0 - T}{10}}$$
 >
 > 🔬 **模型边界**：[边界速查·二极管](#limits-diode) 收齐本章理想模型的失效点与修正。
 
-<img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d5/Diode-closeup.jpg/500px-Diode-closeup.jpg" width="260" alt="二极管特写（Wikimedia Commons）">
+<img src="assets/photos/web/diode-closeup.jpg" width="260" alt="二极管特写（Wikimedia Commons）">
 
 > 📷 二极管实物：玻璃壳里那截 tiny 的 PN 结，阳极进阴极出——阴极一端有**色环**标记。接反了？轻则不工作，重则放烟花。
 
@@ -1543,7 +1581,7 @@ LED 在下方（压降大、速度慢，但唯一会发光）、TVS 在右上（
 
 ### 3.1 结构与载流子输运原理
 
-<img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d4/Generic_2N2222A.jpeg/500px-Generic_2N2222A.jpeg" width="180" alt="2N2222A NPN 晶体管 TO-92 封装实物（Wikimedia Commons）"> <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/2N2222A_and_schema.jpg" width="300" alt="2N2222A 与内部结构示意（公有领域）">
+<img src="assets/photos/web/generic-2n2222a.jpg" width="180" alt="2N2222A NPN 晶体管 TO-92 封装实物（Wikimedia Commons）"> <img src="assets/photos/web/2n2222a-and-schema.jpg" width="300" alt="2N2222A 与内部结构示意（公有领域）">
 
 NPN 管 = 两块 N 型夹一块**极薄**的 P 型基区：
 
@@ -2319,7 +2357,7 @@ $V_{OS}$ 被增益放大、$I_B$ 只在高源阻抗时咬人、GBW 管小信号�
 
 ### 📺 配套视频
 
-<a href="https://www.youtube.com/watch?v=K03Rom3Cs28"><img src="https://img.youtube.com/vi/K03Rom3Cs28/mqdefault.jpg" width="230" alt="w2aew #75 运放电路理解法"></a>
+<a data-study-video href="https://www.youtube.com/watch?v=K03Rom3Cs28">▶ w2aew #75 运放电路理解法</a>
 
 > **w2aew #75《Basics of Opamp circuits》**：用"运放会拼命让两个输入相等"一句话讲透所有运放电路的分析法——78 万播放的 9 分钟，胜过教材一章。
 > 🅱️ 中文字幕平替：[上海交大 郑益慧 模电（4K）](https://www.bilibili.com/video/BV1qA5DzWEVh/)——运放章节的物理图像讲得极好。
@@ -2730,7 +2768,7 @@ VIN ──[调整管 PMOS/PNP]── VOUT
 
 **稳定性大坑** 🔧：老式 LDO（LM1117 等 NPN 准 LDO）**依赖输出电容的 ESR 造零点**——要求 ESR 在 0.3~22Ω 区间。全贴陶瓷电容（ESR≈5mΩ）反而**振荡**！现代"陶瓷电容稳定"（ceramic-stable）LDO 才可以用 MLCC。→ 换料必查此项。
 
-<img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/TS7805_voltage_regulator.JPG/500px-TS7805_voltage_regulator.JPG" width="240" alt="7805 TO-220 实物（Wikimedia Commons，CC BY-SA）">
+<img src="assets/photos/web/ts7805-regulator.jpg" width="240" alt="7805 TO-220 实物（Wikimedia Commons，CC BY-SA）">
 
 > 📷 7805 实物（TO-220 封装）：金属背板是散热片安装面——还记得吗，$(V_{IN}-5V) \times I$ 全变成热，大电流必须上散热片。
 
@@ -2792,7 +2830,7 @@ VIN ──[调整管 PMOS/PNP]── VOUT
 >
 > 🔬 **模型边界**：[边界速查·555](#limits-timer) 收齐本章理想模型的失效点与修正。
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/9/94/LM555-555-Timer_5734-480x452_%284791854328%29.jpg" width="240" alt="LM555 实物（Wikimedia Commons）">
+<img src="assets/photos/web/lm555-timer.jpg" width="240" alt="LM555 实物（Wikimedia Commons）">
 
 > 📷 传奇的 LM555——1971 年诞生至今累计销量以十亿计。8 个引脚里装着：3 个 5kΩ 分压电阻（"555"名字由来）、2 个比较器、1 个 RS 触发器、1 只放电管。
 
@@ -2832,8 +2870,8 @@ $$f = \frac{1.44}{(R_1 + 2R_2)\,C}, \qquad 占空比 = \frac{R_1+R_2}{R_1+2R_2} 
 ### 10.2 三种模式
 
 <p>
-<img src="https://upload.wikimedia.org/wikipedia/commons/6/64/NE555_DIP_%26_SOIC.jpg" width="330" alt="NE555 DIP 与 SOIC 封装实物（Wikimedia Commons，CC BY-SA 3.0）">
-<img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Die_of_the_first_555_chip.jpg" width="300" alt="555 芯片晶圆 die 照片（公有领域）">
+<img src="assets/photos/web/ne555-dip-soic.jpg" width="330" alt="NE555 DIP 与 SOIC 封装实物（Wikimedia Commons，CC BY-SA 3.0）">
+<img src="assets/photos/web/die-first-555-chip.jpg" width="300" alt="555 芯片晶圆 die 照片（公有领域）">
 </p>
 
 > 📷 左：NE555 的 DIP-8（插件）与 SOIC-8（贴片）封装——同一颗芯，两种外衣。右：第一颗 555 的晶圆照片——你看到的分压电阻、比较器、放电管，全在这几平方毫米里。
@@ -3593,7 +3631,7 @@ $$V_{out} = V_Z - 0.7V$$
 
 > 🎬 **60 秒动画版**：[EP13 开关电源的主角不是开关，是电感](https://www.bilibili.com/video/BV1QJpm65E9v/)（[全 20 集](#s7-3)）
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/LM2596_buck_converter_module%2C_MP1584_buck_converter_module%2C_and_SDB628_boost_converter_module.jpg/960px-LM2596_buck_converter_module%2C_MP1584_buck_converter_module%2C_and_SDB628_boost_converter_module.jpg" width="480" alt="DC-DC 模块实物：LM2596 Buck + MP1584 Buck + SDB628 Boost（Wikimedia Commons）">
+<img src="assets/photos/web/buck-converter-modules.jpg" width="480" alt="DC-DC 模块实物：LM2596 Buck + MP1584 Buck + SDB628 Boost（Wikimedia Commons）">
 
 > 📷 电商几块钱的 DC-DC 模块：LM2596（大个、老派 Buck）、MP1584（小个、高效 Buck）、SDB628（Boost）。认电感：**Buck 模块的大电感 + 续流二极管就是上图那套伏秒平衡的实物化身**——电位器调分压反馈就是调 D。
 
@@ -4249,7 +4287,7 @@ $$T_J = T_A + P \times (\theta_{JC} + \theta_{CS} + \theta_{SA})$$
 >
 > 🔬 **模型边界**：[边界速查·地与回流](#limits-wire) 收齐本章理想模型的失效点与修正。
 
-<img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c4/Macro_circuit_board.JPG/500px-Macro_circuit_board.JPG" width="480" alt="PCB 微距：走线、过孔与焊盘（Wikimedia Commons）">
+<img src="assets/photos/web/macro-circuit-board.jpg" width="480" alt="PCB 微距：走线、过孔与焊盘（Wikimedia Commons）">
 
 <a id="sec-15-1"></a>
 ### 15.1 布局（Placement）——决定 80% 的成败
@@ -4418,8 +4456,8 @@ EMC 的三要素永远是一句话：**干扰源 → 耦合路径 → 敏感设�
 > 🔬 **模型边界**：[边界速查·测量仪器](#limits-measure) 收齐本章理想模型的失效点与修正。
 
 <p>
-<img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Digital_Multimeter_Aka.jpg" width="240" alt="数字万用表（Wikimedia Commons，CC BY-SA）">
-<img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0b/Digital_oscilloscope_in_use.jpg/500px-Digital_oscilloscope_in_use.jpg" width="360" alt="数字示波器实战（Wikimedia Commons）">
+<img src="assets/photos/web/digital-multimeter-aka.jpg" width="240" alt="数字万用表（Wikimedia Commons，CC BY-SA）">
+<img src="assets/photos/web/digital-oscilloscope.jpg" width="360" alt="数字示波器实战（Wikimedia Commons）">
 </p>
 
 > 📷 排故两大神器：万用表管"静态"（电压/通断/二极管档），示波器管"动态"（纹波/振荡/时序）。**先静后动**——80% 的故障万用表就够了。
@@ -5609,17 +5647,17 @@ Linear Technology 应用笔记之王（AN47 等），以**先想透再动手**�
 
 | 分立晶体管（TO-92） | 电解电容家族 | 晶体管集合 |
 |---|---|---|
-| <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d4/Generic_2N2222A.jpeg/500px-Generic_2N2222A.jpeg" width="200" alt="分立晶体管实物（TO-92 封装的 2N2222A）"> | <img src="https://upload.wikimedia.org/wikipedia/commons/f/f6/Electrolytic_capacitors-P1090328.JPG" width="220" alt="电解电容家族实物：不同耐压与容量"> | <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/2/21/Transistorer_%28cropped%29.jpg/500px-Transistorer_%28cropped%29.jpg" width="220" alt="晶体管集合实物：小功率管与大功率管并列"> |
+| <img src="assets/photos/web/generic-2n2222a.jpg" width="200" alt="分立晶体管实物（TO-92 封装的 2N2222A）"> | <img src="assets/photos/web/electrolytic-capacitors.jpg" width="220" alt="电解电容家族实物：不同耐压与容量"> | <img src="assets/photos/web/transistors-cropped.jpg" width="220" alt="晶体管集合实物：小功率管与大功率管并列"> |
 
 | 色环电阻识读 | LED（5mm RGB） | 功率管 TO-220 |
 |---|---|---|
-| <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/4-Band_Resistor.svg" width="220" alt="四色环电阻识读图"> | <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0a/LED_5mm_RGB.jpg/500px-LED_5mm_RGB.jpg" width="180" alt="5mm RGB LED 实物"> | <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/3/39/Jilin_Sino-Microelectronics_JCS4N65F-2383.jpg/500px-Jilin_Sino-Microelectronics_JCS4N65F-2383.jpg" width="220" alt="TO-220 封装功率 MOSFET"> |
+| <img src="assets/photos/web/4-band-resistor.png" width="220" alt="四色环电阻识读图"> | <img src="assets/photos/web/led-5mm-rgb.jpg" width="180" alt="5mm RGB LED 实物"> | <img src="assets/photos/web/mosfet-jcs4n65f.jpg" width="220" alt="TO-220 封装功率 MOSFET"> |
 
 | 面包板（400 孔） | 数字万用表 | 示波器前面板 |
 |---|---|---|
-| <img src="https://upload.wikimedia.org/wikipedia/commons/7/73/400_points_breadboard.jpg" width="220" alt="400 孔面包板"> | <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/Multimeter_Gossen_Metra_Hit.jpg/500px-Multimeter_Gossen_Metra_Hit.jpg" width="200" alt="数字万用表"> | <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Oscilloscope_Front_Panel_Numbered.svg" width="240" alt="示波器前面板分区图"> |
+| <img src="assets/photos/web/400-points-breadboard.jpg" width="220" alt="400 孔面包板"> | <img src="assets/photos/web/scanned-multimeter-gossen.jpg" width="200" alt="数字万用表"> | <img src="assets/photos/web/oscilloscope-front-panel.png" width="240" alt="示波器前面板分区图"> |
 
-<img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0b/Printed_circuit_board.jpg/500px-Printed_circuit_board.jpg" width="420" alt="万用表内部 PCB（Wikimedia Commons）">
+<img src="assets/photos/web/printed-circuit-board.jpg" width="420" alt="万用表内部 PCB（Wikimedia Commons）">
 
 *以上图片：Wikimedia Commons，公有领域/CC 授权*
 
@@ -7364,3 +7402,63 @@ Vin ──● CH1 ──── 3脚 IN1+
 > 🌟 **结语**：模拟电路是"慢就是快"的路。每搭一个电路、每排一次振荡、每读一篇应用笔记，都在积累无法速成的直觉。祝你在连续的世界里，找到属于自己的增益带宽积。
 
 *本文档由 AI 参考公开社区资源整理；动画 SVG（SMIL）由本项目 `scripts/generate_svgs.py` 生成（`assets/svg/`）；实物图片来自 Wikimedia Commons（公有领域/CC 授权）；视频与仓库链接以访问时为准。*
+
+照片、软件与字体的完整来源与授权见[来源与许可](docs/p9-14-credits.md)。
+# 📜 来源与许可
+
+本页是全仓库第三方资产的唯一授权清单。正文、SVG 动画、实验包与网表由本仓库生成，按 [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) 发布；转载或改编时请保留本页与仓库地址。
+
+## 实物照片（Wikimedia Commons）
+
+照片仅作器件外观与封装示意，引脚序、极性、参数一律以对应厂商数据手册为准。表内“文件”指仓库内路径。
+
+| 文件 | 作者 | 原图页 | 授权 |
+|---|---|---|---|
+| assets/photos/capacitors.jpg | Shaddack | [Photo-SMDcapacitors.jpg](https://commons.wikimedia.org/wiki/File:Photo-SMDcapacitors.jpg) | 公有领域 |
+| assets/photos/mosfets.jpg | Mister rf | [MOSFET transistors.jpg](https://commons.wikimedia.org/wiki/File:MOSFET_transistors.jpg) | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
+| assets/photos/lm358n.jpg | Mister rf | [LM358N.jpg](https://commons.wikimedia.org/wiki/File:LM358N.jpg) | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
+| assets/photos/web/2n2222a-and-schema.jpg | Transisto | [2N2222A and schema.jpg](https://commons.wikimedia.org/wiki/File:2N2222A_and_schema.jpg) | 公有领域 |
+| assets/photos/web/4-band-resistor.png | jjbeard | [4-Band Resistor.svg](https://commons.wikimedia.org/wiki/File:4-Band_Resistor.svg) | 公有领域 |
+| assets/photos/web/400-points-breadboard.jpg | oomlout | [400 points breadboard.jpg](https://commons.wikimedia.org/wiki/File:400_points_breadboard.jpg) | [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/) |
+| assets/photos/web/die-first-555-chip.jpg | CQ出版社 | [Die of the first 555 chip.jpg](https://commons.wikimedia.org/wiki/File:Die_of_the_first_555_chip.jpg) | 公有领域 |
+| assets/photos/web/digital-multimeter-aka.jpg | André Karwath aka Aka | [Digital Multimeter Aka.jpg](https://commons.wikimedia.org/wiki/File:Digital_Multimeter_Aka.jpg) | [CC BY-SA 2.5](https://creativecommons.org/licenses/by-sa/2.5/) |
+| assets/photos/web/digital-oscilloscope.jpg | Radarvector | [Digital oscilloscope in use.jpg](https://commons.wikimedia.org/wiki/File:Digital_oscilloscope_in_use.jpg) | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
+| assets/photos/web/diode-closeup.jpg | John Maushammer（原上传者 Morcheeba） | [Diode-closeup.jpg](https://commons.wikimedia.org/wiki/File:Diode-closeup.jpg) | [CC BY-SA 2.5](https://creativecommons.org/licenses/by-sa/2.5/) |
+| assets/photos/web/electrolytic-exploded.jpg | Binarysequence | [ElectrolyticCapacitorExploded.jpg](https://commons.wikimedia.org/wiki/File:ElectrolyticCapacitorExploded.jpg) | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
+| assets/photos/web/electrolytic-capacitors.jpg | Elcap | [Electrolytic capacitors-P1090328.JPG](https://commons.wikimedia.org/wiki/File:Electrolytic_capacitors-P1090328.JPG) | CC0 |
+| assets/photos/web/generic-2n2222a.jpg | MarkMossGH | [Generic 2N2222A.jpeg](https://commons.wikimedia.org/wiki/File:Generic_2N2222A.jpeg) | CC0 |
+| assets/photos/web/led-5mm-rgb.jpg | Mister rf | [LED 5mm RGB.jpg](https://commons.wikimedia.org/wiki/File:LED_5mm_RGB.jpg) | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
+| assets/photos/web/buck-converter-modules.jpg | Matthew Berardi | [LM2596 / MP1584 / SDB628 模块](https://commons.wikimedia.org/wiki/File:LM2596_buck_converter_module,_MP1584_buck_converter_module,_and_SDB628_boost_converter_module.jpg) | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
+| assets/photos/web/lm555-timer.jpg | Emilian Robert Vicol | [LM555-555-Timer](https://commons.wikimedia.org/wiki/File:LM555-555-Timer_5734-480x452_(4791854328).jpg) | [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/) |
+| assets/photos/web/macro-circuit-board.jpg | Ingo Dierking | [Macro circuit board.JPG](https://commons.wikimedia.org/wiki/File:Macro_circuit_board.JPG) | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
+| assets/photos/web/scanned-multimeter-gossen.jpg | Harke | [Multimeter Gossen Metra Hit.jpg](https://commons.wikimedia.org/wiki/File:Multimeter_Gossen_Metra_Hit.jpg) | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) |
+| assets/photos/web/ne555-dip-soic.jpg | Swift.Hg | [NE555 DIP & SOIC.jpg](https://commons.wikimedia.org/wiki/File:NE555_DIP_%26_SOIC.jpg) | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) |
+| assets/photos/web/oscilloscope-front-panel.png | jjbeard | [Oscilloscope Front Panel Numbered.svg](https://commons.wikimedia.org/wiki/File:Oscilloscope_Front_Panel_Numbered.svg) | 公有领域 |
+| assets/photos/web/printed-circuit-board.jpg | Cjp24 | [Printed circuit board.jpg](https://commons.wikimedia.org/wiki/File:Printed_circuit_board.jpg) | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) |
+| assets/photos/web/soldering-0805.jpg | Aisart | [Soldering a 0805.jpg](https://commons.wikimedia.org/wiki/File:Soldering_a_0805.jpg) | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) |
+| assets/photos/web/ts7805-regulator.jpg | Anonimski | [TS7805 voltage regulator.JPG](https://commons.wikimedia.org/wiki/File:TS7805_voltage_regulator.JPG) | CC0 |
+| assets/photos/web/transistors-cropped.jpg | Mister rf | [Transistorer (cropped).jpg](https://commons.wikimedia.org/wiki/File:Transistorer_(cropped).jpg) | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) |
+| assets/photos/web/mosfet-jcs4n65f.jpg | Raimond Spekking | [Jilin Sino-Microelectronics JCS4N65F](https://commons.wikimedia.org/wiki/File:Jilin_Sino-Microelectronics_JCS4N65F-2383.jpg) | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
+
+处理说明：JPEG/PNG 均从 Commons 下载后按原字节入库（SVG 原图另存为 PNG 渲染，不内嵌外部字体）；`assets/photos/README.md` 保留教学样板的编号叠加说明。
+
+## 视频缩略图
+
+3 张 YouTube 缩略图只用于在线站的原视频入口，不打包进离线整书。整书把它们改写为文字链接 `▶ 视频标题`。视频版权归原频道所有，本站只做链接推荐。
+
+## 第三方软件与字体
+
+| 组件 | 用途 | 许可 |
+|---|---|---|
+| [MathJax 3.2.2](https://www.mathjax.org/) `tex-svg-full.js` | 离线整书公式排版 | [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0) |
+| [MkDocs Material](https://squidfunk.github.io/mkdocs-material/) | 在线站与整书样式来源 | MIT |
+| [jieba](https://github.com/fxsjy/jieba) | 中文搜索分词 | MIT |
+| [Playwright](https://playwright.dev/) | 整书 PDF 构建 | Apache-2.0 |
+| [PyMuPDF](https://pymupdf.readthedocs.io/) | PDF 元数据、书签与页码后处理（仅构建工具） | AGPL-3.0 |
+| [ZCOOL KuaiLe](https://fonts.google.com/specimen/ZCOOL+KuaiLe) | 视频字卡字体 | OFL-1.1 |
+
+## 外部资料引用原则
+
+- 官方数据手册、应用笔记、论文与视频只引用链接与必要短句，不复制受版权保护的整图、整表或字幕。
+- 新增第三方图片、字体、代码资产时，必须同时更新本页；本项目照片处理说明在 `assets/photos/README.md`。
+- 若权利人认为某处使用不当，请在本仓库提 Issue，我们会核实并替换或移除。

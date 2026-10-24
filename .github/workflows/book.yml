@@ -1,0 +1,41 @@
+name: book
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  book:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt -r analog-book/requirements.txt
+      - run: python -m playwright install --with-deps chromium
+      - name: 站点构建
+        run: python scripts/build_site.py --build
+      - name: 整书单元与审计
+        run: python -B -m unittest discover -s analog-book/tests -p "test_build.py" -v
+      - name: 整书 HTML
+        run: python analog-book/build_book.py --no-build
+      - name: 产物审计
+        run: python analog-book/build_book.py --check --no-build
+      - name: PDF
+        run: python analog-book/build_book.py --no-build --pdf
+      - name: PDF 结构测试
+        run: python -B -m unittest discover -s analog-book/tests -p "test_pdf.py" -v
+      - uses: actions/upload-artifact@v4
+        with:
+          name: analog-circuit-book
+          path: |
+            analog-book/dist/analog-circuit-book.html
+            analog-book/dist/analog-circuit-book.pdf
+          retention-days: 14

@@ -1,0 +1,2 @@
+Playwright>=1.61,<2
+PyMuPDF>=1.28,<2
