@@ -14,7 +14,7 @@
 [![docs](https://img.shields.io/badge/docs-60%20%E9%A1%B5-blue)](#toc)
 [![SVG animations](https://img.shields.io/badge/SVG%20%E5%8A%A8%E7%94%BB-108-ff69b4)](#part5)
 [![video](https://img.shields.io/badge/%E8%A7%86%E9%A2%91%E8%AF%BE-20%20%E9%9B%86-red)](#s7-3)
-[![book](https://img.shields.io/badge/%E7%A6%BB%E7%BA%BF%E6%95%B4%E4%B9%A6-HTML%20%2B%20PDF-success)](https://github.com/zhuguang-ZFG/analog-circuit-roadmap/tree/main/analog-book)
+[![book](https://img.shields.io/badge/%E7%A6%BB%E7%BA%BF%E6%95%B4%E4%B9%A6-HTML%20%2B%20PDF-success)](https://zhuguang-zfg.github.io/analog-circuit-roadmap/book/)
 [![license](https://img.shields.io/badge/%E6%8E%88%E6%9D%83-CC%20BY--SA%204.0-lightgrey)](LICENSE)
 
 </div>
