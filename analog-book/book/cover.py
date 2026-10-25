@@ -1,6 +1,7 @@
 """印刷封面：书脊公式、三栏版式、裁切线、二维码与 150dpi 预览。"""
 from __future__ import annotations
 
+import hashlib
 import html
 from pathlib import Path
 
@@ -50,7 +51,12 @@ def qr_svg(data: str) -> str:
     image = qrcode.make(data, image_factory=qrcode.image.svg.SvgPathImage,
                         box_size=10, border=2)
     text = image.to_string().decode("utf-8")
-    return text[text.index("<svg"):]
+    svg = text[text.index("<svg"):]
+    # qrcode 对每个码都输出 id="qr-path"；封面上有两个码，重复 ID 无效。
+    unique_id = "qr-path-" + hashlib.sha256(
+        data.encode("utf-8")).hexdigest()[:10]
+    svg = svg.replace('id="qr-path"', f'id="{unique_id}"')
+    return svg.replace("url(#qr-path)", f"url(#{unique_id})")
 
 
 def _e(value) -> str:
@@ -67,10 +73,15 @@ def _crop_marks(width: float, height: float, bleed: float) -> str:
         (0, top, short, top), (width - short, top, width, top),
         (0, bottom, short, bottom), (width - short, bottom, width, bottom),
     ]
-    return "".join(
-        f'<line class="crop-mark" x1="{x1:.2f}" y1="{y1:.2f}" '
-        f'x2="{x2:.2f}" y2="{y2:.2f}"/>'
-        for x1, y1, x2, y2 in lines)
+
+    def stroke(kind: str) -> str:
+        return "".join(
+            f'<line class="{kind}" x1="{x1:.2f}" y1="{y1:.2f}" '
+            f'x2="{x2:.2f}" y2="{y2:.2f}"/>'
+            for x1, y1, x2, y2 in lines)
+
+    # 先画米白垫底，黑芯压在中间：深色背封上仍可见，米色前封上只剩黑芯。
+    return stroke("crop-mark-halo") + stroke("crop-mark")
 
 
 def _cover_css(width: float, height: float, spine: float,

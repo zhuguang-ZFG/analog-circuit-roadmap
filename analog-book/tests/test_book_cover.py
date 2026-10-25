@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """封面：书脊公式、尺寸、出血、裁切线、二维码与无假 ISBN。"""
 import copy
+import hashlib
 import re
 import sys
 import tempfile
@@ -96,6 +97,22 @@ class CoverHtmlTests(unittest.TestCase):
         self.assertIn("3mm", (config.COVER_DIR / "cover.css").read_text(
             encoding="utf-8").replace("__BLEED__", "3"))
 
+    def test_crop_mark_halos_share_crop_coordinates(self):
+        pattern = re.compile(r'x1="([^"]+)" y1="([^"]+)" '
+                             r'x2="([^"]+)" y2="([^"]+)"')
+        halos = re.findall(r'<line class="crop-mark-halo"[^>]*/>', self.html)
+        marks = re.findall(r'<line class="crop-mark"[^>]*/>', self.html)
+        self.assertEqual(8, len(halos))
+        self.assertEqual(8, len(marks))
+        self.assertEqual([pattern.search(line).groups() for line in marks],
+                         [pattern.search(line).groups() for line in halos])
+        # 垫底线必须先绘制，黑芯才能压在上面。
+        self.assertLess(self.html.rindex('class="crop-mark-halo"'),
+                        self.html.index('class="crop-mark"'))
+        css = (config.COVER_DIR / "cover.css").read_text(encoding="utf-8")
+        self.assertRegex(css, r"\.crop-mark-halo\s*\{[^}]*#fffdf8")
+        self.assertRegex(css, r"\.crop-mark\s*\{[^}]*stroke-width:\s*\.18")
+
     def test_spine_is_vertical_and_can_be_thin(self):
         css = (config.COVER_DIR / "cover.css").read_text(encoding="utf-8")
         self.assertIn("writing-mode: vertical-rl", css)
@@ -119,6 +136,17 @@ class CoverHtmlTests(unittest.TestCase):
         self.assertNotIn("<image", svg)
         self.assertNotIn('<img src="http', self.html)
         self.assertNotIn("<iframe", self.html)
+
+    def test_all_ids_are_unique_and_qr_ids_are_stable(self):
+        ids = re.findall(r'id="([^"]+)"', self.html)
+        duplicates = sorted({value for value in ids if ids.count(value) > 1})
+        self.assertEqual([], duplicates)
+        qr_ids = {"qr-path-" + hashlib.sha256(
+            MANIFEST[key].encode("utf-8")).hexdigest()[:10]
+            for key in ("site_url", "repository")}
+        self.assertEqual(2, len(qr_ids))
+        self.assertTrue(qr_ids.issubset(ids))
+        self.assertIn("cover-dots", ids)
 
     def test_cover_art_is_inlined(self):
         self.assertIn("cover-dots", self.html)
