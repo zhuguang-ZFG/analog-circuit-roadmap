@@ -203,6 +203,25 @@ class AssemblyTests(unittest.TestCase):
         self.assertIn(".book-progress, .book-skip { display: none !important; }",
                       print_block)
 
+    def test_page_footer_navigation_follows_the_reading_sequence(self):
+        self.assertEqual(60, self.document.count('class="book-page-nav"'))
+        self.assertEqual(59, self.document.count('rel="prev"'))
+        self.assertEqual(59, self.document.count('rel="next"'))
+        self.assertIn('href="#page-p1-00-part1" rel="prev"', self.document,
+                      "跨篇翻页应接上前一篇的最后一页")
+        self.assertIn('href="#page-p0-02-how-to-use" rel="next"', self.document)
+        first = self.document.split('id="page-p0-01-preface"', 1)[1].split("</section>", 1)[0]
+        self.assertNotIn('rel="prev"', first)
+        last = self.document.split('id="page-p9-14-credits"', 1)[1].split("</section>", 1)[0]
+        self.assertNotIn('rel="next"', last)
+        css = (build_book.BOOK_DIR / "styles" / "book.css").read_text(encoding="utf-8")
+        print_block = css.split("@media print", 1)[1]
+        self.assertIn(".book-page-nav", print_block)
+        self.assertNotIn(".book-page-back", css)
+        self.assertIn(".book .md-typeset a {", css)
+        self.assertIn("text-decoration-color: rgba(180, 83, 9, .32)", css)
+        self.assertIn(".book .md-typeset .reading-nav a { text-decoration: none; }", css)
+
     def test_print_layout_avoids_page_shrink(self):
         css = (build_book.BOOK_DIR / "styles" / "book.css").read_text(encoding="utf-8")
         self.assertNotIn("@media (max-width: 720px)", css,

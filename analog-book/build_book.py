@@ -320,14 +320,36 @@ def wrap_tables(fragment: str) -> str:
                   fragment, flags=re.S)
 
 
-def _page_section(page: dict, part_title: str) -> str:
+def _page_link(page: dict, direction: str) -> str:
+    if direction == "prev":
+        label, title = "← 上一篇", page["title"]
+        kind = "prev"
+    else:
+        label, title = "下一篇 →", page["title"]
+        kind = "next"
+    return (
+        f'<a class="book-page-nav-{kind}" href="#page-{page["stem"]}" rel="{kind}">'
+        f'<span class="book-page-nav-label">{label}</span>'
+        f'<span class="book-page-nav-title">{html.escape(title)}</span></a>'
+    )
+
+
+def _page_section(page: dict, part_title: str,
+                  prev_page: dict | None = None,
+                  next_page: dict | None = None) -> str:
+    nav = ['<nav class="book-page-nav" aria-label="翻页">']
+    nav.append(_page_link(prev_page, "prev") if prev_page
+               else '<span class="book-page-nav-empty" aria-hidden="true"></span>')
+    nav.append('<a class="book-page-nav-toc" href="#book-toc">全书目录</a>')
+    nav.append(_page_link(next_page, "next") if next_page
+               else '<span class="book-page-nav-empty" aria-hidden="true"></span>')
+    nav.append("</nav>")
     return (
         f'<section class="book-page" id="page-{page["stem"]}" '
         f'data-page="{page["stem"]}" data-title="{html.escape(page["title"], quote=True)}" '
         f'data-part-title="{html.escape(part_title, quote=True)}">\n'
         f'<div class="md-typeset">\n{page["html"]}\n</div>\n'
-        '<p class="book-page-back"><a href="#book-toc">↑ 返回目录</a></p>\n'
-        '</section>'
+        + "".join(nav) + "\n</section>"
     )
 
 
@@ -386,9 +408,15 @@ def _toc(parts: list[dict]) -> str:
 def assemble_book(manifest: dict, parts: list[dict],
                   site_dir: Path = SITE_DIR) -> str:
     body = [_cover(manifest), _copyright(manifest), _toc(parts)]
+    ordered = [page for part in parts for page in part["pages"]]
+    index = 0
     for part in parts:
         body.append(f'<section class="book-part" data-part="{part["id"]}">')
-        body.extend(_page_section(page, part["title"]) for page in part["pages"])
+        for page in part["pages"]:
+            prev_page = ordered[index - 1] if index > 0 else None
+            next_page = ordered[index + 1] if index + 1 < len(ordered) else None
+            body.append(_page_section(page, part["title"], prev_page, next_page))
+            index += 1
         body.append("</section>")
     css = inline_css(site_dir)
     scripts = inline_scripts(site_dir)

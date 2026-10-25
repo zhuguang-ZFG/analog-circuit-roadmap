@@ -61,6 +61,14 @@ class BrowserBook(unittest.TestCase):
             page.click('a[href="#page-p1-01-ch0"]')
             page.wait_for_function(
                 "document.getElementById('page-p1-01-ch0').getBoundingClientRect().top < 300")
+            page.click('#page-p1-01-ch0 .book-page-nav a[rel="next"]')
+            page.wait_for_function("location.hash === '#page-p1-02-ch1'")
+            page.wait_for_function(
+                "document.getElementById('page-p1-02-ch1').getBoundingClientRect().top < 300")
+            page.click('#page-p1-02-ch1 .book-page-nav a[rel="prev"]')
+            page.wait_for_function("location.hash === '#page-p1-01-ch0'")
+            page.wait_for_function(
+                "document.getElementById('page-p1-01-ch0').getBoundingClientRect().top < 300")
             page.keyboard.press("Control+k")
             self.assertEqual("book-search-input",
                              page.evaluate("document.activeElement.id"))
