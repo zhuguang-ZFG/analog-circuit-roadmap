@@ -4,7 +4,7 @@
 V1 in 0 PULSE(0 {VDD} 1u 1u 1u 10m 20m)
 R1 in out {R}
 C1 out 0 {C}
-.tran 0 5m 0 1u
+.tran 1u 5m 0 1u
 .control
 run
 set wr_singlescale

@@ -2,6 +2,7 @@
 """SPICE 骨架：schema、测量解析、容差比较、真实运行与出图。"""
 import json
 import os
+import re
 import sys
 import tempfile
 import unittest
@@ -34,6 +35,16 @@ class SchemaTests(unittest.TestCase):
         self.assertNotIn(".lib", text.lower())
         self.assertNotIn("http", text.lower())
         self.assertIn("PULSE(", text)
+
+    def test_tran_step_is_positive(self):
+        text = (ROOT / "assets" / "spice" / "ch01" / "rc.cir").read_text(
+            encoding="utf-8")
+        match = re.search(r"^\s*\.tran\s+(\S+)", text, re.M)
+        self.assertIsNotNone(match, "deck 缺少 .tran 指令")
+        number = re.match(r"([-+]?(?:\d+\.?\d*|\.\d+))", match.group(1))
+        self.assertIsNotNone(number, "TSTEP 不是数值")
+        self.assertGreater(float(number.group(1)), 0,
+                           "TSTEP 必须大于 0，ngspice 拒绝 TSTEP=0")
 
     def test_rejects_negative_tolerance(self):
         spec = json.loads(
@@ -90,7 +101,7 @@ class SimulationTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         if NGSPICE is None:
-            raise unittest.SkipTest("BOOK_REQUIRE_NGSPICE=1 但找不到 ngspice")
+            raise RuntimeError("BOOK_REQUIRE_NGSPICE=1 但找不到 ngspice")
         cls.tmp = tempfile.TemporaryDirectory()
         cls.addClassCleanup(cls.tmp.cleanup)
         cls.out = Path(cls.tmp.name)
