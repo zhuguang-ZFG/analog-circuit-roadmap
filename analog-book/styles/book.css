@@ -138,6 +138,9 @@ html, body {
 .book-page { break-before: page; scroll-margin-top: var(--book-sticky-offset); }
 .book-page h1, .book-page h2, .book-page h3, .book-page h4 { scroll-margin-top: var(--book-sticky-offset); }
 .book-toc { scroll-margin-top: var(--book-sticky-offset); }
+/* Material 的 .md-typeset :target 会压过页面、标题和 a[id] 的偏移，这里统一兜住。 */
+.book :target,
+.book .md-typeset :target { scroll-margin-top: var(--book-sticky-offset); }
 .book-part > .book-page:first-of-type { break-before: auto; }
 .book-page h1 { margin-top: 0; }
 /* 站点水印的淡染被 .book .md-typeset p 的正文色覆盖，这里按品牌色恢复。 */
@@ -234,12 +237,17 @@ html, body {
   .book-search input { padding: 6px 12px; }
   .book-toc ul { columns: 1; }
   .book-toc li { padding-right: 0; }
+  .book-toc li a { display: flex; align-items: center; min-height: 44px; padding: 6px 0; }
   .book-cover { min-height: 0; padding: 28px 20px; }
   .book-cover-art { width: 100%; }
   .book-cover-title { font-size: 38px; }
   .book-top { right: 14px; bottom: 14px; }
   .book-page-nav { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); row-gap: 10px; }
-  .book-page-nav-toc { grid-column: 1 / -1; grid-row: 2; justify-self: center; }
+  .book-page-nav-toc {
+    grid-column: 1 / -1; grid-row: 2; justify-self: center;
+    display: inline-flex; align-items: center; justify-content: center;
+    box-sizing: border-box; min-height: 44px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

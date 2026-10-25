@@ -91,6 +91,20 @@ class BrowserBook(unittest.TestCase):
             self.assertRegex(page.evaluate("location.hash"), r"^#.+")
             self.assertIsNotNone(page.evaluate(
                 "document.getElementById(decodeURIComponent(location.hash.slice(1)))"))
+            page.wait_for_timeout(150)
+            position = page.evaluate(
+                """() => {
+                    const el = document.getElementById(
+                        decodeURIComponent(location.hash.slice(1)));
+                    const header = document.querySelector('.book-header');
+                    return {
+                        top: el.getBoundingClientRect().top,
+                        headerBottom: header.getBoundingClientRect().bottom,
+                    };
+                }""")
+            self.assertGreaterEqual(
+                position["top"], position["headerBottom"] - 1,
+                "桌面端搜索结果也不应被 sticky 页眉遮挡")
             page.keyboard.press("Control+k")
             self.assertEqual("book-search-input",
                              page.evaluate("document.activeElement.id"))
@@ -156,12 +170,14 @@ class BrowserBook(unittest.TestCase):
             layout = page.evaluate(
                 """() => {
                     const header = document.querySelector('.book-header');
-                    const toc = document.querySelector('.book-header-toc');
+                    const tocLink = document.querySelector('#book-toc li a');
+                    const footerToc = document.querySelector('.book-page-nav-toc');
                     const list = document.querySelector('#book-toc ul');
                     const heading = document.querySelector('#page-p1-01-ch0 h1');
                     return {
                         columns: getComputedStyle(list).columnCount,
-                        tocHeight: toc.getBoundingClientRect().height,
+                        tocLinkHeight: tocLink.getBoundingClientRect().height,
+                        footerTocHeight: footerToc.getBoundingClientRect().height,
                         headerBottom: header.getBoundingClientRect().bottom,
                         headingTop: heading.getBoundingClientRect().top,
                         scrollWidth: document.documentElement.scrollWidth,
@@ -169,13 +185,79 @@ class BrowserBook(unittest.TestCase):
                     };
                 }""")
             self.assertEqual("1", layout["columns"], "手机端全书目录应单栏显示")
-            self.assertGreaterEqual(layout["tocHeight"], 44,
-                                    "目录链接的触达高度应至少 44px")
+            self.assertGreaterEqual(layout["tocLinkHeight"], 44,
+                                    "目录条目的触达高度应至少 44px")
+            self.assertGreaterEqual(layout["footerTocHeight"], 44,
+                                    "页尾全书目录按钮的触达高度应至少 44px")
             self.assertGreaterEqual(
                 layout["headingTop"], layout["headerBottom"] - 1,
                 "锚点标题不应被 sticky 页眉遮挡")
             self.assertLessEqual(layout["scrollWidth"], layout["viewport"],
                                  "手机端不应出现横向滚动")
+            browser.close()
+
+    def test_mobile_anchor_targets_clear_sticky_header(self):
+        fragments = (
+            ("#p1-01-ch0--0", "章标题"),
+            ("#p1-05-ch4--43", "节标题"),
+            ("#p0-05-picks--pick-rc", "交叉引用"),
+        )
+        with sync_playwright() as p:
+            browser = launch_chromium(p)
+            page = browser.new_page(
+                viewport={"width": 390, "height": 844}, reduced_motion="reduce")
+            for fragment, label in fragments:
+                page.goto(
+                    self.html.resolve().as_uri() + fragment, wait_until="load")
+                page.wait_for_function(
+                    "(() => {"
+                    " const el = document.getElementById("
+                    "decodeURIComponent(location.hash.slice(1)));"
+                    " return el && el.getBoundingClientRect().top < 300;"
+                    "})()")
+                page.wait_for_timeout(150)
+                metrics = page.evaluate(
+                    """() => {
+                        const el = document.getElementById(
+                            decodeURIComponent(location.hash.slice(1)));
+                        const header = document.querySelector('.book-header');
+                        return {
+                            top: el.getBoundingClientRect().top,
+                            headerBottom: header.getBoundingClientRect().bottom,
+                            margin: getComputedStyle(el).scrollMarginTop,
+                        };
+                    }""")
+                self.assertGreaterEqual(
+                    metrics["top"], metrics["headerBottom"] - 1,
+                    f"{label}目标 {fragment} 应落在页眉下方，实际 top="
+                    f"{metrics['top']:.1f}px、页眉底部={metrics['headerBottom']:.1f}px、"
+                    f"scroll-margin-top={metrics['margin']}")
+            page.goto(self.html.resolve().as_uri(), wait_until="load")
+            page.fill("#book-search-input", "米勒")
+            page.wait_for_selector("#book-search-results li[role=option]")
+            page.keyboard.press("ArrowDown")
+            page.wait_for_function(
+                "document.getElementById('book-search-input')"
+                ".getAttribute('aria-activedescendant')")
+            page.keyboard.press("Enter")
+            page.wait_for_function(
+                "document.getElementById('book-search-panel').hidden")
+            page.wait_for_timeout(150)
+            search = page.evaluate(
+                """() => {
+                    const el = document.getElementById(
+                        decodeURIComponent(location.hash.slice(1)));
+                    const header = document.querySelector('.book-header');
+                    return {
+                        hash: location.hash,
+                        top: el.getBoundingClientRect().top,
+                        headerBottom: header.getBoundingClientRect().bottom,
+                    };
+                }""")
+            self.assertGreaterEqual(
+                search["top"], search["headerBottom"] - 1,
+                f"搜索结果 {search['hash']} 应落在页眉下方，实际 top="
+                f"{search['top']:.1f}px、页眉底部={search['headerBottom']:.1f}px")
             browser.close()
 
     def test_chapter_number_watermark_uses_brand_tint(self):
