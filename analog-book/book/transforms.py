@@ -7,7 +7,8 @@ import re
 from .content import plain_text, wrap_tables
 from .manifest import BookError
 
-EMOJI_MAP = (("✅", "✓"), ("❌", "✗"), ("⚠️", "注意"), ("⚠", "注意"))
+EMOJI_MAP = (("✅", "✓"), ("❌", "✗"), ("⚠️", "注意"), ("⚠", "注意"),
+             ("\u2318", "Cmd"))
 # 源文里的 ✓/✗ 是有意义的判定符（EMOJI_RE 的区间也覆盖它们），保留原样。
 KEEP_SYMBOLS = ("✓", "✗")
 EMOJI_RE = re.compile(
@@ -29,6 +30,9 @@ FIGCAPTION_RE = re.compile(r"<figcaption[^>]*>(?P<cap>.*?)</figcaption>", re.S)
 TABLE_CAPTION_RE = re.compile(
     r"<p[^>]*>\s*<strong>\s*(表\s*[0-9A-H]+-\d+[^<]*)</strong>\s*</p>\s*"
     r"<div class=\"table-wrap\">(?P<table><table.*?</table>)</div>", re.S)
+NUMBERED_TABLE_RE = re.compile(
+    r'<div class="table-wrap" id="[^"]+">\s*<p class="table-caption">.*?</p>\s*'
+    r'<table(?:\s[^>]*)?>.*?</table>\s*</div>', re.S)
 LINK_RE = re.compile(
     r'<a\s+(?P<pre>[^>]*?)href="(?P<href>[^"]+)"(?P<post>[^>]*)>(?P<text>.*?)</a>',
     re.S)
@@ -101,16 +105,17 @@ def number_figures(fragment: str, label: str, stem: str,
         if caption_match is None:
             warnings.append(f"{stem}: 图片缺少 <figcaption> 图注，未编号")
             return match.group(0)
-        counter += 1
-        number = f"图 {label}-{counter}"
         caption = plain_text(caption_match.group("cap"))
         if not caption:
             warnings.append(f"{stem}: 图注为空")
             return match.group(0)
+        counter += 1
+        number = f"图 {label}-{counter}"
         if not caption.startswith(number):
             caption = f"{number}　{caption}"
-            body = body[:caption_match.start()] + (
-                f'<figcaption>{html.escape(caption)}</figcaption>') + body[caption_match.end():]
+            body = (body[:caption_match.start("cap")]
+                    + f"{number}　" + caption_match.group("cap")
+                    + body[caption_match.end("cap"):])
         anchor = re.search(r'(?<![\w-])id="([^"]+)"', match.group("attrs"))
         anchor_id = anchor.group(1) if anchor else f"{stem}--fig-{counter}"
         attrs = match.group("attrs")
@@ -128,6 +133,13 @@ def number_figures(fragment: str, label: str, stem: str,
 
 def number_tables(fragment: str, label: str, stem: str,
                   final: bool = False) -> tuple[str, list[dict], list[str]]:
+    stash = []
+
+    def stash_repl(match: re.Match) -> str:
+        stash.append(match.group(0))
+        return f"\ue200{len(stash) - 1}\ue201"
+
+    fragment = NUMBERED_TABLE_RE.sub(stash_repl, fragment)
     fragment = wrap_tables(fragment)
     counter = 0
     entries, warnings = [], []
@@ -149,13 +161,15 @@ def number_tables(fragment: str, label: str, stem: str,
     remaining = len(re.findall(r'<div class="table-wrap">', result))
     if remaining:
         warnings.append(f"{stem}: {remaining} 个表格缺少“表 X-Y”表注，未编号")
+    for index, block in enumerate(stash):
+        result = result.replace(f"\ue200{index}\ue201", block)
     if final and warnings:
         raise BookError("表注校验失败:\n" + "\n".join(warnings))
     return result, entries, warnings
 
 
 def transform_endnotes(fragment: str, stem: str) -> tuple[str, list[dict]]:
-    notes, seen = [], {}
+    notes, seen, refs = [], {}, {}
 
     def repl(match: re.Match) -> str:
         href = match.group("href")
@@ -167,9 +181,12 @@ def transform_endnotes(fragment: str, stem: str) -> tuple[str, list[dict]]:
             seen[href] = number
             notes.append({"number": number, "id": f"{stem}--note-{number}",
                           "href": href, "text": plain_text(match.group("text"))})
+        refs[number] = refs.get(number, 0) + 1
+        suffix = "" if refs[number] == 1 else f"-{refs[number]}"
         anchor = f"{stem}--note-{number}"
         return (f'{match.group("text")}<sup class="endnote-ref">'
-                f'<a href="#{anchor}" id="{stem}--note-ref-{number}">{number}</a></sup>')
+                f'<a href="#{anchor}" id="{stem}--note-ref-{number}{suffix}">'
+                f'{number}</a></sup>')
 
     result = LINK_RE.sub(repl, fragment)
     if not notes:
@@ -190,8 +207,8 @@ def check_calculator_fallbacks(fragment: str, stem: str,
                                final: bool = False) -> list[str]:
     warnings = []
     for match in CALC_RE.finditer(fragment):
-        tail = fragment[match.end():match.end() + 1600]
-        if not FALLBACK_RE.search(tail):
+        window = fragment[max(0, match.start() - 1600):match.end() + 1600]
+        if not FALLBACK_RE.search(window):
             warnings.append(f"{stem}: 计算器 {match.group(1)} 附近没有印刷替代"
                             "（例 N-x / 算一笔 / .calc-print）")
     if final and warnings:

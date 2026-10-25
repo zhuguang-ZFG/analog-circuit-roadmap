@@ -75,11 +75,13 @@ body {
 .book .md-typeset th { background: #f2f4f7; font-family: "Book Sans", sans-serif; }
 .table-wrap, .book .md-typeset figure { overflow: visible; }
 .book .md-typeset figure { break-inside: avoid; margin: 4mm 0; }
-.book .md-typeset figcaption {
+.book .md-typeset figcaption,
+.book .md-typeset .table-caption {
   font-family: "Book Sans", sans-serif; font-size: 9pt; line-height: 13pt;
   color: var(--print-muted); margin-top: 1.5mm; text-align: center;
 }
-.book .md-typeset .book-table figcaption { margin: 0 0 1.5mm; }
+.book .md-typeset .book-table figcaption,
+.book .md-typeset .table-caption { margin: 0 0 1.5mm; }
 .book .md-typeset img, .book .md-typeset svg { max-width: 100%; height: auto; }
 .book .md-typeset img { max-height: 185mm; }
 .book .md-typeset blockquote {
@@ -89,7 +91,8 @@ body {
   border: 0.2mm solid var(--print-rule); border-left: 1.2mm solid #b45309;
   padding: 2.4mm 3mm; margin: 3mm 0; break-inside: avoid;
 }
-.book .book-callout-label {
+.book .book-callout-label,
+.book .callout-label {
   font-family: "Book Sans", sans-serif; font-size: 9pt; font-weight: 700;
   color: #b45309; display: block; margin-bottom: 1mm;
 }
@@ -105,6 +108,7 @@ body {
 .book .calc { display: none !important; }  /* 计算器只服务屏幕，纸上保留示例推导 */
 .book-figure { break-inside: avoid; }
 .book-table { break-inside: avoid; }
+.book .table-wrap { break-inside: avoid; }
 .book-toc { break-before: auto; }  /* 外层 .book-page 已经分页，内层不得再断一次 */
 .book-toc h1 { font-size: 28pt; }
 .book-toc .book-toc-list {
@@ -126,7 +130,7 @@ body {
 .book-index { column-count: 2; column-gap: 6mm; font-size: 9pt; line-height: 12.5pt; }
 .book-index-entry { break-inside: avoid; margin: 0 0 1.2mm; }
 .book-index-page.is-primary { font-weight: 700; }
-.book-endnotes { font-size: 9pt; line-height: 13pt; border-top: 0.2mm solid var(--print-rule); margin-top: 6mm; }
+.book .book-endnotes, .book .chapter-endnotes { font-size: 9pt; line-height: 13pt; border-top: 0.2mm solid var(--print-rule); margin-top: 6mm; }
 .book-page { break-before: page; }
 .book-page:first-of-type { break-before: auto; }
 .book-part > .book-page:first-child, .book-appendix > .book-page:first-child {
