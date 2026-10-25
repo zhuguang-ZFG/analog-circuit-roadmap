@@ -7,6 +7,7 @@
   --book-line: #d9e2ec;
   --book-paper: #fffdf8;
   --book-code: #f4f7fa;
+  --book-sticky-offset: 72px;
 }
 
 html, body {
@@ -23,15 +24,23 @@ html, body {
 .book .md-typeset p, .book .md-typeset li { color: var(--book-ink); }
 .book a { color: var(--book-brand); }
 
+/* Material 的 body 是 .5rem（10px），页眉不在 .md-typeset 内，必须显式恢复阅读字号。 */
 .book-header {
   position: sticky; top: 0; z-index: 20; display: flex; gap: 16px;
   align-items: center; justify-content: space-between; flex-wrap: wrap;
   padding: 10px 28px; background: rgba(255, 253, 248, .94);
   border-bottom: 1px solid var(--book-line); backdrop-filter: blur(6px);
+  font-size: 14px;
 }
 .book-header a { color: var(--book-brand); text-decoration: none; font-weight: 600; }
 .book-header-title { font-weight: 700; }
-.book-header-toc { white-space: nowrap; }
+.book-header-toc {
+  display: inline-flex; align-items: center; justify-content: center;
+  box-sizing: border-box; min-width: 44px; min-height: 44px; padding: 0 10px;
+  border-radius: 8px; white-space: nowrap;
+}
+.book-header-toc:hover { background: #fdf3e3; }
+.book-header-toc:focus-visible { outline: 2px solid var(--book-brand); outline-offset: 2px; }
 
 .book-search { position: relative; flex: 1 1 300px; max-width: 440px; }
 .book-search input {
@@ -87,9 +96,10 @@ html, body {
 }
 .book-skip {
   position: fixed; top: 10px; left: 10px; z-index: 70;
-  padding: 8px 14px; background: #fff; color: var(--book-brand);
+  display: inline-flex; align-items: center; box-sizing: border-box;
+  min-height: 44px; padding: 8px 14px; background: #fff; color: var(--book-brand);
   border: 1px solid var(--book-brand); border-radius: 8px;
-  font-weight: 600; text-decoration: none; transform: translateY(-200%);
+  font-size: 14px; font-weight: 600; text-decoration: none; transform: translateY(-200%);
 }
 .book-skip:focus { transform: none; outline: 2px solid var(--book-brand); outline-offset: 2px; }
 
@@ -125,11 +135,16 @@ html, body {
 .book-toc a { color: var(--book-ink); text-decoration: none; }
 
 .book-part { break-before: page; }
-.book-page { break-before: page; scroll-margin-top: 56px; }
-.book-page h1, .book-page h2, .book-page h3, .book-page h4 { scroll-margin-top: 72px; }
-.book-toc { scroll-margin-top: 56px; }
+.book-page { break-before: page; scroll-margin-top: var(--book-sticky-offset); }
+.book-page h1, .book-page h2, .book-page h3, .book-page h4 { scroll-margin-top: var(--book-sticky-offset); }
+.book-toc { scroll-margin-top: var(--book-sticky-offset); }
 .book-part > .book-page:first-of-type { break-before: auto; }
 .book-page h1 { margin-top: 0; }
+/* 站点水印的淡染被 .book .md-typeset p 的正文色覆盖，这里按品牌色恢复。 */
+.book .md-typeset .chapter-hero-num,
+.book .md-typeset .part-hero-num {
+  color: rgba(180, 83, 9, .12);
+}
 .book-page-nav {
   display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   gap: 12px; align-items: center; margin-top: 34px; padding-top: 16px;
@@ -212,9 +227,13 @@ html, body {
 }
 
 @media screen and (max-width: 720px) {
-  .book-header { gap: 8px 12px; padding: 10px 14px; }
+  :root { --book-sticky-offset: 116px; }
+  .book-header { gap: 6px 12px; padding: 8px 12px; }
   .book-header-title { flex: 1 1 auto; }
   .book-search { flex-basis: 100%; max-width: none; order: 3; }
+  .book-search input { padding: 6px 12px; }
+  .book-toc ul { columns: 1; }
+  .book-toc li { padding-right: 0; }
   .book-cover { min-height: 0; padding: 28px 20px; }
   .book-cover-art { width: 100%; }
   .book-cover-title { font-size: 38px; }

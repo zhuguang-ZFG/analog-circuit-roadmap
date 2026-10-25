@@ -112,6 +112,86 @@ class BrowserBook(unittest.TestCase):
             self.assertEqual([], errors[:5])
             browser.close()
 
+    def _open_mobile(self, browser):
+        page = browser.new_page(
+            viewport={"width": 390, "height": 844}, reduced_motion="reduce")
+        page.goto(
+            self.html.resolve().as_uri() + "#page-p1-01-ch0",
+            wait_until="load")
+        page.wait_for_function(
+            "document.getElementById('page-p1-01-ch0')"
+            ".getBoundingClientRect().top < 300")
+        return page
+
+    def test_mobile_header_and_search_typography_is_readable(self):
+        with sync_playwright() as p:
+            browser = launch_chromium(p)
+            page = self._open_mobile(browser)
+            fonts = page.evaluate(
+                """() => {
+                    const size = (selector) => parseFloat(
+                        getComputedStyle(document.querySelector(selector)).fontSize);
+                    return {
+                        header: size('.book-header'),
+                        toc: size('.book-header-toc'),
+                        skip: size('.book-skip'),
+                    };
+                }""")
+            self.assertGreaterEqual(fonts["header"], 13,
+                                    "页眉不应继承 Material 的 10px 字号")
+            self.assertGreaterEqual(fonts["toc"], 13)
+            self.assertGreaterEqual(fonts["skip"], 13)
+            page.fill("#book-search-input", "电容")
+            page.wait_for_selector("#book-search-results li[role=option]")
+            hit_font = page.evaluate(
+                "parseFloat(getComputedStyle("
+                "document.querySelector('.book-search-hit')).fontSize)")
+            self.assertGreaterEqual(hit_font, 13, "搜索命中标题应与页眉同样可读")
+            browser.close()
+
+    def test_mobile_toc_layout_and_anchor_offset(self):
+        with sync_playwright() as p:
+            browser = launch_chromium(p)
+            page = self._open_mobile(browser)
+            layout = page.evaluate(
+                """() => {
+                    const header = document.querySelector('.book-header');
+                    const toc = document.querySelector('.book-header-toc');
+                    const list = document.querySelector('#book-toc ul');
+                    const heading = document.querySelector('#page-p1-01-ch0 h1');
+                    return {
+                        columns: getComputedStyle(list).columnCount,
+                        tocHeight: toc.getBoundingClientRect().height,
+                        headerBottom: header.getBoundingClientRect().bottom,
+                        headingTop: heading.getBoundingClientRect().top,
+                        scrollWidth: document.documentElement.scrollWidth,
+                        viewport: window.innerWidth,
+                    };
+                }""")
+            self.assertEqual("1", layout["columns"], "手机端全书目录应单栏显示")
+            self.assertGreaterEqual(layout["tocHeight"], 44,
+                                    "目录链接的触达高度应至少 44px")
+            self.assertGreaterEqual(
+                layout["headingTop"], layout["headerBottom"] - 1,
+                "锚点标题不应被 sticky 页眉遮挡")
+            self.assertLessEqual(layout["scrollWidth"], layout["viewport"],
+                                 "手机端不应出现横向滚动")
+            browser.close()
+
+    def test_chapter_number_watermark_uses_brand_tint(self):
+        with sync_playwright() as p:
+            browser = launch_chromium(p)
+            page = self._open_mobile(browser)
+            colors = page.evaluate(
+                """() => ({
+                    ink: getComputedStyle(document.body).color,
+                    watermark: getComputedStyle(
+                        document.querySelector('#page-p1-01-ch0 .chapter-hero-num')).color,
+                })""")
+            self.assertNotEqual(colors["ink"], colors["watermark"],
+                                "章号水印应使用品牌淡染，而不是正文黑色")
+            browser.close()
+
 
 if __name__ == "__main__":
     unittest.main()
