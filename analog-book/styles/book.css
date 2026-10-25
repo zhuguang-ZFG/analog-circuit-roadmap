@@ -303,6 +303,87 @@ html, body {
 .part-kicker { display: block; letter-spacing: .3em; color: var(--md-primary-fg-color); }
 .part-title { display: block; font-size: clamp(2rem, 5vw, 3.2rem); }
 .part-art { height: 8rem; border-top: 1px solid var(--md-default-fg-color--lightest); }
+
+/* 整书篇首页：插图英雄区、单元卡与三层读法（屏幕） */
+.part-opener .part-hero {
+  background: #14213d; color: #fff; padding: 1.4rem 1.5rem;
+  margin: 0 0 1.6rem;
+}
+.part-opener .part-hero-top {
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: .4rem 1rem;
+  padding-bottom: .6rem; border-bottom: 1px solid rgba(255,255,255,.22);
+  font-size: .72rem; letter-spacing: .18em; color: #f0b54a;
+}
+.part-opener .part-heading { margin: 1rem 0 .4rem; }
+.part-opener .part-kicker {
+  display: block; margin-bottom: .35rem;
+  font-size: .78rem; letter-spacing: .3em; color: #f0b54a;
+}
+.part-opener .part-title {
+  display: block; font-size: 2.3rem; line-height: 1.05; color: #fff;
+}
+.part-opener .part-sub { margin: 0; color: #d0d5dd; }
+.part-opener .part-art {
+  margin-top: 1.2rem; padding: .7rem 0;
+  border-top: 1px solid rgba(255,255,255,.18);
+  border-bottom: 1px solid rgba(255,255,255,.18);
+  height: auto;
+}
+.part-opener .part-art svg { display: block; width: 100%; height: auto; }
+.part-opener .part-hero-foot {
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: .4rem 1rem;
+  margin-top: .9rem; padding-top: .7rem;
+  border-top: 1px solid rgba(255,255,255,.22);
+  font-size: .72rem; letter-spacing: .12em; color: rgba(255,255,255,.75);
+}
+.part-opener .part-intro { margin: 0 0 1.2rem; }
+.part-opener .part-units {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: .9rem; margin: 0 0 1.2rem; padding: 0;
+}
+.part-opener .unit-card {
+  padding: .8rem 1rem; background: #f8fafc; border: 1px solid #d0d5dd;
+}
+.part-opener .unit-label { margin: 0 0 .35rem; font-weight: 700; color: #0f766e; }
+.part-opener .unit-meta {
+  margin: 0; color: #52606d; font-size: .82rem;
+  font-family: "Book Mono", monospace;
+}
+.part-reading { margin-top: 1.4rem; padding-top: .9rem; border-top: 2px solid #14213d; }
+.part-reading .reading-label {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin: 0 0 .7rem; font-size: .72rem; font-weight: 700;
+  letter-spacing: .18em; color: #52606d;
+}
+.part-reading .reading-grid { display: grid; gap: .8rem; }
+.part-reading .reading-item { display: grid; grid-template-columns: 2rem 1fr; gap: .5rem; }
+.part-reading .reading-no { font-family: "Book Mono", monospace; font-weight: 700; color: #b45309; }
+.part-reading .reading-item strong { display: block; color: #14213d; }
+.part-reading .reading-item p { margin: .15rem 0 0; color: #344054; font-size: .9rem; }
+
+.chapter-intuition {
+  display: grid; grid-template-columns: 3rem 1fr; gap: 1rem;
+  margin: 1rem 0 1.4rem; padding: .8rem 0;
+  border-top: 2px solid #14213d; border-bottom: 1px solid #d0d5dd;
+}
+.chapter-intuition .ci-no {
+  font-family: "Book Mono", monospace; font-weight: 700; font-size: 2rem;
+  line-height: 1; color: transparent; -webkit-text-stroke: 1px #b45309;
+}
+.chapter-intuition .ci-label {
+  margin: 0 0 .35rem; font-size: .72rem; font-weight: 700;
+  letter-spacing: .18em; color: #b45309;
+}
+.chapter-intuition .ci-text { margin: 0; color: #344054; }
+
+@media (min-width: 45em) {
+  .part-reading .reading-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 44.99em) {
+  .part-opener .part-title { font-size: 1.8rem; }
+  .chapter-intuition { grid-template-columns: 1fr; gap: .4rem; }
+  .chapter-intuition .ci-no { font-size: 1.5rem; }
+}
 .book-callout { border-left: 3px solid var(--md-primary-fg-color); padding: .4rem 1rem; margin: 1rem 0; }
 .callout-label { font-weight: 700; font-size: .8em; letter-spacing: .08em; }
 .book-reveal { border-left: 3px solid var(--md-default-fg-color--lighter); padding: .3rem 1rem; margin: 1rem 0; }

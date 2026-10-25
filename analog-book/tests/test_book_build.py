@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """77 页装配、模型、目录占位、习题拆分、索引与审计。"""
 import json
+import re
 import sys
 import tempfile
 import unittest
@@ -11,7 +12,7 @@ import yaml
 BOOK = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(BOOK))
 
-from book import assemble  # noqa: E402
+from book import assemble, intuition  # noqa: E402
 from book.manifest import validate_manifest  # noqa: E402
 import book_fixtures  # noqa: E402
 
@@ -128,6 +129,31 @@ class BuildTests(unittest.TestCase):
             self.assertEqual(
                 {"id", "chapter", "number", "title", "anchor", "source"},
                 set(entries[0]), name)
+
+    def test_part_pages_carry_illustrations(self):
+        self.assertEqual(5, self.document.count('class="part-art-svg"'))
+        parts = [page for page in self.model["pages"]
+                 if page["kind"] == "part"]
+        self.assertEqual(5, len(parts))
+        for page in parts:
+            self.assertEqual(1, page["html"].count("<svg"), page["id"])
+            self.assertNotIn(
+                'class="part-art" aria-hidden="true"></div>', page["html"])
+
+    def test_every_chapter_has_one_intuition_lead(self):
+        self.assertEqual(19, self.document.count('class="chapter-intuition"'))
+        for page in self.model["pages"]:
+            if page["kind"] != "chapter":
+                self.assertNotIn("chapter-intuition", page["html"], page["id"])
+                continue
+            self.assertEqual(
+                1, page["html"].count('class="chapter-intuition"'), page["id"])
+            match = re.search(r"-ch(\d+)$", page["stem"])
+            self.assertIsNotNone(match, page["stem"])
+            chapter = int(match.group(1))
+            self.assertIn(f'class="ci-no" aria-hidden="true">'
+                          f'{chapter:02d}<', page["html"])
+            self.assertIn(intuition.CHAPTER_LEADS[chapter], page["html"])
 
 
 if __name__ == "__main__":

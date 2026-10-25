@@ -536,6 +536,84 @@ body {
 .book .part-opener, .book .appendix-opener { min-height: 0; }
 .book .appendix-intro { font-size: 10pt; line-height: 16pt; }
 
+/* 整书篇首页：整幅插图英雄区 + 单元卡 + 三层读法 */
+.book .part-opener .part-hero { padding: 7mm 8mm 6mm; margin: 0 0 6mm; }
+.book .part-opener .part-hero-top { margin-bottom: 4.5mm; }
+.book .part-opener .part-heading { margin: 0 0 2.6mm; }
+.book .part-opener .part-kicker { margin: 0 0 2.4mm; }
+.book .part-opener .part-title { margin: 0; }
+.book .part-opener .part-sub { margin: 0; }
+.book .part-opener .part-art {
+  height: auto; margin: 5mm 0 0; padding: 2.5mm 0;
+  border-top: 0.2mm solid rgba(255,255,255,.18);
+  border-bottom: 0.2mm solid rgba(255,255,255,.18);
+}
+.book .part-opener .part-art svg { display: block; width: 100%; height: auto; }
+.book .part-opener .part-hero-foot { margin-top: 4mm; }
+.book .part-opener .part-intro { margin-bottom: 4.5mm; }
+.book .part-opener .part-units {
+  grid-template-columns: repeat(auto-fit, minmax(54mm, 1fr));
+  column-gap: 5mm; margin-bottom: 5mm;
+}
+.book .part-opener .unit-card {
+  padding: 3mm 4mm; background: var(--panel);
+  border: 0.2mm solid var(--rule);
+}
+.book .part-opener .unit-label {
+  margin: 0 0 2mm; padding-bottom: 1.8mm;
+  font-size: 8.6pt; letter-spacing: .04em;
+}
+.book .part-opener .unit-meta {
+  margin: 0; font: 400 7.4pt/1 "Book Mono", monospace;
+  color: var(--muted); letter-spacing: .04em;
+}
+.book .part-reading {
+  margin-top: 6mm; padding-top: 3.5mm;
+  border-top: 0.5mm solid var(--navy); break-inside: avoid;
+}
+.book .reading-label {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin: 0 0 3mm; font: 700 7pt/1 "Book Sans", sans-serif;
+  letter-spacing: .2em; color: var(--muted);
+}
+.book .reading-label .en { font-family: "Book Mono", monospace; letter-spacing: .14em; }
+.book .reading-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; }
+.book .reading-item { display: grid; grid-template-columns: 8mm 1fr; column-gap: 2mm; }
+.book .reading-no { font: 700 10pt/1 "Book Mono", monospace; color: var(--amber); }
+.book .reading-item strong {
+  display: block; margin-bottom: 1mm;
+  font: 700 9pt/12pt "Book Sans", sans-serif; color: var(--navy);
+}
+.book .reading-item p {
+  margin: 0; font-size: 8.4pt; line-height: 12.4pt;
+  color: #344054; text-align: left;
+}
+
+/* 章首导读：空心章号 + 一句话直觉 */
+.book .chapter-intuition {
+  display: grid; grid-template-columns: 16mm 1fr; column-gap: 4.5mm;
+  align-items: start; margin: 1mm 0 6mm; padding: 3mm 0 3.4mm;
+  border-top: 0.5mm solid var(--navy);
+  border-bottom: 0.2mm solid var(--rule);
+  break-inside: avoid;
+}
+.book .ci-no {
+  font: 700 23pt/0.9 "Book Mono", monospace;
+  color: transparent; -webkit-text-stroke: 0.28mm var(--amber);
+  letter-spacing: .02em;
+}
+.book .md-typeset .ci-label {
+  margin: 0 0 1.6mm; font: 700 7pt/1 "Book Sans", sans-serif;
+  letter-spacing: .2em; color: var(--amber);
+}
+.book .md-typeset .chapter-intuition .ci-text {
+  margin: 0; font: 400 11pt/18pt "Book Serif", serif;
+  color: #344054; text-align: left;
+}
+
+/* 视觉校样：读法条下移，篇首页底部空白控制在 35mm 以内 */
+.book .part-opener .part-reading { margin-top: 10mm; }
+
 /* ---------- 前置页 ---------- */
 .book .half-title, .book .title-page {
   display: flex; flex-direction: column; justify-content: center;

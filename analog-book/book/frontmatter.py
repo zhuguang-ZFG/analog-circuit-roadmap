@@ -2,6 +2,9 @@
 from __future__ import annotations
 
 import html
+import re
+
+UNIT_CHAPTER_RE = re.compile(r"-ch(\d+)\.md$")
 
 
 def _e(value) -> str:
@@ -98,17 +101,63 @@ def render_list(title: str, page_id: str, entries: list[dict], label: str) -> st
     return "\n".join(rows)
 
 
-def part_opener(part: dict) -> str:
-    units = "".join(f"<li>{_e(unit['title'])}</li>" for unit in part.get("units", []))
+def _unit_meta(chapters: list[str]) -> str:
+    numbers = []
+    for name in chapters:
+        match = UNIT_CHAPTER_RE.search(str(name))
+        if match:
+            numbers.append(int(match.group(1)))
+    if len(numbers) != len(chapters) or not numbers:
+        return f"{len(chapters)} 章"
+    if len(numbers) == 1:
+        return f"CH {numbers[0]:02d} · 1 章"
+    return f"CH {min(numbers):02d}–{max(numbers):02d} · {len(chapters)} 章"
+
+
+def part_opener(part: dict, art: str = "") -> str:
+    part_id = _e(part["id"])
+    units = part.get("units") or []
+    chapter_count = sum(len(unit.get("chapters") or []) for unit in units)
+    cards = "".join(
+        f'<div class="unit-card">'
+        f'<p class="unit-label">U{index:02d} · {_e(unit["title"])}</p>'
+        f'<p class="unit-meta">{_e(_unit_meta(unit.get("chapters") or []))}</p>'
+        '</div>'
+        for index, unit in enumerate(units, 1))
     return (
-        f'<div class="part-opener" data-part="{_e(part["id"])}">'
+        f'<div class="part-opener" data-part="{part_id}">'
+        '<div class="part-hero">'
+        '<div class="part-hero-top">'
+        f'<span>PART {part_id} / 第{part_id}篇</span>'
+        f'<span>{chapter_count} 章 · {len(units)} 个单元</span>'
+        '</div>'
         f'<h1 id="part-{_e(part["id"].lower())}" class="part-heading">'
-        f'<span class="part-kicker">第{_e(part["id"])}篇</span>'
+        f'<span class="part-kicker">第{part_id}篇</span>'
         f'<span class="part-title">{_e(part["title"])}</span></h1>'
-        f'<p class="part-subtitle">{_e(part.get("subtitle", ""))}</p>'
+        f'<p class="part-sub">{_e(part.get("subtitle", ""))}</p>'
+        f'<div class="part-art" aria-hidden="true">{art}</div>'
+        '<div class="part-hero-foot">'
+        '<span>读法 · L1 直觉 → L2 推导 → L3 工程</span>'
+        f'<span>PART {part_id} · {chapter_count} CHAPTERS</span>'
+        '</div>'
+        '</div>'
         f'<p class="part-intro">{_e(part.get("intro", ""))}</p>'
-        f'<ul class="part-units">{units}</ul>'
-        '<div class="part-art" aria-hidden="true"></div>'
+        f'<div class="part-units">{cards}</div>'
+        '<div class="part-reading">'
+        '<p class="reading-label"><span>本篇怎么读</span>'
+        '<span class="en">READING LAYERS</span></p>'
+        '<div class="reading-grid">'
+        '<div class="reading-item"><span class="reading-no">L1</span><div>'
+        '<strong>直觉</strong><p>先看图、比喻和现象，建立“为什么”的图像。</p>'
+        '</div></div>'
+        '<div class="reading-item"><span class="reading-no">L2</span><div>'
+        '<strong>推导</strong><p>跟一遍关键公式，确认假设、单位和边界。</p>'
+        '</div></div>'
+        '<div class="reading-item"><span class="reading-no">L3</span><div>'
+        '<strong>工程</strong><p>用仿真、实测和失效案例检验模型。</p>'
+        '</div></div>'
+        '</div>'
+        '</div>'
         '</div>')
 
 

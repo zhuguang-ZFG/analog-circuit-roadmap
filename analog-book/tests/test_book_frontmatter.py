@@ -81,6 +81,43 @@ class StructurePageTests(unittest.TestCase):
         self.assertIn('id="appendix-b"', html)
         self.assertIn("附录 B", html)
 
+    def test_part_opener_embeds_art_and_unit_cards(self):
+        part = {
+            "id": "II", "title": "器件", "subtitle": "从 PN 结到 555",
+            "intro": "从二极管到 555。",
+            "units": [
+                {"title": "分立器件",
+                 "chapters": ["p1-03-ch2.md", "p1-04-ch3.md",
+                              "p1-05-ch4.md", "p1-06-ch5.md"]},
+                {"title": "模拟集成器件",
+                 "chapters": ["p1-07-ch6.md", "p1-08-ch7.md",
+                              "p1-09-ch8.md", "p1-10-ch9.md",
+                              "p1-11-ch10.md"]},
+            ],
+        }
+        art = '<svg class="part-art-svg" viewBox="0 0 1 1"></svg>'
+        html = frontmatter.part_opener(part, art)
+        self.assertIn('<div class="part-art" aria-hidden="true">' + art, html)
+        self.assertIn('id="part-ii"', html)
+        self.assertIn("U01", html)
+        self.assertIn("U02", html)
+        self.assertIn("CH 02–05", html)
+        self.assertIn("CH 06–10", html)
+        self.assertIn("4 章", html)
+        self.assertIn("5 章", html)
+        self.assertIn("读法 · L1 直觉", html)
+        self.assertIn("PART II", html)
+        self.assertIn("READING LAYERS", html)
+
+    def test_part_opener_without_art_keeps_empty_plate(self):
+        part = {"id": "I", "title": "基础", "subtitle": "先建立电路直觉",
+                "intro": "从电压、电流与无源元件开始。",
+                "units": [{"title": "电路直觉与无源世界",
+                           "chapters": ["p1-01-ch0.md", "p1-02-ch1.md"]}]}
+        html = frontmatter.part_opener(part)
+        self.assertIn('<div class="part-art" aria-hidden="true"></div>', html)
+        self.assertNotIn("<svg", html)
+
 
 class BackMatterTests(unittest.TestCase):
     def test_empty_bibliography_is_honest_draft_note(self):

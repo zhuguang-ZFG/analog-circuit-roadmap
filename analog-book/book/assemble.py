@@ -11,7 +11,8 @@ from pathlib import Path
 
 import yaml
 
-from . import config, content, data, fonts, frontmatter, quiz, transforms
+from . import (config, content, data, fonts, frontmatter, illustrations,
+               intuition, quiz, transforms)
 from .manifest import BookError, book_pages, load_manifest, validate_manifest
 
 CSS_FILES = ["typography", "gallery", "learning", "reading", "diag"]
@@ -262,6 +263,11 @@ def _chapter_body(page: content.ContentPage, desc: dict, quiz_data: quiz.QuizDat
     if "book-callout-goal" not in fragment:
         warnings.append(f"{stem}: 章内没有 goal 学习目标提示框")
     fragment = quiz.merge_exercises(fragment, quiz_data.chapters.get(chapter, []), stem)
+    lead = intuition.chapter_lead(chapter)
+    fragment, inserted = re.subn(
+        r"</h1>", "</h1>\n" + lead, fragment, count=1, flags=re.I)
+    if inserted != 1:
+        raise BookError(f"{stem}: 缺少章标题 h1，无法插入导读")
     return fragment, figures, tables, notes
 
 
@@ -359,8 +365,12 @@ def _build_page(desc: dict, *, manifest: dict, site_dir: Path, stems: set[str],
         part = parts.get(desc.get("part_id") or "")
         if part is None:
             raise BookError(f"缺少篇数据: {desc.get('part_id')}")
-        return _page(desc, frontmatter.part_opener(part), desc["title"],
-                     appendices=appendices)
+        art_name = part.get("opener_art")
+        if not art_name:
+            warnings.append(f"第 {part['id']} 篇缺少 opener_art")
+        return _page(
+            desc, frontmatter.part_opener(part, illustrations.part_art(art_name)),
+            desc["title"], appendices=appendices)
     if kind == "chapter":
         page = content.load_page(site_dir, desc["file"], stems, manifest)
         body, figures, tables, notes = _chapter_body(
