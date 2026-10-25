@@ -14,9 +14,10 @@ from pathlib import Path
 BOOK_DIR = Path(__file__).resolve().parent
 ROOT = BOOK_DIR.parent
 DOCS = ROOT / "docs"
+PRINT_ONLY_STEMS = {"p0-11-conventions", "p0-12-symbols", "p9-15-glossary"}
 SITE_DIR = ROOT / "build" / "site"
 DIST_DIR = BOOK_DIR / "dist"
-MANIFEST_PATH = BOOK_DIR / "manifest.json"
+MANIFEST_PATH = BOOK_DIR / "manifest-a4.json"
 OUTPUT_NAME = "analog-circuit-book.html"
 PDF_NAME = "analog-circuit-book.pdf"
 MAX_HTML_BYTES = 20 * 1024 * 1024
@@ -46,7 +47,8 @@ def validate_manifest(manifest: dict, site_dir: Path = SITE_DIR) -> list[str]:
     files = [name for part in manifest["parts"] for name in part["files"]]
     files += manifest["appendix"]["files"]
     stems = [Path(name).stem for name in files]
-    actual = {p.stem for p in DOCS.glob("*.md")} - {"index"}
+    actual = ({p.stem for p in DOCS.glob("*.md")} - {"index"}
+              - PRINT_ONLY_STEMS)
     problems = []
     duplicates = sorted({s for s in stems if stems.count(s) > 1})
     if duplicates:

@@ -653,9 +653,10 @@ body {
 .toc-row.toc-level-1 a { border-bottom: 0.2mm solid var(--rule); }
 .toc-row.toc-level-2 { padding-left: 4mm; }
 .toc-row.toc-level-3 { padding-left: 10mm; font-size: 9pt; line-height: 13.5pt; }
-.toc-title { white-space: nowrap; }
+.toc-title { white-space: normal; overflow-wrap: anywhere; }
 .toc-dots { border-bottom: 0.2mm dotted #98a2b3; transform: translateY(-1mm); }
 .toc-page, .book-index-page { font-variant-numeric: tabular-nums; }
+.toc-page { white-space: nowrap; }
 
 /* ---------- 索引 ---------- */
 .book-index { column-count: 2; column-gap: 6mm; font-size: 9pt; line-height: 12.5pt; }

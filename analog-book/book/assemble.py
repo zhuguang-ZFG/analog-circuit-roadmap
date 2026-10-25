@@ -55,6 +55,8 @@ EMBEDDED_BLOCK_RE = re.compile(r"<(script|style)\b[^>]*>.*?</\1>", re.S)
 ID_ATTR_RE = re.compile(r'(?<![\w-])(id|name)="([^"]+)"')
 H1_RE = re.compile(r"<h1\b[^>]*>.*?</h1>", re.S)
 PLACEHOLDER_RE = re.compile(r"TODO|TBD|待补|占位")
+DATA_URI_RE = re.compile(
+    r"data:[a-zA-Z0-9.+-]+/[a-zA-Z0-9.+-]+;base64,[A-Za-z0-9+/=]+")
 CHAPTER_NUMBER_RE = re.compile(r"-ch(\d+)$")
 SCRIPT_SRC_RE = re.compile(r"<script\b[^>]*\bsrc\s*=", re.I)
 
@@ -386,8 +388,13 @@ def _build_page(desc: dict, *, manifest: dict, site_dir: Path, stems: set[str],
                      appendices=appendices)
     if kind == "appendix":
         if desc["stem"] == "appendix-A-index":
-            return _page(desc, _animation_table(animations), "附录 A 动画总表",
-                         appendices=appendices)
+            return _page(
+                desc, _animation_table(animations), "附录 A 动画总表",
+                tables=[{"number": "表 A-1",
+                         "caption": "表 A-1　动画与图示总表",
+                         "anchor": "appendix-a-table-wrap",
+                         "stem": desc["stem"]}],
+                appendices=appendices)
         if desc["stem"] == "appendix-F-answers":
             appendix = appendices.get("F", {})
             return _page(desc, quiz.render_answers(
@@ -672,7 +679,8 @@ def audit_html(document: str, model: dict, final: bool = False) -> dict:
     emoji = transforms.EMOJI_RE.search(probe)
     if emoji:
         errors.append("书内仍有 emoji: " + emoji.group(0))
-    placeholder = PLACEHOLDER_RE.search(markup)
+    # 仅剥离内联图片/字体的 base64 data URI 载荷；可见文本照常检查占位标记。
+    placeholder = PLACEHOLDER_RE.search(DATA_URI_RE.sub("", markup))
     if placeholder:
         errors.append("书内仍有占位标记: " + placeholder.group(0))
 

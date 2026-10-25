@@ -76,7 +76,7 @@
 
 ## 7. 维护约定
 
-- 新增或删除内容页只需改 `manifest.json`；页尾翻页由构建器按整书顺序自动生成，不需要手工维护相邻关系。
+- 新增或删除内容页需改 `manifest.json`（16K）；A4 1.0 已冻结在 `manifest-a4.json`。页尾翻页由构建器按整书顺序自动生成，不需要手工维护相邻关系。
 - 修改 `styles/book.css` 时，打印样式区要同步确认 `.book-page-nav` 仍在隐藏列表里。
 - 更换分享图时，要同时确认 `scripts/publish_book.py` 会把图复制到 `book/`，并确认镜像脚本的固定补抓清单仍包含 `book/og-cover.png`。
 - 构建与测试命令见 [`README.md`](README.md)；设计背景见 [`../docs/superpowers/specs/2026-10-24-offline-book-and-repo-polish-design.md`](../docs/superpowers/specs/2026-10-24-offline-book-and-repo-polish-design.md)。

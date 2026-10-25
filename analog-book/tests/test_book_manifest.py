@@ -11,6 +11,7 @@ BOOK = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(BOOK))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+from book import config  # noqa: E402
 from book.manifest import (BookError, book_pages, direct_files,  # noqa: E402
                            excluded_files, load_manifest, manifest_sha256,
                            validate_manifest)
@@ -239,6 +240,26 @@ class FixturePathTests(unittest.TestCase):
         self.assertTrue((data / "index-terms.yml").is_file())
         self.assertTrue((data / "chapter-signoff.yml").is_file())
         self.assertFalse((data / "data").exists())
+
+
+class RepositoryManifestTests(unittest.TestCase):
+    def test_real_manifest_is_schema_2_and_covers_repository_docs(self):
+        manifest = load_manifest()
+        validate_manifest(manifest, docs_dir=config.DOCS)
+        self.assertEqual(77, len(book_pages(manifest)))
+        direct = direct_files(manifest)
+        for name in ("p0-11-conventions.md", "p0-12-symbols.md",
+                     "p9-15-glossary.md"):
+            self.assertIn(name, direct)
+        self.assertEqual(10, len(excluded_files(manifest)))
+        structure = manifest["cover"]["back_cover"]["structure"]
+        self.assertEqual(
+            [("第一篇 基础", "电路直觉、无源元件与基本定律"),
+             ("第二篇 器件", "二极管、BJT、MOSFET 与运放内部"),
+             ("第三篇 拓扑", "放大、比较、电源、定时与信号产生"),
+             ("第四篇 设计", "设计方法、参数容差与 PCB 实战"),
+             ("第五篇 调试", "排故五步、故障速查与大师心法")],
+            [(row["title"], row["scope"]) for row in structure])
 
 
 if __name__ == "__main__":

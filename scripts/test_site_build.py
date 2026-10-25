@@ -310,7 +310,7 @@ class SiteBuildTests(unittest.TestCase):
         total = sum(int(re.search(r"(\d+)\s*$", label).group(1))
                     for _ch, label in self.chips if _ch != "all")
         self.assertEqual(len(self.cards), total, "各章 chip 上的数字之和 != 卡片总数")
-        all_label = [l for c, l in self.chips if c == "all"][0]
+        all_label = [label for chip, label in self.chips if chip == "all"][0]
         self.assertEqual(len(self.cards), int(re.search(r"(\d+)", all_label).group(1)))
 
     # ---------- 导航与配置 ----------
@@ -437,7 +437,7 @@ class SiteBuildTests(unittest.TestCase):
             return mapping
 
         DupCheck.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, construct_mapping)
-        DupCheck.add_multi_constructor("tag:yaml.org,2002:python/name:", lambda l, s, n: None)
+        DupCheck.add_multi_constructor("tag:yaml.org,2002:python/name:", lambda loader, suffix, node: None)
         text = (self.build / "mkdocs.yml").read_text(encoding="utf-8")
         cfg = yaml.load(text, Loader=DupCheck)
         self.assertEqual("https://aliyun-hutuji.donglicao.com/analog-circuit-roadmap/", cfg["site_url"])
@@ -691,7 +691,9 @@ class SiteBuildTests(unittest.TestCase):
         篇首页有它们自己的 `.part-hero`（下一条测试），不算误包。
         """
         for name in ("index.html", "p0-08-cheatsheet.html", "p5-00-part5.html",
-                     "p1-00-part1.html", "p9-12-changelog.html"):
+                     "p1-00-part1.html", "p9-12-changelog.html",
+                     "p0-11-conventions.html", "p0-12-symbols.html",
+                     "p9-15-glossary.html"):
             with self.subTest(page=name):
                 self.assertNotIn('<div class="chapter-hero"', self.body_html(name),
                                  f"{name} 被误包了章首舞台")

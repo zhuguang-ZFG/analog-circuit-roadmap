@@ -101,6 +101,30 @@ class BuildTests(unittest.TestCase):
         audit = assemble.audit_html(broken, self.model)
         self.assertIn("含外部脚本", audit["errors"])
 
+    def test_audit_ignores_base64_payload_with_placeholder_substring(self):
+        payload = "QUJD" + "TBD" + "REVG"
+        document = self.document.replace(
+            "</body>",
+            f'<img alt="" src="data:image/png;base64,{payload}"></body>')
+        audit = assemble.audit_html(document, self.model)
+        self.assertNotIn(
+            "书内仍有占位标记", "\n".join(audit["errors"] + audit["warnings"]))
+
+    def test_audit_flags_visible_placeholder_after_data_token(self):
+        document = self.document.replace(
+            "</body>", '<p>metadata: TBD</p><img src="x.png"></body>')
+        audit = assemble.audit_html(document, self.model)
+        self.assertIn("书内仍有占位标记: TBD", audit["errors"])
+
+    def test_appendix_a_table_is_registered_in_lot(self):
+        page = next(p for p in self.model["pages"]
+                    if p["id"] == "appendix-a-table")
+        self.assertEqual(["表 A-1"],
+                         [table["number"] for table in page["tables"]])
+        entry = next(item for item in self.model["lot"]
+                     if item["number"] == "表 A-1")
+        self.assertEqual("appendix-a-table-wrap", entry["anchor"])
+
     def test_animation_table_is_sorted_by_chapter(self):
         rows = [
             {"id": "anim-9", "anchor": "anim-9", "chapter": 10,

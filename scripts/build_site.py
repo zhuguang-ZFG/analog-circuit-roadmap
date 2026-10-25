@@ -614,7 +614,8 @@ CHAPTER_LABEL = {
     "14": "§14 设计方法", "15": "§15 PCB", "16": "§16 排故", "17": "§17 速查",
     "18": "§18 大师智慧",
 }
-APPENDIX = {"p9-12-changelog.md", "p9-13-thanks.md", "p9-14-credits.md"}
+APPENDIX = {"p9-12-changelog.md", "p9-13-thanks.md", "p9-14-credits.md",
+            "p9-15-glossary.md"}
 
 GALLERY_CSS = """
 /* 动画 <img> 被包进 <picture>（为了让 <source media> 能在页面上下文里挑「静止版」）。
