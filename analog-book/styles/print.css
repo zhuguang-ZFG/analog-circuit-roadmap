@@ -1,0 +1,135 @@
+@page { size: 185mm 260mm; margin: 20mm 20mm 22mm; }
+@page :left { margin: 20mm 22mm 22mm 18mm; }
+@page :right { margin: 20mm 18mm 22mm 22mm; }
+
+:root {
+  --print-ink: #1f2933;
+  --print-muted: #52606d;
+  --print-rule: #d9e2ec;
+}
+
+html, body { background: #fff !important; }
+body {
+  margin: 0; color: var(--print-ink);
+  font-family: "Book Serif", "Noto Serif SC", "Songti SC", serif;
+  font-size: 10.5pt; line-height: 17.5pt;
+}
+.book-header, .book-footer, .book-page-nav, .reading-nav, .book-search,
+.book-top, .book-progress, .book-skip, .book-search-panel,
+.gal-bar, .gal-actions, .gal-hint, .gal-modal, .gal-play,
+.learning-backup { display: none !important; }
+.book { max-width: none; padding: 0; margin: 0; }
+.book .md-typeset { max-width: none; font-size: 10.5pt; line-height: 17.5pt; }
+.book .md-typeset h1, .book .md-typeset h2, .book .md-typeset h3,
+.book .md-typeset h4 { font-family: "Book Sans", "Noto Sans SC", sans-serif; }
+.book .md-typeset h1 { font-size: 22pt; line-height: 28pt; margin: 0 0 8mm; }
+.book .md-typeset h2 { font-size: 15pt; line-height: 21pt; }
+.book .md-typeset h3 { font-size: 12pt; line-height: 18pt; }
+.book .md-typeset h4 { font-size: 10.5pt; line-height: 17.5pt; }
+.book .half-title, .book .title-page {
+  display: flex; flex-direction: column; justify-content: center;
+  min-height: 160mm; text-align: center;
+}
+.book .half-title .book-title { font-size: 30pt; line-height: 38pt; margin: 0 0 6mm; }
+.book .half-title .book-subtitle { font-size: 14pt; line-height: 22pt; }
+.book .half-title .book-edition { margin-top: 12mm; font-size: 11pt; letter-spacing: .2em; }
+.book .title-page .title-kicker { font-size: 11pt; letter-spacing: .3em; }
+.book .title-page h1 { font-size: 30pt; line-height: 38pt; margin: 8mm 0 4mm; }
+.book .title-page .title-subtitle { font-size: 14pt; line-height: 22pt; }
+.book .title-page .title-author { margin-top: 16mm; font-size: 12pt; }
+.book .title-page .title-edition, .book .title-page .title-date { font-size: 10pt; }
+.book .copyright-page { font-size: 9pt; line-height: 13pt; }
+.book .copyright-page h1 { font-size: 15pt; line-height: 21pt; }
+.book .part-opener, .book .appendix-opener {
+  display: flex; flex-direction: column; justify-content: center;
+  min-height: 160mm;
+}
+.book .part-opener h1, .book .appendix-opener h1 { font-size: 28pt; line-height: 34pt; }
+.book .part-kicker { display: block; font-size: 11pt; letter-spacing: .3em; }
+.book .part-title { display: block; margin-top: 4mm; }
+.book .part-subtitle { font-size: 13pt; line-height: 20pt; }
+.book .part-units { font-size: 10pt; line-height: 16pt; }
+.book .part-art { margin-top: 12mm; border-top: 0.2mm solid var(--print-rule); }
+.book .appendix-intro { font-size: 10pt; line-height: 16pt; }
+.book .colophon { font-size: 9pt; line-height: 13pt; }
+.book .colophon h1 { font-size: 15pt; line-height: 21pt; }
+.book .md-typeset p, .book .md-typeset li { text-align: justify; }
+.book .md-typeset a { color: inherit; text-decoration: none; }
+.book .md-typeset pre {
+  white-space: pre-wrap; overflow-wrap: anywhere; word-break: break-word;
+  font-family: "Book Mono", "JetBrains Mono", monospace;
+  font-size: 8.5pt; line-height: 12pt; background: #f7f8fa;
+  padding: 2.4mm 3mm; border: 0.2mm solid var(--print-rule);
+}
+.book .md-typeset code { font-family: "Book Mono", monospace; font-size: 8.5pt; }
+.book .md-typeset table {
+  width: 100%; border-collapse: collapse; table-layout: fixed;
+  font-size: 9pt; line-height: 13pt;
+}
+.book .md-typeset thead { display: table-header-group; }
+.book .md-typeset tr { break-inside: avoid; }
+.book .md-typeset th, .book .md-typeset td {
+  border: 0.2mm solid var(--print-rule); padding: 1.2mm 1.6mm;
+  overflow-wrap: anywhere; vertical-align: top;
+}
+.book .md-typeset th { background: #f2f4f7; font-family: "Book Sans", sans-serif; }
+.table-wrap, .book .md-typeset figure { overflow: visible; }
+.book .md-typeset figure { break-inside: avoid; margin: 4mm 0; }
+.book .md-typeset figcaption {
+  font-family: "Book Sans", sans-serif; font-size: 9pt; line-height: 13pt;
+  color: var(--print-muted); margin-top: 1.5mm; text-align: center;
+}
+.book .md-typeset img, .book .md-typeset svg { max-width: 100%; height: auto; }
+.book .md-typeset img { max-height: 185mm; }
+.book .md-typeset blockquote {
+  border-left: 1.2mm solid #b45309; margin: 3mm 0; padding: 0 0 0 4mm;
+}
+.book .book-callout {
+  border: 0.2mm solid var(--print-rule); border-left: 1.2mm solid #b45309;
+  padding: 2.4mm 3mm; margin: 3mm 0; break-inside: avoid;
+}
+.book .book-callout-label {
+  font-family: "Book Sans", sans-serif; font-size: 9pt; font-weight: 700;
+  color: #b45309; display: block; margin-bottom: 1mm;
+}
+.book .book-reveal {
+  border-left: 0.6mm solid var(--print-rule); padding: 1mm 0 1mm 3mm;
+  margin: 3mm 0; break-inside: avoid;
+}
+.book .book-reveal-title {
+  font-family: "Book Sans", sans-serif; font-size: 9pt; font-weight: 700;
+  color: var(--print-muted); margin: 0 0 1mm;
+}
+.book .arithmatex { overflow: visible; break-inside: avoid; }
+.book .calc { display: none !important; }  /* 计算器只服务屏幕，纸上保留示例推导 */
+.book-figure { break-inside: avoid; }
+.book-table { break-inside: avoid; }
+.book-toc { break-before: auto; }  /* 外层 .book-page 已经分页，内层不得再断一次 */
+.book-toc h1 { font-size: 28pt; }
+.book-toc .book-toc-list {
+  margin: 0; padding: 0; list-style: none; column-count: 2; column-gap: 6mm;
+}
+.toc-row {
+  break-inside: avoid; margin: 0 0 1.2mm;
+  font-size: 10.5pt; line-height: 15pt;
+}
+.toc-row a {
+  display: grid; grid-template-columns: 1fr auto auto; gap: 2mm;
+  align-items: baseline; color: inherit; text-decoration: none;
+}
+.toc-row.toc-level-1 { font-family: "Book Sans", sans-serif; font-weight: 700; margin-top: 3mm; }
+.toc-row.toc-level-2 { padding-left: 5mm; }
+.toc-row.toc-level-3 { padding-left: 10mm; font-size: 9pt; line-height: 13.5pt; }
+.toc-dots { border-bottom: 0.2mm dotted #98a2b3; transform: translateY(-1mm); }
+.toc-page, .book-index-page { font-variant-numeric: tabular-nums; }
+.book-index { column-count: 2; column-gap: 6mm; font-size: 9pt; line-height: 12.5pt; }
+.book-index-entry { break-inside: avoid; margin: 0 0 1.2mm; }
+.book-index-page.is-primary { font-weight: 700; }
+.book-endnotes { font-size: 9pt; line-height: 13pt; border-top: 0.2mm solid var(--print-rule); margin-top: 6mm; }
+.book-page { break-before: page; }
+.book-page:first-of-type { break-before: auto; }
+.book-part > .book-page:first-child, .book-appendix > .book-page:first-child {
+  break-before: right;
+}
+h1, h2, h3 { break-after: avoid; }
+p, li { orphans: 2; widows: 2; }
