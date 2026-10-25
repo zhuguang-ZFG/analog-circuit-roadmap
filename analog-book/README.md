@@ -2,7 +2,10 @@
 
 从 `docs/` 构建《通往模拟电路之路》的单文件 HTML 与 A4 PDF。内容源仍在 `docs/`，本目录只放构建器、清单与样式。
 
-**直接下载**：<https://zhuguang-zfg.github.io/analog-circuit-roadmap/book/>（每次 main 分支构建自动更新，无需本地安装）。
+**直接下载**：
+
+- GitHub Pages：<https://zhuguang-zfg.github.io/analog-circuit-roadmap/book/>（每次 main 分支构建自动更新）
+- 国内镜像：<https://aliyun-hutuji.donglicao.com/analog-circuit-roadmap/book/>（每 6 小时同步）
 
 ## 构建
 
@@ -27,6 +30,14 @@ Windows 上装了 GNU Make 时可用 `make book` / `make book-pdf` / `make book-
 - 缺 Playwright/PyMuPDF 时 HTML 仍可构建；PDF 相关测试自动 skip。
 - PDF 默认优先本机 Edge/Chrome，找不到时回退 Playwright 自带 Chromium；可用 `--browser <path>` 指定浏览器。
 - 审计会检查远程资源、重复 ID、跨页锚点、页面数与 20 MB 体积上限；`--check` 不重新构建。
+
+## 阅读体验
+
+- 每页页尾提供上一篇 / 下一篇，按整书顺序跨篇连续翻页，中间按钮回到全书目录。
+- 正文链接带下划线，键盘焦点与文本选区有明确视觉反馈；手机端翻页收成两行。
+- 页眉保留搜索（`Ctrl/Cmd+K`、`/`）、阅读进度与回到顶部；这些交互不依赖网络。
+
+完整变更记录见 [`READING-FLOW.md`](READING-FLOW.md)。
 
 ## 测试
 
