@@ -25,6 +25,7 @@ MIME = {
     ".jpeg": "image/jpeg", ".webp": "image/webp", ".gif": "image/gif",
 }
 EXTERNAL_PREFIXES = ("http://", "https://", "mailto:", "tel:", "data:")
+QUIZ_CHAPTER_RE = re.compile(r"quiz-ch(\d+)$")
 SPECIAL_TARGETS = {
     "index": "#book-toc",
     "p0-07-toc": "#book-toc",
@@ -137,6 +138,11 @@ def collect_headings(fragment: str) -> list[Heading]:
 def _special_target(stem: str, anchor: str) -> str:
     if stem == "p5-00-part5" and anchor.startswith("demo"):
         return "#anim-" + anchor[4:]
+    if stem == "p9-00-quiz":
+        match = QUIZ_CHAPTER_RE.fullmatch(anchor)
+        if match:
+            return f"#chapter-{int(match.group(1))}--exercises"
+        return "#appendix-f-answers"
     return SPECIAL_TARGETS.get(stem, "#book-toc")
 
 

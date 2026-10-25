@@ -114,6 +114,14 @@ class LinkTests(unittest.TestCase):
                       self.rewrite("p5-00-part5.html#demo87"))
         self.assertIn('href="#appendix-c"', self.rewrite("p6-00-part6.html"))
 
+    def test_quiz_links_target_exercises_and_answers(self):
+        self.assertIn('href="#chapter-2--exercises"',
+                      self.rewrite("p9-00-quiz.html#quiz-ch2"))
+        self.assertIn('href="#appendix-f-answers"',
+                      self.rewrite("p9-00-quiz.html#part9"))
+        self.assertIn('href="#appendix-f-answers"',
+                      self.rewrite("p9-00-quiz.html"))
+
     def test_external_and_assets_are_not_namespaced(self):
         self.assertIn('href="https://example.test/x"', self.rewrite("https://example.test/x"))
         self.assertIn('href="https://example.test/book/assets/a.svg"',

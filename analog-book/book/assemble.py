@@ -55,6 +55,7 @@ ID_ATTR_RE = re.compile(r'(?<![\w-])(id|name)="([^"]+)"')
 H1_RE = re.compile(r"<h1\b[^>]*>.*?</h1>", re.S)
 PLACEHOLDER_RE = re.compile(r"TODO|TBD|待补|占位")
 CHAPTER_NUMBER_RE = re.compile(r"-ch(\d+)$")
+SCRIPT_SRC_RE = re.compile(r"<script\b[^>]*\bsrc\s*=", re.I)
 
 
 def _esc(value) -> str:
@@ -285,7 +286,8 @@ def _appendix_body(page: content.ContentPage, desc: dict, final: bool,
 
 def _animation_table(animations: list[dict]) -> str:
     rows = []
-    for item in animations:
+    for item in sorted(animations,
+                       key=lambda value: (int(value["chapter"]), str(value["id"]))):
         suffix = str(item["anchor"])[4:]
         rows.append(
             f'<tr id="anim-{_esc(suffix)}">'
@@ -624,8 +626,8 @@ def _markup(document: str) -> str:
 def _one_h1_problem(page: dict) -> bool:
     count = len(H1_RE.findall(page["html"]))
     if page["source"] and page["group"] == "appendix":
-        # 附录源页的 h1 已降为 h2，附录级 h1 由 opener 提供。
-        return count > 1
+        # 附录源页 h1 已降为 h2，附录级 h1 由 opener 提供。
+        return count != 0
     return count != 1
 
 
@@ -645,7 +647,7 @@ def audit_html(document: str, model: dict, final: bool = False) -> dict:
     missing = sorted({href for href in hrefs if href not in set(ids)})
     if missing:
         errors.append("悬空锚点: " + ", ".join(missing[:10]))
-    if "<script src=" in markup:
+    if SCRIPT_SRC_RE.search(document):
         errors.append("含外部脚本")
     if 'rel="stylesheet"' in markup:
         errors.append("含外部样式")

@@ -65,20 +65,29 @@ def parse_quiz(fragment: str) -> QuizData:
     return QuizData(chapters=chapters, extra=extra)
 
 
+def _exercises_anchor(questions: list[Question], stem: str) -> str:
+    if questions and questions[0].chapter is not None:
+        return f"chapter-{questions[0].chapter}--exercises"
+    return f"{stem}--exercises"
+
+
 def merge_exercises(fragment: str, questions: list[Question], stem: str) -> str:
     if not questions:
         return fragment
+    anchor = _exercises_anchor(questions, stem)
     items = "".join(
         f'<li><a id="{stem}--q-{q.id}"></a>{q.question}</li>' for q in questions)
     existing = re.search(
         r'(<h2[^>]*>[^<]*本章练习[^<]*</h2>\s*<ol[^>]*>)(.*?)(</ol>)',
         fragment, re.S)
     if existing:
-        return (fragment[:existing.start(2)] + existing.group(2) + items
-                + fragment[existing.end(2):])
+        marker = f'<a id="{anchor}"></a>'
+        return (fragment[:existing.start(1)] + marker
+                + fragment[existing.start(1):existing.start(2)]
+                + existing.group(2) + items + fragment[existing.end(2):])
     section = (
-        f'<section class="chapter-exercises" id="{stem}--exercises">'
-        f'<h2 id="{stem}--exercises-title">本章练习</h2>'
+        f'<section class="chapter-exercises" id="{anchor}">'
+        f'<h2 id="{anchor}-title">本章练习</h2>'
         f'<ol class="exercise-list">{items}</ol>'
         '<p class="exercise-hint">答案见附录 F；先盖住答案在纸上算。</p></section>')
     return fragment + section

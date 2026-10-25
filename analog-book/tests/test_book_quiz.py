@@ -50,6 +50,12 @@ class MergeTests(unittest.TestCase):
         self.assertNotIn("<details", result)
         self.assertNotIn("答案一", result)
 
+    def test_exercise_section_has_stable_chapter_anchor(self):
+        data = quiz.parse_quiz(QUIZ)
+        result = quiz.merge_exercises("<h1>第 0 章</h1><p>正文。</p>",
+                                      data.chapters[0], "p1-01-ch0")
+        self.assertIn('id="chapter-0--exercises"', result)
+
     def test_answers_only_in_appendix(self):
         data = quiz.parse_quiz(QUIZ)
         page = quiz.render_answers(data, {0: "p1-01-ch0"}, "p9-00-quiz")

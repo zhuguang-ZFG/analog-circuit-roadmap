@@ -93,6 +93,33 @@ class BuildTests(unittest.TestCase):
         self.assertGreaterEqual(stats["tables"], 1)
         self.assertGreater(stats["images"], 0)
 
+    def test_audit_rejects_external_scripts(self):
+        broken = self.document.replace(
+            "</body>", '<script src="https://cdn.example/x.js"></script></body>')
+        audit = assemble.audit_html(broken, self.model)
+        self.assertIn("含外部脚本", audit["errors"])
+
+    def test_animation_table_is_sorted_by_chapter(self):
+        rows = [
+            {"id": "anim-9", "anchor": "anim-9", "chapter": 10,
+             "title": "十", "one_line": "十。"},
+            {"id": "anim-1", "anchor": "anim-1", "chapter": 2,
+             "title": "二", "one_line": "二。"},
+        ]
+        table = assemble._animation_table(rows)
+        self.assertLess(table.index("第 2 章"), table.index("第 10 章"))
+
+    def test_appendix_source_pages_have_no_h1(self):
+        for page in self.model["pages"]:
+            if page["kind"] == "appendix" and page["source"]:
+                self.assertEqual(
+                    0, len(assemble.H1_RE.findall(page["html"])), page["id"])
+
+    def test_appendix_source_page_with_residual_h1_is_flagged(self):
+        page = {"id": "page-p6-01-s6-1", "html": "<h1>残留标题</h1>",
+                "source": "p6-01-s6-1.md", "group": "appendix"}
+        self.assertTrue(assemble._one_h1_problem(page))
+
     def test_exports_figure_and_table_manifests(self):
         for name in ("figures.yml", "tables.yml"):
             entries = yaml.safe_load(
