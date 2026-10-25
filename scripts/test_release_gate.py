@@ -48,6 +48,7 @@ class ReleaseGateTests(unittest.TestCase):
         deploy_runs = '\n'.join(step.get('run', '') for step in jobs['deploy']['steps'])
         self.assertIn('book/analog-circuit-book.html', deploy_runs)
         self.assertIn('book/analog-circuit-book.pdf', deploy_runs)
+        self.assertIn('book/og-cover.png', deploy_runs)
 
 
 if __name__ == '__main__':
