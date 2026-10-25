@@ -31,6 +31,20 @@ Windows 上装了 GNU Make 时可用 `make book` / `make book-pdf` / `make book-
 - PDF 默认优先本机 Edge/Chrome，找不到时回退 Playwright 自带 Chromium；可用 `--browser <path>` 指定浏览器。
 - 审计会检查远程资源、重复 ID、跨页锚点、页面数与 20 MB 体积上限；`--check` 不重新构建。
 
+## 16K 印刷版
+
+16K（185 × 260 mm）印刷版与 A4 1.0 共用 `docs/`，但使用独立的
+`manifest.json`，产物写到 `analog-book/dist/print/`（gitignored）：
+
+```bash
+python analog-book/build_print_book.py --sample   # 十页样张
+python analog-book/build_print_book.py --pdf --cover
+python analog-book/build_print_book.py --no-build --report
+```
+
+`PRINT-SPEC.md` 与 `build-report.json` 从已有产物生成；Phase 0 的 16K 只上传
+CI artifact，`/book/` 仍由 A4 1.0 发布。
+
 ## 阅读体验
 
 - 每页页尾提供上一篇 / 下一篇，按整书顺序跨篇连续翻页，中间按钮回到全书目录。

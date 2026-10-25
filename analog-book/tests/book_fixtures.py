@@ -90,7 +90,7 @@ APPENDICES = [
 EXCLUDED = [
     {"file": "index.md", "reason": "站点首页"},
     {"file": "p0-07-toc.md", "reason": "由书内详细目录替代"},
-    {"file": "p1-00-part1.md", "reason": "由书内第 II 篇首页替代"},
+    {"file": "p1-00-part1.md", "reason": "由书内第 I 篇首页替代"},
     {"file": "p2-00-part2.md", "reason": "由书内第 III 篇首页替代"},
     {"file": "p3-00-part3.md", "reason": "由书内第 IV 篇首页替代"},
     {"file": "p4-00-part4.md", "reason": "由书内第 V 篇首页替代"},

@@ -382,6 +382,9 @@ class PdfTests(unittest.TestCase):
         report = check_pdf(self.pdf, MODEL, MANIFEST)
         self.assertEqual([], report["problems"])
         self.assertTrue(any("450" in warning for warning in report["warnings"]))
+        width, height = report["size_mm"]
+        self.assertAlmostEqual(185, width, delta=0.5)
+        self.assertAlmostEqual(260, height, delta=0.5)
 
     def test_check_pdf_final_mode_uses_hard_bands(self):
         final_manifest = {**MANIFEST, "release": {"edition_status": "final"}}

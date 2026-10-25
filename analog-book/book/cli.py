@@ -25,7 +25,7 @@ def _parser() -> argparse.ArgumentParser:
     parser.add_argument("--cover", action="store_true", help="生成印刷封面（隐含 --pdf）")
     parser.add_argument("--report", action="store_true",
                         help="从已有 HTML/PDF/封面写构建报告与印刷规格")
-    parser.add_argument("--sample", action="store_true", help="生成九页 16K 样张")
+    parser.add_argument("--sample", action="store_true", help="生成十页 16K 样张")
     parser.add_argument("--browser")
     return parser
 

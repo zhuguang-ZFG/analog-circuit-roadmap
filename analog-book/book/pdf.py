@@ -425,6 +425,8 @@ def check_pdf(pdf_path: Path, model: dict, manifest: dict) -> dict:
     try:
         problems, warnings = [], []
         pages = document.page_count
+        size_mm = [round(document[0].rect.width / MM, 2),
+                   round(document[0].rect.height / MM, 2)]
         final = manifest["release"]["edition_status"] == "final"
         for page in document:
             width = page.rect.width / MM
@@ -463,7 +465,7 @@ def check_pdf(pdf_path: Path, model: dict, manifest: dict) -> dict:
                 "草稿只检查 16K 结构项；字体嵌入、缺字、公式图形、版心溢出、"
                 "图表跨页与 PDF <100MB 等印前全检在 Phase 5 执行")
         return {"pages": pages, "body_start": body_start, "labels": labels[:12],
-                "bookmarks": len(toc),
+                "bookmarks": len(toc), "size_mm": size_mm,
                 "max_level": max((entry[0] for entry in toc), default=0),
                 "problems": problems, "warnings": warnings}
     finally:

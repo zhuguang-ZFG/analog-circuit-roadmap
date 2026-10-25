@@ -304,7 +304,8 @@ body {
   overflow-wrap: anywhere; vertical-align: top;
 }
 .book .md-typeset th { background: #f2f4f7; font-family: "Book Sans", sans-serif; }
-.book .book-table { margin: 3mm 0 0; break-inside: avoid; }
+.book .book-table { margin: 3mm 0 0; break-inside: auto; }
+.book .book-table .table-caption { break-after: avoid; }
 .book .md-typeset .table-caption {
   display: flex; align-items: baseline; gap: 3mm;
   margin: 0 0 2.4mm;
@@ -336,7 +337,7 @@ body {
 .book .book-table tbody tr:nth-child(even) { background: var(--panel); }
 .book .book-table tbody tr:last-child td { border-bottom: 0.4mm solid var(--navy); }
 .book .book-table td strong { color: var(--navy); }
-.book .table-wrap { break-inside: avoid; }
+.book .table-wrap { break-inside: auto; }
 
 /* ---------- 公式条 ---------- */
 .book .equation-strip {

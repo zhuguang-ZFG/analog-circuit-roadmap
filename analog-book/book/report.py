@@ -21,6 +21,7 @@ DEFERRED = [
     "19 章 SPICE 仿真与三套实测复核",
     "索引、参考文献与外部审读",
     "封面打样、纸张与印厂参数确认",
+    "印前全检（字体嵌入、缺字、公式图形、版心溢出、图表跨页与 PDF <100MB）",
     "ISBN 与条码（尚未申请）",
 ]
 
@@ -42,9 +43,14 @@ def _pdf_version(pdf_path: Path) -> str:
 def _fonts(fonts_dir=config.FONTS_DIR) -> list[dict]:
     data = json.loads(
         (Path(fonts_dir) / "sources.json").read_text(encoding="utf-8"))
-    return [{"family": item["family"], "weight": item["weight"],
-             "file": item["name"], "license": FONT_LICENSE}
-            for item in data["subsets"]]
+    fonts = [{"family": item["family"], "weight": item["weight"],
+              "file": item["name"], "license": FONT_LICENSE}
+             for item in data["subsets"]]
+    stamp = data.get("stamp") or {}
+    if stamp:
+        fonts.append({"family": stamp["family"], "weight": stamp["weight"],
+                      "file": stamp["name"], "license": FONT_LICENSE})
+    return fonts
 
 
 def _sample(out_dir: Path) -> dict | None:
@@ -88,6 +94,8 @@ def build_report(out_dir, model, manifest, pdf_report, cover_report,
         "pdf_pages": pdf_report["pages"],
         "body_start": pdf_report["body_start"],
         "bookmarks": pdf_report["bookmarks"],
+        "pdf_warnings": list(pdf_report.get("warnings", [])),
+        "preflight": "未执行（Phase 5 印前门禁）",
         "figures": stats.get("figures", 0),
         "tables": stats.get("tables", 0),
         "formulas": stats.get("formulas", 0),
@@ -99,6 +107,7 @@ def build_report(out_dir, model, manifest, pdf_report, cover_report,
         "preview_bytes": preview.stat().st_size if preview.is_file() else 0,
         "trim_mm": [manifest["trim"]["width_mm"],
                     manifest["trim"]["height_mm"]],
+        "interior_size_mm": list(pdf_report.get("size_mm") or []),
         "text_block_mm": [config.TEXT_WIDTH_MM, config.TEXT_HEIGHT_MM],
         "margins_mm": {"top": 20, "bottom": 22,
                        "inside": 22, "outside": 18},
@@ -141,6 +150,13 @@ def print_spec_markdown(report: dict, manifest: dict) -> str:
     width, height = cover["size_mm"]
     trim_w, trim_h = report["trim_mm"]
     bleed = report["bleed_mm"]
+    size_mm = report.get("interior_size_mm") or []
+    interior = (f"{size_mm[0]:.2f} × {size_mm[1]:.2f} mm"
+                if len(size_mm) == 2 else "未记录")
+    multiple = "是" if report["pdf_pages"] % 4 == 0 else "否"
+    pdf_warnings = report.get("pdf_warnings") or []
+    warning_lines = ("\n".join(f"- {item}" for item in pdf_warnings)
+                     if pdf_warnings else "- 无")
     formula = (f"{report['pdf_pages']} / 2 × {caliper:.2f} + "
                f"{allowance:.1f} = {spine:.2f} mm")
     nominal_width = 2 * trim_w + spine + 2 * bleed
@@ -174,7 +190,8 @@ def print_spec_markdown(report: dict, manifest: dict) -> str:
 
 | 项目 | 数值 |
 |---|---|
-| 成品尺寸 | {trim_w:g} × {trim_h:g} mm（16K） |
+| 成品尺寸 | {trim_w:g} × {trim_h:g} mm（16K，标称） |
+| 内文实际 MediaBox | {interior}（Chromium 渲染，允许 ±0.5 mm） |
 | 版心 | {report['text_block_mm'][0]:g} × {report['text_block_mm'][1]:g} mm |
 | 页边距 | 上 {report['margins_mm']['top']} mm / 下 {report['margins_mm']['bottom']} mm / 订口 {report['margins_mm']['inside']} mm / 切口 {report['margins_mm']['outside']} mm |
 | 镜像边距 | {report['mirrored']} |
@@ -183,7 +200,7 @@ def print_spec_markdown(report: dict, manifest: dict) -> str:
 
 | 项目 | 数值 |
 |---|---|
-| 内文页数 | {report['pdf_pages']}（4 的倍数：{report['pdf_pages'] % 4 == 0}） |
+| 内文页数 | {report['pdf_pages']}（4 的倍数：{multiple}） |
 | 书脊公式 | {formula} |
 | 封面展开（含出血） | {width:.2f} × {height:.2f} mm |
 | 封面尺寸推导 | {cover_formula} |
@@ -234,7 +251,13 @@ def print_spec_markdown(report: dict, manifest: dict) -> str:
 
 ## 8 尚未关闭的质量门
 
+**印前全检：{report['preflight']}。** 下表列出尚未关闭的门；第 3 节的书脊与封面仍须打样复核。
+
 {deferred}
+
+## 9 PDF 结构检查警告
+
+{warning_lines}
 """
 
 
