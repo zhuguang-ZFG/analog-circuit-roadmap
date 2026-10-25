@@ -28,6 +28,7 @@ TOTAL_CHAPTERS = 19
 EXISTING_DIRECT_COUNT = 51
 EXCLUDED_COUNT = 10
 EDITION_STATUSES = {"draft", "final"}
+SECTIONS = ("front_matter", "parts", "appendices", "back_matter")
 
 METADATA_KEYS = ("title", "subtitle", "edition", "version", "source_version",
                  "date", "language", "author", "site_url", "repository", "license")
@@ -52,8 +53,11 @@ class BookError(Exception):
 
 
 def load_manifest(path: str | Path = MANIFEST_PATH) -> dict:
-    """读取 manifest JSON。校验交给 :func:`validate_manifest`。"""
-    return json.loads(Path(path).read_text(encoding="utf-8"))
+    """读取 manifest JSON；解析失败时抛出 :class:`BookError`。"""
+    try:
+        return json.loads(Path(path).read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        raise BookError(f"manifest JSON 解析失败：{path}") from exc
 
 
 def manifest_sha256(path: str | Path = MANIFEST_PATH) -> str:
@@ -62,26 +66,28 @@ def manifest_sha256(path: str | Path = MANIFEST_PATH) -> str:
 
 def direct_files(manifest: dict) -> list[str]:
     """直接进入书内的源文件（前置、章节、附录、后置），不含生成页。"""
-    files = [entry["file"] for entry in manifest.get("front_matter", [])
+    files = [entry["file"] for entry in manifest.get("front_matter") or []
              if "file" in entry]
-    for part in manifest.get("parts", []):
-        for unit in part.get("units", []):
-            files.extend(unit.get("chapters", []))
-    for appendix in manifest.get("appendices", []):
-        files.extend(appendix.get("files", []))
-    files.extend(entry["file"] for entry in manifest.get("back_matter", [])
+    for part in manifest.get("parts") or []:
+        for unit in part.get("units") or []:
+            files.extend(unit.get("chapters") or [])
+    for appendix in manifest.get("appendices") or []:
+        files.extend(appendix.get("files") or [])
+    files.extend(entry["file"] for entry in manifest.get("back_matter") or []
                  if "file" in entry)
     return files
 
 
 def excluded_files(manifest: dict) -> list[str]:
     """明确排除、由书内生成页替代的 docs 页面。"""
-    return [entry["file"] for entry in manifest.get("excluded_pages", [])
+    return [entry["file"] for entry in manifest.get("excluded_pages") or []
             if entry.get("file")]
 
 
 def validate_manifest(manifest: dict, docs_dir: str | Path = DOCS) -> None:
     """校验 schema-2 manifest；不满足时抛出 :class:`BookError`。"""
+    _validate_section_types(manifest)
+    _validate_section_entries(manifest)
     _validate_header(manifest)
     _validate_unique_direct(direct_files(manifest))
     _validate_front_matter(manifest)
@@ -186,6 +192,22 @@ def _back_pages(manifest: dict, pages: list[dict]) -> None:
             pages.append(_page("back", Path(name).stem, entry["title"], file=name))
 
 
+def _validate_section_types(manifest: dict) -> None:
+    """四个清单段必须是列表；null 先归一为空列表，再由各规则报错。"""
+    for key in SECTIONS:
+        value = manifest.get(key)
+        if value is not None and not isinstance(value, list):
+            raise BookError(f"{key} 必须是列表")
+
+
+def _validate_section_entries(manifest: dict) -> None:
+    """清单段内每条记录必须是对象，避免后续 .get 抛 AttributeError。"""
+    for key in SECTIONS:
+        for entry in manifest.get(key) or []:
+            if not isinstance(entry, dict):
+                raise BookError(f"{key} 的条目必须是对象")
+
+
 def _validate_header(manifest: dict) -> None:
     schema = manifest.get("schema")
     if schema != SCHEMA_VERSION:
@@ -211,7 +233,11 @@ def _validate_front_matter(manifest: dict) -> None:
     entries = manifest.get("front_matter") or []
     if not isinstance(entries, list):
         raise BookError("front_matter 必须是列表")
-    kinds = [entry.get("kind") for entry in entries if "kind" in entry]
+    for entry in entries:
+        if "kind" in entry and not isinstance(entry["kind"], str):
+            raise BookError(
+                f"front_matter 的 kind 必须是字符串，当前为 {entry['kind']!r}")
+    kinds = [entry["kind"] for entry in entries if "kind" in entry]
     unknown = sorted(set(kinds) - FRONT_KINDS)
     if unknown:
         raise BookError(f"front_matter 含未知生成页：{', '.join(unknown)}")
@@ -294,7 +320,11 @@ def _validate_appendices(manifest: dict) -> None:
 
 def _validate_back_matter(manifest: dict) -> None:
     entries = manifest.get("back_matter") or []
-    kinds = [entry.get("kind") for entry in entries if "kind" in entry]
+    for entry in entries:
+        if "kind" in entry and not isinstance(entry["kind"], str):
+            raise BookError(
+                f"back_matter 的 kind 必须是字符串，当前为 {entry['kind']!r}")
+    kinds = [entry["kind"] for entry in entries if "kind" in entry]
     unknown = sorted(set(kinds) - BACK_KINDS)
     if unknown:
         raise BookError(f"back_matter 含未知生成页：{', '.join(unknown)}")

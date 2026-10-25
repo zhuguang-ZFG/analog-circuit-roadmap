@@ -168,8 +168,9 @@ def write_docs(root: Path) -> None:
         (root / name).write_text(f"# {title}\n\n正文示例。\n", encoding="utf-8")
 
 
-def write_site(root: Path, data_dir: Path | None = None) -> Path:
-    site = root / "site"
+def write_site(site: Path) -> Path:
+    """在给定的最终 site 目录下写出站点夹具。"""
+    site.mkdir(parents=True, exist_ok=True)
     for rel in ("assets/stylesheets/main.abc.min.css", "assets/stylesheets/palette.abc.min.css"):
         path = site / rel
         path.parent.mkdir(parents=True, exist_ok=True)
@@ -201,8 +202,8 @@ def write_site(root: Path, data_dir: Path | None = None) -> Path:
     return site
 
 
-def write_data(root: Path) -> Path:
-    data = root / "data"
+def write_data(data: Path) -> Path:
+    """在给定的最终 data 目录下写出数据夹具。"""
     data.mkdir(parents=True, exist_ok=True)
     animations = [
         {"id": f"anim-{i:03d}", "file": "p5-00-part5.md", "title": f"动画 {i}",
