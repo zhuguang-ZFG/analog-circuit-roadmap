@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 """封面：书脊公式、尺寸、出血、裁切线、二维码与无假 ISBN。"""
+import copy
+import re
 import sys
 import tempfile
 import unittest
@@ -38,10 +40,27 @@ MANIFEST = {
             "audience": "电子、自动化、通信与嵌入式方向的学生和工程师。",
             "highlights": ["19 章完整知识链", "三层读法", "可复现仿真",
                            "实测实验", "故障速查与索引"],
+            "structure": [
+                {"title": "第一篇 基础",
+                 "scope": "电路直觉、无源元件与基本定律"},
+                {"title": "第二篇 器件",
+                 "scope": "二极管、BJT、MOSFET 与运放内部"},
+                {"title": "第三篇 拓扑",
+                 "scope": "放大、比较、电源、定时与信号产生"},
+                {"title": "第四篇 设计",
+                 "scope": "设计方法、参数容差与 PCB 实战"},
+                {"title": "第五篇 调试",
+                 "scope": "排故五步、故障速查与大师心法"},
+            ],
         },
     },
     "release": {"edition_status": "draft"},
 }
+
+
+def visible_text(markup: str) -> str:
+    """去掉标签后归一化空白，便于校验拆成多段的文案。"""
+    return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", markup)).strip()
 
 
 class SpineTests(unittest.TestCase):
@@ -104,6 +123,58 @@ class CoverHtmlTests(unittest.TestCase):
     def test_cover_art_is_inlined(self):
         self.assertIn("cover-dots", self.html)
         self.assertIn("<svg", self.html)
+
+    def test_cover_art_is_inlined_exactly_once(self):
+        self.assertEqual(1, self.html.count('id="cover-dots"'))
+
+    def test_front_header_and_spec_strip(self):
+        for text in ("16K · 全彩印刷", "ANALOG CIRCUIT ROADMAP"):
+            self.assertIn(text, self.html)
+        visible = visible_text(self.html)
+        for spec in ("19 章", "5 篇", "3 层读法", "16K 全彩"):
+            self.assertIn(spec, visible)
+            self.assertIn(f'data-spec="{spec}"', self.html)
+
+    def test_front_reading_paths(self):
+        visible = visible_text(self.html)
+        for row in ("01 直觉层 先看见电流回路，再谈公式",
+                    "02 推导层 从器件模型推到可计算参数",
+                    "03 工程层 仿真、实测与排故闭环"):
+            self.assertIn(row, visible)
+
+    def test_back_structure_loop_and_support(self):
+        visible = visible_text(self.html)
+        for text in ("全书结构", "第一篇 基础", "第二篇 器件",
+                     "第三篇 拓扑", "第四篇 设计", "第五篇 调试",
+                     "电路直觉、无源元件与基本定律",
+                     "二极管、BJT、MOSFET 与运放内部",
+                     "放大、比较、电源、定时与信号产生",
+                     "设计方法、参数容差与 PCB 实战",
+                     "排故五步、故障速查与大师心法",
+                     "从读到排故", "01 读", "02 算", "03 仿",
+                     "04 测", "05 排",
+                     "配套资源",
+                     "可复现仿真 ngspice 网表与参数扫描",
+                     "实测实验 RC / LM358 / MOSFET",
+                     "故障速查 症状 → 原因 → 验证",
+                     "同源站点 站点与书同步更新",
+                     "185 × 260 mm · 全彩 · 胶装"):
+            self.assertIn(text, visible)
+
+    def test_structure_section_omitted_when_absent(self):
+        manifest = copy.deepcopy(MANIFEST)
+        del manifest["cover"]["back_cover"]["structure"]
+        html = cover_html(manifest, 650)
+        self.assertNotIn("全书结构", html)
+        self.assertIn("从读到排故", html)
+        self.assertIn("配套资源", html)
+        # 没有结构数据时退化为要点索引，不能让背封中缝空掉。
+        self.assertIn("本书要点", html)
+        self.assertIn("19 章完整知识链", html)
+
+    def test_spine_author_rotates_instead_of_stacking(self):
+        css = (config.COVER_DIR / "cover.css").read_text(encoding="utf-8")
+        self.assertIn("text-orientation: mixed", css)
 
 
 @unittest.skipIf(fitz is None or sync_playwright is None,

@@ -4,69 +4,333 @@ html, body { margin: 0; padding: 0; background: #fffdf8; }
 body {
   font-family: "Book Sans", "Noto Sans SC", sans-serif;
   color: #1f2933;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
 }
 .cover {
   position: relative; overflow: hidden;
   width: __WIDTH__mm; height: __HEIGHT__mm; background: #fffdf8;
 }
-.cover-marks { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 20; }
+.cover-marks { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 40; }
 .crop-mark { stroke: #111; stroke-width: .2; }
-.cover-panel { position: absolute; top: __BLEED__mm; height: __TRIM_H__mm; }
-.cover-front {
-  left: calc(__BLEED__mm + __TRIM_W__mm + __SPINE__mm);
-  width: __TRIM_W__mm; padding: 18mm 16mm;
+.cover-panel {
+  position: absolute; top: __BLEED__mm; height: __TRIM_H__mm;
   display: flex; flex-direction: column;
 }
+
+/* ---------- back panel ---------- */
+.cover-back {
+  left: __BLEED__mm; width: __TRIM_W__mm;
+  padding: 16mm 15mm;
+  background-color: #1f2933;
+  background-image:
+    repeating-linear-gradient(to right,
+      rgba(255, 253, 248, .03) 0 .12mm, transparent .12mm 5mm),
+    repeating-linear-gradient(to bottom,
+      rgba(255, 253, 248, .03) 0 .12mm, transparent .12mm 5mm);
+  color: #fffdf8;
+  justify-content: space-between;
+  gap: 4mm;
+  z-index: 0;
+}
+.cover-back::before {
+  content: ""; position: absolute; inset: -__BLEED__mm;
+  background: #1f2933; z-index: -1;
+}
+.back-head { display: flex; flex-direction: column; }
+.back-kicker {
+  margin: 0; font-size: 8pt; letter-spacing: .22em; color: #f0c38a;
+}
+.back-kicker::before {
+  content: ""; display: inline-block; width: 7mm; height: .25mm;
+  background: #f0c38a; margin-right: 2.5mm; vertical-align: .9mm;
+}
+.back-blurb {
+  margin: 2.6mm 0 0; font-family: "Book Serif", "Noto Serif SC", serif;
+  font-size: 15pt; line-height: 1.5; font-weight: 700;
+}
+.back-audience {
+  margin: 3mm 0 0; font-size: 9pt; line-height: 1.6; color: #cfd8e3;
+}
+.back-audience strong {
+  color: #fffdf8; font-weight: 700; margin-right: 2.5mm;
+  letter-spacing: .04em;
+}
+.back-features {
+  display: flex; margin: 3mm 0 0; padding: 1.8mm 0;
+  list-style: none;
+  border-top: .25mm solid rgba(255, 253, 248, .18);
+  border-bottom: .25mm solid rgba(255, 253, 248, .18);
+}
+.back-features li {
+  padding: 0 2.1mm; font-size: 8pt; line-height: 1.3; color: #cfd8e3;
+  border-left: .25mm solid rgba(255, 253, 248, .18);
+}
+.back-features li:first-child { padding-left: 0; border-left: 0; }
+
+.section-head {
+  display: flex; align-items: baseline; gap: 3mm; margin: 0 0 2.4mm;
+}
+.section-title {
+  margin: 0; font-family: "Book Serif", "Noto Serif SC", serif;
+  font-size: 12pt; line-height: 1.2; font-weight: 700; color: #fffdf8;
+}
+.section-title::before {
+  content: ""; display: inline-block; width: 1.5mm; height: 1.5mm;
+  background: #f0c38a; margin-right: 2mm; vertical-align: .2mm;
+}
+.section-rule { flex: 1; height: .25mm; background: rgba(255, 253, 248, .24); }
+.section-note {
+  font-size: 7.5pt; letter-spacing: .18em; color: #f0c38a;
+}
+
+.structure-list { border-top: .25mm solid rgba(255, 253, 248, .18); }
+.structure-row {
+  display: grid; grid-template-columns: 36mm 1fr; gap: 3mm;
+  align-items: baseline; padding: 2.2mm 0;
+  border-bottom: .25mm solid rgba(255, 253, 248, .16);
+}
+.structure-title {
+  font-family: "Book Serif", "Noto Serif SC", serif;
+  font-size: 10pt; font-weight: 700; color: #fffdf8;
+}
+.structure-scope { font-size: 8pt; line-height: 1.4; color: #cfd8e3; }
+
+.highlight-list { border-top: .25mm solid rgba(255, 253, 248, .18); }
+.highlight-row {
+  display: grid; grid-template-columns: 10mm 1fr; gap: 3mm;
+  align-items: baseline; padding: 2.2mm 0;
+  border-bottom: .25mm solid rgba(255, 253, 248, .16);
+}
+.highlight-no {
+  font-family: "Book Serif", "Noto Serif SC", serif;
+  font-size: 9pt; color: #f0c38a;
+}
+.highlight-text {
+  font-family: "Book Serif", "Noto Serif SC", serif;
+  font-size: 11pt; font-weight: 700; color: #fffdf8;
+}
+
+.loop-strip {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  margin: 0; padding: 0; list-style: none;
+  border-top: .3mm solid rgba(255, 253, 248, .24);
+  border-bottom: .3mm solid rgba(255, 253, 248, .24);
+}
+.loop-step {
+  padding: 2mm 0 2.2mm; text-align: center;
+  border-left: .25mm solid rgba(255, 253, 248, .16);
+}
+.loop-step:first-child { border-left: 0; }
+.loop-no {
+  display: block; font-family: "Book Serif", "Noto Serif SC", serif;
+  font-size: 9pt; line-height: 1.1; color: #f0c38a;
+}
+.loop-name {
+  display: block; margin-top: .8mm;
+  font-family: "Book Serif", "Noto Serif SC", serif;
+  font-size: 12pt; line-height: 1.1;
+}
+
+.support-list { margin: 0; border-top: .25mm solid rgba(255, 253, 248, .18); }
+.support-row {
+  display: grid; grid-template-columns: 32mm 1fr; gap: 3mm;
+  padding: 2.2mm 0;
+  border-bottom: .25mm solid rgba(255, 253, 248, .16);
+}
+.support-row dt { font-size: 9pt; line-height: 1.3; font-weight: 700; color: #fffdf8; }
+.support-row dd {
+  margin: 0; font-size: 8pt; line-height: 1.3; color: #cfd8e3;
+  text-align: right;
+}
+
+.back-foot {
+  display: grid; grid-template-columns: 52mm 40mm minmax(0, 1fr);
+  gap: 4mm; align-items: start;
+  border-top: .35mm solid rgba(255, 253, 248, .3); padding-top: 3mm;
+}
+.back-qr { display: flex; gap: 4mm; }
+.qr {
+  width: 24mm; padding: 1.5mm; background: #fffdf8; color: #1f2933;
+  text-align: center;
+}
+.qr svg { display: block; width: 21mm; height: 21mm; }
+.qr span {
+  display: block; margin-top: .8mm; font-size: 7.5pt; line-height: 1.2;
+  letter-spacing: .08em;
+}
+.isbn-area {
+  width: 40mm; height: 26.5mm; border: .3mm dashed #98a2b3;
+  display: flex; align-items: center; justify-content: center;
+  padding: 2mm; font-size: 7.5pt; line-height: 1.5; color: #cfd8e3;
+  text-align: center;
+}
+.back-legal { font-size: 7.5pt; line-height: 1.5; color: #cfd8e3; }
+.back-legal p { margin: 0; }
+.back-legal .back-errata { overflow-wrap: anywhere; }
+.back-spec { margin-top: 1.6mm; color: #f0c38a; letter-spacing: .06em; }
+
+/* ---------- spine ---------- */
 .cover-spine {
   left: calc(__BLEED__mm + __TRIM_W__mm);
   width: __SPINE__mm; background: #b45309; color: #fffdf8;
-  display: flex; align-items: center; justify-content: center;
+  align-items: center; justify-content: center;
+  z-index: 0;
 }
-.cover-back {
-  left: __BLEED__mm; width: __TRIM_W__mm; padding: 18mm 16mm;
-  background: #1f2933; color: #fffdf8;
-  display: flex; flex-direction: column; justify-content: space-between;
+.cover-spine::before {
+  content: ""; position: absolute; top: -__BLEED__mm; bottom: -__BLEED__mm;
+  left: 0; right: 0; background: #b45309; z-index: -1;
 }
-.front-kicker {
-  margin: 0; font-size: 10pt; letter-spacing: .22em; color: #b45309;
+.spine-ticks {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  width: 11mm; height: 5.6mm; opacity: .8;
+  background-image: repeating-linear-gradient(to bottom,
+    #fffdf8 0 .3mm, transparent .3mm 2.6mm);
 }
-.front-art { margin: 4mm 0 6mm; }
-.front-art svg { display: block; width: 100%; height: auto; max-height: 86mm; }
-.front-title {
-  margin: 0; font-family: "Book Serif", "Noto Serif SC", serif;
-  font-size: 34pt; line-height: 1.18; letter-spacing: .04em;
-}
-.front-subtitle { margin: 4mm 0 0; font-size: 14pt; line-height: 1.5; color: #52606d; }
-.front-rule { width: 34mm; height: 1.2mm; margin: 9mm 0; background: #b45309; }
-.front-author { margin: 0; font-size: 12pt; }
-.front-edition { margin: 3mm 0 0; font-size: 10pt; color: #52606d; }
-.front-site { margin: auto 0 0; font-size: 8.5pt; color: #52606d; }
+.spine-ticks.is-top { top: 12mm; }
+.spine-ticks.is-bottom { bottom: 12mm; }
 .spine-text {
-  writing-mode: vertical-rl; text-orientation: upright;
-  display: flex; align-items: center; gap: 8mm;
+  writing-mode: vertical-rl; text-orientation: mixed;
+  display: flex; align-items: center; gap: 9mm;
   font-family: "Book Serif", "Noto Serif SC", serif;
 }
-.spine-title { font-size: 13pt; letter-spacing: .12em; }
-.spine-author { font-size: 9pt; letter-spacing: .08em; opacity: .85; }
+.spine-title { font-size: 13pt; letter-spacing: .14em; font-weight: 700; }
+.spine-author { font-size: 9pt; letter-spacing: .08em; opacity: .9; }
 .cover-spine.is-thin .spine-text { display: none; }
-.back-kicker { margin: 0; font-size: 9pt; letter-spacing: .2em; color: #f0c38a; }
-.back-blurb {
-  margin: 3mm 0 0; font-family: "Book Serif", "Noto Serif SC", serif;
-  font-size: 15pt; line-height: 1.7;
+
+/* ---------- front panel ---------- */
+.cover-front {
+  left: calc(__BLEED__mm + __TRIM_W__mm + __SPINE__mm);
+  width: __TRIM_W__mm; padding: 16mm 15mm;
+  background-color: #fffdf8;
+  background-image:
+    repeating-linear-gradient(to right,
+      rgba(180, 83, 9, .035) 0 .12mm, transparent .12mm 5mm),
+    repeating-linear-gradient(to bottom,
+      rgba(180, 83, 9, .035) 0 .12mm, transparent .12mm 5mm);
+  justify-content: space-between;
+  gap: 4mm;
 }
-.back-audience { margin: 5mm 0 0; font-size: 9.5pt; line-height: 1.7; color: #cfd8e3; }
-.back-highlights { margin: 5mm 0 0; padding-left: 5mm; font-size: 9.5pt; line-height: 1.8; }
-.back-highlights li::marker { color: #f0c38a; }
-.back-qr { display: flex; gap: 8mm; margin-top: 6mm; }
-.qr {
-  width: 24mm; padding: 2mm; background: #fffdf8; color: #1f2933;
-  text-align: center; font-size: 7.5pt; line-height: 1.4;
+.front-top { display: flex; flex-direction: column; }
+.front-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  padding-bottom: 2.4mm;
+  border-bottom: .25mm solid rgba(31, 41, 51, .24);
 }
-.qr svg { display: block; width: 20mm; height: 20mm; }
-.isbn-area {
-  margin-top: 5mm; width: 40mm; height: 25mm; border: .3mm dashed #98a2b3;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 7pt; color: #98a2b3; text-align: center;
+.front-badge {
+  font-size: 8pt; letter-spacing: .18em; font-weight: 700; color: #1f2933;
 }
-.back-license { margin: 5mm 0 0; font-size: 8pt; color: #cfd8e3; }
-.back-errata { margin: 1.5mm 0 0; font-size: 8pt; color: #cfd8e3; }
+.front-badge::before {
+  content: ""; display: inline-block; width: 1.5mm; height: 1.5mm;
+  background: #b45309; margin-right: 2mm; vertical-align: .15mm;
+}
+.front-wordmark {
+  font-size: 7.5pt; letter-spacing: .22em; font-weight: 700; color: #b45309;
+}
+.front-figure { margin: 4mm 0 0; }
+.front-art {
+  position: relative; height: 92mm; overflow: hidden;
+  border: .25mm solid #e3dbcc; background: #fffdf8;
+}
+.front-art svg {
+  position: absolute; left: -8%; top: 50%; width: 116%; height: auto;
+  transform: translateY(-50%);
+}
+.art-tick { position: absolute; width: 3.8mm; height: 3.8mm; z-index: 2; }
+.tick-tl {
+  top: 1.8mm; left: 1.8mm;
+  border-top: .35mm solid #b45309; border-left: .35mm solid #b45309;
+}
+.tick-tr {
+  top: 1.8mm; right: 1.8mm;
+  border-top: .35mm solid #b45309; border-right: .35mm solid #b45309;
+}
+.tick-bl {
+  bottom: 1.8mm; left: 1.8mm;
+  border-bottom: .35mm solid #b45309; border-left: .35mm solid #b45309;
+}
+.tick-br {
+  bottom: 1.8mm; right: 1.8mm;
+  border-bottom: .35mm solid #b45309; border-right: .35mm solid #b45309;
+}
+.front-caption {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: 1.6mm 0 2mm;
+  border-bottom: .25mm solid rgba(31, 41, 51, .24);
+}
+.front-caption-main {
+  font-size: 8.5pt; letter-spacing: .04em; color: #1f2933;
+}
+.front-caption-meta {
+  font-size: 7.5pt; letter-spacing: .16em; color: #b45309;
+}
+.front-title {
+  margin: 6mm 0 0;
+  font-family: "Book Serif", "Noto Serif SC", serif;
+  font-size: 35pt; line-height: 1.12; letter-spacing: .03em;
+  font-weight: 700;
+}
+.front-subtitle {
+  margin: 2.8mm 0 0; font-size: 13pt; line-height: 1.5; color: #52606d;
+}
+.front-mid { display: flex; flex-direction: column; gap: 4.5mm; }
+.front-rule { display: flex; align-items: center; gap: 3mm; }
+.front-rule::before {
+  content: ""; width: 30mm; height: .9mm; background: #b45309;
+}
+.front-rule::after {
+  content: ""; flex: 1; height: .25mm; background: rgba(31, 41, 51, .22);
+}
+.spec-strip {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border-top: .35mm solid #1f2933; border-bottom: .35mm solid #1f2933;
+}
+.spec-cell {
+  display: flex; flex-direction: column; gap: .8mm;
+  padding: 2.4mm 0 2.2mm 4mm;
+  border-left: .25mm solid rgba(31, 41, 51, .22);
+}
+.spec-cell:first-child { padding-left: 0; border-left: 0; }
+.spec-value {
+  font-family: "Book Serif", "Noto Serif SC", serif;
+  font-size: 19pt; line-height: 1; font-weight: 700;
+}
+.spec-label {
+  font-size: 7.5pt; letter-spacing: .16em; color: #52606d;
+}
+.front-paths { display: flex; flex-direction: column; gap: 1.6mm; }
+.paths-kicker {
+  display: flex; justify-content: space-between; margin: 0;
+  font-size: 7.5pt; letter-spacing: .18em; color: #b45309;
+}
+.paths-kicker-en { color: #8a94a0; letter-spacing: .2em; }
+.path-list { border-top: .25mm solid rgba(31, 41, 51, .22); }
+.path-row {
+  display: grid; grid-template-columns: 8mm 21mm 1fr;
+  align-items: baseline; padding: 1.9mm 0;
+  border-bottom: .25mm solid rgba(31, 41, 51, .18);
+}
+.path-no {
+  font-family: "Book Serif", "Noto Serif SC", serif;
+  font-size: 9pt; color: #b45309;
+}
+.path-name {
+  font-family: "Book Serif", "Noto Serif SC", serif;
+  font-size: 11.5pt; font-weight: 700;
+}
+.path-desc { font-size: 8.5pt; color: #52606d; }
+.front-foot {
+  display: grid; grid-template-columns: 1fr auto; gap: 1.2mm 4mm;
+  align-items: baseline;
+  border-top: .35mm solid #1f2933; padding-top: 2.6mm;
+}
+.front-author {
+  font-family: "Book Serif", "Noto Serif SC", serif;
+  font-size: 10.5pt; font-weight: 700;
+}
+.front-edition {
+  font-size: 8pt; letter-spacing: .08em; color: #52606d; text-align: right;
+}
+.front-site {
+  grid-column: 1 / -1; font-size: 8pt; letter-spacing: .04em; color: #52606d;
+}

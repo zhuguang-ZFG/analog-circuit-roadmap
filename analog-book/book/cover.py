@@ -8,6 +8,20 @@ from . import config, fonts
 from .manifest import BookError
 from .pdf import print_pdf
 
+FRONT_SPECS = (("19", "章"), ("5", "篇"), ("3", "层读法"), ("16K", "全彩"))
+FRONT_PATHS = (
+    ("01", "直觉层", "先看见电流回路，再谈公式"),
+    ("02", "推导层", "从器件模型推到可计算参数"),
+    ("03", "工程层", "仿真、实测与排故闭环"),
+)
+LOOP_STEPS = (("01", "读"), ("02", "算"), ("03", "仿"), ("04", "测"), ("05", "排"))
+SUPPORT_ROWS = (
+    ("可复现仿真", "ngspice 网表与参数扫描"),
+    ("实测实验", "RC / LM358 / MOSFET"),
+    ("故障速查", "症状 → 原因 → 验证"),
+    ("同源站点", "站点与书同步更新"),
+)
+
 
 def spine_mm(pages: int, manifest: dict) -> float:
     if pages <= 0:
@@ -79,12 +93,89 @@ def _cover_art() -> str:
     return path.read_text(encoding="utf-8")
 
 
+def _structure_html(structure) -> str:
+    """全书结构是可选数据；没有时整块省略。"""
+    if not structure:
+        return ""
+    rows = "".join(
+        '<div class="structure-row">'
+        f'<span class="structure-title">{_e(item.get("title", ""))}</span>'
+        f'<span class="structure-scope">{_e(item.get("scope", ""))}</span>'
+        "</div>"
+        for item in structure)
+    return f"""
+<section class="back-structure">
+<div class="section-head"><h2 class="section-title">全书结构</h2>
+<span class="section-rule"></span>
+<span class="section-note">{len(structure)} 篇</span></div>
+<div class="structure-list">{rows}</div>
+</section>"""
+
+
+def _highlights_html(highlights) -> str:
+    """没有 structure 时，用要点索引占住同一版块，避免中缝出现大块空白。"""
+    if not highlights:
+        return ""
+    rows = "".join(
+        '<div class="highlight-row">'
+        f'<span class="highlight-no">{index:02d}</span>'
+        f'<span class="highlight-text">{_e(item)}</span>'
+        "</div>"
+        for index, item in enumerate(highlights, 1))
+    return f"""
+<section class="back-highlights">
+<div class="section-head"><h2 class="section-title">本书要点</h2>
+<span class="section-rule"></span>
+<span class="section-note">{len(highlights)} 项</span></div>
+<div class="highlight-list">{rows}</div>
+</section>"""
+
+
+def _art_ticks() -> str:
+    return "".join(
+        f'<span class="art-tick tick-{corner}" aria-hidden="true"></span>'
+        for corner in ("tl", "tr", "bl", "br"))
+
+
 def cover_html(manifest: dict, pages: int, fonts_css: str = "") -> str:
     width, height = cover_size_mm(pages, manifest)
     spine = spine_mm(pages, manifest)
     back = manifest["cover"]["back_cover"]
-    highlights = "".join(f"<li>{_e(item)}</li>" for item in back["highlights"])
+    structure_data = back.get("structure")
+    structure = _structure_html(structure_data)
+    highlights = back.get("highlights", [])
+    if structure_data:
+        items = "".join(f"<li>{_e(item)}</li>" for item in highlights)
+        features = (f'<ul class="back-features">{items}</ul>'
+                    if items else "")
+        highlight_index = ""
+    else:
+        features = ""
+        highlight_index = _highlights_html(highlights)
+    specs = "".join(
+        f'<div class="spec-cell" data-spec="{_e(value)} {_e(label)}">'
+        f'<span class="spec-value">{_e(value)}</span>'
+        f'<span class="spec-label">{_e(label)}</span></div>'
+        for value, label in FRONT_SPECS)
+    paths = "".join(
+        '<div class="path-row">'
+        f'<span class="path-no">{_e(number)}</span>'
+        f'<span class="path-name">{_e(name)}</span>'
+        f'<span class="path-desc">{_e(desc)}</span>'
+        "</div>"
+        for number, name, desc in FRONT_PATHS)
+    loops = "".join(
+        f'<li class="loop-step"><span class="loop-no">{_e(number)}</span>'
+        f'<span class="loop-name">{_e(name)}</span></li>'
+        for number, name in LOOP_STEPS)
+    supports = "".join(
+        '<div class="support-row">'
+        f'<dt>{_e(title)}</dt><dd>{_e(detail)}</dd></div>'
+        for title, detail in SUPPORT_ROWS)
     spine_class = "cover-spine is-thin" if spine < 6 else "cover-spine"
+    spine_ticks = (
+        '<span class="spine-ticks is-top" aria-hidden="true"></span>'
+        '<span class="spine-ticks is-bottom" aria-hidden="true"></span>')
     spine_text = "" if spine < 6 else (
         '<div class="spine-text">'
         f'<span class="spine-title">{_e(manifest["title"])}</span>'
@@ -101,32 +192,69 @@ def cover_html(manifest: dict, pages: int, fonts_css: str = "") -> str:
 {_crop_marks(width, height, manifest["cover"]["bleed_mm"])}
 </svg>
 <section class="cover-panel cover-back">
-<div>
+<header class="back-head">
 <p class="back-kicker">关于本书</p>
 <p class="back-blurb">{_e(back["blurb"])}</p>
-<p class="back-audience"><strong>适合读者</strong>　{_e(back["audience"])}</p>
-<ul class="back-highlights">{highlights}</ul>
-</div>
-<div>
+<p class="back-audience"><strong>适合读者</strong>{_e(back["audience"])}</p>
+{features}
+</header>
+{structure}{highlight_index}
+<section class="back-loop">
+<div class="section-head"><h2 class="section-title">从读到排故</h2>
+<span class="section-rule"></span>
+<span class="section-note">5 步</span></div>
+<ol class="loop-strip">{loops}</ol>
+</section>
+<section class="back-support">
+<div class="section-head"><h2 class="section-title">配套资源</h2>
+<span class="section-rule"></span>
+<span class="section-note">4 项</span></div>
+<dl class="support-list">{supports}</dl>
+</section>
+<footer class="back-foot">
 <div class="back-qr">
 <div class="qr" data-qr="site">{site_qr}<span>在线站</span></div>
 <div class="qr" data-qr="repo">{repo_qr}<span>仓库</span></div>
 </div>
 <div class="isbn-area"><span>ISBN / 条码预留区（留空）</span></div>
-<p class="back-license">{_e(manifest["license"])} · {_e(manifest["edition"])} · {_e(manifest["version"])}</p>
+<div class="back-legal">
+<p>{_e(manifest["license"])} · {_e(manifest["edition"])} · {_e(manifest["version"])}</p>
 <p class="back-errata">勘误与讨论：{_e(manifest["repository"])}/issues</p>
+<p class="back-spec">185 × 260 mm · 全彩 · 胶装</p>
 </div>
+</footer>
 </section>
-<section class="cover-panel {spine_class}">{spine_text}</section>
+<section class="cover-panel {spine_class}">{spine_ticks}{spine_text}</section>
 <section class="cover-panel cover-front">
-<p class="front-kicker">16K · 模拟电路</p>
-<div class="front-art">{_cover_art()}</div>
+<div class="front-top">
+<header class="front-head">
+<span class="front-badge">16K · 全彩印刷</span>
+<span class="front-wordmark">ANALOG CIRCUIT ROADMAP</span>
+</header>
+<figure class="front-figure">
+<div class="front-art">{_art_ticks()}{_cover_art()}</div>
+<figcaption class="front-caption">
+<span class="front-caption-main">图 0　从器件到系统的信号链</span>
+<span class="front-caption-meta">FIG. 0 · SIGNAL CHAIN</span>
+</figcaption>
+</figure>
 <h1 class="front-title">{_e(manifest["title"])}</h1>
 <p class="front-subtitle">{_e(manifest["subtitle"])}</p>
-<p class="front-rule"></p>
-<p class="front-author">{_e(manifest["author"])}</p>
-<p class="front-edition">{_e(manifest["edition"])} · {_e(manifest["version"])}</p>
-<p class="front-site">{_e(manifest["site_url"])}</p>
+</div>
+<div class="front-mid">
+<div class="front-rule" aria-hidden="true"></div>
+<div class="spec-strip">{specs}</div>
+<section class="front-paths">
+<p class="paths-kicker"><span>阅读路径</span>
+<span class="paths-kicker-en">READING PATHS</span></p>
+<div class="path-list">{paths}</div>
+</section>
+</div>
+<footer class="front-foot">
+<span class="front-author">{_e(manifest["author"])}</span>
+<span class="front-edition">{_e(manifest["edition"])} · {_e(manifest["version"])}</span>
+<span class="front-site">{_e(manifest["site_url"])}</span>
+</footer>
 </section>
 </div></body></html>
 """
