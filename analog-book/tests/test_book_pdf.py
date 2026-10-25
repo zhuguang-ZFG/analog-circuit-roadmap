@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """16K PDF：补白、罗马/阿拉伯标签、三级书签、000 回填、页眉页脚。"""
+import re
 import sys
 import tempfile
 import unittest
@@ -8,7 +9,7 @@ from pathlib import Path
 BOOK = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(BOOK))
 
-from book.pdf import check_pdf, pad_to_multiple, stamp_pdf  # noqa: E402
+from book.pdf import check_pdf, pad_to_multiple, print_pdf, stamp_pdf  # noqa: E402
 
 try:
     import fitz
@@ -22,37 +23,12 @@ except ImportError:  # pragma: no cover
 
 MM = 72 / 25.4
 
-FRONT = [
-    {"kind": "half_title", "id": "half-title", "title": "半书名", "group": "front"},
-    {"kind": "title_page", "id": "title-page", "title": "书名页", "group": "front"},
-    {"kind": "copyright", "id": "copyright", "title": "版权页", "group": "front"},
-    {"kind": "front", "id": "page-front-a", "title": "前言", "group": "front"},
-    {"kind": "front", "id": "page-front-b", "title": "导读", "group": "front"},
-    {"kind": "front", "id": "page-front-c", "title": "简史", "group": "front"},
-    {"kind": "front", "id": "page-front-d", "title": "约定", "group": "front"},
-    {"kind": "toc", "id": "book-toc", "title": "全书目录", "group": "front"},
-    {"kind": "list_of_figures", "id": "list-of-figures", "title": "插图目录",
-     "group": "front"},
-    {"kind": "list_of_tables", "id": "list-of-tables", "title": "表格目录",
-     "group": "front"},
-    {"kind": "front", "id": "page-front-e", "title": "符号", "group": "front"},
-]
-BODY = [
-    {"kind": "part", "id": "part-i", "title": "第一篇 测试", "group": "body"},
-    {"kind": "chapter", "id": "page-p1-01-ch0", "title": "第 0 章 测试章",
-     "group": "body"},
-    {"kind": "appendix_opener", "id": "appendix-a", "title": "附录 A 测试",
-     "group": "appendix"},
-    {"kind": "appendix", "id": "page-p0-08-cheatsheet", "title": "附录 B 速查",
-     "group": "appendix"},
-]
-BACK = [
-    {"kind": "bibliography", "id": "bibliography", "title": "参考文献", "group": "back"},
-    {"kind": "index", "id": "book-index", "title": "索引", "group": "back"},
-    {"kind": "back", "id": "page-p9-12-changelog", "title": "版本记录", "group": "back"},
-    {"kind": "colophon", "id": "colophon", "title": "版本页", "group": "back"},
-]
-PAGES = FRONT + BODY + BACK
+MANIFEST = {
+    "title": "通往模拟电路之路", "subtitle": "从欧姆定律到芯片内部结构",
+    "author": "zhuguang-ZFG 与贡献者", "license": "CC BY-SA 4.0",
+    "release": {"edition_status": "draft"},
+}
+
 TOC = [
     {"level": 1, "title": "第一篇 测试", "anchor": "part-i", "kind": "part"},
     {"level": 2, "title": "第 0 章 测试章", "anchor": "page-p1-01-ch0",
@@ -63,38 +39,102 @@ TOC = [
     {"level": 2, "title": "附录 B 速查", "anchor": "page-p0-08-cheatsheet",
      "kind": "appendix"},
 ]
-MODEL = {
-    "schema": 1, "manifest_sha256": "0" * 64, "edition_status": "draft",
-    "pages": PAGES, "toc": TOC,
-    "lof": [{"caption": "图 0-1　测试图", "anchor": "p1-01-ch0--fig-1"}],
-    "lot": [{"caption": "表 0-1　测试表", "anchor": "p1-01-ch0--table-1"}],
-    "figures": 1, "tables": 1, "endnotes": 0,
-    "audit": {"errors": [], "warnings": [], "pages": len(PAGES), "bytes": 0},
-    "stats": {"logical_pages": len(PAGES), "images": 1, "formulas": 0,
-              "chapters": {}},
-}
-MANIFEST = {
-    "title": "通往模拟电路之路", "subtitle": "从欧姆定律到芯片内部结构",
-    "author": "zhuguang-ZFG 与贡献者", "license": "CC BY-SA 4.0",
-    "release": {"edition_status": "draft"},
-}
+LOF = [{"caption": "图 0-1　测试图", "anchor": "p1-01-ch0--fig-1"}]
+LOT = [{"caption": "表 0-1　测试表", "anchor": "p1-01-ch0--table-1"}]
 
 
 def _rows(entries):
-    # brief 的合成 lof/lot 只有 caption（真实模型两者都有），按 caption 兜底
     return "".join(
         f'<div class="toc-row"><a href="#{e["anchor"]}">'
         f'{e.get("title") or e["caption"]}<span class="toc-page">000</span></a></div>'
         for e in entries)
 
 
+TOC_HTML = '<nav><div class="toc-list">' + _rows(TOC) + "</div></nav>"
+LOF_HTML = '<nav><div class="toc-list">' + _rows(LOF) + "</div></nav>"
+LOT_HTML = '<nav><div class="toc-list">' + _rows(LOT) + "</div></nav>"
+PARAGRAPHS = "".join(
+    "<p>" + ("测试正文用于把章节撑到多页，验证续页页眉与页脚。" * 3) + "</p>"
+    for _ in range(80))
+CHAPTER_HTML = (
+    '<h1 id="page-p1-01-ch0">第 0 章 测试章</h1>'
+    '<h2 id="p1-01-ch0--s1">0.1 测试小节</h2>'
+    '<figure id="p1-01-ch0--fig-1"><p>图</p><figcaption>图 0-1 测试图</figcaption></figure>'
+    '<table id="p1-01-ch0--table-1"><caption>表 0-1 测试表</caption>'
+    '<tr><th>列</th></tr><tr><td>值</td></tr></table>' + PARAGRAPHS)
+
+
+def _page(kind, page_id, title, group, body, **extra):
+    page = {"kind": kind, "id": page_id, "title": title, "group": group,
+            "html": body}
+    page.update(extra)
+    return page
+
+
+FRONT = [
+    # 与真实书一致：半书名页与书名页的 h1 都是 manifest 标题，按页序依次匹配。
+    _page("half_title", "half-title", "半书名", "front",
+          f'<h1 class="book-title">{MANIFEST["title"]}</h1>'),
+    _page("title_page", "title-page", "书名页", "front",
+          f'<h1 id="title-page">{MANIFEST["title"]}</h1>'),
+    _page("copyright", "copyright", "版权页", "front",
+          '<h1 id="copyright">版权页</h1>'),
+    _page("front", "page-front-a", "前言", "front",
+          '<h1 id="page-front-a">前言</h1>'),
+    _page("front", "page-front-b", "导读", "front",
+          '<h1 id="page-front-b">导读</h1>'),
+    _page("front", "page-front-c", "简史", "front",
+          '<h1 id="page-front-c">简史</h1>'),
+    _page("front", "page-front-d", "约定", "front",
+          '<h1 id="page-front-d">约定</h1>'),
+    _page("toc", "book-toc", "全书目录", "front",
+          '<h1 id="book-toc">全书目录</h1>' + TOC_HTML),
+    _page("list_of_figures", "list-of-figures", "插图目录", "front",
+          '<h1 id="list-of-figures">插图目录</h1>' + LOF_HTML),
+    _page("list_of_tables", "list-of-tables", "表格目录", "front",
+          '<h1 id="list-of-tables">表格目录</h1>' + LOT_HTML),
+    _page("front", "page-front-e", "符号", "front",
+          '<h1 id="page-front-e">符号</h1>'),
+]
+BODY = [
+    _page("part", "part-i", "第一篇 测试", "body",
+          '<h1 id="part-i">第一篇 测试</h1>'),
+    _page("chapter", "page-p1-01-ch0", "第 0 章 测试章", "body",
+          CHAPTER_HTML, header="第一篇 测试"),
+    _page("appendix_opener", "appendix-a", "附录 A 测试", "appendix",
+          '<h1 id="appendix-a">附录 A 测试</h1>'),
+    _page("appendix", "page-p0-08-cheatsheet", "附录 B 速查", "appendix",
+          '<h2 id="page-p0-08-cheatsheet">附录 B 速查</h2>',
+          source="docs/appendix-b.md"),
+]
+BACK = [
+    _page("bibliography", "bibliography", "参考文献", "back",
+          '<h1 id="bibliography">参考文献</h1>'),
+    # assemble._model_kind 把索引页映射为 kind="back"（真实模型形状）。
+    _page("back", "book-index", "索引", "back",
+          '<h1 id="book-index">索引</h1>'
+          '<p><a href="#page-p1-01-ch0"><strong>测试术语</strong></a>'
+          '<a href="#p1-01-ch0--s1"><span class="index-page">000</span></a></p>'),
+    _page("back", "page-p9-12-changelog", "版本记录", "back",
+          '<h1 id="page-p9-12-changelog">版本记录</h1>'),
+    _page("colophon", "colophon", "版本页", "back",
+          '<h1 id="colophon">版本页</h1>'),
+]
+PAGES = FRONT + BODY + BACK
+MODEL = {
+    "schema": 1, "manifest_sha256": "0" * 64, "edition_status": "draft",
+    "pages": PAGES, "toc": TOC, "lof": LOF, "lot": LOT,
+    "figures": 1, "tables": 1, "endnotes": 0,
+    "audit": {"errors": [], "warnings": [], "pages": len(PAGES), "bytes": 0},
+    "stats": {"logical_pages": len(PAGES), "images": 1, "formulas": 0,
+              "chapters": {}},
+}
+
+
 def synthetic_html():
-    toc = _rows(TOC)
-    lof = _rows(MODEL["lof"])
-    lot = _rows(MODEL["lot"])
-    paragraphs = "".join(
-        "<p>" + ("测试正文用于把章节撑到多页，验证续页页眉与页脚。" * 3) + "</p>"
-        for _ in range(80))
+    body = "\n".join(
+        f'<section class="book-page">{page["html"]}</section>'
+        for page in PAGES)
     return f"""<!doctype html><html><head><meta charset="utf-8"><style>
 @page {{ size: 185mm 260mm; margin: 20mm; }}
 html, body {{ margin: 0; }}
@@ -102,35 +142,46 @@ body {{ font-family: serif; font-size: 10.5pt; line-height: 17.5pt; }}
 .book-page {{ break-before: page; }}
 .book-page:first-of-type {{ break-before: auto; }}
 h1 {{ font-size: 22pt; }}
+.toc-list {{ column-count: 2; column-gap: 6mm; }}
+.toc-row {{ break-inside: avoid; }}
 .toc-row a {{ display: flex; justify-content: space-between; }}
 figure, table {{ break-inside: avoid; }}
 </style></head><body>
-<section class="book-page"><h1 id="half-title">半书名</h1></section>
-<section class="book-page"><h1 id="title-page">书名页</h1></section>
-<section class="book-page"><h1 id="copyright">版权页</h1></section>
-<section class="book-page"><h1 id="page-front-a">前言</h1></section>
-<section class="book-page"><h1 id="page-front-b">导读</h1></section>
-<section class="book-page"><h1 id="page-front-c">简史</h1></section>
-<section class="book-page"><h1 id="page-front-d">约定</h1></section>
-<section class="book-page"><h1 id="book-toc">全书目录</h1><nav>{toc}</nav></section>
-<section class="book-page"><h1 id="list-of-figures">插图目录</h1><nav>{lof}</nav></section>
-<section class="book-page"><h1 id="list-of-tables">表格目录</h1><nav>{lot}</nav></section>
-<section class="book-page"><h1 id="page-front-e">符号</h1></section>
-<section class="book-page"><h1 id="part-i">第一篇 测试</h1></section>
-<section class="book-page"><h1 id="page-p1-01-ch0">第 0 章 测试章</h1>
-<h2 id="p1-01-ch0--s1">0.1 测试小节</h2>
-<figure id="p1-01-ch0--fig-1"><p>图</p><figcaption>图 0-1 测试图</figcaption></figure>
-<table id="p1-01-ch0--table-1"><caption>表 0-1 测试表</caption>
-<tr><th>列</th></tr><tr><td>值</td></tr></table>{paragraphs}</section>
-<section class="book-page"><h1 id="appendix-a">附录 A 测试</h1></section>
-<section class="book-page"><h1 id="page-p0-08-cheatsheet">附录 B 速查</h1></section>
-<section class="book-page"><h1 id="bibliography">参考文献</h1></section>
-<section class="book-page"><h1 id="book-index">索引</h1>
-<p><a href="#page-p1-01-ch0"><strong>测试术语</strong></a>
-<a href="#p1-01-ch0--s1"><span class="index-page">000</span></a></p></section>
-<section class="book-page"><h1 id="page-p9-12-changelog">版本记录</h1></section>
-<section class="book-page"><h1 id="colophon">版本页</h1></section>
+{body}
 </body></html>"""
+
+
+def _link_key(link):
+    rect = link["from"]
+    target = link.get("to")
+    point = None if target is None else (round(target.x, 1), round(target.y, 1))
+    return (link.get("kind"), round(rect.x0, 1), round(rect.y0, 1),
+            round(rect.x1, 1), round(rect.y1, 1), link.get("page"), point,
+            link.get("uri"), link.get("file"), link.get("nameddest"))
+
+
+def _spans(page, clip=None):
+    data = page.get_text("dict", clip=clip)
+    return [span for block in data["blocks"] for line in block.get("lines", [])
+            for span in line["spans"]]
+
+
+def _stamp_basefont(page):
+    """从 bookstamp 资源解析文本提取所报的 basefont。
+
+    PyMuPDF 1.28 的 Type0 资源 BaseFont 是全名（Noto Sans SC Thin Regular），
+    而 span["font"] 用下级 CIDFont 的 BaseFont（NotoSansSC-Thin），故沿
+    DescendantFonts 取真正的 basefont。
+    """
+    entry = next(entry for entry in page.get_fonts()
+                 if entry[4] == "bookstamp")
+    descendant = page.parent.xref_get_key(entry[0], "DescendantFonts")
+    match = re.search(r"(\d+) 0 R", descendant[1])
+    if match:
+        basefont = page.parent.xref_get_key(int(match.group(1)), "BaseFont")
+        if basefont[0] == "name":
+            return entry, basefont[1].lstrip("/")
+    return entry, entry[3].split("+", 1)[-1]
 
 
 @unittest.skipIf(fitz is None or sync_playwright is None,
@@ -144,13 +195,12 @@ class PdfTests(unittest.TestCase):
         cls.html = cls.root / "synthetic.html"
         cls.html.write_text(synthetic_html(), encoding="utf-8")
         cls.raw = cls.root / "raw.pdf"
-        with sync_playwright() as playwright:
-            browser = playwright.chromium.launch(headless=True)
-            page = browser.new_page()
-            page.goto(cls.html.resolve().as_uri(), wait_until="load")
-            page.pdf(path=str(cls.raw), print_background=True,
-                     prefer_css_page_size=True, outline=True, tagged=True)
-            browser.close()
+        print_pdf(cls.html, cls.raw)
+        raw = fitz.open(cls.raw)
+        cls.raw_links = {
+            pno: sorted(_link_key(link) for link in raw[pno].get_links())
+            for pno in range(raw.page_count)}
+        raw.close()
         cls.pdf = cls.root / "stamped.pdf"
         cls.report = stamp_pdf(cls.raw, cls.pdf, MODEL, MANIFEST)
         cls.doc = fitz.open(cls.pdf)
@@ -184,6 +234,41 @@ class PdfTests(unittest.TestCase):
         self.assertEqual(starts[13] + 1, toc[3][2])
         self.assertEqual(starts[14] + 1, toc[4][2])
 
+    def test_appendix_h2_participates_in_page_starts(self):
+        raw = fitz.open(self.raw)
+        try:
+            self.assertIn([2, "附录 B 速查", self.report["starts"][14] + 1],
+                          raw.get_toc())
+        finally:
+            raw.close()
+
+    def test_duplicate_front_headings_match_in_order(self):
+        raw = fitz.open(self.raw)
+        try:
+            toc = raw.get_toc()
+        finally:
+            raw.close()
+        self.assertEqual([(1, MANIFEST["title"]), (1, MANIFEST["title"])],
+                         [(entry[0], entry[1]) for entry in toc[:2]])
+        self.assertEqual([0, 1], self.report["starts"][:2])
+
+    def test_two_column_toc_links_keep_dom_order(self):
+        starts = self.report["starts"]
+        links = [link for link in self.doc[starts[7]].get_links()
+                 if isinstance(link.get("page"), int)]
+        columns = {round(link["from"].x0, 1) for link in links}
+        self.assertEqual(2, len(columns), "目录必须排成双栏")
+        self.assertGreater(max(columns) - min(columns), 100)
+        self.assertEqual([starts[11], starts[12], starts[12], starts[13],
+                          starts[14]],
+                         [link["page"] for link in links])
+
+    def test_links_survive_backfill(self):
+        starts = self.report["starts"]
+        for pno in (starts[7], starts[8], starts[9], starts[16]):
+            after = sorted(_link_key(link) for link in self.doc[pno].get_links())
+            self.assertEqual(self.raw_links[pno], after, f"物理页 {pno}")
+
     def test_000_is_backfilled_and_links_survive(self):
         starts = self.report["starts"]
         regions = [(starts[7], starts[8]), (starts[8], starts[9]),
@@ -191,7 +276,7 @@ class PdfTests(unittest.TestCase):
         for begin, end in regions:
             text = "\n".join(self.doc[p].get_text() for p in range(begin, end))
             self.assertNotIn("000", text)
-        self.assertGreaterEqual(self.report["backfilled"], 7)
+        self.assertEqual(8, self.report["backfilled"])
         toc_links = [link for link in self.doc[starts[7]].get_links()
                      if isinstance(link.get("page"), int)]
         self.assertEqual(len(TOC), len(toc_links))
@@ -200,7 +285,7 @@ class PdfTests(unittest.TestCase):
         starts = self.report["starts"]
         height = self.doc[0].rect.height
         clip = fitz.Rect(0, height - 18 * MM, self.doc[0].rect.width, height)
-        for pno in (0, 1, 2, starts[11], starts[12]):
+        for pno in (0, 1, 2, starts[11], starts[12], starts[13]):
             self.assertEqual("", self.doc[pno].get_text("text", clip=clip).strip())
         continuation = starts[12] + 1
         self.assertTrue(self.doc[continuation].get_text("text", clip=clip).strip())
@@ -213,15 +298,76 @@ class PdfTests(unittest.TestCase):
         right_page = chapter_start + 2
         self.assertEqual(1, left_page % 2, "物理奇数页必须是左页")
         self.assertEqual(0, right_page % 2, "物理偶数页必须是右页")
-        self.assertIn("通往模拟电路之路",
-                      self.doc[left_page].get_text("text", clip=clip))
-        self.assertIn("第 0 章 测试章",
-                      self.doc[right_page].get_text("text", clip=clip))
+        left_text = self.doc[left_page].get_text("text", clip=clip)
+        right_text = self.doc[right_page].get_text("text", clip=clip)
+        self.assertIn("通往模拟电路之路", left_text)
+        self.assertIn("第 0 章 测试章", right_text)
+        self.assertNotIn("第一篇 测试", right_text)
+
+    def test_running_heads_and_folios_hug_outer_edge(self):
+        starts = self.report["starts"]
+        width = self.doc[0].rect.width
+        height = self.doc[0].rect.height
+        chapter_start = starts[12]
+        left_page = chapter_start + 1
+        right_page = chapter_start + 2
+        top = fitz.Rect(0, 0, width, 18 * MM)
+        bottom = fitz.Rect(0, height - 18 * MM, width, height)
+
+        left_head = self.doc[left_page].get_text("words", clip=top)
+        self.assertTrue(left_head)
+        self.assertAlmostEqual(18 * MM, min(w[0] for w in left_head), delta=2)
+        right_head = self.doc[right_page].get_text("words", clip=top)
+        self.assertTrue(right_head)
+        self.assertAlmostEqual(width - 18 * MM, max(w[2] for w in right_head),
+                               delta=2)
+        left_folio = self.doc[left_page].get_text("words", clip=bottom)
+        self.assertTrue(left_folio)
+        self.assertAlmostEqual(18 * MM, min(w[0] for w in left_folio), delta=2)
+        right_folio = self.doc[right_page].get_text("words", clip=bottom)
+        self.assertTrue(right_folio)
+        self.assertAlmostEqual(width - 18 * MM, max(w[2] for w in right_folio),
+                               delta=2)
+
+    def test_backfill_and_folios_use_embedded_stamp_font(self):
+        starts = self.report["starts"]
+        width = self.doc[0].rect.width
+        height = self.doc[0].rect.height
+        top = fitz.Rect(0, 0, width, 18 * MM)
+        bottom = fitz.Rect(0, height - 18 * MM, width, height)
+        for pno in (starts[7], starts[12] + 1):
+            page = self.doc[pno]
+            entries = [font for font in page.get_fonts()
+                       if font[4] == "bookstamp"]
+            self.assertTrue(entries, f"物理页 {pno} 缺少 bookstamp 字体")
+            entry, basefont = _stamp_basefont(page)
+            self.assertEqual("ttf", entry[1])
+            self.assertNotIn("helvetica", basefont.lower())
+            for font in page.get_fonts():
+                self.assertNotIn("helv", font[4].lower())
+                self.assertNotIn("helvetica", font[3].lower())
+            digits = [span for span in _spans(page)
+                      if re.fullmatch(r"\d+", span["text"])]
+            self.assertTrue(digits, f"物理页 {pno} 没有数字回填 span")
+            for span in digits:
+                self.assertEqual(basefont, span["font"])
+            for clip in (top, bottom):
+                spans = _spans(page, clip)
+                self.assertTrue(spans)
+                for span in spans:
+                    self.assertEqual(basefont, span["font"],
+                                     (pno, span["text"]))
 
     def test_check_pdf_reports_draft_length_without_failing(self):
         report = check_pdf(self.pdf, MODEL, MANIFEST)
         self.assertEqual([], report["problems"])
         self.assertTrue(any("450" in warning for warning in report["warnings"]))
+
+    def test_check_pdf_final_mode_uses_hard_bands(self):
+        final_manifest = {**MANIFEST, "release": {"edition_status": "final"}}
+        report = check_pdf(self.pdf, MODEL, final_manifest)
+        self.assertTrue(any("450" in problem for problem in report["problems"]))
+        self.assertTrue(any("535" in warning for warning in report["warnings"]))
 
     def test_pad_to_multiple_is_idempotent(self):
         doc = fitz.open(self.pdf)

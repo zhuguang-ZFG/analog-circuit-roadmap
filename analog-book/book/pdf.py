@@ -1,7 +1,9 @@
 """16K 内文 PDF：Chromium 打印、补白、页码标签、书签、回填、天头地脚。"""
 from __future__ import annotations
 
+import html
 import json
+import re
 import shutil
 from collections import Counter
 from pathlib import Path
@@ -16,6 +18,8 @@ FRONT_KINDS = {"half_title", "title_page", "copyright", "toc",
                "list_of_figures", "list_of_tables"}
 MUTED = (0.32, 0.38, 0.44)
 RULE = (0.78, 0.82, 0.86)
+HEADING_RE = re.compile(r"<h([12])\b[^>]*>(.*?)</h\1>", re.S | re.I)
+TAG_RE = re.compile(r"<[^>]+>")
 
 
 def _roman(number: int) -> str:
@@ -86,10 +90,19 @@ def print_pdf(html_path: Path, output_pdf: Path,
                 page = context.new_page()
                 page.set_default_timeout(300000)
                 page.goto(html_path.resolve().as_uri(), wait_until="load")
+                page.emulate_media(media="print")
                 page.evaluate(
-                    "async () => { if (document.fonts) await document.fonts.ready; }")
+                    "async () => {"
+                    " const wait = ms => new Promise((_, reject) =>"
+                    " setTimeout(() => reject(new Error('font timeout')), ms));"
+                    " if (document.fonts) await Promise.race(["
+                    " document.fonts.ready, wait(180000)]); }")
                 if page.evaluate("() => !!window.MathJax"):
-                    page.evaluate("() => MathJax.startup.promise")
+                    page.evaluate(
+                        "async () => {"
+                        " const wait = ms => new Promise((_, reject) =>"
+                        " setTimeout(() => reject(new Error('mathjax timeout')), ms));"
+                        " await Promise.race([MathJax.startup.promise, wait(120000)]); }")
                 page.wait_for_function(
                     "() => Array.from(document.querySelectorAll('.arithmatex'))"
                     ".every(el => el.querySelector('mjx-container svg'))",
@@ -127,18 +140,40 @@ def _is_blank(page) -> bool:
     return not page.get_text().strip() and not page.get_images()
 
 
+def _normalize_title(text: str) -> str:
+    text = html.unescape(TAG_RE.sub("", text))
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def _page_heading(page: dict) -> tuple[int, str]:
+    level = 2 if page.get("source") and page["group"] == "appendix" else 1
+    match = re.search(
+        rf"<h{level}\b[^>]*>(.*?)</h{level}>", page["html"], re.S | re.I)
+    if match is None:
+        raise BookError(f"{page['id']}: 找不到 h{level} 标题")
+    return level, _normalize_title(match.group(1))
+
+
 def _page_starts(document, model: dict) -> list[int]:
-    outline = [entry for entry in document.get_toc() if entry[0] == 1]
-    pages = model["pages"]
-    if len(outline) != len(pages):
-        raise BookError(
-            f"PDF 一级大纲 {len(outline)} 个，书模型 {len(pages)} 页；"
-            "每页必须恰好一个可见 h1")
-    starts = [entry[2] - 1 for entry in outline]
-    if len(set(starts)) != len(starts) or starts != sorted(starts):
-        raise BookError("PDF 一级大纲顺序与页序不一致")
-    if starts[0] != 0:
-        raise BookError(f"PDF 第一个 h1 不在第 1 页: {starts[0] + 1}")
+    outline = [(int(level), _normalize_title(title), page - 1)
+               for level, title, page in document.get_toc()]
+    starts: list[int] = []
+    cursor = 0
+    for page in model["pages"]:
+        level, title = _page_heading(page)
+        match = next(
+            (index for index in range(cursor, len(outline))
+             if outline[index][0] == level and outline[index][1] == title),
+            None)
+        if match is None:
+            raise BookError(
+                f"PDF 大纲缺少 {page['id']} 的 h{level} 标题「{title}」")
+        starts.append(outline[match][2])
+        cursor = match + 1
+    if not starts or starts[0] != 0:
+        raise BookError(f"PDF 第一页标题不在第 1 物理页: {starts[:1]}")
+    if any(b <= a for a, b in zip(starts, starts[1:])):
+        raise BookError("PDF 标题页序与书模型页序不一致")
     return starts
 
 
@@ -153,6 +188,7 @@ def _region_links(document, start: int, end: int, body_start: int):
     links = []
     for pno in range(start, end):
         page = document[pno]
+        # Chromium 双栏 PDF 的链接注记顺序即 DOM/阅读顺序；坐标排序会交错两栏。
         for link in page.get_links():
             target = link.get("page")
             if not isinstance(target, int) or target < body_start:
@@ -163,8 +199,6 @@ def _region_links(document, start: int, end: int, body_start: int):
                 continue
             links.append({"page": pno, "target": target, "rect": rect,
                           "word": word})
-    links.sort(key=lambda item: (item["page"], round(item["rect"].y0, 1),
-                                 round(item["rect"].x0, 1)))
     return links
 
 
@@ -190,8 +224,13 @@ def _restore_links(page, snapshot: list[dict]) -> None:
 
 
 def _backfill(document, start: int, end: int, body_start: int,
-              expected: int | None = None):
+              expected: int | None = None,
+              fonts_dir: Path = config.FONTS_DIR):
     import fitz
+    stamp_path = fonts.stamp_font_path(fonts_dir)
+    if not stamp_path.is_file():
+        raise BookError(f"缺少印章字体: {stamp_path}")
+    stamp = fitz.Font(fontfile=str(stamp_path))
     links = _region_links(document, start, end, body_start)
     if expected is not None and len(links) != expected:
         raise BookError(
@@ -213,12 +252,14 @@ def _backfill(document, start: int, end: int, body_start: int,
         page.apply_redactions(images=fitz.PDF_REDACT_IMAGE_NONE,
                               graphics=fitz.PDF_REDACT_LINE_ART_NONE)
         _restore_links(page, snapshot)
+        page.insert_font(fontname="bookstamp", fontfile=str(stamp_path))
         for item in items:
             word = item["word"]
             label = str(item["target"] - body_start + 1)
-            width = fitz.get_text_length(label, fontname="helv", fontsize=9)
+            width = stamp.text_length(label, 9)
             page.insert_text((word[2] - width, word[3] - 1.2),
-                             label, fontname="helv", fontsize=9, color=MUTED)
+                             label, fontname="bookstamp", fontsize=9,
+                             color=MUTED)
     remaining = [pno + 1 for pno in range(start, end)
                  if "000" in document[pno].get_text()]
     if remaining:
@@ -260,12 +301,14 @@ def _stamp_running(document, model: dict, starts: list[int], body_start: int,
         is_right = pno % 2 == 0
         info = _section_for(pno, starts, model)
         label = _roman(pno + 1) if pno < body_start else str(pno - body_start + 1)
-        heading = info.get("header") or info["title"]
+        if info["kind"] == "chapter":
+            heading = info["title"]
+        else:
+            heading = info.get("header") or info["title"]
         if is_right:
             header = heading
             header_x = width_page - outside - stamp.text_length(header, 8)
-            folio_x = width_page - outside - fitz.get_text_length(
-                label, fontname="helv", fontsize=8)
+            folio_x = width_page - outside - stamp.text_length(label, 8)
             rule_start, rule_end = inside, width_page - outside
         else:
             header = manifest["title"]
@@ -278,7 +321,7 @@ def _stamp_running(document, model: dict, starts: list[int], body_start: int,
                        fitz.Point(rule_end, 14.2 * MM),
                        color=RULE, width=0.3)
         page.insert_text((folio_x, height_page - 9 * MM), label,
-                         fontname="helv", fontsize=8, color=MUTED)
+                         fontname="bookstamp", fontsize=8, color=MUTED)
 
 
 def _bookmarks(model: dict, starts: list[int], toc_targets: dict[str, int]):
@@ -319,21 +362,29 @@ def stamp_pdf(raw_pdf: Path, output_pdf: Path, model: dict, manifest: dict,
         toc_index = kinds.index("toc")
         lof_index = kinds.index("list_of_figures")
         lot_index = kinds.index("list_of_tables")
-        index_index = kinds.index("index")
+        # assemble 把索引起页建模为 kind="back"，只能按固定 id 定位。
+        index_index = next(
+            (index for index, page in enumerate(model["pages"])
+             if page["id"] == "book-index"), None)
+        if index_index is None:
+            raise BookError("书模型缺少 book-index 索引页")
         toc_start, toc_end = starts[toc_index], starts[toc_index + 1]
         lof_start, lof_end = starts[lof_index], starts[lof_index + 1]
         lot_start, lot_end = starts[lot_index], starts[lot_index + 1]
         index_start, index_end = starts[index_index], starts[index_index + 1]
         toc_links = _backfill(document, toc_start, toc_end, body_start,
-                              expected=len(model["toc"]))
+                              expected=len(model["toc"]), fonts_dir=fonts_dir)
         toc_targets = {entry["anchor"]: link["target"]
                        for entry, link in zip(model["toc"], toc_links)}
         filled = len(toc_links)
         filled += len(_backfill(document, lof_start, lof_end, body_start,
-                                expected=len(model["lof"])))
+                                expected=len(model["lof"]),
+                                fonts_dir=fonts_dir))
         filled += len(_backfill(document, lot_start, lot_end, body_start,
-                                expected=len(model["lot"])))
-        filled += len(_backfill(document, index_start, index_end, body_start))
+                                expected=len(model["lot"]),
+                                fonts_dir=fonts_dir))
+        filled += len(_backfill(document, index_start, index_end, body_start,
+                                fonts_dir=fonts_dir))
         _stamp_running(document, model, starts, body_start, manifest,
                        padding, fonts_dir)
         document.set_toc(_bookmarks(model, starts, toc_targets))
