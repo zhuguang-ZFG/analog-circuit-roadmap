@@ -1,0 +1,72 @@
+@page { size: __WIDTH__mm __HEIGHT__mm; margin: 0; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #fffdf8; }
+body {
+  font-family: "Book Sans", "Noto Sans SC", sans-serif;
+  color: #1f2933;
+}
+.cover {
+  position: relative; overflow: hidden;
+  width: __WIDTH__mm; height: __HEIGHT__mm; background: #fffdf8;
+}
+.cover-marks { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 20; }
+.crop-mark { stroke: #111; stroke-width: .2; }
+.cover-panel { position: absolute; top: __BLEED__mm; height: __TRIM_H__mm; }
+.cover-front {
+  left: calc(__BLEED__mm + __TRIM_W__mm + __SPINE__mm);
+  width: __TRIM_W__mm; padding: 18mm 16mm;
+  display: flex; flex-direction: column;
+}
+.cover-spine {
+  left: calc(__BLEED__mm + __TRIM_W__mm);
+  width: __SPINE__mm; background: #b45309; color: #fffdf8;
+  display: flex; align-items: center; justify-content: center;
+}
+.cover-back {
+  left: __BLEED__mm; width: __TRIM_W__mm; padding: 18mm 16mm;
+  background: #1f2933; color: #fffdf8;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.front-kicker {
+  margin: 0; font-size: 10pt; letter-spacing: .22em; color: #b45309;
+}
+.front-art { margin: 4mm 0 6mm; }
+.front-art svg { display: block; width: 100%; height: auto; max-height: 86mm; }
+.front-title {
+  margin: 0; font-family: "Book Serif", "Noto Serif SC", serif;
+  font-size: 34pt; line-height: 1.18; letter-spacing: .04em;
+}
+.front-subtitle { margin: 4mm 0 0; font-size: 14pt; line-height: 1.5; color: #52606d; }
+.front-rule { width: 34mm; height: 1.2mm; margin: 9mm 0; background: #b45309; }
+.front-author { margin: 0; font-size: 12pt; }
+.front-edition { margin: 3mm 0 0; font-size: 10pt; color: #52606d; }
+.front-site { margin: auto 0 0; font-size: 8.5pt; color: #52606d; }
+.spine-text {
+  writing-mode: vertical-rl; text-orientation: upright;
+  display: flex; align-items: center; gap: 8mm;
+  font-family: "Book Serif", "Noto Serif SC", serif;
+}
+.spine-title { font-size: 13pt; letter-spacing: .12em; }
+.spine-author { font-size: 9pt; letter-spacing: .08em; opacity: .85; }
+.cover-spine.is-thin .spine-text { display: none; }
+.back-kicker { margin: 0; font-size: 9pt; letter-spacing: .2em; color: #f0c38a; }
+.back-blurb {
+  margin: 3mm 0 0; font-family: "Book Serif", "Noto Serif SC", serif;
+  font-size: 15pt; line-height: 1.7;
+}
+.back-audience { margin: 5mm 0 0; font-size: 9.5pt; line-height: 1.7; color: #cfd8e3; }
+.back-highlights { margin: 5mm 0 0; padding-left: 5mm; font-size: 9.5pt; line-height: 1.8; }
+.back-highlights li::marker { color: #f0c38a; }
+.back-qr { display: flex; gap: 8mm; margin-top: 6mm; }
+.qr {
+  width: 24mm; padding: 2mm; background: #fffdf8; color: #1f2933;
+  text-align: center; font-size: 7.5pt; line-height: 1.4;
+}
+.qr svg { display: block; width: 20mm; height: 20mm; }
+.isbn-area {
+  margin-top: 5mm; width: 40mm; height: 25mm; border: .3mm dashed #98a2b3;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 7pt; color: #98a2b3; text-align: center;
+}
+.back-license { margin: 5mm 0 0; font-size: 8pt; color: #cfd8e3; }
+.back-errata { margin: 1.5mm 0 0; font-size: 8pt; color: #cfd8e3; }
