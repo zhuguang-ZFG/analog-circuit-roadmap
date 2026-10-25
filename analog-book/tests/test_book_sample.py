@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""16K 样张必须证明版心、镜像边距回退与九类版式都不溢出。"""
+"""16K 样张必须证明版心、镜像边距回退与十类版式都不溢出。"""
 import sys
 import unittest
 from pathlib import Path
@@ -38,8 +38,8 @@ class SampleTests(unittest.TestCase):
         finally:
             doc.close()
 
-    def test_nine_sections_are_present(self):
-        self.assertEqual(9, len(SAMPLE_SECTIONS))
+    def test_ten_sections_are_present(self):
+        self.assertEqual(10, len(SAMPLE_SECTIONS))
         doc = fitz.open(self.pdf)
         try:
             text = "\n".join(page.get_text() for page in doc)
@@ -52,9 +52,23 @@ class SampleTests(unittest.TestCase):
         report = inspect_sample(self.pdf)
         self.assertLessEqual(report["text_width_mm"], 145.5)
         self.assertGreaterEqual(report["text_width_mm"], 130)
-        self.assertEqual(9, len(report["sections"]))
+        self.assertEqual(10, len(report["sections"]))
         self.assertIn(report["fallback"], {"mirrored", "uniform-20mm"})
         self.assertTrue((self.html.parent / "sample-report.json").is_file())
+
+    def test_no_paint_bleeds_below_the_text_block(self):
+        # Chromium 在「镜像页边距 + 分页书眉」组合下会把下一页的首行
+        # 重复画到页底，必须由 .book-page 的 overflow: clip 截住。
+        doc = fitz.open(self.pdf)
+        try:
+            for index, page in enumerate(doc):
+                low = [block[4].strip() for block in page.get_text("blocks")
+                       if block[4].strip()
+                       and block[3] * 25.4 / 72 > 239.0]
+                self.assertEqual([], low,
+                                 f"第 {index + 1} 页在版心底边之外仍有绘制：{low[:3]}")
+        finally:
+            doc.close()
 
     def test_print_css_has_16k_and_typography_contract(self):
         css = (config.STYLES_DIR / "print.css").read_text(encoding="utf-8")
@@ -72,6 +86,34 @@ class SampleTests(unittest.TestCase):
         self.assertRegex(
             css,
             r"\.toc-row a\s*\{[^}]*grid-template-columns:\s*auto\s+minmax\([^)]*\)\s+auto")
+
+    def test_print_css_carries_the_instrument_visual_system(self):
+        css = (config.STYLES_DIR / "print.css").read_text(encoding="utf-8")
+        for token in ("--navy: #14213d", "--amber: #b45309",
+                      "--teal: #0f766e", "--rust: #b42318",
+                      "--panel: #f8fafc"):
+            self.assertIn(token, css)
+        for selector in (".runline", ".chapter-tag", ".opener-hero",
+                         ".opener-art", ".stat-strip", ".chapter-plan",
+                         ".equation-strip", ".figure-panel", ".corner",
+                         ".reading-notes", ".selection-deck", ".part-hero",
+                         ".ladder", ".part-epigraph", ".lead::first-letter",
+                         ".book-callout-calc", ".book-callout-limit",
+                         ".book-reveal", ".toc-title"):
+            self.assertIn(selector, css)
+        self.assertIn("-webkit-text-stroke", css)
+        self.assertIn("background-size: 5mm 5mm", css)
+        self.assertIn(".book-table thead", css)
+        self.assertIn("background: var(--navy)", css)
+
+    def test_sample_html_exercises_every_visual_component(self):
+        html = self.html.read_text(encoding="utf-8")
+        for marker in ("part-hero", "chapter-tag", "chapter-plan", "runline",
+                       "equation-strip", "figure-panel", "reading-notes",
+                       "selection-deck", "book-table", "lead",
+                       "book-callout-calc", "book-callout-limit",
+                       "ladder", "part-epigraph"):
+            self.assertTrue(marker in html, f"缺少视觉组件: {marker}")
 
 
 if __name__ == "__main__":
