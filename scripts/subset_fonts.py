@@ -82,6 +82,21 @@ ASCII = "".join(chr(c) for c in range(32, 127))
 STAMP_FIXED = "目录索引参考文献版本记录"
 # 页眉/页脚可能采用的短篇名（与正文章节标题不一定逐字相同）。
 STAMP_RUNNING_TITLES = "第一篇基础第二篇器件第三篇拓扑第四篇设计第五篇调试"
+# Task 11A 才把真实的 schema-2 manifest 落盘，当前清单仍是 schema 1。为了让
+# 印章字体现在就能排最终结构的前置页、篇、单元、附录与后记标题，这里保留
+# 与 `analog-book/tests/book_fixtures.py` 一致的 schema-2 书名结构；schema 2
+# 落盘后 stamp_text() 还会从清单自动收集，两份标题取并集。
+STAMP_SECTION_TITLES = (
+    "前言", "怎样读这本书", "模拟电路简史", "排版、术语与引用约定",
+    "符号与单位表",
+    "基础", "器件", "拓扑", "设计", "调试",
+    "电路直觉与无源世界", "分立器件", "模拟集成器件", "信号链与功率",
+    "方法与实现", "方法与经验",
+    "动画与图示索引", "公式与设计速查", "常用芯片速查", "视频课程与配套资源",
+    "学习路线、选读与诊断", "习题答案与综合自测", "术语表",
+    "模型、近似与适用边界",
+    "版本记录", "致谢", "来源与许可",
+)
 STAMP_TEST_TITLES = "通往模拟电路之路目录索引参考文献第一篇基础第二篇器件第三篇拓扑第四篇设计第五篇调试"
 
 
@@ -226,15 +241,33 @@ def _plain_heading(line: str) -> str:
     return EMOJI_RE.sub("", text).strip()
 
 
+def _entry_titles(entries) -> list[str]:
+    """清单段内所有带 title 的条目（兼容 schema 2 的列表结构）。"""
+    if not isinstance(entries, list):
+        return []
+    return [str(entry["title"]) for entry in entries
+            if isinstance(entry, dict) and entry.get("title")]
+
+
 def stamp_text() -> str:
-    """页眉/页脚可能出现的全部文字：书名、篇名、章名、附录与固定词。"""
-    chunks = [STAMP_FIXED, STAMP_RUNNING_TITLES]
+    """页眉/页脚可能出现的全部文字：书名、篇名、单元名、章名、附录与固定词。"""
+    chunks = [STAMP_FIXED, STAMP_RUNNING_TITLES, *STAMP_SECTION_TITLES]
     manifest = json.loads(config.MANIFEST_PATH.read_text(encoding="utf-8"))
     chunks.append(str(manifest.get("title", "")))
     chunks.append(str(manifest.get("subtitle", "")))
+    # schema 1 的单一附录标题。
     appendix = manifest.get("appendix")
     if isinstance(appendix, dict):
         chunks.append(str(appendix.get("title", "")))
+    # schema 2 的四个清单段（Task 11A 起）；schema 1 下这些键缺省。
+    chunks.extend(_entry_titles(manifest.get("front_matter")))
+    for part in manifest.get("parts") or []:
+        if not isinstance(part, dict):
+            continue
+        chunks.append(str(part.get("title", "")))
+        chunks.extend(_entry_titles(part.get("units")))
+    chunks.extend(_entry_titles(manifest.get("appendices")))
+    chunks.extend(_entry_titles(manifest.get("back_matter")))
     for path in sorted(Path(config.DOCS).glob("*.md")):
         for line in path.read_text(encoding="utf-8").splitlines():
             match = re.match(r"^#{1,3}\s+(.*)$", line)
@@ -382,7 +415,7 @@ def write_readme(path: Path, data: dict) -> None:
     lines += [
         "",
         "印章字体由 Noto Sans SC 在 wght=700 实例化后，子集到 ASCII、书名、",
-        "篇名/章名与页脚固定词，用于页眉/页脚印章。",
+        "前置页/篇/单元/附录/后记标题、章名与页脚固定词，用于页眉/页脚印章。",
         "",
         "## 源字体",
         "",
@@ -396,12 +429,16 @@ def write_readme(path: Path, data: dict) -> None:
         "",
         "## 缺字补充",
         "",
-        "Noto Serif SC 与 Noto Sans SC 的可变字体都不含书稿实际使用的 13 个",
+        "Noto Serif SC 与 Noto Sans SC 的可变字体都不含书稿实际使用的 14 个",
         "字符：上标 `U+2070 U+2075 U+2076 U+2077 U+2078 U+2079`、下标",
         "`U+2080 U+2081 U+2082`、分数 `U+2153 U+2154`、组合上划线 `U+0305`、",
-        "实心左指三角 `U+25C4`。子集脚本从同为 OFL 的 Noto Serif / Noto Sans",
-        "（拉丁）复制前 12 个字符的真实轮廓，并从 Noto Sans Symbols 2 复制",
-        "`U+25C4`，再写入子集的 cmap/hmtx/vmtx；没有删减覆盖测试的字符。",
+        "实心左指三角 `U+25C4` 与叉号 `U+2717`。子集脚本从同为 OFL 的 Noto Serif /",
+        "Noto Sans（拉丁）复制前 12 个字符的真实轮廓，并从 Noto Sans Symbols 2 复制",
+        "`U+25C4` 与 `U+2717`，再写入子集的 cmap/hmtx/vmtx；没有删减覆盖测试的字符。",
+        "",
+        "对勾 `U+2713` 原生存在于 Noto SC 中。`EMOJI_RE` 会剥掉 `✓✗`，而 Task 5",
+        "把 ✅/❌ 映射为 `✓/✗` 输出，因此 `required_text()` 在剥离 emoji 后显式",
+        "补入这两个字形，四个正文子集都必须覆盖它们。",
         "",
         "## 许可",
         "",

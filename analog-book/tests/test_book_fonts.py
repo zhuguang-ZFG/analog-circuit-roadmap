@@ -9,9 +9,11 @@ from pathlib import Path
 
 BOOK = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(BOOK))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 from book import config  # noqa: E402
 from book.fonts import (FONT_FACES, font_css, missing_glyphs,  # noqa: E402
                         required_text, stamp_font_path)
+import book_fixtures  # noqa: E402
 from fontTools.ttLib import TTFont  # noqa: E402
 
 
@@ -33,6 +35,15 @@ class FontTests(unittest.TestCase):
             self.assertEqual(set(), missing,
                              f"{name} 缺字: {''.join(sorted(missing))[:80]}")
 
+    def test_serif_and_sans_cover_check_and_cross_marks(self):
+        # Task 5 把 ✅/❌ 映射成 ✓/✗；EMOJI_RE 会从书稿里剥掉它们，因此
+        # 四个正文子集必须显式包含这两个字形。
+        for name in ("NotoSerifSC-Regular.woff2", "NotoSerifSC-Bold.woff2",
+                     "NotoSansSC-Regular.woff2", "NotoSansSC-Bold.woff2"):
+            missing = missing_glyphs(config.FONTS_DIR / name, "✓✗")
+            self.assertEqual(set(), missing,
+                             f"{name} 缺字: {''.join(sorted(missing))}")
+
     def test_mono_covers_ascii(self):
         missing = missing_glyphs(config.FONTS_DIR / "JetBrainsMono-Regular.woff2",
                                  "".join(chr(c) for c in range(32, 127)))
@@ -42,6 +53,24 @@ class FontTests(unittest.TestCase):
         titles = "通往模拟电路之路目录索引参考文献第一篇基础第二篇器件第三篇拓扑第四篇设计第五篇调试"
         missing = missing_glyphs(stamp_font_path(), titles)
         self.assertEqual(set(), missing)
+
+    def test_stamp_font_covers_schema_2_running_titles(self):
+        manifest = book_fixtures.manifest()
+        self.assertEqual(2, manifest["schema"])
+        titles = [manifest["title"], manifest["subtitle"]]
+        titles += [entry["title"] for entry in manifest["front_matter"]
+                   if entry.get("title")]
+        for part in manifest["parts"]:
+            titles.append(part["title"])
+            titles += [unit["title"] for unit in part.get("units", [])
+                       if unit.get("title")]
+        titles += [entry["title"] for entry in manifest["appendices"]
+                   if entry.get("title")]
+        titles += [entry["title"] for entry in manifest["back_matter"]
+                   if entry.get("title")]
+        missing = missing_glyphs(stamp_font_path(), "".join(titles))
+        self.assertEqual(set(), missing,
+                         f"印章字体缺字: {''.join(sorted(missing))}")
 
     def test_font_css_is_five_data_uris_and_no_remote(self):
         css = font_css()

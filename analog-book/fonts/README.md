@@ -7,20 +7,20 @@ data URI 内联进单文件 HTML，因此本目录不需要任何系统字体或
 
 | 文件 | 家族 | 字重 | 请求字符数 | 字节 | SHA-256 |
 | --- | --- | --- | --- | --- | --- |
-| `NotoSerifSC-Regular.woff2` | NotoSerifSC | 400 | 1906 | 324,120 | `eea2489fc10f47a09bff6bb4bdb48825982c4f83d9aa4bfc8c4e5750e14ad92f` |
-| `NotoSerifSC-Bold.woff2` | NotoSerifSC | 700 | 1906 | 334,688 | `527bc04f5bf5722a142e6fdd2d9cc8139d9d71a1faf18c992ca960870090ef3a` |
-| `NotoSansSC-Regular.woff2` | NotoSansSC | 400 | 1906 | 253,404 | `caea0e606f7568ee83325152c109bece7f934ac19c4834aa0c6c2023b258dc48` |
-| `NotoSansSC-Bold.woff2` | NotoSansSC | 700 | 1906 | 259,160 | `3d21f434ca6974f23d35f7b46f5f1199f20eb03185cda0241eafb326de10b2fb` |
+| `NotoSerifSC-Regular.woff2` | NotoSerifSC | 400 | 1908 | 324,240 | `8474ad813a269cd3fc0ace9291147a0e478bd8d5b467a3834501693e3d853652` |
+| `NotoSerifSC-Bold.woff2` | NotoSerifSC | 700 | 1908 | 334,920 | `b8ffc7ea12c91e6ee4993c7a9e4b8701bab432c2d3b2b2e3bd7b90b6e6d4f214` |
+| `NotoSansSC-Regular.woff2` | NotoSansSC | 400 | 1908 | 253,716 | `2e0743dfa0861a1ca065cb48aba186df9a02a8923d37e043519299923ad55053` |
+| `NotoSansSC-Bold.woff2` | NotoSansSC | 700 | 1908 | 259,568 | `4cac0b30c5aaf71cefafc49767d97c2b3610eab7787b3e88e12da9c3b3dc148c` |
 | `JetBrainsMono-Regular.woff2` | JetBrainsMono | 400 | 95 | 15,844 | `94d9e25e7d4293923031470710ba1ff681e89421113fadd41555e8a4a4a066ce` |
 
 ## 印章字体
 
 | 文件 | 家族 | 字重 | 请求字符数 | 字节 | SHA-256 |
 | --- | --- | --- | --- | --- | --- |
-| `BookSans-Stamp.ttf` | NotoSansSC | 700 | 827 | 211,932 | `4bf70d34bf97e05d18874c7d0b1b210a855899fb1bace88bce6b3d59124b49b0` |
+| `BookSans-Stamp.ttf` | NotoSansSC | 700 | 833 | 213,932 | `ebc01058f1c6b585f7b35daae889b09d1efb8552ba58642679143fe526f16766` |
 
 印章字体由 Noto Sans SC 在 wght=700 实例化后，子集到 ASCII、书名、
-篇名/章名与页脚固定词，用于页眉/页脚印章。
+前置页/篇/单元/附录/后记标题、章名与页脚固定词，用于页眉/页脚印章。
 
 ## 源字体
 
@@ -38,12 +38,16 @@ data URI 内联进单文件 HTML，因此本目录不需要任何系统字体或
 
 ## 缺字补充
 
-Noto Serif SC 与 Noto Sans SC 的可变字体都不含书稿实际使用的 13 个
+Noto Serif SC 与 Noto Sans SC 的可变字体都不含书稿实际使用的 14 个
 字符：上标 `U+2070 U+2075 U+2076 U+2077 U+2078 U+2079`、下标
 `U+2080 U+2081 U+2082`、分数 `U+2153 U+2154`、组合上划线 `U+0305`、
-实心左指三角 `U+25C4`。子集脚本从同为 OFL 的 Noto Serif / Noto Sans
-（拉丁）复制前 12 个字符的真实轮廓，并从 Noto Sans Symbols 2 复制
-`U+25C4`，再写入子集的 cmap/hmtx/vmtx；没有删减覆盖测试的字符。
+实心左指三角 `U+25C4` 与叉号 `U+2717`。子集脚本从同为 OFL 的 Noto Serif /
+Noto Sans（拉丁）复制前 12 个字符的真实轮廓，并从 Noto Sans Symbols 2 复制
+`U+25C4` 与 `U+2717`，再写入子集的 cmap/hmtx/vmtx；没有删减覆盖测试的字符。
+
+对勾 `U+2713` 原生存在于 Noto SC 中。`EMOJI_RE` 会剥掉 `✓✗`，而 Task 5
+把 ✅/❌ 映射为 `✓/✗` 输出，因此 `required_text()` 在剥离 emoji 后显式
+补入这两个字形，四个正文子集都必须覆盖它们。
 
 ## 许可
 
