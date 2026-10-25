@@ -59,7 +59,7 @@ class ContentPage:
 
 def plain_text(fragment: str) -> str:
     return re.sub(r"\s+", " ", html.unescape(TAG_RE.sub("", fragment))).replace(
-        "¶", "").strip()
+        "\u00b6", "").strip()
 
 
 def clean_fragment(fragment: str) -> str:
@@ -91,21 +91,33 @@ def _drop_duplicate_name(match: re.Match) -> str:
 
 
 def namespace_ids(fragment: str, stem: str) -> str:
-    fragment = re.sub(r"<[^>]+>", _drop_duplicate_name, fragment)
     prefix = stem + "--"
-    return ID_ATTR_RE.sub(
-        lambda m: '%s="%s%s"' % (m.group(1), prefix, m.group(2)), fragment)
+
+    def rewrite_tag(match: re.Match) -> str:
+        tag = _drop_duplicate_name(match)
+        return ID_ATTR_RE.sub(
+            lambda m: '%s="%s%s"' % (m.group(1), prefix, m.group(2)), tag)
+
+    return TAG_RE.sub(rewrite_tag, fragment)
 
 
 def assign_heading_ids(fragment: str, stem: str) -> str:
     counters = {2: 0, 3: 0}
+    used = set()
+    for tag in TAG_RE.findall(fragment):
+        used.update(m.group(2) for m in ID_ATTR_RE.finditer(tag)
+                    if m.group(1) == "id")
 
     def repl(match: re.Match) -> str:
         level, attrs, body = int(match.group(1)), match.group(2), match.group(3)
         if level == 1 or re.search(r'(?<![\w-])id="[^"]+"', attrs):
             return match.group(0)
-        counters[level] += 1
-        anchor = f"{stem}--h{level}-{counters[level]}"
+        while True:
+            counters[level] += 1
+            anchor = f"{stem}--h{level}-{counters[level]}"
+            if anchor not in used:
+                break
+        used.add(anchor)
         return f'<h{level} id="{anchor}"{attrs}>{body}</h{level}>'
 
     return HEADING_RE.sub(repl, fragment)
@@ -146,8 +158,6 @@ def rewrite_links(fragment: str, current_stem: str, page_stems: set[str],
                 target = f"page-{stem}" if not anchor else f"{stem}--{anchor}"
                 return f'href="#{target}"'
             return f'href="{_special_target(stem, anchor)}"'
-        if path.startswith("assets/"):
-            return f'href="{site_url}{href}"'
         return f'href="{site_url}{href.lstrip("/")}"'
 
     return re.sub(r'href="([^"]+)"', repl, fragment)
@@ -201,7 +211,11 @@ def replace_mermaid(fragment: str, docs_dir: Path = config.DOCS,
     if not snapshot.is_file() or not source_file.is_file():
         raise BookError("缺少 static/roadmap.svg 或 static/roadmap.source.txt")
     doc = (docs_dir / "p0-06-roadmap.md").read_text(encoding="utf-8")
-    source = re.search(r"```mermaid\n(.*?)```", doc, re.S).group(1).strip() + "\n"
+    match = re.search(r"```mermaid\n(.*?)```", doc, re.S)
+    if match is None:
+        raise BookError(
+            "docs/p0-06-roadmap.md 缺少 mermaid 代码块")
+    source = match.group(1).strip() + "\n"
     if source != source_file.read_text(encoding="utf-8"):
         raise BookError("docs/p0-06-roadmap.md 与 static/roadmap.source.txt 不一致")
     svg = snapshot.read_text(encoding="utf-8").strip()
@@ -211,8 +225,13 @@ def replace_mermaid(fragment: str, docs_dir: Path = config.DOCS,
 
 
 def wrap_tables(fragment: str) -> str:
-    return re.sub(r'<table(?:\s[^>]*)?>.*?</table>',
-                  lambda m: f'<div class="table-wrap">{m.group(0)}</div>',
+    def wrap(match: re.Match) -> str:
+        before = fragment[:match.start()]
+        if re.search(r'<div class="table-wrap"[^>]*>\s*$', before):
+            return match.group(0)
+        return f'<div class="table-wrap">{match.group(0)}</div>'
+
+    return re.sub(r'<table(?:\s[^>]*)?>.*?</table>', wrap,
                   fragment, flags=re.S)
 
 

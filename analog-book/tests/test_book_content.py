@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """站点 HTML -> 书内片段：标题、锚点、链接、图片、表格与 Mermaid。"""
+import re
 import sys
 import tempfile
 import unittest
@@ -56,6 +57,15 @@ class HeadingTests(unittest.TestCase):
         self.assertIn('id="p--h3-1"', result)
         self.assertEqual(result, content.assign_heading_ids(fragment, "p"))
 
+    def test_generated_heading_ids_skip_existing_ids(self):
+        fragment = ('<h1 id="p--title">章</h1>'
+                    '<h2 id="p--h2-1">0.1 已有锚点</h2><h2>0.2 新节</h2>')
+        result = content.assign_heading_ids(fragment, "p")
+        self.assertIn('<h2 id="p--h2-1">0.1 已有锚点</h2>', result)
+        self.assertIn('<h2 id="p--h2-2">0.2 新节</h2>', result)
+        ids = re.findall(r'(?<![\w-])id="([^"]+)"', result)
+        self.assertEqual(len(ids), len(set(ids)))
+
     def test_collects_numbered_headings(self):
         fragment = ('<h1 id="p--title">第 0 章</h1>'
                     '<h2 id="p--s1">0.1 电压</h2>'
@@ -65,6 +75,18 @@ class HeadingTests(unittest.TestCase):
         self.assertEqual([h.level for h in headings], [1, 2, 2, 3])
         self.assertEqual([h.numbered for h in headings], [False, True, False, True])
         self.assertEqual(headings[1].text, "0.1 电压")
+
+
+class NamespaceTests(unittest.TestCase):
+    def test_leaves_escaped_id_text_byte_identical(self):
+        fragment = ('<p>写作 <code>&lt;a id="pick-*"&gt;</code> 与 '
+                    '<code>&lt;p name="why"&gt;</code>。</p>'
+                    '<p id="pick-a" name="pick-a">真实标签</p>')
+        result = content.namespace_ids(fragment, "p9-12-changelog")
+        self.assertIn('<code>&lt;a id="pick-*"&gt;</code>', result)
+        self.assertIn('<code>&lt;p name="why"&gt;</code>', result)
+        self.assertIn('id="p9-12-changelog--pick-a"', result)
+        self.assertNotIn('name="pick-a"', result)
 
 
 class LinkTests(unittest.TestCase):
@@ -125,6 +147,19 @@ class ResourceTests(unittest.TestCase):
             '<div class="table-wrap"><table><tr><td>1</td></tr></table></div>',
             content.wrap_tables(fragment))
 
+    def test_wrap_tables_is_idempotent(self):
+        fragment = '<p>说明</p><table><tr><td>1</td></tr></table>'
+        once = content.wrap_tables(fragment)
+        self.assertEqual(once, content.wrap_tables(once))
+
+    def test_wrap_tables_keeps_one_wrapper_for_captioned_table(self):
+        fragment = ('<p><strong>表 1-1 参数</strong></p>'
+                    '<table><tr><td>1</td></tr></table>')
+        wrapped = content.wrap_tables(content.wrap_tables(fragment))
+        self.assertEqual(1, wrapped.count('class="table-wrap"'))
+        self.assertIn('<p><strong>表 1-1 参数</strong></p>'
+                      '<div class="table-wrap"><table>', wrapped)
+
     def test_mermaid_snapshot_mismatch_raises(self):
         fragment = '<pre class="mermaid">x</pre>'
         roadmap = content.replace_mermaid(fragment)
@@ -158,6 +193,22 @@ class ResourceTests(unittest.TestCase):
 
             (static / "roadmap.svg").unlink()
             with self.assertRaisesRegex(BookError, "缺少"):
+                content.replace_mermaid(
+                    fragment, docs_dir=docs, static_dir=static)
+
+    def test_mermaid_page_without_fence_raises_book_error(self):
+        fragment = '<pre class="mermaid">x</pre>'
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            docs = root / "docs"
+            static = root / "static"
+            docs.mkdir()
+            static.mkdir()
+            (docs / "p0-06-roadmap.md").write_text("没有图表。\n", encoding="utf-8")
+            (static / "roadmap.source.txt").write_text(
+                "flowchart LR\n  A-->B\n", encoding="utf-8")
+            (static / "roadmap.svg").write_text("<svg/>", encoding="utf-8")
+            with self.assertRaisesRegex(BookError, "mermaid"):
                 content.replace_mermaid(
                     fragment, docs_dir=docs, static_dir=static)
 
