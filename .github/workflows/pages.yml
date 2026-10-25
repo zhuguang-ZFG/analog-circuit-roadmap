@@ -46,7 +46,7 @@ jobs:
           name: analog-circuit-book
           path: analog-book/dist
       - name: 离线整书并入站点（/book/）
-        run: python scripts/publish_book.py
+        run: python scripts/publish_a4_book.py
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
