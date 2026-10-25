@@ -194,14 +194,19 @@ def cover_html(manifest: dict, pages: int, fonts_css: str = "") -> str:
         '</div>')
     site_qr = qr_svg(manifest["site_url"])
     repo_qr = qr_svg(manifest["repository"])
+    crop_marks = ""
+    if manifest["cover"].get("crop_marks", True):
+        crop_marks = (
+            f'<svg class="cover-marks" viewBox="0 0 {width:.2f} {height:.2f}" '
+            'xmlns="http://www.w3.org/2000/svg">\n'
+            f'{_crop_marks(width, height, manifest["cover"]["bleed_mm"])}\n'
+            '</svg>')
     return f"""<!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8"><title>{_e(manifest["title"])} · 封面</title>
 <style>{fonts_css}
 {_cover_css(width, height, spine, manifest)}</style></head>
 <body><div class="cover">
-<svg class="cover-marks" viewBox="0 0 {width:.2f} {height:.2f}" xmlns="http://www.w3.org/2000/svg">
-{_crop_marks(width, height, manifest["cover"]["bleed_mm"])}
-</svg>
+{crop_marks}
 <section class="cover-panel cover-back">
 <header class="back-head">
 <p class="back-kicker">关于本书</p>

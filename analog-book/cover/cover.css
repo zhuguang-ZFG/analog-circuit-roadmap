@@ -196,7 +196,7 @@ body {
   font-family: "Book Serif", "Noto Serif SC", serif;
 }
 .spine-title { font-size: 13pt; letter-spacing: .14em; font-weight: 700; }
-.spine-author { font-size: 9pt; letter-spacing: .08em; opacity: .9; }
+.spine-author { font-size: 9pt; letter-spacing: .08em; }
 .cover-spine.is-thin .spine-text { display: none; }
 
 /* ---------- front panel ---------- */
@@ -304,7 +304,7 @@ body {
   display: flex; justify-content: space-between; margin: 0;
   font-size: 7.5pt; letter-spacing: .18em; color: #b45309;
 }
-.paths-kicker-en { color: #8a94a0; letter-spacing: .2em; }
+.paths-kicker-en { color: #52606d; letter-spacing: .2em; }
 .path-list { border-top: .25mm solid rgba(31, 41, 51, .22); }
 .path-row {
   display: grid; grid-template-columns: 8mm 21mm 1fr;

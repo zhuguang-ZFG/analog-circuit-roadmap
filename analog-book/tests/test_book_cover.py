@@ -2,6 +2,7 @@
 """封面：书脊公式、尺寸、出血、裁切线、二维码与无假 ISBN。"""
 import copy
 import hashlib
+import math
 import re
 import sys
 import tempfile
@@ -64,6 +65,21 @@ def visible_text(markup: str) -> str:
     return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", markup)).strip()
 
 
+def contrast_ratio(foreground: str, background: str) -> float:
+    """WCAG 2.x 相对亮度对比度，如 "#52606d" 对 "#fffdf8"。"""
+    def luminance(value: str) -> float:
+        channels = [int(value[index:index + 2], 16) / 255
+                    for index in (1, 3, 5)]
+        linear = [channel / 12.92 if channel <= .03928
+                  else ((channel + .055) / 1.055) ** 2.4
+                  for channel in channels]
+        return .2126 * linear[0] + .7152 * linear[1] + .0722 * linear[2]
+
+    lighter, darker = sorted((luminance(foreground), luminance(background)),
+                             reverse=True)
+    return (lighter + .05) / (darker + .05)
+
+
 class SpineTests(unittest.TestCase):
     def test_spine_formula_uses_final_page_count(self):
         self.assertEqual(31.0, spine_mm(600, MANIFEST))
@@ -78,6 +94,16 @@ class SpineTests(unittest.TestCase):
     def test_cover_size_rejects_zero_pages(self):
         with self.assertRaises(ValueError):
             cover_size_mm(0, MANIFEST)
+
+    def test_spine_six_mm_boundary_toggles_spine_text(self):
+        self.assertEqual(5.95, spine_mm(99, MANIFEST))
+        self.assertEqual(6.0, spine_mm(100, MANIFEST))
+        thin = cover_html(MANIFEST, 99)
+        self.assertIn('class="cover-panel cover-spine is-thin"', thin)
+        self.assertNotIn('class="spine-text"', thin)
+        full = cover_html(MANIFEST, 100)
+        self.assertNotIn("cover-spine is-thin", full)
+        self.assertIn('class="spine-text"', full)
 
 
 class CoverHtmlTests(unittest.TestCase):
@@ -113,6 +139,41 @@ class CoverHtmlTests(unittest.TestCase):
         self.assertRegex(css, r"\.crop-mark-halo\s*\{[^}]*#fffdf8")
         self.assertRegex(css, r"\.crop-mark\s*\{[^}]*stroke-width:\s*\.18")
 
+    def test_crop_geometry_stays_on_bleed_lines_and_short(self):
+        width, height = cover_size_mm(650, MANIFEST)
+        bleed = MANIFEST["cover"]["bleed_mm"]
+        marks = re.findall(
+            r'<line class="crop-mark" x1="([\d.]+)" y1="([\d.]+)" '
+            r'x2="([\d.]+)" y2="([\d.]+)"/>', self.html)
+        self.assertEqual(8, len(marks))
+        for values in marks:
+            x1, y1, x2, y2 = (float(value) for value in values)
+            on_vertical = (
+                abs(x1 - bleed) < 1e-6 and abs(x2 - bleed) < 1e-6) or (
+                abs(x1 - (width - bleed)) < 1e-6
+                and abs(x2 - (width - bleed)) < 1e-6)
+            on_horizontal = (
+                abs(y1 - bleed) < 1e-6 and abs(y2 - bleed) < 1e-6) or (
+                abs(y1 - (height - bleed)) < 1e-6
+                and abs(y2 - (height - bleed)) < 1e-6)
+            self.assertTrue(on_vertical or on_horizontal,
+                            f"裁切线偏离出血线: {values}")
+            self.assertLessEqual(math.hypot(x2 - x1, y2 - y1), 2.5,
+                                 f"裁切线超长: {values}")
+
+    def test_crop_marks_switch_off_removes_marks_and_halos(self):
+        manifest = copy.deepcopy(MANIFEST)
+        manifest["cover"]["crop_marks"] = False
+        html = cover_html(manifest, 650)
+        self.assertNotIn('<line class="crop-mark"', html)
+        self.assertNotIn('<line class="crop-mark-halo"', html)
+        self.assertNotIn('class="cover-marks"', html)
+        # 关掉裁切线不应影响其余版面。
+        self.assertIn('class="cover-panel cover-back"', html)
+        self.assertIn('class="cover-panel cover-front"', html)
+        self.assertIn("通往模拟电路之路", html)
+        self.assertIn('data-qr="site"', html)
+
     def test_spine_is_vertical_and_can_be_thin(self):
         css = (config.COVER_DIR / "cover.css").read_text(encoding="utf-8")
         self.assertIn("writing-mode: vertical-rl", css)
@@ -129,13 +190,26 @@ class CoverHtmlTests(unittest.TestCase):
         self.assertNotRegex(self.html, r"ISBN[^<]{0,16}\d{10,13}")
         self.assertNotIn("978-", self.html)
 
+    def test_isbn_area_stays_blank_and_reserved(self):
+        area = re.search(r'<div class="isbn-area">.*?</div>', self.html,
+                         re.S)
+        self.assertIsNotNone(area)
+        markup = area.group(0)
+        self.assertNotIn("<svg", markup)
+        self.assertNotIn("data-qr", markup)
+        self.assertIsNone(re.search(r"\d{10,13}", markup))
+        self.assertIn("ISBN / 条码预留区（留空）", markup)
+        css = (config.COVER_DIR / "cover.css").read_text(encoding="utf-8")
+        self.assertRegex(css, r"\.isbn-area\s*\{[^}]*dashed")
+
     def test_qr_is_inline_vector_and_no_remote_assets(self):
         svg = qr_svg(MANIFEST["site_url"])
         self.assertTrue(svg.startswith("<svg"))
         self.assertIn("path", svg)
         self.assertNotIn("<image", svg)
-        self.assertNotIn('<img src="http', self.html)
-        self.assertNotIn("<iframe", self.html)
+        forbidden = (r'src="http|href="http|url\(http'
+                     r"|<script|<image|<iframe")
+        self.assertIsNone(re.search(forbidden, self.html, re.IGNORECASE))
 
     def test_all_ids_are_unique_and_qr_ids_are_stable(self):
         ids = re.findall(r'id="([^"]+)"', self.html)
@@ -203,6 +277,20 @@ class CoverHtmlTests(unittest.TestCase):
     def test_spine_author_rotates_instead_of_stacking(self):
         css = (config.COVER_DIR / "cover.css").read_text(encoding="utf-8")
         self.assertIn("text-orientation: mixed", css)
+
+    def test_low_contrast_labels_are_raised(self):
+        css = (config.COVER_DIR / "cover.css").read_text(encoding="utf-8")
+        self.assertRegex(css, r"\.paths-kicker-en\s*\{[^}]*#52606d")
+        self.assertRegex(css,
+                         r"\.paths-kicker-en\s*\{[^}]*letter-spacing:\s*\.2em")
+        self.assertNotIn("#8a94a0", css)
+        self.assertAlmostEqual(
+            6.35, contrast_ratio("#52606d", "#fffdf8"), delta=0.01)
+        author_rule = re.search(r"\.spine-author\s*\{([^}]*)\}", css)
+        self.assertIsNotNone(author_rule)
+        self.assertNotIn("opacity", author_rule.group(1))
+        self.assertIn("font-size: 9pt", author_rule.group(1))
+        self.assertIn("letter-spacing: .08em", author_rule.group(1))
 
 
 @unittest.skipIf(fitz is None or sync_playwright is None,
