@@ -33,7 +33,7 @@ MODEL = {
 }
 PDF = {"pages": 652, "body_start": 13, "bookmarks": 143,
        "problems": [], "warnings": []}
-COVER = {"pages": 652, "size_mm": [409.6, 266.0],
+COVER = {"pages": 1, "size_mm": [409.6, 266.0],
          "spine_mm": 33.6, "problems": []}
 
 
