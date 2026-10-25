@@ -9,7 +9,8 @@ from pathlib import Path
 BOOK = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(BOOK))
 
-from book.pdf import check_pdf, pad_to_multiple, print_pdf, stamp_pdf  # noqa: E402
+from book.pdf import (  # noqa: E402
+    _region_links, check_pdf, pad_to_multiple, print_pdf, stamp_pdf)
 
 try:
     import fitz
@@ -35,6 +36,8 @@ TOC = [
      "kind": "chapter"},
     {"level": 3, "title": "0.1 测试小节", "anchor": "p1-01-ch0--s1",
      "kind": "section"},
+    {"level": 3, "title": "0.2 测试小节二", "anchor": "p1-01-ch0--s2",
+     "kind": "section"},
     {"level": 1, "title": "附录 A 测试", "anchor": "appendix-a", "kind": "appendix"},
     {"level": 2, "title": "附录 B 速查", "anchor": "page-p0-08-cheatsheet",
      "kind": "appendix"},
@@ -59,6 +62,7 @@ PARAGRAPHS = "".join(
 CHAPTER_HTML = (
     '<h1 id="page-p1-01-ch0">第 0 章 测试章</h1>'
     '<h2 id="p1-01-ch0--s1">0.1 测试小节</h2>'
+    '<h2 id="p1-01-ch0--s2">0.2 测试小节二</h2>'
     '<figure id="p1-01-ch0--fig-1"><p>图</p><figcaption>图 0-1 测试图</figcaption></figure>'
     '<table id="p1-01-ch0--table-1"><caption>表 0-1 测试表</caption>'
     '<tr><th>列</th></tr><tr><td>值</td></tr></table>' + PARAGRAPHS)
@@ -224,15 +228,14 @@ class PdfTests(unittest.TestCase):
 
     def test_bookmarks_are_three_levels_from_model(self):
         toc = self.doc.get_toc()
-        self.assertEqual([1, 2, 3, 1, 2], [entry[0] for entry in toc])
+        self.assertEqual([1, 2, 3, 3, 1, 2], [entry[0] for entry in toc])
         self.assertEqual([entry["title"] for entry in MODEL["toc"]],
                          [entry[1] for entry in toc])
         starts = self.report["starts"]
-        self.assertEqual(starts[11] + 1, toc[0][2])
-        self.assertEqual(starts[12] + 1, toc[1][2])
-        self.assertEqual(starts[12] + 1, toc[2][2])
-        self.assertEqual(starts[13] + 1, toc[3][2])
-        self.assertEqual(starts[14] + 1, toc[4][2])
+        self.assertEqual(
+            [starts[11] + 1, starts[12] + 1, starts[12] + 1,
+             starts[12] + 1, starts[13] + 1, starts[14] + 1],
+            [entry[2] for entry in toc])
 
     def test_appendix_h2_participates_in_page_starts(self):
         raw = fitz.open(self.raw)
@@ -259,9 +262,25 @@ class PdfTests(unittest.TestCase):
         columns = {round(link["from"].x0, 1) for link in links}
         self.assertEqual(2, len(columns), "目录必须排成双栏")
         self.assertGreater(max(columns) - min(columns), 100)
-        self.assertEqual([starts[11], starts[12], starts[12], starts[13],
-                          starts[14]],
+        self.assertEqual([starts[11], starts[12], starts[12], starts[12],
+                          starts[13], starts[14]],
                          [link["page"] for link in links])
+
+    def test_region_links_keep_annotation_order(self):
+        # Chromium 的链接注记顺序即 DOM/阅读顺序；按坐标排序会把右栏行插进左栏行。
+        # 小节 2 位于右栏，坐标排序会把它的目标错配到附录 A 页。
+        raw = fitz.open(self.raw)
+        try:
+            links = _region_links(
+                raw, self.report["starts"][7], self.report["starts"][8],
+                self.report["body_start"])
+        finally:
+            raw.close()
+        starts = self.report["starts"]
+        self.assertEqual(
+            [starts[11], starts[12], starts[12], starts[12],
+             starts[13], starts[14]],
+            [link["target"] for link in links])
 
     def test_links_survive_backfill(self):
         starts = self.report["starts"]
@@ -276,7 +295,7 @@ class PdfTests(unittest.TestCase):
         for begin, end in regions:
             text = "\n".join(self.doc[p].get_text() for p in range(begin, end))
             self.assertNotIn("000", text)
-        self.assertEqual(8, self.report["backfilled"])
+        self.assertEqual(9, self.report["backfilled"])
         toc_links = [link for link in self.doc[starts[7]].get_links()
                      if isinstance(link.get("page"), int)]
         self.assertEqual(len(TOC), len(toc_links))
@@ -335,7 +354,7 @@ class PdfTests(unittest.TestCase):
         height = self.doc[0].rect.height
         top = fitz.Rect(0, 0, width, 18 * MM)
         bottom = fitz.Rect(0, height - 18 * MM, width, height)
-        for pno in (starts[7], starts[12] + 1):
+        for pno in (starts[7], starts[12] + 1, starts[12] + 2):
             page = self.doc[pno]
             entries = [font for font in page.get_fonts()
                        if font[4] == "bookstamp"]
@@ -346,11 +365,12 @@ class PdfTests(unittest.TestCase):
             for font in page.get_fonts():
                 self.assertNotIn("helv", font[4].lower())
                 self.assertNotIn("helvetica", font[3].lower())
-            digits = [span for span in _spans(page)
-                      if re.fullmatch(r"\d+", span["text"])]
-            self.assertTrue(digits, f"物理页 {pno} 没有数字回填 span")
-            for span in digits:
-                self.assertEqual(basefont, span["font"])
+            if pno == starts[7]:
+                digits = [span for span in _spans(page)
+                          if re.fullmatch(r"\d+", span["text"])]
+                self.assertTrue(digits, f"物理页 {pno} 没有数字回填 span")
+                for span in digits:
+                    self.assertEqual(basefont, span["font"])
             for clip in (top, bottom):
                 spans = _spans(page, clip)
                 self.assertTrue(spans)

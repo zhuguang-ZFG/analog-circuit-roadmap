@@ -18,7 +18,6 @@ FRONT_KINDS = {"half_title", "title_page", "copyright", "toc",
                "list_of_figures", "list_of_tables"}
 MUTED = (0.32, 0.38, 0.44)
 RULE = (0.78, 0.82, 0.86)
-HEADING_RE = re.compile(r"<h([12])\b[^>]*>(.*?)</h\1>", re.S | re.I)
 TAG_RE = re.compile(r"<[^>]+>")
 
 
@@ -146,9 +145,10 @@ def _normalize_title(text: str) -> str:
 
 
 def _page_heading(page: dict) -> tuple[int, str]:
-    level = 2 if page.get("source") and page["group"] == "appendix" else 1
+    level = 2 if page.get("source") and page.get("group") == "appendix" else 1
     match = re.search(
-        rf"<h{level}\b[^>]*>(.*?)</h{level}>", page["html"], re.S | re.I)
+        rf"<h{level}\b[^>]*>(.*?)</h{level}>", page.get("html") or "",
+        re.S | re.I)
     if match is None:
         raise BookError(f"{page['id']}: 找不到 h{level} 标题")
     return level, _normalize_title(match.group(1))
