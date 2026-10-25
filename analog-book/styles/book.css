@@ -79,6 +79,20 @@ html, body {
 .book-top:hover { border-color: var(--book-brand); }
 .book-top:focus-visible { outline: 2px solid var(--book-brand); outline-offset: 2px; }
 
+.book-progress {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 60; height: 3px;
+  background: linear-gradient(90deg, var(--book-brand), #e0a458);
+  transform: scaleX(0); transform-origin: left center;
+  transition: transform .12s linear; pointer-events: none;
+}
+.book-skip {
+  position: fixed; top: 10px; left: 10px; z-index: 70;
+  padding: 8px 14px; background: #fff; color: var(--book-brand);
+  border: 1px solid var(--book-brand); border-radius: 8px;
+  font-weight: 600; text-decoration: none; transform: translateY(-200%);
+}
+.book-skip:focus { transform: none; outline: 2px solid var(--book-brand); outline-offset: 2px; }
+
 .book-cover {
   box-sizing: border-box; width: 100%; min-height: 240mm; display: flex;
   flex-direction: column; justify-content: center; align-items: center;
@@ -89,6 +103,10 @@ html, body {
 .book-cover-art svg { display: block; width: 100%; max-width: 100%; height: auto; }
 .book-cover-kicker { color: var(--book-brand); font-size: 18px; letter-spacing: .12em; margin: 0; }
 .book-cover-title { font-size: 56px; line-height: 1.15; margin: 0; }
+.book-cover-author {
+  color: var(--book-ink); font-size: 16px; font-weight: 600;
+  letter-spacing: .04em; margin: 0;
+}
 .book-cover-rule {
   width: 64px; height: 3px; margin: 8px auto 4px;
   background: var(--book-brand); border-radius: 2px;
@@ -172,9 +190,13 @@ html, body {
   .book-top { right: 14px; bottom: 14px; }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .book-progress { transition: none; }
+}
+
 @media print {
   .book-header, .book-footer, .book-page-back, .reading-nav,
-  .book-search, .book-top { display: none !important; }
+  .book-search, .book-top, .book-progress, .book-skip { display: none !important; }
   .book { max-width: none; padding: 0; }
   .book .md-typeset { font-size: 10.5pt; line-height: 1.65; }
   .book-copyright { font-size: 10.5pt; }

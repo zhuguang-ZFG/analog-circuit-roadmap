@@ -20,6 +20,7 @@ MANIFEST_PATH = BOOK_DIR / "manifest.json"
 OUTPUT_NAME = "analog-circuit-book.html"
 PDF_NAME = "analog-circuit-book.pdf"
 MAX_HTML_BYTES = 20 * 1024 * 1024
+PREFACE_LABEL = "本篇导读"
 
 ARTICLE_RE = re.compile(
     r'<article class="md-content__inner md-typeset">(.*?)</article>', re.S)
@@ -344,6 +345,7 @@ def _cover(manifest: dict) -> str:
         f'<p class="book-cover-kicker">{html.escape(manifest["subtitle"])}</p>'
         f'<h1 class="book-cover-title">{html.escape(manifest["title"])}</h1>'
         '<p class="book-cover-rule" aria-hidden="true"></p>'
+        f'<p class="book-cover-author">{html.escape(manifest["author"])}</p>'
         f'<p class="book-cover-version">版本 {manifest["version"]} · {manifest["date"]}</p>'
         f'<p class="book-cover-site">{html.escape(manifest["site_url"])}</p>'
         f'<p class="book-cover-repo">{html.escape(manifest["repository"])}</p>'
@@ -371,9 +373,11 @@ def _toc(parts: list[dict]) -> str:
             '<h1>全书目录</h1>']
     for part in parts:
         rows.append(f'<div class="book-toc-part"><h2>{html.escape(part["title"])}</h2><ul>')
-        for page in part["pages"]:
+        for index, page in enumerate(part["pages"]):
+            label = (PREFACE_LABEL
+                     if index == 0 and page["title"] == part["title"] else page["title"])
             rows.append(
-                f'<li><a href="#page-{page["stem"]}">{html.escape(page["title"])}</a></li>')
+                f'<li><a href="#page-{page["stem"]}">{html.escape(label)}</a></li>')
         rows.append("</ul></div>")
     rows.append("</section>")
     return "\n".join(rows)
@@ -401,9 +405,12 @@ def assemble_book(manifest: dict, parts: list[dict],
 <meta name="book-manifest-sha256" content="{manifest_sha256()}">
 <meta name="book-version" content="{manifest["version"]}">
 <meta name="book-date" content="{manifest["date"]}">
+<meta name="book-author" content="{html.escape(manifest["author"], quote=True)}">
 <style>{css}</style>
 </head>
 <body data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+<a class="book-skip" href="#book-toc">跳到目录</a>
+<div class="book-progress" id="book-progress" aria-hidden="true"></div>
 <header class="book-header"><span class="book-header-title">{html.escape(manifest["title"])}</span>
 <div class="book-search" id="book-search" role="search">
 <label class="visually-hidden" for="book-search-input">搜索全书</label>
@@ -658,8 +665,15 @@ def _stamp_pdf(raw_pdf: Path, output_pdf: Path, manifest: dict) -> None:
                 rect = fitz.Rect(link["from"])
                 label = str(target - body_start + 1)
                 width = fitz.get_text_length(label, fontname="helv", fontsize=8)
+                number_x = page.rect.width - 46 - width
+                if rect.x1 + 12 < number_x:
+                    page.draw_line(
+                        fitz.Point(rect.x1 + 5, rect.y1 - 4),
+                        fitz.Point(number_x - 5, rect.y1 - 4),
+                        color=(0.78, 0.80, 0.82), width=0.5,
+                        dashes="[0.7 2.2] 0")
                 page.insert_text(
-                    fitz.Point(page.rect.width - 46 - width, rect.y1 - 2),
+                    fitz.Point(number_x, rect.y1 - 2),
                     label, fontname="helv", fontsize=8, color=(0.38, 0.42, 0.45))
         html_path = output_pdf.with_name(OUTPUT_NAME)
         html_text = html_path.read_text(encoding="utf-8")
@@ -679,10 +693,14 @@ def _stamp_pdf(raw_pdf: Path, output_pdf: Path, manifest: dict) -> None:
         for part in _parts_with_titles(page_titles, starts):
             toc.append([1, part["title"], starts[part["first"]] + 1])
             for offset, (_stem, title) in enumerate(part["pages"]):
-                toc.append([2, title, starts[part["first"] + offset] + 1])
+                label = (PREFACE_LABEL if offset == 0 and title == part["title"]
+                         else title)
+                toc.append([2, label, starts[part["first"] + offset] + 1])
         document.set_toc(toc)
-        document.set_page_labels([{
-            "startpage": body_start, "prefix": "", "style": "D", "firstpagenum": 1}])
+        document.set_page_labels([
+            {"startpage": 0, "prefix": "", "style": "r", "firstpagenum": 1},
+            {"startpage": body_start, "prefix": "", "style": "D", "firstpagenum": 1},
+        ])
         # 页眉与页脚：正文从 1 开始。
         short_title = manifest["title"]
         total = max(1, document.page_count - body_start)

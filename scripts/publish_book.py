@@ -13,8 +13,12 @@ DEFAULT_HTML = ROOT / "analog-book" / "dist" / "analog-circuit-book.html"
 DEFAULT_PDF = ROOT / "analog-book" / "dist" / "analog-circuit-book.pdf"
 DEFAULT_SITE = ROOT / "build" / "site"
 COVER_ART = ROOT / "analog-book" / "static" / "cover-art.svg"
+OG_IMAGE = ROOT / "assets" / "og-cover.png"
 BOOK_DIR_NAME = "book"
 REPOSITORY = "https://github.com/zhuguang-ZFG/analog-circuit-roadmap"
+SITE_URL = "https://aliyun-hutuji.donglicao.com/analog-circuit-roadmap/"
+BOOK_URL = SITE_URL + BOOK_DIR_NAME + "/"
+OG_WIDTH, OG_HEIGHT = 1200, 630
 
 FAVICON = "data:image/svg+xml," + quote(
     "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'>"
@@ -71,6 +75,7 @@ kbd {
 }
 .cover-card svg { display: block; width: 100%; height: auto; margin-bottom: 14px; }
 .cover-title { margin: 0; font-size: 24px; line-height: 1.25; letter-spacing: .02em; }
+.cover-author { margin: 4px 0 0; color: #b45309; font-size: 13px; font-weight: 600; letter-spacing: .04em; }
 .cover-meta { margin: 6px 0 0; color: #52606d; font-size: 13px; }
 .downloads { margin-top: clamp(36px, 6vw, 64px); }
 .downloads h2 { margin: 0 0 14px; font-size: 22px; }
@@ -152,7 +157,7 @@ def _cover_art() -> str:
 
 def _landing(version: str, date: str, html_name: str, pdf_name: str,
              html_size: int, pdf_size: int, stats: list[tuple[str, str]],
-             art: str) -> str:
+             art: str, author: str) -> str:
     meta = " · ".join(part for part in (
         ("版本 " + version) if version else "", date) if part)
     meta_html = f'<p class="meta">{html.escape(meta)}</p>' if meta else ""
@@ -163,6 +168,13 @@ def _landing(version: str, date: str, html_name: str, pdf_name: str,
     description = html.escape(
         f"《通往模拟电路之路》离线整书：{pages} 页正文，单文件 HTML 与 A4 PDF，"
         "断网可读，内置全文搜索。", quote=True)
+    share_title = "离线整书 · 通往模拟电路之路"
+    canonical = html.escape(BOOK_URL, quote=True)
+    share_image = html.escape(BOOK_URL + OG_IMAGE.name, quote=True)
+    author_html = (f'<p class="cover-author">{html.escape(author)}</p>'
+                   if author else "")
+    author_meta = (f'<meta name="author" content="{html.escape(author, quote=True)}">'
+                   if author else "")
     return f"""<!doctype html>
 <html lang="zh-CN">
 <head>
@@ -170,13 +182,25 @@ def _landing(version: str, date: str, html_name: str, pdf_name: str,
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <meta name="description" content="{description}">
+{author_meta}
+<link rel="canonical" href="{canonical}">
 <meta property="og:type" content="website">
-<meta property="og:title" content="离线整书 · 通往模拟电路之路">
+<meta property="og:site_name" content="通往模拟电路之路">
+<meta property="og:url" content="{canonical}">
+<meta property="og:title" content="{share_title}">
 <meta property="og:description" content="{description}">
+<meta property="og:image" content="{share_image}">
+<meta property="og:image:width" content="{OG_WIDTH}">
+<meta property="og:image:height" content="{OG_HEIGHT}">
+<meta property="og:image:alt" content="《通往模拟电路之路》离线整书封面">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{share_title}">
+<meta name="twitter:description" content="{description}">
+<meta name="twitter:image" content="{share_image}">
 <meta name="theme-color" content="#fffdf8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14181d" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="{FAVICON}">
-<title>离线整书 · 通往模拟电路之路</title>
+<title>{share_title}</title>
 <style>{LANDING_CSS}</style>
 </head>
 <body>
@@ -192,6 +216,7 @@ def _landing(version: str, date: str, html_name: str, pdf_name: str,
 <div class="cover-card" aria-hidden="true">
 {art}
 <p class="cover-title">通往模拟电路之路</p>
+{author_html}
 <p class="cover-meta">版本 {html.escape(version or date)}</p>
 </div>
 </section>
@@ -225,17 +250,21 @@ def publish(html_path: Path, pdf_path: Path, site_dir: Path) -> Path:
             raise FileNotFoundError(f"整书产物不存在或为空: {path}")
     if not (site_dir / "index.html").is_file():
         raise FileNotFoundError(f"站点产物不存在，请先构建站点: {site_dir}")
+    if not OG_IMAGE.is_file():
+        raise FileNotFoundError(f"社交分享图不存在: {OG_IMAGE}")
     target = site_dir / BOOK_DIR_NAME
     target.mkdir(parents=True, exist_ok=True)
     shutil.copy2(html_path, target / html_path.name)
     shutil.copy2(pdf_path, target / pdf_path.name)
+    shutil.copy2(OG_IMAGE, target / OG_IMAGE.name)
     document = html_path.read_text(encoding="utf-8")
     version = _meta(document, "book-version")
     date = _meta(document, "book-date")
+    author = _meta(document, "book-author")
     (target / "index.html").write_text(
         _landing(version, date, html_path.name, pdf_path.name,
                  html_path.stat().st_size, pdf_path.stat().st_size,
-                 _stats(document), _cover_art()),
+                 _stats(document), _cover_art(), author),
         encoding="utf-8", newline="\n")
     return target
 

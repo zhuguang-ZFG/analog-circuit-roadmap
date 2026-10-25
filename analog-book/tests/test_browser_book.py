@@ -50,6 +50,14 @@ class BrowserBook(unittest.TestCase):
                 page.evaluate("document.querySelectorAll('mjx-container').length"), 1000)
             self.assertGreater(
                 page.evaluate("document.querySelectorAll('[data-calc-ready]').length"), 0)
+            page.keyboard.press("Tab")
+            self.assertIn("book-skip",
+                          page.evaluate("document.activeElement.className"))
+            skip = page.locator(".book-skip").bounding_box()
+            self.assertIsNotNone(skip)
+            self.assertGreaterEqual(skip["y"], 0, "跳到目录应在聚焦时可见")
+            page.keyboard.press("Enter")
+            page.wait_for_function("location.hash === '#book-toc'")
             page.click('a[href="#page-p1-01-ch0"]')
             page.wait_for_function(
                 "document.getElementById('page-p1-01-ch0').getBoundingClientRect().top < 300")
@@ -83,10 +91,16 @@ class BrowserBook(unittest.TestCase):
                                 page.evaluate("document.activeElement.id"))
             page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
             page.wait_for_selector("#book-top:not([hidden])")
+            page.wait_for_function(
+                "getComputedStyle(document.getElementById('book-progress'))"
+                ".transform === 'matrix(1, 0, 0, 1, 0, 0)'")
             page.click("#book-top")
             page.wait_for_function("window.scrollY < 60")
             page.wait_for_function(
                 "document.getElementById('book-top').hidden")
+            page.wait_for_function(
+                "getComputedStyle(document.getElementById('book-progress'))"
+                ".transform === 'matrix(0, 0, 0, 1, 0, 0)'")
             self.assertEqual([], errors[:5])
             browser.close()
 

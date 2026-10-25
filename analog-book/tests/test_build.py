@@ -166,6 +166,8 @@ class AssemblyTests(unittest.TestCase):
         toc = re.search(r'<section class="book-toc".*?</section>', self.document, re.S).group(0)
         self.assertEqual(60, toc.count('<a href="#page-'))
         self.assertEqual(11, toc.count("<h2"))
+        self.assertEqual(10, toc.count(">本篇导读</a>"),
+                         "各篇首页标题与篇名重复，目录里应改为导读")
 
     def test_offline_search_is_wired(self):
         self.assertEqual(60, self.document.count('data-part-title="'))
@@ -185,6 +187,21 @@ class AssemblyTests(unittest.TestCase):
         self.assertIn('id="book-top"', self.document)
         self.assertIn('aria-label="回到顶部"', self.document)
         self.assertIn('getElementById("book-top")', self.document)
+
+    def test_reading_progress_skip_link_and_author(self):
+        author = self.manifest["author"]
+        self.assertIn(f'<meta name="book-author" content="{author}">', self.document)
+        self.assertIn(f'class="book-cover-author">{author}</p>', self.document)
+        self.assertIn('class="book-skip" href="#book-toc">跳到目录</a>',
+                      self.document)
+        self.assertIn('class="book-progress" id="book-progress" aria-hidden="true"',
+                      self.document)
+        self.assertIn('getElementById("book-progress")', self.document)
+        self.assertIn("scaleX(", self.document)
+        css = (build_book.BOOK_DIR / "styles" / "book.css").read_text(encoding="utf-8")
+        print_block = css.split("@media print", 1)[1]
+        self.assertIn(".book-progress, .book-skip { display: none !important; }",
+                      print_block)
 
     def test_print_layout_avoids_page_shrink(self):
         css = (build_book.BOOK_DIR / "styles" / "book.css").read_text(encoding="utf-8")

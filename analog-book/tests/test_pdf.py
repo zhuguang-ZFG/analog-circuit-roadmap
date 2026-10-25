@@ -38,9 +38,24 @@ class PdfBook(unittest.TestCase):
             toc = document.get_toc()
             self.assertEqual(11, sum(1 for level, _, _ in toc if level == 1))
             self.assertEqual(60, sum(1 for level, _, _ in toc if level == 2))
+            level2 = [title for level, title, _ in toc if level == 2]
+            self.assertEqual(10, level2.count("本篇导读"),
+                             "各篇首页应与篇名区分，书签显示导读")
             pages = [page for _level, _title, page in toc]
             self.assertEqual(pages, sorted(pages))
             self.assertTrue(all(1 <= page <= document.page_count for page in pages))
+            labels = document.get_page_labels()
+            self.assertEqual(["r", "D"], [label["style"] for label in labels])
+            self.assertEqual("i", document[0].get_label())
+            first_body = min(page for level, _title, page in toc if level == 2)
+            self.assertEqual("1", document[first_body - 1].get_label())
+            toc_pages = [i for i in range(document.page_count)
+                         if document[i].get_label().isalpha()
+                         and document[i].get_links()]
+            leaders = [drawing for index in toc_pages
+                       for drawing in document[index].get_drawings()
+                       if drawing.get("type") == "s" and drawing.get("dashes")]
+            self.assertGreaterEqual(len(leaders), 50, "目录页应绘制点线引导")
             # 封面/版权/目录无页码：前 3 页不含 " / " 页脚
             for index in range(min(3, document.page_count)):
                 self.assertNotIn(" / ", document[index].get_text())
@@ -50,7 +65,6 @@ class PdfBook(unittest.TestCase):
             self.assertRegex(toc_text, r"\b[1-9]\d*\b")
             # 正文页有页码
             self.assertIn(" / ", document[document.page_count - 1].get_text())
-            first_body = min(page for level, _title, page in toc if level == 2)
             sizes = [round(span["size"], 1)
                      for block in document[first_body - 1].get_text("dict")["blocks"]
                      for line in block.get("lines", [])
