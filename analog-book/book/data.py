@@ -135,6 +135,8 @@ def validate_sources(items: list[dict], used_ids: set[str] | None = None,
         if not DATE_RE.match(str(item["verified_on"])):
             raise BookError(f"{where}: verified_on 必须是 YYYY-MM-DD")
     if used_ids is None:
+        if final:
+            raise BookError("final 阶段必须提供正文片段以校验来源闭合")
         return
     missing = sorted(used_ids - ids)
     unused = sorted(ids - used_ids)

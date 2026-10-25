@@ -720,7 +720,7 @@
   title: 排故决策树：从「上电无反应」到具体表项
   chapter: 17
   anchor: demo102
-  one_line: 决策脊柱一路向下——「输入电压？」「电源轨？」「复位/时钟？」每问一个「否」就横向落到一张速查表（17.1/17.3）；四问皆「是」却功能异常，则按表现分四叶：完全不动→17.3、读数不对→17.2、时好时坏→17.6→17.4、发热异常→
+  one_line: 决策脊柱一路向下——「输入电压？」「电源轨？」「复位/时钟？」每问一个「否」就横向落到一张速查表（17.1/17.3）…
   static_svg: assets/svg/diagnosis-tree.svg
 - id: anim-103
   file: p5-00-part5.md
@@ -728,31 +728,28 @@
   chapter: 1
   anchor: demo103
   one_line: 圆点匀速扫过偏压轴，红线和 5V 工作点来自同一组教学数据；假设保持率为 26%，10µF 就变为 2.6µF，同纹波电流且忽略 ESR 时容性纹波增至约 3.85 倍。曲线不是实测值，X5R/X7R
-    也不是降容等级；C0G 仅作归一化参考
+    也不是降容等级…
   static_svg: assets/svg/cap-derating.svg
 - id: anim-104
   file: p5-00-part5.md
   title: 运放输入级选型：源阻抗决定一切
   chapter: 12
   anchor: demo104
-  one_line: 三张卡片摊开 $I_b$、$e_n$、$i_n$，下面的横轴按源阻抗分段——低阻段比的是 $e_n$（BJT 赢 1.7 倍），高阻段比的是 $I_b\cdot R_s$（1MΩ
-    下 BJT 20mV vs CMOS 1µV，差四个数量级）
+  one_line: 三张卡片摊开 $I_b$、$e_n$、$i_n$，下面的横轴按源阻抗分段——低阻段比的是 $e_n$（BJT 赢 1.7 倍），高阻段比的是 $I_b\cdot R_s$…
   static_svg: assets/svg/opamp-input-stage.svg
 - id: anim-105
   file: p5-00-part5.md
   title: 晶体振荡器：Pierce 拓扑与负阻判据
   chapter: 13
   anchor: demo105
-  one_line: 左边把 Pierce 拓扑的四个元件各司其职画清楚（$R_f$ 偏置、晶体选频、$C_1/C_2$ 定 $C_L$）；右边给出唯一必须算的数 $C_L=C_1C_2/(C_1+C_2)+C_{stray}$，以及起振判据
-    $R_{neg}\
+  one_line: 左边把 Pierce 拓扑的四个元件各司其职画清楚（$R_f$ 偏置、晶体选频、$C_1/C_2$ 定 $C_L$）…
   static_svg: assets/svg/crystal-pierce.svg
 - id: anim-106
   file: p5-00-part5.md
   title: 光耦与隔离：CTR 是设计变量
   chapter: 13
   anchor: demo106
-  one_line: 橙色光粒子穿过 kV 级隔离栅——信号能过、电流不能过；右边列出 CTR 的三个坑（同型号分档 50%~600%、随温与时间衰减、小电流非线性），结论是按档位最小值 × 2 倍老化余量反算驱动电流（$R_{in}$
-    从 1kΩ 改 470Ω
+  one_line: 橙色光粒子穿过 kV 级隔离栅——信号能过、电流不能过…
   static_svg: assets/svg/optocoupler-ctr.svg
 - id: anim-107
   file: p5-00-part5.md
@@ -760,7 +757,7 @@
   chapter: 14
   anchor: demo107
   one_line: 左侧把 Buck 反馈分压的四项误差逐条列成预算表，右侧把 WC 与 3σ 画成两条同心带——3σ 大约只有 WC 的一半；再用 $2\Phi(k)-1$ 折良率：规格 ±1% 时约
-    97.5%，每千块 25 块超规。→ 正文 14.8 原
+    97.5%，每千块 25 块超规。
   static_svg: assets/svg/error-budget.svg
 - id: anim-108
   file: p5-00-part5.md

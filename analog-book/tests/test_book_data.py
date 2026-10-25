@@ -58,6 +58,35 @@ class AnimationTests(unittest.TestCase):
         self.assertEqual(generated, committed)
         data.validate_animations(committed)
 
+    def test_one_line_summaries_are_well_formed(self):
+        committed = data.load_list(BOOK / "data" / "animations.yml")
+        for item in committed:
+            one_line = item["one_line"]
+            with self.subTest(item=item["id"]):
+                self.assertTrue(one_line)
+                self.assertLessEqual(len(one_line), 120)
+                self.assertEqual(0, one_line.count("$") % 2)
+                self.assertEqual(one_line.count("（"), one_line.count("）"))
+                self.assertNotIn(one_line[-1], "、，；：,;:（→")
+
+    def test_committed_seed_files_validate(self):
+        import build_book_data
+        data_dir = BOOK / "data"
+        animations = data.load_list(data_dir / "animations.yml")
+        data.validate_animations(animations)
+        terms = data.load_list(data_dir / "index-terms.yml")
+        self.assertEqual(40, len(terms))
+        anchors = {f"page-{stem}" for stem in build_book_data.CHAPTER_FILES}
+        data.validate_index_terms(terms, anchors)
+        signoffs = data.load_list(data_dir / "chapter-signoff.yml")
+        data.validate_signoffs(signoffs)
+        sources = data.load_list(data_dir / "sources.yml")
+        references = data.load_list(data_dir / "references.yml")
+        self.assertEqual([], sources)
+        self.assertEqual([], references)
+        data.validate_sources(sources)
+        data.validate_references(references)
+
 
 class IndexTests(unittest.TestCase):
     def test_anchors_must_exist_and_terms_are_unique(self):
@@ -109,6 +138,12 @@ class SourceTests(unittest.TestCase):
         with self.assertRaisesRegex(BookError, "不存在"):
             data.validate_sources([item], {"ch06-datasheet-lm358", "missing"},
                                   final=True)
+
+    def test_final_source_closure_requires_fragments(self):
+        item = self.source()
+        with self.assertRaisesRegex(BookError, "正文片段"):
+            data.validate_sources([item], final=True)
+        data.validate_sources([item])
 
     def test_rejects_unknown_type_and_bad_date(self):
         with self.assertRaisesRegex(BookError, "source_type"):

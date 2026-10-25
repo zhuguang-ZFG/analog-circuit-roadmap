@@ -65,6 +65,49 @@ def _plain(text):
     return re.sub(r"\s+", " ", text).strip()
 
 
+SENTENCE_END = "。；！？"
+CLAUSE_END = "，、:"
+TRAILING = "、，；：,;:（→"
+
+
+def _last_unmatched(text, opening, closing):
+    stack = []
+    for index, char in enumerate(text):
+        if char == opening:
+            stack.append(index)
+        elif char == closing and stack:
+            stack.pop()
+    return stack[-1] if stack else None
+
+
+def summarize(text, limit=120):
+    """按句末/分句边界截断，保证摘要不切断词、公式或括号。"""
+    if len(text) <= limit:
+        return text
+    window = text[:limit - 1]
+    cut = max(window.rfind(char) for char in SENTENCE_END)
+    if cut < 0:
+        cut = max(window.rfind(char) for char in CLAUSE_END)
+    if cut >= 0:
+        summary = window[:cut + 1]
+    else:
+        space = max(window.rfind(char) for char in " \t")
+        summary = window[:space] if space >= 0 else window
+    if summary.count("$") % 2:
+        summary = summary[:summary.rfind("$")]
+    while summary.count("（") > summary.count("）"):
+        unmatched = _last_unmatched(summary, "（", "）")
+        if unmatched is None:
+            break
+        summary = summary[:unmatched]
+    summary = summary.rstrip()
+    while summary and summary[-1] in TRAILING:
+        summary = summary[:-1].rstrip()
+    if not summary.endswith(("。", "！", "？")):
+        summary += "…"
+    return summary
+
+
 def build_animations():
     lines = (DOCS / "p5-00-part5.md").read_text(encoding="utf-8").splitlines()
     chapter_of = {}
@@ -98,7 +141,7 @@ def build_animations():
             "title": current["title"],
             "chapter": chapter,
             "anchor": current["anchor"],
-            "one_line": look[:120],
+            "one_line": summarize(look),
             "static_svg": "assets/svg/" + current["svg"],
         })
         current, body = None, []
