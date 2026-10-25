@@ -109,6 +109,8 @@ def _unit_meta(chapters: list[str]) -> str:
             numbers.append(int(match.group(1)))
     if len(numbers) != len(chapters) or not numbers:
         return f"{len(chapters)} 章"
+    if sorted(numbers) != list(range(min(numbers), max(numbers) + 1)):
+        return f"{len(chapters)} 章"
     if len(numbers) == 1:
         return f"CH {numbers[0]:02d} · 1 章"
     return f"CH {min(numbers):02d}–{max(numbers):02d} · {len(chapters)} 章"

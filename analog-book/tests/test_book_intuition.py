@@ -2,8 +2,10 @@
 """篇首插图与 19 章「先建立直觉」导读。"""
 import re
 import sys
+import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 BOOK = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(BOOK))
@@ -55,14 +57,42 @@ class PartArtTests(unittest.TestCase):
             svg = illustrations.part_art(name)
             lowered = svg.lower()
             for token in ("<script", "<style", "<image", "<foreignobject",
-                          "<iframe", "href=", "xlink:", "data:", "@import"):
+                          "<iframe", "<object", "<embed", "xlink:", "data:",
+                          "@import"):
                 self.assertNotIn(token, lowered, (name, token))
-            self.assertIsNone(re.search(r"\son[a-z]+\s*=", lowered), name)
+            self.assertIsNone(re.search(r"[/\s]href\s*=", lowered), name)
+            self.assertIsNone(re.search(r"[/\s]on[a-z]+\s*=", lowered), name)
             urls = set(re.findall(r"https?://[^\"'\s>]+", svg))
             self.assertLessEqual(urls, {"http://www.w3.org/2000/svg"}, name)
             for reference in re.findall(r"url\(([^)]*)\)", svg):
                 self.assertTrue(reference.strip().startswith("#"),
                                 (name, reference))
+
+    def test_part_art_rejects_unsafe_content(self):
+        payloads = [
+            '<svg xmlns="http://www.w3.org/2000/svg">'
+            '<script>x()</script></svg>',
+            '<svg xmlns="http://www.w3.org/2000/svg" onload="x()"></svg>',
+            '<svg xmlns="http://www.w3.org/2000/svg"/onload="x()"></svg>',
+            '<svg xmlns="http://www.w3.org/2000/svg">'
+            '<a href = "#x">x</a></svg>',
+            '<svg xmlns="http://www.w3.org/2000/svg">'
+            '<text>https://example.com</text></svg>',
+            '<svg xmlns="http://www.w3.org/2000/svg">'
+            '<rect fill="url(x.svg#id)"/></svg>',
+            '<svg xmlns="http://www.w3.org/2000/svg"><text>中文</text></svg>',
+            "not an svg",
+        ]
+        with tempfile.TemporaryDirectory() as tmp:
+            with mock.patch.object(illustrations, "ART_DIR", Path(tmp)):
+                path = Path(tmp) / "part-i.svg"
+                for payload in payloads:
+                    path.write_text(payload, encoding="utf-8")
+                    with self.assertRaises(BookError, msg=payload):
+                        illustrations.part_art("part-i.svg")
+                path.unlink()
+                with self.assertRaises(BookError, msg="missing file"):
+                    illustrations.part_art("part-i.svg")
 
     def test_part_art_ids_are_unique_across_parts(self):
         seen: set[str] = set()

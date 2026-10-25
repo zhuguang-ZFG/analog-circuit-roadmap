@@ -347,7 +347,7 @@ html, body {
 .part-opener .unit-label { margin: 0 0 .35rem; font-weight: 700; color: #0f766e; }
 .part-opener .unit-meta {
   margin: 0; color: #52606d; font-size: .82rem;
-  font-family: "Book Mono", monospace;
+  font-family: "Book Mono", "Book Sans", monospace;
 }
 .part-reading { margin-top: 1.4rem; padding-top: .9rem; border-top: 2px solid #14213d; }
 .part-reading .reading-label {

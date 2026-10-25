@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """前置/后置页：元数据、目录、图表目录、索引与版权安全文案。"""
+import re
 import sys
 import unittest
 from pathlib import Path
@@ -108,6 +109,25 @@ class StructurePageTests(unittest.TestCase):
         self.assertIn("读法 · L1 直觉", html)
         self.assertIn("PART II", html)
         self.assertIn("READING LAYERS", html)
+        heading = re.search(
+            r'<h1[^>]*class="part-heading"[^>]*>(.*?)</h1>', html, re.S)
+        self.assertIsNotNone(heading)
+        self.assertEqual(
+            "第II篇器件", re.sub(r"<[^>]+>", "", heading.group(1)),
+            "PDF 大纲依赖篇标题恰好为「第N篇＋篇名」，两段 span 间不得有空白")
+
+    def test_unit_meta_only_prints_contiguous_chapter_ranges(self):
+        def unit_meta(chapters):
+            part = {"id": "I", "title": "基础",
+                    "units": [{"title": "单元", "chapters": chapters}]}
+            page = frontmatter.part_opener(part)
+            values = re.findall(r'<p class="unit-meta">([^<]*)</p>', page)
+            self.assertEqual(1, len(values), chapters)
+            return values[0]
+
+        self.assertEqual("CH 00 · 1 章", unit_meta(["p1-01-ch0.md"]))
+        self.assertEqual("2 章", unit_meta(["p1-01-ch0.md", "p2-01-notes.md"]))
+        self.assertEqual("2 章", unit_meta(["p1-01-ch0.md", "p1-02-ch2.md"]))
 
     def test_part_opener_without_art_keeps_empty_plate(self):
         part = {"id": "I", "title": "基础", "subtitle": "先建立电路直觉",

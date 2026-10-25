@@ -564,11 +564,12 @@ body {
   font-size: 8.6pt; letter-spacing: .04em;
 }
 .book .part-opener .unit-meta {
-  margin: 0; font: 400 7.4pt/1 "Book Mono", monospace;
+  margin: 0; font: 400 7.4pt/1 "Book Mono", "Book Sans", monospace;
   color: var(--muted); letter-spacing: .04em;
 }
+/* 视觉校样：读法条下移，篇首页底部空白控制在 35mm 以内 */
 .book .part-reading {
-  margin-top: 6mm; padding-top: 3.5mm;
+  margin-top: 10mm; padding-top: 3.5mm;
   border-top: 0.5mm solid var(--navy); break-inside: avoid;
 }
 .book .reading-label {
@@ -610,9 +611,6 @@ body {
   margin: 0; font: 400 11pt/18pt "Book Serif", serif;
   color: #344054; text-align: left;
 }
-
-/* 视觉校样：读法条下移，篇首页底部空白控制在 35mm 以内 */
-.book .part-opener .part-reading { margin-top: 10mm; }
 
 /* ---------- 前置页 ---------- */
 .book .half-title, .book .title-page {

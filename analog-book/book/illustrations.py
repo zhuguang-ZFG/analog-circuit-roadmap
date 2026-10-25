@@ -10,9 +10,10 @@ ART_DIR = config.STATIC_DIR / "illustrations"
 SAFE_NAME_RE = re.compile(r"^part-(?:i|ii|iii|iv|v)\.svg$")
 ACTIVE_TOKENS = (
     "<script", "<style", "<image", "<foreignobject", "<iframe",
-    "<object", "<embed", "href=", "xlink:", "data:", "@import",
+    "<object", "<embed", "xlink:", "data:", "@import",
 )
-EVENT_ATTR_RE = re.compile(r"\son[a-z]+\s*=")
+EVENT_ATTR_RE = re.compile(r"[/\s]on[a-z]+\s*=")
+HREF_ATTR_RE = re.compile(r"[/\s]href\s*=")
 URL_RE = re.compile(r"https?://[^\"'\s>]+", re.I)
 URL_ALLOWED = {"http://www.w3.org/2000/svg"}
 CSS_URL_RE = re.compile(r"url\(([^)]*)\)", re.I)
@@ -35,6 +36,8 @@ def part_art(name: str | None) -> str:
     for token in ACTIVE_TOKENS:
         if token in lowered:
             raise BookError(f"篇首插图含不允许的内容 {token!r}: {path}")
+    if HREF_ATTR_RE.search(lowered):
+        raise BookError(f"篇首插图含 href 属性: {path}")
     if EVENT_ATTR_RE.search(lowered):
         raise BookError(f"篇首插图含事件属性: {path}")
     urls = {url.lower() for url in URL_RE.findall(svg)}

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """77 页装配、模型、目录占位、习题拆分、索引与审计。"""
+import copy
 import json
 import re
 import sys
@@ -139,6 +140,28 @@ class BuildTests(unittest.TestCase):
             self.assertEqual(1, page["html"].count("<svg"), page["id"])
             self.assertNotIn(
                 'class="part-art" aria-hidden="true"></div>', page["html"])
+
+    def test_missing_opener_art_warns_and_keeps_empty_plate(self):
+        manifest = copy.deepcopy(book_fixtures.manifest())
+        part = next(item for item in manifest["parts"] if item["id"] == "II")
+        part.pop("opener_art", None)
+        root = Path(self.tmp.name)
+        validate_manifest(manifest, docs_dir=root / "docs")
+        out = root / "dist-no-art"
+        assemble.build_html(
+            out, self.site, self.data, root / "docs", manifest,
+            rebuild_site=False, final=False)
+        model = json.loads(
+            (out / "book-model.json").read_text(encoding="utf-8"))
+        page = next(page for page in model["pages"]
+                    if page["id"] == "part-ii" and page["kind"] == "part")
+        self.assertNotIn("<svg", page["html"])
+        self.assertIn('<div class="part-art" aria-hidden="true"></div>',
+                      page["html"])
+        self.assertTrue(
+            any("缺少 opener_art" in str(message)
+                for message in model["build_warnings"]),
+            model["build_warnings"])
 
     def test_every_chapter_has_one_intuition_lead(self):
         self.assertEqual(19, self.document.count('class="chapter-intuition"'))
