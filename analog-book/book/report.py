@@ -143,9 +143,13 @@ def print_spec_markdown(report: dict, manifest: dict) -> str:
     bleed = report["bleed_mm"]
     formula = (f"{report['pdf_pages']} / 2 × {caliper:.2f} + "
                f"{allowance:.1f} = {spine:.2f} mm")
+    nominal_width = 2 * trim_w + spine + 2 * bleed
+    nominal_height = trim_h + 2 * bleed
     cover_formula = (
-        f"2 × {trim_w:g} + {spine:.2f} + 2 × {bleed:g} = {width:.2f} mm；"
-        f"{trim_h:g} + 2 × {bleed:g} = {height:.2f} mm")
+        f"2 × {trim_w:g} + {spine:.2f} + 2 × {bleed:g} = "
+        f"{nominal_width:.2f} mm（标称）；"
+        f"{trim_h:g} + 2 × {bleed:g} = {nominal_height:.2f} mm（标称）；"
+        f"实际 MediaBox {width:.2f} × {height:.2f} mm")
     fonts = "\n".join(
         f"| {item['family']} | {item['weight']} | `{item['file']}` | "
         f"{item['license']} |" for item in report["fonts"])

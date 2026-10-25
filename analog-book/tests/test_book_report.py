@@ -86,6 +86,19 @@ class ReportTests(unittest.TestCase):
                         "打样与校对页", "尚未关闭的质量门"):
             self.assertIn(heading, spec)
 
+    def test_print_spec_separates_nominal_cover_from_actual_mediabox(self):
+        pdf = {"pages": 528, "body_start": 13, "bookmarks": 120,
+               "problems": [], "warnings": []}
+        cover = {"pages": 528, "size_mm": [403.27, 266.02],
+                 "spine_mm": 27.4, "problems": []}
+        self.write(pdf=pdf, cover=cover)
+        spec = (self.out / "PRINT-SPEC.md").read_text(encoding="utf-8")
+        self.assertIn("2 × 185 + 27.40 + 2 × 3 = 403.40 mm（标称）", spec)
+        self.assertIn("260 + 2 × 3 = 266.00 mm（标称）", spec)
+        self.assertIn("实际 MediaBox 403.27 × 266.02 mm", spec)
+        self.assertNotIn("= 403.27 mm", spec)
+        self.assertNotIn("= 266.02 mm", spec)
+
     def test_problems_block_report(self):
         broken = dict(COVER, problems=["spine mismatch"])
         with self.assertRaisesRegex(BookError, "封面结构问题"):
