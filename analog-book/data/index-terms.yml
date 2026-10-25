@@ -1,0 +1,240 @@
+- term: 555 定时器
+  english: 555 timer
+  primary: page-p1-11-ch10
+  anchors:
+  - page-p1-11-ch10
+  see_also: []
+- term: 比较器
+  english: comparator
+  primary: page-p1-08-ch7
+  anchors:
+  - page-p1-08-ch7
+  see_also: []
+- term: BJT
+  english: bipolar junction transistor
+  primary: page-p1-04-ch3
+  anchors:
+  - page-p1-04-ch3
+  see_also: []
+- term: Buck 变换器
+  english: buck converter
+  primary: page-p2-03-ch13
+  anchors:
+  - page-p2-03-ch13
+  see_also: []
+- term: 差分对
+  english: differential pair
+  primary: page-p2-01-ch11
+  anchors:
+  - page-p2-01-ch11
+  see_also: []
+- term: 迟滞
+  english: hysteresis
+  primary: page-p1-08-ch7
+  anchors:
+  - page-p1-08-ch7
+  see_also: []
+- term: 戴维南等效
+  english: Thevenin equivalent
+  primary: page-p1-02-ch1
+  anchors:
+  - page-p1-02-ch1
+  see_also: []
+- term: 电感
+  english: inductor
+  primary: page-p1-02-ch1
+  anchors:
+  - page-p1-02-ch1
+  see_also: []
+- term: 电流镜
+  english: current mirror
+  primary: page-p2-01-ch11
+  anchors:
+  - page-p2-01-ch11
+  see_also: []
+- term: 电容
+  english: capacitor
+  primary: page-p1-02-ch1
+  anchors:
+  - page-p1-02-ch1
+  see_also: []
+- term: 电压
+  english: voltage
+  primary: page-p1-01-ch0
+  anchors:
+  - page-p1-01-ch0
+  see_also: []
+- term: 电压基准
+  english: voltage reference
+  primary: page-p1-10-ch9
+  anchors:
+  - page-p1-10-ch9
+  see_also: []
+- term: 低压差稳压器
+  english: low-dropout regulator
+  primary: page-p1-10-ch9
+  anchors:
+  - page-p1-10-ch9
+  see_also: []
+- term: 二极管
+  english: diode
+  primary: page-p1-03-ch2
+  anchors:
+  - page-p1-03-ch2
+  see_also: []
+- term: 分压器
+  english: voltage divider
+  primary: page-p1-02-ch1
+  anchors:
+  - page-p1-02-ch1
+  see_also: []
+- term: 共模抑制比
+  english: common-mode rejection ratio
+  primary: page-p1-07-ch6
+  anchors:
+  - page-p1-07-ch6
+  see_also: []
+- term: 恒流源
+  english: ideal current source
+  primary: page-p1-01-ch0
+  anchors:
+  - page-p1-01-ch0
+  see_also: []
+- term: 恒压源
+  english: ideal voltage source
+  primary: page-p1-01-ch0
+  anchors:
+  - page-p1-01-ch0
+  see_also: []
+- term: 回流路径
+  english: return current path
+  primary: page-p3-02-ch15
+  anchors:
+  - page-p3-02-ch15
+  see_also: []
+- term: 静态工作点
+  english: quiescent point
+  primary: page-p1-04-ch3
+  anchors:
+  - page-p1-04-ch3
+  see_also: []
+- term: 开漏输出
+  english: open-drain output
+  primary: page-p1-06-ch5
+  anchors:
+  - page-p1-06-ch5
+  see_also: []
+- term: 跨导
+  english: transconductance
+  primary: page-p1-04-ch3
+  anchors:
+  - page-p1-04-ch3
+  see_also: []
+- term: 米勒效应
+  english: Miller effect
+  primary: page-p1-05-ch4
+  anchors:
+  - page-p1-05-ch4
+  see_also: []
+- term: 模拟开关
+  english: analog switch
+  primary: page-p1-09-ch8
+  anchors:
+  - page-p1-09-ch8
+  see_also: []
+- term: MOSFET
+  english: MOSFET
+  primary: page-p1-05-ch4
+  anchors:
+  - page-p1-05-ch4
+  see_also: []
+- term: 欧姆定律
+  english: Ohm's law
+  primary: page-p1-01-ch0
+  anchors:
+  - page-p1-01-ch0
+  see_also: []
+- term: 齐纳击穿
+  english: Zener breakdown
+  primary: page-p1-03-ch2
+  anchors:
+  - page-p1-03-ch2
+  see_also: []
+- term: Sallen-Key 滤波器
+  english: Sallen-Key filter
+  primary: page-p2-02-ch12
+  anchors:
+  - page-p2-02-ch12
+  see_also: []
+- term: 探头负载
+  english: probe loading
+  primary: page-p4-01-ch16
+  anchors:
+  - page-p4-01-ch16
+  see_also: []
+- term: 推挽输出
+  english: push-pull output
+  primary: page-p1-06-ch5
+  anchors:
+  - page-p1-06-ch5
+  see_also: []
+- term: 误差预算
+  english: error budget
+  primary: page-p3-01-ch14
+  anchors:
+  - page-p3-01-ch14
+  see_also: []
+- term: 相位裕度
+  english: phase margin
+  primary: page-p2-03-ch13
+  anchors:
+  - page-p2-03-ch13
+  see_also: []
+- term: 谐振
+  english: resonance
+  primary: page-p1-02-ch1
+  anchors:
+  - page-p1-02-ch1
+  see_also: []
+- term: 虚短
+  english: virtual short
+  primary: page-p1-07-ch6
+  anchors:
+  - page-p1-07-ch6
+  see_also: []
+- term: 运算放大器
+  english: operational amplifier
+  primary: page-p1-07-ch6
+  anchors:
+  - page-p1-07-ch6
+  see_also: []
+- term: 阈值电压
+  english: threshold voltage
+  primary: page-p1-05-ch4
+  anchors:
+  - page-p1-05-ch4
+  see_also: []
+- term: 增益带宽积
+  english: gain-bandwidth product
+  primary: page-p1-07-ch6
+  anchors:
+  - page-p1-07-ch6
+  see_also: []
+- term: 占空比
+  english: duty cycle
+  primary: page-p1-11-ch10
+  anchors:
+  - page-p1-11-ch10
+  see_also: []
+- term: 正向压降
+  english: forward voltage
+  primary: page-p1-03-ch2
+  anchors:
+  - page-p1-03-ch2
+  see_also: []
+- term: 阻抗
+  english: impedance
+  primary: page-p1-02-ch1
+  anchors:
+  - page-p1-02-ch1
+  see_also: []
