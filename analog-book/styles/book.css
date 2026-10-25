@@ -292,3 +292,39 @@ html, body {
   [data-page="p9-00-quiz"] h2 { break-before: page; }
   [data-page="p5-00-part5"] .gal-card { break-inside: avoid; }
 }
+
+.half-title, .title-page, .copyright-page, .part-opener, .appendix-opener, .colophon {
+  max-width: 46rem; margin: 0 auto;
+}
+.half-title { min-height: 70vh; display: grid; place-content: center; text-align: center; }
+.half-title .book-title { font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 700; }
+.half-title .book-subtitle { color: var(--md-default-fg-color--light); }
+.part-opener { min-height: 70vh; display: grid; align-content: center; }
+.part-kicker { display: block; letter-spacing: .3em; color: var(--md-primary-fg-color); }
+.part-title { display: block; font-size: clamp(2rem, 5vw, 3.2rem); }
+.part-art { height: 8rem; border-top: 1px solid var(--md-default-fg-color--lightest); }
+.book-callout { border-left: 3px solid var(--md-primary-fg-color); padding: .4rem 1rem; margin: 1rem 0; }
+.callout-label { font-weight: 700; font-size: .8em; letter-spacing: .08em; }
+.book-reveal { border-left: 3px solid var(--md-default-fg-color--lighter); padding: .3rem 1rem; margin: 1rem 0; }
+.book-reveal-title { font-weight: 700; font-size: .9em; margin: 0 0 .4rem; }
+.book-toc .book-toc-list {
+  margin: 0; padding: 0; list-style: none;
+  columns: 2; column-gap: 2rem;
+}
+.book-toc .toc-row { break-inside: avoid; }
+.book-toc .toc-row a {
+  display: grid; grid-template-columns: 1fr auto auto;
+  align-items: baseline; gap: .5rem; min-height: 44px; padding: .2rem 0;
+}
+.toc-dots { border-bottom: 1px dotted currentColor; opacity: .35; }
+.toc-level-2 { padding-left: 1.2rem; }
+.toc-level-3 { padding-left: 2.4rem; font-size: .92em; }
+@media (max-width: 44.99em) {
+  .book-toc .book-toc-list { columns: 1; }
+}
+.index-columns { column-count: 2; column-gap: 2rem; }
+.index-letter h2 { font-size: 1rem; }
+.index-page { display: inline-block; min-width: 3ch; text-align: right; }
+.answer-list { list-style: none; padding-left: 0; }
+.answer-ref { font-family: var(--book-mono, monospace); font-size: .85em; margin-right: .6rem; }
+.draft-note { border: 1px dashed currentColor; padding: .6rem .8rem; opacity: .8; }

@@ -191,9 +191,26 @@ def write_site(site: Path) -> Path:
         title = Path(name).stem.replace("-", " ")
         body = f'<h1>{title}</h1><p>正文示例。</p><h2>1.1 示例小节</h2><p>内容。</p>'
         if name == "p1-01-ch0.md":
-            body = ('<h1>第 0 章 电路直觉</h1><p>正文。</p>'
+            body = ('<h1>📘 第 0 章 电路直觉</h1><p>正文。</p>'
                     '<h2>0.1 电压与电位</h2><p>内容。</p>'
-                    '<p><img src="assets/svg/fixture.svg" alt="夹具图"></p>')
+                    '<figure><img src="assets/svg/fixture.svg" alt="夹具图">'
+                    '<figcaption>夹具插图</figcaption></figure>'
+                    '<p><strong>表 0-1　夹具表</strong></p>'
+                    '<table><tr><td>1</td></tr></table>')
+        if name == "p9-00-quiz.md":
+            body = ('<h1>自测</h1>'
+                    '<p><a id="quiz-ch0"></a></p><h2>第 0 章</h2><ol>'
+                    '<li><p><a id="q-ch0-01" data-quiz-question="true"></a>'
+                    '示例问题？</p><details class="note"><summary>答案</summary>'
+                    '<p>示例答案。</p></details></li></ol>'
+                    '<p><a id="quiz-ch1"></a></p><h2>第 1 章</h2><ol>'
+                    '<li><p><a id="q-ch1-01" data-quiz-question="true"></a>'
+                    '第二题？</p><details class="note"><summary>答案</summary>'
+                    '<p>第二答案。</p></details></li></ol>'
+                    '<h2>专题加练</h2><ol>'
+                    '<li><p><a id="q-extra-01" data-quiz-question="true"></a>'
+                    '综合题？</p><details class="note"><summary>答案</summary>'
+                    '<p>综合答案。</p></details></li></ol>')
         path = site / name.replace(".md", ".html")
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(

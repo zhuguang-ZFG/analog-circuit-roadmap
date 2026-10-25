@@ -1,0 +1,107 @@
+#!/usr/bin/env python3
+"""77 页装配、模型、目录占位、习题拆分、索引与审计。"""
+import json
+import sys
+import tempfile
+import unittest
+from pathlib import Path
+
+import yaml
+
+BOOK = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(BOOK))
+
+from book import assemble  # noqa: E402
+from book.manifest import validate_manifest  # noqa: E402
+import book_fixtures  # noqa: E402
+
+
+class BuildTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.tmp = tempfile.TemporaryDirectory()
+        root = Path(cls.tmp.name)
+        cls.manifest = book_fixtures.manifest()
+        book_fixtures.write_docs(root / "docs")
+        cls.site = book_fixtures.write_site(root / "site")
+        cls.data = book_fixtures.write_data(root / "data")
+        cls.out = root / "dist"
+        validate_manifest(cls.manifest, docs_dir=root / "docs")
+        cls.html_path = assemble.build_html(
+            cls.out, cls.site, cls.data, root / "docs", cls.manifest,
+            rebuild_site=False, final=False)
+        cls.document = cls.html_path.read_text(encoding="utf-8")
+        cls.model = json.loads((cls.out / "book-model.json").read_text(encoding="utf-8"))
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.tmp.cleanup()
+
+    def test_77_pages_in_fixed_order(self):
+        self.assertEqual(77, len(self.model["pages"]))
+        kinds = [page["kind"] for page in self.model["pages"]]
+        self.assertEqual(11, kinds[:11].count("front") + kinds[:11].count("half_title")
+                         + kinds[:11].count("title_page") + kinds[:11].count("copyright")
+                         + kinds[:11].count("toc") + kinds[:11].count("list_of_figures")
+                         + kinds[:11].count("list_of_tables"))
+        self.assertEqual(5, kinds.count("part"))
+        self.assertEqual(19, kinds.count("chapter"))
+        self.assertEqual(8, kinds.count("appendix_opener"))
+        self.assertEqual(6, kinds.count("back"))
+        self.assertEqual("half_title", kinds[0])
+        self.assertEqual("copyright", kinds[2])
+        self.assertEqual("part", kinds[11])
+        self.assertEqual("chapter", kinds[12])
+        self.assertEqual(5, self.document.count('class="part-intro"'))
+        self.assertNotIn('class="part-intro"></p>', self.document)
+
+    def test_titles_are_emoji_free(self):
+        self.assertNotIn("📘", self.document)
+        self.assertIn('data-title="第 0 章 电路直觉"', self.document)
+
+    def test_toc_lof_lot_and_index_use_000(self):
+        for page in self.model["pages"]:
+            if page["kind"] in {"toc", "list_of_figures", "list_of_tables", "index"}:
+                self.assertIn("000", page["html"])
+        self.assertTrue(self.model["toc"])
+        self.assertTrue(self.model["lof"])
+        self.assertTrue(self.model["lot"])
+
+    def test_chapter_exercises_and_appendix_answers(self):
+        self.assertIn("示例问题？", self.document)
+        self.assertIn("示例答案。", self.document)
+        self.assertNotIn("<details", self.document)
+        self.assertEqual(2, self.document.count('class="chapter-exercises"'))
+        self.assertIn('href="#p1-01-ch0--q-q-ch0-01"', self.document)
+
+    def test_assets_inline_and_no_remote(self):
+        self.assertIn("data:image/svg+xml;base64,", self.document)
+        self.assertNotIn('src="assets/', self.document)
+        self.assertNotIn('src="http', self.document)
+        self.assertNotIn("<iframe", self.document)
+
+    def test_unique_ids_and_reachable_internal_links(self):
+        audit = self.model["audit"]
+        self.assertEqual([], audit["errors"])
+        self.assertEqual(77, audit["pages"])
+        self.assertGreater(audit["bytes"], 100_000)
+
+    def test_model_stats(self):
+        stats = self.model["stats"]
+        self.assertEqual(77, stats["logical_pages"])
+        self.assertGreaterEqual(stats["figures"], 1)
+        self.assertGreaterEqual(stats["tables"], 1)
+        self.assertGreater(stats["images"], 0)
+
+    def test_exports_figure_and_table_manifests(self):
+        for name in ("figures.yml", "tables.yml"):
+            entries = yaml.safe_load(
+                (self.out / name).read_text(encoding="utf-8"))
+            self.assertTrue(entries, name)
+            self.assertEqual(
+                {"id", "chapter", "number", "title", "anchor", "source"},
+                set(entries[0]), name)
+
+
+if __name__ == "__main__":
+    unittest.main()
