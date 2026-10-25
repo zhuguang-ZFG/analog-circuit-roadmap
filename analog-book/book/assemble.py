@@ -417,18 +417,10 @@ def _build_page(desc: dict, *, manifest: dict, site_dir: Path, stems: set[str],
         return _page(desc, _light_body(page), desc["title"],
                      images=page.images, appendices=appendices)
     if kind == "colophon":
-        spine = _spine_mm(manifest, EXPECTED_PAGES)
         return _page(desc, frontmatter.colophon(
-            manifest, {"pages": EXPECTED_PAGES, "spine_mm": spine}),
+            manifest, {"pages": EXPECTED_PAGES}),
             desc["title"], appendices=appendices)
     raise BookError(f"未知页面类型: {kind}")
-
-
-def _spine_mm(manifest: dict, pages: int) -> float:
-    cover = manifest.get("cover") or {}
-    caliper = float(cover.get("paper_caliper_mm", 0.1))
-    allowance = float(cover.get("spine_allowance_mm", 1.0))
-    return round(pages * caliper / 2 + allowance, 1)
 
 
 def _caption_title(caption: str, number: str) -> str:

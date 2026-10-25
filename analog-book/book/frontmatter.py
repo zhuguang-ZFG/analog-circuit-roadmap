@@ -212,12 +212,19 @@ def render_index(sections: list[tuple[str, list[dict]]]) -> str:
 
 
 def colophon(manifest: dict, stats: dict) -> str:
+    pages = _e(stats["pages"])
+    if "spine_mm" in stats:
+        pagination = f'内文 {pages} 页，书脊厚度约 {_e(stats["spine_mm"])} mm。'
+    else:
+        # HTML 装配时还不知道物理页数；不得用逻辑页数冒充印前事实。
+        pagination = (f'内文 {pages} 个逻辑页；印前页数与书脊厚度'
+                      '以最终 PDF 与 PRINT-SPEC.md 为准。')
     return (
         '<div class="colophon">'
         '<h1 id="colophon">版本页</h1>'
         f'<p>《{_e(manifest["title"])}》{_e(manifest["edition"])}，'
         f'版本 {_e(manifest["version"])}，{_e(manifest["date"])}。</p>'
-        f'<p>内文 {_e(stats["pages"])} 页，书脊厚度约 {_e(stats["spine_mm"])} mm。'
+        f'<p>{pagination}'
         '开本 16K（185×260mm），正文 80g 纯质纸，封面 250g 铜版纸覆哑膜，胶装。</p>'
         '<p>内容源：docs/；排版：HTML + CSS + Chromium；PDF 后处理：PyMuPDF；'
         '公式：MathJax SVG；动画：仓库内 SMIL SVG。</p>'

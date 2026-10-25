@@ -113,6 +113,13 @@ class RealBookTests(unittest.TestCase):
         self.assertGreater(stats["tables"], 0)
         self.assertIsInstance(self.model["lot"], list)
 
+    def test_colophon_does_not_claim_unverified_physical_pagination(self):
+        page = next(item for item in self.model["pages"]
+                    if item["id"] == "colophon")
+        self.assertIn("77 个逻辑页", page["html"])
+        self.assertIn("PRINT-SPEC.md", page["html"])
+        self.assertNotIn("书脊厚度约", page["html"])
+
     def test_print_contract_is_inline(self):
         self.assertIn('<style media="print">', self.document)
         match = re.search(

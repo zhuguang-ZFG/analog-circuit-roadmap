@@ -176,6 +176,12 @@ class BackMatterTests(unittest.TestCase):
         for text in ("500", "26.0", "Chromium", "PyMuPDF", "SIL Open Font License"):
             self.assertIn(text, page)
 
+    def test_colophon_defers_physical_pagination_until_pdf_facts(self):
+        page = frontmatter.colophon(MANIFEST, {"pages": 77})
+        self.assertIn("77 个逻辑页", page)
+        self.assertIn("最终 PDF 与 PRINT-SPEC.md", page)
+        self.assertNotIn("书脊厚度约", page)
+
 
 if __name__ == "__main__":
     unittest.main()
