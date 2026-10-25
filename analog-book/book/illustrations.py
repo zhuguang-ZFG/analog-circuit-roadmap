@@ -12,8 +12,8 @@ ACTIVE_TOKENS = (
     "<script", "<style", "<image", "<foreignobject", "<iframe",
     "<object", "<embed", "xlink:", "data:", "@import",
 )
-EVENT_ATTR_RE = re.compile(r"[/\s]on[a-z]+\s*=")
-HREF_ATTR_RE = re.compile(r"[/\s]href\s*=")
+EVENT_ATTR_RE = re.compile(r"on[a-z]+\s*=")
+HREF_ATTR_RE = re.compile(r"href\s*=")
 URL_RE = re.compile(r"https?://[^\"'\s>]+", re.I)
 URL_ALLOWED = {"http://www.w3.org/2000/svg"}
 CSS_URL_RE = re.compile(r"url\(([^)]*)\)", re.I)

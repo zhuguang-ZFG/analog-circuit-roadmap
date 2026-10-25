@@ -60,8 +60,8 @@ class PartArtTests(unittest.TestCase):
                           "<iframe", "<object", "<embed", "xlink:", "data:",
                           "@import"):
                 self.assertNotIn(token, lowered, (name, token))
-            self.assertIsNone(re.search(r"[/\s]href\s*=", lowered), name)
-            self.assertIsNone(re.search(r"[/\s]on[a-z]+\s*=", lowered), name)
+            self.assertIsNone(re.search(r"href\s*=", lowered), name)
+            self.assertIsNone(re.search(r"on[a-z]+\s*=", lowered), name)
             urls = set(re.findall(r"https?://[^\"'\s>]+", svg))
             self.assertLessEqual(urls, {"http://www.w3.org/2000/svg"}, name)
             for reference in re.findall(r"url\(([^)]*)\)", svg):
@@ -69,27 +69,50 @@ class PartArtTests(unittest.TestCase):
                                 (name, reference))
 
     def test_part_art_rejects_unsafe_content(self):
-        payloads = [
-            '<svg xmlns="http://www.w3.org/2000/svg">'
-            '<script>x()</script></svg>',
-            '<svg xmlns="http://www.w3.org/2000/svg" onload="x()"></svg>',
-            '<svg xmlns="http://www.w3.org/2000/svg"/onload="x()"></svg>',
-            '<svg xmlns="http://www.w3.org/2000/svg">'
-            '<a href = "#x">x</a></svg>',
-            '<svg xmlns="http://www.w3.org/2000/svg">'
-            '<text>https://example.com</text></svg>',
-            '<svg xmlns="http://www.w3.org/2000/svg">'
-            '<rect fill="url(x.svg#id)"/></svg>',
-            '<svg xmlns="http://www.w3.org/2000/svg"><text>中文</text></svg>',
-            "not an svg",
+        cases = [
+            ('<svg xmlns="http://www.w3.org/2000/svg">'
+             '<script>x()</script></svg>', "不允许的内容"),
+            ('<svg xmlns="http://www.w3.org/2000/svg">'
+             '<style>x{}</style></svg>', "不允许的内容"),
+            ('<svg xmlns="http://www.w3.org/2000/svg"><object/></svg>',
+             "不允许的内容"),
+            ('<svg xmlns="http://www.w3.org/2000/svg"><embed/></svg>',
+             "不允许的内容"),
+            ('<svg xmlns="http://www.w3.org/2000/svg">'
+             '<text>xlink:x</text></svg>', "不允许的内容"),
+            ('<svg xmlns="http://www.w3.org/2000/svg">'
+             '<text>data:x</text></svg>', "不允许的内容"),
+            ('<svg xmlns="http://www.w3.org/2000/svg">'
+             '<text>@import url(x)</text></svg>', "不允许的内容"),
+            ('<svg xmlns="http://www.w3.org/2000/svg" onload="x()"></svg>',
+             "事件属性"),
+            ('<svg xmlns="http://www.w3.org/2000/svg"/onload="x()"></svg>',
+             "事件属性"),
+            ('<svg xmlns="http://www.w3.org/2000/svg" '
+             'title="x"onload="x()"></svg>', "事件属性"),
+            ('<svg xmlns="http://www.w3.org/2000/svg">'
+             '<a href="#x">x</a></svg>', "href 属性"),
+            ('<svg xmlns="http://www.w3.org/2000/svg">'
+             '<a href = "#x">x</a></svg>', "href 属性"),
+            ('<svg xmlns="http://www.w3.org/2000/svg">'
+             '<a title="x"href="javascript:alert(1)">x</a></svg>',
+             "href 属性"),
+            ('<svg xmlns="http://www.w3.org/2000/svg">'
+             '<text>https://example.com</text></svg>', "外部 URL"),
+            ('<svg xmlns="http://www.w3.org/2000/svg">'
+             '<rect fill="url(x.svg#id)"/></svg>', "外部 url()"),
+            ('<svg xmlns="http://www.w3.org/2000/svg">'
+             '<text>中文</text></svg>', "拉丁文字"),
+            ("not an svg", "不是 SVG"),
         ]
         with tempfile.TemporaryDirectory() as tmp:
             with mock.patch.object(illustrations, "ART_DIR", Path(tmp)):
                 path = Path(tmp) / "part-i.svg"
-                for payload in payloads:
+                for payload, fragment in cases:
                     path.write_text(payload, encoding="utf-8")
-                    with self.assertRaises(BookError, msg=payload):
+                    with self.assertRaises(BookError, msg=payload) as ctx:
                         illustrations.part_art("part-i.svg")
+                    self.assertIn(fragment, str(ctx.exception), payload)
                 path.unlink()
                 with self.assertRaises(BookError, msg="missing file"):
                     illustrations.part_art("part-i.svg")
