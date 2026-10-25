@@ -79,6 +79,7 @@ body {
   font-family: "Book Sans", sans-serif; font-size: 9pt; line-height: 13pt;
   color: var(--print-muted); margin-top: 1.5mm; text-align: center;
 }
+.book .md-typeset .book-table figcaption { margin: 0 0 1.5mm; }
 .book .md-typeset img, .book .md-typeset svg { max-width: 100%; height: auto; }
 .book .md-typeset img { max-height: 185mm; }
 .book .md-typeset blockquote {
@@ -114,10 +115,10 @@ body {
   font-size: 10.5pt; line-height: 15pt;
 }
 .toc-row a {
-  display: grid; grid-template-columns: 1fr auto auto; gap: 2mm;
+  display: grid; grid-template-columns: auto minmax(8mm, 1fr) auto; gap: 2mm;
   align-items: baseline; color: inherit; text-decoration: none;
 }
-.toc-row.toc-level-1 { font-family: "Book Sans", sans-serif; font-weight: 700; margin-top: 3mm; }
+.toc-row.toc-level-1 { font-family: "Book Sans", sans-serif; font-weight: 700; }
 .toc-row.toc-level-2 { padding-left: 5mm; }
 .toc-row.toc-level-3 { padding-left: 10mm; font-size: 9pt; line-height: 13.5pt; }
 .toc-dots { border-bottom: 0.2mm dotted #98a2b3; transform: translateY(-1mm); }

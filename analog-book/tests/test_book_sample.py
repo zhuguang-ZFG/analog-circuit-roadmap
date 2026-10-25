@@ -69,6 +69,9 @@ class SampleTests(unittest.TestCase):
         self.assertIn("thead", css)
         self.assertIn("@page :left", css)
         self.assertIn("@page :right", css)
+        self.assertRegex(
+            css,
+            r"\.toc-row a\s*\{[^}]*grid-template-columns:\s*auto\s+minmax\([^)]*\)\s+auto")
 
 
 if __name__ == "__main__":

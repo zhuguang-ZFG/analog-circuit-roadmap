@@ -220,7 +220,7 @@ def _figure_section():
       <g fill="#1f2933" font-family="Book Sans, sans-serif" font-size="15">
         <text x="300" y="20" text-anchor="middle">V<tspan dy="5" font-size="11">DD</tspan></text>
         <text x="318" y="78">R<tspan dy="5" font-size="11">D</tspan></text>
-        <text x="250" y="78" text-anchor="end">R<tspan dy="5" font-size="11">G</tspan></text>
+        <text x="226" y="78" text-anchor="end">R<tspan dy="5" font-size="11">G</tspan></text>
         <text x="452" y="126">v<tspan dy="5" font-size="11">out</tspan></text>
         <text x="178" y="169" text-anchor="end">v<tspan dy="5" font-size="11">in</tspan></text>
         <text x="318" y="172">M<tspan dy="5" font-size="11">1</tspan></text>
@@ -262,11 +262,11 @@ def _table_section():
   <h1>表格样张</h1>
   <p>表 1 把常用元件的理想模型、主要寄生和失效拐点放在同一张六列表里。阅读时先横向比较同一列的典型量级，再回到具体元件核对设计提醒。</p>
   <figure class="book-table">
+    <figcaption>表 1　常用元件的理想模型与主要寄生（样张数据）</figcaption>
     <table>
       <thead><tr>{head}</tr></thead>
       <tbody>{body}</tbody>
     </table>
-    <figcaption>表 1　常用元件的理想模型与主要寄生（样张数据）</figcaption>
   </figure>
   <p>注意：拐点频率一列只是数量级提示，实际值取决于封装、偏压和温度。任何一张表都不能替代数据手册，但它能告诉你应该先翻到手册的哪一页。</p>
 </section>
