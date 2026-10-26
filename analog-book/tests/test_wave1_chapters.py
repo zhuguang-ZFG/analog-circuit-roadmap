@@ -49,6 +49,22 @@ CHAPTER_CONTRACTS = {
         "figure_assets": ("assets/figures/ch11-cascode.svg",),
         "deck": "assets/spice/ch11/diffpair.cir",
     },
+    "14": {
+        "file": "p3-01-ch14.md",
+        "floor": 18000,
+        "sections": ("### 14.9", "### 14.10", "### 14.11", "### 14.12"),
+        "examples": 3,
+        "figures": 7,
+        "tables": 6,
+        "quiz": 10,
+        "figure_assets": (
+            "assets/figures/ch14-error-budget.svg",
+            "assets/figures/ch14-power-tree-timing.svg",
+            "assets/figures/ch14-test-plan.svg",
+            "assets/figures/ch14-pt100-layout.svg",
+        ),
+        "deck": "assets/spice/ch14/pt100.cir",
+    },
 }
 
 

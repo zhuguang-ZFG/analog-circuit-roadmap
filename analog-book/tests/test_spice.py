@@ -27,7 +27,7 @@ class SchemaTests(unittest.TestCase):
     def test_discovers_simulation_cases(self):
         cases = {case.deck.name: case for case in run_spice.discover_cases()}
         self.assertEqual({"divider.cir", "rc.cir", "rectifier.cir",
-                          "diffpair.cir"}, set(cases))
+                          "diffpair.cir", "pt100.cir"}, set(cases))
         self.assertEqual({"vfinal", "vhalf", "trise"},
                          set(cases["rc.cir"].spec["metrics"]))
         self.assertEqual({"vout_open", "vout_load", "i_load"},
@@ -36,6 +36,8 @@ class SchemaTests(unittest.TestCase):
                          set(cases["rectifier.cir"].spec["metrics"]))
         self.assertEqual({"vc1_0", "vc2_0", "vc1_cm", "vc2_cm"},
                          set(cases["diffpair.cir"].spec["metrics"]))
+        self.assertEqual({"vout0", "vout50", "vout100"},
+                         set(cases["pt100.cir"].spec["metrics"]))
 
     def test_deck_has_no_external_models(self):
         text = (ROOT / "assets" / "spice" / "ch01" / "rc.cir").read_text(
@@ -207,6 +209,20 @@ class SimulationTests(unittest.TestCase):
         path = self.out / "diffpair" / case.spec["data"]
         rows = run_spice.load_data(path, min_rows=50)
         self.assertGreaterEqual(len(rows), 50)
+
+    def test_pt100_metrics_match_linear_rtd_model(self):
+        result = self.results["pt100.cir"]
+        self.assertEqual([], result["problems"], result["log"])
+        self.assertAlmostEqual(8.0, result["metrics"]["vout0"], delta=0.15)
+        self.assertAlmostEqual(8.77, result["metrics"]["vout50"], delta=0.15)
+        self.assertAlmostEqual(9.54, result["metrics"]["vout100"], delta=0.15)
+
+    def test_pt100_data_is_written(self):
+        case = self.cases["pt100.cir"]
+        path = self.out / "pt100" / case.spec["data"]
+        rows = run_spice.load_data(path, min_rows=3)
+        self.assertEqual(3, len(rows))
+        self.assertAlmostEqual(8.0, rows[0][1], delta=0.15)
 
     def test_plot_is_generated_from_simulation_data(self):
         path = self.out / "rc" / self.case.spec["data"]
