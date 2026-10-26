@@ -18,6 +18,11 @@ REQUIRE = os.environ.get("BOOK_REQUIRE_NGSPICE") == "1"
 NGSPICE = run_spice.find_ngspice()
 
 
+def _tran_step(text: str) -> str | None:
+    match = re.search(r"^\s*\.tran\s+(\S+)", text, re.M | re.I)
+    return match.group(1) if match else None
+
+
 class SchemaTests(unittest.TestCase):
     def test_discovers_the_rc_case(self):
         cases = run_spice.discover_cases()
@@ -39,12 +44,15 @@ class SchemaTests(unittest.TestCase):
     def test_tran_step_is_positive(self):
         text = (ROOT / "assets" / "spice" / "ch01" / "rc.cir").read_text(
             encoding="utf-8")
-        match = re.search(r"^\s*\.tran\s+(\S+)", text, re.M)
-        self.assertIsNotNone(match, "deck 缺少 .tran 指令")
-        number = re.match(r"([-+]?(?:\d+\.?\d*|\.\d+))", match.group(1))
+        step = _tran_step(text)
+        self.assertIsNotNone(step, "deck 缺少 .tran 指令")
+        number = re.match(r"([-+]?(?:\d+\.?\d*|\.\d+))", step)
         self.assertIsNotNone(number, "TSTEP 不是数值")
         self.assertGreater(float(number.group(1)), 0,
                            "TSTEP 必须大于 0，ngspice 拒绝 TSTEP=0")
+
+    def test_tran_directive_is_case_insensitive(self):
+        self.assertEqual("1u", _tran_step(".TRAN 1u 5m 0 1u\n"))
 
     def test_rejects_negative_tolerance(self):
         spec = json.loads(
@@ -95,6 +103,29 @@ trise = 2.197000e-04
                 run_spice.load_data(path, min_rows=10)
 
 
+class PlotTextTests(unittest.TestCase):
+    def test_ascii_fallback_labels(self):
+        labels = plot_sim.labels(False)
+        self.assertEqual("Time / ms", labels["xlabel"])
+        self.assertEqual("Simulation result", labels["default_title"])
+        self.assertNotIn("时间", labels["note"])
+
+    def test_cjk_labels(self):
+        labels = plot_sim.labels(True)
+        self.assertEqual("时间 / ms", labels["xlabel"])
+        self.assertEqual("仿真结果", labels["default_title"])
+
+    def test_chinese_title_falls_back_without_cjk_font(self):
+        self.assertEqual("Simulation result",
+                         plot_sim.safe_title("RC 一阶阶跃响应", False))
+        self.assertEqual("RC 一阶阶跃响应",
+                         plot_sim.safe_title("RC 一阶阶跃响应", True))
+
+    def test_find_cjk_font_is_optional(self):
+        name = plot_sim.find_cjk_font()
+        self.assertTrue(name is None or isinstance(name, str))
+
+
 @unittest.skipIf(NGSPICE is None and not REQUIRE,
                  "未安装 ngspice；设置 BOOK_REQUIRE_NGSPICE=1 可强制")
 class SimulationTests(unittest.TestCase):
@@ -131,7 +162,9 @@ class SimulationTests(unittest.TestCase):
         text = output.read_text(encoding="utf-8")
         self.assertIn("<svg", text)
         self.assertIn("ngspice", text)
-        self.assertIn("RC 一阶阶跃响应", text)
+        expected = plot_sim.safe_title(
+            "RC 一阶阶跃响应", plot_sim.find_cjk_font() is not None)
+        self.assertIn(expected, text)
 
 
 if __name__ == "__main__":

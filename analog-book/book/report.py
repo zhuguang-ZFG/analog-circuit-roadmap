@@ -34,7 +34,8 @@ def _require(path: Path) -> Path:
 
 
 def _pdf_version(pdf_path: Path) -> str:
-    head = Path(pdf_path).read_bytes()[:8].decode("latin-1", "replace")
+    with Path(pdf_path).open("rb") as handle:
+        head = handle.read(8).decode("latin-1", "replace")
     if head.startswith("%PDF-"):
         return "PDF " + head[5:].strip()
     return "PDF"

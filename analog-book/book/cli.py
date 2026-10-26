@@ -15,6 +15,16 @@ from .report import write_report
 from .sample import build_sample
 
 
+def _report_inputs(out_dir: Path) -> tuple[Path, Path]:
+    pdf_path = out_dir / config.PDF_NAME
+    cover_path = out_dir / config.COVER_PDF_NAME
+    for path in (pdf_path, cover_path):
+        if not path.is_file() or path.stat().st_size == 0:
+            raise BookError(
+                f"--report 需要先运行 --pdf --cover：缺少或为空 {path.name}")
+    return pdf_path, cover_path
+
+
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out-dir", type=Path, default=config.DIST_DIR)
@@ -44,12 +54,7 @@ def main(argv: list[str] | None = None) -> int:
                 return 1
             model = json.loads(
                 (args.out_dir / config.MODEL_NAME).read_text(encoding="utf-8"))
-            pdf_path = args.out_dir / config.PDF_NAME
-            cover_path = args.out_dir / config.COVER_PDF_NAME
-            for path in (pdf_path, cover_path):
-                if not path.is_file():
-                    raise BookError(
-                        f"--report 需要先运行 --pdf --cover：缺少 {path.name}")
+            pdf_path, cover_path = _report_inputs(args.out_dir)
             pdf_report = check_pdf(pdf_path, model, manifest)
             cover_report = inspect_cover(
                 cover_path, pdf_report["pages"], manifest)

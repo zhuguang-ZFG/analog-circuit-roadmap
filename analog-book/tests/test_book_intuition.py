@@ -52,6 +52,13 @@ class PartArtTests(unittest.TestCase):
             self.assertIn('viewBox="0 0 760 260"', svg, name)
             self.assertIn('class="part-art-svg"', svg, name)
 
+    def test_part_art_uses_typographic_approx_and_palette_navy(self):
+        foundations = illustrations.part_art("part-i.svg")
+        self.assertIn(">≈<", foundations)
+        self.assertNotIn(">~<", foundations)
+        debug = illustrations.part_art("part-v.svg")
+        self.assertNotIn("#101828", debug)
+
     def test_part_art_has_no_remote_or_active_content(self):
         for name in PART_NAMES:
             svg = illustrations.part_art(name)

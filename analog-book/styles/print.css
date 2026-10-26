@@ -308,7 +308,7 @@ body {
 .book .book-table .table-caption { break-after: avoid; }
 .book .md-typeset .table-caption {
   display: flex; align-items: baseline; gap: 3mm;
-  margin: 0 0 2.4mm;
+  margin: 0 0 2.4mm; break-after: avoid;
   font: 700 9pt/13pt "Book Sans", sans-serif; color: var(--navy);
   text-align: left;
 }
@@ -683,6 +683,5 @@ body {
 }
 .book .calc { display: none !important; }  /* 计算器只服务屏幕，纸上保留示例推导 */
 .book-figure { break-inside: avoid; }
-.book-table { break-inside: avoid; }
 h1, h2, h3 { break-after: avoid; }
 p, li { orphans: 2; widows: 2; }

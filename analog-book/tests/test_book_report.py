@@ -164,17 +164,46 @@ class ReportTests(unittest.TestCase):
         self.assertIn(".book .table-wrap { break-inside: auto; }", css)
         self.assertIn("thead { display: table-header-group; }", css)
         self.assertIn("tr { break-inside: avoid; }", css)
+        caption = re.search(
+            r"\.book \.md-typeset \.table-caption \{[^}]*\}", css)
+        self.assertIsNotNone(caption)
+        self.assertIn("break-after: avoid", caption.group(0))
+        self.assertNotIn("\n.book-table { break-inside: avoid; }", css,
+                         "残留的低特异性规则会与跨页表冲突")
 
     def test_style_evidence_levels_match_reader_conventions(self):
         style = (config.BOOK_DIR / "STYLE.md").read_text(encoding="utf-8")
         conventions = (config.DOCS / "p0-11-conventions.md").read_text(
             encoding="utf-8")
-        for row in ("| A | 教材、手册、厂商数据手册、应用笔记",
-                    "| B | 可复现的仿真",
-                    "| C | 本仓库实测",
-                    "| D | 经验判断、工程惯例"):
+        style_rows = (
+            "| A | 教材、手册、厂商数据手册、应用笔记 | 给出书名/版次/章节，或厂商与文档编号 |",
+            "| B | 可复现的仿真 | 给出 `assets/spice/` 下的 deck 与分析方法 |",
+            "| C | 本仓库实测 | 仅限 RC、LM358、MOSFET；给 CSV、仪器条件与日期 |",
+            "| D | 经验判断、工程惯例 | 明写“经验/待验证”，不冒充结论 |",
+        )
+        convention_rows = (
+            style_rows[0],
+            style_rows[1],
+            "| C | 本仓库实测 | 只限 RC、LM358、MOSFET 三套实验，给 CSV、仪器条件与日期 |",
+            "| D | 经验判断、工程惯例 | 用“经验上”“通常”“量级”标明 |",
+        )
+        for row in style_rows:
             self.assertIn(row, style)
+        for row in convention_rows:
             self.assertIn(row, conventions)
+
+    def test_report_inputs_reject_zero_byte_artifacts(self):
+        from book import cli
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp)
+            (out / config.PDF_NAME).write_bytes(b"")
+            (out / config.COVER_PDF_NAME).write_bytes(b"%PDF-1.7")
+            with self.assertRaisesRegex(BookError, "缺少或为空"):
+                cli._report_inputs(out)
+            (out / config.PDF_NAME).write_bytes(b"%PDF-1.7")
+            (out / config.COVER_PDF_NAME).write_bytes(b"")
+            with self.assertRaisesRegex(BookError, "缺少或为空"):
+                cli._report_inputs(out)
 
     def test_style_guide_is_executable(self):
         text = (config.BOOK_DIR / "STYLE.md").read_text(encoding="utf-8")

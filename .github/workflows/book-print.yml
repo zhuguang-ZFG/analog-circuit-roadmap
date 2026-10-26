@@ -34,9 +34,9 @@ jobs:
         run: python -B -m unittest discover -s analog-book/tests -p "test_book_*.py" -v
       - name: 16K 发布器测试
         run: python -B -m unittest discover -s scripts -p "test_publish_book.py" -v
-      - name: 安装 ngspice
+      - name: 安装 ngspice 与中文字体
         if: github.event_name != 'pull_request'
-        run: sudo apt-get update && sudo apt-get install -y ngspice
+        run: sudo apt-get update && sudo apt-get install -y ngspice fonts-noto-cjk
       - name: SPICE 回归
         if: github.event_name != 'pull_request'
         env:

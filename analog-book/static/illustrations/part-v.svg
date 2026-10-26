@@ -10,7 +10,7 @@
 
   <!-- oscilloscope -->
   <rect x="36" y="48" width="300" height="132" rx="10" fill="none" stroke="#fffdf8" stroke-width="2.2"/>
-  <rect x="48" y="60" width="276" height="100" rx="3" fill="#101828" fill-opacity=".35" stroke="#94a3b8" stroke-opacity=".35" stroke-width="1"/>
+  <rect x="48" y="60" width="276" height="100" rx="3" fill="#14213d" fill-opacity=".35" stroke="#94a3b8" stroke-opacity=".35" stroke-width="1"/>
   <g stroke="#94a3b8" stroke-opacity=".13" stroke-width="1">
     <path d="M82 60V160 M116 60V160 M150 60V160 M184 60V160 M218 60V160 M252 60V160 M286 60V160"/>
     <path d="M48 80H324 M48 100H324 M48 120H324 M48 140H324"/>

@@ -30,6 +30,17 @@ DATA_URI_RE = re.compile(
     r"data:[a-zA-Z0-9.+-]+/[a-zA-Z0-9.+-]+;base64,[A-Za-z0-9+/=]+")
 
 
+def _part_intro(document: str, page_id: str) -> str | None:
+    """只在指定篇首页内找导语，避免匹配到后续篇的段落。"""
+    start = document.find(f'id="{page_id}"')
+    if start < 0:
+        return None
+    following = document.find('id="part-', start + 1)
+    section = document[start:following if following >= 0 else len(document)]
+    match = re.search(r'<p class="part-intro">(.*?)</p>', section, re.S)
+    return match.group(1) if match else None
+
+
 @unittest.skipUnless(SITE_READY, "先运行 python scripts/build_site.py --build")
 class RealBookTests(unittest.TestCase):
     @classmethod
@@ -58,11 +69,15 @@ class RealBookTests(unittest.TestCase):
                         "book-index", "colophon"):
             self.assertIn(page_id, ids)
         for page_id in ("part-i", "part-ii", "part-iii", "part-iv", "part-v"):
-            opener = re.search(
-                rf'id="{page_id}".*?<p class="part-intro">(.*?)</p>',
-                self.visible, re.S)
-            self.assertIsNotNone(opener, f"{page_id} 缺少篇导语")
-            self.assertTrue(opener.group(1).strip(), f"{page_id} 篇导语为空")
+            intro = _part_intro(self.visible, page_id)
+            self.assertIsNotNone(intro, f"{page_id} 缺少篇导语")
+            self.assertTrue(intro.strip(), f"{page_id} 篇导语为空")
+
+    def test_part_intro_lookup_does_not_cross_sections(self):
+        document = ('<section id="part-i"><h1>一</h1></section>'
+                    '<section id="part-ii">'
+                    '<p class="part-intro">第二篇的导语</p></section>')
+        self.assertIsNone(_part_intro(document, "part-i"))
 
     def test_site_shell_and_draft_markers_are_gone(self):
         for marker in SHELL_MARKERS:

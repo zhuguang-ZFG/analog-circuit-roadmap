@@ -9,7 +9,7 @@
   <text x="744" y="24" text-anchor="end" font-family="Book Mono, monospace" font-size="13" letter-spacing="2" fill="#94a3b8">PLATE 01 / 05</text>
 
   <path d="M376 42V232" stroke="#94a3b8" stroke-opacity=".4" stroke-width="1.2" stroke-dasharray="4 6"/>
-  <text x="376" y="58" text-anchor="middle" font-family="Book Sans, sans-serif" font-size="18" fill="#f2b84b">~</text>
+  <text x="376" y="58" text-anchor="middle" font-family="Book Sans, sans-serif" font-size="18" fill="#f2b84b">≈</text>
 
   <!-- water loop -->
   <rect x="52" y="76" width="106" height="46" rx="10" fill="none" stroke="#fffdf8" stroke-width="2"/>
