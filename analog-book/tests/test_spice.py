@@ -27,7 +27,7 @@ class SchemaTests(unittest.TestCase):
     def test_discovers_simulation_cases(self):
         cases = {case.deck.name: case for case in run_spice.discover_cases()}
         self.assertEqual({"divider.cir", "rc.cir", "rectifier.cir",
-                          "diffpair.cir", "pt100.cir"}, set(cases))
+                          "diffpair.cir", "pt100.cir", "probe.cir"}, set(cases))
         self.assertEqual({"vfinal", "vhalf", "trise"},
                          set(cases["rc.cir"].spec["metrics"]))
         self.assertEqual({"vout_open", "vout_load", "i_load"},
@@ -38,6 +38,8 @@ class SchemaTests(unittest.TestCase):
                          set(cases["diffpair.cir"].spec["metrics"]))
         self.assertEqual({"vout0", "vout50", "vout100"},
                          set(cases["pt100.cir"].spec["metrics"]))
+        self.assertEqual({"vfinal1", "vfinal2", "trise1", "trise2"},
+                         set(cases["probe.cir"].spec["metrics"]))
 
     def test_deck_has_no_external_models(self):
         text = (ROOT / "assets" / "spice" / "ch01" / "rc.cir").read_text(

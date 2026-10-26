@@ -107,7 +107,7 @@ class RealBookTests(unittest.TestCase):
         self.assertEqual(20, self.document.count('class="answer-list"'))
         merged = len(re.findall(
             r'<li><a id="[^"]+--q-q-ch\d+-\d+"></a>', self.visible))
-        self.assertEqual(84, merged, "84 道章节题应全部并入章末")
+        self.assertEqual(90, merged, "90 道章节题应全部并入章末")
         self.assertEqual(merged, self.document.count('class="answer-ref"'),
                          "章末每题都要在附录 F 有一条答案回链")
         self.assertEqual(34, self.document.count('class="answer-question"'))

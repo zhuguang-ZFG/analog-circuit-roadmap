@@ -73,6 +73,20 @@ CHAPTER_CONTRACTS = {
         ),
         "deck": "assets/spice/ch14/pt100.cir",
     },
+    "16": {
+        "file": "p4-01-ch16.md",
+        "floor": 16000,
+        "sections": ("### 16.6", "### 16.7", "### 16.8", "### 16.9"),
+        "examples": 3,
+        "figures": 6,
+        "tables": 6,
+        "quiz": 9,
+        "figure_assets": (
+            "assets/figures/ch16-probe-model.svg",
+            "assets/figures/ch16-signal-injection.svg",
+        ),
+        "deck": "assets/spice/ch16/probe.cir",
+    },
 }
 
 

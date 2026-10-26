@@ -511,7 +511,7 @@ class SiteBuildTests(unittest.TestCase):
         data = (self.out / 'javascripts/learning-catalog.js').read_text(encoding='utf-8')
         catalog = json.loads(data.split(' = ', 1)[1].rstrip(';\n'))
         self.assertEqual(19, len(catalog['chapters']))
-        self.assertEqual(118, len(catalog['questions']))
+        self.assertEqual(124, len(catalog['questions']))
         quiz = (self.out / 'p9-00-quiz.md').read_text(encoding='utf-8')
         ids = [question['id'] for question in catalog['questions']]
         self.assertEqual(len(ids), len(set(ids)))
