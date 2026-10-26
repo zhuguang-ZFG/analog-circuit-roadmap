@@ -2,8 +2,12 @@
 from __future__ import annotations
 
 import html
+import re
 
 from .manifest import BookError
+
+SCENE_RE = re.compile(
+    r'<aside class="book-callout book-callout-scene"[^>]*>.*?</aside>', re.S)
 
 CHAPTER_LEADS: dict[int, str] = {
     0: "先把电路想成水路：电压是水位差，电流是水流，电阻是管道变窄的地方。"
@@ -35,6 +39,18 @@ CHAPTER_LEADS: dict[int, str] = {
     18: "大师的排故智慧：控制变量、选对参考点、别把假象当结论。"
         "最后用设计评审把故障挡在画板前。",
 }
+
+
+def insert_lead(fragment: str, lead: str) -> str:
+    """导读放在场景卡之后；没有场景卡时退回标题之后。"""
+    scene = SCENE_RE.search(fragment)
+    if scene is not None:
+        return fragment[:scene.end()] + "\n" + lead + fragment[scene.end():]
+    fragment, inserted = re.subn(
+        r"</h1>", "</h1>\n" + lead, fragment, count=1, flags=re.I)
+    if inserted != 1:
+        raise BookError("缺少章标题 h1，无法插入导读")
+    return fragment
 
 
 def chapter_lead(chapter: int) -> str:

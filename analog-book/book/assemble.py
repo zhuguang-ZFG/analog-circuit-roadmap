@@ -266,10 +266,7 @@ def _chapter_body(page: content.ContentPage, desc: dict, quiz_data: quiz.QuizDat
         warnings.append(f"{stem}: 章内没有 goal 学习目标提示框")
     fragment = quiz.merge_exercises(fragment, quiz_data.chapters.get(chapter, []), stem)
     lead = intuition.chapter_lead(chapter)
-    fragment, inserted = re.subn(
-        r"</h1>", "</h1>\n" + lead, fragment, count=1, flags=re.I)
-    if inserted != 1:
-        raise BookError(f"{stem}: 缺少章标题 h1，无法插入导读")
+    fragment = intuition.insert_lead(fragment, lead)
     return fragment, figures, tables, notes
 
 

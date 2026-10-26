@@ -7,10 +7,10 @@ data URI 内联进单文件 HTML，因此本目录不需要任何系统字体或
 
 | 文件 | 家族 | 字重 | 请求字符数 | 字节 | SHA-256 |
 | --- | --- | --- | --- | --- | --- |
-| `NotoSerifSC-Regular.woff2` | NotoSerifSC | 400 | 1960 | 332,876 | `6b6f9d5d83f4eae0cf08e2a9718504d5c5dd335081fbd88e17c6467142aa1072` |
-| `NotoSerifSC-Bold.woff2` | NotoSerifSC | 700 | 1960 | 343,444 | `e3096e8f14c7b538a688cc82de59ff7fcd518f35862c4f21aa8a42b3948bf41c` |
-| `NotoSansSC-Regular.woff2` | NotoSansSC | 400 | 1960 | 260,288 | `a08a402ae854f1163df0f31424b87e121bd7348d22fab38e89f1b141d3f52e5d` |
-| `NotoSansSC-Bold.woff2` | NotoSansSC | 700 | 1960 | 266,380 | `6fd359638191f97fcc9b457509a1a13a7e6db872fd48a5b71c386ff5bd2e7de0` |
+| `NotoSerifSC-Regular.woff2` | NotoSerifSC | 400 | 1964 | 333,496 | `58e557a8f451d51fe5b34da0fc5a951d118eb5b4ab459de14e446b49fc001bc3` |
+| `NotoSerifSC-Bold.woff2` | NotoSerifSC | 700 | 1964 | 343,816 | `75c3628debfecdcc57b9a5f920c705822400abbe73ffab4694c2d796f5b16b46` |
+| `NotoSansSC-Regular.woff2` | NotoSansSC | 400 | 1964 | 260,888 | `c8afd4f3597de80faf3c7837b2ada65d167c6f6e59e5ed44ca8988e5a29863a6` |
+| `NotoSansSC-Bold.woff2` | NotoSansSC | 700 | 1964 | 267,084 | `e88b17992f9da9fcfa6a5290e69f3b8eb09ce3f7b60d8666c7836d6c9c49a844` |
 | `JetBrainsMono-Regular.woff2` | JetBrainsMono | 400 | 95 | 15,844 | `94d9e25e7d4293923031470710ba1ff681e89421113fadd41555e8a4a4a066ce` |
 
 ## 印章字体

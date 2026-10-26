@@ -269,6 +269,13 @@ body {
 .book .book-callout-calc { --accent: var(--indigo); background: #f5f6fb; }
 .book .book-callout-limit { --accent: var(--rust); background: #fdf5f4; }
 .book .book-callout-gem, .book .book-callout-idea { --accent: var(--teal); background: #f3f8f7; }
+.book .book-callout-scene {
+  --accent: var(--amber); border-left-width: 1.8mm;
+  background: linear-gradient(135deg, #fdf7ee 0%, #fffdf8 62%, #f3f8f7 100%);
+}
+.book .book-callout-scene p:not(.callout-label) {
+  font: 400 10.6pt/17.4pt "Book Serif", serif; color: #344054;
+}
 
 /* ---------- 完整算例 ---------- */
 .book .worked-example {

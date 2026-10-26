@@ -619,7 +619,7 @@ class SiteBuildTests(unittest.TestCase):
     # ---------- 标题层级 ----------
     HEADING = re.compile(r"<h([1-6])(?:\s[^>]*)?>(.*?)</h\1>", re.S)
     CALL_TAG = re.compile(r"<[^>]+>")
-    SIGNATURE = re.compile(r"^> *(?:💎|🧮|🔬|🎯|📚|📺|📷|📎|🔧|⚠️|💡|📌|🎬|🔗)")
+    SIGNATURE = re.compile(r"^> *(?:💎|🧮|🔬|🎯|📚|📺|📷|📎|🔧|⚠️|💡|📌|🎬|🎭|🔗)")
 
     def headings(self, name):
         return [(int(m.group(1)), self.CALL_TAG.sub("", m.group(2)).replace("&para;", "").strip())
