@@ -24,12 +24,15 @@ def _tran_step(text: str) -> str | None:
 
 
 class SchemaTests(unittest.TestCase):
-    def test_discovers_the_rc_case(self):
-        cases = run_spice.discover_cases()
-        self.assertEqual(1, len(cases))
-        case = cases[0]
-        self.assertEqual("rc.cir", case.deck.name)
-        self.assertEqual({"vfinal", "vhalf", "trise"}, set(case.spec["metrics"]))
+    def test_discovers_simulation_cases(self):
+        cases = {case.deck.name: case for case in run_spice.discover_cases()}
+        self.assertEqual({"divider.cir", "rc.cir", "rectifier.cir"}, set(cases))
+        self.assertEqual({"vfinal", "vhalf", "trise"},
+                         set(cases["rc.cir"].spec["metrics"]))
+        self.assertEqual({"vout_open", "vout_load", "i_load"},
+                         set(cases["divider.cir"].spec["metrics"]))
+        self.assertEqual({"vavg", "vripple", "ipeak"},
+                         set(cases["rectifier.cir"].spec["metrics"]))
 
     def test_deck_has_no_external_models(self):
         text = (ROOT / "assets" / "spice" / "ch01" / "rc.cir").read_text(
@@ -136,9 +139,13 @@ class SimulationTests(unittest.TestCase):
         cls.tmp = tempfile.TemporaryDirectory()
         cls.addClassCleanup(cls.tmp.cleanup)
         cls.out = Path(cls.tmp.name)
-        case = run_spice.discover_cases()[0]
-        cls.result = run_spice.run_case(case, NGSPICE, output_dir=cls.out)
-        cls.case = case
+        cls.cases = {case.deck.name: case for case in run_spice.discover_cases()}
+        cls.results = {
+            name: run_spice.run_case(case, NGSPICE,
+                                     output_dir=cls.out / Path(name).stem)
+            for name, case in cls.cases.items()}
+        cls.case = cls.cases["rc.cir"]
+        cls.result = cls.results["rc.cir"]
 
     def test_metrics_match_rc_theory(self):
         self.assertEqual([], self.result["problems"], self.result["log"])
@@ -149,14 +156,43 @@ class SimulationTests(unittest.TestCase):
                                delta=20e-6)
 
     def test_data_is_written_and_monotonic(self):
-        path = self.out / self.case.spec["data"]
+        path = self.out / "rc" / self.case.spec["data"]
         rows = run_spice.load_data(path, min_rows=200)
         self.assertGreaterEqual(len(rows), 200)
         self.assertTrue(all(b[0] > a[0] for a, b in zip(rows, rows[1:])))
         self.assertAlmostEqual(5.0, rows[-1][1], delta=0.03)
 
+    def test_divider_metrics_match_theory(self):
+        result = self.results["divider.cir"]
+        self.assertEqual([], result["problems"], result["log"])
+        self.assertAlmostEqual(6.0, result["metrics"]["vout_open"], delta=0.02)
+        self.assertAlmostEqual(4.0, result["metrics"]["vout_load"], delta=0.02)
+        self.assertAlmostEqual(0.0004, result["metrics"]["i_load"], delta=1e-5)
+
+    def test_divider_data_is_written(self):
+        case = self.cases["divider.cir"]
+        path = self.out / "divider" / case.spec["data"]
+        rows = run_spice.load_data(path, min_rows=200)
+        self.assertGreaterEqual(len(rows), 200)
+        self.assertAlmostEqual(6.0, rows[len(rows) // 4][1], delta=0.02)
+        self.assertAlmostEqual(4.0, rows[-1][1], delta=0.02)
+
+    def test_rectifier_metrics_match_filter_model(self):
+        result = self.results["rectifier.cir"]
+        self.assertEqual([], result["problems"], result["log"])
+        self.assertAlmostEqual(8.0, result["metrics"]["vavg"], delta=0.6)
+        self.assertAlmostEqual(0.7, result["metrics"]["vripple"], delta=0.3)
+        self.assertAlmostEqual(0.55, result["metrics"]["ipeak"], delta=0.35)
+
+    def test_rectifier_data_is_written(self):
+        case = self.cases["rectifier.cir"]
+        path = self.out / "rectifier" / case.spec["data"]
+        rows = run_spice.load_data(path, min_rows=2000)
+        self.assertGreaterEqual(len(rows), 2000)
+        self.assertTrue(all(b[0] > a[0] for a, b in zip(rows, rows[1:])))
+
     def test_plot_is_generated_from_simulation_data(self):
-        path = self.out / self.case.spec["data"]
+        path = self.out / "rc" / self.case.spec["data"]
         output = self.out / "rc-step.svg"
         plot_sim.plot(path, output, "RC 一阶阶跃响应")
         text = output.read_text(encoding="utf-8")

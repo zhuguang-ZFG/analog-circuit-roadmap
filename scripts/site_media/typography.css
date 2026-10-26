@@ -640,6 +640,24 @@
   color: var(--md-default-fg-color--light); text-align: left;
 }
 
+.md-typeset .worked-example {
+  margin: 1.4rem 0;
+  padding: .9rem 1.1rem .4rem;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-left: 4px solid var(--md-accent-fg-color);
+  border-radius: .35rem;
+  background: color-mix(in srgb, var(--md-accent-fg-color) 4%, var(--md-default-bg-color));
+}
+.md-typeset .example-title {
+  margin: 0 0 .6rem; padding-bottom: .4rem;
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+  font-weight: 700; color: var(--md-primary-fg-color);
+}
+.md-typeset .example-title::before {
+  content: "WORKED EXAMPLE"; display: block; margin-bottom: .35rem;
+  font-size: .6rem; letter-spacing: .18em; color: var(--md-accent-fg-color);
+}
+
 /* ----------------------------------------------------------------------------
    7. 打印：提示卡别被切断
    -------------------------------------------------------------------------- */

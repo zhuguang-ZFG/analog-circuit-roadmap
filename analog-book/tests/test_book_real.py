@@ -107,12 +107,21 @@ class RealBookTests(unittest.TestCase):
         self.assertEqual(20, self.document.count('class="answer-list"'))
         merged = len(re.findall(
             r'<li><a id="[^"]+--q-q-ch\d+-\d+"></a>', self.visible))
-        self.assertEqual(58, merged, "58 道章节题应全部并入章末")
+        self.assertEqual(70, merged, "70 道章节题应全部并入章末")
         self.assertEqual(merged, self.document.count('class="answer-ref"'),
                          "章末每题都要在附录 F 有一条答案回链")
         self.assertEqual(34, self.document.count('class="answer-question"'))
         self.assertIn('id="appendix-f-answers"', self.document)
         self.assertIn('href="#p1-01-ch0--q-q-ch0-01"', self.document)
+
+    def test_wave1_chapter_visible_char_floors(self):
+        floors = {"0": 13500, "2": 15000}
+        chapters = self.model["stats"]["chapters"]
+        for chapter, floor in floors.items():
+            self.assertIn(chapter, chapters)
+            self.assertGreaterEqual(
+                chapters[chapter]["chars"], floor,
+                f"第 {chapter} 章可见正文 {chapters[chapter]['chars']} < {floor}")
 
     def test_stats_cross_real_content_thresholds(self):
         stats = self.model["stats"]

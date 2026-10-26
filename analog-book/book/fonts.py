@@ -33,9 +33,10 @@ def required_text(docs_dir=config.DOCS, book_dir=config.BOOK_DIR) -> str:
     if data.is_dir():
         for path in sorted(data.glob("*.yml")):
             chunks.append(path.read_text(encoding="utf-8"))
-    for path in sorted((config.ROOT / "assets" / "svg").rglob("*.svg")):
-        chunks.append(html.unescape(re.sub(r"<[^>]+>", " ", path.read_text(
-            encoding="utf-8", errors="replace"))))
+    for folder in ("svg", "figures"):
+        for path in sorted((config.ROOT / "assets" / folder).rglob("*.svg")):
+            chunks.append(html.unescape(re.sub(r"<[^>]+>", " ", path.read_text(
+                encoding="utf-8", errors="replace"))))
     text = _strip_emoji("\n".join(chunks))
     # EMOJI_RE 也覆盖 U+2713/U+2717，而 Task 5 会把 ✅/❌ 映射成 ✓/✗ 输出；
     # 剥离 emoji 后必须显式补回这两个字形，否则子集会缺字。

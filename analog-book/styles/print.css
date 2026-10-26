@@ -42,9 +42,10 @@ body {
 .book .md-typeset h1 { font-size: 22pt; line-height: 28pt; margin: 0 0 8mm; }
 .book .md-typeset h2 { font-size: 15pt; line-height: 21pt; }
 .book .md-typeset h3 { font-size: 12pt; line-height: 18pt; }
-.book .md-typeset h4 { font-size: 10.5pt; line-height: 17.5pt; }
+.book .md-typeset h4 { font-size: 10.5pt; line-height: 17pt; color: var(--navy); margin: 4mm 0 1.6mm; }
 .book .md-typeset p { margin: 0 0 3.2mm; text-align: justify; }
 .book .md-typeset ul { margin: 0 0 3.5mm; padding-left: 5mm; }
+.book .md-typeset ol { margin: 0 0 3.5mm; padding-left: 6mm; }
 .book .md-typeset li { margin: 0 0 1.5mm; text-align: justify; }
 .book .md-typeset li::marker { color: var(--amber); }
 .book .md-typeset strong { color: var(--navy); font-weight: 700; }
@@ -213,7 +214,7 @@ body {
   position: absolute; right: 2mm; bottom: -16mm; z-index: -1;
   margin: 0; font: 800 88pt/1 "Book Mono", monospace;
   color: rgba(20, 33, 61, .06); letter-spacing: -.05em;
-  pointer-events: none; user-select: none;
+  pointer-events: none; user-select: none; display: block;
 }
 
 /* ---------- 正文页 ---------- */
@@ -268,6 +269,28 @@ body {
 .book .book-callout-calc { --accent: var(--indigo); background: #f5f6fb; }
 .book .book-callout-limit { --accent: var(--rust); background: #fdf5f4; }
 .book .book-callout-gem, .book .book-callout-idea { --accent: var(--teal); background: #f3f8f7; }
+
+/* ---------- 完整算例 ---------- */
+.book .worked-example {
+  margin: 4mm 0 4.6mm; padding: 3.2mm 4.4mm 1.6mm;
+  border: 0.2mm solid var(--rule); border-left: 1.4mm solid var(--amber);
+  background: #fffdf8; break-inside: auto;
+}
+.book .worked-example .example-title { break-after: avoid; }
+.book .worked-example p { orphans: 3; widows: 3; }
+.book .md-typeset .example-title {
+  margin: 0 0 2.4mm; padding-bottom: 1.8mm;
+  border-bottom: 0.2mm solid var(--rule);
+  font: 700 10.4pt/14pt "Book Sans", sans-serif;
+  color: var(--navy); letter-spacing: .02em;
+}
+.book .md-typeset .example-title::before {
+  content: "WORKED EXAMPLE"; display: block; margin-bottom: 1.2mm;
+  font: 700 6.4pt/1 "Book Mono", monospace;
+  letter-spacing: .2em; color: var(--amber);
+}
+.book .worked-example p { margin: 0 0 2mm; }
+.book .worked-example .arithmatex { margin: 1.6mm 0; }
 
 /* ---------- 推导展开 ---------- */
 .book .book-reveal {
@@ -739,5 +762,5 @@ body {
 }
 .book .calc { display: none !important; }  /* 计算器只服务屏幕，纸上保留示例推导 */
 .book-figure { break-inside: avoid; }
-h1, h2, h3 { break-after: avoid; }
+h1, h2, h3, h4 { break-after: avoid; }
 p, li { orphans: 2; widows: 2; }
