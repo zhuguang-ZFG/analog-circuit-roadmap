@@ -174,6 +174,48 @@ body {
   font: 400 7.4pt/1 "Book Mono", monospace; color: var(--muted);
 }
 
+/* ---------- 章首舞台（真实章页） ---------- */
+.book .chapter-hero {
+  position: relative; isolation: isolate; overflow: hidden;
+  margin: 0 0 6.5mm; padding: 5mm 6.5mm 4.6mm;
+  border: 0.2mm solid var(--rule);
+  border-top: 1.2mm solid var(--navy);
+  background:
+    radial-gradient(120% 90% at 100% 0%, rgba(180, 83, 9, .10), transparent 55%),
+    linear-gradient(135deg, #fbf7f1 0%, #fffdf8 55%, #f3f8f7 100%);
+  break-inside: avoid;
+}
+.book .chapter-hero::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background-image: radial-gradient(rgba(20, 33, 61, .14) .22mm, transparent .24mm);
+  background-size: 4mm 4mm;
+  -webkit-mask-image: linear-gradient(135deg, #000, transparent 68%);
+  mask-image: linear-gradient(135deg, #000, transparent 68%);
+}
+.book .chapter-hero::after {
+  content: ""; position: absolute; right: 0; top: 0;
+  width: 26mm; height: 0.8mm; background: var(--amber);
+}
+.book .chapter-hero > h1 {
+  font-size: 23pt; line-height: 30pt; margin-bottom: 3mm;
+}
+.book .chapter-hero > blockquote {
+  background: transparent; border-left: 0; padding-left: 0;
+  margin: 0 0 3.2mm;
+}
+.book .chapter-hero > blockquote::before { content: none; }
+.book .chapter-hero .chapter-intuition {
+  margin: 0 0 0; padding: 2.6mm 0 0.6mm;
+  border-top: 0.4mm solid var(--navy); border-bottom: 0;
+}
+.book .chapter-hero .chapter-intuition .ci-text { font-size: 10.6pt; line-height: 17pt; }
+.book .chapter-hero-num {
+  position: absolute; right: 2mm; bottom: -16mm; z-index: -1;
+  margin: 0; font: 800 88pt/1 "Book Mono", monospace;
+  color: rgba(20, 33, 61, .06); letter-spacing: -.05em;
+  pointer-events: none; user-select: none;
+}
+
 /* ---------- 正文页 ---------- */
 .book .body-page { position: relative; }
 .book .body-page h2 {
@@ -284,10 +326,24 @@ body {
   font: 700 8pt/1 "Book Sans", sans-serif;
   letter-spacing: .08em; color: var(--amber); white-space: nowrap;
 }
-.book .md-typeset figure { break-inside: avoid; margin: 4mm 0; }
+.book .md-typeset figure {
+  position: relative; break-inside: avoid;
+  margin: 3.4mm 0 4.6mm; padding: 4.6mm 3mm 2.6mm;
+  border: 0.2mm solid var(--rule); border-top: 0.6mm solid var(--navy);
+  background: #fff;
+}
+.book .md-typeset figure > img,
+.book .md-typeset figure > p { display: block; margin: 0 auto; }
 .book .md-typeset figcaption {
-  font-family: "Book Sans", sans-serif; font-size: 9pt; line-height: 13pt;
-  color: var(--print-muted); margin-top: 1.5mm; text-align: center;
+  margin-top: 2.4mm; padding-top: 2mm;
+  border-top: 0.2mm solid var(--rule);
+  font: 400 8.8pt/12.6pt "Book Sans", sans-serif;
+  color: var(--muted); text-align: left;
+}
+.book .md-typeset figure:has(figcaption)::after {
+  content: "FIG"; position: absolute; right: 2.4mm; top: 1mm;
+  font: 700 5.8pt/1 "Book Mono", monospace; letter-spacing: .18em;
+  color: var(--rule);
 }
 .book .md-typeset img, .book .md-typeset svg { max-width: 100%; height: auto; }
 .book .md-typeset img { max-height: 185mm; }
