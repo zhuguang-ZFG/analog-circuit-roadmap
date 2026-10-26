@@ -79,6 +79,9 @@ def transform_callouts(fragment: str) -> str:
         if label is None:
             return f'<blockquote class="book-quote">{body}</blockquote>'
         body = LEADING_TITLE_RE.sub("<p>", body, count=1)
+        if label == "注意":
+            # ⚠️ 已被 strip_emoji 翻成“注意”，卡片标签又写一遍会重复。
+            body = re.sub(r"^(\s*)<p>\s*注意\s*", r"\1<p>", body, count=1)
         return (f'<aside class="book-callout book-callout-{slug}" '
                 f'data-label="{label}" role="note">'
                 f'<p class="callout-label">{label}</p>{body}</aside>')

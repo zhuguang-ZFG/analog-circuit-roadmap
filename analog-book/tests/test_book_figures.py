@@ -57,6 +57,15 @@ class EmojiAndCalloutTests(unittest.TestCase):
         self.assertIn('<blockquote class="book-quote">', result)
         self.assertNotIn("callout-mystery", result)
 
+    def test_warn_callout_does_not_repeat_its_label(self):
+        fragment = ('<div class="callout callout-warn">\n<p>⚠️ '
+                    '<strong>三个常见误解</strong>：稳压管不是万能基准。</p>\n</div>')
+        result = transforms.transform_callouts(transforms.strip_emoji(fragment))
+        self.assertIn('<p class="callout-label">注意</p>', result)
+        self.assertIn("<p><strong>三个常见误解</strong>：稳压管不是万能基准。</p>",
+                      result)
+        self.assertNotIn("注意 <strong>三个常见误解", result)
+
 
 class DetailsTests(unittest.TestCase):
     def test_details_become_visible_blocks(self):
@@ -204,6 +213,12 @@ class PrintStyleTests(unittest.TestCase):
         css = (BOOK / "styles" / "print.css").read_text(encoding="utf-8")
         for selector in (".callout-label", ".table-caption", ".chapter-endnotes"):
             self.assertIn(selector, css)
+
+    def test_example_title_cannot_split_from_its_label(self):
+        css = (BOOK / "styles" / "print.css").read_text(encoding="utf-8")
+        self.assertRegex(
+            css,
+            r"\.worked-example \.example-title \{[^}]*break-inside:\s*avoid")
 
 
 if __name__ == "__main__":

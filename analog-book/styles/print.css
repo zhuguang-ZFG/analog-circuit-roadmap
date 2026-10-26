@@ -276,7 +276,9 @@ body {
   border: 0.2mm solid var(--rule); border-left: 1.4mm solid var(--amber);
   background: #fffdf8; break-inside: auto;
 }
-.book .worked-example .example-title { break-after: avoid; }
+.book .worked-example .example-title {
+  break-after: avoid; break-inside: avoid;
+}
 .book .worked-example p { orphans: 3; widows: 3; }
 .book .md-typeset .example-title {
   margin: 0 0 2.4mm; padding-bottom: 1.8mm;
