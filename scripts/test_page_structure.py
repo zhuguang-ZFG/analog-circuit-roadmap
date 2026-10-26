@@ -110,6 +110,13 @@ class WrapCalloutsTests(unittest.TestCase):
         self.assertIn("🎯 **学完你应能**：说出 A。", out)
         self.assertIn("🧮 **公式速查**：[表](p0-08-cheatsheet.md#dc)。", out)
 
+    def test_why_card_becomes_its_own_kind(self):
+        """⚙️ 为什么：机制卡。它和 💡 补充想法不是一回事——读者要一眼认出「这段在讲因果」。"""
+        src = "> ⚙️ **为什么**：因为电荷被搬走了。\n"
+        out = wrap_callouts(src)
+        self.assertIn('<div class="callout callout-why" markdown="1">', out)
+        self.assertNotIn("> ⚙️", out)
+
     def test_a_plain_blockquote_is_left_alone(self):
         src = "> 这一章没有公式推导。\n"
         self.assertEqual(src, wrap_callouts(src))

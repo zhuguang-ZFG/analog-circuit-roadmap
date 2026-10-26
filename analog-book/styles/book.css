@@ -422,6 +422,8 @@ html, body {
 .book-callout { border-left: 3px solid var(--md-primary-fg-color); padding: .4rem 1rem; margin: 1rem 0; }
 .book-callout-scene { border-left-color: #b45309; background: #fdf7ee; }
 .book-callout-scene .callout-label { color: #b45309; }
+.book-callout-why { border-left-color: #4d7c0f; background: #f6f8ef; }
+.book-callout-why .callout-label { color: #4d7c0f; }
 .callout-label { font-weight: 700; font-size: .8em; letter-spacing: .08em; }
 .book-reveal { border-left: 3px solid var(--md-default-fg-color--lighter); padding: .3rem 1rem; margin: 1rem 0; }
 .book-reveal-title { font-weight: 700; font-size: .9em; margin: 0 0 .4rem; }

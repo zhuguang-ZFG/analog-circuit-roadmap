@@ -1,10 +1,24 @@
 PY ?= python
 export PYTHONIOENCODING := utf-8
 
-.PHONY: readme site book book-pdf book-check test-static test-browser verify stats clean
+.PHONY: readme gen bookdata labs fonts site book book-pdf book-check test-static test-browser verify stats clean
 
 readme:
 	$(PY) scripts/build_readme.py
+
+# docs/ 是唯一内容源，下面四样产物都从它派生；改完 docs/ 必须一起重生，
+# 否则 CI 里的对账测试（README、实验包 zip、字体子集缺字、animations.yml）必然红灯。
+# fonts 需要源字体：首次先跑 `python scripts/subset_fonts.py --download`（要联网）。
+gen: readme bookdata labs fonts
+
+bookdata:
+	$(PY) scripts/build_book_data.py --write
+
+labs:
+	$(PY) scripts/build_lab_packages.py
+
+fonts:
+	$(PY) scripts/subset_fonts.py --build
 
 site:
 	$(PY) scripts/build_site.py --build
@@ -47,6 +61,9 @@ test-browser:
 
 verify: test-static
 	$(PY) scripts/build_readme.py --check
+	$(PY) scripts/build_book_data.py --check
+	$(PY) scripts/build_lab_packages.py --check
+	$(PY) scripts/subset_fonts.py --check
 	$(PY) analog-book/build_book.py
 	$(PY) analog-book/build_book.py --check --no-build
 

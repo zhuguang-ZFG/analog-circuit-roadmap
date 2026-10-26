@@ -57,6 +57,7 @@
 .md-typeset .callout-pin    { --co: #0369a1; }   /* 📌 记号 */
 .md-typeset .callout-demo   { --co: #0f766e; }   /* 🎬 动画 */
 .md-typeset .callout-scene  { --co: #b45309; }   /* 🎭 场景 */
+.md-typeset .callout-why    { --co: #4d7c0f; }   /* ⚙️ 为什么（机制卡，白底 5.0:1） */
 .md-typeset .callout-link   { --co: #4338ca; }   /* 🔗 相关链接 */
 
 /* 深色主题：换成更亮的同色系，否则深底上的深色文字等于没写 */
@@ -74,6 +75,7 @@
 [data-md-color-scheme="slate"] .md-typeset .callout-pin    { --co: #38bdf8; }
 [data-md-color-scheme="slate"] .md-typeset .callout-demo   { --co: #2dd4bf; }
 [data-md-color-scheme="slate"] .md-typeset .callout-scene  { --co: #fbbf24; }
+[data-md-color-scheme="slate"] .md-typeset .callout-why    { --co: #a3e635; }
 [data-md-color-scheme="slate"] .md-typeset .callout-link   { --co: #a5b4fc; }
 
 /* 深色下 8% 的掺色几乎看不出来，调到 14% 才与浅色主题的观感对齐 */

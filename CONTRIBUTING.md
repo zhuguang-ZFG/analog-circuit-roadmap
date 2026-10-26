@@ -171,7 +171,9 @@ Fork → 特性分支 → 提交（commit message 中英文皆可，说明 why�
 ## 整书与离线产物
 
 - 已发布整书（每次 main 构建更新）：<https://zhuguang-zfg.github.io/analog-circuit-roadmap/book/>；`pages` 复用 `book` 作业的产物，tests/links/book 全绿才部署。
-- 改 `docs/` 后先 `make readme`；涉及整书标题或页面范围时运行 `make book`。
+- 改 `docs/` 后跑 `make gen`：README、`analog-book/data/animations.yml`、
+  `assets/labs/*-lab.zip`、`analog-book/fonts/*.woff2` 四样都从 `docs/` 派生，漏一样 CI 就红一样（字体子集缺字会印成豆腐块，`make gen` 前先
+  `python scripts/subset_fonts.py --download` 取一次源字体）。涉及整书标题或页面范围时运行 `make book`。
 - 新增内容页必须加入 `analog-book/manifest.json`（16K 印刷书），否则 16K 整书审计红灯。A4 1.0 已冻结在 `analog-book/manifest-a4.json`，Phase 5 前不再改；`make book` 仍构建 A4，16K 用 `python analog-book/build_print_book.py`。
 - 新增第三方图片/字体/代码资产必须更新 `docs/p9-14-credits.md`。
 - 不直接编辑 `README.md`、`build/`、`analog-book/dist/`。

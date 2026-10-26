@@ -13,6 +13,7 @@
   --rust: #b42318;
   --indigo: #3730a3;
   --green: #166534;
+  --lime: #4d7c0f;
   --muted: #52606d;
   --rule: #d0d5dd;
   --rule-soft: #e4e7ec;
@@ -289,6 +290,7 @@ body {
 .book .book-callout-calc { --accent: var(--indigo); background: #f5f6fb; }
 .book .book-callout-limit { --accent: var(--rust); background: #fdf5f4; }
 .book .book-callout-gem, .book .book-callout-idea { --accent: var(--teal); background: #f3f8f7; }
+.book .book-callout-why { --accent: var(--lime); background: #f6f8ef; }
 .book .book-callout-scene {
   --accent: var(--amber); border-left-width: 1.8mm;
   background: linear-gradient(135deg, #fdf7ee 0%, #fffdf8 62%, #f3f8f7 100%);

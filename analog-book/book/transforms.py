@@ -20,6 +20,7 @@ CALLOUT_LABELS = {
     "fix": "修复方法", "idea": "设计直觉", "video": "配套视频",
     "demo": "动画演示", "photo": "实测记录", "attach": "附件",
     "pin": "记忆锚点", "link": "延伸阅读", "scene": "场景",
+    "why": "为什么",
 }
 CALLOUT_RE = re.compile(
     r'<div class="callout callout-([a-z]+)">(.*?)</div>', re.S)

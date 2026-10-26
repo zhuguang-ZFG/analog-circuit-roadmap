@@ -24,7 +24,8 @@ PART5 = "p5-00-part5.md"
 # 侧栏「节首页补丁」的单元测试要读已安装的 Material 模板，所以直接 import
 # build_site（本文件所在的 site-build 作业本来就装了 mkdocs-material）。
 sys.path.insert(0, str(ROOT / "scripts"))
-from build_site import NAV_ITEM_ANCHOR, NAV_ITEM_PATCHED, nav_item_override  # noqa: E402
+from build_site import (CALLOUT_KINDS, NAV_ITEM_ANCHOR,  # noqa: E402
+                        NAV_ITEM_PATCHED, nav_item_override)
 
 DEMO_HEAD = re.compile(r'^## (5\.\d+)\s+(.+?)\s*<a id="(demo\d+)"')
 ANCHOR = re.compile(r'<a\s+id="(demo\d+)"')
@@ -623,7 +624,9 @@ class SiteBuildTests(unittest.TestCase):
     # ---------- 标题层级 ----------
     HEADING = re.compile(r"<h([1-6])(?:\s[^>]*)?>(.*?)</h\1>", re.S)
     CALL_TAG = re.compile(r"<[^>]+>")
-    SIGNATURE = re.compile(r"^> *(?:💎|🧮|🔬|🎯|📚|📺|📷|📎|🔧|⚠️|💡|📌|🎬|🎭|🔗)")
+    # 与 build_site.CALLOUT_KINDS 同源：新增一类卡片时，这条对账不可能漏。
+    SIGNATURE = re.compile("^> *(?:%s)"
+                           % "|".join(sorted(re.escape(e) for e in CALLOUT_KINDS)))
 
     def headings(self, name):
         return [(int(m.group(1)), self.CALL_TAG.sub("", m.group(2)).replace("&para;", "").strip())
@@ -799,8 +802,7 @@ class SiteBuildTests(unittest.TestCase):
                 counts[kind] = counts.get(kind, 0) + 1
         self.assertGreaterEqual(sum(counts.values()), 160,
                                 f"提示卡总数偏少，可能有一类没被包上：{counts}")
-        for kind in ("gem", "calc", "goal", "prereq", "video", "photo", "attach", "fix",
-                     "warn", "idea", "pin", "link"):
+        for kind in sorted(set(CALLOUT_KINDS.values())):
             with self.subTest(kind=kind):
                 self.assertGreater(counts.get(kind, 0), 0, f"{kind} 类一张都没有：{counts}")
 
