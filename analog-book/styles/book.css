@@ -259,7 +259,18 @@ html, body {
   .book-search, .book-top, .book-progress, .book-skip { display: none !important; }
   .book { max-width: none; padding: 0; }
   .book .md-typeset { font-size: 10.5pt; line-height: 1.65; }
-  .book-copyright { font-size: 10.5pt; }
+  /* A4 可印区高 259mm；封面锁死在一页，避免插图把版权页挤到第 3 页。 */
+  .book-cover {
+    height: 238mm; min-height: 0; padding: 12mm 14mm; gap: 8px;
+    overflow: hidden;
+  }
+  .book-cover-art {
+    flex: none; width: 116mm; height: 122mm; margin-bottom: 0;
+  }
+  .book-cover-art svg { width: 100%; height: 100%; }
+  .book-cover-title { font-size: 44px; }
+  /* 只保留目录自身的强制分页，避免版权页与目录之间出现空白页。 */
+  .book-copyright { font-size: 10.5pt; break-before: auto; break-after: auto; }
   .book .md-typeset a { color: inherit; text-decoration: none; }
   .book .md-typeset pre { white-space: pre-wrap; word-break: break-word; }
   .book .md-typeset .arithmatex { overflow: visible; }
