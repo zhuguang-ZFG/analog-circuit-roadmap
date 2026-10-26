@@ -38,6 +38,17 @@ CHAPTER_CONTRACTS = {
         ),
         "deck": "assets/spice/ch02/rectifier.cir",
     },
+    "11": {
+        "file": "p2-01-ch11.md",
+        "floor": 18000,
+        "sections": ("### 11.8", "### 11.9", "### 11.10", "### 11.11"),
+        "examples": 3,
+        "figures": 7,
+        "tables": 5,
+        "quiz": 10,
+        "figure_assets": ("assets/figures/ch11-cascode.svg",),
+        "deck": "assets/spice/ch11/diffpair.cir",
+    },
 }
 
 

@@ -26,13 +26,16 @@ def _tran_step(text: str) -> str | None:
 class SchemaTests(unittest.TestCase):
     def test_discovers_simulation_cases(self):
         cases = {case.deck.name: case for case in run_spice.discover_cases()}
-        self.assertEqual({"divider.cir", "rc.cir", "rectifier.cir"}, set(cases))
+        self.assertEqual({"divider.cir", "rc.cir", "rectifier.cir",
+                          "diffpair.cir"}, set(cases))
         self.assertEqual({"vfinal", "vhalf", "trise"},
                          set(cases["rc.cir"].spec["metrics"]))
         self.assertEqual({"vout_open", "vout_load", "i_load"},
                          set(cases["divider.cir"].spec["metrics"]))
         self.assertEqual({"vavg", "vripple", "ipeak"},
                          set(cases["rectifier.cir"].spec["metrics"]))
+        self.assertEqual({"vc1_0", "vc2_0", "vc1_cm", "vc2_cm"},
+                         set(cases["diffpair.cir"].spec["metrics"]))
 
     def test_deck_has_no_external_models(self):
         text = (ROOT / "assets" / "spice" / "ch01" / "rc.cir").read_text(
@@ -190,6 +193,20 @@ class SimulationTests(unittest.TestCase):
         rows = run_spice.load_data(path, min_rows=2000)
         self.assertGreaterEqual(len(rows), 2000)
         self.assertTrue(all(b[0] > a[0] for a, b in zip(rows, rows[1:])))
+
+    def test_diffpair_metrics_match_dc_model(self):
+        result = self.results["diffpair.cir"]
+        self.assertEqual([], result["problems"], result["log"])
+        self.assertAlmostEqual(6.81, result["metrics"]["vc1_0"], delta=0.08)
+        self.assertAlmostEqual(7.19, result["metrics"]["vc2_0"], delta=0.08)
+        self.assertAlmostEqual(6.805, result["metrics"]["vc1_cm"], delta=0.08)
+        self.assertAlmostEqual(7.185, result["metrics"]["vc2_cm"], delta=0.08)
+
+    def test_diffpair_data_is_written(self):
+        case = self.cases["diffpair.cir"]
+        path = self.out / "diffpair" / case.spec["data"]
+        rows = run_spice.load_data(path, min_rows=50)
+        self.assertGreaterEqual(len(rows), 50)
 
     def test_plot_is_generated_from_simulation_data(self):
         path = self.out / "rc" / self.case.spec["data"]
