@@ -235,7 +235,8 @@ class AssemblyTests(unittest.TestCase):
         print_block = css.split("@media print", 1)[1]
         self.assertIn("table-layout: fixed", print_block)
         self.assertIn("word-break: break-word", print_block)
-        self.assertIn(".book-copyright { font-size: 10.5pt; }", print_block)
+        self.assertIn(".book-copyright { font-size: 10.5pt;", print_block)
+        self.assertIn("break-before: auto; break-after: auto;", print_block)
 
     def test_no_remote_or_site_only_assets(self):
         self.assertNotRegex(self.document, r'<script[^>]+src=')
