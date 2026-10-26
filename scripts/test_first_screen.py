@@ -31,7 +31,6 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from collections import Counter
 import io
-import shutil
 import subprocess
 import sys
 import tempfile
@@ -42,6 +41,8 @@ from PIL import Image
 from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "scripts"))
+from site_build_inputs import copy_build_inputs  # noqa: E402
 
 # 正文字号的门槛（WCAG AA）。SVG 那套用 3.0 是因为图里的标注算"大号图形文字"。
 MIN_RATIO = 4.5
@@ -95,11 +96,7 @@ class FirstScreenTests(unittest.TestCase):
         temporary = tempfile.TemporaryDirectory(prefix="analog-hero-")
         cls.addClassCleanup(temporary.cleanup)
         work = Path(temporary.name)
-        for folder in ("docs", "assets", "scripts"):
-            shutil.copytree(ROOT / folder, work / folder,
-                            ignore=shutil.ignore_patterns("__pycache__", "_probe*"))
-        for filename in ("CONTRIBUTING.md", "CONTRIBUTORS.md", "LICENSE"):
-            shutil.copyfile(ROOT / filename, work / filename)
+        copy_build_inputs(ROOT, work)
         result = subprocess.run([sys.executable, "-X", "utf8", "scripts/build_site.py", "--build"],
                                 cwd=work, capture_output=True, text=True,
                                 encoding="utf-8", errors="replace", timeout=300)
