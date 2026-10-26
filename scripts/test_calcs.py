@@ -7,7 +7,6 @@
 """
 from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
-import math
 from pathlib import Path
 import shutil
 import subprocess

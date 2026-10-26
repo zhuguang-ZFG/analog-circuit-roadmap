@@ -37,7 +37,8 @@ class CircuitExamplesTests(unittest.TestCase):
             # Dense log sweep; the interpolation error is well below 0.2deg.
             before, after = curve[crossing - 1][1], curve[crossing][1]
             fraction = math.log(abs(before)) / math.log(abs(before) / abs(after))
-            angle = lambda z: math.degrees(math.atan2(z.imag, z.real))
+            def angle(z):
+                return math.degrees(math.atan2(z.imag, z.real))
             margins.append(180 + angle(before) + fraction * (angle(after) - angle(before)))
         for actual, expected in zip(margins, (10.2, 88.2, 7.2)):
             self.assertAlmostEqual(expected, actual, delta=0.25)

@@ -2,7 +2,6 @@
 """书内字体必须覆盖全书字符，而且以 data URI 内联。"""
 import base64
 import json
-import re
 import sys
 import unittest
 from pathlib import Path

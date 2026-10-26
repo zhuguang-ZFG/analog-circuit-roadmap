@@ -295,7 +295,8 @@ def diode_arm(x1, y1, x2, y2, label, dlx, dly):
     """桥臂二极管：正向从 (x1,y1) 指向 (x2,y2)"""
     mx, my = (x1+x2)/2, (y1+y2)/2
     dx, dy = x2-x1, y2-y1
-    L = float(np.hypot(dx, dy)); ux, uy = dx/L, dy/L
+    L = float(np.hypot(dx, dy))
+    ux, uy = dx/L, dy/L
     px, py = -uy, ux
     t = 11
     tipx, tipy = mx+ux*t, my+uy*t
@@ -1573,7 +1574,7 @@ def make_class_b():
     xo_d = "M" + " L".join(xo_pts)
     sin_d2 = sine_path(430, 750, 330, 40, n=72)
     svg = svg_open('乙类推挽：两个人抬轿子，交接处摔了一跤（交越失真）', h=500)
-    svg += f'''
+    svg += '''
 <text x="200" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">乙类推挽输出级</text>
 <text x="56" y="76" font-size="12.5" font-weight="bold" fill="#b45309">+VCC</text>
 <line x1="90" y1="70" x2="140" y2="70" stroke="#334155" stroke-width="2.5"/>
@@ -1638,7 +1639,8 @@ def make_sallen_key():
             y = 262 - db*1.9
             pts.append(f"{x:.0f},{y:.0f}")
         return "M" + " L".join(pts)
-    flat_d = bode(0.707); peak_d = bode(3.0)
+    flat_d = bode(0.707)
+    peak_d = bode(3.0)
     sin_in = sine_path(430, 750, 130, 30, n=72)
     lo_pts = []
     for i in range(73):
@@ -1848,7 +1850,7 @@ def make_precision_rectifier():
         s = np.sin(u*4*np.pi)
         half_pts.append(f"{x:.0f},{280 - 40*max(0.0, s):.0f}")
     half_d = "M" + " L".join(half_pts)
-    flat_d = f"M430,280 L750,280"
+    flat_d = "M430,280 L750,280"
     svg = svg_open('精密整流：运放「借增益」消灭二极管压降', h=512)
     svg += f'''
 <text x="210" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">精密半波整流器（反相型）</text>
@@ -2063,9 +2065,10 @@ def make_rlc_resonance():
             x = 420 + (np.log10(f)-np.log10(0.1))/(np.log10(4)-np.log10(0.1))*320
             pts.append(f"{x:.0f},{330-180*H:.0f}")
         return "M" + " L".join(pts)
-    hi_q = resp(5); lo_q = resp(1.2)
+    hi_q = resp(5)
+    lo_q = resp(1.2)
     svg = svg_open('LC 谐振：电场与磁场的「荡秋千」', h=500)
-    svg += f'''
+    svg += '''
 <text x="200" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">LC 串联谐振回路</text>
 <circle cx="60" cy="150" r="16" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
 <text x="60" y="155" text-anchor="middle" font-size="12" fill="#334155">~</text>
@@ -2115,7 +2118,7 @@ def make_sar_adc():
     DA = 8
     steps_x = [430, 510, 590, 670, 750]
     dac_lv = [8, 4, 6, 5]
-    step_d = f"M430,300 "
+    step_d = "M430,300 "
     for i, lv in enumerate(dac_lv):
         y = 300 - lv*12
         step_d += f"V{y} H{steps_x[i+1]} "
@@ -2262,7 +2265,7 @@ def make_tl431():
 '''
     svg += f'<g><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.5;0.56;0.9;0.96;1" dur="{DT}s" repeatCount="indefinite"/>'
     svg += flow("M284,114 V160 V222 V264", DT/3, n=4, color="#dc2626", r=5) + '</g>'
-    svg += f'''
+    svg += '''
 <rect x="460" y="90" width="290" height="150" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
 <text x="605" y="116" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">变身稳压器：分压采样闭环</text>
 <text x="480" y="146" font-size="11" fill="#475569">Vout ──[R1]──┬── REF</text>
@@ -2575,7 +2578,7 @@ def make_constant_current():
 <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.52;0.56;0.9;0.96;1" dur="{DCC}s" repeatCount="indefinite"/></text>
 '''
     svg += flow("M194,76 V116 M190,141 V160 V226 V297", DCC/3, n=5, color="#059669", r=5)
-    svg += f'''
+    svg += '''
 <text x="590" y="86" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#475569">I-V 特性：电压横扫，电流平躺</text>
 <line x1="430" y1="210" x2="750" y2="210" stroke="#059669" stroke-width="3"/>
 <line x1="430" y1="300" x2="750" y2="300" stroke="#64748b" stroke-width="1.4"/>
@@ -2837,7 +2840,7 @@ def make_ne555_monostable():
 def make_h_bridge():
     DH = 7
     svg = svg_open('H 桥：四只开关让电流「听指挥」掉头', h=480)
-    svg += f'''
+    svg += '''
 <text x="400" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">两对角线闭合 = 电流方向；同臂直通 = 短路烧管</text>
 <line x1="100" y1="80" x2="700" y2="80" stroke="#334155" stroke-width="2.5"/>
 <text x="64" y="86" font-size="12.5" font-weight="bold" fill="#b45309">+12V</text>
@@ -3207,7 +3210,6 @@ def make_schmitt_osc():
     for i in range(167):
         x = 60 + 332 * i / 166
         u = (x - 60) % 166
-        x0 = 60 + ((x - 60) // 166) * 166
         if u < 83:
             vc = 6 - 9 * np.exp(-np.log(3) * u / 83)
         else:
@@ -4141,7 +4143,7 @@ def make_cap_parasitics():
     def curve(spec, color, wid=2.4):
         fs = np.logspace(1, 9, 300)
         pts = [f"{px(f):.0f},{py(zmag(f, *spec)):.0f}" for f in fs]
-        return f'<path d="M' + " L".join(pts) + f'" fill="none" stroke="{color}" stroke-width="{wid}"/>'
+        return '<path d="M' + " L".join(pts) + f'" fill="none" stroke="{color}" stroke-width="{wid}"/>'
     srf_ml = 1/(2*np.pi*np.sqrt(ML[0]*ML[2]))
     srf_el = 1/(2*np.pi*np.sqrt(EL[0]*EL[2]))
     svg = svg_open('真实电容的阻抗频谱：谷底有多低，决定它能救多高的频', h=622)
@@ -4234,18 +4236,20 @@ def make_cap_parasitics():
 def make_miller_plateau():
     DS = 10
     TX0, TX1 = 90, 760
-    tx = lambda t: TX0 + t/800*670
+    def tx(t):
+        return TX0 + t/800*670
     # 阶段边界（ns）：延时 150 / 电流上升 400 / 平台 560 / 完全增强 700
     vgs = [(0, 0), (150, 1.4), (400, 2.9), (560, 2.9), (700, 5.0), (800, 5.0)]
     vds = [(0, 20), (400, 20), (560, 0.15), (800, 0.15)]
     idr = [(0, 0), (400, 5), (800, 5)]
     pow_ = []
     for t in range(0, 801, 10):
-        g = lambda tab: np.interp(t, [p[0] for p in tab], [p[1] for p in tab])
+        def g(tab):
+            return np.interp(t, [p[0] for p in tab], [p[1] for p in tab])
         pow_.append((t, g(vds)*g(idr)))
     def path(tab, ytop, ybot, vmax, color, wid=2.6):
         pts = [f"{tx(t):.0f},{ybot-(v/vmax)*(ybot-ytop):.0f}" for t, v in tab]
-        return (f'<path d="M' + " L".join(pts) + f'" fill="none" stroke="{color}" '
+        return ('<path d="M' + " L".join(pts) + f'" fill="none" stroke="{color}" '
                 f'stroke-width="{wid}" stroke-linejoin="round"/>')
     svg = svg_open('米勒平台：V_GS 为什么会在半路「停下来看戏」', h=620)
     vgs_d = (f"M{tx(0):.0f},196 L{tx(150):.0f},175 L{tx(400):.0f},152 "
@@ -4313,8 +4317,10 @@ def make_miller_plateau():
 def make_opamp_slew():
     DW = 9
     X0, X1, Y0, Y1 = 430, 770, 130, 400
-    px = lambda t: X0 + t/3.0*340
-    py = lambda v: Y1 - v/1.15*(Y1-Y0)
+    def px(t):
+        return X0 + t/3.0*340
+    def py(v):
+        return Y1 - v/1.15*(Y1-Y0)
     def slew_path(dur_slew, tau, n=120):
         pts = []
         for i in range(n+1):
@@ -4404,8 +4410,10 @@ def make_diode_iv():
     DI = 10
     IS, VT = 1e-9, 0.026          # n=1 的理想硅结：每 60mV 一个十倍频
     X0, X1, Y0, Y1 = 410, 764, 118, 402
-    px = lambda v: X0 + v/0.8*(X1-X0)
-    py = lambda i: Y0 + (np.log10(100e-3) - np.log10(max(i, 1e-9)))/8*(Y1-Y0)
+    def px(v):
+        return X0 + v/0.8*(X1-X0)
+    def py(i):
+        return Y0 + (np.log10(100e-3) - np.log10(max(i, 1e-9)))/8*(Y1-Y0)
     def iv(v, dv=0.0):
         return IS*(np.exp((v+dv)/VT)-1)
     def curve(dv, color, wid=2.6):
@@ -4415,7 +4423,7 @@ def make_diode_iv():
             if i > 100e-3:
                 break
             pts.append(f"{px(v):.0f},{py(i):.0f}")
-        return f'<path d="M' + " L".join(pts) + f'" fill="none" stroke="{color}" stroke-width="{wid}"/>'
+        return '<path d="M' + " L".join(pts) + f'" fill="none" stroke="{color}" stroke-width="{wid}"/>'
     svg = svg_open('二极管伏安特性：一根 60mV 能换来十倍电流', h=600)
     svg += f'''
 <text x="185" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">I_D = I_S(e^(V_D/nV_T) − 1)</text>
@@ -4480,9 +4488,11 @@ def make_diode_iv():
 def make_comparator_opamp():
     DC = 10
     TX0, TX1 = 430, 764
-    tx = lambda t: TX0 + t/8.0*334
+    def tx(t):
+        return TX0 + t/8.0*334
     YTOP, YBOT = 132, 296
-    vy = lambda v: YBOT - v/5.0*(YBOT-YTOP)
+    def vy(v):
+        return YBOT - v/5.0*(YBOT-YTOP)
     def opamp(t):
         if t <= 4.0:
             return min(2.0, 0.5*t)
@@ -4492,7 +4502,7 @@ def make_comparator_opamp():
     def curve(fn, color, wid=2.8, dash=''):
         pts = [f"{tx(t):.0f},{vy(fn(t)):.0f}" for t in np.linspace(0, 8, 200)]
         d = ' stroke-dasharray="%s"' % dash if dash else ''
-        return (f'<path d="M' + " L".join(pts) + f'" fill="none" stroke="{color}" '
+        return ('<path d="M' + " L".join(pts) + f'" fill="none" stroke="{color}" '
                 f'stroke-width="{wid}"{d}/>')
     svg = svg_open('运放当比较器、比较器当运放：为什么都不行', h=640)
     svg += f'''
@@ -4569,7 +4579,8 @@ def make_comparator_opamp():
 def make_noise_budget():
     DN = 10
     X0, X1, Y0, Y1 = 400, 764, 130, 400
-    fx = lambda f: X0 + np.log10(f/10)/5.0*(X1-X0)
+    def fx(f):
+        return X0 + np.log10(f/10)/5.0*(X1-X0)
     def ny(db):
         return Y0 + (25-db)/85*(Y1-Y0)
     fig_fs = np.logspace(1, 6, 200)
@@ -4737,7 +4748,8 @@ def make_transfer_gate():
     DG = 10
     VT, R0, VDD = 1.0, 80.0, 5.0
     X0, X1, Y0, Y1 = 400, 760, 132, 402
-    px = lambda v: X0 + v/VDD*(X1-X0)
+    def px(v):
+        return X0 + v/VDD*(X1-X0)
     def ry(r):
         # 电阻轴按惯例：Ron 越大越靠上（∞ 冲出图顶），所以 1kΩ 在顶、10Ω 在底
         r = min(max(r, 10.0), 1000.0)
@@ -4753,7 +4765,7 @@ def make_transfer_gate():
         return 1/(1/rn + 1/rp)
     def curve(fn, color, wid=2.6):
         pts = [f"{px(v):.0f},{ry(fn(v)):.0f}" for v in np.linspace(0, VDD, 240)]
-        return f'<path d="M' + " L".join(pts) + f'" fill="none" stroke="{color}" stroke-width="{wid}"/>'
+        return '<path d="M' + " L".join(pts) + f'" fill="none" stroke="{color}" stroke-width="{wid}"/>'
     svg = svg_open('CMOS 传输门：一只管子总有一段「使不上劲」', h=640)
     svg += f'''
 <text x="190" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">NMOS + PMOS 并联 = 全程平坦</text>
@@ -5204,8 +5216,10 @@ def make_pn_junction():
 def make_mosfet_curves():
     DM = 11
     X0, X1, Y0, Y1 = 400, 764, 116, 400
-    px = lambda vds: X0 + vds/10.0*(X1-X0)
-    py = lambda id_: Y1 - id_/30.0*(Y1-Y0)
+    def px(vds):
+        return X0 + vds/10.0*(X1-X0)
+    def py(id_):
+        return Y1 - id_/30.0*(Y1-Y0)
     VT, K = 2.0, 0.9
     def curve(vgs, color, wid=2.4):
         pts = []
@@ -5218,7 +5232,7 @@ def make_mosfet_curves():
             else:
                 i = K*vov*vov/2                   # 饱和区（恒流）
             pts.append(f"{px(vds):.0f},{py(min(i,30)):.0f}")
-        return f'<path d="M' + " L".join(pts) + f'" fill="none" stroke="{color}" stroke-width="{wid}"/>'
+        return '<path d="M' + " L".join(pts) + f'" fill="none" stroke="{color}" stroke-width="{wid}"/>'
     svg = svg_open('MOSFET 输出特性：「饱和」在这里恰恰是放大区', h=620)
     svg += f'''
 <text x="200" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">一条曲线 = 一个 V_GS；夹断点连成虚线</text>
@@ -5279,7 +5293,7 @@ def make_mosfet_curves():
 def make_555_modes():
     DN = 11
     svg = svg_open('555 的三种人格：无稳态、单稳态、双稳态', h=620)
-    svg += f'''
+    svg += '''
 <text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">同一颗芯，接法不同 → 人格完全不同；区别只在「往哪个脚接 RC」</text>
 '''
     cards = [
@@ -5310,7 +5324,7 @@ def make_555_modes():
                 t = i/120
                 v = 1 if (t % 0.5) < 0.34 else 0
                 pts.append(f"{x+30+t*180:.0f},{352-v*22:.0f}")
-            svg += f'<path d="M' + " L".join(pts) + f'" fill="none" stroke="{col}" stroke-width="2.2"/>'
+            svg += '<path d="M' + " L".join(pts) + f'" fill="none" stroke="{col}" stroke-width="2.2"/>'
             svg += f'<text x="{x+120}" y="368" text-anchor="middle" font-size="9.5" fill="#64748b">连续方波（自由跑）</text>'
         else:
             base = 352
@@ -5423,8 +5437,10 @@ def make_resistor_model():
         return abs(1j*w*L + zp)         # 再串引线电感 L
 
     X0, X1, Y0, Y1 = 400, 764, 120, 396
-    px = lambda f: X0 + (np.log10(f)-3)/8.0*(X1-X0)               # 1kHz .. 100GHz
-    py = lambda z: Y0 + (np.log10(2e4)-np.log10(max(z, 10)))/np.log10(2e3)*(Y1-Y0)
+    def px(f):
+        return X0 + (np.log10(f)-3)/8.0*(X1-X0)               # 1kHz .. 100GHz
+    def py(z):
+        return Y0 + (np.log10(2e4)-np.log10(max(z, 10)))/np.log10(2e3)*(Y1-Y0)
     real_d = "M" + " L".join(f"{px(f):.0f},{py(zmag(f)):.0f}" for f in np.logspace(3, 11, 320))
     svg = svg_open('真实电阻：高频时它不再是「一个电阻」', h=648)
     svg += f'''
@@ -5500,7 +5516,7 @@ def make_resistor_model():
 def make_diode_family():
     DD = 11
     svg = svg_open('特殊二极管家族：一族五口，各管一段活', h=620)
-    svg += f'''
+    svg += '''
 <text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">横轴：特征电压（V_F 或反向工作电压）　纵轴：速度　—— 每颗管子占的位置就说明了它的岗位</text>
 '''
     fam = [
@@ -5567,7 +5583,7 @@ def make_diode_family():
 # ======================= 图 67：上拉电阻取值（第 5 章 5.3） =======================
 def make_pullup_sizing():
     DP = 11
-    V, C = 3.3, 100e-12
+    C = 100e-12
     def tr(R): return 0.8473*R*C
     svg = svg_open('上拉电阻取值：太大翻不动，太小白费电', h=620)
     svg += f'''
@@ -5706,7 +5722,7 @@ def make_bjt_configs():
     def tri(x, y, col):
         return (f'<polygon points="{x},{y-34} {x},{y+34} {x+60},{y}" fill="#f8fafc" stroke="{col}" stroke-width="2.2"/>')
     svg = svg_open('一只晶体管的三种人生：共射、共集、共基', h=620)
-    svg += f'''
+    svg += '''
 <text x="400" y="56" text-anchor="middle" font-size="11" fill="#64748b">信号从哪进、从哪出、哪个极做交流公共端 —— 决定它的性格</text>
 '''
     conf = [
@@ -6046,7 +6062,7 @@ def make_body_diode():
 def make_mux4051():
     DM = 11
     svg = svg_open('CD4051：八路传感器共用一个 ADC', h=732)
-    svg += f'''
+    svg += '''
 <text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">3 位地址选 8 路之一 —— 多路复用器就是「模拟旋转开关」</text>
 <text x="220" y="100" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">CD4051（8 选 1）</text>
 <rect x="120" y="120" width="200" height="260" rx="10" fill="#f8fafc" stroke="#2563eb" stroke-width="2.2"/>
@@ -6057,7 +6073,7 @@ def make_mux4051():
         svg += f'<line x1="70" y1="{y}" x2="120" y2="{y}" stroke="#334155" stroke-width="2"/>'
         svg += f'<circle cx="120" cy="{y}" r="3.5" fill="#334155"/>'
         svg += f'<text x="62" y="{y+4}" text-anchor="end" font-size="10.5" font-weight="bold" fill="#b45309">Y{i}</text>'
-    svg += f'''
+    svg += '''
 <line x1="320" y1="200" x2="370" y2="200" stroke="#334155" stroke-width="2.5"/>
 <text x="382" y="204" font-size="11.5" font-weight="bold" fill="#059669">COM 公共端</text>
 <line x1="320" y1="300" x2="370" y2="300" stroke="#334155" stroke-width="2.5"/>
@@ -6251,7 +6267,7 @@ def make_opamp_map():
 def make_datasheet_params():
     DP = 11
     svg = svg_open('Datasheet 五十页，先读这六行', h=732)
-    svg += f'''
+    svg += '''
 <text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">按「会咬人」的先后排序 —— 每一项都给出它咬在哪</text>
 '''
     rows = [
@@ -6300,7 +6316,7 @@ def make_datasheet_params():
 def make_ldo_failures():
     DF = 11
     svg = svg_open('7805/AMS1117 四种翻车：每一种都能事先算出来', h=742)
-    svg += f'''
+    svg += '''
 <text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">线性稳压的四种死法 —— 根因都是「忘了算一笔账」</text>
 '''
     cases = [
@@ -6438,7 +6454,7 @@ def make_bjt_diagnosis():
 def make_opamp_pitfalls():
     DO = 11
     svg = svg_open('运放的六个经典坑：每一个都能复现、都能预防', h=762)
-    svg += f'''
+    svg += '''
 <text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">症状 → 根因 → 解法，按现场出现频率排序</text>
 '''
     pits = [
@@ -6493,7 +6509,7 @@ def make_opamp_pitfalls():
 def make_comparator_pitfalls():
     DC = 11
     svg = svg_open('比较器的五个坑：忘了上拉排第一', h=732)
-    svg += f'''
+    svg += '''
 <text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">LM393 是开集电极输出 —— 一半的「故障」都源于这件事</text>
 '''
     pits = [
@@ -6769,8 +6785,6 @@ def make_thevenin():
 # ======================= 图 85：恒流源的合规电压（第 13 章 13.5） =======================
 def make_compliance_voltage():
     DC = 11
-    VS, ISET, RSENSE, VDROP = 2.8, 1e-3, 100.0, 0.7
-    rl_max = (VS - VDROP - ISET*RSENSE)/ISET
     svg = svg_open('恒流源也有天花板：合规电压算给你看', h=640)
     svg += f'''
 <text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">恒流源不是「万能」——负载太重，它就撑不住了</text>
@@ -6841,7 +6855,8 @@ def make_mosfet_four_beats():
     """把同一次开通拆成四个能量状态：栅极电荷、沟道电流与损耗同步变化。"""
     DB = 10
     T0, T1 = 90, 760
-    tx = lambda t: T0 + t / 700 * (T1 - T0)
+    def tx(t):
+        return T0 + t / 700 * (T1 - T0)
 
     vgs = [(0, 0), (150, 1.4), (400, 2.9), (560, 2.9), (700, 5.0)]
     ids = [(0, 0), (150, 0), (400, 5), (560, 5), (700, 5)]
@@ -6850,7 +6865,7 @@ def make_mosfet_four_beats():
 
     def path(tab, ytop, ybot, vmax, color, width=2.5):
         pts = [f"{tx(t):.0f},{ybot - (value / vmax) * (ybot - ytop):.0f}" for t, value in tab]
-        return (f'<path d="M' + " L".join(pts) + f'" fill="none" stroke="{color}" '
+        return ('<path d="M' + " L".join(pts) + f'" fill="none" stroke="{color}" '
                 f'stroke-width="{width}" stroke-linejoin="round"/>')
 
     series = [
@@ -6947,8 +6962,10 @@ def make_rectifier_filter_beats():
     """整流滤波电源四拍拆解：AC→二极管→C∥R_L，从空电容到稳态纹波。"""
     DB = 12
     T0, T1 = 80, 760
-    tx = lambda t: T0 + t / 20 * (T1 - T0)          # ms → x（20ms 线性时间轴）
-    vy = lambda v: 390 + (15.6 - v) / 2.1 * 16      # V_C：15.6V→390，13.5V→406
+    def tx(t):
+        return T0 + t / 20 * (T1 - T0)          # ms → x（20ms 线性时间轴）
+    def vy(v):
+        return 390 + (15.6 - v) / 2.1 * 16      # V_C：15.6V→390，13.5V→406
 
     def mini_stage(x, title, time_text, color, current_text, voltage_text,
                    diode_color, cap_color, flow_path=None, flow_color="#dc2626"):
@@ -6997,7 +7014,8 @@ def make_rectifier_filter_beats():
     vc_t = [0, 4.3, 5.0, 14.3, 15.0, 20]
     vc_v = [14.47, 13.5, 15.6, 13.5, 15.6, 13.87]
     vc_d = "M" + " L".join(f"{tx(t):.0f},{vy(v):.0f}" for t, v in zip(vc_t, vc_v))
-    pulse = lambda t0: (f" L{tx(t0):.0f},438 L{tx(t0 + 0.35):.0f},416 L{tx(t0 + 0.7):.0f},438")
+    def pulse(t0):
+        return (f" L{tx(t0):.0f},438 L{tx(t0 + 0.35):.0f},416 L{tx(t0 + 0.7):.0f},438")
     id_d = (f"M{T0},438 L{tx(4.3):.0f},438" + pulse(4.3)
             + f" L{tx(14.3):.0f},438" + pulse(14.3) + f" L{T1},438")
 
@@ -7148,7 +7166,8 @@ def make_analog_switch_beats():
     """模拟开关四拍：开→通（存储 Q_ch）→关（电荷注入 ΔV）→补偿（dummy 管）。"""
     DB = 12
     T0, T1 = 80, 760
-    tx = lambda t: T0 + t / 20 * (T1 - T0)      # ms → x（20ms 线性轴）
+    def tx(t):
+        return T0 + t / 20 * (T1 - T0)      # ms → x（20ms 线性轴）
 
     def mini_stage(x, title, time_text, color, row1, row2, tg_fill,
                    flow_path=None, flow_color="#f59e0b", extra=''):
@@ -7237,8 +7256,10 @@ def make_ldo_transient_beats():
     """LDO 负载瞬态四拍：ESR 跳变 → 电容放电 → 环路接管 → 重新锁定。"""
     DB = 12
     T0, T1 = 80, 760
-    tx = lambda t: T0 + t / 50 * (T1 - T0)              # µs → x（0..50µs 线性轴）
-    vy = lambda v: 348 + (5.01 - v) / 0.31 * 80         # V_OUT：5.01V→348，4.70V→428
+    def tx(t):
+        return T0 + t / 50 * (T1 - T0)              # µs → x（0..50µs 线性轴）
+    def vy(v):
+        return 348 + (5.01 - v) / 0.31 * 80         # V_OUT：5.01V→348，4.70V→428
 
     def mini_stage(x, title, time_text, color, row1, row2, ldo_fill, esr_c, cap_c,
                    flow_path=None, flow_color="#dc2626"):
@@ -7339,8 +7360,10 @@ def make_555_astable_beats():
     DB = 12
     T0, T1 = 80, 760
     PER = 1012.0                        # 541 + 471 µs
-    tx = lambda t: T0 + t / PER * (T1 - T0)
-    vy = lambda v: 420 - v / 9 * 62     # V_C：9V→358，0V→420
+    def tx(t):
+        return T0 + t / PER * (T1 - T0)
+    def vy(v):
+        return 420 - v / 9 * 62     # V_C：9V→358，0V→420
 
     def mini_stage(x, title, time_text, color, row1, row2, r1c, r2c, capc,
                    flow_path=None, flow_color="#dc2626"):
@@ -7536,7 +7559,7 @@ def make_power_tree():
 <text x="709" y="{r+16}" text-anchor="middle" font-size="9.5" fill="#64748b">+100nF 就近去耦</text>
 {flow(f"M534,{r} H650", DP, n=3, color="#38bdf8", r=4.5)}
 '''
-    svg += f'''
+    svg += '''
 <text x="400" y="384" text-anchor="middle" font-size="11" font-weight="bold" fill="#0369a1">逐级净化：大电解挡低频脉动 → 稳压器压掉纹波 → 100nF 兜住芯片开关瞬间的高频</text>
 <text x="400" y="406" text-anchor="middle" font-size="10.5" fill="#64748b">压差小/电流小/噪声敏感 → LDO；压差大/电流大 → DCDC（效率优先）+ 后级 LDO 净化</text>
 '''
@@ -7548,7 +7571,8 @@ def make_power_tree():
 def make_voltage_drop():
     """欧姆定律的「电压降」视角：串联路径上各电阻按阻值瓜分总电压。"""
     DV = 10
-    vy = lambda v: 350 - v / 5 * 200          # 5V→150, 0V→350
+    def vy(v):
+        return 350 - v / 5 * 200          # 5V→150, 0V→350
     svg = svg_open('电压降：同一股电流，谁 R 大谁分得多', h=520)
     svg += f'''
 <text x="400" y="46" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#334155">同一股电流流过所有电阻——每个电阻「留下」一份电压，加起来恰好等于电源</text>
