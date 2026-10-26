@@ -85,7 +85,7 @@ class SampleTests(unittest.TestCase):
         self.assertIn("@page :right", css)
         self.assertRegex(
             css,
-            r"\.toc-row a\s*\{[^}]*grid-template-columns:\s*auto\s+minmax\([^)]*\)\s+auto")
+            r"\.book-toc \.toc-row a\s*\{[^}]*grid-template-columns:\s*auto\s+minmax\([^)]*\)\s+auto")
 
     def test_print_css_carries_the_instrument_visual_system(self):
         css = (config.STYLES_DIR / "print.css").read_text(encoding="utf-8")
@@ -105,6 +105,13 @@ class SampleTests(unittest.TestCase):
         self.assertIn("background-size: 5mm 5mm", css)
         self.assertIn(".book-table thead", css)
         self.assertIn("background: var(--navy)", css)
+
+    def test_print_css_drops_web_chrome_from_figures_and_lists(self):
+        css = (config.STYLES_DIR / "print.css").read_text(encoding="utf-8")
+        self.assertNotIn('content: "FIG"', css)
+        self.assertIn(".book .md-typeset .demo-link", css)
+        self.assertIn(".page-list_of_figures .book-toc-list", css)
+        self.assertIn("min-height: 0", css)
 
     def test_sample_html_exercises_every_visual_component(self):
         html = self.html.read_text(encoding="utf-8")

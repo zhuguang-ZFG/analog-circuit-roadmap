@@ -8,8 +8,23 @@ from pathlib import Path
 BOOK = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(BOOK))
 
-from book import transforms  # noqa: E402
+from book import assemble, transforms  # noqa: E402
 from book.manifest import BookError  # noqa: E402
+
+
+class CaptionTitleTests(unittest.TestCase):
+    def test_prefers_headline_before_colon(self):
+        self.assertEqual("树状供电逐级净化", assemble._caption_title(
+            "图 14-2　树状供电逐级净化：输入先经板级储能扛住脉冲。", "图 14-2"))
+
+    def test_falls_back_to_first_sentence(self):
+        self.assertEqual("先看工作在哪个象限，再谈参数", assemble._caption_title(
+            "图 2-7　先看工作在哪个象限，再谈参数。正向区看压降与电流。", "图 2-7"))
+
+    def test_truncates_long_sentence_at_clause_boundary(self):
+        self.assertEqual("空载 6V，接上 10kΩ 负载后跌到 4V", assemble._caption_title(
+            "图 0-3　空载 6V，接上 10kΩ 负载后跌到 4V，误差 33%。"
+            "电压指针矮了三分之一。", "图 0-3"))
 
 
 class EmojiAndCalloutTests(unittest.TestCase):

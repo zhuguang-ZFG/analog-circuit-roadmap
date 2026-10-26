@@ -59,11 +59,14 @@ class TocTests(unittest.TestCase):
         self.assertIn("toc-level-3", page)
 
     def test_list_of_figures(self):
-        entries = [{"number": "图 2-1", "caption": "图 2-1　整流波形",
+        entries = [{"number": "图 2-1", "title": "整流波形",
+                    "caption": "图 2-1　整流波形（含滤波电容与负载变化）",
                     "anchor": "p1-03-ch2--fig-1"}]
         page = frontmatter.render_list("插图目录", "list-of-figures", entries, "图")
         self.assertIn('id="list-of-figures"', page)
         self.assertIn("图 2-1", page)
+        self.assertIn("整流波形", page)
+        self.assertNotIn("含滤波电容与负载变化", page)
         self.assertIn('class="toc-page">000</span>', page)
 
 

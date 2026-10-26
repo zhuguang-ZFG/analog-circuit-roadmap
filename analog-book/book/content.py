@@ -9,6 +9,7 @@ from pathlib import Path
 
 from . import config
 from .manifest import BookError
+from .svg_refine import refine_svg
 
 ARTICLE_RE = re.compile(
     r'<article class="md-content__inner md-typeset">(.*?)</article>', re.S)
@@ -187,8 +188,10 @@ def _data_uri(path: Path, *allowed_roots: Path) -> str:
     mime = MIME.get(resolved.suffix.lower())
     if mime is None:
         raise BookError(f"不支持的图片类型: {path}")
-    return f"data:{mime};base64," + base64.b64encode(
-        resolved.read_bytes()).decode("ascii")
+    raw = resolved.read_bytes()
+    if mime == "image/svg+xml":
+        raw = refine_svg(raw.decode("utf-8-sig")).encode("utf-8")
+    return f"data:{mime};base64," + base64.b64encode(raw).decode("ascii")
 
 
 def inline_images(fragment: str, site_dir: Path) -> tuple[str, int]:

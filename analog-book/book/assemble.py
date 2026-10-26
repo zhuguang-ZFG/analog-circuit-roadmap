@@ -427,7 +427,20 @@ def _caption_title(caption: str, number: str) -> str:
     text = caption.strip()
     if text.startswith(number):
         text = text[len(number):]
-    return text.strip("　 ").strip()
+    text = text.strip("　 ").strip()
+    head = text.split("：", 1)[0].strip()
+    if 3 <= len(head) <= 24:
+        return head
+    sentence = re.split(r"[。！？]", text, maxsplit=1)[0].strip()
+    if len(sentence) <= 28:
+        return sentence
+    clauses: list[str] = []
+    for clause in sentence.split("，"):
+        candidate = "，".join([*clauses, clause])
+        if clauses and len(candidate) > 26:
+            break
+        clauses.append(clause)
+    return "，".join(clauses).strip("，。：； ")
 
 
 def _toc_entries(pages: list[dict]) -> list[dict]:

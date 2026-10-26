@@ -351,23 +351,25 @@ body {
 }
 .book .md-typeset figure {
   position: relative; break-inside: avoid;
-  margin: 3.4mm 0 4.6mm; padding: 4.6mm 3mm 2.6mm;
-  border: 0.2mm solid var(--rule); border-top: 0.6mm solid var(--navy);
-  background: #fff;
+  margin: 4mm 0 5mm; padding: 0;
+  border: 0; background: transparent;
 }
 .book .md-typeset figure > img,
 .book .md-typeset figure > p { display: block; margin: 0 auto; }
 .book .md-typeset figcaption {
-  margin-top: 2.4mm; padding-top: 2mm;
+  margin-top: 2.2mm; padding-top: 1.6mm;
   border-top: 0.2mm solid var(--rule);
   font: 400 8.8pt/12.6pt "Book Sans", sans-serif;
   color: var(--muted); text-align: left;
 }
-.book .md-typeset figure:has(figcaption)::after {
-  content: "FIG"; position: absolute; right: 2.4mm; top: 1mm;
-  font: 700 5.8pt/1 "Book Mono", monospace; letter-spacing: .18em;
-  color: var(--rule);
+.book .md-typeset .demo-link { margin: 1.6mm 0 2.4mm; text-align: left; }
+.book .md-typeset .demo-link p { margin: 0; }
+.book .md-typeset .demo-link a {
+  padding: 0; border: 0; border-radius: 0; background: none;
+  color: var(--amber); font: 700 8.4pt/1.2 "Book Sans", sans-serif;
+  text-decoration: none;
 }
+.book .md-typeset .demo-link a::before { content: "▶ "; font-size: 7pt; }
 .book .md-typeset img, .book .md-typeset svg { max-width: 100%; height: auto; }
 .book .md-typeset img { max-height: 185mm; }
 
@@ -725,18 +727,36 @@ body {
   break-inside: avoid; margin: 0 0 1.2mm;
   font-size: 10.5pt; line-height: 15pt;
 }
-.toc-row a {
-  display: grid; grid-template-columns: auto minmax(6mm, 1fr) auto; gap: 1.6mm;
-  align-items: baseline; color: inherit; text-decoration: none;
+.book-toc .toc-row a {
+  display: grid; grid-template-columns: auto minmax(6mm, 1fr) auto;
+  gap: 1.6mm; align-items: baseline; min-height: 0; padding: 0;
+  color: inherit; text-decoration: none;
 }
 .toc-row.toc-level-1 { font-family: "Book Sans", sans-serif; font-weight: 700; }
 .toc-row.toc-level-1 a { border-bottom: 0.2mm solid var(--rule); }
 .toc-row.toc-level-2 { padding-left: 4mm; }
 .toc-row.toc-level-3 { padding-left: 10mm; font-size: 9pt; line-height: 13.5pt; }
 .toc-title { white-space: normal; overflow-wrap: anywhere; }
-.toc-dots { border-bottom: 0.2mm dotted #98a2b3; transform: translateY(-1mm); }
+.toc-dots {
+  align-self: end; height: .62em; margin-bottom: .12em;
+  border-bottom: 0.2mm dotted #98a2b3;
+}
 .toc-page, .book-index-page { font-variant-numeric: tabular-nums; }
 .toc-page { white-space: nowrap; }
+
+/* 图/表目录条目多、标题长：单栏铺满版心，避免最后一两行溢出到空白页 */
+.page-list_of_figures .book-toc h1,
+.page-list_of_tables .book-toc h1 { font-size: 24pt; margin-bottom: 6mm; }
+.page-list_of_figures .book-toc-list,
+.page-list_of_tables .book-toc-list { column-count: 1; }
+.page-list_of_figures .toc-row {
+  margin-bottom: .75mm; font-size: 9pt; line-height: 11.6pt;
+}
+.page-list_of_tables .toc-row {
+  margin-bottom: 1.1mm; font-size: 10pt; line-height: 13.6pt;
+}
+.page-list_of_figures .toc-row.toc-level-2,
+.page-list_of_tables .toc-row.toc-level-2 { padding-left: 0; }
 
 /* ---------- 索引 ---------- */
 .book-index { column-count: 2; column-gap: 6mm; font-size: 9pt; line-height: 12.5pt; }

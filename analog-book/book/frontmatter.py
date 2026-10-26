@@ -90,9 +90,12 @@ def render_list(title: str, page_id: str, entries: list[dict], label: str) -> st
             f'<h1 id="{_e(page_id)}">{_e(title)}</h1>',
             '<nav class="book-toc-list" aria-label="' + _e(title) + '">']
     for entry in entries:
+        short = entry.get("title")
+        text = (f'{entry["number"]}　{short}' if short and entry.get("number")
+                else entry.get("caption") or short or "")
         rows.append(
             f'<div class="toc-row toc-level-2"><a href="#{_e(entry["anchor"])}">'
-            f'<span class="toc-title">{_e(entry["caption"])}</span>'
+            f'<span class="toc-title">{_e(text)}</span>'
             '<span class="toc-dots" aria-hidden="true"></span>'
             '<span class="toc-page">000</span></a></div>')
     rows.append("</nav></div>")
