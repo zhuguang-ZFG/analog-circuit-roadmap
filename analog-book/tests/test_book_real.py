@@ -115,7 +115,8 @@ class RealBookTests(unittest.TestCase):
         self.assertIn('href="#p1-01-ch0--q-q-ch0-01"', self.document)
 
     def test_wave1_chapter_visible_char_floors(self):
-        floors = {"0": 13500, "2": 15000, "11": 17000, "14": 17000}
+        floors = {"0": 13500, "2": 15000, "11": 17000, "14": 17000,
+                  "16": 13000}
         chapters = self.model["stats"]["chapters"]
         for chapter, floor in floors.items():
             self.assertIn(chapter, chapters)

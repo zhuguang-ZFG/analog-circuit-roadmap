@@ -313,7 +313,7 @@ class ReadingJourneyTests(unittest.TestCase):
 
     def test_question_bookmarks_are_independent_stable_and_survive_navigation(self):
         self.page.goto(self.base + 'p9-00-quiz.html#q-ch0-01')
-        expect(self.page.locator('.question-bookmark')).to_have_count(118)
+        expect(self.page.locator('.question-bookmark')).to_have_count(124)
         first = self.page.locator('.question-bookmark[data-question="q-ch0-01"]')
         extra = self.page.locator('.question-bookmark[data-question="q-extra-26"]')
         first.click()
@@ -359,7 +359,7 @@ class ReadingJourneyTests(unittest.TestCase):
                                self.base + 'p9-00-quiz.html#q-ch0-01')
         other = opened.value
         other.on('pageerror', lambda error: self.errors.append(str(error)))
-        expect(other.locator('.question-bookmark')).to_have_count(118)
+        expect(other.locator('.question-bookmark')).to_have_count(124)
         # Both clicks happen in one task, before either page can process the
         # asynchronous storage event from the other page's write.
         self.page.evaluate("""() => {

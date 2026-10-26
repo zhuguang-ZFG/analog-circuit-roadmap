@@ -226,6 +226,21 @@ class SimulationTests(unittest.TestCase):
         self.assertEqual(3, len(rows))
         self.assertAlmostEqual(8.0, rows[0][1], delta=0.15)
 
+    def test_probe_metrics_match_probe_model(self):
+        result = self.results["probe.cir"]
+        self.assertEqual([], result["problems"], result["log"])
+        self.assertAlmostEqual(0.909, result["metrics"]["vfinal1"], delta=0.01)
+        self.assertAlmostEqual(0.990, result["metrics"]["vfinal2"], delta=0.01)
+        self.assertAlmostEqual(20e-6, result["metrics"]["trise1"], delta=3e-6)
+        self.assertAlmostEqual(2.2e-6, result["metrics"]["trise2"], delta=0.5e-6)
+
+    def test_probe_data_is_written(self):
+        case = self.cases["probe.cir"]
+        path = self.out / "probe" / case.spec["data"]
+        rows = run_spice.load_data(path, min_rows=200)
+        self.assertGreaterEqual(len(rows), 200)
+        self.assertAlmostEqual(0.909, rows[-1][1], delta=0.01)
+
     def test_plot_is_generated_from_simulation_data(self):
         path = self.out / "rc" / self.case.spec["data"]
         output = self.out / "rc-step.svg"

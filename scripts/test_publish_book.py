@@ -79,7 +79,7 @@ class PublishBookTests(unittest.TestCase):
         landing = (target / "index.html").read_text(encoding="utf-8")
         self.assertIn('class="cover-card"', landing)
         self.assertIn("<svg", landing)
-        self.assertIn("cover-dots", landing)
+        self.assertIn("cover-sketch", landing)
         self.assertIn("zhuguang-ZFG 与贡献者", landing)
         self.assertIn('<meta name="author" content="zhuguang-ZFG 与贡献者">',
                       landing)
