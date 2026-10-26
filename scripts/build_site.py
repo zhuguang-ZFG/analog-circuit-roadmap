@@ -240,6 +240,61 @@ def wrap_callouts(text):
 # 水印是篇号）：首页 → 篇 → 章 三级开屏从此说同一种视觉语言。
 _HERO_CALLOUT_OPEN = re.compile(r'^<div class="callout callout-[a-z]+" markdown="1">$')
 
+# 19 章各有一枚手绘单线章徽（analog-book/static/illustrations/chNN.svg，与
+# 篇首蚀刻版画同一套笔触）。构建期把它内联进章首舞台，站点 / A4 / 16K 共用
+# 同一份 HTML；内联前逐项校验，避免矢量文件变成脚本或远程请求的入口。
+EMBLEM_DIR = ROOT / "analog-book" / "static" / "illustrations"
+EMBLEM_BANNED = ("<script", "<style", "<image", "<foreignobject", "<iframe",
+                 "<object", "<embed", "xlink:", "data:", "@import", "url(",
+                 "<!entity", "<!doctype")
+EMBLEM_ATTR = re.compile(r"\s(?:id|href|on[a-z]+)\s*=", re.I)
+EMBLEM_URL = re.compile(r"https?://[^\"'\s>]+")
+
+
+def _emblem_problem(svg):
+    """返回章徽的毛病；干净则返回空串。"""
+    lowered = svg.lower()
+    if not svg.startswith("<svg ") or "</svg>" not in svg:
+        return "不是完整的 SVG"
+    if 'viewBox="0 0 64 64"' not in svg:
+        return "画布不是 64×64"
+    if 'stroke="currentColor"' not in svg:
+        return "笔画没有跟随 currentColor"
+    if len(svg.encode("utf-8")) >= 6000:
+        return "体积超过 6000 字节"
+    for token in EMBLEM_BANNED:
+        if token in lowered:
+            return f"含不允许的内容（{token}）"
+    if EMBLEM_ATTR.search(svg):
+        return "含 id / href / 事件属性"
+    if set(EMBLEM_URL.findall(svg)) - {"http://www.w3.org/2000/svg"}:
+        return "含外部 URL"
+    if re.search(r"[\u4e00-\u9fff]", svg):
+        return "含中文（章徽只用笔画）"
+    return ""
+
+
+def chapter_emblem(number, art_dir=None):
+    """读出第 N 章的单线章徽，并补上装饰性属性（aria-hidden 在构建期写入）。"""
+    try:
+        chapter = int(str(number).strip())
+    except ValueError:
+        raise ValueError(f"章号不是整数：{number!r}") from None
+    if not 0 <= chapter <= 18:
+        raise ValueError(f"章号不在 0~18：{chapter}")
+    path = Path(art_dir or EMBLEM_DIR) / f"ch{chapter:02d}.svg"
+    try:
+        svg = path.read_text(encoding="utf-8")
+    except OSError as exc:
+        raise ValueError(f"章徽缺失：{path}") from exc
+    problem = _emblem_problem(svg)
+    if problem:
+        raise ValueError(f"章徽 {path.name}：{problem}")
+    # 用块级 div 包住：Markdown 会把裸 <svg> 当成行内元素塞进 <p>，
+    # 空段落会在标题与场景卡之间撑出一条缝。
+    return ('<div class="chapter-emblem" aria-hidden="true">'
+            + svg + "</div>")
+
 
 def _wrap_stage(text, page_name, page_re, kind, attr):
     m = page_re.fullmatch(page_name)
@@ -278,7 +333,11 @@ def _wrap_stage(text, page_name, page_re, kind, attr):
     hero = [
         '<div class="%s" data-%s="%s" markdown="1">' % (kind, attr, number),
         "",
-    ] + lines[start:j]
+        lines[start],
+    ]
+    if kind == "chapter-hero":
+        hero += ["", chapter_emblem(number)]
+    hero += lines[start + 1:j]
     hero += [
         "",
         '<p class="%s-num" aria-hidden="true">%s</p>' % (kind, number),

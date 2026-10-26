@@ -154,16 +154,23 @@ def _page_heading(page: dict) -> tuple[int, str]:
     return level, _normalize_title(match.group(1))
 
 
+def _title_key(text: str) -> str:
+    """Chromium 折行会吞掉断点处的空格（「BJT 三极管」→「BJT三极管」），
+    因此比对大纲时忽略全部空白。成书书签由书模型重建，不受影响。"""
+    return re.sub(r"\s+", "", text)
+
+
 def _page_starts(document, model: dict) -> list[int]:
-    outline = [(int(level), _normalize_title(title), page - 1)
+    outline = [(int(level), _title_key(_normalize_title(title)), page - 1)
                for level, title, page in document.get_toc()]
     starts: list[int] = []
     cursor = 0
     for page in model["pages"]:
         level, title = _page_heading(page)
+        key = _title_key(title)
         match = next(
             (index for index in range(cursor, len(outline))
-             if outline[index][0] == level and outline[index][1] == title),
+             if outline[index][0] == level and outline[index][1] == key),
             None)
         if match is None:
             raise BookError(

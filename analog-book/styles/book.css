@@ -148,6 +148,30 @@ html, body {
 .book .md-typeset .part-hero-num {
   color: rgba(180, 83, 9, .12);
 }
+/* 章徽：与在线站同一份内联 SVG，在 A4 上放大成一枚琥珀色手绘印记。
+   .md-typeset 参与选择器，压过 `.book .md-typeset svg { height:auto }`。 */
+.book .chapter-hero > h1 {
+  padding-right: 19mm; text-wrap: balance;
+  word-break: keep-all; overflow-wrap: break-word;
+}
+.book .md-typeset .chapter-emblem {
+  position: absolute;
+  top: 3.8mm;
+  right: 5.5mm;
+  width: 13mm;
+  height: 13mm;
+  margin: 0;
+  color: #b45309;
+  opacity: .9;
+  pointer-events: none;
+}
+.book .md-typeset .chapter-emblem > svg {
+  display: block; width: 100%; height: 100%;
+}
+@media (max-width: 44.99em) {
+  .book .chapter-hero > h1 { padding-right: 0; }
+  .book .md-typeset .chapter-emblem { display: none; }
+}
 .book-page-nav {
   display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   gap: 12px; align-items: center; margin-top: 34px; padding-top: 16px;

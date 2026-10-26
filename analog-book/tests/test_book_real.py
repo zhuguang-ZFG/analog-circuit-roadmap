@@ -102,6 +102,16 @@ class RealBookTests(unittest.TestCase):
         self.assertEqual([], missing[:20], f"{len(missing)} 个锚点无法到达")
         self.assertEqual([], self.model["audit"]["errors"])
 
+    def test_every_chapter_opener_carries_its_emblem(self):
+        """19 章章首各有一枚手绘单线章徽，内联 SVG、装饰性、无远程引用。"""
+        self.assertEqual(19, self.document.count('class="chapter-emblem"'))
+        # MkDocs 的 md_in_html 会把 div 的属性排序，因此不锁 class/aria-hidden 的先后。
+        self.assertEqual(19, len(re.findall(
+            r'<div (?=[^>]*class="chapter-emblem")(?=[^>]*aria-hidden="true")'
+            r'[^>]*><svg [^>]*viewBox="0 0 64 64"[^>]*stroke="currentColor"',
+            self.document)))
+        self.assertNotRegex(self.document, r'<div [^>]*class="chapter-emblem"[^>]*\bid=')
+
     def test_chapter_exercises_and_appendix_answers(self):
         self.assertEqual(19, self.document.count('class="chapter-exercises"'))
         self.assertEqual(20, self.document.count('class="answer-list"'))

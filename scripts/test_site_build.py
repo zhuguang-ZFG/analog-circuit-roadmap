@@ -65,6 +65,10 @@ class SiteBuildTests(unittest.TestCase):
         shutil.copytree(ROOT / "scripts" / "site_media", work / "scripts" / "site_media")
         shutil.copytree(ROOT / "docs", work / "docs")
         shutil.copytree(ROOT / "assets", work / "assets")
+        # 章徽在构建期内联进章首舞台；临时工作区必须带上它们，否则 19 个章页
+        # 会按「缺图即报错」的约定直接让构建失败。
+        shutil.copytree(ROOT / "analog-book" / "static" / "illustrations",
+                        work / "analog-book" / "static" / "illustrations")
         for extra in ("CONTRIBUTING.md", "CONTRIBUTORS.md", "LICENSE"):
             src = ROOT / extra
             if src.exists():
@@ -672,6 +676,11 @@ class SiteBuildTests(unittest.TestCase):
                 hero = html[m.start():html.find("</div>", html.find(
                     'class="chapter-hero-num"', m.start()))]
                 self.assertIn("<h1", hero, "舞台里没有章标题")
+                self.assertEqual(1, hero.count('class="chapter-emblem"'),
+                                 "舞台里应当恰好有一枚章徽")
+                self.assertIn('viewBox="0 0 64 64"', hero, "章徽画布不对")
+                self.assertLess(hero.index("<h1"), hero.index('class="chapter-emblem"'),
+                                "章徽要跟在章标题之后")
                 self.assertGreaterEqual(hero.count('<div class="callout callout-'), 2,
                                         "舞台至少要有两张开场提示卡")
                 num = None
@@ -745,6 +754,7 @@ class SiteBuildTests(unittest.TestCase):
         self.assertIn(".chapter-hero", css)
         self.assertIn(".part-hero", css)
         self.assertIn(".chapter-hero-num", css)
+        self.assertIn(".chapter-emblem", css)
         self.assertIn(".demo-link", css)
         self.assertIn("@media print", css)
 

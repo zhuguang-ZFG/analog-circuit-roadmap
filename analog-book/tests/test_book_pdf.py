@@ -9,8 +9,9 @@ from pathlib import Path
 BOOK = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(BOOK))
 
+from book.manifest import BookError  # noqa: E402
 from book.pdf import (  # noqa: E402
-    _region_links, check_pdf, pad_to_multiple, print_pdf, stamp_pdf)
+    _page_starts, _region_links, check_pdf, pad_to_multiple, print_pdf, stamp_pdf)
 
 try:
     import fitz
@@ -401,6 +402,36 @@ class PdfTests(unittest.TestCase):
             self.assertEqual(before, doc.page_count)
         finally:
             doc.close()
+
+
+class PageStartsOutlineTests(unittest.TestCase):
+    """Chromium 折行会吞掉断点处的空格，大纲比对必须忽略空白差异。"""
+
+    class Doc:
+        def __init__(self, toc):
+            self._toc = toc
+
+        def get_toc(self):
+            return self._toc
+
+    @staticmethod
+    def model(title):
+        return {"pages": [{
+            "id": "page-p1-01-ch0",
+            "group": "chapter",
+            "source": "p1-01-ch0.md",
+            "html": "<h1>%s</h1>" % title,
+        }]}
+
+    def test_space_lost_by_line_wrap_still_matches(self):
+        outline = self.Doc([(1, "第 0 章 BJT三极管：完整概念体系", 1)])
+        starts = _page_starts(outline, self.model("第 0 章 BJT 三极管：完整概念体系"))
+        self.assertEqual([0], starts)
+
+    def test_different_title_still_rejected(self):
+        outline = self.Doc([(1, "第 0 章 二极管：单向导电", 1)])
+        with self.assertRaises(BookError):
+            _page_starts(outline, self.model("第 0 章 BJT 三极管：完整概念体系"))
 
 
 if __name__ == "__main__":
