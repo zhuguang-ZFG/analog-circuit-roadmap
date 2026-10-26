@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "generated_by": "scripts/subset_fonts.py",
-  "required_text_characters": 1952,
+  "required_text_characters": 1953,
   "sources": [
     {
       "family": "NotoSerifSC",
@@ -57,33 +57,33 @@
       "name": "NotoSerifSC-Regular.woff2",
       "family": "NotoSerifSC",
       "weight": 400,
-      "characters": 1952,
-      "bytes": 331512,
-      "sha256": "6494e53035fc7819c9f65a169f4f9080e43b00b20e7d03374c388a4f8828faa6"
+      "characters": 1953,
+      "bytes": 331668,
+      "sha256": "b3dee31a525c3c96679cb92456bc5240fde3d0d3b785ebd2bd2e8e5dfbbee456"
     },
     {
       "name": "NotoSerifSC-Bold.woff2",
       "family": "NotoSerifSC",
       "weight": 700,
-      "characters": 1952,
-      "bytes": 341624,
-      "sha256": "5d0dd3146f1cb025bfed119432b17756c562f37c632c23012b6b46b99111ad3f"
+      "characters": 1953,
+      "bytes": 341880,
+      "sha256": "40e6ad15612b143eebd79b083a17bd435c49291ad4812999eea9cebc995655e5"
     },
     {
       "name": "NotoSansSC-Regular.woff2",
       "family": "NotoSansSC",
       "weight": 400,
-      "characters": 1952,
-      "bytes": 259436,
-      "sha256": "b036ddb2a6a607a873cf9b446f55a081dd405841895f030092bc5f5186de70fa"
+      "characters": 1953,
+      "bytes": 259252,
+      "sha256": "4b7656af770b9330bc1612279c548c12ab1324223b9206d97a6fcbc1efb9001d"
     },
     {
       "name": "NotoSansSC-Bold.woff2",
       "family": "NotoSansSC",
       "weight": 700,
-      "characters": 1952,
-      "bytes": 265472,
-      "sha256": "17b25cd42367771018fd28a3f6e66baee3f74c6123fe20830cfd166091c641ac"
+      "characters": 1953,
+      "bytes": 265332,
+      "sha256": "cc48b2d3bacfecfe7634b6a20120d67e15b131e2e28dbd139766a140482df8ab"
     },
     {
       "name": "JetBrainsMono-Regular.woff2",
