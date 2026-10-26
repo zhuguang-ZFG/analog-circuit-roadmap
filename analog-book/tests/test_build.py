@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """整书构建单元测试：manifest、清洗、ID 命名空间、链接、资源与结构审计。"""
 import hashlib
-import json
 import re
 import sys
 import unittest
@@ -20,11 +19,17 @@ class ManifestTests(unittest.TestCase):
 
     def test_covers_every_content_page_exactly_once(self):
         stems = build_book.validate_manifest(self.manifest)
-        docs = {p.stem for p in (ROOT / "docs").glob("*.md")} - {"index"}
+        docs = ({p.stem for p in (ROOT / "docs").glob("*.md")}
+                - {"index"} - build_book.PRINT_ONLY_STEMS)
         self.assertEqual(60, len(stems))
         self.assertEqual(docs, set(stems))
         self.assertEqual(60, len(set(stems)))
         self.assertEqual(3, len(self.manifest["appendix"]["files"]))
+
+    def test_print_only_stems_are_exactly_the_three_16k_pages(self):
+        self.assertEqual(
+            {"p0-11-conventions", "p0-12-symbols", "p9-15-glossary"},
+            build_book.PRINT_ONLY_STEMS)
 
     def test_metadata_is_complete(self):
         for key in ("title", "subtitle", "version", "source_version", "date",
@@ -230,7 +235,8 @@ class AssemblyTests(unittest.TestCase):
         print_block = css.split("@media print", 1)[1]
         self.assertIn("table-layout: fixed", print_block)
         self.assertIn("word-break: break-word", print_block)
-        self.assertIn(".book-copyright { font-size: 10.5pt; }", print_block)
+        self.assertIn(".book-copyright { font-size: 10.5pt;", print_block)
+        self.assertIn("break-before: auto; break-after: auto;", print_block)
 
     def test_no_remote_or_site_only_assets(self):
         self.assertNotRegex(self.document, r'<script[^>]+src=')

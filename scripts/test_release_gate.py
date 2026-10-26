@@ -37,7 +37,7 @@ class ReleaseGateTests(unittest.TestCase):
         self.assertEqual('analog-circuit-book', download['with']['name'])
         self.assertEqual('analog-book/dist', download['with']['path'])
         runs = [step.get('run', '') for step in jobs['build']['steps']]
-        self.assertTrue(any('scripts/publish_book.py' in run for run in runs))
+        self.assertTrue(any('scripts/publish_a4_book.py' in run for run in runs))
         upload = _step(jobs, 'build', 'actions/upload-pages-artifact@')
         self.assertEqual('build/site', upload['with']['path'])
 
@@ -49,6 +49,44 @@ class ReleaseGateTests(unittest.TestCase):
         self.assertIn('book/analog-circuit-book.html', deploy_runs)
         self.assertIn('book/analog-circuit-book.pdf', deploy_runs)
         self.assertIn('book/og-cover.png', deploy_runs)
+
+    def test_expansion_keeps_a4_online_and_16k_draft_off_pages(self):
+        pages = _jobs('pages')
+        runs = "\n".join(
+            step.get('run', '') for step in pages['build']['steps'])
+        self.assertIn('scripts/publish_a4_book.py', runs)
+        self.assertNotIn('scripts/publish_book.py', runs)
+        deploy_runs = "\n".join(
+            step.get('run', '') for step in pages['deploy']['steps'])
+        for forbidden in ('cover.pdf', 'cover-preview.png',
+                          'PRINT-SPEC.md', 'build-report.json'):
+            self.assertNotIn(forbidden, deploy_runs)
+
+        pages_text = (WORKFLOWS / 'pages.yml').read_text(encoding='utf-8')
+        self.assertNotIn('book-print', pages_text,
+                         '16K 失败不得阻断 A4 Pages')
+
+        tests_runs = "\n".join(
+            step.get('run', '') for job in _jobs('tests').values()
+            for step in job.get('steps', []))
+        self.assertIn('test_publish_a4_book.py', tests_runs)
+        self.assertNotIn('test_publish_book.py', tests_runs)
+
+        book = _jobs('book-print')
+        self.assertIn('print16k', book)
+        upload = _step(book, 'print16k', 'actions/upload-artifact@')
+        self.assertEqual('analog-circuit-book-16k-draft',
+                         upload['with']['name'])
+        self.assertEqual('analog-book/dist/print/', upload['with']['path'])
+        runs16 = "\n".join(
+            step.get('run', '') for step in book['print16k']['steps'])
+        self.assertIn('build_print_book.py', runs16)
+        for flag in ('--pdf', '--cover', '--report'):
+            self.assertIn(flag, runs16)
+        workflow = yaml.load(
+            (WORKFLOWS / 'book-print.yml').read_text(encoding='utf-8'),
+            Loader=yaml.BaseLoader)
+        self.assertNotIn('workflow_call', workflow['on'])
 
 
 if __name__ == '__main__':

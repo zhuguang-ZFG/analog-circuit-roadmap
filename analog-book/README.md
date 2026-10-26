@@ -23,13 +23,27 @@ Windows 上装了 GNU Make 时可用 `make book` / `make book-pdf` / `make book-
 
 - 默认调用 `scripts/build_site.py --build`；`--no-build` 复用 `build/site`。自定义 `--site-dir` 只能配合 `--no-build`。
 - 产物在 `analog-book/dist/`（gitignored）：`analog-circuit-book.html`、`analog-circuit-book.pdf`。
-- 新增/删除内容页必须同步 `manifest.json`，否则整书审计失败。
+- 新增/删除内容页必须同步 `manifest.json`（16K，输出 `dist/print/`），否则 16K 整书审计失败。A4 1.0 已冻结在 `manifest-a4.json`（输出 `dist/`），Phase 5 前不再改。
 - 书内禁止远程图片、外链样式/脚本、iframe/video；第三方资产先本地化并登记 `docs/p9-14-credits.md`。
 - 页眉内置离线全文搜索：`Ctrl/Cmd+K` 或 `/` 聚焦，方向键选择、回车跳转；索引在首次输入时从正文构建，不增加网络依赖。
 - Mermaid 路线图使用 `static/roadmap.svg`；改 `docs/p0-06-roadmap.md` 后必须重新生成 `roadmap.source.txt` / `roadmap.svg`。
 - 缺 Playwright/PyMuPDF 时 HTML 仍可构建；PDF 相关测试自动 skip。
 - PDF 默认优先本机 Edge/Chrome，找不到时回退 Playwright 自带 Chromium；可用 `--browser <path>` 指定浏览器。
 - 审计会检查远程资源、重复 ID、跨页锚点、页面数与 20 MB 体积上限；`--check` 不重新构建。
+
+## 16K 印刷版
+
+16K（185 × 260 mm）印刷版与 A4 1.0 共用 `docs/`，但使用独立的
+`manifest.json`，产物写到 `analog-book/dist/print/`（gitignored）：
+
+```bash
+python analog-book/build_print_book.py --sample   # 十页样张
+python analog-book/build_print_book.py --pdf --cover
+python analog-book/build_print_book.py --no-build --report
+```
+
+`PRINT-SPEC.md` 与 `build-report.json` 从已有产物生成；Phase 0 的 16K 只上传
+CI artifact，`/book/` 仍由 A4 1.0 发布。
 
 ## 阅读体验
 

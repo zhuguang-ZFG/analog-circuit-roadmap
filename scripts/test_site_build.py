@@ -24,7 +24,8 @@ PART5 = "p5-00-part5.md"
 # 侧栏「节首页补丁」的单元测试要读已安装的 Material 模板，所以直接 import
 # build_site（本文件所在的 site-build 作业本来就装了 mkdocs-material）。
 sys.path.insert(0, str(ROOT / "scripts"))
-from build_site import NAV_ITEM_ANCHOR, NAV_ITEM_PATCHED, nav_item_override  # noqa: E402
+from build_site import (CALLOUT_KINDS, NAV_ITEM_ANCHOR,  # noqa: E402
+                        NAV_ITEM_PATCHED, nav_item_override)
 
 DEMO_HEAD = re.compile(r'^## (5\.\d+)\s+(.+?)\s*<a id="(demo\d+)"')
 ANCHOR = re.compile(r'<a\s+id="(demo\d+)"')
@@ -65,6 +66,10 @@ class SiteBuildTests(unittest.TestCase):
         shutil.copytree(ROOT / "scripts" / "site_media", work / "scripts" / "site_media")
         shutil.copytree(ROOT / "docs", work / "docs")
         shutil.copytree(ROOT / "assets", work / "assets")
+        # 章徽在构建期内联进章首舞台；临时工作区必须带上它们，否则 19 个章页
+        # 会按「缺图即报错」的约定直接让构建失败。
+        shutil.copytree(ROOT / "analog-book" / "static" / "illustrations",
+                        work / "analog-book" / "static" / "illustrations")
         for extra in ("CONTRIBUTING.md", "CONTRIBUTORS.md", "LICENSE"):
             src = ROOT / extra
             if src.exists():
@@ -310,7 +315,7 @@ class SiteBuildTests(unittest.TestCase):
         total = sum(int(re.search(r"(\d+)\s*$", label).group(1))
                     for _ch, label in self.chips if _ch != "all")
         self.assertEqual(len(self.cards), total, "各章 chip 上的数字之和 != 卡片总数")
-        all_label = [l for c, l in self.chips if c == "all"][0]
+        all_label = [label for chip, label in self.chips if chip == "all"][0]
         self.assertEqual(len(self.cards), int(re.search(r"(\d+)", all_label).group(1)))
 
     # ---------- 导航与配置 ----------
@@ -437,7 +442,7 @@ class SiteBuildTests(unittest.TestCase):
             return mapping
 
         DupCheck.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, construct_mapping)
-        DupCheck.add_multi_constructor("tag:yaml.org,2002:python/name:", lambda l, s, n: None)
+        DupCheck.add_multi_constructor("tag:yaml.org,2002:python/name:", lambda loader, suffix, node: None)
         text = (self.build / "mkdocs.yml").read_text(encoding="utf-8")
         cfg = yaml.load(text, Loader=DupCheck)
         self.assertEqual("https://aliyun-hutuji.donglicao.com/analog-circuit-roadmap/", cfg["site_url"])
@@ -511,7 +516,7 @@ class SiteBuildTests(unittest.TestCase):
         data = (self.out / 'javascripts/learning-catalog.js').read_text(encoding='utf-8')
         catalog = json.loads(data.split(' = ', 1)[1].rstrip(';\n'))
         self.assertEqual(19, len(catalog['chapters']))
-        self.assertEqual(92, len(catalog['questions']))
+        self.assertEqual(124, len(catalog['questions']))
         quiz = (self.out / 'p9-00-quiz.md').read_text(encoding='utf-8')
         ids = [question['id'] for question in catalog['questions']]
         self.assertEqual(len(ids), len(set(ids)))
@@ -619,7 +624,9 @@ class SiteBuildTests(unittest.TestCase):
     # ---------- 标题层级 ----------
     HEADING = re.compile(r"<h([1-6])(?:\s[^>]*)?>(.*?)</h\1>", re.S)
     CALL_TAG = re.compile(r"<[^>]+>")
-    SIGNATURE = re.compile(r"^> *(?:💎|🧮|🔬|🎯|📚|📺|📷|📎|🔧|⚠️|💡|📌|🎬|🔗)")
+    # 与 build_site.CALLOUT_KINDS 同源：新增一类卡片时，这条对账不可能漏。
+    SIGNATURE = re.compile("^> *(?:%s)"
+                           % "|".join(sorted(re.escape(e) for e in CALLOUT_KINDS)))
 
     def headings(self, name):
         return [(int(m.group(1)), self.CALL_TAG.sub("", m.group(2)).replace("&para;", "").strip())
@@ -672,6 +679,11 @@ class SiteBuildTests(unittest.TestCase):
                 hero = html[m.start():html.find("</div>", html.find(
                     'class="chapter-hero-num"', m.start()))]
                 self.assertIn("<h1", hero, "舞台里没有章标题")
+                self.assertEqual(1, hero.count('class="chapter-emblem"'),
+                                 "舞台里应当恰好有一枚章徽")
+                self.assertIn('viewBox="0 0 64 64"', hero, "章徽画布不对")
+                self.assertLess(hero.index("<h1"), hero.index('class="chapter-emblem"'),
+                                "章徽要跟在章标题之后")
                 self.assertGreaterEqual(hero.count('<div class="callout callout-'), 2,
                                         "舞台至少要有两张开场提示卡")
                 num = None
@@ -691,7 +703,9 @@ class SiteBuildTests(unittest.TestCase):
         篇首页有它们自己的 `.part-hero`（下一条测试），不算误包。
         """
         for name in ("index.html", "p0-08-cheatsheet.html", "p5-00-part5.html",
-                     "p1-00-part1.html", "p9-12-changelog.html"):
+                     "p1-00-part1.html", "p9-12-changelog.html",
+                     "p0-11-conventions.html", "p0-12-symbols.html",
+                     "p9-15-glossary.html"):
             with self.subTest(page=name):
                 self.assertNotIn('<div class="chapter-hero"', self.body_html(name),
                                  f"{name} 被误包了章首舞台")
@@ -743,6 +757,7 @@ class SiteBuildTests(unittest.TestCase):
         self.assertIn(".chapter-hero", css)
         self.assertIn(".part-hero", css)
         self.assertIn(".chapter-hero-num", css)
+        self.assertIn(".chapter-emblem", css)
         self.assertIn(".demo-link", css)
         self.assertIn("@media print", css)
 
@@ -787,8 +802,7 @@ class SiteBuildTests(unittest.TestCase):
                 counts[kind] = counts.get(kind, 0) + 1
         self.assertGreaterEqual(sum(counts.values()), 160,
                                 f"提示卡总数偏少，可能有一类没被包上：{counts}")
-        for kind in ("gem", "calc", "goal", "prereq", "video", "photo", "attach", "fix",
-                     "warn", "idea", "pin", "link"):
+        for kind in sorted(set(CALLOUT_KINDS.values())):
             with self.subTest(kind=kind):
                 self.assertGreater(counts.get(kind, 0), 0, f"{kind} 类一张都没有：{counts}")
 

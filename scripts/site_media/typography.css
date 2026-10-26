@@ -56,6 +56,8 @@
 .md-typeset .callout-idea   { --co: #a16207; }   /* 💡 补充想法 */
 .md-typeset .callout-pin    { --co: #0369a1; }   /* 📌 记号 */
 .md-typeset .callout-demo   { --co: #0f766e; }   /* 🎬 动画 */
+.md-typeset .callout-scene  { --co: #b45309; }   /* 🎭 场景 */
+.md-typeset .callout-why    { --co: #4d7c0f; }   /* ⚙️ 为什么（机制卡，白底 5.0:1） */
 .md-typeset .callout-link   { --co: #4338ca; }   /* 🔗 相关链接 */
 
 /* 深色主题：换成更亮的同色系，否则深底上的深色文字等于没写 */
@@ -72,6 +74,8 @@
 [data-md-color-scheme="slate"] .md-typeset .callout-idea   { --co: #facc15; }
 [data-md-color-scheme="slate"] .md-typeset .callout-pin    { --co: #38bdf8; }
 [data-md-color-scheme="slate"] .md-typeset .callout-demo   { --co: #2dd4bf; }
+[data-md-color-scheme="slate"] .md-typeset .callout-scene  { --co: #fbbf24; }
+[data-md-color-scheme="slate"] .md-typeset .callout-why    { --co: #a3e635; }
 [data-md-color-scheme="slate"] .md-typeset .callout-link   { --co: #a5b4fc; }
 
 /* 深色下 8% 的掺色几乎看不出来，调到 14% 才与浅色主题的观感对齐 */
@@ -242,6 +246,28 @@
   color: color-mix(in srgb, var(--md-primary-fg-color) 20%, transparent);
 }
 
+/* 章徽：19 章各一枚手绘单线徽记，构建期内联在 h1 之后（aria-hidden）。
+   绝对定位只借 h1 那一行的高度；标题右侧让出 3.9rem，开场卡从徽记下方开始。
+   琥珀色与场景卡同源，三种产物看起来是同一枚印章。
+   text-wrap:balance 让长标题折成两行长度相近，避免末行只剩一个字符或 emoji。 */
+.md-typeset .chapter-hero > h1 {
+  padding-right: 3.9rem; text-wrap: balance;
+  word-break: keep-all; overflow-wrap: break-word;
+}
+.md-typeset .chapter-emblem {
+  position: absolute;
+  top: 1rem;
+  right: 1.15rem;
+  width: 2.6rem;
+  height: 2.6rem;
+  margin: 0;
+  color: #b45309;
+  opacity: .85;
+  pointer-events: none;
+}
+[data-md-color-scheme="slate"] .md-typeset .chapter-emblem { color: #fbbf24; }
+.md-typeset .chapter-emblem > svg { display: block; width: 100%; height: 100%; }
+
 @media screen and (max-width: 768px) {
   .md-typeset :is(.chapter-hero, .part-hero) { padding: 1rem 1.05rem 1.1rem; }
   .md-typeset :is(.chapter-hero-num, .part-hero-num) {
@@ -249,6 +275,9 @@
     right: .2rem;
     bottom: -1.15rem;
   }
+  /* 手机上标题常折三行，徽记让位给文字 */
+  .md-typeset .chapter-hero > h1 { padding-right: 0; }
+  .md-typeset .chapter-emblem { display: none; }
 }
 
 /* ----------------------------------------------------------------------------
@@ -622,6 +651,40 @@
     linear-gradient(180deg, color-mix(in srgb, #fff 9%, transparent), transparent 58%),
     linear-gradient(100deg, transparent 26%,
       color-mix(in srgb, var(--md-accent-fg-color) 30%, transparent));
+}
+
+/* ----------------------------------------------------------------------------
+   6.6 正文插图：图与图注是一个整体
+   ----------------------------------------------------------------------------
+   Material 默认把 figcaption 缩成很小的灰字；技术插图需要“看什么、得出什么”
+   的图注能读得下去，所以统一左对齐、给足行高，并让窄屏图片不溢出。
+   -------------------------------------------------------------------------- */
+
+.md-typeset figure {
+  margin: 1.4rem 0 1.8rem;
+}
+.md-typeset figure > img { display: block; margin: 0 auto; max-width: 100%; }
+.md-typeset figcaption {
+  margin-top: .55rem; font-size: .72rem; line-height: 1.6;
+  color: var(--md-default-fg-color--light); text-align: left;
+}
+
+.md-typeset .worked-example {
+  margin: 1.4rem 0;
+  padding: .9rem 1.1rem .4rem;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-left: 4px solid var(--md-accent-fg-color);
+  border-radius: .35rem;
+  background: color-mix(in srgb, var(--md-accent-fg-color) 4%, var(--md-default-bg-color));
+}
+.md-typeset .example-title {
+  margin: 0 0 .6rem; padding-bottom: .4rem;
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+  font-weight: 700; color: var(--md-primary-fg-color);
+}
+.md-typeset .example-title::before {
+  content: "WORKED EXAMPLE"; display: block; margin-bottom: .35rem;
+  font-size: .6rem; letter-spacing: .18em; color: var(--md-accent-fg-color);
 }
 
 /* ----------------------------------------------------------------------------

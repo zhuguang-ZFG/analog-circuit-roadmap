@@ -23,6 +23,10 @@ def launch_chromium(playwright):
         return playwright.chromium.launch(headless=True, channel="chrome")
 
 
+# 整书 HTML 约 19 MB，满载回归时 30 s 的默认导航超时会偶发误报。
+NAV_TIMEOUT = 90000
+
+
 @unittest.skipIf(sync_playwright is None, "Playwright 未安装")
 class BrowserBook(unittest.TestCase):
     @classmethod
@@ -39,7 +43,8 @@ class BrowserBook(unittest.TestCase):
             errors = []
             page.on("console", lambda msg: errors.append(msg.text)
                     if msg.type == "error" else None)
-            page.goto(self.html.resolve().as_uri(), wait_until="load")
+            page.goto(self.html.resolve().as_uri(), wait_until="load",
+                      timeout=NAV_TIMEOUT)
             page.wait_for_function(
                 "window.MathJax && MathJax.startup && MathJax.startup.promise",
                 timeout=60000)
@@ -131,7 +136,7 @@ class BrowserBook(unittest.TestCase):
             viewport={"width": 390, "height": 844}, reduced_motion="reduce")
         page.goto(
             self.html.resolve().as_uri() + "#page-p1-01-ch0",
-            wait_until="load")
+            wait_until="load", timeout=NAV_TIMEOUT)
         page.wait_for_function(
             "document.getElementById('page-p1-01-ch0')"
             ".getBoundingClientRect().top < 300")
@@ -208,7 +213,8 @@ class BrowserBook(unittest.TestCase):
                 viewport={"width": 390, "height": 844}, reduced_motion="reduce")
             for fragment, label in fragments:
                 page.goto(
-                    self.html.resolve().as_uri() + fragment, wait_until="load")
+                    self.html.resolve().as_uri() + fragment,
+                    wait_until="load", timeout=NAV_TIMEOUT)
                 page.wait_for_function(
                     "(() => {"
                     " const el = document.getElementById("
@@ -232,7 +238,8 @@ class BrowserBook(unittest.TestCase):
                     f"{label}目标 {fragment} 应落在页眉下方，实际 top="
                     f"{metrics['top']:.1f}px、页眉底部={metrics['headerBottom']:.1f}px、"
                     f"scroll-margin-top={metrics['margin']}")
-            page.goto(self.html.resolve().as_uri(), wait_until="load")
+            page.goto(self.html.resolve().as_uri(), wait_until="load",
+                      timeout=NAV_TIMEOUT)
             page.fill("#book-search-input", "米勒")
             page.wait_for_selector("#book-search-results li[role=option]")
             page.keyboard.press("ArrowDown")

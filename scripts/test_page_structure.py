@@ -11,13 +11,14 @@
 Run: python -B -m unittest discover -s scripts -p test_page_structure.py -v
 """
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from build_site import shift_headings, wrap_callouts, wrap_chapter_hero, wrap_part_hero, wrap_demo_links  # noqa: E402
+from build_site import chapter_emblem, shift_headings, wrap_callouts, wrap_chapter_hero, wrap_part_hero, wrap_demo_links  # noqa: E402
 
 
 class ShiftHeadingsTests(unittest.TestCase):
@@ -109,6 +110,13 @@ class WrapCalloutsTests(unittest.TestCase):
         self.assertIn("🎯 **学完你应能**：说出 A。", out)
         self.assertIn("🧮 **公式速查**：[表](p0-08-cheatsheet.md#dc)。", out)
 
+    def test_why_card_becomes_its_own_kind(self):
+        """⚙️ 为什么：机制卡。它和 💡 补充想法不是一回事——读者要一眼认出「这段在讲因果」。"""
+        src = "> ⚙️ **为什么**：因为电荷被搬走了。\n"
+        out = wrap_callouts(src)
+        self.assertIn('<div class="callout callout-why" markdown="1">', out)
+        self.assertNotIn("> ⚙️", out)
+
     def test_a_plain_blockquote_is_left_alone(self):
         src = "> 这一章没有公式推导。\n"
         self.assertEqual(src, wrap_callouts(src))
@@ -149,7 +157,7 @@ class WrapChapterHeroTests(unittest.TestCase):
         self.assertIn('<div class="chapter-hero" data-chapter="3" markdown="1">', out)
         self.assertIn('<p class="chapter-hero-num" aria-hidden="true">3</p>', out)
         # 舞台吞掉 h1 与两张开场卡；正文标题留在舞台外
-        self.assertIn("# 第 3 章 BJT", out.split("</div>")[0])
+        self.assertIn("# 第 3 章 BJT", out.split('<p class="chapter-hero-num"')[0])
         self.assertIn('### 3.1 正文开始', out.split("</div>")[-1])
         # div 配平
         self.assertEqual(out.count("<div "), out.count("</div>"))
@@ -162,7 +170,7 @@ class WrapChapterHeroTests(unittest.TestCase):
                "### 0.1 正文\n")
         out = wrap_chapter_hero(src, "p1-01-ch0.md")
         self.assertIn('<div class="chapter-hero" data-chapter="0" markdown="1">', out)
-        head = out.split("</div>")[0]
+        head = out.split('<p class="chapter-hero-num"')[0]
         self.assertIn("> 这一章没有公式推导。", head)
         self.assertIn("> 🎯 **学完你应能**：建立直觉。", head)
 
@@ -174,7 +182,7 @@ class WrapChapterHeroTests(unittest.TestCase):
                "> 💎 **精髓**：图腾柱。\n\n"
                "### 5.2 开漏\n")
         out = wrap_chapter_hero(src, "p1-06-ch5.md")
-        hero = out.split("</div>")[0]
+        hero = out.split('<p class="chapter-hero-num"')[0]
         self.assertIn("> 🎯 **学完你应能**：两种输出。", hero)
         self.assertNotIn("图腾柱", hero)
         self.assertIn("> 💎 **精髓**：图腾柱。", out)
@@ -206,6 +214,49 @@ class WrapChapterHeroTests(unittest.TestCase):
         self.assertEqual(2, hero.count('<div class="callout'),
                          "两张开场卡都要整块进舞台")
         self.assertEqual(out.count("<div "), out.count("</div>"))
+
+    def test_chapter_stage_carries_its_hand_drawn_emblem(self):
+        """每章一枚单线章徽，紧跟 h1、压在任何开场卡之前。"""
+        src = ("# 第 3 章 BJT\n\n"
+               "> 🎯 **学完你应能**：三件事。\n")
+        out = wrap_chapter_hero(src, "p1-04-ch3.md")
+        hero = out.split('<p class="chapter-hero-num"')[0]
+        self.assertIn('<div class="chapter-emblem" aria-hidden="true"><svg', hero)
+        self.assertIn('viewBox="0 0 64 64"', hero)
+        self.assertIn('stroke="currentColor"', hero)
+        self.assertLess(hero.index("# 第 3 章"), hero.index('class="chapter-emblem"'))
+        self.assertLess(hero.index('class="chapter-emblem"'), hero.index("> 🎯"))
+
+    def test_part_stage_has_no_chapter_emblem(self):
+        src = "# 第二篇：经典电路拓扑原理 ⚡\n\n> 器件是「字」。\n"
+        out = wrap_part_hero(src, "p2-00-part2.md")
+        self.assertNotIn("chapter-emblem", out)
+
+    def test_emblem_loader_refuses_missing_or_unsafe_files(self):
+        good = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" '
+                'fill="none" stroke="currentColor"></svg>')
+        bad = {
+            "script": good.replace("</svg>", "<script>x()</script></svg>"),
+            "style": good.replace("</svg>", "<style>x{}</style></svg>"),
+            "id": good.replace("<svg ", '<svg id="x" '),
+            "href": good.replace("</svg>", '<a href="#x">x</a></svg>'),
+            "event": good.replace("<svg ", '<svg onload="x()" '),
+            "remote url": good.replace("</svg>", "<text>https://example.com</text></svg>"),
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            art = Path(tmp)
+            with self.assertRaises(ValueError, msg="missing file"):
+                chapter_emblem(3, art)
+            (art / "ch03.svg").write_text(good.replace(" 64 64", " 32 32"),
+                                          encoding="utf-8")
+            with self.assertRaises(ValueError, msg="wrong canvas"):
+                chapter_emblem(3, art)
+            (art / "ch03.svg").write_text(good, encoding="utf-8")
+            self.assertIn('class="chapter-emblem"', chapter_emblem(3, art))
+            for label, payload in bad.items():
+                (art / "ch03.svg").write_text(payload, encoding="utf-8")
+                with self.assertRaises(ValueError, msg=label):
+                    chapter_emblem(3, art)
 
 
 class WrapPartHeroTests(unittest.TestCase):

@@ -8,7 +8,6 @@ from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 import re
 from pathlib import Path
-import shutil
 import subprocess
 import sys
 import tempfile
@@ -18,6 +17,8 @@ import unittest
 from playwright.sync_api import expect, sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "scripts"))
+from site_build_inputs import copy_build_inputs  # noqa: E402
 
 
 class QuietHandler(SimpleHTTPRequestHandler):
@@ -31,11 +32,7 @@ class DiagnosticTests(unittest.TestCase):
         temporary = tempfile.TemporaryDirectory(prefix='analog-diag-')
         cls.addClassCleanup(temporary.cleanup)
         work = Path(temporary.name)
-        for folder in ('docs', 'assets', 'scripts'):
-            shutil.copytree(ROOT / folder, work / folder,
-                            ignore=shutil.ignore_patterns('__pycache__', '_probe*'))
-        for filename in ('CONTRIBUTING.md', 'CONTRIBUTORS.md', 'LICENSE'):
-            shutil.copyfile(ROOT / filename, work / filename)
+        copy_build_inputs(ROOT, work)
         result = subprocess.run([sys.executable, '-X', 'utf8', 'scripts/build_site.py', '--build'],
                                 cwd=work, capture_output=True, text=True, encoding='utf8',
                                 errors='replace', timeout=300)
