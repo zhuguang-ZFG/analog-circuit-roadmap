@@ -42,6 +42,24 @@ class DocsLinks(unittest.TestCase):
                     missing.add("%s:%s" % (p.name, svg))
         self.assertEqual(set(), missing, "引用了不存在的 SVG：%s" % sorted(missing)[:5])
 
+    def test_every_animation_center_demo_is_linked_from_a_chapter(self):
+        """动画中心的 demo 若无任何章节回链，读者只能靠翻到第五篇撞见它。
+
+        回归来源：587336a 把 ch16 §16.2 的「img+看点+回链」块换成内嵌
+        <figure> 时没把回链搬过去，5.99 四暗器成了全书唯一零回链动画。
+        """
+        part5 = (DOCS / "p5-00-part5.md").read_text(encoding="utf-8")
+        defined = set(re.findall(r'<a id="demo(\d+)"></a>', part5))
+        linked = set()
+        for p in self.pages:
+            if p.name == "p5-00-part5.md":
+                continue
+            linked |= set(re.findall(r'p5-00-part5\.md#demo(\d+)',
+                                     p.read_text(encoding="utf-8")))
+        self.assertEqual(set(), defined - linked,
+                         "这些动画没有任何章节回链：%s"
+                         % sorted(defined - linked, key=int))
+
     def test_every_page_has_heading(self):
         for p in self.pages:
             text = p.read_text(encoding="utf-8")
