@@ -9,19 +9,13 @@ from . import config, fonts
 from .manifest import BookError
 from .pdf import print_pdf
 
-FRONT_SPECS = (("19", "章"), ("5", "篇"), ("3", "层读法"), ("16K", "全彩"))
-FRONT_PATHS = (
-    ("01", "直觉层", "先看见电流回路，再谈公式"),
-    ("02", "推导层", "从器件模型推到可计算参数"),
-    ("03", "工程层", "仿真、实测与排故闭环"),
+READING_LAYERS = (
+    ("直觉层", "先看见电流怎么走"),
+    ("推导层", "把模型算到能下手"),
+    ("工程层", "仿真、实测与排故闭环"),
 )
-LOOP_STEPS = (("01", "读"), ("02", "算"), ("03", "仿"), ("04", "测"), ("05", "排"))
-SUPPORT_ROWS = (
-    ("可复现仿真", "ngspice 网表与可复现仿真"),
-    ("实测实验", "RC / LM358 / MOSFET"),
-    ("故障速查", "症状 → 原因 → 验证"),
-    ("同源站点", "站点与书同步更新"),
-)
+METHOD_LABEL = "读 → 算 → 仿 → 测 → 排"
+FRONT_SPEC = "19 章 · 5 篇 · 三层读法 · 16K 全彩"
 
 
 def spine_mm(pages: int, manifest: dict) -> float:
@@ -110,15 +104,15 @@ def _structure_html(structure) -> str:
         return ""
     rows = "".join(
         '<div class="structure-row">'
+        f'<span class="structure-no">{index:02d}</span>'
+        '<span class="structure-body">'
         f'<span class="structure-title">{_e(item.get("title", ""))}</span>'
         f'<span class="structure-scope">{_e(item.get("scope", ""))}</span>'
-        "</div>"
-        for item in structure)
+        "</span></div>"
+        for index, item in enumerate(structure, 1))
     return f"""
 <section class="back-structure">
-<div class="section-head"><h2 class="section-title">全书结构</h2>
-<span class="section-rule"></span>
-<span class="section-note">{len(structure)} 篇</span></div>
+<p class="back-heading">五篇</p>
 <div class="structure-list">{rows}</div>
 </section>"""
 
@@ -127,25 +121,32 @@ def _highlights_html(highlights) -> str:
     """没有 structure 时，用要点索引占住同一版块，避免中缝出现大块空白。"""
     if not highlights:
         return ""
-    rows = "".join(
-        '<div class="highlight-row">'
-        f'<span class="highlight-no">{index:02d}</span>'
-        f'<span class="highlight-text">{_e(item)}</span>'
-        "</div>"
-        for index, item in enumerate(highlights, 1))
+    rows = "".join(f"<li>{_e(item)}</li>" for item in highlights)
     return f"""
 <section class="back-highlights">
-<div class="section-head"><h2 class="section-title">本书要点</h2>
-<span class="section-rule"></span>
-<span class="section-note">{len(highlights)} 项</span></div>
-<div class="highlight-list">{rows}</div>
+<p class="back-heading">本书要点</p>
+<ul class="highlight-list">{rows}</ul>
 </section>"""
 
 
-def _art_ticks() -> str:
-    return "".join(
-        f'<span class="art-tick tick-{corner}" aria-hidden="true"></span>'
-        for corner in ("tl", "tr", "bl", "br"))
+def _reading_html() -> str:
+    rows = "".join(
+        '<div class="layer-row">'
+        f'<span class="layer-name">{_e(name)}</span>'
+        f'<span class="layer-desc">{_e(desc)}</span>'
+        "</div>" for name, desc in READING_LAYERS)
+    return f"""
+<section class="back-layers">
+<p class="back-heading">三层读法</p>
+<div class="layer-list">{rows}</div>
+</section>"""
+
+
+def _features_html(highlights) -> str:
+    if not highlights:
+        return ""
+    return ('<p class="back-features">'
+            + " · ".join(_e(item) for item in highlights) + "</p>")
 
 
 def cover_html(manifest: dict, pages: int, fonts_css: str = "") -> str:
@@ -155,38 +156,9 @@ def cover_html(manifest: dict, pages: int, fonts_css: str = "") -> str:
     structure_data = back.get("structure")
     structure = _structure_html(structure_data)
     highlights = back.get("highlights", [])
-    if structure_data:
-        items = "".join(f"<li>{_e(item)}</li>" for item in highlights)
-        features = (f'<ul class="back-features">{items}</ul>'
-                    if items else "")
-        highlight_index = ""
-    else:
-        features = ""
-        highlight_index = _highlights_html(highlights)
-    specs = "".join(
-        f'<div class="spec-cell" data-spec="{_e(value)} {_e(label)}">'
-        f'<span class="spec-value">{_e(value)}</span>'
-        f'<span class="spec-label">{_e(label)}</span></div>'
-        for value, label in FRONT_SPECS)
-    paths = "".join(
-        '<div class="path-row">'
-        f'<span class="path-no">{_e(number)}</span>'
-        f'<span class="path-name">{_e(name)}</span>'
-        f'<span class="path-desc">{_e(desc)}</span>'
-        "</div>"
-        for number, name, desc in FRONT_PATHS)
-    loops = "".join(
-        f'<li class="loop-step"><span class="loop-no">{_e(number)}</span>'
-        f'<span class="loop-name">{_e(name)}</span></li>'
-        for number, name in LOOP_STEPS)
-    supports = "".join(
-        '<div class="support-row">'
-        f'<dt>{_e(title)}</dt><dd>{_e(detail)}</dd></div>'
-        for title, detail in SUPPORT_ROWS)
+    features = _features_html(highlights) if structure_data else ""
+    highlight_index = "" if structure_data else _highlights_html(highlights)
     spine_class = "cover-spine is-thin" if spine < 6 else "cover-spine"
-    spine_ticks = (
-        '<span class="spine-ticks is-top" aria-hidden="true"></span>'
-        '<span class="spine-ticks is-bottom" aria-hidden="true"></span>')
     spine_text = "" if spine < 6 else (
         '<div class="spine-text">'
         f'<span class="spine-title">{_e(manifest["title"])}</span>'
@@ -214,19 +186,10 @@ def cover_html(manifest: dict, pages: int, fonts_css: str = "") -> str:
 <p class="back-audience"><strong>适合读者</strong>{_e(back["audience"])}</p>
 {features}
 </header>
+{_reading_html()}
 {structure}{highlight_index}
-<section class="back-loop">
-<div class="section-head"><h2 class="section-title">从读到排故</h2>
-<span class="section-rule"></span>
-<span class="section-note">5 步</span></div>
-<ol class="loop-strip">{loops}</ol>
-</section>
-<section class="back-support">
-<div class="section-head"><h2 class="section-title">配套资源</h2>
-<span class="section-rule"></span>
-<span class="section-note">4 项</span></div>
-<dl class="support-list">{supports}</dl>
-</section>
+<p class="back-method"><span class="method-label">{_e(METHOD_LABEL)}</span>
+<span class="method-note">每章沿这条路线走完一轮。</span></p>
 <footer class="back-foot">
 <div class="back-qr">
 <div class="qr" data-qr="site">{site_qr}<span>在线站</span></div>
@@ -240,36 +203,20 @@ def cover_html(manifest: dict, pages: int, fonts_css: str = "") -> str:
 </div>
 </footer>
 </section>
-<section class="cover-panel {spine_class}">{spine_ticks}{spine_text}</section>
+<section class="cover-panel {spine_class}">{spine_text}</section>
 <section class="cover-panel cover-front">
-<div class="front-top">
 <header class="front-head">
-<span class="front-badge">16K · 全彩印刷</span>
 <span class="front-wordmark">ANALOG CIRCUIT ROADMAP</span>
+<span class="front-edition">{_e(manifest["edition"])}</span>
 </header>
-<figure class="front-figure">
-<div class="front-art">{_art_ticks()}{_cover_art()}</div>
-<figcaption class="front-caption">
-<span class="front-caption-main">图 0　从器件到系统的信号链</span>
-<span class="front-caption-meta">FIG. 0 · SIGNAL CHAIN</span>
-</figcaption>
-</figure>
+<div class="front-art">{_cover_art()}</div>
+<div class="front-title-block">
 <h1 class="front-title">{_e(manifest["title"])}</h1>
 <p class="front-subtitle">{_e(manifest["subtitle"])}</p>
 </div>
-<div class="front-mid">
-<div class="front-rule" aria-hidden="true"></div>
-<div class="spec-strip">{specs}</div>
-<section class="front-paths">
-<p class="paths-kicker"><span>阅读路径</span>
-<span class="paths-kicker-en">READING PATHS</span></p>
-<div class="path-list">{paths}</div>
-</section>
-</div>
 <footer class="front-foot">
 <span class="front-author">{_e(manifest["author"])}</span>
-<span class="front-edition">{_e(manifest["edition"])} · {_e(manifest["version"])}</span>
-<span class="front-site">{_e(manifest["site_url"])}</span>
+<p class="front-spec">{_e(FRONT_SPEC)}</p>
 </footer>
 </section>
 </div></body></html>

@@ -38,8 +38,11 @@ MANIFEST = {
         "bleed_mm": 3, "crop_marks": True, "paper_caliper_mm": 0.10,
         "spine_allowance_mm": 1.0, "isbn_area": False,
         "back_cover": {
-            "blurb": "把直觉、推导、仿真、实测与排故连起来。",
-            "audience": "电子、自动化、通信与嵌入式方向的学生和工程师。",
+            "blurb": "从欧姆定律、PN 结与 MOSFET 出发，一路走到放大、稳压、"
+                     "信号链与 PCB。每个模型都说明适用边界，关键结论配可复现"
+                     "仿真、实测记录与故障速查。",
+            "audience": "电子、自动化、通信与嵌入式方向的学生和工程师；"
+                        "也适合需要补齐模拟基础的软件与系统工程师。",
             "highlights": ["19 章完整知识链", "三层读法", "可复现仿真",
                            "实测实验", "故障速查与索引"],
             "structure": [
@@ -181,10 +184,14 @@ class CoverHtmlTests(unittest.TestCase):
         self.assertIn('class="cover-panel cover-spine is-thin"', thin)
         self.assertNotIn('class="spine-text"', thin)
 
-    def test_back_cover_has_blurb_highlights_qr_and_blank_isbn(self):
-        for text in ("把直觉、推导、仿真、实测与排故连起来。",
-                     "电子、自动化、通信与嵌入式方向", "19 章完整知识链",
-                     "故障速查与索引", "ISBN / 条码预留区（留空）",
+    def test_back_cover_has_blurb_structure_qr_and_blank_isbn(self):
+        for text in ("从欧姆定律、PN 结与 MOSFET 出发",
+                     "电子、自动化、通信与嵌入式方向",
+                     "三层读法", "直觉层", "推导层", "工程层",
+                     "五篇", "第一篇", "第二篇", "第三篇",
+                     "第四篇", "第五篇",
+                     "读 → 算 → 仿 → 测 → 排",
+                     "ISBN / 条码预留区（留空）",
                      'data-qr="site"', 'data-qr="repo"'):
             self.assertIn(text, self.html)
         self.assertNotRegex(self.html, r"ISBN[^<]{0,16}\d{10,13}")
@@ -220,56 +227,61 @@ class CoverHtmlTests(unittest.TestCase):
             for key in ("site_url", "repository")}
         self.assertEqual(2, len(qr_ids))
         self.assertTrue(qr_ids.issubset(ids))
-        self.assertIn("cover-dots", ids)
+        self.assertIn("cover-sketch", ids)
 
     def test_cover_art_is_inlined(self):
-        self.assertIn("cover-dots", self.html)
+        self.assertIn("cover-sketch", self.html)
         self.assertIn("<svg", self.html)
 
     def test_cover_art_is_inlined_exactly_once(self):
-        self.assertEqual(1, self.html.count('id="cover-dots"'))
+        self.assertEqual(1, self.html.count('id="cover-sketch"'))
 
-    def test_front_header_and_spec_strip(self):
-        for text in ("16K · 全彩印刷", "ANALOG CIRCUIT ROADMAP"):
+    def test_cover_art_is_static_ink_not_template_decor(self):
+        self.assertNotIn("<animate", self.html)
+        self.assertNotIn("<linearGradient", self.html)
+        self.assertNotIn("<radialGradient", self.html)
+        self.assertNotIn('filter="url(', self.html)
+        self.assertNotIn("<pattern", self.html)
+        self.assertNotIn('fill="url(', self.html)
+
+    def test_front_header_and_single_spec_line(self):
+        for text in ("ANALOG CIRCUIT ROADMAP",
+                     "19 章 · 5 篇 · 三层读法 · 16K 全彩"):
             self.assertIn(text, self.html)
-        visible = visible_text(self.html)
-        for spec in ("19 章", "5 篇", "3 层读法", "16K 全彩"):
-            self.assertIn(spec, visible)
-            self.assertIn(f'data-spec="{spec}"', self.html)
+        self.assertNotIn("16K · 全彩印刷", self.html)
+        self.assertNotIn("FIG. 0", self.html)
+        self.assertNotIn("阅读路径", self.html)
+        self.assertNotIn("READING PATHS", self.html)
+        self.assertNotIn("spec-strip", self.html)
+        self.assertNotIn("front-caption", self.html)
 
-    def test_front_reading_paths(self):
+    def test_back_reading_layers_and_structure(self):
         visible = visible_text(self.html)
-        for row in ("01 直觉层 先看见电流回路，再谈公式",
-                    "02 推导层 从器件模型推到可计算参数",
-                    "03 工程层 仿真、实测与排故闭环"):
-            self.assertIn(row, visible)
-
-    def test_back_structure_loop_and_support(self):
-        visible = visible_text(self.html)
-        for text in ("全书结构", "第一篇 基础", "第二篇 器件",
+        for text in ("三层读法", "直觉层 先看见电流怎么走",
+                     "推导层 把模型算到能下手",
+                     "工程层 仿真、实测与排故闭环",
+                     "五篇", "第一篇 基础", "第二篇 器件",
                      "第三篇 拓扑", "第四篇 设计", "第五篇 调试",
                      "电路直觉、无源元件与基本定律",
                      "二极管、BJT、MOSFET 与运放内部",
                      "放大、比较、电源、定时与信号产生",
                      "设计方法、参数容差与 PCB 实战",
                      "排故五步、故障速查与大师心法",
-                     "从读到排故", "01 读", "02 算", "03 仿",
-                     "04 测", "05 排",
-                     "配套资源",
-                     "可复现仿真 ngspice 网表与可复现仿真",
-                     "实测实验 RC / LM358 / MOSFET",
-                     "故障速查 症状 → 原因 → 验证",
-                     "同源站点 站点与书同步更新",
+                     "读 → 算 → 仿 → 测 → 排",
+                     "每章沿这条路线走完一轮",
                      "185 × 260 mm · 全彩 · 胶装"):
             self.assertIn(text, visible)
+        self.assertNotIn("配套资源", visible)
+        self.assertNotIn("5 步", visible)
+        self.assertNotIn("4 项", visible)
 
     def test_structure_section_omitted_when_absent(self):
         manifest = copy.deepcopy(MANIFEST)
         del manifest["cover"]["back_cover"]["structure"]
         html = cover_html(manifest, 650)
-        self.assertNotIn("全书结构", html)
-        self.assertIn("从读到排故", html)
-        self.assertIn("配套资源", html)
+        self.assertNotIn("五篇", html)
+        self.assertIn("三层读法", html)
+        self.assertIn("读 → 算 → 仿 → 测 → 排", html)
         # 没有结构数据时退化为要点索引，不能让背封中缝空掉。
         self.assertIn("本书要点", html)
         self.assertIn("19 章完整知识链", html)
@@ -280,16 +292,17 @@ class CoverHtmlTests(unittest.TestCase):
 
     def test_low_contrast_labels_are_raised(self):
         css = (config.COVER_DIR / "cover.css").read_text(encoding="utf-8")
-        self.assertRegex(css, r"\.paths-kicker-en\s*\{[^}]*#52606d")
-        self.assertRegex(css,
-                         r"\.paths-kicker-en\s*\{[^}]*letter-spacing:\s*\.2em")
+        self.assertRegex(css, r"\.front-spec\s*\{[^}]*#a9b7c6")
+        self.assertRegex(css, r"\.back-kicker\s*\{[^}]*#b45309")
         self.assertNotIn("#8a94a0", css)
         self.assertAlmostEqual(
             6.35, contrast_ratio("#52606d", "#fffdf8"), delta=0.01)
+        self.assertGreater(contrast_ratio("#a9b7c6", "#0e1b2b"), 7.0)
+        self.assertGreater(contrast_ratio("#f2b84b", "#0e1b2b"), 7.0)
         author_rule = re.search(r"\.spine-author\s*\{([^}]*)\}", css)
         self.assertIsNotNone(author_rule)
         self.assertNotIn("opacity", author_rule.group(1))
-        self.assertIn("font-size: 9pt", author_rule.group(1))
+        self.assertIn("font-size: 8.5pt", author_rule.group(1))
         self.assertIn("letter-spacing: .08em", author_rule.group(1))
 
 
