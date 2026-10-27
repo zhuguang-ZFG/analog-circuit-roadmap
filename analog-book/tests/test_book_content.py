@@ -189,7 +189,8 @@ class ResourceTests(unittest.TestCase):
             (static / "roadmap.source.txt").write_text(source, encoding="utf-8")
             (static / "roadmap.svg").write_text(snapshot, encoding="utf-8")
             self.assertEqual(
-                '<figure class="book-roadmap">' + snapshot + "</figure>",
+                '<figure class="book-roadmap">' + snapshot
+                + '<figcaption>六阶段学习路线与方向深化</figcaption></figure>',
                 content.replace_mermaid(
                     fragment, docs_dir=docs, static_dir=static))
 
