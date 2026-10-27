@@ -97,6 +97,8 @@ analog-book/tests/test_book_cover.py
 analog-book/tests/test_book_real.py
 analog-book/tests/test_book_report.py
 analog-book/tests/test_browser_print_book.py
+
+> 遗留测试想法（来自 2026-10-27 会话丢失的本地草稿，恢复于此）：`test_book_assemble` 应补一条 **copy 后 page stem 唯一性** 检查——`assemble` 把源页复制进整书目录时，若两个不同路径的源页产生相同 stem（附录装配页与正文章重名是典型风险），后者会静默覆盖前者；夹具里放两个同 stem 源页、断言构建报错而不是静默丢页。Phase 5 附录定稿（A–H 装配页批量上线）前必须先有这条护栏。
 analog-book/tests/test_spice.py
 scripts/subset_fonts.py
 scripts/build_book_data.py
