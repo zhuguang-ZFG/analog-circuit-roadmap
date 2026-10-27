@@ -229,7 +229,8 @@ def replace_mermaid(fragment: str, docs_dir: Path = config.DOCS,
         raise BookError("docs/p0-06-roadmap.md 与 static/roadmap.source.txt 不一致")
     svg = snapshot.read_text(encoding="utf-8").strip()
     return re.sub(r'<pre class="mermaid">.*?</pre>',
-                  '<figure class="book-roadmap">' + svg + "</figure>",
+                  '<figure class="book-roadmap">' + svg
+                  + '<figcaption>六阶段学习路线与方向深化</figcaption></figure>',
                   fragment, flags=re.S)
 
 
