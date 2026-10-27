@@ -1005,6 +1005,27 @@ class SiteBuildTests(unittest.TestCase):
         self.assertEqual(8, len(re.findall(r'<a id="log-v[\w-]+"></a>', page)),
                          "更新日志的系列锚点必须留在产物里——别拿删锚点当消音")
 
+    def test_changelog_version_rows_render_as_table_cells(self):
+        """更新日志每个加粗版本行都要渲染成真 `<td>` 首列，不是字面管道符段落。
+
+        v3.59 起「| **v3.NN** |」行曾插在系列锚点与组标题之间——那里没有表头
+        与分隔行，mkdocs 把它渲染成带字面「|」的段落，v3.59–v3.63 五个版本
+        在线上挂了五轮才被读者视角发现；数源行数的护栏（docs_links 的系列
+        对账）全程绿着。这条在**渲染层**对账：源里每个加粗版本行，产物里
+        必须有同数的 `<td><strong>v3.NN</strong></td>` 首列 cell——再往锚点
+        后裸插版本行，这里当场红。
+        """
+        src = (self.work / "docs" / "p9-12-changelog.md").read_text(encoding="utf-8")
+        rows = re.findall(r"^\| \*\*(v3\.\d+(?:（当前）)?)\*\* \|", src, re.M)
+        page = self.rendered("p9-12-changelog.html")
+        cells = re.findall(
+            r"<td[^>]*>\s*<strong>(v3\.\d+(?:（当前）)?)</strong>\s*</td>", page)
+        self.assertEqual(len(rows), len(cells),
+                         f"源里 {len(rows)} 行加粗版本行、产物里只有 {len(cells)} 个"
+                         "首列 cell——有版本行没进表格，被渲染成了带字面「|」的段落")
+        self.assertEqual(sorted(rows), sorted(cells),
+                         "版本行与产物首列 cell 对不上——一边多、一边少或版本号写错")
+
     # ---------- 辅助 ----------
     @staticmethod
     def _n(demo_anchor):
