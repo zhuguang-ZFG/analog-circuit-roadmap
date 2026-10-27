@@ -97,8 +97,6 @@ analog-book/tests/test_book_cover.py
 analog-book/tests/test_book_real.py
 analog-book/tests/test_book_report.py
 analog-book/tests/test_browser_print_book.py
-
-> 遗留测试想法（来自 2026-10-27 会话丢失的本地草稿，恢复于此）：`test_book_assemble` 应补一条 **copy 后 page stem 唯一性** 检查——`assemble` 把源页复制进整书目录时，若两个不同路径的源页产生相同 stem（附录装配页与正文章重名是典型风险），后者会静默覆盖前者；夹具里放两个同 stem 源页、断言构建报错而不是静默丢页。Phase 5 附录定稿（A–H 装配页批量上线）前必须先有这条护栏。
 analog-book/tests/test_spice.py
 scripts/subset_fonts.py
 scripts/build_book_data.py
@@ -137,6 +135,8 @@ analog-book/READING-FLOW.md             # Task 12 把 A4 发布器改名写清�
 ```
 
 任务顺序是刻意的：Task 1–10 只新增模块、测试与 SPICE 资产，旧 A4 构建器、旧 manifest 与 `docs/` 都不动；Task 11 并行接入 16K，同时把 A4 manifest 冻结为 `manifest-a4.json`，线上书继续由旧管线生成。Phase 5 才删除 A4 管线并把 `/book/` 切到 16K。
+
+> 遗留测试想法（来自 2026-10-27 会话丢失的本地草稿，恢复于此）：`test_book_assemble` 应补一条 **copy 后 page stem 唯一性** 检查——`assemble` 把源页复制进整书目录时，若两个不同路径的源页产生相同 stem（附录装配页与正文章重名是典型风险），后者会静默覆盖前者；夹具里放两个同 stem 源页、断言构建报错而不是静默丢页。Phase 5 附录定稿（A–H 装配页批量上线）前必须先有这条护栏。
 
 ---
 
@@ -3440,7 +3440,6 @@ CHAPTER_STEMS = {
 7. **后置 6 页**：参考文献（shell id `bibliography`）、索引（`book-index`）、版本记录/致谢/来源与许可（`page-<stem>`，走 `strip_emoji` + `unwrap_details` + `transform_callouts`，不编号、不加尾注）、版本页（`colophon`）。索引要等所有页与锚点收集完成后生成；`index_sections` 排序；`validate_index_terms(..., anchors, final=final)`。
 8. **TOC/LOF/LOT**：按页面顺序生成 `toc`（篇/附录 level 1；章/附录源页 level 2；章内编号 h2、附录内编号 h2 level 3）、`lof`、`lot`；回填到前置页位置。`lof`/`lot` 每条含 `number`（如 `图 3-1`）、`title`（去掉编号前缀的图注）、`caption`、`anchor`、`source`（源页 stem）。**TOC 不展开附录内部未编号小节。**
 9. **导航与外壳**：沿用旧 `assemble_book` 的屏幕骨架（skip link、进度条、header、搜索、footer、回到顶部、MathJax、`book-search.js`、`book-ui.js`），页面 nav 保留；打印时由 `print.css` 隐藏。每个页面外壳：
-
 ```python
 def _strip_page_id(body: str, page_id: str) -> str:
     pattern = re.compile(
