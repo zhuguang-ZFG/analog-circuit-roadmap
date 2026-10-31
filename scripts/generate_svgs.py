@@ -65,8 +65,8 @@ def svg_open(title, w=800, h=460):
 '''
 
 
-def flow(path, dur, n=3, color="#f59e0b", r=5.5, stagger=None, keypoints=None, keytimes="0;1"):
-    """沿路径的电流粒子；begin 负相位保证静态首帧可见；keypoints/keyTimes 可非匀速"""
+def flow(path, dur, n=3, color="#f59e0b", r=5.5, stagger=None, keypoints="0;0.3;0.7;1", keytimes="0;0.35;0.65;1"):
+    """沿路径的电流粒子；begin 负相位保证静态首帧可见；默认四点 keyPoints 缓入缓出（两端慢、中间快）"""
     stagger = stagger if stagger is not None else dur / n
     kp = f' keyPoints="{keypoints}" keyTimes="{keytimes}" calcMode="linear"' if keypoints else ''
     inner = '\n'.join(
@@ -110,12 +110,18 @@ def caption(text, color, dur, kt_values, kt_times, y=400, x=400, size=14.5, w=80
     txt = (f'<text x="{x}" y="{y}" text-anchor="middle" font-size="{size}" font-weight="bold" fill="{color}" opacity="0">'
            f'{text}<animate attributeName="opacity" values="{kt_values}" keyTimes="{kt_times}" '
            f'dur="{dur}s" repeatCount="indefinite"/></text>')
-    # 上浮量跟着淡入曲线走（0→1 对应 6→0px），避免与任意 keyTimes 打架
+    # 上浮量跟着显隐曲线走：入场 6→0px 上浮，退场 0→−4px 上飘；零重叠交接靠运动接力
     slide = ''
     try:
         vals = [float(v) for v in kt_values.split(';')]
         if len(vals) == len(kt_times.split(';')):
-            tv = ';'.join(f'0 {6*(1-v):.1f}' for v in vals)
+            def drift(idx):
+                if vals[idx] >= 1:
+                    return 0.0
+                if idx and vals[idx - 1] >= 1:
+                    return -4.0 * (1 - vals[idx])
+                return 6.0 * (1 - vals[idx])
+            tv = ';'.join(f'0 {drift(i):.1f}' for i in range(len(vals)))
             slide = (f'<animateTransform attributeName="transform" type="translate" values="{tv}" '
                      f'keyTimes="{kt_times}" dur="{dur}s" repeatCount="indefinite"/>')
     except ValueError:
@@ -124,7 +130,11 @@ def caption(text, color, dur, kt_values, kt_times, y=400, x=400, size=14.5, w=80
 
 
 def beat_captions(beats, dur, y):
-    """均分字幕时隙；淡入淡出均在各自时隙内，避免交接时两行压字。"""
+    """均分字幕时隙；交接点 b 处旧拍恰好淡完、新拍恰好开始淡入（零重叠接力）。
+
+    两个字幕共用一个 y，任何同窗交叉都会把两行字叠印成糊——所以拼的是
+    时间上首尾相衔 + 换场时的上浮/上飘运动，而不是透明度交叉。
+    """
     if not beats or dur <= 0:
         raise ValueError('beats must be nonempty and duration must be positive')
     n = len(beats)
@@ -137,6 +147,72 @@ def beat_captions(beats, dur, y):
         out += caption(txt, col, dur, ';'.join(map(str, values)),
                        ';'.join(f'{t:.8g}' for t in times), y=y) + '\n'
     return out
+
+
+def veil(x, y, w, h, i, n, dur, amount=0.42, fill="#fdf8ea"):
+    """强调层的「去亮遮罩」：盖住第 i 块内容，轮到它时淡开。
+
+    为什么不用「内容自身 animate opacity」：印刷管线（book/svg_refine.py）会把
+    **任何带直接动画子节点的元素整块删掉**，挂在内容上的 animate 会让算式/卡片
+    在纸上凭空消失（实测 derive-divider 23→5 个 text）。所以内容永远静态、
+    动效只做在独立的矩形遮罩上——遮罩被印刷删掉是无损的（最多少一层变暗）。
+    """
+    a = i / n
+    fade = min(0.03, 0.25 / n)
+    if i == 0:
+        return ''                                    # 第一块 t=0 就点亮
+    kt = f"0;{a:.6g};{a + fade:.6g};1"
+    vals = f"{amount};{amount};0;0"
+    return (f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="6" fill="{fill}" opacity="{amount}">'
+            f'<animate attributeName="opacity" values="{vals}" keyTimes="{kt}" '
+            f'dur="{dur}s" repeatCount="indefinite"/></rect>')
+
+
+# ======================= 推导阶梯（公式推导图共用） =======================
+
+def derive_ladder(steps, dur, x, y, w=352, gap=58, accent="#b45309"):
+    """右栏推导阶梯：steps = [(步骤标签, 算式, 依据), ...]。
+
+    第 i 行在自己的时隙淡入后常驻；一个描边游标按拍离散下跳，始终框住
+    「此刻推到哪一行」。第一行 t=0 就在场，静止首帧不空。
+    """
+    if not steps:
+        raise ValueError('steps must be nonempty')
+    n = len(steps)
+    ys, rows = [], ''
+    for i, (tag, expr, why) in enumerate(steps):
+        top = y + i * gap
+        ys.append(top)
+        rows += (f'<text x="{x}" y="{top}" font-size="11.5" font-weight="bold" fill="{accent}">{tag}</text>'
+                 f'<text x="{x}" y="{top + 25}" font-size="14.5" font-weight="bold" fill="#1e293b">{expr}</text>'
+                 f'<text x="{x}" y="{top + 42}" font-size="10.5" fill="#64748b">{why}</text>'
+                 + veil(x - 12, top - 24, w, 58, i, n, dur) + '\n')
+    times = ';'.join(f'{i / n:.6g}' for i in range(n)) + ';1'
+    pos = ';'.join(str(v) for v in ys) + f';{ys[-1]}'
+    cursor = (f'<rect x="{x - 12}" y="{ys[0] - 24}" width="{w}" height="58" rx="7" fill="none" '
+              f'stroke="{accent}" stroke-width="1.8" opacity="0.9">'
+              f'<animate attributeName="y" values="{pos}" keyTimes="{times}" calcMode="discrete" '
+              f'dur="{dur}s" repeatCount="indefinite"/></rect>\n')
+    return cursor + rows
+
+
+def derive_frame(title, steps, left_svg, h=680, dur=16):
+    """左图右算式的推导版式：左边电路随拍揭示，右边公式阶梯随拍推进，共用 n、dur。"""
+    svg = svg_open(title, h=h)
+    svg += (f'<line x1="392" y1="86" x2="392" y2="{h - 44}" stroke="#cbd5e1" '
+            f'stroke-width="1" stroke-dasharray="6,5"/>\n')
+    svg += left_svg
+    svg += derive_ladder(steps, dur, 412, 134, w=352, gap=58)
+    return svg
+
+
+def chip(x, y, text, color="#3d6b4a", size=11.5, fill="#f6eedb"):
+    """纸片标签：低位（页底暗带）注释统一承载在这块小纸片上，浅深两主题都可读。"""
+    w = _text_w(text, size) + 22
+    return (f'<rect x="{x - w/2:.0f}" y="{y - size:.0f}" width="{w:.0f}" height="{size + 12:.0f}" rx="6" '
+            f'fill="{fill}" stroke="{color}" stroke-width="1"/>'
+            f'<text x="{x}" y="{y + 4:.0f}" text-anchor="middle" font-size="{size}" '
+            f'font-weight="bold" fill="{color}">{text}</text>')
 
 
 def _wrap(text, avail, size, maxlines=3):
@@ -164,8 +240,12 @@ def _wrap(text, avail, size, maxlines=3):
     return [text]                                  # 实在塞不下，只能溢出
 
 
-def note_box(text, y, dur, delay_kt="0;0.82;0.86;1", color="#059669", bg="#ecfdf5", x=400, w=560, size=13.5):
-    """延迟出现的要点注释框（柔和投影 + 左侧色条；文案过长时自动折行，框高随之增长）"""
+def note_box(text, y, dur, delay_kt="0;0.82;0.86;1", color="#059669", bg="#ecfdf5", x=400, w=560, size=13.5, focus=None):
+    """延迟出现的要点注释框（柔和投影 + 左侧色条；文案过长时自动折行，框高随之增长）。
+
+    focus=(fx,fy,fw,fh) 时，注释框登场的同一窗口里对主角图元套一圈
+    呼吸高亮框（视线引导，等价 manim 的 Indicate）。
+    """
     lines = _wrap(text, w - 34, size)
     n, sp = len(lines), size + 4.5
     h = 34 + (n - 1) * sp
@@ -174,16 +254,30 @@ def note_box(text, y, dur, delay_kt="0;0.82;0.86;1", color="#059669", bg="#ecfdf
              f'<rect x="{x-w//2+6}" y="{y-17}" width="3" height="{h-14}" rx="1.5" fill="{color}"/>')
     txt = ''.join(f'<text x="{x}" y="{y-2+i*sp:.1f}" text-anchor="middle" font-size="{size}" '
                   f'font-weight="bold" fill="{color}">{ln}</text>' for i, ln in enumerate(lines))
+    focus_svg = ''
+    if focus:
+        fx, fy, fw, fh = focus
+        focus_svg = pulse(fx, fy, fw, fh, color=color, dur=1.2)
+    if delay_kt is None:          # 印刷安全：整块静态（refine 会删掉带 animate 的元素）
+        return f'<g>{focus_svg}{rects}{txt}</g>'
     return (f'<g opacity="0">\n<animate attributeName="opacity" values="0;0;1;1" keyTimes="{delay_kt}" '
-            f'dur="{dur}s" repeatCount="indefinite"/>\n{rects}{txt}\n</g>')
+            f'dur="{dur}s" repeatCount="indefinite"/>\n{focus_svg}{rects}{txt}\n</g>')
 
 
-def trace2(path_d, dur, color="#2563eb", width=3.5, kt="0;0.85;1", plen=700, ghost=True):
-    """描线动画（ghost=True 时附 18% 透明度完整底稿，静态首帧不空）"""
+def trace2(path_d, dur, color="#2563eb", width=3.5, kt="0;0.82;0.875;0.93;1", plen=700, ghost=True):
+    """描线动画（ghost=True 时附 18% 透明度完整底稿，静态首帧不空）。
+
+    默认 keyTimes 走缓出四点采样（起步快、收尾慢）；调用方显式传 kt 时
+    保持旧的「保持→线性到底」两点语义。
+    """
     g = f'<path d="{path_d}" fill="none" stroke="{color}" stroke-width="1.8" opacity="0.18"/>' if ghost else ''
+    if kt == "0;0.82;0.875;0.93;1":
+        values = f"{plen};{plen};{plen*0.5:.0f};{plen*0.12:.0f};0"
+    else:
+        values = f"{plen};{plen};0;0"
     return g + (f'<path d="{path_d}" fill="none" stroke="{color}" stroke-width="{width}" stroke-linecap="round" '
                 f'stroke-dasharray="{plen}" stroke-dashoffset="{plen}">'
-                f'<animate attributeName="stroke-dashoffset" values="{plen};{plen};0;0" keyTimes="{kt}" '
+                f'<animate attributeName="stroke-dashoffset" values="{values}" keyTimes="{kt}" '
                 f'dur="{dur}s" repeatCount="indefinite"/></path>')
 
 
@@ -8221,6 +8315,174 @@ def make_probe_ground_loop():
     save('probe-ground-loop.svg', svg + '</svg>')
 
 
+# ======================= 推导图 1：分压公式（第 0 章 0.3） =======================
+def make_derive_divider():
+    DD = 16
+    steps = [
+        ('① 同一股电流', 'I = Vin / (R1 + R2)', '串联电路电流处处相等，总阻 = R1 + R2'),
+        ('② 下臂的压降', 'Vout = I · R2', '欧姆定律：压降 = 流过的电流 × 阻值'),
+        ('③ 代入消去 I', 'Vout = Vin · R2 / (R1 + R2)', '把第①行代进第②行，只剩电阻比'),
+        ('④ 代入数字', '12V × 10k / 20k = 6V', '两臂等阻 → 各分一半'),
+    ]
+    n = len(steps)
+    left = f'''<text x="196" y="88" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">同一股电流：先过 R1，再下 R2</text>
+<text x="58" y="128" font-size="12.5" font-weight="bold" fill="#b45309">Vin 12V</text>
+<line x1="58" y1="140" x2="135" y2="140" stroke="#334155" stroke-width="2.5"/>
+''' + resistor_v(135, 160, 40, 'R1 10k') + '''
+<line x1="135" y1="220" x2="135" y2="268" stroke="#334155" stroke-width="2.5"/>
+<circle cx="135" cy="268" r="3.5" fill="#334155"/>
+<line x1="135" y1="268" x2="250" y2="268" stroke="#334155" stroke-width="2.5"/>
+<circle cx="250" cy="268" r="3.5" fill="#334155"/>
+''' + resistor_v(135, 288, 40, 'R2 10k') + '''
+''' + gnd_sym(135, 362) + '''
+'''
+    left += flow("M58,140 L135,140 L135,348", DD, n=3)
+    left += f'''<line x1="103" y1="160" x2="103" y2="200" stroke="#dc2626" stroke-width="2"/>
+<polygon points="98,195 103,203 108,195" fill="#dc2626"/>
+<text x="96" y="186" text-anchor="end" font-size="11" font-weight="bold" fill="#dc2626">I·R1 = 6V</text>'''
+    left += f'''<line x1="103" y1="288" x2="103" y2="328" stroke="#2563eb" stroke-width="2"/>
+<polygon points="98,323 103,331 108,323" fill="#2563eb"/>
+<text x="96" y="314" text-anchor="end" font-size="11" font-weight="bold" fill="#2563eb">I·R2 = 6V</text>
+<rect x="243" y="252" width="58" height="30" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1.4"/>
+<text x="272" y="272" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">Vout</text>'''
+    left += f'''{chip(196, 470, '上下两臂一样大 → 各分一半', '#059669', 12)}
+{chip(196, 496, '换 R2=5k：12 × 5/15 = 4V', '#64748b', 11)}'''
+    svg = derive_frame('分压公式四步推导：I 先算出来，再乘下臂电阻', steps, left, h=680, dur=DD)
+    svg += note_box("分压公式不是凭空给的：串联同流 → 欧姆定律 → 代入。它只在空载时成立", 636, DD,
+                    delay_kt=None, w=740)
+    save('derive-divider.svg', svg + '</svg>')
+
+
+# ======================= 推导图 2：纹波公式（第 2 章 2.3） =======================
+def make_derive_ripple():
+    DR_ = 16
+    steps = [
+        ('① 电容的电荷账', 'Q = I · Δt', '负载恒流 → 放掉的电荷 = 电流 × 时间'),
+        ('② 电压跟着电荷走', 'ΔV = Q / C', '由 C = Q / U 反解'),
+        ('③ 合起来', 'ΔV = I · Δt / C', '把第①行代进第②行'),
+        ('④ 桥式整流补两次', 'ΔV = I / (2f · C)', '全波每周期补两次 → Δt = 1/(2f)'),
+        ('⑤ 代入数字', '1A / (2×50×4700µF) ≈ 2.1V', '50Hz 市电、1A 负载、4700µF'),
+    ]
+    n = len(steps)
+    left = '''<text x="196" y="88" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">峰顶充电、其余时间放电</text>
+<line x1="58" y1="140" x2="135" y2="140" stroke="#334155" stroke-width="2.5"/>
+<line x1="135" y1="140" x2="135" y2="188" stroke="#334155" stroke-width="2.5"/>
+<line x1="103" y1="190" x2="167" y2="190" stroke="#334155" stroke-width="3"/>
+<line x1="103" y1="200" x2="167" y2="200" stroke="#334155" stroke-width="3"/>
+<line x1="135" y1="202" x2="135" y2="250" stroke="#334155" stroke-width="2.5"/>
+<text x="176" y="200" font-size="12" font-weight="bold" fill="#2f7f96">4700µF</text>
+<line x1="135" y1="140" x2="300" y2="140" stroke="#334155" stroke-width="2.5"/>
+''' + resistor_v(300, 160, 40, '', lcolor='#dc2626') + '''
+<text x="324" y="184" font-size="12" font-weight="bold" fill="#dc2626">1A 负载</text>
+<line x1="300" y1="220" x2="300" y2="250" stroke="#334155" stroke-width="2.5"/>
+<line x1="135" y1="250" x2="300" y2="250" stroke="#334155" stroke-width="2.5"/>
+''' + gnd_sym(218, 264) + '''
+<polyline points="60,432 108,398 156,432 204,398 252,432 300,398 348,432" fill="none" stroke="#2563eb" stroke-width="2.2"/>
+<line x1="60" y1="398" x2="348" y2="398" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
+<line x1="60" y1="432" x2="348" y2="432" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="362" y="404" font-size="11" fill="#475569">峰</text>
+<text x="362" y="438" font-size="11" fill="#475569">谷</text>
+'''
+    left += flow("M58,140 L135,140 L135,188", DR_, n=2, color="#059669")
+    left += f'''<text x="150" y="300" font-size="11.5" font-weight="bold" fill="#059669">放电时：Q 一层层流走</text>'''
+    left += f'''<line x1="352" y1="398" x2="352" y2="432" stroke="#dc2626" stroke-width="2"/>
+<polygon points="347,404 352,396 357,404" fill="#dc2626"/>
+<polygon points="347,426 352,434 357,426" fill="#dc2626"/>
+<text x="376" y="420" font-size="12" font-weight="bold" fill="#dc2626">ΔV</text>'''
+    left += f'''<text x="196" y="330" font-size="11.5" font-weight="bold" fill="#b45309">100Hz 的「锯齿」就是这么来的</text>'''
+    left += f'''{chip(196, 466, 'C 翻倍 → ΔV 减半；f 翻倍 → ΔV 也减半', '#059669', 11.5)}'''
+    svg = derive_frame('纹波公式五步推导：电荷 → 电压 → 整流补几次', steps, left, h=680, dur=DR_)
+    svg += note_box("公式里的每个量都有出处：Q 是账本，C 是水桶，2f 是「每周期补两次水」", 636, DR_,
+                    delay_kt=None, w=740)
+    save('derive-ripple.svg', svg + '</svg>')
+
+
+# ======================= 推导图 3：共射增益（第 11 章 11.5） =======================
+def make_derive_gain():
+    DG = 16
+    steps = [
+        ('① 跨导的定义', 'gm = ΔIc / ΔVbe', '输入电压抖一下，集电极电流跟着抖多少'),
+        ('② 室温下的数值', 'gm ≈ 38 · Ic', 'VT ≈ 26mV：Ic=1mA → 38mS'),
+        ('③ 电流转电压', 'ΔVout = −ΔIc · Rc', '电流涨 → Rc 压降涨 → 输出跌（反相）'),
+        ('④ 串成增益', 'Av = ΔVout/ΔVin = −gm · Rc', '把②③代进比值的定义'),
+        ('⑤ 代入数字', '−38mS × 2kΩ ≈ −76', '≈ 37.6dB 的电压增益'),
+    ]
+    n = len(steps)
+    left = f'''<text x="196" y="88" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">跨导把电压变成电流，Rc 再把电流变回电压</text>
+<text x="330" y="118" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#b45309">12V</text>
+<line x1="262" y1="130" x2="360" y2="130" stroke="#334155" stroke-width="2.5"/>
+<rect x="140" y="190" width="120" height="72" rx="9" fill="#f8fafc" stroke="#2563eb" stroke-width="1.8"/>
+<text x="200" y="222" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb">gm</text>
+<text x="200" y="244" text-anchor="middle" font-size="10.5" fill="#475569">ΔIc / ΔVbe</text>
+<polyline points="40,226 52,208 64,244 76,208 88,244 100,226" fill="none" stroke="#b45309" stroke-width="2.2"/>
+<text x="70" y="272" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#b45309">ΔVbe</text>
+<text x="330" y="284" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#dc2626">输出反相</text>
+<polyline points="300,332 312,314 324,350 336,314 348,350 360,332" fill="none" stroke="#dc2626" stroke-width="2.2"/>
+{chip(196, 392, '电流信号 → 电压信号：全靠 Rc 这件「外套」', '#059669', 11.5)}
+'''
+    left += f'''<polygon points="132,226 140,220 140,232" fill="#2563eb"/>
+<line x1="100" y1="226" x2="140" y2="226" stroke="#2563eb" stroke-width="2.2"/>'''
+    left += f'''<line x1="330" y1="130" x2="330" y2="148" stroke="#334155" stroke-width="2.5"/>''' + resistor_v(330, 148, 40, 'Rc 2k') + '''
+<line x1="330" y1="208" x2="330" y2="226" stroke="#334155" stroke-width="2.5"/>
+<circle cx="330" cy="226" r="3.5" fill="#334155"/>'''
+    left += f'''<line x1="260" y1="226" x2="326" y2="226" stroke="#dc2626" stroke-width="2.2"/>
+<polygon points="320,220 330,226 320,232" fill="#dc2626"/>
+<text x="292" y="212" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#dc2626">ΔIc</text>
+<line x1="330" y1="226" x2="330" y2="270" stroke="#cbd5e1" stroke-width="1.2" stroke-dasharray="4,3"/>'''
+    left += f'''<text x="200" y="340" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#b45309">同样的形状，倒过来、放大 76 倍</text>'''
+    svg = derive_frame('共射增益五步推导：gm 把电压变电流，Rc 再变回电压', steps, left, h=680, dur=DG)
+    svg += note_box("Av = −gm·Rc：提升增益要么加大 Ic（更费电），要么加大 Rc（压降预算不够就撞轨）", 636, DG,
+                    delay_kt=None, w=740)
+    save('derive-gain.svg', svg + '</svg>')
+
+
+# ======================= 推导图 4：负反馈增益（第 12 章） =======================
+def make_derive_feedback():
+    DF_ = 16
+    steps = [
+        ('① 开环：先不带反馈', 'Vout = A · Vd', 'Vd 是放大器的净输入'),
+        ('② 输出被采样回来', 'Vfb = β · Vout', 'β 就是电阻分压比'),
+        ('③ 净输入被减掉一截', 'Vd = Vs − Vfb', '负反馈与输入「对着干」'),
+        ('④ 联立', 'Vout = A · (Vs − β·Vout)', '把②③代进①'),
+        ('⑤ 移项求商', 'Af = A / (1 + Aβ)', '闭环增益：分母帮了一个忙'),
+        ('⑥ 深反馈极限', 'Aβ ≫ 1 → Af ≈ 1 / β', '增益只由电阻比决定，与 A 无关'),
+    ]
+    n = len(steps)
+    left = f'''<text x="196" y="88" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">反馈环：把输出的样本「还」回输入端</text>
+<text x="40" y="222" font-size="11.5" font-weight="bold" fill="#b45309">Vs</text>
+<line x1="56" y1="230" x2="94" y2="230" stroke="#334155" stroke-width="2.5"/>
+<polygon points="88,224 98,230 88,236" fill="#334155"/>
+<circle cx="112" cy="230" r="14" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+<text x="112" y="235" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">Σ</text>
+<text x="98" y="222" font-size="11" fill="#059669">+</text>
+<text x="98" y="248" font-size="11" fill="#dc2626">−</text>
+<rect x="176" y="196" width="112" height="68" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text x="232" y="226" text-anchor="middle" font-size="15" font-weight="bold" fill="#2563eb">A</text>
+<text x="232" y="246" text-anchor="middle" font-size="10" fill="#475569">开环增益</text>
+<line x1="126" y1="230" x2="170" y2="230" stroke="#334155" stroke-width="2.5"/>
+<polygon points="164,224 174,230 164,236" fill="#334155"/>
+<line x1="288" y1="230" x2="352" y2="230" stroke="#334155" stroke-width="2.5"/>
+<polygon points="346,224 356,230 346,236" fill="#334155"/>
+<text x="362" y="234" font-size="11.5" font-weight="bold" fill="#dc2626">Vout</text>
+<rect x="204" y="312" width="56" height="34" rx="7" fill="#f7eedb" stroke="#b45309" stroke-width="1.6"/>
+<text x="232" y="335" text-anchor="middle" font-size="13" font-weight="bold" fill="#b45309">β</text>
+{chip(196, 386, 'Aβ 越深，输出越听 β 的话、越不听 A 的话', '#059669', 11.5)}
+'''
+    left += f'''<line x1="352" y1="230" x2="380" y2="230" stroke="#dc2626" stroke-width="2.2" stroke-dasharray="5,3"/>'''
+    left += f'''<line x1="352" y1="230" x2="352" y2="330" stroke="#b45309" stroke-width="2"/>
+<line x1="352" y1="330" x2="288" y2="330" stroke="#b45309" stroke-width="2"/>
+<line x1="176" y1="330" x2="112" y2="330" stroke="#b45309" stroke-width="2"/>
+<line x1="112" y1="330" x2="112" y2="246" stroke="#b45309" stroke-width="2"/>
+<polygon points="106,252 112,242 118,252" fill="#b45309"/>'''
+    left += f'''<text x="264" y="404" text-anchor="middle" font-size="10.5" fill="#64748b">β 越小 → 反馈越浅 → 增益留得越多</text>'''
+    left += f'''{chip(112, 430, 'Af ≈ 1/β', '#2563eb', 11.5)}
+{chip(112, 452, '教科书答案', '#475569', 10.5)}'''
+    svg = derive_frame('负反馈增益六步推导：从 Vout = A·Vd 到 Af ≈ 1/β', steps, left, h=680, dur=DF_)
+    svg += note_box("闭环增益不靠管子精度，靠电阻比——这就是负反馈能让电路「不挑元件」的原因", 636, DF_,
+                    delay_kt=None, w=740)
+    save('derive-feedback.svg', svg + '</svg>')
+
+
 if __name__ == '__main__':
     make_rc_charge()
     make_bridge_rectifier()
@@ -8330,4 +8592,8 @@ if __name__ == '__main__':
     make_optocoupler_ctr()
     make_error_budget()
     make_probe_ground_loop()
-    print('all 108 SVGs regenerated into', os.path.abspath(OUT))
+    make_derive_divider()
+    make_derive_ripple()
+    make_derive_gain()
+    make_derive_feedback()
+    print(f'all {len(os.listdir(OUT))} SVGs regenerated into', os.path.abspath(OUT))

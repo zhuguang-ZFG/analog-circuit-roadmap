@@ -3,7 +3,7 @@
 <desc>电压降：同一股电流，谁 R 大谁分得多；节拍：口诀：V = I×R —— 同一电流下电压按电阻成比例分配（4k:1k = 4:1 → 4V:1V）</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
-<stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#141310"/>
+<stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>
 </linearGradient>
 <linearGradient id="bgD" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#141310"/><stop offset="1" stop-color="#1d1a14"/>
@@ -116,10 +116,10 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <path d="M140 302 Q160.00 301.96 180 302" fill="none" stroke="#37424e" stroke-width="2.5"/>
 <path d="M146 310 Q160.00 310.13 174 310" fill="none" stroke="#37424e" stroke-width="2.5"/>
 <path d="M152 318 Q160.00 317.98 168 318" fill="none" stroke="#37424e" stroke-width="2.5"/>
-<g filter="url(#pglow)"><circle r="5" fill="#a4630f"><animateMotion dur="10s" begin="-0.50s" repeatCount="indefinite" path="M160,112 L160,298"/></circle>
-<circle r="5" fill="#a4630f"><animateMotion dur="10s" begin="2.00s" repeatCount="indefinite" path="M160,112 L160,298"/></circle>
-<circle r="5" fill="#a4630f"><animateMotion dur="10s" begin="4.50s" repeatCount="indefinite" path="M160,112 L160,298"/></circle>
-<circle r="5" fill="#a4630f"><animateMotion dur="10s" begin="7.00s" repeatCount="indefinite" path="M160,112 L160,298"/></circle></g>
+<g filter="url(#pglow)"><circle r="5" fill="#a4630f"><animateMotion dur="10s" begin="-0.50s" repeatCount="indefinite" path="M160,112 L160,298" keyPoints="0;0.3;0.7;1" keyTimes="0;0.35;0.65;1" calcMode="linear"/></circle>
+<circle r="5" fill="#a4630f"><animateMotion dur="10s" begin="2.00s" repeatCount="indefinite" path="M160,112 L160,298" keyPoints="0;0.3;0.7;1" keyTimes="0;0.35;0.65;1" calcMode="linear"/></circle>
+<circle r="5" fill="#a4630f"><animateMotion dur="10s" begin="4.50s" repeatCount="indefinite" path="M160,112 L160,298" keyPoints="0;0.3;0.7;1" keyTimes="0;0.35;0.65;1" calcMode="linear"/></circle>
+<circle r="5" fill="#a4630f"><animateMotion dur="10s" begin="7.00s" repeatCount="indefinite" path="M160,112 L160,298" keyPoints="0;0.3;0.7;1" keyTimes="0;0.35;0.65;1" calcMode="linear"/></circle></g>
 <text x="128" y="202" text-anchor="end" font-size="11.5" font-weight="bold" fill="#1f5d7a">I = 1mA</text>
 <text x="190" y="338" text-anchor="middle" font-size="11" fill="#5b666f">5V ÷ (4k+1k) = 1mA —— 同一股电流，处处相等</text>
 <text x="600" y="86" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#37424e">沿回路走一圈，看电压怎么一级级掉下去</text>

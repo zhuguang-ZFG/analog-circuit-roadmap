@@ -102,7 +102,7 @@ class RefineFixtureTests(unittest.TestCase):
 class RefineBookAssetsTests(unittest.TestCase):
     def test_all_legacy_assets_are_print_clean(self):
         files = sorted((ROOT / "assets" / "svg").glob("*.svg"))
-        self.assertEqual(108, len(files))
+        self.assertEqual(112, len(files))
         for path in files:
             with self.subTest(path.name):
                 source = path.read_text(encoding="utf-8")

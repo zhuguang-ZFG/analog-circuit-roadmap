@@ -35,7 +35,12 @@
           { label: '带载输出', value: fmt(vl, 2), unit: 'V' },
           { label: '塌陷', value: fmt(sag, 1), unit: '%' }
         ];
-      }
+      },
+      presets: [
+        { label: '空载', set: { rl: 9999 } },
+        { label: 'RL = 10 kΩ', set: { rl: 10 } },
+        { label: 'RL = 1 kΩ', set: { rl: 1 } }
+      ]
     },
     electrolyte: {
       name: '电解电容寿命',
@@ -136,6 +141,21 @@
           { label: '电感纹波 ΔIL', value: fmt(dIl, 3), unit: 'A' },
           { label: '输出纹波 ΔV', value: fmt(dv * 1e3, 1), unit: 'mV' }
         ];
+      },
+      chart: {
+        title: 'ΔV(C)：Vin、Vout、fsw、L 取当前值',
+        xlabel: 'C / µF', ylabel: 'ΔV / mV',
+        domain: function (x) { return [1, Math.max(3 * x.c, 50)]; },
+        curve: function (c, x) {
+          var d = x.vout / x.vin;
+          var dIl = (x.vin - x.vout) * d / ((x.l * 1e-6) * (x.fsw * 1e3));
+          return dIl / (8 * (x.fsw * 1e3) * (c * 1e-6)) * 1e3;
+        },
+        spot: function (x) {
+          var d = x.vout / x.vin;
+          var dIl = (x.vin - x.vout) * d / ((x.l * 1e-6) * (x.fsw * 1e3));
+          return [x.c, dIl / (8 * (x.fsw * 1e3) * (x.c * 1e-6)) * 1e3];
+        }
       }
     },
     noise: {
@@ -155,6 +175,36 @@
           { label: '总噪声', value: fmt(en * Math.sqrt(b) * 1e6, 2), unit: 'µV' }
         ];
       }
+    },
+    miller: {
+      name: 'Miller 电容与输入极点',
+      note: 'Miller 放大：基极看进去的等效电容 = (1+|A|)×C_bc；输入极点 f_p = 1/(2π·Rs·C_in)。砍增益、降源阻、cascode 拆桥——三条路都在拿别的东西换带宽。',
+      inputs: [
+        { key: 'av', label: '第一级增益 |A|', unit: 'V/V', value: 50, step: 5, min: 1 },
+        { key: 'rs', label: '源电阻 Rs', unit: 'kΩ', value: 10, step: 1, min: 0.1 },
+        { key: 'cbc', label: 'C_bc', unit: 'pF', value: 5, step: 1, min: 0.1 }
+      ],
+      compute: function (x) {
+        var cin = (1 + x.av) * x.cbc;                       // pF
+        var fp = 1 / (2 * Math.PI * (x.rs * 1e3) * (cin * 1e-12));  // Hz
+        return [
+          { label: '等效电容 C_in', value: fmt(cin, 0), unit: 'pF' },
+          { label: '输入极点 f_p', value: fmt(fp / 1e3, 1), unit: 'kHz' },
+          { label: '达成比 f_p/100k', value: fmt(fp / 1e5, 2), unit: '' }
+        ];
+      },
+      chart: {
+        title: 'f_p(|A|)：Rs、C_bc 取当前值',
+        xlabel: '|A|', ylabel: 'f_p / kHz',
+        domain: function (x) { return [5, Math.max(120, x.av * 1.3)]; },
+        curve: function (a, x) {
+          return 1 / (2 * Math.PI * (x.rs * 1e3) * ((1 + a) * x.cbc * 1e-12)) / 1e3;
+        },
+        target: { y: 100, label: '目标 100 kHz' },
+        spot: function (x) {
+          return [x.av, 1 / (2 * Math.PI * (x.rs * 1e3) * ((1 + x.av) * x.cbc * 1e-12)) / 1e3];
+        }
+      }
     }
   };
 
@@ -163,6 +213,45 @@
     if (cls) node.className = cls;
     if (text !== undefined) node.textContent = text;
     return node;
+  }
+
+  function drawChart(cfg, x) {
+    /* 就地算曲线：纯 inline SVG，无依赖；随每次 render 重建（60 点，毫秒级）。 */
+    var W = 360, H = 150, L = 46, R = 10, T = 22, B = 28;
+    var iw = W - L - R, ih = H - T - B;
+    var dom = cfg.domain(x);
+    var n = 60, ys = [];
+    var i, t;
+    for (i = 0; i <= n; i++) {
+      t = dom[0] + (dom[1] - dom[0]) * i / n;
+      ys.push(cfg.curve(t, x));
+    }
+    var ymax = Math.max.apply(null, ys.concat(cfg.target ? [cfg.target.y] : [0])) * 1.12 || 1;
+    function sx(v) { return L + (v - dom[0]) / (dom[1] - dom[0]) * iw; }
+    function sy(v) { return T + ih - (v / ymax) * ih; }
+    var pts = [];
+    for (i = 0; i <= n; i++) {
+      t = dom[0] + (dom[1] - dom[0]) * i / n;
+      pts.push(sx(t).toFixed(1) + ',' + sy(ys[i]).toFixed(1));
+    }
+    var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" width="100%" role="img" aria-label="' + cfg.title + '">';
+    s += '<text x="' + L + '" y="14" font-size="10.5" font-weight="bold" fill="#475569">' + cfg.title + '</text>';
+    s += '<line x1="' + L + '" y1="' + (T + ih) + '" x2="' + (L + iw) + '" y2="' + (T + ih) + '" stroke="#94a3b8" stroke-width="1"/>';
+    s += '<line x1="' + L + '" y1="' + T + '" x2="' + L + '" y2="' + (T + ih) + '" stroke="#94a3b8" stroke-width="1"/>';
+    if (cfg.target) {
+      s += '<line x1="' + L + '" y1="' + sy(cfg.target.y).toFixed(1) + '" x2="' + (L + iw) + '" y2="' + sy(cfg.target.y).toFixed(1) + '" stroke="#b45309" stroke-width="1.2" stroke-dasharray="4,3"/>';
+      s += '<text x="' + (L + iw - 2) + '" y="' + (sy(cfg.target.y) - 4).toFixed(1) + '" text-anchor="end" font-size="9.5" font-weight="bold" fill="#b45309">' + cfg.target.label + '</text>';
+    }
+    s += '<polyline points="' + pts.join(' ') + '" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>';
+    var sp = cfg.spot(x);
+    var cx = Math.min(Math.max(sp[0], dom[0]), dom[1]);
+    s += '<circle cx="' + sx(cx).toFixed(1) + '" cy="' + sy(sp[1]).toFixed(1) + '" r="4" fill="#dc2626"/>';
+    s += '<text x="' + sx(dom[0]).toFixed(1) + '" y="' + (H - 8) + '" font-size="9.5" fill="#475569">' + fmt(dom[0], 0) + '</text>';
+    s += '<text x="' + sx(dom[1]).toFixed(1) + '" y="' + (H - 8) + '" text-anchor="end" font-size="9.5" fill="#475569">' + fmt(dom[1], 0) + ' ' + cfg.xlabel + '</text>';
+    s += '<text x="6" y="' + (T + 4) + '" font-size="9.5" fill="#475569">' + cfg.ylabel + '</text>';
+    s += '<text x="6" y="' + (T + ih) + '" font-size="9.5" fill="#475569">0</text>';
+    s += '</svg>';
+    return s;
   }
 
   function build(root, key) {
@@ -209,8 +298,30 @@
     });
     box.appendChild(inputs);
 
+    if (spec.presets) {
+      var presets = el('div', 'calc-presets');
+      spec.presets.forEach(function (preset) {
+        var btn = el('button', null, preset.label);
+        btn.type = 'button';
+        btn.setAttribute('aria-label', '预设：' + preset.label);
+        btn.addEventListener('click', function () {
+          Object.keys(preset.set).forEach(function (k) {
+            if (values[k]) values[k].widget.value = preset.set[k];
+          });
+          render();
+        });
+        presets.appendChild(btn);
+      });
+      box.appendChild(presets);
+    }
+
     var outputs = el('div', 'calc-outputs');
     box.appendChild(outputs);
+    var chartBox = null;
+    if (spec.chart) {
+      chartBox = el('div', 'calc-chart');
+      box.appendChild(chartBox);
+    }
     box.appendChild(el('p', 'calc-note', spec.note));
     root.appendChild(box);
 
@@ -229,7 +340,8 @@
     }
 
     function render() {
-      var rows = spec.compute(read());
+      var x = read();
+      var rows = spec.compute(x);
       outputs.textContent = '';
       rows.forEach(function (row) {
         var chip = el('span', 'calc-out');
@@ -239,6 +351,7 @@
         chip.appendChild(el('span', 'calc-out-label', row.label));
         outputs.appendChild(chip);
       });
+      if (chartBox) chartBox.innerHTML = drawChart(spec.chart, x);
     }
 
     render();

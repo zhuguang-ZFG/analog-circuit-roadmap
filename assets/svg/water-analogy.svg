@@ -3,7 +3,7 @@
 <desc>水路 = 电路：一张图看懂全书通用比喻（第 0 章 0.1）；节拍：同一套直觉：水泵推水位 · 细管卡流量 · 水池攒水位 · 水车扛惯性 · 单向阀防倒流 · 闸门听指挥</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
-<stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#141310"/>
+<stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>
 </linearGradient>
 <linearGradient id="bgD" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#141310"/><stop offset="1" stop-color="#1d1a14"/>
@@ -99,15 +99,15 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <text x="400" y="48" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#37424e">同一套直觉：水怎么流，电就怎么走——八个词，一张图</text>
 <path d="M156,180 H644 Q680,180 680,216 V424 Q680,460 644,460 H156 Q120,460 120,424 V216 Q120,180 156,180 Z" fill="none" stroke="#e6eff3" stroke-width="24" stroke-linejoin="round"/>
 <path d="M156,180 H644 Q680,180 680,216 V424 Q680,460 644,460 H156 Q120,460 120,424 V216 Q120,180 156,180 Z" fill="none" stroke="#2f7f96" stroke-width="15" stroke-linejoin="round"/>
-<g filter="url(#pglow)"><circle r="4.6" fill="#e4f1f3"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M156,180 H644 Q680,180 680,216 V424 Q680,460 644,460 H156 Q120,460 120,424 V216 Q120,180 156,180 Z"/></circle>
-<circle r="4.6" fill="#e4f1f3"><animateMotion dur="12s" begin="0.83s" repeatCount="indefinite" path="M156,180 H644 Q680,180 680,216 V424 Q680,460 644,460 H156 Q120,460 120,424 V216 Q120,180 156,180 Z"/></circle>
-<circle r="4.6" fill="#e4f1f3"><animateMotion dur="12s" begin="2.17s" repeatCount="indefinite" path="M156,180 H644 Q680,180 680,216 V424 Q680,460 644,460 H156 Q120,460 120,424 V216 Q120,180 156,180 Z"/></circle>
-<circle r="4.6" fill="#e4f1f3"><animateMotion dur="12s" begin="3.50s" repeatCount="indefinite" path="M156,180 H644 Q680,180 680,216 V424 Q680,460 644,460 H156 Q120,460 120,424 V216 Q120,180 156,180 Z"/></circle>
-<circle r="4.6" fill="#e4f1f3"><animateMotion dur="12s" begin="4.83s" repeatCount="indefinite" path="M156,180 H644 Q680,180 680,216 V424 Q680,460 644,460 H156 Q120,460 120,424 V216 Q120,180 156,180 Z"/></circle>
-<circle r="4.6" fill="#e4f1f3"><animateMotion dur="12s" begin="6.17s" repeatCount="indefinite" path="M156,180 H644 Q680,180 680,216 V424 Q680,460 644,460 H156 Q120,460 120,424 V216 Q120,180 156,180 Z"/></circle>
-<circle r="4.6" fill="#e4f1f3"><animateMotion dur="12s" begin="7.50s" repeatCount="indefinite" path="M156,180 H644 Q680,180 680,216 V424 Q680,460 644,460 H156 Q120,460 120,424 V216 Q120,180 156,180 Z"/></circle>
-<circle r="4.6" fill="#e4f1f3"><animateMotion dur="12s" begin="8.83s" repeatCount="indefinite" path="M156,180 H644 Q680,180 680,216 V424 Q680,460 644,460 H156 Q120,460 120,424 V216 Q120,180 156,180 Z"/></circle>
-<circle r="4.6" fill="#e4f1f3"><animateMotion dur="12s" begin="10.17s" repeatCount="indefinite" path="M156,180 H644 Q680,180 680,216 V424 Q680,460 644,460 H156 Q120,460 120,424 V216 Q120,180 156,180 Z"/></circle></g>
+<g filter="url(#pglow)"><circle r="4.6" fill="#e4f1f3"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M156,180 H644 Q680,180 680,216 V424 Q680,460 644,460 H156 Q120,460 120,424 V216 Q120,180 156,180 Z" keyPoints="0;0.3;0.7;1" keyTimes="0;0.35;0.65;1" calcMode="linear"/></circle>
+<circle r="4.6" fill="#e4f1f3"><animateMotion dur="12s" begin="0.83s" repeatCount="indefinite" path="M156,180 H644 Q680,180 680,216 V424 Q680,460 644,460 H156 Q120,460 120,424 V216 Q120,180 156,180 Z" keyPoints="0;0.3;0.7;1" keyTimes="0;0.35;0.65;1" calcMode="linear"/></circle>
+<circle r="4.6" fill="#e4f1f3"><animateMotion dur="12s" begin="2.17s" repeatCount="indefinite" path="M156,180 H644 Q680,180 680,216 V424 Q680,460 644,460 H156 Q120,460 120,424 V216 Q120,180 156,180 Z" keyPoints="0;0.3;0.7;1" keyTimes="0;0.35;0.65;1" calcMode="linear"/></circle>
+<circle r="4.6" fill="#e4f1f3"><animateMotion dur="12s" begin="3.50s" repeatCount="indefinite" path="M156,180 H644 Q680,180 680,216 V424 Q680,460 644,460 H156 Q120,460 120,424 V216 Q120,180 156,180 Z" keyPoints="0;0.3;0.7;1" keyTimes="0;0.35;0.65;1" calcMode="linear"/></circle>
+<circle r="4.6" fill="#e4f1f3"><animateMotion dur="12s" begin="4.83s" repeatCount="indefinite" path="M156,180 H644 Q680,180 680,216 V424 Q680,460 644,460 H156 Q120,460 120,424 V216 Q120,180 156,180 Z" keyPoints="0;0.3;0.7;1" keyTimes="0;0.35;0.65;1" calcMode="linear"/></circle>
+<circle r="4.6" fill="#e4f1f3"><animateMotion dur="12s" begin="6.17s" repeatCount="indefinite" path="M156,180 H644 Q680,180 680,216 V424 Q680,460 644,460 H156 Q120,460 120,424 V216 Q120,180 156,180 Z" keyPoints="0;0.3;0.7;1" keyTimes="0;0.35;0.65;1" calcMode="linear"/></circle>
+<circle r="4.6" fill="#e4f1f3"><animateMotion dur="12s" begin="7.50s" repeatCount="indefinite" path="M156,180 H644 Q680,180 680,216 V424 Q680,460 644,460 H156 Q120,460 120,424 V216 Q120,180 156,180 Z" keyPoints="0;0.3;0.7;1" keyTimes="0;0.35;0.65;1" calcMode="linear"/></circle>
+<circle r="4.6" fill="#e4f1f3"><animateMotion dur="12s" begin="8.83s" repeatCount="indefinite" path="M156,180 H644 Q680,180 680,216 V424 Q680,460 644,460 H156 Q120,460 120,424 V216 Q120,180 156,180 Z" keyPoints="0;0.3;0.7;1" keyTimes="0;0.35;0.65;1" calcMode="linear"/></circle>
+<circle r="4.6" fill="#e4f1f3"><animateMotion dur="12s" begin="10.17s" repeatCount="indefinite" path="M156,180 H644 Q680,180 680,216 V424 Q680,460 644,460 H156 Q120,460 120,424 V216 Q120,180 156,180 Z" keyPoints="0;0.3;0.7;1" keyTimes="0;0.35;0.65;1" calcMode="linear"/></circle></g>
 <circle cx="280" cy="180" r="27" fill="#e4f1f3" stroke="#2f7f96" stroke-width="2.5"/>
 <g><animateTransform attributeName="transform" type="rotate" from="0 280 180" to="360 280 180" dur="4s" repeatCount="indefinite"/>
 <path d="M280 180 Q289.03 174.05 298 168" fill="none" stroke="#2f7f96" stroke-width="2.6"/>

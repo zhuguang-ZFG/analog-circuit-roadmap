@@ -3,7 +3,7 @@
 <desc>模拟开关开合四拍：电荷注入如何毁掉采样精度（5V 传输门）；节拍：四拍因果链：栅极驱动开启 → 沟道存电荷 → 关断注入 C_h → dummy 管抵消</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
-<stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#141310"/>
+<stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>
 </linearGradient>
 <linearGradient id="bgD" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#141310"/><stop offset="1" stop-color="#1d1a14"/>
@@ -142,8 +142,8 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <line x1="313" y1="198" x2="319" y2="198" stroke="#37424e" stroke-width="2.5"/>
 <text x="332" y="172" font-size="9" font-weight="bold" fill="#1f5d7a">C_h</text>
 
-<g filter="url(#pglow)"><circle r="4.0" fill="#a4630f"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M244,152 L316,152"/></circle>
-<circle r="4.0" fill="#a4630f"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M244,152 L316,152"/></circle></g>
+<g filter="url(#pglow)"><circle r="4.0" fill="#a4630f"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M244,152 L316,152" keyPoints="0;0.3;0.7;1" keyTimes="0;0.35;0.65;1" calcMode="linear"/></circle>
+<circle r="4.0" fill="#a4630f"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M244,152 L316,152" keyPoints="0;0.3;0.7;1" keyTimes="0;0.35;0.65;1" calcMode="linear"/></circle></g>
 <text x="299" y="266" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#3d6b4a">Q_ch = 0.2pC</text>
 <text x="299" y="278" text-anchor="middle" font-size="10" fill="#5b666f">V_C：跟随 2.000V</text>
 <rect x="404" y="70" width="174" height="214" rx="10" fill="#f6eedb" stroke="#a8321f" stroke-width="1.8"/>
@@ -191,8 +191,8 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <line x1="697" y1="198" x2="703" y2="198" stroke="#37424e" stroke-width="2.5"/>
 <text x="716" y="172" font-size="9" font-weight="bold" fill="#1f5d7a">C_h</text>
 
-<g filter="url(#pglow)"><circle r="4.0" fill="#6b3f63"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M628,152 L700,152"/></circle>
-<circle r="4.0" fill="#6b3f63"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M628,152 L700,152"/></circle></g>
+<g filter="url(#pglow)"><circle r="4.0" fill="#6b3f63"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M628,152 L700,152" keyPoints="0;0.3;0.7;1" keyTimes="0;0.35;0.65;1" calcMode="linear"/></circle>
+<circle r="4.0" fill="#6b3f63"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M628,152 L700,152" keyPoints="0;0.3;0.7;1" keyTimes="0;0.35;0.65;1" calcMode="linear"/></circle></g>
 <text x="683" y="266" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#6b3f63">注入反向抵消</text>
 <text x="683" y="278" text-anchor="middle" font-size="10" fill="#5b666f">ΔV → ≈0</text>
 <text x="425" y="314" text-anchor="middle" font-size="13" font-weight="bold" fill="#37424e">一次采样：控制信号 EN 与保持电容电压 V_C（注入台阶放大）</text>

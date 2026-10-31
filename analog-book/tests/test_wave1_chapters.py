@@ -18,7 +18,7 @@ CHAPTER_CONTRACTS = {
         "floor": 15000,
         "sections": ("### 0.7", "### 0.8", "### 0.9", "### 0.10"),
         "examples": 3,
-        "figures": 6,
+        "figures": 7,
         "tables": 6,
         "quiz": 10,
         "figure_assets": (
@@ -32,7 +32,7 @@ CHAPTER_CONTRACTS = {
         "floor": 16000,
         "sections": ("### 2.9", "### 2.10", "### 2.11", "### 2.12", "### 2.13"),
         "examples": 3,
-        "figures": 9,
+        "figures": 10,
         "tables": 5,
         "quiz": 9,
         "figure_assets": (
@@ -47,7 +47,7 @@ CHAPTER_CONTRACTS = {
         "floor": 18000,
         "sections": ("### 11.8", "### 11.9", "### 11.10", "### 11.11"),
         "examples": 3,
-        "figures": 8,
+        "figures": 11,
         "tables": 6,
         "quiz": 10,
         "figure_assets": (

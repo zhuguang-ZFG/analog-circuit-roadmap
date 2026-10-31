@@ -12,7 +12,7 @@
 
 [![tests](https://github.com/zhuguang-ZFG/analog-circuit-roadmap/actions/workflows/tests.yml/badge.svg)](https://github.com/zhuguang-ZFG/analog-circuit-roadmap/actions/workflows/tests.yml)
 [![docs](https://img.shields.io/badge/docs-60%20%E9%A1%B5-blue)](p0-07-toc.md#toc)
-[![SVG animations](https://img.shields.io/badge/SVG%20%E5%8A%A8%E7%94%BB-108-ff69b4)](p5-00-part5.md#part5)
+[![SVG animations](https://img.shields.io/badge/SVG%20%E5%8A%A8%E7%94%BB-112-ff69b4)](p5-00-part5.md#part5)
 [![video](https://img.shields.io/badge/%E8%A7%86%E9%A2%91%E8%AF%BE-20%20%E9%9B%86-red)](p7-03-s7-3.md#s7-3)
 [![book](https://img.shields.io/badge/%E7%A6%BB%E7%BA%BF%E6%95%B4%E4%B9%A6-HTML%20%2B%20PDF-success)](https://zhuguang-zfg.github.io/analog-circuit-roadmap/book/)
 [![license](https://img.shields.io/badge/%E6%8E%88%E6%9D%83-CC%20BY--SA%204.0-lightgrey)](LICENSE)
@@ -34,7 +34,7 @@
 
 <ul class="learning-stats">
   <li><strong>19</strong> 章核心内容</li>
-  <li><strong>108</strong> 张原理动画</li>
+  <li><strong>112</strong> 张原理动画</li>
   <li><strong>3</strong> 个可控教学样板</li>
   <li><strong>90</strong> 道章节题 + <strong>34</strong> 道专题题</li>
 </ul>
@@ -244,6 +244,7 @@ Windows 无 `make` 时用 `mingw32-make <目标>`，或直接运行 `Makefile` �
 <a id="news"></a>
 ## 最近更新
 
+- **v3.73 · 公式推导插图 + 计算器收尾**：新增四张推导动画——[分压](p1-01-ch0.md#sec-0-3)、[纹波](p1-03-ch2.md#sec-2-3)、[共射增益](p2-01-ch11.md#sec-11-8)、[负反馈](p1-07-ch6.md#ch6)，左电路随拍点亮、右算式逐行推进、游标按拍下框；[就地算](p9-12-changelog.md#log-v345)补上 Miller 分界频率（§11.11，|A|=50 → C_in=255pF、f_p≈62kHz，与例 11-3 同数）与分压器三预设。顺带修掉背景渐变取错档的老毛病（112 张图下半页原本渐到近黑），并把内容与动效拆开，印刷端不再丢字。详见[更新日志](p9-12-changelog.md#log-v345)。
 - **v3.72 · 表情标签全退役（去 AI 味 · 视觉轮）**：62 个内容页约 290 行提示块从「emoji + 粗体标签」换成纯文本粗体标签（`> **场景**：`），站点卡片配色与 19 章开场唯一性契约原样不动，16K 印刷端零 emoji；路线图页补上导语，ch17 排故决策树链接归入「相关链接」卡；§11.11 两张插图（三级信号链 + Miller 电荷账）的 FA-029 绘制提示词已备好。详见[更新日志](p9-12-changelog.md#log-v345)。
 - **v3.61 · 含金量轮**：全书 217 个小节号链接对账零错标并上了护栏；[热噪声预算](p2-01-ch11.md#sec-11-6)成为第七只就地算（1kΩ、1MHz → 4.1µV，正文原数）；README 挂上 CI 徽章（站点端不显示，不碰首页的干净顶屏）。
 - **v3.60 · 章末通关台 + 模型边界 18 张**：每章的最后一屏升级成与章首舞台呼应的收尾 band——「做第 N 章自测」变成品牌色主按钮；模型边界速查补上[振荡与起振](p0-10-model-limits.md#limits-oscillator)、[光耦与隔离](p0-10-model-limits.md#limits-optocoupler)、[传感器与自热](p0-10-model-limits.md#limits-sensor)三张卡（晶振偏 3pF 每天差 4.8 秒、PC817 的 CTR 十年掉一半、PT100 自热随电流平方涨）。

@@ -155,6 +155,38 @@ class CalcTests(unittest.TestCase):
         self.assertAlmostEqual(out['噪声密度'], 4.1, delta=0.1)
         self.assertAlmostEqual(out['总噪声'], 4.07, delta=0.05)
 
+    def test_miller_matches_the_book_example(self):
+        """§11.11 例 11-3：C_bc=5pF、|A|=50、Rs=10kΩ → C_in=255pF、f_p≈62kHz；
+        教学点：砍增益到 30 → f_p≈103kHz ≥ 100kHz 目标（正文原数）。"""
+        self.open('p2-01-ch11.html', 'miller')
+        out = read_outputs(self.page)
+        self.assertAlmostEqual(out['等效电容 C_in'], 255, delta=1)
+        self.assertAlmostEqual(out['输入极点 f_p'], 62.4, delta=0.5)
+        self.assertLessEqual(out['达成比 f_p/100k'], 1.0)
+        self.page.locator('.calc[data-calc="miller"] input').nth(0).fill('30')
+        out = read_outputs(self.page)
+        self.assertAlmostEqual(out['输入极点 f_p'], 102.7, delta=1.0)
+        self.assertGreaterEqual(out['达成比 f_p/100k'], 1.0)
+
+    def test_divider_presets_hit_the_book_numbers(self):
+        """预设一键切换：空载 → 5.00V 不塌；RL=1kΩ → 带载 0.83V（§0.3 口径）。"""
+        box = self.open('p1-01-ch0.html', 'divider')
+        box.locator('.calc-presets button', has_text='空载').click()
+        out = read_outputs(self.page)
+        self.assertAlmostEqual(out['带载输出'], 5.0, delta=0.01)
+        box.locator('.calc-presets button', has_text='RL = 1 kΩ').click()
+        out = read_outputs(self.page)
+        self.assertAlmostEqual(out['带载输出'], 0.83, delta=0.01)
+
+    def test_charted_calcs_render_a_curve(self):
+        """miller/buck 的曲线配置必须画出 inline SVG（读数之外给趋势）。"""
+        for path, calc in (('p2-01-ch11.html', 'miller'), ('p2-03-ch13.html', 'buck')):
+            with self.subTest(calc=calc):
+                box = self.open(path, calc)
+                chart = box.locator('.calc-chart svg')
+                self.assertEqual(chart.count(), 1)
+                self.assertEqual(chart.locator('polyline').count(), 1)
+
     def test_every_registered_calc_ships_and_renders(self):
         """calc.js 注册的每个型号都必须有容器、能渲染出输入与结果。"""
         self.open('p1-01-ch0.html', 'divider')
@@ -163,12 +195,12 @@ class CalcTests(unittest.TestCase):
             [...t.matchAll(/^\\s{4}(\\w+): \\{$/gm)].map(m => m[1]));
         }""")
         self.assertEqual(
-            ['divider', 'electrolyte', 'hysteresis', 'probe', 'opamp', 'buck', 'noise'],
+            ['divider', 'electrolyte', 'hysteresis', 'probe', 'opamp', 'buck', 'noise', 'miller'],
             registered)
         for path, calc in (('p1-01-ch0.html', 'divider'), ('p1-02-ch1.html', 'electrolyte'),
                            ('p1-07-ch6.html', 'opamp'), ('p1-08-ch7.html', 'hysteresis'),
                            ('p2-01-ch11.html', 'noise'), ('p2-03-ch13.html', 'buck'),
-                           ('p4-01-ch16.html', 'probe')):
+                           ('p2-01-ch11.html', 'miller'), ('p4-01-ch16.html', 'probe')):
             with self.subTest(calc=calc):
                 box = self.open(path, calc)
                 self.assertGreaterEqual(box.locator('.calc-inputs input, .calc-inputs select').count(), 2)

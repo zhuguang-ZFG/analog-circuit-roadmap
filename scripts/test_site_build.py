@@ -756,28 +756,28 @@ class SiteBuildTests(unittest.TestCase):
 
     # ---------- 就地算计算器 ----------
     CALC_SPOTS = {
-        "p1-01-ch0.md": "divider",
-        "p1-02-ch1.md": "electrolyte",
-        "p1-07-ch6.md": "opamp",
-        "p1-08-ch7.md": "hysteresis",
-        "p2-03-ch13.md": "buck",
-        "p2-01-ch11.md": "noise",
-        "p4-01-ch16.md": "probe",
+        "p1-01-ch0.md": ["divider"],
+        "p1-02-ch1.md": ["electrolyte"],
+        "p1-07-ch6.md": ["opamp"],
+        "p1-08-ch7.md": ["hysteresis"],
+        "p2-03-ch13.md": ["buck"],
+        "p2-01-ch11.md": ["noise", "miller"],
+        "p4-01-ch16.md": ["probe"],
     }
 
     def test_inline_calcs_are_placed_next_to_their_worked_examples(self):
         """每个计算器容器都要长在它对应算例的章节里，型号一个不重不漏。"""
-        for name, calc in self.CALC_SPOTS.items():
-            with self.subTest(calc=calc):
+        for name, calcs in self.CALC_SPOTS.items():
+            with self.subTest(page=name):
                 text = (self.out / name).read_text(encoding="utf-8")
                 hits = re.findall(r'<div class="calc" data-calc="([a-z]+)"></div>', text)
-                self.assertEqual([calc], hits, f"{name} 的计算器容器缺失或型号不对")
-        self.assertEqual(7, len(self.CALC_SPOTS), "型号表变了就同步这条对账")
+                self.assertEqual(calcs, hits, f"{name} 的计算器容器缺失或型号不对")
+        self.assertEqual(8, sum(map(len, self.CALC_SPOTS.values())), "型号表变了就同步这条对账")
 
     def test_inline_calc_scripts_are_published_and_wired(self):
-        """calc.js 要随产物发布、被 mkdocs 引用，且四个型号都有渲染逻辑。"""
+        """calc.js 要随产物发布、被 mkdocs 引用，且每个型号都有渲染逻辑。"""
         js = (self.site / "javascripts" / "calc.js").read_text(encoding="utf-8")
-        for calc in self.CALC_SPOTS.values():
+        for calc in [c for calcs in self.CALC_SPOTS.values() for c in calcs]:
             with self.subTest(calc=calc):
                 self.assertIn(f"{calc}: {{", js, f"calc.js 缺型号 {calc}")
         yml = (self.build / "mkdocs.yml").read_text(encoding="utf-8")

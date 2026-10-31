@@ -213,7 +213,9 @@ def svg_defs(width: int, height: int) -> str:
     保留 bgL/bgD/hdr/dots 这些 id 与 .page-* 类名——印刷管线
     （analog-book/book/svg_refine.py）靠 `id="bgL"` 判定旧模板并整块剥掉底纹。
     """
-    paper, paper2 = NEUTRALS["paper"]
+    # 浅色底：paper → paper2 的**浅档**。#fdf8ea→#141310 会让每张图的背景从象牙渐变到近黑
+    # （page-bg 铺满整幅，底部三分之一彻底变暗），这条曾把 112 张图的下半页压成黑带。
+    paper, paper2 = NEUTRALS["paper"][0], NEUTRALS["paper2"][0]
     dark_paper, dark_paper2 = NEUTRALS["paper"][1], NEUTRALS["paper2"][1]
     ink, amber = LIGHT["ink"], LIGHT["amber"]
     dark_amber = FAMILIES["amber"][1]

@@ -469,6 +469,35 @@
   color: var(--md-default-fg-color--light);
 }
 
+/* 预设按钮：把滑块组一键打到「同一电路的另一种命运」（v3.72） */
+.md-typeset .calc-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem;
+  margin-top: .55rem;
+}
+
+.md-typeset .calc-presets button {
+  padding: .14rem .6rem;
+  font-size: .68rem;
+  font-weight: 700;
+  color: color-mix(in srgb, var(--md-primary-fg-color) 62%, var(--md-default-fg-color));
+  border: 1px solid color-mix(in srgb, var(--md-primary-fg-color) 34%, transparent);
+  border-radius: 2rem;
+  background: transparent;
+  cursor: pointer;
+}
+
+.md-typeset .calc-presets button:hover {
+  background: color-mix(in srgb, var(--md-primary-fg-color) 9%, transparent);
+}
+
+/* 就地算曲线：读数之外给趋势（v3.72） */
+.md-typeset .calc-chart {
+  margin: .6rem 0 .1rem;
+  max-width: 22.5rem;
+}
+
 /* ----------------------------------------------------------------------------
    4.8 仓库徽章：README 的门面，站点首页不掺这个噪音
    ----------------------------------------------------------------------------
