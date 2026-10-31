@@ -174,6 +174,20 @@ class ShortestPathTests(unittest.TestCase):
         self.assertEqual({k: sorted(v) for k, v in planned.items()},
                          {k: sorted(v) for k, v in seen.items()})
 
+    def test_shortest_path_minutes_add_up(self):
+        """表里的用时 = 各章开头的精读分钟之和；别再写“约 1 小时”糊过去。"""
+        text = (DOCS / "p0-02-how-to-use.md").read_text(encoding="utf-8")
+        rows = re.findall(
+            r"^\| \*\*([①②③]) [^|]*\|[^|]*\| (.*?) \| 约 (\d+) 分钟 \|$",
+            text, re.M)
+        self.assertEqual(3, len(rows), rows)
+        for mark, cells, minutes in rows:
+            chapters = [int(n) for n in re.findall(r"\[第 (\d+) 章\]", cells)]
+            self.assertTrue(chapters, mark)
+            total = sum(curriculum.CHAPTER_META[c][2] for c in chapters)
+            with self.subTest(path=mark, chapters=chapters):
+                self.assertEqual(total, int(minutes))
+
     def test_shortest_path_links_resolve(self):
         text = (DOCS / "p0-02-how-to-use.md").read_text(encoding="utf-8")
         for name, anchor in re.findall(r"\((p\d+-\d+-ch\d+\.md)#([^)]+)\)", text):

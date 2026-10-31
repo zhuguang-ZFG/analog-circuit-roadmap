@@ -17,6 +17,16 @@ import run_spice  # noqa: E402
 REQUIRE = os.environ.get("BOOK_REQUIRE_NGSPICE") == "1"
 NGSPICE = run_spice.find_ngspice()
 
+# ngspice 42 默认不保存器件电流：`meas ... i(RL)` 会报 no such vector as i(rl)。
+# 只有独立源支路电流（v*/i*）随时可取；器件电流要靠 @dev[i] + .option savecurrents。
+REF_CURRENT = re.compile(r"(?<![\w.@])i\(\s*([A-Za-z_][\w.#]*)\s*\)", re.I)
+DEV_CURRENT = re.compile(r"@([A-Za-z_][\w.#]*)\s*\[")
+
+
+def _bad_current_refs(text: str) -> list[str]:
+    return [name for name in REF_CURRENT.findall(text)
+            if name[0].lower() not in "vi"]
+
 
 def _tran_step(text: str) -> str | None:
     match = re.search(r"^\s*\.tran\s+(\S+)", text, re.M | re.I)
@@ -50,6 +60,23 @@ class SchemaTests(unittest.TestCase):
         self.assertNotIn(".lib", text.lower())
         self.assertNotIn("http", text.lower())
         self.assertIn("PULSE(", text)
+
+    def test_decks_never_ask_for_unstored_device_currents(self):
+        """静态护栏：本地没装 ngspice 时 test_spice 整段 skip，这类错只会在 CI 暴露。"""
+        self.assertEqual(["rl", "D1"],
+                         _bad_current_refs("meas x find i(rl)\nprint i(D1)\n"))
+        self.assertEqual([], _bad_current_refs("print i(vsense)\nlet k = i(v1)\n"))
+        self.assertEqual([], _bad_current_refs("VPULSE in 0 PULSE(0 5 0 1n 1n 1m 2m)\n"),
+                         "PULSE(...) 里的组合不能被当成电流引用")
+        decks = sorted((ROOT / "assets" / "spice").glob("*/*.cir"))
+        self.assertEqual(6, len(decks))
+        for deck in decks:
+            text = deck.read_text(encoding="utf-8")
+            with self.subTest(deck=f"{deck.parent.name}/{deck.name}"):
+                self.assertEqual([], _bad_current_refs(text),
+                                 "改用 0V 检测源 i(v*) 或 @dev[i] + .option savecurrents")
+                if DEV_CURRENT.search(text):
+                    self.assertIn(".option savecurrents", text.lower())
 
     def test_tran_step_is_positive(self):
         text = (ROOT / "assets" / "spice" / "ch01" / "rc.cir").read_text(

@@ -101,6 +101,11 @@ jobs:
       # Pillow 是 test_first_screen.py 用的：它按 WCAG 量首屏（顶栏 + 首页 hero）
       # 上文字的对比度，需要把截图解成像素（众数色当底、离底最远的像素当字芯）。
       - run: pip install -r requirements.txt playwright Pillow
+      # 108 张插图以 <img> 载入，吃不到页面的 @font-face，只能靠系统字体。
+      # runner 默认没有中文，SVG 标签会退化成空白/方框，版面与对比度断言于是
+      # 在量空气——装 Noto CJK 让这层回归真正有字形可测。
+      - name: 中文字体（SVG 以 <img> 载入只能用系统字体）
+        run: sudo apt-get update -qq && sudo apt-get install -y fonts-noto-cjk
       - name: Reading routes, old bookmarks, mobile layout and search
         run: python -B -m unittest discover -s scripts -p test_reading_journey.py -v
       - name: Diagnostic routes, cheat sheet exits and no-JS fallback

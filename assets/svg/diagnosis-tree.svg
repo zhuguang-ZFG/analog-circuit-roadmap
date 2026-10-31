@@ -40,7 +40,7 @@
 <rect class="page-vig" width="800" height="575" fill="url(#vig)"/>
 <rect class="page-hdr" width="800" height="72" fill="url(#hdr)"/>
 <style>
-text{font-family:"Segoe UI","Microsoft YaHei","PingFang SC","Hiragino Sans GB",sans-serif;}
+text{font-family:"Segoe UI","Microsoft YaHei","PingFang SC","Hiragino Sans GB","Noto Sans CJK SC","Source Han Sans SC","Noto Sans SC",sans-serif;}
 line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
 .page-bg{fill:url(#bgL)}
 .page-grain{opacity:.5}

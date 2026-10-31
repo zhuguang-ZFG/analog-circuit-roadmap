@@ -255,6 +255,10 @@ body {
   background: color-mix(in srgb, var(--hand-amber) 18%, var(--md-default-bg-color));
   border-bottom-color: color-mix(in srgb, var(--hand-amber) 55%, transparent);
 }
+/* 更新日志的版本列：v3.66（当前）被折行时括号会拆成两半，看着像错字 */
+.md-content:has(#log-v345) .md-typeset table:not([class]) :is(td, th):first-child {
+  white-space: nowrap;
+}
 
 /* ---------- 7. 代码与引用 ---------- */
 .md-typeset pre > code,

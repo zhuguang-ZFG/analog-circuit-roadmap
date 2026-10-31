@@ -33,6 +33,16 @@ def required_text(docs_dir=config.DOCS, book_dir=config.BOOK_DIR) -> str:
     if data.is_dir():
         for path in sorted(data.glob("*.yml")):
             chunks.append(path.read_text(encoding="utf-8"))
+    # 站点还发布根目录页面（CONTRIBUTING/CONTRIBUTORS/CREDITS）与 build_site.py
+    # 里硬写的 UI 文案（画廊/筛选/页脚等）。这些字不在 docs/*.md 里，漏掉的话
+    # 子集缺字而 test_book_fonts 的覆盖率护栏却查不出来。
+    for path in sorted(config.ROOT.glob("*.md")):
+        chunks.append(path.read_text(encoding="utf-8"))
+    chunks.append((config.ROOT / "scripts" / "build_site.py").read_text(
+        encoding="utf-8"))
+    for path in sorted((config.ROOT / "scripts" / "site_media").glob("*")):
+        if path.suffix in {".css", ".js"}:
+            chunks.append(path.read_text(encoding="utf-8"))
     for folder in ("svg", "figures"):
         for path in sorted((config.ROOT / "assets" / folder).rglob("*.svg")):
             chunks.append(html.unescape(re.sub(r"<[^>]+>", " ", path.read_text(

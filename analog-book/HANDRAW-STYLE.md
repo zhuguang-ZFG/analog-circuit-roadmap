@@ -74,6 +74,14 @@ amber 4.53 / 8.89、purple 7.87 / 8.20。
   "合规"）。站点因此随包发 Noto Serif SC 子集（`assets/fonts/`，两档字重 685 KB）
   作为 `Hand Serif`；SVG 内的栈补 `Noto Serif CJK SC / Source Han Serif SC /
   Songti SC / SimSun`，这些机器上至少落到系统衬线而不是空白。
+- **正文标签是另一套栈**：`SANS_FONT` 管 108 张图里 11~13px 的标签，它同样只能
+  写系统字体名（`<img>` 载入的 SVG 吃不到页面 `@font-face`），所以也补了
+  `Noto Sans CJK SC / Source Han Sans SC / Noto Sans SC`。改任何一套栈后都要重生成
+  SVG 并跑 `test_svg_layout`（它按渲染文本框量压字，缺字形的机器上量的是方框）。
+- **子集范围要覆盖「站内独有字」**：`book/fonts.py::required_text()` 除 docs 与
+  book 源码，还扫根目录 Markdown、`scripts/build_site.py` 与 `scripts/site_media/*`。
+  只扫 docs 会漏掉 CONTRIBUTING 等页面与硬写的 UI 文案（实测 5 个字落在子集外），
+  而覆盖率护栏本身只校验 `required_text()`，漏掉的字它查不出来。
 - SVG 内部的字体栈写在 `<style>` 里；标题的手写体用 **inline `style`** 覆盖，
   否则会被 `text{font-family:…}` 的组选择器压掉。
 
@@ -145,3 +153,4 @@ python analog-book/build_print_book.py --check                           # 16K �
 | `scripts/test_learning_interactions.py` | 选 `circle[r="4.2"][fill="#2563eb"]` | 选 `circle.cursor-dot`（生成器新增 class） | 位置判据不变，去掉调色板耦合 |
 | `scripts/test_first_screen.py`（logo） | 数「接近白色」的像素 | 数「偏离众数底色」的像素 | 顶栏由深底改纸底，原口径会量到 0.69 背景 |
 | `analog-book/tests/test_book_sample.py` | 钉 `--navy: #14213d` 等五个字面值 | 解析 token 并断言墨/灰/赭对纸底 ≥12/4.5/4.5 | 换成对比度下限，比字面值更严 |
+| `analog-book/tests/test_book_fonts.py` | `assertNotIn("http", css)` 查远程字体 | 只查 `url(http`/`@import` | 子集重切后 base64 载荷里偶然出现 `http`，原断言变成误报；判据仍是「无远程字体源」 |

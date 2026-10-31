@@ -75,7 +75,10 @@ class FontTests(unittest.TestCase):
         css = font_css()
         self.assertEqual(5, css.count("@font-face"))
         self.assertEqual(5, css.count("data:font/woff2;base64,"))
-        self.assertNotIn("http", css)
+        # 不能用 assertNotIn("http")：base64 载荷里出现 "http" 纯属偶然
+        # （换一版子集就误报）。要查的是「没有远程字体源」。
+        for remote in ("url(http", "url('http", 'url("http', "@import"):
+            self.assertNotIn(remote, css)
         self.assertIn('font-family: "Book Serif"', css)
         self.assertIn("font-weight: 700", css)
         for _family, _weight, name in FONT_FACES:

@@ -100,8 +100,12 @@ WASH_LEGACY = {
 # 手写体只在标题上出现：11~13px 的楷体在屏幕上笔画过细，正文标签一律留在无衬线体。
 HAND_FONT = ("'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC',"
              "'Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif")
+# 与 HAND_FONT 同理：楷体/微软雅黑/苹方只在中文桌面系统里有，Linux 与 Android
+# 上没有就会掉到通用 sans-serif。SVG 以 <img> 载入时吃不到页面 @font-face，
+# 只能靠系统字体名兜底，所以把 Linux 常见的 CJK 无衬线也列进去。
 SANS_FONT = ('"Segoe UI","Microsoft YaHei","PingFang SC",'
-             '"Hiragino Sans GB",sans-serif')
+             '"Hiragino Sans GB","Noto Sans CJK SC","Source Han Sans SC",'
+             '"Noto Sans SC",sans-serif')
 
 DARK = {
     name: (pair[1] if name in NEUTRALS else pair[1]) for name, pair in TOKENS.items()
