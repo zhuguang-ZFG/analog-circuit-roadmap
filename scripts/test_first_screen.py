@@ -275,12 +275,16 @@ class FirstScreenTests(unittest.TestCase):
                   const ul = document.querySelector('.learning-stats');
                   const tops = [...ul.children].map(e => Math.round(e.getBoundingClientRect().top));
                   return {rows: new Set(tops).size, count: ul.children.length,
-                          marginLeft: getComputedStyle(ul.children[0]).marginLeft};
+                          marginLeft: getComputedStyle(ul.children[0]).marginLeft,
+                          box: +ul.getBoundingClientRect().width.toFixed(1),
+                          widths: [...ul.children].map(e => +e.getBoundingClientRect().width.toFixed(1))};
                 }""")
                 self.assertEqual(4, rows["count"], "规模清单应恰好四项")
                 self.assertEqual("0px", rows["marginLeft"],
                                  "chip 被 Material 的 li 左外边距推开了（选择器特异性不够）")
-                self.assertEqual(1, rows["rows"], f"{width}px 下 chip 掉到了多行")
+                self.assertEqual(1, rows["rows"],
+                                 f"{width}px 下 chip 掉到了多行：容器 {rows['box']}px，"
+                                 f"四枚 {rows['widths']}")
 
         page = self.homepage(width=390)
         overflow = page.evaluate(

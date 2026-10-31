@@ -145,18 +145,20 @@
    ⚠️ 另一条只有像素能发现的约束：四枚必须同处一行，而**最紧的是 1280 不是 1024**
    —— Material 的右侧目录栏在视口 ≥1220 才出现，把正文压到 598px（1024 下目录栏收起，
    正文反而有 660px）。四枚 chip + 三道间距的预算因此只剩二十来像素，加内边距或
-   把数字提到 800 字重都可能把第四枚挤下去。 */
+   把数字提到 800 字重都可能把第四枚挤下去。v3.66 起把内边距收到 .42rem、
+   列距收到 .34rem：CI 装上 Noto CJK 后中文第一次真的画出宽度，1280 下差
+   几像素就换行（此前字是空白，等于没量）。收完后仍有 20px 余量。 */
 .md-typeset ul.learning-stats:not([hidden]) {
   display: flex;
   flex-wrap: wrap;
-  gap: .32rem .38rem;
+  gap: .32rem .34rem;
   margin: 1.35rem 0 0;
   padding: 0;
   list-style: none;
 }
 .md-typeset ul.learning-stats:not([hidden]) > li {
   margin: 0;
-  padding: .18rem .5rem;
+  padding: .18rem .42rem;
   border: 1px solid color-mix(in srgb, var(--md-primary-fg-color) 24%, transparent);
   border-radius: 2rem;
   background: color-mix(in srgb, var(--md-primary-fg-color) 11%, transparent);
