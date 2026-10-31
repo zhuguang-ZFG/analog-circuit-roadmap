@@ -92,6 +92,10 @@ trise = 2.197000e-04
         self.assertAlmostEqual(70.34e-6, values["vhalf"])
         self.assertAlmostEqual(219.7e-6, values["trise"])
 
+    def test_parser_ignores_the_from_at_suffix_of_avg_max_min(self):
+        text = "vavg                =  8.250966e+00 from=  1.900000e+00 to=  2.000000e+00\n"
+        self.assertAlmostEqual(8.250966, run_spice.parse_measurements(text)["vavg"])
+
     def test_compare_accepts_inside_tolerance(self):
         expected = {"vfinal": {"expected": 5.0, "tolerance": 0.02}}
         self.assertEqual([], run_spice.compare_metrics({"vfinal": 5.01}, expected))

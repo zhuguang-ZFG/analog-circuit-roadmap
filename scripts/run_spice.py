@@ -16,9 +16,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SPICE_DIR = ROOT / "assets" / "spice"
 DEFAULT_REPORT = ROOT / "build" / "spice" / "report.json"
+# ngspice 的 AVG/MAX/MIN 会在数值后追一句 “from= … to= …”／“at= …”，
+# 行尾锚定会让整行匹配失败（i_load 那类 FIND 却匹配得上，错误只露一半）。
 MEASURE_RE = re.compile(
     r"^\s*([A-Za-z_]\w*)\s*=\s*"
-    r"([-+]?(?:\d+\.?\d*|\.\d+)(?:[eE][-+]?\d+)?)\s*$", re.M)
+    r"([-+]?(?:\d+\.?\d*|\.\d+)(?:[eE][-+]?\d+)?)", re.M)
 ANALYSES = {"tran", "ac", "op", "dc"}
 REQUIRED = {"deck", "analysis", "data", "min_rows", "metrics"}
 

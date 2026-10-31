@@ -16,12 +16,12 @@ RL out 0 {RL}
 run
 set wr_singlescale
 set wr_vecnames
-wrdata rectifier.dat v(out) @d1[i]
+wrdata rectifier.dat v(out) @d1[id]
 meas tran vavg AVG v(out) FROM=1.9 TO=2.0
 meas tran vmax MAX v(out) FROM=1.9 TO=2.0
 meas tran vmin MIN v(out) FROM=1.9 TO=2.0
 let vripple = vmax - vmin
-let id1 = @d1[i]
+let id1 = @d1[id]
 meas tran ipeak MAX id1 FROM=1.9 TO=2.0
 print vavg vmax vmin vripple ipeak
 .endc
