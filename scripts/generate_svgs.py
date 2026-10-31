@@ -17,7 +17,7 @@ os.makedirs(OUT, exist_ok=True)
 
 DARK_CSS = handraw.token_css()
 
-# ⚠️ 「减弱动效」的规则**故意不写在这里**。
+# 注意：「减弱动效」的规则**故意不写在这里**。
 #
 # SVG 作为 <img> 载入时（本站 108 张动画就是这么嵌的），Chrome 会把
 # `prefers-reduced-motion` **恒判为 reduce** —— 页面自己明明是无偏好，图片文档里
@@ -6897,7 +6897,7 @@ def make_mosfet_four_beats():
 <text x="{tx(700):.0f}" y="488" text-anchor="end" font-size="10.5" fill="#475569">700ns</text>
 {cursor}
 <rect x="22" y="515" width="756" height="87" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
-<text x="40" y="540" font-size="12" font-weight="bold" fill="#2563eb">🧮 四拍账本：电流先上来，电压再掉下去，乘积才是热</text>
+<text x="40" y="540" font-size="12" font-weight="bold" fill="#2563eb">四拍账本：电流先上来，电压再掉下去，乘积才是热</text>
 <text x="40" y="563" font-size="11" fill="#475569">①150ns + ②250ns + ③160ns + ④140ns = 700ns；③ 平台：Q_gd = 10mA×160ns = 1.6nC</text>
 <text x="40" y="585" font-size="11" fill="#475569">稳态导通：P_cond = 5²×0.03Ω = 0.75W；保守重叠估算：P_sw≈½×20×5×700ns×100kHz≈3.5W</text>
 <text x="40" y="597" font-size="10.5" font-weight="bold" fill="#dc2626">所以栅极驱动不是「有没有电压」，而是「能不能把 Q_gd 搬得足够快」</text>
@@ -7002,7 +7002,7 @@ def make_rectifier_filter_beats():
 <text x="{T1}" y="458" text-anchor="end" font-size="10.5" fill="#475569">20ms</text>
 {cursor}
 <rect x="22" y="515" width="756" height="87" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
-<text x="40" y="540" font-size="12" font-weight="bold" fill="#2563eb">🧮 四拍账本：导通角只有 20%，峰值电流是负载的 5~10 倍</text>
+<text x="40" y="540" font-size="12" font-weight="bold" fill="#2563eb">四拍账本：导通角只有 20%，峰值电流是负载的 5~10 倍</text>
 <text x="40" y="563" font-size="11" fill="#475569">纹波 ΔV = I·Δt/C = 1A×10ms/4700µF ≈ 2.1V；峰值电流 ≈ 10ms/2ms×1A = 5A</text>
 <text x="40" y="585" font-size="11" fill="#475569">所以选整流管看 I_FRM（重复峰值），不是标称平均电流——1A 电源用 1N4007 余量很紧</text>
 <text x="40" y="597" font-size="10.5" font-weight="bold" fill="#dc2626">上电浪涌 10~50A → 保险丝要选慢断型（T 型）</text>
@@ -7191,7 +7191,7 @@ def make_analog_switch_beats():
 <text x="{tx(8)+6:.0f}" y="472" font-size="10.5" fill="#475569">保持相（EN 低）</text>
 {cursor}
 <rect x="22" y="515" width="756" height="87" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
-<text x="40" y="540" font-size="12" font-weight="bold" fill="#2563eb">🧮 四拍账本：精度与速度，在模拟开关这一级就定死了</text>
+<text x="40" y="540" font-size="12" font-weight="bold" fill="#2563eb">四拍账本：精度与速度，在模拟开关这一级就定死了</text>
 <text x="40" y="563" font-size="11" fill="#475569">Q_ch = C_ox·W·L·(V_GS−V_TH) ≈ 0.2pC（随信号电压变化）；ΔV = Q_ch/2C_h = 0.2pC/(2×10pF) = 10mV</text>
 <text x="40" y="585" font-size="11" fill="#475569">12 位 / 2.048V：1 LSB = 500µV → 10mV = 20 个 LSB！加大 C_h 到 100pF 使 ΔV→1mV，代价 τ=R_on·C_h 长 10 倍</text>
 <text x="40" y="597" font-size="10.5" font-weight="bold" fill="#dc2626">对策：dummy 半尺寸管反向注入 / 加大 C_h 摊薄 / 差分结构两侧等量相消</text>
@@ -7294,7 +7294,7 @@ def make_ldo_transient_beats():
 <text x="{T1}" y="482" text-anchor="end" font-size="10.5" fill="#475569">50µs</text>
 {cursor}
 <rect x="22" y="515" width="756" height="87" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
-<text x="40" y="540" font-size="12" font-weight="bold" fill="#2563eb">🧮 四拍账本：一次唤醒的跌落，够不够触发复位？</text>
+<text x="40" y="540" font-size="12" font-weight="bold" fill="#2563eb">四拍账本：一次唤醒的跌落，够不够触发复位？</text>
 <text x="40" y="563" font-size="11" fill="#475569">① ESR 跳变（零延迟）：ΔV₁ = 490mA×50mΩ ≈ 25mV；② 电容放电（µs 级）：ΔV₂ = 0.49A×5µs/10µF ≈ 245mV</text>
 <text x="40" y="585" font-size="11" fill="#475569">总跌落 ≈ 25+245 = 270mV；3.3V 系统复位阈值 −5% = 165mV → 这次唤醒直接触发复位！</text>
 <text x="40" y="597" font-size="10.5" font-weight="bold" fill="#dc2626">对策三板斧：加大 C_out 摊薄 ΔV₂ / 换低 ESR 陶瓷压掉 ΔV₁ / 选快环路 LDO 缩短 Δt</text>
@@ -7400,7 +7400,7 @@ def make_555_astable_beats():
 <text x="{tx(541)+6:.0f}" y="484" font-size="10" fill="#475569">放电相 471µs（OUT 低）</text>
 {cursor}
 <rect x="22" y="515" width="756" height="87" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
-<text x="40" y="540" font-size="12" font-weight="bold" fill="#2563eb">🧮 四拍账本：⅓→⅔ 恰好 0.693 个时间常数</text>
+<text x="40" y="540" font-size="12" font-weight="bold" fill="#2563eb">四拍账本：⅓→⅔ 恰好 0.693 个时间常数</text>
 <text x="40" y="563" font-size="11" fill="#475569">t_充 = 0.693(R1+R2)C = 0.693×7.8kΩ×100nF ≈ 541µs（OUT 高）；t_放 = 0.693·R2·C ≈ 471µs（OUT 低）</text>
 <text x="40" y="585" font-size="11" fill="#475569">f ≈ 1/1.012ms ≈ 990Hz；占空比 = 541/1012 ≈ 53%。充电走 R1+R2、放电只走 R2 → 占空比恒 &gt;50%</text>
 <text x="40" y="597" font-size="10.5" font-weight="bold" fill="#dc2626">要准 50%：R2 两端并一只二极管，充电时抄近路绕过 R2（经典 555 占空比补丁）</text>
@@ -7731,7 +7731,7 @@ def make_ce_dynamic():
 {pulse(217,390,178,126,'#dc2626',2.2,10)}
 {pulse(593,390,178,126,'#059669',2.2,10)}
 <rect x="29" y="526" width="742" height="102" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.6"/>
-<text x="45" y="550" font-size="12" font-weight="bold" fill="#2563eb">🧮 算一笔：两个余量，取小者</text>
+<text x="45" y="550" font-size="12" font-weight="bold" fill="#2563eb">算一笔：两个余量，取小者</text>
 <text x="45" y="576" font-size="11" fill="#475569">上行 6V（到截止 12V）、下行 4V（到饱和 V_E+0.2V=2V）→ 最大不失真摆幅 = 2×min(6V, 4V) = 8.0Vpp</text>
 <text x="45" y="600" font-size="11" fill="#475569">增益 |A_v| = R_C/r_e ≈ 2kΩ/8.7Ω ≈ 230 → 满摆幅需输入 ≈35mVpp；本例 10mV → 输出 ≈2.3Vpp，远未削波</text>
 <text x="45" y="622" font-size="11" font-weight="bold" fill="#dc2626">摆幅由「更小的那份余量」决定 —— Q 点偏置就是余量分配器</text>

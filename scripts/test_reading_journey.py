@@ -124,7 +124,7 @@ class ReadingJourneyTests(unittest.TestCase):
 
     def assert_math_rendered(self):
         # 即时导航**先改地址、再换正文**：6× CPU 节流下点同一个速查出口，6 次里 4 次看到
-        # URL 已经是 p0-08-cheatsheet.html#outstage，正文标题却还是「🧭 入场诊断」、
+        # URL 已经是 p0-08-cheatsheet.html#outstage，正文标题却还是「入场诊断」、
         # .arithmatex 计数 0。原来这里只等到「地址变了 + startup.promise 在」就断言，
         # 把「正文还没换过来」读成「公式没排版」——CI 上这条间歇性红就是这么来的
         # （改动前的同一提交原样重跑 CI 也复现，见 v3.55.2）。同步点挪到被测对象本身：
@@ -195,8 +195,8 @@ class ReadingJourneyTests(unittest.TestCase):
 
     def test_page_titles_and_social_metadata_survive_pre_heading_anchors(self):
         for filename, title in (
-            ('p1-00-part1.html', '第一篇：器件深度原理解析 🔬'),
-            ('p9-00-quiz.html', '第九篇：自测与练习 🎯'),
+            ('p1-00-part1.html', '第一篇：器件深度原理解析'),
+            ('p9-00-quiz.html', '第九篇：自测与练习'),
             ('p1-08-ch7.html', '第 7 章 比较器：专为"判决"而生'),
         ):
             with self.subTest(page=filename):

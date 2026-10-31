@@ -618,7 +618,7 @@ class SiteBuildTests(unittest.TestCase):
     HEADING = re.compile(r"<h([1-6])(?:\s[^>]*)?>(.*?)</h\1>", re.S)
     CALL_TAG = re.compile(r"<[^>]+>")
     # 与 build_site.CALLOUT_KINDS 同源：新增一类卡片时，这条对账不可能漏。
-    SIGNATURE = re.compile("^> *(?:%s)"
+    SIGNATURE = re.compile("^> *\\*\\*(?:%s)\\*\\*[：:]"
                            % "|".join(sorted(re.escape(e) for e in CALLOUT_KINDS)))
 
     def headings(self, name):
@@ -725,7 +725,7 @@ class SiteBuildTests(unittest.TestCase):
     def test_demo_links_all_become_pills(self):
         """docs/ 里整行动画演示链接必须逐行成为产物药丸，一行不多一行不少。"""
         pattern = re.compile(
-            r"^🔗 \[动画演示[^\]]*\]\(p5-00-part5\.md#demo\d+\)"
+            r"^\[动画演示[^\]]*\]\(p5-00-part5\.md#demo\d+\)"
             r"(?: · \[[^\]]*\]\(p5-00-part5\.md#demo\d+\))*$")
         expected = 0
         for page in sorted((self.work / "docs").glob("*.md")):
@@ -787,7 +787,7 @@ class SiteBuildTests(unittest.TestCase):
 
     # ---------- 标志性提示卡 ----------
     def test_signature_blockquotes_become_cards(self):
-        """💎/🧮/🎯… 开头的引用块必须被包成彩色卡片，且四类都要有。"""
+        """「**精髓**：/ **公式速查**：/ **学完你应能**：…」开头的引用块必须被包成彩色卡片，且每一类都要有。"""
         counts = {}
         for page in sorted(self.out.glob("*.md")):
             text = page.read_text(encoding="utf-8")
@@ -800,7 +800,7 @@ class SiteBuildTests(unittest.TestCase):
                 self.assertGreater(counts.get(kind, 0), 0, f"{kind} 类一张都没有：{counts}")
 
     def test_no_signature_blockquote_is_left_unwrapped(self):
-        """包完不该还剩 `> 💎` 这种——漏一张就是「同一类提示两种长相」。"""
+        """包完不该还剩 `> **精髓**：` 这种——漏一张就是「同一类提示两种长相」。"""
         leftovers = []
         for page in sorted(self.out.glob("*.md")):
             text = page.read_text(encoding="utf-8")

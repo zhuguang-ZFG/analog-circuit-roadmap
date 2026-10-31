@@ -19,7 +19,7 @@ CHAPTER_FILES = (
     "p2-02-ch12.md", "p2-03-ch13.md", "p3-01-ch14.md", "p3-02-ch15.md",
     "p4-01-ch16.md", "p4-02-ch17.md", "p4-03-ch18.md",
 )
-SCENE_RE = re.compile(r"^> 🎭 \*\*场景\*\*：(.+)$", re.M)
+SCENE_RE = re.compile(r"^> \*\*场景\*\*：(.+)$", re.M)
 FORBIDDEN = ("$", "\\", "**", "`", "TODO", "TBD", "待补", "占位", "http")
 
 
@@ -50,7 +50,7 @@ class SceneContentTests(unittest.TestCase):
         for name, text in self.texts.items():
             with self.subTest(chapter=name):
                 title = text.find("\n## ")
-                scene = text.find("> 🎭 **场景**：")
+                scene = text.find("> **场景**：")
                 section = text.find("\n### ")
                 self.assertGreaterEqual(title, 0, name)
                 self.assertGreater(scene, title, name)
@@ -70,7 +70,7 @@ class SceneContentTests(unittest.TestCase):
 class SceneWiringTests(unittest.TestCase):
     def test_scene_kind_is_wired_into_site_and_book(self):
         from build_site import CALLOUT_KINDS
-        self.assertEqual("scene", CALLOUT_KINDS["🎭"])
+        self.assertEqual("scene", CALLOUT_KINDS["场景"])
         self.assertEqual("场景", transforms.CALLOUT_LABELS["scene"])
 
     def test_scene_has_styles_for_site_a4_and_print(self):

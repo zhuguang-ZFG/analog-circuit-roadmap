@@ -128,54 +128,79 @@ def write_reduce_variants(dst=None):
     return written
 
 
-# 标志性提示块：正文里以这些 emoji 开头的引用块，在**站点产物**里会被包成彩色卡片。
-# 这套 emoji 就是本教程的固定语汇（💎 精髓 / 🧮 算一笔 / 🎯 通关打卡 / 📚 先修…），
-# 全站各出现几十次，是最该被一眼认出来的东西。
+# 标志性提示块：正文里以「**标签**：」开头的引用块，在**站点产物**里会被包成
+# 彩色卡片。这套粗体标签就是本教程的固定语汇（精髓 / 公式速查 / 通关打卡 /
+# 先修…），全站各出现几十次，是最该被一眼认出来的东西。
+# v3.65 起从「emoji + 标签」改为纯文本标签：emoji 是 AI 味的视觉签名，印刷端
+# 本来就被 strip_emoji 剥掉，站点与印刷由此对齐；卡片颜色仍由 callout-* 类承担。
 CALLOUT_KINDS = {
-    "💎": "gem",      # 精髓：本节最该记住的一句
-    "🧮": "calc",     # 算一笔 / 公式速查
-    "🔬": "limit",    # 模型边界：理想模型什么时候失效（v3.56 起 19 章章首一行）
-    "🎯": "goal",     # 学完你应能 / 通关打卡
-    "📚": "prereq",   # 先修
-    "📺": "video",    # 配套视频
-    "📷": "photo",    # 实物照片
-    "📎": "attach",   # 附件 / 资料
-    "🔧": "fix",      # 动手 / 排故
-    "⚠️": "warn",     # 坑
-    "💡": "idea",     # 补充想法
-    "📌": "pin",      # 记号
-    "🎬": "demo",     # 动画
-    "🎭": "scene",    # 场景：章首生活化开场
-    "🎚": "level",    # 难度：章首分级（L0–L3）+ 精读时长
-    "🗣": "lead",     # 白话：一句话导读写给第一次接触的人
-    "⚙️": "why",      # 为什么：机制卡，把「现象 → 原因 → 判据」讲透
-    "🔗": "link",     # 相关链接
+    "场景": "scene",       # 章首生活化开场（场景卡 同族，见 test_book_scene 唯一性契约）
+    "场景卡": "scene",
+    "难度": "level",       # 章首分级（L0–L3）+ 精读时长
+    "白话": "lead",        # 一句话导读写给第一次接触的人
+    "先修": "prereq",
+    "学完你应能": "goal",
+    "通关打卡": "goal",
+    "用法": "goal",
+    "做完 19 组": "goal",
+    "公式速查": "calc",
+    "模型边界": "limit",   # 理想模型什么时候失效（v3.56 起 19 章章首一行）
+    "精髓": "gem",         # 本节最该记住的一句
+    "为什么": "why",       # 机制卡：现象 → 原因 → 判据
+    "配套视频": "video",
+    "60 秒动画版": "demo",
+    "配套动画": "demo",
+    "实物照片": "photo",
+    "实测记录": "photo",
+    "怎么看这张实物图": "photo",
+    "附件": "attach",
+    "资料": "attach",
+    "datasheet 直达": "attach",
+    "和第 6 章的分工": "attach",
+    "一句话收束": "attach",
+    "新增小节的配套料": "pin",
+    "记忆锚点": "pin",
+    "补充想法": "idea",
+    "设计直觉": "idea",
+    "核心理解": "idea",
+    "一句话": "idea",
+    "延伸阅读": "link",
+    "相关链接": "link",
+    "军规": "fix",         # 动手 / 排故的判据清单
+    "修复方法": "fix",
+    "注意": "warn",        # 坑
 }
+
+_CALLOUT_LABEL_RE = re.compile(r"^\*\*([^*]{1,24})\*\*\s*[：:]")
 
 
 def _callout_kind(body):
-    """引用块首行开头是不是标志性 emoji？是就返回对应的 slug。"""
-    for emoji, slug in CALLOUT_KINDS.items():
-        if body.startswith(emoji):
-            return slug
-    return None
+    """引用块首行开头是不是「**已知标签**：」？是就返回对应的 slug。
+
+    标签不在 CALLOUT_KINDS 里的（如「**打印复习稿**：」）原样当普通引用块，
+    与 emoji 时代「未登记 emoji 不成卡」的行为一致。
+    """
+    match = _CALLOUT_LABEL_RE.match(body)
+    if match is None:
+        return None
+    return CALLOUT_KINDS.get(match.group(1).strip())
 
 
 def wrap_callouts(text):
-    """把标志性 emoji 开头的引用块包成 `<div class="callout callout-…">`（站点产物专用）。
+    """把「**标签**：」开头的引用块包成 `<div class="callout callout-…">`（站点产物专用）。
 
     为什么不在 `docs/` 里直接写 div：`.md` 在 GitHub 上要能直接读，
     `<div markdown="1">` 会把原文切碎、也会让 `docs/` 的 diff 变吵。
     放生成阶段还有个好处：将来换视觉风格只改 CSS，不用动 58 个正文文件。
 
     `md_in_html` 的 `markdown="1"` 保证块内的粗体 / 链接 / 公式照常渲染。
-    代码围栏内的 `>` 不动；不以标志性 emoji 开头的引用块原样保留（它们仍会被
+    代码围栏内的 `>` 不动；不以已登记标签开头的引用块原样保留（它们仍会被
     theme.css 当作普通引用块统一排版）。
 
     **一个引用块里可以并排放着好几个提示**——章首固定是
-    `> 🎯 学完你应能…` 紧跟一行 `> 🧮 公式速查…`（19 章全都如此）。所以按
-    「这一行自身是不是以标志性 emoji 开头」把块再切成子块，各自成卡；
-    否则 19 个 🧮 会被吞进 🎯 卡里，白丢一类视觉信号（实测：切之前 calc 卡 0 张）。
+    `> **学完你应能**：…` 紧跟一行 `> **公式速查**：…`（19 章全都如此）。所以按
+    「这一行自身是不是以已登记标签开头」把块再切成子块，各自成卡；
+    否则 19 张公式速查卡会被吞进目标卡里，白丢一类视觉信号（实测：切之前 calc 卡 0 张）。
     """
     lines = text.split("\n")
     out = []
@@ -366,13 +391,14 @@ def wrap_part_hero(text, page_name):
                        "part-hero", "part")
 
 
-# 正文里每张动画下方都跟着一行 `🔗 [动画演示 N](p5-00-part5.md#demoNN)`，
+# 正文里每张动画下方都跟着一行 `[动画演示 N](p5-00-part5.md#demoNN)`，
 # 此前渲染成普通段落，混在图与正文之间毫无存在感。v3.57 把这种**独立成行、
 # 且只链到动画中心**的行（全站 107 处）包成 .demo-link 药丸（站点产物专用）。
 # 一行双链的 combo 行（`…](#demo107) · [5.108](#demo108)`）同样整行入药丸；
-# 只认「整行恰好由动画演示链接组成」：🔗 Falstad 交互、句中出现的链接一概不动。
+# 只认「整行恰好由动画演示链接组成」：Falstad 交互链接、句中出现的链接一概不动。
+# v3.65 起行首的 🔗 前缀随全书去表情标签取消，药丸样式本身足以标识。
 _DEMO_LINK = re.compile(
-    r"^(🔗 \[动画演示[^\]]*\]\(p5-00-part5\.md#demo\d+\)"
+    r"^(\[动画演示[^\]]*\]\(p5-00-part5\.md#demo\d+\)"
     r"(?: · \[[^\]]*\]\(p5-00-part5\.md#demo\d+\))*"
     r")$")
 
@@ -614,8 +640,9 @@ def page_description(text):
         if s.startswith(">"):
             close_buf()
             body = _plain(s.lstrip("> ").strip())
-            # 「📚 先修」这类提示块不是正文摘要
-            if (len(body) >= DESC_MIN and "📚" not in body and not _HARD_TEX.search(s)
+            # 「**先修**」这类提示块不是正文摘要
+            if (len(body) >= DESC_MIN and "**先修**" not in s
+                    and not _HARD_TEX.search(s)
                     and not _CREDIT.search(body)):
                 cands.append((i, body))
             continue
@@ -1331,7 +1358,7 @@ def render_gallery(items):
         )
 
     return "\n".join([
-        "# 🎬 动画画廊",
+        "# 动画画廊",
         "",
         "> 全部 %d 张 SMIL 动画，可按章筛选、按标题搜索；"
         "点「▶ 放大播放」在弹窗里全尺寸观看（动画会自动播放），"
@@ -1409,7 +1436,7 @@ def build_nav(pages):
             children = names
         for n in children:
             lines.append("    - %s: %s" % (page_title(OUT / n), n))
-    lines.append("  - 🎬 动画画廊: gallery.md")
+    lines.append("  - 动画画廊: gallery.md")
     lines.append("  - 社区:")
     lines.append("    - 参与共建: CONTRIBUTING.md")
     lines.append("    - 共建者墙: CONTRIBUTORS.md")

@@ -8,7 +8,7 @@ from .manifest import BookError
 
 SCENE_RE = re.compile(
     r'<aside class="book-callout book-callout-scene"[^>]*>.*?</aside>', re.S)
-# docs 侧每个章首已经有「🗣 白话」卡（scripts/curriculum.py 维护），
+# docs 侧每个章首已经有「白话」卡（scripts/curriculum.py 维护），
 # 它讲的正是 CHAPTER_LEADS 那句话。印刷时若再插一条 chapter-intuition，
 # 同一段白话会在同页出现两次。
 LEAD_CARD_RE = re.compile(r'<aside class="book-callout book-callout-lead"')

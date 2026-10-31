@@ -23,7 +23,7 @@
    点阵、辉光、正弦都画在文字**之下**：伪元素用 z-index:-1，配 isolation:isolate
    把负层级关在本卡片内部（否则会跑到页面底板后面去）。因此它们既不参与
    文字对比度，也不挡链接点击。
-   ⚠️ 这份规则必须在 reading.css 里，不能挪回 typography.css：那张表排在
+    这份规则必须在 reading.css 里，不能挪回 typography.css：那张表排在
    extra_css 前面，而这里的 `background-color` 与 `border` 都是会覆盖它的后加载规则。 */
 .md-typeset .learning-hero {
   --hero-wave: color-mix(in srgb, var(--md-typeset-a-color) 46%, transparent);
@@ -137,12 +137,12 @@
    <span>，是因为 docs/index.md 同时喂 README：列表在 GitHub 上渲染成四条干净的
    条目，比挤成一行更好读。
 
-   ⚠️ 选择器必须写成 `ul.learning-stats:not([hidden])`：Material 有一条
+    选择器必须写成 `ul.learning-stats:not([hidden])`：Material 有一条
    `.md-typeset ol:not([hidden]),.md-typeset ul:not([hidden]){display:flow-root}`，
    特异性 (0,2,1)。只写 `.md-typeset .learning-stats` 是 (0,2,0)，**会被它压掉**，
    chip 就退化成四条占满整行的方块（实测踩过，hero 因此高了 94px）。
    这里照抄它的结构再加自己的类名，特异性 (0,3,1) —— 与加载顺序无关，稳赢。
-   ⚠️ 另一条只有像素能发现的约束：四枚必须同处一行，而**最紧的是 1280 不是 1024**
+    另一条只有像素能发现的约束：四枚必须同处一行，而**最紧的是 1280 不是 1024**
    —— Material 的右侧目录栏在视口 ≥1220 才出现，把正文压到 598px（1024 下目录栏收起，
    正文反而有 660px）。四枚 chip + 三道间距的预算因此只剩二十来像素，加内边距或
    把数字提到 800 字重都可能把第四枚挤下去。v3.66 起把内边距收到 .42rem、
@@ -164,7 +164,7 @@
   background: color-mix(in srgb, var(--md-primary-fg-color) 11%, transparent);
   box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 14%, transparent);
   /* 同 eyebrow：品牌色取 --md-typeset-a-color（随主题变化），掺正文色兜底。
-     ⚠️ 暗色掺得更多（50% vs 60%）：chip 只有 .7rem，中文笔画在这个字号上铺不满
+      暗色掺得更多（50% vs 60%）：chip 只有 .7rem，中文笔画在这个字号上铺不满
      一个像素，「离底色最远的像素」永远到不了合成色的理论值。而这个缺口**跟渲染器
      走** —— 同一份 CSS，本地量到 4.80，CI 的 Linux Chromium 只有 3.98（v3.50 就是
      这么红的；`--disable-lcd-text` 复现不了，差异在字形光栅化而不是次像素 AA：
@@ -460,7 +460,7 @@
   .md-typeset .legacy-anchor { display: none; }
   /* hero 的点阵、辉光、走线、渐变都是**屏幕上**的纵深手段，打印机只会把它们
      糊成一片脏底；连同路线卡顶部的色带一起撤掉，只留盒子和文字。
-     ⚠️ 这几条必须留在 reading.css：本文件在 extra_css 里排在 typography.css
+      这几条必须留在 reading.css：本文件在 extra_css 里排在 typography.css
      之后，同特异性的规则后写的赢 —— 挪到那张表里去，打印时渐变照样盖上来。 */
   .md-typeset .learning-hero {
     background-image: none;

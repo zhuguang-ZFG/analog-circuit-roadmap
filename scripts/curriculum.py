@@ -68,10 +68,10 @@ CHAPTER_META: dict[int, tuple[str, str, int]] = {
     18: ("p4-03-ch18.md", "L3", 5),
 }
 
-# 章首块的两种标志：难度（🎚 level）与白话（🗣 lead）。
-LEVEL_MARK = "> 🎚 **难度**："
-LEAD_MARK = "> 🗣 **白话**："
-SCENE_RE = re.compile(r"^> 🎭 \*\*场景\*\*：(?:.+)$", re.M)
+# 章首块的两种标志：难度（level）与白话（lead）。纯文本标签，无 emoji（v3.65）。
+LEVEL_MARK = "> **难度**："
+LEAD_MARK = "> **白话**："
+SCENE_RE = re.compile(r"^> \*\*场景\*\*：(?:.+)$", re.M)
 SECTION_RE = re.compile(r"^### ", re.M)
 
 
@@ -109,7 +109,7 @@ def render_block(chapter: int, text: str) -> str:
 def insert_block(text: str, chapter: int) -> str:
     """把章首块放到场景之后；已存在则原位替换（幂等）。
 
-    按行处理而不是整段正则：块与「📚 先修 / 🎯 学完你应能」是相邻的两个
+    按行处理而不是整段正则：块与「**先修** / **学完你应能**」是相邻的两个
     引用块，多一个或少一个空行就会把它们粘成一片（Markdown 只认 `>` 前缀）。
     """
     lines = text.split("\n")
@@ -132,9 +132,9 @@ def insert_block(text: str, chapter: int) -> str:
 
     # 2) 插到场景行之后（场景与块之间、块与下文之间各留一个空行）
     scene = next((k for k, line in enumerate(lines)
-                  if line.startswith("> 🎭 **场景**：")), None)
+                  if line.startswith("> **场景**：")), None)
     if scene is None:
-        raise ValueError(f"第 {chapter} 章缺少场景开场（> 🎭 **场景**：…）")
+        raise ValueError(f"第 {chapter} 章缺少场景开场（> **场景**：…）")
 
     block = render_block(chapter, "\n".join(lines)).rstrip("\n").split("\n")
     insert_at = scene + 1

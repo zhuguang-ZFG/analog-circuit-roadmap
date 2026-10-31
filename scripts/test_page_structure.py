@@ -93,52 +93,52 @@ class ShiftHeadingsTests(unittest.TestCase):
 
 class WrapCalloutsTests(unittest.TestCase):
     def test_a_signature_blockquote_becomes_a_card(self):
-        src = "> 💎 **精髓**：一句话。\n"
+        src = "> **精髓**：一句话。\n"
         out = wrap_callouts(src)
         self.assertIn('<div class="callout callout-gem" markdown="1">', out)
-        self.assertIn("💎 **精髓**：一句话。", out)
-        self.assertNotIn("> 💎", out)
+        self.assertIn("**精髓**：一句话。", out)
+        self.assertNotIn("> **精髓**", out)
         self.assertTrue(out.rstrip().endswith("</div>"))
 
     def test_two_prompts_in_one_block_split_into_two_cards(self):
-        """章首固定是「🎯 学完你应能」紧跟「🧮 公式速查」——不切开会白丢一类视觉信号。"""
-        src = ("> 🎯 **学完你应能**：说出 A。\n>\n> 🧮 **公式速查**：[表](p0-08-cheatsheet.md#dc)。\n")
+        """章首固定是「学完你应能」紧跟「公式速查」——不切开会白丢一类视觉信号。"""
+        src = ("> **学完你应能**：说出 A。\n>\n> **公式速查**：[表](p0-08-cheatsheet.md#dc)。\n")
         out = wrap_callouts(src)
         self.assertIn('class="callout callout-goal"', out)
         self.assertIn('class="callout callout-calc"', out)
         self.assertEqual(2, out.count("<div class=\"callout"), "应当切成两张卡")
-        self.assertIn("🎯 **学完你应能**：说出 A。", out)
-        self.assertIn("🧮 **公式速查**：[表](p0-08-cheatsheet.md#dc)。", out)
+        self.assertIn("**学完你应能**：说出 A。", out)
+        self.assertIn("**公式速查**：[表](p0-08-cheatsheet.md#dc)。", out)
 
     def test_why_card_becomes_its_own_kind(self):
-        """⚙️ 为什么：机制卡。它和 💡 补充想法不是一回事——读者要一眼认出「这段在讲因果」。"""
-        src = "> ⚙️ **为什么**：因为电荷被搬走了。\n"
+        """为什么：机制卡。它和「补充想法」不是一回事——读者要一眼认出「这段在讲因果」。"""
+        src = "> **为什么**：因为电荷被搬走了。\n"
         out = wrap_callouts(src)
         self.assertIn('<div class="callout callout-why" markdown="1">', out)
-        self.assertNotIn("> ⚙️", out)
+        self.assertNotIn("> **为什么**", out)
 
     def test_a_plain_blockquote_is_left_alone(self):
         src = "> 这一章没有公式推导。\n"
         self.assertEqual(src, wrap_callouts(src))
 
-    def test_an_unknown_emoji_is_left_alone(self):
-        """不在词表里的 emoji 不猜——宁可保持普通引用块，也不要错分类。"""
-        src = "> 🚀 **发射**：不在词表里。\n"
+    def test_an_unknown_label_is_left_alone(self):
+        """不在词表里的标签不猜——宁可保持普通引用块，也不要错分类。"""
+        src = "> **发射**：不在词表里。\n"
         self.assertEqual(src, wrap_callouts(src))
 
     def test_fenced_code_is_untouched(self):
-        src = "```text\n> 💎 这是示例文本\n```\n"
+        src = "```text\n> **精髓** 这是示例文本\n```\n"
         self.assertEqual(src, wrap_callouts(src))
 
     def test_multiline_paragraphs_keep_their_content(self):
-        src = "> 💎 **精髓**：第一段。\n>\n> 第二段，有**粗体**。\n"
+        src = "> **精髓**：第一段。\n>\n> 第二段，有**粗体**。\n"
         out = wrap_callouts(src)
         self.assertIn("第一段。", out)
         self.assertIn("第二段，有**粗体**。", out)
         self.assertEqual(1, out.count("<div class=\"callout"))
 
     def test_every_wrapped_card_is_closed(self):
-        src = "> 💎 **精髓**：A。\n\n普通段落。\n\n> ⚠️ **坑**：B。\n"
+        src = "> **精髓**：A。\n\n普通段落。\n\n> **注意**：B。\n"
         out = wrap_callouts(src)
         self.assertEqual(out.count("<div class=\"callout"), out.count("</div>"))
         self.assertEqual(2, out.count("<div class=\"callout"))
@@ -150,8 +150,8 @@ class WrapChapterHeroTests(unittest.TestCase):
     def test_a_chapter_opening_gets_wrapped_with_chapter_number(self):
         src = ("<a id=\"ch3\"></a>\n"
                "# 第 3 章 BJT\n\n"
-               "> 📚 **先修**：第 2 章。\n\n"
-               "> 🎯 **学完你应能**：三件事。\n\n"
+               "> **先修**：第 2 章。\n\n"
+               "> **学完你应能**：三件事。\n\n"
                "### 3.1 正文开始\n\n段落。\n")
         out = wrap_chapter_hero(src, "p1-04-ch3.md")
         self.assertIn('<div class="chapter-hero" data-chapter="3" markdown="1">', out)
@@ -166,29 +166,29 @@ class WrapChapterHeroTests(unittest.TestCase):
         """第 0 章式开头：h1 后面跟着普通引用块再接提示卡——引导句也在舞台里。"""
         src = ("# 第 0 章 学前班\n\n"
                "> 这一章没有公式推导。\n\n"
-               "> 🎯 **学完你应能**：建立直觉。\n\n"
+               "> **学完你应能**：建立直觉。\n\n"
                "### 0.1 正文\n")
         out = wrap_chapter_hero(src, "p1-01-ch0.md")
         self.assertIn('<div class="chapter-hero" data-chapter="0" markdown="1">', out)
         head = out.split('<p class="chapter-hero-num"')[0]
         self.assertIn("> 这一章没有公式推导。", head)
-        self.assertIn("> 🎯 **学完你应能**：建立直觉。", head)
+        self.assertIn("> **学完你应能**：建立直觉。", head)
 
     def test_body_callouts_after_first_heading_stay_outside(self):
         """舞台只吞 h1 之后的连续开场块；正文标题后面的提示卡不能被卷进来。"""
         src = ("# 第 5 章 输出\n\n"
-               "> 🎯 **学完你应能**：两种输出。\n\n"
+               "> **学完你应能**：两种输出。\n\n"
                "### 5.1 推挽\n\n"
-               "> 💎 **精髓**：图腾柱。\n\n"
+               "> **精髓**：图腾柱。\n\n"
                "### 5.2 开漏\n")
         out = wrap_chapter_hero(src, "p1-06-ch5.md")
         hero = out.split('<p class="chapter-hero-num"')[0]
-        self.assertIn("> 🎯 **学完你应能**：两种输出。", hero)
+        self.assertIn("> **学完你应能**：两种输出。", hero)
         self.assertNotIn("图腾柱", hero)
-        self.assertIn("> 💎 **精髓**：图腾柱。", out)
+        self.assertIn("> **精髓**：图腾柱。", out)
 
     def test_non_chapter_pages_are_untouched(self):
-        src = "# 首页\n\n> 引子。\n\n> 🎯 学完你应能。\n"
+        src = "# 首页\n\n> 引子。\n\n> **学完你应能**：三件事。\n"
         self.assertEqual(src, wrap_chapter_hero(src, "index.md"))
         self.assertEqual(src, wrap_chapter_hero(src, "p0-08-cheatsheet.md"))
 
@@ -200,10 +200,10 @@ class WrapChapterHeroTests(unittest.TestCase):
         """提示卡 div 是成对的嵌套结构——舞台必须整块吞、不能拦腰截断。"""
         src = ("# 第 12 章 电路族\n\n"
                '<div class="callout callout-goal" markdown="1">\n\n'
-               "🎯 学完你应能。\n\n"
+               "**学完你应能**：三件事。\n\n"
                "</div>\n\n"
                '<div class="callout callout-calc" markdown="1">\n\n'
-               "🧮 公式速查。\n\n"
+               "**公式速查**：[表](p0-08-cheatsheet.md#dc)。\n\n"
                "</div>\n\n"
                "### 12.1 方法论\n")
         out = wrap_chapter_hero(src, "p2-02-ch12.md")
@@ -218,17 +218,17 @@ class WrapChapterHeroTests(unittest.TestCase):
     def test_chapter_stage_carries_its_hand_drawn_emblem(self):
         """每章一枚单线章徽，紧跟 h1、压在任何开场卡之前。"""
         src = ("# 第 3 章 BJT\n\n"
-               "> 🎯 **学完你应能**：三件事。\n")
+               "> **学完你应能**：三件事。\n")
         out = wrap_chapter_hero(src, "p1-04-ch3.md")
         hero = out.split('<p class="chapter-hero-num"')[0]
         self.assertIn('<div class="chapter-emblem" aria-hidden="true"><svg', hero)
         self.assertIn('viewBox="0 0 64 64"', hero)
         self.assertIn('stroke="currentColor"', hero)
         self.assertLess(hero.index("# 第 3 章"), hero.index('class="chapter-emblem"'))
-        self.assertLess(hero.index('class="chapter-emblem"'), hero.index("> 🎯"))
+        self.assertLess(hero.index('class="chapter-emblem"'), hero.index("> **学完你应能**"))
 
     def test_part_stage_has_no_chapter_emblem(self):
-        src = "# 第二篇：经典电路拓扑原理 ⚡\n\n> 器件是「字」。\n"
+        src = "# 第二篇：经典电路拓扑原理\n\n> 器件是「字」。\n"
         out = wrap_part_hero(src, "p2-00-part2.md")
         self.assertNotIn("chapter-emblem", out)
 
@@ -270,12 +270,12 @@ class WrapPartHeroTests(unittest.TestCase):
         out = wrap_part_hero(src, "p2-00-part2.md")
         self.assertIn('<div class="part-hero" data-part="2" markdown="1">', out)
         self.assertIn('<p class="part-hero-num" aria-hidden="true">2</p>', out)
-        self.assertIn("# 第二篇：经典电路拓扑原理 ⚡", out.split("</div>")[0])
+        self.assertIn("# 第二篇：经典电路拓扑原理", out.split("</div>")[0])
         self.assertIn("## 本篇地图", out.split("</div>")[-1])
         self.assertEqual(out.count("<div "), out.count("</div>"))
 
     def test_body_headings_after_intro_stay_outside(self):
-        src = ("# 第五篇：动画演示中心 🎬\n\n"
+        src = ("# 第五篇：动画演示中心\n\n"
                "> 全部 108 张 SVG 动画。\n\n"
                "<details>\n<summary>速查</summary>\n\n表格\n\n</details>\n")
         out = wrap_part_hero(src, "p5-00-part5.md")
@@ -290,30 +290,30 @@ class WrapPartHeroTests(unittest.TestCase):
 
 
 class WrapDemoLinksTests(unittest.TestCase):
-    """「🔗 动画演示」独立行 → .demo-link 药丸；只沾整行都是动画链接的行。"""
+    """「动画演示」独立行 → .demo-link 药丸；只沾整行都是动画链接的行。"""
 
     def test_a_bare_demo_line_becomes_a_pill(self):
-        src = "正文。\n\n🔗 [动画演示 5.66](p5-00-part5.md#demo66)\n\n继续。\n"
+        src = "正文。\n\n[动画演示 5.66](p5-00-part5.md#demo66)\n\n继续。\n"
         out = wrap_demo_links(src)
         self.assertIn('<div class="demo-link" markdown="1">', out)
-        self.assertIn("🔗 [动画演示 5.66](p5-00-part5.md#demo66)", out)
+        self.assertIn("[动画演示 5.66](p5-00-part5.md#demo66)", out)
         self.assertEqual(out.count("<div "), out.count("</div>"))
 
     def test_a_combo_line_with_two_links_becomes_one_pill(self):
-        src = ("🔗 [动画演示 5.107](p5-00-part5.md#demo107) · "
+        src = ("[动画演示 5.107](p5-00-part5.md#demo107) · "
                "[5.108](p5-00-part5.md#demo108)\n")
         out = wrap_demo_links(src)
         self.assertEqual(1, out.count('<div class="demo-link" markdown="1">'),
                          "一行双链也要整行进一个药丸")
 
     def test_falstad_and_inline_links_are_untouched(self):
-        src = ("🔗 Falstad 交互：`Circuits → Basics → RC Circuit`\n\n"
-               "原理见 🔗 [动画演示 5.3](p5-00-part5.md#demo3) 一句中间。\n")
+        src = ("Falstad 交互：`Circuits → Basics → RC Circuit`\n\n"
+               "原理见 [动画演示 5.3](p5-00-part5.md#demo3) 一句中间。\n")
         self.assertEqual(src, wrap_demo_links(src))
 
     def test_trailing_carriage_return_is_tolerated(self):
         """Windows 检出会给行尾带 \\r——$ 锚点不认它，漏包会让本地与 CI 产物不一致。"""
-        src = "🔗 [动画演示 5.66](p5-00-part5.md#demo66)\r\n"
+        src = "[动画演示 5.66](p5-00-part5.md#demo66)\r\n"
         self.assertIn('<div class="demo-link" markdown="1">', wrap_demo_links(src))
 
 

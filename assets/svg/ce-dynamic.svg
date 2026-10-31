@@ -198,7 +198,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <rect x="217" y="390" width="178" height="126" rx="10" fill="none" stroke="#a8321f" stroke-width="2.5" opacity="0" filter="url(#pglow)"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.2s" repeatCount="indefinite"/></rect>
 <rect x="593" y="390" width="178" height="126" rx="10" fill="none" stroke="#3d6b4a" stroke-width="2.5" opacity="0" filter="url(#pglow)"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.2s" repeatCount="indefinite"/></rect>
 <rect x="29" y="526" width="742" height="102" rx="9" fill="#e6eff3" stroke="#1f5d7a" stroke-width="1.6"/>
-<text x="45" y="550" font-size="12" font-weight="bold" fill="#1f5d7a">🧮 算一笔：两个余量，取小者</text>
+<text x="45" y="550" font-size="12" font-weight="bold" fill="#1f5d7a">算一笔：两个余量，取小者</text>
 <text x="45" y="576" font-size="11" fill="#5b666f">上行 6V（到截止 12V）、下行 4V（到饱和 V_E+0.2V=2V）→ 最大不失真摆幅 = 2×min(6V, 4V) = 8.0Vpp</text>
 <text x="45" y="600" font-size="11" fill="#5b666f">增益 |A_v| = R_C/r_e ≈ 2kΩ/8.7Ω ≈ 230 → 满摆幅需输入 ≈35mVpp；本例 10mV → 输出 ≈2.3Vpp，远未削波</text>
 <text x="45" y="622" font-size="11" font-weight="bold" fill="#a8321f">摆幅由「更小的那份余量」决定 —— Q 点偏置就是余量分配器</text>

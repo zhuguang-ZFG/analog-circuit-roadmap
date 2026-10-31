@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""⚙️「为什么」机制卡：两端接线（站点卡片 + 印刷卡片）与配色。"""
+"""「为什么」机制卡：两端接线（站点卡片 + 印刷卡片）与配色。"""
 import sys
 import unittest
 from pathlib import Path
@@ -15,7 +15,7 @@ from book import transforms  # noqa: E402
 class WhyCardWiringTests(unittest.TestCase):
     def test_why_kind_is_wired_into_site_and_book(self):
         from build_site import CALLOUT_KINDS
-        self.assertEqual("why", CALLOUT_KINDS["⚙️"])
+        self.assertEqual("why", CALLOUT_KINDS["为什么"])
         self.assertEqual("为什么", transforms.CALLOUT_LABELS["why"])
 
     def test_why_becomes_a_card_not_a_plain_quote(self):

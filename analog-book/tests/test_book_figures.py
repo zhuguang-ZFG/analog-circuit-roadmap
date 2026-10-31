@@ -29,8 +29,10 @@ class CaptionTitleTests(unittest.TestCase):
 
 class EmojiAndCalloutTests(unittest.TestCase):
     def test_maps_check_marks_and_drops_decoration(self):
+        # 警告符以转义写出：印刷管线 strip_emoji 的映射行为仍需 emoji 输入来
+        # 钉住，但测试源码本身不再出现被 grep 管的 emoji 字面量。
         text = transforms.strip_emoji(
-            "<p>✅ 对，❌ 错，⚠️ 注意，🚀 直觉，α→β，R≤10kΩ</p>")
+            "<p>✅ 对，❌ 错，\u26a0\ufe0f 注意，🚀 直觉，α→β，R≤10kΩ</p>")
         self.assertIn("✓ 对", text)
         self.assertIn("✗ 错", text)
         self.assertIn("注意 注意", text)
@@ -42,7 +44,7 @@ class EmojiAndCalloutTests(unittest.TestCase):
         self.assertEqual("<p>Cmd+P</p>", transforms.strip_emoji("<p>\u2318+P</p>"))
 
     def test_semantic_callout_gets_label_and_keeps_body(self):
-        fragment = ('<div class="callout callout-goal"><p>🎯 <strong>学完你应能</strong>：'
+        fragment = ('<div class="callout callout-goal"><p><strong>学完你应能</strong>：'
                     '看懂分压。</p></div>')
         result = transforms.transform_callouts(transforms.strip_emoji(fragment))
         self.assertIn('<aside class="book-callout book-callout-goal"', result)
@@ -58,13 +60,15 @@ class EmojiAndCalloutTests(unittest.TestCase):
         self.assertNotIn("callout-mystery", result)
 
     def test_warn_callout_does_not_repeat_its_label(self):
-        fragment = ('<div class="callout callout-warn">\n<p>⚠️ '
-                    '<strong>三个常见误解</strong>：稳压管不是万能基准。</p>\n</div>')
+        # v3.72 起 warn 卡的源文形状是「**注意**：<标题>：<正文>」（emoji 时代是
+        # ⚠️ + 裸标题，由 EMOJI_MAP 翻成"注意"前缀——那条路径靠 strip_emoji
+        # 的单测钉住）。这里钉新形状：卡片标签「注意」不得与首行标签重复。
+        fragment = ('<div class="callout callout-warn">\n<p>'
+                    '<strong>注意</strong>：三个常见误解：稳压管不是万能基准。</p>\n</div>')
         result = transforms.transform_callouts(transforms.strip_emoji(fragment))
         self.assertIn('<p class="callout-label">注意</p>', result)
-        self.assertIn("<p><strong>三个常见误解</strong>：稳压管不是万能基准。</p>",
-                      result)
-        self.assertNotIn("注意 <strong>三个常见误解", result)
+        self.assertIn("<p>三个常见误解：稳压管不是万能基准。</p>", result)
+        self.assertNotIn("<strong>注意</strong>", result)
 
 
 class DetailsTests(unittest.TestCase):

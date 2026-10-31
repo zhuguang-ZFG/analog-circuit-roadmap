@@ -18,7 +18,7 @@ SVG 作为 `<img>` 载入时（本站就是这么嵌的）Chrome 把 `prefers-re
      否则"没漏"可能只是因为选择器根本没命中。
 另外验证站点自身的悬停位移在 reduce 下也停掉。
 
-⚠️ 探针必须把 SVG 当**顶层文档**打开才量得到 computed style；而"选源"那一步
+注意：探针必须把 SVG 当**顶层文档**打开才量得到 computed style；而"选源"那一步
 必须在**页面**里做。两者各司其职，缺一不可 —— 只测前者正是 v3.45 漏掉的那一半。
 """
 from pathlib import Path

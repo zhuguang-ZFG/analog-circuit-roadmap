@@ -73,14 +73,14 @@ class ChapterEntryTests(unittest.TestCase):
                 self.assertTrue(catalog.BV_RE.search(text), "缺 B 站入口")
                 self.assertTrue(catalog.YT_RE.search(text), "缺 YouTube 入口")
                 self.assertTrue(
-                    any(line.startswith("> 📺")
-                        for line in text.splitlines()), "缺 📺 卡片")
+                    any(line.startswith("> **配套视频**")
+                        for line in text.splitlines()), "缺「配套视频」卡片")
 
     def test_chapter_links_avoid_obvious_duplicates(self):
         for chapter, path in self.files.items():
             text = path.read_text(encoding="utf-8")
             for line in text.splitlines():
-                if not line.startswith("> 📺"):
+                if not line.startswith("> **配套视频**"):
                     continue
                 ids = catalog.BV_RE.findall(line) + catalog.YT_RE.findall(line)
                 with self.subTest(chapter=chapter):

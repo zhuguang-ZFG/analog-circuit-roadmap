@@ -131,14 +131,14 @@ class DocsLinks(unittest.TestCase):
                 with self.subTest(chapter=match[1]):
                     section = re.search(rf'<a id="quiz-ch{match[1]}"></a>\n(.*?)(?=\n## |\Z)', quiz, re.S)
                     self.assertIsNotNone(section)
-                    ref = re.search(r'\[🧮 [^\]]*\]\(p0-08-cheatsheet\.md#([a-z]+)\)', section.group(1))
+                    ref = re.search(r'\[[^\]]*\]\(p0-08-cheatsheet\.md#([a-z]+)\)', section.group(1))
                     self.assertIsNotNone(ref, 'each quiz chapter must link to the formula cheatsheet')
                     self.assertIn(f'<a id="{ref[1]}"></a>', sheet)
 
     def test_cheatsheet_sections_link_back_to_quizzes(self):
         sheet = (DOCS / 'p0-08-cheatsheet.md').read_text(encoding='utf-8')
         quiz = (DOCS / 'p9-00-quiz.md').read_text(encoding='utf-8')
-        blocks = re.findall(r'<a id="([a-z]+)"></a>\n### [^\n]+\n(.*?)(?=\n<a id="|\n📌 |\Z)', sheet, re.S)
+        blocks = re.findall(r'<a id="([a-z]+)"></a>\n### [^\n]+\n(.*?)(?=\n<a id="|\n本页与|\Z)', sheet, re.S)
         self.assertEqual(len(blocks), 16)
         for sid, body in blocks:
             with self.subTest(section=sid):
@@ -160,10 +160,10 @@ class DocsLinks(unittest.TestCase):
                     self.assertIn(f'<a id="{ref[1]}"></a>', sheet)
 
     LIMITS_ROW = re.compile(
-        r'🔬 \*\*模型边界\*\*：\[边界速查·[^\]]*\]\(p0-10-model-limits\.md#(limits-[a-z]+)\)')
+        r'> \*\*模型边界\*\*：\[边界速查·[^\]]*\]\(p0-10-model-limits\.md#(limits-[a-z]+)\)')
 
     def test_every_chapter_links_the_model_limits_card(self):
-        """19 章章首各带一行 🔬 模型边界，指向的卡锚点必须真的在模型边界页。"""
+        """19 章章首各带一行「模型边界」卡，指向的卡锚点必须真的在模型边界页。"""
         limits = (DOCS / 'p0-10-model-limits.md').read_text(encoding='utf-8')
         cards = set(re.findall(r'<a id="(limits-[a-z]+)"></a>', limits))
         chapters = 0
@@ -175,7 +175,7 @@ class DocsLinks(unittest.TestCase):
             with self.subTest(chapter=match[1]):
                 text = page.read_text(encoding='utf-8')
                 refs = self.LIMITS_ROW.findall(text)
-                self.assertEqual(1, len(refs), '章首必须恰好一行 🔬 模型边界')
+                self.assertEqual(1, len(refs), '章首必须恰好一行「模型边界」卡')
                 self.assertIn(refs[0], cards, f'模型边界页缺卡：{refs[0]}')
         self.assertEqual(19, chapters, '章节文件数异常——模型边界行覆盖检查失真了')
 
@@ -208,9 +208,9 @@ class DocsLinks(unittest.TestCase):
         self.assertEqual([], stale, f'「四件套」旧称未更新：{stale}')
 
     def test_cheatsheet_calc_links_land_on_real_widgets(self):
-        """速查表的 🔧 就地算链接必须落在真的长着计算器的章节小节。"""
+        """速查表的「就地算」链接必须落在真的长着计算器的章节小节。"""
         sheet = (DOCS / 'p0-08-cheatsheet.md').read_text(encoding='utf-8')
-        links = re.findall(r'\[🔧 就地算\]\(([\w\-]+\.md)#([\w\-]+)\)', sheet)
+        links = re.findall(r'\[就地算\]\(([\w\-]+\.md)#([\w\-]+)\)', sheet)
         self.assertGreaterEqual(len(links), 6, '速查表的就地算出口少于 6 个——互链网缩水了')
         pages = {p.name: p.read_text(encoding='utf-8') for p in self.pages}
         for target, anchor in links:
@@ -272,7 +272,7 @@ class DocsLinks(unittest.TestCase):
     PICK_ITEMS = re.compile(r'<a id="(pick-[a-z]+)"></a>.*?\[速查表·[^\]]*\]\(p0-08-cheatsheet\.md#([a-z]+)\)')
 
     def test_picks_items_link_to_cheatsheet_section(self):
-        """必读精选每条必须带行级锚点 + 🧮 速查表直达链接，且目标段存在。"""
+        """必读精选每条必须带行级锚点 + 速查表直达链接，且目标段存在。"""
         picks = (DOCS / 'p0-05-picks.md').read_text(encoding='utf-8')
         sheet = (DOCS / 'p0-08-cheatsheet.md').read_text(encoding='utf-8')
         items = self.PICK_ITEMS.findall(picks)
@@ -282,7 +282,7 @@ class DocsLinks(unittest.TestCase):
                 self.assertIn(f'<a id="{sec}"></a>', sheet, f'速查表缺段：{sec}')
 
     def test_cheatsheet_sections_link_back_to_picks_symmetrically(self):
-        """速查表段的 ⭐ 回链与精选条的 🧮 正链必须互指 —— 只改一侧（映射漂移）即红。"""
+        """速查表段的 ★ 回链与精选条的速查表正链必须互指 —— 只改一侧（映射漂移）即红。"""
         sheet = (DOCS / 'p0-08-cheatsheet.md').read_text(encoding='utf-8')
         picks = (DOCS / 'p0-05-picks.md').read_text(encoding='utf-8')
         forward = dict()
@@ -290,15 +290,15 @@ class DocsLinks(unittest.TestCase):
             forward[sec] = anchor
         self.assertEqual(6, len(forward), '正链的 段→条 映射塌缩——两条精选指向了同一段')
         actual = dict()
-        for sid, body in re.findall(r'<a id="([a-z]+)"></a>\n### [^\n]+\n(.*?)(?=\n<a id="|\n📌 |\Z)', sheet, re.S):
-            m = re.search(r'⭐ \[[^\]]*\]\(p0-05-picks\.md#(pick-[a-z]+)\)', body)
+        for sid, body in re.findall(r'<a id="([a-z]+)"></a>\n### [^\n]+\n(.*?)(?=\n<a id="|\n本页与|\Z)', sheet, re.S):
+            m = re.search(r'★ \[[^\]]*\]\(p0-05-picks\.md#(pick-[a-z]+)\)', body)
             if m:
                 self.assertIn(f'<a id="{m.group(1)}"></a>', picks, f'{sid} 的回链锚点在精选页不存在')
                 actual[sid] = m.group(1)
         self.assertEqual(forward, actual, '精选 ↔ 速查表映射不对称（一侧改了另一侧没跟）')
 
     def test_learning_path_cards_link_to_cheatsheet_sections(self):
-        """首页三条路线卡各带「🧮 顺手算」速查表出口，指向的段必须存在。"""
+        """首页三条路线卡各带「顺手算」速查表出口，指向的段必须存在。"""
         index = (DOCS / 'index.md').read_text(encoding='utf-8')
         sheet = (DOCS / 'p0-08-cheatsheet.md').read_text(encoding='utf-8')
         cards = re.findall(r'<div class="learning-path"[^\n]*\n\n(.*?)\n</div>', index, re.S)

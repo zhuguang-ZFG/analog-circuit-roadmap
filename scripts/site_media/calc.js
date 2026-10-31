@@ -1,10 +1,10 @@
-/* 🧮 就地算：正文算例旁的可调参数小计算器。
+/*  就地算：正文算例旁的可调参数小计算器。
  *
  * docs/ 里只放一个空容器 `<div class="calc" data-calc="型号"></div>`，
  * 这里在客户端把输入项和结果行画出来。铁律：**每个型号的默认值 = 正文里
  * 那笔算例的原数**，输出口径与正文一致——读者改参数前后，书上的数永远
  * 能对上（test_calcs.py 用正文算例的数逐项回归）。
- * JavaScript 关掉时容器是空的，无害：紧挨着的那条 🧮 算一笔就是兜底算例。
+ * JavaScript 关掉时容器是空的，无害：紧挨着的那条  算一笔就是兜底算例。
  */
 (function () {
   'use strict';
@@ -173,7 +173,7 @@
     box.setAttribute('role', 'group');
     box.setAttribute('aria-label', '就地算：' + spec.name);
 
-    var title = el('p', 'calc-title', '🧮 就地算 · ' + spec.name);
+    var title = el('p', 'calc-title', '就地算 · ' + spec.name);
     box.appendChild(title);
 
     var inputs = el('div', 'calc-inputs');

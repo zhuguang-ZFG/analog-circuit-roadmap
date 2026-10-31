@@ -21,13 +21,13 @@ import curriculum  # noqa: E402
 from book import intuition, transforms  # noqa: E402
 
 DOCS = ROOT / "docs"
-SCENE_RE = re.compile(r"^> 🎭 \*\*场景\*\*：", re.M)
+SCENE_RE = re.compile(r"^> \*\*场景\*\*：", re.M)
 LEVEL_RE = re.compile(
-    r"^> 🎚 \*\*难度\*\*：(L[0-3]) (零基础|入门|进阶|深入)，(\d+) 节，"
+    r"^> \*\*难度\*\*：(L[0-3]) (零基础|入门|进阶|深入)，(\d+) 节，"
     r"精读约 (\d+) 分钟$", re.M)
-LEAD_RE = re.compile(r"^> 🗣 \*\*白话\*\*：(.+)$", re.M)
-PREREQ_RE = re.compile(r"^> 📚 \*\*先修\*\*：", re.M)
-GOAL_RE = re.compile(r"^> 🎯 \*\*学完你应能\*\*：", re.M)
+LEAD_RE = re.compile(r"^> \*\*白话\*\*：(.+)$", re.M)
+PREREQ_RE = re.compile(r"^> \*\*先修\*\*：", re.M)
+GOAL_RE = re.compile(r"^> \*\*学完你应能\*\*：", re.M)
 
 
 def chapter_texts() -> dict[int, str]:
@@ -120,8 +120,8 @@ class DriftTests(unittest.TestCase):
 class WiringTests(unittest.TestCase):
     def test_callout_kinds_are_registered(self):
         from build_site import CALLOUT_KINDS
-        self.assertEqual("level", CALLOUT_KINDS["🎚"])
-        self.assertEqual("lead", CALLOUT_KINDS["🗣"])
+        self.assertEqual("level", CALLOUT_KINDS["难度"])
+        self.assertEqual("lead", CALLOUT_KINDS["白话"])
         self.assertEqual("难度", transforms.CALLOUT_LABELS["level"])
         self.assertEqual("白话导读", transforms.CALLOUT_LABELS["lead"])
 

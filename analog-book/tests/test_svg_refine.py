@@ -25,7 +25,7 @@ LEGACY = """<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" vie
 <rect class="page-bg" width="400" height="300" fill="url(#bgL)"/>
 <rect width="400" height="300" fill="url(#dots)" opacity="0.4"/>
 <style>text{font-family:"Segoe UI","Microsoft YaHei"}@media (prefers-color-scheme: dark){.page-bg{fill:#0a1020}}</style>
-<title>🧮 示例图</title>
+<title>\U0001F9EE 示例图</title>
 <path d="M10 10 L100 100" stroke="#2563eb" stroke-width="2" fill="none"/>
 <rect x="20" y="20" width="80" height="40" rx="4" fill="#f8fafc" stroke="#e2e8f0" filter="url(#soft)"/>
 <text x="20" y="140" fill="#dc2626">错误</text>
@@ -57,7 +57,7 @@ class RefineFixtureTests(unittest.TestCase):
                       "filter=", "Segoe UI"):
             self.assertNotIn(token, out)
         self.assertIsNone(LEGACY_COLORS.search(out))
-        self.assertNotIn("🧮", out)
+        self.assertNotIn("\U0001F9EE", out)
         self.assertIn("示例图", out)
 
     def test_preserves_static_content_and_maps_palette(self):

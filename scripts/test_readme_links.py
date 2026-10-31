@@ -3,7 +3,7 @@
 README links come in two forms — HTML (`href="#..."` in nav blocks) and
 Markdown (`[text](#frag)` everywhere else). Both must point at an existing
 `<a id="...">`, and neither may be empty. Catches empty fragments
-(e.g. `[⭐ 必读精选](#)`) and anchors left behind after section renames.
+(e.g. `[★ 必读精选](#)`) and anchors left behind after section renames.
 Pure stdlib, runs in seconds.
 """
 import re

@@ -1,14 +1,14 @@
 <a id="part5"></a>
-# 第五篇：动画演示中心 🎬
+# 第五篇：动画演示中心
 
 > 全部 108 张 SVG 动画（SMIL，浏览器直接播放）位于 `assets/svg/` 目录，由 `scripts/generate_svgs.py` 一键生成（仓库铁律：两者始终同步）；配套 Falstad 在线电路可实时交互。
 
 <details>
-<summary>🗺️ 动画速查：按章节 —— 108 张全索引（点击展开）</summary>
+<summary>动画速查：按章节 —— 108 张全索引（点击展开）</summary>
 
 | 章 | 动画（点击直达） |
 |---|---|
-| §0 第 0 章 电路直觉学前班：先上车，再赶路 🍼 | [5.39](p5-00-part5.md#demo39) · [5.78](p5-00-part5.md#demo78) · [5.87](p5-00-part5.md#demo87) · [5.89](p5-00-part5.md#demo89) |
+| §0 第 0 章 电路直觉学前班：先上车，再赶路 | [5.39](p5-00-part5.md#demo39) · [5.78](p5-00-part5.md#demo78) · [5.87](p5-00-part5.md#demo87) · [5.89](p5-00-part5.md#demo89) |
 | §1 第 1 章 无源元件的真实面目 | [5.36](p5-00-part5.md#demo36) · [5.43](p5-00-part5.md#demo43) · [5.60](p5-00-part5.md#demo60) · [5.79](p5-00-part5.md#demo79) · [5.101](p5-00-part5.md#demo101) · [5.103](p5-00-part5.md#demo103) |
 | §2 第 2 章 二极管：单向导电的物理本质 | [5.2](p5-00-part5.md#demo2) · [5.31](p5-00-part5.md#demo31) · [5.46](p5-00-part5.md#demo46) · [5.56](p5-00-part5.md#demo56) · [5.61](p5-00-part5.md#demo61) · [5.83](p5-00-part5.md#demo83) |
 | §3 第 3 章 BJT 三极管：完整概念体系 | [5.3](p5-00-part5.md#demo3) · [5.40](p5-00-part5.md#demo40) · [5.41](p5-00-part5.md#demo41) · [5.66](p5-00-part5.md#demo66) · [5.67](p5-00-part5.md#demo67) · [5.70](p5-00-part5.md#demo70) · [5.74](p5-00-part5.md#demo74) · [5.81](p5-00-part5.md#demo81) |
@@ -38,7 +38,7 @@
 
 **看点**：电流箭头随充电逐渐变慢（alpha 衰减），即 $i_C=(V_S-v_C)/R$ 随电容电压升高而减小，这正是指数曲线的成因。τ 时刻恰好充到 63.2%。
 
-🔗 Falstad 交互：`Circuits → Basics → RC Circuit`
+Falstad 交互：`Circuits → Basics → RC Circuit`
 
 ## 5.2 桥式整流与滤波 <a id="demo2"></a>
 
@@ -46,7 +46,7 @@
 
 **看点**：负半周被"翻转"上来；滤波电容在峰值充电（跟随橙色）、谷值放电（绿色自由衰减）。纹波大小正比于负载电流、反比于电容。
 
-🔗 Falstad 交互：`Circuits → Diodes → Full-Wave Rectifier`
+Falstad 交互：`Circuits → Diodes → Full-Wave Rectifier`
 
 ## 5.3 共射放大器失真 <a id="demo3"></a>
 
@@ -54,7 +54,7 @@
 
 **看点**：绿线 Q 点居中，波形完好；红线摆幅过大，顶部被截止区"削平"、底部撞饱和压降。**静态工作点是放大器的第一设计。**
 
-🔗 Falstad 交互：`Circuits → Transistors → Common-Emitter Amp`
+Falstad 交互：`Circuits → Transistors → Common-Emitter Amp`
 
 ## 5.4 比较器迟滞 <a id="demo4"></a>
 
@@ -62,7 +62,7 @@
 
 **看点**：同一路带噪信号，红色无迟滞输出在阈值附近疯狂抖动；绿色施密特输出干净利落。**正反馈不是振荡的代名词，用得对就是抗噪利器。**
 
-🔗 Falstad 交互：`Circuits → Op-Amps → Comparator → Hysteresis`
+Falstad 交互：`Circuits → Op-Amps → Comparator → Hysteresis`
 
 ## 5.5 推挽 vs 开漏 <a id="demo5"></a>
 
@@ -76,7 +76,7 @@
 
 **看点**：电容电压（青色）在 1/3 与 2/3 Vcc 两条紫色阈值线之间荡秋千；输出（绿色）同步翻转。充电经 R1+R2、放电只经 R2 → 占空比永远 >50%。
 
-🔗 Falstad 交互：`Circuits → 555 Timer Chip → Astable Multivibrator`
+Falstad 交互：`Circuits → 555 Timer Chip → Astable Multivibrator`
 
 ## 5.7 PCB 回流路径 <a id="demo7"></a>
 

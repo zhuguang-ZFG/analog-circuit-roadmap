@@ -21,7 +21,10 @@ SHELL_MARKERS = (
     "<iframe", "<video", '<pre class="mermaid">', "mermaid.min.js",
     "TODO", "TBD", "待补", "占位",
 )
-EMOJI = "📚🧭🔣💡⚠️🎯🔧📐🧪📝"
+# 印刷品不得残留 emoji。站点新契约已不带 emoji，此表仍是回归护栏；
+# 以转义写出，避免测试源码本身出现 emoji 字面量。
+EMOJI = ("\U0001F4DA\U0001F9ED\U0001F523\U0001F4A1\u26A0\uFE0F"
+         "\U0001F3AF\U0001F527\U0001F4D0\U0001F9EA\U0001F4DD")
 # MathJax 的内联源码里可能出现 TODO/emoji；内联 base64 也可能恰含 TBD。
 # 占位检查只针对可见正文，先剥离脚本/样式与 base64 data URI 载荷。
 SCRIPT_STYLE_RE = re.compile(
