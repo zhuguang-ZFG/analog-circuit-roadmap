@@ -94,7 +94,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 [stroke="#6b3f63"]{stroke:#a17c9b}
 }
 </style>
-<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif SC',serif;font-weight:400">电压降：同一股电流，谁 R 大谁分得多</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">电压降：同一股电流，谁 R 大谁分得多</text>
 
 <text x="400" y="46" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#37424e">同一股电流流过所有电阻——每个电阻「留下」一份电压，加起来恰好等于电源</text>
 <text x="190" y="86" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#37424e">电路：5V → 4kΩ → 1kΩ → GND</text>

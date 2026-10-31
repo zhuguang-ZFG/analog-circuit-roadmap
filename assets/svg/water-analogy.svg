@@ -94,7 +94,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 [stroke="#6b3f63"]{stroke:#a17c9b}
 }
 </style>
-<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif SC',serif;font-weight:400">水路 = 电路：一张图看懂全书通用比喻（第 0 章 0.1）</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">水路 = 电路：一张图看懂全书通用比喻（第 0 章 0.1）</text>
 
 <text x="400" y="48" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#37424e">同一套直觉：水怎么流，电就怎么走——八个词，一张图</text>
 <path d="M156,180 H644 Q680,180 680,216 V424 Q680,460 644,460 H156 Q120,460 120,424 V216 Q120,180 156,180 Z" fill="none" stroke="#e6eff3" stroke-width="24" stroke-linejoin="round"/>

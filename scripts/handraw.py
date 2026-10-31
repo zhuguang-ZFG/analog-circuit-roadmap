@@ -98,7 +98,8 @@ WASH_LEGACY = {
 }
 
 # 手写体只在标题上出现：11~13px 的楷体在屏幕上笔画过细，正文标签一律留在无衬线体。
-HAND_FONT = ("'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif SC',serif")
+HAND_FONT = ("'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC',"
+             "'Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif")
 SANS_FONT = ('"Segoe UI","Microsoft YaHei","PingFang SC",'
              '"Hiragino Sans GB",sans-serif')
 

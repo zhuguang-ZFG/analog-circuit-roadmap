@@ -94,7 +94,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 [stroke="#6b3f63"]{stroke:#a17c9b}
 }
 </style>
-<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif SC',serif;font-weight:400">BJT 放大原理：99% 的电子来不及复合，就成了 I_C</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">BJT 放大原理：99% 的电子来不及复合，就成了 I_C</text>
 
 <text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#37424e">NPN：两块 N 夹一块「极薄」的 P</text>
 <rect x="80" y="90" width="130" height="130" rx="6" fill="#e6eff3" stroke="#1f5d7a" stroke-width="2.2"/>

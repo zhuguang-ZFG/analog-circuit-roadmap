@@ -408,6 +408,26 @@ class FirstScreenTests(unittest.TestCase):
                     f"{width}px 下仓库链接「{box['text']}」被截断了"
                     f"（内容 {box['scroll']}px > 容器 {box['client']}px）")
 
+    def test_header_title_actually_paints_glyphs(self):
+        """顶栏站点标题必须真的画出来，而不只是「算出来的颜色合规」。
+
+        CI（Ubuntu，无 KaiTi）实测过一整块纯底色：`--hand-font` 整栈都是中文
+        桌面字体，掉到通用 serif 后 CJK 字形一个都没画，几何框仍在、对比度脚本
+        量到的「字」等于底色（1.00:1）。这里按像素占比钉住「有字」：
+        实测手写体约 4.6%，低于 0.5% 说明没画，高于 60% 说明糊成了色块。
+        """
+        for scheme in ("light", "dark"):
+            with self.subTest(scheme=scheme):
+                page = self.homepage(scheme)
+                ink = ink_fraction(page, ".md-header__title")
+                self.assertGreater(
+                    ink, 0.005,
+                    f"{scheme} 主题下顶栏标题只有 {ink:.4f} 的像素偏离底色——"
+                    "文字没画出来（多半是字体栈里没有可用的中文字体）")
+                self.assertLess(
+                    ink, 0.6,
+                    f"{scheme} 主题下顶栏标题有 {ink:.3f} 的像素偏离底色——像是糊成了色块")
+
     def test_header_text_meets_body_contrast_in_both_themes(self):
         """顶栏的站点标题与仓库链接在明暗两套主题下都要 ≥4.5。
 

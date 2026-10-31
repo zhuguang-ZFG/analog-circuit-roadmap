@@ -94,7 +94,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 [stroke="#6b3f63"]{stroke:#a17c9b}
 }
 </style>
-<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif SC',serif;font-weight:400">CMOS 传输门：一只管子总有一段「使不上劲」</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">CMOS 传输门：一只管子总有一段「使不上劲」</text>
 
 <text x="190" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#37424e">NMOS + PMOS 并联 = 全程平坦</text>
 <text x="40" y="92" font-size="11.5" fill="#5b666f">Vin 靠近 0V：NMOS 的 V_GS 最大 →</text>

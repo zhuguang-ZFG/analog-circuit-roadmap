@@ -94,7 +94,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 [stroke="#6b3f63"]{stroke:#a17c9b}
 }
 </style>
-<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif SC',serif;font-weight:400">CD4051：八路传感器共用一个 ADC</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">CD4051：八路传感器共用一个 ADC</text>
 
 <text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#37424e">3 位地址选 8 路之一 —— 多路复用器就是「模拟旋转开关」</text>
 <text x="220" y="100" text-anchor="middle" font-size="13" font-weight="bold" fill="#37424e">CD4051（8 选 1）</text>

@@ -94,7 +94,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 [stroke="#6b3f63"]{stroke:#a17c9b}
 }
 </style>
-<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif SC',serif;font-weight:400">LDO 的本质：一个会「自我调节」的分压器（负反馈环路）</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">LDO 的本质：一个会「自我调节」的分压器（负反馈环路）</text>
 
 <text x="330" y="62" text-anchor="middle" font-size="14" font-weight="bold" fill="#37424e">LDO 内部负反馈环路（AMS1117 同款结构）</text>
 <text x="96" y="96" text-anchor="end" font-size="13" font-weight="bold" fill="#a4630f">VIN 8V</text>

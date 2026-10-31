@@ -94,7 +94,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 [stroke="#6b3f63"]{stroke:#a17c9b}
 }
 </style>
-<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif SC',serif;font-weight:400">回流路径：信号的「回家路」，永远贴着它脚下走</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">回流路径：信号的「回家路」，永远贴着它脚下走</text>
 
 <text x="210" y="52" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#3d6b4a">场景 A：完整地平面——回流紧贴信号正下方</text>
 <rect x="50" y="76" width="42" height="26" rx="4" fill="#e6eff3" stroke="#1f5d7a" stroke-width="2"/>

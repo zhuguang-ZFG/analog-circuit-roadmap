@@ -94,7 +94,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 [stroke="#6b3f63"]{stroke:#a17c9b}
 }
 </style>
-<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif SC',serif;font-weight:400">555 无稳态四拍：电容荡秋千，输出跳方波（R1=1k/R2=6.8k/C=100nF）</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">555 无稳态四拍：电容荡秋千，输出跳方波（R1=1k/R2=6.8k/C=100nF）</text>
 
 <text x="400" y="51" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#37424e">R1=1kΩ · R2=6.8kΩ · C=100nF · V_CC=9V：一个完整周期（≈1.01ms）的四拍</text>
 <rect x="20" y="70" width="174" height="214" rx="10" fill="#f6eedb" stroke="#5b666f" stroke-width="1.8"/>

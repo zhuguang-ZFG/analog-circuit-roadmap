@@ -94,7 +94,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 [stroke="#6b3f63"]{stroke:#a17c9b}
 }
 </style>
-<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif SC',serif;font-weight:400">真实电阻：高频时它不再是「一个电阻」</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">真实电阻：高频时它不再是「一个电阻」</text>
 
 <text x="205" y="50" text-anchor="middle" font-size="14" font-weight="bold" fill="#37424e">等效模型：R 并 C（体电容），再串 L（引线电感）</text>
 <text x="60" y="96" font-size="11.5" fill="#5b666f">理想 R</text>

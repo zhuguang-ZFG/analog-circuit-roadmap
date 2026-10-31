@@ -94,7 +94,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 [stroke="#6b3f63"]{stroke:#a17c9b}
 }
 </style>
-<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif SC',serif;font-weight:400">运放阶跃：直线爬坡，不是指数曲线</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">运放阶跃：直线爬坡，不是指数曲线</text>
 
 <text x="200" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#37424e">741 接成跟随器，输入 0 → 1V 阶跃</text>
 <path d="M80 150 Q100.00 149.92 120 150" fill="none" stroke="#37424e" stroke-width="2.5"/>

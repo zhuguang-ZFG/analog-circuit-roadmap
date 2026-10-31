@@ -1559,6 +1559,11 @@ def main():
     write_reduce_variants()
 
     (OUT / "stylesheets").mkdir(exist_ok=True)
+    # 标题字体：整站只有这一处依赖中文 webfont（KaiTi 只存在于中文字体齐全的桌面）。
+    (OUT / "assets" / "fonts").mkdir(parents=True, exist_ok=True)
+    for name in ("NotoSerifSC-Regular.woff2", "NotoSerifSC-Bold.woff2"):
+        shutil.copyfile(ROOT / "analog-book" / "fonts" / name,
+                        OUT / "assets" / "fonts" / name)
     (OUT / "javascripts").mkdir(exist_ok=True)
     (OUT / "stylesheets" / "gallery.css").write_text(GALLERY_CSS, encoding="utf-8")
     (OUT / "javascripts" / "gallery.js").write_text(GALLERY_JS, encoding="utf-8")

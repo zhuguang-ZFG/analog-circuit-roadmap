@@ -94,7 +94,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 [stroke="#6b3f63"]{stroke:#a17c9b}
 }
 </style>
-<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif SC',serif;font-weight:400">去耦电容为什么要「贴脸」放？——走线电感 vs 本地水库</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">去耦电容为什么要「贴脸」放？——走线电感 vs 本地水库</text>
 
 <text x="200" y="50" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#a8321f">场景 A：电容太远（或没有）</text>
 <text x="46" y="102" font-size="12" font-weight="bold" fill="#a4630f">5V 源</text>

@@ -94,7 +94,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 [stroke="#6b3f63"]{stroke:#a17c9b}
 }
 </style>
-<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif SC',serif;font-weight:400">555 单稳态：一触发，亮一拍（t = 1.1·RC）</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">555 单稳态：一触发，亮一拍（t = 1.1·RC）</text>
 
 <text x="250" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#37424e">触发一次 → 输出一个定宽脉冲（宽度只由 RC 决定）</text>
 <text x="596" y="108" text-anchor="middle" font-size="10.5" fill="#5b666f">— OUT（3 脚）　— Vc（6 脚）</text>

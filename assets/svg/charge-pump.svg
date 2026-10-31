@@ -94,7 +94,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 [stroke="#6b3f63"]{stroke:#a17c9b}
 }
 </style>
-<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif SC',serif;font-weight:400">电荷泵：电容当「斗提机」，不用电感也升压</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">电荷泵：电容当「斗提机」，不用电感也升压</text>
 
 <text x="230" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#37424e">倍压电荷泵（两相时钟， Vin → 2Vin）</text>
 <text x="18" y="106" font-size="12.5" font-weight="bold" fill="#a4630f">Vin</text>

@@ -95,7 +95,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 }
 </style>
 <path d="M170 38 c 115 3.4 276 -2.6 461 0.4" fill="none" stroke="#a4630f" stroke-width="2.1" stroke-linecap="round" opacity="0.5"/>
-<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif SC',serif;font-weight:400">阻抗随频率：电容降价、电感涨价——寄生在暗处登场</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">阻抗随频率：电容降价、电感涨价——寄生在暗处登场</text>
 
 <path d="M232 90 Q232.36 225.00 232 360" fill="none" stroke="#e0d3b8" stroke-width="1"/>
 <path d="M364 90 Q363.33 225.00 364 360" fill="none" stroke="#e0d3b8" stroke-width="1"/>

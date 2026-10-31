@@ -94,7 +94,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 [stroke="#6b3f63"]{stroke:#a17c9b}
 }
 </style>
-<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif SC',serif;font-weight:400">恒流源也有天花板：合规电压算给你看</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">恒流源也有天花板：合规电压算给你看</text>
 
 <text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#37424e">恒流源不是「万能」——负载太重，它就撑不住了</text>
 <path d="M90 86 Q90.07 103.00 90 120" fill="none" stroke="#37424e" stroke-width="2.5"/>

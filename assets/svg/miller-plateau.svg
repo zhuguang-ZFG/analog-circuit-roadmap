@@ -94,7 +94,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 [stroke="#6b3f63"]{stroke:#a17c9b}
 }
 </style>
-<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif SC',serif;font-weight:400">米勒平台：V_GS 为什么会在半路「停下来看戏」</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">米勒平台：V_GS 为什么会在半路「停下来看戏」</text>
 
 <text x="425" y="50" text-anchor="middle" font-size="14" font-weight="bold" fill="#37424e">20V 母线 · 5A 负载 · 10mA 驱动 · AO3400（Q_g≈7nC, Q_gd≈1.6nC）</text>
 <rect x="216" y="70" width="209" height="380" fill="#8b8272" opacity="0.10"/>

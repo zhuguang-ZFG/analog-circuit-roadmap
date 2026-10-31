@@ -95,7 +95,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 }
 </style>
 <path d="M189 38 c 106 3.4 253 -2.6 422 0.4" fill="none" stroke="#a4630f" stroke-width="2.1" stroke-linecap="round" opacity="0.5"/>
-<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif SC',serif;font-weight:400">迟滞振荡器：方波从两只门槛之间自己「弹」出来</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">迟滞振荡器：方波从两只门槛之间自己「弹」出来</text>
 
 <polygon points="480,92 480,176 566,134" fill="#f6eedb" stroke="#37424e" stroke-width="2.5"/>
 <text x="492" y="120" font-size="15" font-weight="bold" fill="#a8321f">−</text>

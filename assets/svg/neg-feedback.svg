@@ -95,7 +95,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 }
 </style>
 <path d="M198 38 c 101 3.4 242 -2.6 403 0.4" fill="none" stroke="#a4630f" stroke-width="2.1" stroke-linecap="round" opacity="0.5"/>
-<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif SC',serif;font-weight:400">负反馈：十万倍的蛮力，被一根线驯成 6 倍</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">负反馈：十万倍的蛮力，被一根线驯成 6 倍</text>
 
 <circle cx="90" cy="220" r="21" fill="none" stroke="#1f5d7a" stroke-width="2.5"/>
 <path d="M79,220 q5.5,-14 11,0 q5.5,14 11,0" fill="none" stroke="#1f5d7a" stroke-width="2"/>

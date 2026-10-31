@@ -1,4 +1,22 @@
 /* ============================================================================
+   0. 手绘标题用的随包字体
+   ========================================================================== */
+@font-face {
+  font-family: "Hand Serif";
+  src: url("../assets/fonts/NotoSerifSC-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Hand Serif";
+  src: url("../assets/fonts/NotoSerifSC-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ============================================================================
    手绘纸墨皮肤（站点层）
    ----------------------------------------------------------------------------
    这一层只做「外观」，不碰任何布局逻辑：typography/learning/reading/diag 三个
@@ -25,8 +43,11 @@
   --hand-green: #3d6b4a;
   --hand-red: #a8321f;
   --hand-plum: #6b3f63;
+  /* 楷体只在装了中文桌面字体的机器上存在（Windows/macOS）。Linux、Android 与
+     CI 上没有 KaiTi，整条栈会掉到通用 serif——实测顶栏标题在 CI 上直接画不出来。
+     所以第五位放随站点分发的 Noto Serif SC 子集（2 档字重，约 700KB）。 */
   --hand-font: "KaiTi", "STKaiti", "Kaiti SC", "LXGW WenKai",
-    "Noto Serif SC", serif;
+    "Hand Serif", "Noto Serif SC", "Noto Serif CJK SC", serif;
   /* 手绘感的一半来自「不等圆角」：四个角的半径故意不一样，像随手画的框 */
   --hand-radius: 14px 11px 15px 10px;
 }

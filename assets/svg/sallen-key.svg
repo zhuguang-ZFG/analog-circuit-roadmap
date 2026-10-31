@@ -94,7 +94,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 [stroke="#6b3f63"]{stroke:#a17c9b}
 }
 </style>
-<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif SC',serif;font-weight:400">Sallen-Key 二阶低通：滤波器是「受控的谐振」</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">Sallen-Key 二阶低通：滤波器是「受控的谐振」</text>
 
 <text x="200" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#37424e">Sallen-Key 二阶低通（单位增益）</text>
 <path d="M40 140 Q50.00 139.97 60 140" fill="none" stroke="#37424e" stroke-width="2.5"/>

@@ -94,7 +94,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 [stroke="#6b3f63"]{stroke:#a17c9b}
 }
 </style>
-<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif SC',serif;font-weight:400">大师的排故智慧：三份心法，一条军规</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">大师的排故智慧：三份心法，一条军规</text>
 
 <text x="400" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#37424e">金句逐条读，粒子替你走流程——军规清单在底部</text>
 <rect x="35" y="100" width="230" height="210" rx="12" fill="#f6eedb" stroke="#1f5d7a" stroke-width="2.5"/><text x="150" y="126" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#1f5d7a">Bob Pease · 老中医</text><path d="M49 138 Q150.00 138.02 251 138" fill="none" stroke="#1f5d7a" stroke-width="1.5" opacity="0.4"/><circle cx="55" cy="161" r="3.5" fill="#1f5d7a"/><text x="69" y="166" font-size="11.5" fill="#37424e">先量电源——近一半故障藏在这里</text><circle cx="55" cy="199" r="3.5" fill="#1f5d7a"/><text x="69" y="204" font-size="11.5" fill="#37424e">怀疑一切，包括你的仪器</text><circle cx="55" cy="237" r="3.5" fill="#1f5d7a"/><text x="69" y="242" font-size="11.5" fill="#37424e">数字表测不出振荡 → 示波器复核</text><circle cx="55" cy="275" r="3.5" fill="#1f5d7a"/><text x="69" y="280" font-size="11.5" fill="#37424e">记录一切：症状-假设-结果存档</text><g filter="url(#pglow)"><circle r="5" fill="#1f5d7a"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M150,110 V295"/></circle>

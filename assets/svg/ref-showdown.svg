@@ -94,7 +94,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 [stroke="#6b3f63"]{stroke:#a17c9b}
 }
 </style>
-<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif SC',serif;font-weight:400">齐纳 vs 带隙：两种基准，两套温漂账</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">齐纳 vs 带隙：两种基准，两套温漂账</text>
 
 <text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#37424e">同一个问题（要一个不动的电压），两条技术路线</text>
 <rect x="34" y="76" width="350" height="240" rx="10" fill="#f6eedb" stroke="#a4630f" stroke-width="1.8"/>

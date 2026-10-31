@@ -94,7 +94,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 [stroke="#6b3f63"]{stroke:#a17c9b}
 }
 </style>
-<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif SC',serif;font-weight:400">探头地线环：量到的纹波可能是假的</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">探头地线环：量到的纹波可能是假的</text>
 <text x="400" y="53" text-anchor="middle" font-size="12" fill="#5b666f">地夹夹在远处的地上 → 大环路 → 开关磁场在环里感应出电压</text>
 <rect x="36" y="76" width="356" height="248" rx="10" fill="#f6e7e1" stroke="#a8321f" stroke-width="1.6"/>
 <text x="214" y="102" text-anchor="middle" font-size="12" font-weight="bold" fill="#a8321f">① 长地线夹：环路大</text>

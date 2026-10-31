@@ -94,7 +94,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 [stroke="#6b3f63"]{stroke:#a17c9b}
 }
 </style>
-<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif SC',serif;font-weight:400">解剖 LM393：关键是那只「只会拉低」的输出管</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">解剖 LM393：关键是那只「只会拉低」的输出管</text>
 
 <text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#37424e">PNP 差分输入 → 增益级 → 开集电极输出管</text>
 <rect x="40" y="90" width="150" height="80" rx="8" fill="#e6eff3" stroke="#1f5d7a" stroke-width="2.5"/>

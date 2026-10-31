@@ -94,7 +94,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 [stroke="#6b3f63"]{stroke:#a17c9b}
 }
 </style>
-<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif SC',serif;font-weight:400">MOSFET 开通四拍：栅极电荷如何变成热</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">MOSFET 开通四拍：栅极电荷如何变成热</text>
 
 <text x="400" y="51" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#37424e">20V 母线 · 5A 负载 · 10mA 驱动 · AO3400：同一条电流路径，四种状态</text>
 <rect x="20" y="70" width="174" height="214" rx="10" fill="#f6eedb" stroke="#5b666f" stroke-width="1.8"/>

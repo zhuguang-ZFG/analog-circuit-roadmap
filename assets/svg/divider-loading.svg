@@ -94,7 +94,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 [stroke="#6b3f63"]{stroke:#a17c9b}
 }
 </style>
-<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif SC',serif;font-weight:400">分压器：最容易上手，也最容易翻车的一招</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">分压器：最容易上手，也最容易翻车的一招</text>
 
 <text x="215" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#37424e">空载：R1=R2 → 正好取一半</text>
 <path d="M95 150 Q102.50 150.04 110 150" fill="none" stroke="#37424e" stroke-width="2.5"/>

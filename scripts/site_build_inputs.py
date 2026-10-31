@@ -9,7 +9,8 @@ test_first_screen / test_reading_journey 各自把仓库子集复制到临时目
 import shutil
 from pathlib import Path
 
-BUILD_DIRS = ('docs', 'assets', 'scripts', 'analog-book/static/illustrations')
+BUILD_DIRS = ('docs', 'assets', 'scripts', 'analog-book/static/illustrations',
+              'analog-book/fonts')
 BUILD_ROOT_FILES = ('CONTRIBUTING.md', 'CONTRIBUTORS.md', 'LICENSE')
 _IGNORE = shutil.ignore_patterns('__pycache__', '_probe*')
 

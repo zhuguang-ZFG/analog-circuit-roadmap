@@ -94,7 +94,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 [stroke="#6b3f63"]{stroke:#a17c9b}
 }
 </style>
-<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif SC',serif;font-weight:400">晶体振荡器：把频率钉在石英上</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">晶体振荡器：把频率钉在石英上</text>
 <text x="400" y="53" text-anchor="middle" font-size="12" fill="#5b666f">Pierce 拓扑：一只反相器 + 反馈电阻 + 晶体 + 两只负载电容</text>
 <rect x="36" y="76" width="384" height="286" rx="10" fill="#f6eedb" stroke="#5b666f" stroke-width="1.6"/>
 <text x="228" y="100" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#37424e">Pierce（皮尔斯）拓扑</text>

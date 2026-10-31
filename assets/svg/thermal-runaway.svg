@@ -94,7 +94,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 [stroke="#6b3f63"]{stroke:#a17c9b}
 }
 </style>
-<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif SC',serif;font-weight:400">热失控：一只 BJT 自己把自己烧了（正反馈环）</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">热失控：一只 BJT 自己把自己烧了（正反馈环）</text>
 
 <circle cx="260" cy="230" r="110" fill="none" stroke="#a8321f" stroke-width="14" stroke-dasharray="10 10">
 <animateTransform attributeName="transform" type="rotate" values="0 260 230;360 260 230" dur="12s" repeatCount="indefinite"/>

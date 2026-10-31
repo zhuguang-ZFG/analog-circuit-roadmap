@@ -94,7 +94,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 [stroke="#6b3f63"]{stroke:#a17c9b}
 }
 </style>
-<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif SC',serif;font-weight:400">LDO 负载瞬态四拍：一次唤醒为何把 MCU 打到复位（AMS1117-5V）</text>
+<text x="400" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">LDO 负载瞬态四拍：一次唤醒为何把 MCU 打到复位（AMS1117-5V）</text>
 
 <text x="400" y="51" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#37424e">AMS1117-5V · C_out=10µF(ESR 50mΩ) · 负载 10mA→500mA：一次唤醒的四拍</text>
 <rect x="20" y="70" width="174" height="214" rx="10" fill="#f6eedb" stroke="#a8321f" stroke-width="1.8"/>
