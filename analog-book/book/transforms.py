@@ -32,6 +32,7 @@ FIGCAPTION_RE = re.compile(r"<figcaption[^>]*>(?P<cap>.*?)</figcaption>", re.S)
 TABLE_CAPTION_RE = re.compile(
     r"<p[^>]*>\s*<strong>\s*(表\s*[0-9A-H]+-\d+[^<]*)</strong>\s*</p>\s*"
     r"<div class=\"table-wrap\">(?P<table><table.*?</table>)</div>", re.S)
+TABLE_NUMBER_PREFIX_RE = re.compile(r"^表\s*[0-9A-H]+-\d+")
 NUMBERED_TABLE_RE = re.compile(
     r'<div class="table-wrap" id="[^"]+">\s*<p class="table-caption">.*?</p>\s*'
     r'<table(?:\s[^>]*)?>.*?</table>\s*</div>', re.S)
@@ -137,7 +138,14 @@ def number_figures(fragment: str, label: str, stem: str,
 
 
 def number_tables(fragment: str, label: str, stem: str,
-                  final: bool = False) -> tuple[str, list[dict], list[str]]:
+                  final: bool = False, start: int = 0
+                  ) -> tuple[str, list[dict], list[str]]:
+    """给表格加「表 X-Y」编号表注。
+
+    ``start`` 是编号起点：附录族按「整族连续」编号（表 C-1…C-14），由
+    assemble 逐页累加；章内仍从 1 起。正文表注里的号必须与这里算出的号
+    一致，否则会被补成「表 C-4　表 C-1　…」这样的双号。
+    """
     stash = []
 
     def stash_repl(match: re.Match) -> str:
@@ -146,7 +154,7 @@ def number_tables(fragment: str, label: str, stem: str,
 
     fragment = NUMBERED_TABLE_RE.sub(stash_repl, fragment)
     fragment = wrap_tables(fragment)
-    counter = 0
+    counter = start
     entries, warnings = [], []
 
     def repl(match: re.Match) -> str:
@@ -154,7 +162,16 @@ def number_tables(fragment: str, label: str, stem: str,
         counter += 1
         raw = plain_text(match.group(1))
         number = f"表 {label}-{counter}"
-        caption = raw if raw.startswith(number) else f"{number}　{raw}"
+        stale = TABLE_NUMBER_PREFIX_RE.match(raw)
+        if raw.startswith(number):
+            caption = raw
+        elif stale:
+            warnings.append(
+                f"{stem}: 表注编号「{stale.group(0)}」与计算号「{number}」不符"
+                "（表号按全文顺序计算，前面插表后需顺移后续表号）")
+            caption = f"{number}　{raw[stale.end():].lstrip(' 　')}"
+        else:
+            caption = f"{number}　{raw}"
         anchor = f"{stem}--table-{counter}"
         entries.append({"number": number, "caption": caption,
                         "anchor": anchor, "stem": stem})

@@ -48,7 +48,7 @@ CHAPTER_CONTRACTS = {
         "sections": ("### 11.8", "### 11.9", "### 11.10", "### 11.11"),
         "examples": 3,
         "figures": 8,
-        "tables": 5,
+        "tables": 6,
         "quiz": 10,
         "figure_assets": (
             "assets/figures/ch11-cascode.svg",

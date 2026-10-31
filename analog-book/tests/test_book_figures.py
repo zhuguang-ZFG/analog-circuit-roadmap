@@ -139,6 +139,23 @@ class FigureTests(unittest.TestCase):
         self.assertEqual([], entries)
         self.assertTrue(warnings)
 
+    def test_stale_caption_number_takes_computed_number_and_warns(self):
+        fragment = ('<p><strong>表 2-1　二极管三种工作区</strong></p>'
+                    '<table><tr><td>1</td></tr></table>')
+        wrapped, entries, warnings = transforms.number_tables(
+            fragment, "2", "p1-03-ch2", start=3)
+        self.assertEqual("表 2-4", entries[0]["number"])
+        self.assertIn("表 2-4　二极管三种工作区", wrapped)
+        self.assertNotIn("表 2-4　表 2-1", wrapped)
+        self.assertTrue(any("编号" in item for item in warnings), warnings)
+
+    def test_stale_caption_number_fails_final(self):
+        fragment = ('<p><strong>表 2-1　二极管三种工作区</strong></p>'
+                    '<table><tr><td>1</td></tr></table>')
+        with self.assertRaisesRegex(BookError, "表注编号"):
+            transforms.number_tables(
+                fragment, "2", "p1-03-ch2", start=3, final=True)
+
     def test_number_tables_is_idempotent(self):
         fragment = ('<p><strong>表 2-1　二极管三种工作区</strong></p>'
                     '<table><tr><td>1</td></tr></table>')

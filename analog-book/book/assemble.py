@@ -271,8 +271,8 @@ def _chapter_body(page: content.ContentPage, desc: dict, quiz_data: quiz.QuizDat
 
 
 def _appendix_body(page: content.ContentPage, desc: dict, final: bool,
-                   warnings: list[str]
-                   ) -> tuple[str, list[dict], list[dict], list[dict]]:
+                   warnings: list[str], table_start: int = 0
+                   ) -> tuple[str, list[dict], list[dict], list[dict], int]:
     stem = desc["stem"]
     label = desc.get("appendix_id") or ""
     fragment = transforms.strip_emoji(page.html)
@@ -282,11 +282,11 @@ def _appendix_body(page: content.ContentPage, desc: dict, final: bool,
     fragment, figures, figure_warnings = transforms.number_figures(
         fragment, label, stem, final)
     fragment, tables, table_warnings = transforms.number_tables(
-        fragment, label, stem, final)
+        fragment, label, stem, final, start=table_start)
     fragment, notes = transforms.transform_endnotes(fragment, stem)
     calc_warnings = transforms.check_calculator_fallbacks(fragment, stem, final)
     warnings.extend(figure_warnings + table_warnings + calc_warnings)
-    return fragment, figures, tables, notes
+    return fragment, figures, tables, notes, table_start + len(tables)
 
 
 def _animation_table(animations: list[dict]) -> str:
@@ -339,8 +339,10 @@ def _build_page(desc: dict, *, manifest: dict, site_dir: Path, stems: set[str],
                 quiz_data: quiz.QuizData, animations: list[dict],
                 references: list[dict], parts: dict[str, dict],
                 appendices: dict[str, dict], final: bool,
-                warnings: list[str]) -> dict:
+                warnings: list[str],
+                appendix_tables: dict[str, int] | None = None) -> dict:
     kind = desc["kind"]
+    appendix_tables = appendix_tables if appendix_tables is not None else {}
     if kind == "half_title":
         return _page(desc, frontmatter.half_title(manifest), desc["title"],
                      appendices=appendices)
@@ -399,8 +401,11 @@ def _build_page(desc: dict, *, manifest: dict, site_dir: Path, stems: set[str],
                 appendix.get("title") or "习题答案与综合自测",
                 appendices=appendices)
         page = content.load_page(site_dir, desc["file"], stems, manifest)
-        body, figures, tables, notes = _appendix_body(
-            page, desc, final, warnings)
+        appendix_id = desc.get("appendix_id") or ""
+        body, figures, tables, notes, next_table = _appendix_body(
+            page, desc, final, warnings,
+            table_start=appendix_tables.get(appendix_id, 0))
+        appendix_tables[appendix_id] = next_table
         return _page(desc, body, page.title, images=page.images,
                      figures=figures, tables=tables, endnotes=notes,
                      appendices=appendices)
@@ -790,11 +795,13 @@ def build_html(out_dir: Path, site_dir: Path, data_dir: Path, docs_dir: Path,
     pages: list[dict] = []
     used_sources: set[str] = set()
     chapter_stats: dict[str, dict] = {}
+    appendix_tables: dict[str, int] = {}
     for desc in descriptors:
         page = _build_page(
             desc, manifest=manifest, site_dir=site_dir, stems=stems,
             quiz_data=quiz_data, animations=animations, references=references,
-            parts=parts, appendices=appendices, final=final, warnings=warnings)
+            parts=parts, appendices=appendices, final=final, warnings=warnings,
+            appendix_tables=appendix_tables)
         used_sources |= data.used_source_ids(page["html"])
         if page["kind"] == "chapter":
             match = CHAPTER_NUMBER_RE.search(desc["stem"])
