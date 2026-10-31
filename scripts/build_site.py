@@ -131,7 +131,7 @@ def write_reduce_variants(dst=None):
 # 标志性提示块：正文里以「**标签**：」开头的引用块，在**站点产物**里会被包成
 # 彩色卡片。这套粗体标签就是本教程的固定语汇（精髓 / 公式速查 / 通关打卡 /
 # 先修…），全站各出现几十次，是最该被一眼认出来的东西。
-# v3.65 起从「emoji + 标签」改为纯文本标签：emoji 是 AI 味的视觉签名，印刷端
+# v3.72 起从「emoji + 标签」改为纯文本标签：emoji 是 AI 味的视觉签名，印刷端
 # 本来就被 strip_emoji 剥掉，站点与印刷由此对齐；卡片颜色仍由 callout-* 类承担。
 CALLOUT_KINDS = {
     "场景": "scene",       # 章首生活化开场（场景卡 同族，见 test_book_scene 唯一性契约）
@@ -396,7 +396,7 @@ def wrap_part_hero(text, page_name):
 # 且只链到动画中心**的行（全站 107 处）包成 .demo-link 药丸（站点产物专用）。
 # 一行双链的 combo 行（`…](#demo107) · [5.108](#demo108)`）同样整行入药丸；
 # 只认「整行恰好由动画演示链接组成」：Falstad 交互链接、句中出现的链接一概不动。
-# v3.65 起行首的 🔗 前缀随全书去表情标签取消，药丸样式本身足以标识。
+# v3.72 起行首的 🔗 前缀随全书去表情标签取消，药丸样式本身足以标识。
 _DEMO_LINK = re.compile(
     r"^(\[动画演示[^\]]*\]\(p5-00-part5\.md#demo\d+\)"
     r"(?: · \[[^\]]*\]\(p5-00-part5\.md#demo\d+\))*"
@@ -1090,7 +1090,7 @@ Sitemap: https://aliyun-hutuji.donglicao.com/analog-circuit-roadmap/sitemap.xml
 FEEDBACK_FOOTER = """
 ---
 
-> ✍️ **参与共建**：发现错别字、公式错误或失效链接？[提一个纠错 Issue](https://github.com/zhuguang-ZFG/analog-circuit-roadmap/issues/new?template=content-fix.yml) ·
+> **参与共建**：发现错别字、公式错误或失效链接？[提一个纠错 Issue](https://github.com/zhuguang-ZFG/analog-circuit-roadmap/issues/new?template=content-fix.yml) ·
 > 想补充新主题、新动画或新资源？[提个建议](https://github.com/zhuguang-ZFG/analog-circuit-roadmap/issues/new?template=new-topic.yml) ·
 > 想直接动手改：[共建指南](CONTRIBUTING.md) · [共建者墙](CONTRIBUTORS.md)
 """
@@ -1367,7 +1367,7 @@ def render_gallery(items):
         '<div class="gal-bar">',
         '  <input id="gal-search" type="search" aria-label="搜索动画" placeholder="搜索：米勒 / LDO / 迟滞 / mosfet …">',
         "  " + "\n  ".join(chips),
-        '  <button class="gal-random" id="gal-random" type="button">🎲 随机一张</button>',
+        '  <button class="gal-random" id="gal-random" type="button">随机一张</button>',
         '  <span class="gal-tag" id="gal-count" role="status" aria-live="polite"></span>',
         "</div>",
         "",

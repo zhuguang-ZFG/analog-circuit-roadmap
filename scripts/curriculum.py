@@ -68,7 +68,7 @@ CHAPTER_META: dict[int, tuple[str, str, int]] = {
     18: ("p4-03-ch18.md", "L3", 5),
 }
 
-# 章首块的两种标志：难度（level）与白话（lead）。纯文本标签，无 emoji（v3.65）。
+# 章首块的两种标志：难度（level）与白话（lead）。纯文本标签，无 emoji（v3.72）。
 LEVEL_MARK = "> **难度**："
 LEAD_MARK = "> **白话**："
 SCENE_RE = re.compile(r"^> \*\*场景\*\*：(?:.+)$", re.M)
