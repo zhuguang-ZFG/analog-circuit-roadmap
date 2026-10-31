@@ -192,7 +192,7 @@ class SimulationTests(unittest.TestCase):
         result = self.results["rectifier.cir"]
         self.assertEqual([], result["problems"], result["log"])
         self.assertAlmostEqual(8.0, result["metrics"]["vavg"], delta=0.6)
-        self.assertAlmostEqual(0.7, result["metrics"]["vripple"], delta=0.3)
+        self.assertAlmostEqual(0.4, result["metrics"]["vripple"], delta=0.2)
         self.assertAlmostEqual(0.55, result["metrics"]["ipeak"], delta=0.35)
 
     def test_rectifier_data_is_written(self):
