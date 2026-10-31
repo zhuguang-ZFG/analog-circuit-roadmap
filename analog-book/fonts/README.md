@@ -7,17 +7,17 @@ data URI 内联进单文件 HTML，因此本目录不需要任何系统字体或
 
 | 文件 | 家族 | 字重 | 请求字符数 | 字节 | SHA-256 |
 | --- | --- | --- | --- | --- | --- |
-| `NotoSerifSC-Regular.woff2` | NotoSerifSC | 400 | 2007 | 341,040 | `8d840f63202cef68f5280618f901b1cee49784273df7da7e704d1802aa3e2522` |
-| `NotoSerifSC-Bold.woff2` | NotoSerifSC | 700 | 2007 | 351,768 | `dfb2d70769d0376e92786acc1de9546f66b0faacec82b680da52d67c489c951c` |
-| `NotoSansSC-Regular.woff2` | NotoSansSC | 400 | 2007 | 266,492 | `32fb6ddb6eb76cffff2aa844a87e58c2ac47995b65e7fbefcaf66a871ed79e88` |
-| `NotoSansSC-Bold.woff2` | NotoSansSC | 700 | 2007 | 272,736 | `ec4832523c05c8a9ba73d1f0ad96e8f46d52efed9f177d9f2567a67c07cfd1e1` |
+| `NotoSerifSC-Regular.woff2` | NotoSerifSC | 400 | 2027 | 345,008 | `1af7be179abeccf15d150e02c9bbee40fa2f3e10a5dc5e5de1cb52ea879f50f8` |
+| `NotoSerifSC-Bold.woff2` | NotoSerifSC | 700 | 2027 | 355,548 | `bc54adb9932daba4accd1edfedda8bb133fa58d0eeb341e4feb60c49e46ff5ee` |
+| `NotoSansSC-Regular.woff2` | NotoSansSC | 400 | 2027 | 269,272 | `92646174d56646205b49a8bc633b95fe32e07f20cc1a16669bb285af2aa4acb0` |
+| `NotoSansSC-Bold.woff2` | NotoSansSC | 700 | 2027 | 276,004 | `e7ada0bbab33b32cd1ad649f3cb8e7270150c5e42acdf73f5cf277c16f88d3c9` |
 | `JetBrainsMono-Regular.woff2` | JetBrainsMono | 400 | 95 | 15,844 | `94d9e25e7d4293923031470710ba1ff681e89421113fadd41555e8a4a4a066ce` |
 
 ## 印章字体
 
 | 文件 | 家族 | 字重 | 请求字符数 | 字节 | SHA-256 |
 | --- | --- | --- | --- | --- | --- |
-| `BookSans-Stamp.ttf` | NotoSansSC | 700 | 866 | 222,756 | `a9804719328e056413f2b7024b99f6d4a446de46872ec7af9265a2d4a8b548d2` |
+| `BookSans-Stamp.ttf` | NotoSansSC | 700 | 872 | 224,436 | `c9e82748baf9d451402901e992967f470fa595676578eee8624a619627312f40` |
 
 印章字体由 Noto Sans SC 在 wght=700 实例化后，子集到 ASCII、书名、
 前置页/篇/单元/附录/后记标题、章名与页脚固定词，用于页眉/页脚印章。

@@ -1,29 +1,31 @@
-/* 16K 内文样式：精密仪器视觉系统（藏青 / 琥珀 / 仪器青） */
+/* 16K 内文样式：手绘纸墨（象牙纸 / 佩恩灰墨 / 赭石标记）。
+   配色口径见 analog-book/HANDRAW-STYLE.md；版心与字号保持原样，
+   因为分页与 52 条审计基线是按这套字号定的。 */
 @page { size: 185mm 260mm; margin: 20mm 20mm 22mm; }
 @page :left { margin: 20mm 22mm 22mm 18mm; }
 @page :right { margin: 20mm 18mm 22mm 22mm; }
 
 :root {
-  --ink: #101828;
-  --navy: #14213d;
-  --navy-2: #22345c;
-  --amber: #b45309;
-  --amber-2: #d97706;
+  --ink: #16202b;
+  --navy: #1d2b38;
+  --navy-2: #2a3a48;
+  --amber: #a4630f;
+  --amber-2: #c08a45;
   --teal: #0f766e;
   --rust: #b42318;
   --indigo: #3730a3;
   --green: #166534;
   --lime: #4d7c0f;
   --muted: #52606d;
-  --rule: #d0d5dd;
-  --rule-soft: #e4e7ec;
-  --panel: #f8fafc;
+  --rule: #c9bb9d;
+  --rule-soft: #e0d3b8;
+  --panel: #f6eedb;
   --print-ink: var(--ink);
   --print-muted: var(--muted);
   --print-rule: var(--rule);
 }
 
-html, body { background: #fff !important; }
+html, body { background: #fffdf8 !important; }
 body {
   margin: 0; color: var(--ink);
   font-family: "Book Serif", "Noto Serif SC", "Songti SC", serif;
@@ -243,7 +245,7 @@ body {
 .book .body-page h2 {
   position: relative; margin: 0 0 4mm; padding-bottom: 2.6mm;
   font: 700 16.5pt/23pt "Book Sans", sans-serif;
-  color: var(--navy); border-bottom: 0.2mm solid var(--rule);
+  color: var(--navy); border-bottom: 0.25mm dashed var(--rule);
 }
 .book .body-page h2::after {
   content: ""; position: absolute; left: 0; bottom: -0.2mm;
@@ -296,6 +298,12 @@ body {
   background: linear-gradient(135deg, #fdf7ee 0%, #fffdf8 62%, #f3f8f7 100%);
 }
 .book .book-callout-scene p:not(.callout-label) {
+  font: 400 10.6pt/17.4pt "Book Serif", serif; color: #344054;
+}
+.book .book-callout-level { --accent: var(--muted); background: #f8f8f6; }
+.book .book-callout-level p:not(.callout-label) { font-size: 9pt; }
+.book .book-callout-lead { --accent: var(--teal); background: #f2f7f8; }
+.book .book-callout-lead p:not(.callout-label) {
   font: 400 10.6pt/17.4pt "Book Serif", serif; color: #344054;
 }
 

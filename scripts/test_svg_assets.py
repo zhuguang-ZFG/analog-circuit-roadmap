@@ -25,6 +25,8 @@ class SvgAssetTests(unittest.TestCase):
         scripts.mkdir()
         generator = scripts / "generate_svgs.py"
         shutil.copyfile(ROOT / "scripts" / "generate_svgs.py", generator)
+        # 生成器的手绘皮肤模块（调色板/纸纹/描边规则）与生成器同目录加载。
+        shutil.copyfile(ROOT / "scripts" / "handraw.py", scripts / "handraw.py")
         result = subprocess.run(
             [sys.executable, "-B", str(generator)], cwd=work,
             capture_output=True, text=True, encoding="utf-8", errors="replace",

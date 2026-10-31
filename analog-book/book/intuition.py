@@ -8,6 +8,10 @@ from .manifest import BookError
 
 SCENE_RE = re.compile(
     r'<aside class="book-callout book-callout-scene"[^>]*>.*?</aside>', re.S)
+# docs 侧每个章首已经有「🗣 白话」卡（scripts/curriculum.py 维护），
+# 它讲的正是 CHAPTER_LEADS 那句话。印刷时若再插一条 chapter-intuition，
+# 同一段白话会在同页出现两次。
+LEAD_CARD_RE = re.compile(r'<aside class="book-callout book-callout-lead"')
 
 CHAPTER_LEADS: dict[int, str] = {
     0: "先把电路想成水路：电压是水位差，电流是水流，电阻是管道变窄的地方。"
@@ -42,7 +46,12 @@ CHAPTER_LEADS: dict[int, str] = {
 
 
 def insert_lead(fragment: str, lead: str) -> str:
-    """导读放在场景卡之后；没有场景卡时退回标题之后。"""
+    """导读放在场景卡之后；没有场景卡时退回标题之后。
+
+    源文档已经带「白话」卡时原样返回：那张卡就是这条导读，插第二次只会重复。
+    """
+    if LEAD_CARD_RE.search(fragment):
+        return fragment
     scene = SCENE_RE.search(fragment)
     if scene is not None:
         return fragment[:scene.end()] + "\n" + lead + fragment[scene.end():]

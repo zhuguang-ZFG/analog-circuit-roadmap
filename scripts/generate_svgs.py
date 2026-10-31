@@ -10,48 +10,12 @@ import re
 
 import numpy as np
 
+import handraw
+
 OUT = os.path.join(os.path.dirname(__file__), '..', 'assets', 'svg')
 os.makedirs(OUT, exist_ok=True)
 
-DARK_CSS = """<style>
-text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;}
-.page-bg{fill:url(#bgL)}
-.page-vig{opacity:1}
-.page-hdr{fill:url(#hdr)}
-line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
-rect[fill="#f8fafc"],rect[fill="#eff6ff"],rect[fill="#ecfdf5"],rect[fill="#fffbeb"],rect[fill="#fef2f2"],rect[fill="#dbeafe"]{filter:url(#soft)}
-/* 浅色下的「弱化色」文字偏淡（#94a3b8 在白底只有 2.6:1）→ 只压暗文字，不动同色的线/粒子 */
-@media (prefers-color-scheme: light){
-text[fill="#94a3b8"],tspan[fill="#94a3b8"]{fill:#64748b}
-text[fill="#0ea5e9"],tspan[fill="#0ea5e9"]{fill:#0284c7}
-text[fill="#f59e0b"],tspan[fill="#f59e0b"]{fill:#b45309}
-}
-@media (prefers-color-scheme: dark){
-.page-bg{fill:url(#bgD)}
-.page-vig{opacity:0.45}
-.page-hdr{fill:url(#hdrD)}
-[fill="#f8fafc"]{fill:#0f172a}
-[fill="#f1f5f9"]{fill:#1e293b}[fill="#e0f2fe"]{fill:#082f49}[fill="#fff7ed"]{fill:#431407}
-[fill="#d1fae5"]{fill:#022c22}[fill="#fee2e2"]{fill:#450a0a}
-[fill="#1e293b"]{fill:#f1f5f9}[stroke="#1e293b"]{stroke:#f1f5f9}
-[fill="#334155"]{fill:#e2e8f0}[stroke="#334155"]{stroke:#e2e8f0}
-[fill="#475569"]{fill:#cbd5e1}[stroke="#475569"]{stroke:#cbd5e1}
-[fill="#64748b"]{fill:#94a3b8}[stroke="#64748b"]{stroke:#94a3b8}
-[fill="#dbeafe"]{fill:#1e3a8a}[fill="#eff6ff"]{fill:#172554}
-[fill="#1d4ed8"]{fill:#60a5fa}[fill="#2563eb"]{fill:#60a5fa}[fill="#3b82f6"]{fill:#60a5fa}
-[fill="#ecfdf5"]{fill:#022c22}[fill="#059669"]{fill:#34d399}[fill="#065f46"]{fill:#6ee7b7}[fill="#10b981"]{fill:#34d399}
-[fill="#34d399"]{fill:#065f46}
-[fill="#fffbeb"]{fill:#451a03}[fill="#b45309"]{fill:#fcd34d}[fill="#92400e"]{fill:#fcd34d}[fill="#f59e0b"]{fill:#fbbf24}
-[fill="#fef2f2"]{fill:#450a0a}[fill="#dc2626"]{fill:#f87171}[fill="#991b1b"]{fill:#fca5a5}
-[fill="#cbd5e1"]{fill:#334155}[stroke="#cbd5e1"]{stroke:#475569}
-[fill="#ffffff"]{fill:#0f172a}[fill="#94a3b8"]{fill:#8497ad}[stroke="#94a3b8"]{stroke:#64748b}
-[fill="#7c3aed"]{fill:#a78bfa}[stroke="#7c3aed"]{stroke:#a78bfa}
-[fill="#b91c1c"]{fill:#f87171}[stroke="#b91c1c"]{stroke:#f87171}
-[fill="#0369a1"]{fill:#7dd3fc}[stroke="#0369a1"]{stroke:#7dd3fc}
-[fill="#0284c7"]{fill:#7dd3fc}[stroke="#0284c7"]{stroke:#7dd3fc}
-text[fill="#fff"]{fill:#0f172a}
-}
-</style>"""
+DARK_CSS = handraw.token_css()
 
 # ⚠️ 「减弱动效」的规则**故意不写在这里**。
 #
@@ -71,6 +35,9 @@ text[fill="#fff"]{fill:#0f172a}
 # caption() 追加，save() 落盘后清空。**svg_open() 故意不清空**——见那里的注释。
 _BEATS = []
 
+# 当前这张图的 (title, w)——save() 用它给标题配手写体与马克笔划线。
+_CURRENT = ('', 800)
+
 
 # ======================= 模板与元件库 =======================
 
@@ -80,42 +47,17 @@ def svg_open(title, w=800, h=460):
     # thinking-toolbox / transformer）是先拼字幕、后调 svg_open 的，
     # 在 svg_open 里清零会把它们的节拍从 <desc> 里抹掉。
     # 清空只放在 save() 落盘之后——每张图恰好 save 一次，因此不会串图。
+    #
+    # 视觉皮肤（纸墨调色板、纸纹、手写标题）全部来自 handraw.py：这里只保留
+    # 结构骨架。印刷管线靠 id="bgL" + .page-* 类名识别旧模板，别改这些标记。
+    global _CURRENT
+    _CURRENT = (title, w)
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}" role="img" aria-labelledby="ttl">
 <title id="ttl">{title}</title>
 <desc>{title}</desc>
-<defs>
-<linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
-<stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef2f8"/>
-</linearGradient>
-<linearGradient id="bgD" x1="0" y1="0" x2="0" y2="1">
-<stop offset="0" stop-color="#0a1020"/><stop offset="1" stop-color="#141d30"/>
-</linearGradient>
-<radialGradient id="vig" cx="0.5" cy="0.44" r="0.78">
-<stop offset="0.55" stop-color="#0f172a" stop-opacity="0"/><stop offset="1" stop-color="#0f172a" stop-opacity="0.065"/>
-</radialGradient>
-<linearGradient id="hdr" x1="0" y1="0" x2="0" y2="1">
-<stop offset="0" stop-color="#2563eb" stop-opacity="0.10"/>
-<stop offset="0.55" stop-color="#2563eb" stop-opacity="0.030"/>
-<stop offset="1" stop-color="#2563eb" stop-opacity="0"/>
-</linearGradient>
-<linearGradient id="hdrD" x1="0" y1="0" x2="0" y2="1">
-<stop offset="0" stop-color="#60a5fa" stop-opacity="0.13"/>
-<stop offset="0.55" stop-color="#60a5fa" stop-opacity="0.040"/>
-<stop offset="1" stop-color="#60a5fa" stop-opacity="0"/>
-</linearGradient>
-<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
-<circle cx="1.5" cy="1.5" r="1.05" fill="#cbd5e1"/>
-</pattern>
-<filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
-<feDropShadow dx="0" dy="1.6" stdDeviation="2.4" flood-color="#0f172a" flood-opacity="0.17"/>
-</filter>
-<filter id="pglow" x="-70%" y="-70%" width="240%" height="240%">
-<feGaussianBlur stdDeviation="2.1" result="b"/>
-<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-</filter>
-</defs>
+{handraw.svg_defs(w, h)}
 <rect class="page-bg" width="{w}" height="{h}" fill="url(#bgL)"/>
-<rect width="{w}" height="{h}" fill="url(#dots)" opacity="0.40"/>
+<rect class="page-grain" width="{w}" height="{h}" fill="url(#dots)"/>
 <rect class="page-vig" width="{w}" height="{h}" fill="url(#vig)"/>
 <rect class="page-hdr" width="{w}" height="72" fill="url(#hdr)"/>
 {DARK_CSS}
@@ -357,6 +299,8 @@ def sq_out(x0, x1, yhi, ylo, cycles=2):
 
 def save(name, svg):
     global _BEATS
+    title, width = _CURRENT
+    svg = handraw.apply(svg, width, title)
     if _BEATS:
         # 字幕文案在生成器里已经是 XML 转义过的（例如 `距离&lt;3mm`），这里不能再
         # 转义一次，否则 <desc> 会读成字面的 "&lt;"。
@@ -4582,88 +4526,91 @@ def make_noise_budget():
     def fx(f):
         return X0 + np.log10(f/10)/5.0*(X1-X0)
     def ny(db):
-        return Y0 + (25-db)/85*(Y1-Y0)
+        return Y0 + (25-db)/30*(Y1-Y0)
     fig_fs = np.logspace(1, 6, 200)
-    svg = svg_open('噪声：消灭不了的三种税，和唯一能谈判的顺序', h=620)
+    thermal_uv = np.sqrt(4 * 1.380649e-23 * 300 * 1e3 * 1e6) * 1e6
+    output_mv = thermal_uv * 1000 / 1000
+    svg = svg_open('噪声账本：先把每一笔算到同一页', h=640)
     svg += f'''
-<text x="185" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">电子热运动收的税，谁都逃不掉</text>
+<text x="185" y="55" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">三笔物理税，先分清来源</text>
 <text x="40" y="86" font-size="11.5" font-weight="bold" fill="#2563eb">热噪声：V_n = √(4kTRB)</text>
-<text x="40" y="108" font-size="11" fill="#475569">白噪声，全频段均匀</text>
-<text x="40" y="126" font-size="11" fill="#475569">只看 R、T、B 三件事</text>
-<text x="40" y="156" font-size="11.5" font-weight="bold" fill="#dc2626">1/f 噪声：低频大高频小</text>
-<text x="40" y="178" font-size="11" fill="#475569">「嘶——」声的主力</text>
-<text x="40" y="196" font-size="11" fill="#475569">MOSFET 比 BJT 大一个量级</text>
+<text x="40" y="108" font-size="11" fill="#475569">在适用频段近似白噪声</text>
+<text x="40" y="126" font-size="11" fill="#475569">高阻读电压；B 是等效噪声带宽</text>
+<text x="40" y="156" font-size="11.5" font-weight="bold" fill="#dc2626">1/f 噪声：PSD ∝ 1/f</text>
+<text x="40" y="178" font-size="11" fill="#475569">ASD ∝ 1/√f；低频起伏，不靠听感定性</text>
+<text x="40" y="196" font-size="11" fill="#475569">宽带「嘶声」常见白噪声，先看频谱</text>
 <text x="40" y="226" font-size="11.5" font-weight="bold" fill="#b45309">散粒噪声：I_n = √(2qIB)</text>
-<text x="40" y="248" font-size="11" fill="#475569">PN 结的粒子性</text>
-<text x="40" y="266" font-size="11" fill="#475569">只随 √I，不随 I</text>
-<rect x="36" y="290" width="292" height="150" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,4"/>
-<text x="50" y="314" font-size="11.5" font-weight="bold" fill="#059669">🧮 算一笔：麦克风前级</text>
-<text x="50" y="338" font-size="11" fill="#475569">源阻 1kΩ · 带宽 1MHz · 室温</text>
-<text x="50" y="360" font-size="11" fill="#475569">V_n = √(4kTRB) ≈ 4.1µV</text>
-<text x="50" y="382" font-size="11" fill="#475569">前级增益 ×1000 →</text>
-<text x="50" y="406" font-size="12.5" font-weight="bold" fill="#dc2626">输出 4.1mV 噪声</text>
-<text x="50" y="428" font-size="11" font-weight="bold" fill="#b91c1c">——已经不是背景，是对手</text>
+<text x="40" y="248" font-size="11" fill="#475569">载流子离散过结；泊松模型</text>
+<text x="40" y="266" font-size="11" fill="#475569">降偏置还要核对增益、带宽与失真</text>
+<rect x="36" y="290" width="292" height="154" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,4"/>
+<text x="50" y="312" font-size="11.5" font-weight="bold" fill="#059669">算一笔：仅源电阻这一行</text>
+<text x="50" y="334" font-size="11" fill="#475569">1kΩ · 300K · 高阻测量</text>
+<text x="50" y="355" font-size="11" fill="#475569">B = 1MHz（等效噪声带宽）</text>
+<text x="50" y="376" font-size="11" fill="#475569">V_n = {thermal_uv:.3f}µVrms ≈ {thermal_uv:.1f}µVrms</text>
+<text x="50" y="397" font-size="10.5" fill="#475569">平坦增益 ×1000；忽略放大器噪声</text>
+<text x="50" y="428" font-size="12.5" font-weight="bold" fill="#dc2626">输出 ≈ {output_mv:.1f}mVrms</text>
 <line x1="{X0}" y1="{Y1}" x2="{X1}" y2="{Y1}" stroke="#64748b" stroke-width="1.6"/>
 <line x1="{X0}" y1="{Y0}" x2="{X0}" y2="{Y1}" stroke="#64748b" stroke-width="1.6"/>
 <text x="{X1}" y="{Y1+38}" text-anchor="end" font-size="11" fill="#475569">频率 →</text>
-<text x="{X0-6}" y="{ny(0)+4:.0f}" text-anchor="end" font-size="10.5" fill="#475569">0dB</text>
-<text x="{X0-6}" y="{ny(-20)+4:.0f}" text-anchor="end" font-size="10.5" fill="#475569">−20</text>
-<text x="{X0-6}" y="{ny(-40)+4:.0f}" text-anchor="end" font-size="10.5" fill="#475569">−40</text>
-<text x="{fx(100):.0f}" y="{Y1+22}" text-anchor="middle" font-size="10" fill="#475569">100Hz</text>
-<text x="{fx(1e4):.0f}" y="{Y1+22}" text-anchor="middle" font-size="10" fill="#475569">10kHz</text>
-<text x="{fx(1e6):.0f}" y="{Y1+22}" text-anchor="middle" font-size="10" fill="#475569">1MHz</text>
-<text x="580" y="{Y0-8}" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#334155">噪声谱：1/f 拐角决定「嘶」的低频端</text>
+<text x="{X0-6}" y="{ny(0)+4:.3f}" text-anchor="end" font-size="10.5" fill="#475569">0dB</text>
+<text x="{X0-6}" y="{ny(10)+4:.3f}" text-anchor="end" font-size="10.5" fill="#475569">10dB</text>
+<text x="{X0-6}" y="{ny(20)+4:.3f}" text-anchor="end" font-size="10.5" fill="#475569">20dB</text>
+<text x="{fx(10):.3f}" y="{Y1+22}" text-anchor="middle" font-size="10" fill="#475569">10Hz</text>
+<text x="{fx(100):.3f}" y="{Y1+22}" text-anchor="middle" font-size="10" fill="#475569">100Hz</text>
+<text x="{fx(1e4):.3f}" y="{Y1+22}" text-anchor="middle" font-size="10" fill="#475569">10kHz</text>
+<text x="{fx(1e6):.3f}" y="{Y1+22}" text-anchor="middle" font-size="10" fill="#475569">1MHz</text>
+<text x="580" y="55" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#334155">ASD 幅度谱：白噪声 + 1/f</text>
+<text x="580" y="78" text-anchor="middle" font-size="11" fill="#475569">纵轴 20log₁₀(e_n/e₀) · 横轴 log f</text>
+<text x="580" y="101" text-anchor="middle" font-size="10.5" fill="#475569">BJT / MOSFET 拐角仅示意，不是普遍规格</text>
 '''
-    # 三条谱线（归一化到 0dB@10Hz 的相对形状，仅示范趋势）
-    def rel(f, corner, floor_db=0.0):
-        # 画的是噪声密度 ASD(V/√Hz) 对 log f：
-        #   1/f 噪声 → PSD ∝ 1/f → ASD ∝ 1/f  → −20dB/dec
-        #   白噪声   → ASD 为常数（平坦地板）→ 0dB/dec
-        flicker = 20*np.log10(corner/f)          # 1/f，−20dB/dec
-        white = floor_db                          # 白噪声：平的
-        return 10*np.log10(10**(flicker/10) + 10**(white/10))
+    # 两条总 ASD 谱共用白噪声地板 e₀，仅示意不同 fc，不代表器件优劣。
+    def rel(f, corner):
+        # 互不相关的单边 PSD 相加：S/e₀² = 1 + fc/f。
+        # ASD/e₀ = sqrt(1 + fc/f)，20log10(ASD/e₀) = 10log10(S/e₀²)。
+        # 纯 flicker 的 PSD ∝ 1/f、ASD ∝ 1/sqrt(f)，均为 −10dB/dec。
+        white_psd = 1.0
+        flicker_psd = corner / f
+        return 10 * np.log10(white_psd + flicker_psd)
     dpaths = {}
-    for corner, color, name in ((100.0, '#059669', 'BJT'), (1000.0, '#dc2626', 'MOSFET')):
-        pts = []
-        for f in fig_fs:
-            db = rel(f, corner, 0.0)     # 轴已留 +25dB 余量，不再钳到 0
-            pts.append(f"{fx(f):.0f},{ny(db):.0f}")
+    for corner, color in ((100.0, '#059669'), (1000.0, '#dc2626')):
+        pts = [f"{fx(f):.3f},{ny(rel(f, corner)):.3f}" for f in fig_fs]
         dpaths[corner] = "M" + " L".join(pts)
         svg += (f'<path d="{dpaths[corner]}" fill="none" stroke="{color}" stroke-width="2.4"/>')
-    svg += (f'<line x1="{fx(1e4):.0f}" y1="{ny(0):.0f}" x2="{fx(1e6):.0f}" y2="{ny(0):.0f}" '
-            f'stroke="#64748b" stroke-width="2" stroke-dasharray="6,4"/>')
+    svg += (f'<line x1="{X0}" y1="{ny(0):.3f}" x2="{X1}" y2="{ny(0):.3f}" '
+            f'stroke="#64748b" stroke-width="1.2" stroke-dasharray="6,4"/>')
+    corner_y = ny(rel(100.0, 100.0))
     svg += f'''
-<circle cx="{fx(100):.0f}" cy="{ny(3):.0f}" r="5" fill="#059669"/>
-<circle cx="{fx(1000):.0f}" cy="{ny(3):.0f}" r="5" fill="#dc2626"/>
-<text x="{fx(100):.0f}" y="{ny(3)-16:.0f}" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#059669">BJT 拐角 100Hz</text>
-<text x="{fx(1000):.0f}" y="{ny(3)+22:.0f}" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#dc2626">MOSFET 拐角 1kHz</text>
-<text x="{fx(3e4):.0f}" y="{ny(0)-8:.0f}" font-size="10.5" fill="#475569">白噪声地板（平坦）</text>
-<text x="{fx(12):.0f}" y="{ny(22)+16:.0f}" font-size="10.5" fill="#475569">1/f 段：−20dB/dec</text>
+<circle cx="{fx(100):.3f}" cy="{corner_y:.3f}" r="5" fill="#059669"/>
+<circle cx="{fx(1000):.3f}" cy="{corner_y:.3f}" r="5" fill="#dc2626"/>
+<text x="{fx(100):.3f}" y="{corner_y-24:.3f}" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#059669">BJT 示例 100Hz</text>
+<text x="{fx(1000):.3f}" y="{corner_y+55:.3f}" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#dc2626">MOSFET 示例 1kHz</text>
+<text x="{X1-4}" y="{ny(0)-20:.3f}" text-anchor="end" font-size="10.5" fill="#475569">白噪声地板 e₀（0dB）</text>
+<text x="{X1-4}" y="155" text-anchor="end" font-size="10.5" fill="#475569">f ≪ f_c：渐近 −10dB/dec</text>
 <circle r="5" fill="#dc2626">
-<animateMotion dur="{DN}s" repeatCount="indefinite" path="M{fx(10):.0f},{ny(20):.0f} L{fx(1e6):.0f},{ny(-40):.0f}" keyPoints="0;1" keyTimes="0;1"/></circle>
-+<circle r="5" fill="#059669"><animateMotion dur="{DN}s" begin="-0.6s" repeatCount="indefinite" path="{dpaths[100.0]}" keyPoints="0;1" keyTimes="0;1"/></circle>
-+<circle cx="{fx(100):.0f}" cy="{ny(3):.0f}" r="5" fill="none" stroke="#059669" stroke-width="2.4">
-+<animate attributeName="r" values="5;13;5" dur="1.8s" repeatCount="indefinite"/>
-+<animate attributeName="opacity" values="0.95;0.15;0.95" dur="1.8s" repeatCount="indefinite"/></circle>
-+<circle cx="{fx(1000):.0f}" cy="{ny(3):.0f}" r="5" fill="none" stroke="#dc2626" stroke-width="2.4">
-+<animate attributeName="r" values="5;13;5" dur="1.8s" begin="-0.9s" repeatCount="indefinite"/>
-+<animate attributeName="opacity" values="0.95;0.15;0.95" dur="1.8s" begin="-0.9s" repeatCount="indefinite"/></circle>
-+{pulse(40, 292, 284, 60, '#059669', 2.0, 10)}
-+<circle r="5" fill="#f59e0b"><animateMotion dur="{DN}s" begin="-0.4s" repeatCount="indefinite" path="M120,372 L210,372"/></circle>
-<text x="400" y="474" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#b45309">降噪的正确顺序：先压带宽 → 再降源阻 → 最后才换贵管子</text>
-<text x="400" y="496" text-anchor="middle" font-size="11" fill="#475569">后级的噪声会被前级增益「除回去」：整机噪声几乎只看第一级（Friis）</text>
-<text x="400" y="518" text-anchor="middle" font-size="11" fill="#475569">方向反了 = 先买低噪声运放、不管带宽源阻 → 钱花两倍，噪声只降一半</text>
+<animateMotion dur="{DN}s" repeatCount="indefinite" path="{dpaths[1000.0]}"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="{DN}s" begin="-0.6s" repeatCount="indefinite" path="{dpaths[100.0]}"/></circle>
+<circle cx="{fx(100):.3f}" cy="{corner_y:.3f}" r="5" fill="none" stroke="#059669" stroke-width="2.4">
+<animate attributeName="r" values="5;13;5" dur="1.8s" repeatCount="indefinite"/>
+<animate attributeName="opacity" values="0.95;0.15;0.95" dur="1.8s" repeatCount="indefinite"/></circle>
+<circle cx="{fx(1000):.3f}" cy="{corner_y:.3f}" r="5" fill="none" stroke="#dc2626" stroke-width="2.4">
+<animate attributeName="r" values="5;13;5" dur="1.8s" begin="-0.9s" repeatCount="indefinite"/>
+<animate attributeName="opacity" values="0.95;0.15;0.95" dur="1.8s" begin="-0.9s" repeatCount="indefinite"/></circle>
+{pulse(40, 316, 284, 67, '#059669', 2.0, 10)}
+<text x="580" y="459" text-anchor="middle" font-size="11" fill="#475569">e_n = e₀√(1 + f_c/f)；f_c 处 +3.01dB</text>
+<text x="400" y="486" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#b45309">噪声账本：同参考点、同带宽，互不相关各项才做 RSS</text>
+<text x="400" y="508" text-anchor="middle" font-size="11" fill="#475569">保住信号带宽和源负载条件，再核对偏置、稳定性与失真</text>
+<text x="400" y="530" text-anchor="middle" font-size="11" fill="#475569">前级增益足够且不超载，才可能压低后级折算贡献；不是只看第一级</text>
 '''
-    svg += caption("① 白噪声只随 √B 和 √R 增长——所以带宽是性价比最高的旋钮", "#2563eb", DN,
-                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=562)
-    svg += caption("② 1/f 靠「换器件」解决：低频端要安静，BJT 的拐角比 MOSFET 低一个量级", "#059669", DN,
-                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=562)
-    svg += caption("③ 散粒噪声只跟电流走 √I——大电流工作点不是噪声问题，是功耗问题", "#b45309", DN,
-                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=562)
-    svg += caption("④ 降温也是降噪：射电望远镜用液氦泡放大器，不是玄学", "#7c3aed", DN,
-                   "0;0;1;1", "0;0.85;0.9;1", y=562)
-    svg += note_box("1kΩ·1MHz·300K → 4.1µV；×1000 后 4.1mV —— 噪声是乘法游戏的必然结果，先算账再选管", 600, DN,
-                    "0;0.9;0.94;1", w=750)
+    svg += caption("① 一阶低通 + 白噪声：B = (π/2)f_H；先保住信号，再谈滤波", "#2563eb", DN,
+                   "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=568, size=13)
+    svg += caption("② 低频看实测谱和源阻抗；BJT / MOS 不能只凭类别排座次", "#059669", DN,
+                   "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=568, size=13)
+    svg += caption("③ 散粒电流噪声随 √I；偏置还会改跨导，必须重算整本账", "#b45309", DN,
+                   "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=568, size=13)
+    svg += caption("④ 同温、同等效阻值、同测量条件：拆成多只电阻不减热噪声", "#7c3aed", DN,
+                   "0;0;1;1", "0;0.85;0.9;1", y=568, size=13)
+    svg += note_box("四个等量、互不相关项 → 总 RMS 为单项 2 倍；只有一项明显占优，才先抓它", 614, DN,
+                    "0;0.9;0.94;1", w=750, size=12)
     save('noise-budget.svg', svg + '</svg>')
 
 
@@ -7071,7 +7018,7 @@ def waveform_cursor(dur, span, series, phases, x0, x1, y0, y1):
     for color, samples in series:
         times = ';'.join(f'{t / span:.9f}' for t, _ in samples)
         values = ';'.join(f'{y:.3f}' for _, y in samples)
-        svg += f'''<circle cx="0" cy="{samples[0][1]:.3f}" r="4.2" fill="{color}">
+        svg += f'''<circle class="cursor-dot" cx="0" cy="{samples[0][1]:.3f}" r="4.2" fill="{color}">
 <animate attributeName="cy" values="{values}" keyTimes="{times}" calcMode="linear" dur="{dur}s" repeatCount="indefinite"/>
 </circle>'''
     svg += '</g>'

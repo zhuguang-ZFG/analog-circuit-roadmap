@@ -73,7 +73,7 @@ class LearningInteractionTests(unittest.TestCase):
                 expect(stage).to_have_attribute("aria-pressed", "true")
                 if lesson == "mosfet":
                     # At 490ns (7/10 of 700ns), VGS is on its plateau and VDS falls.
-                    points = self.page.locator("object").evaluate("el => {const s=el.contentDocument.documentElement;return [...s.querySelectorAll('circle[r=\"4.2\"]')].filter(e=>e.getAttribute('fill')==='#2563eb').map(e=>{const b=e.getBBox(),p=s.createSVGPoint();p.x=b.x+b.width/2;p.y=b.y+b.height/2;const v=p.matrixTransform(s.getCTM().inverse().multiply(e.getCTM()));return {x:v.x,y:v.y};});}")
+                    points = self.page.locator("object").evaluate("el => {const s=el.contentDocument.documentElement;return [...s.querySelectorAll('circle.cursor-dot')].map(e=>{const b=e.getBBox(),p=s.createSVGPoint();p.x=b.x+b.width/2;p.y=b.y+b.height/2;const v=p.matrixTransform(s.getCTM().inverse().multiply(e.getCTM()));return {x:v.x,y:v.y};});}")
                     self.assertTrue(any(abs(p["x"] - 559) < 1 and abs(p["y"] - 351.56) < 1 for p in points), points)
         self.assertEqual([], self.errors)
 

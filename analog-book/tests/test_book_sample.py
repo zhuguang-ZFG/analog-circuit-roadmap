@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """16K 样张必须证明版心、镜像边距回退与十类版式都不溢出。"""
+import re
 import sys
 import unittest
 from pathlib import Path
@@ -18,6 +19,21 @@ try:
     from playwright.sync_api import sync_playwright
 except ImportError:  # pragma: no cover
     sync_playwright = None
+
+
+def _channel(value: int) -> float:
+    c = value / 255
+    return c / 12.92 if c <= 0.04045 else ((c + 0.055) / 1.055) ** 2.4
+
+
+def contrast(fg: str, bg: str) -> float:
+    """WCAG 2.x 相对亮度对比度。"""
+    def luminance(hex_color: str) -> float:
+        r, g, b = (int(hex_color[i:i + 2], 16) for i in (1, 3, 5))
+        return (0.2126 * _channel(r) + 0.7152 * _channel(g)
+                + 0.0722 * _channel(b))
+    high, low = sorted((luminance(fg), luminance(bg)), reverse=True)
+    return (high + 0.05) / (low + 0.05)
 
 
 @unittest.skipIf(fitz is None or sync_playwright is None,
@@ -87,12 +103,20 @@ class SampleTests(unittest.TestCase):
             css,
             r"\.book-toc \.toc-row a\s*\{[^}]*grid-template-columns:\s*auto\s+minmax\([^)]*\)\s+auto")
 
-    def test_print_css_carries_the_instrument_visual_system(self):
+    def test_print_css_carries_the_paper_ink_visual_system(self):
         css = (config.STYLES_DIR / "print.css").read_text(encoding="utf-8")
-        for token in ("--navy: #14213d", "--amber: #b45309",
-                      "--teal: #0f766e", "--rust: #b42318",
-                      "--panel: #f8fafc"):
-            self.assertIn(token, css)
+        # 纸墨口径：断言的不再是某几个十六进制值，而是「纸底与三档墨的
+        # 对比度下限」——换配色可以，换到看不清不行。
+        paper = re.search(r"html,\s*body\s*\{[^}]*background:\s*(#[0-9a-f]{6})",
+                          css).group(1)
+        palette = dict(re.findall(r"(--[a-z-]+):\s*(#[0-9a-f]{6});", css))
+        for token in ("--ink", "--navy", "--amber", "--rule", "--panel"):
+            self.assertIn(token, palette)
+        for token, floor in (("--ink", 12.0), ("--muted", 4.5),
+                             ("--amber", 4.5)):
+            self.assertGreaterEqual(
+                contrast(palette[token], paper), floor,
+                f"{token} 在纸底 {paper} 上对比度不足")
         for selector in (".runline", ".chapter-tag", ".opener-hero",
                          ".opener-art", ".stat-strip", ".chapter-plan",
                          ".equation-strip", ".figure-panel", ".corner",

@@ -80,14 +80,22 @@ def measured_contrast(page, selector):
     return background, glyph, contrast(background, glyph)
 
 
-def ink_fraction(page, selector, threshold=190):
-    """元素区域里「接近白色」的像素占比 —— 用来分辨「描边图形」与「实心色块」。"""
+def ink_fraction(page, selector, distance=48):
+    """元素区域里「与底色不同」的像素占比 —— 分辨「描边图形」与「实心色块」。
+
+    早期版本数的是「接近白色」的像素，前提是顶栏为深色底、标识画白线；
+    换纸色顶栏后纸底本身就接近白色，量到 0.69 全是背景。改成先取众数色当
+    底色，再数偏离它的像素：描边圈约 0.20，实心盘约 0.53，门槛 0.35 仍居中。
+    """
     box = page.eval_on_selector(selector, "e => e.getBoundingClientRect().toJSON()")
     shot = page.screenshot(clip={"x": box["x"], "y": box["y"],
                                  "width": box["width"], "height": box["height"]})
     pixels = list(Image.open(io.BytesIO(shot)).convert("RGB").get_flattened_data())
-    white = sum(1 for pixel in pixels if min(pixel) > threshold)
-    return white / max(1, len(pixels))
+    background = Counter(pixels).most_common(1)[0][0]
+    ink = sum(1 for pixel in pixels
+              if sum((pixel[i] - background[i]) ** 2 for i in range(3))
+              > distance ** 2)
+    return ink / max(1, len(pixels))
 
 
 class FirstScreenTests(unittest.TestCase):
@@ -374,7 +382,7 @@ class FirstScreenTests(unittest.TestCase):
                 ink = ink_fraction(page, ".md-header__button.md-logo svg")
                 self.assertLess(
                     ink, LOGO_MAX_INK,
-                    f"{scheme} 主题下顶栏标识有 {ink:.3f} 的像素是白的（上限 {LOGO_MAX_INK}）——"
+                    f"{scheme} 主题下顶栏标识有 {ink:.3f} 的像素偏离底色（上限 {LOGO_MAX_INK}）——"
                     "多半是 fill=\"none\" 被挪到根 <svg> 上、又被 Material 的 "
                     "fill:currentcolor 覆盖了，圈糊成了实心盘")
 

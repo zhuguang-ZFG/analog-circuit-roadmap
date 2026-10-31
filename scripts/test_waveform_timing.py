@@ -10,13 +10,17 @@ import unittest
 
 from playwright.sync_api import sync_playwright
 
+import handraw
 
 ASSETS = Path(__file__).resolve().parents[1] / "assets" / "svg"
+# 波形识别色取自手绘皮肤 token：换调色板时这里自动跟随，
+# 但「两条曲线颜色必须不同、各自跟随电流/控制量」的断言一字未改。
+SIGNAL = handraw.LIGHT["blue"]
 DURATION = 12
 CASES = {
-    "analog-switch-beats": (20, [8], "#7c3aed"),
-    "ldo-transient-beats": (50, [5, 10, 30], "#b45309"),
-    "555-astable-beats": (1012, [541], "#dc2626"),
+    "analog-switch-beats": (20, [8], handraw.LIGHT["purple"]),
+    "ldo-transient-beats": (50, [5, 10, 30], handraw.LIGHT["amber"]),
+    "555-astable-beats": (1012, [541], handraw.LIGHT["red"]),
 }
 
 FOUR_BEATS = {
@@ -95,9 +99,9 @@ class WaveformTimingTests(unittest.TestCase):
             with self.subTest(diagram=name, seconds=frame["time"]):
                 self.assertEqual(len(frame["points"]), 2)
                 points = {p["color"]: p for p in frame["points"]}
-                self.assertEqual(set(points), {"#2563eb", control_color})
+                self.assertEqual(set(points), {SIGNAL, control_color})
                 voltage_y, control_y = expected_y(name, time)
-                for color, y in [("#2563eb", voltage_y), (control_color, control_y)]:
+                for color, y in [(SIGNAL, voltage_y), (control_color, control_y)]:
                     self.assertAlmostEqual(points[color]["x"], 80 + time / span * 680,
                                            delta=0.6, msg="marker must follow elapsed time")
                     self.assertAlmostEqual(points[color]["y"], y, delta=0.75,

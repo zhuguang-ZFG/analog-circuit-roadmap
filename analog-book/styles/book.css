@@ -424,6 +424,10 @@ html, body {
 .book-callout-scene .callout-label { color: #b45309; }
 .book-callout-why { border-left-color: #4d7c0f; background: #f6f8ef; }
 .book-callout-why .callout-label { color: #4d7c0f; }
+.book-callout-level { border-left-color: #6b7280; background: #f8f8f6; }
+.book-callout-level .callout-label { color: #6b7280; }
+.book-callout-lead { border-left-color: #2f7f96; background: #f2f7f8; }
+.book-callout-lead .callout-label { color: #2f7f96; }
 .callout-label { font-weight: 700; font-size: .8em; letter-spacing: .08em; }
 .book-reveal { border-left: 3px solid var(--md-default-fg-color--lighter); padding: .3rem 1rem; margin: 1rem 0; }
 .book-reveal-title { font-weight: 700; font-size: .9em; margin: 0 0 .4rem; }

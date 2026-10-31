@@ -146,6 +146,8 @@ CALLOUT_KINDS = {
     "📌": "pin",      # 记号
     "🎬": "demo",     # 动画
     "🎭": "scene",    # 场景：章首生活化开场
+    "🎚": "level",    # 难度：章首分级（L0–L3）+ 精读时长
+    "🗣": "lead",     # 白话：一句话导读写给第一次接触的人
     "⚙️": "why",      # 为什么：机制卡，把「现象 → 原因 → 判据」讲透
     "🔗": "link",     # 相关链接
 }
@@ -1209,6 +1211,7 @@ extra_css:
   - stylesheets/learning.css
   - stylesheets/reading.css
   - stylesheets/diag.css
+  - stylesheets/handraw.css
 
 extra_javascript:
   - javascripts/mathjax.js
@@ -1569,6 +1572,7 @@ def main():
     shutil.copyfile(media / "diag.js", OUT / "javascripts/diag.js")
     shutil.copyfile(media / "calc.js", OUT / "javascripts/calc.js")
     shutil.copyfile(media / "diag.css", OUT / "stylesheets/diag.css")
+    shutil.copyfile(media / "handraw.css", OUT / "stylesheets/handraw.css")
     catalog = json.dumps(learning_catalog(chapters), ensure_ascii=False).replace('<', '\\u003c')
     (OUT / 'javascripts/learning-catalog.js').write_text(
         'window.ANALOG_LEARNING_CATALOG = ' + catalog + ';\n', encoding='utf-8', newline='\n')
