@@ -186,9 +186,11 @@
   see_also: []
 - term: 相位裕度
   english: phase margin
-  primary: page-p2-03-ch13
+  primary: page-p2-01-ch11
   anchors:
-  - page-p2-03-ch13
+  - page-p2-01-ch11
+  - page-p2-02-ch12
+  - page-p4-01-ch16
   see_also: []
 - term: 谐振
   english: resonance
