@@ -37,6 +37,12 @@ jobs:
       - name: 安装 ngspice 与中文字体
         if: github.event_name != 'pull_request'
         run: sudo apt-get update && sudo apt-get install -y ngspice fonts-noto-cjk
+      - name: SPICE 诊断（临时）
+        if: github.event_name != 'pull_request'
+        run: |
+          ngspice --version || true
+          cd assets/spice/ch00 && ngspice -b divider.cir 2>&1 | tail -30 || true
+          cd ../ch02 && ngspice -b rectifier.cir 2>&1 | tail -20 || true
       - name: SPICE 回归
         if: github.event_name != 'pull_request'
         env:
