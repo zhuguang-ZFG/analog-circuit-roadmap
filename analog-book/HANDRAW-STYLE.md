@@ -64,11 +64,16 @@ amber 4.53 / 8.89、purple 7.87 / 8.20。
 
 ## 4 字体
 
-- 标题与卡片标签：`"KaiTi", "STKaiti", "Kaiti SC", "LXGW WenKai", "Noto Serif SC", serif`，
+- 标题与卡片标签：`"KaiTi", "STKaiti", "Kaiti SC", "LXGW WenKai", "Hand Serif", "Noto Serif SC", serif`，
   **`font-weight: 400`**。楷体没有真粗体，加粗走的是合成的假粗，笔画会糊成
   黑体观感，手写笔锋全丢。
 - 正文：正文栈不动（屏幕用系统 UI 字体）。手写体只做「标题承担风格」，正文
   保证可读性与中西文混排行高。
+- **楷体不能当唯一依赖**：Linux/Android 上没有 KaiTi，整栈掉到通用 `serif` 后
+  CJK 字形一个都不画——CI 实测顶栏标题是整块纯底色（几何框还在，颜色计算还全部
+  "合规"）。站点因此随包发 Noto Serif SC 子集（`assets/fonts/`，两档字重 685 KB）
+  作为 `Hand Serif`；SVG 内的栈补 `Noto Serif CJK SC / Source Han Serif SC /
+  Songti SC / SimSun`，这些机器上至少落到系统衬线而不是空白。
 - SVG 内部的字体栈写在 `<style>` 里；标题的手写体用 **inline `style`** 覆盖，
   否则会被 `text{font-family:…}` 的组选择器压掉。
 
