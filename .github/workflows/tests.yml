@@ -120,36 +120,48 @@ jobs:
       - name: 顶栏调试（临时）
         run: |
           python - <<'EOF'
-          import subprocess, sys, json
+          import io, json, subprocess, sys, tempfile, threading, functools, http.server
+          from collections import Counter
+          from pathlib import Path
+          sys.path.insert(0, "scripts")
+          from site_build_inputs import copy_build_inputs
+          from PIL import Image
           from playwright.sync_api import sync_playwright
-          subprocess.run([sys.executable, "scripts/build_site.py", "--build"], check=True)
-          import http.server, threading, functools
-          handler = functools.partial(http.server.SimpleHTTPRequestHandler, directory="build/site")
+          work = Path(tempfile.mkdtemp(prefix="hdr-"))
+          copy_build_inputs(Path("."), work)
+          subprocess.run([sys.executable, "-X", "utf8", "scripts/build_site.py", "--build"],
+                         cwd=work, check=True)
+          handler = functools.partial(http.server.SimpleHTTPRequestHandler, directory=str(work / "build"))
           srv = http.server.ThreadingHTTPServer(("127.0.0.1", 0), handler)
           threading.Thread(target=srv.serve_forever, daemon=True).start()
-          base = f"http://127.0.0.1:{srv.server_port}/"
+          base = f"http://127.0.0.1:{srv.server_port}/site/index.html"
           with sync_playwright() as pw:
               b = pw.chromium.launch(channel="chrome")
               for scheme in ("light", "dark"):
                   ctx = b.new_context(viewport={"width": 1280, "height": 900}, color_scheme=scheme)
-                  pg = ctx.new_page(); pg.goto(base + "index.html", wait_until="load"); pg.wait_for_timeout(1200)
+                  pg = ctx.new_page(); pg.goto(base, wait_until="load"); pg.wait_for_timeout(700)
+                  box = pg.eval_on_selector(".md-header__title", "e => e.getBoundingClientRect().toJSON()")
+                  shot = pg.screenshot(clip={"x": box["x"], "y": box["y"], "width": box["width"], "height": box["height"]})
+                  px = list(Image.open(io.BytesIO(shot)).convert("RGB").get_flattened_data())
+                  print(scheme, "box", {k: round(v, 1) for k, v in box.items()},
+                        "top", Counter(px).most_common(4), "uniq", len(set(px)))
                   info = pg.evaluate("""() => {
                     const t = document.querySelector('.md-header__title');
-                    const cs = getComputedStyle(t);
-                    const topic = document.querySelector('.md-header__topic');
-                    const tcs = topic ? getComputedStyle(topic) : null;
-                    return {text: t.textContent.trim(), color: cs.color, bg: cs.backgroundColor,
-                            opacity: cs.opacity, visibility: cs.visibility, display: cs.display,
-                            w: t.getBoundingClientRect().width, h: t.getBoundingClientRect().height,
-                            topicColor: tcs && tcs.color, topicOpacity: tcs && tcs.opacity,
-                            topicRect: topic && topic.getBoundingClientRect().toJSON(),
-                            headerBg: getComputedStyle(document.querySelector('.md-header')).backgroundColor,
-                            fonts: [...document.fonts].map(f => f.family + ':' + f.status).slice(0, 6)};
+                    const r = t.getBoundingClientRect();
+                    return {color: getComputedStyle(t).color,
+                            hb: document.querySelector('.md-header').getBoundingClientRect().toJSON(),
+                            scrollY: scrollY, dpr: devicePixelRatio,
+                            text: t.innerText.slice(0, 20)};
                   }""")
                   print(scheme, json.dumps(info, ensure_ascii=False))
                   pg.screenshot(path=f"header-{scheme}.png", clip={"x": 0, "y": 0, "width": 1280, "height": 60})
                   ctx.close()
               b.close()
           EOF
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: header-debug
+          path: header-*.png
       - name: 首屏视觉（顶栏标识是描边 / 仓库链接不截断 / hero 皮肤 / 对比度 ≥4.5 / chip 不换行）
         run: python -B -m unittest discover -s scripts -p test_first_screen.py -v
