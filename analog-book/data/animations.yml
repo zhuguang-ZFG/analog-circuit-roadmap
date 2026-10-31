@@ -324,7 +324,7 @@
   title: 二极管伏安特性：60mV 换十倍电流
   chapter: 2
   anchor: demo46
-  one_line: 红蓝两条指数曲线，60℃ 那条整条左移 70mV。测温、稳压、温度传感全靠这条曲线。→ 正文 2.2 伏安特性
+  one_line: 红蓝两条指数曲线，60°C 那条整条左移 70mV。测温、稳压、温度传感全靠这条曲线。→ 正文 2.2 伏安特性
   static_svg: assets/svg/diode-iv.svg
 - id: anim-047
   file: p5-00-part5.md
@@ -387,7 +387,7 @@
   title: 齐纳 vs 带隙：两套温漂账
   chapter: 9
   anchor: demo55
-  one_line: 齐纳的抛物线温漂（5.6V 才触底）对带隙的平直线（3ppm/℃）；配比 K=2/0.177≈11.3 的来龙去脉。→ 正文 9.1 齐纳 vs 带隙
+  one_line: 齐纳的抛物线温漂（5.6V 才触底）对带隙的平直线（3ppm/°C）；配比 K=2/0.177≈11.3 的来龙去脉。→ 正文 9.1 齐纳 vs 带隙
   static_svg: assets/svg/ref-showdown.svg
 - id: anim-056
   file: p5-00-part5.md
