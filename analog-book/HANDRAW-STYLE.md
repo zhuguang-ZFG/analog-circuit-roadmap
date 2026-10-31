@@ -155,3 +155,4 @@ python analog-book/build_print_book.py --check                           # 16K �
 | `analog-book/tests/test_book_sample.py` | 钉 `--navy: #14213d` 等五个字面值 | 解析 token 并断言墨/灰/赭对纸底 ≥12/4.5/4.5 | 换成对比度下限，比字面值更严 |
 | `analog-book/tests/test_book_fonts.py` | `assertNotIn("http", css)` 查远程字体 | 只查 `url(http`/`@import` | 子集重切后 base64 载荷里偶然出现 `http`，原断言变成误报；判据仍是「无远程字体源」 |
 | `analog-book/tests/test_wave1_chapters.py` | ch11 表题数 `tables: 5` | `tables: 6` | ch11 实际有 6 张表，此前 2 张无表注、3 张表号跳号（11-3…11-5）；补注后表格数与表题数同为 6，契约改为钉真实数量 |
+| `analog-book/tests/test_wave1_chapters.py` | ch14 `tables: 6`、ch16 `tables: 6` | `11` / `12` | 两章分别有 11 / 12 张表，旧契约只数到已有表注；补注后按真实表数钉住（ch14 顺移 6→11、ch16 6→12） |
