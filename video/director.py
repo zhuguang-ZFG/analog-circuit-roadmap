@@ -20,9 +20,12 @@ import argparse
 import json
 import re
 import subprocess
+import sys
 import tempfile
 import time
 from pathlib import Path
+
+from storyboard_lint import ValidationError, load_storyboard
 
 ROOT = Path(__file__).resolve().parents[1]
 SVG_DIR = ROOT / "assets" / "svg"
@@ -418,7 +421,9 @@ def build_html(storyboard: dict, w: int = W, h: int = H, cls: str = "v") -> str:
             if s.get("bgSvg"):
                 art = (SVG_DIR / (s["bgSvg"] + ".svg")).read_text(encoding="utf-8")
                 bgart = f'<div class="bgart">{art}</div>'
-            lines = "".join(f"<div>{hl(ln)}</div>" for ln in s["lines"])
+            # Registered/built-in views use their base type for legacy drafts;
+            # Remotion-only views may have no fallback text.
+            lines = "".join(f"<div>{hl(ln)}</div>" for ln in s.get("lines", []))
             cta = f'<div class="cta">{s["cta"]}</div>' if s.get("cta") else ""
             tail = s.get("sub", "")
             if s.get("mascot"):
@@ -523,7 +528,13 @@ def main() -> int:
     if args.demo == "ep04":
         storyboard = EP04
     elif args.shots:
-        storyboard = json.loads(Path(args.shots).read_text(encoding="utf-8"))
+        # Validate the full input before cover selection, HTML generation,
+        # browser startup or creating any output artifact.
+        try:
+            storyboard = load_storyboard(args.shots, svg_dir=SVG_DIR)
+        except ValidationError as exc:
+            print(exc, file=sys.stderr)
+            return 1
     else:
         ap.error("--demo 或 --shots 二选一")
 

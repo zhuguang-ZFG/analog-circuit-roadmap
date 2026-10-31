@@ -92,7 +92,7 @@ export const DividerDemo: React.FC<{durFrames: number}> = ({durFrames}) => {
   const push = interpolate(frame, [0, durFrames], [1, 1.035], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
 
   return (
-    <ShotShell durFrames={durFrames}>
+    <ShotShell durFrames={durFrames} camera={false}>
       <AbsoluteFill style={wide
         ? {flexDirection: "row", alignItems: "center", justifyContent: "center", display: "flex", padding: "0 60px", transform: `scale(${push})`}
         : {justifyContent: "flex-start", alignItems: "center", display: "flex", paddingTop: 130, transform: `scale(${push})`}}>

@@ -5,7 +5,7 @@
   1. **烧录字幕**：按 timeline（narrate.py 落盘的对齐时间轴）给每一幕的
      口播文本烧 drawtext 字幕（抖音大量静音观看场景，字幕是硬需求）；
   2. **BGM**：bgm.py 程序化合成的垫乐压到口播之下（0.16 倍，零版权）；
-  3. **响度归一化**：三轨混音后两遍 loudnorm 抬到 -16 LUFS / 真峰值 -1.5 dBTP，
+  3. **响度归一化**：三轨混音后两遍 loudnorm 抬到 -14 LUFS / 真峰值 -1.5 dBTP，
      与短视频平台主流响度对齐（raw 混音约 -22 LUFS，手机上偏轻）；
   4. **封装**：h264（crf 20，扁平矢量画面足够）+ AAC，输出 video/samples/<name>-final.mp4。
 
@@ -178,7 +178,7 @@ def main() -> int:
                     str(vo_wav)], check=True, capture_output=True)
 
     # SFX 时间轴：标题幕 thud；其余幕转场 whoosh；数字幕跳数落定 pop
-    from sfx import whoosh, pop, thud, sting, place
+    from sfx import whoosh, pop, thud, sting, riser, ding, place
     sfx_track = np.zeros(int(total * SR) + SR)
     t0 = 0.0
     for shot in board["shots"]:
@@ -188,6 +188,10 @@ def main() -> int:
             place(sfx_track, thud(), t0 + 0.02)
         else:
             place(sfx_track, whoosh(), t0)
+        # 分镜级 sfx 铺满（与 remix.py 同口径）：正=幕首偏移，负=距幕尾
+        for sname, off in shot.get("sfx") or []:
+            fn = {"whoosh": whoosh, "pop": pop, "ding": ding, "thud": thud, "sting": sting, "riser": riser}[sname]
+            place(sfx_track, fn(), t0 + (off if off >= 0 else shot["seconds"] + off))
         if shot["type"] == "num":
             place(sfx_track, pop(), t0 + 1.5)
         t0 += shot["seconds"]
@@ -227,16 +231,23 @@ def main() -> int:
         w.setframerate(44100)
         w.writeframes((mix * 32767).astype(np.int16).tobytes())
 
-    # 响度归一化：混音 raw ~-22 LUFS，抬到平台主流 -16 LUFS / 真峰值 -1.5 dBTP
+    # 响度归一化：混音 raw ~-22 LUFS，抬到平台主流 -14 LUFS / 真峰值 -1.5 dBTP
     # （两遍 loudnorm：先测后线性增益，口播+垫乐内容 LRA≈6<7 不需要动态压）
     p1 = subprocess.run([ff, "-i", str(final_wav), "-af",
-                         "loudnorm=I=-16:TP=-1.5:LRA=7:print_format=json",
+                         "loudnorm=I=-14:TP=-1.5:LRA=7:print_format=json",
                          "-f", "null", "-"], capture_output=True, text=True)
     stats = json.loads(p1.stderr[p1.stderr.rindex("{"):p1.stderr.rindex("}") + 1])
-    ln = (f"loudnorm=I=-16:TP=-1.5:LRA=7:measured_I={stats['input_i']}"
-          f":measured_TP={stats['input_tp']}:measured_LRA={stats['input_lra']}"
-          f":measured_thresh={stats['input_thresh']}:offset={stats['target_offset']}"
-          ":linear=true,aresample=44100")
+    gain = -14.0 - float(stats["input_i"])
+    if float(stats["input_tp"]) + gain > -1.5:
+        # 口播+BGM 波峰因数 ~21dB（实测 input_tp -0.26 / input_i -21.7）：线性增益必破真峰值，
+        # 动态归一实测落 -15.6 LUFS / TP -1.3（比 -14 少约 1.6dB 但零削波）。限幅链实测不稳定
+        # （alimiter 默认 level 自动拉高 → 真峰值 +0.1 越限），故不启用，只告警。
+        print(f"⚠ 线性不可达（input_tp {stats['input_tp']} dBTP + 增益 {gain:.1f} dB > -1.5）"
+              f"→ 动态归一，实际落约 -15.6 LUFS / TP -1.3")
+    ln = (f"loudnorm=I=-14:TP=-1.5:LRA=7:measured_I={stats['input_i']}"
+              f":measured_TP={stats['input_tp']}:measured_LRA={stats['input_lra']}"
+              f":measured_thresh={stats['input_thresh']}:offset={stats['target_offset']}"
+              ":linear=true,aresample=44100")
     normed = final_wav.with_suffix(".norm.wav")
     subprocess.run([ff, "-y", "-i", str(final_wav), "-af", ln, str(normed)],
                    check=True, capture_output=True)

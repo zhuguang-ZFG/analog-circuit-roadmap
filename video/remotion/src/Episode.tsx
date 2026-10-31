@@ -1,11 +1,14 @@
 import React, {useEffect, useState} from "react";
-import {Audio, staticFile, AbsoluteFill, delayRender, continueRender, useCurrentFrame, interpolate} from "remotion";
+import {Audio, staticFile, AbsoluteFill, delayRender, continueRender, useCurrentFrame, useVideoConfig, interpolate} from "remotion";
+import {FONT_MAIN} from "./theme";
 import {TransitionSeries, springTiming} from "@remotion/transitions";
 import {slide} from "@remotion/transitions/slide";
 import {IntroShot} from "./components/IntroShot";
 import {CardShot} from "./components/CardShot";
 import {NumShot} from "./components/NumShot";
 import {SvgShot} from "./components/SvgShot";
+import {QuizShot} from "./components/QuizShot";
+import {NoiseRss} from "./components/NoiseRss";
 import {Subtitles} from "./Subtitles";
 import {EPISODES, Shot} from "./episodes";
 
@@ -43,6 +46,38 @@ const BrandBadge: React.FC<{series: string; ep: string}> = ({series, ep}) => {
       <span>{series}</span>
       <span style={{color: "rgba(255,255,255,.5)"}}>·</span>
       <span style={{color: "#8fa5ff"}}>{ep}</span>
+    </div>
+  );
+};
+
+/** 防搬运幽灵水印：右下域 17s 周期缓慢游走的低透明度 ID。
+ *  固定角标会被裁切/遮挡/打码，漂移让批量搬运成本升高。
+ *  竖屏避开字幕带（top 1425 起）与右侧操作栏（x>90%）；横屏避开底部字幕。 */
+const GhostMark: React.FC<{series: string; ep: string}> = ({series, ep}) => {
+  const frame = useCurrentFrame();
+  const {width, height, fps} = useVideoConfig();
+  const wide = width > height;
+  if (!series) return null;
+  const ph = (frame / (17 * fps)) * Math.PI * 2;
+  const x = (wide ? 64 : 57) + Math.sin(ph) * 8;
+  const y = (wide ? 13 : 45) + Math.cos(ph * 0.8) * 6;
+  return (
+    <div
+      style={{
+        position: "absolute",
+        left: `${x}%`,
+        top: `${y}%`,
+        opacity: 0.14,
+        fontFamily: FONT_MAIN,
+        fontSize: wide ? 22 : 26,
+        color: "#fff",
+        textShadow: "0 1px 6px rgba(0,0,0,.6)",
+        whiteSpace: "nowrap",
+        pointerEvents: "none",
+      }}
+    >
+      <div>通往模拟电路之路</div>
+      <div style={{fontSize: "0.85em", marginTop: 5}}>{series} · {ep}</div>
     </div>
   );
 };
@@ -89,7 +124,18 @@ export const Episode: React.FC<{ep?: string; cover?: boolean}> = ({ep = "ep04", 
           const Custom = s.view ? def.customShots[s.view] : undefined;
           const el = (
             <TransitionSeries.Sequence key={`s${i}`} durationInFrames={durFrames + (i < shots.length - 1 ? T : 0)}>
-              {Custom ? (
+              {s.view === "quiz" ? (
+                <QuizShot
+                  durFrames={durFrames}
+                  q={s.q as string}
+                  options={s.options as string[]}
+                  answer={(s.answer as number) ?? 0}
+                  explain={s.explain as string | undefined}
+                  revealAt={s.revealAt as number | undefined}
+                />
+              ) : s.view === "noise-rss" ? (
+                <NoiseRss durFrames={durFrames} />
+              ) : Custom ? (
                 <Custom durFrames={durFrames} />
               ) : s.type === "intro" ? (
                 <IntroShot
@@ -145,6 +191,7 @@ export const Episode: React.FC<{ep?: string; cover?: boolean}> = ({ep = "ep04", 
         })}
       </TransitionSeries>
       <BrandBadge series={(shots[0].series as string) ?? ""} ep={(shots[0].ep as string) ?? ""} />
+      <GhostMark series={(shots[0].series as string) ?? ""} ep={(shots[0].ep as string) ?? ""} />
       {cover ? null : <Subtitles data={def.subs} />}
       <Audio src={staticFile(def.audio)} />
     </AbsoluteFill>

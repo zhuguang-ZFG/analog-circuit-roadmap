@@ -13,17 +13,18 @@ const charThreshold = (k: number, N: number, env?: number[]): number => {
   return env[i] + (env[i + 1] - env[i]) * (x - i);
 };
 
-const LEAD = 2; // 提前 2 帧点亮——视觉先于听觉一点，同步感最好
+const LEAD = 2;
 
-/** 字幕托底块：逐块弹入 + 逐字卡拉OK（能量包络驱动）+ 数字/单位琥珀高亮。
- *  窗口由构建期预计算（master.py chunk_voice/wrap 同款逻辑），竖屏 top=1425。 */
-const Pill: React.FC<{text: string; dur: number; env?: number[]}> = ({text, dur, env}) => {
+export const characterFrame = (k: number, count: number, duration: number, env?: number[], charFrames?: number[]): number =>
+  charFrames ? charFrames[k] : charThreshold(k, count, env) * duration - LEAD;
+
+const Pill: React.FC<{text: string; dur: number; env?: number[]; charFrames?: number[]}> = ({text, dur, env, charFrames}) => {
   const frame = useCurrentFrame();
   const {fps, width, height} = useVideoConfig();
   const wide = width > height; // 横版 1920×1080：字幕带贴底、字号按 16:9 收一档
   const s = spring({frame, fps, config: {damping: 13, stiffness: 220, mass: 0.7}});
   const lines = text.split("\n");
-  const N = lines.join("").length;
+  const N = [...lines.join("")].length;
   let base = 0;
   return (
     <div style={{position: "absolute", top: wide ? height - 215 : 1425, width: "100%", display: "flex", justifyContent: "center"}}>
@@ -48,19 +49,25 @@ const Pill: React.FC<{text: string; dur: number; env?: number[]}> = ({text, dur,
       >
         {lines.map((ln, li) => {
           const start = base;
-          base += ln.length;
+          base += [...ln].length;
           return (
             <div key={li}>
               {[...ln].map((ch, k) => {
                 const gk = start + k;
-                const on = frame >= charThreshold(gk, N, env) * dur - LEAD;
+                const lit = characterFrame(gk, N, dur, env, charFrames);
+                const on = frame >= lit;
+                const age = frame - lit;
+                /* 跟读焦点：刚点亮 6 帧内的字放大回弹——视线跟得上「读到哪里」 */
+                const pop = on && age >= 0 && age < 6 ? 1 + 0.2 * (1 - age / 6) : 1;
                 const ascii = /[A-Za-z0-9._%Ωµμ\/×=+-]/.test(ch);
                 return (
                   <span
                     key={k}
                     style={{
                       color: on ? (ascii ? C.accent : "#fff") : (ascii ? "rgba(255,194,71,.45)" : "rgba(255,255,255,.55)"),
-                      transition: "color .08s",
+                      display: "inline-block",
+                      transform: `scale(${pop})`,
+                      transformOrigin: "50% 72%",
                     }}
                   >
                     {ch}
@@ -79,7 +86,7 @@ export const Subtitles: React.FC<{data: SubEntry[]}> = ({data}) => (
   <AbsoluteFill style={{pointerEvents: "none"}}>
     {data.map((s, i) => (
       <Sequence key={i} from={s.from} durationInFrames={Math.max(s.to - s.from, 1)}>
-        <Pill text={s.text} dur={s.to - s.from} env={s.env} />
+        <Pill text={s.text} dur={s.to - s.from} env={s.env} charFrames={s.charFrames} />
       </Sequence>
     ))}
   </AbsoluteFill>

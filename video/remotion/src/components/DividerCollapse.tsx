@@ -89,7 +89,7 @@ export const DividerCollapse: React.FC<{durFrames: number}> = ({durFrames}) => {
   const push = interpolate(frame, [0, durFrames], [1, 1.05], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
   const driftX = interpolate(frame, [0, durFrames], [0, -26], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
   return (
-    <ShotShell durFrames={durFrames}>
+    <ShotShell durFrames={durFrames} camera={false}>
       <AbsoluteFill style={wide
         ? {flexDirection: "row", alignItems: "center", justifyContent: "center", display: "flex", padding: "0 60px",
           transform: `scale(${push}) translateX(${driftX}px)`}

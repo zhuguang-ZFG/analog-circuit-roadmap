@@ -9,41 +9,60 @@
 """
 import json
 from pathlib import Path
+import re
+import sys
 
-SRC = Path(__file__).parent / "src"
-# 定制戏眼组件挂载点（幕 board 带 view 字段的集在这里登记）
-CUSTOM: dict[str, str] = {
-    "ep04": '{demo: DividerDemo, collapse: DividerCollapse}',
-}
+# Standalone script: import the shared Python contract, never generated TS.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from storyboard_lint import CUSTOM_VIEWS as CUSTOM, SVG_DIR, ValidationError, load_storyboard
+
+SRC = Path(__file__).resolve().parent / "src"
 
 
 def main() -> int:
     boards = sorted(SRC.glob("data/ep*.json"))
     boards = [b for b in boards if not b.name.endswith("-subs.json")]
-    imports, entries = [], []
+    if not boards:
+        print(f"{SRC / 'data'}: $: no episode storyboards found", file=sys.stderr)
+        return 1
+    imports, entries, errors = [], [], []
+    components = set()
     for b in boards:
         key = b.stem
-        name = json.loads(b.read_text(encoding="utf-8"))["name"]
+        # The filename also becomes a TypeScript identifier and import path.
+        if not re.fullmatch(r"ep[0-9]+", key):
+            errors.append(f"{b}: registration: expected epNN.json filename")
+            continue
+        views = CUSTOM.get(key, {})
+        try:
+            board = load_storyboard(b, svg_dir=SVG_DIR, custom_views=views)
+        except ValidationError as exc:
+            errors.append(str(exc))
+            continue
+        name = board["name"]
         imports.append(f'import {key}Board from "./data/{key}.json";')
         imports.append(f'import {key}Subs from "./data/{key}-subs.json";')
-        custom = CUSTOM.get(key, "{}")
+        custom = "{" + ", ".join(f"{view}: {component}" for view, component in views.items()) + "}"
+        components.update(views.values())
         entries.append(
             f"  {key}: {{\n"
             f'    board: {key}Board as {{shots: Shot[]}},\n'
             f"    subs: {key}Subs as SubEntry[],\n"
-            f'    audio: "audio/{name}-remix.wav",\n'
+            f'    audio: {json.dumps(f"audio/{name}-remix.wav")},\n'
             f"    customShots: {custom},\n"
             f"  }},"
         )
+    if errors:
+        print("\n".join(errors), file=sys.stderr)
+        return 1  # Keep the existing episodes.ts intact if any input is invalid.
     head = "\n".join([
         "import React from \"react\";",
         *imports,
-        "import {DividerDemo} from \"./components/DividerDemo\";",
-        "import {DividerCollapse} from \"./components/DividerCollapse\";",
+        *(f'import {{{component}}} from "./components/{component}";' for component in sorted(components)),
         "import {FPS} from \"./theme\";",
         "",
         "export type Shot = {type: string; seconds: number; view?: string; [k: string]: unknown};",
-        "export type SubEntry = {from: number; to: number; text: string; env?: number[]};",
+        "export type SubEntry = {from: number; to: number; text: string; env?: number[]; charFrames?: number[]};",
         "",
         "/** 本文件由 gen_registry.py 生成——换集跑一次即可，勿手改。 */",
         "export type EpisodeDef = {",

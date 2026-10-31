@@ -20,6 +20,14 @@ SR = 44100
 BGM_DELTA_DB = -8.0  # BGM RMS 目标 = 口播 RMS - 8dB
 
 
+def teaching_cues(shot: dict) -> list[tuple[str, float]]:
+    if shot.get("view") == "quiz" and "revealAt" in shot:
+        return [("riser", max(0, shot["revealAt"] - 0.75)), ("ding", shot["revealAt"])]
+    if shot.get("view") == "noise-rss":
+        return [("pop", shot["seconds"] * t) for t in (0.08, 0.2, 0.32, 0.44)] + [("ding", shot["seconds"] * 0.84)]
+    return []
+
+
 def main() -> int:
     name = sys.argv[1] if len(sys.argv) > 1 else "ep04-divider"
     out = Path(sys.argv[2]) if len(sys.argv) > 2 else Path(__file__).parent / "public" / "audio" / f"{name}-remix.wav"
@@ -35,6 +43,11 @@ def main() -> int:
             place(sfx_track, thud(), t0 + 0.02)
         else:
             place(sfx_track, whoosh(), t0)
+        # 分镜级 sfx 铺满：[["riser", 0.2], ["ding", -3.0]]
+        # 正偏移=幕首起算；负偏移=距幕尾（与组件揭示锚如 QuizShot durFrames−3s 对齐）
+        for sname, off in list(shot.get("sfx") or []) + teaching_cues(shot):
+            fn = {"whoosh": whoosh, "pop": pop, "ding": ding, "thud": thud, "sting": sting, "riser": riser}[sname]
+            place(sfx_track, fn(), t0 + (off if off >= 0 else shot["seconds"] + off))
         if shot["type"] == "num":
             place(sfx_track, pop(), t0 + 1.5)
             place(sfx_track, riser(), max(t0 - 0.75, 0.0))  # 高潮幕前的紧张爬升
@@ -70,10 +83,14 @@ def main() -> int:
         w.setnchannels(1); w.setsampwidth(2); w.setframerate(SR)
         w.writeframes((mix * 32767).astype(np.int16).tobytes())
 
-    p1 = subprocess.run([FF, "-i", str(out), "-af", "loudnorm=I=-16:TP=-1.5:LRA=7:print_format=json", "-f", "null", "-"],
+    p1 = subprocess.run([FF, "-i", str(out), "-af", "loudnorm=I=-14:TP=-1.5:LRA=7:print_format=json", "-f", "null", "-"],
                         capture_output=True, text=True)
     stats = json.loads(p1.stderr[p1.stderr.rindex("{"):p1.stderr.rindex("}") + 1])
-    ln = (f"loudnorm=I=-16:TP=-1.5:LRA=7:measured_I={stats['input_i']}"
+    gain = -14.0 - float(stats["input_i"])
+    if float(stats["input_tp"]) + gain > -1.5:
+        print(f"线性不可达（input_tp {stats['input_tp']} dBTP + 增益 {gain:.1f} dB > -1.5）"
+              "→ 动态归一；实际响度与真峰值须测量输出文件")
+    ln = (f"loudnorm=I=-14:TP=-1.5:LRA=7:measured_I={stats['input_i']}"
           f":measured_TP={stats['input_tp']}:measured_LRA={stats['input_lra']}"
           f":measured_thresh={stats['input_thresh']}:offset={stats['target_offset']}"
           ":linear=true,aresample=44100")

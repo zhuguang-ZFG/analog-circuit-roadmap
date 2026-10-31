@@ -47,12 +47,18 @@ const PcbTraces: React.FC = () => {
 
 /** 幕壳：靛蓝渐变 + 漂移点阵 + PCB 走线 + 底部晕影 + 每幕底部节奏条（beat）。
  *  与 director.py .bg/.bg::before/.bg::after/.beat 对应。 */
-export const ShotShell: React.FC<{durFrames: number; children: React.ReactNode}> = ({durFrames, children}) => {
+export const ShotShell: React.FC<{durFrames: number; camera?: boolean; children: React.ReactNode}> = ({durFrames, camera = true, children}) => {
   const frame = useCurrentFrame();
   const drift = (frame * 0.6) % 18; // 26s 周期的点阵漂移
   const {width, height} = useVideoConfig();
   const wide = width > height; // 横版（-h 组合 1920×1080）：光斑/走线按 16:9 取参
   const beat = interpolate(frame, [0, durFrames], [0, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
+  /* 极缓推镜（反 PPT）：整幕一条 1.00→1.04 曲线，只推场景内容、不动幕壳装饰。
+     4% 缩放裁切 27px(横)/38px(竖) 边距，小于卡片 60px padding；
+     节奏条/晕影/走线在 children 之外，保持帧锚不被推走。
+     已自带推镜的自定义幕（DividerDemo/DividerCollapse）传 camera={false}，避免叠乘。 */
+  const t = Math.min(Math.max(frame / Math.max(durFrames, 1), 0), 1);
+  const cam = 1 + 0.06 * (0.5 - 0.5 * Math.cos(Math.PI * t));
   return (
     <AbsoluteFill
       style={{
@@ -107,7 +113,9 @@ export const ShotShell: React.FC<{durFrames: number; children: React.ReactNode}>
           />
         );
       })}
-      {children}
+      <AbsoluteFill style={camera ? {transform: `scale(${cam})`, transformOrigin: "50% 50%"} : undefined}>
+        {children}
+      </AbsoluteFill>
       <div
         style={{
           position: "absolute",

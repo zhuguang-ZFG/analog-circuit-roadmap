@@ -39,12 +39,12 @@ import ep19Board from "./data/ep19.json";
 import ep19Subs from "./data/ep19-subs.json";
 import ep20Board from "./data/ep20.json";
 import ep20Subs from "./data/ep20-subs.json";
-import {DividerDemo} from "./components/DividerDemo";
 import {DividerCollapse} from "./components/DividerCollapse";
+import {DividerDemo} from "./components/DividerDemo";
 import {FPS} from "./theme";
 
 export type Shot = {type: string; seconds: number; view?: string; [k: string]: unknown};
-export type SubEntry = {from: number; to: number; text: string; env?: number[]};
+export type SubEntry = {from: number; to: number; text: string; env?: number[]; charFrames?: number[]};
 
 /** 本文件由 gen_registry.py 生成——换集跑一次即可，勿手改。 */
 export type EpisodeDef = {

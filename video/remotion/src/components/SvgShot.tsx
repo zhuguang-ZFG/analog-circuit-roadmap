@@ -24,6 +24,7 @@ export const SvgShot: React.FC<{
   const frame = useCurrentFrame();
   const {width, height} = useVideoConfig();
   const wide = width > height; // 横版：图左解说右（B 站惯例），竖屏沿上下分层
+  const noiseSpectrum = wide && file === "noise-budget";
   const [ox, oy] = ORIGINS[index % ORIGINS.length];
   // 描画入场 0.9s（27 帧），ease-out
   const wipe = interpolate(frame, [0, 27], [100, 0], {extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: (t) => 1 - Math.pow(1 - t, 3)});
@@ -39,13 +40,15 @@ export const SvgShot: React.FC<{
                        linear-gradient(200deg, ${C.bg0} 0%, ${C.bg1} 100%)`,
           flexDirection: wide ? "row" : "column",
           display: "flex",
+          // Keep the 800×640 spectrum above subtitles even after both zoom layers.
+          ...(noiseSpectrum ? {paddingBottom: 170, boxSizing: "border-box" as const} : {}),
         }}
       >
         <div style={{flex: wide ? 1.6 : 1, display: "flex", alignItems: "center", justifyContent: "center",
           padding: wide ? "20px 10px 20px 40px" : "26px 0 10px", width: "100%"}}>
           <div
             style={{
-              width: wide ? "100%" : "94%",
+              width: noiseSpectrum ? 800 : wide ? "100%" : "94%",
               maxHeight: wide ? "100%" : undefined,
               borderRadius: 14,
               overflow: "hidden",
