@@ -10,17 +10,19 @@ D4 0 b DMOD
 C1 out 0 {C}
 RL out 0 {RL}
 .model DMOD D(Is=1e-12 N=1 Rs=0.05 Cjo=10p)
+.option savecurrents
 .tran 200u 2s 0 200u
 .control
 run
 set wr_singlescale
 set wr_vecnames
-wrdata rectifier.dat v(out) i(D1)
+wrdata rectifier.dat v(out) @d1[i]
 meas tran vavg AVG v(out) FROM=1.9 TO=2.0
 meas tran vmax MAX v(out) FROM=1.9 TO=2.0
 meas tran vmin MIN v(out) FROM=1.9 TO=2.0
-meas tran vripple PARAM='vmax-vmin'
-meas tran ipeak MAX i(D1) FROM=1.9 TO=2.0
+let vripple = vmax - vmin
+let id1 = @d1[i]
+meas tran ipeak MAX id1 FROM=1.9 TO=2.0
 print vavg vmax vmin vripple ipeak
 .endc
 .end
