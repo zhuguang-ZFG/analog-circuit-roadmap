@@ -9,7 +9,6 @@ CHAPTER_ROW）。docs/ 迁移成多页后，`DEMO_LINK` 只认 `](#demoN)`、认
 
 只用标准库；mkdocs.yml 的重复键检查需要 PyYAML（随 mkdocs-material 一起装）。
 """
-from pathlib import Path
 import json
 import re
 import shutil
@@ -17,6 +16,10 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from site_build_inputs import copy_build_inputs  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 PART5 = "p5-00-part5.md"
@@ -61,19 +64,9 @@ class SiteBuildTests(unittest.TestCase):
         cls.addClassCleanup(temporary.cleanup)
         work = Path(temporary.name)
         cls.work = work
-        (work / "scripts").mkdir()
-        shutil.copyfile(ROOT / "scripts" / "build_site.py", work / "scripts" / "build_site.py")
-        shutil.copytree(ROOT / "scripts" / "site_media", work / "scripts" / "site_media")
-        shutil.copytree(ROOT / "docs", work / "docs")
-        shutil.copytree(ROOT / "assets", work / "assets")
-        # 章徽在构建期内联进章首舞台；临时工作区必须带上它们，否则 19 个章页
-        # 会按「缺图即报错」的约定直接让构建失败。
-        shutil.copytree(ROOT / "analog-book" / "static" / "illustrations",
-                        work / "analog-book" / "static" / "illustrations")
-        for extra in ("CONTRIBUTING.md", "CONTRIBUTORS.md", "LICENSE"):
-            src = ROOT / extra
-            if src.exists():
-                shutil.copyfile(src, work / extra)
+        # 输入清单集中在 site_build_inputs（章徽、标题 webfont 都在里面）：
+        # 这里再抄一份的话，构建读新路径时这个用例会以 FileNotFoundError 红灯。
+        copy_build_inputs(ROOT, work)
 
         result = subprocess.run(
             [sys.executable, "-B", str(work / "scripts" / "build_site.py"), "--build"],
