@@ -142,7 +142,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <path d="M300 185 Q299.96 195.00 300 205" fill="none" stroke="#37424e" stroke-width="2.5"/>
 <rect x="289" y="205" width="22" height="30" fill="#f6eedb" stroke="#37424e" stroke-width="2.5"/>
 <path d="M300 235 Q300.04 245.00 300 255" fill="none" stroke="#37424e" stroke-width="2.5"/>
-<text x="320" y="224.0" font-size="12.5" font-weight="bold" fill="#a4630f">R1=R</text>
+<text x="286" y="224" text-anchor="end" font-size="12.5" font-weight="bold" fill="#a4630f">R1=R</text>
 <line x1="300" y1="255" x2="300" y2="262" stroke="#37424e" stroke-width="2"/>
 <path d="M300 262 Q299.99 269.00 300 276" fill="none" stroke="#37424e" stroke-width="2.5"/><path d="M284 276 Q300.00 275.87 316 276" fill="none" stroke="#37424e" stroke-width="3"/><path d="M290 282 Q300.00 282.06 310 282" fill="none" stroke="#37424e" stroke-width="3"/><line x1="296" y1="288" x2="304" y2="288" stroke="#37424e" stroke-width="3"/>
 <text x="296" y="250" text-anchor="end" font-size="10.5" fill="#5b666f">增益 = 1+Rf/R1 = 3</text>

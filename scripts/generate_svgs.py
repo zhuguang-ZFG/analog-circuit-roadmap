@@ -1470,7 +1470,8 @@ def make_wien_bridge():
 <text x="335" y="212" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#b45309">Rf=2R</text>
 <line x1="385" y1="185" x2="390" y2="185" stroke="#334155" stroke-width="2"/>
 <line x1="390" y1="185" x2="390" y2="140" stroke="#334155" stroke-width="2"/>
-{resistor_v(300, 205, 30, 'R1=R')}
+{resistor_v(300, 205, 30)}
+<text x="286" y="224" text-anchor="end" font-size="12.5" font-weight="bold" fill="#b45309">R1=R</text>
 <line x1="300" y1="255" x2="300" y2="262" stroke="#334155" stroke-width="2"/>
 {gnd_sym(300, 276)}
 <text x="296" y="250" text-anchor="end" font-size="10.5" fill="#475569">增益 = 1+Rf/R1 = 3</text>
@@ -5553,7 +5554,8 @@ def make_pullup_sizing():
 <line x1="236" y1="172" x2="264" y2="172" stroke="#7c3aed" stroke-width="3.5"/>
 <line x1="250" y1="172" x2="250" y2="140" stroke="#334155" stroke-width="2.5"/>
 {gnd_sym(250, 140)}
-<text x="268" y="168" font-size="11" font-weight="bold" fill="#7c3aed">总线电容 C≈100pF</text>
+<text x="268" y="156" font-size="10.5" fill="#7c3aed">总线电容</text>
+<text x="268" y="172" font-size="11" font-weight="bold" fill="#7c3aed">C ≈ 100pF</text>
 <circle r="5" fill="#2563eb"><animateMotion dur="{DP}s" begin="-0.3s" repeatCount="indefinite" path="M160,234 L160,202"/></circle>
 <circle r="5" fill="#b45309"><animateMotion dur="{DP}s" begin="-0.9s" repeatCount="indefinite" path="M70,172 L70,198 L246,200"/></circle>
 <circle r="3.6" fill="#7c3aed"><animateMotion dur="2.6s" begin="-0.4s" repeatCount="indefinite" path="M196,268 L118,268"/></circle>

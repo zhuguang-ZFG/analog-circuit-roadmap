@@ -115,7 +115,8 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <path d="M236 172 Q250.00 171.94 264 172" fill="none" stroke="#6b3f63" stroke-width="3.5"/>
 <path d="M250 172 Q250.02 156.00 250 140" fill="none" stroke="#37424e" stroke-width="2.5"/>
 <path d="M250 126 Q250.05 133.00 250 140" fill="none" stroke="#37424e" stroke-width="2.5"/><path d="M234 140 Q250.00 140.14 266 140" fill="none" stroke="#37424e" stroke-width="3"/><path d="M240 146 Q250.00 145.93 260 146" fill="none" stroke="#37424e" stroke-width="3"/><line x1="246" y1="152" x2="254" y2="152" stroke="#37424e" stroke-width="3"/>
-<text x="268" y="168" font-size="11" font-weight="bold" fill="#6b3f63">总线电容 C≈100pF</text>
+<text x="268" y="156" font-size="10.5" fill="#6b3f63">总线电容</text>
+<text x="268" y="172" font-size="11" font-weight="bold" fill="#6b3f63">C ≈ 100pF</text>
 <circle r="5" fill="#1f5d7a"><animateMotion dur="11s" begin="-0.3s" repeatCount="indefinite" path="M160,234 L160,202"/></circle>
 <circle r="5" fill="#a4630f"><animateMotion dur="11s" begin="-0.9s" repeatCount="indefinite" path="M70,172 L70,198 L246,200"/></circle>
 <circle r="3.6" fill="#6b3f63"><animateMotion dur="2.6s" begin="-0.4s" repeatCount="indefinite" path="M196,268 L118,268"/></circle>
