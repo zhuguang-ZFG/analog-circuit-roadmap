@@ -83,9 +83,10 @@ class AnimationTests(unittest.TestCase):
         sources = data.load_list(data_dir / "sources.yml")
         references = data.load_list(data_dir / "references.yml")
         self.assertEqual([], sources)
-        self.assertEqual([], references)
         data.validate_sources(sources)
-        data.validate_references(references)
+        # 参考文献已入库：条数下限与 final 级字段完整性由数据层兜住
+        self.assertGreaterEqual(len(references), 100)
+        data.validate_references(references, final=True)
 
 
 class IndexTests(unittest.TestCase):
