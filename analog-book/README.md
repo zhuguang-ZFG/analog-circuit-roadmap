@@ -45,6 +45,28 @@ python analog-book/build_print_book.py --no-build --report
 `PRINT-SPEC.md` 与 `build-report.json` 从已有产物生成；Phase 0 的 16K 只上传
 CI artifact，`/book/` 仍由 A4 1.0 发布。
 
+### 上下卷
+
+整书 16K 单卷排到 812 页，超过 `book/pdf.py` 的 700 页硬上限。上限不动，改为按
+自然篇界出两卷：
+
+```bash
+python analog-book/build_print_book.py --volumes --pdf --no-build   # make print-volumes
+```
+
+产物在 `dist/print/volume-1/`、`dist/print/volume-2/`：
+
+| 卷 | 内容 | HTML | PDF |
+|---|---|---:|---:|
+| 上卷 | 前置页 + 第 I～II 篇（第 0～10 章）+ 参考文献 + 索引 | 26 逻辑页 / 9,258,758 B | 336 页 / 16,757,100 B |
+| 下卷 | 前置页 + 第 III 篇起（第 11～18 章、附录 A～H）+ 参考文献 + 索引 | 64 逻辑页 / 10,477,528 B | 516 页 / 22,924,788 B |
+
+分卷是重新装配而非截断：`assemble.build_html(volume=…)` 先选页再重编页序，目录、
+插图目录、表格目录与索引都按本卷重算，索引只收本卷可见锚点。指向另一卷的锚点降级为
+「（见上卷/见下卷）」提示，因此分卷审计不会出现悬空锚点。参考文献与索引两卷都带。
+
+`--volumes` 暂不支持 `--cover` / `--report`；站点只在上卷构建时重建一次。
+
 ## 阅读体验
 
 - 每页页尾提供上一篇 / 下一篇，按整书顺序跨篇连续翻页，中间按钮回到全书目录。

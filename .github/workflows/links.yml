@@ -19,7 +19,8 @@ jobs:
       - uses: lycheeverse/lychee-action@v2
         with:
           # 排除的四个域名与 eevblog 都是「站点拒机器人」（502/超时），
-          # 不是链接腐烂：地址保留在 README，靠每周巡检人工复核。
+          # 不是链接腐烂：地址保留在 BOOK.md，靠每周巡检人工复核。
+          # README.md 只是短入口，外链全在 BOOK.md，两个都要巡。
           # 注意：以 `>` 折行的参数块里不能写 # 注释——那些行会被当成参数。
           args: >-
             --verbose
@@ -34,6 +35,7 @@ jobs:
             --exclude 'analog\.com'
             --exclude 'eevblog\.com'
             './README.md'
+            './BOOK.md'
             './CONTRIBUTORS.md'
             './CONTRIBUTING.md'
           fail: true

@@ -17,7 +17,7 @@ data URI 内联进单文件 HTML，因此本目录不需要任何系统字体或
 
 | 文件 | 家族 | 字重 | 请求字符数 | 字节 | SHA-256 |
 | --- | --- | --- | --- | --- | --- |
-| `BookSans-Stamp.ttf` | NotoSansSC | 700 | 887 | 229,152 | `81c99eac95df5f8e2d14c18cea430978fdae1be51c4625f868d89e700160455f` |
+| `BookSans-Stamp.ttf` | NotoSansSC | 700 | 889 | 229,728 | `0f03c0c60276d6309b35c8775956909e8e05ef24190a742e6fa4aba7bf15c686` |
 
 印章字体由 Noto Sans SC 在 wght=700 实例化后，子集到 ASCII、书名、
 前置页/篇/单元/附录/后记标题、章名与页脚固定词，用于页眉/页脚印章。

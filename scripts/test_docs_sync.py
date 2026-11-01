@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""docs/ 是唯一数据源：README.md 必须能由 docs/ 1:1 重建。
+"""docs/ 是唯一数据源：README.md 与 BOOK.md 必须能由 docs/ 重建。
 
-防止出现「改了 README 忘了改 docs」或反之——两者漂移即红灯。
+README 是短入口，BOOK 是全量单文件；防止出现「改了入口忘了改 docs」
+或反之——三者漂移即红灯。
 """
 import sys
 import unittest
@@ -14,13 +15,28 @@ import build_readme  # noqa: E402
 
 
 class DocsReadmeSync(unittest.TestCase):
-    def test_readme_is_generated_from_docs(self):
+    def test_readme_and_book_are_generated_from_docs(self):
         readme = ROOT / "README.md"
+        book = ROOT / "BOOK.md"
         self.assertTrue(readme.exists(), "README.md 缺失")
-        expected = build_readme.build().replace("\r\n", "\n")
-        actual = readme.read_text(encoding="utf-8").replace("\r\n", "\n")
-        self.assertEqual(expected, actual,
+        self.assertTrue(book.exists(), "BOOK.md 缺失")
+        expected_readme = build_readme.build_readme().replace("\r\n", "\n")
+        actual_readme = readme.read_text(encoding="utf-8").replace("\r\n", "\n")
+        self.assertEqual(expected_readme, actual_readme,
                          "README.md 与 docs/ 不同步：请运行 python scripts/build_readme.py")
+        expected_book = build_readme.build_book().replace("\r\n", "\n")
+        actual_book = book.read_text(encoding="utf-8").replace("\r\n", "\n")
+        self.assertEqual(expected_book, actual_book,
+                         "BOOK.md 与 docs/ 不同步：请运行 python scripts/build_readme.py")
+
+    def test_readme_is_a_short_portal(self):
+        """README 首页必须保持短入口；完整内容移到 BOOK.md。"""
+        readme = ROOT / "README.md"
+        self.assertLess(readme.stat().st_size, 1_000_000,
+                        "README.md 超过 GitHub 在线渲染阈值，完整内容应留在 BOOK.md")
+        text = readme.read_text(encoding="utf-8")
+        self.assertIn("[完整单文件版 BOOK.md](BOOK.md)", text)
+        self.assertIn('<a id="readme-portal"></a>', text)
 
     def test_docs_pages_are_non_empty(self):
         pages = build_readme.collect_pages()

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import copy
 import json
 import sys
 from pathlib import Path
@@ -32,6 +33,8 @@ def _parser() -> argparse.ArgumentParser:
     parser.add_argument("--no-build", action="store_true", help="复用已有站点产物")
     parser.add_argument("--check", action="store_true", help="只审计已有整书")
     parser.add_argument("--pdf", action="store_true", help="生成 16K 内文 PDF")
+    parser.add_argument("--volumes", action="store_true",
+                        help="按上下卷生成两套 16K HTML；与 --pdf 同用时生成两卷 PDF")
     parser.add_argument("--cover", action="store_true", help="生成印刷封面（隐含 --pdf）")
     parser.add_argument("--report", action="store_true",
                         help="从已有 HTML/PDF/封面写构建报告与印刷规格")
@@ -66,6 +69,22 @@ def main(argv: list[str] | None = None) -> int:
             return 0
         if args.check:
             return check_html(args.out_dir, manifest, final=final)
+        if args.volumes:
+            if args.cover or args.report:
+                raise BookError("--volumes 暂不支持 --cover/--report")
+            for volume, label in ((1, "上卷"), (2, "下卷")):
+                volume_manifest = copy.deepcopy(manifest)
+                volume_manifest["title"] = f'{manifest["title"]}·{label}'
+                volume_dir = args.out_dir / f"volume-{volume}"
+                html_path = build_html(
+                    volume_dir, args.site_dir, config.DATA_DIR, config.DOCS,
+                    volume_manifest, rebuild_site=(not args.no_build and volume == 1),
+                    final=final, volume=volume)
+                print(f"volume {volume}: {html_path}")
+                if args.pdf:
+                    build_pdf(html_path, volume_dir, volume_manifest,
+                              browser_override=args.browser)
+            return 0
         html_path = build_html(args.out_dir, args.site_dir, config.DATA_DIR,
                                config.DOCS, manifest, rebuild_site=not args.no_build,
                                final=final)

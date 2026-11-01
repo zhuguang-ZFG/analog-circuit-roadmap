@@ -98,9 +98,9 @@
     "name": "BookSans-Stamp.ttf",
     "family": "NotoSansSC",
     "weight": 700,
-    "characters": 887,
-    "bytes": 229152,
-    "sha256": "81c99eac95df5f8e2d14c18cea430978fdae1be51c4625f868d89e700160455f"
+    "characters": 889,
+    "bytes": 229728,
+    "sha256": "0f03c0c60276d6309b35c8775956909e8e05ef24190a742e6fa4aba7bf15c686"
   },
   "licenses": [
     {

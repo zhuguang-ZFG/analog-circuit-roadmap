@@ -1,7 +1,7 @@
 PY ?= python
 export PYTHONIOENCODING := utf-8
 
-.PHONY: readme gen bookdata labs fonts site book book-pdf book-check test-static test-browser verify stats clean
+.PHONY: readme gen bookdata labs fonts site book book-pdf book-check print-book print-volumes test-static test-browser verify stats clean
 
 readme:
 	$(PY) scripts/build_readme.py
@@ -31,6 +31,14 @@ book-pdf:
 
 book-check:
 	$(PY) analog-book/build_book.py --check --no-build
+
+print-book:
+	$(PY) analog-book/build_print_book.py --no-build
+
+# 16K 单卷 812 页超过 700 页硬上限：印刷版按自然篇界出上下卷，
+# 每卷自带前置页、目录、插图/表格目录与本卷索引，参考文献与索引两卷都带。
+print-volumes:
+	$(PY) analog-book/build_print_book.py --volumes --pdf --no-build
 
 test-static:
 	$(PY) -B -m unittest discover -s scripts -p "test_svg_assets.py" -v

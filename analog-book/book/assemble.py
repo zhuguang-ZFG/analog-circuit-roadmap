@@ -7,6 +7,7 @@ import json
 import re
 import subprocess
 import sys
+from copy import deepcopy
 from pathlib import Path
 
 import yaml
@@ -48,6 +49,10 @@ GENERATED_APPENDIX_IDS = {
 }
 EXPECTED_PAGES = 77
 WORD_TARGET = 15000
+VOLUME_LABELS = {1: "上卷", 2: "下卷"}
+VOLUME1_LAST_ID = "page-p1-11-ch10"
+VOLUME2_FIRST_ID = "part-iii"
+VOLUME_COMMON_BACK_IDS = {"bibliography", "book-index"}
 INDEX_TARGET = (300, 400)
 REFERENCE_TARGET = 100
 
@@ -59,6 +64,87 @@ DATA_URI_RE = re.compile(
     r"data:[a-zA-Z0-9.+-]+/[a-zA-Z0-9.+-]+;base64,[A-Za-z0-9+/=]+")
 CHAPTER_NUMBER_RE = re.compile(r"-ch(\d+)$")
 SCRIPT_SRC_RE = re.compile(r"<script\b[^>]*\bsrc\s*=", re.I)
+A_TAG_RE = re.compile(
+    r'<a\b(?P<before>[^>]*?)\s+href="#(?P<target>[^"]+)"(?P<after>[^>]*)>'
+    r'(?P<body>.*?)</a>', re.S)
+
+
+def _page_position(pages: list[dict], page_id: str) -> int:
+    for index, page in enumerate(pages):
+        if page["id"] == page_id:
+            return index
+    raise BookError(f"页面序列中缺少 {page_id}")
+
+
+def _select_volume_pages(pages: list[dict], volume: int) -> list[dict]:
+    """按自然篇界拆卷：上卷到第 10 章，下卷从第 III 篇起。"""
+    if volume not in VOLUME_LABELS:
+        raise BookError(f"未知卷号: {volume}")
+    front_end = _page_position(pages, "part-i")
+    front = pages[:front_end]
+    common_back = [page for page in pages
+                   if page["id"] in VOLUME_COMMON_BACK_IDS]
+    if volume == 1:
+        end = _page_position(pages, VOLUME1_LAST_ID) + 1
+        return front + pages[front_end:end] + common_back
+    start = _page_position(pages, VOLUME2_FIRST_ID)
+    return front + pages[start:]
+
+
+def _anchor_positions(pages: list[dict]) -> dict[str, int]:
+    anchors: dict[str, int] = {}
+    for index, page in enumerate(pages):
+        anchors.setdefault(page["id"], index)
+        for match in ID_ATTR_RE.finditer(page["html"]):
+            anchors.setdefault(match.group(2), index)
+    return anchors
+
+
+def _filter_index_terms(terms: list[dict], pages: list[dict]) -> list[dict]:
+    """分卷索引只收本卷可见锚点；see_also 同步收束到本卷词条。"""
+    anchors = set(_anchor_positions(pages))
+    filtered: list[dict] = []
+    for item in terms:
+        kept = [anchor for anchor in [item["primary"], *item["anchors"]]
+                if anchor in anchors]
+        if not kept:
+            continue
+        copied = deepcopy(item)
+        copied["primary"] = kept[0]
+        copied["anchors"] = kept[1:] or [kept[0]]
+        filtered.append(copied)
+    names = {item["term"] for item in filtered}
+    for item in filtered:
+        item["see_also"] = [name for name in item["see_also"] if name in names]
+    return filtered
+
+
+def _volume_of_anchor(anchor_positions: dict[str, int], pages: list[dict],
+                      anchor: str) -> int:
+    index = anchor_positions[anchor]
+    last_volume1 = _page_position(pages, VOLUME1_LAST_ID)
+    return 1 if index <= last_volume1 else 2
+
+
+def _externalize_cross_volume_links(pages: list[dict], all_pages: list[dict],
+                                    volume: int) -> None:
+    """把指向另一卷的 `#anchor` 降为「见上/下卷」提示，避免分卷悬空锚点。"""
+    current = set(_anchor_positions(pages))
+    all_positions = _anchor_positions(all_pages)
+    for page in pages:
+        def replace(match: re.Match) -> str:
+            target = match.group("target")
+            if target in current:
+                return match.group(0)
+            if target not in all_positions:
+                return match.group(0)
+            target_volume = _volume_of_anchor(all_positions, all_pages, target)
+            if target_volume == volume:
+                return match.group(0)
+            label = VOLUME_LABELS[target_volume]
+            return (f'<span class="book-cross-volume" title="该目标在{label}">'
+                    f'{match.group("body")}<small>（见{label}）</small></span>')
+        page["html"] = A_TAG_RE.sub(replace, page["html"])
 
 
 def _esc(value) -> str:
@@ -703,8 +789,9 @@ def audit_html(document: str, model: dict, final: bool = False) -> dict:
         errors.append("书内仍有占位标记: " + placeholder.group(0))
 
     pages = model.get("pages") or []
-    if len(pages) != EXPECTED_PAGES:
-        errors.append(f"逻辑页应为 {EXPECTED_PAGES}，实际 {len(pages)}")
+    expected_pages = int(model.get("expected_pages") or EXPECTED_PAGES)
+    if len(pages) != expected_pages:
+        errors.append(f"逻辑页应为 {expected_pages}，实际 {len(pages)}")
     sections = len(re.findall(r'<section class="book-page\b', markup))
     if sections != len(pages):
         errors.append(f"book-page 数量 {sections} 与逻辑页 {len(pages)} 不一致")
@@ -715,6 +802,9 @@ def audit_html(document: str, model: dict, final: bool = False) -> dict:
     for page in pages:
         if (page["kind"] in {"toc", "list_of_figures", "list_of_tables"}
                 or page["id"] == "book-index"):
+            # 分卷可能出现某卷无图/无表的空目录页；只有真有条目时才要求占位。
+            if 'href="#' not in page["html"]:
+                continue
             if "000" not in page["html"]:
                 errors.append(f"{page['id']}: 缺少 000 页码占位")
     index_page = next((page for page in pages if page["id"] == "book-index"), None)
@@ -733,12 +823,13 @@ def audit_html(document: str, model: dict, final: bool = False) -> dict:
         chars = int(chapters[chapter].get("chars", 0))
         if chars < WORD_TARGET:
             issue(f"第 {chapter} 章字数不足：{chars} < {WORD_TARGET} 非空白字符")
-    index_count = int(stats.get("index_terms", 0))
-    if not INDEX_TARGET[0] <= index_count <= INDEX_TARGET[1]:
-        issue(f"索引应为 {INDEX_TARGET[0]}–{INDEX_TARGET[1]} 条，当前 {index_count}")
-    references = int(stats.get("references", 0))
-    if references < REFERENCE_TARGET:
-        issue(f"参考文献应 ≥{REFERENCE_TARGET} 条，当前 {references}")
+    if not model.get("volume"):
+        index_count = int(stats.get("index_terms", 0))
+        if not INDEX_TARGET[0] <= index_count <= INDEX_TARGET[1]:
+            issue(f"索引应为 {INDEX_TARGET[0]}–{INDEX_TARGET[1]} 条，当前 {index_count}")
+        references = int(stats.get("references", 0))
+        if references < REFERENCE_TARGET:
+            issue(f"参考文献应 ≥{REFERENCE_TARGET} 条，当前 {references}")
     unsigned = int(stats.get("unsigned_reviews", 0))
     if unsigned:
         issue(f"{unsigned} 章缺少技术/编辑/安全审读签字")
@@ -767,7 +858,8 @@ def audit_html(document: str, model: dict, final: bool = False) -> dict:
 
 def build_html(out_dir: Path, site_dir: Path, data_dir: Path, docs_dir: Path,
                manifest: dict, fonts_dir: Path = config.FONTS_DIR,
-               rebuild_site: bool = False, final: bool | None = None) -> Path:
+               rebuild_site: bool = False, final: bool | None = None,
+               volume: int | None = None) -> Path:
     site_dir = Path(site_dir)
     data_dir = Path(data_dir)
     docs_dir = Path(docs_dir)
@@ -821,7 +913,19 @@ def build_html(out_dir: Path, site_dir: Path, data_dir: Path, docs_dir: Path,
     for index, page in enumerate(pages):
         page["index"] = index
 
-    if len(pages) != EXPECTED_PAGES:
+    all_pages = list(pages)
+    total_index_terms = len(index_terms)
+    if volume is not None:
+        pages = _select_volume_pages(all_pages, volume)
+        chapter_stats = {}
+        for index, page in enumerate(pages):
+            page["index"] = index
+            if page["kind"] == "chapter":
+                match = CHAPTER_NUMBER_RE.search(page["stem"])
+                if match:
+                    chapter_stats[str(int(match.group(1)))] = {"chars": page["chars"]}
+        index_terms = _filter_index_terms(index_terms, pages)
+    elif len(pages) != EXPECTED_PAGES:
         raise BookError(f"装配得到 {len(pages)} 页，应为 {EXPECTED_PAGES}")
 
     toc = _toc_entries(pages)
@@ -829,6 +933,8 @@ def build_html(out_dir: Path, site_dir: Path, data_dir: Path, docs_dir: Path,
     lot = _list_entries(pages, "tables")
     _fill_generated_pages(pages, toc, lof, lot)
     _fill_index(pages, index_terms, final)
+    if volume is not None:
+        _externalize_cross_volume_links(pages, all_pages, volume)
 
     data.validate_sources(sources, used_sources, final=final)
     unsigned = sum(
@@ -848,6 +954,7 @@ def build_html(out_dir: Path, site_dir: Path, data_dir: Path, docs_dir: Path,
         "endnotes": sum(len(page["endnotes"]) for page in pages),
         "chapters": chapter_stats,
         "index_terms": len(index_terms),
+        "index_terms_total": total_index_terms,
         "references": len(references),
         "unsigned_reviews": unsigned,
     }
@@ -862,6 +969,9 @@ def build_html(out_dir: Path, site_dir: Path, data_dir: Path, docs_dir: Path,
         "title": manifest["title"],
         "version": manifest["version"],
         "date": manifest["date"],
+        "volume": volume,
+        "volume_label": VOLUME_LABELS.get(volume),
+        "expected_pages": len(pages),
         "pages": pages,
         "toc": toc,
         "lof": lof,
