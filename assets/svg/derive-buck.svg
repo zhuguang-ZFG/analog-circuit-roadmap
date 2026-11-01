@@ -104,6 +104,16 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <text x="124" y="135" text-anchor="middle" font-size="11" font-weight="bold" fill="#1f5d7a">S</text>
 <text x="124" y="104" text-anchor="middle" font-size="10" fill="#5b666f">150kHz</text>
 <path d="M152 130 Q166.00 129.90 180 130" fill="none" stroke="#37424e" stroke-width="2.5"/>
+<circle cx="166" cy="130" r="3.2" fill="#37424e"/>
+<path d="M166 130 Q165.90 149.00 166 168" fill="none" stroke="#37424e" stroke-width="2.4"/>
+<polygon points="157,182 175,182 166,168" fill="#f7eedb" stroke="#37424e" stroke-width="2.2"/>
+<path d="M154 168 Q166.00 167.95 178 168" fill="none" stroke="#37424e" stroke-width="2.6"/>
+<path d="M166 182 Q166.01 193.00 166 204" fill="none" stroke="#37424e" stroke-width="2.4"/>
+<path d="M152 204 Q166.00 204.12 180 204" fill="none" stroke="#37424e" stroke-width="2.5"/>
+<path d="M157 212 Q166.00 212.03 175 212" fill="none" stroke="#37424e" stroke-width="2.5"/>
+<line x1="162" y1="219" x2="170" y2="219" stroke="#37424e" stroke-width="2.5"/>
+<text x="184" y="176" font-size="11.5" font-weight="bold" fill="#a4630f">续流 D</text>
+<text x="184" y="192" font-size="10" fill="#5b666f">S 断开时电流从这里走</text>
 <rect x="180" y="114" width="84" height="32" rx="6" fill="#f7eedb" stroke="#a4630f" stroke-width="2"/>
 <text x="222" y="135" text-anchor="middle" font-size="11" font-weight="bold" fill="#a4630f">L 22µH</text>
 <path d="M264 130 Q297.00 129.82 330 130" fill="none" stroke="#37424e" stroke-width="2.5"/>

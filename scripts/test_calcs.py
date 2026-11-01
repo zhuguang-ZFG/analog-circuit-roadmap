@@ -187,6 +187,23 @@ class CalcTests(unittest.TestCase):
                 self.assertEqual(chart.count(), 1)
                 self.assertEqual(chart.locator('polyline').count(), 1)
 
+    def test_buck_chart_keeps_the_work_point_off_the_floor(self):
+        """ΔV(C) 是 1/C 双曲线：横轴若从 1µF 起，曲线峰值会把 ymax 撑大百倍，
+        工作点红点贴底（高度比 ≈1%），读者只看到一条贴着轴的线。
+
+        回归来源：v3.74 把域收到 [C/2, 4C]，红点落到 43% 高度。断言用中间带
+        （25%–85%）而不是精确像素——域以后再调，只要工作点还在图上就放行。
+        """
+        box = self.open('p2-03-ch13.html', 'buck')
+        chart = box.locator('.calc-chart svg')
+        spot = chart.locator('circle[fill="#dc2626"]')
+        self.assertEqual(spot.count(), 1)
+        spot_y = float(spot.get_attribute('cy'))
+        # drawChart：T=22，绘图区高 ih = 150-22-28 = 100
+        ratio = (122 - spot_y) / 100
+        self.assertGreater(ratio, 0.25, f'工作点贴底：高度比 {ratio:.2f}')
+        self.assertLess(ratio, 0.85, f'工作点越顶：高度比 {ratio:.2f}')
+
     def test_every_registered_calc_ships_and_renders(self):
         """calc.js 注册的每个型号都必须有容器、能渲染出输入与结果。"""
         self.open('p1-01-ch0.html', 'divider')

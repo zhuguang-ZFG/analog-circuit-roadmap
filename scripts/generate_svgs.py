@@ -175,7 +175,8 @@ def stage_cards(cards, dur):
     """四拍卡逐拍揭示：每张卡上覆一块纸色遮罩，轮到第 i 拍才淡开。
 
     卡片本体保持静态——印刷管线只认遮罩上的 animate，卡片文字原样留在纸上；
-    遮罩 0.5 起步（不是 0），所以 t=0 的静止帧里四张卡也都看得见内容。
+    遮罩本体 opacity=0，0.5 由 SMIL 的 values[0] 在 t=0 给出：静止渲染（减弱动效、印刷、
+    忽略 SMIL 的阅读器）看到的是完全点亮，只有真跑动画才渐暗。
     """
     return [card + veil(20 + 192 * i, 70, 174, 214, i, len(cards), dur, amount=0.5)
             for i, card in enumerate(cards)]
@@ -8561,6 +8562,16 @@ def make_derive_buck():
 <text x="124" y="135" text-anchor="middle" font-size="11" font-weight="bold" fill="#2563eb">S</text>
 <text x="124" y="104" text-anchor="middle" font-size="10" fill="#475569">150kHz</text>
 <line x1="152" y1="130" x2="180" y2="130" stroke="#334155" stroke-width="2.5"/>
+<circle cx="166" cy="130" r="3.2" fill="#334155"/>
+<line x1="166" y1="130" x2="166" y2="168" stroke="#334155" stroke-width="2.4"/>
+<polygon points="157,182 175,182 166,168" fill="#fffbeb" stroke="#334155" stroke-width="2.2"/>
+<line x1="154" y1="168" x2="178" y2="168" stroke="#334155" stroke-width="2.6"/>
+<line x1="166" y1="182" x2="166" y2="204" stroke="#334155" stroke-width="2.4"/>
+<line x1="152" y1="204" x2="180" y2="204" stroke="#334155" stroke-width="2.5"/>
+<line x1="157" y1="212" x2="175" y2="212" stroke="#334155" stroke-width="2.5"/>
+<line x1="162" y1="219" x2="170" y2="219" stroke="#334155" stroke-width="2.5"/>
+<text x="184" y="176" font-size="11.5" font-weight="bold" fill="#b45309">续流 D</text>
+<text x="184" y="192" font-size="10" fill="#475569">S 断开时电流从这里走</text>
 <rect x="180" y="114" width="84" height="32" rx="6" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
 <text x="222" y="135" text-anchor="middle" font-size="11" font-weight="bold" fill="#b45309">L 22µH</text>
 <line x1="264" y1="130" x2="330" y2="130" stroke="#334155" stroke-width="2.5"/>
