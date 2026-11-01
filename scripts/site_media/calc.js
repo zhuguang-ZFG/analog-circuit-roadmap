@@ -145,7 +145,10 @@
       chart: {
         title: 'ΔV(C)：Vin、Vout、fsw、L 取当前值',
         xlabel: 'C / µF', ylabel: 'ΔV / mV',
-        domain: function (x) { return [1, Math.max(3 * x.c, 50)]; },
+        /* 域收到工作点邻域：ΔV 是 1/C 双曲线，横轴从 1µF 起会让 ymax 被
+           小电容端撑大 100 倍，红点贴底 1% 看不见。取 [C/2, 4C]，红点落在
+           43% 高度，形状仍是双曲线，读者能看出「电容翻倍、纹波减半」。 */
+        domain: function (x) { return [x.c / 2, x.c * 4]; },
         curve: function (c, x) {
           var d = x.vout / x.vin;
           var dIl = (x.vin - x.vout) * d / ((x.l * 1e-6) * (x.fsw * 1e3));
@@ -246,7 +249,7 @@
     var sp = cfg.spot(x);
     var cx = Math.min(Math.max(sp[0], dom[0]), dom[1]);
     s += '<circle cx="' + sx(cx).toFixed(1) + '" cy="' + sy(sp[1]).toFixed(1) + '" r="4" fill="#dc2626"/>';
-    s += '<text x="' + sx(dom[0]).toFixed(1) + '" y="' + (H - 8) + '" font-size="9.5" fill="#475569">' + fmt(dom[0], 0) + '</text>';
+    s += '<text x="' + sx(dom[0]).toFixed(1) + '" y="' + (H - 8) + '" font-size="9.5" fill="#475569">' + fmt(dom[0], dom[0] < 10 ? 1 : 0) + '</text>';
     s += '<text x="' + sx(dom[1]).toFixed(1) + '" y="' + (H - 8) + '" text-anchor="end" font-size="9.5" fill="#475569">' + fmt(dom[1], 0) + ' ' + cfg.xlabel + '</text>';
     s += '<text x="6" y="' + (T + 4) + '" font-size="9.5" fill="#475569">' + cfg.ylabel + '</text>';
     s += '<text x="6" y="' + (T + ih) + '" font-size="9.5" fill="#475569">0</text>';

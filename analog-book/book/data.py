@@ -50,9 +50,13 @@ def _nonempty(item: dict, names: tuple[str, ...], where: str) -> None:
             raise BookError(f"{where}: {name} 不能为空")
 
 
+# 动画总数：改这个常量即可，scripts/build_book_data.py 的上限断言、docs 徽章与
+# 统计口径同步改；test_real_generator_matches_committed_yaml 会对账真实清单。
+EXPECTED_ANIMATIONS = 114
+
 def validate_animations(items: list[dict], static_root: Path = config.ROOT) -> None:
-    if len(items) != 108:
-        raise BookError(f"animations.yml 应恰好 108 条，实际 {len(items)}")
+    if len(items) != EXPECTED_ANIMATIONS:
+        raise BookError(f"animations.yml 应恰好 {EXPECTED_ANIMATIONS} 条，实际 {len(items)}")
     ids, anchors = set(), set()
     for index, item in enumerate(items, 1):
         where = f"animations.yml 第 {index} 条"

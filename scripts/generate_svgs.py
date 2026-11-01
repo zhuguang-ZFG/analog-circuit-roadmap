@@ -163,9 +163,22 @@ def veil(x, y, w, h, i, n, dur, amount=0.42, fill="#fdf8ea"):
         return ''                                    # 第一块 t=0 就点亮
     kt = f"0;{a:.6g};{a + fade:.6g};1"
     vals = f"{amount};{amount};0;0"
-    return (f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="6" fill="{fill}" opacity="{amount}">'
+    # 基础 opacity 写 0（不是 amount）：减弱动效版只停不删 opacity 动画，若基础值
+    # 就是 0.5，遮罩会永久压在卡片/算式上；写 0 则任何静止渲染（减弱动效、印刷、
+    # README 里的 <img>）看到的都是**完全点亮**的内容，只有真跑动画时才变暗。
+    return (f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="6" fill="{fill}" opacity="0">'
             f'<animate attributeName="opacity" values="{vals}" keyTimes="{kt}" '
             f'dur="{dur}s" repeatCount="indefinite"/></rect>')
+
+
+def stage_cards(cards, dur):
+    """四拍卡逐拍揭示：每张卡上覆一块纸色遮罩，轮到第 i 拍才淡开。
+
+    卡片本体保持静态——印刷管线只认遮罩上的 animate，卡片文字原样留在纸上；
+    遮罩 0.5 起步（不是 0），所以 t=0 的静止帧里四张卡也都看得见内容。
+    """
+    return [card + veil(20 + 192 * i, 70, 174, 214, i, len(cards), dur, amount=0.5)
+            for i, card in enumerate(cards)]
 
 
 # ======================= 推导阶梯（公式推导图共用） =======================
@@ -6943,7 +6956,7 @@ def make_mosfet_four_beats():
 <text x="{x+87}" y="266" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#dc2626">I_D：{current_text}</text>
 <text x="{x+87}" y="278" text-anchor="middle" font-size="10" fill="#475569">V_DS：{vds_text} · V_GS：{vgs_text}</text>'''
 
-    cards = [
+    cards = stage_cards([
         mini_stage(20, '① 延时区', '0–150ns', '#64748b', '0', '20V', '0→1.4V', '#cbd5e1'),
         mini_stage(212, '② 电流上升', '150–400ns', '#b45309', '0→5A', '20V', '1.4→2.9V', '#f59e0b',
                    'M266,128 V239', 'M215,213 H251'),
@@ -6951,7 +6964,7 @@ def make_mosfet_four_beats():
                    'M458,128 V239', 'M407,213 H443'),
         mini_stage(596, '④ 完全增强', '560–700ns', '#059669', '5A', '0.15V', '2.9→5V', '#059669',
                    'M650,128 V239', 'M599,213 H635'),
-    ]
+    ], DB)
 
     svg = svg_open('MOSFET 开通四拍：栅极电荷如何变成热', h=680)
     svg += f'''
@@ -7040,7 +7053,7 @@ def make_rectifier_filter_beats():
 <text x="{x+87}" y="266" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#dc2626">I_D：{current_text}</text>
 <text x="{x+87}" y="278" text-anchor="middle" font-size="10" fill="#475569">V_C：{voltage_text}</text>'''
 
-    cards = [
+    cards = stage_cards([
         mini_stage(20, '① 初始态', 't=0 · 上电前', '#64748b', '0', '0V',
                    '#cbd5e1', '#cbd5e1'),
         mini_stage(212, '② 浪涌充电', '第一次过峰', '#b45309', '10~50A', '0→15.6V',
@@ -7049,7 +7062,7 @@ def make_rectifier_filter_beats():
                    '#7c3aed', '#7c3aed', 'M438,152 L502,152', '#dc2626'),
         mini_stage(596, '④ 谷值放电', '稳态谷值', '#059669', '0', '15.6→13.5V',
                    '#cbd5e1', '#059669', 'M630,152 L664,152 L664,190 L630,190', '#059669'),
-    ]
+    ], DB)
 
     # ---- 波形：20ms 线性轴；|sin| 峰值在 5/15ms，纹波周期 10ms ----
     ts = np.linspace(0, 20, 97)
@@ -7241,7 +7254,7 @@ def make_analog_switch_beats():
 <text x="{x+87}" y="278" text-anchor="middle" font-size="10" fill="#475569">{row2}</text>'''
 
     inj = '<polygon points="500,164 495,154 505,154" fill="#dc2626"/><polygon points="516,164 511,154 521,154" fill="#dc2626"/>'
-    cards = [
+    cards = stage_cards([
         mini_stage(20, '① 开', 'EN 上升 · 几十 ns', '#64748b', 'R_on：∞→45Ω', 'Q_ch 尚未建立',
                    '#cbd5e1'),
         mini_stage(212, '② 通', '导通期 · 采样', '#059669', 'Q_ch = 0.2pC', 'V_C：跟随 2.000V',
@@ -7250,7 +7263,7 @@ def make_analog_switch_beats():
                    '#cbd5e1', extra=inj),
         mini_stage(596, '④ 补偿', 'dummy 半尺寸管', '#7c3aed', '注入反向抵消', 'ΔV → ≈0',
                    '#34d399', 'M628,152 L700,152', '#7c3aed'),
-    ]
+    ], DB)
 
     # ---- 波形：EN 高=采样(0–8ms)，低=保持；关断瞬间 V_C 下陷 10mV ----
     en_d = f"M{T0},430 L{tx(8):.0f},430 L{tx(8):.0f},452 L{T1},452"
@@ -7336,7 +7349,7 @@ def make_ldo_transient_beats():
 <text x="{x+87}" y="266" text-anchor="middle" font-size="10.5" font-weight="bold" fill="{color}">{row1}</text>
 <text x="{x+87}" y="278" text-anchor="middle" font-size="10" fill="#475569">{row2}</text>'''
 
-    cards = [
+    cards = stage_cards([
         mini_stage(20, '① ESR 跳变', '零延迟 · 神仙难救', '#dc2626', 'ΔV₁ = 490mA×50mΩ', '≈ 25mV',
                    '#f8fafc', '#dc2626', '#2563eb'),
         mini_stage(212, '② 电容放电', 'µs 级 · 环路未醒', '#b45309', 'ΔV₂ = I·Δt/C', '≈ 245mV',
@@ -7345,7 +7358,7 @@ def make_ldo_transient_beats():
                    '#d1fae5', '#dc2626', '#2563eb', 'M438,153 L502,153', '#059669'),
         mini_stage(596, '④ 重新锁定', '过冲/振铃后', '#7c3aed', 'V_OUT = 5V − 负载调整率', '≈ 4.990V',
                    '#f8fafc', '#dc2626', '#2563eb'),
-    ]
+    ], DB)
 
     # ---- 波形：t=5µs 负载阶跃；ESR 瞬跳 25mV → 电容放电 245mV → 环路拉回 ----
     vout_t = [0, 5, 5, 10, 30, 50]
@@ -7444,7 +7457,7 @@ def make_555_astable_beats():
 <text x="{x+87}" y="266" text-anchor="middle" font-size="10.5" font-weight="bold" fill="{color}">{row1}</text>
 <text x="{x+87}" y="278" text-anchor="middle" font-size="10" fill="#475569">{row2}</text>'''
 
-    cards = [
+    cards = stage_cards([
         mini_stage(20, '① 上电', 't=0 · 上电瞬间', '#64748b', 'OUT：高 · 放电管关', 'C：0V 起步',
                    '#cbd5e1', '#cbd5e1', '#cbd5e1'),
         mini_stage(212, '② 充电', 'V_C：3→6V', '#b45309', 'OUT：高', 't_充 = 541µs',
@@ -7453,7 +7466,7 @@ def make_555_astable_beats():
                    '#cbd5e1', '#dc2626', '#2563eb', 'M444,226 L444,178', '#dc2626'),
         mini_stage(596, '④ 循环', 'V_C：3↔6V', '#059669', 'OUT：方波 ≈990Hz', '占空比 ≈53%',
                    '#334155', '#334155', '#2563eb'),
-    ]
+    ], DB)
 
     # ---- 波形：V_C 指数充放电夹在 3V↔6V；OUT 方波 ----
     tc = np.linspace(0, 541, 48)
@@ -8483,6 +8496,100 @@ def make_derive_feedback():
     save('derive-feedback.svg', svg + '</svg>')
 
 
+# ======================= 推导图 5：米勒电容（第 11 章 11.5） =======================
+def make_derive_miller():
+    DM = 16
+    steps = [
+        ('① 敌人是谁', 'Cbc 跨在输入与输出之间', '共射的集电结电容、共源的 Cgd'),
+        ('② 输出反着摆', 'ΔVc = −A · ΔVb', '共射反相：输入升，输出降'),
+        ('③ 电容承受的压差', '(1+A)·ΔVb', '两端往相反方向跑，摆幅被撬大'),
+        ('④ 折回输入端', 'C_in = Cbc · (1+A)', '同一份电荷，输入源要多供 (1+A) 倍'),
+        ('⑤ 代入数字', '10pF × (1+100) ≈ 1.01nF', '10pF 的小电容，看起来像 1nF'),
+        ('⑥ 带宽被谁定', 'f_H = 1/(2π·Rs·C_in) ≈ 15.8kHz', 'Rs=10kΩ：想放到 MHz？早滚降了'),
+    ]
+    n = len(steps)
+    left = f'''<text x="196" y="88" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">一只小电容，被增益撬成一只大电容</text>
+<text x="46" y="196" font-size="11.5" font-weight="bold" fill="#b45309">ΔVb</text>
+<polyline points="36,300 52,286 68,314 84,286 100,314 116,300" fill="none" stroke="#b45309" stroke-width="2.2"/>
+<line x1="116" y1="300" x2="150" y2="300" stroke="#334155" stroke-width="2.5"/>
+<polygon points="144,294 154,300 144,306" fill="#334155"/>
+<circle cx="168" cy="300" r="4" fill="#334155"/>
+<text x="168" y="330" text-anchor="middle" font-size="11" font-weight="bold" fill="#334155">b</text>
+<rect x="196" y="264" width="112" height="72" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text x="252" y="296" text-anchor="middle" font-size="15" font-weight="bold" fill="#2563eb">−A</text>
+<text x="252" y="318" text-anchor="middle" font-size="10" fill="#475569">反相放大</text>
+<line x1="168" y1="300" x2="192" y2="300" stroke="#334155" stroke-width="2.5"/>
+<line x1="308" y1="300" x2="352" y2="300" stroke="#334155" stroke-width="2.5"/>
+<polygon points="346,294 356,300 346,306" fill="#334155"/>
+<circle cx="368" cy="300" r="4" fill="#334155"/>
+<text x="368" y="330" text-anchor="middle" font-size="11" font-weight="bold" fill="#334155">c</text>
+<text x="332" y="272" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#dc2626">ΔVc = −A·ΔVb</text>
+<line x1="168" y1="300" x2="168" y2="196" stroke="#2f7f96" stroke-width="2.2"/>
+<line x1="168" y1="196" x2="236" y2="196" stroke="#2f7f96" stroke-width="2.2"/>
+<line x1="236" y1="182" x2="236" y2="210" stroke="#2f7f96" stroke-width="3"/>
+<line x1="252" y1="182" x2="252" y2="210" stroke="#2f7f96" stroke-width="3"/>
+<line x1="252" y1="196" x2="368" y2="196" stroke="#2f7f96" stroke-width="2.2"/>
+<line x1="368" y1="196" x2="368" y2="300" stroke="#2f7f96" stroke-width="2.2"/>
+<text x="244" y="172" text-anchor="middle" font-size="12" font-weight="bold" fill="#2f7f96">Cbc 10pF</text>
+{chip(196, 398, '两端压差 = ΔVb − ΔVc = (1+A)·ΔVb', '#2f7f96', 11)}
+{chip(196, 434, '同一份电荷 Q = C·ΔU，输入源要多搬 A 倍', '#b45309', 11)}
+'''
+    left += flow("M168,196 L236,196", DM, n=1, color="#2f7f96", r=3.4)
+    left += flow("M252,196 L368,196 L368,300", DM, n=1, color="#2f7f96", r=3.4)
+    svg = derive_frame('米勒电容六步推导：为什么 10pF 看起来像 1nF', steps, left, h=680, dur=DM)
+    svg += note_box("增益越高，这只寄生电容越「重」——带宽与增益，从管子出生那天就在互相挤压", 636, DM,
+                    delay_kt=None, w=740)
+    save('derive-miller.svg', svg + '</svg>')
+
+
+# ======================= 推导图 6：降压纹波（第 13 章 13.2） =======================
+def make_derive_buck():
+    DK = 16
+    steps = [
+        ('① 电感电流是三角波', 'ΔIL = (Vin−Vout)·D / (L·fsw)', '伏秒平衡：开关期间爬升、关断期间下降'),
+        ('② 电容只收「净电荷」', 'ΔQ = ½ · (ΔIL/2) · (T/2)', '三角波围出的面积 = ½×底×高'),
+        ('③ 化简成频率', 'ΔQ = ΔIL / (8·fsw)', 'T/2 换成 1/(2fsw)，三角形摊成常数 1/8'),
+        ('④ 电容定义', 'ΔV = ΔQ / C', 'C = Q/U 反解'),
+        ('⑤ 合并', 'ΔV = ΔIL / (8·fsw·C)', '公式里的 8 是三角波的几何，不是怪数'),
+        ('⑥ 代入数字', '0.884A / (8×150k×100µF) ≈ 7.4mV', 'L、C、fsw 三家一起决定纹波'),
+    ]
+    n = len(steps)
+    left = f'''<text x="196" y="88" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">电感吃三角波，电容吃电荷</text>
+<text x="40" y="118" font-size="11.5" font-weight="bold" fill="#b45309">Vin 12V</text>
+<line x1="36" y1="130" x2="96" y2="130" stroke="#334155" stroke-width="2.5"/>
+<rect x="96" y="114" width="56" height="32" rx="6" fill="#f8fafc" stroke="#2563eb" stroke-width="2"/>
+<text x="124" y="135" text-anchor="middle" font-size="11" font-weight="bold" fill="#2563eb">S</text>
+<text x="124" y="104" text-anchor="middle" font-size="10" fill="#475569">150kHz</text>
+<line x1="152" y1="130" x2="180" y2="130" stroke="#334155" stroke-width="2.5"/>
+<rect x="180" y="114" width="84" height="32" rx="6" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<text x="222" y="135" text-anchor="middle" font-size="11" font-weight="bold" fill="#b45309">L 22µH</text>
+<line x1="264" y1="130" x2="330" y2="130" stroke="#334155" stroke-width="2.5"/>
+<circle cx="330" cy="130" r="4" fill="#334155"/>
+<text x="356" y="134" font-size="11.5" font-weight="bold" fill="#dc2626">Vout 5V</text>
+<line x1="330" y1="130" x2="330" y2="176" stroke="#334155" stroke-width="2.5"/>
+<line x1="292" y1="178" x2="368" y2="178" stroke="#334155" stroke-width="3"/>
+<line x1="292" y1="190" x2="368" y2="190" stroke="#334155" stroke-width="3"/>
+<line x1="330" y1="192" x2="330" y2="216" stroke="#334155" stroke-width="2.5"/>
+<line x1="314" y1="216" x2="346" y2="216" stroke="#334155" stroke-width="2.5"/>
+<line x1="320" y1="224" x2="340" y2="224" stroke="#334155" stroke-width="2.5"/>
+<line x1="326" y1="232" x2="334" y2="232" stroke="#334155" stroke-width="2.5"/>
+<text x="378" y="188" font-size="11" font-weight="bold" fill="#2f7f96">100µF</text>
+<polyline points="44,340 98,296 152,340 206,296 260,340 314,296" fill="none" stroke="#dc2626" stroke-width="2.2"/>
+<line x1="44" y1="296" x2="318" y2="296" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
+<line x1="44" y1="340" x2="318" y2="340" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
+<line x1="330" y1="296" x2="330" y2="340" stroke="#dc2626" stroke-width="2"/>
+<polygon points="325,302 330,294 335,302" fill="#dc2626"/>
+<polygon points="325,334 330,342 335,334" fill="#dc2626"/>
+<text x="344" y="322" font-size="11.5" font-weight="bold" fill="#dc2626">ΔIL</text>
+{chip(196, 404, '电容不「制造」纹波，只是把电感的多余电荷兜住', '#2f7f96', 11)}
+'''
+    left += flow("M36,130 L92,130", DK, n=2, color="#dc2626", r=3.6)
+    svg = derive_frame('降压纹波六步推导：那个 8 是三角波的面积', steps, left, h=680, dur=DK)
+    svg += note_box("要更小的纹波？加大 C（线性）、提高 fsw（线性）、或加粗 L（线性）——三条路都写在同一行式子里", 636, DK,
+                    delay_kt=None, w=740)
+    save('derive-buck.svg', svg + '</svg>')
+
+
 if __name__ == '__main__':
     make_rc_charge()
     make_bridge_rectifier()
@@ -8596,4 +8703,6 @@ if __name__ == '__main__':
     make_derive_ripple()
     make_derive_gain()
     make_derive_feedback()
+    make_derive_miller()
+    make_derive_buck()
     print(f'all {len(os.listdir(OUT))} SVGs regenerated into', os.path.abspath(OUT))

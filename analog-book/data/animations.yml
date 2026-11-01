@@ -770,3 +770,47 @@
   one_line: 左右对照，长地线夹在探头与远端地之间围出一个大环路；开关电源的磁场在里面感应出假的 200mV 纹波。换成弹簧地针，环路面积缩十倍以上，读数立刻干净。排故时先怀疑测量，再怀疑电路。
     → 正文 14.8 原型到量产 DFM/DFT
   static_svg: assets/svg/probe-ground-loop.svg
+- id: anim-109
+  file: p5-00-part5.md
+  title: 分压公式四步推导：I 先算出来，再乘下臂电阻
+  chapter: 0
+  anchor: demo109
+  one_line: 左边电路随拍点亮、右边算式逐行推进，游标按拍下框「此刻推到哪一行」。串联同流 → 欧姆定律 → 代入消去 I → 只剩电阻比，最后一步代 12V 与两只 10kΩ 验证 6V。公式不是背下来的，是三步推出来的…
+  static_svg: assets/svg/derive-divider.svg
+- id: anim-110
+  file: p5-00-part5.md
+  title: 纹波公式五步推导：电荷 → 电压 → 整流补几次
+  chapter: 2
+  anchor: demo110
+  one_line: $Q=I\cdot\Delta t$ 是账本，$\Delta V=Q/C$ 是水桶，合起来 $\Delta V=I\cdot\Delta t/C$…
+  static_svg: assets/svg/derive-ripple.svg
+- id: anim-111
+  file: p5-00-part5.md
+  title: 共射增益五步推导：gm 变电流，Rc 变回电压
+  chapter: 11
+  anchor: demo111
+  one_line: $g_m=\Delta I_c/\Delta V_{be}$ 把输入电压抖成电流，$\Delta V_{out}=-\Delta I_c R_c$ 再把它抖回电压——负号是「电流涨、Rc
+    压降涨、输出跌」推出来的，不是约定。
+  static_svg: assets/svg/derive-gain.svg
+- id: anim-112
+  file: p5-00-part5.md
+  title: 负反馈增益六步推导：从 Vout = A·Vd 到 Af ≈ 1/β
+  chapter: 6
+  anchor: demo112
+  one_line: 开环 → 采样 → 净输入 → 联立 → 移项求商，六步落到 $A_f=A/(1+A\beta)$；再让 $A\beta\gg1$，得到 $A_f\approx1/\beta$——增益只由电阻比决定，与
+    A 无关。
+  static_svg: assets/svg/derive-feedback.svg
+- id: anim-113
+  file: p5-00-part5.md
+  title: 米勒电容六步推导：10pF 为什么看起来像 1nF
+  chapter: 11
+  anchor: demo113
+  one_line: Cbc 一头挂输入、一头挂输出，输出反相摆 −A·Δv，于是电容两端往相反方向跑、压差被撬成 $(1+A)\cdot\Delta v$；充同一份电荷，输入源要多搬 (1+A) 倍——等效电容就这么被放大。
+  static_svg: assets/svg/derive-miller.svg
+- id: anim-114
+  file: p5-00-part5.md
+  title: 降压纹波六步推导：那个 8 是三角波的面积
+  chapter: 13
+  anchor: demo114
+  one_line: 电感电流是三角波，电容每周期只收三角波围出的那点面积…
+  static_svg: assets/svg/derive-buck.svg

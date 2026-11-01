@@ -149,7 +149,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <g filter="url(#pglow)"><circle r="4.2" fill="#a8321f"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M246,152 L310,152" keyPoints="0;0.3;0.7;1" keyTimes="0;0.35;0.65;1" calcMode="linear"/></circle>
 <circle r="4.2" fill="#a8321f"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M246,152 L310,152" keyPoints="0;0.3;0.7;1" keyTimes="0;0.35;0.65;1" calcMode="linear"/></circle></g>
 <text x="299" y="266" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#a8321f">I_D：10~50A</text>
-<text x="299" y="278" text-anchor="middle" font-size="10" fill="#5b666f">V_C：0→15.6V</text>
+<text x="299" y="278" text-anchor="middle" font-size="10" fill="#5b666f">V_C：0→15.6V</text><rect x="212" y="70" width="174" height="214" rx="6" fill="#fdf8ea" opacity="0"><animate attributeName="opacity" values="0.5;0.5;0;0" keyTimes="0;0.25;0.28;1" dur="12s" repeatCount="indefinite"/></rect>
 <rect x="404" y="70" width="174" height="214" rx="10" fill="#f6eedb" stroke="#6b3f63" stroke-width="1.8"/>
 <text x="491" y="94" text-anchor="middle" font-size="13" font-weight="bold" fill="#6b3f63">③ 峰值充电</text>
 <text x="491" y="113" text-anchor="middle" font-size="10.5" fill="#5b666f">稳态峰顶 · 导通角~20%</text>
@@ -176,7 +176,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <g filter="url(#pglow)"><circle r="4.2" fill="#a8321f"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M438,152 L502,152" keyPoints="0;0.3;0.7;1" keyTimes="0;0.35;0.65;1" calcMode="linear"/></circle>
 <circle r="4.2" fill="#a8321f"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M438,152 L502,152" keyPoints="0;0.3;0.7;1" keyTimes="0;0.35;0.65;1" calcMode="linear"/></circle></g>
 <text x="491" y="266" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#a8321f">I_D：5~10A</text>
-<text x="491" y="278" text-anchor="middle" font-size="10" fill="#5b666f">V_C：13.5→15.6V</text>
+<text x="491" y="278" text-anchor="middle" font-size="10" fill="#5b666f">V_C：13.5→15.6V</text><rect x="404" y="70" width="174" height="214" rx="6" fill="#fdf8ea" opacity="0"><animate attributeName="opacity" values="0.5;0.5;0;0" keyTimes="0;0.5;0.53;1" dur="12s" repeatCount="indefinite"/></rect>
 <rect x="596" y="70" width="174" height="214" rx="10" fill="#f6eedb" stroke="#3d6b4a" stroke-width="1.8"/>
 <text x="683" y="94" text-anchor="middle" font-size="13" font-weight="bold" fill="#3d6b4a">④ 谷值放电</text>
 <text x="683" y="113" text-anchor="middle" font-size="10.5" fill="#5b666f">稳态谷值</text>
@@ -203,7 +203,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <g filter="url(#pglow)"><circle r="4.2" fill="#3d6b4a"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M630,152 L664,152 L664,190 L630,190" keyPoints="0;0.3;0.7;1" keyTimes="0;0.35;0.65;1" calcMode="linear"/></circle>
 <circle r="4.2" fill="#3d6b4a"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M630,152 L664,152 L664,190 L630,190" keyPoints="0;0.3;0.7;1" keyTimes="0;0.35;0.65;1" calcMode="linear"/></circle></g>
 <text x="683" y="266" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#a8321f">I_D：0</text>
-<text x="683" y="278" text-anchor="middle" font-size="10" fill="#5b666f">V_C：15.6→13.5V</text>
+<text x="683" y="278" text-anchor="middle" font-size="10" fill="#5b666f">V_C：15.6→13.5V</text><rect x="596" y="70" width="174" height="214" rx="6" fill="#fdf8ea" opacity="0"><animate attributeName="opacity" values="0.5;0.5;0;0" keyTimes="0;0.75;0.78;1" dur="12s" repeatCount="indefinite"/></rect>
 <text x="425" y="314" text-anchor="middle" font-size="13" font-weight="bold" fill="#37424e">一个周期：AC 输入、电容电压、二极管电流</text>
 <rect x="80" y="340" width="680" height="105" fill="#e0d3b8" opacity="0.15"/>
 <text x="24" y="374" font-size="11" font-weight="bold" fill="#1f5d7a">V_AC</text>

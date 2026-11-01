@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""数据台账：动画 108、索引、来源、审读、文献与拼音排序。"""
+"""数据台账：动画总数、索引、来源、审读、文献与拼音排序。"""
 import copy
 import sys
 import tempfile
@@ -33,7 +33,7 @@ def fixture_data():
 
 
 class AnimationTests(unittest.TestCase):
-    def test_fixture_has_108_and_covers_every_chapter(self):
+    def test_fixture_covers_every_chapter(self):
         items, _, root = fixture_data()
         data.validate_animations(items, static_root=root)
         chapters = {item["chapter"] for item in items}
@@ -53,7 +53,7 @@ class AnimationTests(unittest.TestCase):
     def test_real_generator_matches_committed_yaml(self):
         import build_book_data
         generated = build_book_data.build_animations()
-        self.assertEqual(108, len(generated))
+        self.assertEqual(data.EXPECTED_ANIMATIONS, len(generated))
         committed = data.load_list(BOOK / "data" / "animations.yml")
         self.assertEqual(generated, committed)
         data.validate_animations(committed)

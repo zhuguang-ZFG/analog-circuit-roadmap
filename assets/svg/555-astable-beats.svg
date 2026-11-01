@@ -161,7 +161,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <g filter="url(#pglow)"><circle r="4.0" fill="#a4630f"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M252,134 L252,226" keyPoints="0;0.3;0.7;1" keyTimes="0;0.35;0.65;1" calcMode="linear"/></circle>
 <circle r="4.0" fill="#a4630f"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M252,134 L252,226" keyPoints="0;0.3;0.7;1" keyTimes="0;0.35;0.65;1" calcMode="linear"/></circle></g>
 <text x="299" y="266" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#a4630f">OUT：高</text>
-<text x="299" y="278" text-anchor="middle" font-size="10" fill="#5b666f">t_充 = 541µs</text>
+<text x="299" y="278" text-anchor="middle" font-size="10" fill="#5b666f">t_充 = 541µs</text><rect x="212" y="70" width="174" height="214" rx="6" fill="#fdf8ea" opacity="0"><animate attributeName="opacity" values="0.5;0.5;0;0" keyTimes="0;0.25;0.28;1" dur="12s" repeatCount="indefinite"/></rect>
 <rect x="404" y="70" width="174" height="214" rx="10" fill="#f6eedb" stroke="#a8321f" stroke-width="1.8"/>
 <text x="491" y="94" text-anchor="middle" font-size="13" font-weight="bold" fill="#a8321f">③ 放电</text>
 <text x="491" y="113" text-anchor="middle" font-size="10.5" fill="#5b666f">V_C：6→3V</text>
@@ -194,7 +194,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <g filter="url(#pglow)"><circle r="4.0" fill="#a8321f"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M444,226 L444,178" keyPoints="0;0.3;0.7;1" keyTimes="0;0.35;0.65;1" calcMode="linear"/></circle>
 <circle r="4.0" fill="#a8321f"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M444,226 L444,178" keyPoints="0;0.3;0.7;1" keyTimes="0;0.35;0.65;1" calcMode="linear"/></circle></g>
 <text x="491" y="266" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#a8321f">OUT：低</text>
-<text x="491" y="278" text-anchor="middle" font-size="10" fill="#5b666f">t_放 = 471µs</text>
+<text x="491" y="278" text-anchor="middle" font-size="10" fill="#5b666f">t_放 = 471µs</text><rect x="404" y="70" width="174" height="214" rx="6" fill="#fdf8ea" opacity="0"><animate attributeName="opacity" values="0.5;0.5;0;0" keyTimes="0;0.5;0.53;1" dur="12s" repeatCount="indefinite"/></rect>
 <rect x="596" y="70" width="174" height="214" rx="10" fill="#f6eedb" stroke="#3d6b4a" stroke-width="1.8"/>
 <text x="683" y="94" text-anchor="middle" font-size="13" font-weight="bold" fill="#3d6b4a">④ 循环</text>
 <text x="683" y="113" text-anchor="middle" font-size="10.5" fill="#5b666f">V_C：3↔6V</text>
@@ -226,7 +226,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <polygon points="762,180 757,176 757,184" fill="#a8321f"/>
 
 <text x="683" y="266" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#3d6b4a">OUT：方波 ≈990Hz</text>
-<text x="683" y="278" text-anchor="middle" font-size="10" fill="#5b666f">占空比 ≈53%</text>
+<text x="683" y="278" text-anchor="middle" font-size="10" fill="#5b666f">占空比 ≈53%</text><rect x="596" y="70" width="174" height="214" rx="6" fill="#fdf8ea" opacity="0"><animate attributeName="opacity" values="0.5;0.5;0;0" keyTimes="0;0.75;0.78;1" dur="12s" repeatCount="indefinite"/></rect>
 <text x="425" y="314" text-anchor="middle" font-size="13" font-weight="bold" fill="#37424e">电容电压在 ⅓VCC↔⅔VCC 间荡秋千，输出同步跳方波</text>
 <rect x="80" y="340" width="680" height="128" fill="#e0d3b8" opacity="0.15"/>
 <text x="24" y="392" font-size="11" font-weight="bold" fill="#1f5d7a">V_C</text>

@@ -221,12 +221,13 @@ def write_site(site: Path) -> Path:
 
 def write_data(data: Path) -> Path:
     """在给定的最终 data 目录下写出数据夹具。"""
+    from book.data import EXPECTED_ANIMATIONS
     data.mkdir(parents=True, exist_ok=True)
     animations = [
         {"id": f"anim-{i:03d}", "file": "p5-00-part5.md", "title": f"动画 {i}",
          "chapter": i % 19, "anchor": f"demo{i}", "one_line": "示例动画。",
          "static_svg": "assets/svg/fixture.svg"}
-        for i in range(1, 109)
+        for i in range(1, EXPECTED_ANIMATIONS + 1)
     ]
     import yaml
     (data / "animations.yml").write_text(

@@ -161,8 +161,8 @@ def build_animations():
                     continue
             body.append(line)
     finish()
-    if len(items) != 108:
-        raise SystemExit(f"动画应为 108 条，解析到 {len(items)}")
+    if len(items) != 114:
+        raise SystemExit(f"动画应为 114 条，解析到 {len(items)}")
     for item in items:
         if not (ROOT / item["static_svg"]).is_file():
             raise SystemExit(f'缺少图片 {item["static_svg"]}')

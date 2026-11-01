@@ -47,7 +47,7 @@ CHAPTER_CONTRACTS = {
         "floor": 18000,
         "sections": ("### 11.8", "### 11.9", "### 11.10", "### 11.11"),
         "examples": 3,
-        "figures": 11,
+        "figures": 12,
         "tables": 6,
         "quiz": 10,
         "figure_assets": (

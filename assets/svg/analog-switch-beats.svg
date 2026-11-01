@@ -145,7 +145,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <g filter="url(#pglow)"><circle r="4.0" fill="#a4630f"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M244,152 L316,152" keyPoints="0;0.3;0.7;1" keyTimes="0;0.35;0.65;1" calcMode="linear"/></circle>
 <circle r="4.0" fill="#a4630f"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M244,152 L316,152" keyPoints="0;0.3;0.7;1" keyTimes="0;0.35;0.65;1" calcMode="linear"/></circle></g>
 <text x="299" y="266" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#3d6b4a">Q_ch = 0.2pC</text>
-<text x="299" y="278" text-anchor="middle" font-size="10" fill="#5b666f">V_C：跟随 2.000V</text>
+<text x="299" y="278" text-anchor="middle" font-size="10" fill="#5b666f">V_C：跟随 2.000V</text><rect x="212" y="70" width="174" height="214" rx="6" fill="#fdf8ea" opacity="0"><animate attributeName="opacity" values="0.5;0.5;0;0" keyTimes="0;0.25;0.28;1" dur="12s" repeatCount="indefinite"/></rect>
 <rect x="404" y="70" width="174" height="214" rx="10" fill="#f6eedb" stroke="#a8321f" stroke-width="1.8"/>
 <text x="491" y="94" text-anchor="middle" font-size="13" font-weight="bold" fill="#a8321f">③ 关</text>
 <text x="491" y="113" text-anchor="middle" font-size="10.5" fill="#5b666f">EN 下降 · 电荷注入</text>
@@ -169,7 +169,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <polygon points="500,164 495,154 505,154" fill="#a8321f"/><polygon points="516,164 511,154 521,154" fill="#a8321f"/>
 
 <text x="491" y="266" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#a8321f">ΔV = Q_ch/2C_h = 10mV</text>
-<text x="491" y="278" text-anchor="middle" font-size="10" fill="#5b666f">V_C：2.000→1.990V</text>
+<text x="491" y="278" text-anchor="middle" font-size="10" fill="#5b666f">V_C：2.000→1.990V</text><rect x="404" y="70" width="174" height="214" rx="6" fill="#fdf8ea" opacity="0"><animate attributeName="opacity" values="0.5;0.5;0;0" keyTimes="0;0.5;0.53;1" dur="12s" repeatCount="indefinite"/></rect>
 <rect x="596" y="70" width="174" height="214" rx="10" fill="#f6eedb" stroke="#6b3f63" stroke-width="1.8"/>
 <text x="683" y="94" text-anchor="middle" font-size="13" font-weight="bold" fill="#6b3f63">④ 补偿</text>
 <text x="683" y="113" text-anchor="middle" font-size="10.5" fill="#5b666f">dummy 半尺寸管</text>
@@ -194,7 +194,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <g filter="url(#pglow)"><circle r="4.0" fill="#6b3f63"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M628,152 L700,152" keyPoints="0;0.3;0.7;1" keyTimes="0;0.35;0.65;1" calcMode="linear"/></circle>
 <circle r="4.0" fill="#6b3f63"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M628,152 L700,152" keyPoints="0;0.3;0.7;1" keyTimes="0;0.35;0.65;1" calcMode="linear"/></circle></g>
 <text x="683" y="266" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#6b3f63">注入反向抵消</text>
-<text x="683" y="278" text-anchor="middle" font-size="10" fill="#5b666f">ΔV → ≈0</text>
+<text x="683" y="278" text-anchor="middle" font-size="10" fill="#5b666f">ΔV → ≈0</text><rect x="596" y="70" width="174" height="214" rx="6" fill="#fdf8ea" opacity="0"><animate attributeName="opacity" values="0.5;0.5;0;0" keyTimes="0;0.75;0.78;1" dur="12s" repeatCount="indefinite"/></rect>
 <text x="425" y="314" text-anchor="middle" font-size="13" font-weight="bold" fill="#37424e">一次采样：控制信号 EN 与保持电容电压 V_C（注入台阶放大）</text>
 <rect x="80" y="340" width="680" height="118" fill="#e0d3b8" opacity="0.15"/>
 <text x="24" y="370" font-size="11" font-weight="bold" fill="#1f5d7a">V_C</text>

@@ -1,27 +1,27 @@
 <a id="part5"></a>
 # 第五篇：动画演示中心
 
-> 全部 112 张 SVG 动画（SMIL，浏览器直接播放）位于 `assets/svg/` 目录，由 `scripts/generate_svgs.py` 一键生成（仓库铁律：两者始终同步）；配套 Falstad 在线电路可实时交互。
+> 全部 114 张 SVG 动画（SMIL，浏览器直接播放）位于 `assets/svg/` 目录，由 `scripts/generate_svgs.py` 一键生成（仓库铁律：两者始终同步）；配套 Falstad 在线电路可实时交互。
 
 <details>
-<summary>动画速查：按章节 —— 112 张全索引（点击展开）</summary>
+<summary>动画速查：按章节 —— 114 张全索引（点击展开）</summary>
 
 | 章 | 动画（点击直达） |
 |---|---|
-| §0 第 0 章 电路直觉学前班：先上车，再赶路 | [5.39](p5-00-part5.md#demo39) · [5.78](p5-00-part5.md#demo78) · [5.87](p5-00-part5.md#demo87) · [5.89](p5-00-part5.md#demo89) |
+| §0 第 0 章 电路直觉学前班：先上车，再赶路 | [5.39](p5-00-part5.md#demo39) · [5.78](p5-00-part5.md#demo78) · [5.87](p5-00-part5.md#demo87) · [5.89](p5-00-part5.md#demo89) · [5.109](p5-00-part5.md#demo109) |
 | §1 第 1 章 无源元件的真实面目 | [5.36](p5-00-part5.md#demo36) · [5.43](p5-00-part5.md#demo43) · [5.60](p5-00-part5.md#demo60) · [5.79](p5-00-part5.md#demo79) · [5.101](p5-00-part5.md#demo101) · [5.103](p5-00-part5.md#demo103) |
-| §2 第 2 章 二极管：单向导电的物理本质 | [5.2](p5-00-part5.md#demo2) · [5.31](p5-00-part5.md#demo31) · [5.46](p5-00-part5.md#demo46) · [5.56](p5-00-part5.md#demo56) · [5.61](p5-00-part5.md#demo61) · [5.83](p5-00-part5.md#demo83) |
+| §2 第 2 章 二极管：单向导电的物理本质 | [5.2](p5-00-part5.md#demo2) · [5.31](p5-00-part5.md#demo31) · [5.46](p5-00-part5.md#demo46) · [5.56](p5-00-part5.md#demo56) · [5.61](p5-00-part5.md#demo61) · [5.83](p5-00-part5.md#demo83) · [5.110](p5-00-part5.md#demo110) |
 | §3 第 3 章 BJT 三极管：完整概念体系 | [5.3](p5-00-part5.md#demo3) · [5.40](p5-00-part5.md#demo40) · [5.41](p5-00-part5.md#demo41) · [5.66](p5-00-part5.md#demo66) · [5.67](p5-00-part5.md#demo67) · [5.70](p5-00-part5.md#demo70) · [5.74](p5-00-part5.md#demo74) · [5.81](p5-00-part5.md#demo81) |
 | §4 第 4 章 MOSFET：电压控制的开关王者 | [5.44](p5-00-part5.md#demo44) · [5.57](p5-00-part5.md#demo57) · [5.68](p5-00-part5.md#demo68) · [5.82](p5-00-part5.md#demo82) · [5.92](p5-00-part5.md#demo92) |
 | §5 第 5 章 输出结构彻底讲透：推挽、开漏、上拉下拉 | [5.5](p5-00-part5.md#demo5) · [5.51](p5-00-part5.md#demo51) · [5.53](p5-00-part5.md#demo53) · [5.62](p5-00-part5.md#demo62) |
-| §6 第 6 章 运算放大器：从内部结构到参数字典 | [5.37](p5-00-part5.md#demo37) · [5.45](p5-00-part5.md#demo45) · [5.63](p5-00-part5.md#demo63) · [5.71](p5-00-part5.md#demo71) · [5.72](p5-00-part5.md#demo72) · [5.75](p5-00-part5.md#demo75) · [5.93](p5-00-part5.md#demo93) |
+| §6 第 6 章 运算放大器：从内部结构到参数字典 | [5.37](p5-00-part5.md#demo37) · [5.45](p5-00-part5.md#demo45) · [5.63](p5-00-part5.md#demo63) · [5.71](p5-00-part5.md#demo71) · [5.72](p5-00-part5.md#demo72) · [5.75](p5-00-part5.md#demo75) · [5.93](p5-00-part5.md#demo93) · [5.112](p5-00-part5.md#demo112) |
 | §7 第 7 章 比较器：专为"判决"而生 | [5.4](p5-00-part5.md#demo4) · [5.35](p5-00-part5.md#demo35) · [5.47](p5-00-part5.md#demo47) · [5.54](p5-00-part5.md#demo54) · [5.76](p5-00-part5.md#demo76) |
 | §8 第 8 章 模拟开关与多路复用器：CMOS 传输门 | [5.22](p5-00-part5.md#demo22) · [5.50](p5-00-part5.md#demo50) · [5.69](p5-00-part5.md#demo69) · [5.84](p5-00-part5.md#demo84) · [5.94](p5-00-part5.md#demo94) |
 | §9 第 9 章 电压基准与稳压器：系统的"定盘星" | [5.20](p5-00-part5.md#demo20) · [5.21](p5-00-part5.md#demo21) · [5.25](p5-00-part5.md#demo25) · [5.55](p5-00-part5.md#demo55) · [5.73](p5-00-part5.md#demo73) · [5.85](p5-00-part5.md#demo85) · [5.95](p5-00-part5.md#demo95) |
 | §10 第 10 章 555 定时器：最经典的混合信号芯片 | [5.1](p5-00-part5.md#demo1) · [5.6](p5-00-part5.md#demo6) · [5.30](p5-00-part5.md#demo30) · [5.58](p5-00-part5.md#demo58) · [5.77](p5-00-part5.md#demo77) · [5.86](p5-00-part5.md#demo86) |
-| §11 第 11 章 放大电路拓扑：三种组态与四大积木 | [5.8](p5-00-part5.md#demo8) · [5.9](p5-00-part5.md#demo9) · [5.13](p5-00-part5.md#demo13) · [5.16](p5-00-part5.md#demo16) · [5.48](p5-00-part5.md#demo48) · [5.64](p5-00-part5.md#demo64) |
+| §11 第 11 章 放大电路拓扑：三种组态与四大积木 | [5.8](p5-00-part5.md#demo8) · [5.9](p5-00-part5.md#demo9) · [5.13](p5-00-part5.md#demo13) · [5.16](p5-00-part5.md#demo16) · [5.48](p5-00-part5.md#demo48) · [5.64](p5-00-part5.md#demo64) · [5.111](p5-00-part5.md#demo111) · [5.113](p5-00-part5.md#demo113) |
 | §12 第 12 章 运放应用电路族：两条公理推演一切 | [5.10](p5-00-part5.md#demo10) · [5.15](p5-00-part5.md#demo15) · [5.17](p5-00-part5.md#demo17) · [5.24](p5-00-part5.md#demo24) · [5.27](p5-00-part5.md#demo27) · [5.32](p5-00-part5.md#demo32) · [5.33](p5-00-part5.md#demo33) · [5.34](p5-00-part5.md#demo34) · [5.52](p5-00-part5.md#demo52) · [5.59](p5-00-part5.md#demo59) · [5.104](p5-00-part5.md#demo104) |
-| §13 第 13 章 电源与信号产生电路 | [5.11](p5-00-part5.md#demo11) · [5.12](p5-00-part5.md#demo12) · [5.14](p5-00-part5.md#demo14) · [5.18](p5-00-part5.md#demo18) · [5.19](p5-00-part5.md#demo19) · [5.23](p5-00-part5.md#demo23) · [5.26](p5-00-part5.md#demo26) · [5.28](p5-00-part5.md#demo28) · [5.29](p5-00-part5.md#demo29) · [5.65](p5-00-part5.md#demo65) · [5.80](p5-00-part5.md#demo80) · [5.105](p5-00-part5.md#demo105) · [5.106](p5-00-part5.md#demo106) |
+| §13 第 13 章 电源与信号产生电路 | [5.11](p5-00-part5.md#demo11) · [5.12](p5-00-part5.md#demo12) · [5.14](p5-00-part5.md#demo14) · [5.18](p5-00-part5.md#demo18) · [5.19](p5-00-part5.md#demo19) · [5.23](p5-00-part5.md#demo23) · [5.26](p5-00-part5.md#demo26) · [5.28](p5-00-part5.md#demo28) · [5.29](p5-00-part5.md#demo29) · [5.65](p5-00-part5.md#demo65) · [5.80](p5-00-part5.md#demo80) · [5.105](p5-00-part5.md#demo105) · [5.106](p5-00-part5.md#demo106) · [5.114](p5-00-part5.md#demo114) |
 | §14 第 14 章 电路设计方法论 | [5.42](p5-00-part5.md#demo42) · [5.88](p5-00-part5.md#demo88) · [5.98](p5-00-part5.md#demo98) · [5.107](p5-00-part5.md#demo107) · [5.108](p5-00-part5.md#demo108) |
 | §15 第 15 章 PCB 绘制注意事项 | [5.7](p5-00-part5.md#demo7) · [5.90](p5-00-part5.md#demo90) · [5.96](p5-00-part5.md#demo96) · [5.100](p5-00-part5.md#demo100) |
 | §16 第 16 章 排故五步法 | [5.38](p5-00-part5.md#demo38) · [5.49](p5-00-part5.md#demo49) · [5.99](p5-00-part5.md#demo99) |
@@ -701,7 +701,43 @@ Falstad 交互：`Circuits → 555 Timer Chip → Astable Multivibrator`
 
 **看点**：左右对照，**长地线夹**在探头与远端地之间围出一个大环路；开关电源的磁场在里面感应出假的 200mV 纹波。换成**弹簧地针**，环路面积缩十倍以上，读数立刻干净。**排故时先怀疑测量，再怀疑电路。** → 正文 [14.8 原型到量产 DFM/DFT](p3-01-ch14.md#sec148)
 
-## 5.109 Falstad 内置示例地图（全部带动画）
+## 5.109 分压公式四步推导：I 先算出来，再乘下臂电阻 <a id="demo109"></a>
+
+<p align="center"><img src="assets/svg/derive-divider.svg" width="720" alt="分压公式四步推导动画：串联电流、欧姆定律、代换、代入数字"></p>
+
+**看点**：左边电路随拍点亮、右边算式逐行推进，游标按拍下框「此刻推到哪一行」。**串联同流 → 欧姆定律 → 代入消去 I → 只剩电阻比**，最后一步代 12V 与两只 10kΩ 验证 6V。**公式不是背下来的，是三步推出来的**；同一个式子换成 R2=5k 就是 4V。→ 正文 [0.3 分压器](p1-01-ch0.md#sec-0-3)
+
+## 5.110 纹波公式五步推导：电荷 → 电压 → 整流补几次 <a id="demo110"></a>
+
+<p align="center"><img src="assets/svg/derive-ripple.svg" width="720" alt="纹波公式五步推导动画：电荷账、电容定义、代换、整流补两次、代入数字"></p>
+
+**看点**：$Q=I\cdot\Delta t$ 是账本，$\Delta V=Q/C$ 是水桶，合起来 $\Delta V=I\cdot\Delta t/C$；全波整流每周期补两次水，于是 $\Delta t=1/(2f)$，公式里凭空出现的那个 **2** 就是这么来的。代 1A、50Hz、4700µF 得 2.1V。**每个量都有出处**。→ 正文 [2.3 整流与滤波](p1-03-ch2.md#sec-2-3)
+
+## 5.111 共射增益五步推导：gm 变电流，Rc 变回电压 <a id="demo111"></a>
+
+<p align="center"><img src="assets/svg/derive-gain.svg" width="720" alt="共射增益五步推导动画：跨导定义、室温数值、电流转电压、串成增益、代入数字"></p>
+
+**看点**：$g_m=\Delta I_c/\Delta V_{be}$ 把输入电压抖成电流，$\Delta V_{out}=-\Delta I_c R_c$ 再把它抖回电压——**负号是「电流涨、Rc 压降涨、输出跌」推出来的**，不是约定。左图输入正弦经 gm 盒、Rc 出来倒过来了，一眼可见。代 38mS×2kΩ ≈ −76（37.6dB）。→ 正文 [11.8 有源负载与共源共栅](p2-01-ch11.md#sec-11-8)
+
+## 5.112 负反馈增益六步推导：从 Vout = A·Vd 到 Af ≈ 1/β <a id="demo112"></a>
+
+<p align="center"><img src="assets/svg/derive-feedback.svg" width="720" alt="负反馈增益六步推导动画：开环、采样、净输入、联立、求商、深反馈极限"></p>
+
+**看点**：开环 → 采样 → 净输入 → 联立 → 移项求商，六步落到 $A_f=A/(1+A\beta)$；再让 $A\beta\gg1$，得到 **$A_f\approx1/\beta$**——增益只由电阻比决定，与 A 无关。**这正是「虚短」的定量版本**：A 越大，输入端压差越趋近于零。→ 正文 [6 运算放大器](p1-07-ch6.md#ch6)
+
+## 5.113 米勒电容六步推导：10pF 为什么看起来像 1nF <a id="demo113"></a>
+
+<p align="center"><img src="assets/svg/derive-miller.svg" width="720" alt="米勒电容六步推导动画：跨接电容被增益撬大"></p>
+
+**看点**：Cbc 一头挂输入、一头挂输出，输出反相摆 −A·Δv，于是电容两端往相反方向跑、压差被撬成 $(1+A)\cdot\Delta v$；充同一份电荷，输入源要多搬 (1+A) 倍——**等效电容就这么被放大**。代 10pF 与 A=100 得 1.01nF，与 10kΩ 源阻一配，低通拐点只剩 15.8kHz。**增益换带宽，是同一只电容在收账**。→ 正文 [11.5 频率响应与米勒效应](p2-01-ch11.md#sec-11-5)
+
+## 5.114 降压纹波六步推导：那个 8 是三角波的面积 <a id="demo114"></a>
+
+<p align="center"><img src="assets/svg/derive-buck.svg" width="720" alt="降压纹波六步推导动画：电感三角波面积摊成 1/8"></p>
+
+**看点**：电感电流是三角波，电容每周期只收三角波围出的那点面积；面积 $=\tfrac12\cdot\tfrac{\Delta I_L}{2}\cdot\tfrac{T}{2}$ 化简后正好是 $\Delta I_L/(8f_{sw})$，所以 $\Delta V=\Delta I_L/(8f_{sw}C)$ 里的 **8 不是怪数，是几何**。代 0.884A、150kHz、100µF 得 7.4mV，与 §13.2 的算例同一组数。→ 正文 [13.2 Buck 降压](p2-03-ch13.md#sec-13-2)
+
+## 5.115 Falstad 内置示例地图（全部带动画）
 
 | 主题 | 菜单路径 |
 |---|---|

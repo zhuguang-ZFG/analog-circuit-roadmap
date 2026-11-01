@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "generated_by": "scripts/subset_fonts.py",
-  "required_text_characters": 2059,
+  "required_text_characters": 2060,
   "sources": [
     {
       "family": "NotoSerifSC",
@@ -57,33 +57,33 @@
       "name": "NotoSerifSC-Regular.woff2",
       "family": "NotoSerifSC",
       "weight": 400,
-      "characters": 2059,
-      "bytes": 350452,
-      "sha256": "162d11796382653436e8091c256ce8f7b691338dedeb9926fdbf174b1f0a77c3"
+      "characters": 2060,
+      "bytes": 350568,
+      "sha256": "88a49e1aef537f2190f919bc9f78b2569c224db14492d06f19f05ab5d0dda0d0"
     },
     {
       "name": "NotoSerifSC-Bold.woff2",
       "family": "NotoSerifSC",
       "weight": 700,
-      "characters": 2059,
-      "bytes": 361364,
-      "sha256": "df3369fb05061689e908c6893dc70fb64279182e0677845a86e312bf2cd04a84"
+      "characters": 2060,
+      "bytes": 361556,
+      "sha256": "2776660633150bbe9f1a7cfe0de30cfe7fc7f7f6c9d1ecf72161242cb64677f4"
     },
     {
       "name": "NotoSansSC-Regular.woff2",
       "family": "NotoSansSC",
       "weight": 400,
-      "characters": 2059,
-      "bytes": 273848,
-      "sha256": "a9597a3ec6db5b500c9cfe0b534a96c1fe64a5cbc2397ecf3d2183803d1f14fb"
+      "characters": 2060,
+      "bytes": 273828,
+      "sha256": "8b60db80bc1cea47bdc719f77e210809b16a34832daf52877e15c0a448958773"
     },
     {
       "name": "NotoSansSC-Bold.woff2",
       "family": "NotoSansSC",
       "weight": 700,
-      "characters": 2059,
-      "bytes": 280328,
-      "sha256": "37b78bbf7b13f834d591b8dc1ae1cfd49df3860a210671ce54667b7ceb730ba2"
+      "characters": 2060,
+      "bytes": 280668,
+      "sha256": "e6fd1662250161be5ad6d4189b3d9b8c4c1dcb1b05fc02b6d41d2105b43bf381"
     },
     {
       "name": "JetBrainsMono-Regular.woff2",
@@ -98,9 +98,9 @@
     "name": "BookSans-Stamp.ttf",
     "family": "NotoSansSC",
     "weight": 700,
-    "characters": 878,
-    "bytes": 226432,
-    "sha256": "c3139c3e1acf13306a9ce4bdccc084d43384906e2b513d8a82521b557651bfe4"
+    "characters": 885,
+    "bytes": 228504,
+    "sha256": "148bb7870ede4c5c6df24f06a7ee6e1d8f1cf704d84e5ae49641d9a4655f2d70"
   },
   "licenses": [
     {
