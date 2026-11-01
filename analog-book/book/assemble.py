@@ -531,6 +531,17 @@ def _fill_index(pages: list[dict], terms: list[dict], final: bool) -> None:
         anchors.add(page["id"])
         anchors.update(match.group(2)
                        for match in ID_ATTR_RE.finditer(page["html"]))
+    # 前置页在正文起始页之前，pdf.py 的 _region_links 会丢弃这类链接，
+    # 索引页码停在 000，PDF 构建才报错；在装配阶段提前拦下。
+    front = {page["stem"] for page in pages if page["group"] == "front"}
+    front_ids = {page["id"] for page in pages if page["group"] == "front"}
+    for item in terms:
+        for anchor in [item["primary"], *item["anchors"]]:
+            if (anchor in front_ids
+                    or anchor.split("--", 1)[0] in front):
+                raise BookError(
+                    f"索引锚点落在前置页，PDF 页码无法回填: "
+                    f"{item['term']} -> {anchor}")
     data.validate_index_terms(terms, anchors, final=final)
     rendered = transforms.strip_emoji(
         frontmatter.render_index(data.index_sections(terms)))

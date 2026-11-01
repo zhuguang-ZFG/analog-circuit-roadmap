@@ -11,7 +11,7 @@ ROOT = BOOK.parent
 sys.path.insert(0, str(BOOK))
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from book import data  # noqa: E402
+from book import assemble, data  # noqa: E402
 from book.manifest import BookError  # noqa: E402
 import book_fixtures  # noqa: E402
 
@@ -70,14 +70,16 @@ class AnimationTests(unittest.TestCase):
                 self.assertNotIn(one_line[-1], "、，；：,;:（→")
 
     def test_committed_seed_files_validate(self):
-        import build_book_data
         data_dir = BOOK / "data"
         animations = data.load_list(data_dir / "animations.yml")
         data.validate_animations(animations)
         terms = data.load_list(data_dir / "index-terms.yml")
-        self.assertEqual(40, len(terms))
-        anchors = {f"page-{stem}" for stem in build_book_data.CHAPTER_FILES}
-        data.validate_index_terms(terms, anchors)
+        # 锚点是否真实存在由装配阶段（assemble._fill_index 对照全书 id）
+        # 与 test_book_real 的链接解析兜住；这里查条数区间、schema、
+        # 去重与 see_also 闭合。final=True 同时锁 300–400 条。
+        referenced = {anchor for item in terms
+                      for anchor in [item["primary"], *item["anchors"]]}
+        data.validate_index_terms(terms, referenced, final=True)
         signoffs = data.load_list(data_dir / "chapter-signoff.yml")
         data.validate_signoffs(signoffs)
         sources = data.load_list(data_dir / "sources.yml")
@@ -109,6 +111,21 @@ class IndexTests(unittest.TestCase):
         data.validate_index_terms(terms, {anchor}, final=True)
         with self.assertRaisesRegex(BookError, "300"):
             data.validate_index_terms(terms[:-1], {anchor}, final=True)
+
+    def test_front_matter_anchor_is_rejected_before_pdf(self):
+        # 前置页在正文起始页之前，PDF 页码无法回填；必须在装配阶段拦下。
+        pages = [
+            {"id": "book-index", "stem": "book-index", "group": "back",
+             "html": "", "headings": []},
+            {"id": "page-p0-11-conventions", "stem": "p0-11-conventions",
+             "group": "front", "html": "", "headings": []},
+        ]
+        terms = [{"term": "符号与单位表", "english": "symbol table",
+                  "primary": "p0-11-conventions--symbols",
+                  "anchors": ["p0-11-conventions--symbols"],
+                  "see_also": []}]
+        with self.assertRaisesRegex(BookError, "前置页"):
+            assemble._fill_index(pages, terms, final=False)
 
     def test_pinyin_sorting_and_sections(self):
         terms = [{"term": "欧姆定律", "english": "Ohm's law",

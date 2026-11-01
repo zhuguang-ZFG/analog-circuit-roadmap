@@ -184,10 +184,16 @@ def _page_starts(document, model: dict) -> list[int]:
     return starts
 
 
+PAGE_NUMBER_RE = re.compile(r"(?<!\d)000(?!\d)")
+
+
 def _000_word(page, rect):
-    words = [word for word in page.get_text("words", clip=rect)
-             if word[4] == "000"]
-    return words[0] if words else None
+    # 行末页码会被剪带零宽字符（"000f"），紧贴正文时又会粘成一个词
+    # （"测试术语000"）；按数字边界在剪出的词里找 000，不用整词相等。
+    for word in page.get_text("words", clip=rect):
+        if PAGE_NUMBER_RE.search(word[4]):
+            return word
+    return None
 
 
 def _region_links(document, start: int, end: int, body_start: int):
@@ -243,8 +249,16 @@ def _backfill(document, start: int, end: int, body_start: int,
         raise BookError(
             f"页码占位 {len(links)} 个，目录项 {expected} 个；"
             "每个目录行必须恰好一个链接且包含 000")
+    # 索引页的每个页码在 Chromium 里会生成多条完全重合的链接注记；
+    # 红字与补字只做一次，链接注记仍按 snapshot 全量恢复。
     by_page: dict[int, list[dict]] = {}
+    seen: set[tuple] = set()
     for item in links:
+        key = (item["page"], round(item["word"][0], 1),
+               round(item["word"][1], 1), item["target"])
+        if key in seen:
+            continue
+        seen.add(key)
         by_page.setdefault(item["page"], []).append(item)
     for pno, items in by_page.items():
         page = document[pno]
