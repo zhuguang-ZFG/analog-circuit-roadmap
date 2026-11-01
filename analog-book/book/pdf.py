@@ -501,16 +501,19 @@ def check_pdf(pdf_path: Path, model: dict, manifest: dict) -> dict:
             problems.append(f"书签 {len(toc)} 条，模型 {len(model['toc'])} 条")
         if any(entry[0] > 3 for entry in toc):
             problems.append("书签超过三级")
-        if pages < 450:
+        # 450–700/535–653 是整书一册的装订区间；分卷后每卷独立成册，
+        # 只有 700 页硬上限对单册仍然成立。
+        whole_book = not model.get("volume")
+        if whole_book and pages < 450:
             if final:
                 problems.append(f"页数 {pages} 低于硬区间下限 450")
             else:
                 warnings.append(f"草稿页数 {pages}，低于目标区间 450–700")
         if pages > 700:
             problems.append(f"页数 {pages} 超过硬上限 700")
-        if final and pages < 535:
+        if whole_book and final and pages < 535:
             warnings.append(f"页数 {pages} 低于目标区间下限 535")
-        if final and pages > 653:
+        if whole_book and final and pages > 653:
             warnings.append(f"页数 {pages} 高于目标区间上限 653")
         if not final:
             warnings.append(

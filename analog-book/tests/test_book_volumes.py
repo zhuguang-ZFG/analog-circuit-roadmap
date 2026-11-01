@@ -51,15 +51,19 @@ class VolumeSplitTests(unittest.TestCase):
     def _ids(self, build):
         return [page["id"] for page in build["model"]["pages"]]
 
+    def _shared_ids(self):
+        """两卷都带的页：公共后页 + 共享附录（附录页与其正文页）。"""
+        return set(self._ids(self.vol1)) & set(self._ids(self.vol2))
+
     def test_volumes_cover_every_body_page_exactly_once(self):
         full_ids = self._ids(self.full)
         front = full_ids[:full_ids.index("part-i")]
         body1 = self._ids(self.vol1)[len(front):]
         body2 = self._ids(self.vol2)[len(front):]
-        shared = sorted(assemble.VOLUME_COMMON_BACK_IDS)
-        # 参考文献与索引是两卷都要带的公共后页，正文页不得重复。
-        self.assertEqual(shared, sorted(set(body1) & set(body2)))
-        rebuilt = [pid for pid in body1 if pid not in assemble.VOLUME_COMMON_BACK_IDS] + body2
+        shared = self._shared_ids()
+        self.assertTrue(assemble.VOLUME_COMMON_BACK_IDS <= shared)
+        # 共享页之外，正文页在两卷之间不得重复，合起来仍是整书顺序。
+        rebuilt = [pid for pid in body1 if pid not in shared] + body2
         self.assertEqual(full_ids[len(front):], rebuilt)
 
     def test_each_volume_keeps_front_matter_and_label(self):
@@ -77,10 +81,12 @@ class VolumeSplitTests(unittest.TestCase):
     def test_volume_split_happens_at_the_part_boundary(self):
         ids1 = self._ids(self.vol1)
         ids2 = self._ids(self.vol2)
-        body1 = [pid for pid in ids1
-                 if pid not in assemble.VOLUME_COMMON_BACK_IDS]
+        groups = {page["id"]: page["group"]
+                  for page in self.full["model"]["pages"]}
+        chapters1 = [pid for pid in ids1
+                     if groups.get(pid) in {"body", "part"}]
         front_len = ids1.index("part-i")
-        self.assertEqual(assemble.VOLUME1_LAST_ID, body1[-1])
+        self.assertEqual(assemble.VOLUME1_LAST_ID, chapters1[-1])
         self.assertEqual(assemble.VOLUME2_FIRST_ID, ids2[front_len])
         self.assertNotIn("part-iii", ids1)
         self.assertNotIn(assemble.VOLUME1_LAST_ID, ids2)
@@ -142,6 +148,89 @@ class VolumeSplitTests(unittest.TestCase):
     def test_unknown_volume_is_rejected(self):
         with self.assertRaises(BookError):
             assemble._select_volume_pages(self.full["model"]["pages"], 3)
+
+    def test_volume_one_carries_the_shared_appendices(self):
+        # 上卷正文承诺「答案见附录 F」，附录 A/B/F/G/H 必须同卷可查。
+        ids1, ids2 = set(self._ids(self.vol1)), set(self._ids(self.vol2))
+        shared = {"appendix-a", "appendix-a-table", "appendix-b",
+                  "appendix-f", "appendix-f-answers", "appendix-g",
+                  "appendix-h"}
+        self.assertTrue(shared <= ids1, "上卷缺少共享附录: %s"
+                        % sorted(shared - ids1))
+        self.assertTrue(shared <= ids2, "下卷缺少共享附录: %s"
+                        % sorted(shared - ids2))
+        whole_book_only = {"appendix-c", "appendix-d", "appendix-e"}
+        self.assertEqual(set(), whole_book_only & ids1,
+                         "整书级资源清单不应增厚上卷")
+        self.assertTrue(whole_book_only <= ids2, "下卷应保留全部附录")
+
+    def test_appendix_f_lists_the_answers_of_this_volume_only(self):
+        groups = {}
+        for build in (self.full, self.vol1, self.vol2):
+            page = next(p for p in build["model"]["pages"]
+                        if p["id"] == "appendix-f-answers")
+            groups[build["model"].get("volume")] = re.findall(
+                r'<section class="answer-group"><h2>([^<]+)</h2>',
+                page["html"])
+        self.assertEqual(groups[None], ["第 0 章", "第 1 章", "专题加练"])
+        self.assertEqual(groups[1], ["第 0 章", "第 1 章"])
+        self.assertEqual(groups[2], ["专题加练"],
+                         "专题加练解析大量引用第 III～V 篇，只收在下卷")
+
+    def test_volume_one_appendix_f_points_readers_to_the_other_volume(self):
+        page = next(p for p in self.vol1["model"]["pages"]
+                    if p["id"] == "appendix-f-answers")
+        self.assertIn("下卷", page["html"],
+                      "上卷删掉专题加练后必须说明去哪里查，不能静默缩水")
+
+    def test_appendix_a_resolves_every_animation_cited_in_the_volume(self):
+        full_rows = set(re.findall(
+            r'<tr id="(anim-[^"]+)"',
+            next(p for p in self.full["model"]["pages"]
+                 if p["id"] == "appendix-a-table")["html"]))
+        for build in (self.vol1, self.vol2):
+            model = build["model"]
+            with self.subTest(volume=model["volume"]):
+                rows = set(re.findall(
+                    r'<tr id="(anim-[^"]+)"',
+                    next(p for p in model["pages"]
+                         if p["id"] == "appendix-a-table")["html"]))
+                self.assertTrue(rows < full_rows,
+                                "分卷动画总表应按卷收窄")
+                cited = set()
+                for page in model["pages"]:
+                    if page["id"] == "appendix-a-table":
+                        continue
+                    cited.update(t for t in re.findall(
+                        r'href="#(anim-[^"]+)"', page["html"]))
+                self.assertTrue(cited <= rows,
+                                "本卷引用的动画行缺失: %s"
+                                % sorted(cited - rows)[:5])
+
+    def test_build_reports_how_many_links_were_degraded(self):
+        self.assertEqual(0, self.full["model"]["stats"]["cross_volume_links"],
+                         "整卷构建不应产生跨卷降级")
+        for build in (self.vol1, self.vol2):
+            count = build["model"]["stats"]["cross_volume_links"]
+            with self.subTest(volume=build["model"]["volume"]):
+                self.assertEqual(
+                    count,
+                    build["html"].count('class="book-cross-volume"'),
+                    "统计的降级次数必须与产物中的提示数一致")
+
+    def test_appendix_links_stay_live_in_both_volumes(self):
+        # 核心自洽契约：正文指向共享附录的链接不得降级成「见另一卷」。
+        all_pages = self.full["model"]["pages"]
+        for volume in (1, 2):
+            with self.subTest(volume=volume):
+                pages = assemble._select_volume_pages(all_pages, volume)
+                probe = {"id": "probe", "stem": "probe", "group": "body",
+                         "html": '<a href="#appendix-f-answers">答案见附录 F</a>'
+                                 '<a href="#appendix-a-table">见附录 A</a>'}
+                assemble._externalize_cross_volume_links(
+                    [*pages, probe], all_pages, volume)
+                self.assertNotIn('class="book-cross-volume"', probe["html"])
+                self.assertIn('href="#appendix-f-answers"', probe["html"])
 
 
 if __name__ == "__main__":

@@ -94,9 +94,10 @@ def merge_exercises(fragment: str, questions: list[Question], stem: str) -> str:
 
 
 def render_answers(data: QuizData, chapter_stems: dict[int, str],
-                   appendix_stem: str) -> str:
+                   appendix_stem: str, note: str | None = None) -> str:
     rows = ['<h1 id="appendix-f-answers">习题答案与综合自测</h1>',
-            '<p class="answers-note">章节题按题号对应章末练习；专题题为综合加练。</p>']
+            '<p class="answers-note">%s</p>'
+            % (note or "章节题按题号对应章末练习；专题题为综合加练。")]
     for chapter in sorted(data.chapters):
         stem = chapter_stems[chapter]
         rows.append(f'<section class="answer-group"><h2>第 {chapter} 章</h2>'

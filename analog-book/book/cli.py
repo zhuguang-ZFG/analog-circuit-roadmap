@@ -80,7 +80,13 @@ def main(argv: list[str] | None = None) -> int:
                     volume_dir, args.site_dir, config.DATA_DIR, config.DOCS,
                     volume_manifest, rebuild_site=(not args.no_build and volume == 1),
                     final=final, volume=volume)
+                volume_model = json.loads(
+                    (volume_dir / config.MODEL_NAME).read_text(encoding="utf-8"))
+                volume_stats = volume_model["stats"]
                 print(f"volume {volume}: {html_path}")
+                print(f"  {volume_stats['logical_pages']} 逻辑页，"
+                      f"索引 {volume_stats['index_terms']} 条，"
+                      f"跨卷降级 {volume_stats['cross_volume_links']} 处")
                 if args.pdf:
                     build_pdf(html_path, volume_dir, volume_manifest,
                               browser_override=args.browser)

@@ -396,6 +396,32 @@ class PdfTests(unittest.TestCase):
         self.assertTrue(any("450" in problem for problem in report["problems"]))
         self.assertTrue(any("535" in warning for warning in report["warnings"]))
 
+    def test_check_pdf_skips_whole_book_bands_for_a_single_volume(self):
+        volume_model = {**MODEL, "volume": 1, "volume_label": "上卷"}
+        final_manifest = {**MANIFEST, "release": {"edition_status": "final"}}
+        for manifest in (MANIFEST, final_manifest):
+            report = check_pdf(self.pdf, volume_model, manifest)
+            self.assertEqual([], report["problems"])
+            for text in ("450", "535", "653"):
+                self.assertFalse(
+                    any(text in warning for warning in report["warnings"]),
+                    (manifest["release"]["edition_status"], text,
+                     report["warnings"]))
+
+    def test_check_pdf_still_caps_a_single_volume_at_700_pages(self):
+        volume_model = {**MODEL, "volume": 1, "volume_label": "上卷"}
+        oversized = Path(self.tmp.name) / "oversized.pdf"
+        doc = fitz.open()
+        try:
+            for _ in range(704):
+                doc.new_page(width=185 * MM, height=260 * MM)
+            doc.save(oversized)
+        finally:
+            doc.close()
+        report = check_pdf(oversized, volume_model, MANIFEST)
+        self.assertTrue(any("700" in problem for problem in report["problems"]),
+                        report["problems"])
+
     def test_pad_to_multiple_is_idempotent(self):
         doc = fitz.open(self.pdf)
         try:

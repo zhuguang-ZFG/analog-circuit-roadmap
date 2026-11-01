@@ -53,6 +53,11 @@ VOLUME_LABELS = {1: "上卷", 2: "下卷"}
 VOLUME1_LAST_ID = "page-p1-11-ch10"
 VOLUME2_FIRST_ID = "part-iii"
 VOLUME_COMMON_BACK_IDS = {"bibliography", "book-index"}
+# 两卷各放一份的附录：A 动画索引、B 公式速查、F 习题答案、G 术语表、H 模型边界。
+# C/D/E 是整书级资源清单，只随下卷发行，避免上卷无谓增厚。
+VOLUME_SHARED_APPENDIX_IDS = {"A", "B", "F", "G", "H"}
+# 专题加练 34 题的解析大量引用第 III～V 篇，只收在下卷。
+EXTRA_QUIZ_VOLUME = 2
 INDEX_TARGET = (300, 400)
 REFERENCE_TARGET = 100
 
@@ -77,18 +82,25 @@ def _page_position(pages: list[dict], page_id: str) -> int:
 
 
 def _select_volume_pages(pages: list[dict], volume: int) -> list[dict]:
-    """按自然篇界拆卷：上卷到第 10 章，下卷从第 III 篇起。"""
+    """按自然篇界拆卷：上卷到第 10 章，下卷从第 III 篇起。
+
+    两卷都带共享附录（A/B/F/G/H）与参考文献、索引，保证各卷自洽：章末
+    「答案见附录 F」在本卷内就能翻到。
+    """
     if volume not in VOLUME_LABELS:
         raise BookError(f"未知卷号: {volume}")
     front_end = _page_position(pages, "part-i")
     front = pages[:front_end]
     common_back = [page for page in pages
                    if page["id"] in VOLUME_COMMON_BACK_IDS]
-    if volume == 1:
-        end = _page_position(pages, VOLUME1_LAST_ID) + 1
-        return front + pages[front_end:end] + common_back
-    start = _page_position(pages, VOLUME2_FIRST_ID)
-    return front + pages[start:]
+    if volume == 2:
+        start = _page_position(pages, VOLUME2_FIRST_ID)
+        return front + pages[start:]
+    end = _page_position(pages, VOLUME1_LAST_ID) + 1
+    shared = [page for page in pages
+              if page["group"] == "appendix"
+              and page.get("appendix") in VOLUME_SHARED_APPENDIX_IDS]
+    return front + pages[front_end:end] + shared + common_back
 
 
 def _anchor_positions(pages: list[dict]) -> dict[str, int]:
@@ -127,12 +139,17 @@ def _volume_of_anchor(anchor_positions: dict[str, int], pages: list[dict],
 
 
 def _externalize_cross_volume_links(pages: list[dict], all_pages: list[dict],
-                                    volume: int) -> None:
-    """把指向另一卷的 `#anchor` 降为「见上/下卷」提示，避免分卷悬空锚点。"""
+                                    volume: int) -> int:
+    """把指向另一卷的 `#anchor` 降为「见上/下卷」提示，避免分卷悬空锚点。
+
+    返回降级次数，供构建统计与页面自洽度对账。
+    """
     current = set(_anchor_positions(pages))
     all_positions = _anchor_positions(all_pages)
+    degraded = 0
     for page in pages:
         def replace(match: re.Match) -> str:
+            nonlocal degraded
             target = match.group("target")
             if target in current:
                 return match.group(0)
@@ -142,9 +159,62 @@ def _externalize_cross_volume_links(pages: list[dict], all_pages: list[dict],
             if target_volume == volume:
                 return match.group(0)
             label = VOLUME_LABELS[target_volume]
+            degraded += 1
             return (f'<span class="book-cross-volume" title="该目标在{label}">'
                     f'{match.group("body")}<small>（见{label}）</small></span>')
         page["html"] = A_TAG_RE.sub(replace, page["html"])
+    return degraded
+
+
+def _referenced_anchors(pages: list[dict]) -> set[str]:
+    """本卷内容页实际引用的 `#anchor` 集合（生成页此时还是空壳）。"""
+    return {match.group("target") for page in pages
+            for match in A_TAG_RE.finditer(page["html"])}
+
+
+def _volume_chapters(pages: list[dict]) -> set[int]:
+    numbers = set()
+    for page in pages:
+        if page["kind"] != "chapter":
+            continue
+        match = CHAPTER_NUMBER_RE.search(page["stem"])
+        if match:
+            numbers.add(int(match.group(1)))
+    return numbers
+
+
+def _retarget_volume_appendices(pages: list[dict], volume: int,
+                                animations: list[dict],
+                                quiz_data: quiz.QuizData) -> None:
+    """附录 A/F 按本卷章节重渲：本卷的章 + 本卷正文引用到的条目都留下。
+
+    这样「看动画」与「答案见附录 F」在本卷内闭合，不再降级成跨卷提示。
+    就地替换 `pages` 中的元素为副本，整书页对象保持原样。
+    """
+    chapters = _volume_chapters(pages)
+    referenced = _referenced_anchors(pages)
+    for position, page in enumerate(pages):
+        if page["id"] == "appendix-a-table":
+            kept = [item for item in animations
+                    if int(item["chapter"]) in chapters
+                    or f'anim-{str(item["anchor"])[4:]}' in referenced]
+            body = _animation_table(kept, total=len(animations))
+        elif page["id"] == "appendix-f-answers":
+            extra = quiz_data.extra if volume == EXTRA_QUIZ_VOLUME else []
+            scoped = quiz.QuizData(
+                chapters={number: items
+                          for number, items in quiz_data.chapters.items()
+                          if number in chapters},
+                extra=list(extra))
+            label = VOLUME_LABELS[EXTRA_QUIZ_VOLUME]
+            note = ("章节题按题号对应章末练习；专题题为综合加练。" if extra
+                    else f'章节题按题号对应本卷章末练习；'
+                         f'{len(quiz_data.extra)} 道专题加练收在{label}。')
+            body = quiz.render_answers(
+                scoped, CHAPTER_STEMS, page["stem"], note=note)
+        else:
+            continue
+        pages[position] = {**page, "html": body, "headings": _headings(body)}
 
 
 def _esc(value) -> str:
@@ -375,7 +445,7 @@ def _appendix_body(page: content.ContentPage, desc: dict, final: bool,
     return fragment, figures, tables, notes, table_start + len(tables)
 
 
-def _animation_table(animations: list[dict]) -> str:
+def _animation_table(animations: list[dict], total: int | None = None) -> str:
     rows = []
     for item in sorted(animations,
                        key=lambda value: (int(value["chapter"]), str(value["id"]))):
@@ -386,9 +456,14 @@ def _animation_table(animations: list[dict]) -> str:
             f'<td>第 {int(item["chapter"])} 章</td>'
             f'<td>{_esc(item["title"])}</td>'
             f'<td>{_esc(item["one_line"])}</td></tr>')
+    if total is None or total == len(animations):
+        count = f'共 {len(animations)} 条动画，按章号排列；'
+    else:
+        count = (f'本卷收录 {len(animations)} 条动画（全书共 {total} 条），'
+                 '按章号排列；')
     return (
         '<h1>附录 A 动画总表</h1>'
-        f'<p class="animation-count">共 {len(animations)} 条动画，按章号排列；'
+        f'<p class="animation-count">{count}'
         '打印版不收录动画中间帧。</p>'
         '<div class="table-wrap" id="appendix-a-table-wrap">'
         '<p class="table-caption">表 A-1　动画与图示总表</p>'
@@ -410,6 +485,7 @@ def _page(desc: dict, body: str, title: str, images: int = 0,
         "html": body,
         "source": desc.get("file"),
         "group": _group(desc),
+        "appendix": desc.get("appendix_id"),
         "header": _clean_title(_header(desc, appendices or {})),
         "bookmark_level": _bookmark_level(desc),
         "headings": _headings(body),
@@ -915,8 +991,10 @@ def build_html(out_dir: Path, site_dir: Path, data_dir: Path, docs_dir: Path,
 
     all_pages = list(pages)
     total_index_terms = len(index_terms)
+    cross_volume_links = 0
     if volume is not None:
         pages = _select_volume_pages(all_pages, volume)
+        _retarget_volume_appendices(pages, volume, animations, quiz_data)
         chapter_stats = {}
         for index, page in enumerate(pages):
             page["index"] = index
@@ -934,7 +1012,8 @@ def build_html(out_dir: Path, site_dir: Path, data_dir: Path, docs_dir: Path,
     _fill_generated_pages(pages, toc, lof, lot)
     _fill_index(pages, index_terms, final)
     if volume is not None:
-        _externalize_cross_volume_links(pages, all_pages, volume)
+        cross_volume_links = _externalize_cross_volume_links(
+            pages, all_pages, volume)
 
     data.validate_sources(sources, used_sources, final=final)
     unsigned = sum(
@@ -957,6 +1036,7 @@ def build_html(out_dir: Path, site_dir: Path, data_dir: Path, docs_dir: Path,
         "index_terms_total": total_index_terms,
         "references": len(references),
         "unsigned_reviews": unsigned,
+        "cross_volume_links": cross_volume_links,
     }
     headings = [
         {"page": page["id"], **heading}
