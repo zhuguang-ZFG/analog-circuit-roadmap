@@ -187,13 +187,29 @@ def _page_starts(document, model: dict) -> list[int]:
 PAGE_NUMBER_RE = re.compile(r"(?<!\d)000(?!\d)")
 
 
-def _000_word(page, rect):
-    # 行末页码会被剪带零宽字符（"000f"），紧贴正文时又会粘成一个词
-    # （"测试术语000"）；按数字边界在剪出的词里找 000，不用整词相等。
-    for word in page.get_text("words", clip=rect):
-        if PAGE_NUMBER_RE.search(word[4]):
-            return word
-    return None
+def _page_number_runs(page) -> list:
+    """返回本页所有 000 占位的字符包围盒。
+
+    不用 get_text("words", clip=...)：行末零宽字符会被剪进词里（"000f"），
+    紧贴正文的 000 会粘成一个词（"测试术语000"），clip 还会把词框夹到链接框上；
+    字符级 run 只覆盖三个零本身，红条不会压到相邻术语。
+    """
+    import fitz
+    runs = []
+    for block in page.get_text("rawdict")["blocks"]:
+        if block.get("type") != 0:
+            continue
+        for line in block["lines"]:
+            chars = [char for span in line["spans"]
+                     for char in span.get("chars", [])]
+            text = "".join(char["c"] for char in chars)
+            for match in PAGE_NUMBER_RE.finditer(text):
+                picked = chars[match.start():match.end()]
+                rect = fitz.Rect(picked[0]["bbox"])
+                for char in picked[1:]:
+                    rect |= fitz.Rect(char["bbox"])
+                runs.append(rect)
+    return runs
 
 
 def _region_links(document, start: int, end: int, body_start: int):
@@ -202,16 +218,27 @@ def _region_links(document, start: int, end: int, body_start: int):
     for pno in range(start, end):
         page = document[pno]
         # Chromium 双栏 PDF 的链接注记顺序即 DOM/阅读顺序；坐标排序会交错两栏。
-        for link in page.get_links():
+        raw_links = page.get_links()
+        if not any(isinstance(link.get("page"), int)
+                   and link["page"] >= body_start for link in raw_links):
+            continue
+        runs = [(rect, fitz.Point((rect.x0 + rect.x1) / 2,
+                                  (rect.y0 + rect.y1) / 2))
+                for rect in _page_number_runs(page)]
+        for link in raw_links:
             target = link.get("page")
             if not isinstance(target, int) or target < body_start:
                 continue
             rect = fitz.Rect(link["from"])
-            word = _000_word(page, rect)
-            if word is None:
+            # 只认“000 字符 run 的中心落在链接矩形内”的注记：术语链接的
+            # 矩形不含页码中心，行末折行的页码若注记错位也不会误判。
+            inside = [run for run, center in runs if rect.contains(center)]
+            if not inside:
                 continue
+            run = min(inside, key=lambda item: abs(item.y0 - rect.y0)
+                      + abs(item.x0 - rect.x0))
             links.append({"page": pno, "target": target, "rect": rect,
-                          "word": word})
+                          "run": run})
     return links
 
 
@@ -254,8 +281,8 @@ def _backfill(document, start: int, end: int, body_start: int,
     by_page: dict[int, list[dict]] = {}
     seen: set[tuple] = set()
     for item in links:
-        key = (item["page"], round(item["word"][0], 1),
-               round(item["word"][1], 1), item["target"])
+        key = (item["page"], round(item["run"].x0, 1),
+               round(item["run"].y0, 1), item["target"])
         if key in seen:
             continue
         seen.add(key)
@@ -264,21 +291,20 @@ def _backfill(document, start: int, end: int, body_start: int,
         page = document[pno]
         snapshot = page.get_links()
         for item in items:
-            word = item["word"]
-            page.add_redact_annot(
-                fitz.Rect(word[0] - 0.6, word[1] - 0.6,
-                          word[2] + 0.6, word[3] + 0.6),
-                fill=(1, 1, 1), cross_out=False)
+            run = item["run"]
+            # 红条严格等于三个零的字形框，不向外扩：相邻术语共用一个词框时
+            # 也不会被 apply_redactions 连带删除。
+            page.add_redact_annot(run, fill=(1, 1, 1), cross_out=False)
         # 白色矩形只是覆盖，get_text() 仍会读到 000；必须真正删字。
         page.apply_redactions(images=fitz.PDF_REDACT_IMAGE_NONE,
                               graphics=fitz.PDF_REDACT_LINE_ART_NONE)
         _restore_links(page, snapshot)
         page.insert_font(fontname="bookstamp", fontfile=str(stamp_path))
         for item in items:
-            word = item["word"]
+            run = item["run"]
             label = str(item["target"] - body_start + 1)
             width = stamp.text_length(label, 9)
-            page.insert_text((word[2] - width, word[3] - 1.2),
+            page.insert_text((run.x1 - width, run.y1 - 1.2),
                              label, fontname="bookstamp", fontsize=9,
                              color=MUTED)
     remaining = [pno + 1 for pno in range(start, end)
@@ -392,7 +418,9 @@ def stamp_pdf(raw_pdf: Path, output_pdf: Path, model: dict, manifest: dict,
         toc_start, toc_end = starts[toc_index], starts[toc_index + 1]
         lof_start, lof_end = starts[lof_index], starts[lof_index + 1]
         lot_start, lot_end = starts[lot_index], starts[lot_index + 1]
-        index_start, index_end = starts[index_index], starts[index_index + 1]
+        index_start = starts[index_index]
+        index_end = (starts[index_index + 1]
+                     if index_index + 1 < len(starts) else document.page_count)
         toc_links = _backfill(document, toc_start, toc_end, body_start,
                               expected=len(model["toc"]), fonts_dir=fonts_dir)
         toc_targets = {entry["anchor"]: link["target"]
@@ -421,7 +449,10 @@ def stamp_pdf(raw_pdf: Path, output_pdf: Path, model: dict, manifest: dict,
             "keywords": "模拟电路, 电子, 16K, " + manifest["license"],
             "creator": "analog-circuit-roadmap/book",
         })
-        document.save(output_pdf, garbage=3, deflate=True)
+        # 索引页有 1700+ 条页码链接注记；garbage=3 的对象重编号在 672 页
+        # 文档上实测 323 s，只换回 0.3% 体积；garbage=1 时整次 --pdf 构建
+        # 73 s、PDF 30.9 MB。印前体积由 100 MB 上限兜底。
+        document.save(output_pdf, garbage=1, deflate=True)
         return {
             "pages": document.page_count,
             "original_pages": original_pages,

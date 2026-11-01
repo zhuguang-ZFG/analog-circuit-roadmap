@@ -802,6 +802,22 @@ body {
 .book-index-entry { break-inside: avoid; margin: 0 0 1.2mm; text-align: left; }
 .book-index-page.is-primary { font-weight: 700; color: var(--navy); }
 
+/* 真实索引标记由 frontmatter.render_index 输出：.index-columns/.index-letter/.index-page。
+   条目带中英术语与最多 5 个页码，必须整行不跨栏，否则会像样张类名一样散成两行。 */
+.index-columns {
+  column-count: 2; column-gap: 6mm;
+  font-size: 9pt; line-height: 12.5pt;
+}
+.index-letter h2 {
+  font-family: "Book Sans", sans-serif;
+  font-size: 9.5pt; line-height: 12pt;
+  margin: 2mm 0 1mm; break-after: avoid;
+}
+.index-letter ul { margin: 0; padding: 0; }
+.index-letter li { break-inside: avoid; margin: 0 0 0.8mm; }
+.index-term-link, .index-page-link { color: inherit; text-decoration: none; }
+.index-page { display: inline; min-width: 0; font-variant-numeric: tabular-nums; }
+
 /* ---------- 注释 ---------- */
 .book .book-endnotes, .book .chapter-endnotes {
   font-size: 9pt; line-height: 13pt;

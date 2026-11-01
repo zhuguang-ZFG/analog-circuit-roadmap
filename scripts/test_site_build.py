@@ -1009,10 +1009,10 @@ class SiteBuildTests(unittest.TestCase):
         后裸插版本行，这里当场红。
         """
         src = (self.work / "docs" / "p9-12-changelog.md").read_text(encoding="utf-8")
-        rows = re.findall(r"^\| \*\*(v3\.\d+(?:（当前）)?)\*\* \|", src, re.M)
+        rows = re.findall(r"^\| \*\*(v3\.\d+(?:\.\d+)?(?:（当前）)?)\*\* \|", src, re.M)
         page = self.rendered("p9-12-changelog.html")
         cells = re.findall(
-            r"<td[^>]*>\s*<strong>(v3\.\d+(?:（当前）)?)</strong>\s*</td>", page)
+            r"<td[^>]*>\s*<strong>(v3\.\d+(?:\.\d+)?(?:（当前）)?)</strong>\s*</td>", page)
         self.assertEqual(len(rows), len(cells),
                          f"源里 {len(rows)} 行加粗版本行、产物里只有 {len(cells)} 个"
                          "首列 cell——有版本行没进表格，被渲染成了带字面「|」的段落")

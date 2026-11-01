@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""从 docs/ 生成书内动画台账；种子索引与审读表只在缺失时写入。"""
+"""从 docs/ 生成书内动画台账；审读表等种子只在缺失时写入。
+
+索引（index-terms.yml）是人工策展数据，不从种子重建。
+"""
 from __future__ import annotations
 
 import argparse
@@ -13,50 +16,12 @@ ROOT = Path(__file__).resolve().parent.parent
 BOOK = ROOT / "analog-book"
 DOCS = ROOT / "docs"
 DATA = BOOK / "data"
-sys.path.insert(0, str(BOOK))
-
-from book.data import pinyin_key  # noqa: E402
 
 DEMO_HEAD = re.compile(r'^## (5\.\d+)\s+(.+?)\s*<a id="(demo\d+)"')
 DEMO_IMG = re.compile(r'<img src="assets/svg/([\w\-]+\.svg)"[^>]*alt="([^"]*)"')
 DEMO_LINK = re.compile(r"\[(5\.\d+)\]\((?:[\w\-]+\.md)?#(demo\d+)\)")
 CHAPTER_ROW = re.compile(r"^\|\s*§(\d+)\s+(第\s*\d+\s*章[^|]*?)\s*\|")
 LOOK_RE = re.compile(r"\*\*看点\*\*[：:]\s*(.+)")
-
-CHAPTER_FILES = [
-    "p1-01-ch0", "p1-02-ch1", "p1-03-ch2", "p1-04-ch3", "p1-05-ch4",
-    "p1-06-ch5", "p1-07-ch6", "p1-08-ch7", "p1-09-ch8", "p1-10-ch9",
-    "p1-11-ch10", "p2-01-ch11", "p2-02-ch12", "p2-03-ch13", "p3-01-ch14",
-    "p3-02-ch15", "p4-01-ch16", "p4-02-ch17", "p4-03-ch18",
-]
-
-SEED_INDEX = [
-    ("电压", "voltage", 0), ("欧姆定律", "Ohm's law", 0),
-    ("恒压源", "ideal voltage source", 0), ("恒流源", "ideal current source", 0),
-    ("分压器", "voltage divider", 1), ("戴维南等效", "Thevenin equivalent", 1),
-    ("电容", "capacitor", 1), ("电感", "inductor", 1),
-    ("阻抗", "impedance", 1), ("谐振", "resonance", 1),
-    ("二极管", "diode", 2), ("正向压降", "forward voltage", 2),
-    ("齐纳击穿", "Zener breakdown", 2),
-    ("BJT", "bipolar junction transistor", 3),
-    ("静态工作点", "quiescent point", 3), ("跨导", "transconductance", 3),
-    ("MOSFET", "MOSFET", 4), ("阈值电压", "threshold voltage", 4),
-    ("米勒效应", "Miller effect", 4),
-    ("推挽输出", "push-pull output", 5), ("开漏输出", "open-drain output", 5),
-    ("运算放大器", "operational amplifier", 6), ("虚短", "virtual short", 6),
-    ("共模抑制比", "common-mode rejection ratio", 6),
-    ("增益带宽积", "gain-bandwidth product", 6),
-    ("比较器", "comparator", 7), ("迟滞", "hysteresis", 7),
-    ("模拟开关", "analog switch", 8),
-    ("电压基准", "voltage reference", 9),
-    ("低压差稳压器", "low-dropout regulator", 9),
-    ("555 定时器", "555 timer", 10), ("占空比", "duty cycle", 10),
-    ("差分对", "differential pair", 11), ("电流镜", "current mirror", 11),
-    ("Sallen-Key 滤波器", "Sallen-Key filter", 12),
-    ("Buck 变换器", "buck converter", 13), ("相位裕度", "phase margin", 13),
-    ("误差预算", "error budget", 14), ("回流路径", "return current path", 15),
-    ("探头负载", "probe loading", 16),
-]
 
 
 def _plain(text):
@@ -169,15 +134,6 @@ def build_animations():
     return items
 
 
-def build_index_terms():
-    terms = []
-    for term, english, chapter in SEED_INDEX:
-        anchor = "page-" + CHAPTER_FILES[chapter]
-        terms.append({"term": term, "english": english, "primary": anchor,
-                      "anchors": [anchor], "see_also": []})
-    return sorted(terms, key=lambda item: (pinyin_key(item["term"]), item["term"]))
-
-
 def build_signoffs():
     return [{"chapter": i, "draft_version": "2.0.0-draft.1",
              "technical_reviewer": "", "editorial_reviewer": "",
@@ -213,8 +169,7 @@ def main(argv=None):
     if not args.write:
         parser.error("需要 --write 或 --check")
     dump(DATA / "animations.yml", animations)
-    for name, value in (("index-terms.yml", build_index_terms()),
-                        ("chapter-signoff.yml", build_signoffs()),
+    for name, value in (("chapter-signoff.yml", build_signoffs()),
                         ("sources.yml", []),
                         ("references.yml", [])):
         path = DATA / name

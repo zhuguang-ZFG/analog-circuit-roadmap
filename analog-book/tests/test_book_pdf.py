@@ -296,6 +296,9 @@ class PdfTests(unittest.TestCase):
         for begin, end in regions:
             text = "\n".join(self.doc[p].get_text() for p in range(begin, end))
             self.assertNotIn("000", text)
+        # 索引夹具故意把术语与 000 排成无空格的一行（测试术语000）；
+        # 红条必须只删三个零，不能连带删掉前面的术语。
+        self.assertIn("测试术语", self.doc[starts[16]].get_text())
         self.assertEqual(9, self.report["backfilled"])
         toc_links = [link for link in self.doc[starts[7]].get_links()
                      if isinstance(link.get("page"), int)]
