@@ -52,7 +52,7 @@ def _nonempty(item: dict, names: tuple[str, ...], where: str) -> None:
 
 # 动画总数：改这个常量即可，scripts/build_book_data.py 的上限断言、docs 徽章与
 # 统计口径同步改；test_real_generator_matches_committed_yaml 会对账真实清单。
-EXPECTED_ANIMATIONS = 114
+EXPECTED_ANIMATIONS = 116
 
 def validate_animations(items: list[dict], static_root: Path = config.ROOT) -> None:
     if len(items) != EXPECTED_ANIMATIONS:

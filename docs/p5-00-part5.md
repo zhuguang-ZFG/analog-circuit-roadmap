@@ -1,10 +1,10 @@
 <a id="part5"></a>
 # 第五篇：动画演示中心
 
-> 全部 114 张 SVG 动画（SMIL，浏览器直接播放）位于 `assets/svg/` 目录，由 `scripts/generate_svgs.py` 一键生成（仓库铁律：两者始终同步）；配套 Falstad 在线电路可实时交互。
+> 全部 116 张 SVG 动画（SMIL，浏览器直接播放）位于 `assets/svg/` 目录，由 `scripts/generate_svgs.py` 一键生成（仓库铁律：两者始终同步）；配套 Falstad 在线电路可实时交互。
 
 <details>
-<summary>动画速查：按章节 —— 114 张全索引（点击展开）</summary>
+<summary>动画速查：按章节 —— 116 张全索引（点击展开）</summary>
 
 | 章 | 动画（点击直达） |
 |---|---|
@@ -25,8 +25,8 @@
 | §14 第 14 章 电路设计方法论 | [5.42](p5-00-part5.md#demo42) · [5.88](p5-00-part5.md#demo88) · [5.98](p5-00-part5.md#demo98) · [5.107](p5-00-part5.md#demo107) · [5.108](p5-00-part5.md#demo108) |
 | §15 第 15 章 PCB 绘制注意事项 | [5.7](p5-00-part5.md#demo7) · [5.90](p5-00-part5.md#demo90) · [5.96](p5-00-part5.md#demo96) · [5.100](p5-00-part5.md#demo100) |
 | §16 第 16 章 排故五步法 | [5.38](p5-00-part5.md#demo38) · [5.49](p5-00-part5.md#demo49) · [5.99](p5-00-part5.md#demo99) |
-| §17 第 17 章 故障模式速查总表 | [5.91](p5-00-part5.md#demo91) · [5.102](p5-00-part5.md#demo102) |
-| §18 第 18 章 大师的排故智慧 | [5.97](p5-00-part5.md#demo97) |
+| §17 第 17 章 故障模式速查总表 | [5.91](p5-00-part5.md#demo91) · [5.102](p5-00-part5.md#demo102) · [5.116](p5-00-part5.md#demo116) |
+| §18 第 18 章 大师的排故智慧 | [5.97](p5-00-part5.md#demo97) · [5.115](p5-00-part5.md#demo115) |
 
 </details>
 ## 5.1 RC 充电 <a id="demo1"></a>
@@ -737,7 +737,19 @@ Falstad 交互：`Circuits → 555 Timer Chip → Astable Multivibrator`
 
 **看点**：电感电流是三角波，电容每周期只收三角波围出的那点面积；面积 $=\tfrac12\cdot\tfrac{\Delta I_L}{2}\cdot\tfrac{T}{2}$ 化简后正好是 $\Delta I_L/(8f_{sw})$，所以 $\Delta V=\Delta I_L/(8f_{sw}C)$ 里的 **8 不是怪数，是几何**。代 0.884A、150kHz、100µF 得 7.4mV，与 §13.2 的算例同一组数。→ 正文 [13.2 Buck 降压](p2-03-ch13.md#sec-13-2)
 
-## 5.115 Falstad 内置示例地图（全部带动画）
+## 5.115 预测对实测：对不上的地方才是线索 <a id="demo115"></a>
+
+<p align="center"><img src="assets/svg/predict-measure.svg" width="720" alt="预测对实测动画：纸上预测曲线与示波器实测曲线对照，偏差超线即停手改模型"></p>
+
+**看点**：左蓝右红两条 RC 充电曲线——左边是下探头前写在纸上的预测（100kΩ×1µF，2.5V 阈值 @ 69ms），右边是实测（140ms，或 1τ 只读 2.2V）。终值减半加 τ 减半，两条线索同指节点并着 ~100kΩ 漏电阻。**超 20% 对账线就停手改模型——继续测只是给错误的模型收集噪声。** → 正文 [18.2 Jim Williams](p4-03-ch18.md#sec-18-2)
+
+## 5.116 间歇故障：先逼它现身，再在窗口里等它 <a id="demo116"></a>
+
+<p align="center"><img src="assets/svg/intermittent-forcing.svg" width="720" alt="间歇故障逼迫流程动画：机械热电三把扳手轮番上阵，复现率从一天一次逼到按一下就坏"></p>
+
+**看点**：机械（按压扭转轻敲）、热（冷冻喷剂热风枪）、电（电压拉偏负载阶跃）三把扳手轮流入漏斗，每把单独用、记录哪把改变复现率；复现率从「一天一次」逼到「按一下就坏」后，单次/毛刺/欠幅触发挂着等。**蜂鸣档一声断续，抵得上十分钟盯屏。** → 正文 [17.6 间歇性故障](p4-02-ch17.md#sec-17-6)
+
+## 5.117 Falstad 内置示例地图（全部带动画）
 
 | 主题 | 菜单路径 |
 |---|---|

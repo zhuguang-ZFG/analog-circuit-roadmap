@@ -8329,6 +8329,126 @@ def make_probe_ground_loop():
     save('probe-ground-loop.svg', svg + '</svg>')
 
 
+# ======================= 图 115：预测对实测（第 18 章 §18.2） =======================
+def make_predict_measure():
+    """Williams 仪式：下探头前先写下预测，实测超 20% 对账线就停手改模型。数字取自 §18.2。"""
+    DUR = 12
+    svg = svg_open('预测对实测：对不上的地方才是线索', h=540)
+    svg += ('<text x="400" y="62" text-anchor="middle" font-size="12.5" fill="#475569">'
+            '100kΩ × 1µF 上电复位：先把 69ms 写在纸上，再去抓波形</text>\n')
+    # 左：预测曲线（τ=100ms，终值 5V，1τ=3.15V，2.5V 阈值 @ RC·ln2≈69ms）
+    svg += ('<rect x="36" y="82" width="356" height="260" rx="10" fill="#eff6ff" '
+            'stroke="#2563eb" stroke-width="1.6"/>\n')
+    svg += ('<text x="214" y="108" text-anchor="middle" font-size="12.5" font-weight="bold" '
+            'fill="#2563eb">① 纸上预测</text>\n')
+    px0, px1, pybase, pytop = 66, 372, 300, 130   # 5V 在 pytop，0V 在 pybase
+    pts = []
+    for i in range(41):
+        t = i / 40 * 3.2                          # 0~3.2τ
+        x = px0 + (px1 - px0) * i / 40
+        y = pybase - (pybase - pytop) * (1 - np.exp(-t))
+        pts.append(f"{x:.0f},{y:.0f}")
+    svg += f'<path d="{"M" + " L".join(pts)}" fill="none" stroke="#2563eb" stroke-width="2.5"/>\n'
+    y_25 = pybase - (pybase - pytop) * 0.5        # 2.5V 阈值线
+    y_1t = pybase - (pybase - pytop) * 0.632      # 1τ → 3.15V
+    x_69 = px0 + (px1 - px0) * (0.693 / 3.2)
+    x_1t = px0 + (px1 - px0) * (1.0 / 3.2)
+    svg += f'<line x1="{px0}" y1="{y_25:.0f}" x2="{px1}" y2="{y_25:.0f}" stroke="#b45309" stroke-width="1.2" stroke-dasharray="4 4"/>\n'
+    svg += f'<text x="{px1-4}" y="{y_25-5:.0f}" text-anchor="end" font-size="10.5" fill="#b45309">阈值 2.5V</text>\n'
+    svg += f'<circle cx="{x_69:.0f}" cy="{y_25:.0f}" r="4.5" fill="#2563eb"/>\n'
+    svg += f'<text x="{x_69:.0f}" y="{y_25+18:.0f}" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#2563eb">69ms</text>\n'
+    svg += f'<circle cx="{x_1t:.0f}" cy="{y_1t:.0f}" r="4.5" fill="#2563eb"/>\n'
+    svg += f'<text x="{x_1t+8:.0f}" y="{y_1t-8:.0f}" font-size="10.5" fill="#2563eb">1τ → 3.15V</text>\n'
+    svg += f'<text x="214" y="330" text-anchor="middle" font-size="11" fill="#2563eb">t = RC·ln2 ≈ 69ms　写下来再测</text>\n'
+    # 右：实测曲线（终值腰斩 ~2.5V、τ 减半 → 并着 ~100kΩ 漏电）
+    svg += ('<rect x="408" y="82" width="356" height="260" rx="10" fill="#fef2f2" '
+            'stroke="#dc2626" stroke-width="1.6"/>\n')
+    svg += ('<text x="586" y="108" text-anchor="middle" font-size="12.5" font-weight="bold" '
+            'fill="#dc2626">② 示波器实测</text>\n')
+    qx0, qx1 = 438, 744
+    pts = []
+    for i in range(41):
+        t = i / 40 * 3.2
+        x = qx0 + (qx1 - qx0) * i / 40
+        y = pybase - (pybase - pytop) * 0.5 * (1 - np.exp(-2 * t))
+        pts.append(f"{x:.0f},{y:.0f}")
+    svg += f'<path d="{"M" + " L".join(pts)}" fill="none" stroke="#dc2626" stroke-width="2.5"/>\n'
+    pts = []
+    for i in range(41):
+        t = i / 40 * 3.2
+        x = qx0 + (qx1 - qx0) * i / 40
+        y = pybase - (pybase - pytop) * (1 - np.exp(-t))
+        pts.append(f"{x:.0f},{y:.0f}")
+    svg += f'<path d="{"M" + " L".join(pts)}" fill="none" stroke="#2563eb" stroke-width="1.4" stroke-dasharray="5 4" opacity="0.55"/>\n'
+    qx_1t = qx0 + (qx1 - qx0) * (1.0 / 3.2)
+    y_m1t = pybase - (pybase - pytop) * 0.5 * (1 - np.exp(-2.0))
+    svg += f'<circle cx="{qx_1t:.0f}" cy="{y_m1t:.0f}" r="4.5" fill="#dc2626"/>\n'
+    svg += f'<text x="{qx_1t+8:.0f}" y="{y_m1t+16:.0f}" font-size="10.5" font-weight="bold" fill="#dc2626">1τ 实测 2.2V</text>\n'
+    svg += f'<text x="586" y="126" text-anchor="middle" font-size="10.5" fill="#64748b">（虚线=预测）</text>\n'
+    svg += f'<text x="586" y="330" text-anchor="middle" font-size="11" fill="#dc2626">终值腰斩＋缓段更平 → 并着 ~100kΩ 漏电</text>\n'
+    svg += flow(f'M{px0},{pybase} H{qx1}', DUR, n=3, color='#b45309', r=5)
+    svg += note_box('对账阈值 20%：偏差在阈值内继续往下测；超线就停手改模型——'
+                    '继续测只是在给错误的模型收集更多噪声。',
+                    y=376, dur=DUR, w=660)
+    svg += beat_captions([
+        ('① 下探头之前，先把预期电平、幅度、时间尺度写在纸上：2.5V 阈值 @ 69ms', '#2563eb'),
+        ('② 实测 140ms——偏差超 100%，撞破 20% 对账线，停手', '#b45309'),
+        ('③ 另一个现场：1τ 应读 3.15V，实测只有 2.2V，缓段还更平', '#dc2626'),
+        ('④ 终值减半＋τ 减半，两条线索同指：节点上并着一只 ~100kΩ 漏电阻', '#059669'),
+    ], DUR, y=478)
+    save('predict-measure.svg', svg + '</svg>')
+
+
+# ======================= 图 116：间歇故障三把扳手（第 17 章 §17.6） =======================
+def make_intermittent_forcing():
+    """间歇故障逼迫流程：机械/热/电三把扳手轮着上，把"一天一次"逼成"按一下就坏"。取自 §17.6。"""
+    DUR = 12
+    svg = svg_open('间歇故障：先逼它现身，再在窗口里等它', h=540)
+    svg += ('<text x="400" y="62" text-anchor="middle" font-size="12.5" fill="#475569">'
+            '它在台上不出现，一切测量都失去靶子——所以先用应力把它逼成半必现</text>\n')
+    wrenches = [
+        ('机械应力', '#2563eb', '按压 · 扭转 · 轻敲', '虚焊/连接器松动'),
+        ('热应力', '#dc2626', '冷冻喷剂 · 热风枪', '参数漂移/热应力裂纹'),
+        ('电应力', '#b45309', '电压拉偏 · 负载阶跃', '裕度不足/闩锁边缘'),
+    ]
+    body = ''
+    for i, (name, col, tools, target) in enumerate(wrenches):
+        x = 60 + i * 240
+        body += (f'<rect x="{x}" y="96" width="200" height="96" rx="11" fill="#f8fafc" '
+                 f'stroke="{col}" stroke-width="2.5"/>\n'
+                 f'<text x="{x+100}" y="124" text-anchor="middle" font-size="13.5" '
+                 f'font-weight="bold" fill="{col}">{name}</text>\n'
+                 f'<text x="{x+100}" y="148" text-anchor="middle" font-size="11.5" '
+                 f'fill="#334155">{tools}</text>\n'
+                 f'<text x="{x+100}" y="172" text-anchor="middle" font-size="10" '
+                 f'fill="#64748b">主抓：{target}</text>\n')
+        body += pulse(x + 100, 144, 180, 76, col, 1.6 + 0.3 * i, 10) + '\n'
+        body += flow(f'M{x+100},196 V256', DUR, n=2, color=col, r=5)
+    # 漏斗：复现率提升
+    body += ('<path d="M180,266 L620,266 L470,330 L330,330 Z" fill="#fdf3e3" '
+             'stroke="#b45309" stroke-width="2"/>\n'
+             '<text x="400" y="292" text-anchor="middle" font-size="12" font-weight="bold" '
+             'fill="#b45309">每把单独用，记录哪一把改变复现率</text>\n'
+             '<text x="400" y="316" text-anchor="middle" font-size="12.5" font-weight="bold" '
+             'fill="#b45309">「一天一次」 → 「按一下就坏」</text>\n')
+    body += flow('M400,336 V378', DUR, n=2, color='#b45309', r=5)
+    # 测量窗口
+    body += ('<rect x="120" y="384" width="560" height="64" rx="11" fill="#ecfdf5" '
+             'stroke="#059669" stroke-width="2.2"/>\n'
+             '<text x="400" y="410" text-anchor="middle" font-size="12.5" font-weight="bold" '
+             'fill="#059669">复现窗口里挂着等：单次触发 / 毛刺触发 / 欠幅触发</text>\n'
+             '<text x="400" y="434" text-anchor="middle" font-size="11.5" fill="#334155">'
+             '晃动试验用通断蜂鸣档——一声断续，抵得上十分钟盯屏</text>\n')
+    svg += body
+    svg += beat_captions([
+        ('① 间歇故障是最难缠的对手：它在台上不出现，一切测量都失去靶子', '#52606d'),
+        ('② 三把扳手轮着上，每把单独用：机械扭转、冷冻热风、电压拉偏', '#2563eb'),
+        ('③ 记录哪一把能显著改变复现率——从"一天一次"提到"按一下就坏"', '#b45309'),
+        ('④ 然后在复现窗口里测量：单次/毛刺/欠幅触发挂着等，蜂鸣档听断续', '#059669'),
+    ], DUR, y=494)
+    save('intermittent-forcing.svg', svg + '</svg>')
+
+
 # ======================= 推导图 1：分压公式（第 0 章 0.3） =======================
 def make_derive_divider():
     DD = 16
@@ -8710,6 +8830,8 @@ if __name__ == '__main__':
     make_optocoupler_ctr()
     make_error_budget()
     make_probe_ground_loop()
+    make_predict_measure()
+    make_intermittent_forcing()
     make_derive_divider()
     make_derive_ripple()
     make_derive_gain()

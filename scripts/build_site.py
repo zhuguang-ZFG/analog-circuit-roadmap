@@ -5,7 +5,7 @@
     python scripts/build_site.py --build    # 生成后直接调用 mkdocs build
 
 内容页原样拷贝，另生成：
-  * gallery.md —— 114 张动画卡片墙（按章筛选 + 关键字搜索，waytoagi 式卡片导航）
+  * gallery.md —— 116 张动画卡片墙（按章筛选 + 关键字搜索，waytoagi 式卡片导航）
   * stylesheets/gallery.css、javascripts/gallery.js、javascripts/mathjax.js
   * build/mkdocs.yml —— 按篇分组的导航与 Material 主题配置
 """
@@ -1138,7 +1138,7 @@ window.MathJax = {
 """
 
 MKDOCS_YML = """site_name: 通往模拟电路之路
-site_description: 从欧姆定律到芯片内部结构 —— 原理推导 + 器件剖析 + 故障分析 + 114 张 SVG 动画
+site_description: 从欧姆定律到芯片内部结构 —— 原理推导 + 器件剖析 + 故障分析 + 116 张 SVG 动画
 site_url: https://aliyun-hutuji.donglicao.com/analog-circuit-roadmap/
 repo_url: https://github.com/zhuguang-ZFG/analog-circuit-roadmap
 # 顶栏右上角那个仓库链接显示的就是这个串，而 Material 给它的宽度是**固定**的

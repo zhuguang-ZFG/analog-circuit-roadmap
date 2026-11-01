@@ -814,3 +814,18 @@
   anchor: demo114
   one_line: 电感电流是三角波，电容每周期只收三角波围出的那点面积…
   static_svg: assets/svg/derive-buck.svg
+- id: anim-115
+  file: p5-00-part5.md
+  title: 预测对实测：对不上的地方才是线索
+  chapter: 18
+  anchor: demo115
+  one_line: 左蓝右红两条 RC 充电曲线——左边是下探头前写在纸上的预测（100kΩ×1µF，2.5V 阈值 @ 69ms），右边是实测（140ms，或 1τ 只读 2.2V）。终值减半加 τ
+    减半，两条线索同指节点并着 ~100kΩ 漏电阻。
+  static_svg: assets/svg/predict-measure.svg
+- id: anim-116
+  file: p5-00-part5.md
+  title: 间歇故障：先逼它现身，再在窗口里等它
+  chapter: 17
+  anchor: demo116
+  one_line: 机械（按压扭转轻敲）、热（冷冻喷剂热风枪）、电（电压拉偏负载阶跃）三把扳手轮流入漏斗，每把单独用、记录哪把改变复现率；复现率从「一天一次」逼到「按一下就坏」后，单次/毛刺/欠幅触发挂着等。蜂鸣档一声断续，抵得上十分钟盯屏。
+  static_svg: assets/svg/intermittent-forcing.svg

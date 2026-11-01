@@ -34,7 +34,7 @@
 
 <ul class="learning-stats">
   <li><strong>19</strong> 章核心内容</li>
-  <li><strong>114</strong> 张原理动画</li>
+  <li><strong>116</strong> 张原理动画</li>
   <li><strong>3</strong> 个可控教学样板</li>
   <li><strong>90</strong> 道章节题 + <strong>34</strong> 道专题题</li>
 </ul>
