@@ -282,8 +282,20 @@ def _data_uri(path: Path) -> str:
     return f"data:{mime};base64," + base64.b64encode(resolved.read_bytes()).decode("ascii")
 
 
+def _use_reduced_motion_picture(fragment: str) -> str:
+    """打印书只保留 `.reduce.svg` 静止版，避免同一动画内联两份 SVG。"""
+    return re.sub(
+        r'<picture><source srcset="(assets/[^"]+\.reduce\.svg)" '
+        r'media="\(prefers-reduced-motion: reduce\)">'
+        r'<img src="assets/[^"]+\.svg"([^>]*)></picture>',
+        r'<img src="\1"\2>',
+        fragment,
+    )
+
+
 def inline_images(fragment: str, site_dir: Path = SITE_DIR) -> tuple[str, int]:
     count = 0
+    fragment = _use_reduced_motion_picture(fragment)
 
     def source(match: re.Match) -> str:
         nonlocal count
