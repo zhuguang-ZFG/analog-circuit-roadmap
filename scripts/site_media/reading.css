@@ -223,6 +223,13 @@
   border-color: var(--md-accent-fg-color);
   background: color-mix(in srgb, var(--md-default-bg-color) 72%, transparent);
 }
+/* 行内手绘小图标：替代 emoji 的纸墨 doodle（v3.82），尺寸对齐字号、基线略下沉。 */
+.md-typeset img.inline-icon {
+  width: 1.05em;
+  height: 1.05em;
+  vertical-align: -0.18em;
+  margin-right: 0.12em;
+}
 .md-typeset .learning-paths,
 .md-typeset .learning-lessons,
 .md-typeset .learning-depth { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .85rem; margin: 1rem 0 1.75rem; }

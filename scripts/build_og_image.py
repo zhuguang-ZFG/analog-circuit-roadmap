@@ -70,13 +70,13 @@ CARD = """<!DOCTYPE html>
     <path d="M282 132 V 168 M282 150 H 320 M320 130 V 170" opacity=".7"/>
   </svg>
   <div class="wrap">
-    <span class="badge">🛤️ 开放知识库 · CC BY-SA 4.0</span>
+    <span class="badge"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4.5 19.5 C 8 15.5, 7.5 11, 11.5 9.5 C 15 7.5, 15.5 5.5, 19.5 4.5"/><circle cx="4.5" cy="19.5" r="1.6" fill="currentColor" stroke="none"/><circle cx="19.5" cy="4.5" r="1.6" fill="currentColor" stroke="none"/></svg>开放知识库 · CC BY-SA 4.0</span>
     <h1>通往<span class="accent">模拟电路</span>之路</h1>
     <p class="sub">从欧姆定律到芯片内部结构<br>原理推导 · 器件剖析 · 故障分析 · 动画演示</p>
     <div class="chips">
       <span class="chip"><b>19</b> 章核心内容</span>
-      <span class="chip"><b>108</b> 张原理动画</span>
-      <span class="chip"><b>58+34</b> 道自测题</span>
+      <span class="chip"><b>118</b> 张原理动画</span>
+      <span class="chip"><b>90+34</b> 道自测题</span>
       <span class="chip">可交互教学样板</span>
     </div>
   </div>
