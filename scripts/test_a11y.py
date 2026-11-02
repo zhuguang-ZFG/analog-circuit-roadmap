@@ -127,6 +127,30 @@ class SvgAccessibilityTests(unittest.TestCase):
         self.assertGreaterEqual(total, 240, f"只扫到 {total} 张图，覆盖面不对")
         self.assertEqual([], offenders, "这些图没有 alt：" + repr(offenders[:6]))
 
+    def test_docs_sources_carry_no_emoji(self):
+        """docs/ 源文件不得再出现表情符号（v3.82 全退场的永久防线）。
+
+        双色 emoji 块（U+1F000–1FAFF）与曾被当标签用的彩色 dingbat 在站点上
+        渲染成彩色图标、与纸墨手绘视觉契约冲突；印刷端的 strip_emoji 则把它们
+        静默剥掉（丢标记不丢话）。v3.82 的处置：行内标记换 assets/icons/ 的
+        手绘 doodle，历史引文换「算盘」「钻石」这类文字称谓。
+
+        刻意保留：→↑↓↔ 等信号流箭头（EMOJI_RE 本就不含 U+2190–21FF，印刷端
+        原样输出）、✓/✗/★ 单色排版符号。docs/superpowers/ 是开发计划，
+        不进站点与印刷书，本就不在 DOCS 的 glob 范围。
+        """
+        emoji = re.compile("[\U0001F000-\U0001FAFF⭐⚡⚠✅❌☰❖⚙✎️‍]")
+        offenders = []
+        for path in DOCS:
+            for lineno, line in enumerate(
+                    strip_code(path.read_text(encoding="utf-8")).splitlines(), 1):
+                hit = emoji.search(line)
+                if hit:
+                    offenders.append("%s:%d %s" % (path.name, lineno, hit.group(0)))
+        self.assertEqual([], offenders,
+                         "docs/ 又混进了表情符号（行内标记请用 assets/icons/ 的"
+                         "手绘 doodle，历史引文请用文字称谓）：" + repr(offenders[:8]))
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -10,7 +10,7 @@ DOCS = ROOT / "docs"
 MD_LINK = re.compile(r"\]\(([\w\-]+\.md)#([^)/]+)\)")
 HTML_HREF = re.compile(r'href="([\w\-]+\.md)#([^"]+)"')
 ANCHOR_DEF = re.compile(r'<a\s+id="([^"]+)"')
-IMG_REF = re.compile(r'<img src="assets/svg/([\w\-]+\.svg)"')
+IMG_REF = re.compile(r'<img src="assets/(svg|icons)/([\w\-]+\.(?:svg|png|jpe?g))"')
 
 
 class DocsLinks(unittest.TestCase):
@@ -34,13 +34,14 @@ class DocsLinks(unittest.TestCase):
         self.assertEqual([], broken, "\n".join(broken[:10]))
 
     def test_svg_references_exist(self):
-        have = {f.name for f in (ROOT / "assets" / "svg").glob("*.svg")}
+        have = {sub: {f.name for f in (ROOT / "assets" / sub).glob("*.svg")}
+                for sub in ("svg", "icons")}
         missing = set()
         for p in self.pages:
-            for svg in IMG_REF.findall(p.read_text(encoding="utf-8")):
-                if svg not in have:
-                    missing.add("%s:%s" % (p.name, svg))
-        self.assertEqual(set(), missing, "引用了不存在的 SVG：%s" % sorted(missing)[:5])
+            for sub, name in IMG_REF.findall(p.read_text(encoding="utf-8")):
+                if name not in have[sub]:
+                    missing.add("%s:assets/%s/%s" % (p.name, sub, name))
+        self.assertEqual(set(), missing, "引用了不存在的 SVG/图标：%s" % sorted(missing)[:5])
 
     def test_every_animation_center_demo_is_linked_from_a_chapter(self):
         """动画中心的 demo 若无任何章节回链，读者只能靠翻到第五篇撞见它。
