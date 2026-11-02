@@ -33,10 +33,14 @@
 | assets/photos/web/ts7805-regulator.jpg | Anonimski | [TS7805 voltage regulator.JPG](https://commons.wikimedia.org/wiki/File:TS7805_voltage_regulator.JPG) | CC0 |
 | assets/photos/web/transistors-cropped.jpg | Mister rf | [Transistorer (cropped).jpg](https://commons.wikimedia.org/wiki/File:Transistorer_(cropped).jpg) | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) |
 | assets/photos/web/mosfet-jcs4n65f.jpg | Raimond Spekking | [Jilin Sino-Microelectronics JCS4N65F](https://commons.wikimedia.org/wiki/File:Jilin_Sino-Microelectronics_JCS4N65F-2383.jpg) | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
-| assets/photos/web/fab-breadboard.jpg | Fab Academy / Fab Lab Reykjavik | [breadboard.jpg @ FabAcademyArchiveOld](https://github.com/FabLabReykjavik/FabAcademyArchiveOld/blob/main/docs/classes/electronics_production/breadboard.jpg) | [MIT](https://github.com/FabLabReykjavik/FabAcademyArchiveOld/blob/main/LICENSE) |
-| assets/photos/web/fab-desolder.jpg | Fab Academy / Fab Lab Reykjavik | [desolder.jpg @ FabAcademyArchiveOld](https://github.com/FabLabReykjavik/FabAcademyArchiveOld/blob/main/docs/classes/electronics_production/desolder.jpg) | [MIT](https://github.com/FabLabReykjavik/FabAcademyArchiveOld/blob/main/LICENSE) |
+<!-- v3.86.1 撤下记录：本表曾登记 fab-breadboard.jpg / fab-desolder.jpg
+     （FabLabReykjavik/FabAcademyArchiveOld, docs/classes/electronics_production/，
+     仓库 LICENSE 标 MIT）。评审认定授权链不成立——该仓库的 MIT 主体
+     （Fab Lab Reykjavik, 2025）并非 2013 年 Fab Academy 课程照片的拍摄者，
+     无权替原版权方授权。两图已从章节与仓库删除；教训：仓库级 LICENSE 只覆盖
+     权利人有权处分的作品，存档第三方内容不能据此转授权。 -->
 
-处理说明：JPEG/PNG 均从 Commons 或 GitHub（fab- 前缀两张，MIT 许可的 Fab Academy 档案）下载后按原字节入库（SVG 原图另存为 PNG 渲染，不内嵌外部字体）；`assets/photos/README.md` 保留教学样板的编号叠加说明。
+处理说明：JPEG/PNG 均从 Commons 下载后按原字节入库（SVG 原图另存为 PNG 渲染，不内嵌外部字体）；`assets/photos/README.md` 保留教学样板的编号叠加说明。
 
 ## 视频缩略图
 

@@ -67,7 +67,9 @@ class RefineFixtureTests(unittest.TestCase):
                       "Microsoft YaHei", "Noto Sans SC", "错误", "正确",
                       "注意"):
             self.assertIn(token, out)
-        self.assertNotIn("阶段字幕", out)
+        # waveform-phase 不再按类连坐（v3.86 起走字幕保留管线），
+        # fixture 里这条无动画的静态「阶段字幕」必须存活
+        self.assertIn("阶段字幕", out)
         ET.fromstring(out)
 
     def test_refine_is_idempotent(self):

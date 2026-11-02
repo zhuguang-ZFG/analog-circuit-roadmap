@@ -16,7 +16,10 @@ REMOVE_TAGS = {
     "style", "script", "foreignObject",
 }
 ANIMATION_TAGS = {"animate", "animateMotion", "animateTransform", "set"}
-PAGE_CLASSES = {"page-bg", "page-vig", "page-hdr", "waveform-phase"}
+# waveform-phase 曾在此列——那是离散换场的节拍字幕（calcMode="discrete"），
+# 整类删除等于再丢一次字幕（555-astable/analog-switch/ldo-transient 共 8 条）。
+# 它们走 step 1 的 (x,y) 分组留末拍规则，不再按类连坐。
+PAGE_CLASSES = {"page-bg", "page-vig", "page-hdr"}
 HEX_RE = re.compile(r"#[0-9a-fA-F]{3,8}")
 URL_RE = re.compile(r"url\(#[^)]+\)")
 EMOJI_RE = re.compile("[\U0001F000-\U0001FAFF\uFE0F\u200D]+")

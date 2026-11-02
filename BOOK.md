@@ -3282,9 +3282,9 @@ $$\text{温度↑} \;\Rightarrow\; V_{BE}\text{↓（}-2\text{mV/°C）} \;\Righ
 
 **判断要不要散热器的流程**：算最坏功耗 $P=V_{CE}\times I_C$ → 查封装 $R_{\theta JA}$ → 算 $T_J$ → 超过降额线就换大封装或加散热器。散热器热阻的完整算法（$R_{\theta JA}=R_{\theta JC}+R_{\theta CS}+R_{\theta SA}$ 三级串联）见 [14.5 热设计](#ch14)。这里先记住结论：**TO-92 没有散热器可装，功耗预算天生只有几百毫瓦；要散热，先换 TO-126/TO-220 封装。**
 
-<img src="assets/photos/web/transistors-cropped.jpg" width="300" alt="小功率管与大功率管并列实物（CC BY-SA 3.0，Mister rf 摄）">
+<img src="assets/photos/web/transistors-cropped.jpg" width="300" alt="四级封装阶梯实物：SOT-23 贴片、TO-92、TO-126、TO-3 金属帽功率管（CC BY-SA 3.0，Mister rf 摄）">
 
-> **实物照片**：封装体积就是散热预算。左侧小信号 TO-92 自由空气热阻约 200 °C/W，几百毫瓦就到头；右侧功率管那块金属背板是留给散热器的，压上硅脂锁一颗螺丝，热阻就能掉到个位数 °C/W。判断要不要散热器的流程走到「查封装热阻」这一步，一半答案已经写在封装上了。
+> **实物照片**：左起是一级级放大的散热预算。SOT-23 贴片靠焊盘散热，TO-92（2N3906）自由空气热阻约 200 °C/W、没有散热器可装，几百毫瓦就到头；TO-126 背面那块金属片带耳孔，能锁一小块散热片；最右的 TO-3 金属帽（PHILIPS BUx83）整个法兰就是外壳，两颗螺栓加硅脂把热直接送进机箱或大型散热器，热阻能压到个位数 °C/W。判断要不要散热器的流程走到「查封装热阻」这一步，一半答案已经写在封装上了。
 
 **功率级的实战做法是"热耦合补偿"**：甲类、甲乙类功放的偏置管（或偏置二极管串）必须和功率管**贴在同一块散热器上**。功率管升温 → 散热器升温 → 偏置元件的 $V_{BE}$（或二极管压降）同步下降 → 偏置电流被按比例拉回来。这条热反馈和 $R_E$ 的电反馈是双保险：一个管直流工作点，一个管温度慢漂移。音响里"开机半小时后偏流越跑越大"的经典毛病，八成是偏置管没和散热器热耦合，或者导热硅脂干涸。**排故判据**：冷机、热机各测一次静态电流，漂移超过 30% 就先查偏置的热耦合，再怀疑管子。
 
@@ -4195,7 +4195,7 @@ IN- ──┘   │ (长尾对)  │   │ (共射+密勒) │   │(互补推�
 
 **观看任务**：找到输出返回反相输入的路径，画出本实验的 1→2 脚反馈线。视频讲运放通用分析方法，LM358 的引脚和允许电压仍按上面的手册核对。
 
-<details>
+<details markdown="1">
 <summary>自测：5V 供电，能否用这个跟随器可靠输出 4.8V？</summary>
 
 不能据此保证。4.8V 输入超出了上述经典 LM358 的共模范围，输出也不能保证到达该电压。需要同时满足输入范围、输出摆幅与负载条件的器件；“单电源”不等于“轨到轨”。
@@ -4387,11 +4387,7 @@ $V_{OS}$ 被增益放大、$I_B$ 只在高源阻抗时咬人；GBW 管小信号�
 
 **自激的诊断与三类对策**：先确认是自激——毛刺频率通常在 1~50MHz，换个负载或用手靠近输出走线频率就变，这是容性振荡的指纹；真干扰的频率则与开关源、时钟对得上。对策按代价排序：环外串隔离电阻 10~100Ω（最便宜，牺牲输出摆率与带载）；把串阻包进反馈环内（反馈点取电阻外侧，直流精度不受损，要配小电容微调，调试费工）；换带容性驱动规格的型号（最贵，零调试）。判断需要哪种：先看串一颗 50Ω 能不能压住——能压住就用第一类，压不住再升级。
 
-**去耦的三层布置**：每颗运放电源脚 100nF 陶瓷，距离 5mm 内、过孔就近落地面；每片板 10µF 级大电容一处兜底；高速或高增益电路再加铁氧体磁珠隔离电源分支。去耦失效的自激往往不是干净的正弦，而是叠加在信号上的毛刺团——示波器先查电源脚再看输出，电源脚上"毛刺成镜像"就是去耦失职。长走线供电的实验板（面包板尤甚）几乎必犯此条。
-
-<img src="assets/photos/web/fab-breadboard.jpg" width="300" alt="搭满电路的面包板实物：DIP 芯片、色环电阻与长短跳线（MIT 许可，Fab Academy 档案）">
-
-> **实物照片**：面包板搭出来的电路都是这副模样——芯片跨在中间隔离沟上，跳线横七竖八。好看是好看，问题也在这：每一根长跳线都是一小段电感加一根天线，100nF 去耦电容隔着半块板「遥测」电源脚，等于没装。面包板上守去耦规矩只有一个办法——电容直接插在电源脚旁边的孔位里，跳线能短一寸是一寸。
+**去耦的三层布置**：每颗运放电源脚 100nF 陶瓷，距离 5mm 内、过孔就近落地面；每片板 10µF 级大电容一处兜底；高速或高增益电路再加铁氧体磁珠隔离电源分支。去耦失效的自激往往不是干净的正弦，而是叠加在信号上的毛刺团——示波器先查电源脚再看输出，电源脚上"毛刺成镜像"就是去耦失职。长走线供电的实验板（面包板尤甚）几乎必犯此条：面包板上每一根长跳线都是一小段电感加一根天线，100nF 去耦电容隔着半块板「遥测」电源脚等于没装，电容要直接插在电源脚旁边的孔位里，跳线能短一寸是一寸。
 
 **相位反转的识别**：症状很特定——输入缓慢单调越过某个共模边界，输出瞬间从上轨跳到下轨（或相反），且带迟滞、回不来。老式 JFET/双极输入运放常见；对策是选手册标注"No phase reversal"的型号，或在输入加钳位。把它误诊为"反馈断"会浪费一晚上：反馈断时输出贴轨但输入端压差异常，相位反转时虚短仍成立——看输入端压差就能分辨。
 
@@ -8562,11 +8558,7 @@ $$E\approx 1.316\times10^{-14}\,\frac{A\,f^2\,I}{r}\ \mathrm{V/m}$$
 
 <div class="calc" data-calc="probe"></div>
 
-**算一笔**：一次典型排故的时间账。乱换两颗芯片 ≈ 40 分钟 + 拆焊损伤风险；先花 5 分钟问"最近改过什么"+二分测量，八成 15 分钟内定位。**最贵的是你手上的烙铁，最便宜的是嘴上的问题。**
-
-<img src="assets/photos/web/fab-desolder.jpg" width="340" alt="拆焊前后对照：SOIC-8 芯片吸锡清理前后的焊盘（MIT 许可，Fab Academy 档案）">
-
-> **实物照片**：拆焊这事有前后账。上幅是芯片还在板上的样子，焊点包着引脚；下幅是吸锡带清理完之后——焊盘一根根露出来、不连不糊，这才接得上下一颗芯片。每拆一次，焊盘和基材都被烙铁多烤一轮，反复几次焊盘就起皮。这就是「先问五分钟再动烙铁」的另一半理由：拆焊损伤和风险不是修辞，是板上看得见的老化。
+**算一笔**：一次典型排故的时间账。乱换两颗芯片 ≈ 40 分钟 + 拆焊损伤风险；先花 5 分钟问"最近改过什么"+二分测量，八成 15 分钟内定位。**最贵的是你手上的烙铁，最便宜的是嘴上的问题。**拆焊损伤也不是修辞：吸锡带清理过的焊盘才接得上下一颗芯片，而每拆一次，焊盘和基材都被烙铁多烤一轮，反复几次焊盘就起皮。
 
 还有两类仪器自身的坑，表里装不下，单独记。**万用表自动量程**在跳变信号上会来回换档，读数迟迟稳定不下来，急的时候手动定档更快；**电流档的压降**（burden voltage）在小电流档位上足以改变被测电路的工作点——µA 档内阻约 100Ω 量级、mA 档约 2Ω 量级（典型值，以表的手册为准），测 100mA 时表自己就吃掉近 0.2V。测待机电流要么接受这个压降并把它算进结论，要么改用"测小电阻两端压降"的间接法。示波器侧也有一条常被遗忘：**一台示波器的所有通道共地**。两只探头地夹分别夹在不同电位上，等于拿示波器的内部地线把这两点短接，轻则波形全乱，重则烧掉被测板——多通道测量时，所有地夹必须夹同一个地。
 
@@ -12400,7 +12392,7 @@ Vin ──● CH1 ──── 3脚 IN1+
 
 | 版本 | 亮点 |
 |---|---|
-| **v3.86（当前）** | **S2 打印保真落地 + 三图三照片 + 裸 markdown 泄漏总清缴**：① **S2 修复**——`svg_refine` 整块连坐删除带动画子节点的元素，112/118 张动画印刷丢字幕（3310→2767）；改为分流：纯装饰仍整块删，含文字的组只摘动画子节点、opacity 落峰值可见态，caption() 同坐标接力字幕按 (x,y) 分组只留末拍（全落可见会叠印成一坨墨）；修后 3014/3310，rc-charge/bjt-amplify 实测只剩末拍且 opacity=1，vol-2 524→528 页。新增 4 条回归测试（同拍只留末条、单发落可见、装饰照删、真实资产巡检）。② **三图**——ch3 热失控算账图（ΔT<1°C 收敛判据四步推导链 + 30V/0.5Ω/2°C/W→0.24°C vs 50°C/W→6°C 对照 + 2N2222A 降额账，环路由 §3.7 动画占主不重复）；ch8 两张：CD4051 八路 mux 树（3 位地址+INH、电压家族/灰色地带/双片 16 选 1）与电荷注入分账图（2pC÷10nF=0.2mV=0.4LSB、按全部注入 ×2 兜底）。密度：ch3 1.41→1.75、ch8 1.02→1.47（长章续爬）。③ **三照片**——transistors-cropped 入 ch3 §3.7（封装体积=散热预算）；新辟 GitHub 渠道：Fab Lab Reykjavik 的 Fab Academy 档案（MIT，可追溯 LICENSE+SHA），fab-breadboard 入 ch6 去耦三层（长跳线=天线+电感）、fab-desolder 入 ch16 排故（拆焊前后对照=「先问五分钟再动烙铁」的另一半理由），p9-14 授权登记+来源说明更新。④ **泄漏总清缴（v3.83–85 带病发出的静默回归）**——公式 `$V_{GS}<V_{TH}$` 的 `<V` 被 Python-Markdown HTML stash 当未闭合标签起点，与 Wave A 图注里的第二个 `<V` 配对后解析器永久落 raw 态：ch4 从 §4.3 起整页裸 markdown；另逮两处同类：目录页 details 缺 `markdown="1'` 整页项目符号裸奔、演示中心 details 体内速查表格裸奔。修法：ch4 三处 `<` 改 `\lt`、两处 details 补 `markdown="1"`；新增 `test_built_pages_carry_no_unrendered_markdown` 全页护栏（行首标题/成对星号/管道表格行三签名）。⑤ **连带修复**——ch11 wave1 合同钉 12→13 迁移（v3.84 窄电池漏跑全量才潜伏一轮）；CSS 注释里的尖括号标签名触发印刷书 details 断言，改写措辞；ch3 新图 alt 含字面 `ΔT<1°C` 截断 IMG 正则，改文字表述。 |
+| **v3.86（当前）** | **S2 打印保真落地 + 三图三照片 + 裸 markdown 泄漏总清缴**：① **S2 修复**——`svg_refine` 整块连坐删除带动画子节点的元素，112/118 张动画印刷丢字幕（3310→2767）；改为分流：纯装饰仍整块删，含文字的组只摘动画子节点、opacity 落峰值可见态，caption() 同坐标接力字幕按 (x,y) 分组只留末拍（全落可见会叠印成一坨墨）；修后 3014/3310，rc-charge/bjt-amplify 实测只剩末拍且 opacity=1，vol-2 524→528 页。新增 4 条回归测试（同拍只留末条、单发落可见、装饰照删、真实资产巡检）。② **三图**——ch3 热失控算账图（ΔT<1°C 收敛判据四步推导链 + 30V/0.5Ω/2°C/W→0.24°C vs 50°C/W→6°C 对照 + 2N2222A 降额账，环路由 §3.7 动画占主不重复）；ch8 两张：CD4051 八路 mux 树（3 位地址+INH、电压家族/灰色地带/双片 16 选 1）与电荷注入分账图（2pC÷10nF=0.2mV=0.4LSB、按全部注入 ×2 兜底）。密度：ch3 1.41→1.75、ch8 1.02→1.47（长章续爬）。③ **三照片**——transistors-cropped 入 ch3 §3.7（封装体积=散热预算）；新辟 GitHub 渠道：Fab Lab Reykjavik 的 Fab Academy 档案（MIT，可追溯 LICENSE+SHA），fab-breadboard 入 ch6 去耦三层（长跳线=天线+电感）、fab-desolder 入 ch16 排故（拆焊前后对照=「先问五分钟再动烙铁」的另一半理由），p9-14 授权登记+来源说明更新。④ **泄漏总清缴（v3.83–85 带病发出的静默回归）**——公式 `$V_{GS} \lt V_{TH}$` 里的裸小于号被 Python-Markdown HTML stash 当未闭合标签起点，与 Wave A 图注里的第二处裸小于号配对后解析器永久落 raw 态：ch4 从 §4.3 起整页裸 markdown；另逮两处同类：目录页 details 缺 `markdown="1'` 整页项目符号裸奔、演示中心 details 体内速查表格裸奔。修法：ch4 三处 `<` 改 `\lt`、两处 details 补 `markdown="1"`；新增 `test_built_pages_carry_no_unrendered_markdown` 全页护栏（行首标题/成对星号/管道表格行三签名）。⑤ **连带修复**——ch11 wave1 合同钉 12→13 迁移（v3.84 窄电池漏跑全量才潜伏一轮）；CSS 注释里的尖括号标签名触发印刷书 details 断言，改写措辞；ch3 新图 alt 含字面 `ΔT<1°C` 截断 IMG 正则，改文字表述。⑥ **评审跟进**——S2 第三条丢字路径补上：`PAGE_CLASSES` 整类连坐的 waveform-phase 离散换场字幕（555-astable/analog-switch/ldo-transient 共 8 条）改走 (x,y) 分组留末拍，三图各保一条（fixture 断言同步迁移）；ch3 晶体管照片 caption 改按实物写（SOT-23→TO-92→TO-126→TO-3 四级封装阶梯，TO-3 法兰双螺栓）；**fab-* 两张照片撤下**——Fab Lab Reykjavik 仓库的 MIT 主体并非 2013 年 Fab Academy 课程照片拍摄者，无权转授权，授权链不满足「可追溯」红线（嵌入段落改写保留教点、p9-14 留撤下记录）；ch6:134 自测 details 补 `markdown="1"` 与全书对齐；字体子集补「辟」「逮」并重排两卷。 |
 | **v3.85** | **impeccable 双评估审美评审与修复波（站点 UI）**：① **方法**——引入 pbakaus/impeccable 技能（Apache-2.0，克隆于仓外 `D:/Users/monidianlu/impeccable/`），按 Read 模式跑双隔离评估：A 设计评审（Nielsen 29/36，设计特异性成立：墨迹 h1 尺规线、抖动圆角、色签 callout、纸调刊头）+ B 检测器（impeccable detect，文件+URL 双扫 1228 条）。② **拒判**——1150 条字号命中是静态扫描按 16px 根换算的假象（真实根号 20px，实测 13.6px+），渲染扫描三页 0 条字号命中互证；callout 6px 色条、hero 硬偏移阴影、纸色、走线纹理为 STYLE.md 登记的世界签名，保留。③ **修复九项**——slate 链接令牌特异性三连升（palette CSS 双属性 0,2,0 压制多年，链接静默回落 #5488e8：行底 2.9→5.73:1、页底 10.11:1）；搜索框与画廊搜索的 ::placeholder 提示色 2.9/3.8:1，双模式分色；画廊 chip 与测验按钮暗色白字 2.2/3.8:1 换深墨字；页脚生成器行 4.49→6.7:1；blockquote 双规则收敛为一（typography.css 死重复退役）+ 非法五值圆角修复 + 手绘几何；details 默认蓝边换纸缘色+抖动圆角；代码块 padding 0 实测贴边补齐；移动端章节骨架堆叠 ~3 屏压到 ~1.3 屏；画廊「▶ 放大播放」「←/→」「✕」Unicode 符号换内联 currentColor SVG。④ **复扫**——URL 三页 42 → 32 条，可执行项归零（余 21 色条/5 嵌套/2 硬阴影/2 破折号/1 纹理/1 aria-hidden 装饰水印均为有意项）。⑤ **评审跟进**——CTA 尾箭头改判「全留」：链接尾 → 是排版方向提示而非图标系统，且与 19 章章末「做第 N 章自测 →」同族，首页两处已恢复（禁令只落实到处在按钮图形位的画廊 ▶/←/→/✕）；slate 令牌选择器去掉 primary 值绑定（只写属性存在，换主色名不再失效）；代码块补 padding 后暴露的 `pre>code` 内层框去边，单框只由外层 .highlight 画；亮色链接令牌证伪无压制（palette CSS 只发 slate 变体，实测 #1f5d7a 在赢）。 |
 | **v3.84** | **SPEC-V4 S1 波 B 收官 + humanizer-zh 全书复查**：① **四张新图（45 → 49 张）**——ch10 555 三种模式对照（无稳态 RC 链 `f≈1.44/((R1+2R2)·C)` vs 单稳态等触发 `t≈1.1RC` vs 双稳态无公式的 RS 触发器；代理主动否决了与已有图重复的四拍时序题）；ch11 CMRR/PSRR 两道墙（86→66 dB 尾阻退化账、100mV→0.1mV 电源抑制、80~100→40~60 dB 频率衰减曲线）；ch15 两张——阻抗几何账（IPC-2141 微带公式：双层板 50Ω 要 3mm 宽走不开、四层板 h≈0.2mm 只要 0.35mm，l_crit/6 传输线判据）与接口防护链（先泄放再阻挡：8kV→TVS→共模扼流圈→π 型滤波，TVS 引线每多 1nH 多 30V，屏蔽层 360° 端接 vs 10cm 辫子 63Ω@100MHz）。② **密度闸余下三章全部达标**——ch10 1.38→1.69、ch11 1.32→1.61、ch15 1.12→1.74；SPEC-V4 S1 九张欠账清零（ch3 1.41、ch8 1.02 为长章爬坡保留项，转入 S2 打印保真阶段继续）。③ **humanizer-zh 全书复查（零改动通过）**——按 op7418/Humanizer-zh 31 条模式清单（A铺垫/B节奏/C拔高/D排版/E残留/F中文句式）对 19 章+使用指南审读（五路并行 + ch11 由评审抓出漏派后主代理补扫）：所有原始命中均为 skill 明确保留类（「不是…而是」全部是纠真实误解、信息两侧俱在；「闭环」全是工程术语本义；的-的-的链均可读且修饰关系各异）；唯一边缘项 ch8「排故方法的完整闭环」低于每文件 ≥3 命中才动手的闸，依 skill「不为展示工作量强行修改」原则原样保留——正文自然度在 v3.5x–v3.7x 多轮去 AI 味后已达标。④ **验证**——`test_figures.py` 四测 49 张全绿；ch15 引入 ε 字形，字体子集重建后 `test_book_fonts` 绿；链接/a11y/同步/站点六套件全绿；分卷 PDF 452+520 页 0 warnings。 |
 | **v3.83** | **SPEC-V4 S1 波 A：六章各补一张手绘分析图（39 → 45 张），密度闸修偏后首批交付**：① **六张新图**——ch3 达林顿的账本（β 相乘到 10000+ 的代价：V_BE 1.4V、V_CE(sat)≈0.9V 结构地板，2A 负载 1.8W vs MOSFET 0.2W 九倍差）；ch4 输出特性三区图（夹断边界 V_DS=V_GS−V_TH=3V 切开线性/饱和区，线性段斜率倒数=R_DS≈0.17Ω，截止区就是横轴本身）；ch6 运放故障三步定位（看输出电平→差分压差→最后怀疑芯片，0.8V 实战案例五步）；ch7 延迟预算对照（同一把 100µs 尺上：LM358 饱和恢复呆滞 ≈50µs 占半周期且手册无保证 vs LM393 1.3µs+上拉沿 0.3µs ≈1.6µs 可设计，差距 30 倍）；ch8 传输门互补曲线（N管 4V 处 R_on→∞ 的阈值损失悬崖、P管 <1V 不导通、并联包络 20→26.7→20Ω 全程平坦）；ch13 晶振负载电容错配账（两只 22pF+C_stray≈4pF 把 C_L 从标称 12pF 抬到 15pF，3pF × 18ppm/pF ≈ 55ppm → 32.768kHz RTC 每天走差 4.8 秒）。六章选题全部避开已有图主题，数字逐项 grep 核实出自本章正文。② **评审带动的闸门修偏**（v3.82 复盘）——「≥3 张」兜底本是给短章的，ch8（38.5k 字、0.78/万字、全书最稀）靠兜底过关恰是本末倒置；S1 改为 >25k 字长章只看密度，新闸下 9 章未达标，本波 A 交付 6 章，B 波 ch10/ch11 各 +1、ch15 +2 排期在案。③ **本波后密度**——ch4/6/7/13 达标（≥3 张短章兜底），ch3 1.08→1.41、ch8 0.78→1.02（长章继续爬坡）。④ **验证**——`test_figures.py` 四测全绿（39→45 张逐一过画布内文字探针）；新 prose 引入两个新字形（⁻、衔），字体子集重建后 `test_book_fonts` 绿；链接/a11y/同步五套件 136 测全绿；分卷 PDF 上卷 452 页、下卷 520 页、0 warnings。 |
@@ -12632,10 +12624,14 @@ Vin ──● CH1 ──── 3脚 IN1+
 | assets/photos/web/ts7805-regulator.jpg | Anonimski | [TS7805 voltage regulator.JPG](https://commons.wikimedia.org/wiki/File:TS7805_voltage_regulator.JPG) | CC0 |
 | assets/photos/web/transistors-cropped.jpg | Mister rf | [Transistorer (cropped).jpg](https://commons.wikimedia.org/wiki/File:Transistorer_(cropped).jpg) | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) |
 | assets/photos/web/mosfet-jcs4n65f.jpg | Raimond Spekking | [Jilin Sino-Microelectronics JCS4N65F](https://commons.wikimedia.org/wiki/File:Jilin_Sino-Microelectronics_JCS4N65F-2383.jpg) | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
-| assets/photos/web/fab-breadboard.jpg | Fab Academy / Fab Lab Reykjavik | [breadboard.jpg @ FabAcademyArchiveOld](https://github.com/FabLabReykjavik/FabAcademyArchiveOld/blob/main/docs/classes/electronics_production/breadboard.jpg) | [MIT](https://github.com/FabLabReykjavik/FabAcademyArchiveOld/blob/main/LICENSE) |
-| assets/photos/web/fab-desolder.jpg | Fab Academy / Fab Lab Reykjavik | [desolder.jpg @ FabAcademyArchiveOld](https://github.com/FabLabReykjavik/FabAcademyArchiveOld/blob/main/docs/classes/electronics_production/desolder.jpg) | [MIT](https://github.com/FabLabReykjavik/FabAcademyArchiveOld/blob/main/LICENSE) |
+<!-- v3.86.1 撤下记录：本表曾登记 fab-breadboard.jpg / fab-desolder.jpg
+     （FabLabReykjavik/FabAcademyArchiveOld, docs/classes/electronics_production/，
+     仓库 LICENSE 标 MIT）。评审认定授权链不成立——该仓库的 MIT 主体
+     （Fab Lab Reykjavik, 2025）并非 2013 年 Fab Academy 课程照片的拍摄者，
+     无权替原版权方授权。两图已从章节与仓库删除；教训：仓库级 LICENSE 只覆盖
+     权利人有权处分的作品，存档第三方内容不能据此转授权。 -->
 
-处理说明：JPEG/PNG 均从 Commons 或 GitHub（fab- 前缀两张，MIT 许可的 Fab Academy 档案）下载后按原字节入库（SVG 原图另存为 PNG 渲染，不内嵌外部字体）；`assets/photos/README.md` 保留教学样板的编号叠加说明。
+处理说明：JPEG/PNG 均从 Commons 下载后按原字节入库（SVG 原图另存为 PNG 渲染，不内嵌外部字体）；`assets/photos/README.md` 保留教学样板的编号叠加说明。
 
 ## 视频缩略图
 
