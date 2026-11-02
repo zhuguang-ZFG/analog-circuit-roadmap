@@ -21,6 +21,65 @@ WAVE1_FIGURES = {
 }
 PALETTE = {"#14213d", "#b45309", "#0f766e"}
 EXTERNAL_REF = re.compile(r'(?:href|src)\s*=\s*["\']https?://', re.I)
+SVG_NS = "{http://www.w3.org/2000/svg}"
+
+
+def _text_width(text, size):
+    """与 scripts/generate_svgs.py 一致的等宽估宽，仅作越界探针。"""
+    w = 0.0
+    for ch in text:
+        o = ord(ch)
+        if o >= 0x2E80 or 0x2460 <= o <= 0x24FF or ch in "—–…":
+            w += size
+        elif ch in "iljI.,:;'|! ":
+            w += size * 0.30
+        elif ch in "→←↑↓⇒⇔±×÷≈≠≤≥√∑∫∞∝°":
+            w += size * 0.95
+        elif 0x370 <= o <= 0x3FF:
+            w += size * 0.75
+        elif ch.isupper() or ch.isdigit():
+            w += size * 0.66
+        else:
+            w += size * 0.58
+    return w * 1.045
+
+
+def _extent_violations(path):
+    """未旋转载体内的 <text> 不许越过画布 2px 以上。
+
+    旋转坐标系的轴标注（transform=rotate）按旋转前坐标跳过；
+    只看元素自身的 transform，不解析父级 <g> 的平移——
+    组内文字相对画布整体平移时探针仍可能误报，需要时加白名单。
+    """
+    text = path.read_text(encoding="utf-8")
+    viewbox = re.search(
+        r'viewBox="([\d.]+)\s+([\d.]+)\s+([\d.]+)\s+([\d.]+)"', text)
+    if not viewbox:
+        return [f"{path.name}: 缺少 viewBox"]
+    width = float(viewbox.group(3))
+    height = float(viewbox.group(4))
+    root = ET.fromstring(text)
+    issues = []
+    for el in root.iter(f"{SVG_NS}text"):
+        if el.get("transform"):
+            continue
+        try:
+            x = float(el.get("x", "0"))
+            y = float(el.get("y", "0"))
+        except ValueError:
+            continue
+        size = float(el.get("font-size", "12"))
+        content = "".join(el.itertext())
+        anchor = el.get("text-anchor", "start")
+        w = _text_width(content, size)
+        left = x - (w / 2 if anchor == "middle"
+                    else w if anchor == "end" else 0)
+        right = left + w
+        if left < -2 or right > width + 2 or y < -2 or y > height + 2:
+            issues.append(
+                f'{path.name}: "{content[:24]}" '
+                f"x[{left:.0f},{right:.0f}] y={y:.0f} 越出 {width:.0f}x{height:.0f}")
+    return issues
 
 
 class FigureTests(unittest.TestCase):
@@ -44,6 +103,12 @@ class FigureTests(unittest.TestCase):
             self.assertGreaterEqual(text.count("<text"), 6, name)
             self.assertTrue(any(colour in text.lower() for colour in PALETTE),
                             name)
+
+    def test_text_stays_inside_the_canvas(self):
+        issues = []
+        for path in sorted(FIGURES.glob("*.svg")):
+            issues.extend(_extent_violations(path))
+        self.assertEqual([], issues)
 
     def test_each_figure_is_wrapped_in_a_figure_with_caption(self):
         docs = "\n".join(path.read_text(encoding="utf-8")

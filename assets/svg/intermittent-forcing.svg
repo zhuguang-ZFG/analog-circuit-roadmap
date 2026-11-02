@@ -114,7 +114,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <text x="640" y="172" text-anchor="middle" font-size="10" fill="#5b666f">主抓：裕度不足/闩锁边缘</text>
 <rect x="640" y="144" width="180" height="76" rx="10" fill="none" stroke="#a4630f" stroke-width="2.5" opacity="0" filter="url(#pglow)"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.2s" repeatCount="indefinite"/></rect>
 <g filter="url(#pglow)"><circle r="5" fill="#a4630f"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M640,196 V256" keyPoints="0;0.3;0.7;1" keyTimes="0;0.35;0.65;1" calcMode="linear"/></circle>
-<circle r="5" fill="#a4630f"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M640,196 V256" keyPoints="0;0.3;0.7;1" keyTimes="0;0.35;0.65;1" calcMode="linear"/></circle></g><path d="M180,266 L620,266 L470,330 L330,330 Z" fill="#fdf3e3" stroke="#a4630f" stroke-width="2"/>
+<circle r="5" fill="#a4630f"><animateMotion dur="12s" begin="5.50s" repeatCount="indefinite" path="M640,196 V256" keyPoints="0;0.3;0.7;1" keyTimes="0;0.35;0.65;1" calcMode="linear"/></circle></g><path d="M180,266 L620,266 L470,330 L330,330 Z" fill="#f7eedb" stroke="#a4630f" stroke-width="2"/>
 <text x="400" y="292" text-anchor="middle" font-size="12" font-weight="bold" fill="#a4630f">每把单独用，记录哪一把改变复现率</text>
 <text x="400" y="316" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#a4630f">「一天一次」 → 「按一下就坏」</text>
 <g filter="url(#pglow)"><circle r="5" fill="#a4630f"><animateMotion dur="12s" begin="-0.50s" repeatCount="indefinite" path="M400,336 V378" keyPoints="0;0.3;0.7;1" keyTimes="0;0.35;0.65;1" calcMode="linear"/></circle>

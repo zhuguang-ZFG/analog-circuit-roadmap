@@ -270,7 +270,9 @@ class ReadingJourneyTests(unittest.TestCase):
         search.click()
         for query, expected_page in (
             ('去耦电容', 'p1-02-ch1.html'),
-            ('相位裕度', 'p2-01-ch11.html'),
+            # v3.81：ch12 新增相位裕度波特图与 §12.9 实测段后，该主题的正典章节
+            # 从 ch11（11.5/11.11 两处提及）移到 ch12（五个密集小节），搜索榜首随之迁移。
+            ('相位裕度', 'p2-02-ch12.html'),
             ('LM358', 'p1-07-ch6.html'),
         ):
             with self.subTest(query=query):

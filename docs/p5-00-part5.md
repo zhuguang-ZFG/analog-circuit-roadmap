@@ -1,10 +1,10 @@
 <a id="part5"></a>
 # 第五篇：动画演示中心
 
-> 全部 116 张 SVG 动画（SMIL，浏览器直接播放）位于 `assets/svg/` 目录，由 `scripts/generate_svgs.py` 一键生成（仓库铁律：两者始终同步）；配套 Falstad 在线电路可实时交互。
+> 全部 118 张 SVG 动画（SMIL，浏览器直接播放）位于 `assets/svg/` 目录，由 `scripts/generate_svgs.py` 一键生成（仓库铁律：两者始终同步）；配套 Falstad 在线电路可实时交互。
 
 <details>
-<summary>动画速查：按章节 —— 116 张全索引（点击展开）</summary>
+<summary>动画速查：按章节 —— 118 张全索引（点击展开）</summary>
 
 | 章 | 动画（点击直达） |
 |---|---|
@@ -13,7 +13,7 @@
 | §2 第 2 章 二极管：单向导电的物理本质 | [5.2](p5-00-part5.md#demo2) · [5.31](p5-00-part5.md#demo31) · [5.46](p5-00-part5.md#demo46) · [5.56](p5-00-part5.md#demo56) · [5.61](p5-00-part5.md#demo61) · [5.83](p5-00-part5.md#demo83) · [5.110](p5-00-part5.md#demo110) |
 | §3 第 3 章 BJT 三极管：完整概念体系 | [5.3](p5-00-part5.md#demo3) · [5.40](p5-00-part5.md#demo40) · [5.41](p5-00-part5.md#demo41) · [5.66](p5-00-part5.md#demo66) · [5.67](p5-00-part5.md#demo67) · [5.70](p5-00-part5.md#demo70) · [5.74](p5-00-part5.md#demo74) · [5.81](p5-00-part5.md#demo81) |
 | §4 第 4 章 MOSFET：电压控制的开关王者 | [5.44](p5-00-part5.md#demo44) · [5.57](p5-00-part5.md#demo57) · [5.68](p5-00-part5.md#demo68) · [5.82](p5-00-part5.md#demo82) · [5.92](p5-00-part5.md#demo92) |
-| §5 第 5 章 输出结构彻底讲透：推挽、开漏、上拉下拉 | [5.5](p5-00-part5.md#demo5) · [5.51](p5-00-part5.md#demo51) · [5.53](p5-00-part5.md#demo53) · [5.62](p5-00-part5.md#demo62) |
+| §5 第 5 章 输出结构彻底讲透：推挽、开漏、上拉下拉 | [5.5](p5-00-part5.md#demo5) · [5.51](p5-00-part5.md#demo51) · [5.53](p5-00-part5.md#demo53) · [5.62](p5-00-part5.md#demo62) · [5.117](p5-00-part5.md#demo117) |
 | §6 第 6 章 运算放大器：从内部结构到参数字典 | [5.37](p5-00-part5.md#demo37) · [5.45](p5-00-part5.md#demo45) · [5.63](p5-00-part5.md#demo63) · [5.71](p5-00-part5.md#demo71) · [5.72](p5-00-part5.md#demo72) · [5.75](p5-00-part5.md#demo75) · [5.93](p5-00-part5.md#demo93) · [5.112](p5-00-part5.md#demo112) |
 | §7 第 7 章 比较器：专为"判决"而生 | [5.4](p5-00-part5.md#demo4) · [5.35](p5-00-part5.md#demo35) · [5.47](p5-00-part5.md#demo47) · [5.54](p5-00-part5.md#demo54) · [5.76](p5-00-part5.md#demo76) |
 | §8 第 8 章 模拟开关与多路复用器：CMOS 传输门 | [5.22](p5-00-part5.md#demo22) · [5.50](p5-00-part5.md#demo50) · [5.69](p5-00-part5.md#demo69) · [5.84](p5-00-part5.md#demo84) · [5.94](p5-00-part5.md#demo94) |
@@ -26,7 +26,7 @@
 | §15 第 15 章 PCB 绘制注意事项 | [5.7](p5-00-part5.md#demo7) · [5.90](p5-00-part5.md#demo90) · [5.96](p5-00-part5.md#demo96) · [5.100](p5-00-part5.md#demo100) |
 | §16 第 16 章 排故五步法 | [5.38](p5-00-part5.md#demo38) · [5.49](p5-00-part5.md#demo49) · [5.99](p5-00-part5.md#demo99) |
 | §17 第 17 章 故障模式速查总表 | [5.91](p5-00-part5.md#demo91) · [5.102](p5-00-part5.md#demo102) · [5.116](p5-00-part5.md#demo116) |
-| §18 第 18 章 大师的排故智慧 | [5.97](p5-00-part5.md#demo97) · [5.115](p5-00-part5.md#demo115) |
+| §18 第 18 章 大师的排故智慧 | [5.97](p5-00-part5.md#demo97) · [5.115](p5-00-part5.md#demo115) · [5.118](p5-00-part5.md#demo118) |
 
 </details>
 ## 5.1 RC 充电 <a id="demo1"></a>
@@ -749,7 +749,19 @@ Falstad 交互：`Circuits → 555 Timer Chip → Astable Multivibrator`
 
 **看点**：机械（按压扭转轻敲）、热（冷冻喷剂热风枪）、电（电压拉偏负载阶跃）三把扳手轮流入漏斗，每把单独用、记录哪把改变复现率；复现率从「一天一次」逼到「按一下就坏」后，单次/毛刺/欠幅触发挂着等。**蜂鸣档一声断续，抵得上十分钟盯屏。** → 正文 [17.6 间歇性故障](p4-02-ch17.md#sec-17-6)
 
-## 5.117 Falstad 内置示例地图（全部带动画）
+## 5.117 地弹：8 路同翻，把"地"弹起来 <a id="demo117"></a>
+
+<p align="center"><img src="assets/svg/ground-bounce.svg" width="720" alt="地弹动画：8 路输出同时翻转，160mA 瞬时电流挤过地脚电感，地弹尖峰让安静输出跟着抖"></p>
+
+**看点**：8 路驱动同时点亮（每路 20mA），160mA 瞬时电流涌进公共地引脚；走线电感的 L·di/dt 在上升沿顶出正尖、下降沿拽出负尖，没翻转的那路输出电平照样跟着抖。**对策：大电流翻转分散开、地脚多给几只、低速信号别配高档驱动。** → 正文 [5.1 推挽输出](p1-06-ch5.md#sec-5-1)
+
+## 5.118 三触点对账：160mV 去了哪里 <a id="demo118"></a>
+
+<p align="center"><img src="assets/svg/three-probe-audit.svg" width="720" alt="三触点对账动画：LDO 输出脚 5.02V、运放 VCC 脚 4.86V、去耦电容复核，160mV 折算 1.3Ω 路径电阻"></p>
+
+**看点**：探头依次点向稳压器输出脚（5.02V）、运放 VCC 脚（4.86V）、去耦电容两端复核——160mV 差值 ÷ 120mA 负载 ≈ 1.3Ω 路径电阻：0.2mm×200mm 细走线约 1000 个方 ≈ 0.5Ω，再叠过孔与接插件。**病灶在走线，不在芯片。** → 正文 [18.1 Bob Pease：模拟排故的「老中医」](p4-03-ch18.md#sec-18-1)
+
+## 5.119 Falstad 内置示例地图（全部带动画）
 
 | 主题 | 菜单路径 |
 |---|---|

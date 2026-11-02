@@ -829,3 +829,18 @@
   anchor: demo116
   one_line: 机械（按压扭转轻敲）、热（冷冻喷剂热风枪）、电（电压拉偏负载阶跃）三把扳手轮流入漏斗，每把单独用、记录哪把改变复现率；复现率从「一天一次」逼到「按一下就坏」后，单次/毛刺/欠幅触发挂着等。蜂鸣档一声断续，抵得上十分钟盯屏。
   static_svg: assets/svg/intermittent-forcing.svg
+- id: anim-117
+  file: p5-00-part5.md
+  title: 地弹：8 路同翻，把"地"弹起来
+  chapter: 5
+  anchor: demo117
+  one_line: 8 路驱动同时点亮（每路 20mA），160mA 瞬时电流涌进公共地引脚；走线电感的 L·di/dt 在上升沿顶出正尖、下降沿拽出负尖，没翻转的那路输出电平照样跟着抖。对策：大电流翻转分散开、地脚多给几只、低速信号别配高档驱动。
+  static_svg: assets/svg/ground-bounce.svg
+- id: anim-118
+  file: p5-00-part5.md
+  title: 三触点对账：160mV 去了哪里
+  chapter: 18
+  anchor: demo118
+  one_line: 探头依次点向稳压器输出脚（5.02V）、运放 VCC 脚（4.86V）、去耦电容两端复核——160mV 差值 ÷ 120mA 负载 ≈ 1.3Ω 路径电阻：0.2mm×200mm
+    细走线约 1000 个方 ≈ 0.5Ω，再叠过孔与接插件。
+  static_svg: assets/svg/three-probe-audit.svg

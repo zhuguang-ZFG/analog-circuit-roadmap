@@ -8425,7 +8425,7 @@ def make_intermittent_forcing():
         body += pulse(x + 100, 144, 180, 76, col, 1.6 + 0.3 * i, 10) + '\n'
         body += flow(f'M{x+100},196 V256', DUR, n=2, color=col, r=5)
     # 漏斗：复现率提升
-    body += ('<path d="M180,266 L620,266 L470,330 L330,330 Z" fill="#fdf3e3" '
+    body += ('<path d="M180,266 L620,266 L470,330 L330,330 Z" fill="#f7eedb" '
              'stroke="#b45309" stroke-width="2"/>\n'
              '<text x="400" y="292" text-anchor="middle" font-size="12" font-weight="bold" '
              'fill="#b45309">每把单独用，记录哪一把改变复现率</text>\n'
@@ -8447,6 +8447,163 @@ def make_intermittent_forcing():
         ('④ 然后在复现窗口里测量：单次/毛刺/欠幅触发挂着等，蜂鸣档听断续', '#059669'),
     ], DUR, y=494)
     save('intermittent-forcing.svg', svg + '</svg>')
+
+
+def make_ground_bounce():
+    """地弹：8 路输出同时翻转，160mA 瞬时电流挤过地脚电感，把"地"弹起来。数字取自 §5.1 动态功耗段。"""
+    DUR = 12
+    svg = svg_open('地弹：8 路同翻，把"地"弹起来', h=600)
+    svg += ('<text x="400" y="62" text-anchor="middle" font-size="12.5" fill="#475569">'
+            '8 个输出同时翻转 × 每路 20mA = 160mA 瞬时电流，全挤进公共地引脚</text>\n')
+    body = ''
+    # 顶部：8 路驱动器方块，在尖峰窗口（40%~60%）同时点亮
+    for i in range(8):
+        x = 90 + i * 78
+        body += (f'<rect x="{x}" y="96" width="52" height="40" rx="7" fill="#eff6ff" '
+                 f'stroke="#2563eb" stroke-width="1.8"/>'
+                 f'<rect x="{x}" y="96" width="52" height="40" rx="7" fill="#dc2626" '
+                 f'fill-opacity="0.28" opacity="0">'
+                 f'<animate attributeName="opacity" values="0;0;1;1;0;0" '
+                 f'keyTimes="0;0.40;0.44;0.56;0.60;1" dur="{DUR}s" '
+                 f'repeatCount="indefinite"/></rect>\n')
+    body += ('<text x="400" y="88" text-anchor="middle" font-size="11.5" '
+             'fill="#334155">8 路输出同时翻转（驱动档 20mA）</text>\n')
+    body += flow('M400,142 V178', DUR, n=3, color='#dc2626', r=5,
+                 keypoints='0;0.40;0.60;1', keytimes='0;0.40;0.60;1')
+    body += ('<text x="452" y="168" font-size="11.5" font-weight="bold" fill="#dc2626">'
+             'Σ 160mA 瞬时</text>\n')
+    # 中部：两条波形——I_gnd 电流尖峰 / V_gnd 地弹（L·di/dt，沿上正沿下负）
+    X0, X1 = 80, 720
+    yI, yG = 260, 400
+    body += (f'<text x="70" y="{yG+4}" text-anchor="end" font-size="12" '
+             f'font-weight="bold" fill="#b45309">V（地）</text>\n'
+             f'<text x="88" y="{yG-52}" text-anchor="end" font-size="11" fill="#64748b">'
+             f'地脚走线电感 L</text>\n')
+    for yc, col in ((yG, '#b45309'),):
+        body += (f'<line x1="{X0}" y1="{yc}" x2="{X1}" y2="{yc}" stroke="#cbd5e1" '
+                 f'stroke-width="1"/>\n')
+    t0, t1 = 0.40, 0.60                     # 尖峰窗口
+    x0, x1 = X0 + (X1 - X0) * t0, X0 + (X1 - X0) * t1
+    xm = (x0 + x1) / 2
+    # I_gnd：梯形尖峰 160mA
+    body += (f'<path d="M{X0},{yI} L{x0},{yI} L{x0+18},{yI-64} L{x1-18},{yI-64} '
+             f'L{x1},{yI} L{X1},{yI}" fill="none" stroke="#dc2626" stroke-width="2.6"/>\n'
+             f'<text x="{xm+8:.0f}" y="{yI-72}" font-size="11.5" font-weight="bold" '
+             f'fill="#dc2626">I（地）尖峰 160mA</text>\n')
+    # V_gnd：di/dt 在上升沿顶出正尖、下降沿拽出负尖
+    body += (f'<path d="M{X0},{yG} L{x0},{yG} L{x0+14},{yG-46} L{x0+30},{yG} '
+             f'L{x1-30},{yG} L{x1-14},{yG+46} L{x1},{yG} L{X1},{yG}" fill="none" '
+             f'stroke="#b45309" stroke-width="2.6"/>\n'
+             f'<text x="{xm+8:.0f}" y="{yG-40}" font-size="11.5" font-weight="bold" '
+             f'fill="#b45309">地弹 = L·di/dt</text>\n')
+    # 底部：一路安静输出的高电平被拽出毛刺
+    yQ = 500
+    body += (f'<text x="70" y="{yQ+4}" text-anchor="end" font-size="12" '
+             f'font-weight="bold" fill="#5b666f">安静输出</text>\n'
+             f'<path d="M{X0},{yQ-30} L{x0},{yQ-30} L{x0+14},{yQ+14} L{x0+30},{yQ-30} '
+             f'L{x1-30},{yQ-30} L{x1-14},{yQ+14} L{x1},{yQ-30} L{X1},{yQ-30}" fill="none" '
+             f'stroke="#5b666f" stroke-width="2.4"/>\n'
+             f'<text x="{x1+10:.0f}" y="{yQ+18}" font-size="11" fill="#5b666f">'
+             f'它没翻转，电平却跟着抖——地被弹起来了</text>\n')
+    # 扫动游标
+    body += (f'<line x1="{X0}" y1="196" x2="{X0}" y2="540" stroke="#0f766e" '
+             f'stroke-width="1.6" stroke-dasharray="6 4" opacity="0.75">'
+             f'<animateTransform attributeName="transform" type="translate" '
+             f'values="0 0;{X1-X0} 0" keyTimes="0;1" dur="{DUR}s" '
+             f'repeatCount="indefinite"/></line>\n')
+    svg += body
+    svg += beat_captions([
+        ('① 8 路输出同时翻转，每路 20mA——瞬时 160mA 全挤进公共地引脚', '#2563eb'),
+        ('② 地脚走线有电感 L：I（地）尖峰一出，L·di/dt 把"地"往上顶', '#dc2626'),
+        ('③ 上升沿顶出正尖、下降沿拽出负尖——安静的输出跟着抖出毛刺', '#b45309'),
+        ('④ 对策：大电流翻转分散开、地引脚多给几只、低速信号别配高档驱动', '#059669'),
+    ], DUR, y=574)
+    save('ground-bounce.svg', svg + '</svg>')
+
+
+def make_three_probe_audit():
+    """先量电源的执行版：稳压器脚、芯片电源脚、去耦电容三触点对账，160mV 差折算 1.3Ω 路径电阻。取自 §18.1~18.2。"""
+    DUR = 12
+    svg = svg_open('三触点对账：160mV 去了哪里', h=560)
+    svg += ('<text x="400" y="62" text-anchor="middle" font-size="12.5" fill="#475569">'
+            '「先量电源」不是看一眼 5V 在不在——三处读数只在毫伏级上才允许有差别</text>\n')
+    body = ''
+    # PCB 轮廓
+    body += ('<rect x="44" y="92" width="712" height="240" rx="14" fill="#f8fafc" '
+             'stroke="#94a3b8" stroke-width="2"/>\n')
+    # LDO 块与运放块
+    body += ('<rect x="84" y="150" width="128" height="96" rx="10" fill="#eff6ff" '
+             'stroke="#2563eb" stroke-width="2.2"/>\n'
+             '<text x="148" y="190" text-anchor="middle" font-size="13" font-weight="bold" '
+             'fill="#2563eb">LDO 稳压器</text>\n'
+             '<text x="148" y="214" text-anchor="middle" font-size="11" fill="#334155">输出脚</text>\n')
+    body += ('<rect x="588" y="150" width="128" height="90" rx="10" fill="#ecfdf5" '
+             'stroke="#059669" stroke-width="2.2"/>\n'
+             '<text x="652" y="190" text-anchor="middle" font-size="13" font-weight="bold" '
+             'fill="#059669">运放</text>\n'
+             '<text x="652" y="214" text-anchor="middle" font-size="11" fill="#334155">VCC 脚</text>\n')
+    # 供电细走线（0.2mm×200mm，蛇形示意），串两个过孔
+    body += ('<path d="M212,196 C300,196 320,258 400,258 C480,258 500,196 588,196" '
+             'fill="none" stroke="#b45309" stroke-width="3.5"/>\n')
+    for vx in (330, 470):
+        body += (f'<circle cx="{vx}" cy="227" r="6" fill="#fff" stroke="#b45309" '
+                 f'stroke-width="2.2"/>\n')
+    body += ('<text x="400" y="286" text-anchor="middle" font-size="11" fill="#b45309">'
+             '0.2mm 宽 × 200mm 长 ≈ 1000 个方 → 仅走线 ≈0.5Ω，再叠过孔与接插件</text>\n')
+    # 去耦电容
+    body += ('<line x1="652" y1="240" x2="652" y2="286" stroke="#334155" stroke-width="2"/>\n'
+             '<line x1="636" y1="290" x2="668" y2="290" stroke="#334155" stroke-width="2.6"/>\n'
+             '<line x1="640" y1="300" x2="664" y2="300" stroke="#334155" stroke-width="2.6"/>\n'
+             '<line x1="652" y1="304" x2="652" y2="318" stroke="#334155" stroke-width="2"/>\n'
+             '<text x="700" y="300" font-size="11" fill="#334155">去耦电容</text>\n')
+    # 三只探头（按节拍依次出现，出现后保留）
+    probes = [
+        ((212, 196), '①', '5.02V', '#2563eb', (86, 118)),
+        ((588, 196), '②', '4.86V', '#dc2626', (500, 118)),
+        ((652, 322), '③', '4.86V 复核', '#059669', (520, 322)),
+    ]
+    n_beats = 5
+    for i, ((px, py), tag, reading, col, (tx, ty)) in enumerate(probes):
+        a = i / n_beats
+        fade = 0.02
+        kt = f'0;{a:.4f};{a+fade:.4f};1'
+        kv = f'0;0;1;1'
+        body += (f'<g opacity="0">'
+                 f'<animate attributeName="opacity" values="{kv}" keyTimes="{kt}" '
+                 f'dur="{DUR}s" repeatCount="indefinite"/>'
+                 f'<circle cx="{px}" cy="{py}" r="9" fill="{col}"/>'
+                 f'<text x="{px}" y="{py+4}" text-anchor="middle" font-size="10.5" '
+                 f'font-weight="bold" fill="#fff">{tag}</text>'
+                 f'<text x="{tx}" y="{ty}" font-size="13" font-weight="bold" '
+                 f'fill="{col}">{reading}</text></g>\n')
+    # 160mV 差值括号（第 4 拍出现）
+    a = 3 / n_beats
+    kt = f'0;{a:.4f};{a+0.02:.4f};1'
+    body += (f'<g opacity="0">'
+             f'<animate attributeName="opacity" values="0;0;1;1" keyTimes="{kt}" '
+             f'dur="{DUR}s" repeatCount="indefinite"/>'
+             f'<path d="M212,128 v-10 M588,128 v-10 M212,128 H588" fill="none" '
+             f'stroke="#dc2626" stroke-width="1.8"/>'
+             f'<text x="400" y="118" text-anchor="middle" font-size="12.5" '
+             f'font-weight="bold" fill="#dc2626">ΔV = 160mV @ 负载 120mA</text></g>\n')
+    # 底部算式卡与结论
+    body += ('<rect x="84" y="368" width="632" height="96" rx="11" fill="#fef2f2" '
+             'stroke="#dc2626" stroke-width="2"/>\n'
+             '<text x="400" y="398" text-anchor="middle" font-size="13" font-weight="bold" '
+             'fill="#dc2626">160mV ÷ 120mA ≈ 1.3Ω 路径电阻</text>\n'
+             '<text x="400" y="424" text-anchor="middle" font-size="11.5" fill="#334155">'
+             '走线 ≈0.5Ω（0.5mΩ/方 × 1000 方）＋ 两个过孔 ＋ 一段接插件，1Ω 出头毫不稀奇</text>\n'
+             '<text x="400" y="450" text-anchor="middle" font-size="12.5" font-weight="bold" '
+             'fill="#5b666f">病灶在走线，不在芯片——换运放是冤枉好人</text>\n')
+    svg += body
+    svg += beat_captions([
+        ('① 触点一：LDO 输出脚，带载量得 5.02V', '#2563eb'),
+        ('② 触点二：运放 VCC 脚只剩 4.86V——160mV 在路上丢了', '#dc2626'),
+        ('③ 触点三：去耦电容两端复核，差值复现才作数', '#059669'),
+        ('④ 160mV ÷ 120mA ≈ 1.3Ω：走线 0.5Ω＋过孔＋接插件', '#b45309'),
+        ('⑤ 三处读数只差毫伏级才算过——病灶在走线，不在芯片', '#5b666f'),
+    ], DUR, y=516)
+    save('three-probe-audit.svg', svg + '</svg>')
 
 
 # ======================= 推导图 1：分压公式（第 0 章 0.3） =======================
@@ -8832,6 +8989,8 @@ if __name__ == '__main__':
     make_probe_ground_loop()
     make_predict_measure()
     make_intermittent_forcing()
+    make_ground_bounce()
+    make_three_probe_audit()
     make_derive_divider()
     make_derive_ripple()
     make_derive_gain()
