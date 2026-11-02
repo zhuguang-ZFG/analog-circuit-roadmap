@@ -3,7 +3,7 @@
 
 > 全部 118 张 SVG 动画（SMIL，浏览器直接播放）位于 `assets/svg/` 目录，由 `scripts/generate_svgs.py` 一键生成（仓库铁律：两者始终同步）；配套 Falstad 在线电路可实时交互。
 
-<details>
+<details markdown="1">
 <summary>动画速查：按章节 —— 118 张全索引（点击展开）</summary>
 
 | 章 | 动画（点击直达） |

@@ -419,8 +419,9 @@
 .md-typeset .learning-resume { display: inline-flex; align-items: center; min-height: 44px; font-weight: 700; }
 .md-typeset .learning-dashboard [hidden] { display: none; }
 .md-typeset .learning-dashboard details summary { min-height: 44px; }
-/* <details> 曾是全站唯一保留 Material 默认蓝边（rgb(65,138,255)）+ 4px 直角的构件，
-   收进纸缘色与手绘抖动圆角（impeccable 评审 P5） */
+/* details 元素曾是全站唯一保留 Material 默认蓝边（rgb(65,138,255)）+ 4px 直角的构件，
+   收进纸缘色与手绘抖动圆角（impeccable 评审 P5）。注释里别写尖括号标签名：
+   印刷书有条「details 必须带 open」的文本断言，会匹配进 CSS 注释（v3.86 踩过） */
 .md-typeset details { border-color: var(--hand-rule); border-radius: 10px 8px 11px 9px; }
 [data-md-color-scheme="slate"] .md-typeset details { border-color: #4a4232; }
 .md-typeset .learning-chapters ul { list-style: none; margin-left: 0; }

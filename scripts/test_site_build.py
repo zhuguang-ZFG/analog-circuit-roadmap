@@ -105,6 +105,25 @@ class SiteBuildTests(unittest.TestCase):
         j = text.find("</article>", i)
         return text[i:j] if i >= 0 and j > i else text
 
+    # ---------- Markdown 泄漏护栏 ----------
+    def test_built_pages_carry_no_unrendered_markdown(self):
+        """v3.83–v3.85 潜伏回归：公式里的 $X<Y$ 让 Python-Markdown 的 HTML stash
+        把 `<V` 当成未闭合标签起点，与后一个 HTML 块（figure）组合后解析器永久
+        落入 raw 态——ch4 从 §4.3 起整页裸 markdown 被三个版本带病发出。逐页断言
+        正文不再出现行首裸标题与成对 ** 标记（剥掉 pre/code/script/style/svg）。"""
+        strip = re.compile(r"<(pre|code|script|style|svg)\b.*?</\1>", re.S)
+        heading = re.compile(r"^#{1,6}\s\S", re.M)
+        bold = re.compile(r"\*\*[^*\n]{2,80}\*\*")
+        pipe_row = re.compile(r"^\|[^\n]+\|\s*$", re.M)
+        offenders = []
+        for page in sorted(self.site.glob("*.html")):
+            text = strip.sub("", page.read_text(encoding="utf-8"))
+            hits = (heading.findall(text) + bold.findall(text)
+                    + pipe_row.findall(text))
+            if hits:
+                offenders.append("%s: %r" % (page.name, hits[:3]))
+        self.assertEqual([], offenders)
+
     # ---------- 画廊卡片 ----------
     def test_card_inventory_matches_animation_headings(self):
         """卡片数必须等于第 5 篇里带 demo 锚点的动画条目数。"""

@@ -1,7 +1,8 @@
 """印刷用 SVG 净化：去掉模板背景、深色模式、动效与高饱和配色。
 
-仅处理 108 张旧模板图（同时带 ``bgL`` 渐变与深色模式），
-手绘图、站点动画图与路线图保持原样。
+处理 118 张动画模板图（同时带 ``bgL`` 渐变与深色模式）：
+装饰性动画整块移除；含文字的字幕组按坐标分组只留末拍，
+opacity 落峰值可见态，印刷不再丢字幕（v3.86 修复 112/118 丢字）。
 """
 from __future__ import annotations
 
@@ -96,12 +97,76 @@ def refine_svg(text: str) -> str:
             holder.remove(element)
             parent.pop(element, None)
 
-    # 1) 先整块移除带直接动画子节点的元素；粒子与逐帧字幕不再残留。
+    # 1) 动画元素分流（v3.86 前是整块连坐删除，112/118 张图印刷丢字幕）：
+    #    · 纯装饰（粒子、高亮、走位）——整块删除，行为不变；
+    #    · 子树含 <text> 的——进入字幕候选：只摘动画子节点，把 opacity
+    #      落到 values 的峰值（节拍字幕的可见态），元素本身保留；
+    #    · caption() 的同坐标接力字幕（beat_captions：零重叠时隙共用同一
+    #      (x,y)）——按坐标分组，只留文档序最后一拍，其余连同药丸底衬整条删，
+    #      否则全部落可见会在纸上叠成一坨墨。
+    protected = set()
+
+    def _ancestors(el):
+        node = parent.get(el)
+        while node is not None:
+            yield node
+            node = parent.get(node)
+
+    def _opacity_peak(child) -> float | None:
+        raw = child.get("values", "")
+        nums = []
+        for piece in raw.split(";"):
+            try:
+                nums.append(float(piece.strip()))
+            except ValueError:
+                continue
+        if nums:
+            return max(nums)
+        try:
+            return float(child.get("to", "").strip())
+        except ValueError:
+            return None
+
+    def _settle(el) -> None:
+        """摘掉动画子节点；若曾以动画驱动 opacity，落到峰值可见态。"""
+        peak = None
+        for child in [c for c in el if _local(c.tag) in ANIMATION_TAGS]:
+            if child.get("attributeName") == "opacity":
+                candidate = _opacity_peak(child)
+                if candidate is not None:
+                    peak = candidate if peak is None else max(peak, candidate)
+            drop(child)
+        if peak is not None:
+            el.set("opacity", f"{peak:g}")
+
+    captions = []  # (element, (x, y)) 文档序
     for element in list(root.iter()):
         if element is root:
             continue
-        if any(_local(child.tag) in ANIMATION_TAGS for child in element):
+        if not any(_local(child.tag) in ANIMATION_TAGS for child in element):
+            continue
+        if any(ancestor in protected for ancestor in _ancestors(element)):
+            # 已保留字幕组内部（药丸底衬、文字本体）：同样摘动画落可见。
+            _settle(element)
+            continue
+        if any(_local(d.tag) == "text" for d in element.iter()):
+            _settle(element)
+            text_el = next(d for d in element.iter() if _local(d.tag) == "text")
+            key = (text_el.get("x", ""), text_el.get("y", ""))
+            if key == ("", ""):
+                key = ("__no_coord__", id(element))
+            captions.append((element, key))
+            protected.add(element)
+        else:
             drop(element)
+
+    by_coord = {}
+    for element, key in captions:
+        by_coord.setdefault(key, []).append(element)
+    for group in by_coord.values():
+        for stale in group[:-1]:
+            protected.discard(stale)
+            drop(stale)
 
     # 2) 模板 defs 里的渐变/图案/滤镜与主题样式整体移除。
     for element in list(root.iter()):

@@ -99,6 +99,50 @@ class RefineFixtureTests(unittest.TestCase):
             self.assertEqual(source, decoded)
 
 
+CAPTION_RELAY = """<svg xmlns="http://www.w3.org/2000/svg" width="800" height="460" viewBox="0 0 800 460">
+<defs><linearGradient id="bgL"><stop stop-color="#ffffff"/></linearGradient></defs>
+<style>@media (prefers-color-scheme: dark){rect{fill:#000}}</style>
+<rect class="page-bg" width="800" height="460"/>
+<g><animateTransform attributeName="transform" type="translate" values="0 6;0 0;0 -4" dur="6s" repeatCount="indefinite"/><rect x="300" y="386" width="200" height="24" rx="12" fill="#0f766e" opacity="0"><animate attributeName="opacity" values="0;1;1;0" dur="6s" repeatCount="indefinite"/></rect><text x="400" y="400" text-anchor="middle" fill="#0f766e" opacity="0">第 1 拍：先建立直觉<animate attributeName="opacity" values="0;1;1;0" dur="6s" repeatCount="indefinite"/></text></g>
+<g><animateTransform attributeName="transform" type="translate" values="0 6;0 0;0 -4" dur="6s" repeatCount="indefinite"/><rect x="300" y="386" width="200" height="24" rx="12" fill="#0f766e" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" dur="6s" repeatCount="indefinite"/></rect><text x="400" y="400" text-anchor="middle" fill="#0f766e" opacity="0">第 2 拍：再算一遍账<animate attributeName="opacity" values="0;0;1;1;0;0" dur="6s" repeatCount="indefinite"/></text></g>
+<g><rect x="300" y="300" width="180" height="22" rx="11" fill="#b45309" opacity="0"><animate attributeName="opacity" values="0;1;1" dur="6s" repeatCount="indefinite"/></rect><text x="400" y="314" text-anchor="middle" fill="#b45309" opacity="0">单发批注不冲突<animate attributeName="opacity" values="0;1;1" dur="6s" repeatCount="indefinite"/></text></g>
+<circle r="4" fill="#7c3aed"><animateMotion dur="2s" path="M0 0 L10 10"/></circle>
+</svg>"""
+
+
+class RefineCaptionTests(unittest.TestCase):
+    """接力字幕：按坐标分组只留末拍，单发批注落可见，装饰动画仍整块删。"""
+
+    def test_relay_captions_keep_only_the_last_beat(self):
+        out = refine_svg(CAPTION_RELAY)
+        self.assertNotIn("第 1 拍", out)
+        self.assertIn("第 2 拍", out)
+        root = ET.fromstring(out)
+        kept = [el for el in root.iter()
+                if el.tag.endswith("text") and el.get("y") == "400"]
+        self.assertEqual(1, len(kept))
+        self.assertEqual("1", kept[0].get("opacity"))
+        # 末拍的药丸底衬连同字幕整组保留
+        pills = [el for el in root.iter()
+                 if el.tag.endswith("rect") and el.get("y") == "386"]
+        self.assertEqual(1, len(pills))
+        self.assertEqual("1", pills[0].get("opacity"))
+
+    def test_single_shot_annotation_settles_visible(self):
+        out = refine_svg(CAPTION_RELAY)
+        self.assertIn("单发批注不冲突", out)
+        root = ET.fromstring(out)
+        note = [el for el in root.iter()
+                if el.tag.endswith("text") and el.get("y") == "314"]
+        self.assertEqual(1, len(note))
+        self.assertEqual("1", note[0].get("opacity"))
+
+    def test_decorative_animation_still_drops(self):
+        out = refine_svg(CAPTION_RELAY)
+        self.assertNotIn("<circle", out)
+        self.assertNotIn("<animate", out)
+
+
 class RefineBookAssetsTests(unittest.TestCase):
     def test_all_legacy_assets_are_print_clean(self):
         files = sorted((ROOT / "assets" / "svg").glob("*.svg"))
@@ -117,6 +161,27 @@ class RefineBookAssetsTests(unittest.TestCase):
                 self.assertIsNone(
                     re.search(r"[\U0001F000-\U0001FAFF]", out), path.name)
                 self.assertIn("Microsoft YaHei", out, path.name)
+
+    def test_relay_captions_survive_in_real_assets(self):
+        """v3.86 前 112/118 张印刷丢字幕（3310 → 2767）；修后只删同坐标旧拍。"""
+        cases = {"rc-charge.svg": ("400", "第 3 拍"),
+                 "bjt-amplify.svg": ("448", "④")}
+        total = 0
+        for path in sorted((ROOT / "assets" / "svg").glob("*.svg")):
+            out = refine_svg(path.read_text(encoding="utf-8"))
+            root = ET.fromstring(out)
+            total += sum(1 for el in root.iter() if el.tag.endswith("text"))
+            for el in root.iter():
+                if el.tag.endswith("text"):
+                    self.assertNotEqual("0", el.get("opacity", ""), path.name)
+            if path.name in cases:
+                y, marker = cases[path.name]
+                kept = [el for el in root.iter()
+                        if el.tag.endswith("text") and el.get("y") == y]
+                self.assertEqual(1, len(kept), path.name)
+                self.assertTrue((kept[0].text or "").startswith(marker),
+                                f"{path.name}: {kept[0].text!r}")
+        self.assertGreaterEqual(total, 2900)
 
     def test_representative_figure_keeps_geometry_and_labels(self):
         source = (ROOT / "assets" / "svg" / "pcb-routing.svg").read_text(

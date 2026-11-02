@@ -1,7 +1,7 @@
 <a id="toc"></a>
 ## 目录
 
-<details open>
+<details open markdown="1">
 <summary><b>九篇十九章 · 点击收起</b></summary>
 
 - **[第一篇：器件深度原理解析](p1-00-part1.md#part1)**
