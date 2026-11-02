@@ -380,6 +380,8 @@
 }
 [data-md-color-scheme="slate"] .md-typeset .reading-nav .reading-quiz {
   background: color-mix(in srgb, var(--md-primary-fg-color) 72%, var(--md-default-bg-color));
+  /* 暗色主色是浅青，白字只有 3.8:1 —— 换深墨字（~7:1） */
+  color: #1d1a14;
 }
 @media screen and (max-width: 768px) {
   .md-typeset .reading-nav { grid-template-columns: 1fr; }
@@ -417,6 +419,10 @@
 .md-typeset .learning-resume { display: inline-flex; align-items: center; min-height: 44px; font-weight: 700; }
 .md-typeset .learning-dashboard [hidden] { display: none; }
 .md-typeset .learning-dashboard details summary { min-height: 44px; }
+/* <details> 曾是全站唯一保留 Material 默认蓝边（rgb(65,138,255)）+ 4px 直角的构件，
+   收进纸缘色与手绘抖动圆角（impeccable 评审 P5） */
+.md-typeset details { border-color: var(--hand-rule); border-radius: 10px 8px 11px 9px; }
+[data-md-color-scheme="slate"] .md-typeset details { border-color: #4a4232; }
 .md-typeset .learning-chapters ul { list-style: none; margin-left: 0; }
 .md-typeset .learning-chapters li { display: flex; align-items: center; gap: .75rem; margin-left: 0; }
 .md-typeset .learning-chapters a { flex: 1; min-width: 0; min-height: 44px; display: flex; align-items: center; overflow-wrap: anywhere; }

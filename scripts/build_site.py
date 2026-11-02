@@ -719,6 +719,11 @@ picture{display:contents}
   background:transparent;color:var(--md-default-fg-color);cursor:pointer;font-size:.75rem}
 .gal-chip[aria-pressed=true]{background:var(--md-primary-fg-color);color:var(--md-primary-bg-color);
   border-color:var(--md-primary-fg-color)}
+/* 暗色下 --md-primary-fg-color 是浅青 #7fb7cf，白字只有 2.2:1 —— 压上深墨字 */
+[data-md-color-scheme="slate"] :is(.gal-chip[aria-pressed=true],.gal-random:hover,.gal-play:hover){color:#1d1a14}
+.gal-bar input[type=search]::placeholder{color:#655f52}
+[data-md-color-scheme="slate"] .gal-bar input[type=search]::placeholder{color:#9aa0a6}
+.gal-icon{width:.85em;height:.85em;vertical-align:-.1em}
 .gal-random{padding:.3rem .7rem;border-radius:999px;cursor:pointer;font-size:.75rem;font-weight:600;
   border:1px dashed var(--md-primary-fg-color);background:transparent;color:var(--md-primary-fg-color)}
 .gal-random:hover{background:var(--md-primary-fg-color);color:var(--md-primary-bg-color)}
@@ -1347,7 +1352,7 @@ def render_gallery(items):
             '  </a>\n'
             '  <div class="gal-actions">\n'
             '    <button class="gal-play" type="button" data-svg="assets/svg/%s" '
-            'data-title="%s %s" data-href="%s">▶ 放大播放</button>\n'
+            'data-title="%s %s" data-href="%s"><svg class="gal-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.1 5.3 L18.6 12 L8.4 18.7 Z"/></svg> 放大播放</button>\n'
             '  </div>\n'
             '</div>'
             % (it["ch"], title.lower(), it["svg"], href, title,
@@ -1361,7 +1366,7 @@ def render_gallery(items):
         "# 动画画廊",
         "",
         "> 全部 %d 张 SMIL 动画，可按章筛选、按标题搜索；"
-        "点「▶ 放大播放」在弹窗里全尺寸观看（动画会自动播放），"
+        "点「放大播放」在弹窗里全尺寸观看（动画会自动播放），"
         "点卡片标题区直达该动画在 [动画演示中心](p5-00-part5.md)里的讲解与看点。" % len(items),
         "",
         '<div class="gal-bar">',
@@ -1388,14 +1393,14 @@ def render_gallery(items):
         '      <span class="gal-modal-title" id="gal-modal-title"></span>',
         '      <span class="gal-modal-tools">',
         '        <span class="gal-pos" id="gal-modal-pos"></span>',
-        '        <button class="gal-nav" id="gal-modal-prev" type="button">← 上一张</button>',
-        '        <button class="gal-nav" id="gal-modal-next" type="button">下一张 →</button>',
-        '        <button class="gal-modal-close" id="gal-modal-close" type="button">✕ 关闭（Esc）</button>',
+        '        <button class="gal-nav" id="gal-modal-prev" type="button"><svg class="gal-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.6 5.6 L8.3 12 L14.4 18.5"/></svg> 上一张</button>',
+        '        <button class="gal-nav" id="gal-modal-next" type="button">下一张 <svg class="gal-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.4 5.6 L15.7 12 L9.6 18.5"/></svg></button>',
+        '        <button class="gal-modal-close" id="gal-modal-close" type="button"><svg class="gal-icon" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" aria-hidden="true"><path d="M6.4 6.4 L17.6 17.6 M17.4 6.2 L6.2 17.4"/></svg> 关闭（Esc）</button>',
         "      </span>",
         "    </div>",
         '    <img id="gal-modal-img" alt="">',
         '    <div class="gal-modal-foot">'
-        '<a id="gal-modal-link" href="#">→ 查看这张动画的讲解与看点</a></div>',
+        '<a id="gal-modal-link" href="#">查看这张动画的讲解与看点</a></div>',
         "  </div>",
         "</div>",
         "",

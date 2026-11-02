@@ -66,7 +66,10 @@
   --md-code-fg-color: var(--hand-ink);
 }
 
-[data-md-color-scheme="slate"] {
+/* palette CSS 用双属性 [scheme][primary]（0,2,0）定义 --md-typeset-a-color，
+   裸 scheme 与 body[scheme] 都输给它，链接静默回落 #5488e8（impeccable 复扫抓出）。
+   三属性选择器（0,2,1）是压过它的最低门槛；mkdocs.yml 改 primary 时这里要同步 */
+body[data-md-color-scheme="slate"][data-md-color-primary="indigo"] {
   --md-default-bg-color: #141310;
   --md-default-fg-color: #ece4d3;
   --md-default-fg-color--light: #a79e8b;
@@ -109,6 +112,8 @@ body {
 }
 [data-md-color-scheme="slate"] .md-search__form { background: #201c16; }
 .md-search__input::placeholder { color: var(--hand-muted); }
+/* 暗色搜索底是 #201c16，--hand-muted(#5b666f) 只有 2.9:1 —— 换亮灰 */
+[data-md-color-scheme="slate"] .md-search__input::placeholder { color: #9aa5ad; }
 
 /* ---------- 3. 标题：手写楷体 + 墨线 ---------- */
 .md-typeset h1,
@@ -163,7 +168,7 @@ body {
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: .18em;
-  text-decoration-color: color-mix(in srgb, var(--md-typeset-a-color) 45%, transparent);
+  text-decoration-color: color-mix(in srgb, var(--md-typeset-a-color) 62%, transparent);
 }
 .md-typeset a:hover { text-decoration-style: wavy; }
 ::selection { background: color-mix(in srgb, var(--hand-amber) 26%, transparent); }
@@ -266,12 +271,22 @@ body {
   border: 1px solid color-mix(in srgb, var(--hand-rule) 80%, transparent);
   border-radius: 10px 8px 11px 9px;
 }
+/* 代码块曾实测 padding 全 0（字符贴着边框） */
+.md-typeset .highlight pre { padding: .7rem .9rem; }
+/* 普通引用块（唯一规则，typography.css 里的旧主色版已退役）：
+   琥珀细条 + 纸色微底 + 手绘抖动圆角 —— 与提示卡同族但明显更弱。
+   上一版 `border-radius: 0 var(--hand-radius)` 展开成 5 个值，非法被浏览器整条
+   丢弃，圆角实际从未生效；现在写成字面量。 */
 .md-typeset blockquote {
+  margin: 1.2rem 0;
+  padding: .55rem .9rem;
   border-left: .22rem solid color-mix(in srgb, var(--hand-amber) 55%, transparent);
+  border-radius: 3px 12px 10px 4px;
   background: color-mix(in srgb, var(--hand-amber) 4%, transparent);
-  border-radius: 0 var(--hand-radius);
   color: var(--md-default-fg-color--light);
 }
+.md-typeset blockquote > :first-child { margin-top: 0; }
+.md-typeset blockquote > :last-child { margin-bottom: 0; }
 .md-typeset hr {
   height: 0;
   border: 0;
@@ -337,6 +352,10 @@ body {
 /* ---------- 10. 页脚与侧边目录 ---------- */
 .md-footer, .md-footer-meta { background: #1b1813; }
 .md-footer-meta__inner { color: #cfc6b4; }
+/* 「Material for MkDocs」生成器行在 #1b1813 底上只有 4.49:1 —— 抬到 ~6.7:1 */
+.md-footer .md-copyright { color: #a89f8d; }
+/* 侧栏仓库盒顶/底没有内缩，与上下导航挤在一起 */
+.md-nav__source { padding: .45rem .9rem; }
 .md-nav__title { font-family: var(--hand-font); }
 .md-nav__link--active { color: var(--hand-amber); }
 [data-md-color-scheme="slate"] .md-nav__link--active { color: #dcab63; }
@@ -346,6 +365,12 @@ body {
   .md-typeset .callout { box-shadow: none; }
   .md-typeset img[src^="assets/svg/"] { box-shadow: none; }
   .md-typeset h1::after { background: var(--hand-ink); opacity: .35; }
+  /* 小屏骨架收敛：hero + 开场提示卡原本堆满约 3 屏才见到 12.1 正文 */
+  .md-typeset :is(.chapter-hero, .part-hero) { padding: .95rem 1rem .9rem; margin-bottom: 1.1rem; }
+  .md-typeset :is(.chapter-hero-num, .part-hero-num) { font-size: 4.2rem; }
+  .md-typeset :is(.chapter-hero, .part-hero) > .callout { margin-top: .5rem; }
+  .md-typeset .learning-hero { padding: 1.3rem 1.1rem 2.4rem; }
+  .md-typeset .learning-hero h2 { font-size: 1.55em; }
 }
 
 /* ---------- 12. 首页舞台：把「玻璃拟态」换成「画在纸上的框」 ---------- */

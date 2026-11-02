@@ -512,19 +512,11 @@
 /* ----------------------------------------------------------------------------
    5. 普通引用块
    ----------------------------------------------------------------------------
-   不是标志性 emoji 开头的引用块（章首的「这一章没有公式推导…」、页脚的「参与共建」）
-   统一给一层很淡的主色底 —— 与提示卡同族但明显更弱，不会喧宾夺主。
+   规则唯一归 handraw.css 的 `.md-typeset blockquote` 所有（加载顺序最后）：
+   琥珀细条 + 纸色微底 + 手绘抖动圆角。这里曾经另有一条主色版，两条同选择器
+   规则跨文件互相覆盖，v3.85 起收敛为一处。首页引子与章首引导句的「去盒化」
+   仍由 5.5 / 舞台段的高优先级规则负责，不受影响。
    -------------------------------------------------------------------------- */
-
-.md-typeset blockquote {
-  border-left: .2rem solid color-mix(in srgb, var(--md-primary-fg-color) 42%, transparent);
-  border-radius: 0 .3rem .3rem 0;
-  padding: .55rem .9rem;
-  background: color-mix(in srgb, var(--md-primary-fg-color) 4%, transparent);
-}
-
-.md-typeset blockquote > :first-child { margin-top: 0; }
-.md-typeset blockquote > :last-child { margin-bottom: 0; }
 
 /* ----------------------------------------------------------------------------
    5.5 首页顶部：三段收成一层

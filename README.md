@@ -5,7 +5,7 @@
 
 > 从欧姆定律到芯片内部结构，一份把原理推导、器件剖析、故障分析和动画演示连起来的模拟电路学习指南。
 
-**<img src="assets/icons/book-open.svg" class="inline-icon" alt="打开的书"> 在线免费阅读：<https://aliyun-hutuji.donglicao.com/analog-circuit-roadmap/>**（国内直连，无需构建）
+**<img src="assets/icons/book-open.svg" class="inline-icon" alt="打开的书"> [在线免费阅读](https://aliyun-hutuji.donglicao.com/analog-circuit-roadmap/)**（国内直连，无需构建）
 
 **<img src="assets/icons/book-stack.svg" class="inline-icon" alt="一摞书"> 离线整书**：单文件 HTML + A4 PDF，断网可读，内置 `Ctrl+K` 全文搜索与 400+ 页书签导航；[直接下载](https://zhuguang-zfg.github.io/analog-circuit-roadmap/book/)，构建方式见 [analog-book](https://github.com/zhuguang-ZFG/analog-circuit-roadmap/tree/main/analog-book)。
 
@@ -15,7 +15,7 @@
 
 [![tests](https://github.com/zhuguang-ZFG/analog-circuit-roadmap/actions/workflows/tests.yml/badge.svg)](https://github.com/zhuguang-ZFG/analog-circuit-roadmap/actions/workflows/tests.yml)
 [![docs](https://img.shields.io/badge/docs-60%20%E9%A1%B5-blue)](docs/p0-07-toc.md#toc)
-[![SVG animations](https://img.shields.io/badge/SVG%20%E5%8A%A8%E7%94%BB-114-ff69b4)](docs/p5-00-part5.md#part5)
+[![SVG animations](https://img.shields.io/badge/SVG%20%E5%8A%A8%E7%94%BB-118-ff69b4)](docs/p5-00-part5.md#part5)
 [![video](https://img.shields.io/badge/%E8%A7%86%E9%A2%91%E8%AF%BE-20%20%E9%9B%86-red)](docs/p7-03-s7-3.md#s7-3)
 [![book](https://img.shields.io/badge/%E7%A6%BB%E7%BA%BF%E6%95%B4%E4%B9%A6-HTML%20%2B%20PDF-success)](https://zhuguang-zfg.github.io/analog-circuit-roadmap/book/)
 [![license](https://img.shields.io/badge/%E6%8E%88%E6%9D%83-CC%20BY--SA%204.0-lightgrey)](LICENSE)
@@ -31,7 +31,7 @@
 电流为什么这样流？波形为什么变了？电路为什么没有按预期工作？沿着一条清晰的路线，用动画建立直觉，用计算和测量检验理解。
 
 <p class="learning-actions">
-  <a class="learning-primary" href="docs/p1-01-ch0.md#ch0">从第 0 章开始 →</a>
+  <a class="learning-primary" href="docs/p1-01-ch0.md#ch0">从第 0 章开始</a>
   <a class="learning-ghost" href="docs/p1-02-ch1.md#rc-study">先体验 RC 互动课</a>
 </p>
 
@@ -123,7 +123,7 @@
 
 看电压如何变化，对照时间常数，再按接线说明测一次。
 
-[开始 RC 互动课 →](docs/p1-02-ch1.md#rc-study)
+[开始 RC 互动课](docs/p1-02-ch1.md#rc-study)
 
 </div>
 
