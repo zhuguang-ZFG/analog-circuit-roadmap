@@ -9,7 +9,8 @@ from pathlib import Path
 
 from . import config
 from .manifest import BookError
-from .svg_refine import refine_svg
+from .storyboard import build_storyboard
+from .svg_refine import is_legacy_svg, refine_svg
 
 ARTICLE_RE = re.compile(
     r'<article class="md-content__inner md-typeset">(.*?)</article>', re.S)
@@ -190,7 +191,13 @@ def _data_uri(path: Path, *allowed_roots: Path) -> str:
         raise BookError(f"不支持的图片类型: {path}")
     raw = resolved.read_bytes()
     if mime == "image/svg+xml":
-        raw = refine_svg(raw.decode("utf-8-sig")).encode("utf-8")
+        text = raw.decode("utf-8-sig")
+        if is_legacy_svg(text):
+            # 旧模板动画：印刷版出分镜（全尺寸画布 + 节拍帧 + 原字号接力字幕），
+            # 接力拍字幕不再折叠成末拍（v3.88，SPEC-V4 §2.1 S2）。
+            raw = build_storyboard(text, refine_svg(text)).encode("utf-8")
+        else:
+            raw = refine_svg(text).encode("utf-8")
     return f"data:{mime};base64," + base64.b64encode(raw).decode("ascii")
 
 
