@@ -68,8 +68,9 @@
 
 /* palette CSS 用双属性 [scheme][primary]（0,2,0）定义 --md-typeset-a-color，
    裸 scheme 与 body[scheme] 都输给它，链接静默回落 #5488e8（impeccable 复扫抓出）。
-   三属性选择器（0,2,1）是压过它的最低门槛；mkdocs.yml 改 primary 时这里要同步 */
-body[data-md-color-scheme="slate"][data-md-color-primary="indigo"] {
+   body+双属性（0,2,1）是压过它的最低门槛；primary 只写属性存在不写值，
+   mkdocs.yml 改主色名时这里不用动 */
+body[data-md-color-scheme="slate"][data-md-color-primary] {
   --md-default-bg-color: #141310;
   --md-default-fg-color: #ece4d3;
   --md-default-fg-color--light: #a79e8b;
@@ -271,8 +272,11 @@ body {
   border: 1px solid color-mix(in srgb, var(--hand-rule) 80%, transparent);
   border-radius: 10px 8px 11px 9px;
 }
-/* 代码块曾实测 padding 全 0（字符贴着边框） */
+/* 代码块曾实测 padding 全 0（字符贴着边框）。padding 补上后，pre>code 自己那条
+   同款边框会内缩成第二层嵌套框 —— 双框只留外层 .highlight 画；裸 pre（无
+   .highlight 包裹）仍吃第一条规则，不受影响 */
 .md-typeset .highlight pre { padding: .7rem .9rem; }
+.md-typeset .highlight pre > code { border: 0; }
 /* 普通引用块（唯一规则，typography.css 里的旧主色版已退役）：
    琥珀细条 + 纸色微底 + 手绘抖动圆角 —— 与提示卡同族但明显更弱。
    上一版 `border-radius: 0 var(--hand-radius)` 展开成 5 个值，非法被浏览器整条

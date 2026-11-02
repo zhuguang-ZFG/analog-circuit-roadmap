@@ -31,7 +31,7 @@
 电流为什么这样流？波形为什么变了？电路为什么没有按预期工作？沿着一条清晰的路线，用动画建立直觉，用计算和测量检验理解。
 
 <p class="learning-actions">
-  <a class="learning-primary" href="docs/p1-01-ch0.md#ch0">从第 0 章开始</a>
+  <a class="learning-primary" href="docs/p1-01-ch0.md#ch0">从第 0 章开始 →</a>
   <a class="learning-ghost" href="docs/p1-02-ch1.md#rc-study">先体验 RC 互动课</a>
 </p>
 
@@ -123,7 +123,7 @@
 
 看电压如何变化，对照时间常数，再按接线说明测一次。
 
-[开始 RC 互动课](docs/p1-02-ch1.md#rc-study)
+[开始 RC 互动课 →](docs/p1-02-ch1.md#rc-study)
 
 </div>
 
