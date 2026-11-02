@@ -22,15 +22,19 @@
 | assets/photos/web/electrolytic-capacitors.jpg | Elcap | [Electrolytic capacitors-P1090328.JPG](https://commons.wikimedia.org/wiki/File:Electrolytic_capacitors-P1090328.JPG) | CC0 |
 | assets/photos/web/generic-2n2222a.jpg | MarkMossGH | [Generic 2N2222A.jpeg](https://commons.wikimedia.org/wiki/File:Generic_2N2222A.jpeg) | CC0 |
 | assets/photos/web/led-5mm-rgb.jpg | Mister rf | [LED 5mm RGB.jpg](https://commons.wikimedia.org/wiki/File:LED_5mm_RGB.jpg) | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
+| assets/photos/web/lm393-die.jpg | ZeptoBars | [TI-LM393-HD.jpg](https://commons.wikimedia.org/wiki/File:TI-LM393-HD.jpg) | [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) |
 | assets/photos/web/buck-converter-modules.jpg | Matthew Berardi | [LM2596 / MP1584 / SDB628 模块](https://commons.wikimedia.org/wiki/File:LM2596_buck_converter_module,_MP1584_buck_converter_module,_and_SDB628_boost_converter_module.jpg) | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
 | assets/photos/web/lm555-timer.jpg | Emilian Robert Vicol | [LM555-555-Timer](https://commons.wikimedia.org/wiki/File:LM555-555-Timer_5734-480x452_(4791854328).jpg) | [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/) |
 | assets/photos/web/macro-circuit-board.jpg | Ingo Dierking | [Macro circuit board.JPG](https://commons.wikimedia.org/wiki/File:Macro_circuit_board.JPG) | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
 | assets/photos/web/scanned-multimeter-gossen.jpg | Harke | [Multimeter Gossen Metra Hit.jpg](https://commons.wikimedia.org/wiki/File:Multimeter_Gossen_Metra_Hit.jpg) | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) |
 | assets/photos/web/ne555-dip-soic.jpg | Swift.Hg | [NE555 DIP & SOIC.jpg](https://commons.wikimedia.org/wiki/File:NE555_DIP_%26_SOIC.jpg) | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) |
 | assets/photos/web/oscilloscope-front-panel.png | jjbeard | [Oscilloscope Front Panel Numbered.svg](https://commons.wikimedia.org/wiki/File:Oscilloscope_Front_Panel_Numbered.svg) | 公有领域 |
+| assets/photos/web/power-transistor-heatsink.jpg | Daniel Christensen | [Power transistor on Nikko TRM-800 audio amp.jpg](https://commons.wikimedia.org/wiki/File:Power_transistor_on_Nikko_TRM-800_audio_amp.jpg) | [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) |
 | assets/photos/web/printed-circuit-board.jpg | Cjp24 | [Printed circuit board.jpg](https://commons.wikimedia.org/wiki/File:Printed_circuit_board.jpg) | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) |
+| assets/photos/web/pt100-3wire.jpg | Suyash Dwivedi | [3 wire PT100 Sensor.jpg](https://commons.wikimedia.org/wiki/File:3_wire_PT100_Sensor.jpg) | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
 | assets/photos/web/soldering-0805.jpg | Aisart | [Soldering a 0805.jpg](https://commons.wikimedia.org/wiki/File:Soldering_a_0805.jpg) | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) |
 | assets/photos/web/ts7805-regulator.jpg | Anonimski | [TS7805 voltage regulator.JPG](https://commons.wikimedia.org/wiki/File:TS7805_voltage_regulator.JPG) | CC0 |
+| assets/photos/web/to3-heatsink.jpg | Retired electrician | [Small heatsink for TO-3 02.jpg](https://commons.wikimedia.org/wiki/File:Small_heatsink_for_TO-3_02.jpg) | CC0 |
 | assets/photos/web/transistors-cropped.jpg | Mister rf | [Transistorer (cropped).jpg](https://commons.wikimedia.org/wiki/File:Transistorer_(cropped).jpg) | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) |
 | assets/photos/web/mosfet-jcs4n65f.jpg | Raimond Spekking | [Jilin Sino-Microelectronics JCS4N65F](https://commons.wikimedia.org/wiki/File:Jilin_Sino-Microelectronics_JCS4N65F-2383.jpg) | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
 <!-- v3.86.1 撤下记录：本表曾登记 fab-breadboard.jpg / fab-desolder.jpg
