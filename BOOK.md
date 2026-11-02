@@ -3805,6 +3805,10 @@ $I=\dfrac{5V}{25\Omega+25\Omega}=100mA$。这股电流不经过负载，**纯粹
 
 **动态功耗的账**：CMOS 推挽静态几乎不耗电，动态功耗 $P=C_LV_{DD}^2f$：每翻转一次，负载电容被充放一次，能量 $CV^2$ 的一半耗在上管、一半耗在下管。一根 20pF 信号线在 5V、10MHz 下只有 5mW，看似无事；64 根数据总线一起翻转就是 320mW，再叠加直通电流项——SoC 的功耗预算里输出级一直占大头。直通损耗与边沿时间正相关：栅驱动越慢，上下管共同导通的窗口越宽。所以给逻辑输入加 RC 滤波拖慢边沿，代价是驱动它的那颗芯片直通损耗上升；滤波是全局决策，不是免费的。
 
+**算一笔**（同一根线，只降电压）：20pF、10MHz 不变，$V_{DD}$ 从 5V 降到 3.3V——$P=CV^2f$ 从 5mW 掉到 $3.3^2\times20\text{pF}\times10\text{MHz}=2.2\text{mW}$。功耗按 $V^2$ 缩、省 56%，这就是低压 SoC 省电的第一性原因；代价是噪声容限与 $V_{IH}/V_{OL}$ 预算同步收紧（5.2 的合围要重跑）。
+
+<div class="calc" data-calc="swcap"></div>
+
 **常见误设计**：一是两颗不同电压域的推挽 GPIO 直连——5V 输出灌进 3V 芯片的 IO，击穿栅氧，应改电平转换或开漏；二是推挽输出直接驱动 LED 不加串阻，把 $I_{OL}$ 上限当持续功率用；三是用万用表直流档判断输出"正常"，10MΩ 输入阻抗看不出输出阻抗已劣化，应带一个已知负载（如 1kΩ 对地）再看电平掉不掉。
 
 **直推功率 MOS 的坑**：GPIO 推挽直接接功率 MOS 栅极是新手高发事故。栅极不是小负载：功率 MOS 的栅电荷 $Q_g$ 几十 nC，GPIO 用几十Ω的输出阻抗去充，开关沿被拖到 µs 级，每次开关损耗 $Q_gV_{DD}$ 全部烧在 GPIO 的输出管上；开关慢还让半桥里的上下管共同导通窗口变宽，直通电流成倍增加。另外 MOS 的 $V_{GS(th)}$ 按 4V 规格时，3.3V GPIO 根本无法完全开通，管子半开半关、发热惊人。专用栅极驱动芯片用推拉输出、1~2A 峰值充放电流，把这一切问题按价格解决——GPIO 只负责发逻辑，不负责灌栅电荷。
@@ -5214,6 +5218,8 @@ COM 再送 ADC，**省掉 7 个 ADC 通道**。两个要点：① 通道是**双
 **稳态**：EN 保持低，$C_h$ 记住电压——但记住的是**被注入电荷推偏过的**电压。
 
 **算一笔**：$\Delta V=Q_{ch}/2C_h$，误差反比于 $C_h$。把 $C_h$ 从 10pF 加到 100pF，$\Delta V$ 从 10mV 降到 1mV，代价是**采样时间要长 10 倍**（$\tau=R_{on}C_h$ 同样放大 10 倍）。**精度与速度的取舍，在模拟开关这一级就已经定了。**
+
+<div class="calc" data-calc="samplehold"></div>
 
 > **为什么**：关阀那一下挤进水箱的水随信号变，误差不是固定偏移。沟道里蓄多少水看阀开多大：栅压超过源极越多，管里越满。于是补偿与加大电容都只在摊薄这一挤，不是校正定值。但水不会自己分流，电荷会。
 
@@ -6760,6 +6766,8 @@ $$H(s)=\frac{\omega_0^2}{s^2+\frac{\omega_0}{Q}s+\omega_0^2},\qquad
 **相位裕度** = 环路增益降到 1 时，距离 −180° 还差多少度。工程底线 45°，舒适区 60°。
 
 **算一笔**：运放开环在 1MHz 处增益 60dB（1000 倍）、相移 −120°；反馈网络 $\beta=0.1$ → 环路增益 $1000\times0.1=100$（>1）且相移 −120°，裕度 $180°-120°=60°$ 稳定。若补偿不足相移拖到 −170°，裕度只剩 10°，阶跃响应振铃半天才停。
+
+<div class="calc" data-calc="loop"></div>
 
 **纸面上的 60° 长什么样？** 把它画成波特图，"裕度"就从一句口诀变成两条曲线之间能量出来的夹角：
 
@@ -8587,6 +8595,10 @@ $$E\approx 1.316\times10^{-14}\,\frac{A\,f^2\,I}{r}\ \mathrm{V/m}$$
 
 还有两类仪器自身的坑，表里装不下，单独记。**万用表自动量程**在跳变信号上会来回换档，读数迟迟稳定不下来，急的时候手动定档更快；**电流档的压降**（burden voltage）在小电流档位上足以改变被测电路的工作点——µA 档内阻约 100Ω 量级、mA 档约 2Ω 量级（典型值，以表的手册为准），测 100mA 时表自己就吃掉近 0.2V。测待机电流要么接受这个压降并把它算进结论，要么改用"测小电阻两端压降"的间接法。示波器侧也有一条常被遗忘：**一台示波器的所有通道共地**。两只探头地夹分别夹在不同电位上，等于拿示波器的内部地线把这两点短接，轻则波形全乱，重则烧掉被测板——多通道测量时，所有地夹必须夹同一个地。
 
+<img src="assets/photos/web/multimeter-resistance-reading.jpg" width="330" alt="Mastech MS8215 数字万用表电阻档实测读数特写（Wikimedia Commons，公有领域）">
+
+> **实测记录**：电阻档的读数特写——MS8215 正在测一只标称 1kΩ 的 MLT-1 电阻，实读 1.1kΩ。档位、量程与读数同框：偏离标称 10% 对碳膜旧件并不稀奇，误差栏在色环之外，16.4 的排故记录模板要求把「用什么档位」一并记下来，就是为了让这个 1.1 有据可查。
+
 <a id="sec164"></a>
 ### 16.4 一份完整的排故记录模板 + 复盘
 
@@ -8762,6 +8774,10 @@ $$\tau_{10}=99.0\text{k}\Omega\times10\text{pF}=0.99\,\mu\text{s}$$
 | 机柜间、长线 | 差分探头 | 双绞或屏蔽，就近取地 | 地电位差形成环流 |
 
 无源 ×10 探头都有一只补偿电容，用之前要拿示波器自带的方波校准。方波顶部上翘是欠补偿，边沿过冲是过补偿。没调过的探头，量什么都会带一点"自己的振铃"。补偿调好只代表探头本身在标称带宽内是平的，不代表你的地线也合格；探头尖端到地针那几毫米，才是高频电流真正走的路。
+
+<img src="assets/photos/web/scope-waveform.jpg" width="480" alt="模拟示波器屏上的三角波与方波波形（Wikimedia Commons，CC0）">
+
+> **实测记录**：模拟示波器屏上的三角波与方波——探头补偿校准用的就是这道方波：顶部上翘是欠补偿、边沿过冲是过补偿，屏上一眼可辨。老式模拟屏没有自动测量，但看惯了平顶与陡沿，换到数字屏读数才不会被自动游标带偏。
 
 **地线：最短的那根才像地线**
 
@@ -12402,7 +12418,7 @@ Vin ──● CH1 ──── 3脚 IN1+
 
 | 系列 | 主线 | 条数 |
 |---|---|---:|
-| [v3.45 → v3.89](#log-v345) | 首屏与品牌收尾、暗色文字对比、减弱动效与无障碍、全站的数复核、章首/篇首舞台与知识边界、就地算、AI 陪练、§11.11 松土、附录表注、纸墨手绘皮肤与章首三件套、视频层核对、跨平台字体收尾、表注与表号护栏、全书表注清零、去 AI 味首轮、术语表导航校正、术语表/符号表评审跟进、表情标签全退役、公式推导插图与动画配速、推导图扩编与四拍卡揭示、参考文献入库、索引入库、索引排版与回填收敛、15 章扩写至 16K、AI 三视角审读签字、16K 上下卷与 README 入口化、分卷自洽（共享附录与按卷重渲）、14 章静态插图补齐与排故动画扩编、二波插图动画照片与 v4 改造规格、表情符号退场与手绘行内图标、S1 密度波 A+B 十章新图、impeccable 双评估审美修复波、S2 打印保真与泄漏总清缴、S1 密度闸收官、S2 印刷分镜全量落地、S3 照片缺口补齐 | 52 |
+| [v3.45 → v3.90](#log-v345) | 首屏与品牌收尾、暗色文字对比、减弱动效与无障碍、全站的数复核、章首/篇首舞台与知识边界、就地算、AI 陪练、§11.11 松土、附录表注、纸墨手绘皮肤与章首三件套、视频层核对、跨平台字体收尾、表注与表号护栏、全书表注清零、去 AI 味首轮、术语表导航校正、术语表/符号表评审跟进、表情标签全退役、公式推导插图与动画配速、推导图扩编与四拍卡揭示、参考文献入库、索引入库、索引排版与回填收敛、15 章扩写至 16K、AI 三视角审读签字、16K 上下卷与 README 入口化、分卷自洽（共享附录与按卷重渲）、14 章静态插图补齐与排故动画扩编、二波插图动画照片与 v4 改造规格、表情符号退场与手绘行内图标、S1 密度波 A+B 十章新图、impeccable 双评估审美修复波、S2 打印保真与泄漏总清缴、S1 密度闸收官、S2 印刷分镜全量落地、S3 照片缺口补齐、S5 计算器与仪表实测照收官 | 53 |
 | [v3.35 → v3.44](#log-v335) | 公式速查表、入场诊断与题库三向互链，学习记录可靠性 | 10 |
 | [v3.25 → v3.34](#log-v325) | 明暗可读性、SEO 与性能、三个教学样板课与可复现实验 | 10 |
 | [v3.20 → v3.24](#log-v320) | 102 张版面硬伤全量审计、内容补强，README 拆为 docs/ 建站 | 5 |
@@ -12413,11 +12429,12 @@ Vin ──● CH1 ──── 3脚 IN1+
 
 <a id="log-v345"></a>
 
-### v3.45 → v3.89 · 首屏精修、无障碍、数值复核、知识边界、就地算、AI 陪练、§11.11 松土、附录表注、纸墨皮肤与跨平台字体、表注与表号护栏、全书表注清零、去 AI 味首轮（sepia）、术语表导航校正、术语表/符号表评审跟进、表情标签全退役、公式推导插图与动画配速、推导图扩编与四拍卡揭示、参考文献入库、索引入库、索引排版与回填收敛、15 章扩写至 16K、AI 三视角审读签字、16K 上下卷与 README 入口化、分卷自洽、14 章静态插图补齐与排故动画扩编、二波插图动画照片与 v4 改造规格、表情符号退场与手绘行内图标、S1 密度波 A+B 十章新图、impeccable 双评估审美修复波、S2 打印保真与泄漏总清缴、S1 密度闸收官、S2 印刷分镜全量落地、S3 照片缺口补齐（52 条）
+### v3.45 → v3.90 · 首屏精修、无障碍、数值复核、知识边界、就地算、AI 陪练、§11.11 松土、附录表注、纸墨皮肤与跨平台字体、表注与表号护栏、全书表注清零、去 AI 味首轮（sepia）、术语表导航校正、术语表/符号表评审跟进、表情标签全退役、公式推导插图与动画配速、推导图扩编与四拍卡揭示、参考文献入库、索引入库、索引排版与回填收敛、15 章扩写至 16K、AI 三视角审读签字、16K 上下卷与 README 入口化、分卷自洽、14 章静态插图补齐与排故动画扩编、二波插图动画照片与 v4 改造规格、表情符号退场与手绘行内图标、S1 密度波 A+B 十章新图、impeccable 双评估审美修复波、S2 打印保真与泄漏总清缴、S1 密度闸收官、S2 印刷分镜全量落地、S3 照片缺口补齐、S5 计算器与仪表实测照收官（53 条）
 
 | 版本 | 亮点 |
 |---|---|
-| **v3.89（当前）** | **S3 照片缺口补齐：ch7/11/14 从 0 张到 4 张，并纠正「Wikimedia 封锁」误诊**：① **纠错**——此前记录的 403/429 封锁并非授权或封禁，而是请求缺合规 User-Agent（Wikimedia 政策要求描述性 UA）；补上后 Commons API 正常。GitHub 通道结论不变：仓库级 MIT 不覆盖归档的第三方课程照片，Fab 两图撤下维持。② **新照 4 张**（全部经合规 UA 取自 Commons，逐张登记 credits，实物照片 25→29）——ch7 补 LM393 双比较器管芯显微照（CC BY 3.0，die 仅 704×748 µm，呼应表 7-1 无补偿与开集电极两处差异）；ch11 §11.4 补功放输出级功率管压散热器实物（CC BY 3.0，接住甲乙类偏置管热耦合这条尾巴）；ch14 §14.4 补三线 PT100 探头（CC BY-SA 4.0，呼应 14.9 三线抵引线电阻）、§14.5 补 TO-3 小散热器（CC0，呼应表 14-3 的 θSA/θCS 分账）。③ **验证**——两卷 504+560 页（上限 700），EXIT=0；credits 全覆盖与照片随发护栏均过；印刷 HTML 的 JPEG 内联 18+17 处含全部 4 张新照。④ **SPEC §7**——S3 从「卡外部授权」改为「已补齐」；S1/S2/S3/S4 四线完成，S5 可选未启动；仪表实测照（示波器波形、万用表读数）留待后续。 |
+| **v3.90（当前）** | **SPEC-V4 收官：S5 三个就地算计算器 + ch16 仪表实测照，规格书五线全清**：① **S5 计算器（8 → 11 个）**——`swcap`（ch5 §5.1 动态功耗：20pF/5V/10MHz → 单线 5mW、每次充放 0.5nJ；预设「64 根数据线一起翻」320mW、「同一根线降压到 3.3V」2.18mW，演 V² 缩省 56%）；`samplehold`（ch8 §8.6 电荷注入误差预算：0.2pC 打进 10pF → 台阶 10mV = 20 LSB（1 LSB=500µV），采集 8.3τ=3.7ns；预设「加到 100pF」→ 1mV = 2 LSB；附 ΔV–C_h 双曲曲线）；`loop`（ch12 §12.7 环路裕度：60dB、−120°、β=0.1 → A·β=100、40dB、裕度 60° 判「稳」；预设「补偿不足 −170°」→ 10° 判「危险」）。三个型号默认值=正文算例原数（铁律，浏览器回归逐项断言），算一笔紧贴嵌入点（±1600 字符打印回退检查通过）。② **仪表实测照（29 → 31 张）**——ch16 §16.3 补万用表电阻档读数特写（Mastech MS8215 实测 MLT-1 标称 1kΩ、实读 1.1kΩ，公有领域），图注回指 16.4 记录模板的「用什么档位」要求；§16.6 补模拟示波器三角波/方波波形屏（CC0），图注回指探头补偿校准判据；合规 UA 取自 Commons，逐张登记 credits。③ **护栏同步**——`test_site_build` CALC_SPOTS 型号对账 8 → 11；`test_calcs` 注册清单扩到 11 型号 + 三段新浏览器回归（swcap 预设交互、samplehold 默认值与预设、loop 判定文本断言），曲线回归扩到 samplehold。三跑实测数字见 SPEC-V4 §7.3。 |
+| **v3.89** | **S3 照片缺口补齐：ch7/11/14 从 0 张到 4 张，并纠正「Wikimedia 封锁」误诊**：① **纠错**——此前记录的 403/429 封锁并非授权或封禁，而是请求缺合规 User-Agent（Wikimedia 政策要求描述性 UA）；补上后 Commons API 正常。GitHub 通道结论不变：仓库级 MIT 不覆盖归档的第三方课程照片，Fab 两图撤下维持。② **新照 4 张**（全部经合规 UA 取自 Commons，逐张登记 credits，实物照片 25→29）——ch7 补 LM393 双比较器管芯显微照（CC BY 3.0，die 仅 704×748 µm，呼应表 7-1 无补偿与开集电极两处差异）；ch11 §11.4 补功放输出级功率管压散热器实物（CC BY 3.0，接住甲乙类偏置管热耦合这条尾巴）；ch14 §14.4 补三线 PT100 探头（CC BY-SA 4.0，呼应 14.9 三线抵引线电阻）、§14.5 补 TO-3 小散热器（CC0，呼应表 14-3 的 θSA/θCS 分账）。③ **验证**——两卷 504+560 页（上限 700），EXIT=0；credits 全覆盖与照片随发护栏均过；印刷 HTML 的 JPEG 内联 18+17 处含全部 4 张新照。④ **SPEC §7**——S3 从「卡外部授权」改为「已补齐」；S1/S2/S3/S4 四线完成，S5 可选未启动；仪表实测照（示波器波形、万用表读数）留待后续。 |
 | **v3.88** | **S2 分镜真落地：118 张动画全部出印刷分镜，接力拍字幕全数回纸面**：① **机制**——新模块 `book/storyboard.py`：按 keyTimes/values 在节拍中点烘焙 SMIL（opacity/transform/几何属性定格），净化后与全尺寸画布、3~5 格节拍缩略帧、原字号编号字幕合成一张静态图；印刷换源点（`content._data_uri` legacy 分支）替换原「保字幕+留末拍」输出，docs 零改动、网页端动画原样不动。② **覆盖**——293 条被折叠接力拍逐字回到印刷版（其中 188 条是幸存文本里没有的独有信息：rc-charge 的「第 1 拍」、error-budget 的 WC/RSS 对照、sar-adc 的逐位逼近记录等）；`test_storyboard.py` 六测钉死（118/118 无异常、字幕逐字存活、帧内零动画节点、良构 SVG、烘焙定格、节拍按窗口排序）。③ **代价与验证**——两卷页数 464+528 → 504+556（+40/+28，距 700 上限余量 196+144）；PDF EXIT=0、0 warnings；印刷 HTML 实测 data-URI SVG 281 处含分镜 228 处；字体子集补「幸」「焙」（此前被折字幕从未进过印刷版）。④ **SPEC-V4 §7 改写**——S2 从「方案变更待裁决」改为「已按规格执行」；G3 字面与实质双满足（分镜补回折叠拍，`<text>` 实质全量保留、异坐标零丢失）；结论改为 S1/S2/S4 三线完成，S3 卡外部授权、S5 未启动（可选）。 |
 | **v3.87** | **SPEC-V4 S1 收官：ch8 补第七张图，密度闸 19/19**：① **故障分诊图**——`ch08-fault-triage.svg`（960×660，四栏）把 8.5 的排故方法摊成一张图：闩锁只看静态电流（µA 跳 mA、0.1 mA→12 mA、断电才复位、限流下限 (15−5−0.7)V÷20mA≈465 Ω 取 1 kΩ），漂移先分形状（droop 斜坡 / 注入台阶 2 pC÷10 nF=0.2 mV=0.4 LSB / 温漂随温度），泄漏先除源阻再按每 10 °C 翻倍外推（表面漏 10⁹ Ω×2 V=2 nA 比管子还大），短路盯双踪上的全断间隙；顶部一条「现象→量什么→签名→根因→防线」判据链，底部三行记录规范（鬼影 1 MΩ×64 nA=64 mV → check-8.1）。数字全部取自 §8.5 正文，环路由已有五图占主不重复。② **图话咬合**——嵌在表 8-2 之后，前有「先看该量哪个量」的提问句，后有含数字的读图指引（形状认错、参数查得再准也是白查）。③ **密度闸清零**——ch8 1.47→1.69，全书 19/19 达标（≥1.5/万字，或 ≤25k 字短章 ≥3 张兜底），SPEC-V4 G2 唯一缺口补齐；静态图库存 52→53。④ **字体与派生**——子集补「燃」，两卷重排。⑤ **SPEC-V4 执行复核（`analog-book/SPEC-V4.md` §7）**——不记「全部完成」：S1 密度与 S4 文风瘦尾完成；**S2 未按规格执行**，原文要的「按节拍拆 3~5 格静态分镜」没做，实际走的是「保字幕 + 同坐标只留末拍」——实测 106 个动画在印刷版共丢 293 条、10,727 字接力拍叙事，13 个文件丢字率 >15%（最重 `probe-ground-loop` 23.1%），`555-modes` 三拍模式解释纸面只剩第④拍；G3 字面口径（`<text>` 数不降）未达，只做到「异坐标零丢失」；S3 实物图卡外部授权（ch7/11/14 仍空位）、S5 计算器未启动（可选）。 |
 | **v3.86** | **S2 打印保真落地 + 三图三照片 + 裸 markdown 泄漏总清缴**：① **S2 修复**——`svg_refine` 整块连坐删除带动画子节点的元素，112/118 张动画印刷丢字幕（3310→2767）；改为分流：纯装饰仍整块删，含文字的组只摘动画子节点、opacity 落峰值可见态，caption() 同坐标接力字幕按 (x,y) 分组只留末拍（全落可见会叠印成一坨墨）；修后 3014/3310，rc-charge/bjt-amplify 实测只剩末拍且 opacity=1，vol-2 524→528 页。新增 4 条回归测试（同拍只留末条、单发落可见、装饰照删、真实资产巡检）。② **三图**——ch3 热失控算账图（ΔT<1°C 收敛判据四步推导链 + 30V/0.5Ω/2°C/W→0.24°C vs 50°C/W→6°C 对照 + 2N2222A 降额账，环路由 §3.7 动画占主不重复）；ch8 两张：CD4051 八路 mux 树（3 位地址+INH、电压家族/灰色地带/双片 16 选 1）与电荷注入分账图（2pC÷10nF=0.2mV=0.4LSB、按全部注入 ×2 兜底）。密度：ch3 1.41→1.75、ch8 1.02→1.47（长章续爬）。③ **三照片**——transistors-cropped 入 ch3 §3.7（封装体积=散热预算）；新辟 GitHub 渠道：Fab Lab Reykjavik 的 Fab Academy 档案（MIT，可追溯 LICENSE+SHA），fab-breadboard 入 ch6 去耦三层（长跳线=天线+电感）、fab-desolder 入 ch16 排故（拆焊前后对照=「先问五分钟再动烙铁」的另一半理由），p9-14 授权登记+来源说明更新。④ **泄漏总清缴（v3.83–85 带病发出的静默回归）**——公式 `$V_{GS} \lt V_{TH}$` 里的裸小于号被 Python-Markdown HTML stash 当未闭合标签起点，与 Wave A 图注里的第二处裸小于号配对后解析器永久落 raw 态：ch4 从 §4.3 起整页裸 markdown；另逮两处同类：目录页 details 缺 `markdown="1'` 整页项目符号裸奔、演示中心 details 体内速查表格裸奔。修法：ch4 三处 `<` 改 `\lt`、两处 details 补 `markdown="1"`；新增 `test_built_pages_carry_no_unrendered_markdown` 全页护栏（行首标题/成对星号/管道表格行三签名）。⑤ **连带修复**——ch11 wave1 合同钉 12→13 迁移（v3.84 窄电池漏跑全量才潜伏一轮）；CSS 注释里的尖括号标签名触发印刷书 details 断言，改写措辞；ch3 新图 alt 含字面 `ΔT<1°C` 截断 IMG 正则，改文字表述。⑥ **评审跟进**——S2 第三条丢字路径补上：`PAGE_CLASSES` 整类连坐的 waveform-phase 离散换场字幕（555-astable/analog-switch/ldo-transient 共 8 条）改走 (x,y) 分组留末拍，三图各保一条（fixture 断言同步迁移）；ch3 晶体管照片 caption 改按实物写（SOT-23→TO-92→TO-126→TO-3 四级封装阶梯，TO-3 法兰双螺栓）；**fab-* 两张照片撤下**——Fab Lab Reykjavik 仓库的 MIT 主体并非 2013 年 Fab Academy 课程照片拍摄者，无权转授权，授权链不满足「可追溯」红线（嵌入段落改写保留教点、p9-14 留撤下记录）；ch6:134 自测 details 补 `markdown="1"` 与全书对齐；字体子集补「辟」「逮」并重排两卷。 |
@@ -12636,6 +12653,7 @@ Vin ──● CH1 ──── 3脚 IN1+
 | assets/photos/web/die-first-555-chip.jpg | CQ出版社 | [Die of the first 555 chip.jpg](https://commons.wikimedia.org/wiki/File:Die_of_the_first_555_chip.jpg) | 公有领域 |
 | assets/photos/web/digital-multimeter-aka.jpg | André Karwath aka Aka | [Digital Multimeter Aka.jpg](https://commons.wikimedia.org/wiki/File:Digital_Multimeter_Aka.jpg) | [CC BY-SA 2.5](https://creativecommons.org/licenses/by-sa/2.5/) |
 | assets/photos/web/digital-oscilloscope.jpg | Radarvector | [Digital oscilloscope in use.jpg](https://commons.wikimedia.org/wiki/File:Digital_oscilloscope_in_use.jpg) | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
+| assets/photos/web/multimeter-resistance-reading.jpg | Dmitry G | [Multimeters-MS8215-Resistance.JPG](https://commons.wikimedia.org/wiki/File:Multimeters-MS8215-Resistance.JPG) | 公有领域（作者自行发布） |
 | assets/photos/web/diode-closeup.jpg | John Maushammer（原上传者 Morcheeba） | [Diode-closeup.jpg](https://commons.wikimedia.org/wiki/File:Diode-closeup.jpg) | [CC BY-SA 2.5](https://creativecommons.org/licenses/by-sa/2.5/) |
 | assets/photos/web/electrolytic-exploded.jpg | Binarysequence | [ElectrolyticCapacitorExploded.jpg](https://commons.wikimedia.org/wiki/File:ElectrolyticCapacitorExploded.jpg) | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
 | assets/photos/web/electrolytic-capacitors.jpg | Elcap | [Electrolytic capacitors-P1090328.JPG](https://commons.wikimedia.org/wiki/File:Electrolytic_capacitors-P1090328.JPG) | CC0 |
@@ -12648,6 +12666,7 @@ Vin ──● CH1 ──── 3脚 IN1+
 | assets/photos/web/scanned-multimeter-gossen.jpg | Harke | [Multimeter Gossen Metra Hit.jpg](https://commons.wikimedia.org/wiki/File:Multimeter_Gossen_Metra_Hit.jpg) | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) |
 | assets/photos/web/ne555-dip-soic.jpg | Swift.Hg | [NE555 DIP & SOIC.jpg](https://commons.wikimedia.org/wiki/File:NE555_DIP_%26_SOIC.jpg) | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) |
 | assets/photos/web/oscilloscope-front-panel.png | jjbeard | [Oscilloscope Front Panel Numbered.svg](https://commons.wikimedia.org/wiki/File:Oscilloscope_Front_Panel_Numbered.svg) | 公有领域 |
+| assets/photos/web/scope-waveform.jpg | User:Xato | [Triangular wave and square wave on oscilloscope screen (cropped).jpg](https://commons.wikimedia.org/wiki/File:Triangular_wave_and_square_wave_on_oscilloscope_screen_%28cropped%29.jpg) | CC0 |
 | assets/photos/web/power-transistor-heatsink.jpg | Daniel Christensen | [Power transistor on Nikko TRM-800 audio amp.jpg](https://commons.wikimedia.org/wiki/File:Power_transistor_on_Nikko_TRM-800_audio_amp.jpg) | [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) |
 | assets/photos/web/printed-circuit-board.jpg | Cjp24 | [Printed circuit board.jpg](https://commons.wikimedia.org/wiki/File:Printed_circuit_board.jpg) | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) |
 | assets/photos/web/pt100-3wire.jpg | Suyash Dwivedi | [3 wire PT100 Sensor.jpg](https://commons.wikimedia.org/wiki/File:3_wire_PT100_Sensor.jpg) | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |

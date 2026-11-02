@@ -208,6 +208,86 @@
           return [x.av, 1 / (2 * Math.PI * (x.rs * 1e3) * ((1 + x.av) * x.cbc * 1e-12)) / 1e3];
         }
       }
+    },
+    swcap: {
+      name: '动态功耗（CV²f）',
+      note: '每翻转一次，负载电容被充放一遍，C·V² 的能量一半烧在上管、一半烧在下管：P = C·V²·f。功耗按电压平方缩——5V 降到 3.3V 同样的线省一半还多；直通项另算，栅驱动越慢共同导通窗口越宽。',
+      inputs: [
+        { key: 'c', label: '负载电容', unit: 'pF', value: 20, step: 5, min: 0.1 },
+        { key: 'vdd', label: '电源电压', unit: 'V', value: 5, step: 0.5, min: 0.5 },
+        { key: 'f', label: '翻转频率', unit: 'MHz', value: 10, step: 1, min: 0.01 },
+        { key: 'lines', label: '同时翻转的线数', unit: '根', value: 1, step: 1, min: 1 }
+      ],
+      compute: function (x) {
+        var per = x.c * 1e-12 * x.vdd * x.vdd * x.f * 1e6 * 1e3;   // mW
+        return [
+          { label: '单线功耗', value: fmt(per, 2), unit: 'mW' },
+          { label: '总线功耗', value: fmt(per * x.lines, 1), unit: 'mW' },
+          { label: '每次充放能耗', value: fmt(x.c * 1e-12 * x.vdd * x.vdd * 1e9, 2), unit: 'nJ' }
+        ];
+      },
+      presets: [
+        { label: '64 根数据线', set: { lines: 64 } },
+        { label: '降压到 3.3V', set: { vdd: 3.3 } }
+      ]
+    },
+    samplehold: {
+      name: '电荷注入与采集时间',
+      note: '断开瞬间沟道电荷一半踢进保持电容：ΔV = Q/(2C)，加大电容摊薄台阶，但 τ = R·C 同步放大——注入定电容下限，采集速度定上限。§8.4 的预算口径按 2pC 兜底，比典型值狠 10 倍。',
+      inputs: [
+        { key: 'q', label: '沟道电荷', unit: 'pC', value: 0.2, step: 0.1, min: 0.01 },
+        { key: 'ch', label: '保持电容', unit: 'pF', value: 10, step: 5, min: 1 },
+        { key: 'ron', label: '导通电阻', unit: 'Ω', value: 45, step: 5, min: 1 },
+        { key: 'bits', label: 'ADC 位数', unit: '位', value: 12, step: 1, min: 8 },
+        { key: 'vref', label: '量程 VREF', unit: 'V', value: 2.048, step: 0.512, min: 0.1 }
+      ],
+      compute: function (x) {
+        var lsb = x.vref / Math.pow(2, x.bits);                    // V
+        var dv = (x.q * 1e-12) / (2 * x.ch * 1e-12);               // V
+        var tau = x.ron * x.ch * 1e-12;                            // s
+        return [
+          { label: '1 LSB', value: fmt(lsb * 1e6, 1), unit: 'µV' },
+          { label: '注入台阶 ΔV', value: fmt(dv * 1e3, 2), unit: 'mV' },
+          { label: '折合误差', value: fmt(dv / lsb, 1), unit: 'LSB' },
+          { label: '采集 8.3τ', value: fmt(8.3 * tau * 1e9, 1), unit: 'ns' }
+        ];
+      },
+      presets: [
+        { label: '加到 100pF', set: { ch: 100 } },
+        { label: '预算口径 2pC', set: { q: 2 } }
+      ],
+      chart: {
+        title: 'ΔV(C_h)：电荷、R_on 取当前值',
+        xlabel: 'C_h / pF', ylabel: 'ΔV / mV',
+        /* 1/C 双曲线：域收到 [C/2, 4C]，工作点落在中带，小电容端不撑爆 ymax（同 buck）。 */
+        domain: function (x) { return [x.ch / 2, x.ch * 4]; },
+        curve: function (c, x) { return (x.q * 1e-12) / (2 * c * 1e-12) * 1e3; },
+        spot: function (x) { return [x.ch, (x.q * 1e-12) / (2 * x.ch * 1e-12) * 1e3]; }
+      }
+    },
+    loop: {
+      name: '环路增益与相位裕度',
+      note: '在 |T|=|A·β|≥1 的交越频率上判稳：相位裕度 = 180° + 该频率的总相移。≥45° 稳；30~45° 勉强，振铃可见；<30° 危险，落地前先补偿。环路增益不到 1 时这条判据没有意义。',
+      inputs: [
+        { key: 'avdb', label: '开环增益', unit: 'dB', value: 60, step: 5, min: 0 },
+        { key: 'phase', label: '总相移', unit: '°', value: -120, step: 5, min: -179 },
+        { key: 'beta', label: '反馈系数 β', unit: '', value: 0.1, step: 0.05, min: 0.001 }
+      ],
+      compute: function (x) {
+        var t = Math.pow(10, x.avdb / 20) * x.beta;
+        var margin = 180 + x.phase;
+        var verdict = margin >= 45 ? '稳' : (margin >= 30 ? '勉强' : '危险');
+        return [
+          { label: '环路增益 A·β', value: fmt(t, 1), unit: '×' },
+          { label: '环路增益 dB', value: fmt(20 * Math.log(t) / Math.LN10, 1), unit: 'dB' },
+          { label: '相位裕度', value: fmt(margin, 0), unit: '°' },
+          { label: '判定', value: verdict, unit: '' }
+        ];
+      },
+      presets: [
+        { label: '补偿足够 −120°', set: { phase: -120 } },
+        { label: '补偿不足 −170°', set: { phase: -170 } }
+      ]
     }
   };
 

@@ -17,6 +17,7 @@
 | assets/photos/web/die-first-555-chip.jpg | CQ出版社 | [Die of the first 555 chip.jpg](https://commons.wikimedia.org/wiki/File:Die_of_the_first_555_chip.jpg) | 公有领域 |
 | assets/photos/web/digital-multimeter-aka.jpg | André Karwath aka Aka | [Digital Multimeter Aka.jpg](https://commons.wikimedia.org/wiki/File:Digital_Multimeter_Aka.jpg) | [CC BY-SA 2.5](https://creativecommons.org/licenses/by-sa/2.5/) |
 | assets/photos/web/digital-oscilloscope.jpg | Radarvector | [Digital oscilloscope in use.jpg](https://commons.wikimedia.org/wiki/File:Digital_oscilloscope_in_use.jpg) | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
+| assets/photos/web/multimeter-resistance-reading.jpg | Dmitry G | [Multimeters-MS8215-Resistance.JPG](https://commons.wikimedia.org/wiki/File:Multimeters-MS8215-Resistance.JPG) | 公有领域（作者自行发布） |
 | assets/photos/web/diode-closeup.jpg | John Maushammer（原上传者 Morcheeba） | [Diode-closeup.jpg](https://commons.wikimedia.org/wiki/File:Diode-closeup.jpg) | [CC BY-SA 2.5](https://creativecommons.org/licenses/by-sa/2.5/) |
 | assets/photos/web/electrolytic-exploded.jpg | Binarysequence | [ElectrolyticCapacitorExploded.jpg](https://commons.wikimedia.org/wiki/File:ElectrolyticCapacitorExploded.jpg) | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
 | assets/photos/web/electrolytic-capacitors.jpg | Elcap | [Electrolytic capacitors-P1090328.JPG](https://commons.wikimedia.org/wiki/File:Electrolytic_capacitors-P1090328.JPG) | CC0 |
@@ -29,6 +30,7 @@
 | assets/photos/web/scanned-multimeter-gossen.jpg | Harke | [Multimeter Gossen Metra Hit.jpg](https://commons.wikimedia.org/wiki/File:Multimeter_Gossen_Metra_Hit.jpg) | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) |
 | assets/photos/web/ne555-dip-soic.jpg | Swift.Hg | [NE555 DIP & SOIC.jpg](https://commons.wikimedia.org/wiki/File:NE555_DIP_%26_SOIC.jpg) | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) |
 | assets/photos/web/oscilloscope-front-panel.png | jjbeard | [Oscilloscope Front Panel Numbered.svg](https://commons.wikimedia.org/wiki/File:Oscilloscope_Front_Panel_Numbered.svg) | 公有领域 |
+| assets/photos/web/scope-waveform.jpg | User:Xato | [Triangular wave and square wave on oscilloscope screen (cropped).jpg](https://commons.wikimedia.org/wiki/File:Triangular_wave_and_square_wave_on_oscilloscope_screen_%28cropped%29.jpg) | CC0 |
 | assets/photos/web/power-transistor-heatsink.jpg | Daniel Christensen | [Power transistor on Nikko TRM-800 audio amp.jpg](https://commons.wikimedia.org/wiki/File:Power_transistor_on_Nikko_TRM-800_audio_amp.jpg) | [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) |
 | assets/photos/web/printed-circuit-board.jpg | Cjp24 | [Printed circuit board.jpg](https://commons.wikimedia.org/wiki/File:Printed_circuit_board.jpg) | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) |
 | assets/photos/web/pt100-3wire.jpg | Suyash Dwivedi | [3 wire PT100 Sensor.jpg](https://commons.wikimedia.org/wiki/File:3_wire_PT100_Sensor.jpg) | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |

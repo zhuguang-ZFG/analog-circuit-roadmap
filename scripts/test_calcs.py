@@ -168,6 +168,55 @@ class CalcTests(unittest.TestCase):
         self.assertAlmostEqual(out['输入极点 f_p'], 102.7, delta=1.0)
         self.assertGreaterEqual(out['达成比 f_p/100k'], 1.0)
 
+    def test_swcap_matches_the_book_example(self):
+        """§5.1：20pF、5V、10MHz → 单线 5mW、充放能耗 0.5nJ（正文原数）；
+        教学点：64 根一起翻 → 320mW；同一根线降到 3.3V → 2.2mW，功耗按 V² 缩。"""
+        self.open('p1-06-ch5.html', 'swcap')
+        out = read_outputs(self.page)
+        self.assertAlmostEqual(out['单线功耗'], 5.0, delta=0.01)
+        self.assertAlmostEqual(out['每次充放能耗'], 0.5, delta=0.01)
+        self.page.locator('.calc[data-calc="swcap"] input').nth(3).fill('64')
+        out = read_outputs(self.page)
+        self.assertAlmostEqual(out['总线功耗'], 320.0, delta=0.5)
+        self.page.locator('.calc[data-calc="swcap"] .calc-presets button',
+                          has_text='3.3V').click()
+        out = read_outputs(self.page)
+        self.assertAlmostEqual(out['单线功耗'], 2.18, delta=0.01)
+
+    def test_samplehold_matches_the_book_example(self):
+        """§8.6 拍③：0.2pC 打进 10pF → 台阶 10mV = 20 LSB（2.048V/12 位，1 LSB=500µV）；
+        教学点：电容加到 100pF → 1mV = 2 LSB（正文原数），8.3τ 同步放大 10 倍。"""
+        self.open('p1-09-ch8.html', 'samplehold')
+        out = read_outputs(self.page)
+        self.assertAlmostEqual(out['1 LSB'], 500.0, delta=0.5)
+        self.assertAlmostEqual(out['注入台阶 ΔV'], 10.0, delta=0.01)
+        self.assertAlmostEqual(out['折合误差'], 20.0, delta=0.1)
+        self.assertAlmostEqual(out['采集 8.3τ'], 3.7, delta=0.2)
+        self.page.locator('.calc[data-calc="samplehold"] .calc-presets button',
+                          has_text='100pF').click()
+        out = read_outputs(self.page)
+        self.assertAlmostEqual(out['注入台阶 ΔV'], 1.0, delta=0.01)
+        self.assertAlmostEqual(out['折合误差'], 2.0, delta=0.1)
+
+    def test_loop_margin_matches_the_book_example(self):
+        """§12.7：60dB、−120°、β=0.1 → 环路增益 100、裕度 60° 判「稳」（正文原数）；
+        教学点：相移拖到 −170° → 裕度只剩 10°，判定翻成「危险」。"""
+        self.open('p2-02-ch12.html', 'loop')
+        out = read_outputs(self.page)
+        self.assertAlmostEqual(out['环路增益 A·β'], 100.0, delta=0.1)
+        self.assertAlmostEqual(out['环路增益 dB'], 40.0, delta=0.1)
+        self.assertAlmostEqual(out['相位裕度'], 60.0, delta=0.1)
+        verdict = self.page.locator(
+            '.calc[data-calc="loop"] .calc-out', has_text='判定').locator('b').text_content()
+        self.assertEqual('稳', verdict)
+        self.page.locator('.calc[data-calc="loop"] .calc-presets button',
+                          has_text='−170').click()
+        out = read_outputs(self.page)
+        self.assertAlmostEqual(out['相位裕度'], 10.0, delta=0.1)
+        verdict = self.page.locator(
+            '.calc[data-calc="loop"] .calc-out', has_text='判定').locator('b').text_content()
+        self.assertEqual('危险', verdict)
+
     def test_divider_presets_hit_the_book_numbers(self):
         """预设一键切换：空载 → 5.00V 不塌；RL=1kΩ → 带载 0.83V（§0.3 口径）。"""
         box = self.open('p1-01-ch0.html', 'divider')
@@ -180,7 +229,8 @@ class CalcTests(unittest.TestCase):
 
     def test_charted_calcs_render_a_curve(self):
         """miller/buck 的曲线配置必须画出 inline SVG（读数之外给趋势）。"""
-        for path, calc in (('p2-01-ch11.html', 'miller'), ('p2-03-ch13.html', 'buck')):
+        for path, calc in (('p2-01-ch11.html', 'miller'), ('p2-03-ch13.html', 'buck'),
+                           ('p1-09-ch8.html', 'samplehold')):
             with self.subTest(calc=calc):
                 box = self.open(path, calc)
                 chart = box.locator('.calc-chart svg')
@@ -212,12 +262,15 @@ class CalcTests(unittest.TestCase):
             [...t.matchAll(/^\\s{4}(\\w+): \\{$/gm)].map(m => m[1]));
         }""")
         self.assertEqual(
-            ['divider', 'electrolyte', 'hysteresis', 'probe', 'opamp', 'buck', 'noise', 'miller'],
+            ['divider', 'electrolyte', 'hysteresis', 'probe', 'opamp', 'buck', 'noise', 'miller',
+             'swcap', 'samplehold', 'loop'],
             registered)
         for path, calc in (('p1-01-ch0.html', 'divider'), ('p1-02-ch1.html', 'electrolyte'),
-                           ('p1-07-ch6.html', 'opamp'), ('p1-08-ch7.html', 'hysteresis'),
-                           ('p2-01-ch11.html', 'noise'), ('p2-03-ch13.html', 'buck'),
-                           ('p2-01-ch11.html', 'miller'), ('p4-01-ch16.html', 'probe')):
+                           ('p1-06-ch5.html', 'swcap'), ('p1-07-ch6.html', 'opamp'),
+                           ('p1-08-ch7.html', 'hysteresis'), ('p1-09-ch8.html', 'samplehold'),
+                           ('p2-01-ch11.html', 'noise'), ('p2-02-ch12.html', 'loop'),
+                           ('p2-03-ch13.html', 'buck'), ('p2-01-ch11.html', 'miller'),
+                           ('p4-01-ch16.html', 'probe')):
             with self.subTest(calc=calc):
                 box = self.open(path, calc)
                 self.assertGreaterEqual(box.locator('.calc-inputs input, .calc-inputs select').count(), 2)
