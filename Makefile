@@ -1,7 +1,7 @@
 PY ?= python
 export PYTHONIOENCODING := utf-8
 
-.PHONY: readme gen bookdata labs fonts site book book-pdf book-check print-book print-volumes remake-check test-static test-browser verify stats clean
+.PHONY: readme gen bookdata labs fonts site book book-pdf book-check print-book print-volumes remake-check remake-ship test-static test-browser verify stats clean
 
 readme:
 	$(PY) scripts/build_readme.py
@@ -44,6 +44,19 @@ print-volumes:
 remake-check:
 	$(PY) -B -m unittest discover -s scripts -p 'test_ai_slop.py' -v
 	$(PY) -B -m unittest discover -s scripts -p 'test_chapter_contract.py' -v
+
+# 整包重做总闸：任一线未绿不得宣称整包完成；通过后仍不自动 push，发布走既有 pages 门禁。
+remake-ship: remake-check
+	$(PY) scripts/check_ai_slop.py docs/p1-01-ch0.md docs/p1-02-ch1.md docs/p1-03-ch2.md \
+	  docs/p1-04-ch3.md docs/p1-05-ch4.md docs/p1-06-ch5.md docs/p1-07-ch6.md docs/p1-08-ch7.md \
+	  docs/p1-09-ch8.md docs/p1-10-ch9.md docs/p1-11-ch10.md docs/p2-01-ch11.md docs/p2-02-ch12.md \
+	  docs/p2-03-ch13.md docs/p3-01-ch14.md docs/p3-02-ch15.md docs/p4-01-ch16.md docs/p4-02-ch17.md \
+	  docs/p4-03-ch18.md
+	$(PY) scripts/check_references.py analog-book/data/references.yml analog-book/data/sources.yml
+	$(PY) -B -m unittest discover -s scripts -p 'test_svg_count_floor.py' -v
+	$(PY) -B -m unittest discover -s scripts -p 'test_ship_residual.py' -v
+	$(PY) scripts/check_ship_residual.py
+	$(PY) scripts/build_readme.py --check
 
 test-static:
 	$(PY) -B -m unittest discover -s scripts -p "test_svg_assets.py" -v
