@@ -1864,6 +1864,15 @@ $$P=VI=12\times0.012=0.144\,\text{W}=144\,\text{mW}$$
 | All About Circuits，DC 卷 | 电压、电流、电阻、功率的入门章节 | 免费图解，适合快速复习 |
 | 本书第 1 章 | 真实电阻、电容、电感的寄生与降额 | 看理想模型如何长出真实边界 |
 
+<!-- slot:citations -->
+### 参考与出处
+
+- 本章参数与型号以厂商 datasheet / 应用笔记为权威源（正文注明型号处为准）；教学示意数字均已标「示意」。
+- ref-002：Microelectronic Circuits（`analog-book/data/references.yml`，id 可检索）
+- ref-013：Encyclopedia of Electronic Components Volume 1（`analog-book/data/references.yml`，id 可检索）
+- ref-020：Getting Started in Electronics（`analog-book/data/references.yml`，id 可检索）
+- 开源与视觉工具引用见 references.yml 的 OSS 条目（ref-119~ref-124，仅灵感/工具，非参数源）。
+
 > **通关打卡**：你现在有了通用语言（水路八词）、第一电路（分压器带载塌陷的账）。三个思维习惯、一张单位表也已到手，再加受控源与功率记账的底图。**往后的每一章，都在给这套直觉添砖加瓦。**
 
 > **配套视频**：[模拟电子技术（4K 降噪）· 上海交大 郑益慧](https://www.bilibili.com/video/BV1qA5DzWEVh/)（B站）：把物理图像讲透。第 0 章的「直觉」部分配它最顺，先建立感觉，再上公式；英文：[RimstarOrg《How to Read a Schematic》](https://www.youtube.com/watch?v=_HZ-EQ8Hc8E)（4:52，最干净的一版读图入门：电源、地、串联并联怎么认）。见 [7.1 视频资源汇总](#part7)。
@@ -2258,6 +2267,15 @@ GND ─────────────────── C 负极、探头�
 - [ ] 测量：按 1.8 节接线，示波器 DC 耦合读出充电到 63.2% 的时间，应在 10ms 量级（元件标称容差内允许偏差）。
 
 > **精髓**：理想元件只活在课本里。真实世界里寄生参数随频率"逐渐上位"，元件的身份由工作频段决定；而**把元件放进网络，频率还决定"谁说了算**。LC 谐振点前后电容与电感轮流夺权，中间那条窄缝就是选频。**高频设计的第一课，是学会不再"眼瞎"；选频设计的第一课，是先算清 $f_0$ 与 $Q$。**
+
+<!-- slot:citations -->
+### 参考与出处
+
+- 本章参数与型号以厂商 datasheet / 应用笔记为权威源（正文注明型号处为准）；教学示意数字均已标「示意」。
+- ref-002：Microelectronic Circuits（`analog-book/data/references.yml`，id 可检索）
+- ref-013：Encyclopedia of Electronic Components Volume 1（`analog-book/data/references.yml`，id 可检索）
+- ref-024：Thermal Agitation of Electric Charge in Conductors（`analog-book/data/references.yml`，id 可检索）
+- 开源与视觉工具引用见 references.yml 的 OSS 条目（ref-119~ref-124，仅灵感/工具，非参数源）。
 
 > **通关打卡**：你眼里不再有"理想元件"。每个电阻/电容/电感都带着寄生参数上场，选型先翻 datasheet 的频率特性曲线；任何线性网络能压成戴维南/诺顿两个数，带载误差一眼估；LC 谐振四拍能讲成故事：低频电容拦、谐振两清账、高频电感拦，还会算谐振电压放大 $Q$ 倍；**电容选型会查直流偏压降容曲线（标称 ≠ 实际）**，也会算铝电解寿命（10°C 翻倍）；**钽电容失效是短路，铝电解是干涸**。
 
@@ -3014,6 +3032,15 @@ $$P=0.5\text{ W},\quad T_j=50+0.5\times80=90^\circ\text{C}$$
 - 本书第 9 章《电压基准与稳压器》：看齐纳基准如何与运放、带隙基准配合。
 - 本书第 13 章《电源与信号产生电路》：看整流、滤波、稳压如何组成完整电源链。
 
+<!-- slot:citations -->
+### 参考与出处
+
+- 本章参数与型号以厂商 datasheet / 应用笔记为权威源（正文注明型号处为准）；教学示意数字均已标「示意」。
+- ref-002：Microelectronic Circuits（`analog-book/data/references.yml`，id 可检索）
+- ref-010：Solid state electronic devices（`analog-book/data/references.yml`，id 可检索）
+- ref-018："Microelectronics: Circuit Analysis and Design"（`analog-book/data/references.yml`，id 可检索）
+- 开源与视觉工具引用见 references.yml 的 OSS 条目（ref-119~ref-124，仅灵感/工具，非参数源）。
+
 > **通关打卡**：你能从载流子扩散讲到 0.7 V 的由来，知道接反会怎样，也记住了续流二极管救过多少驱动管；接口保护三件套（TVS＋限流＋钳位）能在画板时一次选对；拿到一只发烫的二极管，能先算结温再决定换不换。
 
 > **配套视频**：[模拟电子技术基础（56 讲全）· 清华 华成英](https://www.bilibili.com/video/BV19s411a7KL/)（B站）。二极管一节在系统课里讲得最完整（PN 结 → 整流 → 稳压），与本章逐条对应；英文：[The Engineering Mindset《Diodes Explained》](https://www.youtube.com/watch?v=Fwj_d3uO5g8)（11:32，PN 结、正向压降、整流全动画）；[CircuitBread《How does a diode work - the PN Junction》](https://www.youtube.com/watch?v=btOIDQeMrMg)（5:02，只讲 PN 结这一段，配 2.1 节）。见 [7.1 视频资源汇总](#part7)。
@@ -3511,6 +3538,15 @@ $$\text{温度↑} \;\Rightarrow\; V_{BE}\text{↓（}-2\text{mV/°C）} \;\Righ
 
 > **60 秒动画版**：[EP06 BJT 最常见的死法：自己烧自己](https://www.bilibili.com/video/BV1j8pq6oEiw/)（[全 20 集](#s7-3)）
 
+<!-- slot:citations -->
+### 参考与出处
+
+- 本章参数与型号以厂商 datasheet / 应用笔记为权威源（正文注明型号处为准）；教学示意数字均已标「示意」。
+- ref-002：Microelectronic Circuits（`analog-book/data/references.yml`，id 可检索）
+- ref-018："Microelectronics: Circuit Analysis and Design"（`analog-book/data/references.yml`，id 可检索）
+- ref-033："The Transistor, A Semi-Conductor Triode"（`analog-book/data/references.yml`，id 可检索）
+- 开源与视觉工具引用见 references.yml 的 OSS 条目（ref-119~ref-124，仅灵感/工具，非参数源）。
+
 > **通关打卡**：β 离散再也坑不到你——分压偏置闭眼能算，三个电压一量就知道管子活没活。
 
 ---
@@ -3848,6 +3884,15 @@ $$I_{drv}\approx\frac{V_{DRV}-V_{plateau}}{R_{g,ext}+R_{g,int}+R_{drv}}$$
 > **配套视频**：中文整门课见 [7.1 B 站清单](#s7-1)；英文：[GreatScott!《Electronic Basics #23: Transistor (MOSFET) as a Switch》](https://www.youtube.com/watch?v=o4_NeqlJgOs)（6:22，先当开关用，再谈米勒平台）。
 
 > **60 秒动画版**：[EP01 你 MOSFET 发烫的原因，藏在这几百纳秒](https://www.bilibili.com/video/BV1L8pq6oErR/)（[全 20 集](#s7-3)）
+
+<!-- slot:citations -->
+### 参考与出处
+
+- 本章参数与型号以厂商 datasheet / 应用笔记为权威源（正文注明型号处为准）；教学示意数字均已标「示意」。
+- ref-002：Microelectronic Circuits（`analog-book/data/references.yml`，id 可检索）
+- ref-007：Design of Analog CMOS Integrated Circuits（`analog-book/data/references.yml`，id 可检索）
+- ref-010：Solid state electronic devices（`analog-book/data/references.yml`，id 可检索）
+- 开源与视觉工具引用见 references.yml 的 OSS 条目（ref-119~ref-124，仅灵感/工具，非参数源）。
 
 > **通关打卡**：MOSFET 在你手里是"电压阀门"——选型会同时看 $V_{th}$、$R_{DS(on)}$、$Q_g$ 三项，不会再让 3.3V GPIO 硬推 10V 驱动的管子。
 
@@ -4202,6 +4247,15 @@ $\tau=RC=0.2\mu s$。也就是**全部驱动器高阻后，总线电平在 0.2µ
 - [ ] 观察：在推挽四拍动画里指出"直通电流"出现的那一拍（5.6 节）。
 - [ ] 计算：3.3V、100pF 总线配 4.7kΩ 上拉，时间常数 $RC\approx470\text{ ns}$，对照 300ns 的快速模式上限判断裕量（5.3 节）。
 - [ ] 测量：测开漏口的上升沿，按 30%→70% 规范读数并与模式等级对表（5.2 节实测判据）。
+
+<!-- slot:citations -->
+### 参考与出处
+
+- 本章参数与型号以厂商 datasheet / 应用笔记为权威源（正文注明型号处为准）；教学示意数字均已标「示意」。
+- ref-002：Microelectronic Circuits（`analog-book/data/references.yml`，id 可检索）
+- ref-109：ULN2003 数据手册（`analog-book/data/references.yml`，id 可检索）
+- ref-111："Electronic Circuits: Handbook for Design and Application"（`analog-book/data/references.yml`，id 可检索）
+- 开源与视觉工具引用见 references.yml 的 OSS 条目（ref-119~ref-124，仅灵感/工具，非参数源）。
 
 > **通关打卡**：I2C 为什么慢、为什么要上拉、为什么能线与。这些都能给同事讲明白，还敢在总线上挂第二个主机。推挽一个周期四拍：谁值班、什么时候漏岗（交越）、什么时候两人同时上岗（直通），都说得清。
 
@@ -4626,6 +4680,15 @@ $V_{OS}$ 被增益放大、$I_B$ 只在高源阻抗时咬人；GBW 管小信号�
 - [ ] 计算：用虚短虚断三行推出反相放大器增益 $=-R_f/R_{in}$（6.5 节）。
 - [ ] 测量：看电源脚上的毛刺是否成镜像，判断去耦是否到位（6.7 节去耦三层布置）。
 
+<!-- slot:citations -->
+### 参考与出处
+
+- 本章参数与型号以厂商 datasheet / 应用笔记为权威源（正文注明型号处为准）；教学示意数字均已标「示意」。
+- ref-003：Bipolar and MOS analog integrated circuit design（`analog-book/data/references.yml`，id 可检索）
+- ref-007：Design of Analog CMOS Integrated Circuits（`analog-book/data/references.yml`，id 可检索）
+- ref-011：Op Amps for Everyone（`analog-book/data/references.yml`，id 可检索）
+- 开源与视觉工具引用见 references.yml 的 OSS 条目（ref-119~ref-124，仅灵感/工具，非参数源）。
+
 > **通关打卡**：虚短虚断已成直觉，datasheet 二十几个参数里你知道先看哪五个：GBW、$V_{OS}$、$I_B$、压摆率、轨到轨。
 
 ---
@@ -4992,6 +5055,15 @@ V_{TH} = V_{REF}\left(1+\frac{R_1}{R_2}\right) - \frac{R_1}{R_2}V_{OUT}$$
 - [ ] 观察：示波器上认出迟滞回环与"免疫区"（7.3 节 comparator-hysteresis 动画）。
 - [ ] 计算：给定窗口与输入斜率，算迟滞带来的判决推迟量 = 窗口 ÷ 输入斜率（7.5 节）。
 - [ ] 测量：修完做三个拉偏（温度、电源 ±10%、负载），阈值漂移应小于窗口一半（7.4 节）。
+
+<!-- slot:citations -->
+### 参考与出处
+
+- 本章参数与型号以厂商 datasheet / 应用笔记为权威源（正文注明型号处为准）；教学示意数字均已标「示意」。
+- ref-011：Op Amps for Everyone（`analog-book/data/references.yml`，id 可检索）
+- ref-028：Linear Circuit Design Handbook（`analog-book/data/references.yml`，id 可检索）
+- ref-072：Design with Operational Amplifiers and Analog Integrated Circuits（`analog-book/data/references.yml`，id 可检索）
+- 开源与视觉工具引用见 references.yml 的 OSS 条目（ref-119~ref-124，仅灵感/工具，非参数源）。
 
 > **通关打卡**：迟滞=正反馈造免疫区，三个电阻算阈值，再抖的输入信号到你手里都干净利落；一个噪声毛刺的四拍命运能讲成故事。迟滞宽度就是抗噪护城河的宽度。
 
@@ -5406,6 +5478,15 @@ COM 再送 ADC，**省掉 7 个 ADC 通道**。两个要点：① 通道是**双
 - [ ] 计算：电荷注入台阶 $\Delta V=Q/C$——2pC 落到 10nF 上是 0.2mV（8.3 节 ch08-charge-injection 图）。
 - [ ] 测量：按 8.4 节端到端设计例复核采样保持的 τ 与 droop 两笔预算。
 
+<!-- slot:citations -->
+### 参考与出处
+
+- 本章参数与型号以厂商 datasheet / 应用笔记为权威源（正文注明型号处为准）；教学示意数字均已标「示意」。
+- ref-004：ADG1611 模拟开关数据手册（`analog-book/data/references.yml`，id 可检索）
+- ref-007：Design of Analog CMOS Integrated Circuits（`analog-book/data/references.yml`，id 可检索）
+- ref-036：Digital integrated circuits（`analog-book/data/references.yml`，id 可检索）
+- 开源与视觉工具引用见 references.yml 的 OSS 条目（ref-119~ref-124，仅灵感/工具，非参数源）。
+
 > **通关打卡**：电荷注入、$R_{ON}$ 平坦度、先断后合。采样电路的坑，你提前知道它们藏在哪。
 
 ---
@@ -5786,6 +5867,15 @@ VIN ──[调整管 PMOS/PNP]── VOUT
 - [ ] 计算：$V_{out}=V_{ref}(1+R_1/R_2)$——用 2.5V 基准算 5V 输出的 $R_1/R_2$（9.2 节）。
 - [ ] 测量：给 7805 加满载，量压差与壳温，核算功耗并对照降额（9.4 节）。
 
+<!-- slot:citations -->
+### 参考与出处
+
+- 本章参数与型号以厂商 datasheet / 应用笔记为权威源（正文注明型号处为准）；教学示意数字均已标「示意」。
+- ref-021："Voltage References: From Diodes to Precision High-Order Bandgap Circuits"（`analog-book/data/references.yml`，id 可检索）
+- ref-028：Linear Circuit Design Handbook（`analog-book/data/references.yml`，id 可检索）
+- ref-038："Operational Amplifiers: Theory and Design"（`analog-book/data/references.yml`，id 可检索）
+- 开源与视觉工具引用见 references.yml 的 OSS 条目（ref-119~ref-124，仅灵感/工具，非参数源）。
+
 > **通关打卡**：LDO 在你眼里是闭环控制系统，7805 的发热你算得清，换料前会先查"输出电容 ESR"那一行。
 
 > **配套视频**：[电源大师系列（DCDC 拓扑 / PCB layout / EMI）](https://www.bilibili.com/video/BV1ef4y1n7x1/)（B站）。基准与稳压是电源的地基。这门课从稳压器一路讲到 EMI，本章是它的第一站；英文：[Lewis Loflin《TL431 Shunt Regulator Circuits》](https://www.youtube.com/watch?v=TAdL8OYliuA)（9:17，并联基准的接法与算例）。见 [7.1 视频资源汇总](#part7)。
@@ -6146,6 +6236,15 @@ $t_{放}=0.693\,R_2\,C ≈ 471µs$（输出低）
 - [ ] 观察：在 ch10-555-modes 对照卡上指出三种模式触发条件的差异。
 - [ ] 计算：$f=1.44/((R_A+2R_B)C)$——代 RA=10k、RB=47k、C=1µF 估出频率（10.2 节）。
 - [ ] 测量：搭单稳态，用示波器量输出脉宽并与 $1.1RC$ 对照（10.5 节）。
+
+<!-- slot:citations -->
+### 参考与出处
+
+- 本章参数与型号以厂商 datasheet / 应用笔记为权威源（正文注明型号处为准）；教学示意数字均已标「示意」。
+- ref-053：The art of electronics（`analog-book/data/references.yml`，id 可检索）
+- ref-055：Practical Electronics for Inventors（`analog-book/data/references.yml`，id 可检索）
+- ref-094：NE555 数据手册（`analog-book/data/references.yml`，id 可检索）
+- 开源与视觉工具引用见 references.yml 的 OSS 条目（ref-119~ref-124，仅灵感/工具，非参数源）。
 
 > **通关打卡**：3 电阻+2 比较器+1 触发器+1 放电管刻进脑子。单稳/无稳/双稳三种模式随手搭，5 脚记得接 10nF。
 
@@ -6831,6 +6930,15 @@ $$C_{in}=(1+50)\times5\text{ pF}=255\text{ pF},\qquad f_p=\frac{1}{2\pi(10\text{
 - [ ] 计算：米勒等效电容 $(1+A)C$——A=100、C=10pF 时输入端等效约 1010pF（11.5 节）。
 - [ ] 测量：双通道同时看差分对 IN+/IN−，指出共模被尾电流源"拒收"的那一拍（11.7 四拍）。
 
+<!-- slot:citations -->
+### 参考与出处
+
+- 本章参数与型号以厂商 datasheet / 应用笔记为权威源（正文注明型号处为准）；教学示意数字均已标「示意」。
+- ref-002：Microelectronic Circuits（`analog-book/data/references.yml`，id 可检索）
+- ref-003：Bipolar and MOS analog integrated circuit design（`analog-book/data/references.yml`，id 可检索）
+- ref-007：Design of Analog CMOS Integrated Circuits（`analog-book/data/references.yml`，id 可检索）
+- 开源与视觉工具引用见 references.yml 的 OSS 条目（ref-119~ref-124，仅灵感/工具，非参数源）。
+
 > **通关打卡**：三态组态表能默写；差分对"长尾"的作用一句话说清；电流镜两大用途（偏置/有源负载）刻进脑子；看到乙类推挽立刻想到交越失真和二极管偏置；米勒效应 $(1+A)C$ 会算；**相位裕度 ↔ ζ ↔ 过冲三者的换算张口就来，还能讲清"密勒补偿靠极点分裂换裕度"**；降噪顺序"带宽→源阻→管子"背得出，**并能从源阻热噪声起手做完整噪声预算、一路算到 SNR 与 ENOB**；差分对四拍：共模被尾电流源「拒收」、差模被「重新分配」放大，能讲透；**有源负载为什么省余量、cascode 为什么抬输出电阻，要能用自己的话讲清；CMRR 的单端/差分定义、两级预算怎样分配增益，同样要讲清。**
 
 > **配套视频**：[模电 4K 高清重制版（189P）· 华成英](https://www.bilibili.com/video/BV1Vp411f71S/)（B站）。三种组态、差分对、电流镜是系统课的重头戏，本章与之逐节对应；英文：[w2aew #114《Common Emitter / Collector / Base》](https://www.youtube.com/watch?v=zXh5gMc6kyU)（11:08，三种组态用同一只管子当场对比）。见 [7.1 视频资源汇总](#part7)。
@@ -7301,6 +7409,15 @@ $$V_{err} = I_b \cdot R_s$$
 - [ ] 观察：在 ch12-phase-margin-bode 图上读出 60° 与 10° 裕度对应的两种阶跃响应。
 - [ ] 计算：Sallen-Key 等值元件只有 Q=0.5——按 Butterworth 反解元件比（12.5 节）。
 - [ ] 测量：带容性负载，加隔离电阻前后看振荡消失（12.9 节）。
+
+<!-- slot:citations -->
+### 参考与出处
+
+- 本章参数与型号以厂商 datasheet / 应用笔记为权威源（正文注明型号处为准）；教学示意数字均已标「示意」。
+- ref-005：Handbook of Filter Synthesis（`analog-book/data/references.yml`，id 可检索）
+- ref-011：Op Amps for Everyone（`analog-book/data/references.yml`，id 可检索）
+- ref-023：Regeneration Theory（`analog-book/data/references.yml`，id 可检索）
+- 开源与视觉工具引用见 references.yml 的 OSS 条目（ref-119~ref-124，仅灵感/工具，非参数源）。
 
 > **通关打卡**：虚短虚断两公理能当堂推导反相/同相/加法/差分四式；差放的电阻精度=CMRR 这条血坑记住；积分器并泄放电阻、微分器限高频成为本能；反馈四拓扑"稳定什么采样什么"判读如流；单电源会用中点偏置给信号造个假地；相位裕度 45°/60° 两条线记住；带容性负载/长电缆会振，能用隔离电阻或抬高噪声增益把它压住；**跨阻放大器会用 $V_{out}=-I_{ph}R_f$ 起手、会用 $C_f \ge \sqrt{C_j/(2\pi R_f \cdot GBW)}$ 做补偿**；**Sallen-Key 的 $\omega_0$、$Q$ 公式会推，知道"等值元件只有 Q=0.5"这个坑、会按 Butterworth 反解元件**；**开关电容会算 $R_{eq}=1/(f_{clk}C)$，并说清它为什么必须抗混叠**；**会按源阻抗选运放输入级：低阻挑 $e_n$ 小的 BJT、高阻挑 $I_b$ 小的 CMOS/JFET。RRIO 互补输入对在中点有 $g_m$ 凹陷，会带来交越失真与失调台阶**；积分器四拍：「恒流充电容、输出走直线」，方波↔三角波手到擒来。
 
@@ -7778,6 +7895,15 @@ CTR 有三个坑：
 - [ ] 观察：在 ch13-buck-ripple 图上指出 CCM/DCM 边界与电感电流三角波。
 - [ ] 计算：12V→5V 算例的 ΔI_L≈0.884A、输出纹波≈7.4mV（13.2 节）。
 - [ ] 测量：按标称 $C_L$ 反算 $C_1/C_2$，并用负阻裕度 $R_{neg}\ge5\times ESR$ 判起振（13.10 节）。
+
+<!-- slot:citations -->
+### 参考与出处
+
+- 本章参数与型号以厂商 datasheet / 应用笔记为权威源（正文注明型号处为准）；教学示意数字均已标「示意」。
+- ref-001：Switching power supply design（`analog-book/data/references.yml`，id 可检索）
+- ref-006：Introduction to modern power electronics（`analog-book/data/references.yml`，id 可检索）
+- ref-008：Design of CMOS Phase-Locked Loops（`analog-book/data/references.yml`，id 可检索）
+- 开源与视觉工具引用见 references.yml 的 OSS 条目（ref-119~ref-124，仅灵感/工具，非参数源）。
 
 > **通关打卡**：伏秒平衡推出 $V_{out}=D\cdot V_{in}$；Boost"憋气弹簧"图像记住；巴克豪森判据（增益=1、相移=0）成为审视一切振荡电路的尺子；知道恒流源的四种实现与选型；奈奎斯特 2 倍率与量化台阶 $V_{FS}/2^N$ 会算，**还能从量化噪声 $q/\sqrt{12}$ 推出 $\text{SNR}=6.02N+1.76$、在明确测试条件下用 SINAD 折出 ENOB**；**抗混叠滤波器阶数、孔径抖动 SNR 上限、SAR 源阻抗上限（$\tau/C_{in}$）都能当场估**；SAR/Σ-Δ/Flash 各适合什么场合说得出；**电流检测会选低侧/高侧、会算分流电阻功耗与 CMRR 需求**；**功放 A/B/AB/D 效率账与交越失真对策、THD 数量级说得出**；**晶振会按标称 $C_L$ 反算 $C_1/C_2$、会用牵引灵敏度（20 ppm/pF）算频偏、会用负阻裕度 $R_{neg}\ge5\times ESR$ 判起振可靠性**；**光耦会按 CTR 档位最小值 + 老化余量反算驱动电流**；隔离前后必须是两个独立的地，爬电距离与隔离槽要看安规。
 <a id="part3"></a>
@@ -8474,6 +8600,15 @@ BOM 也是一次**成本与可得性的权衡**：0.1% 电阻与低温漂基准�
 - [ ] 计算：$T_J=T_A+P\times\sum\theta$——给功耗与热阻链倒推散热器（14.5 节）。
 - [ ] 测量：按 14.11 写一条带判据与失败动作的测试项，并用 LTspice 执行（14.6 节）。
 
+<!-- slot:citations -->
+### 参考与出处
+
+- 本章参数与型号以厂商 datasheet / 应用笔记为权威源（正文注明型号处为准）；教学示意数字均已标「示意」。
+- ref-029：Electromagnetic Compatibility Engineering（`analog-book/data/references.yml`，id 可检索）
+- ref-043：The designer's guide to SPICE and Spectre（`analog-book/data/references.yml`，id 可检索）
+- ref-111："Electronic Circuits: Handbook for Design and Application"（`analog-book/data/references.yml`，id 可检索）
+- 开源与视觉工具引用见 references.yml 的 OSS 条目（ref-119~ref-124，仅灵感/工具，非参数源）。
+
 > **通关打卡**：六步流程能默写并说出每步的交付物；降额表、误差预算、WC/RSS、热阻链、测试四层、DFM/DFT 都能用自己的话讲清；**会算 $T_J = T_A + P\times\sum\theta$ 并倒推散热器；PT100 全链能从 ADC 满量程反推增益，再用误差预算指出最紧的一环；能区分"分辨力"与"绝对精度"，不把 0.1°C 当口号卖；测试计划能写出判据与失败动作，而不是只列测试项。**
 
 > **配套视频**：[硬件工程师零基础入门到精通（114 讲）· 凡亿教育](https://www.bilibili.com/video/BV1bRi9YaE2R/)（B站）。从元器件到实战的完整工程视角，与本章「从需求到打样」的六步流程互补；英文：[Ohmify《How to REALLY Learn Circuit Design》](https://www.youtube.com/watch?v=yMrAk0C4AsU)（2:22，两分钟讲清"先定指标再选拓扑"）。见 [7.1 视频资源汇总](#part7)。
@@ -8838,6 +8973,15 @@ $$E\approx 1.316\times10^{-14}\,\frac{A\,f^2\,I}{r}\ \mathrm{V/m}$$
 - [ ] 观察：在 ch15-decap-loop-area 图上指出大小两个电流环的面积差。
 - [ ] 计算：传输线判据——1ns 边沿临界 2.5cm，走线超过 $l_{crit}/6$ 才启用端接（15.3 节）。
 - [ ] 测量：用近场探头对比"环路面积放大 30 倍 = 辐射涨 30dB"的对照（15.7 四拍）。
+
+<!-- slot:citations -->
+### 参考与出处
+
+- 本章参数与型号以厂商 datasheet / 应用笔记为权威源（正文注明型号处为准）；教学示意数字均已标「示意」。
+- ref-009：RF microelectronics（`analog-book/data/references.yml`，id 可检索）
+- ref-017：Microwave Engineering（`analog-book/data/references.yml`，id 可检索）
+- ref-019：Signal Integrity Issues and Printed Circuit Board Design（`analog-book/data/references.yml`，id 可检索）
+- 开源与视觉工具引用见 references.yml 的 OSS 条目（ref-119~ref-124，仅灵感/工具，非参数源）。
 
 > **通关打卡**：布局定 80%、回流在脚下、去耦贴脸放，你的板子 EMC 一次过的概率翻倍。EMC 三要素里你唯一能掐断的是路径与天线。回流路径四拍：高频只认「最小回路面积」，回路面积放大 30 倍 = 辐射涨 30dB。
 
@@ -9414,6 +9558,15 @@ $$\tau_{10}=99.0\text{k}\Omega\times10\text{pF}=0.99\,\mu\text{s}$$
 
 > **精髓**：排故不是玄学，是"别骗自己"的流程学。先问后拆防臆断，二分砍半防乱枪，单变量防瞎换，修根因防治标，回归验证防假好。而**记录与复盘，是把一次性的"运气"沉淀成可复用的"方法"**。没有记录的排故，等于没排。
 
+<!-- slot:citations -->
+### 参考与出处
+
+- 本章参数与型号以厂商 datasheet / 应用笔记为权威源（正文注明型号处为准）；教学示意数字均已标「示意」。
+- ref-029：Electromagnetic Compatibility Engineering（`analog-book/data/references.yml`，id 可检索）
+- ref-037：The art and science of analog circuit design（`analog-book/data/references.yml`，id 可检索）
+- ref-066：Troubleshooting Analog Circuits（`analog-book/data/references.yml`，id 可检索）
+- 开源与视觉工具引用见 references.yml 的 OSS 条目（ref-119~ref-124，仅灵感/工具，非参数源）。
+
 > **通关打卡**：拿到一块故障板，你会先问 5 个问题，而不是抓起烙铁就换芯片。定位按对数切半，一次只改一个变量。修完还会填一张排故记录表、过一遍复盘三问，把这次的坑变成团队的免疫。**还能独立走完设计、环境、工艺三类故障各一例**；从现象 → 隔离 → 根因 → 修复 → 回归，并填出一张完整排故记录表。
 
 > **配套视频**：[零基础示波器使用入门 · 芯讲坛](https://www.bilibili.com/video/BV1nrjM6NEr8/)（B站），排故实操第一课。第 16 章「五步法」的每一步都要靠示波器落地；英文：[Learn Electronics Repair《Methodical Fault Finding》](https://www.youtube.com/watch?v=wkAp5x3Z_gc)（42:16，五步法在真板子上的走法）。见 [7.1 视频资源汇总](#part7)。
@@ -9795,6 +9948,15 @@ $$T_J = T_A + P \times (\theta_{JC} + \theta_{CS} + \theta_{SA})$$
 - [ ] 计算：0.5% 单点不良 → 200 点全好的概率 $0.995^{200}\approx36.6\%$（17.6 节统计卡）。
 - [ ] 测量：按 17.1 电源类条目，用万用表量一遍电源轨并对照标称。
 
+<!-- slot:citations -->
+### 参考与出处
+
+- 本章参数与型号以厂商 datasheet / 应用笔记为权威源（正文注明型号处为准）；教学示意数字均已标「示意」。
+- ref-053：The art of electronics（`analog-book/data/references.yml`，id 可检索）
+- ref-055：Practical Electronics for Inventors（`analog-book/data/references.yml`，id 可检索）
+- ref-066：Troubleshooting Analog Circuits（`analog-book/data/references.yml`，id 可检索）
+- 开源与视觉工具引用见 references.yml 的 OSS 条目（ref-119~ref-124，仅灵感/工具，非参数源）。
+
 > **通关打卡**：症状→嫌疑→验证→根因四列口诀随身带；拿到故障先走 [17.8 决策树](#ch17) 定方向，再按表逐条排除。故障现场，你不再慌。
 
 > **配套视频**：[电源大师系列（DCDC 拓扑 / PCB layout / EMI）](https://www.bilibili.com/video/BV1ef4y1n7x1/)（B站）。本表里电源类与 EMI 类故障占比最高，这门课把「为什么烧、怎么查」讲成案例；英文：[Learn Electronics Repair《The 12 Most Common Electronics Faults》](https://www.youtube.com/watch?v=NmwSjEGS3R8)（51:04，十二类故障逐一演示，当视频版速查表）。见 [7.1 视频资源汇总](#part7)。
@@ -10049,6 +10211,14 @@ Williams 的面包板照片里还有一个细节值得抄：成排的测试钩�
 - [ ] 观察：在 ch18-review-checklist 清单板上指出六组勾选卡与你最近一次设计的差距。
 - [ ] 计算：按 1-10-100 法则估一笔：原理图阶段改一处的成本 vs 量产后召回的成本。
 - [ ] 测量：任选一块自己的板，对照 18.4 清单逐项打勾，记录缺项。
+
+<!-- slot:citations -->
+### 参考与出处
+
+- 本章参数与型号以厂商 datasheet / 应用笔记为权威源（正文注明型号处为准）；教学示意数字均已标「示意」。
+- ref-037：The art and science of analog circuit design（`analog-book/data/references.yml`，id 可检索）
+- ref-066：Troubleshooting Analog Circuits（`analog-book/data/references.yml`，id 可检索）
+- 开源与视觉工具引用见 references.yml 的 OSS 条目（ref-119~ref-124，仅灵感/工具，非参数源）。
 
 > **通关打卡**：你手里有了排故"军规清单"，先量电源、预测波形再测量、仪器也会撒谎、最小化复现；还多了一份设计评审清单，原理图/布局/上电/回归四道关口。每条评审项都能说出"不做会中 17 章哪一行"。下次故障现场，你就是最冷静的人。
 

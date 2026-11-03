@@ -1,1 +1,153 @@
-[]
+# 事实源 / 出处索引：章内关键数字与实验步骤的追溯表。
+# 约定：doc_type=文档类型；publisher=机构；url=官方入口（不得伪造深层直链）；
+# chapter=对应章（0-18）；fields=取数字段。新增行须先核链接可达再入库。
+- id: src-001
+  doc_type: 应用文章
+  publisher: Murata
+  url: https://article.murata.com/en-us/article/voltage-characteristics-of-electrostatic-capacitance
+  chapter: 1
+  fields: MLCC 直流偏压降容机理与测试条件（ch1 §1.7 引用）
+- id: src-002
+  doc_type: 参数/仿真工具
+  publisher: Murata
+  url: https://www.murata.com/simsurfing
+  chapter: 1
+  fields: 具体料号偏压/温度曲线（ch1 §1.7「查具体料号」）
+- id: src-003
+  doc_type: 参数/仿真工具
+  publisher: TDK
+  url: https://product.tdk.com/system/
+  chapter: 1
+  fields: SEAT 在线工具，偏压与纹波电流曲线
+- id: src-004
+  doc_type: 参数/仿真工具
+  publisher: KEMET
+  url: https://ksim3.kemet.com/
+  chapter: 1
+  fields: K-SIM 电容曲线
+- id: src-005
+  doc_type: 标准
+  publisher: IEC
+  url: https://www.iec.ch/
+  chapter: 2
+  fields: IEC 61000-4-2 ESD 波形与等级（ch2 §2.11）
+- id: src-006
+  doc_type: 应用手册
+  publisher: onsemi
+  url: https://www.onsemi.com/
+  chapter: 2
+  fields: Rectifier Applications Handbook（整流热设计与浪涌，ch2 延伸）
+- id: src-007
+  doc_type: datasheet
+  publisher: TI
+  url: https://www.ti.com/product/TL431
+  chapter: 9
+  fields: TL431 基准/分流稳压参数（ch9 §9.2）
+- id: src-008
+  doc_type: datasheet
+  publisher: TI
+  url: https://www.ti.com/product/LM393
+  chapter: 7
+  fields: LM393 比较器传播延迟与开集输出（ch7 §7.2）
+- id: src-009
+  doc_type: 应用笔记/视频
+  publisher: TI
+  url: https://www.ti.com/video/series/comparator.html
+  chapter: 7
+  fields: 比较器噪声与迟滞系列（ch7 配套）
+- id: src-010
+  doc_type: datasheet
+  publisher: TI
+  url: https://www.ti.com/product/LM358
+  chapter: 6
+  fields: LM358 压摆率/输出摆幅/GBW（ch6 §6.2/6.3）
+- id: src-011
+  doc_type: datasheet
+  publisher: TI
+  url: https://www.ti.com/product/NE555
+  chapter: 10
+  fields: 555 定时器门限与放电参数（ch10）
+- id: src-012
+  doc_type: datasheet
+  publisher: TI
+  url: https://www.ti.com/product/CD4051B
+  chapter: 8
+  fields: CD4051 多路复用 R_ON/注入（ch8 §8.2）
+- id: src-013
+  doc_type: datasheet
+  publisher: TI
+  url: https://www.ti.com/product/LM741
+  chapter: 6
+  fields: 741 内部结构与开环增益（ch6 §6.1）
+- id: src-014
+  doc_type: datasheet
+  publisher: onsemi
+  url: https://www.onsemi.com/products/discrete-power-modules/bipolar-transistors/2N2222A
+  chapter: 3
+  fields: 2N2222A β 档位/封装功耗（ch3 §3.1）
+- id: src-015
+  doc_type: 标准手册
+  publisher: NIST
+  url: https://www.nist.gov/pml/si-publications
+  chapter: 0
+  fields: SI Brochure 第 9 版，单位与词头定义（ch0 §0.7 表）
+- id: src-016
+  doc_type: 公开课
+  publisher: MIT OCW
+  url: https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/
+  chapter: 0
+  fields: 集总元件/KCL/KVL/戴维南（ch0 延伸）
+- id: src-017
+  doc_type: 在线仿真
+  publisher: Falstad
+  url: https://www.falstad.com/circuit/
+  chapter: 0
+  fields: 全书「在线演示」链接的宿主（欧姆定律/整流/RLC 等）
+- id: src-018
+  doc_type: 应用笔记
+  publisher: Tektronix
+  url: https://www.tek.com/en/support/primers
+  chapter: 16
+  fields: ABCs of Probes 探头入门（ch16 §16.6）
+- id: src-019
+  doc_type: 安全手册
+  publisher: Fluke
+  url: https://www.fluke.com/en-us/learn/blog/safety
+  chapter: 16
+  fields: Digital Multimeter Safety 电流档与量程安全（ch16 §16.3）
+- id: src-020
+  doc_type: 教材
+  publisher: Cambridge University Press
+  url: https://www.cambridge.org/highereducation/books/the-art-of-electronics/0F4E/
+  chapter: 1
+  fields: Horowitz & Hill，测量/低噪声/接地章节（ch1/ch16/ch18）
+- id: src-021
+  doc_type: 教材
+  publisher: Oxford University Press
+  url: https://global.oup.com/academic/product/microelectronic-circuits-9780190853464
+  chapter: 2
+  fields: Sedra & Smith，二极管章推导（ch2 延伸）
+- id: src-022
+  doc_type: 技术专著
+  publisher: McGraw-Hill
+  url: https://www.mheducation.com/
+  chapter: 16
+  fields: Bob Pease, Troubleshooting Analog Circuits（ch16/ch18 心法）
+- id: src-023
+  doc_type: 技术专著
+  publisher: Elsevier/Newnes
+  url: https://www.elsevier.com/
+  chapter: 18
+  fields: Jim Williams, Analog Circuit Design（ch18 案例来源）
+- id: src-024
+  doc_type: datasheet
+  publisher: ADI
+  url: https://www.analog.com/en/products/adg1611.html
+  chapter: 8
+  fields: ADG1611 模拟开关 R_ON/注入（ref-004 对应）
+- id: src-025
+  doc_type: 期刊
+  publisher: ADI
+  url: https://www.analog.com/en/analog-dialogue.html
+  chapter: 6
+  fields: 运放/电源应用专题（ref-125 对应）

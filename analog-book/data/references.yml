@@ -945,3 +945,84 @@
   year: 1999
   isbn_or_url: ISBN 9780070655232
   chapters: [4]
+- id: ref-119
+  authors: yang0
+  title: handraw-style（视觉灵感 / 提示词风格库，非主生成器）
+  edition: ""
+  publisher: GitHub
+  year: 2025
+  isbn_or_url: https://github.com/yang0/handraw-style
+  chapters: []
+  notes: OSS；FA-029 封面与社媒提示词来源，视觉 DNA 已锁（docs/superpowers/visual/2026-11-03-dna-lock.md）
+- id: ref-120
+  authors: ningzimu
+  title: handdrawn-tech-illustrations（视觉灵感 / 构图参考，非主生成器）
+  edition: ""
+  publisher: GitHub
+  year: 2025
+  isbn_or_url: https://github.com/ningzimu/handdrawn-tech-illustrations
+  chapters: []
+  notes: OSS；中文手绘技术图构图与标注密度参考
+- id: ref-121
+  authors: overegneered
+  title: manim-eng（可选管线对照，非主生成器）
+  edition: ""
+  publisher: GitHub
+  year: 2025
+  isbn_or_url: https://github.com/overegneered/manim-eng
+  chapters: []
+  notes: OSS；工程向 Manim 动画思路启发（推导阶梯/节拍揭示）
+- id: ref-122
+  authors: Mr-FuzzyPenguin
+  title: manim-circuit（可选管线对照，非主生成器）
+  edition: ""
+  publisher: GitHub
+  year: 2025
+  isbn_or_url: https://github.com/Mr-FuzzyPenguin/manim-circuit
+  chapters: []
+  notes: OSS；电路 Manim 组件，仅思路对照
+- id: ref-123
+  authors: milkway
+  title: rpic-lang（可选对照：SVG+GSAP 电路动画，非主生成器）
+  edition: ""
+  publisher: GitHub
+  year: 2025
+  isbn_or_url: https://github.com/milkway/rpic-lang
+  chapters: []
+  notes: OSS；交互思路对照；主站仍为 SMIL 生成器
+- id: ref-124
+  authors: wijnen
+  title: edraw（可选对照：电子图绘制，非主生成器）
+  edition: ""
+  publisher: GitHub
+  year: 2025
+  isbn_or_url: https://github.com/wijnen/edraw
+  chapters: []
+  notes: OSS；电子图绘制对照
+- id: ref-125
+  authors: Analog Devices
+  title: Analog Dialogue（ADI 技术期刊）
+  edition: ""
+  publisher: Analog Devices
+  year: 2025
+  isbn_or_url: https://www.analog.com/en/analog-dialogue.html
+  chapters: [0, 1, 2, 3, 4, 5]
+  notes: 官方期刊；运放、电源、信号链专题的应用视角
+- id: ref-126
+  authors: Analog Devices
+  title: ADI 教育资料库（MT 教程与应用笔记合集）
+  edition: ""
+  publisher: Analog Devices
+  year: 2025
+  isbn_or_url: https://www.analog.com/en/education/education-library.html
+  chapters: [6, 9, 11, 12, 13]
+  notes: 官方应用笔记索引；运放稳定性与电源设计专题
+- id: ref-127
+  authors: "杨建国（ADI 中国）"
+  title: 新概念模拟电路（全五册）
+  edition: optional-deep-read
+  publisher: Analog Devices
+  year: 2020
+  isbn_or_url: ADI 官网教育资料库检索「新概念模拟电路」
+  chapters: [3, 6, 11, 12]
+  notes: optional-deep-read；教法读物，不作为参数权威源（spec §12/附录 A 立场）
