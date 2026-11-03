@@ -58,6 +58,17 @@ class ChapterContractTests(unittest.TestCase):
             result = check_chapter_contract.scan_chapter(p)
             self.assertFalse(any(result.values()), result)
 
+    def test_curriculum_map_lists_all_19_chapter_files(self):
+        root = Path(__file__).resolve().parents[1]
+        text = (root / "docs/superpowers/curriculum/2026-11-03-zero-to-engineer-map.md").read_text(encoding="utf-8")
+        for name in [
+            "p1-01-ch0.md", "p1-02-ch1.md", "p1-03-ch2.md", "p1-04-ch3.md", "p1-05-ch4.md",
+            "p1-06-ch5.md", "p1-07-ch6.md", "p1-08-ch7.md", "p1-09-ch8.md", "p1-10-ch9.md",
+            "p1-11-ch10.md", "p2-01-ch11.md", "p2-02-ch12.md", "p2-03-ch13.md", "p3-01-ch14.md",
+            "p3-02-ch15.md", "p4-01-ch16.md", "p4-02-ch17.md", "p4-03-ch18.md",
+        ]:
+            self.assertIn(name, text)
+
 
 if __name__ == "__main__":
     unittest.main()
