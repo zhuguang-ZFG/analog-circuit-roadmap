@@ -844,3 +844,248 @@
   one_line: 探头依次点向稳压器输出脚（5.02V）、运放 VCC 脚（4.86V）、去耦电容两端复核——160mV 差值 ÷ 120mA 负载 ≈ 1.3Ω 路径电阻：0.2mm×200mm
     细走线约 1000 个方 ≈ 0.5Ω，再叠过孔与接插件。
   static_svg: assets/svg/three-probe-audit.svg
+- id: anim-119
+  file: p5-00-part5.md
+  title: 源的两次测量法：内阻一笔算出（失效边界）
+  chapter: 0
+  anchor: demo119
+  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 0.6 恒压源与恒流源
+  static_svg: assets/svg/exp-source-sag.svg
+- id: anim-120
+  file: p5-00-part5.md
+  title: 单位错档一千倍：数量级先钉死
+  chapter: 0
+  anchor: demo120
+  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 0.7 量纲与数量级
+  static_svg: assets/svg/exp-unit-guard.svg
+- id: anim-121
+  file: p5-00-part5.md
+  title: 额定功率的降额链：标称值怎么缩水
+  chapter: 0
+  anchor: demo121
+  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 0.9 功率与降额
+  static_svg: assets/svg/exp-derate-chain.svg
+- id: anim-122
+  file: p5-00-part5.md
+  title: 纹波的两本账：容性与 ESR 谁说了算
+  chapter: 1
+  anchor: demo122
+  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 1.2 ESR 与纹波
+  static_svg: assets/svg/exp-esr-ripple-split.svg
+- id: anim-123
+  file: p5-00-part5.md
+  title: 电解电容寿命账：10°C 翻倍（失效边界）
+  chapter: 1
+  anchor: demo123
+  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 1.7 寿命公式
+  static_svg: assets/svg/exp-cap-life.svg
+- id: anim-124
+  file: p5-00-part5.md
+  title: 感性负载的关断尖峰：电感物理的必然推论
+  chapter: 1
+  anchor: demo124
+  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 1.3 反电动势
+  static_svg: assets/svg/exp-avalanche-edge.svg
+- id: anim-125
+  file: p5-00-part5.md
+  title: 导通角与峰值电流：窄窗里的猛冲
+  chapter: 2
+  anchor: demo125
+  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 2.6 导通角
+  static_svg: assets/svg/exp-conduction-angle.svg
+- id: anim-126
+  file: p5-00-part5.md
+  title: 接口防护三级削减：TVS → 电阻 → 钳位
+  chapter: 2
+  anchor: demo126
+  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 2.11 例 2-2
+  static_svg: assets/svg/exp-tvs-ladder.svg
+- id: anim-127
+  file: p5-00-part5.md
+  title: β 漂移冲击工作点：偏置的失效边界
+  chapter: 3
+  anchor: demo127
+  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 3.4 分压偏置
+  static_svg: assets/svg/exp-beta-drift.svg
+- id: anim-128
+  file: p5-00-part5.md
+  title: 热失控：一条闭合的正反馈环（失效边界）
+  chapter: 3
+  anchor: demo128
+  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 3.7 热失控
+  static_svg: assets/svg/exp-thermal-loop.svg
+- id: anim-129
+  file: p5-00-part5.md
+  title: 米勒平台的栅电荷账：驱动电流是挤压器
+  chapter: 4
+  anchor: demo129
+  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 4.3/4.6 平台与四拍
+  static_svg: assets/svg/exp-gate-charge.svg
+- id: anim-130
+  file: p5-00-part5.md
+  title: 上拉取值：上升沿与功耗的双边权衡
+  chapter: 5
+  anchor: demo130
+  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 5.3 上拉取值
+  static_svg: assets/svg/exp-pullup-trade.svg
+- id: anim-131
+  file: p5-00-part5.md
+  title: 直通窗口与死区：换向瞬间谁在岗
+  chapter: 5
+  anchor: demo131
+  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 5.1 推挽直通
+  static_svg: assets/svg/exp-dead-time.svg
+- id: anim-132
+  file: p5-00-part5.md
+  title: 增益带宽交换：GBW 是一笔守恒的预算
+  chapter: 6
+  anchor: demo132
+  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 6.3 GBW
+  static_svg: assets/svg/exp-gbw-swap.svg
+- id: anim-133
+  file: p5-00-part5.md
+  title: 压摆率墙：大信号的失效边界
+  chapter: 6
+  anchor: demo133
+  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 6.7 压摆率
+  static_svg: assets/svg/exp-slew-wall.svg
+- id: anim-134
+  file: p5-00-part5.md
+  title: 迟滞窗口：抗噪护城河的宽与窄
+  chapter: 7
+  anchor: demo134
+  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 7.3 迟滞
+  static_svg: assets/svg/exp-hyst-window.svg
+- id: anim-135
+  file: p5-00-part5.md
+  title: 判决延迟预算：运放兼职的代价
+  chapter: 7
+  anchor: demo135
+  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 7.5 延迟账
+  static_svg: assets/svg/exp-delay-budget.svg
+- id: anim-136
+  file: p5-00-part5.md
+  title: 电荷注入的信号相关性：从台阶到谐波
+  chapter: 8
+  anchor: demo136
+  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 8.3 注入分账
+  static_svg: assets/svg/exp-inject-harmonic.svg
+- id: anim-137
+  file: p5-00-part5.md
+  title: 采样保持的 droop 预算：时间维度的税
+  chapter: 8
+  anchor: demo137
+  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 8.4 端到端例
+  static_svg: assets/svg/exp-droop-budget.svg
+- id: anim-138
+  file: p5-00-part5.md
+  title: LDO 换料的隐性账：ESR 零点与稳定（失效边界）
+  chapter: 9
+  anchor: demo138
+  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 9.3 稳定性
+  static_svg: assets/svg/exp-ldo-zero.svg
+- id: anim-139
+  file: p5-00-part5.md
+  title: PSRR 随频率滚降：电源抑制是分段防守
+  chapter: 9
+  anchor: demo139
+  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 9.3 PSRR
+  static_svg: assets/svg/exp-psrr-roll.svg
+- id: anim-140
+  file: p5-00-part5.md
+  title: 单稳态触发链：一触发，亮一拍
+  chapter: 10
+  anchor: demo140
+  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 10.5 单稳态
+  static_svg: assets/svg/exp-555-mono-train.svg
+- id: anim-141
+  file: p5-00-part5.md
+  title: 555 占空比：充放两条路各管一段
+  chapter: 10
+  anchor: demo141
+  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 10.2 三种模式
+  static_svg: assets/svg/exp-555-duty.svg
+- id: anim-142
+  file: p5-00-part5.md
+  title: 米勒倍增：一只电容被增益放大
+  chapter: 11
+  anchor: demo142
+  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 11.5 米勒效应
+  static_svg: assets/svg/exp-miller-mult.svg
+- id: anim-143
+  file: p5-00-part5.md
+  title: 噪声三税：一张预算表收口
+  chapter: 11
+  anchor: demo143
+  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 11.6 噪声预算
+  static_svg: assets/svg/exp-noise-ladder.svg
+- id: anim-144
+  file: p5-00-part5.md
+  title: 积分器漂移与泄放电阻（失效边界）
+  chapter: 12
+  anchor: demo144
+  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 12.4/12.11 积分器
+  static_svg: assets/svg/exp-integrator-drift.svg
+- id: anim-145
+  file: p5-00-part5.md
+  title: 容性负载自激与隔离电阻（失效边界）
+  chapter: 12
+  anchor: demo145
+  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 12.9 稳定性实战
+  static_svg: assets/svg/exp-cload-isolate.svg
+- id: anim-146
+  file: p5-00-part5.md
+  title: 伏秒平衡：电感稳态的入场券
+  chapter: 13
+  anchor: demo146
+  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 13.2 Buck
+  static_svg: assets/svg/exp-volt-second.svg
+- id: anim-147
+  file: p5-00-part5.md
+  title: 晶振牵引灵敏度：3pF 偏差值多少秒
+  chapter: 13
+  anchor: demo147
+  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 13.10 晶振
+  static_svg: assets/svg/exp-crystal-pull.svg
+- id: anim-148
+  file: p5-00-part5.md
+  title: 最坏情况 vs RSS：误差预算的两把尺
+  chapter: 14
+  anchor: demo148
+  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 14.10 WC/RSS
+  static_svg: assets/svg/exp-wc-rss.svg
+- id: anim-149
+  file: p5-00-part5.md
+  title: 回流路径被割断：开槽的代价（失效边界）
+  chapter: 15
+  anchor: demo149
+  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 15.2/15.7 回流
+  static_svg: assets/svg/exp-return-cut.svg
+- id: anim-150
+  file: p5-00-part5.md
+  title: 叠层与阻抗：同一只 50Ω 两种命运
+  chapter: 15
+  anchor: demo150
+  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 15.3 叠层
+  static_svg: assets/svg/exp-via-stack.svg
+- id: anim-151
+  file: p5-00-part5.md
+  title: 二分定位的对数数学：6 节点 3 刀
+  chapter: 16
+  anchor: demo151
+  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 16.1 二分
+  static_svg: assets/svg/exp-log2-split.svg
+- id: anim-152
+  file: p5-00-part5.md
+  title: 接触电阻蠕变：只量通断会漏掉的漂移窗（失效边界）
+  chapter: 17
+  anchor: demo152
+  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 17.6 焊接连接
+  static_svg: assets/svg/exp-contact-creep.svg
+- id: anim-153
+  file: p5-00-part5.md
+  title: 1-10-100 成本法则：把故障往左推
+  chapter: 18
+  anchor: demo153
+  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 18.4 评审四闸
+  static_svg: assets/svg/exp-cost-ladder.svg

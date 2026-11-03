@@ -1,32 +1,32 @@
 <a id="part5"></a>
 # 第五篇：动画演示中心
 
-> 全部 118 张 SVG 动画（SMIL，浏览器直接播放）位于 `assets/svg/` 目录，由 `scripts/generate_svgs.py` 一键生成（仓库铁律：两者始终同步）；配套 Falstad 在线电路可实时交互。
+> 全部 SVG 原理动画（SMIL，浏览器直接播放）位于 `assets/svg/` 目录，由 `scripts/generate_svgs.py` 一键产出（数量以生成器输出为准，扩量闸见 `scripts/test_svg_count_floor.py`）（仓库铁律：两者始终同步）；配套 Falstad 在线电路可实时交互。
 
 <details markdown="1">
-<summary>动画速查：按章节 —— 118 张全索引（点击展开）</summary>
+<summary>动画速查：按章节 —— 全索引（点击展开）</summary>
 
 | 章 | 动画（点击直达） |
 |---|---|
-| §0 第 0 章 电路直觉学前班：先上车，再赶路 | [5.39](p5-00-part5.md#demo39) · [5.78](p5-00-part5.md#demo78) · [5.87](p5-00-part5.md#demo87) · [5.89](p5-00-part5.md#demo89) · [5.109](p5-00-part5.md#demo109) |
-| §1 第 1 章 无源元件的真实面目 | [5.36](p5-00-part5.md#demo36) · [5.43](p5-00-part5.md#demo43) · [5.60](p5-00-part5.md#demo60) · [5.79](p5-00-part5.md#demo79) · [5.101](p5-00-part5.md#demo101) · [5.103](p5-00-part5.md#demo103) |
-| §2 第 2 章 二极管：单向导电的物理本质 | [5.2](p5-00-part5.md#demo2) · [5.31](p5-00-part5.md#demo31) · [5.46](p5-00-part5.md#demo46) · [5.56](p5-00-part5.md#demo56) · [5.61](p5-00-part5.md#demo61) · [5.83](p5-00-part5.md#demo83) · [5.110](p5-00-part5.md#demo110) |
-| §3 第 3 章 BJT 三极管：完整概念体系 | [5.3](p5-00-part5.md#demo3) · [5.40](p5-00-part5.md#demo40) · [5.41](p5-00-part5.md#demo41) · [5.66](p5-00-part5.md#demo66) · [5.67](p5-00-part5.md#demo67) · [5.70](p5-00-part5.md#demo70) · [5.74](p5-00-part5.md#demo74) · [5.81](p5-00-part5.md#demo81) |
-| §4 第 4 章 MOSFET：电压控制的开关王者 | [5.44](p5-00-part5.md#demo44) · [5.57](p5-00-part5.md#demo57) · [5.68](p5-00-part5.md#demo68) · [5.82](p5-00-part5.md#demo82) · [5.92](p5-00-part5.md#demo92) |
-| §5 第 5 章 输出结构彻底讲透：推挽、开漏、上拉下拉 | [5.5](p5-00-part5.md#demo5) · [5.51](p5-00-part5.md#demo51) · [5.53](p5-00-part5.md#demo53) · [5.62](p5-00-part5.md#demo62) · [5.117](p5-00-part5.md#demo117) |
-| §6 第 6 章 运算放大器：从内部结构到参数字典 | [5.37](p5-00-part5.md#demo37) · [5.45](p5-00-part5.md#demo45) · [5.63](p5-00-part5.md#demo63) · [5.71](p5-00-part5.md#demo71) · [5.72](p5-00-part5.md#demo72) · [5.75](p5-00-part5.md#demo75) · [5.93](p5-00-part5.md#demo93) · [5.112](p5-00-part5.md#demo112) |
-| §7 第 7 章 比较器：专为"判决"而生 | [5.4](p5-00-part5.md#demo4) · [5.35](p5-00-part5.md#demo35) · [5.47](p5-00-part5.md#demo47) · [5.54](p5-00-part5.md#demo54) · [5.76](p5-00-part5.md#demo76) |
-| §8 第 8 章 模拟开关与多路复用器：CMOS 传输门 | [5.22](p5-00-part5.md#demo22) · [5.50](p5-00-part5.md#demo50) · [5.69](p5-00-part5.md#demo69) · [5.84](p5-00-part5.md#demo84) · [5.94](p5-00-part5.md#demo94) |
-| §9 第 9 章 电压基准与稳压器：系统的"定盘星" | [5.20](p5-00-part5.md#demo20) · [5.21](p5-00-part5.md#demo21) · [5.25](p5-00-part5.md#demo25) · [5.55](p5-00-part5.md#demo55) · [5.73](p5-00-part5.md#demo73) · [5.85](p5-00-part5.md#demo85) · [5.95](p5-00-part5.md#demo95) |
-| §10 第 10 章 555 定时器：最经典的混合信号芯片 | [5.1](p5-00-part5.md#demo1) · [5.6](p5-00-part5.md#demo6) · [5.30](p5-00-part5.md#demo30) · [5.58](p5-00-part5.md#demo58) · [5.77](p5-00-part5.md#demo77) · [5.86](p5-00-part5.md#demo86) |
-| §11 第 11 章 放大电路拓扑：三种组态与四大积木 | [5.8](p5-00-part5.md#demo8) · [5.9](p5-00-part5.md#demo9) · [5.13](p5-00-part5.md#demo13) · [5.16](p5-00-part5.md#demo16) · [5.48](p5-00-part5.md#demo48) · [5.64](p5-00-part5.md#demo64) · [5.111](p5-00-part5.md#demo111) · [5.113](p5-00-part5.md#demo113) |
-| §12 第 12 章 运放应用电路族：两条公理推演一切 | [5.10](p5-00-part5.md#demo10) · [5.15](p5-00-part5.md#demo15) · [5.17](p5-00-part5.md#demo17) · [5.24](p5-00-part5.md#demo24) · [5.27](p5-00-part5.md#demo27) · [5.32](p5-00-part5.md#demo32) · [5.33](p5-00-part5.md#demo33) · [5.34](p5-00-part5.md#demo34) · [5.52](p5-00-part5.md#demo52) · [5.59](p5-00-part5.md#demo59) · [5.104](p5-00-part5.md#demo104) |
-| §13 第 13 章 电源与信号产生电路 | [5.11](p5-00-part5.md#demo11) · [5.12](p5-00-part5.md#demo12) · [5.14](p5-00-part5.md#demo14) · [5.18](p5-00-part5.md#demo18) · [5.19](p5-00-part5.md#demo19) · [5.23](p5-00-part5.md#demo23) · [5.26](p5-00-part5.md#demo26) · [5.28](p5-00-part5.md#demo28) · [5.29](p5-00-part5.md#demo29) · [5.65](p5-00-part5.md#demo65) · [5.80](p5-00-part5.md#demo80) · [5.105](p5-00-part5.md#demo105) · [5.106](p5-00-part5.md#demo106) · [5.114](p5-00-part5.md#demo114) |
-| §14 第 14 章 电路设计方法论 | [5.42](p5-00-part5.md#demo42) · [5.88](p5-00-part5.md#demo88) · [5.98](p5-00-part5.md#demo98) · [5.107](p5-00-part5.md#demo107) · [5.108](p5-00-part5.md#demo108) |
-| §15 第 15 章 PCB 绘制注意事项 | [5.7](p5-00-part5.md#demo7) · [5.90](p5-00-part5.md#demo90) · [5.96](p5-00-part5.md#demo96) · [5.100](p5-00-part5.md#demo100) |
-| §16 第 16 章 排故五步法 | [5.38](p5-00-part5.md#demo38) · [5.49](p5-00-part5.md#demo49) · [5.99](p5-00-part5.md#demo99) |
-| §17 第 17 章 故障模式速查总表 | [5.91](p5-00-part5.md#demo91) · [5.102](p5-00-part5.md#demo102) · [5.116](p5-00-part5.md#demo116) |
-| §18 第 18 章 大师的排故智慧 | [5.97](p5-00-part5.md#demo97) · [5.115](p5-00-part5.md#demo115) · [5.118](p5-00-part5.md#demo118) |
+| §0 第 0 章 电路直觉学前班：先上车，再赶路 | [5.39](p5-00-part5.md#demo39) · [5.78](p5-00-part5.md#demo78) · [5.87](p5-00-part5.md#demo87) · [5.89](p5-00-part5.md#demo89) · [5.109](p5-00-part5.md#demo109)  · [5.119](p5-00-part5.md#demo119) · [5.120](p5-00-part5.md#demo120) · [5.121](p5-00-part5.md#demo121) |
+| §1 第 1 章 无源元件的真实面目 | [5.36](p5-00-part5.md#demo36) · [5.43](p5-00-part5.md#demo43) · [5.60](p5-00-part5.md#demo60) · [5.79](p5-00-part5.md#demo79) · [5.101](p5-00-part5.md#demo101) · [5.103](p5-00-part5.md#demo103)  · [5.122](p5-00-part5.md#demo122) · [5.123](p5-00-part5.md#demo123) · [5.124](p5-00-part5.md#demo124) |
+| §2 第 2 章 二极管：单向导电的物理本质 | [5.2](p5-00-part5.md#demo2) · [5.31](p5-00-part5.md#demo31) · [5.46](p5-00-part5.md#demo46) · [5.56](p5-00-part5.md#demo56) · [5.61](p5-00-part5.md#demo61) · [5.83](p5-00-part5.md#demo83) · [5.110](p5-00-part5.md#demo110)  · [5.125](p5-00-part5.md#demo125) · [5.126](p5-00-part5.md#demo126) |
+| §3 第 3 章 BJT 三极管：完整概念体系 | [5.3](p5-00-part5.md#demo3) · [5.40](p5-00-part5.md#demo40) · [5.41](p5-00-part5.md#demo41) · [5.66](p5-00-part5.md#demo66) · [5.67](p5-00-part5.md#demo67) · [5.70](p5-00-part5.md#demo70) · [5.74](p5-00-part5.md#demo74) · [5.81](p5-00-part5.md#demo81)  · [5.127](p5-00-part5.md#demo127) · [5.128](p5-00-part5.md#demo128) |
+| §4 第 4 章 MOSFET：电压控制的开关王者 | [5.44](p5-00-part5.md#demo44) · [5.57](p5-00-part5.md#demo57) · [5.68](p5-00-part5.md#demo68) · [5.82](p5-00-part5.md#demo82) · [5.92](p5-00-part5.md#demo92)  · [5.129](p5-00-part5.md#demo129) |
+| §5 第 5 章 输出结构彻底讲透：推挽、开漏、上拉下拉 | [5.5](p5-00-part5.md#demo5) · [5.51](p5-00-part5.md#demo51) · [5.53](p5-00-part5.md#demo53) · [5.62](p5-00-part5.md#demo62) · [5.117](p5-00-part5.md#demo117)  · [5.130](p5-00-part5.md#demo130) · [5.131](p5-00-part5.md#demo131) |
+| §6 第 6 章 运算放大器：从内部结构到参数字典 | [5.37](p5-00-part5.md#demo37) · [5.45](p5-00-part5.md#demo45) · [5.63](p5-00-part5.md#demo63) · [5.71](p5-00-part5.md#demo71) · [5.72](p5-00-part5.md#demo72) · [5.75](p5-00-part5.md#demo75) · [5.93](p5-00-part5.md#demo93) · [5.112](p5-00-part5.md#demo112)  · [5.132](p5-00-part5.md#demo132) · [5.133](p5-00-part5.md#demo133) |
+| §7 第 7 章 比较器：专为"判决"而生 | [5.4](p5-00-part5.md#demo4) · [5.35](p5-00-part5.md#demo35) · [5.47](p5-00-part5.md#demo47) · [5.54](p5-00-part5.md#demo54) · [5.76](p5-00-part5.md#demo76)  · [5.134](p5-00-part5.md#demo134) · [5.135](p5-00-part5.md#demo135) |
+| §8 第 8 章 模拟开关与多路复用器：CMOS 传输门 | [5.22](p5-00-part5.md#demo22) · [5.50](p5-00-part5.md#demo50) · [5.69](p5-00-part5.md#demo69) · [5.84](p5-00-part5.md#demo84) · [5.94](p5-00-part5.md#demo94)  · [5.136](p5-00-part5.md#demo136) · [5.137](p5-00-part5.md#demo137) |
+| §9 第 9 章 电压基准与稳压器：系统的"定盘星" | [5.20](p5-00-part5.md#demo20) · [5.21](p5-00-part5.md#demo21) · [5.25](p5-00-part5.md#demo25) · [5.55](p5-00-part5.md#demo55) · [5.73](p5-00-part5.md#demo73) · [5.85](p5-00-part5.md#demo85) · [5.95](p5-00-part5.md#demo95)  · [5.138](p5-00-part5.md#demo138) · [5.139](p5-00-part5.md#demo139) |
+| §10 第 10 章 555 定时器：最经典的混合信号芯片 | [5.1](p5-00-part5.md#demo1) · [5.6](p5-00-part5.md#demo6) · [5.30](p5-00-part5.md#demo30) · [5.58](p5-00-part5.md#demo58) · [5.77](p5-00-part5.md#demo77) · [5.86](p5-00-part5.md#demo86)  · [5.140](p5-00-part5.md#demo140) · [5.141](p5-00-part5.md#demo141) |
+| §11 第 11 章 放大电路拓扑：三种组态与四大积木 | [5.8](p5-00-part5.md#demo8) · [5.9](p5-00-part5.md#demo9) · [5.13](p5-00-part5.md#demo13) · [5.16](p5-00-part5.md#demo16) · [5.48](p5-00-part5.md#demo48) · [5.64](p5-00-part5.md#demo64) · [5.111](p5-00-part5.md#demo111) · [5.113](p5-00-part5.md#demo113)  · [5.142](p5-00-part5.md#demo142) · [5.143](p5-00-part5.md#demo143) |
+| §12 第 12 章 运放应用电路族：两条公理推演一切 | [5.10](p5-00-part5.md#demo10) · [5.15](p5-00-part5.md#demo15) · [5.17](p5-00-part5.md#demo17) · [5.24](p5-00-part5.md#demo24) · [5.27](p5-00-part5.md#demo27) · [5.32](p5-00-part5.md#demo32) · [5.33](p5-00-part5.md#demo33) · [5.34](p5-00-part5.md#demo34) · [5.52](p5-00-part5.md#demo52) · [5.59](p5-00-part5.md#demo59) · [5.104](p5-00-part5.md#demo104)  · [5.144](p5-00-part5.md#demo144) · [5.145](p5-00-part5.md#demo145) |
+| §13 第 13 章 电源与信号产生电路 | [5.11](p5-00-part5.md#demo11) · [5.12](p5-00-part5.md#demo12) · [5.14](p5-00-part5.md#demo14) · [5.18](p5-00-part5.md#demo18) · [5.19](p5-00-part5.md#demo19) · [5.23](p5-00-part5.md#demo23) · [5.26](p5-00-part5.md#demo26) · [5.28](p5-00-part5.md#demo28) · [5.29](p5-00-part5.md#demo29) · [5.65](p5-00-part5.md#demo65) · [5.80](p5-00-part5.md#demo80) · [5.105](p5-00-part5.md#demo105) · [5.106](p5-00-part5.md#demo106) · [5.114](p5-00-part5.md#demo114)  · [5.146](p5-00-part5.md#demo146) · [5.147](p5-00-part5.md#demo147) |
+| §14 第 14 章 电路设计方法论 | [5.42](p5-00-part5.md#demo42) · [5.88](p5-00-part5.md#demo88) · [5.98](p5-00-part5.md#demo98) · [5.107](p5-00-part5.md#demo107) · [5.108](p5-00-part5.md#demo108)  · [5.148](p5-00-part5.md#demo148) |
+| §15 第 15 章 PCB 绘制注意事项 | [5.7](p5-00-part5.md#demo7) · [5.90](p5-00-part5.md#demo90) · [5.96](p5-00-part5.md#demo96) · [5.100](p5-00-part5.md#demo100)  · [5.149](p5-00-part5.md#demo149) · [5.150](p5-00-part5.md#demo150) |
+| §16 第 16 章 排故五步法 | [5.38](p5-00-part5.md#demo38) · [5.49](p5-00-part5.md#demo49) · [5.99](p5-00-part5.md#demo99)  · [5.151](p5-00-part5.md#demo151) |
+| §17 第 17 章 故障模式速查总表 | [5.91](p5-00-part5.md#demo91) · [5.102](p5-00-part5.md#demo102) · [5.116](p5-00-part5.md#demo116)  · [5.152](p5-00-part5.md#demo152) |
+| §18 第 18 章 大师的排故智慧 | [5.97](p5-00-part5.md#demo97) · [5.115](p5-00-part5.md#demo115) · [5.118](p5-00-part5.md#demo118)  · [5.153](p5-00-part5.md#demo153) |
 
 </details>
 ## 5.1 RC 充电 <a id="demo1"></a>
@@ -774,3 +774,248 @@ Falstad 交互：`Circuits → 555 Timer Chip → Astable Multivibrator`
 | 开关电源 Buck/Boost | Circuits → Power Converters |
 
 ---
+
+## 5.119 源的两次测量法：内阻一笔算出（失效边界） <a id="demo119"></a>
+
+<p align="center"><img src="assets/svg/exp-source-sag.svg" width="720" alt="源的两次测量法：内阻一笔算出（失效边界）动画：四步节拍推导"></p>
+
+**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [0.6 恒压源与恒流源](p1-01-ch0.md#sec-0-6)
+
+
+## 5.120 单位错档一千倍：数量级先钉死 <a id="demo120"></a>
+
+<p align="center"><img src="assets/svg/exp-unit-guard.svg" width="720" alt="单位错档一千倍：数量级先钉死动画：四步节拍推导"></p>
+
+**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [0.7 量纲与数量级](p1-01-ch0.md#sec-0-7)
+
+
+## 5.121 额定功率的降额链：标称值怎么缩水 <a id="demo121"></a>
+
+<p align="center"><img src="assets/svg/exp-derate-chain.svg" width="720" alt="额定功率的降额链：标称值怎么缩水动画：四步节拍推导"></p>
+
+**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [0.9 功率与降额](p1-01-ch0.md#sec-0-9)
+
+
+## 5.122 纹波的两本账：容性与 ESR 谁说了算 <a id="demo122"></a>
+
+<p align="center"><img src="assets/svg/exp-esr-ripple-split.svg" width="720" alt="纹波的两本账：容性与 ESR 谁说了算动画：四步节拍推导"></p>
+
+**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [1.2 ESR 与纹波](p1-02-ch1.md#ch1)
+
+
+## 5.123 电解电容寿命账：10°C 翻倍（失效边界） <a id="demo123"></a>
+
+<p align="center"><img src="assets/svg/exp-cap-life.svg" width="720" alt="电解电容寿命账：10°C 翻倍（失效边界）动画：四步节拍推导"></p>
+
+**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [1.7 寿命公式](p1-02-ch1.md#cap-dc-bias)
+
+
+## 5.124 感性负载的关断尖峰：电感物理的必然推论 <a id="demo124"></a>
+
+<p align="center"><img src="assets/svg/exp-avalanche-edge.svg" width="720" alt="感性负载的关断尖峰：电感物理的必然推论动画：四步节拍推导"></p>
+
+**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [1.3 反电动势](p1-02-ch1.md#ch1)
+
+
+## 5.125 导通角与峰值电流：窄窗里的猛冲 <a id="demo125"></a>
+
+<p align="center"><img src="assets/svg/exp-conduction-angle.svg" width="720" alt="导通角与峰值电流：窄窗里的猛冲动画：四步节拍推导"></p>
+
+**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [2.6 导通角](p1-03-ch2.md#ch2)
+
+
+## 5.126 接口防护三级削减：TVS → 电阻 → 钳位 <a id="demo126"></a>
+
+<p align="center"><img src="assets/svg/exp-tvs-ladder.svg" width="720" alt="接口防护三级削减：TVS → 电阻 → 钳位动画：四步节拍推导"></p>
+
+**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [2.11 例 2-2](p1-03-ch2.md#ch2)
+
+
+## 5.127 β 漂移冲击工作点：偏置的失效边界 <a id="demo127"></a>
+
+<p align="center"><img src="assets/svg/exp-beta-drift.svg" width="720" alt="β 漂移冲击工作点：偏置的失效边界动画：四步节拍推导"></p>
+
+**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [3.4 分压偏置](p1-04-ch3.md#ch3)
+
+
+## 5.128 热失控：一条闭合的正反馈环（失效边界） <a id="demo128"></a>
+
+<p align="center"><img src="assets/svg/exp-thermal-loop.svg" width="720" alt="热失控：一条闭合的正反馈环（失效边界）动画：四步节拍推导"></p>
+
+**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [3.7 热失控](p1-04-ch3.md#ch3)
+
+
+## 5.129 米勒平台的栅电荷账：驱动电流是挤压器 <a id="demo129"></a>
+
+<p align="center"><img src="assets/svg/exp-gate-charge.svg" width="720" alt="米勒平台的栅电荷账：驱动电流是挤压器动画：四步节拍推导"></p>
+
+**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [4.3/4.6 平台与四拍](p1-05-ch4.md#ch4)
+
+
+## 5.130 上拉取值：上升沿与功耗的双边权衡 <a id="demo130"></a>
+
+<p align="center"><img src="assets/svg/exp-pullup-trade.svg" width="720" alt="上拉取值：上升沿与功耗的双边权衡动画：四步节拍推导"></p>
+
+**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [5.3 上拉取值](p1-06-ch5.md#ch5)
+
+
+## 5.131 直通窗口与死区：换向瞬间谁在岗 <a id="demo131"></a>
+
+<p align="center"><img src="assets/svg/exp-dead-time.svg" width="720" alt="直通窗口与死区：换向瞬间谁在岗动画：四步节拍推导"></p>
+
+**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [5.1 推挽直通](p1-06-ch5.md#ch5)
+
+
+## 5.132 增益带宽交换：GBW 是一笔守恒的预算 <a id="demo132"></a>
+
+<p align="center"><img src="assets/svg/exp-gbw-swap.svg" width="720" alt="增益带宽交换：GBW 是一笔守恒的预算动画：四步节拍推导"></p>
+
+**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [6.3 GBW](p1-07-ch6.md#ch6)
+
+
+## 5.133 压摆率墙：大信号的失效边界 <a id="demo133"></a>
+
+<p align="center"><img src="assets/svg/exp-slew-wall.svg" width="720" alt="压摆率墙：大信号的失效边界动画：四步节拍推导"></p>
+
+**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [6.7 压摆率](p1-07-ch6.md#ch6)
+
+
+## 5.134 迟滞窗口：抗噪护城河的宽与窄 <a id="demo134"></a>
+
+<p align="center"><img src="assets/svg/exp-hyst-window.svg" width="720" alt="迟滞窗口：抗噪护城河的宽与窄动画：四步节拍推导"></p>
+
+**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [7.3 迟滞](p1-08-ch7.md#ch7)
+
+
+## 5.135 判决延迟预算：运放兼职的代价 <a id="demo135"></a>
+
+<p align="center"><img src="assets/svg/exp-delay-budget.svg" width="720" alt="判决延迟预算：运放兼职的代价动画：四步节拍推导"></p>
+
+**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [7.5 延迟账](p1-08-ch7.md#ch7)
+
+
+## 5.136 电荷注入的信号相关性：从台阶到谐波 <a id="demo136"></a>
+
+<p align="center"><img src="assets/svg/exp-inject-harmonic.svg" width="720" alt="电荷注入的信号相关性：从台阶到谐波动画：四步节拍推导"></p>
+
+**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [8.3 注入分账](p1-09-ch8.md#ch8)
+
+
+## 5.137 采样保持的 droop 预算：时间维度的税 <a id="demo137"></a>
+
+<p align="center"><img src="assets/svg/exp-droop-budget.svg" width="720" alt="采样保持的 droop 预算：时间维度的税动画：四步节拍推导"></p>
+
+**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [8.4 端到端例](p1-09-ch8.md#ch8)
+
+
+## 5.138 LDO 换料的隐性账：ESR 零点与稳定（失效边界） <a id="demo138"></a>
+
+<p align="center"><img src="assets/svg/exp-ldo-zero.svg" width="720" alt="LDO 换料的隐性账：ESR 零点与稳定（失效边界）动画：四步节拍推导"></p>
+
+**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [9.3 稳定性](p1-10-ch9.md#ch9)
+
+
+## 5.139 PSRR 随频率滚降：电源抑制是分段防守 <a id="demo139"></a>
+
+<p align="center"><img src="assets/svg/exp-psrr-roll.svg" width="720" alt="PSRR 随频率滚降：电源抑制是分段防守动画：四步节拍推导"></p>
+
+**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [9.3 PSRR](p1-10-ch9.md#ch9)
+
+
+## 5.140 单稳态触发链：一触发，亮一拍 <a id="demo140"></a>
+
+<p align="center"><img src="assets/svg/exp-555-mono-train.svg" width="720" alt="单稳态触发链：一触发，亮一拍动画：四步节拍推导"></p>
+
+**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [10.5 单稳态](p1-11-ch10.md#ch10)
+
+
+## 5.141 555 占空比：充放两条路各管一段 <a id="demo141"></a>
+
+<p align="center"><img src="assets/svg/exp-555-duty.svg" width="720" alt="555 占空比：充放两条路各管一段动画：四步节拍推导"></p>
+
+**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [10.2 三种模式](p1-11-ch10.md#ch10)
+
+
+## 5.142 米勒倍增：一只电容被增益放大 <a id="demo142"></a>
+
+<p align="center"><img src="assets/svg/exp-miller-mult.svg" width="720" alt="米勒倍增：一只电容被增益放大动画：四步节拍推导"></p>
+
+**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [11.5 米勒效应](p2-01-ch11.md#ch11)
+
+
+## 5.143 噪声三税：一张预算表收口 <a id="demo143"></a>
+
+<p align="center"><img src="assets/svg/exp-noise-ladder.svg" width="720" alt="噪声三税：一张预算表收口动画：四步节拍推导"></p>
+
+**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [11.6 噪声预算](p2-01-ch11.md#ch11)
+
+
+## 5.144 积分器漂移与泄放电阻（失效边界） <a id="demo144"></a>
+
+<p align="center"><img src="assets/svg/exp-integrator-drift.svg" width="720" alt="积分器漂移与泄放电阻（失效边界）动画：四步节拍推导"></p>
+
+**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [12.4/12.11 积分器](p2-02-ch12.md#ch12)
+
+
+## 5.145 容性负载自激与隔离电阻（失效边界） <a id="demo145"></a>
+
+<p align="center"><img src="assets/svg/exp-cload-isolate.svg" width="720" alt="容性负载自激与隔离电阻（失效边界）动画：四步节拍推导"></p>
+
+**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [12.9 稳定性实战](p2-02-ch12.md#ch12)
+
+
+## 5.146 伏秒平衡：电感稳态的入场券 <a id="demo146"></a>
+
+<p align="center"><img src="assets/svg/exp-volt-second.svg" width="720" alt="伏秒平衡：电感稳态的入场券动画：四步节拍推导"></p>
+
+**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [13.2 Buck](p2-03-ch13.md#ch13)
+
+
+## 5.147 晶振牵引灵敏度：3pF 偏差值多少秒 <a id="demo147"></a>
+
+<p align="center"><img src="assets/svg/exp-crystal-pull.svg" width="720" alt="晶振牵引灵敏度：3pF 偏差值多少秒动画：四步节拍推导"></p>
+
+**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [13.10 晶振](p2-03-ch13.md#ch13)
+
+
+## 5.148 最坏情况 vs RSS：误差预算的两把尺 <a id="demo148"></a>
+
+<p align="center"><img src="assets/svg/exp-wc-rss.svg" width="720" alt="最坏情况 vs RSS：误差预算的两把尺动画：四步节拍推导"></p>
+
+**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [14.10 WC/RSS](p3-01-ch14.md#ch14)
+
+
+## 5.149 回流路径被割断：开槽的代价（失效边界） <a id="demo149"></a>
+
+<p align="center"><img src="assets/svg/exp-return-cut.svg" width="720" alt="回流路径被割断：开槽的代价（失效边界）动画：四步节拍推导"></p>
+
+**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [15.2/15.7 回流](p3-02-ch15.md#ch15)
+
+
+## 5.150 叠层与阻抗：同一只 50Ω 两种命运 <a id="demo150"></a>
+
+<p align="center"><img src="assets/svg/exp-via-stack.svg" width="720" alt="叠层与阻抗：同一只 50Ω 两种命运动画：四步节拍推导"></p>
+
+**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [15.3 叠层](p3-02-ch15.md#ch15)
+
+
+## 5.151 二分定位的对数数学：6 节点 3 刀 <a id="demo151"></a>
+
+<p align="center"><img src="assets/svg/exp-log2-split.svg" width="720" alt="二分定位的对数数学：6 节点 3 刀动画：四步节拍推导"></p>
+
+**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [16.1 二分](p4-01-ch16.md#ch16)
+
+
+## 5.152 接触电阻蠕变：只量通断会漏掉的漂移窗（失效边界） <a id="demo152"></a>
+
+<p align="center"><img src="assets/svg/exp-contact-creep.svg" width="720" alt="接触电阻蠕变：只量通断会漏掉的漂移窗（失效边界）动画：四步节拍推导"></p>
+
+**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [17.6 焊接连接](p4-02-ch17.md#ch17)
+
+
+## 5.153 1-10-100 成本法则：把故障往左推 <a id="demo153"></a>
+
+<p align="center"><img src="assets/svg/exp-cost-ladder.svg" width="720" alt="1-10-100 成本法则：把故障往左推动画：四步节拍推导"></p>
+
+**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [18.4 评审四闸](p4-03-ch18.md#ch18)
+

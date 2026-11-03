@@ -38,7 +38,6 @@ _BEATS = []
 # 当前这张图的 (title, w)——save() 用它给标题配手写体与马克笔划线。
 _CURRENT = ('', 800)
 
-
 # ======================= 模板与元件库 =======================
 
 def svg_open(title, w=800, h=460):
@@ -64,7 +63,6 @@ def svg_open(title, w=800, h=460):
 <text x="{w//2}" y="29" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">{title}</text>
 '''
 
-
 def flow(path, dur, n=3, color="#f59e0b", r=5.5, stagger=None, keypoints="0;0.3;0.7;1", keytimes="0;0.35;0.65;1"):
     """沿路径的电流粒子；begin 负相位保证静态首帧可见；默认四点 keyPoints 缓入缓出（两端慢、中间快）"""
     stagger = stagger if stagger is not None else dur / n
@@ -74,7 +72,6 @@ def flow(path, dur, n=3, color="#f59e0b", r=5.5, stagger=None, keypoints="0;0.3;
         f'<animateMotion dur="{dur}s" begin="{i*stagger-0.5:.2f}s" repeatCount="indefinite" path="{path}"{kp}/></circle>'
         for i in range(n))
     return f'<g filter="url(#pglow)">{inner}</g>'
-
 
 def _text_w(s, size):
     """粗略估算文本宽度（CJK/全角/圈号约 1.0em、数字/大写约 0.66em）——用于给字幕配药丸底衬"""
@@ -94,7 +91,6 @@ def _text_w(s, size):
         else:
             w += size * 0.58
     return w * 1.045
-
 
 def caption(text, color, dur, kt_values, kt_times, y=400, x=400, size=14.5, w=800):
     """节拍字幕：kt_values/kt_times 控制该幕的显隐窗口；配同相显隐的药丸底衬 + 轻微上浮"""
@@ -128,7 +124,6 @@ def caption(text, color, dur, kt_values, kt_times, y=400, x=400, size=14.5, w=80
         pass
     return f'<g>{slide}{pill}{txt}</g>'
 
-
 def beat_captions(beats, dur, y):
     """均分字幕时隙；交接点 b 处旧拍恰好淡完、新拍恰好开始淡入（零重叠接力）。
 
@@ -147,7 +142,6 @@ def beat_captions(beats, dur, y):
         out += caption(txt, col, dur, ';'.join(map(str, values)),
                        ';'.join(f'{t:.8g}' for t in times), y=y) + '\n'
     return out
-
 
 def veil(x, y, w, h, i, n, dur, amount=0.42, fill="#fdf8ea"):
     """强调层的「去亮遮罩」：盖住第 i 块内容，轮到它时淡开。
@@ -170,7 +164,6 @@ def veil(x, y, w, h, i, n, dur, amount=0.42, fill="#fdf8ea"):
             f'<animate attributeName="opacity" values="{vals}" keyTimes="{kt}" '
             f'dur="{dur}s" repeatCount="indefinite"/></rect>')
 
-
 def stage_cards(cards, dur):
     """四拍卡逐拍揭示：每张卡上覆一块纸色遮罩，轮到第 i 拍才淡开。
 
@@ -180,7 +173,6 @@ def stage_cards(cards, dur):
     """
     return [card + veil(20 + 192 * i, 70, 174, 214, i, len(cards), dur, amount=0.5)
             for i, card in enumerate(cards)]
-
 
 # ======================= 推导阶梯（公式推导图共用） =======================
 
@@ -209,7 +201,6 @@ def derive_ladder(steps, dur, x, y, w=352, gap=58, accent="#b45309"):
               f'dur="{dur}s" repeatCount="indefinite"/></rect>\n')
     return cursor + rows
 
-
 def derive_frame(title, steps, left_svg, h=680, dur=16):
     """左图右算式的推导版式：左边电路随拍揭示，右边公式阶梯随拍推进，共用 n、dur。"""
     svg = svg_open(title, h=h)
@@ -219,7 +210,6 @@ def derive_frame(title, steps, left_svg, h=680, dur=16):
     svg += derive_ladder(steps, dur, 412, 134, w=352, gap=58)
     return svg
 
-
 def chip(x, y, text, color="#3d6b4a", size=11.5, fill="#f6eedb"):
     """纸片标签：低位（页底暗带）注释统一承载在这块小纸片上，浅深两主题都可读。"""
     w = _text_w(text, size) + 22
@@ -227,7 +217,6 @@ def chip(x, y, text, color="#3d6b4a", size=11.5, fill="#f6eedb"):
             f'fill="{fill}" stroke="{color}" stroke-width="1"/>'
             f'<text x="{x}" y="{y + 4:.0f}" text-anchor="middle" font-size="{size}" '
             f'font-weight="bold" fill="{color}">{text}</text>')
-
 
 def _wrap(text, avail, size, maxlines=3):
     """折行：优先用最少行数，行宽尽量均衡，并倾向在标点后断行"""
@@ -253,7 +242,6 @@ def _wrap(text, avail, size, maxlines=3):
             return [text[:i]] + _wrap(text[i:], avail, size, n - 1)
     return [text]                                  # 实在塞不下，只能溢出
 
-
 def note_box(text, y, dur, delay_kt="0;0.82;0.86;1", color="#059669", bg="#ecfdf5", x=400, w=560, size=13.5, focus=None):
     """延迟出现的要点注释框（柔和投影 + 左侧色条；文案过长时自动折行，框高随之增长）。
 
@@ -277,7 +265,6 @@ def note_box(text, y, dur, delay_kt="0;0.82;0.86;1", color="#059669", bg="#ecfdf
     return (f'<g opacity="0">\n<animate attributeName="opacity" values="0;0;1;1" keyTimes="{delay_kt}" '
             f'dur="{dur}s" repeatCount="indefinite"/>\n{focus_svg}{rects}{txt}\n</g>')
 
-
 def trace2(path_d, dur, color="#2563eb", width=3.5, kt="0;0.82;0.875;0.93;1", plen=700, ghost=True):
     """描线动画（ghost=True 时附 18% 透明度完整底稿，静态首帧不空）。
 
@@ -294,18 +281,15 @@ def trace2(path_d, dur, color="#2563eb", width=3.5, kt="0;0.82;0.875;0.93;1", pl
                 f'<animate attributeName="stroke-dashoffset" values="{values}" keyTimes="{kt}" '
                 f'dur="{dur}s" repeatCount="indefinite"/></path>')
 
-
 def pulse(x, y, w, h, color="#f59e0b", dur=1.2, rx=8):
     return (f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{rx}" fill="none" stroke="{color}" stroke-width="2.5" opacity="0" filter="url(#pglow)">'
             f'<animate attributeName="opacity" values="0.15;0.9;0.15" dur="{dur}s" repeatCount="indefinite"/></rect>')
-
 
 def gnd_sym(x, y, color="#334155"):
     return (f'<line x1="{x}" y1="{y-14}" x2="{x}" y2="{y}" stroke="{color}" stroke-width="2.5"/>'
             f'<line x1="{x-16}" y1="{y}" x2="{x+16}" y2="{y}" stroke="{color}" stroke-width="3"/>'
             f'<line x1="{x-10}" y1="{y+6}" x2="{x+10}" y2="{y+6}" stroke="{color}" stroke-width="3"/>'
             f'<line x1="{x-4}" y1="{y+12}" x2="{x+4}" y2="{y+12}" stroke="{color}" stroke-width="3"/>')
-
 
 def resistor_h(x, y, w=56, label='', sub='', color="#334155", lcolor="#b45309"):
     sub_t = f'<text x="{x+w/2}" y="{y+15}" text-anchor="middle" font-size="10.5" fill="#475569">{sub}</text>' if sub else ''
@@ -314,7 +298,6 @@ def resistor_h(x, y, w=56, label='', sub='', color="#334155", lcolor="#b45309"):
 <line x1="{x+w}" y1="{y}" x2="{x+w+20}" y2="{y}" stroke="{color}" stroke-width="2.5"/>
 <text x="{x+w/2}" y="{y-17}" text-anchor="middle" font-size="12.5" font-weight="bold" fill="{lcolor}">{label}</text>{sub_t}'''
 
-
 def resistor_v(x, y, h=56, label='', color="#334155", lcolor="#b45309"):
     body = f'''<line x1="{x}" y1="{y-20}" x2="{x}" y2="{y}" stroke="{color}" stroke-width="2.5"/>
 <rect x="{x-11}" y="{y}" width="22" height="{h}" fill="#f8fafc" stroke="{color}" stroke-width="2.5"/>
@@ -322,7 +305,6 @@ def resistor_v(x, y, h=56, label='', color="#334155", lcolor="#b45309"):
     if label:
         body += f'\n<text x="{x+20}" y="{y+h/2+4}" font-size="12.5" font-weight="bold" fill="{lcolor}">{label}</text>'
     return body
-
 
 def npn_svg(x, y, color="#334155"):
     """NPN：基区棒在(x-35,y)，C 右上、E 右下（发射极箭头向外，沿斜线方向）"""
@@ -340,7 +322,6 @@ def npn_svg(x, y, color="#334155"):
 <text x="{x+9}" y="{y-48}" font-size="12.5" font-weight="bold" fill="#2563eb">C</text>
 <text x="{x+9}" y="{y+60}" font-size="12.5" font-weight="bold" fill="#059669">E</text>'''
 
-
 def diode_arm(x1, y1, x2, y2, label, dlx, dly):
     """桥臂二极管：正向从 (x1,y1) 指向 (x2,y2)"""
     mx, my = (x1+x2)/2, (y1+y2)/2
@@ -357,7 +338,6 @@ def diode_arm(x1, y1, x2, y2, label, dlx, dly):
 <line x1="{tipx:.0f}" y1="{tipy:.0f}" x2="{x2}" y2="{y2}" stroke="#334155" stroke-width="2.5"/>
 <text x="{dlx}" y="{dly}" font-size="12" font-weight="bold" fill="#475569">{label}</text>'''
 
-
 def sine_path(x0, x1, ymid, amp, n=48, phase=0.0):
     pts = []
     for i in range(n+1):
@@ -367,7 +347,6 @@ def sine_path(x0, x1, ymid, amp, n=48, phase=0.0):
         pts.append(f"{x:.0f},{y:.0f}")
     return "M" + " L".join(pts)
 
-
 def square_path(x0, x1, y_hi, y_lo, periods=2, n=64):
     pts = []
     for i in range(n+1):
@@ -376,7 +355,6 @@ def square_path(x0, x1, y_hi, y_lo, periods=2, n=64):
         y = y_lo if (t % 1) < 0.5 else y_hi
         pts.append(f"{x:.0f},{y:.0f}")
     return "M" + " L".join(pts)
-
 
 def tri_cap(x0, x1, y13, y23, cycles=2):
     """555 电容三角波：充电 2 份时间、放电 1 份（占空比 2/3 的来源）"""
@@ -391,7 +369,6 @@ def tri_cap(x0, x1, y13, y23, cycles=2):
         pts.append(f"{x:.0f},{y:.0f}")
     return "M" + " L".join(pts)
 
-
 def sq_out(x0, x1, yhi, ylo, cycles=2):
     pts = []
     T = 3.0
@@ -403,7 +380,6 @@ def sq_out(x0, x1, yhi, ylo, cycles=2):
         y = ylo if ph < 2 else yhi
         pts.append(f"{x:.0f},{y:.0f}")
     return "M" + " L".join(pts)
-
 
 def save(name, svg):
     global _BEATS
@@ -418,7 +394,6 @@ def save(name, svg):
     with open(path, 'w', encoding='utf-8') as f:
         f.write(svg)
     print('saved', name, len(svg), 'bytes')
-
 
 # ======================= 图 1：RC 充电 =======================
 def make_rc_charge():
@@ -496,7 +471,6 @@ def make_rc_charge():
     svg += note_box("τ = R×C：电阻大=水管细，电容大=水桶深，都让它更慢", 442, DUR, w=520)
     save('rc-charge.svg', svg + '</svg>')
 
-
 # ======================= 图 2：桥式全波整流 =======================
 def make_bridge_rectifier():
     D4 = 4
@@ -570,7 +544,6 @@ def make_bridge_rectifier():
     svg += note_box("代价：两只管压降 ≈1.4V · 纹波 = 2×市电 = 100Hz · 1N4007 耐压 1000V/1A", 546, D4,
                     "0;0.55;0.6;1", w=680)
     save('bridge-rectifier.svg', svg + '</svg>')
-
 
 # ======================= 图 3：BJT 共射放大 =======================
 # 参数自洽核算（2N2222，β=100 下限设计）：
@@ -647,7 +620,6 @@ def make_bjt_amplify():
     svg += note_box("2N2222 datasheet：hFE=75~300@10mA，设计时按 β=100 下限留余量", 486, D6, "0;0.9;0.94;1", w=640)
     save('bjt-amplify.svg', svg + '</svg>')
 
-
 # ======================= 图 4：MOSFET 开关 =======================
 # 参数：AO3400 VTH=1.45V(max)，3.3V 驱动可靠；LED 2V/20mA，R=(5−2)/20mA=150Ω
 def make_mosfet_switch():
@@ -723,7 +695,6 @@ def make_mosfet_switch():
                     452, D4, "0;0.6;0.65;1", w=740, x=400)
     save('mosfet-switch.svg', svg + '</svg>')
 
-
 # ======================= 图 5：运放反相放大 =======================
 # 参数：Rin=1kΩ Rf=10kΩ → 增益 −10；vin ±0.5V → vout ∓5V（±12V 电源内，不饱和）
 def make_opamp_inverting():
@@ -783,7 +754,6 @@ def make_opamp_inverting():
     svg += note_box("i = vin/Rin → vout = −i·Rf → vout = −vin·(Rf/Rin)：两条虚字规则推完整个电路", 462, D5,
                     "0;0.86;0.9;1", w=700)
     save('opamp-inverting.svg', svg + '</svg>')
-
 
 # ======================= 图 6：比较器迟滞 =======================
 # 参数：LM393 开集电极+4.7k 上拉；R1=R2=10k 分压 2.5V；R3=1MΩ 正反馈 → 窗口≈1V
@@ -883,7 +853,6 @@ def make_comparator_hysteresis():
                     "0;0.88;0.92;1", w=620)
     save('comparator-hysteresis.svg', svg + '</svg>')
 
-
 # ======================= 图 7：555 无稳态振荡 =======================
 # 参数：R1=R2=10kΩ, C=10µF → f=1.44/((R1+2R2)C)≈4.8Hz，占空比 66.7%
 def make_ne555_astable():
@@ -968,7 +937,6 @@ def make_ne555_astable():
                     534, D6, "0;0.76;0.8;1", w=720)
     save('ne555-astable.svg', svg + '</svg>')
 
-
 # ======================= 图 8：推挽 vs 开漏 =======================
 def make_pushpull_opendrain():
     DP = 4
@@ -1048,8 +1016,6 @@ def make_pushpull_opendrain():
                    "0;0;1;1", "0;0.52;0.56;1", y=410)
     svg += note_box("开漏+上拉=「线与」：任何一个设备都能拉低总线——仲裁、中断共享、电平转换全靠它", 448, DP, "0;0.6;0.65;1", w=700)
     save('pushpull-opendrain.svg', svg + '</svg>')
-
-
 
 # ======================= 图 9：LDO 负反馈 =======================
 def make_ldo_feedback():
@@ -1159,7 +1125,6 @@ def make_ldo_feedback():
     svg += note_box("VOUT = 1.25×(1+R1/R2) · 发热 = (VIN−VOUT)×I 全变成热——LDO 效率低的根因", 452, DL, "0;0.68;0.73;1", w=680)
     save('ldo-feedback.svg', svg + '</svg>')
 
-
 # ======================= 图 10：模拟开关电荷注入 =======================
 def make_analog_switch():
     DA = 6
@@ -1251,7 +1216,6 @@ def make_analog_switch():
     svg += note_box("12 位 ADC 的 1 LSB@3.3V 仅 0.8mV——10mV 注入误差=12 LSB！对策：加大保持电容/低注入开关/差分抵消", 458, DA, "0;0.7;0.75;1", w=740)
     save('analog-switch.svg', svg + '</svg>')
 
-
 # ======================= 图 12：回流路径 =======================
 def make_pcb_return_path():
     DR = 5
@@ -1309,7 +1273,6 @@ def make_pcb_return_path():
                    "0;0;1;1", "0;0.68;0.74;1", y=420)
     svg += note_box("军规：任何信号线不许跨分割/开槽！换层时回流地过孔必须贴着信号过孔——「让回流贴着脚下回家」", 462, DR, "0;0.78;0.84;1", w=730)
     save('pcb-return-path.svg', svg + '</svg>')
-
 
 # ======================= 图 13：差分对 =======================
 def make_diff_pair():
@@ -1380,7 +1343,6 @@ def make_diff_pair():
     svg += note_box("CMRR（共模抑制比）的全部秘密 = 尾电流源的内阻——内阻越大，共模越动弹不得", 532, DD, "0;0.66;0.71;1", w=700)
     save('diff-pair.svg', svg + '</svg>')
 
-
 # ======================= 图 14：Buck 降压 =======================
 def make_buck_converter():
     DB = 6
@@ -1446,7 +1408,6 @@ def make_buck_converter():
                    "0;0;1;1", "0;0.58;0.64;1", y=460)
     svg += note_box("电感=水车的惯性：开关只管断续送水，惯性把水流碾平——效率 90%+ 的秘密是开关不顶压差", 494, DB, "0;0.7;0.75;1", w=730)
     save('buck-converter.svg', svg + '</svg>')
-
 
 # ======================= 图 11：去耦电容 =======================
 def make_cap_decoupling():
@@ -1522,7 +1483,6 @@ def make_cap_decoupling():
                    "0;0;1;1", "0;0.72;0.76;1", y=400)
     svg += note_box("100nF 管高频（ns 尖峰）· 10µF 管中频 · 大电解管低频——三级去耦，各司其职", 458, DC, "0;0.8;0.84;1", w=640)
     save('cap-decoupling.svg', svg + '</svg>')
-
 
 # ======================= 图 15：文氏桥振荡器 =======================
 def make_wien_bridge():
@@ -1612,7 +1572,6 @@ def make_wien_bridge():
     svg += note_box("惠普第一桶金 HP200A 就是这颗灯泡：幅度大→灯丝热→阻升→增益降，自稳在 3 倍", 474, DW, "0;0.72;0.77;1", w=690)
     save('wien-bridge.svg', svg + '</svg>')
 
-
 # ======================= 图 16：乙类推挽与交越失真 =======================
 def make_class_b():
     DC2 = 6
@@ -1677,7 +1636,6 @@ def make_class_b():
                    "0;0;1;1", "0;0.76;0.8;1", y=430)
     svg += note_box("偏置管要紧贴功率管安装（热耦合）——否则温度升→电流增→更热：热失控烧管", 474, DC2, "0;0.84;0.88;1", w=660)
     save('class-b-crossover.svg', svg + '</svg>')
-
 
 # ======================= 图 17：Sallen-Key 滤波器 =======================
 def make_sallen_key():
@@ -1771,7 +1729,6 @@ def make_sallen_key():
     svg += note_box("fc = 1/(2πRC)（R1=R2、C1=C2 时）· Q 由增益设定——滤波器不是衰减器，是受控的谐振", 494, DS, "0;0.88;0.92;1", w=730)
     save('sallen-key.svg', svg + '</svg>')
 
-
 # ======================= 图 18：电流镜 =======================
 def make_current_mirror():
     DM = 6
@@ -1818,7 +1775,6 @@ def make_current_mirror():
                    "0;0;1;1", "0;0.64;0.7;1", y=430)
     svg += note_box("误差源头：两只基流都从 I_REF 里扣（β 有限）——Wilson 镜再加一管，把误差再压一个数量级", 474, DM, "0;0.74;0.79;1", w=700)
     save('current-mirror.svg', svg + '</svg>')
-
 
 # ======================= 图 19：Boost 升压 =======================
 def make_boost_converter():
@@ -1891,7 +1847,6 @@ def make_boost_converter():
     svg += note_box("升压的秘密 = 电感电压与输入「叠罗汉」；Buck 是电感在后级碾平，Boost 是电感在前级打气", 494, DB2, "0;0.7;0.75;1", w=730)
     save('boost-converter.svg', svg + '</svg>')
 
-
 # ======================= 图 20：精密整流 =======================
 def make_precision_rectifier():
     DP = 6
@@ -1955,7 +1910,6 @@ def make_precision_rectifier():
     svg += note_box("0.7V ÷ 开环增益 = 等效死区 7µV——把非线性元件塞进反馈环，让增益替你买单", 486, DP, "0;0.74;0.79;1", w=680)
     save('precision-rectifier.svg', svg + '</svg>')
 
-
 # ======================= 图 21：米勒效应 =======================
 def make_miller_effect():
     DML = 6
@@ -2018,7 +1972,6 @@ def make_miller_effect():
                    "0;0;1;1", "0;0.64;0.7;1", y=430)
     svg += note_box("C_eff=(1+A)·C：它是放大器高频滚降的元凶（C_bc 只有几 pF），也是密勒补偿的原理", 474, DML, "0;0.74;0.79;1", w=710)
     save('miller-effect.svg', svg + '</svg>')
-
 
 # ======================= 图 22：仪表放大器 =======================
 def make_instrumentation_amp():
@@ -2106,7 +2059,6 @@ def make_instrumentation_amp():
     svg += note_box("CMRR>100dB 的三道防线：前级对称结构 · R_G 不吸共模电流 · 减法器四 R 激光修调匹配", 494, DI, "0;0.88;0.92;1", w=700)
     save('instrumentation-amp.svg', svg + '</svg>')
 
-
 # ======================= 图 23：LC 谐振 =======================
 def make_rlc_resonance():
     DR = 6
@@ -2164,7 +2116,6 @@ def make_rlc_resonance():
                    "0;0;1;1", "0;0.64;0.7;1", y=430)
     svg += note_box("谐振不是「放大」——是阻抗抵消后电源只面对 R；峰顶的电压/电流可以远超激励，这就是谐振的危险与价值", 474, DR, "0;0.74;0.79;1", w=730)
     save('rlc-resonance.svg', svg + '</svg>')
-
 
 # ======================= 图 24：SAR ADC 逐次逼近 =======================
 def make_sar_adc():
@@ -2238,7 +2189,6 @@ def make_sar_adc():
     svg += note_box("比较器是天平的指针，DAC 是砝码，SAR 逻辑是记录员——每拍只问一个问题：「重了还是轻了」", 494, DA, "0;0.88;0.92;1", w=690)
     save('sar-adc.svg', svg + '</svg>')
 
-
 # ======================= 图 25：带隙基准 =======================
 def make_bandgap():
     DBG = 6
@@ -2285,7 +2235,6 @@ def make_bandgap():
                    "0;0;1;1", "0;0.64;0.7;1", y=430)
     svg += note_box("1.25V 不是调出来的，是硅的带隙电压——两条物理曲线的交点写在材料常数里（Widlar 1971 / Brokaw 1974，见 8.9）", 474, DBG, "0;0.74;0.79;1", w=740)
     save('bandgap.svg', svg + '</svg>')
-
 
 # ======================= 图 26：TL431 可调基准 =======================
 def make_tl431():
@@ -2334,7 +2283,6 @@ def make_tl431():
                    "0;0;1;1", "0;0.64;0.7;1", y=430)
     svg += note_box("阴极电压永远 ≥2.5V——并联稳压、精密恒流、光耦反馈全用它", 474, DT, "0;0.74;0.79;1", w=730)
     save('tl431.svg', svg + '</svg>')
-
 
 # ======================= 图 27：采样保持 =======================
 def make_sample_hold():
@@ -2400,7 +2348,6 @@ def make_sample_hold():
                    "0;0;1;1", "0;0.61;0.67;1", y=430)
     svg += note_box("droop 率 = I_leak / C_hold——电容大下垂慢，但充电也慢；这就是第 8 章电荷注入在 ADC 前端的现身", 474, DH, "0;0.7;0.75;1", w=710)
     save('sample-hold.svg', svg + '</svg>')
-
 
 # ======================= 图 28：电荷泵 =======================
 def make_charge_pump():
@@ -2478,7 +2425,6 @@ def make_charge_pump():
                    "0;0;1;1", "0;0.64;0.7;1", y=430)
     svg += note_box("ICL7660 负压、MAX232 的 ±10V、运放负电源——都是这架斗提机；要电流大？请回 13.3 用电感 Boost", 474, DC3, "0;0.74;0.79;1", w=700)
     save('charge-pump.svg', svg + '</svg>')
-
 
 # ======================= 图 29：一阶 RC 低通与波特图 =======================
 def make_rc_lowpass():
@@ -2558,7 +2504,6 @@ def make_rc_lowpass():
     svg += note_box("Sallen-Key、有源滤波、运放主极点——全是这颗种子的繁殖；看懂它，波特图会读一半", 494, DLP, "0;0.7;0.75;1", w=680)
     save('rc-lowpass.svg', svg + '</svg>')
 
-
 # ======================= 图 30：齐纳稳压 =======================
 def make_zener_regulator():
     DZ = 6
@@ -2603,7 +2548,6 @@ def make_zener_regulator():
                    "0;0;1;1", "0;0.64;0.7;1", y=430)
     svg += note_box("水位一到就开闸放水——齐纳是电压的溢流阀；5.6V 附近温度系数最小（两种击穿机制温漂互消）", 474, DZ, "0;0.74;0.79;1", w=700)
     save('zener-regulator.svg', svg + '</svg>')
-
 
 # ======================= 图 31：恒流源 =======================
 def make_constant_current():
@@ -2650,7 +2594,6 @@ def make_constant_current():
                    "0;0;1;1", "0;0.64;0.7;1", y=430)
     svg += note_box("恒流源 = 会自适应的电阻：LED 驱动、传感器激励、电流镜负载、差分对长尾——四处都有它", 474, DCC, "0;0.74;0.79;1", w=690)
     save('constant-current.svg', svg + '</svg>')
-
 
 # ======================= 图 32：峰值检测 =======================
 def make_peak_detector():
@@ -2727,7 +2670,6 @@ def make_peak_detector():
                    "0;0;1;1", "0;0.61;0.67;1", y=430)
     svg += note_box("峰值表、振幅测量、音频 AGC、包络检波——全是「单向记忆」；二极管压降？运放已按 12.6 精密整流把它除掉了", 474, DPK, "0;0.7;0.75;1", w=720)
     save('peak-detector.svg', svg + '</svg>')
-
 
 # ======================= 图 33：反相 Buck-Boost =======================
 def make_inverting_buckboost():
@@ -2888,7 +2830,6 @@ def make_ne555_monostable():
     svg += note_box("「单稳」= 只有一个稳态。触发多宽都行，输出脉冲宽度只认 RA·C——定时器的本质：RC 定时，芯片在两个阈值之间当裁判。（5 脚接 0.01µF 去耦，别省）", 452, DM, w=680)
     save('ne555-monostable.svg', svg + '</svg>')
 
-
 # ======================= 图 35：H 桥 =======================
 def make_h_bridge():
     DH = 7
@@ -2970,7 +2911,6 @@ def make_h_bridge():
                    "0;0;1;1", "0;0.84;0.9;1", y=424)
     svg += note_box("四个开关两个状态位——这就是 H 桥。驱动芯片（DRV8833/L298）把死区、自举、过流保护全打包；高侧管源极悬在电机电压上，要靠自举电容「举」着栅极才开得动。", 452, DH, w=700)
     save('h-bridge.svg', svg + '</svg>')
-
 
 # ======================= 图 36：削波与钳位 =======================
 # 波形核算：限幅 ±4V 进、削平在 ±2.7V（基准±2V+0.7）；钳位 ±3V 进、整体垫高 2.3V（峰值 3−0.7）→ −0.7~5.3V
@@ -3064,7 +3004,6 @@ def make_clipper_clamper():
     svg += note_box("一句话分清：限幅动「幅度」（削顶），钳位动「直流」（垫高）。同一个 0.7V，闸门还是垫脚石，取决于二极管朝哪边、取样的是哪只。", 430, DC, w=690)
     save('clipper-clamper.svg', svg + '</svg>')
 
-
 # ======================= 图 37：负反馈纠错 =======================
 # 增益核算：1+R2/R1 = 1+5k/1k = 6；±0.5V → ±3V；反馈系数 R1/(R1+R2)=1/6
 def make_neg_feedback():
@@ -3120,7 +3059,6 @@ def make_neg_feedback():
                    "0;0;1;1", "0;0.84;0.9;1", y=418)
     svg += note_box("负反馈的魔法：运放出十万倍的蛮力盯误差，电阻定结果——「增益不靠芯片靠电阻，误差不到调不停」。12.1 的两条公理，全部从这里来。", 462, DC, w=700)
     save('neg-feedback.svg', svg + '</svg>')
-
 
 # ======================= 图 38：积分器 =======================
 # 方波 ±1V 进（周期 165px/半周 82.5px），RC=1ms：半周 ΔVout=−Vin·Δt/RC=±1V → 三角 ±1.75V 视觉夸张
@@ -3187,7 +3125,6 @@ def make_integrator():
     svg += note_box("积分器的灵魂：恒流充电容 = 匀速斜坡。实战必记：并在 C 上一只 10MΩ 泄放 V_OS，否则输出慢慢爬向电源轨（漂移饱和）；微分器相反——高频增益无限上升 = 噪声放大器，输入串 R、反馈并 C 摁住它。", 462, DC, w=700)
     save('integrator.svg', svg + '</svg>')
 
-
 # ======================= 图 39：单电源虚地 =======================
 # 0~12V 映射 y=320→130（15.83px/V）；中点 6V→y225；vin ±1.5V→±23.7px
 def make_virtual_ground():
@@ -3253,7 +3190,6 @@ def make_virtual_ground():
                    "0;0;1;1", "0;0.84;0.9;1", y=418)
     svg += note_box("口诀：没有负电源，两只电阻造中点；信号骑上虚地走，输出上下都不缺。提醒：虚地是信号基准、不是电源回流——大电流负载会把中点拖偏，讲究的场合用 TLE2426 这类分压芯片。", 462, DC, w=700)
     save('virtual-ground.svg', svg + '</svg>')
-
 
 # ======================= 图 40：迟滞弛豫振荡器 =======================
 # β=R2/(R1+R2)=0.5 → 门槛 ±3V；T=2RC·ln3=2.2ms(RC=1ms)，f≈455Hz；Vc 指数轨迹 10px/V
@@ -3324,7 +3260,6 @@ def make_schmitt_osc():
     svg += note_box("不用晶振也能造时钟：迟滞管「状态」，RC 管「快慢」。口诀：门槛锁状态，电阻定快慢——窗口越宽弹得越慢，抗噪也越强。", 462, DC, w=700)
     save('schmitt-osc.svg', svg + '</svg>')
 
-
 # ======================= 图 41：阻抗随频率 =======================
 # C=1µF、L=1mH 的 |Z|-f 曲线；交点 f0=1/(2π√(LC))≈5kHz（Z≈32Ω）
 def make_impedance_freq():
@@ -3377,7 +3312,6 @@ def make_impedance_freq():
     svg += note_box("口诀：电容高频短路、电感低频短路——同一条线上寄生两头夹击。线≈1nH/mm、电容带 ESL，高频下它们反客为主（1.1-1.3 + 第 15 章去耦军规的物理根）。", 452, DC, x=400, w=690)
     save('impedance-freq.svg', svg + '</svg>')
 
-
 # ======================= 图 42：运放内部三级流水线 =======================
 # 741 框图：①差分输入级 ×100 → ②中间增益级 ×2000（Cc 密勒补偿）→ ③输出级 ×1；④偏置电流镜
 def make_opamp_internals():
@@ -3428,7 +3362,6 @@ def make_opamp_internals():
     svg += note_box("看戏指南：Vos/Ib 出生在①；GBW/压摆率由②的 Cc 决定；带载与短路能力看③——看框图比背参数表管事。", 452, DC, x=400, w=680)
     save('opamp-internals.svg', svg + '</svg>')
 
-
 # ======================= 图 43：排故五步法流程 =======================
 # 五步蛇形流程 + 巡游高亮框（10s 一圈，5 拍字幕同步）
 def make_debug_flow():
@@ -3478,7 +3411,6 @@ def make_debug_flow():
     svg += caps
     svg += note_box("五步都带「防自欺」设计：先问后拆 / 对数收敛 / 单变量 / 修根因 / 回归——排故不靠灵感，靠流程。", 452, DC, x=400, w=660)
     save('debug-flow.svg', svg + '</svg>')
-
 
 # ======================= 图 96：故障速查：症状→嫌疑→验证（第 17 章 17.1-17.4） =======================
 def make_fault_lookup():
@@ -3539,7 +3471,6 @@ def make_fault_lookup():
 '''
     svg += caps
     save('fault-lookup.svg', svg + '</svg>')
-
 
 # ======================= 图 97：大师的排故智慧（第 18 章 18.1-18.3） =======================
 def make_master_wisdom():
@@ -3604,7 +3535,6 @@ def make_master_wisdom():
     svg += caps
     save('master-wisdom.svg', svg + '</svg>')
 
-
 # ======================= 图 98：设计流程五部曲（第 14 章 14.1） =======================
 def make_design_flow():
     DF = 12
@@ -3660,7 +3590,6 @@ def make_design_flow():
     svg += caps
     save('design-flow.svg', svg + '</svg>')
 
-
 # ======================= 图 99：思维工具箱四暗器（第 16 章 16.2） =======================
 def make_thinking_toolbox():
     DF = 12
@@ -3705,7 +3634,6 @@ def make_thinking_toolbox():
 '''
     svg += caps
     save('thinking-toolbox.svg', svg + '</svg>')
-
 
 # ======================= 图 100：一点接地 vs 共用地线（第 15 章 15.2） =======================
 def make_ground_star():
@@ -3778,7 +3706,6 @@ def make_ground_star():
     svg += caps
     save('ground-star.svg', svg + '</svg>')
 
-
 # ======================= 图 101：变压器：电压换电流（第 1 章 1.3） =======================
 def make_transformer():
     DT = 12
@@ -3835,7 +3762,6 @@ def make_transformer():
 '''
     svg += caps
     save('transformer.svg', svg + '</svg>')
-
 
 # ======================= 图 44：分压器与带载误差（第 0 章首图） =======================
 def make_divider_loading():
@@ -3927,7 +3853,6 @@ def make_divider_loading():
                     "0;0.88;0.92;1", w=770)
     save('divider-loading.svg', svg + '</svg>')
 
-
 # ======================= 图 45：BJT 三个工作区 =======================
 def make_bjt_regions():
     DB = 8
@@ -4015,7 +3940,6 @@ def make_bjt_regions():
                     "0;0.9;0.94;1", w=740)
     save('bjt-regions.svg', svg + '</svg>')
 
-
 # ======================= 图 46：PT100 信号链（第 14 章实例） =======================
 def make_signal_chain():
     DSL = 9
@@ -4092,7 +4016,6 @@ def make_signal_chain():
     svg += caption("④ 收尾：12 位 LSB 折算回输入 = 0.032℃/码，远细于 0.1℃ 的目标分辨率", "#7c3aed", DSL,
                    "0;0;1;1", "0;0.85;0.9;1", y=490)
     save('signal-chain.svg', svg + '</svg>')
-
 
 # ======================= 图 47：热失控正反馈环 =======================
 def make_thermal_runaway():
@@ -4284,7 +4207,6 @@ def make_cap_parasitics():
                     "0;0.9;0.94;1", w=760)
     save('capacitor-parasitics.svg', svg + '</svg>')
 
-
 # ======================= 图 49：米勒平台（MOSFET 开通波形，第 4 章 4.3） =======================
 def make_miller_plateau():
     DS = 10
@@ -4364,7 +4286,6 @@ def make_miller_plateau():
     svg += caption("④ 记住 Q_gd：它比 C_rss 更直接地告诉你「这管子开关有多肉」", "#2563eb", DS,
                    "0;0;1;1", "0;0.85;0.9;1", y=584)
     save('miller-plateau.svg', svg + '</svg>')
-
 
 # ======================= 图 50：运放阶跃响应：压摆率与建立时间（6.7） =======================
 def make_opamp_slew():
@@ -4457,7 +4378,6 @@ def make_opamp_slew():
                    "0;0;1;1", "0;0.85;0.9;1", y=572)
     save('opamp-slew.svg', svg + '</svg>')
 
-
 # ======================= 图 51：二极管伏安特性（第 2 章 2.2） =======================
 def make_diode_iv():
     DI = 10
@@ -4535,7 +4455,6 @@ def make_diode_iv():
     svg += note_box("死记：V_T=26mV、每 60mV 一个十倍、−2mV/℃——三句话能现场推回任何一条硅结曲线", 588, DI,
                     "0;0.9;0.94;1", w=760)
     save('diode-iv.svg', svg + '</svg>')
-
 
 # ======================= 图 52：比较器 vs 运放（第 7 章 7.1） =======================
 def make_comparator_opamp():
@@ -4626,7 +4545,6 @@ def make_comparator_opamp():
     svg += caption("④ 用比较器当放大器：开集电极 + 饱和恢复慢，线性增益根本稳不住", "#b45309", DC,
                    "0;0;1;1", "0;0.85;0.9;1", y=584)
     save('comparator-opamp.svg', svg + '</svg>')
-
 
 # ======================= 图 53：噪声三税种与噪声预算（第 11 章 11.6） =======================
 def make_noise_budget():
@@ -4722,7 +4640,6 @@ def make_noise_budget():
                     "0;0.9;0.94;1", w=750, size=12)
     save('noise-budget.svg', svg + '</svg>')
 
-
 # ======================= 图 54：测量本身不破坏电路（第 16 章 16.3） =======================
 def make_probe_loading():
     DP = 11
@@ -4797,7 +4714,6 @@ def make_probe_loading():
     svg += caption("④ 新板第一次上电先限流：让最便宜的元件先冒烟", "#b45309", DP,
                    "0;0;1;1", "0;0.85;0.9;1", y=628)
     save('probe-loading.svg', svg + '</svg>')
-
 
 # ======================= 图 55：CMOS 传输门为什么必须 N+P 并联（第 8 章 8.1） =======================
 def make_transfer_gate():
@@ -4880,7 +4796,6 @@ def make_transfer_gate():
                     "0;0.9;0.94;1", w=750)
     save('transfer-gate.svg', svg + '</svg>')
 
-
 # ======================= 图 56：三个基本拓扑对比（第 12 章 12.2） =======================
 def make_three_topologies():
     DT = 11
@@ -4936,7 +4851,6 @@ def make_three_topologies():
     svg += note_box("三种拓扑的增益公式都能从虚短虚断一步推出——真正的差别是输入阻抗、共模范围和电阻配对的代价", 560, DT,
                     "0;0.9;0.94;1", w=760)
     save('three-topologies.svg', svg + '</svg>')
-
 
 # ======================= 图 57：三态与高阻（第 5 章 5.4） =======================
 def make_tristate_bus():
@@ -5007,7 +4921,6 @@ def make_tristate_bus():
                    "0;0;1;1", "0;0.85;0.9;1", y=576)
     save('tristate-bus.svg', svg + '</svg>')
 
-
 # ======================= 图 58：推挽输出与直通电流（第 5 章 5.1） =======================
 def make_pushpull_stage():
     DP = 11
@@ -5071,7 +4984,6 @@ def make_pushpull_stage():
     svg += caption("④ 代价二：换班瞬间有直通电流 → 电源毛刺；要靠死区时间压掉", "#b45309", DP,
                    "0;0;1;1", "0;0.85;0.9;1", y=600)
     save('pushpull-stage.svg', svg + '</svg>')
-
 
 # ======================= 图 59：LM393 内部解剖（第 7 章 7.2） =======================
 def make_lm393_inside():
@@ -5140,7 +5052,6 @@ def make_lm393_inside():
     svg += note_box("LM393 的全部脾气都来自「PNP 输入 + 开集电极输出」这两个选择——先看结构，再看参数表", 510, DL,
                     "0;0.9;0.94;1", w=740)
     save('lm393-inside.svg', svg + '</svg>')
-
 
 # ======================= 图 60：齐纳 vs 带隙（第 9 章 9.1） =======================
 def make_ref_showdown():
@@ -5216,7 +5127,6 @@ def make_ref_showdown():
                     "0;0.9;0.94;1", w=740)
     save('ref-showdown.svg', svg + '</svg>')
 
-
 # ======================= 图 61：PN 结的形成（第 2 章 2.1） =======================
 def make_pn_junction():
     DJ = 11
@@ -5266,7 +5176,6 @@ def make_pn_junction():
     svg += note_box("Si 的内建电势约 0.7V——记住它是「平衡态的墙高」，不是「导通门槛」", 600, DJ,
                     "0;0.9;0.94;1", w=720)
     save('pn-junction.svg', svg + '</svg>')
-
 
 # ======================= 图 62：MOSFET 输出特性（第 4 章 4.2） =======================
 def make_mosfet_curves():
@@ -5344,7 +5253,6 @@ def make_mosfet_curves():
                    "0;0;1;1", "0;0.85;0.9;1", y=556)
     save('mosfet-curves.svg', svg + '</svg>')
 
-
 # ======================= 图 63：555 三种模式（第 10 章 10.2） =======================
 def make_555_modes():
     DN = 11
@@ -5417,7 +5325,6 @@ def make_555_modes():
                    "0;0;1;1", "0;0.85;0.9;1", y=552)
     save('555-modes.svg', svg + '</svg>')
 
-
 # ======================= 图 64：负反馈四种拓扑（第 12 章 12.7） =======================
 def make_feedback_topo():
     DF = 11
@@ -5476,7 +5383,6 @@ def make_feedback_topo():
     svg += caption("④ 别忘后半段：相移攒够 180° 且 |Aβ|≥1，负反馈就变振荡器", "#b45309", DF,
                    "0;0;1;1", "0;0.85;0.9;1", y=606)
     save('feedback-topo.svg', svg + '</svg>')
-
 
 # ======================= 图 65：真实电阻的等效模型（第 1 章 1.1） =======================
 def make_resistor_model():
@@ -5567,7 +5473,6 @@ def make_resistor_model():
                     "0;0.9;0.94;1", w=760)
     save('resistor-model.svg', svg + '</svg>')
 
-
 # ======================= 图 66：特殊二极管家族（第 2 章 2.4） =======================
 def make_diode_family():
     DD = 11
@@ -5635,7 +5540,6 @@ def make_diode_family():
                    "0;0;1;1", "0;0.85;0.9;1", y=596)
     save('diode-family.svg', svg + '</svg>')
 
-
 # ======================= 图 67：上拉电阻取值（第 5 章 5.3） =======================
 def make_pullup_sizing():
     DP = 11
@@ -5702,7 +5606,6 @@ def make_pullup_sizing():
     svg += caption("④ 结论：4.7k 是标准模式折中值，快速模式要 2.2k，内部弱上拉只防浮空", "#2563eb", DP,
                    "0;0;1;1", "0;0.85;0.9;1", y=552)
     save('pullup-sizing.svg', svg + '</svg>')
-
 
 # ======================= 图 68：LM358 双运放（第 6 章 6.2） =======================
 def make_lm358_dual():
@@ -5772,7 +5675,6 @@ def make_lm358_dual():
                    "0;0;1;1", "0;0.85;0.9;1", y=590)
     save('lm358-dual.svg', svg + '</svg>')
 
-
 # ======================= 图 69：BJT 三种组态（第 11 章 11.1） =======================
 def make_bjt_configs():
     DC = 11
@@ -5833,7 +5735,6 @@ def make_bjt_configs():
     svg += caption("④ 级联心法：共射打头阵放大、射随器垫后驱动、共基守高频前线", "#7c3aed", DC,
                    "0;0;1;1", "0;0.85;0.9;1", y=604)
     save('bjt-configs.svg', svg + '</svg>')
-
 
 # ======================= 图 70：分立串联稳压（第 13 章 13.1） =======================
 def make_discrete_ldo():
@@ -5903,7 +5804,6 @@ def make_discrete_ldo():
                    "0;0;1;1", "0;0.85;0.9;1", y=592)
     save('discrete-ldo.svg', svg + '</svg>')
 
-
 # ======================= 图 71：BJT 载流子输运（第 3 章 3.1） =======================
 def make_bjt_transport():
     DB = 11
@@ -5969,7 +5869,6 @@ def make_bjt_transport():
     svg += note_box("BJT 是电流控制器件：真正的输入量是 I_B，输出是 I_C——这是与 MOSFET（电压控制）最本质的分野", 560, DB,
                     "0;0.9;0.94;1", w=760)
     save('bjt-transport.svg', svg + '</svg>')
-
 
 # ======================= 图 72：BJT 作开关驱动继电器（第 3 章 3.5） =======================
 def make_bjt_switch():
@@ -6049,7 +5948,6 @@ def make_bjt_switch():
                    "0;0;1;1", "0;0.85;0.9;1", y=586)
     save('bjt-switch.svg', svg + '</svg>')
 
-
 # ======================= 图 73：体二极管与栅极保护（第 4 章 4.4） =======================
 def make_body_diode():
     DY = 11
@@ -6114,7 +6012,6 @@ def make_body_diode():
                    "0;0;1;1", "0;0.85;0.9;1", y=604)
     save('body-diode.svg', svg + '</svg>')
 
-
 # ======================= 图 74：CD4051 多路复用（第 8 章 8.2） =======================
 def make_mux4051():
     DM = 11
@@ -6171,7 +6068,6 @@ def make_mux4051():
     svg += caption("④ 同族选型：4052 双 4 选 1、4053 三路 2 选 1、74HC4051 高速版", "#b45309", DM,
                    "0;0;1;1", "0;0.85;0.9;1", y=700)
     save('mux-4051.svg', svg + '</svg>')
-
 
 # ======================= 图 75：达林顿管（第 3 章 3.6） =======================
 def make_darlington():
@@ -6253,7 +6149,6 @@ def make_darlington():
                    "0;0;1;1", "0;0.85;0.9;1", y=592)
     save('darlington.svg', svg + '</svg>')
 
-
 # ======================= 图 76：运放选型地图（第 6 章 6.4） =======================
 def make_opamp_map():
     DO = 11
@@ -6319,7 +6214,6 @@ def make_opamp_map():
                    "0;0;1;1", "0;0.85;0.9;1", y=588)
     save('opamp-map.svg', svg + '</svg>')
 
-
 # ======================= 图 77：Datasheet 六参数优先级（第 6 章 6.3） =======================
 def make_datasheet_params():
     DP = 11
@@ -6367,7 +6261,6 @@ def make_datasheet_params():
     svg += caption("④ 读法总结：按「你电路会疼的地方」跳读，别从头翻到尾", "#b45309", DP,
                    "0;0;1;1", "0;0.85;0.9;1", y=690)
     save('datasheet-params.svg', svg + '</svg>')
-
 
 # ======================= 图 78：7805/AMS1117 故障地图（第 9 章 9.4） =======================
 def make_ldo_failures():
@@ -6429,7 +6322,6 @@ def make_ldo_failures():
     svg += caption("④ 上电账：快上电 + 大压差会过冲；软启动或换型号。大压差大电流请直接上 DCDC", "#0ea5e9", DF,
                    "0;0;1;1", "0;0.85;0.9;1", y=706)
     save('ldo-failures.svg', svg + '</svg>')
-
 
 # ======================= 图 79：BJT 在线速判（第 3 章 3.8） =======================
 def make_bjt_diagnosis():
@@ -6506,7 +6398,6 @@ def make_bjt_diagnosis():
                    "0;0;1;1", "0;0.85;0.9;1", y=580)
     save('bjt-diagnosis.svg', svg + '</svg>')
 
-
 # ======================= 图 80：运放六个经典坑（第 6 章 6.6） =======================
 def make_opamp_pitfalls():
     DO = 11
@@ -6561,7 +6452,6 @@ def make_opamp_pitfalls():
                    "0;0;1;1", "0;0.85;0.9;1", y=728)
     save('opamp-pitfalls.svg', svg + '</svg>')
 
-
 # ======================= 图 81：比较器五个坑（第 7 章 7.4） =======================
 def make_comparator_pitfalls():
     DC = 11
@@ -6613,7 +6503,6 @@ def make_comparator_pitfalls():
     svg += caption("④ 记住开集电极的三个红利与一个义务：能转换电平/能与线/能当使能 —— 但必须给上拉", "#059669", DC,
                    "0;0;1;1", "0;0.85;0.9;1", y=690)
     save('comparator-pitfalls.svg', svg + '</svg>')
-
 
 # ======================= 图 82：555 参数与三个坑（第 10 章 10.3） =======================
 def make_555_params():
@@ -6684,7 +6573,6 @@ def make_555_params():
                    "0;0;1;1", "0;0.85;0.9;1", y=604)
     save('ne555-params.svg', svg + '</svg>')
 
-
 # ======================= 图 83：恒压源与恒流源（第 0 章 0.6） =======================
 def make_source_types():
     DS = 11
@@ -6753,7 +6641,6 @@ def make_source_types():
     svg += caption("④ 唯一真源是「恒压源」：恒流源都是拿恒压源 + 负反馈做出来的（见 13.5）", "#b45309", DS,
                    "0;0;1;1", "0;0.85;0.9;1", y=612)
     save('source-types.svg', svg + '</svg>')
-
 
 # ======================= 图 84：戴维南与诺顿等效（第 1 章 1.4） =======================
 def make_thevenin():
@@ -6837,7 +6724,6 @@ def make_thevenin():
     svg += caption("④ 用途：判断「带不带得动」只需比 R_th 与 R_L —— 回溯 0.3 分压器与 0.6 恒压源", "#b45309", DT,
                    "0;0;1;1", "0;0.85;0.9;1", y=612)
     save('thevenin-norton.svg', svg + '</svg>')
-
 
 # ======================= 图 85：恒流源的合规电压（第 13 章 13.5） =======================
 def make_compliance_voltage():
@@ -7141,19 +7027,16 @@ def waveform_cursor(dur, span, series, phases, x0, x1, y0, y1):
 <animate attributeName="opacity" values="{';'.join(values)}" keyTimes="{phase_times}" calcMode="discrete" dur="{dur}s" repeatCount="indefinite"/></text>'''
     return svg
 
-
 def _motion_path(source):
     """animateMotion 的路径字符串：可传 <path d="…"> 元素或纯 'M…' 路径。"""
     m = re.search(r'd="([^"]+)"', source)
     return m.group(1) if m else source
-
 
 def plain_motion(dur, source, begin=None):
     """干净的匀速弧长 animateMotion（导线流、非时间轴曲线用）。"""
     b = f' begin="{begin}"' if begin else ''
     return (f'<animateMotion dur="{dur}s"{b} repeatCount="indefinite" '
             f'path="{_motion_path(source)}"/>')
-
 
 def linear_x_motion(dur, source, begin=None, n=512):
     """时间轴波形面板用：x 随时间匀速前进。
@@ -7216,7 +7099,6 @@ def linear_x_motion(dur, source, begin=None, n=512):
     kp = ';'.join(f'{v:.6f}' for v in kps)
     return (f'<animateMotion dur="{dur}s"{b} repeatCount="indefinite" calcMode="linear" '
             f'keyTimes="{kt}" keyPoints="{kp}" path="{path}"/>')
-
 
 # ======================= 图 89：模拟开关开合四拍（第 8 章 8.6） =======================
 def make_analog_switch_beats():
@@ -7678,7 +7560,6 @@ def make_voltage_drop():
                    '0;0;1;1', '0;0.8;0.86;1', y=452, size=13)
     save('voltage-drop.svg', svg + '</svg>')
 
-
 # ======================= 图 95：PCB 布线四招（第 15 章 15.3） =======================
 def make_pcb_routing():
     """布线规则可视化：45° 拐角 / 过孔寄生 / 差分对 / 敏感线包地。"""
@@ -7724,15 +7605,6 @@ def make_pcb_routing():
     svg += caption('口诀：45° 拐角、少打过孔、差分等长紧邻、敏感线包地——四条都源自「电感与耦合」', '#2563eb', DP,
                    '0;0;1;1', '0;0.8;0.86;1', y=534, size=13)
     save('pcb-routing.svg', svg + '</svg>')
-
-
-
-
-
-
-
-
-
 
 # ======================= 图 86：共射放大器四拍拆解（第 3 章 3.9） =======================
 def make_ce_dynamic():
@@ -7854,7 +7726,6 @@ def make_ce_dynamic():
                    "0;0;1;1", "0;0.85;0.9;1", y=652)
     save('ce-dynamic.svg', svg + '</svg>')
 
-
 # ======================= 图 102：排故决策树（第 17 章 17.8） =======================
 def make_diagnosis_tree():
     DT = 12
@@ -7948,7 +7819,6 @@ def make_diagnosis_tree():
     svg += caps
     save('diagnosis-tree.svg', svg + '</svg>')
 
-
 # ======================= 图 103：电容直流偏压降容（第 1 章 §1.7） =======================
 def make_cap_derating():
     """教学示例，非厂商实测：5V 时 10µF × 26% = 2.6µF。
@@ -8003,7 +7873,6 @@ def make_cap_derating():
         ('④ 同纹波电流、忽略 ESR：容性纹波约增至 1/0.26 = 3.85 倍', '#7c3aed'),
     ], duration, y=548) + '</g>'
     save('cap-derating.svg', svg + '</svg>')
-
 
 # ======================= 图 104：运放输入级选型（第 12 章 §12.13） =======================
 def make_opamp_input_stage():
@@ -8074,7 +7943,6 @@ def make_opamp_input_stage():
         ('④ RRIO 的代价：互补输入对在中点 g_m 凹陷 → 交越失真 + 失调台阶', '#7c3aed'),
     ], duration, y=555)
     save('opamp-input-stage.svg', svg + '</svg>')
-
 
 # ======================= 图 105：晶体振荡器 Pierce 拓扑（第 13 章 §13.10） =======================
 def make_crystal_pierce():
@@ -8150,7 +8018,6 @@ def make_crystal_pierce():
     ], duration, y=485)
     save('crystal-pierce.svg', svg + '</svg>')
 
-
 # ======================= 图 106：光耦与隔离（第 13 章 §13.11） =======================
 def make_optocoupler_ctr():
     """CTR 是设计变量：按档位最小值 + 老化余量设计。数据取自第 13 章 §13.11。"""
@@ -8214,7 +8081,6 @@ def make_optocoupler_ctr():
     ], duration, y=460)
     save('optocoupler-ctr.svg', svg + '</svg>')
 
-
 # ======================= 图 107：误差预算 WC vs RSS（第 14 章 §14.8） =======================
 def make_error_budget():
     """Buck 反馈分压的误差预算：WC ±2.7%，1σ ±0.45% → 3σ ±1.35%。数据取自 §14.8。"""
@@ -8276,7 +8142,6 @@ def make_error_budget():
     ], duration, y=450)
     save('error-budget.svg', svg + '</svg>')
 
-
 # ======================= 图 108：探头地线环（第 14 章 §14.8） =======================
 def make_probe_ground_loop():
     """量到的纹波可能是假的：长地线夹形成大环路，拾取开关磁场。数据取自 §14.8。"""
@@ -8327,7 +8192,6 @@ def make_probe_ground_loop():
         ('④ 高共模节点（高侧检测、H 桥输出）必须用差分探头', '#7c3aed'),
     ], duration, y=460)
     save('probe-ground-loop.svg', svg + '</svg>')
-
 
 # ======================= 图 115：预测对实测（第 18 章 §18.2） =======================
 def make_predict_measure():
@@ -8398,7 +8262,6 @@ def make_predict_measure():
     ], DUR, y=478)
     save('predict-measure.svg', svg + '</svg>')
 
-
 # ======================= 图 116：间歇故障三把扳手（第 17 章 §17.6） =======================
 def make_intermittent_forcing():
     """间歇故障逼迫流程：机械/热/电三把扳手轮着上，把"一天一次"逼成"按一下就坏"。取自 §17.6。"""
@@ -8447,7 +8310,6 @@ def make_intermittent_forcing():
         ('④ 然后在复现窗口里测量：单次/毛刺/欠幅触发挂着等，蜂鸣档听断续', '#059669'),
     ], DUR, y=494)
     save('intermittent-forcing.svg', svg + '</svg>')
-
 
 def make_ground_bounce():
     """地弹：8 路输出同时翻转，160mA 瞬时电流挤过地脚电感，把"地"弹起来。数字取自 §5.1 动态功耗段。"""
@@ -8519,7 +8381,6 @@ def make_ground_bounce():
         ('④ 对策：大电流翻转分散开、地引脚多给几只、低速信号别配高档驱动', '#059669'),
     ], DUR, y=574)
     save('ground-bounce.svg', svg + '</svg>')
-
 
 def make_three_probe_audit():
     """先量电源的执行版：稳压器脚、芯片电源脚、去耦电容三触点对账，160mV 差折算 1.3Ω 路径电阻。取自 §18.1~18.2。"""
@@ -8605,7 +8466,6 @@ def make_three_probe_audit():
     ], DUR, y=516)
     save('three-probe-audit.svg', svg + '</svg>')
 
-
 # ======================= 推导图 1：分压公式（第 0 章 0.3） =======================
 def make_derive_divider():
     DD = 16
@@ -8642,7 +8502,6 @@ def make_derive_divider():
     svg += note_box("分压公式不是凭空给的：串联同流 → 欧姆定律 → 代入。它只在空载时成立", 636, DD,
                     delay_kt=None, w=740)
     save('derive-divider.svg', svg + '</svg>')
-
 
 # ======================= 推导图 2：纹波公式（第 2 章 2.3） =======================
 def make_derive_ripple():
@@ -8687,7 +8546,6 @@ def make_derive_ripple():
                     delay_kt=None, w=740)
     save('derive-ripple.svg', svg + '</svg>')
 
-
 # ======================= 推导图 3：共射增益（第 11 章 11.5） =======================
 def make_derive_gain():
     DG = 16
@@ -8725,7 +8583,6 @@ def make_derive_gain():
     svg += note_box("Av = −gm·Rc：提升增益要么加大 Ic（更费电），要么加大 Rc（压降预算不够就撞轨）", 636, DG,
                     delay_kt=None, w=740)
     save('derive-gain.svg', svg + '</svg>')
-
 
 # ======================= 推导图 4：负反馈增益（第 12 章） =======================
 def make_derive_feedback():
@@ -8773,7 +8630,6 @@ def make_derive_feedback():
                     delay_kt=None, w=740)
     save('derive-feedback.svg', svg + '</svg>')
 
-
 # ======================= 推导图 5：米勒电容（第 11 章 11.5） =======================
 def make_derive_miller():
     DM = 16
@@ -8818,7 +8674,6 @@ def make_derive_miller():
     svg += note_box("增益越高，这只寄生电容越「重」——带宽与增益，从管子出生那天就在互相挤压", 636, DM,
                     delay_kt=None, w=740)
     save('derive-miller.svg', svg + '</svg>')
-
 
 # ======================= 推导图 6：降压纹波（第 13 章 13.2） =======================
 def make_derive_buck():
@@ -8876,7 +8731,6 @@ def make_derive_buck():
     svg += note_box("要更小的纹波？加大 C（线性）、提高 fsw（线性）、或加粗 L（线性）——三条路都写在同一行式子里", 636, DK,
                     delay_kt=None, w=740)
     save('derive-buck.svg', svg + '</svg>')
-
 
 if __name__ == '__main__':
     make_rc_charge()
@@ -8998,3 +8852,738 @@ if __name__ == '__main__':
     make_derive_miller()
     make_derive_buck()
     print(f'all {len(os.listdir(OUT))} SVGs regenerated into', os.path.abspath(OUT))
+
+def _exp_axis(x, y, w, h, xlab, ylab):
+    """左栏小坐标轴：返回轴线与端标签的 SVG 片段。"""
+    return (f'<line x1="{x}" y1="{y}" x2="{x + w}" y2="{y}" stroke="#94a3b8" stroke-width="1.4"/>\n'
+            f'<line x1="{x}" y1="{y}" x2="{x}" y2="{y - h}" stroke="#94a3b8" stroke-width="1.4"/>\n'
+            f'<text x="{x + w + 4}" y="{y + 4}" font-size="11" fill="#64748b">{xlab}</text>\n'
+            f'<text x="{x - 4}" y="{y - h - 4}" font-size="11" fill="#64748b">{ylab}</text>\n')
+
+
+def _exp_vline_note(x, y1, y2, text, color="#dc2626"):
+    return (f'<line x1="{x}" y1="{y1}" x2="{x}" y2="{y2}" stroke="{color}" stroke-width="2"/>\n'
+            f'<text x="{x + 4}" y="{y1 + 10}" font-size="11" font-weight="bold" fill="{color}">{text}</text>\n')
+
+
+def make_exp_source_sag():
+    D = 14
+    steps = [
+        ('① 空载读数', 'V0 = 12.10 V', '先量开路电压'),
+        ('② 接已知负载', 'V1 = 11.90 V @ 100Ω', '让电压掉 1%~5% 最合适'),
+        ('③ 反推内阻', 'Rs = 100Ω × 0.20 / 11.90 ≈ 1.7Ω', '两次测量法（0.6 节）'),
+        ('④ 外推塌陷', '2A → ΔV ≈ 3.4 V', '带不动：先看内阻再谈稳压'),
+    ]
+    left = _exp_axis(56, 300, 240, 150, 'I', 'V')
+    left += '<line x1="56" y1="150" x2="296" y2="266" stroke="#b45309" stroke-width="2.4"/>\n'
+    left += '<line x1="56" y1="150" x2="296" y2="150" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="5,4"/>\n'
+    left += _exp_vline_note(180, 150, 208, '2A → 塌 3.4V')
+    left += chip(180, 360, '斜率 = 输出阻抗 Rs', '#b45309', 12)
+    left += chip(180, 390, '恒压源的性格由 Rs 决定', '#64748b', 11)
+    svg = derive_frame('源的两次测量法：内阻一笔算出（失效边界）', steps, left, h=680, dur=D)
+    svg += note_box("空载 12.10V、带 100Ω 后 11.90V → Rs≈1.7Ω；2A 负载要塌 3.4V——带载能力先看内阻", 636, D, delay_kt=None, w=740)
+    save('exp-source-sag.svg', svg + '</svg>')
+
+def make_exp_unit_guard():
+    D = 14
+    steps = [
+        ('① 正确换档', '10 kΩ × 100 nF', '10⁴ × 10⁻⁷ = 10⁻³ s'),
+        ('② 误当 100 µF', '10⁴ × 10⁻⁴ = 1 s', '差 1000 倍'),
+        ('③ 误当 10 Ω', '10 × 10⁻⁷ = 1 µs', '又差 1000 倍'),
+        ('④ 数量级闸', '先估「毫秒级」再按计算器', '算出 1s 或 1µs 立刻暴露'),
+    ]
+    left = _exp_axis(56, 330, 250, 120, '结果（s）', '')
+    for x, lab, c in [(90, '1µs', '#64748b'), (180, '1ms ✓', '#059669'), (272, '1s', '#dc2626')]:
+        left += f'<line x1="{x}" y1="210" x2="{x}" y2="330" stroke="{c}" stroke-width="2" stroke-dasharray="4,3"/>\n'
+        left += f'<text x="{x - 10}" y="200" font-size="12" font-weight="bold" fill="{c}">{lab}</text>\n'
+    left += chip(180, 400, '词头 m 与 M 差十亿倍', '#dc2626', 12)
+    left += chip(180, 430, '算式旁先写单位再代数', '#64748b', 11)
+    svg = derive_frame('单位错档一千倍：数量级先钉死', steps, left, h=680, dur=D)
+    svg += note_box("τ = RC 的三种种结果：1µs / 1ms / 1s——先估数量级，再谈精度（0.7 节）", 636, D, delay_kt=None, w=740)
+    save('exp-unit-guard.svg', svg + '</svg>')
+
+def make_exp_esr_ripple_split():
+    D = 14
+    steps = [
+        ('① 容性纹波', 'ΔVc = ΔIL / (8 f C)', '22µF、0.6A、500kHz → 6.8mV'),
+        ('② ESR 纹波', 'ΔVesr = ΔIL × ESR', '3mΩ → 1.8mV'),
+        ('③ 换电解再看', '200mΩ → 120mV', '容量降到 1.5mV，ESR 说了算'),
+        ('④ 药方', '低 ESR 加容量；高 ESR 先降 ESR', '同一句「纹波大」，两本账'),
+    ]
+    left = '<text x="56" y="110" font-size="13" font-weight="bold" fill="#334155">两种输出电容的纹波构成（示意）</text>\n'
+    for i, (x, name, c, cap_h, esr_h) in enumerate([(110, '22µF 陶瓷', '#059669', 60, 18), (260, '100µF 电解', '#dc2626', 14, 120)]):
+        left += f'<rect x="{x - 40}" y="{340 - cap_h}" width="34" height="{cap_h}" fill="#eff6ff" stroke="#2563eb" stroke-width="1.4"/>\n'
+        left += f'<rect x="{x + 2}" y="{340 - esr_h}" width="34" height="{esr_h}" fill="#fef2f2" stroke="#dc2626" stroke-width="1.4"/>\n'
+        left += f'<text x="{x}" y="360" text-anchor="middle" font-size="12" fill="#334155">{name}</text>\n'
+    left += '<text x="70" y="180" font-size="11" fill="#2563eb">容性</text>\n'
+    left += '<text x="70" y="200" font-size="11" fill="#dc2626">ESR</text>\n'
+    left += '<line x1="62" y1="340" x2="330" y2="340" stroke="#94a3b8" stroke-width="1.4"/>\n'
+    left += chip(196, 420, '谷底低而宽才叫去耦好手', '#059669', 12)
+    svg = derive_frame('纹波的两本账：容性与 ESR 谁说了算', steps, left, h=680, dur=D)
+    svg += note_box("22µF 陶瓷：容性 6.8mV 主导；100µF 电解：ESR 120mV 主导——药方各开各的（1.2 节算一笔）", 636, D, delay_kt=None, w=740)
+    save('exp-esr-ripple-split.svg', svg + '</svg>')
+
+def make_exp_cap_life():
+    D = 14
+    steps = [
+        ('① 寿命公式', 'L = L0 × 2^((T0−T)/10)', '10°C 翻倍法则'),
+        ('② 代入', '2000h @105°C，工作 65°C', 'L = 2000 × 2⁴'),
+        ('③ 结果', '32000 h ≈ 3.7 年（连续通电）', '自发热算进 T'),
+        ('④ 加速老化', '纹波电流超 30% → 寿命腰斩', 'ESR 发热直接抬 T'),
+    ]
+    left = _exp_axis(56, 320, 240, 160, '温度 (°C)', '寿命')
+    left += '<path d="M56 160 Q150 210 296 300" fill="none" stroke="#dc2626" stroke-width="2.4"/>\n'
+    for x, y, lab in [(110, 186, '85°'), (170, 216, '95°'), (240, 260, '105°')]:
+        left += f'<circle cx="{x}" cy="{y}" r="4" fill="#b45309"/>\n'
+        left += f'<text x="{x + 6}" y="{y - 6}" font-size="11" fill="#64748b">{lab}</text>\n'
+    left += chip(180, 400, '第一个坏的总是电解电容', '#dc2626', 12)
+    left += chip(180, 430, '换固态/聚合物，或提 L0 到 5000h+', '#64748b', 11)
+    svg = derive_frame('电解电容寿命账：10°C 翻倍（失效边界）', steps, left, h=680, dur=D)
+    svg += note_box("2000h@105°C 的电容工作在 65°C → 约 3.7 年；纹波电流超额 30% 再腰斩（1.7 节）", 636, D, delay_kt=None, w=740)
+    save('exp-cap-life.svg', svg + '</svg>')
+
+def make_exp_conduction_angle():
+    D = 14
+    steps = [
+        ('① 纹波账', 'ΔV = I·Δt/C ≈ 2.1 V', '1A、4700µF、全波 100Hz'),
+        ('② 导通窗口', 'Δt_on ≈ 3 ms（峰顶小窗）', '只在 |vAC| > vC+2VF 导通'),
+        ('③ 峰值电流', 'Ipk ≈ 1A × 10ms/3ms ≈ 3.3A', '全部电荷窄窗补回'),
+        ('④ 再加 ESR', 'Ipk×ESR → 实际 4~5A', '选管看 IFRM 与结温'),
+    ]
+    left = _exp_axis(56, 320, 240, 150, 't (10ms)', 'v')
+    left += '<path d="M56 200 Q106 130 156 200 Q206 270 256 200 Q281 165 296 185" fill="none" stroke="#2563eb" stroke-width="2.2"/>\n'
+    left += '<line x1="126" y1="150" x2="186" y2="150" stroke="#dc2626" stroke-width="4" opacity="0.8"/>\n'
+    left += '<text x="132" y="140" font-size="11" font-weight="bold" fill="#dc2626">导通窗 ≈3ms</text>\n'
+    left += '<line x1="56" y1="270" x2="296" y2="270" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>\n'
+    left += chip(180, 400, '平均 1A ≠ 峰值 3.3A', '#b45309', 12)
+    left += chip(180, 430, 'IFRM（重复峰值）才是选型行', '#64748b', 11)
+    svg = derive_frame('导通角与峰值电流：窄窗里的猛冲', steps, left, h=680, dur=D)
+    svg += note_box("1A 平均的整流管每周期挨一次 3.3A 窄脉冲——选型看重复峰值与结温，不只看标称（2.6 节）", 636, D, delay_kt=None, w=740)
+    save('exp-conduction-angle.svg', svg + '</svg>')
+
+def make_exp_tvs_ladder():
+    D = 14
+    steps = [
+        ('① 浪涌进来', 'IEC 8kV：330Ω/150pF', '系统级波形，前沿小于 1ns'),
+        ('② TVS 先泄放', '钳到 9.2V @ 24A', '能量走地，Ppp≈223W'),
+        ('③ 电阻限流', '(9.2−5.7)/330 ≈ 10mA', '把残压压到毫安级'),
+        ('④ 芯片钳位兜底', '内部二极管最后一级', '三级缺一，芯片先死'),
+    ]
+    left = ''
+    for i, (y, name, val, c) in enumerate([(130, '8kV 浪涌', 'IEC 脉冲', '#dc2626'),
+                                           (230, 'TVS 9.2V', '泄放大能量', '#b45309'),
+                                           (330, '330Ω → 10mA', '电阻限流', '#2563eb'),
+                                           (430, 'GPIO 安全', '内部钳位兜底', '#059669')]):
+        left += f'<rect x="70" y="{y - 24}" width="220" height="40" rx="6" fill="#f6eedb" stroke="{c}" stroke-width="1.6"/>\n'
+        left += f'<text x="180" y="{y + 2}" text-anchor="middle" font-size="13" font-weight="bold" fill="{c}">{name} · {val}</text>\n'
+        if i < 3:
+            left += f'<line x1="180" y1="{y + 16}" x2="180" y2="{y + 56}" stroke="#94a3b8" stroke-width="2"/>\n'
+            left += f'<polygon points="175,{y + 50} 185,{y + 50} 180,{y + 62}" fill="#94a3b8"/>\n'
+    svg = derive_frame('接口防护三级削减：TVS → 电阻 → 钳位', steps, left, h=680, dur=D)
+    svg += note_box("TVS 负责泄大能量，电阻+内部钳位负责毫安级残压——只装 TVS 不串电阻，芯片还是可能被打死（2.11 例 2-2）", 636, D, delay_kt=None, w=740)
+    save('exp-tvs-ladder.svg', svg + '</svg>')
+
+def make_exp_beta_drift():
+    D = 14
+    steps = [
+        ('① β 在漂', '100 → 600（同型号合法范围）', '批次、温度都在动'),
+        ('② 固定偏置', 'IB 不变 → IC = β·IB', 'IC 撞饱和，放大变开关'),
+        ('③ 分压偏置', 'RE 负反馈拉住 IC', '同一漂移只动 ~4%'),
+        ('④ 设计铁律', '按「β 怎么变都不怕」设计', 'Q 点居中 + RE 兜底'),
+    ]
+    left = '<text x="56" y="110" font-size="13" font-weight="bold" fill="#334155">同一漂移，两种偏置的 IC 落点</text>\n'
+    left += '<line x1="70" y1="150" x2="330" y2="150" stroke="#94a3b8" stroke-width="1.2"/>\n'
+    left += '<text x="336" y="154" font-size="11" fill="#64748b">IC</text>\n'
+    left += '<rect x="90" y="150" width="90" height="130" fill="#fef2f2" stroke="#dc2626" stroke-width="1.4"/>\n'
+    left += '<text x="135" y="220" text-anchor="middle" font-size="11.5" fill="#dc2626">固定偏置</text>\n'
+    left += '<text x="135" y="238" text-anchor="middle" font-size="11" fill="#dc2626">撞饱和</text>\n'
+    left += '<rect x="220" y="150" width="90" height="10" fill="#ecfdf5" stroke="#059669" stroke-width="1.4"/>\n'
+    left += '<text x="265" y="184" text-anchor="middle" font-size="11.5" fill="#059669">分压偏置</text>\n'
+    left += '<text x="265" y="202" text-anchor="middle" font-size="11" fill="#059669">≈4%</text>\n'
+    left += chip(196, 330, '固定偏置的 IB 恒定 = 把 β 当常数', '#dc2626', 11.5)
+    svg = derive_frame('β 漂移冲击工作点：偏置的失效边界', steps, left, h=680, dur=D)
+    svg += note_box("β 从 100 漂到 600：固定偏置的 IC 直接撞饱和；分压偏置靠 RE 负反馈把漂移压到约 4%（3.4 节图）", 636, D, delay_kt=None, w=740)
+    save('exp-beta-drift.svg', svg + '</svg>')
+
+def make_exp_thermal_loop():
+    D = 14
+    steps = [
+        ('① 起步', 'T↑', '环境或自热'),
+        ('② 门槛降', 'VBE ≈ −2mV/°C', '同样偏置下 IC 指数涨'),
+        ('③ 功耗涨', 'P = VCE × IC ↑', '更热'),
+        ('④ 断环', 'RE 负反馈 / 散热 / 恒流驱动', '热失控必须从环上拆'),
+    ]
+    left = '<circle cx="180" cy="240" r="86" fill="none" stroke="#dc2626" stroke-width="2.6" stroke-dasharray="9,6"/>\n'
+    for x, y, s in [(180, 138, 'T↑'), (262, 232, 'VBE↓'), (180, 348, 'IC↑·P↑'), (96, 232, '更热')]:
+        left += f'<text x="{x}" y="{y}" text-anchor="middle" font-size="14" font-weight="bold" fill="#dc2626">{s}</text>\n'
+    for x, y in [(238, 172), (238, 306), (120, 306), (120, 172)]:
+        left += f'<polygon points="{x - 7},{y} {x + 7},{y} {x},{y + 11}" fill="#dc2626"/>\n'
+    left += chip(180, 396, '正反馈：强者更强', '#dc2626', 12)
+    left += chip(180, 426, 'LED 恒压驱动易烧，同根子', '#64748b', 11)
+    svg = derive_frame('热失控：一条闭合的正反馈环（失效边界）', steps, left, h=680, dur=D)
+    svg += note_box("VBE −2mV/°C 是导火索：升温→IC 涨→更热。断环靠 RE 负反馈、散热或恒流驱动（3.7 节）", 636, D, delay_kt=None, w=740)
+    save('exp-thermal-loop.svg', svg + '</svg>')
+
+def make_exp_gate_charge():
+    D = 14
+    steps = [
+        ('① 平台期', '栅流全部灌进 Cgd', 'VGS 停在平台，VDS 快速跌'),
+        ('② 平台时长', 't ≈ Qgd / Idrv', '驱动电流是唯一的挤压器'),
+        ('③ 提速代价', '10mA→40mA：160ns→40ns', 'dv/dt 也快四倍（4.6 例）'),
+        ('④ 连锁', '振铃、EMI、误导通一起涨', '栅阻是三者交点'),
+    ]
+    left = _exp_axis(56, 320, 240, 160, 't', 'VGS')
+    left += '<path d="M56 300 L96 240 L136 240 L176 160 L296 150" fill="none" stroke="#2563eb" stroke-width="2.4"/>\n'
+    left += '<rect x="96" y="228" width="40" height="26" fill="#fffbeb" stroke="#b45309" stroke-width="1.4"/>\n'
+    left += '<text x="116" y="218" text-anchor="middle" font-size="11" font-weight="bold" fill="#b45309">平台</text>\n'
+    left += chip(180, 396, '平台期管子最烫：V、I 重叠', '#b45309', 12)
+    left += chip(180, 426, '提速看 Qgd 与驱动电流', '#64748b', 11)
+    svg = derive_frame('米勒平台的栅电荷账：驱动电流是挤压器', steps, left, h=680, dur=D)
+    svg += note_box("平台时长 ≈ Qgd/Idrv：10mA→40mA 平台 160ns→40ns，但 dv/dt 同步快四倍（4.3/4.6 节）", 636, D, delay_kt=None, w=740)
+    save('exp-gate-charge.svg', svg + '</svg>')
+
+def make_exp_avalanche_edge():
+    D = 14
+    steps = [
+        ('① 感性负载', 'v = −L·di/dt', '电流被迫从工作值跳向 0'),
+        ('② 尖峰', '数百伏，极性与电源相反', '专烧驱动管'),
+        ('③ 钳位', '续流二极管压到 ≈0.7V', '电流经 L/R 慢慢衰减'),
+        ('④ 选型', '反向耐压盖住母线+尖峰', '慢恢复管会把尖峰变振铃'),
+    ]
+    left = _exp_axis(56, 320, 240, 160, 't', 'V')
+    left += '<path d="M56 260 L140 258 L146 120 L154 262 L296 260" fill="none" stroke="#dc2626" stroke-width="2.4"/>\n'
+    left += '<line x1="56" y1="180" x2="296" y2="180" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="5,4"/>\n'
+    left += '<text x="150" y="130" font-size="11" font-weight="bold" fill="#dc2626">数百伏反冲</text>\n'
+    left += '<text x="200" y="174" font-size="11" fill="#059669">续流钳位线</text>\n'
+    left += chip(180, 396, '「并一只二极管」是结论，并哪一只是设计', '#059669', 11.5)
+    svg = derive_frame('感性负载的关断尖峰：电感物理的必然推论', steps, left, h=680, dur=D)
+    svg += note_box("断电瞬间 di/dt 极大，电感发飙出数百伏尖峰；续流二极管给惯性电流一条温柔出路（2.4 续流账）", 636, D, delay_kt=None, w=740)
+    save('exp-avalanche-edge.svg', svg + '</svg>')
+
+def make_exp_pullup_trade():
+    D = 14
+    steps = [
+        ('① 快的一端', '1kΩ × 100pF：τ≈100ns 量级', '沿陡，灌电流 3.3mA'),
+        ('② 慢的一端', '4.7kΩ × 100pF：τ≈470ns', '对照 300ns 快速模式上限'),
+        ('③ 功耗账', '每一位拉低都要灌 V/R', '上拉越小越费电'),
+        ('④ 折中', '2.2kΩ 起步按总线复核', 'I2C 的 4.7k 不是随便选'),
+    ]
+    left = '<line x1="56" y1="140" x2="330" y2="140" stroke="#94a3b8" stroke-width="1.2"/>\n'
+    left += '<text x="336" y="144" font-size="11" fill="#64748b">3.3V</text>\n'
+    left += '<line x1="56" y1="320" x2="330" y2="320" stroke="#94a3b8" stroke-width="1.2"/>\n'
+    left += '<text x="336" y="324" font-size="11" fill="#64748b">0V</text>\n'
+    left += '<path d="M60 320 Q110 240 190 170 Q240 148 300 144" fill="none" stroke="#059669" stroke-width="2.2"/>\n'
+    left += '<path d="M60 320 Q130 290 230 220 Q290 176 330 160" fill="none" stroke="#b45309" stroke-width="2.2"/>\n'
+    left += '<path d="M60 320 Q150 306 260 272 Q310 250 330 238" fill="none" stroke="#dc2626" stroke-width="2.2"/>\n'
+    left += '<text x="200" y="128" font-size="11" fill="#059669">1k 快但费电</text>\n'
+    left += '<text x="236" y="196" font-size="11" fill="#b45309">2.2k 折中</text>\n'
+    left += '<text x="252" y="266" font-size="11" fill="#dc2626">4.7k 超 300ns 窗</text>\n'
+    svg = derive_frame('上拉取值：上升沿与功耗的双边权衡', steps, left, h=680, dur=D)
+    svg += note_box("3.3V、100pF 总线：4.7k 的时间常数约 470ns，对 300ns 快速模式已超限；1k 快但灌电流大（5.3 节图）", 636, D, delay_kt=None, w=740)
+    save('exp-pullup-trade.svg', svg + '</svg>')
+
+def make_exp_dead_time():
+    D = 14
+    steps = [
+        ('① 换向瞬间', '上管未关、下管已开', '电源到地直通短路'),
+        ('② 直通电流', '只受内阻限制，可达数十安', '发热与 EMI 都来了'),
+        ('③ 死区', '先断后合，留几百 ns', '桥臂换向的保命窗'),
+        ('④ 代价', '占空比损失一点点', '换来不炸管'),
+    ]
+    left = '<line x1="60" y1="170" x2="320" y2="170" stroke="#2563eb" stroke-width="2.2"/>\n'
+    left += '<line x1="60" y1="260" x2="320" y2="260" stroke="#059669" stroke-width="2.2"/>\n'
+    left += '<text x="326" y="174" font-size="11" fill="#2563eb">上管</text>\n'
+    left += '<text x="326" y="264" font-size="11" fill="#059669">下管</text>\n'
+    left += '<rect x="170" y="158" width="26" height="114" fill="#fef2f2" stroke="#dc2626" stroke-width="1.4"/>\n'
+    left += '<text x="183" y="150" text-anchor="middle" font-size="11" font-weight="bold" fill="#dc2626">交越</text>\n'
+    left += '<rect x="200" y="158" width="18" height="114" fill="#f6eedb" stroke="#b45309" stroke-width="1.2" stroke-dasharray="4,3"/>\n'
+    left += '<text x="209" y="292" text-anchor="middle" font-size="11" fill="#b45309">死区</text>\n'
+    left += chip(190, 386, '推挽图腾柱同一时刻只能一人上岗', '#dc2626', 11.5)
+    svg = derive_frame('直通窗口与死区：换向瞬间谁在岗', steps, left, h=680, dur=D)
+    svg += note_box("两管同岗 = 电源直灌地。死区让换向「先断后合」，代价只是几纳秒的占空比（5.1/13.7 节）", 636, D, delay_kt=None, w=740)
+    save('exp-dead-time.svg', svg + '</svg>')
+
+def make_exp_gbw_swap():
+    D = 14
+    steps = [
+        ('① 守恒量', 'GBW = A × BW ≈ 常数', '电压反馈运放的经验线'),
+        ('② 增益 100', 'BW ≈ 100kHz（GBW=10MHz）', '带宽被吃掉'),
+        ('③ 增益 10', 'BW ≈ 1MHz', '同料换配置'),
+        ('④ 取舍', '要带宽就少要增益', '两级低增益常胜一级高增益'),
+    ]
+    left = _exp_axis(56, 320, 240, 160, '增益', '带宽')
+    left += '<path d="M64 160 L96 220 L156 270 L296 302" fill="none" stroke="#2563eb" stroke-width="2.4"/>\n'
+    for x, y, lab in [(96, 220, '×100→100kHz'), (156, 270, '×10→1MHz')]:
+        left += f'<circle cx="{x}" cy="{y}" r="4" fill="#b45309"/>\n'
+        left += f'<text x="{x + 8}" y="{y - 8}" font-size="11" fill="#b45309">{lab}</text>\n'
+    left += chip(180, 396, 'GBW 是预算，不是指标库里的一个数', '#2563eb', 12)
+    svg = derive_frame('增益带宽交换：GBW 是一笔守恒的预算', steps, left, h=680, dur=D)
+    svg += note_box("GBW=10MHz 的运放：增益 100 只剩 100kHz 带宽——增益与带宽此消彼长（6.3/6.7 节）", 636, D, delay_kt=None, w=740)
+    save('exp-gbw-swap.svg', svg + '</svg>')
+
+def make_exp_slew_wall():
+    D = 14
+    steps = [
+        ('① 需求', 'SR ≥ 2π·f·Vpk', '5Vpk、100kHz → 3.14V/µs'),
+        ('② 现实', '0.5V/µs（LM358 量级）', '差六倍'),
+        ('③ 后果', '正弦变三角，幅度塌', '大信号先死'),
+        ('④ 出路', '降幅、降频或换高速运放', '小信号 GBW 够也没用'),
+    ]
+    left = _exp_axis(56, 300, 240, 130, 't', 'Vout')
+    left += '<path d="M56 260 Q106 160 156 260 Q206 360 256 260 Q281 210 296 235" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-dasharray="6,4"/>\n'
+    left += '<path d="M56 260 L106 170 L156 260 L206 350 L256 260 L296 205" fill="none" stroke="#dc2626" stroke-width="2.4"/>\n'
+    left += '<text x="196" y="150" font-size="11" fill="#94a3b8">想要的正弦</text>\n'
+    left += '<text x="150" y="382" font-size="11" fill="#dc2626">压摆率不够 → 三角化</text>\n'
+    left += chip(180, 420, '压摆率是大信号天花板', '#dc2626', 12)
+    svg = derive_frame('压摆率墙：大信号的失效边界', steps, left, h=680, dur=D)
+    svg += note_box("SR≥2πfVpk：5Vpk@100kHz 要 3.14V/µs；0.5V/µs 的运放直接把正弦画成三角（6.7 节）", 636, D, delay_kt=None, w=740)
+    save('exp-slew-wall.svg', svg + '</svg>')
+
+def make_exp_hyst_window():
+    D = 14
+    steps = [
+        ('① 一对门限', 'VTH+ 上行门槛，VTH− 下行', '三只电阻定窗'),
+        ('② 免疫区', '窗宽 = VTH+ − VTH−', '窗内噪声不翻转'),
+        ('③ 代价', '分辨率 = 窗宽', '窗越宽越「钝」'),
+        ('④ 符号铁律', '两路分压符号必须同向', '接反即正反馈翻车'),
+    ]
+    left = _exp_axis(56, 320, 240, 150, 'Vin', 'Vout')
+    left += '<path d="M56 300 L160 300 L160 160 L296 160" fill="none" stroke="#2563eb" stroke-width="2.4"/>\n'
+    left += '<line x1="160" y1="160" x2="160" y2="300" stroke="#b45309" stroke-width="1.4" stroke-dasharray="5,4"/>\n'
+    left += '<text x="166" y="236" font-size="11" font-weight="bold" fill="#b45309">窗口</text>\n'
+    left += '<text x="90" y="288" font-size="11" fill="#64748b">VTH−</text>\n'
+    left += '<text x="90" y="152" font-size="11" fill="#64748b">VTH+</text>\n'
+    left += '<path d="M200 230 q14 -14 28 0 q14 14 28 0 q14 -14 26 2" fill="none" stroke="#dc2626" stroke-width="1.6"/>\n'
+    left += '<text x="212" y="214" font-size="10.5" fill="#dc2626">噪声被免疫区挡住</text>\n'
+    left += chip(180, 396, '迟滞免抖：给判决一对分离的门槛', '#059669', 12)
+    svg = derive_frame('迟滞窗口：抗噪护城河的宽与窄', steps, left, h=680, dur=D)
+    svg += note_box("窗宽就是抗噪护城河：200mV 毛刺在窗外进不来；代价是分辨率等于窗宽（7.3 节）", 636, D, delay_kt=None, w=740)
+    save('exp-hyst-window.svg', svg + '</svg>')
+
+def make_exp_delay_budget():
+    D = 14
+    steps = [
+        ('① 运放兼职', 'LM358：恢复+爬坡 ≈ 50µs 级', '饱和恢复是主犯'),
+        ('② 比较器', 'LM393：1.3µs + 上拉 0.3µs', '约 1.6µs 交卷'),
+        ('③ 预算核对', '10kHz 周期 = 100µs', '50µs 已占一半'),
+        ('④ 结论', '判决用比较器，放大归运放', '混用是自找的延迟'),
+    ]
+    left = '<text x="56" y="120" font-size="12.5" font-weight="bold" fill="#334155">同一 10kHz 方波的响应条（示意）</text>\n'
+    left += '<rect x="70" y="150" width="240" height="26" fill="#fef2f2" stroke="#dc2626" stroke-width="1.4"/>\n'
+    left += '<text x="80" y="168" font-size="11" fill="#dc2626">LM358 ≈ 50µs（半个周期）</text>\n'
+    left += '<rect x="70" y="196" width="26" height="26" fill="#ecfdf5" stroke="#059669" stroke-width="1.4"/>\n'
+    left += '<text x="104" y="214" font-size="11" fill="#059669">LM393 ≈ 1.6µs</text>\n'
+    left += '<line x1="70" y1="240" x2="310" y2="240" stroke="#94a3b8" stroke-width="1.2"/>\n'
+    left += '<text x="70" y="258" font-size="11" fill="#64748b">周期 100µs →</text>\n'
+    left += chip(190, 320, '延迟是预算的一部分', '#b45309', 12)
+    svg = derive_frame('判决延迟预算：运放兼职的代价', steps, left, h=680, dur=D)
+    svg += note_box("LM358 在饱和恢复里呆滞几十 µs，LM393 只要约 1.6µs——10kHz 已是分水岭（ch07-delay-budget 图）", 636, D, delay_kt=None, w=740)
+    save('exp-delay-budget.svg', svg + '</svg>')
+
+def make_exp_inject_harmonic():
+    D = 14
+    steps = [
+        ('① 注入随信号走', '0V→2pC，4V→1.6pC', '峰谷差 0.4pC'),
+        ('② 落到电容上', '0.4pC / 10nF = 40µV', '12 位系统无感'),
+        ('③ 换 1nF', '40µV → 0.4mV', '贴着 12 位噪声底'),
+        ('④ 结论', '同一注入曲线，C 定台阶还是谐波', '加大电容的第三个好处'),
+    ]
+    left = _exp_axis(56, 300, 240, 150, 'Vin', 'Qinj')
+    left += '<line x1="56" y1="160" x2="296" y2="176" stroke="#2563eb" stroke-width="2.2"/>\n'
+    for x, y, lab in [(90, 166, '2pC'), (280, 174, '1.6pC')]:
+        left += f'<circle cx="{x}" cy="{y}" r="4" fill="#b45309"/>\n'
+        left += f'<text x="{x - 6}" y="{y - 10}" font-size="11" fill="#b45309">{lab}</text>\n'
+    left += '<rect x="120" y="330" width="60" height="26" fill="#ecfdf5" stroke="#059669" stroke-width="1.4"/>\n'
+    left += '<text x="150" y="348" text-anchor="middle" font-size="11" fill="#059669">10nF ✓</text>\n'
+    left += '<rect x="210" y="330" width="60" height="26" fill="#fef2f2" stroke="#dc2626" stroke-width="1.4"/>\n'
+    left += '<text x="240" y="348" text-anchor="middle" font-size="11" fill="#dc2626">1nF ✗</text>\n'
+    left += chip(196, 402, '0.4pC 的峰谷差就是谐波来源', '#2563eb', 11.5)
+    svg = derive_frame('电荷注入的信号相关性：从台阶到谐波', steps, left, h=680, dur=D)
+    svg += note_box("注入 2pC→1.6pC 随信号缓变：0.4pC 落 10nF 是 40µV（无感），落 1nF 是 0.4mV（贴底）（8.3 节图）", 636, D, delay_kt=None, w=740)
+    save('exp-inject-harmonic.svg', svg + '</svg>')
+
+def make_exp_droop_budget():
+    D = 14
+    steps = [
+        ('① 下垂率', 'dV/dt = I_leak / C_hold', '开关漏电+缓冲偏流'),
+        ('② 代入', '2nA / 10nF = 0.2V/s', '总漏流按 2nA 兜底'),
+        ('③ 保持 1ms', '掉 0.2mV = 0.4LSB（12 位）', '过'),
+        ('④ 出口闸', 'τ 与 droop 两笔都要过', '端到端预算表的用法'),
+    ]
+    left = _exp_axis(56, 300, 240, 150, 't (1ms 保持)', 'Vhold')
+    left += '<line x1="56" y1="160" x2="296" y2="184" stroke="#b45309" stroke-width="2.4"/>\n'
+    left += '<line x1="56" y1="160" x2="296" y2="160" stroke="#94a3b8" stroke-width="1" stroke-dasharray="5,4"/>\n'
+    left += _exp_vline_note(230, 160, 220, '−0.2mV', '#dc2626')
+    left += chip(180, 380, '「记住」也会漏：droop 是时间税', '#b45309', 12)
+    left += chip(180, 410, '加大 C 同时压 τ 与 droop', '#64748b', 11)
+    svg = derive_frame('采样保持的 droop 预算：时间维度的税', steps, left, h=680, dur=D)
+    svg += note_box("2nA 漏流落 10nF：0.2V/s → 1ms 掉 0.2mV = 0.4LSB，12 位可过（8.4 端到端设计例）", 636, D, delay_kt=None, w=740)
+    save('exp-droop-budget.svg', svg + '</svg>')
+
+def make_exp_ldo_zero():
+    D = 14
+    steps = [
+        ('① 环路靠谁', '输出电容 ESR 零点补相位', 'LDO 稳定的隐藏支柱'),
+        ('② 换 MLCC', 'ESR 几 mΩ → 零点跑到高频', '相位裕度 58°→32°'),
+        ('③ 低温更糟', 'MLCC 容值再掉 10~15%', '雪上加霜'),
+        ('④ 修法', '串 0.15Ω 造回零点，或选陶瓷稳定型', '换料前重看环路'),
+    ]
+    left = _exp_axis(56, 300, 240, 150, 'f', '相位裕度')
+    left += '<path d="M56 150 L150 156 L200 240 L296 268" fill="none" stroke="#dc2626" stroke-width="2.4"/>\n'
+    left += '<line x1="56" y1="216" x2="296" y2="216" stroke="#059669" stroke-width="1.2" stroke-dasharray="5,4"/>\n'
+    left += '<text x="60" y="210" font-size="11" fill="#059669">45° 工程下限</text>\n'
+    left += _exp_vline_note(200, 150, 250, '低温 −20°C', '#dc2626')
+    left += chip(180, 380, '58°→32°：裕度被 ESR 零点带走了', '#dc2626', 11.5)
+    svg = derive_frame('LDO 换料的隐性账：ESR 零点与稳定（失效边界）', steps, left, h=680, dur=D)
+    svg += note_box("钽换 MLCC：ESR 从 200mΩ 掉到几 mΩ，零点移出、裕度 58°→32°，低温自激——串 0.15Ω 造回零点（ch16 案例 A）", 636, D, delay_kt=None, w=740)
+    save('exp-ldo-zero.svg', svg + '</svg>')
+
+def make_exp_psrr_roll():
+    D = 14
+    steps = [
+        ('① 低频很硬', '1kHz：70dB', '纹波被压得很小'),
+        ('② 中频滑坡', '100kHz：约 40dB', '−20dB/dec 起步'),
+        ('③ 高频失守', '1MHz：20dB 或个位数', 'LDO 帮不上忙'),
+        ('④ 分工', '前级 LC/磁珠补高频段', '两级各守一段'),
+    ]
+    left = _exp_axis(56, 300, 240, 160, 'f (log)', 'PSRR')
+    left += '<path d="M56 150 L130 156 L210 230 L296 282" fill="none" stroke="#2563eb" stroke-width="2.4"/>\n'
+    for x, y, lab in [(90, 154, '70dB'), (190, 226, '40dB'), (286, 278, '20dB')]:
+        left += f'<circle cx="{x}" cy="{y}" r="4" fill="#b45309"/>\n'
+        left += f'<text x="{x - 10}" y="{y - 10}" font-size="11" fill="#b45309">{lab}</text>\n'
+    left += chip(180, 386, '纹波预算按频率分段算', '#2563eb', 12)
+    svg = derive_frame('PSRR 随频率滚降：电源抑制是分段防守', steps, left, h=680, dur=D)
+    svg += note_box("1kHz 处 70dB 的 LDO 到 1MHz 只剩 20dB——高频纹波要靠 LC 与磁珠补位（9.3 节）", 636, D, delay_kt=None, w=740)
+    save('exp-psrr-roll.svg', svg + '</svg>')
+
+def make_exp_555_mono_train():
+    D = 14
+    steps = [
+        ('① 触发', '2 脚拉到 Vcc/3 以下', '下降沿起跑'),
+        ('② 定时', 't = 1.1·R·C', '充到 2Vcc/3 结束'),
+        ('③ 复位', '放电管拉低 7 脚', '等下一次触发'),
+        ('④ 误差', '电解漏电让 C「存不住」', '长定时用薄膜或修调'),
+    ]
+    left = _exp_axis(56, 280, 240, 130, 't', '')
+    left += '<path d="M56 260 L86 260 L86 190 L216 190 L216 260 L296 260" fill="none" stroke="#2563eb" stroke-width="2.4"/>\n'
+    left += '<path d="M70 274 l10 -8 l10 8" fill="none" stroke="#b45309" stroke-width="2"/>\n'
+    left += '<text x="64" y="292" font-size="11" fill="#b45309">触发脉冲</text>\n'
+    left += '<text x="120" y="180" font-size="11" fill="#2563eb">t = 1.1RC</text>\n'
+    left += chip(180, 372, '一触发，亮一拍', '#2563eb', 12)
+    left += chip(180, 402, '长定时的敌人是漏电与温漂', '#64748b', 11)
+    svg = derive_frame('单稳态触发链：一触发，亮一拍', steps, left, h=680, dur=D)
+    svg += note_box("触发后输出维持 1.1RC：定时 1s 的取值要防电解漏电流——C 存不住电，定时就短（10.5 节）", 636, D, delay_kt=None, w=740)
+    save('exp-555-mono-train.svg', svg + '</svg>')
+
+def make_exp_555_duty():
+    D = 14
+    steps = [
+        ('① 充电路径', 'RA → RB → C', '充到 2Vcc/3'),
+        ('② 放电路径', 'C → RB → 7 脚', '放到 Vcc/3'),
+        ('③ 占空比', 'D = (RA+RB)/(RA+2RB)', 'RA=0 时 D≈50% 仍不严格'),
+        ('④ 独立调', '二极管旁路 RB 充电', '充放分开，D 自由'),
+    ]
+    left = '<rect x="80" y="140" width="230" height="120" rx="8" fill="#f6eedb" stroke="#334155" stroke-width="1.8"/>\n'
+    left += '<text x="195" y="172" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">RA · RB · C</text>\n'
+    left += '<path d="M100 210 L180 210" stroke="#2563eb" stroke-width="2.4"/>\n'
+    left += '<text x="112" y="202" font-size="11" fill="#2563eb">充电 RA+RB</text>\n'
+    left += '<path d="M290 210 L210 210" stroke="#059669" stroke-width="2.4"/>\n'
+    left += '<text x="214" y="228" font-size="11" fill="#059669">放电 RB</text>\n'
+    left += '<text x="195" y="248" text-anchor="middle" font-size="11" fill="#64748b">门限：2Vcc/3 与 Vcc/3</text>\n'
+    left += chip(195, 320, 'D 由 RA、RB 的比例决定', '#b45309', 12)
+    left += chip(195, 350, '对称方波要靠二极管 trick', '#64748b', 11)
+    svg = derive_frame('555 占空比：充放两条路各管一段', steps, left, h=680, dur=D)
+    svg += note_box("充经 RA+RB、放经 RB：D=(RA+RB)/(RA+2RB)；要独立调占空比就给充电加旁路二极管（10.2 节）", 636, D, delay_kt=None, w=740)
+    save('exp-555-duty.svg', svg + '</svg>')
+
+def make_exp_miller_mult():
+    D = 14
+    steps = [
+        ('① 原始电容', 'Cgd = 10pF', '跨在反相输出的两端'),
+        ('② 增益放大它', 'Cin = (1+A)·Cgd', 'A=100 → 1010pF'),
+        ('③ 后果', '输入极点被拖低', '带宽先死在输入端'),
+        ('④ 对策', '共源共栅把 A 压小', 'cascode 的另一层意义'),
+    ]
+    left = _exp_axis(56, 300, 240, 150, 'A（增益）', 'Cin')
+    left += '<path d="M56 280 L296 150" fill="none" stroke="#dc2626" stroke-width="2.4"/>\n'
+    for x, y, lab in [(120, 244, '1010pF'), (240, 178, '≈2.5nF@A=250')]:
+        left += f'<circle cx="{x}" cy="{y}" r="4" fill="#b45309"/>\n'
+        left += f'<text x="{x - 8}" y="{y - 10}" font-size="11" fill="#b45309">{lab}</text>\n'
+    left += chip(180, 386, '放大器把自己的反馈电容放大', '#dc2626', 12)
+    svg = derive_frame('米勒倍增：一只电容被增益放大', steps, left, h=680, dur=D)
+    svg += note_box("Cin=(1+A)Cgd：A=100 时 10pF 变 1010pF——高频增益还没抢到手，带宽先被输入端吃掉（11.5 节）", 636, D, delay_kt=None, w=740)
+    save('exp-miller-mult.svg', svg + '</svg>')
+
+def make_exp_noise_ladder():
+    D = 14
+    steps = [
+        ('① 带宽税', 'en × √BW', '带宽砍一半，噪声省 √2'),
+        ('② 源阻税', '4kTRs', 'Rs 越大热噪声越大'),
+        ('③ 电流税', 'in × Rs', '高源阻把电流噪声放大'),
+        ('④ 预算收口', '三项折算到输入端求和', '再算 SNR 与 ENOB'),
+    ]
+    left = ''
+    for i, (y, h, lab, c) in enumerate([(280, 40, '带宽税', '#2563eb'), (240, 80, '源阻税', '#b45309'), (200, 120, '电流税', '#dc2626')]):
+        x = 80 + i * 76
+        left += f'<rect x="{x}" y="{y - h}" width="52" height="{h}" fill="#f6eedb" stroke="{c}" stroke-width="1.5"/>\n'
+        left += f'<text x="{x + 26}" y="{y + 22}" text-anchor="middle" font-size="11" fill="{c}">{lab}</text>\n'
+    left += '<line x1="66" y1="280" x2="320" y2="280" stroke="#94a3b8" stroke-width="1.4"/>\n'
+    left += '<text x="330" y="284" font-size="11" fill="#64748b">e_n</text>\n'
+    left += chip(196, 360, '降噪顺序：带宽 → 源阻 → 管子', '#059669', 12)
+    svg = derive_frame('噪声三税：一张预算表收口', steps, left, h=680, dur=D)
+    svg += note_box("带宽、源阻、电流噪声三笔税折到输入端求和，才是 SNR 的真底——先砍带宽最便宜（11.6 节）", 636, D, delay_kt=None, w=740)
+    save('exp-noise-ladder.svg', svg + '</svg>')
+
+def make_exp_integrator_drift():
+    D = 14
+    steps = [
+        ('① 理想', '方波进 → 三角波出', '恒流充电容'),
+        ('② 失调作祟', 'I_bias 给 C 慢慢充', '输出爬向电源轨'),
+        ('③ 修法', '并泄放电阻 Rf', '直流增益限到 −Rf/R'),
+        ('④ 代价', '不再纯积分', '低频端拐弯'),
+    ]
+    left = _exp_axis(56, 300, 240, 150, 't', 'Vout')
+    left += '<path d="M56 280 L96 230 L136 280 L176 230 L216 280 L256 230 L296 272" fill="none" stroke="#2563eb" stroke-width="2.2"/>\n'
+    left += '<path d="M56 280 Q160 220 296 132" fill="none" stroke="#dc2626" stroke-width="1.8" stroke-dasharray="6,4"/>\n'
+    left += '<text x="176" y="140" font-size="11" fill="#dc2626">漂移：输出爬向轨</text>\n'
+    left += '<text x="120" y="330" font-size="11" fill="#059669">Rf 把爬坡拉回</text>\n'
+    left += chip(180, 386, '积分器的漂移是直流账', '#dc2626', 12)
+    svg = derive_frame('积分器漂移与泄放电阻（失效边界）', steps, left, h=680, dur=D)
+    svg += note_box("偏置电流给 C 充电，输出慢爬向轨；并 Rf 泄掉直流，代价是低频不再是纯积分（12.4/12.11 节）", 636, D, delay_kt=None, w=740)
+    save('exp-integrator-drift.svg', svg + '</svg>')
+
+def make_exp_cload_isolate():
+    D = 14
+    steps = [
+        ('① 病灶', 'Rout × Cload 新极点', '相位裕度被吃掉'),
+        ('② 症状', '方波振铃甚至自激', '跟随器最凶险'),
+        ('③ 修法', '输出串隔离电阻 Ro', '把负载电容拆出环路'),
+        ('④ 代价', '直流精度略降', 'Ro 上有一点压降'),
+    ]
+    left = _exp_axis(56, 280, 240, 130, 't', 'Vout')
+    left += '<path d="M56 260 L96 170 L136 250 L176 190 L216 244 L256 206 L296 232" fill="none" stroke="#dc2626" stroke-width="2.2"/>\n'
+    left += '<path d="M56 260 L96 170 L136 250 L176 190 L226 226 L296 224" fill="none" stroke="#059669" stroke-width="2" stroke-dasharray="7,4"/>\n'
+    left += '<text x="170" y="150" font-size="11" fill="#dc2626">串电阻前：振铃</text>\n'
+    left += '<text x="216" y="212" font-size="11" fill="#059669">串 Ro 后：收敛</text>\n'
+    left += chip(180, 366, '隔离电阻把极点拆出环路', '#059669', 12)
+    svg = derive_frame('容性负载自激与隔离电阻（失效边界）', steps, left, h=680, dur=D)
+    svg += note_box("Rout×Cload 的新极点拖垮相位裕度；输出串几十欧隔离电阻，振铃当场收敛（12.9 节）", 636, D, delay_kt=None, w=740)
+    save('exp-cload-isolate.svg', svg + '</svg>')
+
+def make_exp_volt_second():
+    D = 14
+    steps = [
+        ('① 导通段', '(Vin − Vo)·Ton', '电感「充电」伏秒'),
+        ('② 关断段', 'Vo·Toff', '电感「放电」伏秒'),
+        ('③ 平衡', '两块面积相等', '稳态的入场券'),
+        ('④ 结果', 'Vo = D·Vin；12V→5V：D≈0.42', '占空比即比值'),
+    ]
+    left = _exp_axis(56, 300, 240, 150, 't', 'VL')
+    left += '<path d="M56 170 L146 170 L146 260 L236 260 L236 170 L296 170" fill="none" stroke="#2563eb" stroke-width="2.4"/>\n'
+    left += '<rect x="66" y="176" width="70" height="78" fill="#eff6ff" stroke="#2563eb" stroke-width="1" opacity="0.7"/>\n'
+    left += '<rect x="156" y="176" width="70" height="78" fill="#fef2f2" stroke="#dc2626" stroke-width="1" opacity="0.7"/>\n'
+    left += '<text x="76" y="166" font-size="11" fill="#2563eb">充</text>\n'
+    left += '<text x="186" y="282" font-size="11" fill="#dc2626">放</text>\n'
+    left += chip(180, 386, '伏秒平衡是一切 Buck 公式的源头', '#2563eb', 12)
+    svg = derive_frame('伏秒平衡：电感稳态的入场券', steps, left, h=680, dur=D)
+    svg += note_box("充的伏秒 = 放的伏秒 → Vo=D·Vin；12V→5V 时 D≈0.42，纹波 ΔIL 由 L 与 f 定（13.2 节图）", 636, D, delay_kt=None, w=740)
+    save('exp-volt-second.svg', svg + '</svg>')
+
+def make_exp_crystal_pull():
+    D = 14
+    steps = [
+        ('① 标称', 'CL = 12pF', '晶振按这个值校频'),
+        ('② 实配', '两只 22pF → CL ≈ 15pF', '(C1·C2)/(C1+C2)+Cstray'),
+        ('③ 牵引', '约 20ppm/pF × 3pF ≈ 55~60ppm', '频偏由此来'),
+        ('④ 后果', '32.768kHz RTC 每天差 ≈4.8s', '负载电容错配的账'),
+    ]
+    left = '<rect x="70" y="140" width="100" height="42" rx="6" fill="#f6eedb" stroke="#334155" stroke-width="1.6"/>\n'
+    left += '<text x="120" y="166" text-anchor="middle" font-size="12" fill="#334155">晶振 CL=12pF</text>\n'
+    left += '<rect x="220" y="140" width="100" height="42" rx="6" fill="#fef2f2" stroke="#dc2626" stroke-width="1.6"/>\n'
+    left += '<text x="270" y="166" text-anchor="middle" font-size="12" fill="#dc2626">实配 15pF</text>\n'
+    left += '<line x1="170" y1="161" x2="220" y2="161" stroke="#94a3b8" stroke-width="2"/>\n'
+    left += '<polygon points="212,156 212,166 222,161" fill="#94a3b8"/>\n'
+    left += '<text x="196" y="150" text-anchor="middle" font-size="11" fill="#dc2626">+3pF</text>\n'
+    left += '<path d="M80 260 Q170 250 300 224" fill="none" stroke="#dc2626" stroke-width="2.2"/>\n'
+    left += '<text x="96" y="246" font-size="11" fill="#64748b">0</text>\n'
+    left += '<text x="252" y="246" font-size="11" fill="#dc2626">−55ppm</text>\n'
+    left += chip(196, 320, 'RTC 每天慢 4.8 秒', '#dc2626', 12)
+    svg = derive_frame('晶振牵引灵敏度：3pF 偏差值多少秒', steps, left, h=680, dur=D)
+    svg += note_box("两只 22pF 把 CL 从 12pF 顶到 15pF，约 55~60ppm 频偏：32.768kHz 的 RTC 每天差约 4.8 秒（13.10 节图）", 636, D, delay_kt=None, w=740)
+    save('exp-crystal-pull.svg', svg + '</svg>')
+
+def make_exp_wc_rss():
+    D = 14
+    steps = [
+        ('① WC 口径', '各项最坏同向相加', '批产的悲观上界'),
+        ('② RSS 口径', '平方和开根', '独立随机项的统计合成'),
+        ('③ 对照', 'RSS 总是小于 WC', '六项 1σ 预算两算法'),
+        ('④ 用法', '规格对 WC，良率看 RSS', '14.9 的双口径'),
+    ]
+    left = '<line x1="66" y1="300" x2="320" y2="300" stroke="#94a3b8" stroke-width="1.4"/>\n'
+    left += '<rect x="100" y="160" width="52" height="140" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>\n'
+    left += '<text x="126" y="322" text-anchor="middle" font-size="11.5" fill="#dc2626">WC</text>\n'
+    left += '<rect x="210" y="220" width="52" height="80" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>\n'
+    left += '<text x="236" y="322" text-anchor="middle" font-size="11.5" fill="#059669">RSS</text>\n'
+    left += '<text x="196" y="130" font-size="12.5" font-weight="bold" fill="#334155">六项 1σ 贡献的两种总账</text>\n'
+    left += chip(196, 380, '规格线对 WC，良率心里用 RSS', '#2563eb', 12)
+    svg = derive_frame('最坏情况 vs RSS：误差预算的两把尺', steps, left, h=680, dur=D)
+    svg += note_box("同一份六项预算：WC 全同向相加是批产上界，RSS 平方和开根更贴良率——两把尺各管一件事（14.10 节）", 636, D, delay_kt=None, w=740)
+    save('exp-wc-rss.svg', svg + '</svg>')
+
+def make_exp_derate_chain():
+    D = 14
+    steps = [
+        ('① 标称', '1/4W @ 70°C', '实验室名片'),
+        ('② 高温降额', '85°C 机内 → 只剩七成', '厂商降额曲线线性下调'),
+        ('③ 再打五折', '×50% 工程规则', '一只"1/4W"按 80~100mW 使唤'),
+        ('④ 出口', '算 P=VI，对降额线', '「摸着不烫」不算数'),
+    ]
+    left = '<line x1="66" y1="300" x2="320" y2="300" stroke="#94a3b8" stroke-width="1.4"/>\n'
+    bars = [(90, 200, '标称 250mW', '#2563eb'), (170, 140, '85°C 七成', '#b45309'), (250, 70, '×50% ≈ 87mW', '#dc2626')]
+    for x, h, lab, c in bars:
+        left += f'<rect x="{x}" y="{300 - h}" width="52" height="{h}" fill="#f6eedb" stroke="{c}" stroke-width="1.5"/>\n'
+        left += f'<text x="{x + 26}" y="{322}" text-anchor="middle" font-size="11" fill="{c}">{lab}</text>\n'
+    left += chip(196, 150, '降额是乘法，不是加法', '#dc2626', 12)
+    svg = derive_frame('额定功率的降额链：标称值怎么缩水', steps, left, h=680, dur=D)
+    svg += note_box("1/4W：85°C 环境只剩七成，再按 50% 规则折半——同一只电阻实际只配 80~100mW（0.9/14.2 节）", 636, D, delay_kt=None, w=740)
+    save('exp-derate-chain.svg', svg + '</svg>')
+
+def make_exp_return_cut():
+    D = 14
+    steps = [
+        ('① 正常回流', '高频回流贴在信号线正下方', '最小回路面积'),
+        ('② 地平面开槽', '回流绕过槽缝', '环路面积瞬间放大'),
+        ('③ 代价', '面积×30 → 辐射 +30dB', 'EMC 三要素里路径失守'),
+        ('④ 修法', '信号不跨槽，必要时桥接', '回流路径别开天窗'),
+    ]
+    left = '<rect x="60" y="150" width="260" height="120" fill="#eff6ff" stroke="#2563eb" stroke-width="1.4"/>\n'
+    left += '<rect x="168" y="150" width="14" height="120" fill="#fffdf8" stroke="#dc2626" stroke-width="1.6"/>\n'
+    left += '<text x="175" y="290" text-anchor="middle" font-size="11" fill="#dc2626">开槽（禁区）</text>\n'
+    left += '<path d="M70 210 L166 210 Q186 240 206 210 L310 210" fill="none" stroke="#dc2626" stroke-width="2.2" stroke-dasharray="7,4"/>\n'
+    left += '<path d="M70 210 L310 210" fill="none" stroke="#059669" stroke-width="1.6" stroke-dasharray="3,4"/>\n'
+    left += '<text x="90" y="198" font-size="11" fill="#059669">理想回流（直行）</text>\n'
+    left += '<text x="196" y="242" font-size="11" fill="#dc2626">绕行回流</text>\n'
+    left += chip(196, 366, '回流绕多远，天线就有多长', '#dc2626', 12)
+    svg = derive_frame('回流路径被割断：开槽的代价（失效边界）', steps, left, h=680, dur=D)
+    svg += note_box("高频回流贴线正下方；地平面开槽逼它绕行，环路面积×30、辐射+30dB——信号别跨槽（15.2/15.7 节）", 636, D, delay_kt=None, w=740)
+    save('exp-return-cut.svg', svg + '</svg>')
+
+def make_exp_via_stack():
+    D = 14
+    steps = [
+        ('① 叠层', '四层板 0.2mm 介质', 'w≈0.35mm 就能到 50Ω'),
+        ('② 双层板', '1.6mm 介质 → w≈3mm', '走不开，阻抗难做'),
+        ('③ 传输线判据', '边沿 1ns → 临界 2.5cm', '超过 l_crit/6 才启用端接'),
+        ('④ 过孔', '短桩少换层', '残桩是隐藏支路'),
+    ]
+    left = '<rect x="66" y="140" width="250" height="18" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/>\n'
+    left += '<rect x="66" y="158" width="250" height="30" fill="#f6eedb" stroke="#b45309" stroke-width="1.2"/>\n'
+    left += '<rect x="66" y="188" width="250" height="18" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/>\n'
+    left += '<text x="191" y="236" text-anchor="middle" font-size="11.5" fill="#334155">四层：信号-地-电源-信号</text>\n'
+    left += '<text x="191" y="262" text-anchor="middle" font-size="11" fill="#64748b">0.2mm 介质 → 50Ω 只需 w≈0.35mm</text>\n'
+    left += chip(191, 320, '双层板同阻抗要 3mm 线宽', '#dc2626', 12)
+    left += chip(191, 350, '1ns 边沿：2.5cm 内不当传输线', '#64748b', 11)
+    svg = derive_frame('叠层与阻抗：同一只 50Ω 两种命运', steps, left, h=680, dur=D)
+    svg += note_box("同一条 50Ω 微带近似：四层板 0.35mm 走得开，双层板要 3mm——叠层先定，布线才谈得上阻抗（15.3 节图）", 636, D, delay_kt=None, w=740)
+    save('exp-via-stack.svg', svg + '</svg>')
+
+def make_exp_log2_split():
+    D = 14
+    steps = [
+        ('① 公式', 'n 个节点 ≤ ⌈log₂n⌉ 次测量', '每刀砍掉一半嫌疑'),
+        ('② n=6', '⌈log₂6⌉ = 3', '剩 3 → 剩 1~2 → 锁定'),
+        ('③ n=16', '4 次定位 1 个（例 16-2）', '中点下刀的完整记录'),
+        ('④ 前提', '测量点本身可信', '先按 16.6 查探头与地'),
+    ]
+    left = ''
+    xs = [90, 170, 250]
+    for row, (cnt, y) in enumerate([(6, 130), (3, 220), (1, 310)]):
+        n_box = max(cnt, 1)
+        for k in range(n_box if row < 3 else 1):
+            x = xs[row] - (n_box - 1) * 22 + k * 44 if row < 3 else xs[2]
+            w = 34 if row < 3 else 44
+            left += (f'<rect x="{x}" y="{y}" width="{w}" height="36" rx="5" fill="#f6eedb" '
+                     f'stroke="#059669" stroke-width="1.5"/>\n')
+    left += '<text x="90" y="188" text-anchor="middle" font-size="11" fill="#334155">6</text>\n'
+    left += '<text x="170" y="278" text-anchor="middle" font-size="11" fill="#334155">3</text>\n'
+    left += '<text x="250" y="368" text-anchor="middle" font-size="11" fill="#334155">1</text>\n'
+    left += '<text x="140" y="182" font-size="11" fill="#b45309">刀①</text>\n'
+    left += '<text x="222" y="272" font-size="11" fill="#b45309">刀②</text>\n'
+    left += '<text x="288" y="362" font-size="11" fill="#b45309">刀③</text>\n'
+    left += chip(196, 412, '每刀把嫌疑砍半', '#b45309', 12)
+    svg = derive_frame('二分定位的对数数学：6 节点 3 刀', steps, left, h=680, dur=D)
+    svg += note_box("⌈log₂6⌉=3：第一刀剩 3、第二刀剩 1~2、第三刀锁定；16 节点也只要 4 次（16.1/16.7 节）", 636, D, delay_kt=None, w=740)
+    save('exp-log2-split.svg', svg + '</svg>')
+
+def make_exp_cost_ladder():
+    D = 14
+    steps = [
+        ('① 原理图改一处', '成本 1', '评审阶段：一行文字'),
+        ('② 打样改一处', '成本 10', '重投板+器件+一周'),
+        ('③ 量产后改', '成本 100', '召回、返修、品牌'),
+        ('④ 对策', '评审四闸把故障往左推', '原理图→布局→首板→出货'),
+    ]
+    left = '<line x1="66" y1="300" x2="320" y2="300" stroke="#94a3b8" stroke-width="1.4"/>\n'
+    for x, h, lab, c in [(90, 40, '1', '#059669'), (170, 110, '10', '#b45309'), (250, 200, '100', '#dc2626')]:
+        left += f'<rect x="{x}" y="{300 - h}" width="52" height="{h}" fill="#f6eedb" stroke="{c}" stroke-width="1.5"/>\n'
+        left += f'<text x="{x + 26}" y="{322}" text-anchor="middle" font-size="12" font-weight="bold" fill="{c}">{lab}</text>\n'
+    left += chip(196, 130, '1-10-100：越靠左越便宜', '#dc2626', 13)
+    left += chip(196, 160, '排故经验 → 设计约束', '#64748b', 11)
+    svg = derive_frame('1-10-100 成本法则：把故障往左推', steps, left, h=680, dur=D)
+    svg += note_box("原理图阶段改一处是 1，打样是 10，量产是 100——评审清单的价值就是把改动推到最左边（18.4 节）", 636, D, delay_kt=None, w=740)
+    save('exp-cost-ladder.svg', svg + '</svg>')
+
+def make_exp_contact_creep():
+    D = 14
+    steps = [
+        ('① 起点', '接触电阻 mΩ 级', '镀层完好'),
+        ('② 蠕变', '热循环拉扯 → 缓慢爬升', '裂纹从角落长向中心'),
+        ('③ 危险窗', '爬到 Ω 级之前：时好时坏', '只量通断会漏掉'),
+        ('④ 统计', '200 焊点 × 0.5% 不良 → 整板仅 ~63% 全好', '抽检与 X-Ray 的理由'),
+    ]
+    left = _exp_axis(56, 300, 240, 150, '热循环次数', '接触电阻')
+    left += '<path d="M56 280 Q140 272 200 240 Q260 205 296 150" fill="none" stroke="#dc2626" stroke-width="2.4"/>\n'
+    left += '<line x1="56" y1="200" x2="296" y2="200" stroke="#b45309" stroke-width="1.2" stroke-dasharray="5,4"/>\n'
+    left += '<text x="64" y="194" font-size="11" fill="#b45309">通断判据的盲区</text>\n'
+    left += _exp_vline_note(230, 150, 262, '漂移窗口', '#dc2626')
+    left += chip(180, 386, '"时好时坏"的焊点常表现为阻值漂移', '#dc2626', 11.5)
+    svg = derive_frame('接触电阻蠕变：只量通断会漏掉的漂移窗（失效边界）', steps, left, h=680, dur=D)
+    svg += note_box('mΩ→Ω 的爬升路上有一段「通断仍导通、阻值已漂移」的盲区——要晃动与变温中量（17.6 节图）', 636, D, delay_kt=None, w=740)
+    save('exp-contact-creep.svg', svg + '</svg>')
+
+make_exp_source_sag()
+make_exp_conduction_angle()
+make_exp_tvs_ladder()
+make_exp_unit_guard()
+make_exp_derate_chain()
+make_exp_esr_ripple_split()
+make_exp_cap_life()
+make_exp_avalanche_edge()
+make_exp_beta_drift()
+make_exp_thermal_loop()
+make_exp_gate_charge()
+make_exp_pullup_trade()
+make_exp_dead_time()
+make_exp_gbw_swap()
+make_exp_slew_wall()
+make_exp_hyst_window()
+make_exp_delay_budget()
+make_exp_inject_harmonic()
+make_exp_droop_budget()
+make_exp_ldo_zero()
+make_exp_psrr_roll()
+make_exp_555_mono_train()
+make_exp_555_duty()
+make_exp_miller_mult()
+make_exp_noise_ladder()
+make_exp_integrator_drift()
+make_exp_cload_isolate()
+make_exp_volt_second()
+make_exp_crystal_pull()
+make_exp_wc_rss()
+make_exp_return_cut()
+make_exp_via_stack()
+make_exp_log2_split()
+make_exp_contact_creep()
+make_exp_cost_ladder()

@@ -126,8 +126,10 @@ def build_animations():
                     continue
             body.append(line)
     finish()
-    if len(items) != 118:
-        raise SystemExit(f"动画应为 118 条，解析到 {len(items)}")
+    # 数量闸与 scripts/test_svg_count_floor.py 同口径：只设下限不锁死总数，
+    # 扩量（Task 11b）后画廊随生成器增长，不再回填硬编码数字。
+    if len(items) < 150:
+        raise SystemExit(f"动画少于 150 条（扩量闸下限），解析到 {len(items)}")
     for item in items:
         if not (ROOT / item["static_svg"]).is_file():
             raise SystemExit(f'缺少图片 {item["static_svg"]}')
