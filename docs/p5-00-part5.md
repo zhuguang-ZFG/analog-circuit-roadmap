@@ -849,7 +849,7 @@ Falstad 交互：`Circuits → 555 Timer Chip → Astable Multivibrator`
 
 <p align="center"><img src="assets/svg/exp-gate-charge.svg" width="720" alt="米勒平台的栅电荷账：驱动电流是挤压器动画：四步节拍推导"></p>
 
-**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [4.3/4.6 平台与四拍](p1-05-ch4.md#ch4)
+**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [4.3 与 4.6 平台与四拍](p1-05-ch4.md#ch4)
 
 
 ## 5.130 上拉取值：上升沿与功耗的双边权衡 <a id="demo130"></a>
@@ -954,7 +954,7 @@ Falstad 交互：`Circuits → 555 Timer Chip → Astable Multivibrator`
 
 <p align="center"><img src="assets/svg/exp-integrator-drift.svg" width="720" alt="积分器漂移与泄放电阻（失效边界）动画：四步节拍推导"></p>
 
-**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [12.4/12.11 积分器](p2-02-ch12.md#ch12)
+**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [12.4 与 12.11 积分器](p2-02-ch12.md#ch12)
 
 
 ## 5.145 容性负载自激与隔离电阻（失效边界） <a id="demo145"></a>
@@ -989,7 +989,7 @@ Falstad 交互：`Circuits → 555 Timer Chip → Astable Multivibrator`
 
 <p align="center"><img src="assets/svg/exp-return-cut.svg" width="720" alt="回流路径被割断：开槽的代价（失效边界）动画：四步节拍推导"></p>
 
-**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [15.2/15.7 回流](p3-02-ch15.md#ch15)
+**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [15.2 与 15.7 回流](p3-02-ch15.md#ch15)
 
 
 ## 5.150 叠层与阻抗：同一只 50Ω 两种命运 <a id="demo150"></a>
