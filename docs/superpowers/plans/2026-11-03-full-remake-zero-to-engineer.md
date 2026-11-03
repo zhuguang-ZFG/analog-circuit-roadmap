@@ -2,6 +2,8 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
+> **执行状态（2026-11-04，机器可验快照）**：Task 0–12、11b、11c、14、15 已按步执行并逐项提交；`make remake-ship` 六项残余扫描全绿（契约 19/19、套话零命中、引用库闸、SVG 153≥150、双源探测、五线数值抽检）。Task 13 完成旁白默认音色/音高契约与 ep04 数值对齐（72 项视频测试绿）；**EP01–20 其余分集的重录与出片按"缺任一项不出片"规则分波推进，未完**。print-volumes 分卷 PDF 未重建（16K 单卷 HTML 闸已绿）。发布动作（push / pages 部署 / 社媒实际发布 / ship-gate 人工签字）按冻结规则留给发布流程。
+
 **Goal:** 按已通过的整包重做 spec，把「通往模拟电路之路」推倒重写成 docs 单源教材，再同源派生站点、离线书、视频与社媒，清单勾完即可出片出书上架。
 
 **Architecture:** 唯一内容源仍是 `docs/*.md`（保留 ch0–18 文件名与 `#chN` 锚点）。先锁教学地图、章节契约与 FA-029 视觉 DNA，再打穿样板章（ch1 + ch16），按 A→B→C→D 段波次重写全书；脚本侧只改 `handraw.py` / `generate_svgs.py` / 视频旁白默认音色等派生管线，禁止手改 `assets/svg/` 产物。每阶段以可运行的 unittest / make 目标为出口闸。
