@@ -75,7 +75,7 @@ CARD = """<!DOCTYPE html>
     <p class="sub">从欧姆定律到芯片内部结构<br>原理推导 · 器件剖析 · 故障分析 · 动画演示</p>
     <div class="chips">
       <span class="chip"><b>19</b> 章核心内容</span>
-      <span class="chip"><b>118</b> 张原理动画</span>
+      <span class="chip"><b>153</b> 张原理动画</span>
       <span class="chip"><b>90+34</b> 道自测题</span>
       <span class="chip">可交互教学样板</span>
     </div>

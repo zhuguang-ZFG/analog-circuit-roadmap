@@ -15,7 +15,7 @@
 
 [![tests](https://github.com/zhuguang-ZFG/analog-circuit-roadmap/actions/workflows/tests.yml/badge.svg)](https://github.com/zhuguang-ZFG/analog-circuit-roadmap/actions/workflows/tests.yml)
 [![docs](https://img.shields.io/badge/docs-60%20%E9%A1%B5-blue)](docs/p0-07-toc.md#toc)
-[![SVG animations](https://img.shields.io/badge/SVG%20%E5%8A%A8%E7%94%BB-118-ff69b4)](docs/p5-00-part5.md#part5)
+[![SVG animations](https://img.shields.io/badge/SVG%20%E5%8A%A8%E7%94%BB-153-ff69b4)](docs/p5-00-part5.md#part5)
 [![video](https://img.shields.io/badge/%E8%A7%86%E9%A2%91%E8%AF%BE-20%20%E9%9B%86-red)](docs/p7-03-s7-3.md#s7-3)
 [![book](https://img.shields.io/badge/%E7%A6%BB%E7%BA%BF%E6%95%B4%E4%B9%A6-HTML%20%2B%20PDF-success)](https://zhuguang-zfg.github.io/analog-circuit-roadmap/book/)
 [![license](https://img.shields.io/badge/%E6%8E%88%E6%9D%83-CC%20BY--SA%204.0-lightgrey)](LICENSE)
@@ -37,7 +37,7 @@
 
 <ul class="learning-stats">
   <li><strong>19</strong> 章核心内容</li>
-  <li><strong>118</strong> 张原理动画</li>
+  <li><strong>153</strong> 张原理动画</li>
   <li><strong>3</strong> 个可控教学样板</li>
   <li><strong>90</strong> 道章节题 + <strong>34</strong> 道专题题</li>
 </ul>

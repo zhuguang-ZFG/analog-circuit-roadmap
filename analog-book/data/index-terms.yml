@@ -1987,9 +1987,9 @@
   - 旁路
 - term: RC 充放电
   english: RC charge and discharge
-  primary: p1-02-ch1--rc
+  primary: p1-02-ch1--rc-study
   anchors:
-  - p1-02-ch1--rc
+  - p1-02-ch1--rc-study
   - p8-03-s8-3--rc
   - p8-03-s8-3--83
   - p0-08-cheatsheet--12
@@ -2223,9 +2223,9 @@
   see_also: []
 - term: 时间常数
   english: time constant
-  primary: p1-02-ch1--rc
+  primary: p1-02-ch1--rc-study
   anchors:
-  - p1-02-ch1--rc
+  - p1-02-ch1--rc-study
   - p2-02-ch12--1212
   - p0-08-cheatsheet--555-6
   - p1-01-ch0--_4
@@ -2369,7 +2369,7 @@
   - p4-01-ch16--163-jim-williams
   - p4-01-ch16--169
   - p7-03-s7-3--73-20-60
-  - p1-02-ch1--rc
+  - p1-02-ch1--rc-study
   see_also: []
 - term: THD
   english: total harmonic distortion

@@ -16,6 +16,7 @@ SOURCE_FIELDS = {"id", "chapter", "claim", "source_type", "citation",
                  "url_or_doi", "verified_on", "verifier"}
 REFERENCE_FIELDS = {"id", "authors", "title", "edition", "publisher",
                     "year", "isbn_or_url", "chapters"}
+REFERENCE_OPTIONAL_FIELDS = {"notes"}  # notes：OSS 用途/许可立场与 optional-deep-read 标注（Task 11c）
 SIGNOFF_FIELDS = {"chapter", "draft_version", "technical_reviewer",
                   "editorial_reviewer", "safety_reviewer", "date", "open_issues"}
 SOURCE_TYPES = {"教材", "数据手册", "应用笔记", "论文", "仓库实测", "仿真"}
@@ -34,9 +35,10 @@ def load_list(path: Path) -> list[dict]:
     return value
 
 
-def _fields(item: dict, expected: set[str], where: str) -> None:
+def _fields(item: dict, expected: set[str], where: str,
+            optional: frozenset[str] = frozenset()) -> None:
     missing = sorted(expected - item.keys())
-    unknown = sorted(item.keys() - expected)
+    unknown = sorted(item.keys() - expected - optional)
     if missing:
         raise BookError(f"{where}: 缺字段 {missing}")
     if unknown:
@@ -52,7 +54,7 @@ def _nonempty(item: dict, names: tuple[str, ...], where: str) -> None:
 
 # 动画总数：改这个常量即可，scripts/build_book_data.py 的上限断言、docs 徽章与
 # 统计口径同步改；test_real_generator_matches_committed_yaml 会对账真实清单。
-EXPECTED_ANIMATIONS = 118
+EXPECTED_ANIMATIONS = 153
 
 def validate_animations(items: list[dict], static_root: Path = config.ROOT) -> None:
     if len(items) != EXPECTED_ANIMATIONS:
@@ -181,14 +183,17 @@ def validate_references(items: list[dict], final: bool = False) -> None:
     ids = set()
     for index, item in enumerate(items, 1):
         where = f"references.yml 第 {index} 条"
-        _fields(item, REFERENCE_FIELDS, where)
+        _fields(item, REFERENCE_FIELDS, where, optional=REFERENCE_OPTIONAL_FIELDS)
         _nonempty(item, ("id", "authors", "title", "publisher", "isbn_or_url"), where)
         if item["id"] in ids:
             raise BookError(f"{where}: id 重复 {item['id']}")
         ids.add(item["id"])
         if not isinstance(item["year"], int):
             raise BookError(f"{where}: year 必须是整数")
-        if not isinstance(item["chapters"], list) or not item["chapters"]:
+        if not isinstance(item["chapters"], list) or (
+                not item["chapters"] and "notes" not in item):
+            # notes 在场 = OSS/工具类条目（Task 11c），允许 chapters 空列表；
+            # 章节正文引用仍必须挂到具体章。
             raise BookError(f"{where}: chapters 必须是非空列表")
         if any(not isinstance(ch, int) or not 0 <= ch <= 18 for ch in item["chapters"]):
             raise BookError(f"{where}: chapters 必须是 0–18 的整数")
