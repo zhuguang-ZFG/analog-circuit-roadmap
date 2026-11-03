@@ -3,7 +3,7 @@
 
 管线（依赖 edge-tts 与 imageio-ffmpeg，均为开发侧工具）：
   1. 逐镜取 shots JSON 里的 `voice` 文本，edge-tts 合成 MP3 + WordBoundary
-     NDJSON（默认 zh-CN-YunxiNeural，语速 +12%）；quiz 的非空 answerVoice 独立合成；
+     NDJSON（默认 zh-CN-XiaoxiaoNeural，语速 −5%、音高 −4Hz）；quiz 的非空 answerVoice 独立合成；
   2. 解码测时长，**自动重排时间轴**：幕长至少覆盖 LEAD + 完整口播 + TAIL，
      quiz 在问题音频结束后等待 thinkSeconds（默认 2s），然后播答案。
      原 shots 字段保留；speech 为相对幕首秒数的 {text,start,end}[]，
@@ -37,8 +37,9 @@ TMP = Path(__file__).parent / ".vo-cache"
 
 LEAD = 0.35   # 每幕口播前的呼吸（秒）
 TAIL = 0.35   # 口播后的收尾（秒）
-RATE = "+12%"
-VOICE = "zh-CN-YunxiNeural"
+RATE = "-5%"
+VOICE = "zh-CN-XiaoxiaoNeural"
+PITCH = "-4Hz"   # edge-tts 原生 pitch 参数（温柔女声，可被 --pitch 覆盖）
 
 
 def ffmpeg_exe() -> str:
@@ -46,12 +47,15 @@ def ffmpeg_exe() -> str:
     return imageio_ffmpeg.get_ffmpeg_exe()
 
 
-def synth(text: str, mp3: Path, voice: str, rate: str) -> None:
+def synth(text: str, mp3: Path, voice: str, rate: str, pitch: str = "") -> None:
     import asyncio
     import edge_tts
 
     async def run() -> None:
-        await edge_tts.Communicate(text, voice, rate=rate, boundary="WordBoundary").save(
+        kwargs = {"rate": rate, "boundary": "WordBoundary"}
+        if pitch:
+            kwargs["pitch"] = pitch
+        await edge_tts.Communicate(text, voice, **kwargs).save(
             str(mp3), str(mp3.with_suffix(".words.ndjson")))
 
     asyncio.run(run())
@@ -93,9 +97,9 @@ def word_boundaries(metadata: Path, seconds: float) -> list[dict]:
         raise ValueError(f"WordBoundary 元数据无效：{metadata}: {exc}") from exc
 
 
-def cached_voice(text: str, name: str, voice: str, rate: str, ff: str) -> tuple[Path, float, list[dict]]:
+def cached_voice(text: str, name: str, voice: str, rate: str, ff: str, pitch: str = "") -> tuple[Path, float, list[dict]]:
     # 版本前缀隔离旧 text-only 缓存；voice/rate/边界模式均参与键，不删除旧音频。
-    key = hashlib.sha256(json.dumps(["WordBoundary-v1", voice, rate, text],
+    key = hashlib.sha256(json.dumps(["WordBoundary-v1", voice, rate, pitch, text],
                                    ensure_ascii=False).encode("utf-8")).hexdigest()[:20]
     stem = f"{name}-wb1-{key}"
     mp3 = TMP / f"{stem}.mp3"
@@ -114,7 +118,7 @@ def cached_voice(text: str, name: str, voice: str, rate: str, ff: str) -> tuple[
     # 部分缓存也不能覆盖：生成独立新键，完整缓存下次仍可发现和复用。
     if any(mp3.with_suffix(ext).exists() for ext in (".mp3", ".wav", ".words.ndjson")):
         mp3 = TMP / f"{stem}-{uuid.uuid4().hex}.mp3"
-    synth(text, mp3, voice, rate)
+    synth(text, mp3, voice, rate, pitch)
     seconds, wav = mp3_secs(mp3, ff)
     return wav, seconds, word_boundaries(mp3.with_suffix(".words.ndjson"), seconds)
 
@@ -146,6 +150,8 @@ def main() -> int:
     ap.add_argument("--size", choices=["vertical", "horizontal"], default="vertical")
     ap.add_argument("--voice", default=VOICE)
     ap.add_argument("--rate", default=RATE)
+    ap.add_argument("--pitch", default=PITCH,
+                    help="音高偏移（edge-tts pitch，如 -4Hz；空串关闭）")
     ap.add_argument("--no-render", action="store_true",
                     help="只测口播时长与时间轴，不出片")
     ap.add_argument("--audio-only", action="store_true",
@@ -190,7 +196,7 @@ def main() -> int:
             text = shot.get(field, "")
             if not text.strip():
                 continue
-            wav, seconds, words = cached_voice(text, f"{name}-{i}-{field}", args.voice, args.rate, ff)
+            wav, seconds, words = cached_voice(text, f"{name}-{i}-{field}", args.voice, args.rate, ff, args.pitch)
             clips.append((wav, shot_offset + cursor))
             current["speech"].extend({"text": word["text"],
                                       "start": round(cursor + word["start"], 7),

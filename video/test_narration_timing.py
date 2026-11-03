@@ -35,8 +35,9 @@ def read_pcm(path):
 
 class DownloadFixture:
     """save 的离线替身：实际写音频与 NDJSON，默认模拟旧 API 的句边界。"""
-    def __init__(self, text, voice, *, rate, boundary="SentenceBoundary"):
+    def __init__(self, text, voice, *, rate, boundary="SentenceBoundary", pitch=None):
         self.text, self.voice, self.rate, self.boundary = text, voice, rate, boundary
+        self.pitch = pitch  # narrate.py 新契约：音高偏移随缓存键一起传递
 
     async def save(self, audio_fname, metadata_fname=None):
         # WAV 容器故意命名 .mp3：ffmpeg 按真实容器探测，保留精确 PCM 断言。
