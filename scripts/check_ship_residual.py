@@ -77,7 +77,7 @@ def check_no_parallel_tree(root: Path = ROOT, names: tuple = ("book-manuscript",
     return issues
 
 
-def check_five_line_sample() -> list[str]:
+def check_five_line_sample(ep_dir: Path = ROOT / "video" / "shots") -> list[str]:
     """抽检 ch1 / ch12 / ch16：章内口诀与总表、EP 分镜、社媒样例一致。"""
     registry = (ROOT / "docs/p8-11-s8-11.md").read_text(encoding="utf-8")
     mottos = {
@@ -96,9 +96,19 @@ def check_five_line_sample() -> list[str]:
     social = (ROOT / "docs/superpowers/examples/social/ch16-debug.md").read_text(encoding="utf-8")
     if "一次只改一个变量" not in social:
         issues.append("社媒样例 ch16 未引用口诀卡")
-    ep4 = (ROOT / "video/shots/ep04-divider.json").read_text(encoding="utf-8")
-    if "12V 分压" not in ep4 or "4V" not in ep4:
-        issues.append("EP04 分镜与 ch0 例 0-1 关键数值不一致（12V→6V→4V）")
+    ep_checks = {
+        "ep04-divider.json": [("12V 分压", "ch0 例 0-1"), ("等于 4V", "ch0 例 0-1")],
+        "ep05-probe.json": [("9.1 微秒", "ch16 例 16-1"), ("17.5k", "ch16 例 16-1"), ("161k", "ch16 例 16-1")],
+        "ep02-virtual-short.json": [("0.5 伏每微秒", "ch7 迟滞预算")],
+        "ep07-pullup.json": [("890 欧", "ch5 上拉计算"), ("820", "ch5 上拉计算")],
+        "ep09-electrolytic.json": [("32000 小时", "ch1 寿命账"), ("3.7 年", "ch1 寿命账")],
+        "ep13-buck.json": [("0.88 安", "ch13 Buck 算例"), ("7.4 毫伏", "ch13 Buck 算例")],
+    }
+    for fname, needles in ep_checks.items():
+        text = (ep_dir / fname).read_text(encoding="utf-8")
+        for needle, source in needles:
+            if needle not in text:
+                issues.append(f"{fname} 与正典数值不一致：缺「{needle}」（{source}）")
     return issues
 
 
