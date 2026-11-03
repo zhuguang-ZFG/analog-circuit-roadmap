@@ -56,6 +56,9 @@ remake-ship: remake-check
 	$(PY) -B -m unittest discover -s scripts -p 'test_svg_count_floor.py' -v
 	$(PY) -B -m unittest discover -s scripts -p 'test_ship_residual.py' -v
 	$(PY) scripts/check_ship_residual.py
+	$(PY) scripts/build_book_data.py --check
+	$(PY) scripts/build_lab_packages.py --check
+	$(PY) scripts/subset_fonts.py --check
 	$(PY) scripts/build_readme.py --check
 
 test-static:
