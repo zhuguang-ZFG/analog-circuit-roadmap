@@ -2,7 +2,7 @@
 
 - **文件**：`docs/superpowers/specs/2026-11-03-full-remake-zero-to-engineer-design.md`
 - **日期**：2026-11-03（America/Adak 日历日）
-- **状态**：Draft for user review（设计已按会话拍板写入；待用户确认后进入实施）
+- **状态**：Accepted（用户 2026-11-03 确认；实施以本文件 + `docs/superpowers/plans/2026-11-03-full-remake-zero-to-engineer.md` 为准）
 - **打法**：A —— 先推倒重写全书（`docs/*.md` 唯一内容源），再派生站点 / 离线书 / 视频 / 社媒
 - **硬标准**：按本 spec 的验收清单勾选即可直接出片、出书、上架，现场不再猜
 
@@ -371,4 +371,15 @@ A 打法要求**心理顺序**是书（docs）先成；P1 样板只为降低返�
 
 ---
 
-*本文件由设计会话拍板写入，供用户 Review。确认后将状态改为 Accepted 再开实施计划。*
+*已 Accepted；实施计划见同日 plans 文件。*
+
+---
+
+## 附录 A · 用户增补（2026-11-03）
+
+会话拍板后追加，效力等同正文约束：
+
+1. **手绘动画加量**：在现有约 118 张原理动画基础上显著增加手绘气质动画（FA-029 精密几何，非卡通）；优先通过 scripts/generate_svgs.py / scripts/handraw.py 扩展画廊，禁止只改产物 SVG。
+2. **资料加厚**：每章与全书索引须系统引用更多 **GitHub 开源项目** 与 **官方资料**（ADI / TI / 厂商 datasheet 与应用笔记等）；analog-book/data/sources.yml / references.yml 扩编，章内数字与实验步骤可追溯。
+3. 实施计划须为以上两点设立独立可验收任务，不削弱打法 A 与五线上架门禁。
+

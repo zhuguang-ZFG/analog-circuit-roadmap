@@ -1,7 +1,7 @@
 PY ?= python
 export PYTHONIOENCODING := utf-8
 
-.PHONY: readme gen bookdata labs fonts site book book-pdf book-check print-book print-volumes test-static test-browser verify stats clean
+.PHONY: readme gen bookdata labs fonts site book book-pdf book-check print-book print-volumes remake-check test-static test-browser verify stats clean
 
 readme:
 	$(PY) scripts/build_readme.py
@@ -39,6 +39,11 @@ print-book:
 # 每卷自带前置页、目录、插图/表格目录与本卷索引，参考文献与索引两卷都带。
 print-volumes:
 	$(PY) analog-book/build_print_book.py --volumes --pdf --no-build
+
+# 整包重做（2026-11-03）两道内容闸：套话扫描 + 章节契约。
+remake-check:
+	$(PY) -B -m unittest discover -s scripts -p 'test_ai_slop.py' -v
+	$(PY) -B -m unittest discover -s scripts -p 'test_chapter_contract.py' -v
 
 test-static:
 	$(PY) -B -m unittest discover -s scripts -p "test_svg_assets.py" -v
