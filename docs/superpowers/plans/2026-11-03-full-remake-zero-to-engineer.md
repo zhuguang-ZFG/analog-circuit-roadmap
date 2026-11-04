@@ -2,7 +2,9 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-> **执行状态（2026-11-04，机器可验快照）**：Task 0–12、11b、11c、14、15 已按步执行并逐项提交；`make remake-ship` 六项残余扫描全绿（契约 19/19、套话零命中、引用库闸、SVG 153≥150、双源探测、五线数值抽检）。Task 13 完成旁白默认音色/音高契约、全部 20 集数值对齐审计（3 处修正）与 **ep04 样板集全链路出片 PASS**（新音色草片→配音→发布成片 68.5s 含烧录字幕，check_still PASS；72 项视频测试绿）；**EP01–20 其余分集按同链路分波重录，未完（每集约 3–10 分钟渲染，缺任一项不出片）**。print-volumes 分卷 PDF 已重建（双卷）。另：修复 Material 搜索 worker 中文整词切分缺陷（patch_search_worker，「去耦电容」查询 213→31 条精准），test_reading_journey 搜索用例转绿。发布动作（push / pages 部署 / 社媒实际发布 / ship-gate 人工签字）按冻结规则留给发布流程。
+> **执行状态（2026-11-04，机器可验快照）**：Task 0–12、11b、11c、14、15 已完成并逐项提交；`make remake-ship` 六项残余扫描全绿（契约 19/19、套话零命中、引用库闸、SVG 153≥150、双源探测、五线数值抽检），print-volumes 双卷已重建。Task 13 已完成旁白默认音色/音高契约、20 集数值对齐审计（3 处修正）以及 EP01–20 横竖版全量重渲；72 项视频测试全绿，40 个发布成片均已生成。当前唯一实施缺口是静止闸：`check_still` **32/40 PASS、8 FAIL**，失败为 EP01 竖版，以及 EP01/02/05/06/14/19/20 横版，详见 Task 13R。故整包状态仍是 **实施中 / 不可发布**；不得把“文件已生成”写成“视频线已完成”。push、Pages 部署、社媒实际发布与 ship-gate 人工签字继续冻结。
+
+> **后续视觉计划**：用户于 2026-11-04 复审后否决当前书籍视觉质量。本计划不再代表全部剩余工作；插图密度、图替繁文和 153 张旧动画的彻底改造，转入 `docs/superpowers/plans/2026-11-04-visual-first-book-overhaul.md`。新 spec 未 Accepted 前不提交推送。
 
 **Goal:** 按已通过的整包重做 spec，把「通往模拟电路之路」推倒重写成 docs 单源教材，再同源派生站点、离线书、视频与社媒，清单勾完即可出片出书上架。
 
@@ -64,6 +66,22 @@
 **Scope:** 工具链引用与闸脚本；教学地图；章节契约；样板 ch1+ch16；全书 ch0–18 按段重写；口诀总表与题库同步；站点/书重建；SVG 气质批迁移；**手绘动画大幅扩量（>现网约 118）**；**references.yml 策展与每章官方引用清单**；视频与社媒模板及首波可出片资产；总闸自动化。
 
 **Non-goals:** 不推远程；不另起章号；不引入双源书稿树；不把原理图卡通化；不把自测分宣传成独立设计认证；不锁印刷供应商与首刷册数；不在本计划正文里写完整章节内容。
+
+---
+
+## 执行台账（2026-11-04）
+
+本表是当前状态权威；下方各 Task 的 `- [ ]` 保留为可复用执行步骤，不再以逐框回填代表历史完成度。状态变化必须同时写清证据与未过闸原因。
+
+| 范围 | 状态 | 可验事实 | 下一动作 |
+|---|---|---|---|
+| Task 0–10 | 完成 | Accepted spec、19 章契约重写、humanizer 与 docs 派生均已提交 | 无 |
+| Task 11 / 11b | 完成 | SVG 生成器单源；动画 118→153，数量闸 ≥150 | 无 |
+| Task 11c | 完成 | references/sources、章引用模板与校验闸已提交 | 无 |
+| Task 12 | 完成 | 离线书与印刷双卷重建，双源探测通过 | 无 |
+| Task 13 | **进行中** | 20 集横竖版均已生成；72 项视频测试 PASS；`check_still` 32/40 PASS | 执行 Task 13R，修复 8 个失败成片并全量复验 |
+| Task 14–15 | 完成 | 三平台模板、`remake-ship` 与发布冻结规则已提交 | 待视频线过闸后人工签字 |
+| 对外发布 | 冻结 | 尚有 8 个视频静止闸失败 | 不 push、不部署、不宣称整包完成 |
 
 ---
 
@@ -1047,18 +1065,19 @@ git commit -m "build: 整包重做后离线/印刷书重建闸"
 
 ---
 
-### Task 13: 视频线 — 旁白默认音色 + 分镜/SRT/封面波次
+### Task 13: 视频线 — 旁白默认音色 + 分镜/时间轴/烧录字幕/封面波次
 
 **Files:**
 - Modify: `video/narrate.py`（默认 VOICE/RATE/音高对齐 spec §10.4）
 - Modify: `video/shots/ep01-*.json` … `ep20-*.json`（口诀/数值/旁白与重写 docs 对齐）
 - Modify: `video/episodes/` 脚本若存在
+- Modify: `video/README.md`（默认音色、时间轴字幕契约与发布闸同步）
 - Modify: `docs/p7-01-s7-1.md`（成片链接回填位）
 - Test: `video/test_storyboard.py` `video/test_subtitles.py` `video/test_narration_timing.py`
 
 **Interfaces:**
 - Consumes: 重写后口诀与关键数值；FA-029 画面资产
-- Produces: TTS 默认 `zh-CN-XiaoxiaoNeural`、语速 −5%、音高 −4Hz；缺分镜/SRT/封面不出片
+- Produces: TTS 默认 `zh-CN-XiaoxiaoNeural`、语速 −5%、音高 −4Hz；字幕由 `timeline.json` 同源烧录；缺分镜/时间轴/烧录字幕/封面不出片
 
 - [ ] **Step 1: 改 `narrate.py` 默认参数**
 
@@ -1096,13 +1115,17 @@ python -B -m unittest discover -s video -p 'test_storyboard.py' -v
 - [ ] **Step 3: 出草片/字幕/封面闸**
 
 ```bash
-python video/director.py --shots video/shots/<ep>.json --size horizontal
-python video/narrate.py --shots video/shots/<ep>.json
-python video/master.py --shots video/shots/<ep>.json
+python video/director.py --shots video/shots/<ep>.json --size vertical
+python video/narrate.py --shots video/shots/<ep>.json --size vertical
+python video/master.py --shots video/shots/<ep>.json --size vertical
 python video/check_still.py video/samples/<name>-final.mp4
+python video/director.py --shots video/shots/<ep>.json --size horizontal
+python video/narrate.py --shots video/shots/<ep>.json --size horizontal
+python video/master.py --shots video/shots/<ep>.json --size horizontal
+python video/check_still.py video/samples/<name>-final-h.mp4
 ```
 
-缺 SRT/封面/章节标记 → 标记该集未出片。
+缺时间轴、烧录字幕、封面或章节标记 → 标记该集未出片。若平台另需 SRT，只能由同一 `timeline.json` 导出，禁止维护第二份字幕正文。
 
 - [ ] **Step 4: 其余 EP 波次**
 
@@ -1114,6 +1137,66 @@ BGM/响度规则沿用 `video/README.md`，不在本任务改版权策略。
 ```bash
 git add video/narrate.py video/shots video/episodes docs/p7-01-s7-1.md video/test_*.py
 git commit -m "feat: 视频旁白默认 XiaoxiaoNeural 且分镜对齐重写文档"
+```
+
+---
+
+### Task 13R: EP01–20 发布成片收口（当前唯一实施缺口）
+
+**当前基线（2026-11-04 实测）**
+
+- 20 份 `video/shots/*.json` 均存在，20 份封面、20 份 timeline、20 个竖版 `-final.mp4`、20 个横版 `-final-h.mp4` 均已生成。
+- 使用项目实际运行时 Python 3.13 执行 `python -B -m unittest discover -s video -p 'test_*.py' -v`：**72 tests PASS**。
+- 对 40 个发布成片逐个执行 `video/check_still.py`：**32 PASS / 8 FAIL**。
+
+| 集 | 版式 | 失败时间 | 对应镜头 | 修复关注点 |
+|---|---|---:|---|---|
+| EP01 Miller | 竖 + 横 | 22.0–37.2s | shot 4 `svg:miller-plateau` | 源 SVG/相机层在整段几乎静止；两版都必须补可见运动 |
+| EP02 虚短虚断 | 横 | 43.1–46.5s、53.4–56.6s | shot 5 `card:feedback boundary` | 横版卡片进入/停留/退出的运动幅度不足 |
+| EP05 探头 | 横 | 22.3–27.1s | shot 4 `num:9%→1%` | 数字卡计数结束后长时间静止 |
+| EP06 热失控 | 横 | 22.1–25.4s | shot 4 `card:R_E` | 横版卡片停留段运动不足 |
+| EP14 LDO | 横 | 20.4–23.7s | shot 4 `card:dropout` | 横版卡片停留段运动不足 |
+| EP19 排故 | 横 | 21.1–25.6s、27.6–31.9s | shot 4 `num:40→15min` | 数字变化前后均有静止窗口 |
+| EP20 噪声 | 横 | 27.9–37.7s | shot 4 `num:0→4.1mV` + shot 5 `quiz` 起段 | 数字卡结束与问答卡起段连续静止 |
+
+- [ ] **R1: 先证明问题类型，不改闸值**
+
+对每个失败窗口抽取起/中/末三帧，确认是组件自身冻结、横版相机运动幅度不足，还是 `check_still` 裁切误判。只有能用帧证据证明误判，才允许修检测器；禁止把全局 `0.20%` 阈值下调到刚好放行。
+
+- [ ] **R2: 按组件类型修一次，避免逐集打补丁**
+
+优先检查 Remotion 的 `card`、`num`、`svg` 三类共享运动：停留段应保留缓慢推镜、视差或有教学含义的局部变化。修共享组件后只对上表镜头做窄测；若共享修复会改变其余 32 个已通过成片，必须重跑 40 个静止闸。
+
+- [ ] **R3: 只重渲受影响版式**
+
+EP01 重渲横竖两版；EP02/05/06/14/19/20 只重渲横版。保留既有旁白缓存与已通过版式，禁止因修横版覆盖竖版 timeline 或成片。
+
+- [ ] **R4: 全量机器复验**
+
+```bash
+python -B -m unittest discover -s video -p 'test_*.py' -v
+# 对 samples/ 下 20 个 -final.mp4 与 20 个 -final-h.mp4 全量循环：
+python video/check_still.py video/samples/<name>-final.mp4
+python video/check_still.py video/samples/<name>-final-h.mp4
+```
+
+出口：72 项测试 PASS，40/40 静止闸 PASS；媒体均含视频+音频流，竖版 1080×1920、横版 1920×1080，时长与各自 timeline 总时长一致。
+
+- [ ] **R5: 人工审片抽检**
+
+逐个查看上表失败窗口，确认运动不是为了过检测而空转；字幕不越界、不遮关键数值，语音与字幕同步，横竖裁切均保住主图信息。人工抽检未签字前，机器全绿也不等于可发布。
+
+- [ ] **R6: 文档与提交收口**
+
+同步 `video/README.md` 的默认音色（XiaoxiaoNeural / −5% / −4Hz）、时间轴烧录字幕契约与 40/40 结果；更新本计划和 ship-gate。只提交跟踪约定内的 `-final*.mp4`、`-timeline.json`、封面与必要源码，不提交 `draft/vo/wav` 中间稿或 `.tmp-render-all.sh`。
+
+```bash
+git add video/README.md video/samples/*-final.mp4 video/samples/*-final-h.mp4 \
+  video/samples/*-timeline.json video/narrate.py video/master.py video/remotion/src \
+  docs/superpowers/plans/2026-11-03-full-remake-zero-to-engineer.md \
+  docs/superpowers/specs/2026-11-03-full-remake-zero-to-engineer-design.md \
+  docs/superpowers/checklists/ship-gate.md
+git commit -m "feat: EP01-20 横竖成片全量重制并通过静止闸"
 ```
 
 ---
