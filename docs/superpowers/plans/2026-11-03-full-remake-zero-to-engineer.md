@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-> **执行状态（2026-11-04，机器可验快照）**：Task 0–12、11b、11c、14、15 已按步执行并逐项提交；`make remake-ship` 六项残余扫描全绿（契约 19/19、套话零命中、引用库闸、SVG 153≥150、双源探测、五线数值抽检）。Task 13 完成旁白默认音色/音高契约与 ep04 数值对齐（72 项视频测试绿）；**EP01–20 其余分集的重录与出片按"缺任一项不出片"规则分波推进，未完**。print-volumes 分卷 PDF 未重建（16K 单卷 HTML 闸已绿）。发布动作（push / pages 部署 / 社媒实际发布 / ship-gate 人工签字）按冻结规则留给发布流程。
+> **执行状态（2026-11-04，机器可验快照）**：Task 0–12、11b、11c、14、15 已按步执行并逐项提交；`make remake-ship` 六项残余扫描全绿（契约 19/19、套话零命中、引用库闸、SVG 153≥150、双源探测、五线数值抽检）。Task 13 完成旁白默认音色/音高契约、全部 20 集数值对齐审计（3 处修正）与 **ep04 样板集全链路出片 PASS**（新音色草片→配音→发布成片 68.5s 含烧录字幕，check_still PASS；72 项视频测试绿）；**EP01–20 其余分集按同链路分波重录，未完（每集约 3–10 分钟渲染，缺任一项不出片）**。print-volumes 分卷 PDF 已重建（双卷）。另：修复 Material 搜索 worker 中文整词切分缺陷（patch_search_worker，「去耦电容」查询 213→31 条精准），test_reading_journey 搜索用例转绿。发布动作（push / pages 部署 / 社媒实际发布 / ship-gate 人工签字）按冻结规则留给发布流程。
 
 **Goal:** 按已通过的整包重做 spec，把「通往模拟电路之路」推倒重写成 docs 单源教材，再同源派生站点、离线书、视频与社媒，清单勾完即可出片出书上架。
 
