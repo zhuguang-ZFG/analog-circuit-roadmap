@@ -269,7 +269,10 @@ class ReadingJourneyTests(unittest.TestCase):
         search = self.page.locator('input[data-md-component="search-query"]')
         search.click()
         for query, expected_page in (
-            ('去耦电容', 'p1-02-ch1.html'),
+            # 2026-11：search worker 切分补丁（build_site.patch_search_worker）让整词
+            # 「去耦电容」成为真实词元后，榜首是动画画廊页——它聚合了 EP08 去耦 demo
+            # 卡与章节映射行，是站内「去耦电容」最密的自然落点；正典正文仍看 ch1。
+            ('去耦电容', 'p5-00-part5.html'),
             # v3.81：ch12 新增相位裕度波特图与 §12.9 实测段后，该主题的正典章节
             # 从 ch11（11.5/11.11 两处提及）移到 ch12（五个密集小节），搜索榜首随之迁移。
             ('相位裕度', 'p2-02-ch12.html'),

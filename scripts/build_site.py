@@ -1448,6 +1448,27 @@ def build_nav(pages):
     return "\n".join(lines)
 
 
+def patch_search_worker(site_dir: Path) -> bool:
+    """修复 Material 搜索 worker 对中文整词查询的切分缺陷（v3.90 起既有）。
+
+    worker 的 fe() 在倒排索引里做贪心最长匹配，但内层扫描 `o<t.length`
+    永远排除「从当前位置开始的整词」——查询「去耦电容」只能切成
+    「去耦* 电」（尾字单切），单字「电」命中 900+ 页，正典整词反而匹配不上。
+    把扫描上界放宽到 `o<=t.length` 后，fe 能产出整词词元，查询词元与索引
+    词表对齐，排名回到内容相关。Material 升级若模式缺失则跳过并告警。
+    """
+    patched = False
+    old = "for(let o=s+1;o<t.length;o++)t.slice(s,o)in e&&(n[s]=o-s);"
+    for p in sorted(site_dir.glob("assets/javascripts/workers/search.*.min.js")):
+        text = p.read_text(encoding="utf-8")
+        if old not in text:
+            continue
+        p.write_text(text.replace(old, old.replace("o<t.length", "o<=t.length"), 1),
+                     encoding="utf-8", newline="\n")
+        patched = True
+    return patched
+
+
 def write_mkdocs_config():
     skip = {"gallery.md", "CONTRIBUTING.md", "CONTRIBUTORS.md"}
     pages = [p.name for p in sorted(OUT.glob("*.md")) if p.name not in skip]
@@ -1658,7 +1679,13 @@ def main():
         cmd = [sys.executable, "-X", "utf8", "-m", "mkdocs", "build", "--config-file",
                str(BUILD / "mkdocs.yml")]
         print("mkdocs build ->", " ".join(cmd))
-        return subprocess.call(cmd, cwd=str(ROOT))
+        rc = subprocess.call(cmd, cwd=str(ROOT))
+        if rc == 0:
+            site_out = BUILD / "site"
+            if not patch_search_worker(site_out):
+                print("警告：search worker 切分补丁未命中（Material 版本变化？），"
+                      "中文整词搜索维持既有行为", file=sys.stderr)
+        return rc
     return 0
 
 
