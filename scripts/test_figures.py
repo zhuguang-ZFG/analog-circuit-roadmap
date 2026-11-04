@@ -19,7 +19,9 @@ WAVE1_FIGURES = {
     "ch16-probe-model.svg",
     "ch16-signal-injection.svg",
 }
-PALETTE = {"#14213d", "#b45309", "#0f766e"}
+# 旧图用三色骨架；2026-11 起的新图走 handraw 纸墨 token（scripts/handraw.py）。
+PALETTE = {"#14213d", "#b45309", "#0f766e"} | {
+    value.lower() for value in __import__("handraw").LIGHT.values()}
 EXTERNAL_REF = re.compile(r'(?:href|src)\s*=\s*["\']https?://', re.I)
 SVG_NS = "{http://www.w3.org/2000/svg}"
 

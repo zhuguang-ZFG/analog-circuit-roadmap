@@ -315,8 +315,8 @@ def stroke_only(text: str) -> str:
 # 4. 标题：手写体 + 赭石马克笔下划线
 # ---------------------------------------------------------------------------
 TITLE_TEXT = re.compile(
-    r'(<text x="(\d+)" y="29" text-anchor="middle" font-size="19" '
-    r'font-weight="bold" fill="[^"]*")>')
+    r'(<text\s+x="[\d.]+"\s+y="29"\s+text-anchor="middle"\s+'
+    r'font-size="19"\s+font-weight="bold"\s+fill="[^"]*")\s*>')
 SWASH = (r'<path d="M{x0:.0f} {y:.0f} c {q1:.0f} 3.4 {q2:.0f} -2.6 {q3:.0f} 0.4" '
          r'fill="none" stroke="{color}" stroke-width="2.1" stroke-linecap="round" '
          r'opacity="0.5"/>')
