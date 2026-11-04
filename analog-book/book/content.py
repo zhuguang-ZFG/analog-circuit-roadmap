@@ -10,7 +10,7 @@ from pathlib import Path
 from . import config
 from .manifest import BookError
 from .storyboard import build_storyboard
-from .svg_refine import is_legacy_svg, refine_svg
+from .svg_refine import is_animated_svg, is_legacy_svg, refine_svg
 
 ARTICLE_RE = re.compile(
     r'<article class="md-content__inner md-typeset">(.*?)</article>', re.S)
@@ -192,7 +192,7 @@ def _data_uri(path: Path, *allowed_roots: Path) -> str:
     raw = resolved.read_bytes()
     if mime == "image/svg+xml":
         text = raw.decode("utf-8-sig")
-        if is_legacy_svg(text):
+        if is_legacy_svg(text) and is_animated_svg(text):
             # 旧模板动画：印刷版出分镜（全尺寸画布 + 节拍帧 + 原字号接力字幕），
             # 接力拍字幕不再折叠成末拍（v3.88，SPEC-V4 §2.1 S2）。
             raw = build_storyboard(text, refine_svg(text)).encode("utf-8")

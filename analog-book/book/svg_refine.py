@@ -75,6 +75,16 @@ def is_legacy_svg(text: str) -> bool:
     return 'id="bgL"' in text and "prefers-color-scheme" in text
 
 
+def is_animated_svg(text: str) -> bool:
+    """真动画：带 SMIL `<animate*>`。
+
+    153 张旧动画全部含 SMIL，而静态插图（含 handraw 皮肤注入纸面层后的新图）
+    一张都没有——分镜只对真动画有意义，静态图进 build_storyboard 会把
+    整幅图按节拍裁成一帧，正文图注与尺寸信息丢失。
+    """
+    return "<animate" in text.lower()
+
+
 def _local(tag: str) -> str:
     return tag.rsplit("}", 1)[-1]
 

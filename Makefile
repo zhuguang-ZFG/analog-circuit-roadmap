@@ -1,7 +1,7 @@
 PY ?= python
 export PYTHONIOENCODING := utf-8
 
-.PHONY: readme gen bookdata labs fonts site book book-pdf book-check print-book print-volumes remake-check remake-ship test-static test-browser verify stats clean
+.PHONY: readme gen bookdata labs fonts site book book-pdf book-check print-book print-volumes remake-check remake-ship test-static test-browser verify stats clean visual-audit visual-ship
 
 readme:
 	$(PY) scripts/build_readme.py
@@ -75,6 +75,16 @@ test-static:
 	$(PY) -B -m unittest discover -s scripts -p "test_site_build.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_smartsymbols.py" -v
 	$(PY) -B -m unittest discover -s analog-book/tests -p "test_build.py" -v
+
+# 视觉密度与 manifest 闸：报告模式永远退出 0，闸模式在未改造章节上按设计失败。
+visual-audit:
+	$(PY) -B scripts/audit_visual_density.py
+
+visual-ship:
+	$(PY) -B scripts/audit_visual_density.py --gate
+	$(PY) -B scripts/check_visual_manifest.py
+	$(PY) -B -m unittest discover -s scripts -p "test_visual_manifest.py" -v
+	$(PY) -B -m unittest discover -s scripts -p "test_handraw_prompt_records.py" -v
 
 test-browser:
 	$(PY) -B -m unittest discover -s scripts -p "test_reading_journey.py" -v
