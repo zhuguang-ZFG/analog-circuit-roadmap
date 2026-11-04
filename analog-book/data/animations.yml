@@ -919,7 +919,7 @@
   title: 米勒平台的栅电荷账：驱动电流是挤压器
   chapter: 4
   anchor: demo129
-  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 4.3/4.6 平台与四拍
+  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 4.3 与 4.6 平台与四拍
   static_svg: assets/svg/exp-gate-charge.svg
 - id: anim-130
   file: p5-00-part5.md
@@ -1024,7 +1024,7 @@
   title: 积分器漂移与泄放电阻（失效边界）
   chapter: 12
   anchor: demo144
-  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 12.4/12.11 积分器
+  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 12.4 与 12.11 积分器
   static_svg: assets/svg/exp-integrator-drift.svg
 - id: anim-145
   file: p5-00-part5.md
@@ -1059,7 +1059,7 @@
   title: 回流路径被割断：开槽的代价（失效边界）
   chapter: 15
   anchor: demo149
-  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 15.2/15.7 回流
+  one_line: 左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 15.2 与 15.7 回流
   static_svg: assets/svg/exp-return-cut.svg
 - id: anim-150
   file: p5-00-part5.md
