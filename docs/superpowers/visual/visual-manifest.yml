@@ -6690,3 +6690,56 @@ assets:
     - marker
     - label
     - dash
+- id: ch16-first-question
+  chapter: 16
+  kind: figure
+  type: V4
+  anchor: '16.1'
+  purpose: 排故第一问
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids: &id005
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p4-01-ch16.md#16.1
+  prompt_file: docs/superpowers/visual/prompts/ch16-first-question.md
+  output: assets/figures-v2/ch16-first-question.svg
+  print_fallback: assets/figures-v2/ch16-first-question-print.svg
+  preview: assets/figures-v2/ch16-first-question.webp
+  alt: 手绘第一问：这块板最近动过哪里；三条分支是换料换厂、改版改参数、环境负载；案例 A 的答案是降成本把钽电容换成 MLCC，一问就命中。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch16-first-question.json
+  quant_rules:
+    layer_encodes_value: false
+- id: ch16-probe-compensation
+  chapter: 16
+  kind: figure
+  type: V4
+  anchor: '16.3'
+  purpose: 探头补偿三种方波
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids: *id005
+  source_facts:
+  - docs/p4-01-ch16.md#16.3
+  prompt_file: docs/superpowers/visual/prompts/ch16-probe-compensation.md
+  output: assets/figures-v2/ch16-probe-compensation.svg
+  print_fallback: assets/figures-v2/ch16-probe-compensation-print.svg
+  preview: assets/figures-v2/ch16-probe-compensation.webp
+  alt: 手绘三种校准方波：过补偿顶角过冲、欠补偿顶角圆塌、正确方角平顶；提示补偿没调对时，看到的过冲或塌陷可能来自探头而不是电路。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch16-probe-compensation.json
+  quant_rules:
+    layer_encodes_value: false
