@@ -5978,3 +5978,266 @@ assets:
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-trace-drop.json
   quant_rules:
     layer_encodes_value: false
+- id: ch13-h-bridge-states
+  chapter: 13
+  kind: figure
+  type: V4
+  anchor: '13.7'
+  purpose: H 桥四拍
+  style_id: FF-015
+  layout_id: IG-004
+  color_ids: &id002
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p2-03-ch13.md#13.7
+  prompt_file: docs/superpowers/visual/prompts/ch13-h-bridge-states.md
+  output: assets/figures-v2/ch13-h-bridge-states.svg
+  print_fallback: assets/figures-v2/ch13-h-bridge-states-print.svg
+  preview: assets/figures-v2/ch13-h-bridge-states.webp
+  alt: 左右两栏：左栏四拍是正转 Q1 与 Q4 导通、反转 Q2 与 Q3 导通、全关滑行时电感电流经体二极管回电源、同臂 Q1 与 Q2 齐开会毫秒级烧管；右栏是 1 到 2 微秒死区、体二极管兜底、高侧自举、DRV8833
+    或 L298 集成驱动。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch13-h-bridge-states.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+- id: ch13-current-sense-sides
+  chapter: 13
+  kind: figure
+  type: V4
+  anchor: '13.8'
+  purpose: 低侧与高侧电流检测
+  style_id: FF-015
+  layout_id: IG-004
+  color_ids: *id002
+  source_facts:
+  - docs/p2-03-ch13.md#13.8
+  prompt_file: docs/superpowers/visual/prompts/ch13-current-sense-sides.md
+  output: assets/figures-v2/ch13-current-sense-sides.svg
+  print_fallback: assets/figures-v2/ch13-current-sense-sides-print.svg
+  preview: assets/figures-v2/ch13-current-sense-sides.webp
+  alt: 左右两栏：低侧检测共模接近 0 V、会把负载地抬高 100 mV、测不到对地短路，适合精度优先的单路负载；高侧检测共模为 12 或 24 或 48 V、地完整、能测对地短路，适合保护优先的多路共地负载。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch13-current-sense-sides.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+- id: ch13-opto-ctr
+  chapter: 13
+  kind: figure
+  type: V4
+  anchor: '13.11'
+  purpose: 隔离三条路线与 CTR
+  style_id: FF-015
+  layout_id: IG-004
+  color_ids: *id002
+  source_facts:
+  - docs/p2-03-ch13.md#13.11
+  prompt_file: docs/superpowers/visual/prompts/ch13-opto-ctr.md
+  output: assets/figures-v2/ch13-opto-ctr.svg
+  print_fallback: assets/figures-v2/ch13-opto-ctr-print.svg
+  preview: assets/figures-v2/ch13-opto-ctr.webp
+  alt: 左右两栏：左栏三条隔离路线是光耦、数字隔离器、隔离放大器，共同点是没有欧姆通路；右栏 CTR 三个坑是分档 50% 到 600% 要按最小值、100 摄氏度与 20 毫安下十年可能掉一半、驱动至少留
+    2 倍余量，设计式为集电极电流等于正向电流乘 CTR。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch13-opto-ctr.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+- id: ch15-layout-ten-questions
+  chapter: 15
+  kind: figure
+  type: V4
+  anchor: '15.1'
+  purpose: 布局十问
+  style_id: FF-015
+  layout_id: IG-004
+  color_ids: *id002
+  source_facts:
+  - docs/p3-02-ch15.md#15.1
+  prompt_file: docs/superpowers/visual/prompts/ch15-layout-ten-questions.md
+  output: assets/figures-v2/ch15-layout-ten-questions.svg
+  print_fallback: assets/figures-v2/ch15-layout-ten-questions-print.svg
+  preview: assets/figures-v2/ch15-layout-ten-questions.webp
+  alt: 左右两栏列布局十问：摆放四问是 100 nF 贴脸且过孔就近、储能靠近负载、晶振环路最小且下方无走线、四区分团；收尾六问是发热件远离温敏件、结构图叠图核对、芯片朝向顺走线、测试点丝印与板边
+    5 mm 禁布。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-layout-ten-questions.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+- id: ch15-crystal-three-no
+  chapter: 15
+  kind: figure
+  type: V4
+  anchor: '15.1'
+  purpose: 晶振布局三不
+  style_id: FF-015
+  layout_id: IG-004
+  color_ids: *id002
+  source_facts:
+  - docs/p3-02-ch15.md#15.1
+  prompt_file: docs/superpowers/visual/prompts/ch15-crystal-three-no.md
+  output: assets/figures-v2/ch15-crystal-three-no.svg
+  print_fallback: assets/figures-v2/ch15-crystal-three-no-print.svg
+  preview: assets/figures-v2/ch15-crystal-three-no.webp
+  alt: 左右两栏：左栏三不是不穿晶振下方、不贴板边、外壳不悬空、XI/XO 不走板边；右栏要求负载电容贴晶振且总距离小于 10 mm、不与高速线平行超过 5 mm、不用探头直量、先保负阻裕度。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-crystal-three-no.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+- id: ch15-four-zones
+  chapter: 15
+  kind: figure
+  type: V4
+  anchor: '15.1'
+  purpose: 四区分团的三条约定
+  style_id: FF-015
+  layout_id: IG-004
+  color_ids: *id002
+  source_facts:
+  - docs/p3-02-ch15.md#15.1
+  prompt_file: docs/superpowers/visual/prompts/ch15-four-zones.md
+  output: assets/figures-v2/ch15-four-zones.svg
+  print_fallback: assets/figures-v2/ch15-four-zones-print.svg
+  preview: assets/figures-v2/ch15-four-zones.webp
+  alt: 左右两栏：左栏三条约定是供电分界、元件归属、走线过境管制，并说明 ADC 模拟脚与数字脚分侧骑跨；右栏审查动作是打印各层用记号笔沿穿区走线打叉、问回流路径、保持地平面完整、确认数字回流不经过模拟脚下方。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-four-zones.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+- id: ch16-bisect-injection
+  chapter: 16
+  kind: figure
+  type: V3
+  anchor: '16.5'
+  purpose: 信号注入与二分
+  style_id: FF-015
+  layout_id: IG-001
+  color_ids: *id002
+  source_facts:
+  - docs/p4-01-ch16.md#16.5
+  prompt_file: docs/superpowers/visual/prompts/ch16-bisect-injection.md
+  output: assets/figures-v2/ch16-bisect-injection.svg
+  print_fallback: assets/figures-v2/ch16-bisect-injection-print.svg
+  preview: assets/figures-v2/ch16-bisect-injection.webp
+  alt: 五步流程：在链路中点注入已知好信号；看输出正常或异常，分别把故障缩小到前半或后半；每轮只改一个变量并对半再分；逼近最小电路；最后解剖复制件，原系统留对照。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch16-bisect-injection.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+- id: ch16-case-triage
+  chapter: 16
+  kind: figure
+  type: V4
+  anchor: '16.5'
+  purpose: 三个案例的分诊
+  style_id: FF-015
+  layout_id: IG-004
+  color_ids: *id002
+  source_facts:
+  - docs/p4-01-ch16.md#16.5
+  prompt_file: docs/superpowers/visual/prompts/ch16-case-triage.md
+  output: assets/figures-v2/ch16-case-triage.svg
+  print_fallback: assets/figures-v2/ch16-case-triage-print.svg
+  preview: assets/figures-v2/ch16-case-triage.webp
+  alt: 左右两栏：左栏三个案例是低温 150 kHz 自激因换低 ESR 电容、装壳后 68 摄氏度复位因晶振线与开关节点平行 6 毫米、2% 批次随机复位因 BGA 虚焊；右栏对应先问最近改过什么、开盖与关盖差在哪、拍桌子能否复现。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch16-case-triage.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
