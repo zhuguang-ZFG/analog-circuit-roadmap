@@ -7,12 +7,12 @@ from pathlib import Path
 import re
 import xml.etree.ElementTree as ET
 
-import yaml
-
 V2_IMAGE = re.compile(r'<img\b[^>]*\bsrc=["\'](assets/svg-v2/[^"\']+)["\'][^>]*>', re.I)
 
 
 def load_players(root: Path) -> dict:
+    import yaml
+
     path = root / "docs/superpowers/visual/visual-manifest.yml"
     if not path.is_file():
         return {}

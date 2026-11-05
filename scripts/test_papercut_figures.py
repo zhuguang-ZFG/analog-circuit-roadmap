@@ -72,7 +72,8 @@ class PapercutFigureTests(unittest.TestCase):
         for asset in load()['assets']:
             if asset.get('generator') != 'python-svg-papercut-v1' or asset.get('status') not in ('accepted', 'published'):
                 continue
-            digest = hashlib.sha256((ROOT / asset['output']).read_bytes()).hexdigest()
+            raw = (ROOT / asset['output']).read_bytes().replace(b"\r\n", b"\n")
+            digest = hashlib.sha256(raw).hexdigest()
             self.assertEqual(digest, asset['review_record']['asset_sha256'], asset['id'])
 
 

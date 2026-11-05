@@ -3223,7 +3223,7 @@ assets:
     scope: local chapter pilot
     user_chapter_acceptance: pending
     record: docs/superpowers/visual/reviews/python-papercut-2026-11-05/review.md
-    asset_sha256: 6d234d41d336c9e04407d8e2888f2e5137a25f135549ff31c665a8bde3e5018b
+    asset_sha256: 384588bc9ba7aee233ab17097445fe40ae78dcdb576ff5c2f7c43d1730bcaf9b
 - id: ch17-thermal-chain-audit
   chapter: 17
   kind: figure
@@ -3273,7 +3273,7 @@ assets:
     scope: local chapter pilot
     user_chapter_acceptance: pending
     record: docs/superpowers/visual/reviews/python-papercut-2026-11-05/review.md
-    asset_sha256: 9c6379bf0cde2874129de8a1b2fa416dd5216b9ff3a0b20c58d96b0b56f787a6
+    asset_sha256: 8d191ccd9c0fd39d2386774bde938422721383d1901f928ee731b77cb7be9755
 - id: ch17-prior-cost-matrix
   chapter: 17
   kind: figure
@@ -3323,7 +3323,7 @@ assets:
     scope: local chapter pilot
     user_chapter_acceptance: pending
     record: docs/superpowers/visual/reviews/python-papercut-2026-11-05/review.md
-    asset_sha256: d9ce2a373201234d9fff3e4f2abc7b56fe932354a31cc850c689fd7be1c5bd12
+    asset_sha256: 2c4b9d45597538ee14ebd110f2534fda353a6ec8f6a405d37c232817e17f1275
 - id: ch17-power-fault-layers
   chapter: 17
   kind: figure
