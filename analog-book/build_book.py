@@ -11,6 +11,8 @@ import subprocess
 import sys
 from pathlib import Path
 
+from book.content import strip_visual_players, _asset_path as visual_asset_path
+
 BOOK_DIR = Path(__file__).resolve().parent
 ROOT = BOOK_DIR.parent
 DOCS = ROOT / "docs"
@@ -87,6 +89,7 @@ def _strip_tags(fragment: str) -> str:
 
 
 def _clean_fragment(fragment: str) -> str:
+    fragment = strip_visual_players(fragment)
     fragment = re.sub(
         r'<a[^>]+class="md-content__button md-icon".*?</a>', "", fragment, flags=re.S)
     fragment = re.sub(
@@ -262,6 +265,8 @@ def inline_mathjax() -> str:
 
 
 def _asset_path(rel: str, site_dir: Path = SITE_DIR) -> Path:
+    if rel.startswith(("assets/figures-v2/", "assets/svg-v2/")):
+        return visual_asset_path(rel, site_dir)
     # 静止版 `.reduce.svg` 只由站点构建生成，仓库里没有第二份。
     for base in (ROOT, site_dir):
         candidate = (base / rel).resolve()

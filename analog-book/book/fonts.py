@@ -43,7 +43,7 @@ def required_text(docs_dir=config.DOCS, book_dir=config.BOOK_DIR) -> str:
     for path in sorted((config.ROOT / "scripts" / "site_media").glob("*")):
         if path.suffix in {".css", ".js"}:
             chunks.append(path.read_text(encoding="utf-8"))
-    for folder in ("svg", "figures"):
+    for folder in ("svg", "figures", "svg-v2", "figures-v2", "storyboards-v2"):
         for path in sorted((config.ROOT / "assets" / folder).rglob("*.svg")):
             chunks.append(html.unescape(re.sub(r"<[^>]+>", " ", path.read_text(
                 encoding="utf-8", errors="replace"))))

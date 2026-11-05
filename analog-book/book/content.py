@@ -7,6 +7,8 @@ import re
 from dataclasses import dataclass, field
 from pathlib import Path
 
+import yaml
+
 from . import config
 from .manifest import BookError
 from .storyboard import build_storyboard
@@ -65,7 +67,22 @@ def plain_text(fragment: str) -> str:
         "\u00b6", "").strip()
 
 
+def strip_visual_players(fragment: str) -> str:
+    def print_player(match):
+        # 网页播放器默认是结论静帧；书内改回主资产引用，由 _asset_path 选择完整分镜。
+        image = re.search(r'<img\b[^>]*>', match.group("body"))
+        if image is None:
+            raise BookError("V2 播放器缺静态回退图")
+        source = html.unescape(match.group("source"))
+        return re.sub(r'\bsrc="[^"]+"', lambda _m: 'src="' + html.escape(source, quote=True) + '"', image.group(0), count=1)
+    return re.sub(
+        r'<div class="visual-player"[^>]*data-animation-src="(?P<source>[^"]+)"[^>]*>'
+        r'(?P<body>.*?)<p class="visual-player-links">.*?</p>\s*</div>',
+        print_player, fragment, flags=re.S)
+
+
 def clean_fragment(fragment: str) -> str:
+    fragment = strip_visual_players(fragment)
     fragment = re.sub(
         r'<a[^>]+class="md-content__button md-icon".*?</a>', "",
         fragment, flags=re.S)
@@ -172,6 +189,30 @@ def rewrite_links(fragment: str, current_stem: str, page_stems: set[str],
 
 
 def _asset_path(rel: str, site_dir: Path) -> Path:
+    if rel.startswith(("assets/figures-v2/", "assets/svg-v2/")):
+        manifest_path = config.ROOT / "docs/superpowers/visual/visual-manifest.yml"
+        if not manifest_path.is_file():
+            raise BookError("V2 印刷资产缺 visual-manifest.yml")
+        data = yaml.safe_load(manifest_path.read_text(encoding="utf-8")) or {}
+        for asset in data.get("assets", []):
+            derivatives = (asset.get("print_fallback"), asset.get("reduced_motion"), asset.get("storyboard"))
+            if rel in derivatives and rel != asset.get("output"):
+                if asset.get("kind") == "figure" and asset.get("status") not in {"accepted", "published"}:
+                    raise BookError(f"V2 插图尚未通过审图: {rel}")
+                break
+            if rel not in (asset.get("output"), asset.get("preview")):
+                continue
+            fallback = asset.get("storyboard") if asset.get("kind") == "animation" else asset.get("print_fallback")
+            if not fallback or fallback == rel:
+                raise BookError(f"V2 资产缺独立印刷回退: {rel}")
+            if asset.get("kind") == "figure" and asset.get("status") not in {"accepted", "published"}:
+                raise BookError(f"V2 插图尚未通过审图: {rel}")
+            target = (config.ROOT / fallback).resolve()
+            if not target.is_relative_to(config.ROOT.resolve()) or not target.is_file():
+                raise BookError(f"V2 印刷回退不存在或越界: {fallback}")
+            return target
+        else:
+            raise BookError(f"V2 图片未在 manifest 登记: {rel}")
     for base in (config.ROOT, site_dir):
         candidate = (base / rel).resolve()
         if candidate.is_file():
