@@ -6821,3 +6821,31 @@ assets:
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-ground-grid.json
   quant_rules:
     layer_encodes_value: false
+- id: ch16-bandwidth-five
+  chapter: 16
+  kind: figure
+  type: V4
+  anchor: '16.3'
+  purpose: 示波器带宽五倍规则
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p4-01-ch16.md#16.3
+  prompt_file: docs/superpowers/visual/prompts/ch16-bandwidth-five.md
+  output: assets/figures-v2/ch16-bandwidth-five.svg
+  print_fallback: assets/figures-v2/ch16-bandwidth-five-print.svg
+  preview: assets/figures-v2/ch16-bandwidth-five.webp
+  alt: 手绘两种边沿：带宽不足时边沿变圆、振铃被吃掉；五倍带宽时边沿与过冲保得住。底部写先算最高频率分量乘五，再看电源纹波可先开 20 兆赫限制，读数前先报档位。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch16-bandwidth-five.json
+  quant_rules:
+    layer_encodes_value: false

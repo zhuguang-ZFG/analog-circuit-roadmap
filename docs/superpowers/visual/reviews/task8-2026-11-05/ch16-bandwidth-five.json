@@ -1,0 +1,15 @@
+{
+  "id": "ch16-bandwidth-five",
+  "title": "示波器带宽五倍规则",
+  "alt": "手绘两种边沿：带宽不足时边沿变圆、振铃被吃掉；五倍带宽时边沿与过冲保得住。底部写先算最高频率分量乘五，再看电源纹波可先开 20 兆赫限制，读数前先报档位。",
+  "anchor": "16.3",
+  "source": "docs/p4-01-ch16.md",
+  "canvas": [
+    1000,
+    700
+  ],
+  "print_width_mm": 138,
+  "generator": "python-handraw-v1",
+  "output": "assets/figures-v2/ch16-bandwidth-five.svg",
+  "print_fallback": "assets/figures-v2/ch16-bandwidth-five-print.svg"
+}
