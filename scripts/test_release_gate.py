@@ -81,7 +81,8 @@ class ReleaseGateTests(unittest.TestCase):
         runs16 = "\n".join(
             step.get('run', '') for step in book['print16k']['steps'])
         self.assertIn('build_print_book.py', runs16)
-        for flag in ('--pdf', '--cover', '--report'):
+        # 整书超过 700 页硬上限后，发布命令改为上下卷；封面/报告暂不支持 --volumes。
+        for flag in ('--pdf', '--volumes'):
             self.assertIn(flag, runs16)
         workflow = yaml.load(
             (WORKFLOWS / 'book-print.yml').read_text(encoding='utf-8'),
