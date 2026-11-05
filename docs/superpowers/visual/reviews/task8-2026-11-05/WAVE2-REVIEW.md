@@ -1,6 +1,6 @@
-# Wave 2 视觉复核包（33 张，待人工审图）
+# Wave 2 视觉复核包（44 张，待人工审图）
 
-本包新增 33 张静态图：18 张纸层（V4/V5）与 15 张手绘纸墨（V4）。
+本包新增 44 张静态图：20 张纸层（V3/V4/V5）与 24 张手绘纸墨（V4）。
 全部 `status: generated`，未插入正文，未回填评分；没有伪造人工签核。
 
 ## 怎么看
@@ -31,7 +31,7 @@
 | `ch14-derating-margin` | 常用降额线 | V4 | IG-013 |
 | `ch14-arrhenius-ten-degree` | 结温与失效率 | V4 | IG-013 |
 
-### ch15（5 张）
+### ch15（14 张）
 
 | id | 标题 | 类型 | 布局 |
 |---|---|---|---|
@@ -40,8 +40,17 @@
 | `ch15-crystal-three-no` | 晶振布局三不 | V4 | IG-004 |
 | `ch15-four-zones` | 四区分团的三条约定 | V4 | IG-004 |
 | `ch15-thermal-relief` | 热焊盘的两难 | V4 | IG-013 |
+| `ch15-via-parallel` | 过孔并联与电感 | V3 | IG-007 |
+| `ch15-crosstalk-3w` | 串扰三招与包地边界 | V4 | IG-004 |
+| `ch15-testpoint-rules` | 测试点三条规矩 | V5 | IG-001 |
+| `ch15-panelization` | V-cut 与邮票孔 | V4 | IG-004 |
+| `ch15-dfm-limits` | DFM 四个数 | V4 | IG-004 |
+| `ch15-failure-signatures` | 翻车案例分诊 | V5 | IG-006 |
+| `ch15-adc-straddle` | ADC 骑跨分区线 | V4 | IG-013 |
+| `ch15-return-review` | 回流审查五步 | V4 | IG-013 |
+| `ch15-ground-grid` | 双层板地网 | V4 | IG-013 |
 
-### ch16（4 张）
+### ch16（6 张）
 
 | id | 标题 | 类型 | 布局 |
 |---|---|---|---|
@@ -49,6 +58,8 @@
 | `ch16-case-triage` | 三个案例的分诊 | V4 | IG-004 |
 | `ch16-instrument-trust` | 仪器信任链 | V4 | IG-013 |
 | `ch16-postmortem-split` | 根因与触发条件 | V4 | IG-013 |
+| `ch16-first-question` | 排故第一问 | V4 | IG-013 |
+| `ch16-probe-compensation` | 探头补偿三种方波 | V4 | IG-013 |
 
 ### ch18（15 张）
 
@@ -74,7 +85,7 @@
 
 - `python scripts/check_visual_manifest.py` → PASS（0 项）
 - 每张 `bounds: pass`，最小印刷字号 8.6 pt（≥8.5 pt）
-- 14 项 manifest/纸层/动画测试（本轮结束前重跑）
+- manifest/纸层/动画测试（本轮结束前重跑）
 - 数字均由脚本对 anchor 原文核查；图内不编码正文没有的量值
 
 ## 合入条件
