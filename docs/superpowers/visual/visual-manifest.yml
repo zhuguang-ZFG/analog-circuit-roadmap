@@ -2656,6 +2656,11 @@ assets:
   print_fallback: assets/figures/ch17-power-on-current-signature.svg
   status: generated
   review_scores: {}
+  status_history:
+  - planned
+  - generated
+  alt: 三张并排曲线卡：电流冲到限流值不再动是硬短路，动作是断电量各轨对地阻值；冲一下迅速回落是输入电容浪涌，属正常；缓缓爬升后稳住是软启动或热过程。底部两条纪律：第一次上电不用裸电源，电流表或电流探头串在电源入口，单次触发抓上电前沿。
+  status_history_origin: schema-migration-2026-11-05
 - id: ch17-five-step-loop
   chapter: 17
   kind: figure
@@ -2675,6 +2680,12 @@ assets:
   print_fallback: assets/figures/ch17-five-step-loop.svg
   status: generated
   review_scores: {}
+  status_history:
+  - planned
+  - generated
+  alt: 表 17-1 的五步用法闭环：①按症状对号入座，②读按先验概率排序的头号嫌疑，③做断电或单次上电内可判是/否的一分钟验证，④修根因不换件换因，⑤把症状、根因、解法、复发率写进维修日志后回到①。环心标注「日志回填
+    ⇒ 先验概率更新」。侧栏三条铁律：先量电源——电源与连接类近一半，先静后动——万用表先行，一次只改一个变量；一分钟验证的前提是测量本身不能改变电路（16.3）。
+  status_history_origin: schema-migration-2026-11-05
 - id: ch17-virtual-short-test
   chapter: 17
   kind: figure
@@ -2694,6 +2705,12 @@ assets:
   print_fallback: assets/figures/ch17-virtual-short-test.svg
   status: generated
   review_scores: {}
+  status_history:
+  - planned
+  - generated
+  alt: 顶部判据条给出动作：量反相端 V− 是否约等于同相端 V+，教学示例是 V− 比 V+ 低 8mV 且随信号摆动。中央判断节点 V− ≈ V+ 分出两支：虚短成立说明运放与反馈环路直流上是活的，嫌疑转向输入源、供电、负载三处；虚短不成立则立刻缩到反馈网络开路、输出撞轨、供电异常、共模超范围四个方向。底部结语：一刀下去排除的是一整类机理，虚短成立的前提见
+    12.1。
+  status_history_origin: schema-migration-2026-11-05
 - id: ch17-ripple-frequency
   chapter: 17
   kind: figure
@@ -2713,6 +2730,12 @@ assets:
   print_fallback: assets/figures/ch17-ripple-frequency.svg
   status: generated
   review_scores: {}
+  status_history:
+  - planned
+  - generated
+  alt: 三栏纹波对比：100Hz 工频纹波指向整流后大电解干涸；开关频率及谐波是开关电源固有纹波；LDO 输出上的 100Hz 是从输入漏进来（压差太小或 PSRR 不够）。判读条：先问频率再问幅度，测量必须能区分候选假设。底部教学示例链路：5V
+    只有 3.1V、纹波 400mV → 量频率得 100Hz → 量大电解烫手、容量只剩标称三成 → 根因落定，两次测量没拆一颗芯片。
+  status_history_origin: schema-migration-2026-11-05
 - id: ch17-oscillation-order
   chapter: 17
   kind: figure
@@ -2732,6 +2755,12 @@ assets:
   print_fallback: assets/figures/ch17-oscillation-order.svg
   status: generated
   review_scores: {}
+  status_history:
+  - planned
+  - generated
+  alt: 振荡类故障的固定排查顺序阶梯：①电源去耦（看纹波谱，一块示波器就能验）→②环路相位裕度（看阶跃响应的过冲）→③布线寄生耦合（看布局）→④接地环路（看多点之间的电压差，可能得动板）。右侧两卡：动手前先分两刀——电池供电试判外来还是自激，频率的户口指认嫌疑；地环路的量级感——5cm
+    地铜约 50mΩ 乘 1A 开关电流等于 50mV 地弹垫进参考点，症状最像前三者所以放在最后查。判读条：顺序即排查顺序，照做不要跳。边界条件卡：负载、温度、电源电压各扫一遍记起振停振临界点。
+  status_history_origin: schema-migration-2026-11-05
 - id: ch17-hot-spot-reading
   chapter: 17
   kind: figure
@@ -2751,6 +2780,12 @@ assets:
   print_fallback: assets/figures/ch17-hot-spot-reading.svg
   status: generated
   review_scores: {}
+  status_history:
+  - planned
+  - generated
+  alt: 热类故障两步定位：先用红外热像仪或指尖点触（安全电压下，超过约 60°C 就别摸）扫出温度分布图，异常热点自己站出来；再用冷冻喷剂逐器件降温看故障何时消失，喷过的区域会结露，回温干燥再下结论。中部两张判读卡：单个器件热是它功耗大，一片区域一起热是热源在别处；红外两条纪律——裸金属发射率低贴哑光胶带再测，表面温度不等于结温。判读条：温度测量永远先看分布再看单点。底部教学链：电容鼓包的位置是一张热源地图，旁边往往坐着散热器或功率管，换电容时顺手挪位隔热改善风道，收益比换更大容值大得多；结温每降
+    10°C 寿命约翻一倍。
+  status_history_origin: schema-migration-2026-11-05
 - id: ch17-symptom-four-fields
   chapter: 17
   kind: animation
@@ -2770,10 +2805,37 @@ assets:
   print_fallback: assets/svg-v2/ch17-symptom-four-fields-static.svg
   reduced_motion: assets/svg-v2/ch17-symptom-four-fields-static.svg
   storyboard: assets/svg-v2/ch17-symptom-four-fields-storyboard.svg
-  beats: 6
+  beats:
+  - name: 症状
+    start: 0.0
+    end: 1.6
+  - name: 空格一
+    start: 1.6
+    end: 3.1
+  - name: 空格二
+    start: 3.1
+    end: 4.6
+  - name: 空格三
+    start: 4.6
+    end: 6.1
+  - name: 空格四
+    start: 6.1
+    end: 7.6
+  - name: 四空全满
+    start: 7.6
+    end: 9.5
   duration: 9.5s
   status: generated
   review_scores: {}
+  status_history:
+  - planned
+  - generated
+  alt: 100Hz 纹波 400mV 的 5V 轨只有 3.1V——四个空格填满才许动烙铁
+  parameters: []
+  conclusion_frame:
+    beat: 四空全满
+    output: assets/svg-v2/ch17-symptom-four-fields-static.svg
+  status_history_origin: schema-migration-2026-11-05
 - id: ch17-esr-sweep
   chapter: 17
   kind: animation
@@ -2793,10 +2855,41 @@ assets:
   print_fallback: assets/svg-v2/ch17-esr-sweep-static.svg
   reduced_motion: assets/svg-v2/ch17-esr-sweep-static.svg
   storyboard: assets/svg-v2/ch17-esr-sweep-storyboard.svg
-  beats: 5
+  beats:
+  - name: 扫描对象
+    start: 0.0
+    end: 1.4
+  - name: 纹波爬升
+    start: 1.4
+    end: 3.0
+  - name: 内部生热
+    start: 3.0
+    end: 4.6
+  - name: 容量蒸发
+    start: 4.6
+    end: 6.2
+  - name: 闭环
+    start: 6.2
+    end: 8.0
   duration: 8.0s
   status: generated
   review_scores: {}
+  status_history:
+  - planned
+  - generated
+  alt: ESR 从 0.1Ω 扫到 3Ω（扫描端点为示意值）——先问纹波频率，再问幅度
+  parameters:
+  - name: ESR
+    values:
+    - 0.1
+    - 3
+    unit: Ω
+    basis: illustration
+    reason: 演示扫描端点，不是器件实测数据
+  conclusion_frame:
+    beat: 闭环
+    output: assets/svg-v2/ch17-esr-sweep-static.svg
+  status_history_origin: schema-migration-2026-11-05
 - id: ch17-virtual-short-probe
   chapter: 17
   kind: animation
@@ -2816,10 +2909,34 @@ assets:
   print_fallback: assets/svg-v2/ch17-virtual-short-probe-static.svg
   reduced_motion: assets/svg-v2/ch17-virtual-short-probe-static.svg
   storyboard: assets/svg-v2/ch17-virtual-short-probe-storyboard.svg
-  beats: 5
+  beats:
+  - name: 认脚
+    start: 0.0
+    end: 1.5
+  - name: 量V-
+    start: 1.5
+    end: 3.0
+  - name: 量V+
+    start: 3.0
+    end: 4.5
+  - name: 算压差
+    start: 4.5
+    end: 6.0
+  - name: 判读
+    start: 6.0
+    end: 7.5
   duration: 7.5s
   status: generated
   review_scores: {}
+  status_history:
+  - planned
+  - generated
+  alt: 两输入端压差 8mV——虚短成立，问题不在运放
+  parameters: []
+  conclusion_frame:
+    beat: 判读
+    output: assets/svg-v2/ch17-virtual-short-probe-static.svg
+  status_history_origin: schema-migration-2026-11-05
 - id: ch17-subharmonic-edge
   chapter: 17
   kind: animation
@@ -2839,7 +2956,1797 @@ assets:
   print_fallback: assets/svg-v2/ch17-subharmonic-edge-static.svg
   reduced_motion: assets/svg-v2/ch17-subharmonic-edge-static.svg
   storyboard: assets/svg-v2/ch17-subharmonic-edge-storyboard.svg
-  beats: 6
+  beats:
+  - name: 旋钮在40%
+    start: 0.0
+    end: 1.5
+  - name: 推过50%
+    start: 1.5
+    end: 3.2
+  - name: 一宽一窄
+    start: 3.2
+    end: 5.0
+  - name: 纹波半频
+    start: 5.0
+    end: 6.5
+  - name: 斜坡补偿
+    start: 6.5
+    end: 8.0
+  - name: 边界指纹
+    start: 8.0
+    end: 9.5
   duration: 9.5s
   status: generated
   review_scores: {}
+  status_history:
+  - planned
+  - generated
+  alt: 占空比一过 50% 就振、降到 50% 以下就好——这是它的指纹
+  parameters:
+  - name: duty
+    values:
+    - 40
+    - 55
+    unit: '%'
+    basis: illustration
+    reason: 演示阈值两侧状态，不是保证值
+  conclusion_frame:
+    beat: 边界指纹
+    output: assets/svg-v2/ch17-subharmonic-edge-static.svg
+  status_history_origin: schema-migration-2026-11-05
+- id: ch00-current-loop-v2
+  chapter: 0
+  kind: animation
+  type: A1
+  anchor: '0.2'
+  purpose: 闭合回路中的约定电流与串联压降（技术原型，待风格复评）
+  style_id: FA-029
+  layout_id: IG-009
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p1-01-ch0.md#0.2
+  prompt_file: docs/superpowers/visual/prompts/ch00-current-loop-v2.md
+  output: assets/svg-v2/ch00-current-loop-v2.svg
+  print_fallback: assets/svg-v2/ch00-current-loop-v2-static.svg
+  reduced_motion: assets/svg-v2/ch00-current-loop-v2-static.svg
+  storyboard: assets/svg-v2/ch00-current-loop-v2-storyboard.svg
+  beats:
+  - name: 闭合回路
+    start: 0
+    end: 2
+  - name: 同一股电流
+    start: 2
+    end: 4
+  - name: 分配电压
+    start: 4
+    end: 6
+  - name: 回路守恒
+    start: 6
+    end: 8
+  duration: 8s
+  parameters: []
+  conclusion_frame:
+    beat: 回路守恒
+    output: assets/svg-v2/ch00-current-loop-v2-static.svg
+  status: generated
+  status_history:
+  - planned
+  - generated
+  alt: 同一股电流，分配两份电压；约定电流方向示意；运动速度为教学慢放，不表示电子漂移速度
+  review_scores: {}
+  production_role: engine-prototype
+- id: ch00-divider-derivation-v2
+  chapter: 0
+  kind: animation
+  type: A2
+  anchor: '0.3'
+  purpose: 空载分压公式的逐步推导（技术原型，待风格复评）
+  style_id: FA-029
+  layout_id: IG-033
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p1-01-ch0.md#0.3
+  prompt_file: docs/superpowers/visual/prompts/ch00-divider-derivation-v2.md
+  output: assets/svg-v2/ch00-divider-derivation-v2.svg
+  print_fallback: assets/svg-v2/ch00-divider-derivation-v2-static.svg
+  reduced_motion: assets/svg-v2/ch00-divider-derivation-v2-static.svg
+  storyboard: assets/svg-v2/ch00-divider-derivation-v2-storyboard.svg
+  beats:
+  - name: 空载条件
+    start: 0
+    end: 2
+  - name: 先求电流
+    start: 2
+    end: 4
+  - name: 下臂压降
+    start: 4
+    end: 6
+  - name: 代入消元
+    start: 6
+    end: 8
+  duration: 8s
+  parameters: []
+  conclusion_frame:
+    beat: 代入消元
+    output: assets/svg-v2/ch00-divider-derivation-v2-static.svg
+  status: generated
+  status_history:
+  - planned
+  - generated
+  alt: 分压公式：从同一股电流开始；适用条件：空载；接负载后须重新计算下臂等效电阻
+  review_scores: {}
+  production_role: engine-prototype
+- id: ch17-i2c-rise-time-budget
+  chapter: 17
+  kind: figure
+  type: V3
+  anchor: '17.3'
+  purpose: I²C 上拉电阻与上升时间
+  style_id: FF-015
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p4-02-ch17.md#17.3
+  prompt_file: docs/superpowers/visual/prompts/ch17-i2c-rise-time-budget.md
+  output: assets/figures-v2/ch17-i2c-rise-time-budget.svg
+  print_fallback: assets/figures-v2/ch17-i2c-rise-time-budget-print.svg
+  preview: assets/figures-v2/ch17-i2c-rise-time-budget.webp
+  alt: 左图按 Rp,max=tr/(0.8473×Cb) 绘制电阻上限；400pF 时约为 2.9kΩ，10kΩ 工作点在上限之外；右图标出开漏总线的上拉电阻与电容。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 4
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/python-papercut-2026-11-05/ch17-i2c-rise-time-budget.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  review_record:
+    reviewer: Codex visual inspection
+    method: rendered color/grayscale inspection + browser bounds/print-size checks
+    scope: local chapter pilot
+    user_chapter_acceptance: pending
+    record: docs/superpowers/visual/reviews/python-papercut-2026-11-05/review.md
+    asset_sha256: 6d234d41d336c9e04407d8e2888f2e5137a25f135549ff31c665a8bde3e5018b
+- id: ch17-thermal-chain-audit
+  chapter: 17
+  kind: figure
+  type: V3
+  anchor: 17.5.1
+  purpose: 热阻链与结温估算
+  style_id: FF-015
+  layout_id: IG-012
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p4-02-ch17.md#17.5.1
+  prompt_file: docs/superpowers/visual/prompts/ch17-thermal-chain-audit.md
+  output: assets/figures-v2/ch17-thermal-chain-audit.svg
+  print_fallback: assets/figures-v2/ch17-thermal-chain-audit-print.svg
+  preview: assets/figures-v2/ch17-thermal-chain-audit.webp
+  alt: 纸层芯片、外壳和散热器依次连接为热阻链；同样 3.5W 损耗与 25°C 环境，正文两种热阻示例给出 235°C 与约 57°C 的结温估算。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 4
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/python-papercut-2026-11-05/ch17-thermal-chain-audit.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  review_record:
+    reviewer: Codex visual inspection
+    method: rendered color/grayscale inspection + browser bounds/print-size checks
+    scope: local chapter pilot
+    user_chapter_acceptance: pending
+    record: docs/superpowers/visual/reviews/python-papercut-2026-11-05/review.md
+    asset_sha256: 9c6379bf0cde2874129de8a1b2fa416dd5216b9ff3a0b20c58d96b0b56f787a6
+- id: ch17-prior-cost-matrix
+  chapter: 17
+  kind: figure
+  type: V4
+  anchor: '17.0'
+  purpose: 故障概率与验证成本决策图
+  style_id: FF-015
+  layout_id: IG-014
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p4-02-ch17.md#17.0
+  prompt_file: docs/superpowers/visual/prompts/ch17-prior-cost-matrix.md
+  output: assets/figures-v2/ch17-prior-cost-matrix.svg
+  print_fallback: assets/figures-v2/ch17-prior-cost-matrix-print.svg
+  preview: assets/figures-v2/ch17-prior-cost-matrix.webp
+  alt: 等面积四象限定性比较故障概率和验证成本；高概率且易验证的电源连接优先测量，拆焊与低概率项后置；图形和文字共同区分顺序。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 4
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/python-papercut-2026-11-05/ch17-prior-cost-matrix.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  review_record:
+    reviewer: Codex visual inspection
+    method: rendered color/grayscale inspection + browser bounds/print-size checks
+    scope: local chapter pilot
+    user_chapter_acceptance: pending
+    record: docs/superpowers/visual/reviews/python-papercut-2026-11-05/review.md
+    asset_sha256: d9ce2a373201234d9fff3e4f2abc7b56fe932354a31cc850c689fd7be1c5bd12
+- id: ch17-power-fault-layers
+  chapter: 17
+  kind: figure
+  type: V2
+  anchor: '17.1'
+  purpose: 电源故障的两层分诊
+  style_id: FF-015
+  layout_id: IG-007
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p4-02-ch17.md#17.1
+  prompt_file: docs/superpowers/visual/prompts/ch17-power-fault-layers.md
+  output: assets/figures-v2/ch17-power-fault-layers.svg
+  print_fallback: assets/figures-v2/ch17-power-fault-layers-print.svg
+  alt: 左右两栏把表 17-2 分成电源自身与系统交界两层：左栏列输出为零、偏低纹波大、偏高不可调、反复重启；右栏列上电顺序、热插拔、续航与 ADC 读数四类交界故障。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch17-power-fault-layers.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch17-power-fault-layers.webp
+- id: ch17-noise-floor-before-verdict
+  chapter: 17
+  kind: figure
+  type: V4
+  anchor: '17.2'
+  purpose: 测量链底噪与漂移的分界
+  style_id: FF-015
+  layout_id: IG-004
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p4-02-ch17.md#17.2
+  prompt_file: docs/superpowers/visual/prompts/ch17-noise-floor-before-verdict.md
+  output: assets/figures-v2/ch17-noise-floor-before-verdict.svg
+  print_fallback: assets/figures-v2/ch17-noise-floor-before-verdict-print.svg
+  alt: 左右两栏对比仪器在漂与电路在漂：仪器侧短接输入看零点、探头短接读底噪并按功率扣除；电路侧换电池供电、看传感器裸信号、从源端开始验证。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch17-noise-floor-before-verdict.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch17-noise-floor-before-verdict.webp
+- id: ch17-probe-changes-the-circuit
+  chapter: 17
+  kind: figure
+  type: V4
+  anchor: '17.4'
+  purpose: 探头改变电路时的四象限
+  style_id: FF-015
+  layout_id: IG-011
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p4-02-ch17.md#17.4
+  prompt_file: docs/superpowers/visual/prompts/ch17-probe-changes-the-circuit.md
+  output: assets/figures-v2/ch17-probe-changes-the-circuit.svg
+  print_fallback: assets/figures-v2/ch17-probe-changes-the-circuit-print.svg
+  alt: 两轴四象限：无扰动无故障为常态；接探头反而正常说明探头电容补了相位裕度；拔探头就故障说明电路本在临界稳定；手靠近才振荡指向容性耦合与人体天线。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch17-probe-changes-the-circuit.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch17-probe-changes-the-circuit.webp
+- id: ch17-thermal-cycling-vs-dissipation
+  chapter: 17
+  kind: figure
+  type: V4
+  anchor: '17.5'
+  purpose: 功耗过热与机械热循环的分叉
+  style_id: FF-015
+  layout_id: IG-011
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p4-02-ch17.md#17.5
+  prompt_file: docs/superpowers/visual/prompts/ch17-thermal-cycling-vs-dissipation.md
+  output: assets/figures-v2/ch17-thermal-cycling-vs-dissipation.svg
+  print_fallback: assets/figures-v2/ch17-thermal-cycling-vs-dissipation-print.svg
+  alt: 左右两栏对比功耗过热与机械热循环：前者随功耗升温、限流下仍发烫，修法是降热；后者呈早晚节律、恒温小功率下消失，修法是减应力。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch17-thermal-cycling-vs-dissipation.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch17-thermal-cycling-vs-dissipation.webp
+- id: ch17-intermittent-fault-forcing
+  chapter: 17
+  kind: figure
+  type: V5
+  anchor: '17.6'
+  purpose: 间歇故障的逼迫流程
+  style_id: FF-015
+  layout_id: IG-008
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p4-02-ch17.md#17.6
+  prompt_file: docs/superpowers/visual/prompts/ch17-intermittent-fault-forcing.md
+  output: assets/figures-v2/ch17-intermittent-fault-forcing.svg
+  print_fallback: assets/figures-v2/ch17-intermittent-fault-forcing-print.svg
+  alt: 五步流程：一次只用机械、温度或电压一种应力；记录复现率；在复现窗口用单次或毛刺触发等待；先拍照留现场再最小改动；最后用复现率下降验收。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch17-intermittent-fault-forcing.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch17-intermittent-fault-forcing.webp
+- id: ch17-first-power-on-static-check
+  chapter: 17
+  kind: figure
+  type: V5
+  anchor: '17.7'
+  purpose: 首次上电前的静态检查
+  style_id: FF-015
+  layout_id: IG-013
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p4-02-ch17.md#17.7
+  prompt_file: docs/superpowers/visual/prompts/ch17-first-power-on-static-check.md
+  output: assets/figures-v2/ch17-first-power-on-static-check.svg
+  print_fallback: assets/figures-v2/ch17-first-power-on-static-check-print.svg
+  alt: 五步静态检查：目检极性器件的 1 脚方向；量电源轨对地阻值，接近 0Ω 先别上电；核对电压档位；核对保险丝额定与类型；最后用限流电源上电看电流。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch17-first-power-on-static-check.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch17-first-power-on-static-check.webp
+- id: ch17-triage-tree-three-tradeoffs
+  chapter: 17
+  kind: figure
+  type: V5
+  anchor: '17.8'
+  purpose: 决策树的三个设计取舍
+  style_id: FF-015
+  layout_id: IG-013
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p4-02-ch17.md#17.8
+  prompt_file: docs/superpowers/visual/prompts/ch17-triage-tree-three-tradeoffs.md
+  output: assets/figures-v2/ch17-triage-tree-three-tradeoffs.svg
+  print_fallback: assets/figures-v2/ch17-triage-tree-three-tradeoffs-print.svg
+  alt: 三步卡：顺序为先电源、再复位与时钟、最后功能，每下一层成本升；颗粒为每个分叉一次低成本测量可判；可改写为用维修日志回填重排先验。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch17-triage-tree-three-tradeoffs.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch17-triage-tree-three-tradeoffs.webp
+- id: ch00-ground-is-copper
+  chapter: 0
+  kind: figure
+  type: V1
+  anchor: '0.4'
+  purpose: 地符号与铜箔不是一回事
+  style_id: FF-015
+  layout_id: IG-011
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p1-01-ch0.md#0.4
+  prompt_file: docs/superpowers/visual/prompts/ch00-ground-is-copper.md
+  output: assets/figures-v2/ch00-ground-is-copper.svg
+  print_fallback: assets/figures-v2/ch00-ground-is-copper-print.svg
+  alt: 左右两栏对比：左栏是原理图的地符号与参考点约定；右栏是板上铜箔，0.1Ω 地线流过 1A 产生 0.1V 地弹，大电流与小信号地分开、最后单点汇合。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch00-ground-is-copper.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch00-ground-is-copper.webp
+- id: ch00-three-power-formulas
+  chapter: 0
+  kind: figure
+  type: V3
+  anchor: '0.9'
+  purpose: 三个功率公式与记账方向
+  style_id: FF-015
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p1-01-ch0.md#0.9
+  prompt_file: docs/superpowers/visual/prompts/ch00-three-power-formulas.md
+  output: assets/figures-v2/ch00-three-power-formulas.svg
+  print_fallback: assets/figures-v2/ch00-three-power-formulas-print.svg
+  alt: 左栏并排 P=VI、P=I²R、P=V²/R，并给出 12V/1kΩ 三式同得 0.144W；右栏用电流流入/流出正端区分吸收与发出，强调先定参考方向。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch00-three-power-formulas.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch00-three-power-formulas.webp
+- id: ch00-derating-125mw
+  chapter: 0
+  kind: figure
+  type: V3
+  anchor: '0.9'
+  purpose: 125mW 降额线与能量账
+  style_id: FF-015
+  layout_id: IG-011
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p1-01-ch0.md#0.9
+  prompt_file: docs/superpowers/visual/prompts/ch00-derating-125mw.md
+  output: assets/figures-v2/ch00-derating-125mw.svg
+  print_fallback: assets/figures-v2/ch00-derating-125mw-print.svg
+  alt: 左栏是 1/4W 的 125mW 降额线：144mW 超 19mW，1/2W 下降额限值 250mW，144mW 占 57.6%；右栏是 4.5Wh 电池、LDO 41.7%、Buck 90%
+    与 1ms 脉冲平均 0.1W。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch00-derating-125mw.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch00-derating-125mw.webp
+- id: ch00-ten-myth-signatures
+  chapter: 0
+  kind: figure
+  type: V4
+  anchor: '0.10'
+  purpose: 十个开局误区的现场签名
+  style_id: FF-015
+  layout_id: IG-007
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p1-01-ch0.md#0.10
+  prompt_file: docs/superpowers/visual/prompts/ch00-ten-myth-signatures.md
+  output: assets/figures-v2/ch00-ten-myth-signatures.svg
+  print_fallback: assets/figures-v2/ch00-ten-myth-signatures-print.svg
+  alt: 两列五行的误区签名卡：左列 1–5，右列 6–10；每卡一句误区与一个现场读数，如表 0-5 的索引之外再给形状。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch00-ten-myth-signatures.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch00-ten-myth-signatures.webp
+- id: ch00-next-chapter-parasites
+  chapter: 0
+  kind: figure
+  type: V5
+  anchor: '0.11'
+  purpose: 三习惯、四底数与下一章的寄生
+  style_id: FF-015
+  layout_id: IG-013
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p1-01-ch0.md#0.11
+  prompt_file: docs/superpowers/visual/prompts/ch00-next-chapter-parasites.md
+  output: assets/figures-v2/ch00-next-chapter-parasites.svg
+  print_fallback: assets/figures-v2/ch00-next-chapter-parasites-print.svg
+  alt: 左栏收束三个思维习惯与四块工程底数；右栏画电阻串 L、电容并 ESR 串 ESL、电感饱和、分压器加寄生后高频偏离 6V。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch00-next-chapter-parasites.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch00-next-chapter-parasites.webp
+- id: ch00-engineering-notation-ladder
+  chapter: 0
+  kind: figure
+  type: V3
+  anchor: '0.7'
+  purpose: SI 词头阶梯与错读
+  style_id: FF-015
+  layout_id: IG-024
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p1-01-ch0.md#0.7
+  prompt_file: docs/superpowers/visual/prompts/ch00-engineering-notation-ladder.md
+  output: assets/figures-v2/ch00-engineering-notation-ladder.svg
+  print_fallback: assets/figures-v2/ch00-engineering-notation-ladder-print.svg
+  alt: 自下而上七层词头阶梯：p、n、µ、m、k、M、G，各配 10 的幂与一个真实元件值；m 与 M 差十亿倍，mF 看成 µF 差一千倍，1MΩ 写成 1mΩ 行为相反。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch00-engineering-notation-ladder.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch00-engineering-notation-ladder.webp
+- id: ch00-dimension-check-both-ways
+  chapter: 0
+  kind: figure
+  type: V4
+  anchor: '0.7'
+  purpose: 量纲只能证伪
+  style_id: FF-015
+  layout_id: IG-011
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p1-01-ch0.md#0.7
+  prompt_file: docs/superpowers/visual/prompts/ch00-dimension-check-both-ways.md
+  output: assets/figures-v2/ch00-dimension-check-both-ways.svg
+  print_fallback: assets/figures-v2/ch00-dimension-check-both-ways-print.svg
+  alt: 左右两栏：左栏列出漏 2π、漏并联项、有效值当峰值三种单位仍正确的错例；右栏把 Ω·F 化简成 C/A 即秒，说明单位对只是第一道筛子。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch00-dimension-check-both-ways.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch00-dimension-check-both-ways.webp
+- id: ch00-conversion-four-steps
+  chapter: 0
+  kind: figure
+  type: V5
+  anchor: '0.7'
+  purpose: 换算的四个固定动作
+  style_id: FF-015
+  layout_id: IG-013
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p1-01-ch0.md#0.7
+  prompt_file: docs/superpowers/visual/prompts/ch00-conversion-four-steps.md
+  output: assets/figures-v2/ch00-conversion-four-steps.svg
+  print_fallback: assets/figures-v2/ch00-conversion-four-steps-print.svg
+  alt: 四步流程：先写单位，再把词头换成十的幂，统一到基本单位计算，最后换回好读单位；10kΩ 与 100nF 的时间常数得到 1ms。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch00-conversion-four-steps.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch00-conversion-four-steps.webp
+- id: ch00-gain-is-three-factors
+  chapter: 0
+  kind: figure
+  type: V3
+  anchor: '0.8'
+  purpose: 端到端增益的三因子
+  style_id: FF-015
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p1-01-ch0.md#0.8
+  prompt_file: docs/superpowers/visual/prompts/ch00-gain-is-three-factors.md
+  output: assets/figures-v2/ch00-gain-is-three-factors.svg
+  print_fallback: assets/figures-v2/ch00-gain-is-three-factors-print.svg
+  alt: 四条定量账：开路增益 100 倍、源内阻分压 50%、负载分压 83.3%、端到端 41.7 倍；条带只做定性比较，读数标在右侧。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch00-gain-is-three-factors.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch00-gain-is-three-factors.webp
+- id: ch00-example-0-2-worked
+  chapter: 0
+  kind: figure
+  type: V3
+  anchor: '0.8'
+  purpose: 跨导链与例 0-2
+  style_id: FF-015
+  layout_id: IG-012
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p1-01-ch0.md#0.8
+  prompt_file: docs/superpowers/visual/prompts/ch00-example-0-2-worked.md
+  output: assets/figures-v2/ch00-example-0-2-worked.svg
+  print_fallback: assets/figures-v2/ch00-example-0-2-worked-print.svg
+  alt: 左栏是 V→A→V 跨导链：gm=2mS，1V 变 2mA，再乘 3kΩ 得 6V；右栏是例 0-2 四步：开路 2V、带载 1.667V、等效跨导 33.3mS、校验 0.333V 压降。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch00-example-0-2-worked.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch00-example-0-2-worked.webp
+- id: ch08-threshold-loss-gap
+  chapter: 8
+  kind: figure
+  type: V3
+  anchor: '8.1'
+  purpose: 阈值损失与互补并联的水位线
+  style_id: FF-015
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p1-09-ch8.md#8.1
+  prompt_file: docs/superpowers/visual/prompts/ch08-threshold-loss-gap.md
+  output: assets/figures-v2/ch08-threshold-loss-gap.svg
+  print_fallback: assets/figures-v2/ch08-threshold-loss-gap-print.svg
+  alt: 左右两栏：左栏画单 N 管从 5V 供电传到 4V、体效应退到 3.5V、下游门限 2.5V 的三道水位线；右栏画 N/P 并联后 20→26.7→20Ω 的包络，并列出 I²C 与音频分流两个单管岗位。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch08-threshold-loss-gap.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch08-threshold-loss-gap.webp
+- id: ch08-gain-error-thermal-noise
+  chapter: 8
+  kind: figure
+  type: V3
+  anchor: '8.1'
+  purpose: R_ON 误差账与两笔噪声
+  style_id: FF-015
+  layout_id: IG-024
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p1-09-ch8.md#8.1
+  prompt_file: docs/superpowers/visual/prompts/ch08-gain-error-thermal-noise.md
+  output: assets/figures-v2/ch08-gain-error-thermal-noise.svg
+  print_fallback: assets/figures-v2/ch08-gain-error-thermal-noise-print.svg
+  alt: 五行误差账：120Ω 配 100kΩ 得 0.12%、平坦度 ±30Ω 得 0.03%、全温 ×1.4 得 0.17%、100Ω 开关热噪声 1.3µV、10nF 的 kT/C 0.64µV；右侧读数只做量级比较。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch08-gain-error-thermal-noise.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch08-gain-error-thermal-noise.webp
+- id: ch08-three-generation-error-race
+  chapter: 8
+  kind: figure
+  type: V4
+  anchor: '8.1'
+  purpose: 三代模拟开关的误差表
+  style_id: FF-015
+  layout_id: IG-006
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p1-09-ch8.md#8.1
+  prompt_file: docs/superpowers/visual/prompts/ch08-three-generation-error-race.md
+  output: assets/figures-v2/ch08-three-generation-error-race.svg
+  print_fallback: assets/figures-v2/ch08-three-generation-error-race-print.svg
+  alt: 四步对比：CD4066 百Ω级、74HC4066 三十Ω级、专用低阻 Ω 级，末步把“哪一格先撞线”作为判据，并指出 16 位或 100kSa/s 以上才轮到专用器件。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch08-three-generation-error-race.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch08-three-generation-error-race.webp
+- id: ch08-bootstrap-flatness-derivation
+  chapter: 8
+  kind: figure
+  type: V3
+  anchor: '8.1'
+  purpose: 阈值缺口推导与自举平坦度
+  style_id: FF-015
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p1-09-ch8.md#8.1
+  prompt_file: docs/superpowers/visual/prompts/ch08-bootstrap-flatness-derivation.md
+  output: assets/figures-v2/ch08-bootstrap-flatness-derivation.svg
+  print_fallback: assets/figures-v2/ch08-bootstrap-flatness-derivation-print.svg
+  alt: 左栏三行缺口推导落到判据 VDD−Vin > VTH+VSB；右栏自举把 VGS 钉在 5V，R_ON=80/5=16Ω 成一条水平线，代价是一只电容与本地驱动。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch08-bootstrap-flatness-derivation.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch08-bootstrap-flatness-derivation.webp
+- id: ch08-mux16-timing-leakage-ledger
+  chapter: 8
+  kind: figure
+  type: V3
+  anchor: '8.2'
+  purpose: 16 选 1 的时间与漏流账
+  style_id: FF-015
+  layout_id: IG-024
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p1-09-ch8.md#8.2
+  prompt_file: docs/superpowers/visual/prompts/ch08-mux16-timing-leakage-ledger.md
+  output: assets/figures-v2/ch08-mux16-timing-leakage-ledger.svg
+  print_fallback: assets/figures-v2/ch08-mux16-timing-leakage-ledger-print.svg
+  alt: 五行账：软件 1µs、τ=410ns、12 位建立 3.4µs、一帧 80µs、85°C 漏流约 1µA 在 10kΩ 上得 10mV；条带只表示相对量级。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch08-mux16-timing-leakage-ledger.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch08-mux16-timing-leakage-ledger.webp
+- id: ch08-crosstalk-cascade-mismatch
+  chapter: 8
+  kind: figure
+  type: V3
+  anchor: '8.2'
+  purpose: 串扰、差分失配与级联
+  style_id: FF-015
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p1-09-ch8.md#8.2
+  prompt_file: docs/superpowers/visual/prompts/ch08-crosstalk-cascade-mismatch.md
+  output: assets/figures-v2/ch08-crosstalk-cascade-mismatch.svg
+  print_fallback: assets/figures-v2/ch08-crosstalk-cascade-mismatch-print.svg
+  alt: 双对数频率轴上两条 20dB/十倍频泄漏线：10kΩ 在 100kHz 为 −50dB、600Ω 压到 −65dB 以下；另标差分失配 10Ω 得 60dB 与每十倍频 20dB 的斜率。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch08-crosstalk-cascade-mismatch.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch08-crosstalk-cascade-mismatch.webp
+- id: ch08-audio-routing-4053-topology
+  chapter: 8
+  kind: figure
+  type: V5
+  anchor: '8.2'
+  purpose: 音频路由的预算顺序
+  style_id: FF-015
+  layout_id: IG-013
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p1-09-ch8.md#8.2
+  prompt_file: docs/superpowers/visual/prompts/ch08-audio-routing-4053-topology.md
+  output: assets/figures-v2/ch08-audio-routing-4053-topology.svg
+  print_fallback: assets/figures-v2/ch08-audio-routing-4053-topology-print.svg
+  alt: 五步预算顺序：±2V/20kHz 的双极性、16 位比 12 位紧 16 倍、−80dB 串扰、50Ω 对 600Ω 的 0.08V/V 插入损耗，最后一步说明 4053 切的是反馈电阻与节点。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch08-audio-routing-4053-topology.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch08-audio-routing-4053-topology.webp
+- id: ch08-param-triangle-tradeoff
+  chapter: 8
+  kind: figure
+  type: V4
+  anchor: '8.3'
+  purpose: R_ON、注入、带宽的三角矛盾
+  style_id: FF-015
+  layout_id: IG-018
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p1-09-ch8.md#8.3
+  prompt_file: docs/superpowers/visual/prompts/ch08-param-triangle-tradeoff.md
+  output: assets/figures-v2/ch08-param-triangle-tradeoff.svg
+  print_fallback: assets/figures-v2/ch08-param-triangle-tradeoff-print.svg
+  alt: 中心是 R_ON、注入与寄生、带宽与串扰的三角矛盾，三支分别写大沟道与小沟道的代价；中心框先问负载、温度、信号幅度三个测试条件。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch08-param-triangle-tradeoff.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch08-param-triangle-tradeoff.webp
+- id: ch08-five-param-budget-table
+  chapter: 8
+  kind: figure
+  type: V3
+  anchor: '8.3'
+  purpose: 五参数预算表与 RSS 合成
+  style_id: FF-015
+  layout_id: IG-024
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p1-09-ch8.md#8.3
+  prompt_file: docs/superpowers/visual/prompts/ch08-five-param-budget-table.md
+  output: assets/figures-v2/ch08-five-param-budget-table.svg
+  print_fallback: assets/figures-v2/ch08-five-param-budget-table-print.svg
+  alt: 五行误差账：0.2、0.04、0.4、0.2 LSB 与 kT/C 忽略，右侧 RSS 约 0.5LSB；说明 4066 加 10nF 与一级缓冲够 12 位。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch08-five-param-budget-table.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch08-five-param-budget-table.webp
+- id: ch08-switch-capacitor-network
+  chapter: 8
+  kind: figure
+  type: V2
+  anchor: '8.3'
+  purpose: 开关的导通/关断电容网络
+  style_id: FF-015
+  layout_id: IG-002
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p1-09-ch8.md#8.3
+  prompt_file: docs/superpowers/visual/prompts/ch08-switch-capacitor-network.md
+  output: assets/figures-v2/ch08-switch-capacitor-network.svg
+  print_fallback: assets/figures-v2/ch08-switch-capacitor-network-print.svg
+  alt: 左右两栏把开关拆成五只元件：导通态 R_ON 与两只 Cout 决定带宽和建立；关断态 Cds 与 Cin 决定隔离和馈通；供电从 5V 到 15V 使 R_ON 从百Ω级降到几十Ω级。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch08-switch-capacitor-network.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch08-switch-capacitor-network.webp
+- id: ch08-acquisition-settle-time
+  chapter: 8
+  kind: figure
+  type: V3
+  anchor: '8.4'
+  purpose: 采集时间的 τ 倍数账
+  style_id: FF-015
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p1-09-ch8.md#8.4
+  prompt_file: docs/superpowers/visual/prompts/ch08-acquisition-settle-time.md
+  output: assets/figures-v2/ch08-acquisition-settle-time.svg
+  print_fallback: assets/figures-v2/ch08-acquisition-settle-time-print.svg
+  alt: 五步：τ=750ns、12 位 8.3τ≈6.2µs、加延时约 7µs、留 30% 余量后承诺 100kSa/s，末步提醒半 LSB 口径是 9τ。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch08-acquisition-settle-time.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch08-acquisition-settle-time.webp
+- id: ch08-e2e-case-1ksa
+  chapter: 8
+  kind: figure
+  type: V5
+  anchor: '8.4'
+  purpose: 1kSa/s 采样保持五步走查
+  style_id: FF-015
+  layout_id: IG-013
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p1-09-ch8.md#8.4
+  prompt_file: docs/superpowers/visual/prompts/ch08-e2e-case-1ksa.md
+  output: assets/figures-v2/ch08-e2e-case-1ksa.svg
+  print_fallback: assets/figures-v2/ch08-e2e-case-1ksa-print.svg
+  alt: 五步走查 1kSa/s 记录仪：单电源家族、1MΩ 负载下 0.005%、10nF C0G、8.3τ≈104µs 远小于 1ms、2nA 漏流 1ms 掉 0.4LSB；每步都标“过”。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch08-e2e-case-1ksa.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch08-e2e-case-1ksa.webp
+- id: ch08-charge-sharing-back-to-back
+  chapter: 8
+  kind: figure
+  type: V4
+  anchor: '8.4'
+  purpose: 闭合尖峰与背靠背断开
+  style_id: FF-015
+  layout_id: IG-011
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p1-09-ch8.md#8.4
+  prompt_file: docs/superpowers/visual/prompts/ch08-charge-sharing-back-to-back.md
+  output: assets/figures-v2/ch08-charge-sharing-back-to-back.svg
+  print_fallback: assets/figures-v2/ch08-charge-sharing-back-to-back-print.svg
+  alt: 左右两栏：左栏闭合瞬间 100pF 对 Chold 重分配出约 10mV 尖峰、按 10τ 衰减；右栏背靠背两只开关先断外后断内，中间节点吸收电荷，代价是两相控制与 R_ON 翻倍。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch08-charge-sharing-back-to-back.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch08-charge-sharing-back-to-back.webp
+- id: ch08-sh-field-tests
+  chapter: 8
+  kind: figure
+  type: V5
+  anchor: '8.4'
+  purpose: 外置 S/H 的三条件与两次读数
+  style_id: FF-015
+  layout_id: IG-007
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p1-09-ch8.md#8.4
+  prompt_file: docs/superpowers/visual/prompts/ch08-sh-field-tests.md
+  output: assets/figures-v2/ch08-sh-field-tests.svg
+  print_fallback: assets/figures-v2/ch08-sh-field-tests-print.svg
+  alt: 五步：三条件判定门、三条都否就删掉分立 S/H、100nF/1V/1µs 的理想 100mA 与 R_ON 限流后的 4mA、100ms 掉 200µV 得 2pA 并把矛头指向板面。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch08-sh-field-tests.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch08-sh-field-tests.webp
+- id: ch08-triage-record-three-lines
+  chapter: 8
+  kind: figure
+  type: V5
+  anchor: '8.5'
+  purpose: 排故五站与三行记录
+  style_id: FF-015
+  layout_id: IG-020
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p1-09-ch8.md#8.5
+  prompt_file: docs/superpowers/visual/prompts/ch08-triage-record-three-lines.md
+  output: assets/figures-v2/ch08-triage-record-three-lines.svg
+  print_fallback: assets/figures-v2/ch08-triage-record-three-lines-print.svg
+  alt: 五站排故路径：0.1mA 跳到 12mA 的签名、带电插必现、数十伏窄脉冲、钳位加 1kΩ 后复现 50 次、最后压成现象/根因/防线三行。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch08-triage-record-three-lines.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch08-triage-record-three-lines.webp
+- id: ch08-lab-bench-setup
+  chapter: 8
+  kind: figure
+  type: V2
+  anchor: '8.6'
+  purpose: 四拍实验台的四个量
+  style_id: FF-015
+  layout_id: IG-002
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p1-09-ch8.md#8.6
+  prompt_file: docs/superpowers/visual/prompts/ch08-lab-bench-setup.md
+  output: assets/figures-v2/ch08-lab-bench-setup.svg
+  print_fallback: assets/figures-v2/ch08-lab-bench-setup-print.svg
+  alt: 中心是 2.000V 信号源、VDD=5V 传输门、干净 EN 方波、Ch=10pF 与高阻缓冲四个量；四支说明初始全关、EN 跳高同导、探头电容的双面性、示波器四段。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch08-lab-bench-setup.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch08-lab-bench-setup.webp
+- id: ch08-fifth-beat-temperature
+  chapter: 8
+  kind: figure
+  type: V3
+  anchor: '8.6'
+  purpose: 第五拍温度与 kT/C 硬币
+  style_id: FF-015
+  layout_id: IG-024
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p1-09-ch8.md#8.6
+  prompt_file: docs/superpowers/visual/prompts/ch08-fifth-beat-temperature.md
+  output: assets/figures-v2/ch08-fifth-beat-temperature.svg
+  print_fallback: assets/figures-v2/ch08-fifth-beat-temperature-print.svg
+  alt: 五行温度动作：R_ON ×1.3~1.5、漏流每 10°C 翻倍、注入随 VTH 漂移、750Ω×10nF 得 21kHz、热噪声等于 kT/C；结论是加大 Chold 而非换低阻开关。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch08-fifth-beat-temperature.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch08-fifth-beat-temperature.webp
+- id: ch08-scope-expected-beats
+  chapter: 8
+  kind: figure
+  type: V1
+  anchor: '8.6'
+  purpose: 示波器上的四拍预期波形
+  style_id: FF-015
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p1-09-ch8.md#8.6
+  prompt_file: docs/superpowers/visual/prompts/ch08-scope-expected-beats.md
+  output: assets/figures-v2/ch08-scope-expected-beats.svg
+  print_fallback: assets/figures-v2/ch08-scope-expected-beats-print.svg
+  alt: 示波器预期波形：拍①指数爬升、拍③沿上窄台阶、随后 droop 缓降、再采样；右上标控制摆幅 5V 与 3.3V 下馈通 0.5mV 与 0.33mV，屏角注明非实测。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch08-scope-expected-beats.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch08-scope-expected-beats.webp
+- id: ch08-off-state-traps
+  chapter: 8
+  kind: figure
+  type: V4
+  anchor: '8.1'
+  purpose: 超轨与半导通两种陷阱
+  style_id: FF-015
+  layout_id: IG-007
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p1-09-ch8.md#8.1
+  prompt_file: docs/superpowers/visual/prompts/ch08-off-state-traps.md
+  output: assets/figures-v2/ch08-off-state-traps.svg
+  print_fallback: assets/figures-v2/ch08-off-state-traps-print.svg
+  alt: 左右两栏：左栏超轨时 ESD 二极管在 0.6V 导通、5V 轨遇 6V 毛刺越界，对策是限流或钳位；右栏半导通停在阈区，R_ON 大几个量级且随温度漂，判据是跃迁时间与 VIL/VIH 余量。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch08-off-state-traps.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch08-off-state-traps.webp
+- id: ch08-path-through-tree-star
+  chapter: 8
+  kind: figure
+  type: V2
+  anchor: '8.2'
+  purpose: 星形与树形的 16 通道账
+  style_id: FF-015
+  layout_id: IG-012
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p1-09-ch8.md#8.2
+  prompt_file: docs/superpowers/visual/prompts/ch08-path-through-tree-star.md
+  output: assets/figures-v2/ch08-path-through-tree-star.svg
+  print_fallback: assets/figures-v2/ch08-path-through-tree-star-print.svg
+  alt: 左右两栏：星形一片 16 路、总漏流 16 路之和、COM 寄生最大；树形两片加一级、串联 500Ω、每片 8 路漏流；底部以 16/32 通道数分界。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch08-path-through-tree-star.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch08-path-through-tree-star.webp
+- id: ch08-transfer-gate-v2
+  chapter: 8
+  kind: animation
+  type: A1
+  anchor: '8.1'
+  purpose: 传输门的阈值缺口与互补并联（技术原型，待风格复评）
+  style_id: FA-029
+  layout_id: IG-009
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p1-09-ch8.md#8.1
+  prompt_file: docs/superpowers/visual/prompts/ch08-transfer-gate-v2.md
+  output: assets/svg-v2/ch08-transfer-gate-v2.svg
+  print_fallback: assets/svg-v2/ch08-transfer-gate-v2-static.svg
+  reduced_motion: assets/svg-v2/ch08-transfer-gate-v2-static.svg
+  storyboard: assets/svg-v2/ch08-transfer-gate-v2-storyboard.svg
+  beats:
+  - name: 零水位
+    start: 0.0
+    end: 1.6
+  - name: 顶到4V
+    start: 1.6
+    end: 3.4
+  - name: 互补并联
+    start: 3.4
+    end: 5.6
+  - name: 双向与边界
+    start: 5.6
+    end: 8.0
+  duration: 8.0s
+  parameters: []
+  conclusion_frame:
+    beat: 双向与边界
+    output: assets/svg-v2/ch08-transfer-gate-v2-static.svg
+  status: generated
+  status_history:
+  - planned
+  - generated
+  alt: N 管在 4V 附近截止、P 管接管高段，并联包络 20→26.7→20Ω；下游门限 2.5V 决定 4V 够不够，源漏对称所以双向。
+  review_scores: {}
+  production_role: engine-prototype
+- id: ch08-mux-address-glitch-v2
+  chapter: 8
+  kind: animation
+  type: A4
+  anchor: '8.2'
+  purpose: 4051 地址跳变的路过通道与 INH 对策（技术原型，待风格复评）
+  style_id: FA-029
+  layout_id: IG-012
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p1-09-ch8.md#8.2
+  prompt_file: docs/superpowers/visual/prompts/ch08-mux-address-glitch-v2.md
+  output: assets/svg-v2/ch08-mux-address-glitch-v2.svg
+  print_fallback: assets/svg-v2/ch08-mux-address-glitch-v2-static.svg
+  reduced_motion: assets/svg-v2/ch08-mux-address-glitch-v2-static.svg
+  storyboard: assets/svg-v2/ch08-mux-address-glitch-v2-storyboard.svg
+  beats:
+  - name: 停在011
+    start: 0.0
+    end: 1.6
+  - name: 三位抢跑
+    start: 1.6
+    end: 3.4
+  - name: 路过111
+    start: 3.4
+    end: 5.2
+  - name: 先拉INH
+    start: 5.2
+    end: 6.8
+  - name: 等够再采
+    start: 6.8
+    end: 9.0
+  duration: 9.0s
+  parameters: []
+  conclusion_frame:
+    beat: 等够再采
+    output: assets/svg-v2/ch08-mux-address-glitch-v2-static.svg
+  status: generated
+  status_history:
+  - planned
+  - generated
+  alt: 地址 011 改到 100 时先经过 111，无关通道短暂导通；INH 罩住整个跳变，判据是地址稳定到采样窗开启 ≥ t_ON。
+  review_scores: {}
+  production_role: engine-prototype
+- id: ch08-charge-injection-v2
+  chapter: 8
+  kind: animation
+  type: A4
+  anchor: '8.6'
+  purpose: 关断瞬间电荷注入的两路分账（技术原型，待风格复评）
+  style_id: FA-029
+  layout_id: IG-022
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p1-09-ch8.md#8.6
+  prompt_file: docs/superpowers/visual/prompts/ch08-charge-injection-v2.md
+  output: assets/svg-v2/ch08-charge-injection-v2.svg
+  print_fallback: assets/svg-v2/ch08-charge-injection-v2-static.svg
+  reduced_motion: assets/svg-v2/ch08-charge-injection-v2-static.svg
+  storyboard: assets/svg-v2/ch08-charge-injection-v2-storyboard.svg
+  beats:
+  - name: 导通蓄水
+    start: 0.0
+    end: 1.8
+  - name: 关断分账
+    start: 1.8
+    end: 3.8
+  - name: 台阶10mV
+    start: 3.8
+    end: 5.8
+  - name: 20个LSB
+    start: 5.8
+    end: 8.0
+  duration: 8.0s
+  parameters: []
+  conclusion_frame:
+    beat: 20个LSB
+    output: assets/svg-v2/ch08-charge-injection-v2-static.svg
+  status: generated
+  status_history:
+  - planned
+  - generated
+  alt: 沟道电荷 0.2pC 在关断瞬间分成源侧与 Chold 两路；一半落到 10pF 得 10mV，即 2.048V/12 位的 20 个 LSB。
+  review_scores: {}
+  production_role: engine-prototype
+- id: ch08-sample-hold-v2
+  chapter: 8
+  kind: animation
+  type: A1
+  anchor: '8.4'
+  purpose: 采样保持四拍与一个电容的三笔账（技术原型，待风格复评）
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p1-09-ch8.md#8.4
+  prompt_file: docs/superpowers/visual/prompts/ch08-sample-hold-v2.md
+  output: assets/svg-v2/ch08-sample-hold-v2.svg
+  print_fallback: assets/svg-v2/ch08-sample-hold-v2-static.svg
+  reduced_motion: assets/svg-v2/ch08-sample-hold-v2-static.svg
+  storyboard: assets/svg-v2/ch08-sample-hold-v2-storyboard.svg
+  beats:
+  - name: 采样
+    start: 0.0
+    end: 2.0
+  - name: 保持
+    start: 2.0
+    end: 4.0
+  - name: 下垂
+    start: 4.0
+    end: 6.4
+  - name: 再采样
+    start: 6.4
+    end: 9.0
+  duration: 9.0s
+  parameters: []
+  conclusion_frame:
+    beat: 再采样
+    output: assets/svg-v2/ch08-sample-hold-v2-static.svg
+  status: generated
+  status_history:
+  - planned
+  - generated
+  alt: 采样相追踪 2.000V、保持相冻结、漏流按 I/C 下斜、再采样；加大 Chold 同时摊注入、压 kT/C、缓 droop，代价是采集时间。
+  review_scores: {}
+  production_role: engine-prototype

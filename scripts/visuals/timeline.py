@@ -10,7 +10,8 @@ spec §7.5 禁令下不扩 generate_svgs.py；本层只描述「什么时候出�
 """
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
+import math
 
 
 @dataclass(frozen=True)
@@ -32,6 +33,23 @@ class Timeline:
     title: str
     subtitle: str = ""
 
+    def __post_init__(self):
+        if self.width <= 0 or self.height <= 0 or not math.isfinite(self.duration) or self.duration <= 0:
+            raise ValueError("画布尺寸与时长必须为正数")
+        if not 4 <= len(self.beats) <= 7:
+            raise ValueError("每个动画须有 4–7 个命名节拍")
+        names = set()
+        end = 0.0
+        for beat in self.beats:
+            if not beat.name or beat.name in names:
+                raise ValueError("节拍名称不能为空或重复")
+            if not math.isclose(beat.start, end) or not beat.start < beat.end <= self.duration:
+                raise ValueError("节拍必须连续覆盖时间轴")
+            names.add(beat.name)
+            end = beat.end
+        if not math.isclose(end, self.duration) or not self.beats[-1].hold:
+            raise ValueError("末拍须停留并覆盖完整时长")
+
     def beat(self, name: str) -> Beat:
         for b in self.beats:
             if b.name == name:
@@ -40,7 +58,7 @@ class Timeline:
 
     def in_window(self, name: str, t: float) -> bool:
         b = self.beat(name)
-        return b.start <= t <= b.end
+        return b.start <= t < b.end or (b is self.beats[-1] and t == self.duration)
 
 
 def opacity_window(timeline: Timeline, beat: Beat) -> tuple[float, float | None]:

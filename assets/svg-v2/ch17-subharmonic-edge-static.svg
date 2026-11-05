@@ -1,6 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 620" role="img" aria-labelledby="figTitle figDesc">
 <title id="figTitle">次谐波振荡：50% 占空比边界</title>
 <desc id="figDesc">占空比一过 50% 就振、降到 50% 以下就好——这是它的指纹</desc>
+<metadata id="visual-timeline">{&quot;duration&quot;: 9.5, &quot;beats&quot;: [{&quot;name&quot;: &quot;旋钮在40%&quot;, &quot;start&quot;: 0.0, &quot;end&quot;: 1.5, &quot;caption&quot;: &quot;起点：占空比 40%，电流环工作正常，SW 波形规整&quot;}, {&quot;name&quot;: &quot;推过50%&quot;, &quot;start&quot;: 1.5, &quot;end&quot;: 3.2, &quot;caption&quot;: &quot;负载加重，占空比推到 55%——越过临界点&quot;}, {&quot;name&quot;: &quot;一宽一窄&quot;, &quot;start&quot;: 3.2, &quot;end&quot;: 5.0, &quot;caption&quot;: &quot;电感电流扰动被逐周期放大：SW 波形一宽一窄交替，周期翻倍&quot;}, {&quot;name&quot;: &quot;纹波半频&quot;, &quot;start&quot;: 5.0, &quot;end&quot;: 6.5, &quot;caption&quot;: &quot;输出纹波出现开关频率一半的分量——次谐波振荡的指纹&quot;}, {&quot;name&quot;: &quot;斜坡补偿&quot;, &quot;start&quot;: 6.5, &quot;end&quot;: 8.0, &quot;caption&quot;: &quot;对策：给电流环叠一个下斜坡，把放大系数压回 1 以下&quot;}, {&quot;name&quot;: &quot;边界指纹&quot;, &quot;start&quot;: 8.0, &quot;end&quot;: 9.5, &quot;caption&quot;: &quot;一过 50% 就振、降到 50% 以下就好——调高输入电压一分钟判明&quot;}]}</metadata>
 <!-- 节拍：旋钮在40%、推过50%、一宽一窄、纹波半频、斜坡补偿、边界指纹；总时长 9.5s；单次播放 -->
 
 <defs>
@@ -107,10 +108,10 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <rect x="460" y="92" width="440" height="220" rx="12" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/>
 <text x="484" y="120" font-size="11.5" fill="#5b666f">SW 节点波形</text>
 <line x1="484" y1="290" x2="876" y2="290" stroke="#c9bb9d" stroke-width="1.2"/>
-<rect x="56" y="452" width="840" height="120" rx="12" fill="#e8efe6" stroke="#3d6b4a" stroke-width="2"/>
+<g transform="translate(0 -4)"><rect x="56" y="452" width="840" height="120" rx="12" fill="#e8efe6" stroke="#3d6b4a" stroke-width="2"/>
 <text x="84" y="488" font-size="14" font-weight="bold" fill="#3d6b4a">边界指纹：占空比一过 50% 就振，降到 50% 以下就好</text>
 <text x="84" y="516" font-size="12.5" fill="#16202b">一分钟验证：调高输入电压（减小占空比），看振荡是否消失。</text>
-<text x="84" y="540" font-size="12.5" fill="#16202b">消失即次谐波振荡——加斜坡补偿或降低环路增益。</text>
+<text x="84" y="540" font-size="12.5" fill="#16202b">消失即次谐波振荡——加斜坡补偿或降低环路增益。</text></g>
 <rect x="24" y="556" width="912" height="34" rx="9" fill="#f7eedb" stroke="#c9bb9d" stroke-width="1.2"/>
 <text x="480" y="580" text-anchor="middle" font-size="13" font-weight="bold" fill="#3d6b4a">一过 50% 就振、降到 50% 以下就好——调高输入电压一分钟判明</text>
 </svg>

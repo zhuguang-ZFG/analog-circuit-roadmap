@@ -1,6 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 620" role="img" aria-labelledby="figTitle figDesc">
 <title id="figTitle">ESR 扫描：纹波、发热与容量蒸发</title>
-<desc id="figDesc">把 ESR 从 0.1Ω 扫到 3Ω——100Hz 纹波幅度就是免费的 ESR 表</desc>
+<desc id="figDesc">ESR 从 0.1Ω 扫到 3Ω（扫描端点为示意值）——先问纹波频率，再问幅度</desc>
+<metadata id="visual-timeline">{&quot;duration&quot;: 8.0, &quot;beats&quot;: [{&quot;name&quot;: &quot;扫描对象&quot;, &quot;start&quot;: 0.0, &quot;end&quot;: 1.4, &quot;caption&quot;: &quot;扫描对象：输出大电解——ESR 从 0.1Ω 扫到 3Ω&quot;}, {&quot;name&quot;: &quot;纹波爬升&quot;, &quot;start&quot;: 1.4, &quot;end&quot;: 3.0, &quot;caption&quot;: &quot;ESR 越大，100Hz 纹波越高：400mV 已经烫手&quot;}, {&quot;name&quot;: &quot;内部生热&quot;, &quot;start&quot;: 3.0, &quot;end&quot;: 4.6, &quot;caption&quot;: &quot;纹波电流在电解液里生热，热积在铝壳里散不掉&quot;}, {&quot;name&quot;: &quot;容量蒸发&quot;, &quot;start&quot;: 4.6, &quot;end&quot;: 6.2, &quot;caption&quot;: &quot;电解液被蒸干，容量只剩标称三成&quot;}, {&quot;name&quot;: &quot;闭环&quot;, &quot;start&quot;: 6.2, &quot;end&quot;: 8.0, &quot;caption&quot;: &quot;量 100Hz 纹波幅度 = 免费的 ESR 表——先问频率，再问幅度&quot;}]}</metadata>
 <!-- 节拍：扫描对象、纹波爬升、内部生热、容量蒸发、闭环；总时长 8s；单次播放 -->
 
 <defs>
@@ -99,7 +100,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 
 
 <text x="480" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b">ESR 扫描：纹波、发热与容量蒸发</text>
-<text x="480" y="54" text-anchor="middle" font-size="12.5" fill="#5b666f">把 ESR 从 0.1Ω 扫到 3Ω——100Hz 纹波幅度就是免费的 ESR 表</text>
+<text x="480" y="54" text-anchor="middle" font-size="12.5" fill="#5b666f">ESR 从 0.1Ω 扫到 3Ω（扫描端点为示意值）——先问纹波频率，再问幅度</text>
 <rect x="60" y="90" width="300" height="240" rx="12" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/>
 <line x1="120" y1="210" x2="196" y2="210" stroke="#16202b" stroke-width="2.4"/>
 <line x1="204" y1="180" x2="204" y2="240" stroke="#16202b" stroke-width="3.2"/>
@@ -114,27 +115,27 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <rect x="60" y="356" width="640" height="30" rx="8" fill="#fdf8ea" stroke="#c9bb9d" stroke-width="1.2"/>
 <text x="60" y="412" font-size="12" fill="#5b666f">实测容量 / 标称容量</text>
 <text x="716" y="376" font-size="12" fill="#5b666f">100%</text>
-<g opacity="0"><rect x="80" y="106" width="260" height="40" rx="9" fill="#e6eff3" stroke="#1f5d7a" stroke-width="1.6"/>
+<g data-beat="扫描对象" opacity="0"><rect x="80" y="106" width="260" height="40" rx="9" fill="#e6eff3" stroke="#1f5d7a" stroke-width="1.6"/>
 <text x="210" y="132" text-anchor="middle" font-size="14" font-weight="bold" fill="#1f5d7a">扫描 ESR：0.1Ω → 3Ω</text><animate attributeName="opacity" values="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.25 0.1 0.25 1" begin="0s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1" begin="1.4s" dur="0.4s" fill="freeze"/><animateTransform attributeName="transform" type="translate" from="0 0" to="0 -6" begin="0s" dur="0.6s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1" keyTimes="0;1"/></g>
-<g opacity="0"><path d="M430,210 q24,-26 48,0 t48,0 t48,0 t48,0 t48,0 t48,0 t48,0 t48,0 t48,0" fill="none" stroke="#a8321f" stroke-width="2.6"/>
+<g data-beat="纹波爬升" opacity="0"><path d="M430,210 q24,-26 48,0 t48,0 t48,0 t48,0 t48,0 t48,0 t48,0 t48,0 t48,0" fill="none" stroke="#a8321f" stroke-width="2.6"/>
 <line x1="826" y1="184" x2="826" y2="236" stroke="#a8321f" stroke-width="1.4"/>
 <text x="836" y="188" font-size="12.5" font-weight="bold" fill="#a8321f">400mV</text><animate attributeName="opacity" values="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.25 0.1 0.25 1" begin="1.4s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1" begin="3s" dur="0.4s" fill="freeze"/><animateTransform attributeName="transform" type="translate" from="0 0" to="0 6" begin="1.4s" dur="0.6s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1" keyTimes="0;1"/></g>
-<g opacity="0"><rect x="318" y="150" width="16" height="150" rx="7" fill="#fdf8ea" stroke="#c9bb9d" stroke-width="1.2"/>
+<g data-beat="内部生热" opacity="0"><rect x="318" y="150" width="16" height="150" rx="7" fill="#fdf8ea" stroke="#c9bb9d" stroke-width="1.2"/>
 <circle cx="326" cy="310" r="13" fill="#f6e7e1" stroke="#a8321f" stroke-width="1.6"/>
 <rect x="322" y="210" width="8" height="90" rx="4" fill="#a8321f"/>
 <text x="344" y="230" font-size="12.5" font-weight="bold" fill="#a8321f">内部生热</text><animate attributeName="opacity" values="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.25 0.1 0.25 1" begin="3s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1" begin="4.6s" dur="0.4s" fill="freeze"/><animateTransform attributeName="transform" type="translate" from="0 0" to="0 -6" begin="3s" dur="0.6s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1" keyTimes="0;1"/></g>
-<g opacity="0"><rect x="64" y="360" width="192" height="22" rx="5" fill="#6b3f63" opacity="0.85"/>
+<g data-beat="容量蒸发" opacity="0"><rect x="64" y="360" width="192" height="22" rx="5" fill="#6b3f63" opacity="0.85"/>
 <text x="236" y="436" font-size="12.5" font-weight="bold" fill="#6b3f63">只剩标称三成</text><animate attributeName="opacity" values="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.25 0.1 0.25 1" begin="4.6s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1" begin="6.2s" dur="0.4s" fill="freeze"/><animateTransform attributeName="transform" type="translate" from="0 0" to="6 0" begin="4.6s" dur="0.6s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1" keyTimes="0;1"/></g>
-<g opacity="0"><rect x="60" y="452" width="840" height="120" rx="12" fill="#e8efe6" stroke="#3d6b4a" stroke-width="1.8"/>
+<g data-beat="闭环" opacity="0"><rect x="60" y="452" width="840" height="120" rx="12" fill="#e8efe6" stroke="#3d6b4a" stroke-width="1.8"/>
 <text x="84" y="484" font-size="13" font-weight="bold" fill="#3d6b4a">闭环：量 100Hz 纹波幅度 = 免费的 ESR 表</text>
 <text x="84" y="512" font-size="12" fill="#16202b">纹波电流生热 → 热又推高 ESR → ESR 再抬纹波 → 更热</text>
 <text x="84" y="536" font-size="12" font-weight="bold" fill="#a4630f">先问频率，再问幅度——测量必须能区分候选假设</text>
 <path d="M760,470 q60,40 0,80" fill="none" stroke="#3d6b4a" stroke-width="1.6"/>
 <polygon points="760,550 754,540 766,540" fill="#3d6b4a"/><animate attributeName="opacity" values="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.25 0.1 0.25 1" begin="6.2s" dur="0.45s" fill="freeze"/><animateTransform attributeName="transform" type="translate" from="0 0" to="0 -4" begin="6.2s" dur="0.6s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1" keyTimes="0;1"/></g>
 <rect x="24" y="556" width="912" height="34" rx="9" fill="#f7eedb" stroke="#c9bb9d" stroke-width="1.2"/>
-<g opacity="0"><animate attributeName="opacity" values="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.25 0.1 0.25 1" begin="0s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1" begin="1.4s" dur="0.4s" fill="freeze"/><text x="480" y="580" text-anchor="middle" font-size="13" font-weight="bold" fill="#1f5d7a">扫描对象：输出大电解——ESR 从 0.1Ω 扫到 3Ω</text></g>
-<g opacity="0"><animate attributeName="opacity" values="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.25 0.1 0.25 1" begin="1.4s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1" begin="3s" dur="0.4s" fill="freeze"/><text x="480" y="580" text-anchor="middle" font-size="13" font-weight="bold" fill="#a8321f">ESR 越大，100Hz 纹波越高：400mV 已经烫手</text></g>
-<g opacity="0"><animate attributeName="opacity" values="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.25 0.1 0.25 1" begin="3s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1" begin="4.6s" dur="0.4s" fill="freeze"/><text x="480" y="580" text-anchor="middle" font-size="13" font-weight="bold" fill="#a4630f">纹波电流在电解液里生热，热积在铝壳里散不掉</text></g>
-<g opacity="0"><animate attributeName="opacity" values="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.25 0.1 0.25 1" begin="4.6s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1" begin="6.2s" dur="0.4s" fill="freeze"/><text x="480" y="580" text-anchor="middle" font-size="13" font-weight="bold" fill="#6b3f63">电解液被蒸干，容量只剩标称三成</text></g>
-<g opacity="1"><text x="480" y="580" text-anchor="middle" font-size="13" font-weight="bold" fill="#3d6b4a">量 100Hz 纹波幅度 = 免费的 ESR 表——先问频率，再问幅度</text></g>
+<g data-caption="扫描对象" opacity="0"><animate attributeName="opacity" values="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.25 0.1 0.25 1" begin="0s" dur="0.2s" fill="freeze"/><animate attributeName="opacity" values="1;0" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1" begin="1.2s" dur="0.2s" fill="freeze"/><text x="480" y="580" text-anchor="middle" font-size="13" font-weight="bold" fill="#1f5d7a">扫描对象：输出大电解——ESR 从 0.1Ω 扫到 3Ω</text></g>
+<g data-caption="纹波爬升" opacity="0"><animate attributeName="opacity" values="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.25 0.1 0.25 1" begin="1.4s" dur="0.2s" fill="freeze"/><animate attributeName="opacity" values="1;0" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1" begin="2.8s" dur="0.2s" fill="freeze"/><text x="480" y="580" text-anchor="middle" font-size="13" font-weight="bold" fill="#a8321f">ESR 越大，100Hz 纹波越高：400mV 已经烫手</text></g>
+<g data-caption="内部生热" opacity="0"><animate attributeName="opacity" values="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.25 0.1 0.25 1" begin="3s" dur="0.2s" fill="freeze"/><animate attributeName="opacity" values="1;0" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1" begin="4.4s" dur="0.2s" fill="freeze"/><text x="480" y="580" text-anchor="middle" font-size="13" font-weight="bold" fill="#a4630f">纹波电流在电解液里生热，热积在铝壳里散不掉</text></g>
+<g data-caption="容量蒸发" opacity="0"><animate attributeName="opacity" values="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.25 0.1 0.25 1" begin="4.6s" dur="0.2s" fill="freeze"/><animate attributeName="opacity" values="1;0" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1" begin="6s" dur="0.2s" fill="freeze"/><text x="480" y="580" text-anchor="middle" font-size="13" font-weight="bold" fill="#6b3f63">电解液被蒸干，容量只剩标称三成</text></g>
+<g data-caption="闭环" opacity="0"><animate attributeName="opacity" values="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.25 0.1 0.25 1" begin="6.2s" dur="0.2s" fill="freeze"/><text x="480" y="580" text-anchor="middle" font-size="13" font-weight="bold" fill="#3d6b4a">量 100Hz 纹波幅度 = 免费的 ESR 表——先问频率，再问幅度</text></g>
 </svg>

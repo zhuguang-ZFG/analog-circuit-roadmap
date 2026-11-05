@@ -20,6 +20,8 @@ import subprocess
 import sys
 from pathlib import Path
 
+from visual_player import load_players, wrap_visual_players
+
 ROOT = Path(__file__).resolve().parent.parent
 DOCS = ROOT / "docs"
 BUILD = ROOT / "build"
@@ -1241,6 +1243,7 @@ extra_css:
   - stylesheets/typography.css
   - stylesheets/gallery.css
   - stylesheets/learning.css
+  - stylesheets/visual-player.css
   - stylesheets/reading.css
   - stylesheets/diag.css
   - stylesheets/handraw.css
@@ -1250,6 +1253,7 @@ extra_javascript:
   - assets/vendor/mathjax/tex-chtml-full.js
   - javascripts/gallery.js
   - javascripts/learning.js
+  - javascripts/visual-player.js
   - javascripts/reading.js
   - javascripts/learning-catalog.js
   - javascripts/progress.js
@@ -1567,6 +1571,7 @@ def main():
     chapters = chapter_routes()
     media = ROOT / "scripts" / "site_media"
     redirects = json.loads((media / "legacy-anchors.json").read_text(encoding="utf-8"))
+    players = load_players(ROOT)
     for page in sorted(DOCS.glob("*.md")):
         text = page.read_text(encoding="utf-8")
         if page.name == 'p9-00-quiz.md':
@@ -1575,6 +1580,7 @@ def main():
         text = re.sub(r'href="([\w\-]+)\.md(?=[#\"])', r'href="\1.html', text)
         # 动画 <img> 补懒加载 + 预留高度（只在站点产物里加）
         text = optimize_imgs(text)
+        text = wrap_visual_players(text, players, ROOT)
         # SEO：每页一句独立的 meta description（front-matter，只加在站点产物里）
         text = with_description(text)
         # 标题层级归一：正文没有 h1 的页面整体上提一级，消掉「同名 h1+h2」重复
@@ -1624,6 +1630,8 @@ def main():
     shutil.copyfile(media / "typography.css", OUT / "stylesheets" / "typography.css")
     shutil.copyfile(media / "learning.js", OUT / "javascripts" / "learning.js")
     shutil.copyfile(media / "learning.css", OUT / "stylesheets" / "learning.css")
+    shutil.copyfile(media / "visual-player.js", OUT / "javascripts" / "visual-player.js")
+    shutil.copyfile(media / "visual-player.css", OUT / "stylesheets" / "visual-player.css")
     shutil.copyfile(media / "reading.js", OUT / "javascripts" / "reading.js")
     shutil.copyfile(media / "reading.css", OUT / "stylesheets" / "reading.css")
     shutil.copyfile(media / "progress.js", OUT / "javascripts" / "progress.js")

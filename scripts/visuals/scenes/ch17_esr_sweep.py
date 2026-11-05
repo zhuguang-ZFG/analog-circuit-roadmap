@@ -13,6 +13,8 @@ from pathlib import Path
 SCRIPTS = Path(__file__).resolve().parents[2]
 if str(SCRIPTS) not in sys.path:
     sys.path.insert(0, str(SCRIPTS))
+if str(SCRIPTS.parent) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS.parent))
 
 from scripts.visuals.render import Layer, write  # noqa: E402
 from scripts.visuals.timeline import Beat, Timeline  # noqa: E402
@@ -33,7 +35,7 @@ def scene():
             Beat("闭环", 6.2, 8.0, "量 100Hz 纹波幅度 = 免费的 ESR 表——先问频率，再问幅度", GREEN, hold=True),
         ),
         title="ESR 扫描：纹波、发热与容量蒸发",
-        subtitle="把 ESR 从 0.1Ω 扫到 3Ω——100Hz 纹波幅度就是免费的 ESR 表",
+        subtitle="ESR 从 0.1Ω 扫到 3Ω（扫描端点为示意值）——先问纹波频率，再问幅度",
     )
     persistent = "\n".join((
         # 电容卡：引线 + 平行板 + 极性
@@ -102,7 +104,7 @@ def _beat_layers():
 
 def main():
     tl, layers = scene()
-    write(tl, layers, SCRIPTS / "assets" / "svg-v2", "ch17-esr-sweep")
+    write(tl, layers, SCRIPTS.parent / "assets" / "svg-v2", "ch17-esr-sweep")
 
 
 if __name__ == "__main__":

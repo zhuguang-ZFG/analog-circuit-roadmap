@@ -1,6 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 620" role="img" aria-labelledby="figTitle figDesc">
 <title id="figTitle">症状四空格：动手之前先记满</title>
 <desc id="figDesc">100Hz 纹波 400mV 的 5V 轨只有 3.1V——四个空格填满才许动烙铁</desc>
+<metadata id="visual-timeline">{&quot;duration&quot;: 9.5, &quot;beats&quot;: [{&quot;name&quot;: &quot;症状&quot;, &quot;start&quot;: 0.0, &quot;end&quot;: 1.6, &quot;caption&quot;: &quot;症状卡：5V 输出只有 3.1V，纹波 400mV——先别动烙铁&quot;}, {&quot;name&quot;: &quot;空格一&quot;, &quot;start&quot;: 1.6, &quot;end&quot;: 3.1, &quot;caption&quot;: &quot;偏离多少：5V→3.1V，差 1.9V（38%）&quot;}, {&quot;name&quot;: &quot;空格二&quot;, &quot;start&quot;: 3.1, &quot;end&quot;: 4.6, &quot;caption&quot;: &quot;从何时开始：一上电就低，还是带载才低&quot;}, {&quot;name&quot;: &quot;空格三&quot;, &quot;start&quot;: 4.6, &quot;end&quot;: 6.1, &quot;caption&quot;: &quot;发生多常：偶发还是稳定复现——复现才有对照&quot;}, {&quot;name&quot;: &quot;空格四&quot;, &quot;start&quot;: 6.1, &quot;end&quot;: 7.6, &quot;caption&quot;: &quot;最后改了什么：换线/换负载/换器件，逐项改回试&quot;}, {&quot;name&quot;: &quot;四空全满&quot;, &quot;start&quot;: 7.6, &quot;end&quot;: 9.5, &quot;caption&quot;: &quot;四空填满才许动烙铁——症状先记录，动手后没法补&quot;}]}</metadata>
 <!-- 节拍：症状、空格一、空格二、空格三、空格四、四空全满；总时长 9.5s；单次播放 -->
 
 <defs>
@@ -108,7 +109,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <rect x="430" y="200" width="500" height="88" rx="10" fill="#fdf8ea" stroke="#c9bb9d" stroke-width="1.4" stroke-dasharray="7,5"/><text x="454" y="234" font-size="13" font-weight="bold" fill="#5b666f">空格 2：从何时开始</text><text x="454" y="262" font-size="12" fill="#c9bb9d">（待填写）</text>
 <rect x="430" y="308" width="500" height="88" rx="10" fill="#fdf8ea" stroke="#c9bb9d" stroke-width="1.4" stroke-dasharray="7,5"/><text x="454" y="342" font-size="13" font-weight="bold" fill="#5b666f">空格 3：发生多常</text><text x="454" y="370" font-size="12" fill="#c9bb9d">（待填写）</text>
 <rect x="430" y="416" width="500" height="88" rx="10" fill="#fdf8ea" stroke="#c9bb9d" stroke-width="1.4" stroke-dasharray="7,5"/><text x="454" y="450" font-size="13" font-weight="bold" fill="#5b666f">空格 4：最后改了什么</text><text x="454" y="478" font-size="12" fill="#c9bb9d">（待填写）</text>
-<rect x="430" y="92" width="500" height="88" rx="10" fill="none" stroke="#3d6b4a" stroke-width="2.4"/>
+<g transform="translate(0 -4)"><rect x="430" y="92" width="500" height="88" rx="10" fill="none" stroke="#3d6b4a" stroke-width="2.4"/>
 <rect x="430" y="200" width="500" height="88" rx="10" fill="none" stroke="#3d6b4a" stroke-width="2.4"/>
 <rect x="430" y="308" width="500" height="88" rx="10" fill="none" stroke="#3d6b4a" stroke-width="2.4"/>
 <rect x="430" y="416" width="500" height="88" rx="10" fill="none" stroke="#3d6b4a" stroke-width="2.4"/>
@@ -116,7 +117,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <rect x="56" y="268" width="330" height="110" rx="12" fill="#e8efe6" stroke="#3d6b4a" stroke-width="2"/>
 <text x="80" y="304" font-size="14" font-weight="bold" fill="#3d6b4a">四空全满，才有资格动手</text>
 <text x="80" y="332" font-size="12" fill="#16202b">症状先记录——动手之后，</text>
-<text x="80" y="354" font-size="12" fill="#16202b">这些空格再也没法补。</text>
+<text x="80" y="354" font-size="12" fill="#16202b">这些空格再也没法补。</text></g>
 <rect x="24" y="556" width="912" height="34" rx="9" fill="#f7eedb" stroke="#c9bb9d" stroke-width="1.2"/>
 <text x="480" y="580" text-anchor="middle" font-size="13" font-weight="bold" fill="#3d6b4a">四空填满才许动烙铁——症状先记录，动手后没法补</text>
 </svg>

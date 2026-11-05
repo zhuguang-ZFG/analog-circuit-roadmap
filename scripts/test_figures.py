@@ -85,6 +85,19 @@ def _extent_violations(path):
 
 
 class FigureTests(unittest.TestCase):
+    def test_v2_figures_are_labelled_and_have_vector_print_fallbacks(self):
+        for path in sorted((ROOT / "assets/figures-v2").glob("*.svg")):
+            with self.subTest(path=path.name):
+                raw = path.read_text(encoding="utf-8")
+                tree = ET.fromstring(raw)
+                self.assertEqual("technical-overlay-v1", tree.get("data-composition"))
+                self.assertRegex(raw, r"<title[^>]*>.+?</title>")
+                self.assertRegex(raw, r"<desc[^>]*>.+?</desc>")
+                self.assertEqual([], EXTERNAL_REF.findall(raw))
+                if path.stem.endswith("-print"):
+                    self.assertEqual([], list(tree.iter(f"{SVG_NS}image")))
+                self.assertEqual([], _extent_violations(path))
+
     def test_wave1_figures_exist(self):
         present = {path.name for path in FIGURES.glob("*.svg")}
         self.assertEqual(set(), WAVE1_FIGURES - present)

@@ -40,6 +40,8 @@ def entry() -> dict:
         "output": "assets/figures/ch17-demo.svg",
         "print_fallback": "assets/figures/ch17-demo.svg",
         "status": "generated",
+        "status_history": ["planned", "generated"],
+        "alt": "故障占比与验证成本",
     }
 
 

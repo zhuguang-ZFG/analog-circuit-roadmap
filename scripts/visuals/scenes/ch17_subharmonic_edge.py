@@ -13,6 +13,8 @@ from pathlib import Path
 SCRIPTS = Path(__file__).resolve().parents[2]
 if str(SCRIPTS) not in sys.path:
     sys.path.insert(0, str(SCRIPTS))
+if str(SCRIPTS.parent) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS.parent))
 
 from scripts.visuals.render import Layer, write  # noqa: E402
 from scripts.visuals.timeline import Beat, Timeline  # noqa: E402
@@ -64,11 +66,6 @@ def scene():
     return tl, layers
 
 
-if __name__ == "__main__":
-    tl, layers = scene()
-    write(tl, layers, SCRIPTS / "assets" / "svg-v2", "ch17-subharmonic-edge")
-
-
 def _beat_layers():
     return [
         Layer("一宽一窄", "\n".join((
@@ -98,3 +95,8 @@ def _beat_layers():
             f'<text x="84" y="540" font-size="12.5" fill="{INK}">消失即次谐波振荡——加斜坡补偿或降低环路增益。</text>',
         )), (0, -4)),
     ]
+
+
+if __name__ == "__main__":
+    tl, layers = scene()
+    write(tl, layers, SCRIPTS.parent / "assets" / "svg-v2", "ch17-subharmonic-edge")

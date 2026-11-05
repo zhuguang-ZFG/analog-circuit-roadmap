@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""文字量规：环形隧道口，径口按标准取值，冰背方向由环境决定。
+"""视觉密度审计：统计每章正文内嵌视觉锚点与无图段长度，并按预算与间距闸判。
 
 口径（与规格书 2026-11-04 基线对齐，冻结在
 docs/superpowers/visual/baseline-2026-11-04.json）：
@@ -41,11 +41,15 @@ BUDGETS = {0: 18, 1: 18, 2: 22, 3: 24, 4: 18, 5: 18, 6: 18, 7: 20,
 
 FENCE = re.compile(r"^(?:```|~~~).*?^(?:```|~~~)[ \t]*$", re.M | re.S)
 COMMENT = re.compile(r"<!--.*?-->", re.S)
+# 公式块只用于「不算锚点」的掩码：load() 的正文切片取自原文，所以公式字符照常
+# 计入无图段长度，口径不变（`$$` 起于行首才是块级公式，行内 `$x$` 不动）。
+FORMULA = re.compile(r"^\$\$.*?\$\$", re.M | re.S)
 ANCHOR = re.compile(
     r'<img\b[^>]*\bsrc\s*=\s*["\'](assets/[^"\']+)["\'][^>]*>'
     r"|!\[[^\]]*\]\((assets/[^)]+)\)", re.I)
 H2 = re.compile(r"^## ", re.M)
 H3 = re.compile(r"^### ", re.M)
+HEAD = re.compile(r"^#{2,3} [^\n]*", re.M)
 
 
 def chapters() -> list[Path]:
@@ -69,26 +73,42 @@ def _blank(match: re.Match) -> str:
     return re.sub(r"\S", " ", match.group(0))
 
 
-def load(path: Path) -> tuple[str, list[tuple[int, str]], int]:
-    """返回 (哨兵化原文, 锚点[(哨兵偏移, 资源路径)], 原文非空白字符数)。
+def anchor_matches(raw: str) -> list[tuple[int, int, str]]:
+    """锚点在原文里的 (起, 止, 资源路径)。
 
-    锚点标签换成 `\x00`，其余原文一字不动，供间距与小节测量；字符数另按
-    整份原文统计，与 `baseline-2026-11-04.json` 的冻结口径一致。
+    围栏、注释与公式块先等长空白化，只用于「不算锚点」的定位；返回的偏移始终是
+    原文偏移，调用方可以直接拿去数行号。
+    """
+    masked = FORMULA.sub(_blank, COMMENT.sub(_blank, FENCE.sub(_blank, raw)))
+    return [(m.start(), m.end(), m.group(1) or m.group(2))
+            for m in ANCHOR.finditer(masked)]
+
+
+def mask(raw: str) -> str:
+    """锚点标签换成「`\x00` + 等长空格」，其余原文一字不动。
+
+    等长替换让哨兵偏移同时就是原文偏移——`\x00` 后面的空格不是非空白字符，分段计数
+    不变（`gaps` 按 `\x00` 切开），但行号可以直接从原文数出来：跨行的 `<figure>`
+    不会再把之后的断层行号往上顶。
+    """
+    out: list[str] = []
+    pos = 0
+    for start, end, _src in anchor_matches(raw):
+        out.append(raw[pos:start])
+        out.append("\x00" + re.sub(r"[^\n]", " ", raw[start + 1:end]))
+        pos = end
+    out.append(raw[pos:])
+    return "".join(out)
+
+
+def load(path: Path) -> tuple[str, list[tuple[int, str]], int]:
+    """返回 (哨兵化原文, 锚点[(原文偏移, 资源路径)], 原文非空白字符数)。
+
+    字符数另按整份原文统计，与 `baseline-2026-11-04.json` 的冻结口径一致。
     """
     raw = path.read_text(encoding="utf-8")
-    masked = COMMENT.sub(_blank, FENCE.sub(_blank, raw))
-    out: list[str] = []
-    anchors: list[tuple[int, str]] = []
-    pos = size = 0
-    for m in ANCHOR.finditer(masked):
-        out.append(raw[pos:m.start()])
-        size += len(out[-1])
-        anchors.append((size, m.group(1) or m.group(2)))
-        out.append("\x00")
-        size += 1
-        pos = m.end()
-    out.append(raw[pos:])
-    return "".join(out), anchors, nonws(raw)
+    return (mask(raw), [(start, src) for start, _end, src in anchor_matches(raw)],
+            nonws(raw))
 
 
 def gaps(text: str) -> list[int]:
@@ -129,11 +149,83 @@ def label(path: Path) -> str:
         return path.name
 
 
-def audit(path: Path) -> dict:
+def gap_spans(text: str, anchors: list[tuple[int, str]],
+              threshold: int = WARN_MAX_GAP) -> list[dict]:
+    """超过阈值的无图段：非空白字数、起始行、所属小节、下一张图的资源路径。
+
+    偏移按行号报，不报字符偏移——backlog 要的是「在正文哪一节下刀」，行号能直接
+    在编辑器里跳过去，字符偏移不能。`section` 是断层起点之前最近的标题（读者已经
+    读完的小节），`section_next` 是断层之内遇到的第一个标题（要下刀的小节）；
+    `next_asset` 为 null 表示该段延伸到章尾。
+    """
+    offsets = [off for off, _src in anchors]
+    srcs = [src for _off, src in anchors] + [None]
+    lo_bounds = [0] + [off + 1 for off in offsets]
+    hi_bounds = offsets + [len(text)]
+    heads = [(m.start(), m.group(0).lstrip("#").strip()) for m in HEAD.finditer(text)]
+    out = []
+    for i, (lo, hi) in enumerate(zip(lo_bounds, hi_bounds)):
+        body = text[lo:hi]
+        chars = nonws(body)
+        if chars <= threshold:
+            continue
+        section = ""
+        section_next = ""
+        for pos, title in heads:
+            if pos < lo:
+                section = title
+            elif not section_next:
+                section_next = title
+                break
+        out.append({"chars": chars, "at_line": text.count("\n", 0, lo) + 1,
+                    "section": section[:60], "section_next": section_next[:60],
+                    "next_asset": srcs[i]})
+    return out
+
+
+def by_kind(assets: list[str]) -> dict:
+    """按资源目录分型计数：figures=分析图、photos=实物照片、svg=示意图/动画帧。"""
+    kinds = {"figures": 0, "photos": 0, "svg": 0, "other": 0}
+    for src in assets:
+        parts = src.split("/")
+        directory = parts[1].removesuffix("-v2") if len(parts) > 1 else "other"
+        kinds[directory if directory in kinds else "other"] += 1
+    return kinds
+
+
+def cluster_spans(text: str, anchors: list[tuple[int, str]]) -> list[dict]:
+    """堆图的两端位置与资源名；行号沿用原文，便于编辑定位。"""
+    rows = []
+    for (left, left_src), (right, right_src) in zip(anchors, anchors[1:]):
+        middle = text[left + 1:right]
+        if nonws(middle) < MIN_SPACING and not H3.search(middle):
+            rows.append({"chars": nonws(middle),
+                         "from_line": text.count("\n", 0, left) + 1,
+                         "to_line": text.count("\n", 0, right) + 1,
+                         "from_asset": left_src, "to_asset": right_src})
+    return rows
+
+
+def h2_coverage(text: str) -> list[dict]:
+    """逐 H2 的字数与锚点数，含零视觉的段——报告用，不只报失败项。"""
+    heads = [m.start() for m in H2.finditer(text)]
+    if not heads:
+        return []
+    bounds = heads + [len(text)]
+    rows = []
+    for i in range(len(heads)):
+        body = text[bounds[i]:bounds[i + 1]]
+        rows.append({"title": body.splitlines()[0].lstrip("# ").strip()[:60],
+                     "chars": nonws(body), "visuals": body.count("\x00")})
+    return rows
+
+
+def audit(path: Path, detailed: bool = False) -> dict:
+    """detailed=False 保持冻结基线口径逐位一致；断层偏移等只在需要时附加。"""
     text, anchors, chars = load(path)
     seg = gaps(text)
     n = chapter_no(path)
-    return {
+    out = {
         "file": label(path),
         "chapter": n,
         "chars": chars,
@@ -147,6 +239,12 @@ def audit(path: Path) -> dict:
         "h2_no_visual": h2_gaps(text),
         "assets": [src for _off, src in anchors],
     }
+    if detailed:
+        out["gap_spans"] = gap_spans(text, anchors)
+        out["cluster_spans"] = cluster_spans(text, anchors)
+        out["by_kind"] = by_kind([src for _off, src in anchors])
+        out["h2_coverage"] = h2_coverage(text)
+    return out
 
 
 def row(r: dict) -> str:
@@ -176,13 +274,28 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--gate", action="store_true", help="按预算与间距闸判失败")
     ap.add_argument("--json", type=Path, help="写出完整统计 JSON")
     ap.add_argument("--chapter", type=int, action="append", help="只看某章")
+    ap.add_argument("--gaps", action="store_true",
+                    help="列出 >1500 字断层的位置、所属小节与下一张图（backlog 定位用）")
     args = ap.parse_args(argv)
     files = chapters()
     if args.chapter:
         files = [f for f in files if chapter_no(f) in set(args.chapter)]
-    rows = [audit(f) for f in files]
+    rows = [audit(f, detailed=args.json is not None or args.gaps) for f in files]
     for r in rows:
         print(row(r))
+    if args.gaps:
+        for r in rows:
+            print(f"\n{r['file']}  ch{r['chapter']}  视觉 {r['visuals']}/{r['budget']}"
+                  f"  分型 {r['by_kind']}")
+            for g in r["gap_spans"]:
+                if g["chars"] <= HARD_MAX_GAP:
+                    continue
+                nxt = g["next_asset"] or "（章尾）"
+                where = g["section_next"] or g["section"]
+                print(f"  {g['chars']:>6} 字  行 {g['at_line']:>5}  「{where}」→ {nxt}")
+            for c in r["cluster_spans"]:
+                print(f"  堆图 {c['chars']} 字  行 {c['from_line']}→{c['to_line']}"
+                      f"  {c['from_asset']} → {c['to_asset']}")
     total = sum(r["visuals"] for r in rows)
     print(f"合计：{len(rows)} 章 视觉 {total} 字符 "
           f"{sum(r['chars'] for r in rows)}")

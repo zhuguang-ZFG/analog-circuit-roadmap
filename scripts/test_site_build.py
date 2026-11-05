@@ -110,16 +110,20 @@ class SiteBuildTests(unittest.TestCase):
         """v3.83–v3.85 潜伏回归：公式里的 $X<Y$ 让 Python-Markdown 的 HTML stash
         把 `<V` 当成未闭合标签起点，与后一个 HTML 块（figure）组合后解析器永久
         落入 raw 态——ch4 从 §4.3 起整页裸 markdown 被三个版本带病发出。逐页断言
-        正文不再出现行首裸标题与成对 ** 标记（剥掉 pre/code/script/style/svg）。"""
+        正文不再出现行首裸标题、成对 ** 标记、裸表格行与未渲染的 `.md` 链接
+        （后两类都是 HTML 块内写 markdown 的同一症状）。"""
         strip = re.compile(r"<(pre|code|script|style|svg)\b.*?</\1>", re.S)
         heading = re.compile(r"^#{1,6}\s\S", re.M)
         bold = re.compile(r"\*\*[^*\n]{2,80}\*\*")
         pipe_row = re.compile(r"^\|[^\n]+\|\s*$", re.M)
+        # ch17 的图注踩过同一坑：markdown 链接写在原生 HTML 块里，Python-Markdown
+        # 整段 stash，`[12.1](p2-02-ch12.md#ch12)` 原样出现在成品页上。
+        md_link = re.compile(r"\[[^\]\n]{1,40}\]\([^)\s]*\.md(?:#[\w\-]+)?\)")
         offenders = []
         for page in sorted(self.site.glob("*.html")):
             text = strip.sub("", page.read_text(encoding="utf-8"))
             hits = (heading.findall(text) + bold.findall(text)
-                    + pipe_row.findall(text))
+                    + pipe_row.findall(text) + md_link.findall(text))
             if hits:
                 offenders.append("%s: %r" % (page.name, hits[:3]))
         self.assertEqual([], offenders)
