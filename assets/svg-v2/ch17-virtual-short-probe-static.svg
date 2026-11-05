@@ -1,6 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 620" role="img" aria-labelledby="figTitle figDesc">
 <title id="figTitle">虚短探针：两次读数判运放死活</title>
 <desc id="figDesc">两输入端压差 8mV——虚短成立，问题不在运放</desc>
+<metadata id="visual-timeline">{&quot;duration&quot;: 7.5, &quot;beats&quot;: [{&quot;name&quot;: &quot;认脚&quot;, &quot;start&quot;: 0.0, &quot;end&quot;: 1.5, &quot;caption&quot;: &quot;运放两输入端：V-（反相）与 V+（同相）——虚短验证就从这两个脚开始&quot;}, {&quot;name&quot;: &quot;量V-&quot;, &quot;start&quot;: 1.5, &quot;end&quot;: 3.0, &quot;caption&quot;: &quot;第一步：表笔落 V-，读数 2.500V&quot;}, {&quot;name&quot;: &quot;量V+&quot;, &quot;start&quot;: 3.0, &quot;end&quot;: 4.5, &quot;caption&quot;: &quot;第二步：表笔落 V+，读数 2.508V&quot;}, {&quot;name&quot;: &quot;算压差&quot;, &quot;start&quot;: 4.5, &quot;end&quot;: 6.0, &quot;caption&quot;: &quot;压差 = 2.508 - 2.500 = 8mV，远小于供电轨&quot;}, {&quot;name&quot;: &quot;判读&quot;, &quot;start&quot;: 6.0, &quot;end&quot;: 7.5, &quot;caption&quot;: &quot;虚短成立，运放与反馈链工作正常——问题不在这里&quot;}]}</metadata>
 <!-- 节拍：认脚、量V-、量V+、算压差、判读；总时长 7.5s；单次播放 -->
 
 <defs>
@@ -112,10 +113,10 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <text x="684" y="150" font-size="12.5" font-weight="bold" fill="#37424e">万用表</text>
 <text x="684" y="184" font-size="12" fill="#5b666f">V- 读数：-</text>
 <text x="684" y="212" font-size="12" fill="#5b666f">V+ 读数：-</text>
-<rect x="60" y="400" width="840" height="120" rx="12" fill="#e8efe6" stroke="#3d6b4a" stroke-width="2"/>
+<g transform="translate(0 -4)"><rect x="60" y="400" width="840" height="120" rx="12" fill="#e8efe6" stroke="#3d6b4a" stroke-width="2"/>
 <text x="84" y="436" font-size="14" font-weight="bold" fill="#3d6b4a">判读：压差 8mV 远小于几十 mV 阈值 → 虚短成立</text>
 <text x="84" y="466" font-size="12.5" fill="#16202b">运放两输入端近似等电位，反馈在正常工作——问题不在运放，</text>
-<text x="84" y="490" font-size="12.5" fill="#16202b">嫌疑移交：供电、前级信号、输出负载。</text>
+<text x="84" y="490" font-size="12.5" fill="#16202b">嫌疑移交：供电、前级信号、输出负载。</text></g>
 <rect x="24" y="556" width="912" height="34" rx="9" fill="#f7eedb" stroke="#c9bb9d" stroke-width="1.2"/>
 <text x="480" y="580" text-anchor="middle" font-size="13" font-weight="bold" fill="#3d6b4a">虚短成立，运放与反馈链工作正常——问题不在这里</text>
 </svg>

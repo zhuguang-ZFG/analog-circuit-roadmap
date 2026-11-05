@@ -84,7 +84,9 @@ class AnimationTests(unittest.TestCase):
         data.validate_signoffs(signoffs)
         sources = data.load_list(data_dir / "sources.yml")
         references = data.load_list(data_dir / "references.yml")
-        self.assertEqual([], sources)
+        # 来源台账已入库：条数下限与 schema 由数据层兜住；
+        # final 阶段的“正文引用闭合/无未使用条目”由装配阶段校验。
+        self.assertGreaterEqual(len(sources), 25)
         data.validate_sources(sources)
         # 参考文献已入库：条数下限与 final 级字段完整性由数据层兜住
         self.assertGreaterEqual(len(references), 100)

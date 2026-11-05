@@ -148,7 +148,9 @@
       if (player.element.isConnected) { return true; }
       player.dispose(); return false;
     });
-    document.querySelectorAll('img[data-study]').forEach(animation);
+    document.querySelectorAll('img[data-study]').forEach(function (img) {
+      if (!img.closest('[data-visual-player]')) { animation(img); }
+    });
     document.querySelectorAll('a[data-study-video]').forEach(video);
   }
   if (typeof document$ !== 'undefined') { document$.subscribe(init); }

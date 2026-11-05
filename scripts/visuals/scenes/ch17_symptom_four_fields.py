@@ -12,6 +12,8 @@ from pathlib import Path
 SCRIPTS = Path(__file__).resolve().parents[2]
 if str(SCRIPTS) not in sys.path:
     sys.path.insert(0, str(SCRIPTS))
+if str(SCRIPTS.parent) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS.parent))
 
 from scripts.visuals.render import Layer, write  # noqa: E402
 from scripts.visuals.timeline import Beat, Timeline  # noqa: E402
@@ -79,4 +81,4 @@ def scene():
 
 if __name__ == "__main__":
     tl, layers = scene()
-    write(tl, layers, SCRIPTS / "assets" / "svg-v2", "ch17-symptom-four-fields")
+    write(tl, layers, SCRIPTS.parent / "assets" / "svg-v2", "ch17-symptom-four-fields")
