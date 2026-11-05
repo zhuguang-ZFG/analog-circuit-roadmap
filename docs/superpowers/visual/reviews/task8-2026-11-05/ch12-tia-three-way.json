@@ -1,0 +1,15 @@
+{
+  "id": "ch12-tia-three-way",
+  "title": "TIA 的增益带宽稳定三角",
+  "alt": "手绘三角关系图：顶点是增益，10 兆欧乘 1 纳安等于 10 毫伏；左下是带宽，10 皮法加 1 兆欧得到 15.9 千赫；右下是稳定，补偿电容至少 0.4 皮法、实装 1 到 2 皮法；中心写三者互相拉扯。",
+  "anchor": "12.10",
+  "source": "docs/p2-02-ch12.md",
+  "canvas": [
+    1000,
+    700
+  ],
+  "print_width_mm": 138,
+  "generator": "python-handraw-v1",
+  "output": "assets/figures-v2/ch12-tia-three-way.svg",
+  "print_fallback": "assets/figures-v2/ch12-tia-three-way-print.svg"
+}
