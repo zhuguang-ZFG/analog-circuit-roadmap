@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
-"""手绘草图 Wave 2：落盘 SVG、纸墨皮肤、预览与 manifest 登记。"""
+"""手绘草图批次：落盘 SVG、纸墨皮肤、预览与 manifest 登记。"""
 from __future__ import annotations
 
+import argparse
+import importlib
 import json
 import sys
 from pathlib import Path
@@ -15,7 +17,6 @@ if str(ROOT) not in sys.path:
 import check_visual_manifest as manifest
 from compose_technical_overlay import preview
 from scripts.visuals import static_fig
-from scripts.visuals.scenes.handdrawn_wave2 import SCENES
 
 REVIEW = ROOT / 'docs/superpowers/visual/reviews/task8-2026-11-05'
 PROMPTS = ROOT / 'docs/superpowers/visual/prompts'
@@ -97,12 +98,16 @@ def register(asset_id: str, meta: dict, data: dict) -> None:
 
 
 def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--scenes", default="scripts.visuals.scenes.handdrawn_wave2")
+    args = ap.parse_args()
+    scenes = importlib.import_module(args.scenes).SCENES
     data = manifest.load()
-    for asset_id, meta in SCENES.items():
+    for asset_id, meta in scenes.items():
         build_one(asset_id, meta)
         register(asset_id, meta, data)
     manifest.dump(data)
-    print(f'{len(SCENES)} 张手绘草图已绘制；待人工审图。')
+    print(f'{len(scenes)} 张手绘草图已绘制；待人工审图。')
     return 0
 
 
