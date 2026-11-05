@@ -6,9 +6,23 @@
 ## 怎么看
 
 1. 打开 [`contact-wave2.html`](contact-wave2.html)，逐张看大图与灰度对照。
+   也可在 GitHub 直接看 [`WAVE2-GALLERY.md`](WAVE2-GALLERY.md)。
 2. 按五项各打 1–5 分：教学必要性、事实精度、构图层级、风格一致性、印刷可读性。
 3. 任一维度 <4 记具体返工点；5 分才可写 `accepted`。
 4. 回复“第 X 张：5/5/5/5/5”或“全部 5 分通过”即可回填；模型不会代签。
+
+## 优先看这六张
+
+| 图 | 为什么先看 |
+|---|---|
+| `ch15-adc-straddle` | 分区线 ≠ 地平面分割线，最容易被误读 |
+| `ch15-return-review` | 五步回流审查，直接能贴进检查单 |
+| `ch18-predict-before-probe` | “先预测再测量”的方法核心 |
+| `ch18-first-minute` | 60 秒目检，最像真实排故现场 |
+| `ch16-first-question` | 把“最近改过什么”做成第一动作 |
+| `ch13-h-bridge-states` | 四拍与死区，功率章的门面 |
+
+其余按章看：ch15 布线与 DFM → ch18 测量与排故 → ch16 流程 → ch13 功率 → ch14 热与降额。
 
 ## 清单
 
