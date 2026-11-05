@@ -17,6 +17,7 @@ from compose_technical_overlay import preview
 from scripts.visuals import static_fig
 from scripts.visuals.scenes.ch13_backlog_figures import FIGURES as CH13
 from scripts.visuals.scenes.ch15_backlog_figures import FIGURES as CH15
+from scripts.visuals.scenes.ch15_backlog_figures2 import FIGURES as CH15B
 from scripts.visuals.scenes.ch16_backlog_figures import FIGURES as CH16
 
 REVIEW = ROOT / 'docs/superpowers/visual/reviews/task8-2026-11-05'
@@ -109,7 +110,7 @@ def register(asset_id: str, meta: dict, data: dict) -> None:
 
 def main() -> int:
     data = manifest.load()
-    figures = {**CH13, **CH15, **CH16}
+    figures = {**CH13, **CH15, **CH15B, **CH16}
     for asset_id, meta in figures.items():
         build_one(asset_id, meta)
         register(asset_id, meta, data)

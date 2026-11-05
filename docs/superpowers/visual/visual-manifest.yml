@@ -6498,3 +6498,195 @@ assets:
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-thermal-relief.json
   quant_rules:
     layer_encodes_value: false
+- id: ch15-via-parallel
+  chapter: 15
+  kind: figure
+  type: V3
+  anchor: '15.3'
+  purpose: 过孔并联与电感
+  style_id: FF-015
+  layout_id: IG-007
+  color_ids: *id002
+  source_facts:
+  - docs/p3-02-ch15.md#15.3
+  prompt_file: docs/superpowers/visual/prompts/ch15-via-parallel.md
+  output: assets/figures-v2/ch15-via-parallel.svg
+  print_fallback: assets/figures-v2/ch15-via-parallel-print.svg
+  preview: assets/figures-v2/ch15-via-parallel.webp
+  alt: 纸层量级图：单个 0.3 毫米过孔约 1.3 纳亨，四个并联约 0.25 纳亨，3 安培换层至少 3 只；信号过孔每孔都带寄生，应少打并成对打。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-via-parallel.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+- id: ch15-crosstalk-3w
+  chapter: 15
+  kind: figure
+  type: V4
+  anchor: '15.3'
+  purpose: 串扰三招与包地边界
+  style_id: FF-015
+  layout_id: IG-004
+  color_ids: *id002
+  source_facts:
+  - docs/p3-02-ch15.md#15.3
+  prompt_file: docs/superpowers/visual/prompts/ch15-crosstalk-3w.md
+  output: assets/figures-v2/ch15-crosstalk-3w.svg
+  print_fallback: assets/figures-v2/ch15-crosstalk-3w-print.svg
+  preview: assets/figures-v2/ch15-crosstalk-3w.webp
+  alt: 左右两栏：左栏三招是拉开间距使容性耦合减半、3W 规则把串扰压到 5% 以下、缩短平行长度并用 5 到 10 毫米间距的地孔栅栏包地；右栏边界是地线必须低阻、线宽至少为被保护线两倍、包地只防电场耦合，磁场耦合要靠缩环路或拉距离。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-crosstalk-3w.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+- id: ch15-testpoint-rules
+  chapter: 15
+  kind: figure
+  type: V5
+  anchor: '15.4'
+  purpose: 测试点三条规矩
+  style_id: FF-015
+  layout_id: IG-001
+  color_ids: *id002
+  source_facts:
+  - docs/p3-02-ch15.md#15.4
+  prompt_file: docs/superpowers/visual/prompts/ch15-testpoint-rules.md
+  output: assets/figures-v2/ch15-testpoint-rules.svg
+  print_fallback: assets/figures-v2/ch15-testpoint-rules-print.svg
+  preview: assets/figures-v2/ch15-testpoint-rules.webp
+  alt: 四步流程：每个网络至少一个测试点，测试点直径至少 1.0 毫米，放在元件面并避开散热器与屏蔽罩阴影，每片区域至少两个地测试点让回流就近走。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-testpoint-rules.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+- id: ch15-panelization
+  chapter: 15
+  kind: figure
+  type: V4
+  anchor: '15.4'
+  purpose: V-cut 与邮票孔
+  style_id: FF-015
+  layout_id: IG-004
+  color_ids: *id002
+  source_facts:
+  - docs/p3-02-ch15.md#15.4
+  prompt_file: docs/superpowers/visual/prompts/ch15-panelization.md
+  output: assets/figures-v2/ch15-panelization.svg
+  print_fallback: assets/figures-v2/ch15-panelization-print.svg
+  preview: assets/figures-v2/ch15-panelization.webp
+  alt: 左右两栏：V-cut 两侧各切三分之一板厚、槽边 0.5 毫米无铜无件、分板应力大，适合矩形小板；邮票孔用窄桥小孔拼异形边、应力小但要打磨毛刺，适合贴板边 3 毫米内有陶瓷电容或要过跌落的板。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-panelization.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+- id: ch15-dfm-limits
+  chapter: 15
+  kind: figure
+  type: V4
+  anchor: '15.4'
+  purpose: DFM 四个数
+  style_id: FF-015
+  layout_id: IG-004
+  color_ids: *id002
+  source_facts:
+  - docs/p3-02-ch15.md#15.4
+  prompt_file: docs/superpowers/visual/prompts/ch15-dfm-limits.md
+  output: assets/figures-v2/ch15-dfm-limits.svg
+  print_fallback: assets/figures-v2/ch15-dfm-limits-print.svg
+  preview: assets/figures-v2/ch15-dfm-limits.webp
+  alt: 左右两栏：左栏几何下限是线宽间距常规 0.15 毫米、机械钻孔 0.3 毫米起步、丝印字高至少 1.0 毫米、铜到板边 V-cut 至少 0.5 毫米；右栏设计动作是过孔配 0.6 毫米焊盘、细间距器件集中放并逐颗查阻焊开窗、底层丝印镜像查看、钻孔文件与外形层对齐。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-dfm-limits.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+- id: ch15-failure-signatures
+  chapter: 15
+  kind: figure
+  type: V5
+  anchor: '15.5'
+  purpose: 翻车案例分诊
+  style_id: FF-015
+  layout_id: IG-006
+  color_ids: *id002
+  source_facts:
+  - docs/p3-02-ch15.md#15.5
+  prompt_file: docs/superpowers/visual/prompts/ch15-failure-signatures.md
+  output: assets/figures-v2/ch15-failure-signatures.svg
+  print_fallback: assets/figures-v2/ch15-failure-signatures-print.svg
+  preview: assets/figures-v2/ch15-failure-signatures.webp
+  alt: 分诊图：板子不对时先看症状，再分四支——ADC 读数跳查数字回流与去耦距离，无线距离短查天线净空区铺铜，上电发烫查电源地接反并先限流，EMC 辐射超标查地平面开槽、晶振贴边与电缆。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-failure-signatures.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
