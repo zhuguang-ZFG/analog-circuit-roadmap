@@ -111,6 +111,15 @@
 本轮无法取得 35 分量规分数，也未把任何新图标成 `accepted`。
 上表只是机器可验证的字号与边界结果，不等于用户已确认风格或印刷验收。
 
+## 用户签核（2026-11-05 晚）
+
+用户在确认 43 张 contact sheet（ch0 10 / ch8 20 / ch17 13）后，
+选择「全部 5 分通过」。已把 43 张 figure 的 5 项评分全部回填 5，
+`status_history` 迁移至 `accepted`，`review_record.reviewer = zhuguang-ZFG`，
+`asset_sha256` 与磁盘 SVG（LF 归一）一致：
+`check_visual_manifest.py` → PASS；`test_papercut_figures` 4 项含哈希校验全过。
+机器字号/边界预检不替代此项确认，评分来源是用户人工签核。
+
 ## 可复现
 
 ```bash
