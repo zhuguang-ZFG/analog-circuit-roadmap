@@ -49,12 +49,11 @@ jobs:
       - name: 16K 样张
         if: github.event_name != 'pull_request'
         run: python analog-book/build_print_book.py --sample
-      - name: 16K 内文与封面
+      - name: 16K 内文上下卷
         if: github.event_name != 'pull_request'
-        run: python analog-book/build_print_book.py --no-build --pdf --cover
-      - name: 构建报告与印刷规格
-        if: github.event_name != 'pull_request'
-        run: python analog-book/build_print_book.py --no-build --report
+        run: python analog-book/build_print_book.py --volumes --pdf --no-build
+      # --volumes 暂不支持 --cover/--report；封面前提是单卷页数，
+      # 整书超过 700 页硬上限后必须按上下卷分别出 PDF。
       - name: 16K 浏览器离线回归
         run: python -B -m unittest discover -s analog-book/tests -p "test_browser_print_book.py" -v
       - uses: actions/upload-artifact@v4
