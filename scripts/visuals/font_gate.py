@@ -29,13 +29,16 @@ _WHITESPACE = "\r\n\t"
 
 
 def svg_text(svg: str) -> str:
-    """取 SVG 里所有 text 节点的可见文字；解析失败时退回去标签的纯文本。"""
+    """取 SVG 的全部文本（含 title/desc）；解析失败时退回去标签的纯文本。
+
+    必须覆盖 title/desc：`book/fonts.py:required_text()` 是把整份 SVG 的标签
+    剥掉后并入字符集的，只查 <text> 会漏掉写在 <title> 里的字。
+    """
     try:
         tree = ET.fromstring(svg)
     except ET.ParseError:
         return re.sub(r'<[^>]+>', ' ', svg)
-    return ' '.join(''.join(node.itertext()) for node in tree.iter()
-                    if node.tag.rsplit('}', 1)[-1] == 'text')
+    return ' '.join(tree.itertext())
 
 
 def missing_in_assets(svg: str, fonts_dir: Path | None = None) -> dict[str, str]:

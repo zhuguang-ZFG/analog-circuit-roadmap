@@ -102,6 +102,10 @@ class FontCoverageGate(unittest.TestCase):
     def test_covered_text_passes(self):
         self.assertEqual({}, gate.missing_in_assets('<svg><text>探头补偿</text></svg>'))
 
+    def test_title_and_desc_are_checked_too(self):
+        self.assertIn('绽', ''.join(gate.missing_in_assets(
+            '<svg><title>破绽</title><desc>说明</desc></svg>').values()))
+
     def test_gate_fails_the_build_script(self):
         with self.assertRaises(SystemExit) as caught:
             gate.assert_covered('<svg><text>破绽</text></svg>', 'ch18-demo')
