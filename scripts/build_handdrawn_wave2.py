@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import importlib
 import json
 import sys
@@ -93,8 +94,16 @@ def register(asset_id: str, meta: dict, data: dict) -> None:
     old = next((a for a in data['assets'] if a['id'] == asset_id), None)
     if old is None:
         data['assets'].append(asset)
-    else:
-        data['assets'][data['assets'].index(old)] = asset
+        return
+    # 重跑 builder 只刷新图形与元数据；人工审图结果仅在底图字节未变时原样带过来，
+    # 否则一次「重建」会把已签核的评分留在改过的图上，或把评分悄悄清空。
+    raw = (ASSETS / f'{asset_id}.svg').read_bytes().replace(b'\r\n', b'\n')
+    reviewed = (old.get('review_record') or {}).get('asset_sha256')
+    if reviewed and reviewed == hashlib.sha256(raw).hexdigest():
+        for field in ('status', 'status_history', 'review_scores', 'review_record'):
+            if old.get(field):
+                asset[field] = old[field]
+    data['assets'][data['assets'].index(old)] = asset
 
 
 def main() -> int:

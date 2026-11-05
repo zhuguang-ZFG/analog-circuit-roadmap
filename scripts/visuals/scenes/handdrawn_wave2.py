@@ -179,7 +179,7 @@ SCENES = {
     'ch18-two-way-validation': {
         'draw': two_way_validation, 'title': '正向、反向与边界验证', 'anchor': '18.3',
         'chapter': 18, 'source': 'docs/p4-03-ch18.md',
-        'alt': '手绘三栏：正向验证换好件后故障消失，反向验证装回坏件后故障复现，边界拉偏覆盖供电正负 10%、零下 20 到 70 摄氏度与至少 24 小时老化；三条都过才允许关闭故障单。',
+        'alt': '手绘三栏：正向验证换好件后故障消失，反向验证装回坏件后故障复现，边界拉偏覆盖供电正负 10%、全温区与至少一天老化；三条都过才允许关闭故障单。',
     },
     'ch14-derating-margin': {
         'draw': derating_margin, 'title': '常用降额线', 'anchor': '14.2',

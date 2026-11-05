@@ -2,6 +2,7 @@
 """Wave 3 纸层插图：ch13/ch15/ch16 共 8 张，落盘、预览并登记 manifest。"""
 from __future__ import annotations
 
+import hashlib
 import json
 import sys
 from pathlib import Path
@@ -104,8 +105,15 @@ def register(asset_id: str, meta: dict, data: dict) -> None:
     old = next((a for a in data['assets'] if a['id'] == asset_id), None)
     if old is None:
         data['assets'].append(asset)
-    else:
-        data['assets'][data['assets'].index(old)] = asset
+        return
+    # 与手绘 builder 同规矩：底图字节未变才带过人工审图结果。
+    raw = (ASSETS / f'{asset_id}.svg').read_bytes().replace(b'\r\n', b'\n')
+    reviewed = (old.get('review_record') or {}).get('asset_sha256')
+    if reviewed and reviewed == hashlib.sha256(raw).hexdigest():
+        for field in ('status', 'status_history', 'review_scores', 'review_record'):
+            if old.get(field):
+                asset[field] = old[field]
+    data['assets'][data['assets'].index(old)] = asset
 
 
 def main() -> int:
