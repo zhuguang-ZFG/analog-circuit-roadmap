@@ -5849,3 +5849,132 @@ assets:
     - label
     - dash
   preview: assets/figures-v2/ch14-dft-testpoints.webp
+- id: ch18-assumption-tree
+  chapter: 18
+  kind: figure
+  type: V4
+  anchor: '18.3'
+  purpose: 假设树与互斥分支
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids: &id001
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p4-03-ch18.md#18.3
+  prompt_file: docs/superpowers/visual/prompts/ch18-assumption-tree.md
+  output: assets/figures-v2/ch18-assumption-tree.svg
+  print_fallback: assets/figures-v2/ch18-assumption-tree-print.svg
+  preview: assets/figures-v2/ch18-assumption-tree.webp
+  alt: 手绘假设树：现象是输出缓慢漂移，分成电源轨在动与测量链在漂两条互斥分支；每条都写预测、实验与判据，底部写明结果为 A 则排除 B、结果为 B 则排除 A。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch18-assumption-tree.json
+  quant_rules:
+    layer_encodes_value: false
+- id: ch18-fault-record
+  chapter: 18
+  kind: figure
+  type: V4
+  anchor: '18.1'
+  purpose: 可复用的故障档案字段
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids: *id001
+  source_facts:
+  - docs/p4-03-ch18.md#18.1
+  prompt_file: docs/superpowers/visual/prompts/ch18-fault-record.md
+  output: assets/figures-v2/ch18-fault-record.svg
+  print_fallback: assets/figures-v2/ch18-fault-record-print.svg
+  preview: assets/figures-v2/ch18-fault-record.webp
+  alt: 手绘故障档案卡：日期与批次、用户语言的现象、复现条件、带预测的假设、一次只改一个变量的实验记录、证据链根因、修复动作、原条件加边界拉偏的反向回归；每行右侧一个待勾选圆圈。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch18-fault-record.json
+  quant_rules:
+    layer_encodes_value: false
+- id: ch18-two-way-validation
+  chapter: 18
+  kind: figure
+  type: V4
+  anchor: '18.3'
+  purpose: 正向、反向与边界验证
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids: *id001
+  source_facts:
+  - docs/p4-03-ch18.md#18.3
+  prompt_file: docs/superpowers/visual/prompts/ch18-two-way-validation.md
+  output: assets/figures-v2/ch18-two-way-validation.svg
+  print_fallback: assets/figures-v2/ch18-two-way-validation-print.svg
+  preview: assets/figures-v2/ch18-two-way-validation.webp
+  alt: 手绘三栏：正向验证换好件后故障消失，反向验证装回坏件后故障复现，边界拉偏覆盖供电正负 10%、零下 20 到 70 摄氏度与至少 24 小时老化；三条都过才允许关闭故障单。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch18-two-way-validation.json
+  quant_rules:
+    layer_encodes_value: false
+- id: ch14-derating-margin
+  chapter: 14
+  kind: figure
+  type: V4
+  anchor: '14.2'
+  purpose: 常用降额线
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids: *id001
+  source_facts:
+  - docs/p3-01-ch14.md#14.2
+  prompt_file: docs/superpowers/visual/prompts/ch14-derating-margin.md
+  output: assets/figures-v2/ch14-derating-margin.svg
+  print_fallback: assets/figures-v2/ch14-derating-margin-print.svg
+  preview: assets/figures-v2/ch14-derating-margin.webp
+  alt: 手绘横向条形图：以额定值百分比为横轴，电阻功率 50 到 60%、陶瓷电容 50 到 80%、电解电容不超过 80%、二极管 70 到 80%、MOSFET 60 到 80%、连接器 50
+    到 70%；绿色条表示建议工作区，红色竖线标出上限。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-derating-margin.json
+  quant_rules:
+    layer_encodes_value: false
+- id: ch15-trace-drop
+  chapter: 15
+  kind: figure
+  type: V4
+  anchor: '15.1'
+  purpose: 电源走线的压降账
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids: *id001
+  source_facts:
+  - docs/p3-02-ch15.md#15.1
+  prompt_file: docs/superpowers/visual/prompts/ch15-trace-drop.md
+  output: assets/figures-v2/ch15-trace-drop.svg
+  print_fallback: assets/figures-v2/ch15-trace-drop-print.svg
+  preview: assets/figures-v2/ch15-trace-drop.webp
+  alt: 手绘走线示意：8 cm 长、0.5 mm 宽、1 oz 铜的路径按 1 mΩ/cm 记共 8 mΩ；静态 300 mA 压降 2.4 mV，瞬态 1 A 压降 8 mV，提示按瞬态电流定线宽。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-trace-drop.json
+  quant_rules:
+    layer_encodes_value: false
