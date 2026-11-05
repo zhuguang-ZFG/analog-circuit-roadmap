@@ -2713,7 +2713,8 @@ assets:
   - generated
   - reviewed
   - accepted
-  alt: 表 17-1 的五步用法闭环：①按症状对号入座，②读按先验概率排序的头号嫌疑，③做断电或单次上电内可判是/否的一分钟验证，④修根因不换件换因，⑤把症状、根因、解法、复发率写进维修日志后回到①。环心标注「日志回填 ⇒ 先验概率更新」。侧栏三条铁律：先量电源——电源与连接类近一半，先静后动——万用表先行，一次只改一个变量；一分钟验证的前提是测量本身不能改变电路（16.3）。
+  alt: 表 17-1 的五步用法闭环：①按症状对号入座，②读按先验概率排序的头号嫌疑，③做断电或单次上电内可判是/否的一分钟验证，④修根因不换件换因，⑤把症状、根因、解法、复发率写进维修日志后回到①。环心标注「日志回填
+    ⇒ 先验概率更新」。侧栏三条铁律：先量电源——电源与连接类近一半，先静后动——万用表先行，一次只改一个变量；一分钟验证的前提是测量本身不能改变电路（16.3）。
   status_history_origin: schema-migration-2026-11-05
 - id: ch17-virtual-short-test
   chapter: 17
@@ -3890,7 +3891,8 @@ assets:
   prompt_file: docs/superpowers/visual/prompts/ch00-derating-125mw.md
   output: assets/figures-v2/ch00-derating-125mw.svg
   print_fallback: assets/figures-v2/ch00-derating-125mw-print.svg
-  alt: 左栏是 1/4W 的 125mW 降额线：144mW 超 19mW，1/2W 下降额限值 250mW，144mW 占 57.6%；右栏是 4.5Wh 电池、LDO 41.7%、Buck 90% 与 1ms 脉冲平均 0.1W。
+  alt: 左栏是 1/4W 的 125mW 降额线：144mW 超 19mW，1/2W 下降额限值 250mW，144mW 占 57.6%；右栏是 4.5Wh 电池、LDO 41.7%、Buck 90%
+    与 1ms 脉冲平均 0.1W。
   status: accepted
   status_history:
   - planned
@@ -5501,8 +5503,8 @@ assets:
   prompt_file: docs/superpowers/visual/prompts/ch18-power-three-touchpoints.md
   output: assets/figures-v2/ch18-power-three-touchpoints.svg
   print_fallback: assets/figures-v2/ch18-power-three-touchpoints-print.svg
-  alt: 左右两栏：左栏依次量稳压器输出脚 5.02 V、芯片电源引脚 4.86 V、去耦电容两端，判据是三点只在毫伏级有差；右栏算 160 mV 除以 120 mA 约 1.3 Ω，并给出 1 oz 铜 0.5 mΩ/方、0.2 mm 宽
-    200 mm 长约 1000 方的路径账。
+  alt: 左右两栏：左栏依次量稳压器输出脚 5.02 V、芯片电源引脚 4.86 V、去耦电容两端，判据是三点只在毫伏级有差；右栏算 160 mV 除以 120 mA 约 1.3 Ω，并给出 1 oz
+    铜 0.5 mΩ/方、0.2 mm 宽 200 mm 长约 1000 方的路径账。
   status: generated
   status_history:
   - planned
@@ -5574,7 +5576,8 @@ assets:
   prompt_file: docs/superpowers/visual/prompts/ch18-probe-loading.md
   output: assets/figures-v2/ch18-probe-loading.svg
   print_fallback: assets/figures-v2/ch18-probe-loading-print.svg
-  alt: 左右两栏对比 100 kΩ 节点的探头负载：×1 档约 100 pF，拐点约 16 kHz，20 kHz 幅度掉近四成、相位落后约 50 度；×10 档约 10 到 15 pF，拐点约 160 kHz，20 kHz 接近真实。
+  alt: 左右两栏对比 100 kΩ 节点的探头负载：×1 档约 100 pF，拐点约 16 kHz，20 kHz 幅度掉近四成、相位落后约 50 度；×10 档约 10 到 15 pF，拐点约 160
+    kHz，20 kHz 接近真实。
   status: generated
   status_history:
   - planned
@@ -5718,7 +5721,8 @@ assets:
   prompt_file: docs/superpowers/visual/prompts/ch14-thermal-budget.md
   output: assets/figures-v2/ch14-thermal-budget.svg
   print_fallback: assets/figures-v2/ch14-thermal-budget-print.svg
-  alt: 热量账：12 V 转 5 V、1 A 的 LDO 耗散 7 W；允许总结温 125−40 除以 7 得 12.1 °C/W；扣掉 TO-220 的 θJC 2 与硅脂云母的 θCS 1，散热器配额只剩 9.1 °C/W。
+  alt: 热量账：12 V 转 5 V、1 A 的 LDO 耗散 7 W；允许总结温 125−40 除以 7 得 12.1 °C/W；扣掉 TO-220 的 θJC 2 与硅脂云母的 θCS 1，散热器配额只剩
+    9.1 °C/W。
   status: generated
   status_history:
   - planned
@@ -5826,7 +5830,8 @@ assets:
   prompt_file: docs/superpowers/visual/prompts/ch14-dft-testpoints.md
   output: assets/figures-v2/ch14-dft-testpoints.svg
   print_fallback: assets/figures-v2/ch14-dft-testpoints-print.svg
-  alt: 左右两栏：左栏列应留测试点的位置与机械要求（TP 直径至少 1 mm、间距至少 2.54 mm、沉金）；右栏区分 ICT 抓连接、FCT 抓功能，高速节点改用测试过孔，量产用 50 到 100 块小批看分布。
+  alt: 左右两栏：左栏列应留测试点的位置与机械要求（TP 直径至少 1 mm、间距至少 2.54 mm、沉金）；右栏区分 ICT 抓连接、FCT 抓功能，高速节点改用测试过孔，量产用 50 到 100
+    块小批看分布。
   status: generated
   status_history:
   - planned
@@ -5937,7 +5942,8 @@ assets:
   output: assets/figures-v2/ch14-derating-margin.svg
   print_fallback: assets/figures-v2/ch14-derating-margin-print.svg
   preview: assets/figures-v2/ch14-derating-margin.webp
-  alt: 手绘横向条形图：以额定值百分比为横轴，电阻功率 50 到 60%、陶瓷电容 50 到 80%、电解电容不超过 80%、二极管 70 到 80%、MOSFET 60 到 80%、连接器 50 到 70%；绿色条表示建议工作区，红色竖线标出上限。
+  alt: 手绘横向条形图：以额定值百分比为横轴，电阻功率 50 到 60%、陶瓷电容 50 到 80%、电解电容不超过 80%、二极管 70 到 80%、MOSFET 60 到 80%、连接器 50
+    到 70%；绿色条表示建议工作区，红色竖线标出上限。
   status: generated
   status_history:
   - planned
@@ -5991,8 +5997,8 @@ assets:
   output: assets/figures-v2/ch13-h-bridge-states.svg
   print_fallback: assets/figures-v2/ch13-h-bridge-states-print.svg
   preview: assets/figures-v2/ch13-h-bridge-states.webp
-  alt: 左右两栏：左栏四拍是正转 Q1 与 Q4 导通、反转 Q2 与 Q3 导通、全关滑行时电感电流经体二极管回电源、同臂 Q1 与 Q2 齐开会毫秒级烧管；右栏是 1 到 2 微秒死区、体二极管兜底、高侧自举、DRV8833 或 L298
-    集成驱动。
+  alt: 左右两栏：左栏四拍是正转 Q1 与 Q4 导通、反转 Q2 与 Q3 导通、全关滑行时电感电流经体二极管回电源、同臂 Q1 与 Q2 齐开会毫秒级烧管；右栏是 1 到 2 微秒死区、体二极管兜底、高侧自举、DRV8833
+    或 L298 集成驱动。
   status: generated
   status_history:
   - planned
@@ -6056,8 +6062,8 @@ assets:
   output: assets/figures-v2/ch13-opto-ctr.svg
   print_fallback: assets/figures-v2/ch13-opto-ctr-print.svg
   preview: assets/figures-v2/ch13-opto-ctr.webp
-  alt: 左右两栏：左栏三条隔离路线是光耦、数字隔离器、隔离放大器，共同点是没有欧姆通路；右栏 CTR 三个坑是分档 50% 到 600% 要按最小值、100 摄氏度与 20 毫安下十年可能掉一半、驱动至少留 2 倍余量，设计式为集电极电流等于正向电流乘
-    CTR。
+  alt: 左右两栏：左栏三条隔离路线是光耦、数字隔离器、隔离放大器，共同点是没有欧姆通路；右栏 CTR 三个坑是分档 50% 到 600% 要按最小值、100 摄氏度与 20 毫安下十年可能掉一半、驱动至少留
+    2 倍余量，设计式为集电极电流等于正向电流乘 CTR。
   status: generated
   status_history:
   - planned
@@ -6089,7 +6095,8 @@ assets:
   output: assets/figures-v2/ch15-layout-ten-questions.svg
   print_fallback: assets/figures-v2/ch15-layout-ten-questions-print.svg
   preview: assets/figures-v2/ch15-layout-ten-questions.webp
-  alt: 左右两栏列布局十问：摆放四问是 100 nF 贴脸且过孔就近、储能靠近负载、晶振环路最小且下方无走线、四区分团；收尾六问是发热件远离温敏件、结构图叠图核对、芯片朝向顺走线、测试点丝印与板边 5 mm 禁布。
+  alt: 左右两栏列布局十问：摆放四问是 100 nF 贴脸且过孔就近、储能靠近负载、晶振环路最小且下方无走线、四区分团；收尾六问是发热件远离温敏件、结构图叠图核对、芯片朝向顺走线、测试点丝印与板边
+    5 mm 禁布。
   status: generated
   status_history:
   - planned
@@ -6360,5 +6367,134 @@ assets:
   review_scores: {}
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch18-swap-discipline.json
+  quant_rules:
+    layer_encodes_value: false
+- id: ch18-component-signatures
+  chapter: 18
+  kind: figure
+  type: V4
+  anchor: '18.1'
+  purpose: 元件失效签名
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids: &id004
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p4-03-ch18.md#18.1
+  prompt_file: docs/superpowers/visual/prompts/ch18-component-signatures.md
+  output: assets/figures-v2/ch18-component-signatures.svg
+  print_fallback: assets/figures-v2/ch18-component-signatures-print.svg
+  preview: assets/figures-v2/ch18-component-signatures.webp
+  alt: 手绘四张失效签名卡：电阻过流烧毁开路、电容短路或漏电、半导体过压击穿、MLCC 在直流偏压下容量缩水；底部提示参数漂移型失效要带实际偏压核对容量。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch18-component-signatures.json
+  quant_rules:
+    layer_encodes_value: false
+- id: ch18-temp-spray
+  chapter: 18
+  kind: figure
+  type: V4
+  anchor: '18.1'
+  purpose: 温度手段与安全边界
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids: *id004
+  source_facts:
+  - docs/p4-03-ch18.md#18.1
+  prompt_file: docs/superpowers/visual/prompts/ch18-temp-spray.md
+  output: assets/figures-v2/ch18-temp-spray.svg
+  print_fallback: assets/figures-v2/ch18-temp-spray-print.svg
+  preview: assets/figures-v2/ch18-temp-spray.webp
+  alt: 手绘三步温度定位：手背感知只限低压或电池供电，冷却喷剂逐片降温看故障消失还是回来，锁定温敏件并记录边界；下方强调市电与高压电容附近只用喷剂和红外测温，绝不伸手。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch18-temp-spray.json
+  quant_rules:
+    layer_encodes_value: false
+- id: ch16-instrument-trust
+  chapter: 16
+  kind: figure
+  type: V4
+  anchor: '16.3'
+  purpose: 仪器信任链
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids: *id004
+  source_facts:
+  - docs/p4-01-ch16.md#16.3
+  prompt_file: docs/superpowers/visual/prompts/ch16-instrument-trust.md
+  output: assets/figures-v2/ch16-instrument-trust.svg
+  print_fallback: assets/figures-v2/ch16-instrument-trust-print.svg
+  preview: assets/figures-v2/ch16-instrument-trust.webp
+  alt: 手绘仪器检查单：探头负载先用乘十档、测完电流立刻插回电压孔、首次上电串限流灯泡或限 50 毫安、地夹最后接；右侧两个坑是自动量程在跳变信号上反复换档，以及微安档约 100 欧姆、毫安档约 2
+    欧姆的 burden 压降。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch16-instrument-trust.json
+  quant_rules:
+    layer_encodes_value: false
+- id: ch16-postmortem-split
+  chapter: 16
+  kind: figure
+  type: V4
+  anchor: '16.8'
+  purpose: 根因与触发条件
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids: *id004
+  source_facts:
+  - docs/p4-01-ch16.md#16.8
+  prompt_file: docs/superpowers/visual/prompts/ch16-postmortem-split.md
+  output: assets/figures-v2/ch16-postmortem-split.svg
+  print_fallback: assets/figures-v2/ch16-postmortem-split-print.svg
+  preview: assets/figures-v2/ch16-postmortem-split.webp
+  alt: 手绘复盘分栏：左栏根因分别是环路相位裕度不足、晶振线与开关节点平行 6 毫米、BGA 焊球虚焊；右栏触发条件分别是低温让 MLCC 容值再降、关盖温升 23 摄氏度与高 dV/dt、热循环振动与拍桌子。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch16-postmortem-split.json
+  quant_rules:
+    layer_encodes_value: false
+- id: ch15-thermal-relief
+  chapter: 15
+  kind: figure
+  type: V4
+  anchor: '15.4'
+  purpose: 热焊盘的两难
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids: *id004
+  source_facts:
+  - docs/p3-02-ch15.md#15.4
+  prompt_file: docs/superpowers/visual/prompts/ch15-thermal-relief.md
+  output: assets/figures-v2/ch15-thermal-relief.svg
+  print_fallback: assets/figures-v2/ch15-thermal-relief-print.svg
+  preview: assets/figures-v2/ch15-thermal-relief.webp
+  alt: 手绘两种焊盘：花孔用四条细桥连接铺铜，限制散热，手工烙铁 350 摄氏度才焊得动；直连焊盘整片铜相连，适合大电流与电源入口。底部要求同一封装库把两类焊盘分开命名。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-thermal-relief.json
   quant_rules:
     layer_encodes_value: false
