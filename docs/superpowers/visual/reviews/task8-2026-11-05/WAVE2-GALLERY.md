@@ -1,6 +1,6 @@
 # Wave 2 图库（45 张，待审）
 
-评分入口：[`contact-wave2.html`](contact-wave2.html)（本地打开，含灰度对照）。
+评分入口：[`contact-wave2.html`](contact-wave2.html)（本地打开）。
 本页图片路径相对仓库根，GitHub 可直接预览。
 
 ## ch13（3 张）

@@ -5,7 +5,7 @@
 
 ## 怎么看
 
-1. 打开 [`contact-wave2.html`](contact-wave2.html)，逐张看大图与灰度对照。
+1. 打开 [`contact-wave2.html`](contact-wave2.html)，逐张看大图。
    也可在 GitHub 直接看 [`WAVE2-GALLERY.md`](WAVE2-GALLERY.md)。
 2. 按五项各打 1–5 分：教学必要性、事实精度、构图层级、风格一致性、印刷可读性。
 3. 任一维度 <4 记具体返工点；5 分才可写 `accepted`。
