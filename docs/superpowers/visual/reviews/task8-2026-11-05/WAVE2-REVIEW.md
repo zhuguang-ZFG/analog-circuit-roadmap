@@ -1,0 +1,85 @@
+# Wave 2 视觉复核包（33 张，待人工审图）
+
+本包新增 33 张静态图：18 张纸层（V4/V5）与 15 张手绘纸墨（V4）。
+全部 `status: generated`，未插入正文，未回填评分；没有伪造人工签核。
+
+## 怎么看
+
+1. 打开 [`contact-wave2.html`](contact-wave2.html)，逐张看大图与灰度对照。
+2. 按五项各打 1–5 分：教学必要性、事实精度、构图层级、风格一致性、印刷可读性。
+3. 任一维度 <4 记具体返工点；5 分才可写 `accepted`。
+4. 回复“第 X 张：5/5/5/5/5”或“全部 5 分通过”即可回填；模型不会代签。
+
+## 清单
+
+### ch13（3 张）
+
+| id | 标题 | 类型 | 布局 |
+|---|---|---|---|
+| `ch13-h-bridge-states` | H 桥四拍 | V4 | IG-004 |
+| `ch13-current-sense-sides` | 低侧与高侧电流检测 | V4 | IG-004 |
+| `ch13-opto-ctr` | 隔离三条路线与 CTR | V4 | IG-004 |
+
+### ch14（6 张）
+
+| id | 标题 | 类型 | 布局 |
+|---|---|---|---|
+| `ch14-thermal-budget` | LDO 的热阻预算 | V3 | IG-015 |
+| `ch14-ltspice-five` | LTspice 五种分析 | V5 | IG-008 |
+| `ch14-tolerance-three` | WC、RSS 与 3σ | V4 | IG-004 |
+| `ch14-dft-testpoints` | 测试点与量产测试 | V4 | IG-004 |
+| `ch14-derating-margin` | 常用降额线 | V4 | IG-013 |
+| `ch14-arrhenius-ten-degree` | 结温与失效率 | V4 | IG-013 |
+
+### ch15（5 张）
+
+| id | 标题 | 类型 | 布局 |
+|---|---|---|---|
+| `ch15-trace-drop` | 电源走线的压降账 | V4 | IG-013 |
+| `ch15-layout-ten-questions` | 布局十问 | V4 | IG-004 |
+| `ch15-crystal-three-no` | 晶振布局三不 | V4 | IG-004 |
+| `ch15-four-zones` | 四区分团的三条约定 | V4 | IG-004 |
+| `ch15-thermal-relief` | 热焊盘的两难 | V4 | IG-013 |
+
+### ch16（4 张）
+
+| id | 标题 | 类型 | 布局 |
+|---|---|---|---|
+| `ch16-bisect-injection` | 信号注入与二分 | V3 | IG-001 |
+| `ch16-case-triage` | 三个案例的分诊 | V4 | IG-004 |
+| `ch16-instrument-trust` | 仪器信任链 | V4 | IG-013 |
+| `ch16-postmortem-split` | 根因与触发条件 | V4 | IG-013 |
+
+### ch18（15 张）
+
+| id | 标题 | 类型 | 布局 |
+|---|---|---|---|
+| `ch18-power-three-touchpoints` | 先量电源的三处触点 | V4 | IG-004 |
+| `ch18-dmm-averaging` | 万用表的平均滤镜 | V4 | IG-004 |
+| `ch18-probe-loading` | 探头电容把拐点拉低 | V4 | IG-004 |
+| `ch18-reset-clock-enable` | 不启动的三板斧 | V5 | IG-008 |
+| `ch18-measurement-snr` | 源头放大锁住信噪比 | V4 | IG-004 |
+| `ch18-ground-lead-inductance` | 探头地线的假振铃 | V4 | IG-004 |
+| `ch18-assumption-tree` | 假设树与互斥分支 | V4 | IG-013 |
+| `ch18-fault-record` | 可复用的故障档案字段 | V4 | IG-013 |
+| `ch18-two-way-validation` | 正向、反向与边界验证 | V4 | IG-013 |
+| `ch18-predict-before-probe` | 下探头前先预测 | V4 | IG-013 |
+| `ch18-first-minute` | 60 秒目检 | V4 | IG-013 |
+| `ch18-four-wire` | 两线法与四线法 | V4 | IG-013 |
+| `ch18-swap-discipline` | 交换法三条纪律 | V4 | IG-013 |
+| `ch18-component-signatures` | 元件失效签名 | V4 | IG-013 |
+| `ch18-temp-spray` | 温度手段与安全边界 | V4 | IG-013 |
+
+## 已过的自动闸
+
+- `python scripts/check_visual_manifest.py` → PASS（0 项）
+- 每张 `bounds: pass`，最小印刷字号 8.6 pt（≥8.5 pt）
+- 14 项 manifest/纸层/动画测试（本轮结束前重跑）
+- 数字均由脚本对 anchor 原文核查；图内不编码正文没有的量值
+
+## 合入条件
+
+- 人工评分回填且全部 ≥4；
+- 插入对应章节 anchor，正文有引用与读图指引；
+- 重建 BOOK.md 与站点后，`test_book_real`、`check_visual_manifest`、`test_papercut_figures` 全过；
+- PR 合并后 main CI 全绿。
