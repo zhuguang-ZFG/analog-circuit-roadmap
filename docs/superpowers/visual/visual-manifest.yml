@@ -6743,3 +6743,81 @@ assets:
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch16-probe-compensation.json
   quant_rules:
     layer_encodes_value: false
+- id: ch15-adc-straddle
+  chapter: 15
+  kind: figure
+  type: V4
+  anchor: '15.1'
+  purpose: ADC 骑跨分区线
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids: &id006
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p3-02-ch15.md#15.1
+  prompt_file: docs/superpowers/visual/prompts/ch15-adc-straddle.md
+  output: assets/figures-v2/ch15-adc-straddle.svg
+  print_fallback: assets/figures-v2/ch15-adc-straddle-print.svg
+  preview: assets/figures-v2/ch15-adc-straddle.webp
+  alt: 手绘 ADC 骑跨：芯片本体跨在模拟区与数字区的分区线上，AIN、REF、AVDD 在左，SPI、CLK、DVDD 在右；AGND 与 DGND 就近下过孔进完整地平面，数字回流不经过模拟脚下方。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-adc-straddle.json
+  quant_rules:
+    layer_encodes_value: false
+- id: ch15-return-review
+  chapter: 15
+  kind: figure
+  type: V4
+  anchor: '15.7'
+  purpose: 回流审查五步
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids: *id006
+  source_facts:
+  - docs/p3-02-ch15.md#15.7
+  prompt_file: docs/superpowers/visual/prompts/ch15-return-review.md
+  output: assets/figures-v2/ch15-return-review.svg
+  print_fallback: assets/figures-v2/ch15-return-review-print.svg
+  preview: assets/figures-v2/ch15-return-review.webp
+  alt: 手绘回流审查单：高亮网络、沿走线想象正下方回流、到换层过孔查伴生地孔、遇槽或隔离带查回流是否被挤开、不许用“应该能绕”含糊过去；右侧对比紧贴回流与绕远形成天线。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-return-review.json
+  quant_rules:
+    layer_encodes_value: false
+- id: ch15-ground-grid
+  chapter: 15
+  kind: figure
+  type: V4
+  anchor: '15.7'
+  purpose: 双层板地网
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids: *id006
+  source_facts:
+  - docs/p3-02-ch15.md#15.7
+  prompt_file: docs/superpowers/visual/prompts/ch15-ground-grid.md
+  output: assets/figures-v2/ch15-ground-grid.svg
+  print_fallback: assets/figures-v2/ch15-ground-grid-print.svg
+  preview: assets/figures-v2/ch15-ground-grid.webp
+  alt: 手绘两种地：四层板完整平面，信号回流贴着正下方约 1 毫米介质；双层板用 20 毫米以内的地网加铺铜与过孔缝合，环路电感差一个数量级，辐射差约 20 dB。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-ground-grid.json
+  quant_rules:
+    layer_encodes_value: false
