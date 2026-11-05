@@ -424,12 +424,101 @@ def _toc(parts: list[dict]) -> str:
     return "\n".join(rows)
 
 
+def _svg_size(data_uri: str) -> tuple[float, float] | None:
+    if not data_uri.startswith("data:image/svg+xml;base64,"):
+        return None
+    try:
+        raw = base64.b64decode(data_uri.split(",", 1)[1]).decode("utf-8-sig")
+    except (ValueError, UnicodeDecodeError):
+        return None
+    root = raw[:4000].split(">", 1)[0]
+    width = re.search(r'\bwidth="([\d.]+)', root)
+    height = re.search(r'\bheight="([\d.]+)', root)
+    if width and height:
+        return float(width.group(1)), float(height.group(1))
+    box = re.search(r'\bviewBox="[\d.+-]+\s+[\d.+-]+\s+([\d.]+)\s+([\d.]+)"', root)
+    if box:
+        return float(box.group(1)), float(box.group(2))
+    return None
+
+
+def _shared_image(match: re.Match, css: list[str], classes: dict[str, int]) -> str:
+    tag = match.group(0)
+    attrs = dict(re.findall(r'([\w:-]+)="([^"]*)"', tag))
+    source = attrs.get("src", "")
+    if not source.startswith("data:"):
+        return tag
+    width = attrs.get("width")
+    height = attrs.get("height")
+    if width and not height:
+        size = _svg_size(source)
+        if size:
+            height = f"{float(width) * size[1] / size[0]:.3f}".rstrip("0").rstrip(".")
+    if not (width and height):
+        return tag
+    number = classes.get(source)
+    if number is None:
+        number = len(classes) + 1
+        classes[source] = number
+        css.append(f'.book-data-{number}{{background-image:url("{source}")}}')
+    alt = html.escape(attrs.get("alt", ""), quote=True)
+    names = attrs.get("class", "").split()
+    names = ["book-shared-image", f"book-data-{number}", *names]
+    ratio = f"{float(width):g}/{float(height):g}"
+    return (f'<span class="{" ".join(names)}" role="img" '
+            f'aria-label="{alt}" style="width:{float(width):g}px;'
+            f'aspect-ratio:{ratio}"></span>')
+
+
+def dedupe_images(parts: list[dict]) -> str:
+    """同一 data URI 只保留一份：重复出现的图改为共享 CSS 背景。
+
+    p5 篇导读画廊会把章内海报再内嵌一遍；base64 后可达数 MB。
+    保留一个 CSS 规则、多次 ``<span>`` 引用，视觉与打印结果不变。
+    """
+    pages = [page for part in parts for page in part["pages"]]
+    counts: dict[str, int] = {}
+    for page in pages:
+        for match in re.finditer(r'<img\b[^>]*>', page["html"]):
+            src = re.search(r'\bsrc="(data:[^"]+)"', match.group(0))
+            if src:
+                counts[src.group(1)] = counts.get(src.group(1), 0) + 1
+    shared = {uri for uri, count in counts.items() if count > 1}
+    if not shared:
+        return ""
+    css: list[str] = []
+    classes: dict[str, int] = {}
+
+    def rewrite(match: re.Match) -> str:
+        src = re.search(r'\bsrc="(data:[^"]+)"', match.group(0))
+        if not src or src.group(1) not in shared:
+            return match.group(0)
+        return _shared_image(match, css, classes)
+
+    for page in pages:
+        page["html"] = re.sub(r'<img\b[^>]*>', rewrite, page["html"])
+    if not css:
+        return ""
+    base = (".book-shared-image{display:block;margin:1em auto;height:auto;"
+            "background-position:center;background-repeat:no-repeat;"
+            "background-size:contain;max-width:100%}"
+            ".gal-card .book-shared-image{width:100%!important;margin:0;"
+            "background-color:#fff}")
+    return base + "".join(css)
+
+
 def assemble_book(manifest: dict, parts: list[dict],
                   site_dir: Path = SITE_DIR) -> str:
-    body = [_cover(manifest), _copyright(manifest), _toc(parts)]
-    ordered = [page for part in parts for page in part["pages"]]
+    render_parts = [
+        {"id": part["id"], "title": part["title"],
+         "pages": [dict(page) for page in part["pages"]]}
+        for part in parts
+    ]
+    shared_css = dedupe_images(render_parts)
+    body = [_cover(manifest), _copyright(manifest), _toc(render_parts)]
+    ordered = [page for part in render_parts for page in part["pages"]]
     index = 0
-    for part in parts:
+    for part in render_parts:
         body.append(f'<section class="book-part" data-part="{part["id"]}">')
         for page in part["pages"]:
             prev_page = ordered[index - 1] if index > 0 else None
@@ -453,7 +542,7 @@ def assemble_book(manifest: dict, parts: list[dict],
 <meta name="book-version" content="{manifest["version"]}">
 <meta name="book-date" content="{manifest["date"]}">
 <meta name="book-author" content="{html.escape(manifest["author"], quote=True)}">
-<style>{css}</style>
+<style>{css}{shared_css}</style>
 </head>
 <body data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
 <a class="book-skip" href="#book-toc">跳到目录</a>
