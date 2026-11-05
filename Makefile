@@ -1,7 +1,8 @@
 PY ?= python
 export PYTHONIOENCODING := utf-8
 
-.PHONY: readme gen bookdata labs fonts site book book-pdf book-check print-book print-volumes remake-check remake-ship test-static test-browser verify stats clean visual-audit visual-ship
+.PHONY: readme gen bookdata labs fonts site book book-pdf book-check print-book print-volumes remake-check remake-ship test-static test-browser verify stats clean visual-audit visual-gray visual-ship
+.PHONY: visual-check
 
 readme:
 	$(PY) scripts/build_readme.py
@@ -80,13 +81,29 @@ test-static:
 visual-audit:
 	$(PY) -B scripts/audit_visual_density.py
 
-visual-ship:
-	$(PY) -B scripts/audit_visual_density.py --gate
+visual-gray:
+	$(PY) -B scripts/make_grayscale_fixture.py --check
+	$(PY) -B -m unittest discover -s scripts -p "test_grayscale_fixture.py"
+
+visual-check:
 	$(PY) -B scripts/check_visual_manifest.py
+	$(PY) -B -m unittest discover -s scripts -p "test_visual_density.py" -v
+	$(PY) -B -m unittest discover -s scripts -p "test_visual_distribution.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_visual_manifest.py" -v
+	$(PY) -B -m unittest discover -s scripts -p "test_visual_fidelity.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_handraw_prompt_records.py" -v
+	$(PY) -B -m unittest discover -s scripts -p "test_technical_overlay.py" -v
+	$(PY) -B -m unittest discover -s scripts -p "test_papercut_figures.py" -v
+	$(PY) -B -m unittest discover -s scripts -p "test_visual_contact_sheet.py" -v
+	$(PY) -B -m unittest discover -s scripts -p "test_backlog_layout.py" -v
+	$(PY) -B -m unittest discover -s scripts -p "test_animation_v2.py" -v
+	$(PY) -B -m unittest discover -s analog-book/tests -p "test_visual_v2_assets.py" -v
+
+visual-ship: visual-check
+	$(PY) -B scripts/audit_visual_density.py --gate
 
 test-browser:
+	$(PY) -B -m unittest discover -s scripts -p "test_visual_player.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_reading_journey.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_diagnostic.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_gallery_interactions.py" -v
