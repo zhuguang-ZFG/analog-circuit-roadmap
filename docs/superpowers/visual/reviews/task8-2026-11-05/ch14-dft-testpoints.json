@@ -1,0 +1,19 @@
+{
+  "id": "ch14-dft-testpoints",
+  "title": "测试点与量产测试",
+  "alt": "左右两栏：左栏列应留测试点的位置与机械要求（TP 直径至少 1 mm、间距至少 2.54 mm、沉金）；右栏区分 ICT 抓连接、FCT 抓功能，高速节点改用测试过孔，量产用 50 到 100 块小批看分布。",
+  "canvas": [
+    1448,
+    1086
+  ],
+  "print_width_mm": 138,
+  "paper": "#e2d9cf",
+  "base_svg": "docs/superpowers/visual/reviews/task8-2026-11-05/ch14-dft-testpoints-base.svg",
+  "overlay": "docs/superpowers/visual/reviews/task8-2026-11-05/ch14-dft-testpoints-overlay.svg",
+  "output": "assets/figures-v2/ch14-dft-testpoints.svg",
+  "chapter": 14,
+  "source": "docs/p3-01-ch14.md",
+  "source_script": "scripts/visuals/scenes/ch14_backlog_figures.py",
+  "review": "docs/superpowers/visual/reviews/task8-2026-11-05",
+  "anchor": "14.8"
+}

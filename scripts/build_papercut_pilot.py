@@ -22,7 +22,10 @@ import check_visual_manifest as manifest
 from compose_technical_overlay import compose, preview
 from scripts.visuals.papercut import PAPER, svg
 from scripts.visuals.scenes.ch17_papercut_figures import FIGURES
-from scripts.visuals.scenes import ch00_backlog_figures, ch08_backlog_figures, ch17_backlog_figures
+from scripts.visuals.scenes import (
+    ch00_backlog_figures, ch08_backlog_figures, ch14_backlog_figures,
+    ch17_backlog_figures, ch18_backlog_figures,
+)
 
 REVIEW = 'docs/superpowers/visual/reviews/python-papercut-2026-11-05'
 TASK8_REVIEW = 'docs/superpowers/visual/reviews/task8-2026-11-05'
@@ -39,6 +42,8 @@ def backlog():
     out.update(ch17_backlog_figures.FIGURES)
     out.update(ch00_backlog_figures.FIGURES)
     out.update(ch08_backlog_figures.FIGURES)
+    out.update(ch14_backlog_figures.FIGURES)
+    out.update(ch18_backlog_figures.FIGURES)
     return out
 
 
@@ -53,11 +58,14 @@ def registry():
             'source_script': 'scripts/visuals/scenes/ch17_papercut_figures.py',
         }
     for asset_id, meta in backlog().items():
-        script = ('scripts/visuals/scenes/ch00_backlog_figures.py'
-                  if meta.get('chapter') == 0 else
-                  'scripts/visuals/scenes/ch08_backlog_figures.py'
-                  if meta.get('chapter') == 8 else
-                  'scripts/visuals/scenes/ch17_backlog_figures.py')
+        scripts = {
+            0: 'scripts/visuals/scenes/ch00_backlog_figures.py',
+            8: 'scripts/visuals/scenes/ch08_backlog_figures.py',
+            14: 'scripts/visuals/scenes/ch14_backlog_figures.py',
+            17: 'scripts/visuals/scenes/ch17_backlog_figures.py',
+            18: 'scripts/visuals/scenes/ch18_backlog_figures.py',
+        }
+        script = scripts[meta['chapter']]
         out[asset_id] = {**meta, 'review': TASK8_REVIEW, 'source_script': script}
     return out
 

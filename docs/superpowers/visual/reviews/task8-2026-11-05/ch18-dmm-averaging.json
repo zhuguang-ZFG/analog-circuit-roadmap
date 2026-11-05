@@ -1,0 +1,19 @@
+{
+  "id": "ch18-dmm-averaging",
+  "title": "万用表的平均滤镜",
+  "alt": "左右两栏对比：左栏 DC 档把 2.5 V 上的 1 MHz 正负摆动平均成稳定 2.5 V，AC 档因带宽不足读约 0 V；右栏示波器用 AC 耦合与毫伏档摊开时间，看到峰峰值 4 V 的振荡。",
+  "canvas": [
+    1448,
+    1086
+  ],
+  "print_width_mm": 138,
+  "paper": "#e2d9cf",
+  "base_svg": "docs/superpowers/visual/reviews/task8-2026-11-05/ch18-dmm-averaging-base.svg",
+  "overlay": "docs/superpowers/visual/reviews/task8-2026-11-05/ch18-dmm-averaging-overlay.svg",
+  "output": "assets/figures-v2/ch18-dmm-averaging.svg",
+  "chapter": 18,
+  "source": "docs/p4-03-ch18.md",
+  "source_script": "scripts/visuals/scenes/ch18_backlog_figures.py",
+  "review": "docs/superpowers/visual/reviews/task8-2026-11-05",
+  "anchor": "18.1"
+}

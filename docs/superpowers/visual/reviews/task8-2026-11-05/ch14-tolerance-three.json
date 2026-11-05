@@ -1,0 +1,19 @@
+{
+  "id": "ch14-tolerance-three",
+  "title": "WC、RSS 与 3σ",
+  "alt": "左右两栏：WC 把三个 ±1% 同向相加得 3%，适合车规医疗；RSS 把 ±1% 按均匀分布折成 σ=0.577%，三项合成 1σ=1.0%、3σ=3.0%，适合消费类良率。",
+  "canvas": [
+    1448,
+    1086
+  ],
+  "print_width_mm": 138,
+  "paper": "#e2d9cf",
+  "base_svg": "docs/superpowers/visual/reviews/task8-2026-11-05/ch14-tolerance-three-base.svg",
+  "overlay": "docs/superpowers/visual/reviews/task8-2026-11-05/ch14-tolerance-three-overlay.svg",
+  "output": "assets/figures-v2/ch14-tolerance-three.svg",
+  "chapter": 14,
+  "source": "docs/p3-01-ch14.md",
+  "source_script": "scripts/visuals/scenes/ch14_backlog_figures.py",
+  "review": "docs/superpowers/visual/reviews/task8-2026-11-05",
+  "anchor": "14.10"
+}

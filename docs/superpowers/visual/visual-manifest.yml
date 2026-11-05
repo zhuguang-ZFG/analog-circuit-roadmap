@@ -5485,3 +5485,367 @@ assets:
   alt: 采样相追踪 2.000V、保持相冻结、漏流按 I/C 下斜、再采样；加大 Chold 同时摊注入、压 kT/C、缓 droop，代价是采集时间。
   review_scores: {}
   production_role: engine-prototype
+- id: ch18-power-three-touchpoints
+  chapter: 18
+  kind: figure
+  type: V4
+  anchor: '18.1'
+  purpose: 先量电源的三处触点
+  style_id: FF-015
+  layout_id: IG-004
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p4-03-ch18.md#18.1
+  prompt_file: docs/superpowers/visual/prompts/ch18-power-three-touchpoints.md
+  output: assets/figures-v2/ch18-power-three-touchpoints.svg
+  print_fallback: assets/figures-v2/ch18-power-three-touchpoints-print.svg
+  alt: 左右两栏：左栏依次量稳压器输出脚 5.02 V、芯片电源引脚 4.86 V、去耦电容两端，判据是三点只在毫伏级有差；右栏算 160 mV 除以 120 mA 约 1.3 Ω，并给出 1 oz
+    铜 0.5 mΩ/方、0.2 mm 宽 200 mm 长约 1000 方的路径账。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch18-power-three-touchpoints.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch18-power-three-touchpoints.webp
+- id: ch18-dmm-averaging
+  chapter: 18
+  kind: figure
+  type: V4
+  anchor: '18.1'
+  purpose: 万用表的平均滤镜
+  style_id: FF-015
+  layout_id: IG-004
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p4-03-ch18.md#18.1
+  prompt_file: docs/superpowers/visual/prompts/ch18-dmm-averaging.md
+  output: assets/figures-v2/ch18-dmm-averaging.svg
+  print_fallback: assets/figures-v2/ch18-dmm-averaging-print.svg
+  alt: 左右两栏对比：左栏 DC 档把 2.5 V 上的 1 MHz 正负摆动平均成稳定 2.5 V，AC 档因带宽不足读约 0 V；右栏示波器用 AC 耦合与毫伏档摊开时间，看到峰峰值 4 V 的振荡。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch18-dmm-averaging.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch18-dmm-averaging.webp
+- id: ch18-probe-loading
+  chapter: 18
+  kind: figure
+  type: V4
+  anchor: '18.1'
+  purpose: 探头电容把拐点拉低
+  style_id: FF-015
+  layout_id: IG-004
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p4-03-ch18.md#18.1
+  prompt_file: docs/superpowers/visual/prompts/ch18-probe-loading.md
+  output: assets/figures-v2/ch18-probe-loading.svg
+  print_fallback: assets/figures-v2/ch18-probe-loading-print.svg
+  alt: 左右两栏对比 100 kΩ 节点的探头负载：×1 档约 100 pF，拐点约 16 kHz，20 kHz 幅度掉近四成、相位落后约 50 度；×10 档约 10 到 15 pF，拐点约 160
+    kHz，20 kHz 接近真实。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch18-probe-loading.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch18-probe-loading.webp
+- id: ch18-reset-clock-enable
+  chapter: 18
+  kind: figure
+  type: V5
+  anchor: '18.1'
+  purpose: 不启动的三板斧
+  style_id: FF-015
+  layout_id: IG-008
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p4-03-ch18.md#18.1
+  prompt_file: docs/superpowers/visual/prompts/ch18-reset-clock-enable.md
+  output: assets/figures-v2/ch18-reset-clock-enable.svg
+  print_fallback: assets/figures-v2/ch18-reset-clock-enable-print.svg
+  alt: 四步顺序卡：先查复位脚是否释放，再查时钟是否起振（×10 探头避免 100 pF 压停晶振），再查使能脚电平与上拉，最后才读数据手册；顺序为复位、时钟、使能。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch18-reset-clock-enable.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch18-reset-clock-enable.webp
+- id: ch18-measurement-snr
+  chapter: 18
+  kind: figure
+  type: V4
+  anchor: '18.2'
+  purpose: 源头放大锁住信噪比
+  style_id: FF-015
+  layout_id: IG-004
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p4-03-ch18.md#18.2
+  prompt_file: docs/superpowers/visual/prompts/ch18-measurement-snr.md
+  output: assets/figures-v2/ch18-measurement-snr.svg
+  print_fallback: assets/figures-v2/ch18-measurement-snr-print.svg
+  alt: 左右两栏对比：20 µV 信号直接进示波器，被 200 µV 环境拾取淹没，信噪比 0.1；在源头先放大 100 倍变成 2 mV，同样拾取下信噪比 10，前级自身噪声需小于 2 µV。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch18-measurement-snr.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch18-measurement-snr.webp
+- id: ch18-ground-lead-inductance
+  chapter: 18
+  kind: figure
+  type: V4
+  anchor: '18.2'
+  purpose: 探头地线的假振铃
+  style_id: FF-015
+  layout_id: IG-004
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p4-03-ch18.md#18.2
+  prompt_file: docs/superpowers/visual/prompts/ch18-ground-lead-inductance.md
+  output: assets/figures-v2/ch18-ground-lead-inductance.svg
+  print_fallback: assets/figures-v2/ch18-ground-lead-inductance-print.svg
+  alt: 左右两栏对比探头地线：15 cm 地夹约 150 nH，50 mA 在 2 ns 内变化给出约 3.8 V 假尖峰；1 cm 弹簧地针约 10 nH，同一边沿的假尖峰降到约 0.25 V。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch18-ground-lead-inductance.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch18-ground-lead-inductance.webp
+- id: ch14-thermal-budget
+  chapter: 14
+  kind: figure
+  type: V3
+  anchor: '14.5'
+  purpose: LDO 的热阻预算
+  style_id: FF-015
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p3-01-ch14.md#14.5
+  prompt_file: docs/superpowers/visual/prompts/ch14-thermal-budget.md
+  output: assets/figures-v2/ch14-thermal-budget.svg
+  print_fallback: assets/figures-v2/ch14-thermal-budget-print.svg
+  alt: 热量账：12 V 转 5 V、1 A 的 LDO 耗散 7 W；允许总结温 125−40 除以 7 得 12.1 °C/W；扣掉 TO-220 的 θJC 2 与硅脂云母的 θCS 1，散热器配额只剩
+    9.1 °C/W。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-thermal-budget.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch14-thermal-budget.webp
+- id: ch14-ltspice-five
+  chapter: 14
+  kind: figure
+  type: V5
+  anchor: '14.6'
+  purpose: LTspice 五种分析
+  style_id: FF-015
+  layout_id: IG-008
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p3-01-ch14.md#14.6
+  prompt_file: docs/superpowers/visual/prompts/ch14-ltspice-five.md
+  output: assets/figures-v2/ch14-ltspice-five.svg
+  print_fallback: assets/figures-v2/ch14-ltspice-five-print.svg
+  alt: 五步卡：.op 先看直流工作点，.dc 扫传输特性，.tran 看时域波形，.ac 量频域裕度，.step 扫参数与温度极限；顺序是先工作点后动态、先理想后真实。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-ltspice-five.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch14-ltspice-five.webp
+- id: ch14-tolerance-three
+  chapter: 14
+  kind: figure
+  type: V4
+  anchor: '14.10'
+  purpose: WC、RSS 与 3σ
+  style_id: FF-015
+  layout_id: IG-004
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p3-01-ch14.md#14.10
+  prompt_file: docs/superpowers/visual/prompts/ch14-tolerance-three.md
+  output: assets/figures-v2/ch14-tolerance-three.svg
+  print_fallback: assets/figures-v2/ch14-tolerance-three-print.svg
+  alt: 左右两栏：WC 把三个 ±1% 同向相加得 3%，适合车规医疗；RSS 把 ±1% 按均匀分布折成 σ=0.577%，三项合成 1σ=1.0%、3σ=3.0%，适合消费类良率。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-tolerance-three.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch14-tolerance-three.webp
+- id: ch14-dft-testpoints
+  chapter: 14
+  kind: figure
+  type: V4
+  anchor: '14.8'
+  purpose: 测试点与量产测试
+  style_id: FF-015
+  layout_id: IG-004
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p3-01-ch14.md#14.8
+  prompt_file: docs/superpowers/visual/prompts/ch14-dft-testpoints.md
+  output: assets/figures-v2/ch14-dft-testpoints.svg
+  print_fallback: assets/figures-v2/ch14-dft-testpoints-print.svg
+  alt: 左右两栏：左栏列应留测试点的位置与机械要求（TP 直径至少 1 mm、间距至少 2.54 mm、沉金）；右栏区分 ICT 抓连接、FCT 抓功能，高速节点改用测试过孔，量产用 50 到 100
+    块小批看分布。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-dft-testpoints.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch14-dft-testpoints.webp
