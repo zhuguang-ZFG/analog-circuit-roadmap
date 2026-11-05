@@ -183,7 +183,7 @@ def hysteresis_window():
 def esr_window():
     parts = [header('LDO 的稳定区，写在一段 ESR 窗口里',
                     '老式 NPN 准 LDO 要 0.3–22 Ω；全贴 MLCC 的 5 mΩ 反而振荡。')]
-    parts.append(f'<line x1="80" y1="340" x2="920" y2="340" stroke="{RULE}" stroke-width="2"/>')
+    parts.append(f'<line x1="80" y1="410" x2="920" y2="410" stroke="{RULE}" stroke-width="2"/>')
     parts.append(f'<rect x="300" y="285" width="350" height="120" rx="10" fill="#e2ebe0" stroke="{GREEN}" stroke-width="2"/>')
     parts.append(text(475, 332, '稳定区 0.3–22 Ω', 26, colour=GREEN, anchor='middle', weight='700'))
     parts.append(text(475, 366, 'ESR 造出环路零点', 22, colour=INK2, anchor='middle'))

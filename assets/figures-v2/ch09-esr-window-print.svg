@@ -94,7 +94,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 </style>
 
 <text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">LDO 的稳定区，写在一段 ESR 窗口里</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">老式 NPN 准 LDO 要 0.3–22 Ω；全贴 MLCC 的 5 mΩ 反而振荡。</text>
-<path d="M80 340 Q500.00 339.84 920 340" fill="none" stroke="#c9bb9d" stroke-width="2"/>
+<path d="M80 410 Q500.00 410.59 920 410" fill="none" stroke="#c9bb9d" stroke-width="2"/>
 <rect x="300" y="285" width="350" height="120" rx="10" fill="#e2ebe0" stroke="#3d6b4a" stroke-width="2"/>
 <text x="475" y="332" font-size="26" fill="#3d6b4a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">稳定区 0.3–22 Ω</text>
 <text x="475" y="366" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">ESR 造出环路零点</text>
