@@ -16,10 +16,10 @@
 |---|---|
 | `ch07-hysteresis-window` | 把时间域抖动换成回环，两个阈值与 305 mV 窗口一眼可读 |
 | `ch05-tristate-handover` | 三态总线的“先关后开”时序，最容易在实板上漏掉 |
-| `ch09-psrr-slope` | 明确打掉“PSRR 只有一个数”的误读 |
+| `ch09-reference-ladder` | 把“基准选型”从口号变成五级精度阶梯 |
 | `ch01-e24-ladder` | 把 3.285k → 3.3k 的落档过程画成流程 |
 
-其余按章看：ch4 栅极窗口与死区账 → ch5 上拉窗口 → ch9 ESR 窗口。
+其余按章看：ch4 栅极窗口与死区账 → ch5 上拉功耗 → ch9 ESR 窗口。
 
 ## 清单
 
@@ -28,11 +28,11 @@
 | `ch01-e24-ladder` | 1 | E24 档位与 3.3k 的来历 | V4 | IG-013 | 1.1 |
 | `ch04-gate-window` | 4 | 栅极保护的电压窗 | V4 | IG-013 | 4.4 |
 | `ch04-deadtime-ledger` | 4 | 死区损耗的明账 | V4 | IG-013 | 4.4 |
-| `ch05-rp-window` | 5 | I2C 上拉电阻的合围窗口 | V4 | IG-013 | 5.2 |
+| `ch05-rp-power` | 5 | 上拉电阻自己的功耗 | V4 | IG-013 | 5.2 |
 | `ch05-tristate-handover` | 5 | 三态总线的交接时序 | V4 | IG-013 | 5.4 |
 | `ch07-hysteresis-window` | 7 | 迟滞窗口与两个阈值 | V4 | IG-013 | 7.3 |
 | `ch09-esr-window` | 9 | LDO 的 ESR 稳定窗口 | V4 | IG-013 | 9.3 |
-| `ch09-psrr-slope` | 9 | PSRR 随频率下坠 | V4 | IG-013 | 9.3 |
+| `ch09-reference-ladder` | 9 | 基准选型的精度阶梯 | V4 | IG-013 | 9.1 |
 
 ## 已过的自动闸
 

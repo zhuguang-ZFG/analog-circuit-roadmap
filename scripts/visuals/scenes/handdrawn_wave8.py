@@ -92,30 +92,24 @@ def deadtime_ledger():
     return parts
 
 
-def rp_window():
-    parts = [header('上拉电阻是一道合围题',
-                    '3.3 V / 100 pF / 快速模式：窗口 967 Ω 到 3.5 kΩ，取中间 2.2k。')]
-    parts.append(box(50, 140, 430, 100, fill=PAPER))
-    parts.append(text(74, 178, '驱动下限', 22, colour=GREEN, weight='700'))
-    parts.append(text(74, 214, 'R ≥ (3.3−0.4)/3 mA = 967 Ω', 22))
-    parts.append(box(520, 140, 430, 100, fill=PAPER))
-    parts.append(text(544, 178, '速度上限', 22, colour=BLUE, weight='700'))
-    parts.append(text(544, 214, 'R ≤ 300 ns/(0.8473×100 pF) = 3.5 kΩ', 22))
-    # 窗口条
-    parts.append(f'<rect x="220" y="300" width="540" height="34" rx="8" fill="#e2ebe0" stroke="{GREEN}" stroke-width="2"/>')
-    parts.append(f'<line x1="100" y1="317" x2="900" y2="317" stroke="{RULE}" stroke-width="2"/>')
-    for x, label in ((220, '967 Ω'), (500, '2.2k'), (760, '3.5 kΩ')):
-        parts.append(f'<line x1="{x}" y1="288" x2="{x}" y2="346" stroke="{INK2}" stroke-width="2"/>')
-        parts.append(text(x, 278, label, 24, anchor='middle', weight='700'))
-    parts.append(text(500, 380, '实板常用 2.2k：两头都留余量', 23, colour=GREEN,
-                      anchor='middle', weight='700'))
-    parts.append(text(500, 424, '99kΩ 漏电上限在这条总线上不卡', 22, colour=INK2,
-                      anchor='middle'))
-    parts.append(box(50, 480, 900, 100, fill=PAPER))
-    parts.append(text(76, 522, '任何一条约束变了，先重跑这道围合，再动电阻。', 23, weight='700'))
-    parts.append(text(76, 556, '总线电容、模式等级、器件数量，都会改写窗口。', 22, colour=INK2))
-    parts.append(text(500, 650, '先算窗口，再选阻值；2.2k 是结果，不是口诀。', 22,
-                      colour=AMBER, anchor='middle'))
+def rp_power():
+    parts = [header('上拉电阻自己也会发热',
+                    '3.3 V / 1 kΩ = 11 mW；5 V / 100 Ω = 250 mW，0402 的 1/16 W 已超。')]
+    parts.append(box(50, 150, 420, 240, fill=PAPER))
+    parts.append(text(74, 192, '3.3 V × 1 kΩ', 24, colour=GREEN, weight='700'))
+    parts.append(text(74, 232, 'P = V² / R', 22, colour=INK2))
+    parts.append(text(74, 300, '11 mW', 46, colour=GREEN, weight='700'))
+    parts.append(text(74, 350, '0603 随便扛', 22, colour=INK2))
+    parts.append(box(530, 150, 420, 240, fill=PAPER))
+    parts.append(text(554, 192, '5 V × 100 Ω', 24, colour=RED, weight='700'))
+    parts.append(text(554, 232, 'P = V² / R', 22, colour=INK2))
+    parts.append(text(554, 300, '250 mW', 46, colour=RED, weight='700'))
+    parts.append(text(554, 350, '0402 已超 1/16 W', 22, colour=RED, weight='700'))
+    parts.append(box(50, 430, 900, 120, fill=PAPER))
+    parts.append(text(76, 474, '总线被拉低时，全部电压落在电阻上。', 24, weight='700'))
+    parts.append(text(76, 510, '长亮指示灯按连续功率算；脉冲总线按占空比折算。', 22, colour=INK2))
+    parts.append(text(500, 620, '强上拉先核封装功率，别让电阻成为新的发热点。', 22,
+                      colour=AMBER, anchor='middle', weight='700'))
     return parts
 
 
@@ -157,7 +151,9 @@ def hysteresis_window():
     parts.append(f'<path d="M580,230 L360,230 L360,430 L140,430" '
                  f'fill="none" stroke="{BLUE}" stroke-width="5"/>')
     parts.append(arrow(250, 430, 310, 430, colour=BLUE, width=2.5))
-    parts.append(arrow(540, 230, 480, 230, colour=BLUE, width=2.5))
+    parts.append(f'<line x1="540" y1="230" x2="480" y2="230" stroke="{BLUE}" '
+                 f'stroke-width="2.5" stroke-linecap="round"/>'
+                 f'<polygon points="480,230 490,225 490,235" fill="{BLUE}"/>')
     parts.append(text(486, 222, 'VTH+ 6.15 V', 22, colour=BLUE, weight='700'))
     parts.append(text(330, 456, 'VTH− 5.85 V', 22, colour=BLUE, anchor='end', weight='700'))
     parts.append(f'<path d="M360,360 L480,360" stroke="{AMBER}" stroke-width="2" stroke-dasharray="4,4"/>')
@@ -203,29 +199,27 @@ def esr_window():
     return parts
 
 
-def psrr_slope():
-    parts = [header('PSRR 不是名片上的一个数',
-                    '1 kHz 70 dB，100 kHz 40 dB，1 MHz 只剩 20 dB；是一条下坠的曲线。')]
-    parts.append(f'<line x1="90" y1="470" x2="620" y2="470" stroke="{INK2}" stroke-width="2"/>')
-    parts.append(f'<line x1="90" y1="470" x2="90" y2="170" stroke="{INK2}" stroke-width="2"/>')
-    parts.append(text(600, 500, '频率', 22, colour=INK2, anchor='end'))
-    parts.append(text(78, 180, 'dB', 22, colour=INK2, anchor='end'))
-    parts.append(f'<path d="M150,220 C260,240 340,300 430,340 C510,375 570,405 600,420" '
-                 f'fill="none" stroke="{BLUE}" stroke-width="5"/>')
-    for x, y, label in ((150, 220, '1 kHz · 70 dB'), (430, 340, '100 kHz · 40 dB')):
-        parts.append(f'<circle cx="{x}" cy="{y}" r="7" fill="{BLUE}"/>')
-        parts.append(text(x + 14, y - 10, label, 22, colour=BLUE, weight='700'))
-    parts.append(f'<circle cx="600" cy="420" r="7" fill="{BLUE}"/>')
-    parts.append(text(586, 456, '1 MHz · 20 dB', 22, colour=BLUE, anchor='end', weight='700'))
-    parts.append(box(650, 140, 300, 330, fill=PAPER))
-    parts.append(text(674, 186, 'DCDC 后级怎么用', 22, weight='700'))
-    parts.append(text(674, 234, '500 kHz 的 Buck：', 22, colour=INK2))
-    parts.append(text(674, 266, '先看该频点还剩多少 dB', 22, colour=INK2))
-    parts.append(text(674, 322, '不够：换型号，', 22, colour=AMBER, weight='700'))
-    parts.append(text(674, 354, '或直接加一级 LC。', 22, colour=AMBER, weight='700'))
-    parts.append(text(674, 410, '噪声预算按频段查。', 22, weight='700'))
-    parts.append(box(50, 540, 900, 76, fill=PAPER))
-    parts.append(text(74, 588, '别抄最大值；先问你的噪声落在哪一段。', 23, weight='700'))
+def reference_ladder():
+    parts = [header('基准选型是一张精度阶梯',
+                    '从 5% 稳压管到 0.3–2 ppm/°C 恒温齐纳；每往下一档，价格与功耗各涨约一个数量级。')]
+    rows = [
+        ('稳压二极管', '5% 级', '粗放场合', INK2),
+        ('LM385 带隙', '1–3%', '10 µA 级', GREEN),
+        ('TL431', '0.5–2%', '可调，分级', GREEN),
+        ('REF50xx / ADR45xx', '0.05–0.1%', '3–10 ppm/°C', BLUE),
+        ('LM399 埋入齐纳', '0.3–2 ppm/°C', '台表专用', AMBER),
+    ]
+    top, height, gap = 150, 78, 10
+    parts.append(f'<line x1="40" y1="{top}" x2="40" y2="{top + 5 * (height + gap) - gap}" stroke="{RULE}" stroke-width="3"/>')
+    for i, (name, precision, note, col) in enumerate(rows):
+        y = top + i * (height + gap)
+        parts.append(f'<line x1="40" y1="{y + height // 2}" x2="60" y2="{y + height // 2}" stroke="{RULE}" stroke-width="3"/>')
+        parts.append(box(60, y, 560, height, fill=PAPER))
+        parts.append(text(84, y + 32, name, 24, weight='700'))
+        parts.append(text(84, y + 60, note, 22, colour=INK2))
+        parts.append(text(650, y + 50, precision, 30, colour=col, weight='700'))
+    parts.append(text(500, 640, '12 位配 REF50xx 是浪费，20 位配 TL431 是事故。', 23,
+                      colour=AMBER, anchor='middle', weight='700'))
     return parts
 
 
@@ -245,10 +239,10 @@ SCENES = {
         'chapter': 4, 'source': 'docs/p1-05-ch4.md',
         'alt': '手绘公式与对照：死区损耗约等于 0.8 伏乘 5 安乘 100 纳秒乘 100 千赫，约 0.4 瓦；同一只管子沟道压降 5 安乘 30 毫欧为 0.15 伏，体二极管为 0.8 伏。底部写死区压到几十纳秒但不能压到零。',
     },
-    'ch05-rp-window': {
-        'draw': rp_window, 'title': 'I2C 上拉电阻的合围窗口', 'anchor': '5.2',
+    'ch05-rp-power': {
+        'draw': rp_power, 'title': '上拉电阻自己的功耗', 'anchor': '5.2',
         'chapter': 5, 'source': 'docs/p1-06-ch5.md',
-        'alt': '手绘窗口数轴：3.3 伏、100 皮法、快速模式下驱动下限 967 欧，速度上限 3.5 千欧，中间取 2.2 千欧；99 千欧漏电上限在这条总线上不卡。底部写任何约束变了先重跑围合再动电阻。',
+        'alt': '手绘左右两张功率卡：3.3 伏乘 1 千欧为 11 毫瓦，0603 随便扛；5 伏乘 100 欧为 250 毫瓦，0402 已超 1/16 瓦。底部写总线被拉低时全部电压落在电阻上，强上拉先核封装功率。',
     },
     'ch05-tristate-handover': {
         'draw': tristate_handover, 'title': '三态总线的交接时序', 'anchor': '5.4',
@@ -265,9 +259,9 @@ SCENES = {
         'chapter': 9, 'source': 'docs/p1-10-ch9.md',
         'alt': '手绘 ESR 数轴：老式 NPN 准 LDO 的稳定区是 0.3 到 22 欧；左侧 5 毫欧的 MLCC 因零点太远而振荡，右侧大于 22 欧因零点太近而响应慢。底部写容量一样不等于环路还稳。',
     },
-    'ch09-psrr-slope': {
-        'draw': psrr_slope, 'title': 'PSRR 随频率下坠', 'anchor': '9.3',
+    'ch09-reference-ladder': {
+        'draw': reference_ladder, 'title': '基准选型的精度阶梯', 'anchor': '9.1',
         'chapter': 9, 'source': 'docs/p1-10-ch9.md',
-        'alt': '手绘 PSRR 下坠曲线：1 千赫 70 分贝、100 千赫 40 分贝、1 兆赫 20 分贝；右侧写 500 千赫的 Buck 后级要先看该频点还剩多少分贝，不够就换型号或加一级 LC。底部写别抄最大值。',
+        'alt': '手绘五级精度阶梯：稳压二极管 5% 级、LM385 带隙 1 到 3%、TL431 0.5 到 2%、REF50xx 或 ADR45xx 0.05 到 0.1% 且 3 到 10 ppm 每摄氏度、LM399 埋入齐纳 0.3 到 2 ppm 每摄氏度。底部写 12 位配 REF50xx 是浪费，20 位配 TL431 是事故。',
     },
 }

@@ -1,0 +1,15 @@
+{
+  "id": "ch05-tristate-handover",
+  "title": "三态总线的交接时序",
+  "alt": "手绘三段时间轴：驱动器 A 释放进入高阻，空档 tDIS 为 10 到 30 纳秒，驱动器 B 使能开始驱动；下方写重叠 10 纳秒会让两个驱动器同时开口，产生微秒级电流尖峰。底部写先撤销 OE 再转身后开口。",
+  "anchor": "5.4",
+  "source": "docs/p1-06-ch5.md",
+  "canvas": [
+    1000,
+    700
+  ],
+  "print_width_mm": 138,
+  "generator": "python-handraw-v1",
+  "output": "assets/figures-v2/ch05-tristate-handover.svg",
+  "print_fallback": "assets/figures-v2/ch05-tristate-handover-print.svg"
+}

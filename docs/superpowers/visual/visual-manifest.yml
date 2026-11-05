@@ -6929,31 +6929,6 @@ assets:
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch04-deadtime-ledger.json
   quant_rules:
     layer_encodes_value: false
-- id: ch05-rp-window
-  chapter: 5
-  kind: figure
-  type: V4
-  anchor: '5.2'
-  purpose: I2C 上拉电阻的合围窗口
-  style_id: FA-029
-  layout_id: IG-013
-  color_ids: *id007
-  source_facts:
-  - docs/p1-06-ch5.md#5.2
-  prompt_file: docs/superpowers/visual/prompts/ch05-rp-window.md
-  output: assets/figures-v2/ch05-rp-window.svg
-  print_fallback: assets/figures-v2/ch05-rp-window-print.svg
-  preview: assets/figures-v2/ch05-rp-window.webp
-  alt: 手绘窗口数轴：3.3 伏、100 皮法、快速模式下驱动下限 967 欧，速度上限 3.5 千欧，中间取 2.2 千欧；99 千欧漏电上限在这条总线上不卡。底部写任何约束变了先重跑围合再动电阻。
-  status: generated
-  status_history:
-  - planned
-  - generated
-  review_scores: {}
-  generator: python-handraw-v1
-  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch05-rp-window.json
-  quant_rules:
-    layer_encodes_value: false
 - id: ch05-tristate-handover
   chapter: 5
   kind: figure
@@ -7031,28 +7006,54 @@ assets:
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch09-esr-window.json
   quant_rules:
     layer_encodes_value: false
-- id: ch09-psrr-slope
-  chapter: 9
+- id: ch05-rp-power
+  chapter: 5
   kind: figure
   type: V4
-  anchor: '9.3'
-  purpose: PSRR 随频率下坠
+  anchor: '5.2'
+  purpose: 上拉电阻自己的功耗
   style_id: FA-029
   layout_id: IG-013
   color_ids: *id007
   source_facts:
-  - docs/p1-10-ch9.md#9.3
-  prompt_file: docs/superpowers/visual/prompts/ch09-psrr-slope.md
-  output: assets/figures-v2/ch09-psrr-slope.svg
-  print_fallback: assets/figures-v2/ch09-psrr-slope-print.svg
-  preview: assets/figures-v2/ch09-psrr-slope.webp
-  alt: 手绘 PSRR 下坠曲线：1 千赫 70 分贝、100 千赫 40 分贝、1 兆赫 20 分贝；右侧写 500 千赫的 Buck 后级要先看该频点还剩多少分贝，不够就换型号或加一级 LC。底部写别抄最大值。
+  - docs/p1-06-ch5.md#5.2
+  prompt_file: docs/superpowers/visual/prompts/ch05-rp-power.md
+  output: assets/figures-v2/ch05-rp-power.svg
+  print_fallback: assets/figures-v2/ch05-rp-power-print.svg
+  preview: assets/figures-v2/ch05-rp-power.webp
+  alt: 手绘左右两张功率卡：3.3 伏乘 1 千欧为 11 毫瓦，0603 随便扛；5 伏乘 100 欧为 250 毫瓦，0402 已超 1/16 瓦。底部写总线被拉低时全部电压落在电阻上，强上拉先核封装功率。
   status: generated
   status_history:
   - planned
   - generated
   review_scores: {}
   generator: python-handraw-v1
-  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch09-psrr-slope.json
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch05-rp-power.json
+  quant_rules:
+    layer_encodes_value: false
+- id: ch09-reference-ladder
+  chapter: 9
+  kind: figure
+  type: V4
+  anchor: '9.1'
+  purpose: 基准选型的精度阶梯
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids: *id007
+  source_facts:
+  - docs/p1-10-ch9.md#9.1
+  prompt_file: docs/superpowers/visual/prompts/ch09-reference-ladder.md
+  output: assets/figures-v2/ch09-reference-ladder.svg
+  print_fallback: assets/figures-v2/ch09-reference-ladder-print.svg
+  preview: assets/figures-v2/ch09-reference-ladder.webp
+  alt: 手绘五级精度阶梯：稳压二极管 5% 级、LM385 带隙 1 到 3%、TL431 0.5 到 2%、REF50xx 或 ADR45xx 0.05 到 0.1% 且 3 到 10 ppm 每摄氏度、LM399
+    埋入齐纳 0.3 到 2 ppm 每摄氏度。底部写 12 位配 REF50xx 是浪费，20 位配 TL431 是事故。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch09-reference-ladder.json
   quant_rules:
     layer_encodes_value: false

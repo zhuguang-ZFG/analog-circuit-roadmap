@@ -1,0 +1,15 @@
+{
+  "id": "ch07-hysteresis-window",
+  "title": "迟滞窗口与两个阈值",
+  "alt": "手绘迟滞回环：上行阈值 6.15 伏、下行阈值 5.85 伏，窗口 305 毫伏，覆盖现场 120 毫伏噪声；右侧列出窗口至少为噪声峰峰两倍、R2 比 R1 为 100 比 1、窗口约电源 1%。底部写先量噪声再定电阻。",
+  "anchor": "7.3",
+  "source": "docs/p1-08-ch7.md",
+  "canvas": [
+    1000,
+    700
+  ],
+  "print_width_mm": 138,
+  "generator": "python-handraw-v1",
+  "output": "assets/figures-v2/ch07-hysteresis-window.svg",
+  "print_fallback": "assets/figures-v2/ch07-hysteresis-window-print.svg"
+}

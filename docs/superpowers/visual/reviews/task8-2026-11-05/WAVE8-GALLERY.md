@@ -24,10 +24,10 @@
 
 ## ch5（2 张）
 
-### I2C 上拉电阻的合围窗口
-`ch05-rp-window` · V4 · `IG-013`
+### 上拉电阻自己的功耗
+`ch05-rp-power` · V4 · `IG-013`
 
-<img src="../../../../../assets/figures-v2/ch05-rp-window.webp" width="720" alt="手绘窗口数轴：3.3 伏、100 皮法、快速模式下驱动下限 967 欧，速度上限 3.5 千欧，中间取 2.2 千欧；99 千欧漏电上限在这条总线上不卡。底部写任何约束变了先重跑围合再动电阻。">
+<img src="../../../../../assets/figures-v2/ch05-rp-power.webp" width="720" alt="手绘左右两张功率卡：3.3 伏乘 1 千欧为 11 毫瓦，0603 随便扛；5 伏乘 100 欧为 250 毫瓦，0402 已超 1/16 瓦。底部写总线被拉低时全部电压落在电阻上，强上拉先核封装功率。">
 
 ### 三态总线的交接时序
 `ch05-tristate-handover` · V4 · `IG-013`
@@ -48,7 +48,7 @@
 
 <img src="../../../../../assets/figures-v2/ch09-esr-window.webp" width="720" alt="手绘 ESR 数轴：老式 NPN 准 LDO 的稳定区是 0.3 到 22 欧；左侧 5 毫欧的 MLCC 因零点太远而振荡，右侧大于 22 欧因零点太近而响应慢。底部写容量一样不等于环路还稳。">
 
-### PSRR 随频率下坠
-`ch09-psrr-slope` · V4 · `IG-013`
+### 基准选型的精度阶梯
+`ch09-reference-ladder` · V4 · `IG-013`
 
-<img src="../../../../../assets/figures-v2/ch09-psrr-slope.webp" width="720" alt="手绘 PSRR 下坠曲线：1 千赫 70 分贝、100 千赫 40 分贝、1 兆赫 20 分贝；右侧写 500 千赫的 Buck 后级要先看该频点还剩多少分贝，不够就换型号或加一级 LC。底部写别抄最大值。">
+<img src="../../../../../assets/figures-v2/ch09-reference-ladder.webp" width="720" alt="手绘五级精度阶梯：稳压二极管 5% 级、LM385 带隙 1 到 3%、TL431 0.5 到 2%、REF50xx 或 ADR45xx 0.05 到 0.1% 且 3 到 10 ppm 每摄氏度、LM399 埋入齐纳 0.3 到 2 ppm 每摄氏度。底部写 12 位配 REF50xx 是浪费，20 位配 TL431 是事故。">

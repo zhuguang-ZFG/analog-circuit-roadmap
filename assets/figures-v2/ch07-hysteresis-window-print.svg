@@ -101,7 +101,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <path d="M140,430 L480,430 L480,230 L580,230" fill="none" stroke="#1f5d7a" stroke-width="5"/>
 <path d="M580,230 L360,230 L360,430 L140,430" fill="none" stroke="#1f5d7a" stroke-width="5"/>
 <path d="M250 430 Q280.00 429.78 310 430" fill="none" stroke="#1f5d7a" stroke-width="2.5" stroke-linecap="round"/><polygon points="310,430 300,425 300,435" fill="#1f5d7a"/>
-<path d="M540 230 Q510.00 230.01 480 230" fill="none" stroke="#1f5d7a" stroke-width="2.5" stroke-linecap="round"/><polygon points="480,230 470,225 470,235" fill="#1f5d7a"/>
+<path d="M540 230 Q510.00 230.01 480 230" fill="none" stroke="#1f5d7a" stroke-width="2.5" stroke-linecap="round"/><polygon points="480,230 490,225 490,235" fill="#1f5d7a"/>
 <text x="486" y="222" font-size="22" fill="#1f5d7a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">VTH+ 6.15 V</text>
 <text x="330" y="456" font-size="22" fill="#1f5d7a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="end">VTH− 5.85 V</text>
 <path fill="none" d="M360,360 L480,360" stroke="#a4630f" stroke-width="2" stroke-dasharray="4,4"/>
