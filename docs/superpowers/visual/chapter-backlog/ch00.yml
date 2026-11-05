@@ -10,7 +10,7 @@ chapter: 0
 source: docs/p1-01-ch0.md
 budget: 18                      # audit_visual_density.BUDGETS[0]
 measured:                       # 2026-11-05 实跑 python scripts/audit_visual_density.py --chapter 0 --gaps
-  chars: 17354
+  chars: 17353
   visuals: 18
   by_kind: {figures: 12, photos: 1, svg: 5, other: 0}
   longest_gap: 1177
@@ -23,9 +23,9 @@ measured:                       # 2026-11-05 实跑 python scripts/audit_visual_
     - assets/svg/water-analogy.svg
     - assets/svg-v2/ch00-current-loop-v2.svg
     - assets/svg-v2/ch00-divider-derivation-v2.svg
-    - assets/svg/divider-loading.svg
+    - assets/svg-v2/ch00-divider-loading-v2.svg
     - assets/figures-v2/ch00-ground-is-copper.svg
-    - assets/svg/source-types.svg
+    - assets/svg-v2/ch00-source-types-v2.svg
     - assets/figures/ch00-source-personality.svg
     - assets/figures-v2/ch00-engineering-notation-ladder.svg
     - assets/figures-v2/ch00-dimension-check-both-ways.svg
@@ -97,8 +97,8 @@ points:
   - {id: ch00-water-analogy, action: keep, status: generated, at_line: 50, kind: svg, type: V2, anchor: '0.1'}
   - {id: ch00-voltage-drop, action: keep, status: generated, at_line: 71, kind: svg, type: V1, anchor: '0.2'}
   - {id: ch00-derive-divider, action: keep, status: generated, at_line: 96, kind: svg, type: V3, anchor: '0.3'}
-  - {id: ch00-divider-loading, action: keep, status: generated, at_line: 139, kind: svg, type: V4, anchor: '0.3'}
-  - {id: ch00-source-types, action: keep, status: generated, at_line: 180, kind: svg, type: V2, anchor: '0.6'}
+  - {id: ch00-divider-loading, action: keep, status: generated, at_line: 139, kind: svg, type: V4, anchor: '0.3', note: 已替换为 V2 动画 ch00-divider-loading-v2（空载 6V→带载 4V）}
+  - {id: ch00-source-types, action: keep, status: generated, at_line: 180, kind: svg, type: V2, anchor: '0.6', note: 已替换为 V2 动画 ch00-source-types-v2（V-I 曲线与输出阻抗）}
   - {id: ch00-source-personality, action: keep, status: generated, at_line: 216, kind: figure, type: V1, anchor: '0.6'}
   - {id: ch00-controlled-sources, action: keep, status: generated, at_line: 309, kind: figure, type: V2, anchor: '0.8'}
 

@@ -10,8 +10,8 @@ color_ids:
 - C-35
 - C-26
 numbers: []
-zh_prompt: 风格名称：几何图式叙事。主题：闭合回路中的约定电流与串联压降。所有电路、公式与数值由确定性 SVG 绘制。此图为动画引擎技术原型，未完成纸雕主风格复评，不进入正文。
+zh_prompt: 风格名称：几何图式叙事。主题：闭合回路中的约定电流与串联压降。所有电路、公式与数值由确定性 SVG 绘制。此图为 Task 8 正文试片锚点；正式印刷前仍需纸雕主风格复评。
 en_prompt: 'Style name: Geometric Diagrammatic Narrative. Technical prototype for conventional current
-  in a closed series circuit. Draw all circuits, equations and labels deterministically in SVG. Await
-  papercut style review before chapter insertion.'
+  in a closed series circuit. Draw all circuits, equations and labels deterministically in SVG. Task 8
+  body prototype anchor; papercut review still pending before print.'
 ---

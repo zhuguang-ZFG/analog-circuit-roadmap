@@ -2999,7 +2999,7 @@ assets:
   kind: animation
   type: A1
   anchor: '0.2'
-  purpose: 闭合回路中的约定电流与串联压降（技术原型，待风格复评）
+  purpose: 闭合回路中的约定电流与串联压降（Task 8 正文试片，待风格复评）
   style_id: FA-029
   layout_id: IG-009
   color_ids:
@@ -3044,7 +3044,7 @@ assets:
   kind: animation
   type: A2
   anchor: '0.3'
-  purpose: 空载分压公式的逐步推导（技术原型，待风格复评）
+  purpose: 空载分压公式的逐步推导（Task 8 正文试片，待风格复评）
   style_id: FA-029
   layout_id: IG-033
   color_ids:
@@ -3082,6 +3082,96 @@ assets:
   - planned
   - generated
   alt: 分压公式：从同一股电流开始；适用条件：空载；接负载后须重新计算下臂等效电阻
+  review_scores: {}
+  production_role: engine-prototype
+- id: ch00-divider-loading-v2
+  chapter: 0
+  kind: animation
+  type: A4
+  anchor: '0.3'
+  purpose: 分压器从空载到带载的塌陷与输出电阻判据
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p1-01-ch0.md#0.3
+  prompt_file: docs/superpowers/visual/prompts/ch00-divider-loading-v2.md
+  output: assets/svg-v2/ch00-divider-loading-v2.svg
+  print_fallback: assets/svg-v2/ch00-divider-loading-v2-static.svg
+  reduced_motion: assets/svg-v2/ch00-divider-loading-v2-static.svg
+  storyboard: assets/svg-v2/ch00-divider-loading-v2-storyboard.svg
+  beats:
+  - name: 空载
+    start: 0.0
+    end: 2.0
+  - name: 挂载
+    start: 2.0
+    end: 4.2
+  - name: 塌陷
+    start: 4.2
+    end: 6.6
+  - name: 判据
+    start: 6.6
+    end: 9.0
+  duration: 9.0s
+  parameters: []
+  conclusion_frame:
+    beat: 判据
+    output: assets/svg-v2/ch00-divider-loading-v2-static.svg
+  status: generated
+  status_history:
+  - planned
+  - generated
+  alt: 空载 6.000V、挂 10kΩ 后 4.000V、误差 −33.3%；输出电阻 5kΩ，后级输入至少高一个数量级
+  review_scores: {}
+  production_role: engine-prototype
+- id: ch00-source-types-v2
+  chapter: 0
+  kind: animation
+  type: A1
+  anchor: '0.6'
+  purpose: 恒压源与恒流源的 V-I 曲线、输出阻抗与接法
+  style_id: FA-029
+  layout_id: IG-024
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p1-01-ch0.md#0.6
+  prompt_file: docs/superpowers/visual/prompts/ch00-source-types-v2.md
+  output: assets/svg-v2/ch00-source-types-v2.svg
+  print_fallback: assets/svg-v2/ch00-source-types-v2-static.svg
+  reduced_motion: assets/svg-v2/ch00-source-types-v2-static.svg
+  storyboard: assets/svg-v2/ch00-source-types-v2-storyboard.svg
+  beats:
+  - name: 恒压
+    start: 0.0
+    end: 2.0
+  - name: 恒流
+    start: 2.0
+    end: 4.0
+  - name: 真实源
+    start: 4.0
+    end: 6.6
+  - name: 接法
+    start: 6.6
+    end: 9.0
+  duration: 9.0s
+  parameters: []
+  conclusion_frame:
+    beat: 接法
+    output: assets/svg-v2/ch00-source-types-v2-static.svg
+  status: generated
+  status_history:
+  - planned
+  - generated
+  alt: 恒压源 V-I 是竖线、恒流源是水平线；真实源斜率是输出阻抗；恒压并联、恒流串联
   review_scores: {}
   production_role: engine-prototype
 - id: ch17-i2c-rise-time-budget
