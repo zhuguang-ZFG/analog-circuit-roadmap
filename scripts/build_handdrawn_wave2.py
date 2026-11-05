@@ -18,6 +18,7 @@ if str(ROOT) not in sys.path:
 import check_visual_manifest as manifest
 from compose_technical_overlay import preview
 from scripts.visuals import static_fig
+from scripts.visuals.font_gate import assert_covered
 
 REVIEW = ROOT / 'docs/superpowers/visual/reviews/task8-2026-11-05'
 PROMPTS = ROOT / 'docs/superpowers/visual/prompts'
@@ -33,6 +34,7 @@ def build_one(asset_id: str, meta: dict) -> None:
     svg = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {CANVAS[0]} {CANVAS[1]}">'
            f'\n{inner}\n</svg>\n')
     svg = static_fig.finalize(svg, meta['title'])
+    assert_covered(svg, asset_id)
     REVIEW.mkdir(parents=True, exist_ok=True)
     review_svg = REVIEW / f'{asset_id}.svg'
     review_svg.write_text(svg, encoding='utf-8')

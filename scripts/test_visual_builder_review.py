@@ -19,6 +19,7 @@ if str(ROOT) not in sys.path:
 
 import build_backlog_wave3 as backlog_builder
 import build_handdrawn_wave2 as handdrawn_builder
+from scripts.visuals import font_gate as gate
 
 SVG = '<svg xmlns="http://www.w3.org/2000/svg"><text>示意</text></svg>\n'
 META = {
@@ -87,6 +88,33 @@ class BuilderReviewCarryOver(unittest.TestCase):
                 self.assertEqual('generated', asset['status'])
                 self.assertEqual({}, asset['review_scores'])
                 self.assertNotIn('review_record', asset)
+
+
+class FontCoverageGate(unittest.TestCase):
+    """`绽` 的教训：图内用字必须在书籍字体子集里，否则 print16k 才红。"""
+
+    def test_missing_glyph_is_reported_with_font_name(self):
+        report = gate.missing_in_assets('<svg><text>破绽</text></svg>')
+        self.assertTrue(report)
+        self.assertIn('绽', ''.join(report.values()))
+        self.assertTrue(all(name.endswith('.woff2') for name in report))
+
+    def test_covered_text_passes(self):
+        self.assertEqual({}, gate.missing_in_assets('<svg><text>探头补偿</text></svg>'))
+
+    def test_gate_fails_the_build_script(self):
+        with self.assertRaises(SystemExit) as caught:
+            gate.assert_covered('<svg><text>破绽</text></svg>', 'ch18-demo')
+        self.assertIn('绽', str(caught.exception))
+
+    def test_every_committed_figure_stays_covered(self):
+        """已有 45+ 张新图的现存文字也一并锁住，防止回归。"""
+        checked = 0
+        for path in sorted((ROOT / 'assets' / 'figures-v2').glob('*.svg')):
+            report = gate.missing_in_assets(path.read_text(encoding='utf-8'))
+            self.assertEqual({}, report, f'{path.name}: {report}')
+            checked += 1
+        self.assertGreater(checked, 40)
 
 
 if __name__ == '__main__':

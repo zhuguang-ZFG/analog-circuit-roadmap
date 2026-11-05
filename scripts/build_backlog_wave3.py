@@ -16,6 +16,7 @@ if str(ROOT) not in sys.path:
 import check_visual_manifest as manifest
 from compose_technical_overlay import preview
 from scripts.visuals import static_fig
+from scripts.visuals.font_gate import assert_covered
 from scripts.visuals.scenes.ch13_backlog_figures import FIGURES as CH13
 from scripts.visuals.scenes.ch15_backlog_figures import FIGURES as CH15
 from scripts.visuals.scenes.ch15_backlog_figures2 import FIGURES as CH15B
@@ -43,6 +44,7 @@ def render(meta: dict) -> str:
 
 def build_one(asset_id: str, meta: dict) -> None:
     svg = render(meta)
+    assert_covered(svg, asset_id)
     REVIEW.mkdir(parents=True, exist_ok=True)
     review_svg = REVIEW / f'{asset_id}.svg'
     review_svg.write_text(svg, encoding='utf-8')
