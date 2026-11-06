@@ -1,9 +1,14 @@
 # 待审图清单（119 张 generated）
 
-本页只索引**尚未人工签核**的手绘候选：全部 `status: generated`，`review_scores` 为空，
-因此**未插入正文**。`analog-book/book/content.py:_asset_path` 的规则按 `kind` 分叉：
-- `kind: figure`（本队列 107 张）：状态必须是 `accepted`/`published`，否则抛 `BookError: V2 插图尚未通过审图`。
-- `kind: animation`（本队列 12 张）：**不校验状态**，只要求 `storyboard` 回退存在且路径合法；12 张的回退文件均已存在，故动画在技术上可以不入审直接插文——是否这样做是编辑决策，需另行拍板。
+本页索引 119 张 `status: generated` 的手绘候选，但**它们并不是同一种状态**：
+
+| 子集 | 张数 | 是否已在正文里 |
+|---|---:|---|
+| `kind: figure`（figures-v2） | 107 | **未插入**。`content.py:_asset_path` 要求 `accepted`/`published`，否则抛 `BookError: V2 插图尚未通过审图` |
+| `kind: animation`（svg-v2） | 12 | **已插入且读者可见**（`docs/` 里已有 `assets/svg-v2/<id>.svg` 的 `<img>`）。动画不校验状态，只要求 `storyboard` 回退存在——12 张都满足 |
+
+所以待审队列里有两种目的：107 张图的分数决定它**能否进书**；12 张动画的分数只是**补签记录**，
+不影响它们此刻是否显示。别把这两件事混在一张表里读。
 
 ## 已有证据的**实际覆盖范围**
 
@@ -14,7 +19,7 @@
 | 数字双向溯源（图内数字 ⊆ anchor 原文、alt/prompt 数字 ⊆ 图面数字） | **全部 119 张** | `check_visual_manifest.py` 对每条带 `prompt_file` 的资产都跑 `number_gaps` 与 `visible_number_gaps`，PASS（0 项） |
 | 登记齐全 / prompt id 与中英文本 / status_history 与评分区间 | **全部 119 张** | 同上，manifest 闸 PASS |
 | 出画布、文字互压、后画矩形盖字 | **107 张 figures-v2**（`audit_visual_geometry.py` 全库 361 张、缺陷 0） | 见下注① |
-| 出画布（字框出 viewBox） | 12 张 svg-v2 动画：一次性脚本补测，**全部 0 处** | 该项与显示状态无关，可直接采信 |
+| 出画布（字框出 viewBox） | 12 张 svg-v2 动画：一次性脚本补测，**全部 0 处** | 该项与显示状态无关；这 12 张已在正文显示，故该结论直接对读者可见面成立 |
 | 文字互压 / 后画矩形盖字 | 12 张 svg-v2 动画：**不作缺陷判定** | 这些 SVG 按 `data-beat` 分组做 opacity 动画，不同节拍互斥显示；静态 DOM 度量无法区分，须动态审图 |
 | 16K/138mm 最小印刷字号 ≥ 8.5pt 与版面 `bounds` | **107 张 figures-v2**：逐图 `*.audit.json` | 最小值 **8.606 pt**（阈值 8.5），`bounds` 全部 pass；该证据只覆盖 figures-v2 |
 | 同上 | 12 张 svg-v2 动画：**无 `*.audit.json`** | 未记录，本包不作该项声明 |
