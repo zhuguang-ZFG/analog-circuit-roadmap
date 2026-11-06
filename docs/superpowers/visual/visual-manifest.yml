@@ -3452,10 +3452,8 @@ assets:
     user_chapter_acceptance: accepted
     reviewed_on: '2026-11-06'
     record: docs/superpowers/visual/reviews/task8-2026-11-05/WAVE13-REVIEW.md
-    asset_sha256: 83760d7da4a529742a9067c0aad8bd2512eccbd4ba9397158ce79be5cab1ada7
-    resign_reason: >-
-      e5aad5d 已签核；af8878c 为修版面缺陷重绘，SHA 变化使原签核失效。
-      本次复签经用户明确授权，变更仅为坐标与一句脚注缩短，数字未变。
+    asset_sha256: 31b9dcb527f0f1abc94f0f5a98604eb3d5b3525c3b4476aa4b93808c9826bfb7
+    resign_reason: e5aad5d 已签核；af8878c 为修版面缺陷重绘，SHA 变化使原签核失效。 本次复签经用户明确授权，变更仅为坐标与一句脚注缩短，数字未变。
   generator: python-svg-papercut-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch17-power-fault-layers.json
   quant_rules:
@@ -4578,10 +4576,8 @@ assets:
     user_chapter_acceptance: accepted
     reviewed_on: '2026-11-06'
     record: docs/superpowers/visual/reviews/task8-2026-11-05/WAVE13-REVIEW.md
-    asset_sha256: 9a37ca90ad385b84c01b1ea24e7d40cb209fc670f265f2e348b39d1760a82b6f
-    resign_reason: >-
-      e5aad5d 已签核；af8878c 为修版面缺陷重绘，SHA 变化使原签核失效。
-      本次复签经用户明确授权，变更仅为坐标与一句脚注缩短，数字未变。
+    asset_sha256: da06baee1f714fd737af565b8e6cc73e33b155b28947cd2d90b57c48899dab2f
+    resign_reason: e5aad5d 已签核；af8878c 为修版面缺陷重绘，SHA 变化使原签核失效。 本次复签经用户明确授权，变更仅为坐标与一句脚注缩短，数字未变。
   generator: python-svg-papercut-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch08-crosstalk-cascade-mismatch.json
   quant_rules:
@@ -5193,10 +5189,8 @@ assets:
     user_chapter_acceptance: accepted
     reviewed_on: '2026-11-06'
     record: docs/superpowers/visual/reviews/task8-2026-11-05/WAVE13-REVIEW.md
-    asset_sha256: 53f781a4ab5a8cc0b9f10545429ab55787f18590dcb66ce4d7310c9eea693168
-    resign_reason: >-
-      e5aad5d 已签核；af8878c 为修版面缺陷重绘，SHA 变化使原签核失效。
-      本次复签经用户明确授权，变更仅为坐标与一句脚注缩短，数字未变。
+    asset_sha256: 6f38937c861b4c314f34126eb76718ba4aba345a1d6a5f527dd164cba97a778e
+    resign_reason: e5aad5d 已签核；af8878c 为修版面缺陷重绘，SHA 变化使原签核失效。 本次复签经用户明确授权，变更仅为坐标与一句脚注缩短，数字未变。
   generator: python-svg-papercut-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch08-scope-expected-beats.json
   quant_rules:
@@ -8171,5 +8165,145 @@ assets:
   review_scores: {}
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch13-audio-class-heat.json
+  quant_rules:
+    layer_encodes_value: false
+- id: ch11-diffpair-four-beats
+  chapter: 11
+  kind: figure
+  type: V4
+  anchor: '11.7'
+  purpose: 差分对的四拍：尾电流只准重新分配
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids: &id015
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p2-01-ch11.md#11.7
+  prompt_file: docs/superpowers/visual/prompts/ch11-diffpair-four-beats.md
+  output: assets/figures-v2/ch11-diffpair-four-beats.svg
+  print_fallback: assets/figures-v2/ch11-diffpair-four-beats-print.svg
+  preview: assets/figures-v2/ch11-diffpair-four-beats.webp
+  alt: 手绘差分对四拍。四行横框自上而下：第一行两边同升是共模，尾电流锁死在 1 毫安，谁也多拿不走，输出差为零；第二行一升一降是差模，各正负 10 毫伏，总量仍是 1 毫安，只在两管之间重新分配，输出差约等于
+    2 倍电流增量乘集电极电阻；第三行尾节点自举，一只管子想抬、另一只想压，正好抵消，尾电流源上没有交流，对差模隐身；第四行共模的真实泄漏，尾电流源有限、两管不可能完全匹配，失配 1% 就把共模抑制比拉到
+    60 分贝。底部红框算账：尾电流 1 毫安、集电极电阻 10 千欧、发射极小信号电阻 26 毫伏除 0.5 毫安得 52 欧，差模增益 10 千欧除 104 欧约 96、约 40 分贝；尾电流源
+    1 兆欧时共模增益约 0.005，共模抑制比约 86 分贝，提到 10 兆欧再涨 20 分贝。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch11-diffpair-four-beats.json
+  quant_rules:
+    layer_encodes_value: false
+- id: ch02-bridge-junction-ledger
+  chapter: 2
+  kind: figure
+  type: V4
+  anchor: '2.12'
+  purpose: 桥堆与整流管的四个数与结温账
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids: *id015
+  source_facts:
+  - docs/p1-03-ch2.md#2.12
+  prompt_file: docs/superpowers/visual/prompts/ch02-bridge-junction-ledger.md
+  output: assets/figures-v2/ch02-bridge-junction-ledger.svg
+  print_fallback: assets/figures-v2/ch02-bridge-junction-ledger-print.svg
+  preview: assets/figures-v2/ch02-bridge-junction-ledger.webp
+  alt: 手绘桥堆两栏加热账。左蓝框桥堆看四个数：反向耐压至少 2 倍峰值反压，市电 230 伏有效值峰值 325 伏所以选 600 到 1000 伏；平均电流要按壳温降额，常见标 100 摄氏度；浪涌电流是
+    8.3 毫秒半正弦的单次值；热阻要按封装整体看，不能拿单只乘四，四只封在一起互相加热。右绿框结温账，热阻按 80 摄氏度每瓦：功耗 0.9 伏乘 1 安得 0.9 瓦，结温 50 加 0.9 乘
+    80 得 122 摄氏度；降到 0.6 安功耗 0.54 瓦，结温 93 摄氏度；换 0.5 伏肖特基，90 摄氏度；环境升到 60 摄氏度仍 1 安，132 摄氏度已经超限。下方琥珀框写桥式里每只管子的平均电流只有负载的一半：1
+    安负载每只导通半周、平均 0.5 安，两只各 0.45 瓦、总损耗约 0.9 瓦。底部红框写别把单只管子的热阻套到桥堆上，25 摄氏度下标称的 1 安装进封闭机箱不成立。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch02-bridge-junction-ledger.json
+  quant_rules:
+    layer_encodes_value: false
+- id: ch04-thermal-chain-ledger
+  chapter: 4
+  kind: figure
+  type: V4
+  anchor: '4.5'
+  purpose: 热失效的热阻链与四种测量自欺
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids: *id015
+  source_facts:
+  - docs/p1-05-ch4.md#4.5
+  prompt_file: docs/superpowers/visual/prompts/ch04-thermal-chain-ledger.md
+  output: assets/figures-v2/ch04-thermal-chain-ledger.svg
+  print_fallback: assets/figures-v2/ch04-thermal-chain-ledger-print.svg
+  preview: assets/figures-v2/ch04-thermal-chain-ledger.webp
+  alt: 手绘热失效账。顶部红框写结温等于环境温度加功耗乘三级热阻之和；导通 0.75 瓦加开关 3.5 瓦共 4.25 瓦，只靠电路板敷铜、热阻按 60 摄氏度每瓦估，温升 255 摄氏度，150
+    或 175 摄氏度的额定都挡不住。蓝框两条降额线：持续结温压在 125 摄氏度以下，漏源峰值压在额定的 80% 以内。琥珀框列四个测量自欺：长地线探头在电流变化率环境里就是环形天线，20 毫米环路足以把振铃夸大数倍；电流探头与电压通道的延迟差让损耗积分偏大或偏小；万用表电阻挡测不出导通电阻；关断尖峰要与该结温下的阈值电压比。绿框写脉冲要看瞬态热阻曲线，稳态值套短脉冲是保守、套长脉冲是危险。底部写雪崩不是免费保险：100
+    纳亨乘 0.5 安每纳秒就是 50 伏，直接叠在母线上。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch04-thermal-chain-ledger.json
+  quant_rules:
+    layer_encodes_value: false
+- id: ch01-q-selectivity-map
+  chapter: 1
+  kind: figure
+  type: V4
+  anchor: '1.5'
+  purpose: Q 是挑频率的锐度，不是越高越好
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids: *id015
+  source_facts:
+  - docs/p1-02-ch1.md#1.5
+  prompt_file: docs/superpowers/visual/prompts/ch01-q-selectivity-map.md
+  output: assets/figures-v2/ch01-q-selectivity-map.svg
+  print_fallback: assets/figures-v2/ch01-q-selectivity-map-print.svg
+  preview: assets/figures-v2/ch01-q-selectivity-map.webp
+  alt: 手绘品质因数两栏。顶部蓝框给定义：Q 等于谐振频率除以半功率带宽，峰又尖又窄是高 Q；Q 还能实测，扫频找谐振峰与两个下降 3 分贝的点。左绿框选台要多窄：中波载波 1 兆赫、带宽 5 千赫，需要
+    Q 约 100；调频载波 100 兆赫、带宽 150 千赫，Q 只要个位数；频率越高做出高 Q 越难，损耗与寄生随频率一起涨。右红框峰值阻抗也是有限的：电感 10 微亨、电容 100 皮法、电阻
+    1 欧，谐振频率 5.0 兆赫，峰值阻抗 100 千欧；理想并联回路阻抗无穷大，实际被电感电阻压成电感除电阻乘电容。下方琥珀框写谐振网络里谁最差谁定 Q，电感的直流电阻与磁芯损耗通常是短板。底部写调谐用可变电容不用可变电感：电容可做多联同轴、磨损小、Q
+    高。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch01-q-selectivity-map.json
+  quant_rules:
+    layer_encodes_value: false
+- id: ch02-diode-fault-order
+  chapter: 2
+  kind: figure
+  type: V4
+  anchor: '2.13'
+  purpose: 二极管排故的三步顺序
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids: *id015
+  source_facts:
+  - docs/p1-03-ch2.md#2.13
+  prompt_file: docs/superpowers/visual/prompts/ch02-diode-fault-order.md
+  output: assets/figures-v2/ch02-diode-fault-order.svg
+  print_fallback: assets/figures-v2/ch02-diode-fault-order-print.svg
+  preview: assets/figures-v2/ch02-diode-fault-order.webp
+  alt: 手绘二极管排故三步，三个框之间用实心向下箭头相连。第一步红框先查方向：是不是接反、是不是该导通时没导通，现象是纹波频率从 100 赫兹变成 50 赫兹，说明桥臂里一只开路。第二步琥珀框再查压降：是不是把
+    0.7 伏用错了地方，比如瞬态抑制二极管的关断电压选低，正常信号的峰值就让它微导通。第三步绿框最后查散热：结温有没有超，现象是纹波从 2 伏变 4 伏、电容温热，因为等效串联电阻升高、纹波电流在它上面发热。下方蓝框写顺序不能反：方向错了后面量什么都是错的，压降错了散热算得再准也救不回来。底部写三件事按顺序走，大多数故障不用猜。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch02-diode-fault-order.json
   quant_rules:
     layer_encodes_value: false
