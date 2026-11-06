@@ -97,7 +97,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <rect x="50" y="126" width="900" height="76" rx="6" fill="#f6eedb" stroke="#1f5d7a" stroke-width="2"/>
 <text x="76" y="160" font-size="24" fill="#1f5d7a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">5 脚（CTRL）直接接在内部 2/3 Vcc 的抽头上</text>
 <text x="76" y="190" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">悬空等于给高阻抽头接天线，改的正是挡块高度</text>
-<rect x="50" y="216" width="900" height="322" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<rect x="50" y="216" width="900" height="312" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
 <text x="76" y="252" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">现象</text>
 <text x="566" y="252" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">判据与处方</text>
 <path d="M82 262 Q500.00 261.14 918 262" fill="none" stroke="#c9bb9d" stroke-width="1.5"/>
@@ -111,7 +111,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <path d="M82 354 Q500.00 353.66 918 354" fill="none" stroke="#c9bb9d" stroke-width="1.5"/>
 <text x="76" y="384" font-size="22" fill="#1f5d7a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">③</text>
 <text x="120" y="384" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">频率随温度狂漂</text>
-<text x="566" y="384" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">X7R 电容在干活；热风一吹 &gt;5% 即介质</text>
+<text x="566" y="384" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">热风一吹变化 &gt;5%：元件介质问题</text>
 <path d="M82 400 Q500.00 400.36 918 400" fill="none" stroke="#c9bb9d" stroke-width="1.5"/>
 <text x="76" y="430" font-size="22" fill="#1f5d7a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">④</text>
 <text x="120" y="430" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">起振迟缓、偶发停振</text>
@@ -120,9 +120,9 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <text x="76" y="476" font-size="22" fill="#1f5d7a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">⑤</text>
 <text x="120" y="476" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">面包板行、焊板上不行</text>
 <text x="566" y="476" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">寄生 2~5 pF 参与定时，按板上实测重算</text>
-<rect x="50" y="552" width="900" height="88" rx="6" fill="#f6eedb" stroke="#a4630f" stroke-width="2"/>
-<text x="76" y="588" font-size="24" fill="#a4630f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">先量 5 脚直流电压，应恰好 2/3 Vcc</text>
-<text x="76" y="620" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">偏离就是外因；指标合格才轮到怀疑芯片</text>
-<rect x="50" y="654" width="900" height="40" rx="6" fill="#f6eedb" stroke="#3d6b4a" stroke-width="2"/>
-<text x="76" y="681" font-size="22" fill="#3d6b4a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">处方三件套：就近 100 nF + 10 µF、续流路径独立、走线不进继电器回路</text>
+<rect x="50" y="542" width="900" height="88" rx="6" fill="#f6eedb" stroke="#a4630f" stroke-width="2"/>
+<text x="76" y="578" font-size="24" fill="#a4630f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">先量 5 脚直流电压，应恰好 2/3 Vcc</text>
+<text x="76" y="610" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">偏离就是外因；指标合格才轮到怀疑芯片</text>
+<rect x="50" y="642" width="900" height="48" rx="6" fill="#f6eedb" stroke="#3d6b4a" stroke-width="2"/>
+<text x="76" y="672" font-size="22" fill="#3d6b4a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">处方三件套：就近 100 nF + 10 µF、续流路径独立、走线不进继电器回路</text>
 </svg>

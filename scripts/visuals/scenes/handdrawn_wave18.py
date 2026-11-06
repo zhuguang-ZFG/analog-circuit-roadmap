@@ -27,25 +27,25 @@ def threes_five_fault_tree():
     parts.append(text(76, 160, '5 脚（CTRL）直接接在内部 2/3 Vcc 的抽头上', 24, colour=BLUE, weight='700'))
     parts.append(text(76, 190, '悬空等于给高阻抽头接天线，改的正是挡块高度', 22, colour=INK2))
 
-    parts.append(box(50, 216, 900, 322, fill=PAPER, stroke=INK2))
+    parts.append(box(50, 216, 900, 312, fill=PAPER, stroke=INK2))
     parts.append(text(76, 252, '现象', 22, colour=INK2, weight='700'))
     parts.append(text(566, 252, '判据与处方', 22, colour=INK2, weight='700'))
     rows = [
         ('①', '输出常高、6 脚电压不动', '放电管没工作：7 脚虚焊、R2 开路'),
         ('②', '频率对、占空比漂', 'R1/R2 变值，或 5 脚电容漏电'),
-        ('③', '频率随温度狂漂', 'X7R 电容在干活；热风一吹 >5% 即介质'),
+        ('③', '频率随温度狂漂', '热风一吹变化 >5%：元件介质问题'),
         ('④', '起振迟缓、偶发停振', '电源爬升太慢；4 脚加 RC 延时'),
         ('⑤', '面包板行、焊板上不行', '寄生 2~5 pF 参与定时，按板上实测重算'),
     ]
     for i, (k, s, v) in enumerate(rows):
         parts.extend(_row(292 + i * 46, k, s, v))
 
-    parts.append(box(50, 552, 900, 88, fill=PAPER, stroke=AMBER))
-    parts.append(text(76, 588, '先量 5 脚直流电压，应恰好 2/3 Vcc', 24, colour=AMBER, weight='700'))
-    parts.append(text(76, 620, '偏离就是外因；指标合格才轮到怀疑芯片', 22, colour=INK2))
+    parts.append(box(50, 542, 900, 88, fill=PAPER, stroke=AMBER))
+    parts.append(text(76, 578, '先量 5 脚直流电压，应恰好 2/3 Vcc', 24, colour=AMBER, weight='700'))
+    parts.append(text(76, 610, '偏离就是外因；指标合格才轮到怀疑芯片', 22, colour=INK2))
 
-    parts.append(box(50, 654, 900, 40, fill=PAPER, stroke=GREEN))
-    parts.append(text(76, 681, '处方三件套：就近 100 nF + 10 µF、续流路径独立、走线不进继电器回路',
+    parts.append(box(50, 642, 900, 48, fill=PAPER, stroke=GREEN))
+    parts.append(text(76, 672, '处方三件套：就近 100 nF + 10 µF、续流路径独立、走线不进继电器回路',
                       22, colour=GREEN, weight='700'))
     return parts
 
@@ -126,7 +126,7 @@ SCENES = {
                '悬空等于给高阻抽头接天线，改的正是挡块高度；标准做法接 10 纳法到地。'
                '中间框列五站：①输出常高、6 脚电压不动，判据是放电管没工作，7 脚虚焊或 R2 开路；'
                '②频率对、占空比漂，判据是 R1 或 R2 变值，或 5 脚电容漏电；'
-               '③频率随温度狂漂，判据是 X7R 电容在干活，热风一吹变化超过 5% 即介质问题；'
+               '③频率随温度狂漂，判据是热风一吹变化超过 5% 就是元件介质问题；'
                '④起振迟缓、偶发停振，判据是电源爬升太慢，4 脚加 RC 延时；'
                '⑤面包板行、焊到板上不行，判据是寄生 2 到 5 皮法参与定时，按板上实测重算。'
                '琥珀框写先量 5 脚直流电压、应恰好 2/3 Vcc，偏离就是外因，指标合格才轮到怀疑芯片。'

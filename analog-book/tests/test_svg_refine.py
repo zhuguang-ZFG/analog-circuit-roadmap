@@ -50,6 +50,32 @@ class RefineFixtureTests(unittest.TestCase):
         self.assertFalse(is_legacy_svg(
             '<svg xmlns="http://www.w3.org/2000/svg"><path d="M0 0"/></svg>'))
 
+    def test_handraw_static_figure_keeps_paper_skin(self):
+        """手绘皮肤静态图（page-grain 颗粒、无 SMIL）不判旧模板：印刷保留纸面与楷体。"""
+        skinned = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 60">'
+                   '<defs><linearGradient id="bgL"><stop stop-color="#fdf8ea"/>'
+                   '</linearGradient><pattern id="dots"><circle r="1"/></pattern></defs>'
+                   '<rect class="page-bg" width="100" height="60" fill="url(#bgL)"/>'
+                   '<rect class="page-grain" width="100" height="60" fill="url(#dots)"/>'
+                   '<style>text{font-family:\'KaiTi\'}'
+                   '@media (prefers-color-scheme: dark){.page-bg{fill:#141310}}</style>'
+                   '<text x="10" y="30" fill="#16202b">手绘标题</text></svg>')
+        self.assertFalse(is_legacy_svg(skinned))
+        self.assertEqual(refine_svg(skinned), skinned)
+
+    def test_skinned_animation_still_refines(self):
+        """带皮肤的旧动画含 SMIL，仍走净化管线，不因皮肤豁免。"""
+        anim = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 60">'
+                '<defs><linearGradient id="bgL"><stop stop-color="#fdf8ea"/>'
+                '</linearGradient></defs>'
+                '<rect class="page-bg" width="100" height="60" fill="url(#bgL)"/>'
+                '<rect class="page-grain" width="100" height="60" fill="url(#dots)"/>'
+                '<style>@media (prefers-color-scheme: dark){text{fill:#ece4d3}}</style>'
+                '<circle r="4" fill="#1f5d7a"><animate attributeName="cx" values="10;90"/>'
+                '</circle></svg>')
+        self.assertTrue(is_legacy_svg(anim))
+        self.assertNotIn('class="page-grain"', refine_svg(anim))
+
     def test_removes_theme_animation_and_saturated_palette(self):
         out = refine_svg(LEGACY)
         for token in ("<linearGradient", "<pattern", "<filter", "<animate",
