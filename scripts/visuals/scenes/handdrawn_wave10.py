@@ -7,36 +7,28 @@ from scripts.visuals.scenes.handdrawn_wave2 import (
 
 
 def esd_chain():
-    parts = [header('ESD 进来，先泄放再限流',
-                    '2kV 人体模型：100pF + 1.5kΩ，峰值 1.3A，前沿 <10ns；三件套顺序不能反。')]
-    parts.append(text(52, 140, '接口 → TVS 泄放 → 电阻限流 → 钳位到轨 → 芯片', 22,
+    parts = [header('IEC 8kV 进来，24A 从 TVS 走',
+                    '330Ω/150pF 源，TVS 钳到 9.2V：峰值 24.2A、223W；100Ω 后残压仍灌 35mA。')]
+    parts.append(text(52, 138, '8kV → TVS 9.2V → 100Ω → 芯片 5.7V', 22, colour=INK2))
+    parts.append(box(50, 170, 430, 230, fill=PAPER))
+    parts.append(text(74, 210, 'TVS 这一跳', 24, colour=RED, weight='700'))
+    parts.append(text(74, 250, 'Ipp = (8000 − 9.2) / 330', 22))
+    parts.append(text(74, 306, '= 24.2A', 40, colour=RED, weight='700'))
+    parts.append(text(74, 346, 'Ppp = 9.2 × 24.2 = 223W', 22, colour=INK2))
+    parts.append(text(74, 380, '选 IEC 8kV 阵列，不套 8/20µs 额定', 22, colour=INK2))
+    parts.append(box(520, 170, 430, 230, fill=PAPER))
+    parts.append(text(544, 210, '电阻后仍超', 24, colour=AMBER, weight='700'))
+    parts.append(text(544, 250, 'Iinj = (9.2 − 5.7) / 100', 22))
+    parts.append(text(544, 306, '= 35mA', 40, colour=AMBER, weight='700'))
+    parts.append(text(544, 346, '要 10mA：R ≥ (9.2 − 5.7) / 0.01', 22, colour=INK2))
+    parts.append(text(544, 380, '= 350Ω → 取 330Ω', 24, colour=GREEN, weight='700'))
+    parts.append(box(50, 430, 900, 120, fill=PAPER))
+    parts.append(text(76, 468, '先 TVS、后限流：100Ω 挪到前面，要扛 24A 与 57.6kW。', 22,
+                      colour=RED, weight='700'))
+    parts.append(text(76, 504, '地回路 1nH × 24A/ns ≈ 24V，钳位形同虚设。', 22,
                       colour=INK2))
-    cards = [
-        (50, '① 泄放', 'TVS', 'kV 级 → 十几 V', '能量走地', RED),
-        (370, '② 限流', '串联电阻 / PTC', 'R ≥ (Vsurge−VC)/Imax', '别破坏带宽', AMBER),
-        (690, '③ 钳位', '二极管到电源轨', '残余过冲入轨', '防止灌电流', BLUE),
-    ]
-    for x, head, line1, line2, line3, colour in cards:
-        parts.append(box(x, 170, 260, 150, fill=PAPER))
-        parts.append(text(x + 20, 208, head, 25, colour=colour, weight='700'))
-        parts.append(text(x + 20, 244, line1, 22, weight='700'))
-        parts.append(text(x + 20, 278, line2, 22, colour=INK2))
-        parts.append(text(x + 20, 306, line3, 22, colour=INK2))
-    parts.append(f'<line x1="310" y1="245" x2="360" y2="245" stroke="{INK2}" stroke-width="2.5"/>')
-    parts.append(f'<polygon points="370,245 360,240 360,250" fill="{INK2}"/>')
-    parts.append(f'<line x1="630" y1="245" x2="680" y2="245" stroke="{INK2}" stroke-width="2.5"/>')
-    parts.append(f'<polygon points="690,245 680,240 680,250" fill="{INK2}"/>')
-    parts.append(box(50, 370, 900, 180, fill=PAPER))
-    rows = [
-        ('TVS 贴接口', '地回机壳 / PE，不绕数字地'),
-        ('地回路短粗', '1nH 在 1A/ns 下就是 1V'),
-        ('高速口选型', '<0.5pF 阵列；普通 TVS 50–200pF 会闭眼图'),
-    ]
-    for i, (head, note) in enumerate(rows):
-        y = 410 + i * 48
-        parts.append(text(76, y, head, 23, colour=[GREEN, AMBER, BLUE][i], weight='700'))
-        parts.append(text(300, y, note, 22, colour=INK2))
-    parts.append(text(500, 620, '顺序反了，浪涌先穿滤波器——先泄放，再限流，最后钳位。', 22,
+    parts.append(text(76, 536, 'TVS 泄放大能量，电阻把残压限到毫安级。', 22, colour=INK2))
+    parts.append(text(500, 620, '只装 TVS 不算保护；电阻与芯片内部钳位才算收尾。', 22,
                       colour=AMBER, anchor='middle', weight='700'))
     return parts
 
@@ -101,9 +93,9 @@ def junction_margin():
                           weight='700' if i == 3 else '400'))
     parts.append(text(594, 430, '降额、换低 VF 管、加散热片。', 22, colour=INK2))
     parts.append(box(50, 500, 900, 90, fill=PAPER))
-    parts.append(text(76, 538, 'SOA 四条边界：VRRM、IF、PD、Tjmax 要同时满足。', 22,
-                      weight='700'))
-    parts.append(text(76, 574, '8.3ms 单次浪涌不能当重复值；脉冲越窄，允许峰值越高。', 22,
+    parts.append(text(76, 538, '8.3ms 单次浪涌不能当重复值。', 22,
+                      colour=RED, weight='700'))
+    parts.append(text(76, 574, '峰值功率一定带脉宽与占空比；脉冲越窄，允许峰值越高。', 22,
                       colour=INK2))
     parts.append(text(500, 640, '结温是闭环，不是单点；余量没了就降额或换封装。', 22,
                       colour=AMBER, anchor='middle', weight='700'))
@@ -296,14 +288,14 @@ def early_effect():
     parts = [header('输出特性不是水平线，是微微上翘',
                     'VCE 升 → 集电结耗尽层变宽 → 有效基区变薄 → β 微升。')]
     parts.append(box(50, 140, 500, 380, fill=PAPER))
-    parts.append(f'<line x1="100" y1="460" x2="510" y2="460" stroke="{INK2}" stroke-width="2.5"/>')
+    parts.append(f'<line x1="60" y1="460" x2="510" y2="460" stroke="{INK2}" stroke-width="2.5"/>')
     parts.append(f'<line x1="100" y1="460" x2="100" y2="170" stroke="{INK2}" stroke-width="2.5"/>')
     parts.append(text(470, 490, 'VCE', 22, colour=INK2))
     parts.append(text(78, 182, 'IC', 22, colour=INK2))
     for i, (y0, colour) in enumerate([(380, BLUE), (310, GREEN), (240, AMBER)]):
         parts.append(f'<path d="M150,{y0} C280,{y0 - 4} 400,{y0 - 16} 500,{y0 - 28}" '
                      f'fill="none" stroke="{colour}" stroke-width="4"/>')
-        parts.append(f'<path d="M150,{y0} L60,430" fill="none" stroke="{colour}" '
+        parts.append(f'<path d="M150,{y0} L60,460" fill="none" stroke="{colour}" '
                      f'stroke-width="1.6" stroke-dasharray="5,5"/>')
     parts.append(text(56, 500, '虚线交于 −VA', 22, colour=INK2))
     parts.append(text(300, 205, '曲线间距 = β', 22, colour=INK2))
@@ -329,9 +321,9 @@ def early_effect():
 
 SCENES = {
     'ch02-esd-chain': {
-        'draw': esd_chain, 'title': '接口保护三件套的顺序', 'anchor': '2.8',
+        'draw': esd_chain, 'title': 'IEC 8kV 的 24A 分账', 'anchor': '2.11.3',
         'chapter': 2, 'source': 'docs/p1-03-ch2.md',
-        'alt': '手绘保护链：接口进来先到 TVS 泄放，再经串联电阻限流，最后用钳位二极管把残余过冲引到电源轨。上方写 2 千伏人体模型为 100 皮法加 1.5 千欧，峰值 1.3 安，前沿小于 10 纳秒。下方三条布局军规：TVS 贴接口、地回路短粗、高速口选小于 0.5 皮法阵列。',
+        'alt': '手绘 IEC 8 千伏 ESD 分账：330 欧、150 皮法源，TVS 钳到 9.2 伏，峰值电流 24.2 安、223 瓦；经 100 欧后残压仍向芯片灌 35 毫安。右侧写要压到 10 毫安需电阻至少 350 欧，取 330 欧。底部写先 TVS 后限流，100 欧挪到前面要扛 24 安与 57.6 千瓦；地回路 1 纳亨乘 24 安每纳秒约 24 伏，钳位形同虚设。',
     },
     'ch02-zener-budget': {
         'draw': zener_budget, 'title': '稳压管的限流电阻与最坏功耗', 'anchor': '2.9',
@@ -341,7 +333,7 @@ SCENES = {
     'ch02-junction-margin': {
         'draw': junction_margin, 'title': '结温余量只剩 3°C', 'anchor': '2.9',
         'chapter': 2, 'source': 'docs/p1-03-ch2.md',
-        'alt': '手绘结温账：1 安乘 0.9 伏乘 80 摄氏度每瓦，环境 50 摄氏度，结温 122 摄氏度；上限 125 摄氏度，只剩 3 摄氏度。右侧写环境再高 5 摄氏度或电流再大 10% 就超，降额到 0.6 安后结温约 93 摄氏度。底部写 SOA 四条边界与 8.3 毫秒单次浪涌不能当重复值。',
+        'alt': '手绘结温账：1 安乘 0.9 伏乘 80 摄氏度每瓦，环境 50 摄氏度，结温 122 摄氏度；上限 125 摄氏度，只剩 3 摄氏度。右侧写环境再高 5 摄氏度或电流再大 10% 就超，降额到 0.6 安后结温约 93 摄氏度。底部写 8.3 毫秒单次浪涌不能当重复值，峰值功率一定带脉宽与占空比。',
     },
     'ch02-parallel-hog': {
         'draw': parallel_hog, 'title': '并联二极管的热抢流', 'anchor': '2.9',

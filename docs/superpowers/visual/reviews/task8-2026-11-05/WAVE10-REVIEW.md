@@ -21,13 +21,13 @@
 | `ch02-junction-margin` | 122°C 对 125°C，只剩 3°C；余量不是形容词 |
 | `ch03-low-high-side` | 同一只 NPN，参考点一换，3.3V GPIO 就从够得着变成够不着 |
 
-其余：ch2 ESD 三件套 → ch2 并联热抢流 → ch3 C/E 反接 → ch3 组态折算律 → ch3 厄利效应。
+其余：ch2 IEC 8kV 的 24A 分账 → ch2 并联热抢流 → ch3 C/E 反接 → ch3 组态折算律 → ch3 厄利效应。
 
 ## 清单
 
 | id | 章 | 标题 | 类型 | 布局 | anchor |
 |---|---|---|---|---|---|
-| `ch02-esd-chain` | 2 | 接口保护三件套的顺序 | V4 | IG-013 | 2.8 |
+| `ch02-esd-chain` | 2 | IEC 8kV 的 24A 分账 | V4 | IG-013 | 2.11.3 |
 | `ch02-zener-budget` | 2 | 稳压管的限流电阻与最坏功耗 | V4 | IG-013 | 2.9 |
 | `ch02-junction-margin` | 2 | 结温余量只剩 3°C | V4 | IG-013 | 2.9 |
 | `ch02-parallel-hog` | 2 | 并联二极管的热抢流 | V4 | IG-013 | 2.9 |

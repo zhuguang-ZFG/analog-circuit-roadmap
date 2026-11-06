@@ -95,16 +95,16 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 
 <text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">输出特性不是水平线，是微微上翘</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">VCE 升 → 集电结耗尽层变宽 → 有效基区变薄 → β 微升。</text>
 <rect x="50" y="140" width="500" height="380" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
-<path d="M100 460 Q305.00 460.00 510 460" fill="none" stroke="#37424e" stroke-width="2.5"/>
+<path d="M60 460 Q285.00 459.67 510 460" fill="none" stroke="#37424e" stroke-width="2.5"/>
 <path d="M100 460 Q100.75 315.00 100 170" fill="none" stroke="#37424e" stroke-width="2.5"/>
 <text x="470" y="490" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">VCE</text>
 <text x="78" y="182" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">IC</text>
 <path d="M150,380 C280,376 400,364 500,352" fill="none" stroke="#1f5d7a" stroke-width="4"/>
-<path d="M150,380 L60,430" fill="none" stroke="#1f5d7a" stroke-width="1.6" stroke-dasharray="5,5"/>
+<path d="M150,380 L60,460" fill="none" stroke="#1f5d7a" stroke-width="1.6" stroke-dasharray="5,5"/>
 <path d="M150,310 C280,306 400,294 500,282" fill="none" stroke="#3d6b4a" stroke-width="4"/>
-<path d="M150,310 L60,430" fill="none" stroke="#3d6b4a" stroke-width="1.6" stroke-dasharray="5,5"/>
+<path d="M150,310 L60,460" fill="none" stroke="#3d6b4a" stroke-width="1.6" stroke-dasharray="5,5"/>
 <path d="M150,240 C280,236 400,224 500,212" fill="none" stroke="#a4630f" stroke-width="4"/>
-<path d="M150,240 L60,430" fill="none" stroke="#a4630f" stroke-width="1.6" stroke-dasharray="5,5"/>
+<path d="M150,240 L60,460" fill="none" stroke="#a4630f" stroke-width="1.6" stroke-dasharray="5,5"/>
 <text x="56" y="500" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">虚线交于 −VA</text>
 <text x="300" y="205" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">曲线间距 = β</text>
 <text x="300" y="235" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">斜率 = 1/ro</text>
