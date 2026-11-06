@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 620" role="img" aria-labelledby="figTitle figDesc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 660" role="img" aria-labelledby="figTitle figDesc">
 <title id="figTitle">传输门：谁行谁上</title>
 <desc id="figDesc">单管有阈值缺口，互补并联才轨到轨</desc>
 <metadata id="visual-timeline">{&quot;duration&quot;: 8.0, &quot;beats&quot;: [{&quot;name&quot;: &quot;零水位&quot;, &quot;start&quot;: 0.0, &quot;end&quot;: 1.6, &quot;caption&quot;: &quot;VIN=0V：N 管全开，P 管没导通&quot;}, {&quot;name&quot;: &quot;顶到4V&quot;, &quot;start&quot;: 1.6, &quot;end&quot;: 3.4, &quot;caption&quot;: &quot;VIN 升到 4V：N 管压差只剩 VTH，传输停住&quot;}, {&quot;name&quot;: &quot;互补并联&quot;, &quot;start&quot;: 3.4, &quot;end&quot;: 5.6, &quot;caption&quot;: &quot;P 管接管高段，包络 20→26.7→20Ω 覆盖全摆幅&quot;}, {&quot;name&quot;: &quot;双向与边界&quot;, &quot;start&quot;: 5.6, &quot;end&quot;: 8.0, &quot;caption&quot;: &quot;源漏对称所以双向；下游门限 2.5V 决定 4V 够不够&quot;}]}</metadata>
@@ -38,9 +38,9 @@
 <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
 </filter>
 </defs>
-<rect class="page-bg" width="960" height="620" fill="url(#bgL)"/>
-<rect class="page-grain" width="960" height="620" fill="url(#dots)"/>
-<rect class="page-vig" width="960" height="620" fill="url(#vig)"/>
+<rect class="page-bg" width="960" height="660" fill="url(#bgL)"/>
+<rect class="page-grain" width="960" height="660" fill="url(#dots)"/>
+<rect class="page-vig" width="960" height="660" fill="url(#vig)"/>
 <rect class="page-hdr" width="960" height="72" fill="url(#hdr)"/>
 <style>
 text{font-family:"Segoe UI","Microsoft YaHei","PingFang SC","Hiragino Sans GB","Noto Sans CJK SC","Source Han Sans SC","Noto Sans SC",sans-serif;}
@@ -110,14 +110,17 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <text x="290" y="522" text-anchor="middle" font-size="11" fill="#a4630f">4V</text>
 <line x1="210" y1="136" x2="210" y2="500" stroke="#5b666f" stroke-width="1.2" stroke-dasharray="3,5"/>
 <text x="210" y="522" text-anchor="middle" font-size="11" fill="#5b666f">2.5V 门限</text>
-<rect x="48" y="548" width="864" height="48" rx="10" fill="#e6eff3" stroke="#1f5d7a" stroke-width="1.2"/>
-<text x="72" y="579" font-size="12.5" fill="#16202b">VDD=5V，VTH=1V；N 管管低段、P 管管高段，源漏对称所以双向。</text>
-<g transform="translate(0 -4)"><rect x="96" y="120" width="360" height="86" rx="10" fill="#f6e7e1" stroke="#a8321f" stroke-width="1.6"/>
+<rect x="48" y="544" width="864" height="48" rx="10" fill="#e6eff3" stroke="#1f5d7a" stroke-width="1.2"/>
+<text x="72" y="575" font-size="12.5" fill="#16202b">VDD=5V，VTH=1V；N 管管低段、P 管管高段，源漏对称所以双向。</text>
+<g transform="translate(0 -4)"><path d="M96,410 C180,410 240,380 290,300 C350,240 430,300 500,360 C580,410 700,410 864,410" fill="none" stroke="#3d6b4a" stroke-width="3.4"/>
+<path d="M96,430 C180,430 240,400 290,320 C350,260 430,320 500,380 C580,430 700,430 864,430" fill="none" stroke="#1f5d7a" stroke-width="2" stroke-dasharray="7,5"/>
+<text x="430" y="264" font-size="13" font-weight="bold" fill="#3d6b4a">并联包络 20→26.7→20Ω</text>
+<rect x="96" y="120" width="360" height="86" rx="10" fill="#f6e7e1" stroke="#a8321f" stroke-width="1.6"/>
 <text x="116" y="150" font-size="13" font-weight="bold" fill="#a8321f">4V 够不够，看下游是谁</text>
 <text x="116" y="176" font-size="12" fill="#16202b">CMOS 门限 2.5V：够用</text>
 <text x="116" y="196" font-size="12" fill="#16202b">轨到轨 ADC：不够</text>
 <path d="M700,250 L820,250 M820,250 L800,236 M820,250 L800,264" stroke="#a8321f" stroke-width="2.4" fill="none"/>
 <text x="760" y="230" text-anchor="middle" font-size="12" fill="#a8321f">双向</text></g>
-<rect x="24" y="556" width="912" height="34" rx="9" fill="#f7eedb" stroke="#c9bb9d" stroke-width="1.2"/>
-<text x="480" y="580" text-anchor="middle" font-size="13" font-weight="bold" fill="#a8321f">源漏对称所以双向；下游门限 2.5V 决定 4V 够不够</text>
+<rect x="24" y="596" width="912" height="34" rx="9" fill="#f7eedb" stroke="#c9bb9d" stroke-width="1.2"/>
+<text x="480" y="620" text-anchor="middle" font-size="13" font-weight="bold" fill="#a8321f">源漏对称所以双向；下游门限 2.5V 决定 4V 够不够</text>
 </svg>

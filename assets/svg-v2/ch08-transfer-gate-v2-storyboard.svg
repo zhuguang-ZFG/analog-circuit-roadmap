@@ -99,7 +99,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <text x="480" y="34" text-anchor="middle" font-size="18" font-weight="bold" fill="#16202b">传输门：谁行谁上·分镜</text>
 <text x="480" y="56" text-anchor="middle" font-size="12" fill="#5b666f">单管有阈值缺口，互补并联才轨到轨</text>
 <rect x="20" y="70" width="450" height="300" rx="10" fill="#fdf8ea" stroke="#c9bb9d" stroke-width="1.2"/>
-<g data-storyboard-beat="零水位" transform="translate(47 84) scale(0.4129)"><rect x="48" y="92" width="864" height="440" rx="14" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/>
+<g data-storyboard-beat="零水位" transform="translate(59 84) scale(0.3879)"><rect x="48" y="92" width="864" height="440" rx="14" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/>
 <line x1="96" y1="470" x2="864" y2="470" stroke="#c9bb9d" stroke-width="2"/>
 <text x="96" y="500" font-size="12" fill="#5b666f">VIN 0V</text>
 <text x="840" y="500" text-anchor="end" font-size="12" fill="#5b666f">5V</text>
@@ -109,15 +109,15 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <text x="290" y="522" text-anchor="middle" font-size="11" fill="#a4630f">4V</text>
 <line x1="210" y1="136" x2="210" y2="500" stroke="#5b666f" stroke-width="1.2" stroke-dasharray="3,5"/>
 <text x="210" y="522" text-anchor="middle" font-size="11" fill="#5b666f">2.5V 门限</text>
-<rect x="48" y="548" width="864" height="48" rx="10" fill="#e6eff3" stroke="#1f5d7a" stroke-width="1.2"/>
-<text x="72" y="579" font-size="12.5" fill="#16202b">VDD=5V，VTH=1V；N 管管低段、P 管管高段，源漏对称所以双向。</text>
+<rect x="48" y="544" width="864" height="48" rx="10" fill="#e6eff3" stroke="#1f5d7a" stroke-width="1.2"/>
+<text x="72" y="575" font-size="12.5" fill="#16202b">VDD=5V，VTH=1V；N 管管低段、P 管管高段，源漏对称所以双向。</text>
 <g transform="translate(0 -4)"><path d="M96,410 C180,410 250,400 330,360 C410,320 500,260 600,230" fill="none" stroke="#1f5d7a" stroke-width="3"/>
 <circle cx="104" cy="410" r="6" fill="#1f5d7a"/>
 <text x="116" y="398" font-size="13" font-weight="bold" fill="#1f5d7a">N 管 20Ω</text>
 <text x="560" y="210" font-size="12" fill="#5b666f">P 管未导通</text></g></g>
 <text x="32" y="348" font-size="12" font-weight="bold" fill="#1f5d7a">1. 零水位</text>
 <rect x="490" y="70" width="450" height="300" rx="10" fill="#fdf8ea" stroke="#c9bb9d" stroke-width="1.2"/>
-<g data-storyboard-beat="顶到4V" transform="translate(517 84) scale(0.4129)"><rect x="48" y="92" width="864" height="440" rx="14" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/>
+<g data-storyboard-beat="顶到4V" transform="translate(529 84) scale(0.3879)"><rect x="48" y="92" width="864" height="440" rx="14" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/>
 <line x1="96" y1="470" x2="864" y2="470" stroke="#c9bb9d" stroke-width="2"/>
 <text x="96" y="500" font-size="12" fill="#5b666f">VIN 0V</text>
 <text x="840" y="500" text-anchor="end" font-size="12" fill="#5b666f">5V</text>
@@ -127,15 +127,15 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <text x="290" y="522" text-anchor="middle" font-size="11" fill="#a4630f">4V</text>
 <line x1="210" y1="136" x2="210" y2="500" stroke="#5b666f" stroke-width="1.2" stroke-dasharray="3,5"/>
 <text x="210" y="522" text-anchor="middle" font-size="11" fill="#5b666f">2.5V 门限</text>
-<rect x="48" y="548" width="864" height="48" rx="10" fill="#e6eff3" stroke="#1f5d7a" stroke-width="1.2"/>
-<text x="72" y="579" font-size="12.5" fill="#16202b">VDD=5V，VTH=1V；N 管管低段、P 管管高段，源漏对称所以双向。</text>
+<rect x="48" y="544" width="864" height="48" rx="10" fill="#e6eff3" stroke="#1f5d7a" stroke-width="1.2"/>
+<text x="72" y="575" font-size="12.5" fill="#16202b">VDD=5V，VTH=1V；N 管管低段、P 管管高段，源漏对称所以双向。</text>
 <g transform="translate(0 -4)"><path d="M96,410 C200,410 260,390 290,220 C300,160 310,140 320,140" fill="none" stroke="#a4630f" stroke-width="3.4"/>
 <circle cx="290" cy="220" r="7" fill="#a4630f"/>
 <text x="306" y="206" font-size="13" font-weight="bold" fill="#a4630f">缺口 = VTH</text>
 <text x="330" y="170" font-size="12" fill="#5b666f">N 管 R_ON→∞</text></g></g>
 <text x="502" y="348" font-size="12" font-weight="bold" fill="#a4630f">2. 顶到4V</text>
 <rect x="20" y="388" width="450" height="300" rx="10" fill="#fdf8ea" stroke="#c9bb9d" stroke-width="1.2"/>
-<g data-storyboard-beat="互补并联" transform="translate(47 402) scale(0.4129)"><rect x="48" y="92" width="864" height="440" rx="14" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/>
+<g data-storyboard-beat="互补并联" transform="translate(59 402) scale(0.3879)"><rect x="48" y="92" width="864" height="440" rx="14" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/>
 <line x1="96" y1="470" x2="864" y2="470" stroke="#c9bb9d" stroke-width="2"/>
 <text x="96" y="500" font-size="12" fill="#5b666f">VIN 0V</text>
 <text x="840" y="500" text-anchor="end" font-size="12" fill="#5b666f">5V</text>
@@ -145,14 +145,14 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <text x="290" y="522" text-anchor="middle" font-size="11" fill="#a4630f">4V</text>
 <line x1="210" y1="136" x2="210" y2="500" stroke="#5b666f" stroke-width="1.2" stroke-dasharray="3,5"/>
 <text x="210" y="522" text-anchor="middle" font-size="11" fill="#5b666f">2.5V 门限</text>
-<rect x="48" y="548" width="864" height="48" rx="10" fill="#e6eff3" stroke="#1f5d7a" stroke-width="1.2"/>
-<text x="72" y="579" font-size="12.5" fill="#16202b">VDD=5V，VTH=1V；N 管管低段、P 管管高段，源漏对称所以双向。</text>
+<rect x="48" y="544" width="864" height="48" rx="10" fill="#e6eff3" stroke="#1f5d7a" stroke-width="1.2"/>
+<text x="72" y="575" font-size="12.5" fill="#16202b">VDD=5V，VTH=1V；N 管管低段、P 管管高段，源漏对称所以双向。</text>
 <g transform="translate(0 -4)"><path d="M96,410 C180,410 240,380 290,300 C350,240 430,300 500,360 C580,410 700,410 864,410" fill="none" stroke="#3d6b4a" stroke-width="3.4"/>
 <path d="M96,430 C180,430 240,400 290,320 C350,260 430,320 500,380 C580,430 700,430 864,430" fill="none" stroke="#1f5d7a" stroke-width="2" stroke-dasharray="7,5"/>
 <text x="430" y="264" font-size="13" font-weight="bold" fill="#3d6b4a">并联包络 20→26.7→20Ω</text></g></g>
 <text x="32" y="666" font-size="12" font-weight="bold" fill="#3d6b4a">3. 互补并联</text>
 <rect x="490" y="388" width="450" height="300" rx="10" fill="#fdf8ea" stroke="#c9bb9d" stroke-width="1.2"/>
-<g data-storyboard-beat="双向与边界" transform="translate(517 402) scale(0.4129)"><rect x="48" y="92" width="864" height="440" rx="14" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/>
+<g data-storyboard-beat="双向与边界" transform="translate(529 402) scale(0.3879)"><rect x="48" y="92" width="864" height="440" rx="14" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/>
 <line x1="96" y1="470" x2="864" y2="470" stroke="#c9bb9d" stroke-width="2"/>
 <text x="96" y="500" font-size="12" fill="#5b666f">VIN 0V</text>
 <text x="840" y="500" text-anchor="end" font-size="12" fill="#5b666f">5V</text>
@@ -162,9 +162,12 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <text x="290" y="522" text-anchor="middle" font-size="11" fill="#a4630f">4V</text>
 <line x1="210" y1="136" x2="210" y2="500" stroke="#5b666f" stroke-width="1.2" stroke-dasharray="3,5"/>
 <text x="210" y="522" text-anchor="middle" font-size="11" fill="#5b666f">2.5V 门限</text>
-<rect x="48" y="548" width="864" height="48" rx="10" fill="#e6eff3" stroke="#1f5d7a" stroke-width="1.2"/>
-<text x="72" y="579" font-size="12.5" fill="#16202b">VDD=5V，VTH=1V；N 管管低段、P 管管高段，源漏对称所以双向。</text>
-<g transform="translate(0 -4)"><rect x="96" y="120" width="360" height="86" rx="10" fill="#f6e7e1" stroke="#a8321f" stroke-width="1.6"/>
+<rect x="48" y="544" width="864" height="48" rx="10" fill="#e6eff3" stroke="#1f5d7a" stroke-width="1.2"/>
+<text x="72" y="575" font-size="12.5" fill="#16202b">VDD=5V，VTH=1V；N 管管低段、P 管管高段，源漏对称所以双向。</text>
+<g transform="translate(0 -4)"><path d="M96,410 C180,410 240,380 290,300 C350,240 430,300 500,360 C580,410 700,410 864,410" fill="none" stroke="#3d6b4a" stroke-width="3.4"/>
+<path d="M96,430 C180,430 240,400 290,320 C350,260 430,320 500,380 C580,430 700,430 864,430" fill="none" stroke="#1f5d7a" stroke-width="2" stroke-dasharray="7,5"/>
+<text x="430" y="264" font-size="13" font-weight="bold" fill="#3d6b4a">并联包络 20→26.7→20Ω</text>
+<rect x="96" y="120" width="360" height="86" rx="10" fill="#f6e7e1" stroke="#a8321f" stroke-width="1.6"/>
 <text x="116" y="150" font-size="13" font-weight="bold" fill="#a8321f">4V 够不够，看下游是谁</text>
 <text x="116" y="176" font-size="12" fill="#16202b">CMOS 门限 2.5V：够用</text>
 <text x="116" y="196" font-size="12" fill="#16202b">轨到轨 ADC：不够</text>

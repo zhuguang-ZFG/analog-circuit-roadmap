@@ -21,7 +21,7 @@ INK, MUTED, RULE = "#16202b", "#5b666f", "#c9bb9d"
 
 def scene():
     tl = Timeline(
-        width=960, height=620, duration=8.0,
+        width=960, height=660, duration=8.0,
         beats=(
             Beat("零水位", 0.0, 1.6, "VIN=0V：N 管全开，P 管没导通", BLUE),
             Beat("顶到4V", 1.6, 3.4, "VIN 升到 4V：N 管压差只剩 VTH，传输停住", AMBER),
@@ -42,8 +42,13 @@ def scene():
         f'<text x="290" y="522" text-anchor="middle" font-size="11" fill="{AMBER}">4V</text>',
         f'<line x1="210" y1="136" x2="210" y2="500" stroke="{MUTED}" stroke-width="1.2" stroke-dasharray="3,5"/>',
         f'<text x="210" y="522" text-anchor="middle" font-size="11" fill="{MUTED}">2.5V 门限</text>',
-        f'<rect x="48" y="548" width="864" height="48" rx="10" fill="{BLUE_T}" stroke="{BLUE}" stroke-width="1.2"/>',
-        f'<text x="72" y="579" font-size="12.5" fill="{INK}">VDD=5V，VTH=1V；N 管管低段、P 管管高段，源漏对称所以双向。</text>',
+        f'<rect x="48" y="544" width="864" height="48" rx="10" fill="{BLUE_T}" stroke="{BLUE}" stroke-width="1.2"/>',
+        f'<text x="72" y="575" font-size="12.5" fill="{INK}">VDD=5V，VTH=1V；N 管管低段、P 管管高段，源漏对称所以双向。</text>',
+    ))
+    envelope = "\n".join((
+        f'<path d="M96,410 C180,410 240,380 290,300 C350,240 430,300 500,360 C580,410 700,410 864,410" fill="none" stroke="{GREEN}" stroke-width="3.4"/>',
+        f'<path d="M96,430 C180,430 240,400 290,320 C350,260 430,320 500,380 C580,430 700,430 864,430" fill="none" stroke="{BLUE}" stroke-width="2" stroke-dasharray="7,5"/>',
+        f'<text x="430" y="264" font-size="13" font-weight="bold" fill="{GREEN}">并联包络 20→26.7→20Ω</text>',
     ))
     layers = [
         Layer(None, persistent),
@@ -59,12 +64,10 @@ def scene():
             f'<text x="306" y="206" font-size="13" font-weight="bold" fill="{AMBER}">缺口 = VTH</text>',
             f'<text x="330" y="170" font-size="12" fill="{MUTED}">N 管 R_ON→∞</text>',
         )), (0, -4)),
-        Layer("互补并联", "\n".join((
-            f'<path d="M96,410 C180,410 240,380 290,300 C350,240 430,300 500,360 C580,410 700,410 864,410" fill="none" stroke="{GREEN}" stroke-width="3.4"/>',
-            f'<path d="M96,430 C180,430 240,400 290,320 C350,260 430,320 500,380 C580,430 700,430 864,430" fill="none" stroke="{BLUE}" stroke-width="2" stroke-dasharray="7,5"/>',
-            f'<text x="430" y="264" font-size="13" font-weight="bold" fill="{GREEN}">并联包络 20→26.7→20Ω</text>',
-        )), (0, -4)),
+        Layer("互补并联", envelope, (0, -4)),
         Layer("双向与边界", "\n".join((
+            # 结论拍仍要看得见包络：否则只剩空坐标轴与两个标注框。
+            envelope,
             f'<rect x="96" y="120" width="360" height="86" rx="10" fill="{RED_T}" stroke="{RED}" stroke-width="1.6"/>',
             f'<text x="116" y="150" font-size="13" font-weight="bold" fill="{RED}">4V 够不够，看下游是谁</text>',
             f'<text x="116" y="176" font-size="12" fill="{INK}">CMOS 门限 2.5V：够用</text>',
