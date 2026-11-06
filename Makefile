@@ -1,7 +1,7 @@
 PY ?= python
 export PYTHONIOENCODING := utf-8
 
-.PHONY: readme gen bookdata labs fonts site book book-pdf book-check print-book print-volumes remake-check remake-ship test-static test-browser verify stats clean visual-audit visual-gray visual-ship
+.PHONY: readme gen bookdata labs fonts site book book-pdf epub book-check print-book print-volumes remake-check remake-ship test-static test-browser verify stats clean visual-audit visual-gray visual-ship
 .PHONY: visual-check
 
 readme:
@@ -29,6 +29,9 @@ book:
 
 book-pdf:
 	$(PY) analog-book/build_book.py --pdf
+
+epub:
+	$(PY) scripts/build_epub.py
 
 book-check:
 	$(PY) analog-book/build_book.py --check --no-build
