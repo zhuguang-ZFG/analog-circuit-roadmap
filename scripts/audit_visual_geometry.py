@@ -166,11 +166,6 @@ def collect(path: Path):
                 return got
         return default
 
-    def rotated(mat) -> bool:
-        """矩阵是否带可见旋转：>0.5° 才算，手绘的 ±0.4° 抖动不算。"""
-        a, b = mat[0], mat[1]
-        return abs(b) > 0.0087 or a < 0.99996
-
     for el in root.iter():
         tag = el.tag.split('}')[-1]
         mat = matrix_of(el)
@@ -184,8 +179,9 @@ def collect(path: Path):
             if not value:
                 continue
             anchor = inherited(el, 'text-anchor', 'start')
-            box = aabb(mat, span(x, y, value, size, anchor))
-            texts.append({'value': value, 'box': box, 'rotated': rotated(mat)})
+            local = span(x, y, value, size, anchor)
+            texts.append({'value': value, 'box': aabb(mat, local),
+                          'local': local, 'mat': mat})
         elif tag == 'rect':
             w, h = float(el.get('width', 0)), float(el.get('height', 0))
             if w >= 40 and h >= 44:          # 细条是进度条/分隔带，不是面板
@@ -221,9 +217,18 @@ def audit(path: Path, animated: bool = False) -> list:
     if animated:
         return defects
 
+    def same_mat(m, n) -> bool:
+        return all(abs(p - q) < 1e-9 for p, q in zip(m, n))
+
     for i in range(len(texts)):
         for j in range(i + 1, len(texts)):
-            a, b = texts[i]['box'], texts[j]['box']
+            # 同一变换下的两段文字按局部坐标比。仿射变换可逆，局部不压则变换后也不压；
+            # 而旋转后的轴对齐外包框只是真字框的超集：164px 宽的斜排文字被量高
+            # 164·sin5° ≈ 14px，足以把 24px 的正常行距报成「互压 7px」。
+            if same_mat(texts[i]['mat'], texts[j]['mat']):
+                a, b = texts[i]['local'], texts[j]['local']
+            else:
+                a, b = texts[i]['box'], texts[j]['box']
             ox = min(a[2], b[2]) - max(a[0], b[0])
             oy = min(a[3], b[3]) - max(a[1], b[1])
             if ox > 2 and oy > 2:

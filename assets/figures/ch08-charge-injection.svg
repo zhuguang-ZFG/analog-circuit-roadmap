@@ -59,7 +59,7 @@
 <line x1="409" y1="298" x2="431" y2="298" stroke="#52606d" stroke-width="2"/>
 <line x1="414" y1="304" x2="426" y2="304" stroke="#52606d" stroke-width="2"/>
 <text x="448" y="254" font-family="'Book Mono',monospace" font-size="12" fill="#14213d">C_hold</text>
-<text x="420" y="330" text-anchor="middle" font-family="'Book Sans','Noto Sans SC',sans-serif" font-size="14" font-weight="700" fill="#14213d">ΔV = Q / C</text>
+<text x="420" y="360" text-anchor="middle" font-family="'Book Sans','Noto Sans SC',sans-serif" font-size="14" font-weight="700" fill="#14213d">ΔV = Q / C</text>
 
 <!-- 分账注解 -->
 <rect x="52" y="380" width="528" height="108" rx="6" fill="#fdf3e3"/>

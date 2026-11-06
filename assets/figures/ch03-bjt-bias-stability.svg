@@ -78,7 +78,7 @@
 <g font-family="'Book Mono',monospace" font-size="10" fill="#52606d" text-anchor="middle">
 <text x="534" y="344">0</text><text x="594" y="344">1</text><text x="654" y="344">2</text><text x="714" y="344">3</text><text x="774" y="344">4</text><text x="834" y="344">5</text><text x="894" y="344">6 mA</text>
 </g>
-<text x="548" y="314" font-family="'Book Sans','Noto Sans SC',sans-serif" font-size="10.5" fill="#52606d">Ic →</text>
+<text x="894" y="314" text-anchor="end" font-family="'Book Sans','Noto Sans SC',sans-serif" font-size="10.5" fill="#52606d">Ic →</text>
 </g>
 
 <g>
