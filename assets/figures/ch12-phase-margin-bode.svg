@@ -38,7 +38,7 @@
 <text x="56" y="336" font-size="12" fill="#52606d">0°</text>
 <line x1="90" y1="490" x2="640" y2="490" stroke="#b42318" stroke-width="1.5" stroke-dasharray="6 4"/>
 <text x="42" y="496" font-size="12" fill="#b42318">−180°</text>
-<text x="60" y="326" font-size="13" fill="#52606d">相位</text>
+<text x="60" y="318" font-size="13" fill="#52606d">相位</text>
 
 <!-- 相位曲线：交越处 -120° -->
 <path d="M 90,345 C 220,352 330,375 460,437 C 540,472 600,482 640,486" fill="none" stroke="#14213d" stroke-width="2.5"/>
