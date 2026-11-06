@@ -4350,14 +4350,14 @@ def make_opamp_slew():
 <text x="{px(2)-8:.0f}" y="{py(0.35):.0f}" text-anchor="end" font-size="10.5" fill="#64748b">若只有 GBW=1MHz 的小信号速度</text>
 <text x="{px(2.02):.0f}" y="{py(0.45):.0f}" font-size="11.5" font-weight="bold" fill="#dc2626">2µs 直线爬坡</text>
 <text x="{px(0.15):.0f}" y="{py(0.12):.0f}" font-size="11" fill="#475569">斜率 = 0.5V/µs（SR）</text>
-<text x="{px(2.42):.0f}" y="{py(0.86):.0f}" font-size="11" fill="#475569">指数收尾 τ≈0.16µs</text>
+<text x="{px(2.22):.0f}" y="{py(0.86):.0f}" font-size="11" fill="#475569">指数收尾 τ≈0.16µs</text>
 <text x="{px(1.35):.0f}" y="{py(0.62):.0f}" text-anchor="middle" font-size="11" font-weight="bold" fill="#b45309">建立时间≈2.6µs</text>
 <circle r="6" fill="#2563eb" stroke="#ffffff" stroke-width="2">
 <animateMotion dur="{DW}s" repeatCount="indefinite" path="{slew_path(2.0, 0.16)}" keyPoints="0;1" keyTimes="0;1"/></circle>
 <rect x="446" y="470" width="330" height="70" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="1.5"/>
 <text x="462" y="494" font-size="11.5" font-weight="bold" fill="#b45309">全功率带宽（同一个运放）</text>
-<text x="462" y="516" font-size="11" fill="#475569">f_max = SR / (2π·V_p) = 0.5 / (2π×0.5) ≈ 159kHz（1Vpp）</text>
-<text x="462" y="534" font-size="11" fill="#475569">10Vpp（V_p=5V）时只剩 ≈16kHz——GBW 1MHz 是个纸面数字</text>
+<text x="452" y="516" font-size="10" fill="#475569">f_max = SR / (2π·V_p) = 0.5 / (2π×0.5) ≈ 159kHz（1Vpp）</text>
+<text x="452" y="534" font-size="10" fill="#475569">10Vpp（V_p=5V）时只剩 ≈16kHz——GBW 1MHz 是个纸面数字</text>
 <circle r="5" fill="#f59e0b"><animateMotion dur="{DW}s" begin="-0.4s" repeatCount="indefinite" path="M90,150 L160,150"/></circle>
 <circle r="5" fill="#64748b"><animateMotion dur="{DW}s" begin="-1.1s" repeatCount="indefinite" path="{slew_path(0.0, 0.16)}" keyPoints="0;1" keyTimes="0;1"/></circle>
 <circle cx="{px(2.0):.0f}" cy="{py(1.0):.0f}" r="5" fill="none" stroke="#dc2626" stroke-width="2.4">
