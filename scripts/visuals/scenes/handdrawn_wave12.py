@@ -49,13 +49,14 @@ def derating_product():
                     '标称容量有测试条件；温度、偏压、老化三项各打八折，只剩一半上下。')]
     parts.append(box(50, 130, 430, 250, fill=PAPER))
     parts.append(text(74, 172, 'Buck 输出 3.3V / 2A', 24, colour=BLUE, weight='700'))
-    parts.append(text(74, 210, '500kHz，电感纹波 0.6A，22µF X5R 0805', 22, colour=INK2))
-    parts.append(f'<line x1="80" y1="246" x2="450" y2="246" stroke="{RULE}" stroke-width="2"/>')
-    parts.append(text(74, 288, '按标称 22µF', 22, colour=INK2))
-    parts.append(text(300, 288, '6.8mV', 26, colour=GREEN, weight='700'))
-    parts.append(text(74, 334, '偏压下只剩约 10µF', 22, colour=INK2))
-    parts.append(text(300, 334, '15mV', 26, colour=RED, weight='700'))
-    parts.append(text(74, 366, '同样电感纹波，容性纹波翻了一倍多', 22, colour=AMBER))
+    parts.append(text(74, 206, '500kHz，电感纹波 0.6A', 22, colour=INK2))
+    parts.append(text(74, 238, '22µF X5R 0805', 22, colour=INK2))
+    parts.append(f'<line x1="80" y1="262" x2="450" y2="262" stroke="{RULE}" stroke-width="2"/>')
+    parts.append(text(74, 294, '按标称 22µF', 22, colour=INK2))
+    parts.append(text(300, 294, '6.8mV', 26, colour=GREEN, weight='700'))
+    parts.append(text(74, 330, '偏压下只剩约 10µF', 22, colour=INK2))
+    parts.append(text(300, 330, '15mV', 26, colour=RED, weight='700'))
+    parts.append(text(74, 362, '同样电感纹波，容性纹波翻了一倍多', 22, colour=AMBER))
     parts.append(box(520, 130, 430, 250, fill=PAPER))
     parts.append(text(544, 172, '三项保持率相乘', 24, colour=RED, weight='700'))
     parts.append(text(544, 212, '温度保持率', 22, colour=INK2))
@@ -139,7 +140,7 @@ def slew_vs_gbw():
     parts.append(text(544, 320, 'NE5532　SR 9V/µs', 22, colour=INK2))
     parts.append(text(900, 320, '286kHz', 26, colour=GREEN, anchor='end', weight='700'))
     parts.append(text(544, 364, '收尾段按一阶收敛：τ = 0.16µs', 22, colour=INK2))
-    parts.append(text(544, 398, '进 0.1% 要 6.9τ ≈ 1.1µs；12bit 要 8.3τ', 22, colour=AMBER,
+    parts.append(text(544, 398, '进 0.1% 要 6.9τ；12bit 要 8.3τ', 22, colour=AMBER,
                       weight='700'))
     parts.append(box(50, 440, 900, 120, fill=PAPER))
     parts.append(text(76, 480, '2µs 爬坡把总建立时间从约 1.1µs 拖到 2.6µs。', 24,
@@ -159,7 +160,7 @@ def pullup_three_accounts():
     parts.append(box(50, 126, 900, 196, fill=PAPER))
     cols = [
         (86, '速度账', GREEN, ['上升沿充总线与负载电容', 'tr ≈ 2.2RC', 'R 越小沿越快']),
-        (386, '低电平账', RED, ['IOL = Vpullup / R 全进输出管', '手册保证灌电流下限 6mA',
+        (386, '低电平账', RED, ['IOL = Vpullup / R', '电流全进输出管，下限 6mA',
                                 '灌得越多 VOL 越高']),
         (686, '噪声账', BLUE, ['R 越小节点阻抗越低', '抗串扰越好', '高速开漏总线用强上拉']),
     ]

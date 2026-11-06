@@ -1,0 +1,15 @@
+{
+  "id": "ch09-ldo-four-accounts",
+  "title": "7805 四种死法对应的四本账",
+  "alt": "手绘四行账：热账写功耗等于输入减 5 伏再乘电流，12 伏降 5 伏带 300 毫安是 2.1 瓦，无散热片必热关断；纹波账写输入谷值必须大于等于输出加压差，100 赫兹纹波跌破压差线就下垂；稳定性账写 AMS1117 的环路补偿依赖输出电容 ESR，出窗口就振荡；上电账写大压差加快上电时调整管未及时响应，过冲超过 10% 且持续微秒级。底部一行写升级路径与经验分界：降输入 Buck 到 7.5 伏功耗减三分之二，换 DCDC 效率 85% 到 95%、2.1 瓦变 0.3 瓦；压差乘电流大于 1 瓦就别让线性稳压硬扛，小于 0.3 瓦时线性全面占优。",
+  "anchor": "9.4",
+  "source": "docs/p1-10-ch9.md",
+  "canvas": [
+    1000,
+    700
+  ],
+  "print_width_mm": 138,
+  "generator": "python-handraw-v1",
+  "output": "assets/figures-v2/ch09-ldo-four-accounts.svg",
+  "print_fallback": "assets/figures-v2/ch09-ldo-four-accounts-print.svg"
+}

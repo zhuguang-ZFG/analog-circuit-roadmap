@@ -55,7 +55,7 @@ def compliance_ceiling():
         parts.append(text(x + 24, 192, head, 26, colour=colour, weight='700'))
         parts.append(text(x + 24, 236, 'RL,max', 22, colour=INK2))
         parts.append(text(x + 24, 306, value, 44, colour=colour, weight='700'))
-        parts.append(text(x + 24, 350, '1mA × RL + 0.1V + 0.7V', 22, colour=INK2))
+        parts.append(text(x + 24, 350, '1mA×RL + 0.1V + 0.7V', 22, colour=INK2))
     parts.append(box(50, 410, 900, 150, fill=PAPER))
     parts.append(text(76, 450, '4~20mA 环为什么用 24V？', 24, weight='700'))
     rows = [

@@ -24,7 +24,7 @@
 <text x="122" y="734" fill="#2a2927" font-size="34" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#efe7dc">芯片反复重启</text>
 <text x="122" y="774" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#efe7dc">带载能力不足</text>
 <text x="122" y="810" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#efe7dc">抓负载阶跃的跌落</text>
-<text x="98" y="856" fill="#535453" font-size="32" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#efe7dc">这一层的共同点：故障在电源内部，量针脚就能分。</text>
+<text x="98" y="856" fill="#535453" font-size="32" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#efe7dc">共同点：故障在电源内部，量针脚能分。</text>
 <text x="798" y="268" fill="#2a2927" font-size="42" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">再查系统交界</text>
 <line x1="798" y1="292" x2="1350" y2="292" stroke="#c4b9ab" stroke-width="2" stroke-dasharray="" />
 <text x="822" y="350" fill="#2a2927" font-size="34" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">上电顺序错乱</text>
