@@ -3433,11 +3433,29 @@ assets:
   output: assets/figures-v2/ch17-power-fault-layers.svg
   print_fallback: assets/figures-v2/ch17-power-fault-layers-print.svg
   alt: 左右两栏把表 17-2 分成电源自身与系统交界两层：左栏列输出为零、偏低纹波大、偏高不可调、反复重启；右栏列上电顺序、热插拔、续航与 ADC 读数四类交界故障。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 5
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: contact-sheet visual review
+    scope: Wave 13 重绘复签（仅版面变更）
+    user_chapter_acceptance: accepted
+    reviewed_on: '2026-11-06'
+    record: docs/superpowers/visual/reviews/task8-2026-11-05/WAVE13-REVIEW.md
+    asset_sha256: 83760d7da4a529742a9067c0aad8bd2512eccbd4ba9397158ce79be5cab1ada7
+    resign_reason: >-
+      e5aad5d 已签核；af8878c 为修版面缺陷重绘，SHA 变化使原签核失效。
+      本次复签经用户明确授权，变更仅为坐标与一句脚注缩短，数字未变。
   generator: python-svg-papercut-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch17-power-fault-layers.json
   quant_rules:
@@ -4541,11 +4559,29 @@ assets:
   output: assets/figures-v2/ch08-crosstalk-cascade-mismatch.svg
   print_fallback: assets/figures-v2/ch08-crosstalk-cascade-mismatch-print.svg
   alt: 双对数频率轴上两条 20dB/十倍频泄漏线：10kΩ 在 100kHz 为 −50dB、600Ω 压到 −65dB 以下；另标差分失配 10Ω 得 60dB 与每十倍频 20dB 的斜率。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 5
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: contact-sheet visual review
+    scope: Wave 13 重绘复签（仅版面变更）
+    user_chapter_acceptance: accepted
+    reviewed_on: '2026-11-06'
+    record: docs/superpowers/visual/reviews/task8-2026-11-05/WAVE13-REVIEW.md
+    asset_sha256: 9a37ca90ad385b84c01b1ea24e7d40cb209fc670f265f2e348b39d1760a82b6f
+    resign_reason: >-
+      e5aad5d 已签核；af8878c 为修版面缺陷重绘，SHA 变化使原签核失效。
+      本次复签经用户明确授权，变更仅为坐标与一句脚注缩短，数字未变。
   generator: python-svg-papercut-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch08-crosstalk-cascade-mismatch.json
   quant_rules:
@@ -5138,11 +5174,29 @@ assets:
   output: assets/figures-v2/ch08-scope-expected-beats.svg
   print_fallback: assets/figures-v2/ch08-scope-expected-beats-print.svg
   alt: 示波器预期波形：拍①指数爬升、拍③沿上窄台阶、随后 droop 缓降、再采样；右上标控制摆幅 5V 与 3.3V 下馈通 0.5mV 与 0.33mV，屏角注明非实测。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 5
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: contact-sheet visual review
+    scope: Wave 13 重绘复签（仅版面变更）
+    user_chapter_acceptance: accepted
+    reviewed_on: '2026-11-06'
+    record: docs/superpowers/visual/reviews/task8-2026-11-05/WAVE13-REVIEW.md
+    asset_sha256: 53f781a4ab5a8cc0b9f10545429ab55787f18590dcb66ce4d7310c9eea693168
+    resign_reason: >-
+      e5aad5d 已签核；af8878c 为修版面缺陷重绘，SHA 变化使原签核失效。
+      本次复签经用户明确授权，变更仅为坐标与一句脚注缩短，数字未变。
   generator: python-svg-papercut-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch08-scope-expected-beats.json
   quant_rules:
