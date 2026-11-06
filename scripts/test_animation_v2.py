@@ -127,6 +127,25 @@ class AnimationV2Tests(unittest.TestCase):
                 self.assertIn(needle, static, '结论帧必须保留两次读数与压差')
         self.assertNotIn('读数：—', static, '结论帧不得退回占位读数')
 
+    def test_source_types_final_frame_keeps_three_curves(self):
+        from scripts.visuals.scenes.ch00_source_types_v2 import scene
+
+        tl, layers = scene()
+        static = static_svg(tl, layers)
+        for needle in ('x1="260" y1="180" x2="260" y2="410"',   # 恒压竖线
+                       'x1="120" y1="250" x2="660" y2="250"',   # 恒流水平线
+                       'x1="120" y1="180" x2="470" y2="188"'):  # 真实源斜线
+            with self.subTest(needle=needle):
+                self.assertIn(needle, static, '结论帧不能只剩空坐标轴')
+
+    def test_divider_loading_final_frame_keeps_load_branch(self):
+        from scripts.visuals.scenes.ch00_divider_loading_v2 import scene
+
+        tl, layers = scene()
+        static = static_svg(tl, layers)
+        self.assertIn('RL 10kΩ', static, '结论帧必须保留负载支路')
+        self.assertIn('<rect x="624" y="380" width="32" height="46"', static, '负载电阻要画出来')
+
     def test_all_real_scenes_reproduce_checked_in_triplets(self):
         root = Path(__file__).resolve().parents[1]
         for source in sorted((root / 'scripts/visuals/scenes').glob('ch*.py')):

@@ -87,6 +87,12 @@ def scene():
             f'<text x="500" y="374" font-size="11.5" fill="{MUTED}">电压指针矮了三分之一。</text>',
         )), (0, -4)),
         Layer("判据", "\n".join((
+            # 结论拍保留负载支路：否则「下臂被并联」在图上只剩一根虚线和 RL 两个字。
+            f'<line x1="640" y1="300" x2="640" y2="380" stroke="{INK}" stroke-width="2.4"/>',
+            f'<rect x="624" y="380" width="32" height="46" rx="3" fill="#fdf8ea" stroke="{GREEN}" stroke-width="2"/>',
+            f'<line x1="640" y1="426" x2="640" y2="448" stroke="{INK}" stroke-width="2.4"/>',
+            f'<line x1="620" y1="448" x2="660" y2="448" stroke="{INK}" stroke-width="2.4"/>',
+            f'<text x="670" y="404" font-size="12" font-weight="bold" fill="{GREEN}">RL 10kΩ</text>',
             f'<rect x="500" y="168" width="340" height="118" rx="10" fill="{AMBER_T}" stroke="{AMBER}" stroke-width="1.6"/>',
             f'<text x="520" y="198" font-size="13" font-weight="bold" fill="{AMBER}">带载能力看输出电阻</text>',
             f'<text x="520" y="224" font-size="12.5" fill="{INK}">Rout = R1∥R2 = 5kΩ</text>',

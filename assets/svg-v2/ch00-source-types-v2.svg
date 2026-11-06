@@ -115,7 +115,12 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <text x="300" y="170" font-size="11.5" fill="#a4630f">1mΩ：5A 掉 5mV</text>
 <text x="330" y="230" font-size="11.5" fill="#a8321f">100mΩ：2A 掉 200mV</text>
 <text x="470" y="166" font-size="10.5" fill="#5b666f">斜率放大示意</text><animate attributeName="opacity" values="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.25 0.1 0.25 1" begin="4s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1" begin="6.6s" dur="0.4s" fill="freeze"/><animateTransform attributeName="transform" type="translate" from="0 0" to="0 -4" begin="4s" dur="0.6s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1" keyTimes="0;1"/></g>
-<g data-beat="接法" opacity="0"><rect x="512" y="150" width="304" height="100" rx="10" fill="#e6eff3" stroke="#1f5d7a" stroke-width="1.5"/>
+<g data-beat="接法" opacity="0"><line x1="260" y1="180" x2="260" y2="410" stroke="#1f5d7a" stroke-width="4"/>
+<line x1="120" y1="250" x2="660" y2="250" stroke="#3d6b4a" stroke-width="4"/>
+<line x1="120" y1="180" x2="470" y2="188" stroke="#a4630f" stroke-width="3.4"/>
+<line x1="120" y1="180" x2="500" y2="212" stroke="#a8321f" stroke-width="3.4"/>
+<text x="120" y="488" font-size="11.5" fill="#5b666f">竖线 / 水平线 / 两条斜线，就是三种源的性格</text>
+<rect x="512" y="150" width="304" height="100" rx="10" fill="#e6eff3" stroke="#1f5d7a" stroke-width="1.5"/>
 <text x="532" y="178" font-size="13" font-weight="bold" fill="#1f5d7a">恒压源 → 负载并联</text>
 <text x="532" y="202" font-size="11.5" fill="#16202b">各自独立取电流</text>
 <text x="532" y="226" font-size="11.5" fill="#5b666f">例：多路 LED 各串限流电阻</text>

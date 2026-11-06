@@ -59,6 +59,12 @@ def scene():
             f'<text x="470" y="166" font-size="10.5" fill="{MUTED}">斜率放大示意</text>',
         )), (0, -4)),
         Layer("接法", "\n".join((
+            # 结论拍必须留着三条曲线：只留右边的两张卡，左半张图就是空坐标轴。
+            f'<line x1="260" y1="180" x2="260" y2="410" stroke="{BLUE}" stroke-width="4"/>',
+            f'<line x1="120" y1="250" x2="660" y2="250" stroke="{GREEN}" stroke-width="4"/>',
+            f'<line x1="120" y1="180" x2="470" y2="188" stroke="{AMBER}" stroke-width="3.4"/>',
+            f'<line x1="120" y1="180" x2="500" y2="212" stroke="{RED}" stroke-width="3.4"/>',
+            f'<text x="120" y="488" font-size="11.5" fill="{MUTED}">竖线 / 水平线 / 两条斜线，就是三种源的性格</text>',
             f'<rect x="512" y="150" width="304" height="100" rx="10" fill="{BLUE_T}" stroke="{BLUE}" stroke-width="1.5"/>',
             f'<text x="532" y="178" font-size="13" font-weight="bold" fill="{BLUE}">恒压源 → 负载并联</text>',
             f'<text x="532" y="202" font-size="11.5" fill="{INK}">各自独立取电流</text>',
