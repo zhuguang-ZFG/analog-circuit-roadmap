@@ -1,0 +1,15 @@
+{
+  "id": "ch07-threshold-budget",
+  "title": "阈值精度的误差预算排序",
+  "alt": "手绘阈值误差预算条形图：电阻容差让分压比最坏偏差正负 2%、基准偏正负 50 毫伏，条形最长；器件失调手册保证最大正负 5 毫伏；偏流失调 25 纳安乘 49 千欧约 1.2 毫伏，条形最短。下排左栏写 PNP 输入级偏流从管脚流出来，基准侧源阻 50 千欧、信号侧 1 千欧，进误差的是差值不是绝对值；右栏给两条修法：让两侧源阻尽量相等，或换 CMOS 输入比较器让偏流降到皮安级。底部写常见误设计是挑低失调器件却用 5% 分压电阻。",
+  "anchor": "7.2",
+  "source": "docs/p1-08-ch7.md",
+  "canvas": [
+    1000,
+    700
+  ],
+  "print_width_mm": 138,
+  "generator": "python-handraw-v1",
+  "output": "assets/figures-v2/ch07-threshold-budget.svg",
+  "print_fallback": "assets/figures-v2/ch07-threshold-budget-print.svg"
+}
