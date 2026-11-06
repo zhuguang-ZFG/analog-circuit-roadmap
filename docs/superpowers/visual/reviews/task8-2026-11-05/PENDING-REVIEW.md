@@ -26,12 +26,15 @@
 1. 五项评分，每项必须落在 **4~5**：`教学必要性`、`事实精度`、`构图层级`、`风格一致性`、`印刷可读性`。
 2. **动画（本队列 12 张，`kind: animation`）另加两项**：`运动叙事`、`交互节奏`，且七项合计 **≥ 30/35**。
    评这两项需要动态入口（`storyboard` / `reduced_motion` / `preview`），静态 fallback 不足以评。
-3. 状态**必须逐级迁移，不能一步到 `accepted`**：
+3. 先把 `review_scores` 写进 manifest 条目，**再**迁移状态。顺序颠倒会被拒：
+   `--transition` 只在 `check()` 全过时才写盘，评分缺失时报
+   `FAIL <ID>: 评分「构图层级」须在 4..5 内`，文件保持原样。
    ```bash
-   python scripts/check_visual_manifest.py --transition <ID> reviewed --previous <旧 manifest>
-   python scripts/check_visual_manifest.py --transition <ID> accepted --previous <旧 manifest>
+   python scripts/check_visual_manifest.py --transition <ID> reviewed
+   python scripts/check_visual_manifest.py --transition <ID> accepted
    ```
-   `status_history` 必须恰好是 `["planned","generated","reviewed","accepted"]` 的前缀；越级或回退会被闸门拒绝。
+   `status_history` 必须恰好落在 `["planned","generated","reviewed","accepted"]` 上；
+   越级或回退会被拒。`--previous <旧 manifest>` 可选，用来额外禁止一次跳多级。
 4. `asset_sha256` 必须按**当前 SVG 字节**重算（CRLF→LF 归一），不得沿用旧签核的值。
 5. 任何一张重绘后 SHA 变化，签核作废，必须退回 `generated` 并重新逐级迁移。
 
