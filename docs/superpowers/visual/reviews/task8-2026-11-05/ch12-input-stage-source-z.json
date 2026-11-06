@@ -1,0 +1,15 @@
+{
+  "id": "ch12-input-stage-source-z",
+  "title": "按源阻抗选运放输入级",
+  "alt": "手绘输入级选型两栏，顶部写误差电压等于偏置电流乘源阻抗。左侧红框高源阻 1 兆欧光电二极管：BJT 输入偏置电流 20 纳安得 20 毫伏，偏置电流每升 10 摄氏度约翻一倍、40 摄氏度时 80 毫伏；CMOS 输入偏置电流 1 皮安得 1 微伏，好了四个数量级。右侧绿框低源阻 10 千欧：电阻自身热噪声是地板 12.9 纳伏每根号赫兹，BJT 总噪声 13.8、CMOS 总噪声 23.8，BJT 赢 1.7 倍。下方蓝框一句话记法：低源阻挑电压噪声小的 BJT，高源阻挑偏置电流小的 CMOS 或 JFET，中间地带比一比电压噪声与电流噪声乘源阻谁大。底部琥珀框写买轨到轨输入输出之前要知道的代价：NMOS 对与 PMOS 对交接班处跨导凹陷，失真从 0.001% 抬到 0.01% 量级，失调出现台阶。",
+  "anchor": "12.13",
+  "source": "docs/p2-02-ch12.md",
+  "canvas": [
+    1000,
+    700
+  ],
+  "print_width_mm": 138,
+  "generator": "python-handraw-v1",
+  "output": "assets/figures-v2/ch12-input-stage-source-z.svg",
+  "print_fallback": "assets/figures-v2/ch12-input-stage-source-z-print.svg"
+}

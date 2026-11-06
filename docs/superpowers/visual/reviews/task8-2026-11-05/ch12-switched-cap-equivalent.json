@@ -1,0 +1,15 @@
+{
+  "id": "ch12-switched-cap-equivalent",
+  "title": "开关电容等效电阻的来历与代价",
+  "alt": "手绘开关电容两栏：左栏写一个时钟周期搬一包电荷，每周期搬运 ΔQ 等于 C 乘 ΔV，平均电流等于 f_clk 乘 C 乘 ΔV，等效电阻等于 1 除以 f_clk 乘 C，阻值只由 f_clk 与 C 决定；右栏算例给 1 皮法电容加 100 千赫时钟等于 10 兆欧，硅片上几乎不占面积。中段写时间常数里没有绝对电阻了，只剩两样最准的东西：电容比值在 IC 里匹配到 0.1%，一个晶振准到 ppm。底部红框写代价是它从此是个采样系统，有采样就有混叠，前面必须加抗混叠滤波器，时钟常取信号带宽的 50 到 100 倍。",
+  "anchor": "12.12",
+  "source": "docs/p2-02-ch12.md",
+  "canvas": [
+    1000,
+    700
+  ],
+  "print_width_mm": 138,
+  "generator": "python-handraw-v1",
+  "output": "assets/figures-v2/ch12-switched-cap-equivalent.svg",
+  "print_fallback": "assets/figures-v2/ch12-switched-cap-equivalent-print.svg"
+}
