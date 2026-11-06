@@ -26,6 +26,8 @@
 
 本轮回归代码需人审：`scripts/test_animation_v2.py` 的两项固定坐标/字符串测试改为物理方向与禁止时序的不变量检查；`scripts/test_svg_assets.py` 新增关联旧图的方向回归。测试均实际运行，但修改过的测试不自动成为可信基线；没有更改执行器、策略或评分门禁。
 
+动画中心的“看点”同时供印刷附录 A 生成摘要。修改 `docs/p5-00-part5.md` 后，除重建 `BOOK.md`，还必须运行 `python scripts/build_book_data.py --write`，再用 `--check` 核验派生台账。本次漏更新导致 `test_book_data.AnimationTests.test_real_generator_matches_committed_yaml` 在 CI 抓到 `anim-078.one_line` 仍是旧方向；已重新生成，153 条动画的其他记录及来源、文献、审读台账保持不变。
+
 ## 已有证据的**实际覆盖范围**
 
 各项检查覆盖到哪些条目并不相同，逐项写明：
