@@ -1,7 +1,9 @@
 # 待审图清单（119 张 generated）
 
 本页只索引**尚未人工签核**的手绘候选：全部 `status: generated`，`review_scores` 为空，
-因此**未插入正文**——正文只接受 `accepted`（否则 `build_book.py` 抛 `BookError`）。
+因此**未插入正文**。`analog-book/book/content.py:_asset_path` 的规则按 `kind` 分叉：
+- `kind: figure`（本队列 107 张）：状态必须是 `accepted`/`published`，否则抛 `BookError: V2 插图尚未通过审图`。
+- `kind: animation`（本队列 12 张）：**不校验状态**，只要求 `storyboard` 回退存在且路径合法；12 张的回退文件均已存在，故动画在技术上可以不入审直接插文——是否这样做是编辑决策，需另行拍板。
 
 ## 已有证据的**实际覆盖范围**
 
