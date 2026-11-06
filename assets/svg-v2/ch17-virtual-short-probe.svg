@@ -112,15 +112,23 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <text x="300" y="326" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#a8321f">V+</text>
 <rect x="660" y="120" width="260" height="110" rx="12" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/>
 <text x="684" y="150" font-size="12.5" font-weight="bold" fill="#37424e">万用表</text>
-<text x="684" y="184" font-size="12" fill="#5b666f">V- 读数：-</text>
-<text x="684" y="212" font-size="12" fill="#5b666f">V+ 读数：-</text>
+<g data-beat="认脚" opacity="0"><text x="684" y="184" font-size="14" font-weight="bold" fill="#5b666f">V- 读数：—</text>
+<text x="684" y="212" font-size="14" font-weight="bold" fill="#5b666f">V+ 读数：—</text><animate attributeName="opacity" values="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.25 0.1 0.25 1" begin="0s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1" begin="1.5s" dur="0.4s" fill="freeze"/></g>
 <g data-beat="量V-" opacity="0"><circle cx="340" cy="210" r="9" fill="#e6eff3" stroke="#1f5d7a" stroke-width="2"/>
-<text x="660" y="184" font-size="14" font-weight="bold" fill="#1f5d7a">V- 读数：2.500V</text><animate attributeName="opacity" values="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.25 0.1 0.25 1" begin="1.5s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1" begin="3s" dur="0.4s" fill="freeze"/><animateTransform attributeName="transform" type="translate" from="0 0" to="0 -6" begin="1.5s" dur="0.6s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1" keyTimes="0;1"/></g>
+<text x="684" y="184" font-size="14" font-weight="bold" fill="#1f5d7a">V- 读数：2.500V</text>
+<text x="684" y="212" font-size="14" font-weight="bold" fill="#5b666f">V+ 读数：—</text><animate attributeName="opacity" values="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.25 0.1 0.25 1" begin="1.5s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1" begin="3s" dur="0.4s" fill="freeze"/><animateTransform attributeName="transform" type="translate" from="0 0" to="0 -6" begin="1.5s" dur="0.6s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1" keyTimes="0;1"/></g>
 <g data-beat="量V+" opacity="0"><circle cx="340" cy="290" r="9" fill="#f6e7e1" stroke="#a8321f" stroke-width="2"/>
-<text x="660" y="212" font-size="14" font-weight="bold" fill="#a8321f">V+ 读数：2.508V</text><animate attributeName="opacity" values="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.25 0.1 0.25 1" begin="3s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1" begin="4.5s" dur="0.4s" fill="freeze"/><animateTransform attributeName="transform" type="translate" from="0 0" to="0 -6" begin="3s" dur="0.6s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1" keyTimes="0;1"/></g>
-<g data-beat="算压差" opacity="0"><rect x="660" y="244" width="260" height="52" rx="10" fill="#f7eedb" stroke="#a4630f" stroke-width="1.8"/>
+<text x="684" y="184" font-size="14" font-weight="bold" fill="#1f5d7a">V- 读数：2.500V</text>
+<text x="684" y="212" font-size="14" font-weight="bold" fill="#a8321f">V+ 读数：2.508V</text><animate attributeName="opacity" values="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.25 0.1 0.25 1" begin="3s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1" begin="4.5s" dur="0.4s" fill="freeze"/><animateTransform attributeName="transform" type="translate" from="0 0" to="0 -6" begin="3s" dur="0.6s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1" keyTimes="0;1"/></g>
+<g data-beat="算压差" opacity="0"><text x="684" y="184" font-size="14" font-weight="bold" fill="#1f5d7a">V- 读数：2.500V</text>
+<text x="684" y="212" font-size="14" font-weight="bold" fill="#a8321f">V+ 读数：2.508V</text>
+<rect x="660" y="244" width="260" height="52" rx="10" fill="#f7eedb" stroke="#a4630f" stroke-width="1.8"/>
 <text x="684" y="276" font-size="14" font-weight="bold" fill="#a4630f">压差 2.508 - 2.500 = 8mV</text><animate attributeName="opacity" values="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.25 0.1 0.25 1" begin="4.5s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1" begin="6s" dur="0.4s" fill="freeze"/><animateTransform attributeName="transform" type="translate" from="0 0" to="8 0" begin="4.5s" dur="0.6s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1" keyTimes="0;1"/></g>
-<g data-beat="判读" opacity="0"><rect x="60" y="400" width="840" height="120" rx="12" fill="#e8efe6" stroke="#3d6b4a" stroke-width="2"/>
+<g data-beat="判读" opacity="0"><text x="684" y="184" font-size="14" font-weight="bold" fill="#1f5d7a">V- 读数：2.500V</text>
+<text x="684" y="212" font-size="14" font-weight="bold" fill="#a8321f">V+ 读数：2.508V</text>
+<rect x="660" y="244" width="260" height="52" rx="10" fill="#f7eedb" stroke="#a4630f" stroke-width="1.8"/>
+<text x="684" y="276" font-size="14" font-weight="bold" fill="#a4630f">压差 2.508 - 2.500 = 8mV</text>
+<rect x="60" y="400" width="840" height="120" rx="12" fill="#e8efe6" stroke="#3d6b4a" stroke-width="2"/>
 <text x="84" y="436" font-size="14" font-weight="bold" fill="#3d6b4a">判读：压差 8mV 远小于几十 mV 阈值 → 虚短成立</text>
 <text x="84" y="466" font-size="12.5" fill="#16202b">运放两输入端近似等电位，反馈在正常工作——问题不在运放，</text>
 <text x="84" y="490" font-size="12.5" fill="#16202b">嫌疑移交：供电、前级信号、输出负载。</text><animate attributeName="opacity" values="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.25 0.1 0.25 1" begin="6s" dur="0.45s" fill="freeze"/><animateTransform attributeName="transform" type="translate" from="0 0" to="0 -4" begin="6s" dur="0.6s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1" keyTimes="0;1"/></g>

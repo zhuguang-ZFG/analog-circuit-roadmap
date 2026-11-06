@@ -21,7 +21,7 @@ INK, MUTED, RULE = "#16202b", "#5b666f", "#c9bb9d"
 
 def scene():
     tl = Timeline(
-        width=960, height=620, duration=9.0,
+        width=960, height=660, duration=9.0,
         beats=(
             Beat("停在011", 0.0, 1.6, "当前选中通道 3：地址 011 稳定", BLUE),
             Beat("三位抢跑", 1.6, 3.4, "改到 100 时三位不同时翻转，中间态先出现", AMBER),
@@ -42,14 +42,33 @@ def scene():
         f'<line x1="96" y1="446" x2="864" y2="446" stroke="{RULE}" stroke-width="1.2"/>',
         f'<text x="480" y="480" text-anchor="middle" font-size="12" fill="{MUTED}">时间（切换沿几十 ns 级）</text>',
     ))
+    story = "\n".join((
+        f'<rect x="120" y="204" width="120" height="52" rx="8" fill="{BLUE_T}" stroke="{BLUE}" stroke-width="2"/>',
+        f'<text x="180" y="238" text-anchor="middle" font-size="18" font-weight="bold" fill="{BLUE}">011</text>',
+        f'<text x="120" y="284" font-size="12.5" fill="{INK}">选中通道 3，稳定</text>',
+        f'<rect x="340" y="204" width="120" height="52" rx="8" fill="{AMBER_T}" stroke="{AMBER}" stroke-width="2"/>',
+        f'<text x="400" y="238" text-anchor="middle" font-size="18" font-weight="bold" fill="{AMBER}">111</text>',
+        f'<text x="480" y="238" font-size="13" fill="{INK}">中间态先到</text>',
+        f'<rect x="620" y="204" width="120" height="52" rx="8" fill="{AMBER_T}" stroke="{AMBER}" stroke-width="2"/>',
+        f'<text x="680" y="238" text-anchor="middle" font-size="18" font-weight="bold" fill="{AMBER}">100</text>',
+        f'<rect x="340" y="310" width="120" height="34" rx="6" fill="{RED_T}" stroke="{RED}" stroke-width="2"/>',
+        f'<text x="400" y="334" text-anchor="middle" font-size="12.5" font-weight="bold" fill="{RED}">通道 7 先导通</text>',
+        f'<text x="480" y="334" font-size="12" fill="{RED}">无关信号短促进入 / 泄一包电荷</text>',
+    ))
+    inh_pulse = "\n".join((
+        f'<path d="M120,440 L340,440 L340,404 L620,404 L620,440 L864,440" fill="none" stroke="{GREEN}" stroke-width="3"/>',
+        f'<text x="690" y="398" font-size="12.5" font-weight="bold" fill="{GREEN}">INH 罩住整个地址跳变</text>',
+    ))
     layers = [
         Layer(None, persistent),
         Layer("停在011", "\n".join((
             f'<rect x="120" y="204" width="120" height="52" rx="8" fill="{BLUE_T}" stroke="{BLUE}" stroke-width="2"/>',
             f'<text x="180" y="238" text-anchor="middle" font-size="18" font-weight="bold" fill="{BLUE}">011</text>',
-            f'<text x="300" y="238" font-size="13" fill="{INK}">选中通道 3，稳定</text>',
+            f'<text x="120" y="284" font-size="12.5" fill="{INK}">选中通道 3，稳定</text>',
         )), (0, -4)),
         Layer("三位抢跑", "\n".join((
+            f'<rect x="120" y="204" width="120" height="52" rx="8" fill="{BLUE_T}" stroke="{BLUE}" stroke-width="2"/>',
+            f'<text x="180" y="238" text-anchor="middle" font-size="18" font-weight="bold" fill="{BLUE}">011</text>',
             f'<rect x="340" y="204" width="120" height="52" rx="8" fill="{AMBER_T}" stroke="{AMBER}" stroke-width="2"/>',
             f'<text x="400" y="238" text-anchor="middle" font-size="18" font-weight="bold" fill="{AMBER}">111</text>',
             f'<text x="480" y="238" font-size="13" fill="{INK}">中间态先到</text>',
@@ -57,18 +76,23 @@ def scene():
             f'<text x="680" y="238" text-anchor="middle" font-size="18" font-weight="bold" fill="{AMBER}">010</text>',
         )), (0, -4)),
         Layer("路过111", "\n".join((
+            f'<rect x="120" y="204" width="120" height="52" rx="8" fill="{BLUE_T}" stroke="{BLUE}" stroke-width="2"/>',
+            f'<text x="180" y="238" text-anchor="middle" font-size="18" font-weight="bold" fill="{BLUE}">011</text>',
+            f'<rect x="340" y="204" width="120" height="52" rx="8" fill="{AMBER_T}" stroke="{AMBER}" stroke-width="2"/>',
+            f'<text x="400" y="238" text-anchor="middle" font-size="18" font-weight="bold" fill="{AMBER}">111</text>',
+            f'<text x="480" y="238" font-size="13" fill="{INK}">中间态先到</text>',
             f'<rect x="340" y="310" width="120" height="34" rx="6" fill="{RED_T}" stroke="{RED}" stroke-width="2"/>',
             f'<text x="400" y="334" text-anchor="middle" font-size="12.5" font-weight="bold" fill="{RED}">通道 7 先导通</text>',
             f'<text x="480" y="334" font-size="12" fill="{RED}">无关信号短促进入 / 泄一包电荷</text>',
         )), (0, -4)),
-        Layer("先拉INH", "\n".join((
-            f'<path d="M120,440 L340,440 L340,404 L620,404 L620,440 L864,440" fill="none" stroke="{GREEN}" stroke-width="3"/>',
-            f'<text x="690" y="398" font-size="12.5" font-weight="bold" fill="{GREEN}">INH 罩住整个地址跳变</text>',
-        )), (0, -4)),
+        Layer("先拉INH", "\n".join((story, inh_pulse)), (0, -4)),
         Layer("等够再采", "\n".join((
-            f'<rect x="96" y="508" width="816" height="76" rx="10" fill="{GREEN_T}" stroke="{GREEN}" stroke-width="1.6"/>',
-            f'<text x="120" y="538" font-size="13" font-weight="bold" fill="{GREEN}">对策按代价排：先拉 INH → 格雷码 → 采样窗错开 ≥ t_ON</text>',
-            f'<text x="120" y="564" font-size="12" fill="{INK}">判据：地址稳定到采样窗开启的间隔 ≥ t_ON，期间不采样。</text>',
+            # 结论拍保留整幅时序：否则只剩空坐标轴与一张对策卡。
+            story,
+            inh_pulse,
+            f'<rect x="96" y="500" width="816" height="76" rx="10" fill="{GREEN_T}" stroke="{GREEN}" stroke-width="1.6"/>',
+            f'<text x="120" y="530" font-size="13" font-weight="bold" fill="{GREEN}">对策按代价排：先拉 INH → 格雷码 → 采样窗错开 ≥ t_ON</text>',
+            f'<text x="120" y="556" font-size="12" fill="{INK}">判据：地址稳定到采样窗开启的间隔 ≥ t_ON，期间不采样。</text>',
         )), (0, -4)),
     ]
     return tl, layers

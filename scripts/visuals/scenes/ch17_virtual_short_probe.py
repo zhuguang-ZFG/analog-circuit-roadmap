@@ -48,30 +48,44 @@ def scene():
         f'<text x="300" y="326" text-anchor="middle" font-size="12.5" font-weight="bold" fill="{RED}">V+</text>',
         f'<rect x="660" y="120" width="260" height="110" rx="12" fill="#f6eedb" stroke="{RULE}" stroke-width="1.4"/>',
         f'<text x="684" y="150" font-size="12.5" font-weight="bold" fill="{INK2}">万用表</text>',
-        f'<text x="684" y="184" font-size="12" fill="{MUTED}">V- 读数：-</text>',
-        f'<text x="684" y="212" font-size="12" fill="{MUTED}">V+ 读数：-</text>',
+    ))
+
+    def readings(v_minus, v_plus, color_minus=MUTED, color_plus=MUTED):
+        # 读数逐拍累积；未测的档位画「—」而不是留旧值，避免结论帧退回占位符。
+        return "\n".join((
+            f'<text x="684" y="184" font-size="14" font-weight="bold" fill="{color_minus}">V- 读数：{v_minus}</text>',
+            f'<text x="684" y="212" font-size="14" font-weight="bold" fill="{color_plus}">V+ 读数：{v_plus}</text>',
+        ))
+
+    gap_box = "\n".join((
+        f'<rect x="660" y="244" width="260" height="52" rx="10" fill="{AMBER_T}" stroke="{AMBER}" stroke-width="1.8"/>',
+        f'<text x="684" y="276" font-size="14" font-weight="bold" fill="{AMBER}">压差 2.508 - 2.500 = 8mV</text>',
     ))
     layers = [
         Layer(None, persistent),
+        Layer("认脚", readings("—", "—")),
         Layer("量V-", "\n".join((
             f'<circle cx="340" cy="210" r="9" fill="{BLUE_T}" stroke="{BLUE}" stroke-width="2"/>',
-            f'<text x="660" y="184" font-size="14" font-weight="bold" fill="{BLUE}">V- 读数：2.500V</text>',
+            readings("2.500V", "—", BLUE),
         )), (0, -6)),
         Layer("量V+", "\n".join((
             f'<circle cx="340" cy="290" r="9" fill="{RED_T}" stroke="{RED}" stroke-width="2"/>',
-            f'<text x="660" y="212" font-size="14" font-weight="bold" fill="{RED}">V+ 读数：2.508V</text>',
+            readings("2.500V", "2.508V", BLUE, RED),
         )), (0, -6)),
         Layer("算压差", "\n".join((
-            f'<rect x="660" y="244" width="260" height="52" rx="10" fill="{AMBER_T}" stroke="{AMBER}" stroke-width="1.8"/>',
-            f'<text x="684" y="276" font-size="14" font-weight="bold" fill="{AMBER}">压差 2.508 - 2.500 = 8mV</text>',
+            readings("2.500V", "2.508V", BLUE, RED),
+            gap_box,
         )), (8, 0)),
-    ] + _beat_layers()
+    ] + _beat_layers(readings, gap_box)
     return tl, layers
 
 
-def _beat_layers():
+def _beat_layers(readings, gap_box):
     return [
         Layer("判读", "\n".join((
+            # 结论拍要把两次读数与压差留在屏上：它们是判读的全部依据。
+            readings("2.500V", "2.508V", BLUE, RED),
+            gap_box,
             f'<rect x="60" y="400" width="840" height="120" rx="12" fill="{GREEN_T}" stroke="{GREEN}" stroke-width="2"/>',
             f'<text x="84" y="436" font-size="14" font-weight="bold" fill="{GREEN}">判读：压差 8mV 远小于几十 mV 阈值 → 虚短成立</text>',
             f'<text x="84" y="466" font-size="12.5" fill="{INK}">运放两输入端近似等电位，反馈在正常工作——问题不在运放，</text>',

@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 620" role="img" aria-labelledby="figTitle figDesc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 660" role="img" aria-labelledby="figTitle figDesc">
 <title id="figTitle">地址跳变的路过通道</title>
 <desc id="figDesc">011→100 不是一步到位；INH 与格雷码把中间态关掉</desc>
 <metadata id="visual-timeline">{&quot;duration&quot;: 9.0, &quot;beats&quot;: [{&quot;name&quot;: &quot;停在011&quot;, &quot;start&quot;: 0.0, &quot;end&quot;: 1.6, &quot;caption&quot;: &quot;当前选中通道 3：地址 011 稳定&quot;}, {&quot;name&quot;: &quot;三位抢跑&quot;, &quot;start&quot;: 1.6, &quot;end&quot;: 3.4, &quot;caption&quot;: &quot;改到 100 时三位不同时翻转，中间态先出现&quot;}, {&quot;name&quot;: &quot;路过111&quot;, &quot;start&quot;: 3.4, &quot;end&quot;: 5.2, &quot;caption&quot;: &quot;111 短暂导通：无关通道被采进系统&quot;}, {&quot;name&quot;: &quot;先拉INH&quot;, &quot;start&quot;: 5.2, &quot;end&quot;: 6.8, &quot;caption&quot;: &quot;先把 INH 拉高全断，再改地址&quot;}, {&quot;name&quot;: &quot;等够再采&quot;, &quot;start&quot;: 6.8, &quot;end&quot;: 9.0, &quot;caption&quot;: &quot;地址稳定到采样窗开启 ≥ t_ON；格雷码只动一位&quot;}]}</metadata>
@@ -38,9 +38,9 @@
 <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
 </filter>
 </defs>
-<rect class="page-bg" width="960" height="620" fill="url(#bgL)"/>
-<rect class="page-grain" width="960" height="620" fill="url(#dots)"/>
-<rect class="page-vig" width="960" height="620" fill="url(#vig)"/>
+<rect class="page-bg" width="960" height="660" fill="url(#bgL)"/>
+<rect class="page-grain" width="960" height="660" fill="url(#dots)"/>
+<rect class="page-vig" width="960" height="660" fill="url(#vig)"/>
 <rect class="page-hdr" width="960" height="72" fill="url(#hdr)"/>
 <style>
 text{font-family:"Segoe UI","Microsoft YaHei","PingFang SC","Hiragino Sans GB","Noto Sans CJK SC","Source Han Sans SC","Noto Sans SC",sans-serif;}
@@ -108,9 +108,22 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <text x="72" y="430" font-size="12" fill="#5b666f">INH</text>
 <line x1="96" y1="446" x2="864" y2="446" stroke="#c9bb9d" stroke-width="1.2"/>
 <text x="480" y="480" text-anchor="middle" font-size="12" fill="#5b666f">时间（切换沿几十 ns 级）</text>
-<g transform="translate(0 -4)"><rect x="96" y="508" width="816" height="76" rx="10" fill="#e8efe6" stroke="#3d6b4a" stroke-width="1.6"/>
-<text x="120" y="538" font-size="13" font-weight="bold" fill="#3d6b4a">对策按代价排：先拉 INH → 格雷码 → 采样窗错开 ≥ t_ON</text>
-<text x="120" y="564" font-size="12" fill="#16202b">判据：地址稳定到采样窗开启的间隔 ≥ t_ON，期间不采样。</text></g>
-<rect x="24" y="556" width="912" height="34" rx="9" fill="#f7eedb" stroke="#c9bb9d" stroke-width="1.2"/>
-<text x="480" y="580" text-anchor="middle" font-size="13" font-weight="bold" fill="#6b3f63">地址稳定到采样窗开启 ≥ t_ON；格雷码只动一位</text>
+<g transform="translate(0 -4)"><rect x="120" y="204" width="120" height="52" rx="8" fill="#e6eff3" stroke="#1f5d7a" stroke-width="2"/>
+<text x="180" y="238" text-anchor="middle" font-size="18" font-weight="bold" fill="#1f5d7a">011</text>
+<text x="120" y="284" font-size="12.5" fill="#16202b">选中通道 3，稳定</text>
+<rect x="340" y="204" width="120" height="52" rx="8" fill="#f7eedb" stroke="#a4630f" stroke-width="2"/>
+<text x="400" y="238" text-anchor="middle" font-size="18" font-weight="bold" fill="#a4630f">111</text>
+<text x="480" y="238" font-size="13" fill="#16202b">中间态先到</text>
+<rect x="620" y="204" width="120" height="52" rx="8" fill="#f7eedb" stroke="#a4630f" stroke-width="2"/>
+<text x="680" y="238" text-anchor="middle" font-size="18" font-weight="bold" fill="#a4630f">100</text>
+<rect x="340" y="310" width="120" height="34" rx="6" fill="#f6e7e1" stroke="#a8321f" stroke-width="2"/>
+<text x="400" y="334" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#a8321f">通道 7 先导通</text>
+<text x="480" y="334" font-size="12" fill="#a8321f">无关信号短促进入 / 泄一包电荷</text>
+<path d="M120,440 L340,440 L340,404 L620,404 L620,440 L864,440" fill="none" stroke="#3d6b4a" stroke-width="3"/>
+<text x="690" y="398" font-size="12.5" font-weight="bold" fill="#3d6b4a">INH 罩住整个地址跳变</text>
+<rect x="96" y="500" width="816" height="76" rx="10" fill="#e8efe6" stroke="#3d6b4a" stroke-width="1.6"/>
+<text x="120" y="530" font-size="13" font-weight="bold" fill="#3d6b4a">对策按代价排：先拉 INH → 格雷码 → 采样窗错开 ≥ t_ON</text>
+<text x="120" y="556" font-size="12" fill="#16202b">判据：地址稳定到采样窗开启的间隔 ≥ t_ON，期间不采样。</text></g>
+<rect x="24" y="596" width="912" height="34" rx="9" fill="#f7eedb" stroke="#c9bb9d" stroke-width="1.2"/>
+<text x="480" y="620" text-anchor="middle" font-size="13" font-weight="bold" fill="#6b3f63">地址稳定到采样窗开启 ≥ t_ON；格雷码只动一位</text>
 </svg>

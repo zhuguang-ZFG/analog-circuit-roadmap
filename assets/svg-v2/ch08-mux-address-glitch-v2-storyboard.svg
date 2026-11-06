@@ -99,7 +99,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <text x="480" y="34" text-anchor="middle" font-size="18" font-weight="bold" fill="#16202b">地址跳变的路过通道·分镜</text>
 <text x="480" y="56" text-anchor="middle" font-size="12" fill="#5b666f">011→100 不是一步到位；INH 与格雷码把中间态关掉</text>
 <rect x="20" y="70" width="450" height="300" rx="10" fill="#fdf8ea" stroke="#c9bb9d" stroke-width="1.2"/>
-<g data-storyboard-beat="停在011" transform="translate(47 84) scale(0.4129)"><rect x="48" y="96" width="864" height="300" rx="14" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/>
+<g data-storyboard-beat="停在011" transform="translate(59 84) scale(0.3879)"><rect x="48" y="96" width="864" height="300" rx="14" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/>
 <text x="72" y="128" font-size="12" fill="#5b666f">三位地址时间线</text>
 <line x1="96" y1="230" x2="864" y2="230" stroke="#c9bb9d" stroke-width="1.6"/>
 <line x1="96" y1="360" x2="864" y2="360" stroke="#c9bb9d" stroke-width="1.2"/>
@@ -109,10 +109,10 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <text x="480" y="480" text-anchor="middle" font-size="12" fill="#5b666f">时间（切换沿几十 ns 级）</text>
 <g transform="translate(0 -4)"><rect x="120" y="204" width="120" height="52" rx="8" fill="#e6eff3" stroke="#1f5d7a" stroke-width="2"/>
 <text x="180" y="238" text-anchor="middle" font-size="18" font-weight="bold" fill="#1f5d7a">011</text>
-<text x="300" y="238" font-size="13" fill="#16202b">选中通道 3，稳定</text></g></g>
+<text x="120" y="284" font-size="12.5" fill="#16202b">选中通道 3，稳定</text></g></g>
 <text x="32" y="348" font-size="12" font-weight="bold" fill="#1f5d7a">1. 停在011</text>
 <rect x="490" y="70" width="450" height="300" rx="10" fill="#fdf8ea" stroke="#c9bb9d" stroke-width="1.2"/>
-<g data-storyboard-beat="三位抢跑" transform="translate(517 84) scale(0.4129)"><rect x="48" y="96" width="864" height="300" rx="14" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/>
+<g data-storyboard-beat="三位抢跑" transform="translate(529 84) scale(0.3879)"><rect x="48" y="96" width="864" height="300" rx="14" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/>
 <text x="72" y="128" font-size="12" fill="#5b666f">三位地址时间线</text>
 <line x1="96" y1="230" x2="864" y2="230" stroke="#c9bb9d" stroke-width="1.6"/>
 <line x1="96" y1="360" x2="864" y2="360" stroke="#c9bb9d" stroke-width="1.2"/>
@@ -120,14 +120,16 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <text x="72" y="430" font-size="12" fill="#5b666f">INH</text>
 <line x1="96" y1="446" x2="864" y2="446" stroke="#c9bb9d" stroke-width="1.2"/>
 <text x="480" y="480" text-anchor="middle" font-size="12" fill="#5b666f">时间（切换沿几十 ns 级）</text>
-<g transform="translate(0 -4)"><rect x="340" y="204" width="120" height="52" rx="8" fill="#f7eedb" stroke="#a4630f" stroke-width="2"/>
+<g transform="translate(0 -4)"><rect x="120" y="204" width="120" height="52" rx="8" fill="#e6eff3" stroke="#1f5d7a" stroke-width="2"/>
+<text x="180" y="238" text-anchor="middle" font-size="18" font-weight="bold" fill="#1f5d7a">011</text>
+<rect x="340" y="204" width="120" height="52" rx="8" fill="#f7eedb" stroke="#a4630f" stroke-width="2"/>
 <text x="400" y="238" text-anchor="middle" font-size="18" font-weight="bold" fill="#a4630f">111</text>
 <text x="480" y="238" font-size="13" fill="#16202b">中间态先到</text>
 <rect x="620" y="204" width="120" height="52" rx="8" fill="#f7eedb" stroke="#a4630f" stroke-width="2"/>
 <text x="680" y="238" text-anchor="middle" font-size="18" font-weight="bold" fill="#a4630f">010</text></g></g>
 <text x="502" y="348" font-size="12" font-weight="bold" fill="#a4630f">2. 三位抢跑</text>
 <rect x="20" y="388" width="450" height="300" rx="10" fill="#fdf8ea" stroke="#c9bb9d" stroke-width="1.2"/>
-<g data-storyboard-beat="路过111" transform="translate(47 402) scale(0.4129)"><rect x="48" y="96" width="864" height="300" rx="14" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/>
+<g data-storyboard-beat="路过111" transform="translate(59 402) scale(0.3879)"><rect x="48" y="96" width="864" height="300" rx="14" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/>
 <text x="72" y="128" font-size="12" fill="#5b666f">三位地址时间线</text>
 <line x1="96" y1="230" x2="864" y2="230" stroke="#c9bb9d" stroke-width="1.6"/>
 <line x1="96" y1="360" x2="864" y2="360" stroke="#c9bb9d" stroke-width="1.2"/>
@@ -135,12 +137,17 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <text x="72" y="430" font-size="12" fill="#5b666f">INH</text>
 <line x1="96" y1="446" x2="864" y2="446" stroke="#c9bb9d" stroke-width="1.2"/>
 <text x="480" y="480" text-anchor="middle" font-size="12" fill="#5b666f">时间（切换沿几十 ns 级）</text>
-<g transform="translate(0 -4)"><rect x="340" y="310" width="120" height="34" rx="6" fill="#f6e7e1" stroke="#a8321f" stroke-width="2"/>
+<g transform="translate(0 -4)"><rect x="120" y="204" width="120" height="52" rx="8" fill="#e6eff3" stroke="#1f5d7a" stroke-width="2"/>
+<text x="180" y="238" text-anchor="middle" font-size="18" font-weight="bold" fill="#1f5d7a">011</text>
+<rect x="340" y="204" width="120" height="52" rx="8" fill="#f7eedb" stroke="#a4630f" stroke-width="2"/>
+<text x="400" y="238" text-anchor="middle" font-size="18" font-weight="bold" fill="#a4630f">111</text>
+<text x="480" y="238" font-size="13" fill="#16202b">中间态先到</text>
+<rect x="340" y="310" width="120" height="34" rx="6" fill="#f6e7e1" stroke="#a8321f" stroke-width="2"/>
 <text x="400" y="334" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#a8321f">通道 7 先导通</text>
 <text x="480" y="334" font-size="12" fill="#a8321f">无关信号短促进入 / 泄一包电荷</text></g></g>
 <text x="32" y="666" font-size="12" font-weight="bold" fill="#a8321f">3. 路过111</text>
 <rect x="490" y="388" width="450" height="300" rx="10" fill="#fdf8ea" stroke="#c9bb9d" stroke-width="1.2"/>
-<g data-storyboard-beat="先拉INH" transform="translate(517 402) scale(0.4129)"><rect x="48" y="96" width="864" height="300" rx="14" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/>
+<g data-storyboard-beat="先拉INH" transform="translate(529 402) scale(0.3879)"><rect x="48" y="96" width="864" height="300" rx="14" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/>
 <text x="72" y="128" font-size="12" fill="#5b666f">三位地址时间线</text>
 <line x1="96" y1="230" x2="864" y2="230" stroke="#c9bb9d" stroke-width="1.6"/>
 <line x1="96" y1="360" x2="864" y2="360" stroke="#c9bb9d" stroke-width="1.2"/>
@@ -148,11 +155,22 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <text x="72" y="430" font-size="12" fill="#5b666f">INH</text>
 <line x1="96" y1="446" x2="864" y2="446" stroke="#c9bb9d" stroke-width="1.2"/>
 <text x="480" y="480" text-anchor="middle" font-size="12" fill="#5b666f">时间（切换沿几十 ns 级）</text>
-<g transform="translate(0 -4)"><path d="M120,440 L340,440 L340,404 L620,404 L620,440 L864,440" fill="none" stroke="#3d6b4a" stroke-width="3"/>
+<g transform="translate(0 -4)"><rect x="120" y="204" width="120" height="52" rx="8" fill="#e6eff3" stroke="#1f5d7a" stroke-width="2"/>
+<text x="180" y="238" text-anchor="middle" font-size="18" font-weight="bold" fill="#1f5d7a">011</text>
+<text x="120" y="284" font-size="12.5" fill="#16202b">选中通道 3，稳定</text>
+<rect x="340" y="204" width="120" height="52" rx="8" fill="#f7eedb" stroke="#a4630f" stroke-width="2"/>
+<text x="400" y="238" text-anchor="middle" font-size="18" font-weight="bold" fill="#a4630f">111</text>
+<text x="480" y="238" font-size="13" fill="#16202b">中间态先到</text>
+<rect x="620" y="204" width="120" height="52" rx="8" fill="#f7eedb" stroke="#a4630f" stroke-width="2"/>
+<text x="680" y="238" text-anchor="middle" font-size="18" font-weight="bold" fill="#a4630f">100</text>
+<rect x="340" y="310" width="120" height="34" rx="6" fill="#f6e7e1" stroke="#a8321f" stroke-width="2"/>
+<text x="400" y="334" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#a8321f">通道 7 先导通</text>
+<text x="480" y="334" font-size="12" fill="#a8321f">无关信号短促进入 / 泄一包电荷</text>
+<path d="M120,440 L340,440 L340,404 L620,404 L620,440 L864,440" fill="none" stroke="#3d6b4a" stroke-width="3"/>
 <text x="690" y="398" font-size="12.5" font-weight="bold" fill="#3d6b4a">INH 罩住整个地址跳变</text></g></g>
 <text x="502" y="666" font-size="12" font-weight="bold" fill="#3d6b4a">4. 先拉INH</text>
 <rect x="20" y="706" width="450" height="300" rx="10" fill="#fdf8ea" stroke="#c9bb9d" stroke-width="1.2"/>
-<g data-storyboard-beat="等够再采" transform="translate(47 720) scale(0.4129)"><rect x="48" y="96" width="864" height="300" rx="14" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/>
+<g data-storyboard-beat="等够再采" transform="translate(59 720) scale(0.3879)"><rect x="48" y="96" width="864" height="300" rx="14" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/>
 <text x="72" y="128" font-size="12" fill="#5b666f">三位地址时间线</text>
 <line x1="96" y1="230" x2="864" y2="230" stroke="#c9bb9d" stroke-width="1.6"/>
 <line x1="96" y1="360" x2="864" y2="360" stroke="#c9bb9d" stroke-width="1.2"/>
@@ -160,9 +178,22 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <text x="72" y="430" font-size="12" fill="#5b666f">INH</text>
 <line x1="96" y1="446" x2="864" y2="446" stroke="#c9bb9d" stroke-width="1.2"/>
 <text x="480" y="480" text-anchor="middle" font-size="12" fill="#5b666f">时间（切换沿几十 ns 级）</text>
-<g transform="translate(0 -4)"><rect x="96" y="508" width="816" height="76" rx="10" fill="#e8efe6" stroke="#3d6b4a" stroke-width="1.6"/>
-<text x="120" y="538" font-size="13" font-weight="bold" fill="#3d6b4a">对策按代价排：先拉 INH → 格雷码 → 采样窗错开 ≥ t_ON</text>
-<text x="120" y="564" font-size="12" fill="#16202b">判据：地址稳定到采样窗开启的间隔 ≥ t_ON，期间不采样。</text></g></g>
+<g transform="translate(0 -4)"><rect x="120" y="204" width="120" height="52" rx="8" fill="#e6eff3" stroke="#1f5d7a" stroke-width="2"/>
+<text x="180" y="238" text-anchor="middle" font-size="18" font-weight="bold" fill="#1f5d7a">011</text>
+<text x="120" y="284" font-size="12.5" fill="#16202b">选中通道 3，稳定</text>
+<rect x="340" y="204" width="120" height="52" rx="8" fill="#f7eedb" stroke="#a4630f" stroke-width="2"/>
+<text x="400" y="238" text-anchor="middle" font-size="18" font-weight="bold" fill="#a4630f">111</text>
+<text x="480" y="238" font-size="13" fill="#16202b">中间态先到</text>
+<rect x="620" y="204" width="120" height="52" rx="8" fill="#f7eedb" stroke="#a4630f" stroke-width="2"/>
+<text x="680" y="238" text-anchor="middle" font-size="18" font-weight="bold" fill="#a4630f">100</text>
+<rect x="340" y="310" width="120" height="34" rx="6" fill="#f6e7e1" stroke="#a8321f" stroke-width="2"/>
+<text x="400" y="334" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#a8321f">通道 7 先导通</text>
+<text x="480" y="334" font-size="12" fill="#a8321f">无关信号短促进入 / 泄一包电荷</text>
+<path d="M120,440 L340,440 L340,404 L620,404 L620,440 L864,440" fill="none" stroke="#3d6b4a" stroke-width="3"/>
+<text x="690" y="398" font-size="12.5" font-weight="bold" fill="#3d6b4a">INH 罩住整个地址跳变</text>
+<rect x="96" y="500" width="816" height="76" rx="10" fill="#e8efe6" stroke="#3d6b4a" stroke-width="1.6"/>
+<text x="120" y="530" font-size="13" font-weight="bold" fill="#3d6b4a">对策按代价排：先拉 INH → 格雷码 → 采样窗错开 ≥ t_ON</text>
+<text x="120" y="556" font-size="12" fill="#16202b">判据：地址稳定到采样窗开启的间隔 ≥ t_ON，期间不采样。</text></g></g>
 <text x="32" y="984" font-size="12" font-weight="bold" fill="#6b3f63">5. 等够再采</text>
 <text x="24" y="1036" font-size="22" fill="#16202b">1. 当前选中通道 3：地址 011 稳定</text>
 <text x="24" y="1066" font-size="22" fill="#16202b">2. 改到 100 时三位不同时翻转，中间态先出现</text>

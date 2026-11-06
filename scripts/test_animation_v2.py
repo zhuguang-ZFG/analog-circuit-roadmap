@@ -108,6 +108,25 @@ class AnimationV2Tests(unittest.TestCase):
         self.assertIn('M96,410 C180,410 240,380', static, '结论帧必须保留并联包络曲线')
         self.assertIn('20→26.7→20Ω', static, '结论帧必须保留包络标注')
 
+    def test_mux_final_frame_keeps_timing_story(self):
+        from scripts.visuals.scenes.ch08_mux_address_glitch_v2 import scene
+
+        tl, layers = scene()
+        static = static_svg(tl, layers)
+        for needle in ('011', '111', '100', 'M120,440'):
+            with self.subTest(needle=needle):
+                self.assertIn(needle, static, '结论帧必须保留地址时序与 INH 脉冲')
+
+    def test_virtual_short_final_frame_keeps_both_readings(self):
+        from scripts.visuals.scenes.ch17_virtual_short_probe import scene
+
+        tl, layers = scene()
+        static = static_svg(tl, layers)
+        for needle in ('2.500V', '2.508V', '8mV'):
+            with self.subTest(needle=needle):
+                self.assertIn(needle, static, '结论帧必须保留两次读数与压差')
+        self.assertNotIn('读数：—', static, '结论帧不得退回占位读数')
+
     def test_all_real_scenes_reproduce_checked_in_triplets(self):
         root = Path(__file__).resolve().parents[1]
         for source in sorted((root / 'scripts/visuals/scenes').glob('ch*.py')):
