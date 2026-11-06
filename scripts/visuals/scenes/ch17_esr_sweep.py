@@ -26,7 +26,7 @@ INK, INK2, MUTED, RULE = "#16202b", "#37424e", "#5b666f", "#c9bb9d"
 
 def scene():
     tl = Timeline(
-        width=960, height=620, duration=8.0,
+        width=960, height=660, duration=8.0,
         beats=(
             Beat("扫描对象", 0.0, 1.4, "扫描对象：输出大电解——ESR 从 0.1Ω 扫到 3Ω", BLUE),
             Beat("纹波爬升", 1.4, 3.0, "ESR 越大，100Hz 纹波越高：400mV 已经烫手", RED),
@@ -86,6 +86,9 @@ def _beat_layers():
         f'<text x="236" y="436" font-size="12.5" font-weight="bold" fill="{PURPLE}">只剩标称三成</text>',
     ))
     loop_layer = "\n".join((
+        # 结论帧必须保留「容量只剩三成」的图形证据：否则容量条是空框。
+        f'<rect x="64" y="360" width="{640 * 0.3:.0f}" height="22" rx="5" fill="{PURPLE}" opacity="0.85"/>',
+        f'<text x="236" y="436" font-size="12.5" font-weight="bold" fill="{PURPLE}">只剩标称三成</text>',
         # 闭环卡：生热 → ESR↑ → 纹波↑ → 更热
         f'<rect x="60" y="452" width="840" height="120" rx="12" fill="{GREEN_T}" stroke="{GREEN}" stroke-width="1.8"/>',
         f'<text x="84" y="484" font-size="13" font-weight="bold" fill="{GREEN}">闭环：量 100Hz 纹波幅度 = 免费的 ESR 表</text>',

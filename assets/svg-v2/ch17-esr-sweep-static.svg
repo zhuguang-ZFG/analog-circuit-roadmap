@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 620" role="img" aria-labelledby="figTitle figDesc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 660" role="img" aria-labelledby="figTitle figDesc">
 <title id="figTitle">ESR 扫描：纹波、发热与容量蒸发</title>
 <desc id="figDesc">ESR 从 0.1Ω 扫到 3Ω（扫描端点为示意值）——先问纹波频率，再问幅度</desc>
 <metadata id="visual-timeline">{&quot;duration&quot;: 8.0, &quot;beats&quot;: [{&quot;name&quot;: &quot;扫描对象&quot;, &quot;start&quot;: 0.0, &quot;end&quot;: 1.4, &quot;caption&quot;: &quot;扫描对象：输出大电解——ESR 从 0.1Ω 扫到 3Ω&quot;}, {&quot;name&quot;: &quot;纹波爬升&quot;, &quot;start&quot;: 1.4, &quot;end&quot;: 3.0, &quot;caption&quot;: &quot;ESR 越大，100Hz 纹波越高：400mV 已经烫手&quot;}, {&quot;name&quot;: &quot;内部生热&quot;, &quot;start&quot;: 3.0, &quot;end&quot;: 4.6, &quot;caption&quot;: &quot;纹波电流在电解液里生热，热积在铝壳里散不掉&quot;}, {&quot;name&quot;: &quot;容量蒸发&quot;, &quot;start&quot;: 4.6, &quot;end&quot;: 6.2, &quot;caption&quot;: &quot;电解液被蒸干，容量只剩标称三成&quot;}, {&quot;name&quot;: &quot;闭环&quot;, &quot;start&quot;: 6.2, &quot;end&quot;: 8.0, &quot;caption&quot;: &quot;量 100Hz 纹波幅度 = 免费的 ESR 表——先问频率，再问幅度&quot;}]}</metadata>
@@ -38,9 +38,9 @@
 <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
 </filter>
 </defs>
-<rect class="page-bg" width="960" height="620" fill="url(#bgL)"/>
-<rect class="page-grain" width="960" height="620" fill="url(#dots)"/>
-<rect class="page-vig" width="960" height="620" fill="url(#vig)"/>
+<rect class="page-bg" width="960" height="660" fill="url(#bgL)"/>
+<rect class="page-grain" width="960" height="660" fill="url(#dots)"/>
+<rect class="page-vig" width="960" height="660" fill="url(#vig)"/>
 <rect class="page-hdr" width="960" height="72" fill="url(#hdr)"/>
 <style>
 text{font-family:"Segoe UI","Microsoft YaHei","PingFang SC","Hiragino Sans GB","Noto Sans CJK SC","Source Han Sans SC","Noto Sans SC",sans-serif;}
@@ -114,12 +114,14 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <rect x="60" y="356" width="640" height="30" rx="8" fill="#fdf8ea" stroke="#c9bb9d" stroke-width="1.2"/>
 <text x="60" y="412" font-size="12" fill="#5b666f">实测容量 / 标称容量</text>
 <text x="716" y="376" font-size="12" fill="#5b666f">100%</text>
-<g transform="translate(0 -4)"><rect x="60" y="452" width="840" height="120" rx="12" fill="#e8efe6" stroke="#3d6b4a" stroke-width="1.8"/>
+<g transform="translate(0 -4)"><rect x="64" y="360" width="192" height="22" rx="5" fill="#6b3f63" opacity="0.85"/>
+<text x="236" y="436" font-size="12.5" font-weight="bold" fill="#6b3f63">只剩标称三成</text>
+<rect x="60" y="452" width="840" height="120" rx="12" fill="#e8efe6" stroke="#3d6b4a" stroke-width="1.8"/>
 <text x="84" y="484" font-size="13" font-weight="bold" fill="#3d6b4a">闭环：量 100Hz 纹波幅度 = 免费的 ESR 表</text>
 <text x="84" y="512" font-size="12" fill="#16202b">纹波电流生热 → 热又推高 ESR → ESR 再抬纹波 → 更热</text>
 <text x="84" y="536" font-size="12" font-weight="bold" fill="#a4630f">先问频率，再问幅度——测量必须能区分候选假设</text>
 <path d="M760,470 q60,40 0,80" fill="none" stroke="#3d6b4a" stroke-width="1.6"/>
 <polygon points="760,550 754,540 766,540" fill="#3d6b4a"/></g>
-<rect x="24" y="556" width="912" height="34" rx="9" fill="#f7eedb" stroke="#c9bb9d" stroke-width="1.2"/>
-<text x="480" y="580" text-anchor="middle" font-size="13" font-weight="bold" fill="#3d6b4a">量 100Hz 纹波幅度 = 免费的 ESR 表——先问频率，再问幅度</text>
+<rect x="24" y="596" width="912" height="34" rx="9" fill="#f7eedb" stroke="#c9bb9d" stroke-width="1.2"/>
+<text x="480" y="620" text-anchor="middle" font-size="13" font-weight="bold" fill="#3d6b4a">量 100Hz 纹波幅度 = 免费的 ESR 表——先问频率，再问幅度</text>
 </svg>
