@@ -38,7 +38,7 @@
 
 <polygon points="40,288 920,319 920,341 40,372" fill="#e6f6f2" stroke="#0f766e" stroke-width="1.5"/>
 <line x1="80" y1="330" x2="880" y2="330" stroke="#0f766e" stroke-width="1.2" marker-end="url(#arrT)"/>
-<text x="44" y="278" font-family="'Book Sans','Noto Sans SC',sans-serif" font-size="11.5" font-weight="700" fill="#14213d">潜在故障流入</text>
+<text x="44" y="259" font-family="'Book Sans','Noto Sans SC',sans-serif" font-size="11" font-weight="700" fill="#14213d">潜在故障流入</text>
 <text x="916" y="310" text-anchor="end" font-family="'Book Sans','Noto Sans SC',sans-serif" font-size="11" font-weight="700" fill="#b42318">漏到客户</text>
 
 <rect x="85" y="272" width="10" height="120" fill="#14213d"/>
