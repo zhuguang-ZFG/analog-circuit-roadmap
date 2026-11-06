@@ -215,6 +215,70 @@ class AnimationV2Tests(unittest.TestCase):
                                    '解除 INH 后仍需等待，再开启采样窗')
 
 
+    def test_virtual_short_feedback_connects_output_to_inverting_input(self):
+        from scripts.visuals.scenes import ch17_virtual_short_probe as source
+
+        tl, layers = source.scene()
+        storyboard = ET.fromstring(storyboard_svg(tl, layers))
+        views = [ET.fromstring(scene_svg(tl, layers)),
+                 ET.fromstring(static_svg(tl, layers))]
+        views.extend(node for node in storyboard.iter()
+                     if node.get('data-storyboard-beat') is not None)
+        for index, view in enumerate(views):
+            with self.subTest(view=index):
+                resistors = [node for node in view.findall('.//s:rect', NS)
+                             if node.get('data-component') == 'Rf']
+                self.assertEqual(1, len(resistors), '量虚短前须画清实际要核对的反馈路径')
+                resistor = resistors[0]
+                triangle = next(node for node in view.findall('.//s:polygon', NS)
+                                if len(node.get('points').split()) == 3)
+                vertices = [tuple(map(float, pair.split(',')))
+                            for pair in triangle.get('points').split()]
+                side_x = min(x for x, _ in vertices)
+                tip_x, tip_y = max(vertices)
+                signal_lines = [node for node in view.findall('.//s:line', NS)
+                                if node.get('stroke') == source.INK]
+                inputs = sorted((float(line.get('y1')), line) for line in signal_lines
+                                if float(line.get('x2')) == side_x
+                                and line.get('y1') == line.get('y2'))
+                self.assertEqual(2, len(inputs))
+                output = next(line for line in signal_lines
+                              if float(line.get('x1')) == tip_x
+                              and float(line.get('y1')) == tip_y)
+                graph = {}
+
+                def connect(a, b):
+                    graph.setdefault(a, set()).add(b)
+                    graph.setdefault(b, set()).add(a)
+
+                for wire in view.findall('.//s:polyline', NS):
+                    if wire.get('stroke') != source.GREEN:
+                        continue
+                    points = [tuple(map(float, pair.split(',')))
+                              for pair in wire.get('points').split()]
+                    for a, b in zip(points, points[1:]):
+                        connect(a, b)
+                x, y, w, h = (float(resistor.get(key)) for key in ('x', 'y', 'width', 'height'))
+                connect((x, y + h / 2), (x + w, y + h / 2))
+
+                def touches(line):
+                    x1, x2, y = (float(line.get(key)) for key in ('x1', 'x2', 'y1'))
+                    return [point for point in graph if point[1] == y
+                            and min(x1, x2) <= point[0] <= max(x1, x2)]
+
+                minus = touches(inputs[0][1])
+                self.assertEqual(1, len(minus), '反馈回到反相端节点')
+                self.assertEqual([], touches(inputs[1][1]), '不得误画成同相正反馈')
+                contacts = touches(output)
+                self.assertEqual(1, len(contacts), '反馈必须取自输出节点')
+                reached, pending = set(), contacts[:]
+                while pending:
+                    point = pending.pop()
+                    if point not in reached:
+                        reached.add(point)
+                        pending.extend(graph[point] - reached)
+                self.assertIn(minus[0], reached, '反馈线与电阻不能在图上断开')
+
     def test_virtual_short_final_frame_keeps_both_readings(self):
         from scripts.visuals.scenes.ch17_virtual_short_probe import scene
 

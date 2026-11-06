@@ -1794,7 +1794,7 @@ assets:
   kind: animation
   type: A5
   anchor: '17.2'
-  purpose: 虚短探针操作演示——量V−、量V+、压差 8mV、判读移交嫌疑
+  purpose: 虚短探针操作演示——核对负反馈路径、量两端压差，再核工作前提与输出响应
   style_id: FA-029
   layout_id: IG-004
   color_ids:
@@ -1830,7 +1830,7 @@ assets:
   status_history:
   - planned
   - generated
-  alt: 两输入端压差 8mV——虚短成立，问题不在运放
+  alt: 反相级输出经 Rf 回到反相端；同一工况下测得 2.500V 与 2.508V，压差 8mV。读数须对照供电、共模、输出摆幅、反馈通断与器件误差预算，再核输出响应，不能单凭小压差判运放合格。
   parameters: []
   conclusion_frame:
     beat: 判读

@@ -2721,7 +2721,7 @@ assets:
   kind: figure
   type: V3
   anchor: '17.2'
-  purpose: 虚短检验判据与成立/不成立两支的嫌疑分流
+  purpose: 虚短排查前提、输入压差预算与输出验证的条件分流
   style_id: FA-029
   layout_id: IG-004
   color_ids:
@@ -2733,28 +2733,35 @@ assets:
   prompt_file: docs/superpowers/visual/prompts/ch17-virtual-short-test.md
   output: assets/figures/ch17-virtual-short-test.svg
   print_fallback: assets/figures/ch17-virtual-short-test.svg
-  status: accepted
-  review_scores:
-    教学必要性: 5
-    事实精度: 5
-    构图层级: 5
-    风格一致性: 5
-    印刷可读性: 5
-  review_record:
-    reviewer: zhuguang-ZFG
-    method: contact-sheet visual review
-    scope: Task 8 three-chapter pilot
-    user_chapter_acceptance: accepted
-    reviewed_on: '2026-11-05'
-    record: docs/superpowers/visual/reviews/task8-2026-11-05/review.md
-    asset_sha256: 422519870012c003cf5390803fda607d59fc2157ef2a3a4819e472686c5b2a19
+  status: generated
+  review_scores: {}
   status_history:
   - planned
   - generated
-  - reviewed
-  - accepted
-  alt: 顶部判据条给出动作：量反相端 V− 是否约等于同相端 V+，教学示例是 V− 比 V+ 低 8mV 且随信号摆动。中央判断节点 V− ≈ V+ 分出两支：虚短成立说明运放与反馈环路直流上是活的，嫌疑转向输入源、供电、负载三处；虚短不成立则立刻缩到反馈网络开路、输出撞轨、供电异常、共模超范围四个方向。底部结语：一刀下去排除的是一整类机理，虚短成立的前提见
-    12.1。
+  review_history:
+  - status: accepted
+    status_history:
+    - planned
+    - generated
+    - reviewed
+    - accepted
+    review_scores:
+      教学必要性: 5
+      事实精度: 5
+      构图层级: 5
+      风格一致性: 5
+      印刷可读性: 5
+    review_record:
+      reviewer: zhuguang-ZFG
+      method: contact-sheet visual review
+      scope: Task 8 three-chapter pilot
+      user_chapter_acceptance: accepted
+      reviewed_on: '2026-11-05'
+      record: docs/superpowers/visual/reviews/task8-2026-11-05/review.md
+      asset_sha256: 422519870012c003cf5390803fda607d59fc2157ef2a3a4819e472686c5b2a19
+    invalidated_on: '2026-11-06'
+    invalidated_reason: 条件判据与印刷版面已重绘，原签核仅绑定旧 SHA；保留原评分和审图记录，改后资产须重新人工审图。
+  alt: 先核供电、共模、输出摆幅与负反馈，再将两输入端压差对照器件和工况预算；符合时继续查输入、输出响应及负载，偏离时核查反馈、撞轨、供电与共模。示例 8mV 只是读数，不单凭它排除故障；前提见 12.1。
   status_history_origin: schema-migration-2026-11-05
 - id: ch17-ripple-frequency
   chapter: 17
@@ -2985,7 +2992,7 @@ assets:
   kind: animation
   type: A5
   anchor: '17.2'
-  purpose: 虚短探针操作演示——量V−、量V+、压差 8mV、判读移交嫌疑
+  purpose: 虚短探针操作演示——核对负反馈路径、量两端压差，再核工作前提与输出响应
   style_id: FA-029
   layout_id: IG-004
   color_ids:
@@ -3021,7 +3028,7 @@ assets:
   status_history:
   - planned
   - generated
-  alt: 两输入端压差 8mV——虚短成立，问题不在运放
+  alt: 反相级输出经 Rf 回到反相端；同一工况下测得 2.500V 与 2.508V，压差 8mV。读数须对照供电、共模、输出摆幅、反馈通断与器件误差预算，再核输出响应，不能单凭小压差判运放合格。
   parameters: []
   conclusion_frame:
     beat: 判读
