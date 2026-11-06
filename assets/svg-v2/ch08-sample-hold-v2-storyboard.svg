@@ -121,7 +121,8 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <text x="864" y="430" text-anchor="end" font-size="11" fill="#5b666f">t</text>
 <text x="80" y="180" font-size="11" fill="#5b666f">2.000V</text>
 <line x1="110" y1="180" x2="864" y2="180" stroke="#3d6b4a" stroke-width="1.2" stroke-dasharray="5,5"/>
-<g transform="translate(0 -4)"><path d="M520,180 L700,180" stroke="#3d6b4a" stroke-width="3.4"/>
+<g transform="translate(0 -4)"><path d="M110,400 C180,400 220,300 300,240 C360,200 430,184 520,180" fill="none" stroke="#1f5d7a" stroke-width="3.4"/>
+<path d="M520,180 L700,180" fill="none" stroke="#3d6b4a" stroke-width="3.4"/>
 <line x1="520" y1="160" x2="520" y2="210" stroke="#3d6b4a" stroke-width="2"/>
 <text x="540" y="160" font-size="12" fill="#3d6b4a">断开：冻结</text></g></g>
 <text x="502" y="348" font-size="12" font-weight="bold" fill="#3d6b4a">2. 保持</text>
@@ -135,7 +136,9 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <text x="864" y="430" text-anchor="end" font-size="11" fill="#5b666f">t</text>
 <text x="80" y="180" font-size="11" fill="#5b666f">2.000V</text>
 <line x1="110" y1="180" x2="864" y2="180" stroke="#3d6b4a" stroke-width="1.2" stroke-dasharray="5,5"/>
-<g transform="translate(0 -4)"><path d="M700,180 L864,220" stroke="#a4630f" stroke-width="3.4"/>
+<g transform="translate(0 -4)"><path d="M110,400 C180,400 220,300 300,240 C360,200 430,184 520,180" fill="none" stroke="#1f5d7a" stroke-width="3.4"/>
+<path d="M520,180 L700,180" fill="none" stroke="#3d6b4a" stroke-width="3.4"/>
+<path d="M700,180 L864,220" fill="none" stroke="#a4630f" stroke-width="3.4"/>
 <text x="730" y="246" font-size="12" fill="#a4630f">droop = I/C</text></g></g>
 <text x="32" y="666" font-size="12" font-weight="bold" fill="#a4630f">3. 下垂</text>
 <rect x="490" y="388" width="450" height="300" rx="10" fill="#fdf8ea" stroke="#c9bb9d" stroke-width="1.2"/>
@@ -148,7 +151,10 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <text x="864" y="430" text-anchor="end" font-size="11" fill="#5b666f">t</text>
 <text x="80" y="180" font-size="11" fill="#5b666f">2.000V</text>
 <line x1="110" y1="180" x2="864" y2="180" stroke="#3d6b4a" stroke-width="1.2" stroke-dasharray="5,5"/>
-<g transform="translate(0 -4)"><line x1="864" y1="150" x2="864" y2="400" stroke="#a8321f" stroke-width="1.6" stroke-dasharray="4,4"/>
+<g transform="translate(0 -4)"><path d="M110,400 C180,400 220,300 300,240 C360,200 430,184 520,180" fill="none" stroke="#1f5d7a" stroke-width="3.4"/>
+<path d="M520,180 L700,180" fill="none" stroke="#3d6b4a" stroke-width="3.4"/>
+<path d="M700,180 L864,220" fill="none" stroke="#a4630f" stroke-width="3.4"/>
+<line x1="864" y1="150" x2="864" y2="400" stroke="#a8321f" stroke-width="1.6" stroke-dasharray="4,4"/>
 <rect x="96" y="474" width="816" height="94" rx="10" fill="#f6e7e1" stroke="#a8321f" stroke-width="1.6"/>
 <text x="120" y="506" font-size="13" font-weight="bold" fill="#a8321f">一个电容，三笔账</text>
 <text x="120" y="534" font-size="12.5" fill="#16202b">加大 Chold：摊注入、压 kT/C、缓 droop；代价是采集时间线性变长。</text>

@@ -91,6 +91,15 @@ class AnimationV2Tests(unittest.TestCase):
                 self.assertEqual(set(values[:completed[beat]]), set(values) & frame_text,
                                  '分镜须保留已填记录，且不能提前显示后续记录')
 
+    def test_sample_hold_final_frame_keeps_full_trace(self):
+        from scripts.visuals.scenes.ch08_sample_hold_v2 import scene
+
+        tl, layers = scene()
+        static = static_svg(tl, layers)
+        for segment in ('M110,400', '520,180', 'L700,180', '864,220'):
+            with self.subTest(segment=segment):
+                self.assertIn(segment, static, '结论帧必须保留完整采样周期波形')
+
     def test_all_real_scenes_reproduce_checked_in_triplets(self):
         root = Path(__file__).resolve().parents[1]
         for source in sorted((root / 'scripts/visuals/scenes').glob('ch*.py')):

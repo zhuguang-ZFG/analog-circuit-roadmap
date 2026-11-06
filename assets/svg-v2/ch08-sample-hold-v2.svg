@@ -112,12 +112,18 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <line x1="110" y1="180" x2="864" y2="180" stroke="#3d6b4a" stroke-width="1.2" stroke-dasharray="5,5"/>
 <g data-beat="采样" opacity="0"><path d="M110,400 C180,400 220,300 300,240 C360,200 430,184 520,180" fill="none" stroke="#1f5d7a" stroke-width="3.4"/>
 <text x="310" y="250" font-size="12.5" font-weight="bold" fill="#1f5d7a">8.3τ 后到 12 位</text><animate attributeName="opacity" values="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.25 0.1 0.25 1" begin="0s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1" begin="2s" dur="0.4s" fill="freeze"/><animateTransform attributeName="transform" type="translate" from="0 0" to="0 -4" begin="0s" dur="0.6s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1" keyTimes="0;1"/></g>
-<g data-beat="保持" opacity="0"><path d="M520,180 L700,180" stroke="#3d6b4a" stroke-width="3.4"/>
+<g data-beat="保持" opacity="0"><path d="M110,400 C180,400 220,300 300,240 C360,200 430,184 520,180" fill="none" stroke="#1f5d7a" stroke-width="3.4"/>
+<path d="M520,180 L700,180" fill="none" stroke="#3d6b4a" stroke-width="3.4"/>
 <line x1="520" y1="160" x2="520" y2="210" stroke="#3d6b4a" stroke-width="2"/>
 <text x="540" y="160" font-size="12" fill="#3d6b4a">断开：冻结</text><animate attributeName="opacity" values="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.25 0.1 0.25 1" begin="2s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1" begin="4s" dur="0.4s" fill="freeze"/><animateTransform attributeName="transform" type="translate" from="0 0" to="0 -4" begin="2s" dur="0.6s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1" keyTimes="0;1"/></g>
-<g data-beat="下垂" opacity="0"><path d="M700,180 L864,220" stroke="#a4630f" stroke-width="3.4"/>
+<g data-beat="下垂" opacity="0"><path d="M110,400 C180,400 220,300 300,240 C360,200 430,184 520,180" fill="none" stroke="#1f5d7a" stroke-width="3.4"/>
+<path d="M520,180 L700,180" fill="none" stroke="#3d6b4a" stroke-width="3.4"/>
+<path d="M700,180 L864,220" fill="none" stroke="#a4630f" stroke-width="3.4"/>
 <text x="730" y="246" font-size="12" fill="#a4630f">droop = I/C</text><animate attributeName="opacity" values="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.25 0.1 0.25 1" begin="4s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1" begin="6.4s" dur="0.4s" fill="freeze"/><animateTransform attributeName="transform" type="translate" from="0 0" to="0 -4" begin="4s" dur="0.6s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1" keyTimes="0;1"/></g>
-<g data-beat="再采样" opacity="0"><line x1="864" y1="150" x2="864" y2="400" stroke="#a8321f" stroke-width="1.6" stroke-dasharray="4,4"/>
+<g data-beat="再采样" opacity="0"><path d="M110,400 C180,400 220,300 300,240 C360,200 430,184 520,180" fill="none" stroke="#1f5d7a" stroke-width="3.4"/>
+<path d="M520,180 L700,180" fill="none" stroke="#3d6b4a" stroke-width="3.4"/>
+<path d="M700,180 L864,220" fill="none" stroke="#a4630f" stroke-width="3.4"/>
+<line x1="864" y1="150" x2="864" y2="400" stroke="#a8321f" stroke-width="1.6" stroke-dasharray="4,4"/>
 <rect x="96" y="474" width="816" height="94" rx="10" fill="#f6e7e1" stroke="#a8321f" stroke-width="1.6"/>
 <text x="120" y="506" font-size="13" font-weight="bold" fill="#a8321f">一个电容，三笔账</text>
 <text x="120" y="534" font-size="12.5" fill="#16202b">加大 Chold：摊注入、压 kT/C、缓 droop；代价是采集时间线性变长。</text>
