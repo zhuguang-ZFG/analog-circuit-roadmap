@@ -5672,7 +5672,7 @@ IN ─────┤          ├───── OUT
 <!-- slot:intuition -->
 > **图问**：单只 NMOS 传不了高电平、单只 PMOS 传不了低电平——并联之后为什么就轨到轨了？
 
-<p align="center"><img src="assets/svg-v2/ch08-transfer-gate-v2.svg" width="720" alt="传输门V2动画：0V 时 N 管导通，4V 附近 N 管截止、P 管接管，并联包络 20→26.7→20Ω；末拍标出下游 2.5V 门限与双向传输"></p>
+<p align="center"><img src="assets/svg-v2/ch08-transfer-gate-v2.svg" width="720" alt="传输门V2动画：横轴 VIN、纵轴 R_ON，0V 时 N 管导通，单 N 在 4V 附近截止，互补并联包络 20→26.7→20Ω；末拍区分下游 2.5V 逻辑门限与传输门全摆幅，双头箭头表示双向"></p>
 
 [动画演示 5.50](#demo50)
 

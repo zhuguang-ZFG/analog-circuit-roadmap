@@ -23,58 +23,117 @@ def scene():
     tl = Timeline(
         width=960, height=660, duration=8.0,
         beats=(
-            Beat("零水位", 0.0, 1.6, "VIN=0V：N 管全开，P 管没导通", BLUE),
-            Beat("顶到4V", 1.6, 3.4, "VIN 升到 4V：N 管压差只剩 VTH，传输停住", AMBER),
+            Beat("零水位", 0.0, 1.6, "VIN=0V：N 管 20Ω，P 管未导通", BLUE),
+            Beat("顶到4V", 1.6, 3.4, "单 N 在 4V 截止；互补的 P 管接管高段", AMBER),
             Beat("互补并联", 3.4, 5.6, "P 管接管高段，包络 20→26.7→20Ω 覆盖全摆幅", GREEN),
-            Beat("双向与边界", 5.6, 8.0, "源漏对称所以双向；下游门限 2.5V 决定 4V 够不够", RED, hold=True),
+            Beat("双向与边界", 5.6, 8.0, "单 N 的 4V 看下游门限；互补并联覆盖 0~5V，且可双向", RED, hold=True),
         ),
         title="传输门：谁行谁上",
-        subtitle="单管有阈值缺口，互补并联才轨到轨",
+        subtitle="R_ON–VIN：同一阈值模型、同一坐标；1~4V 为并联平台",
     )
-    persistent = "\n".join((
+    left, right, top, bottom, resistance_limit = 104, 620, 160, 470, 80
+
+    def px(voltage):
+        return left + voltage / 5 * (right - left)
+
+    def ry(resistance):
+        return bottom - resistance / resistance_limit * (bottom - top)
+
+    def rn(voltage):
+        return 80 / (4 - voltage) if voltage < 4 else None
+
+    def rp(voltage):
+        return 80 / (voltage - 1) if voltage > 1 else None
+
+    def parallel(voltage):
+        # 截止管电导为零，不以任意大电阻代替；1~4V 两管电导和恒为 3/80。
+        conductance = (max(4 - voltage, 0) + max(voltage - 1, 0)) / 80
+        return 1 / conductance
+
+    def curve(model, colour, width, dash=''):
+        points = []
+        for step in range(101):
+            voltage = step / 20
+            resistance = model(voltage)
+            if resistance is not None and resistance <= resistance_limit:
+                points.append(f'{px(voltage):.2f},{ry(resistance):.2f}')
+        style = f' stroke-dasharray="{dash}"' if dash else ''
+        return (f'<polyline points="{" ".join(points)}" fill="none" '
+                f'stroke="{colour}" stroke-width="{width}"{style}/>')
+
+    n_curve = curve(rn, BLUE, 2.4)
+    p_curve = curve(rp, AMBER, 2.4, '7,5')
+    parallel_curve = curve(parallel, GREEN, 3.6)
+    axes = [
         f'<rect x="48" y="92" width="864" height="440" rx="14" fill="#f6eedb" stroke="{RULE}" stroke-width="1.4"/>',
-        f'<line x1="96" y1="470" x2="864" y2="470" stroke="{RULE}" stroke-width="2"/>',
-        f'<text x="96" y="500" font-size="12" fill="{MUTED}">VIN 0V</text>',
-        f'<text x="840" y="500" text-anchor="end" font-size="12" fill="{MUTED}">5V</text>',
-        f'<line x1="96" y1="470" x2="96" y2="140" stroke="{RULE}" stroke-width="2"/>',
-        f'<text x="82" y="132" text-anchor="end" font-size="12" fill="{MUTED}">R_ON</text>',
-        f'<line x1="290" y1="136" x2="290" y2="500" stroke="{AMBER}" stroke-width="1.4" stroke-dasharray="5,4"/>',
-        f'<text x="290" y="522" text-anchor="middle" font-size="11" fill="{AMBER}">4V</text>',
-        f'<line x1="210" y1="136" x2="210" y2="500" stroke="{MUTED}" stroke-width="1.2" stroke-dasharray="3,5"/>',
-        f'<text x="210" y="522" text-anchor="middle" font-size="11" fill="{MUTED}">2.5V 门限</text>',
+        f'<line x1="{left}" y1="{bottom}" x2="{right}" y2="{bottom}" stroke="{RULE}" stroke-width="2"/>',
+        f'<line x1="{left}" y1="{bottom}" x2="{left}" y2="{top}" stroke="{RULE}" stroke-width="2"/>',
+        f'<text x="88" y="144" text-anchor="end" font-size="12" fill="{MUTED}">R_ON</text>',
+        f'<text x="{left}" y="500" text-anchor="middle" font-size="12" fill="{MUTED}">0V</text>',
+        f'<text x="{px(1):.2f}" y="500" text-anchor="middle" font-size="11" fill="{MUTED}">1V</text>',
+        f'<text x="{right}" y="500" text-anchor="middle" font-size="12" fill="{MUTED}">5V</text>',
+        f'<line x1="{px(4):.2f}" y1="{top}" x2="{px(4):.2f}" y2="500" stroke="{AMBER}" stroke-width="1.4" stroke-dasharray="5,4"/>',
+        f'<text x="{px(4):.2f}" y="522" text-anchor="middle" font-size="11" fill="{AMBER}">4V</text>',
+        f'<line x1="{px(2.5):.2f}" y1="{top}" x2="{px(2.5):.2f}" y2="500" stroke="{MUTED}" stroke-width="1.2" stroke-dasharray="3,5"/>',
+        f'<text x="{px(2.5):.2f}" y="522" text-anchor="middle" font-size="11" fill="{MUTED}">2.5V 门限</text>',
         f'<rect x="48" y="544" width="864" height="48" rx="10" fill="{BLUE_T}" stroke="{BLUE}" stroke-width="1.2"/>',
-        f'<text x="72" y="575" font-size="12.5" fill="{INK}">VDD=5V，VTH=1V；N 管管低段、P 管管高段，源漏对称所以双向。</text>',
+        f'<text x="72" y="575" font-size="12.5" fill="{INK}">教学模型：VDD=5V，VTH=1V，R0=80Ω·V；超出纵轴的曲线段省略，不含体效应。</text>',
+    ]
+    for resistance, label in ((0, '0Ω'), (20, '20Ω'), (80 / 3, '26.7Ω'), (80, '80Ω')):
+        y = ry(resistance)
+        if resistance:
+            axes.append(f'<line x1="{left}" y1="{y:.2f}" x2="{right}" y2="{y:.2f}" '
+                        f'stroke="{RULE}" stroke-width="1" stroke-dasharray="4,4"/>')
+        axes.append(f'<text x="88" y="{y + 4:.2f}" text-anchor="end" '
+                    f'font-size="11" fill="{MUTED}">{label}</text>')
+
+    legend = '\n'.join((
+        f'<text x="120" y="126" font-size="12" fill="{BLUE}">N 管：实线</text>',
+        f'<text x="284" y="126" font-size="12" fill="{AMBER}">P 管：虚线</text>',
+        f'<text x="452" y="126" font-size="12" font-weight="bold" fill="{GREEN}">并联：粗线</text>',
     ))
-    envelope = "\n".join((
-        f'<path d="M96,410 C180,410 240,380 290,300 C350,240 430,300 500,360 C580,410 700,410 864,410" fill="none" stroke="{GREEN}" stroke-width="3.4"/>',
-        f'<path d="M96,430 C180,430 240,400 290,320 C350,260 430,320 500,380 C580,430 700,430 864,430" fill="none" stroke="{BLUE}" stroke-width="2" stroke-dasharray="7,5"/>',
-        f'<text x="430" y="264" font-size="13" font-weight="bold" fill="{GREEN}">并联包络 20→26.7→20Ω</text>',
+    envelope = '\n'.join((
+        legend, n_curve, p_curve, parallel_curve,
+        f'<text x="{px(2.5):.2f}" y="342" text-anchor="middle" font-size="13" '
+        f'font-weight="bold" fill="{GREEN}">并联平台 26.7Ω</text>',
     ))
     layers = [
-        Layer(None, persistent),
-        Layer("零水位", "\n".join((
-            f'<path d="M96,410 C180,410 250,400 330,360 C410,320 500,260 600,230" fill="none" stroke="{BLUE}" stroke-width="3"/>',
-            f'<circle cx="104" cy="410" r="6" fill="{BLUE}"/>',
-            f'<text x="116" y="398" font-size="13" font-weight="bold" fill="{BLUE}">N 管 20Ω</text>',
-            f'<text x="560" y="210" font-size="12" fill="{MUTED}">P 管未导通</text>',
-        )), (0, -4)),
-        Layer("顶到4V", "\n".join((
-            f'<path d="M96,410 C200,410 260,390 290,220 C300,160 310,140 320,140" fill="none" stroke="{AMBER}" stroke-width="3.4"/>',
-            f'<circle cx="290" cy="220" r="7" fill="{AMBER}"/>',
-            f'<text x="306" y="206" font-size="13" font-weight="bold" fill="{AMBER}">缺口 = VTH</text>',
-            f'<text x="330" y="170" font-size="12" fill="{MUTED}">N 管 R_ON→∞</text>',
-        )), (0, -4)),
-        Layer("互补并联", envelope, (0, -4)),
-        Layer("双向与边界", "\n".join((
-            # 结论拍仍要看得见包络：否则只剩空坐标轴与两个标注框。
+        Layer(None, '\n'.join(axes)),
+        Layer("零水位", '\n'.join((
+            n_curve,
+            f'<circle cx="{px(0):.2f}" cy="{ry(20):.2f}" r="6" fill="{BLUE}"/>',
+            f'<text x="680" y="176" font-size="14" font-weight="bold" fill="{BLUE}">VIN=0V</text>',
+            f'<text x="680" y="210" font-size="13" fill="{BLUE}">N 管：20Ω</text>',
+            f'<text x="680" y="242" font-size="12" fill="{MUTED}">P 管未导通</text>',
+        ))),
+        Layer("顶到4V", '\n'.join((
+            n_curve,
+            f'<text x="680" y="176" font-size="14" font-weight="bold" fill="{AMBER}">单 N 的阈值缺口</text>',
+            f'<text x="680" y="210" font-size="12" fill="{INK}">VDD − VTH = 4V</text>',
+            f'<text x="680" y="242" font-size="12" fill="{AMBER}">接近 4V：R_ON→∞</text>',
+            f'<text x="680" y="274" font-size="12" fill="{INK}">高段交给 P 管</text>',
+        ))),
+        Layer("互补并联", '\n'.join((
             envelope,
-            f'<rect x="96" y="120" width="360" height="86" rx="10" fill="{RED_T}" stroke="{RED}" stroke-width="1.6"/>',
-            f'<text x="116" y="150" font-size="13" font-weight="bold" fill="{RED}">4V 够不够，看下游是谁</text>',
-            f'<text x="116" y="176" font-size="12" fill="{INK}">CMOS 门限 2.5V：够用</text>',
-            f'<text x="116" y="196" font-size="12" fill="{INK}">轨到轨 ADC：不够</text>',
-            f'<path d="M700,250 L820,250 M820,250 L800,236 M820,250 L800,264" stroke="{RED}" stroke-width="2.4" fill="none"/>',
-            f'<text x="760" y="230" text-anchor="middle" font-size="12" fill="{RED}">双向</text>',
-        )), (0, -4)),
+            f'<text x="680" y="176" font-size="14" font-weight="bold" fill="{GREEN}">互补接力</text>',
+            f'<text x="680" y="210" font-size="12" fill="{INK}">0V / 5V：20Ω</text>',
+            f'<text x="680" y="242" font-size="12" fill="{GREEN}">1~4V：26.7Ω</text>',
+            f'<text x="680" y="306" font-size="12" fill="{INK}">实际选型按手册峰值</text>',
+        ))),
+        Layer("双向与边界", '\n'.join((
+            envelope,
+            f'<rect x="660" y="108" width="244" height="208" rx="10" fill="{RED_T}" stroke="{RED}" stroke-width="1.6"/>',
+            f'<text x="680" y="138" font-size="13" font-weight="bold" fill="{RED}">单 N 的 4V 够不够？</text>',
+            f'<text x="680" y="172" font-size="12" fill="{INK}">CMOS 门限 2.5V：够用</text>',
+            f'<text x="680" y="202" font-size="12" fill="{INK}">轨到轨 ADC：不够</text>',
+            f'<text x="680" y="264" font-size="12" font-weight="bold" fill="{RED}">这不是并联传输门上限</text>',
+            f'<rect x="660" y="332" width="244" height="160" rx="10" fill="{GREEN_T}" stroke="{GREEN}" stroke-width="1.6"/>',
+            f'<text x="680" y="362" font-size="13" font-weight="bold" fill="{GREEN}">并联覆盖 0~5V</text>',
+            f'<text x="680" y="394" font-size="12" fill="{INK}">包络 20→26.7→20Ω</text>',
+            f'<path d="M708,430 L852,430 M708,430 L720,422 M708,430 L720,438 M852,430 L840,422 M852,430 L840,438" '
+            f'stroke="{RED}" stroke-width="2.4" fill="none"/>',
+            f'<text x="780" y="466" text-anchor="middle" font-size="12" fill="{RED}">源漏对称：双向</text>',
+        ))),
     ]
     return tl, layers
 

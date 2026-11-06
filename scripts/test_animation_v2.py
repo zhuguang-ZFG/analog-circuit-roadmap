@@ -100,13 +100,79 @@ class AnimationV2Tests(unittest.TestCase):
             with self.subTest(segment=segment):
                 self.assertIn(segment, static, '结论帧必须保留完整采样周期波形')
 
-    def test_transfer_gate_final_frame_keeps_envelope(self):
+    def test_transfer_gate_markers_share_the_voltage_axis(self):
         from scripts.visuals.scenes.ch08_transfer_gate_v2 import scene
 
         tl, layers = scene()
-        static = static_svg(tl, layers)
-        self.assertIn('M96,410 C180,410 240,380', static, '结论帧必须保留并联包络曲线')
-        self.assertIn('20→26.7→20Ω', static, '结论帧必须保留包络标注')
+        animated = ET.fromstring(scene_svg(tl, layers))
+        static = ET.fromstring(static_svg(tl, layers))
+        storyboard = ET.fromstring(storyboard_svg(tl, layers))
+        views = [animated, static]
+        views.extend(node for node in storyboard.iter()
+                     if node.get('data-storyboard-beat') is not None)
+        for index, view in enumerate(views):
+            with self.subTest(view=index):
+                texts = view.findall('.//s:text', NS)
+                zero = next(node for node in texts if node.text in ('0V', 'VIN 0V'))
+                full = next(node for node in texts if node.text == '5V')
+                x0, x5 = float(zero.get('x')), float(full.get('x'))
+                for label, voltage in (('2.5V 门限', 2.5), ('4V', 4)):
+                    marker = next(node for node in texts if node.text == label)
+                    fraction = (float(marker.get('x')) - x0) / (x5 - x0)
+                    self.assertAlmostEqual(voltage / 5, fraction, places=5,
+                                           msg='数值标记必须按同一横轴比例放置')
+
+
+    def test_transfer_gate_envelope_matches_the_stated_resistance_model(self):
+        from scripts.visuals.scenes.ch08_transfer_gate_v2 import AMBER, BLUE, GREEN, RULE, scene
+
+        tl, layers = scene()
+        root = ET.fromstring(static_svg(tl, layers))
+        texts = root.findall('.//s:text', NS)
+        self.assertIn('20Ω', [node.text for node in texts],
+                      '定量电阻曲线必须显示可用来读数的电阻刻度')
+        x0 = float(next(node for node in texts if node.text == '0V').get('x'))
+        x5 = float(next(node for node in texts if node.text == '5V').get('x'))
+        axes = root.findall('.//s:line', NS)
+        y_zero = float(next(line for line in axes
+                            if line.get('stroke') == RULE
+                            and float(line.get('x1')) == x0
+                            and float(line.get('x2')) == x5
+                            and line.get('y1') == line.get('y2')).get('y1'))
+        tick = float(next(node for node in texts if node.text == '20Ω').get('y'))
+        grid = [float(line.get('y1')) for line in axes
+                if line.get('stroke') == RULE and line.get('stroke-dasharray')
+                and line.get('y1') == line.get('y2')]
+        y_twenty = min(grid, key=lambda y: abs(y - tick))
+        def read_curve(colour):
+            curve = next(node for node in root.findall('.//s:polyline', NS)
+                         if node.get('stroke') == colour)
+            points = []
+            for pair in curve.get('points').split():
+                x, y = map(float, pair.split(','))
+                voltage = 5 * (x - x0) / (x5 - x0)
+                resistance = 20 * (y_zero - y) / (y_zero - y_twenty)
+                points.append((voltage, resistance))
+            return points
+
+        samples = read_curve(GREEN)
+        for voltage, expected in ((0, 20), (1, 80 / 3), (2.5, 80 / 3),
+                                  (4, 80 / 3), (5, 20)):
+            with self.subTest(voltage=voltage):
+                measured_voltage, measured_resistance = min(
+                    samples, key=lambda point: abs(point[0] - voltage))
+                self.assertAlmostEqual(voltage, measured_voltage, places=4)
+                self.assertAlmostEqual(expected, measured_resistance, delta=0.02)
+        plateau = [resistance for voltage, resistance in samples if 1 <= voltage <= 4]
+        self.assertLess(max(plateau) - min(plateau), 0.02,
+                        '同一教学模型的两管电导和恒定，平台不能画成任意鼓包')
+        for colour, channel in ((BLUE, 'N'), (AMBER, 'P')):
+            for voltage, resistance in read_curve(colour):
+                with self.subTest(channel=channel, voltage=voltage):
+                    overdrive = 4 - voltage if channel == 'N' else voltage - 1
+                    self.assertGreater(overdrive, 0,
+                                       '截止区不能画成有限导通电阻')
+                    self.assertAlmostEqual(80 / overdrive, resistance, delta=0.02)
 
     def test_mux_protected_frames_block_transients_before_sampling(self):
         import re

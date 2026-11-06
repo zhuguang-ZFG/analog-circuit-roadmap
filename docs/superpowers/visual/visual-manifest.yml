@@ -5347,7 +5347,7 @@ assets:
   status_history:
   - planned
   - generated
-  alt: N 管在 4V 附近截止、P 管接管高段，并联包络 20→26.7→20Ω；下游门限 2.5V 决定 4V 够不够，源漏对称所以双向。
+  alt: 同一横轴 VIN 与线性电阻刻度下，N 管在 4V 截止、P 管接管高段；并联包络为 20→26.7→20Ω，在 1~4V 为平台。末拍分开单 N 的阈值损失与并联传输门的 0~5V 摆幅，下游逻辑门限示例为 2.5V；双头箭头表示双向。
   review_scores: {}
   production_role: engine-prototype
 - id: ch08-mux-address-glitch-v2
