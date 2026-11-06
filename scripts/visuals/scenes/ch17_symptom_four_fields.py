@@ -54,22 +54,35 @@ def scene():
         # 四个空格框（右，纵向列）
         *[f'<rect x="430" y="{92 + i * 108}" width="500" height="88" rx="10" fill="#fdf8ea" stroke="{RULE}" stroke-width="1.4" stroke-dasharray="7,5"/>'
           f'<text x="454" y="{92 + i * 108 + 34}" font-size="13" font-weight="bold" fill="{MUTED}">空格 {i + 1}：{FIELDS[i][0]}</text>'
-          f'<text x="454" y="{92 + i * 108 + 62}" font-size="12" fill="{RULE}">（待填写）</text>'
           for i in range(4)],
     ))
     layers = [Layer(None, persistent)]
-    for i, (name, fill, color, tint) in enumerate(FIELDS):
-        y = 92 + i * 108
-        layers.append(Layer(f"空格{'一二三四'[i]}", "\n".join((
-            f'<rect x="430" y="{y}" width="500" height="88" rx="10" fill="{tint}" stroke="{color}" stroke-width="1.8"/>',
-            f'<text x="454" y="{y + 34}" font-size="13" font-weight="bold" fill="{color}">空格 {i + 1}：{name}</text>',
-            f'<text x="454" y="{y + 62}" font-size="13.5" font-weight="bold" fill="{INK}">{fill}</text>',
-        )), (10, 0)))
+
+    def filled(count, *, frame=None):
+        rows = []
+        for i in range(4):
+            y = 92 + i * 108
+            if i >= count:  # 未填项才画占位文字：结论帧不许残留「（待填写）」。
+                rows.append(f'<text x="454" y="{y + 62}" font-size="12" '
+                            f'fill="{RULE}">（待填写）</text>')
+                continue
+            name, fill, color, tint = FIELDS[i]
+            stroke, width = (GREEN, 2.4) if frame == 'done' else (color, 1.8)
+            rows.append(
+                f'<rect x="430" y="{y}" width="500" height="88" rx="10" '
+                f'fill="{tint}" stroke="{stroke}" stroke-width="{width}"/>'
+                f'<text x="454" y="{y + 34}" font-size="13" font-weight="bold" '
+                f'fill="{color}">空格 {i + 1}：{name}</text>'
+                f'<text x="454" y="{y + 62}" font-size="13.5" font-weight="bold" '
+                f'fill="{INK}">{fill}</text>')
+        return "\n".join(rows)
+
+    # 累积型填空：每拍重画「已填好的前缀」，否则前一格的答案在下一拍就消失。
+    layers.append(Layer(tl.beats[0].name, filled(0)))
+    for i in range(4):
+        layers.append(Layer(f"空格{'一二三四'[i]}", filled(i + 1), (10, 0)))
     layers.append(Layer("四空全满", "\n".join((
-        f'<rect x="430" y="92" width="500" height="88" rx="10" fill="none" stroke="{GREEN}" stroke-width="2.4"/>',
-        f'<rect x="430" y="200" width="500" height="88" rx="10" fill="none" stroke="{GREEN}" stroke-width="2.4"/>',
-        f'<rect x="430" y="308" width="500" height="88" rx="10" fill="none" stroke="{GREEN}" stroke-width="2.4"/>',
-        f'<rect x="430" y="416" width="500" height="88" rx="10" fill="none" stroke="{GREEN}" stroke-width="2.4"/>',
+        filled(4, frame='done'),
         f'<rect x="56" y="92" width="330" height="150" rx="12" fill="none" stroke="{GREEN}" stroke-width="2.4"/>',
         f'<rect x="56" y="268" width="330" height="110" rx="12" fill="{GREEN_T}" stroke="{GREEN}" stroke-width="2"/>',
         f'<text x="80" y="304" font-size="14" font-weight="bold" fill="{GREEN}">四空全满，才有资格动手</text>',

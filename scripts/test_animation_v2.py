@@ -68,6 +68,29 @@ class AnimationV2Tests(unittest.TestCase):
         with self.assertRaises(ValueError):
             Timeline(960, 620, 6, tl.beats[:-1], "broken")
 
+    def test_symptom_record_survives_final_and_print_frames(self):
+        from scripts.visuals.scenes.ch17_symptom_four_fields import FIELDS, scene
+
+        tl, layers = scene()
+        values = [field[1] for field in FIELDS]
+        final = ET.fromstring(static_svg(tl, layers))
+        final_text = {node.text for node in final.findall('.//s:text', NS)}
+        self.assertEqual(set(values), set(values) & final_text,
+                         '结论静帧必须保留四项已填写记录')
+
+        completed = {tl.beats[0].name: 0, tl.beats[-1].name: len(values)}
+        completed.update((beat.name, index)
+                         for index, beat in enumerate(tl.beats[1:-1], 1))
+        storyboard = ET.fromstring(storyboard_svg(tl, layers))
+        for frame in storyboard.iter():
+            beat = frame.get('data-storyboard-beat')
+            if beat is None:
+                continue
+            with self.subTest(beat=beat):
+                frame_text = {node.text for node in frame.findall('.//s:text', NS)}
+                self.assertEqual(set(values[:completed[beat]]), set(values) & frame_text,
+                                 '分镜须保留已填记录，且不能提前显示后续记录')
+
     def test_all_real_scenes_reproduce_checked_in_triplets(self):
         root = Path(__file__).resolve().parents[1]
         for source in sorted((root / 'scripts/visuals/scenes').glob('ch*.py')):

@@ -105,14 +105,14 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <text x="80" y="158" font-size="17" font-weight="bold" fill="#16202b">5V 输出只有 3.1V</text>
 <text x="80" y="188" font-size="14" fill="#16202b">纹波 400mV</text>
 <text x="80" y="216" font-size="12" fill="#5b666f">先用四空格记录，再谈修理</text>
-<rect x="430" y="92" width="500" height="88" rx="10" fill="#fdf8ea" stroke="#c9bb9d" stroke-width="1.4" stroke-dasharray="7,5"/><text x="454" y="126" font-size="13" font-weight="bold" fill="#5b666f">空格 1：偏离多少</text><text x="454" y="154" font-size="12" fill="#c9bb9d">（待填写）</text>
-<rect x="430" y="200" width="500" height="88" rx="10" fill="#fdf8ea" stroke="#c9bb9d" stroke-width="1.4" stroke-dasharray="7,5"/><text x="454" y="234" font-size="13" font-weight="bold" fill="#5b666f">空格 2：从何时开始</text><text x="454" y="262" font-size="12" fill="#c9bb9d">（待填写）</text>
-<rect x="430" y="308" width="500" height="88" rx="10" fill="#fdf8ea" stroke="#c9bb9d" stroke-width="1.4" stroke-dasharray="7,5"/><text x="454" y="342" font-size="13" font-weight="bold" fill="#5b666f">空格 3：发生多常</text><text x="454" y="370" font-size="12" fill="#c9bb9d">（待填写）</text>
-<rect x="430" y="416" width="500" height="88" rx="10" fill="#fdf8ea" stroke="#c9bb9d" stroke-width="1.4" stroke-dasharray="7,5"/><text x="454" y="450" font-size="13" font-weight="bold" fill="#5b666f">空格 4：最后改了什么</text><text x="454" y="478" font-size="12" fill="#c9bb9d">（待填写）</text>
-<g transform="translate(0 -4)"><rect x="430" y="92" width="500" height="88" rx="10" fill="none" stroke="#3d6b4a" stroke-width="2.4"/>
-<rect x="430" y="200" width="500" height="88" rx="10" fill="none" stroke="#3d6b4a" stroke-width="2.4"/>
-<rect x="430" y="308" width="500" height="88" rx="10" fill="none" stroke="#3d6b4a" stroke-width="2.4"/>
-<rect x="430" y="416" width="500" height="88" rx="10" fill="none" stroke="#3d6b4a" stroke-width="2.4"/>
+<rect x="430" y="92" width="500" height="88" rx="10" fill="#fdf8ea" stroke="#c9bb9d" stroke-width="1.4" stroke-dasharray="7,5"/><text x="454" y="126" font-size="13" font-weight="bold" fill="#5b666f">空格 1：偏离多少</text>
+<rect x="430" y="200" width="500" height="88" rx="10" fill="#fdf8ea" stroke="#c9bb9d" stroke-width="1.4" stroke-dasharray="7,5"/><text x="454" y="234" font-size="13" font-weight="bold" fill="#5b666f">空格 2：从何时开始</text>
+<rect x="430" y="308" width="500" height="88" rx="10" fill="#fdf8ea" stroke="#c9bb9d" stroke-width="1.4" stroke-dasharray="7,5"/><text x="454" y="342" font-size="13" font-weight="bold" fill="#5b666f">空格 3：发生多常</text>
+<rect x="430" y="416" width="500" height="88" rx="10" fill="#fdf8ea" stroke="#c9bb9d" stroke-width="1.4" stroke-dasharray="7,5"/><text x="454" y="450" font-size="13" font-weight="bold" fill="#5b666f">空格 4：最后改了什么</text>
+<g transform="translate(0 -4)"><rect x="430" y="92" width="500" height="88" rx="10" fill="#f6e7e1" stroke="#3d6b4a" stroke-width="2.4"/><text x="454" y="126" font-size="13" font-weight="bold" fill="#a8321f">空格 1：偏离多少</text><text x="454" y="154" font-size="13.5" font-weight="bold" fill="#16202b">5V → 3.1V，差 1.9V（38%）</text>
+<rect x="430" y="200" width="500" height="88" rx="10" fill="#e6eff3" stroke="#3d6b4a" stroke-width="2.4"/><text x="454" y="234" font-size="13" font-weight="bold" fill="#1f5d7a">空格 2：从何时开始</text><text x="454" y="262" font-size="13.5" font-weight="bold" fill="#16202b">一上电就低？带载才低？开机记录</text>
+<rect x="430" y="308" width="500" height="88" rx="10" fill="#f7eedb" stroke="#3d6b4a" stroke-width="2.4"/><text x="454" y="342" font-size="13" font-weight="bold" fill="#a4630f">空格 3：发生多常</text><text x="454" y="370" font-size="13.5" font-weight="bold" fill="#16202b">偶发还是稳定复现——复现才有对照</text>
+<rect x="430" y="416" width="500" height="88" rx="10" fill="#e8efe6" stroke="#3d6b4a" stroke-width="2.4"/><text x="454" y="450" font-size="13" font-weight="bold" fill="#3d6b4a">空格 4：最后改了什么</text><text x="454" y="478" font-size="13.5" font-weight="bold" fill="#16202b">换线/换负载/换器件——改回试试</text>
 <rect x="56" y="92" width="330" height="150" rx="12" fill="none" stroke="#3d6b4a" stroke-width="2.4"/>
 <rect x="56" y="268" width="330" height="110" rx="12" fill="#e8efe6" stroke="#3d6b4a" stroke-width="2"/>
 <text x="80" y="304" font-size="14" font-weight="bold" fill="#3d6b4a">四空全满，才有资格动手</text>
