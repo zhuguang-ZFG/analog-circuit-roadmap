@@ -3261,7 +3261,7 @@ assets:
   status_history:
   - planned
   - generated
-  alt: 恒压源 V-I 是竖线、恒流源是水平线；真实源斜率是输出阻抗；恒压并联、恒流串联
+  alt: 横轴电流 I、纵轴电压 V：恒压源水平线、恒流源竖线；真实源负斜率的绝对值对应输出阻抗；恒压并联、恒流串联
   review_scores: {}
   production_role: engine-prototype
 - id: ch17-i2c-rise-time-budget

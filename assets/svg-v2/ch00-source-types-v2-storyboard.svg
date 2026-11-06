@@ -97,36 +97,36 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 </style>
 
 <text x="480" y="34" text-anchor="middle" font-size="18" font-weight="bold" fill="#16202b">两种源，两条 V-I 曲线·分镜</text>
-<text x="480" y="56" text-anchor="middle" font-size="12" fill="#5b666f">竖线追电压，水平线追电流；真实源落在中间，斜率就是输出阻抗</text>
+<text x="480" y="56" text-anchor="middle" font-size="12" fill="#5b666f">横轴电流 I、纵轴电压 V；斜率的绝对值反映输出阻抗</text>
 <rect x="20" y="70" width="450" height="300" rx="10" fill="#fdf8ea" stroke="#c9bb9d" stroke-width="1.2"/>
-<g data-storyboard-beat="恒压" transform="translate(47 84) scale(0.4129)"><rect x="48" y="96" width="864" height="420" rx="14" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/><line x1="120" y1="420" x2="690" y2="420" stroke="#16202b" stroke-width="2"/><line x1="120" y1="420" x2="120" y2="140" stroke="#16202b" stroke-width="2"/><text x="700" y="425" font-size="13" fill="#5b666f">I</text><text x="108" y="132" font-size="13" fill="#5b666f">V</text><text x="400" y="448" text-anchor="middle" font-size="11" fill="#5b666f">源电流</text><text x="92" y="290" text-anchor="middle" font-size="11" fill="#5b666f" transform="rotate(-90 92 290)">端电压</text>
-<g transform="translate(0 -4)"><line x1="260" y1="180" x2="260" y2="410" stroke="#1f5d7a" stroke-width="4"/>
-<text x="276" y="204" font-size="13" font-weight="bold" fill="#1f5d7a">竖线：V 不动</text>
-<text x="276" y="228" font-size="12" fill="#16202b">内阻趋近 0；短路是灾难</text>
-<text x="276" y="252" font-size="12" fill="#5b666f">常态：开路</text></g></g>
+<g data-storyboard-beat="恒压" transform="translate(47 84) scale(0.4129)"><rect x="48" y="96" width="864" height="420" rx="14" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/><line x1="120" y1="420" x2="492" y2="420" stroke="#16202b" stroke-width="2"/><line x1="120" y1="420" x2="120" y2="140" stroke="#16202b" stroke-width="2"/><text x="500" y="425" font-size="13" fill="#5b666f">I</text><text x="108" y="132" font-size="13" fill="#5b666f">V</text><text x="300" y="448" text-anchor="middle" font-size="11" fill="#5b666f">源电流</text><text x="92" y="290" text-anchor="middle" font-size="11" fill="#5b666f" transform="rotate(-90 92 290)">端电压</text>
+<g transform="translate(0 -4)"><line x1="120" y1="190" x2="480" y2="190" stroke="#1f5d7a" stroke-width="4"/>
+<text x="536" y="204" font-size="13" font-weight="bold" fill="#1f5d7a">水平线：V 不动</text>
+<text x="536" y="228" font-size="12" fill="#16202b">内阻趋近 0；短路是灾难</text>
+<text x="536" y="252" font-size="12" fill="#5b666f">常态：开路</text></g></g>
 <text x="32" y="348" font-size="12" font-weight="bold" fill="#1f5d7a">1. 恒压</text>
 <rect x="490" y="70" width="450" height="300" rx="10" fill="#fdf8ea" stroke="#c9bb9d" stroke-width="1.2"/>
-<g data-storyboard-beat="恒流" transform="translate(517 84) scale(0.4129)"><rect x="48" y="96" width="864" height="420" rx="14" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/><line x1="120" y1="420" x2="690" y2="420" stroke="#16202b" stroke-width="2"/><line x1="120" y1="420" x2="120" y2="140" stroke="#16202b" stroke-width="2"/><text x="700" y="425" font-size="13" fill="#5b666f">I</text><text x="108" y="132" font-size="13" fill="#5b666f">V</text><text x="400" y="448" text-anchor="middle" font-size="11" fill="#5b666f">源电流</text><text x="92" y="290" text-anchor="middle" font-size="11" fill="#5b666f" transform="rotate(-90 92 290)">端电压</text>
-<g transform="translate(0 -4)"><line x1="120" y1="250" x2="660" y2="250" stroke="#3d6b4a" stroke-width="4"/>
-<text x="286" y="234" font-size="13" font-weight="bold" fill="#3d6b4a">水平线：I 不动</text>
-<text x="286" y="276" font-size="12" fill="#16202b">输出阻抗趋近 ∞；开路是灾难</text>
-<text x="286" y="300" font-size="12" fill="#5b666f">常态：短路</text></g></g>
+<g data-storyboard-beat="恒流" transform="translate(517 84) scale(0.4129)"><rect x="48" y="96" width="864" height="420" rx="14" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/><line x1="120" y1="420" x2="492" y2="420" stroke="#16202b" stroke-width="2"/><line x1="120" y1="420" x2="120" y2="140" stroke="#16202b" stroke-width="2"/><text x="500" y="425" font-size="13" fill="#5b666f">I</text><text x="108" y="132" font-size="13" fill="#5b666f">V</text><text x="300" y="448" text-anchor="middle" font-size="11" fill="#5b666f">源电流</text><text x="92" y="290" text-anchor="middle" font-size="11" fill="#5b666f" transform="rotate(-90 92 290)">端电压</text>
+<g transform="translate(0 -4)"><line x1="300" y1="150" x2="300" y2="410" stroke="#3d6b4a" stroke-width="4"/>
+<text x="536" y="234" font-size="13" font-weight="bold" fill="#3d6b4a">竖线：I 不动</text>
+<text x="536" y="276" font-size="12" fill="#16202b">输出阻抗趋近 ∞；开路是灾难</text>
+<text x="536" y="300" font-size="12" fill="#5b666f">常态：短路</text></g></g>
 <text x="502" y="348" font-size="12" font-weight="bold" fill="#3d6b4a">2. 恒流</text>
 <rect x="20" y="388" width="450" height="300" rx="10" fill="#fdf8ea" stroke="#c9bb9d" stroke-width="1.2"/>
-<g data-storyboard-beat="真实源" transform="translate(47 402) scale(0.4129)"><rect x="48" y="96" width="864" height="420" rx="14" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/><line x1="120" y1="420" x2="690" y2="420" stroke="#16202b" stroke-width="2"/><line x1="120" y1="420" x2="120" y2="140" stroke="#16202b" stroke-width="2"/><text x="700" y="425" font-size="13" fill="#5b666f">I</text><text x="108" y="132" font-size="13" fill="#5b666f">V</text><text x="400" y="448" text-anchor="middle" font-size="11" fill="#5b666f">源电流</text><text x="92" y="290" text-anchor="middle" font-size="11" fill="#5b666f" transform="rotate(-90 92 290)">端电压</text>
-<g transform="translate(0 -4)"><line x1="120" y1="180" x2="470" y2="188" stroke="#a4630f" stroke-width="3.4"/>
-<line x1="120" y1="180" x2="500" y2="212" stroke="#a8321f" stroke-width="3.4"/>
-<text x="300" y="170" font-size="11.5" fill="#a4630f">1mΩ：5A 掉 5mV</text>
-<text x="330" y="230" font-size="11.5" fill="#a8321f">100mΩ：2A 掉 200mV</text>
-<text x="470" y="166" font-size="10.5" fill="#5b666f">斜率放大示意</text></g></g>
+<g data-storyboard-beat="真实源" transform="translate(47 402) scale(0.4129)"><rect x="48" y="96" width="864" height="420" rx="14" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/><line x1="120" y1="420" x2="492" y2="420" stroke="#16202b" stroke-width="2"/><line x1="120" y1="420" x2="120" y2="140" stroke="#16202b" stroke-width="2"/><text x="500" y="425" font-size="13" fill="#5b666f">I</text><text x="108" y="132" font-size="13" fill="#5b666f">V</text><text x="300" y="448" text-anchor="middle" font-size="11" fill="#5b666f">源电流</text><text x="92" y="290" text-anchor="middle" font-size="11" fill="#5b666f" transform="rotate(-90 92 290)">端电压</text>
+<g transform="translate(0 -4)"><line x1="120" y1="190" x2="470" y2="198" stroke="#a4630f" stroke-width="3.4"/>
+<line x1="120" y1="190" x2="480" y2="222" stroke="#a8321f" stroke-width="3.4"/>
+<text x="134" y="170" font-size="11.5" fill="#a4630f">1mΩ：5A 掉 5mV</text>
+<text x="330" y="246" font-size="11.5" fill="#a8321f">100mΩ：2A 掉 200mV</text>
+<text x="536" y="166" font-size="10.5" fill="#5b666f">斜率放大示意</text></g></g>
 <text x="32" y="666" font-size="12" font-weight="bold" fill="#a4630f">3. 真实源</text>
 <rect x="490" y="388" width="450" height="300" rx="10" fill="#fdf8ea" stroke="#c9bb9d" stroke-width="1.2"/>
-<g data-storyboard-beat="接法" transform="translate(517 402) scale(0.4129)"><rect x="48" y="96" width="864" height="420" rx="14" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/><line x1="120" y1="420" x2="690" y2="420" stroke="#16202b" stroke-width="2"/><line x1="120" y1="420" x2="120" y2="140" stroke="#16202b" stroke-width="2"/><text x="700" y="425" font-size="13" fill="#5b666f">I</text><text x="108" y="132" font-size="13" fill="#5b666f">V</text><text x="400" y="448" text-anchor="middle" font-size="11" fill="#5b666f">源电流</text><text x="92" y="290" text-anchor="middle" font-size="11" fill="#5b666f" transform="rotate(-90 92 290)">端电压</text>
-<g transform="translate(0 -4)"><line x1="260" y1="180" x2="260" y2="410" stroke="#1f5d7a" stroke-width="4"/>
-<line x1="120" y1="250" x2="660" y2="250" stroke="#3d6b4a" stroke-width="4"/>
-<line x1="120" y1="180" x2="470" y2="188" stroke="#a4630f" stroke-width="3.4"/>
-<line x1="120" y1="180" x2="500" y2="212" stroke="#a8321f" stroke-width="3.4"/>
-<text x="120" y="488" font-size="11.5" fill="#5b666f">竖线 / 水平线 / 两条斜线，就是三种源的性格</text>
+<g data-storyboard-beat="接法" transform="translate(517 402) scale(0.4129)"><rect x="48" y="96" width="864" height="420" rx="14" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/><line x1="120" y1="420" x2="492" y2="420" stroke="#16202b" stroke-width="2"/><line x1="120" y1="420" x2="120" y2="140" stroke="#16202b" stroke-width="2"/><text x="500" y="425" font-size="13" fill="#5b666f">I</text><text x="108" y="132" font-size="13" fill="#5b666f">V</text><text x="300" y="448" text-anchor="middle" font-size="11" fill="#5b666f">源电流</text><text x="92" y="290" text-anchor="middle" font-size="11" fill="#5b666f" transform="rotate(-90 92 290)">端电压</text>
+<g transform="translate(0 -4)"><line x1="120" y1="190" x2="480" y2="190" stroke="#1f5d7a" stroke-width="4"/>
+<line x1="300" y1="150" x2="300" y2="410" stroke="#3d6b4a" stroke-width="4"/>
+<line x1="120" y1="190" x2="470" y2="198" stroke="#a4630f" stroke-width="3.4"/>
+<line x1="120" y1="190" x2="480" y2="222" stroke="#a8321f" stroke-width="3.4"/>
+<text x="120" y="488" font-size="11.5" fill="#5b666f">恒压：水平；恒流：竖直；斜率放大示意</text>
 <rect x="512" y="150" width="304" height="100" rx="10" fill="#e6eff3" stroke="#1f5d7a" stroke-width="1.5"/>
 <text x="532" y="178" font-size="13" font-weight="bold" fill="#1f5d7a">恒压源 → 负载并联</text>
 <text x="532" y="202" font-size="11.5" fill="#16202b">各自独立取电流</text>
@@ -136,8 +136,8 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <text x="532" y="320" font-size="11.5" fill="#16202b">同一股电流穿过所有负载</text>
 <text x="532" y="344" font-size="11.5" fill="#5b666f">Ro=10MΩ：0→10V 只掉 1µA</text></g></g>
 <text x="502" y="666" font-size="12" font-weight="bold" fill="#a8321f">4. 接法</text>
-<text x="24" y="718" font-size="22" fill="#16202b">1. 恒压源的 V-I 是竖线：电流怎么变，电压不动。</text>
-<text x="24" y="748" font-size="22" fill="#16202b">2. 恒流源的 V-I 是水平线：电压怎么变，电流不动。</text>
-<text x="24" y="778" font-size="22" fill="#16202b">3. 真实源的曲线是斜线，斜率就是输出阻抗；斜率放大示意。</text>
+<text x="24" y="718" font-size="22" fill="#16202b">1. 恒压源的 V-I 是水平线：电流怎么变，电压不动。</text>
+<text x="24" y="748" font-size="22" fill="#16202b">2. 恒流源的 V-I 是竖线：电压怎么变，电流不动。</text>
+<text x="24" y="778" font-size="22" fill="#16202b">3. 真实源随负载电流增大而降压；斜率幅值反映输出阻抗。</text>
 <text x="24" y="808" font-size="22" fill="#16202b">4. 恒压源并联负载，恒流源串联负载；性格决定接法。</text>
 </svg>

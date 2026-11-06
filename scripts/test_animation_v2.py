@@ -108,14 +108,46 @@ class AnimationV2Tests(unittest.TestCase):
         self.assertIn('M96,410 C180,410 240,380', static, '结论帧必须保留并联包络曲线')
         self.assertIn('20→26.7→20Ω', static, '结论帧必须保留包络标注')
 
-    def test_mux_final_frame_keeps_timing_story(self):
-        from scripts.visuals.scenes.ch08_mux_address_glitch_v2 import scene
+    def test_mux_protected_frames_block_transients_before_sampling(self):
+        import re
+        from scripts.visuals.scenes import ch08_mux_address_glitch_v2 as mux
 
-        tl, layers = scene()
-        static = static_svg(tl, layers)
-        for needle in ('011', '111', '100', 'M120,440'):
-            with self.subTest(needle=needle):
-                self.assertIn(needle, static, '结论帧必须保留地址时序与 INH 脉冲')
+        tl, layers = mux.scene()
+        animated = ET.fromstring(scene_svg(tl, layers))
+        storyboard = ET.fromstring(storyboard_svg(tl, layers))
+        views = [ET.fromstring(static_svg(tl, layers))]
+        for name in ('先拉INH', '等够再采'):
+            views.append(next(node for node in animated.iter()
+                              if node.get('data-beat') == name))
+            views.append(next(node for node in storyboard.iter()
+                              if node.get('data-storyboard-beat') == name))
+        for index, view in enumerate(views):
+            with self.subTest(view=index):
+                texts = view.findall('.//s:text', NS)
+                visible = ' '.join(node.text or '' for node in texts)
+                self.assertNotIn('先导通', visible,
+                                 'INH 高电平期间不能同时声称错误通道导通')
+                self.assertIn('全断', visible)
+                addresses = [node for node in texts if node.text in ('111', '100')]
+                self.assertEqual({'111', '100'}, {node.text for node in addresses})
+                pulse = next(path for path in view.findall('.//s:path', NS)
+                             if path.get('stroke') == mux.GREEN)
+                coordinates = [float(value) for value in re.findall(
+                    r'-?\d+(?:\.\d+)?', pulse.get('d'))]
+                points = list(zip(coordinates[::2], coordinates[1::2]))
+                high_y = min(y for _, y in points)
+                high_x = [x for x, y in points if y == high_y]
+                self.assertGreater(points[0][1], high_y)
+                self.assertGreater(points[-1][1], high_y)
+                self.assertLess(min(high_x), min(float(node.get('x')) for node in addresses),
+                                '先禁止，再改变地址')
+                self.assertGreater(max(high_x), max(float(node.get('x')) for node in addresses),
+                                   '地址稳定后才能解除禁止')
+                sample = next(line for line in view.findall('.//s:line', NS)
+                              if line.get('stroke') == mux.PURPLE)
+                self.assertGreater(float(sample.get('x1')), max(high_x),
+                                   '解除 INH 后仍需等待，再开启采样窗')
+
 
     def test_virtual_short_final_frame_keeps_both_readings(self):
         from scripts.visuals.scenes.ch17_virtual_short_probe import scene
@@ -127,16 +159,35 @@ class AnimationV2Tests(unittest.TestCase):
                 self.assertIn(needle, static, '结论帧必须保留两次读数与压差')
         self.assertNotIn('读数：—', static, '结论帧不得退回占位读数')
 
-    def test_source_types_final_frame_keeps_three_curves(self):
-        from scripts.visuals.scenes.ch00_source_types_v2 import scene
+    def test_source_curves_keep_voltage_or_current_constant(self):
+        from scripts.visuals.scenes import ch00_source_types_v2 as source
 
-        tl, layers = scene()
-        static = static_svg(tl, layers)
-        for needle in ('x1="260" y1="180" x2="260" y2="410"',   # 恒压竖线
-                       'x1="120" y1="250" x2="660" y2="250"',   # 恒流水平线
-                       'x1="120" y1="180" x2="470" y2="188"'):  # 真实源斜线
-            with self.subTest(needle=needle):
-                self.assertIn(needle, static, '结论帧不能只剩空坐标轴')
+        tl, layers = source.scene()
+        animated = ET.fromstring(scene_svg(tl, layers))
+        static = ET.fromstring(static_svg(tl, layers))
+        storyboard = ET.fromstring(storyboard_svg(tl, layers))
+        for name, colour, constant_axis in (
+                ('恒压', source.BLUE, 'y'), ('恒流', source.GREEN, 'x')):
+            views = [
+                next(node for node in animated.iter() if node.get('data-beat') == name),
+                static,
+                next(node for node in storyboard.iter()
+                     if node.get('data-storyboard-beat') == name),
+                next(node for node in storyboard.iter()
+                     if node.get('data-storyboard-beat') == tl.beats[-1].name),
+            ]
+            for index, view in enumerate(views):
+                with self.subTest(source=name, view=index):
+                    curves = [line for line in view.findall('.//s:line', NS)
+                              if line.get('stroke') == colour]
+                    self.assertEqual(1, len(curves), '各视图须保留对应源的曲线')
+                    curve = curves[0]
+                    self.assertEqual(float(curve.get(constant_axis + '1')),
+                                     float(curve.get(constant_axis + '2')),
+                                     '横轴 I、纵轴 V：恒压固定纵坐标，恒流固定横坐标')
+                    varying_axis = 'x' if constant_axis == 'y' else 'y'
+                    self.assertNotEqual(float(curve.get(varying_axis + '1')),
+                                        float(curve.get(varying_axis + '2')))
 
     def test_divider_loading_final_frame_keeps_load_branch(self):
         from scripts.visuals.scenes.ch00_divider_loading_v2 import scene

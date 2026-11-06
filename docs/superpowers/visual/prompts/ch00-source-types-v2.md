@@ -16,6 +16,6 @@ numbers:
 - '200'
 - '10'
 - '1'
-zh_prompt: 风格名称：几何图式叙事。主题：恒压源与恒流源的 V-I 曲线、真实源斜率与接法。所有曲线、公式与数值由确定性 SVG 绘制；斜率放大处已明示示意。Task 8 正文试片锚点；正式印刷前仍需纸雕主风格复评。
-en_prompt: 'Style name: Geometric Diagrammatic Narrative. V-I curves for ideal voltage and current sources, real-source slope, and parallel/series loading. Draw all curves and labels deterministically in SVG; the exaggerated slope is explicitly marked illustrative. Task 8 body prototype anchor; papercut review still pending before print.'
+zh_prompt: 风格名称：几何图式叙事。主题：恒压源与恒流源的 V-I 曲线、真实源斜率与接法。横轴是输出电流 I，纵轴是端电压 V；恒压源画水平线，恒流源画竖线。真实源随负载电流增大而降压，负斜率的绝对值反映输出阻抗；斜率放大处明示示意。所有曲线、公式与数值由确定性 SVG 绘制。Task 8 正文试片锚点；正式印刷前仍需纸雕主风格复评。
+en_prompt: 'Style name: Geometric Diagrammatic Narrative. Plot output current I horizontally and terminal voltage V vertically. An ideal voltage source is horizontal; an ideal current source is vertical. For real sources, voltage falls as load current increases; the magnitude of the negative slope represents output resistance. Draw all curves and labels deterministically in SVG and mark exaggerated slopes as illustrative. Keep the curves in the final frame beside the parallel/series loading cards. Task 8 body prototype; papercut review still pending before print.'
 ---

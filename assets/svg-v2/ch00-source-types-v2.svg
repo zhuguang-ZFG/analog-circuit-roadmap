@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 620" role="img" aria-labelledby="figTitle figDesc">
 <title id="figTitle">两种源，两条 V-I 曲线</title>
-<desc id="figDesc">竖线追电压，水平线追电流；真实源落在中间，斜率就是输出阻抗</desc>
-<metadata id="visual-timeline">{&quot;duration&quot;: 9.0, &quot;beats&quot;: [{&quot;name&quot;: &quot;恒压&quot;, &quot;start&quot;: 0.0, &quot;end&quot;: 2.0, &quot;caption&quot;: &quot;恒压源的 V-I 是竖线：电流怎么变，电压不动。&quot;}, {&quot;name&quot;: &quot;恒流&quot;, &quot;start&quot;: 2.0, &quot;end&quot;: 4.0, &quot;caption&quot;: &quot;恒流源的 V-I 是水平线：电压怎么变，电流不动。&quot;}, {&quot;name&quot;: &quot;真实源&quot;, &quot;start&quot;: 4.0, &quot;end&quot;: 6.6, &quot;caption&quot;: &quot;真实源的曲线是斜线，斜率就是输出阻抗；斜率放大示意。&quot;}, {&quot;name&quot;: &quot;接法&quot;, &quot;start&quot;: 6.6, &quot;end&quot;: 9.0, &quot;caption&quot;: &quot;恒压源并联负载，恒流源串联负载；性格决定接法。&quot;}]}</metadata>
+<desc id="figDesc">横轴电流 I、纵轴电压 V；斜率的绝对值反映输出阻抗</desc>
+<metadata id="visual-timeline">{&quot;duration&quot;: 9.0, &quot;beats&quot;: [{&quot;name&quot;: &quot;恒压&quot;, &quot;start&quot;: 0.0, &quot;end&quot;: 2.0, &quot;caption&quot;: &quot;恒压源的 V-I 是水平线：电流怎么变，电压不动。&quot;}, {&quot;name&quot;: &quot;恒流&quot;, &quot;start&quot;: 2.0, &quot;end&quot;: 4.0, &quot;caption&quot;: &quot;恒流源的 V-I 是竖线：电压怎么变，电流不动。&quot;}, {&quot;name&quot;: &quot;真实源&quot;, &quot;start&quot;: 4.0, &quot;end&quot;: 6.6, &quot;caption&quot;: &quot;真实源随负载电流增大而降压；斜率幅值反映输出阻抗。&quot;}, {&quot;name&quot;: &quot;接法&quot;, &quot;start&quot;: 6.6, &quot;end&quot;: 9.0, &quot;caption&quot;: &quot;恒压源并联负载，恒流源串联负载；性格决定接法。&quot;}]}</metadata>
 <!-- 节拍：恒压、恒流、真实源、接法；总时长 9s；单次播放 -->
 
 <defs>
@@ -100,26 +100,26 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 
 
 <text x="480" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#16202b">两种源，两条 V-I 曲线</text>
-<text x="480" y="54" text-anchor="middle" font-size="12.5" fill="#5b666f">竖线追电压，水平线追电流；真实源落在中间，斜率就是输出阻抗</text>
-<rect x="48" y="96" width="864" height="420" rx="14" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/><line x1="120" y1="420" x2="690" y2="420" stroke="#16202b" stroke-width="2"/><line x1="120" y1="420" x2="120" y2="140" stroke="#16202b" stroke-width="2"/><text x="700" y="425" font-size="13" fill="#5b666f">I</text><text x="108" y="132" font-size="13" fill="#5b666f">V</text><text x="400" y="448" text-anchor="middle" font-size="11" fill="#5b666f">源电流</text><text x="92" y="290" text-anchor="middle" font-size="11" fill="#5b666f" transform="rotate(-90 92 290)">端电压</text>
-<g data-beat="恒压" opacity="0"><line x1="260" y1="180" x2="260" y2="410" stroke="#1f5d7a" stroke-width="4"/>
-<text x="276" y="204" font-size="13" font-weight="bold" fill="#1f5d7a">竖线：V 不动</text>
-<text x="276" y="228" font-size="12" fill="#16202b">内阻趋近 0；短路是灾难</text>
-<text x="276" y="252" font-size="12" fill="#5b666f">常态：开路</text><animate attributeName="opacity" values="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.25 0.1 0.25 1" begin="0s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1" begin="2s" dur="0.4s" fill="freeze"/><animateTransform attributeName="transform" type="translate" from="0 0" to="0 -4" begin="0s" dur="0.6s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1" keyTimes="0;1"/></g>
-<g data-beat="恒流" opacity="0"><line x1="120" y1="250" x2="660" y2="250" stroke="#3d6b4a" stroke-width="4"/>
-<text x="286" y="234" font-size="13" font-weight="bold" fill="#3d6b4a">水平线：I 不动</text>
-<text x="286" y="276" font-size="12" fill="#16202b">输出阻抗趋近 ∞；开路是灾难</text>
-<text x="286" y="300" font-size="12" fill="#5b666f">常态：短路</text><animate attributeName="opacity" values="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.25 0.1 0.25 1" begin="2s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1" begin="4s" dur="0.4s" fill="freeze"/><animateTransform attributeName="transform" type="translate" from="0 0" to="0 -4" begin="2s" dur="0.6s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1" keyTimes="0;1"/></g>
-<g data-beat="真实源" opacity="0"><line x1="120" y1="180" x2="470" y2="188" stroke="#a4630f" stroke-width="3.4"/>
-<line x1="120" y1="180" x2="500" y2="212" stroke="#a8321f" stroke-width="3.4"/>
-<text x="300" y="170" font-size="11.5" fill="#a4630f">1mΩ：5A 掉 5mV</text>
-<text x="330" y="230" font-size="11.5" fill="#a8321f">100mΩ：2A 掉 200mV</text>
-<text x="470" y="166" font-size="10.5" fill="#5b666f">斜率放大示意</text><animate attributeName="opacity" values="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.25 0.1 0.25 1" begin="4s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1" begin="6.6s" dur="0.4s" fill="freeze"/><animateTransform attributeName="transform" type="translate" from="0 0" to="0 -4" begin="4s" dur="0.6s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1" keyTimes="0;1"/></g>
-<g data-beat="接法" opacity="0"><line x1="260" y1="180" x2="260" y2="410" stroke="#1f5d7a" stroke-width="4"/>
-<line x1="120" y1="250" x2="660" y2="250" stroke="#3d6b4a" stroke-width="4"/>
-<line x1="120" y1="180" x2="470" y2="188" stroke="#a4630f" stroke-width="3.4"/>
-<line x1="120" y1="180" x2="500" y2="212" stroke="#a8321f" stroke-width="3.4"/>
-<text x="120" y="488" font-size="11.5" fill="#5b666f">竖线 / 水平线 / 两条斜线，就是三种源的性格</text>
+<text x="480" y="54" text-anchor="middle" font-size="12.5" fill="#5b666f">横轴电流 I、纵轴电压 V；斜率的绝对值反映输出阻抗</text>
+<rect x="48" y="96" width="864" height="420" rx="14" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/><line x1="120" y1="420" x2="492" y2="420" stroke="#16202b" stroke-width="2"/><line x1="120" y1="420" x2="120" y2="140" stroke="#16202b" stroke-width="2"/><text x="500" y="425" font-size="13" fill="#5b666f">I</text><text x="108" y="132" font-size="13" fill="#5b666f">V</text><text x="300" y="448" text-anchor="middle" font-size="11" fill="#5b666f">源电流</text><text x="92" y="290" text-anchor="middle" font-size="11" fill="#5b666f" transform="rotate(-90 92 290)">端电压</text>
+<g data-beat="恒压" opacity="0"><line x1="120" y1="190" x2="480" y2="190" stroke="#1f5d7a" stroke-width="4"/>
+<text x="536" y="204" font-size="13" font-weight="bold" fill="#1f5d7a">水平线：V 不动</text>
+<text x="536" y="228" font-size="12" fill="#16202b">内阻趋近 0；短路是灾难</text>
+<text x="536" y="252" font-size="12" fill="#5b666f">常态：开路</text><animate attributeName="opacity" values="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.25 0.1 0.25 1" begin="0s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1" begin="2s" dur="0.4s" fill="freeze"/><animateTransform attributeName="transform" type="translate" from="0 0" to="0 -4" begin="0s" dur="0.6s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1" keyTimes="0;1"/></g>
+<g data-beat="恒流" opacity="0"><line x1="300" y1="150" x2="300" y2="410" stroke="#3d6b4a" stroke-width="4"/>
+<text x="536" y="234" font-size="13" font-weight="bold" fill="#3d6b4a">竖线：I 不动</text>
+<text x="536" y="276" font-size="12" fill="#16202b">输出阻抗趋近 ∞；开路是灾难</text>
+<text x="536" y="300" font-size="12" fill="#5b666f">常态：短路</text><animate attributeName="opacity" values="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.25 0.1 0.25 1" begin="2s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1" begin="4s" dur="0.4s" fill="freeze"/><animateTransform attributeName="transform" type="translate" from="0 0" to="0 -4" begin="2s" dur="0.6s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1" keyTimes="0;1"/></g>
+<g data-beat="真实源" opacity="0"><line x1="120" y1="190" x2="470" y2="198" stroke="#a4630f" stroke-width="3.4"/>
+<line x1="120" y1="190" x2="480" y2="222" stroke="#a8321f" stroke-width="3.4"/>
+<text x="134" y="170" font-size="11.5" fill="#a4630f">1mΩ：5A 掉 5mV</text>
+<text x="330" y="246" font-size="11.5" fill="#a8321f">100mΩ：2A 掉 200mV</text>
+<text x="536" y="166" font-size="10.5" fill="#5b666f">斜率放大示意</text><animate attributeName="opacity" values="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.25 0.1 0.25 1" begin="4s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1" begin="6.6s" dur="0.4s" fill="freeze"/><animateTransform attributeName="transform" type="translate" from="0 0" to="0 -4" begin="4s" dur="0.6s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1" keyTimes="0;1"/></g>
+<g data-beat="接法" opacity="0"><line x1="120" y1="190" x2="480" y2="190" stroke="#1f5d7a" stroke-width="4"/>
+<line x1="300" y1="150" x2="300" y2="410" stroke="#3d6b4a" stroke-width="4"/>
+<line x1="120" y1="190" x2="470" y2="198" stroke="#a4630f" stroke-width="3.4"/>
+<line x1="120" y1="190" x2="480" y2="222" stroke="#a8321f" stroke-width="3.4"/>
+<text x="120" y="488" font-size="11.5" fill="#5b666f">恒压：水平；恒流：竖直；斜率放大示意</text>
 <rect x="512" y="150" width="304" height="100" rx="10" fill="#e6eff3" stroke="#1f5d7a" stroke-width="1.5"/>
 <text x="532" y="178" font-size="13" font-weight="bold" fill="#1f5d7a">恒压源 → 负载并联</text>
 <text x="532" y="202" font-size="11.5" fill="#16202b">各自独立取电流</text>
@@ -129,8 +129,8 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <text x="532" y="320" font-size="11.5" fill="#16202b">同一股电流穿过所有负载</text>
 <text x="532" y="344" font-size="11.5" fill="#5b666f">Ro=10MΩ：0→10V 只掉 1µA</text><animate attributeName="opacity" values="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.25 0.1 0.25 1" begin="6.6s" dur="0.45s" fill="freeze"/><animateTransform attributeName="transform" type="translate" from="0 0" to="0 -4" begin="6.6s" dur="0.6s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1" keyTimes="0;1"/></g>
 <rect x="24" y="556" width="912" height="34" rx="9" fill="#f7eedb" stroke="#c9bb9d" stroke-width="1.2"/>
-<g data-caption="恒压" opacity="0"><animate attributeName="opacity" values="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.25 0.1 0.25 1" begin="0s" dur="0.2s" fill="freeze"/><animate attributeName="opacity" values="1;0" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1" begin="1.8s" dur="0.2s" fill="freeze"/><text x="480" y="580" text-anchor="middle" font-size="13" font-weight="bold" fill="#1f5d7a">恒压源的 V-I 是竖线：电流怎么变，电压不动。</text></g>
-<g data-caption="恒流" opacity="0"><animate attributeName="opacity" values="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.25 0.1 0.25 1" begin="2s" dur="0.2s" fill="freeze"/><animate attributeName="opacity" values="1;0" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1" begin="3.8s" dur="0.2s" fill="freeze"/><text x="480" y="580" text-anchor="middle" font-size="13" font-weight="bold" fill="#3d6b4a">恒流源的 V-I 是水平线：电压怎么变，电流不动。</text></g>
-<g data-caption="真实源" opacity="0"><animate attributeName="opacity" values="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.25 0.1 0.25 1" begin="4s" dur="0.2s" fill="freeze"/><animate attributeName="opacity" values="1;0" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1" begin="6.4s" dur="0.2s" fill="freeze"/><text x="480" y="580" text-anchor="middle" font-size="13" font-weight="bold" fill="#a4630f">真实源的曲线是斜线，斜率就是输出阻抗；斜率放大示意。</text></g>
+<g data-caption="恒压" opacity="0"><animate attributeName="opacity" values="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.25 0.1 0.25 1" begin="0s" dur="0.2s" fill="freeze"/><animate attributeName="opacity" values="1;0" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1" begin="1.8s" dur="0.2s" fill="freeze"/><text x="480" y="580" text-anchor="middle" font-size="13" font-weight="bold" fill="#1f5d7a">恒压源的 V-I 是水平线：电流怎么变，电压不动。</text></g>
+<g data-caption="恒流" opacity="0"><animate attributeName="opacity" values="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.25 0.1 0.25 1" begin="2s" dur="0.2s" fill="freeze"/><animate attributeName="opacity" values="1;0" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1" begin="3.8s" dur="0.2s" fill="freeze"/><text x="480" y="580" text-anchor="middle" font-size="13" font-weight="bold" fill="#3d6b4a">恒流源的 V-I 是竖线：电压怎么变，电流不动。</text></g>
+<g data-caption="真实源" opacity="0"><animate attributeName="opacity" values="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.25 0.1 0.25 1" begin="4s" dur="0.2s" fill="freeze"/><animate attributeName="opacity" values="1;0" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1" begin="6.4s" dur="0.2s" fill="freeze"/><text x="480" y="580" text-anchor="middle" font-size="13" font-weight="bold" fill="#a4630f">真实源随负载电流增大而降压；斜率幅值反映输出阻抗。</text></g>
 <g data-caption="接法" opacity="0"><animate attributeName="opacity" values="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.25 0.1 0.25 1" begin="6.6s" dur="0.2s" fill="freeze"/><text x="480" y="580" text-anchor="middle" font-size="13" font-weight="bold" fill="#a8321f">恒压源并联负载，恒流源串联负载；性格决定接法。</text></g>
 </svg>
