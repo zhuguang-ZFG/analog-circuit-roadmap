@@ -118,41 +118,8 @@ def phase_margin_conversion():
 
 
 def opamp_four_blocks():
-    parts = [header('解剖一只 741：四级各管一件事',
-                    '约 20 只晶体管分四级。知道哪一级决定哪个参数，datasheet 就不用背了。')]
-    blocks = [
-        ('① 差分输入级', '长尾对 + 电流镜负载', '决定 V_OS、I_B、输入阻抗', 146, BLUE),
-        ('② 中间增益级', '共射放大 + 密勒补偿', '开环增益约 200,000 倍', 250, GREEN),
-        ('③ 输出级', '互补推挽 + AB 类偏置', '带载能力与失真指标', 354, AMBER),
-        ('④ 偏置网络（不在信号通路）', '电流镜阵列', '给全芯片供稳定偏流', 458, INK2),
-    ]
-    for label, how, what, y, colour in blocks:
-        parts.append(box(50, y, 560, 80, fill=PAPER, stroke=colour))
-        parts.append(text(74, y + 36, label, 26, colour=colour, weight='700'))
-        parts.append(text(74, y + 68, how, 22, colour=INK))
-        parts.append(text(330, y + 68, what, 22, colour=INK2))
-    # 信号自上而下只穿前三级
-    for y in (226, 330):
-        parts.append(f'<line x1="120" y1="{y}" x2="120" y2="{y + 14}" stroke="{INK2}" '
-                     f'stroke-width="3" stroke-linecap="round"/>')
-        parts.append(f'<polygon points="120,{y + 24} 114,{y + 12} 126,{y + 12}" fill="{INK2}"/>')
-    # 补偿电容只属于第二级
-    parts.append(arrow(616, 290, 648, 290, colour=RED))
-
-    parts.append(box(656, 146, 294, 312, fill=PAPER, stroke=RED))
-    parts.append(text(680, 186, '一颗电容定三件事', 24, colour=RED, weight='700'))
-    parts.append(text(680, 228, '补偿电容 30 pF', 22, colour=INK, weight='700'))
-    parts.append(f'<line x1="686" y1="252" x2="920" y2="252" stroke="{RULE}" stroke-width="2"/>')
-    parts.append(text(680, 292, '把主极点压到 10 Hz 量级', 22, colour=INK2))
-    parts.append(text(680, 328, '定增益带宽积', 22, colour=INK2))
-    parts.append(text(680, 364, '定压摆率', 22, colour=INK2))
-    parts.append(text(680, 404, '741 只有 0.5 V/µs', 26, colour=RED, weight='700'))
-    parts.append(text(680, 440, '稳定的代价', 22, colour=AMBER, weight='700'))
-
-    parts.append(box(50, 580, 900, 46, fill=PAPER))
-    parts.append(text(76, 612, '增益按级相乘：输入级几百倍 × 中间级几百到上千倍 = 741 的 20 万倍', 22,
-                      colour=INK))
-    return parts
+    from scripts.visuals.scenes.ch06_reference_figures import SCENES as corrected
+    return corrected['ch06-741-four-blocks']['draw']()
 
 
 def thevenin_two_load_test():
@@ -251,3 +218,7 @@ SCENES = {
                '戴维南的两个数装不下它。',
     },
 }
+
+# Keep historical batch entry points aligned with corrected chapter models.
+from scripts.visuals.scenes.ch06_reference_figures import SCENES as _ch06_corrected
+SCENES['ch06-741-four-blocks'] = _ch06_corrected['ch06-741-four-blocks']

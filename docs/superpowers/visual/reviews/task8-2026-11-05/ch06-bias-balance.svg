@@ -93,19 +93,35 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 }
 </style>
 
-<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">偏置电流的账，先看源阻抗</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">20nA 流过 1kΩ 只有 20µV；流过 100kΩ 就是 2mV。</text>
-<rect x="50" y="150" width="420" height="180" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
-<text x="74" y="192" font-size="24" fill="#3d6b4a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">源阻抗 1kΩ</text>
-<text x="74" y="230" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">20nA × 1kΩ</text>
-<text x="74" y="294" font-size="42" fill="#3d6b4a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">20µV</text>
-<rect x="530" y="150" width="420" height="180" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
-<text x="554" y="192" font-size="24" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">源阻抗 100kΩ</text>
-<text x="554" y="230" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">20nA × 100kΩ</text>
-<text x="554" y="294" font-size="42" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">2mV</text>
-<rect x="50" y="370" width="900" height="180" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
-<text x="76" y="412" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">平衡电阻法</text>
-<text x="76" y="452" font-size="30" fill="#1f5d7a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">R3 = R1 ∥ R2</text>
-<text x="76" y="492" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">两输入端直流电阻相等 → Ib 压降对消，只剩 Ios。</text>
-<text x="76" y="524" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">边界：偏流随温度漂；FET 输入 Ib 是 pA 级，直接选型更干净。</text>
-<text x="500" y="620" font-size="22" fill="#a4630f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">高阻源先选型，别硬凑平衡电阻。</text>
+<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">偏流误差：阻抗和电流方向都要算</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">下图电流流入输入端为正，输入信号置零。</text>
+<path d="M530,210 L530,360 L680,285 Z" fill="#f6eedb" stroke="#16202b" stroke-width="3"/>
+<text x="545" y="258" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">−</text>
+<text x="545" y="330" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">+</text>
+<path d="M680,285 L865,285" fill="none" stroke="#16202b" stroke-width="3"/>
+<text x="875" y="292" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">OUT</text>
+<path d="M85,250 L160,250" fill="none" stroke="#16202b" stroke-width="3"/>
+<rect x="160" y="233" width="125" height="34" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<path d="M285,250 L530,250" fill="none" stroke="#16202b" stroke-width="3"/>
+<text x="150" y="211" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">Rin 10 kΩ</text>
+<text x="50" y="290" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">Vin=0</text>
+<path d="M360,250 L360,145" fill="none" stroke="#16202b" stroke-width="3"/>
+<path d="M360,145 L530,145" fill="none" stroke="#16202b" stroke-width="3"/>
+<rect x="530" y="128" width="120" height="34" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<path d="M650,145 L810,145" fill="none" stroke="#16202b" stroke-width="3"/>
+<path d="M810,145 L810,285" fill="none" stroke="#16202b" stroke-width="3"/>
+<text x="520" y="113" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">Rf 90 kΩ</text>
+<path d="M85,325 L160,325" fill="none" stroke="#16202b" stroke-width="3"/>
+<rect x="160" y="308" width="125" height="34" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<path d="M285,325 L530,325" fill="none" stroke="#16202b" stroke-width="3"/>
+<text x="145" y="384" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">Rb 9 kΩ</text>
+<text x="50" y="358" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">GND</text>
+<path d="M430 234 Q470.00 234.28 510 234" fill="none" stroke="#a8321f" stroke-width="2.5" stroke-dasharray=""/><polygon points="510,234 500,239 500,229" fill="#a8321f"/>
+<text x="409" y="206" font-size="24" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">I−</text>
+<path d="M430 341 Q470.00 341.19 510 341" fill="none" stroke="#1f5d7a" stroke-width="2.5" stroke-dasharray=""/><polygon points="510,341 500,346 500,336" fill="#1f5d7a"/>
+<text x="425" y="379" font-size="24" fill="#1f5d7a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">I+</text>
+<text x="50" y="445" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">NG = 10；Verr = Rf I− − NG Rb I+</text>
+<text x="50" y="491" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">两路 20 nA：+1.8 mV 与 −1.8 mV 相抵。</text>
+<text x="50" y="537" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">I+ = 22 nA、I− = 20 nA：残余 −0.18 mV。</text>
+<text x="50" y="583" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">20 nA × 1 kΩ = 20 µV；× 100 kΩ = 2 mV。</text>
+<text x="50" y="630" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">阻值匹配与温度跟踪影响残余；Rb 自身也贡献热噪声。</text>
 </svg>

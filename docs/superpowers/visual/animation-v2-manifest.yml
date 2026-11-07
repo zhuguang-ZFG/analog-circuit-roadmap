@@ -3616,3 +3616,465 @@ assets:
     reviewed_on: '2026-11-08'
     record: docs/superpowers/visual/reviews/ch05-animation-2026-11-08/review.md
     asset_sha256: 0aaf4f4c1c32d3e514b04ccbea0784f337c020c8b7434299d7a6bdbb11874b54
+- id: ch06-compensation-v2
+  chapter: 6
+  kind: animation
+  type: A2
+  anchor: '6.1'
+  purpose: 补偿电容同时约束带宽与斜率
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-07-ch6.md#6.1
+  prompt_file: docs/superpowers/visual/prompts/ch06-compensation-v2.md
+  output: assets/svg-v2/ch06-compensation-v2.svg
+  print_fallback: assets/svg-v2/ch06-compensation-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch06-compensation-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch06-compensation-v2-static.svg
+  alt: 补偿电容同时约束带宽与斜率。30 pF：GBW 1 MHz，SR 0.5 V/µs。 保持 gm 与 15 µA 电流，逐渐加大电容。 60 pF：带宽与斜率都降为原来一半。 稳定性还要查其余极点与负载，不能只看
+    Cc。 固定跨导与可用充电电流；简化两级模型，不代表任意运放。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 30 pF：GBW 1 MHz，SR 0.5 V/µs。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 保持 gm 与 15 µA 电流，逐渐加大电容。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 60 pF：带宽与斜率都降为原来一半。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 稳定性还要查其余极点与负载，不能只看 Cc。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch06-compensation-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch06-animation-2026-11-08/review.md
+    asset_sha256: 3eea03954dc41fa42031a7d90f8122b7d5434773a265f25cfb0f17a3d2d81628
+- id: ch06-dc-error-v2
+  chapter: 6
+  kind: animation
+  type: A2
+  anchor: '6.2'
+  purpose: 跟随器误差先定符号再相加
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-07-ch6.md#6.2
+  prompt_file: docs/superpowers/visual/prompts/ch06-dc-error-v2.md
+  output: assets/svg-v2/ch06-dc-error-v2.svg
+  print_fallback: assets/svg-v2/ch06-dc-error-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch06-dc-error-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch06-dc-error-v2-static.svg
+  alt: 跟随器误差先定符号再相加。设 Vos = +3 mV，偏流 20 nA 流入正端。 1 kΩ 源阻引起 −20 µV；100 kΩ 为 −2 mV。 有限开环增益 100000，1 V 信号约损失
+    10 µV。 本例误差会抵消；最坏预算另加各项绝对值。 示意 Vos 为正、偏流流入正端；典型幅值不是误差保证。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 设 Vos = +3 mV，偏流 20 nA 流入正端。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 1 kΩ 源阻引起 −20 µV；100 kΩ 为 −2 mV。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 有限开环增益 100000，1 V 信号约损失 10 µV。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 本例误差会抵消；最坏预算另加各项绝对值。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch06-dc-error-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch06-animation-2026-11-08/review.md
+    asset_sha256: d888c86ce485381190780b0d4a51b4f4e8cbdf0998bd31e4c909a8647d00e063
+- id: ch06-bias-balance-v2
+  chapter: 6
+  kind: animation
+  type: A2
+  anchor: '6.3'
+  purpose: 平衡电阻抵消的是相关偏流
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-07-ch6.md#6.3
+  prompt_file: docs/superpowers/visual/prompts/ch06-bias-balance-v2.md
+  output: assets/svg-v2/ch06-bias-balance-v2.svg
+  print_fallback: assets/svg-v2/ch06-bias-balance-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch06-bias-balance-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch06-bias-balance-v2-static.svg
+  alt: 平衡电阻抵消的是相关偏流。反相放大器输入置零，先把正端直接接地。 负端偏流 20 nA 经 90 kΩ 产生 +1.8 mV。 正端串 9 kΩ 且两偏流相等：两项相抵。 正端 22 nA、负端
+    20 nA，残余为 −0.18 mV。 电流流入输入端为正；Rin 10 kΩ、Rf 90 kΩ、噪声增益 10。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 反相放大器输入置零，先把正端直接接地。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 负端偏流 20 nA 经 90 kΩ 产生 +1.8 mV。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 正端串 9 kΩ 且两偏流相等：两项相抵。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 正端 22 nA、负端 20 nA，残余为 −0.18 mV。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch06-bias-balance-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch06-animation-2026-11-08/review.md
+    asset_sha256: 621d9097954b32ca2185803e33e317821a993e6350fcb71811a5b3478b81aa90
+- id: ch06-speed-envelope-v2
+  chapter: 6
+  kind: animation
+  type: A2
+  anchor: '6.3'
+  purpose: 小信号幅频与大信号斜率分别核算
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-07-ch6.md#6.3
+  prompt_file: docs/superpowers/visual/prompts/ch06-speed-envelope-v2.md
+  output: assets/svg-v2/ch06-speed-envelope-v2.svg
+  print_fallback: assets/svg-v2/ch06-speed-envelope-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch06-speed-envelope-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch06-speed-envelope-v2-static.svg
+  alt: 小信号幅频与大信号斜率分别核算。小信号闭环极点 7 kHz，直流增益 100。 10 kHz 增益约 57.35，已经明显衰减。 若要求输出仍达 5 V 峰值，另算正弦最大斜率。 15.9
+    kHz 时所需斜率达到 SR；供电摆幅也须满足。 独立教学参数 GBW 0.7 MHz、NG 100、SR 0.5 V/µs、Vp 5 V。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 小信号闭环极点 7 kHz，直流增益 100。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 10 kHz 增益约 57.35，已经明显衰减。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 若要求输出仍达 5 V 峰值，另算正弦最大斜率。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 15.9 kHz 时所需斜率达到 SR；供电摆幅也须满足。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch06-speed-envelope-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch06-animation-2026-11-08/review.md
+    asset_sha256: d3cb6e8914364053a92bd5898a5d07e21fcffa41db9dc31fb529e21d2819854f
+- id: ch06-rejection-v2
+  chapter: 6
+  kind: animation
+  type: A2
+  anchor: '6.3'
+  purpose: 抑制比先折算输入误差，再乘噪声增益
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-07-ch6.md#6.3
+  prompt_file: docs/superpowers/visual/prompts/ch06-rejection-v2.md
+  output: assets/svg-v2/ch06-rejection-v2.svg
+  print_fallback: assets/svg-v2/ch06-rejection-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch06-rejection-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch06-rejection-v2-static.svg
+  alt: 抑制比先折算输入误差，再乘噪声增益。1 V 共模扰动除以 100，输入折算为 10 mV。 50 mV 电源纹波除以 100，输入折算为 0.5 mV。 两路误差各自经过该频率处的噪声增益。
+    NG 从 1 到 10：输出共模误差从 10 到 100 mV。 扰动频率处 CMRR、PSRR 均示意为 40 dB；先核对手册定义。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 1 V 共模扰动除以 100，输入折算为 10 mV。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 50 mV 电源纹波除以 100，输入折算为 0.5 mV。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 两路误差各自经过该频率处的噪声增益。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: NG 从 1 到 10：输出共模误差从 10 到 100 mV。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch06-rejection-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch06-animation-2026-11-08/review.md
+    asset_sha256: c3416143a361db8f744de2ce5bdf0f9e27cab70161893f8c963c5b95be82ea18
+- id: ch06-noise-bandwidth-v2
+  chapter: 6
+  kind: animation
+  type: A2
+  anchor: '6.3'
+  purpose: 噪声积分不能把截止频率当砖墙
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-07-ch6.md#6.3
+  prompt_file: docs/superpowers/visual/prompts/ch06-noise-bandwidth-v2.md
+  output: assets/svg-v2/ch06-noise-bandwidth-v2.svg
+  print_fallback: assets/svg-v2/ch06-noise-bandwidth-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch06-noise-bandwidth-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch06-noise-bandwidth-v2-static.svg
+  alt: 噪声积分不能把截止频率当砖墙。矩形带宽 20 kHz：白噪声为 5.66 µV RMS。 一阶低通在 fc 外还有噪声能量通过。 积分 |H|²：ENBW = πfc/2，约 31.42 kHz。
+    同为 fc 20 kHz，一阶结果 7.09 µV RMS。 仅算 40 nV/√Hz 白电压噪声；另计 1/f、电流噪声与电阻。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 矩形带宽 20 kHz：白噪声为 5.66 µV RMS。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 一阶低通在 fc 外还有噪声能量通过。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 积分 |H|²：ENBW = πfc/2，约 31.42 kHz。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 同为 fc 20 kHz，一阶结果 7.09 µV RMS。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch06-noise-bandwidth-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch06-animation-2026-11-08/review.md
+    asset_sha256: 3b36ec428f1f9893472ad81f71b4c67d192dfc2bacf5a8e141cf3dd4e50e5b30
+- id: ch06-settling-v2
+  chapter: 6
+  kind: animation
+  type: A2
+  anchor: '6.7'
+  purpose: 压摆斜坡与指数尾部必须连续交接
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-07-ch6.md#6.7
+  prompt_file: docs/superpowers/visual/prompts/ch06-settling-v2.md
+  output: assets/svg-v2/ch06-settling-v2.svg
+  print_fallback: assets/svg-v2/ch06-settling-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch06-settling-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch06-settling-v2-static.svg
+  alt: 压摆斜坡与指数尾部必须连续交接。只受线性带宽限制：0.1% 建立约 1.099 µs。 大阶跃先以 0.5 V/µs 斜率上升。 剩余误差达到 SRτ = 0.0796 V，约 1.841
+    µs 交接。 从交接点指数收尾，0.1% 建立约 2.537 µs。 1 V 阶跃；一阶闭环极点 1 MHz、SR 0.5 V/µs，不含过冲。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 只受线性带宽限制：0.1% 建立约 1.099 µs。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 大阶跃先以 0.5 V/µs 斜率上升。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 剩余误差达到 SRτ = 0.0796 V，约 1.841 µs 交接。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 从交接点指数收尾，0.1% 建立约 2.537 µs。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch06-settling-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch06-animation-2026-11-08/review.md
+    asset_sha256: a1c46d777258f01506eb9886a6df85abab9e3f82e9d8b0ff5a5564134152620e
