@@ -5514,8 +5514,8 @@ assets:
   prompt_file: docs/superpowers/visual/prompts/ch18-power-three-touchpoints.md
   output: assets/figures-v2/ch18-power-three-touchpoints.svg
   print_fallback: assets/figures-v2/ch18-power-three-touchpoints-print.svg
-  alt: 左右两栏：左栏依次量稳压器输出脚 5.02 V、芯片电源引脚 4.86 V、去耦电容两端，判据是三点只在毫伏级有差；右栏算 160 mV 除以 120 mA 约 1.3 Ω，并给出 1 oz
-    铜 0.5 mΩ/方、0.2 mm 宽 200 mm 长约 1000 方的路径账。
+  alt: 上半幅画一块供电板：LDO、细长走线、负载芯片与去耦电容，三支探针依次点在①输出脚、②芯片电源脚、③电容两端；下半幅左栏列 5.02 V、4.86 V 与毫伏级判据，右栏算 160 mV 除以
+    120 mA 约 1.3 Ω 的路径账。
   status: generated
   status_history:
   - planned
@@ -5551,7 +5551,8 @@ assets:
   prompt_file: docs/superpowers/visual/prompts/ch18-dmm-averaging.md
   output: assets/figures-v2/ch18-dmm-averaging.svg
   print_fallback: assets/figures-v2/ch18-dmm-averaging-print.svg
-  alt: 左右两栏对比：左栏 DC 档把 2.5 V 上的 1 MHz 正负摆动平均成稳定 2.5 V，AC 档因带宽不足读约 0 V；右栏示波器用 AC 耦合与毫伏档摊开时间，看到峰峰值 4 V 的振荡。
+  alt: 上半幅左边是万用表，显示一条不动的 2.5 V 直线；右边是示波器，把同一节点摊成 ±2 V 的正弦波。下半幅左栏解释 DC 与 AC 档为何都看不见 1 MHz 振荡，右栏给出示波器 AC
+    耦合与毫伏档的复核判据。
   status: generated
   status_history:
   - planned
@@ -8754,3 +8755,39 @@ assets:
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch03-region-check.json
   quant_rules:
     layer_encodes_value: false
+- id: ch18-williams-workbench
+  chapter: 18
+  kind: figure
+  type: V1
+  anchor: '18.2'
+  purpose: Williams 的工作台
+  style_id: FF-015
+  layout_id: IG-013
+  color_ids:
+  - C-34
+  - C-32
+  - C-35
+  - C-26
+  source_facts:
+  - docs/p4-03-ch18.md#18.2
+  prompt_file: docs/superpowers/visual/prompts/ch18-williams-workbench.md
+  output: assets/figures-v2/ch18-williams-workbench.svg
+  print_fallback: assets/figures-v2/ch18-williams-workbench-print.svg
+  alt: 纸雕工作台场景：左侧四段标注①先预测、②短地线、③最小电路、④源头放大；右侧桌上摆示波器、万用表、最小电路板、预测笔记和前级放大器，探针从示波器接到板上，地用短弹簧针。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-svg-papercut-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch18-williams-workbench.json
+  quant_rules:
+    layer_encodes_value: false
+    value_channel: overlay-axis
+    leader_route: margin
+    accent_on: paper
+    series_distinguisher:
+    - marker
+    - label
+    - dash
+  preview: assets/figures-v2/ch18-williams-workbench.webp
