@@ -114,5 +114,5 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <text x="74" y="584" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">电容要 10,000 µF，耐压至少 25 V</text>
 <rect x="520" y="506" width="430" height="118" rx="6" fill="#f6eedb" stroke="#a8321f" stroke-width="2"/>
 <text x="544" y="546" font-size="24" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">平均 1 A 不等于管子只过 1 A</text>
-<text x="544" y="584" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">导通只占 3 ms，峰值约 3.3 A</text>
+<text x="544" y="584" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">3 ms 内平均 3.3 A；峰值另查</text>
 </svg>

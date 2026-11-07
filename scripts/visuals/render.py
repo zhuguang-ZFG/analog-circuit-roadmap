@@ -180,12 +180,12 @@ def scene_svg(tl: Timeline, layers: list[Layer]) -> str:
 
 
 def write(tl: Timeline, layers: list[Layer], out_dir: str | Path,
-          stem: str) -> list[Path]:
+          stem: str, *, print_storyboard: str | None = None) -> list[Path]:
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
     written = []
     outputs = (("", scene_svg(tl, layers)), ("-static", static_svg(tl, layers)),
-               ("-storyboard", storyboard_svg(tl, layers)))
+               ("-storyboard", print_storyboard if print_storyboard is not None else storyboard_svg(tl, layers)))
     for _suffix, markup in outputs:
         ET.fromstring(markup)  # 不输出一半成功、一半 XML 损坏的三件套。
     for suffix, markup in outputs:
