@@ -1724,17 +1724,37 @@ assets:
     start: 7.6
     end: 9.5
   duration: 9.5s
-  status: generated
-  review_scores: {}
+  status: accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 5
+    运动叙事: 5
+    交互节奏: 4
+    风格一致性: 5
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
   alt: 100Hz 纹波 400mV 的 5V 轨只有 3.1V——四个空格填满才许动烙铁
   parameters: []
   conclusion_frame:
     beat: 四空全满
     output: assets/svg-v2/ch17-symptom-four-fields-static.svg
   status_history_origin: schema-migration-2026-11-05
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: af19e124d7cdae9cfebcff63a12b90028ffbb5e104ff9e22b9111790897213c9
 - id: ch17-esr-sweep
   chapter: 17
   kind: animation
@@ -1771,11 +1791,20 @@ assets:
     start: 6.2
     end: 8.0
   duration: 8.0s
-  status: generated
-  review_scores: {}
+  status: accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 5
+    运动叙事: 5
+    交互节奏: 5
+    风格一致性: 5
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
   alt: ESR 从 0.1Ω 扫到 3Ω（扫描端点为示意值）——先问纹波频率，再问幅度
   parameters:
   - name: ESR
@@ -1789,6 +1818,17 @@ assets:
     beat: 闭环
     output: assets/svg-v2/ch17-esr-sweep-static.svg
   status_history_origin: schema-migration-2026-11-05
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 25ba323dc05ae1bb347eeb3f078e9d68d1e1174a72e48063c28cf1fbc0db0d4b
 - id: ch17-virtual-short-probe
   chapter: 17
   kind: animation
@@ -1825,17 +1865,37 @@ assets:
     start: 6.0
     end: 7.5
   duration: 7.5s
-  status: generated
-  review_scores: {}
+  status: accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 5
+    运动叙事: 5
+    交互节奏: 5
+    风格一致性: 5
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
   alt: 反相级输出经 Rf 回到反相端；同一工况下测得 2.500V 与 2.508V，压差 8mV。读数须对照供电、共模、输出摆幅、反馈通断与器件误差预算，再核输出响应，不能单凭小压差判运放合格。
   parameters: []
   conclusion_frame:
     beat: 判读
     output: assets/svg-v2/ch17-virtual-short-probe-static.svg
   status_history_origin: schema-migration-2026-11-05
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 83202bff847db64d096f53a66dab77bb3c4aca68843eb8d417641561db19ac47
 - id: ch17-subharmonic-edge
   chapter: 17
   kind: animation
@@ -1875,11 +1935,20 @@ assets:
     start: 8.0
     end: 9.5
   duration: 9.5s
-  status: generated
-  review_scores: {}
+  status: accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 5
+    运动叙事: 5
+    交互节奏: 4
+    风格一致性: 5
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
   alt: 占空比一过 50% 就振、降到 50% 以下就好——这是它的指纹
   parameters:
   - name: duty
@@ -1893,6 +1962,17 @@ assets:
     beat: 边界指纹
     output: assets/svg-v2/ch17-subharmonic-edge-static.svg
   status_history_origin: schema-migration-2026-11-05
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 233814a10cbbbccaad963b906b412d484b66b750aa9d36f796dfac03445e9f28
 - id: ch00-current-loop-v2
   chapter: 0
   kind: animation
@@ -1931,13 +2011,33 @@ assets:
   conclusion_frame:
     beat: 回路守恒
     output: assets/svg-v2/ch00-current-loop-v2-static.svg
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
   alt: 同一股电流，分配两份电压；约定电流方向示意；运动速度为教学慢放，不表示电子漂移速度
-  review_scores: {}
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 5
+    运动叙事: 5
+    交互节奏: 5
+    风格一致性: 5
   production_role: engine-prototype
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: fe16be76bded453e5318fe967656f7f175561f787863832721e562adeada16c6
 - id: ch00-divider-derivation-v2
   chapter: 0
   kind: animation
@@ -1976,13 +2076,33 @@ assets:
   conclusion_frame:
     beat: 代入消元
     output: assets/svg-v2/ch00-divider-derivation-v2-static.svg
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
   alt: 分压公式：从同一股电流开始；适用条件：空载；接负载后须重新计算下臂等效电阻
-  review_scores: {}
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 5
+    运动叙事: 5
+    交互节奏: 5
+    风格一致性: 5
   production_role: engine-prototype
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: d58c4acab3aff62b7a8957984a568a9ca38e8fe7a22f618bddcd1580c2e21e9f
 - id: ch00-divider-loading-v2
   chapter: 0
   kind: animation
@@ -2021,13 +2141,33 @@ assets:
   conclusion_frame:
     beat: 判据
     output: assets/svg-v2/ch00-divider-loading-v2-static.svg
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
   alt: 空载 6.000V、挂 10kΩ 后 4.000V、误差 −33.3%；输出电阻 5kΩ，后级输入至少高一个数量级
-  review_scores: {}
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 5
+    运动叙事: 5
+    交互节奏: 5
+    风格一致性: 5
   production_role: engine-prototype
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: dcc95818b9898f47e9e11c3157975d77d454d5173debd9fab3bdba9c5fe36a26
 - id: ch00-source-types-v2
   chapter: 0
   kind: animation
@@ -2066,13 +2206,33 @@ assets:
   conclusion_frame:
     beat: 接法
     output: assets/svg-v2/ch00-source-types-v2-static.svg
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
   alt: 横轴电流 I、纵轴电压 V：恒压源水平线、恒流源竖线；真实源负斜率的绝对值对应输出阻抗；恒压并联、恒流串联
-  review_scores: {}
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 5
+    运动叙事: 5
+    交互节奏: 5
+    风格一致性: 5
   production_role: engine-prototype
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: ecb7ac63d5aadafad308c93b73ea83c4e48b39350c6e2ae4d9ce68766fba9880
 - id: ch08-transfer-gate-v2
   chapter: 8
   kind: animation
@@ -2111,14 +2271,34 @@ assets:
   conclusion_frame:
     beat: 双向与边界
     output: assets/svg-v2/ch08-transfer-gate-v2-static.svg
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
   alt: 同一横轴 VIN 与线性电阻刻度下，N 管在 4V 截止、P 管接管高段；并联包络为 20→26.7→20Ω，在 1~4V 为平台。末拍分开单 N 的阈值损失与并联传输门的 0~5V 摆幅，下游逻辑门限示例为
     2.5V；双头箭头表示双向。
-  review_scores: {}
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 5
+    运动叙事: 5
+    交互节奏: 5
+    风格一致性: 5
   production_role: engine-prototype
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: f695c805430f1d8ce961f2b1191398d26daca4fc13755a5ed73516974d48a14b
 - id: ch08-mux-address-glitch-v2
   chapter: 8
   kind: animation
@@ -2160,13 +2340,33 @@ assets:
   conclusion_frame:
     beat: 等够再采
     output: assets/svg-v2/ch08-mux-address-glitch-v2-static.svg
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
   alt: 地址 011 改到 100 时先经过 111，无关通道短暂导通；INH 罩住整个跳变，判据是地址稳定到采样窗开启 ≥ t_ON。
-  review_scores: {}
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 5
+    运动叙事: 5
+    交互节奏: 5
+    风格一致性: 5
   production_role: engine-prototype
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: c6918e3731c52afc22155354b0859979a62c7c20f2880da416447a384aedebb4
 - id: ch08-charge-injection-v2
   chapter: 8
   kind: animation
@@ -2205,13 +2405,33 @@ assets:
   conclusion_frame:
     beat: 20个LSB
     output: assets/svg-v2/ch08-charge-injection-v2-static.svg
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
   alt: 沟道电荷 0.2pC 在关断瞬间分成源侧与 Chold 两路；一半落到 10pF 得 10mV，即 2.048V/12 位的 20 个 LSB。
-  review_scores: {}
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 5
+    运动叙事: 5
+    交互节奏: 5
+    风格一致性: 5
   production_role: engine-prototype
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 7031487ee0a2954908d836c8daf964204af147755440678beb2baf62651d02a2
 - id: ch08-sample-hold-v2
   chapter: 8
   kind: animation
@@ -2250,10 +2470,30 @@ assets:
   conclusion_frame:
     beat: 再采样
     output: assets/svg-v2/ch08-sample-hold-v2-static.svg
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
   alt: 采样相追踪 2.000V、保持相冻结、漏流按 I/C 下斜、再采样；加大 Chold 同时摊注入、压 kT/C、缓 droop，代价是采集时间。
-  review_scores: {}
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 5
+    运动叙事: 5
+    交互节奏: 5
+    风格一致性: 5
   production_role: engine-prototype
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 7127a9985a42398861309f3d7ff930ea7509a4846b86aaa2c00309a998749977
