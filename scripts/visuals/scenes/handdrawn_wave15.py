@@ -249,3 +249,7 @@ SCENES = {
 # Corrected chapter 11 model and visual contract.
 from scripts.visuals.scenes.ch11_reference_figures import SCENES as _ch11_corrected
 SCENES['ch11-noise-three-taxes'] = _ch11_corrected['ch11-noise-three-taxes']
+
+# Corrected chapter 12 models and source conditions.
+from scripts.visuals.scenes.ch12_reference_figures import SCENES as _ch12_corrected
+SCENES['ch12-riso-feedback-point'] = _ch12_corrected['ch12-riso-feedback-point']

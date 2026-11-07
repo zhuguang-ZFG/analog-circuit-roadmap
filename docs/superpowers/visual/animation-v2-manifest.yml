@@ -6837,3 +6837,1187 @@ assets:
     reviewed_on: '2026-11-08'
     record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
     asset_sha256: 734289d5a67652fce5d0d0ceba976d1e3d3fb7e002e6bff49cc8241d7fd44335
+- id: ch12-loop-error-v2
+  chapter: 12
+  kind: animation
+  type: A2
+  anchor: '12.1'
+  purpose: 虚短的精度由环路增益决定
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-02-ch12.md#12.1
+  prompt_file: docs/superpowers/visual/prompts/ch12-loop-error-v2.md
+  output: assets/svg-v2/ch12-loop-error-v2.svg
+  print_fallback: assets/svg-v2/ch12-loop-error-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch12-loop-error-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch12-loop-error-v2-static.svg
+  alt: 虚短的精度由环路增益决定。开环增益只有目标增益十倍，闭环仍有明显误差。低频增益很大也不能保证高频虚短或输出摆幅。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 开环增益只有目标增益十倍，闭环仍有明显误差。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 开环增益升高，反馈继续缩小两输入压差。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 闭环越来越接近六倍，仍不是严格相等。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 低频增益很大也不能保证高频虚短或输出摆幅。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch12-loop-error-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch12-animation-2026-11-08/review.md
+    asset_sha256: 8ef9ff40141150a5428af59e5c174b63539093fa1c8770ef975d3c3a92e70f64
+- id: ch12-source-loading-v2
+  chapter: 12
+  kind: animation
+  type: A2
+  anchor: '12.2'
+  purpose: 增益相同，信号源负担可以不同
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-02-ch12.md#12.2
+  prompt_file: docs/superpowers/visual/prompts/ch12-source-loading-v2.md
+  output: assets/svg-v2/ch12-source-loading-v2.svg
+  print_fallback: assets/svg-v2/ch12-source-loading-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch12-source-loading-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch12-source-loading-v2-static.svg
+  alt: 增益相同，信号源负担可以不同。两方案的电阻比相同，低源阻下均接近十倍。增大两只电阻能减轻加载，噪声与寄生仍须另算。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 两方案的电阻比相同，低源阻下均接近十倍。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 源阻增加后，较小输入电阻先产生明显分压。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 源阻等于实线的输入电阻，源到输出增益只有五倍。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 增大两只电阻能减轻加载，噪声与寄生仍须另算。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch12-source-loading-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch12-animation-2026-11-08/review.md
+    asset_sha256: 93270699c5fc13a918fe23d4f7e3a53a483d609a30f55f8ab2564b01bd12ec83
+- id: ch12-resistor-mismatch-v2
+  chapter: 12
+  kind: animation
+  type: A2
+  anchor: '12.3'
+  purpose: 电阻绝对容差不等于比值匹配
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-02-ch12.md#12.3
+  prompt_file: docs/superpowers/visual/prompts/ch12-resistor-mismatch-v2.md
+  output: assets/svg-v2/ch12-resistor-mismatch-v2.svg
+  print_fallback: assets/svg-v2/ch12-resistor-mismatch-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch12-resistor-mismatch-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch12-resistor-mismatch-v2-static.svg
+  alt: 电阻绝对容差不等于比值匹配。极小容差仍只能给有限的共模抑制。百分之一独立电阻在本例角点只有约三十四分贝。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 极小容差仍只能给有限的共模抑制。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 容差十倍增大，本角点 CMRR 约降二十分贝。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 必须同时算差模增益与共模泄漏。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 百分之一独立电阻在本例角点只有约三十四分贝。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch12-resistor-mismatch-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch12-animation-2026-11-08/review.md
+    asset_sha256: ebe059fea41bcfdefa7e0d883ab6611b0e0a622958301ef4a7d5733a3f874d9c
+- id: ch12-leaky-integrator-v2
+  chapter: 12
+  kind: animation
+  type: A2
+  anchor: '12.4'
+  purpose: 泄放把无限 DC 增益变成有限平台
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-02-ch12.md#12.4
+  prompt_file: docs/superpowers/visual/prompts/ch12-leaky-integrator-v2.md
+  output: assets/svg-v2/ch12-leaky-integrator-v2.svg
+  print_fallback: assets/svg-v2/ch12-leaky-integrator-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch12-leaky-integrator-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch12-leaky-integrator-v2-static.svg
+  alt: 泄放把无限 DC 增益变成有限平台。低频输出趋向有限的负一百倍。虚线是理想积分幅值，高频真实环路仍有限制。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 低频输出趋向有限的负一百倍。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 泄放极点附近还不是理想积分关系。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 高于低极点后，幅频斜率接近每十倍频负二十分贝。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 虚线是理想积分幅值，高频真实环路仍有限制。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch12-leaky-integrator-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch12-animation-2026-11-08/review.md
+    asset_sha256: 8ef37b8482e6030b8863c28ef7cb89a0ff82f5b3c2618b05ecc07bd27d7e281c
+- id: ch12-bandlimited-diff-v2
+  chapter: 12
+  kind: animation
+  type: A2
+  anchor: 12.4a
+  purpose: 微分只在限定的频带内成立
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-02-ch12.md#12.4a
+  prompt_file: docs/superpowers/visual/prompts/ch12-bandlimited-diff-v2.md
+  output: assets/svg-v2/ch12-bandlimited-diff-v2.svg
+  print_fallback: assets/svg-v2/ch12-bandlimited-diff-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch12-bandlimited-diff-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch12-bandlimited-diff-v2-static.svg
+  alt: 微分只在限定的频带内成立。低频随频率上升，输出反映输入变化率。高频不再继续放大，但稳定性还要检查噪声增益。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 低频随频率上升，输出反映输入变化率。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 串联电阻与反馈电容逐渐限制增益。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 本例两个时间常数同为十微秒，峰值增益为五倍。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 高频不再继续放大，但稳定性还要检查噪声增益。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch12-bandlimited-diff-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch12-animation-2026-11-08/review.md
+    asset_sha256: 475a6ee692feeded547185c86171edab2646301b911084e2caf4383738740724
+- id: ch12-filter-q-v2
+  chapter: 12
+  kind: animation
+  type: A3
+  anchor: 12.5a
+  purpose: 同一自然频率，阶跃形状随 Q 变化
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-02-ch12.md#12.5a
+  prompt_file: docs/superpowers/visual/prompts/ch12-filter-q-v2.md
+  output: assets/svg-v2/ch12-filter-q-v2.svg
+  print_fallback: assets/svg-v2/ch12-filter-q-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch12-filter-q-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch12-filter-q-v2-static.svg
+  alt: 同一自然频率，阶跃形状随 Q 变化。临界阻尼单调到达终值。更高 Q 增加振铃；比较响应前须说明频率归一化。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters:
+  - name: Q
+    values:
+    - 0.5
+    - 0.5773502691896258
+    - 0.7071067811865475
+    - 0.864
+    unit: 倍
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 临界阻尼单调到达终值。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 二阶 Bessel 的 Q 约为零点五七七。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: Butterworth 通带平坦，阶跃仍有约百分之四点三二过冲。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 更高 Q 增加振铃；比较响应前须说明频率归一化。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch12-filter-q-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch12-animation-2026-11-08/review.md
+    asset_sha256: 71ce8ecb238ffca8cfd069ac9e736afcecdb24889944865fc05d97a49415cc02
+- id: ch12-filter-tolerance-v2
+  chapter: 12
+  kind: animation
+  type: A2
+  anchor: 12.5b
+  purpose: 电容比改变 Q，同向缩放才保持形状
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-02-ch12.md#12.5b
+  prompt_file: docs/superpowers/visual/prompts/ch12-filter-tolerance-v2.md
+  output: assets/svg-v2/ch12-filter-tolerance-v2.svg
+  print_fallback: assets/svg-v2/ch12-filter-tolerance-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch12-filter-tolerance-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch12-filter-tolerance-v2-static.svg
+  alt: 电容比改变 Q，同向缩放才保持形状。接地电容偏小，电容比增大，Q 上升。只有两电容同向等比例缩放，才能单移频率而保留 Q。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 接地电容偏小，电容比增大，Q 上升。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 名义电容比为二时，Q 为 Butterworth 值。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 接地电容偏大，Q 下降，自然频率也改变。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 只有两电容同向等比例缩放，才能单移频率而保留 Q。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch12-filter-tolerance-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch12-animation-2026-11-08/review.md
+    asset_sha256: 393f001b8d19d19b769724a9703105feb24dc1c98789c5a8f5d42a06dcc249b2
+- id: ch12-peak-droop-v2
+  chapter: 12
+  kind: animation
+  type: A2
+  anchor: '12.6'
+  purpose: 保持电容的电压仍在随时间下降
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-02-ch12.md#12.6
+  prompt_file: docs/superpowers/visual/prompts/ch12-peak-droop-v2.md
+  output: assets/svg-v2/ch12-peak-droop-v2.svg
+  print_fallback: assets/svg-v2/ch12-peak-droop-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch12-peak-droop-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch12-peak-droop-v2-static.svg
+  alt: 保持电容的电压仍在随时间下降。二极管截止以后，输出不再自动保持峰值。加大电容能减缓下垂，也提高捕获所需的充电量。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 二极管截止以后，输出不再自动保持峰值。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 电阻与漏流共同取走电容电荷。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 跟随器隔离负载，但自身偏置电流也要入账。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 加大电容能减缓下垂，也提高捕获所需的充电量。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch12-peak-droop-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch12-animation-2026-11-08/review.md
+    asset_sha256: 98811162db9363dcfcdd81927246b6d92680b9692050b801d02b8c0573ebe784
+- id: ch12-phase-cross-v2
+  chapter: 12
+  kind: animation
+  type: A2
+  anchor: 12.7b
+  purpose: 相位裕度必须在环路交越处读取
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-02-ch12.md#12.7b
+  prompt_file: docs/superpowers/visual/prompts/ch12-phase-cross-v2.md
+  output: assets/svg-v2/ch12-phase-cross-v2.svg
+  print_fallback: assets/svg-v2/ch12-phase-cross-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch12-phase-cross-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch12-phase-cross-v2-static.svg
+  alt: 相位裕度必须在环路交越处读取。开环很大并不能直接给出相位裕度。单极点示意的裕度接近九十度，不能替代真实器件模型。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 开环很大并不能直接给出相位裕度。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 继续沿环路幅值曲线寻找零分贝。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 本例在约十万赫兹交越，再在此读取相位。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 单极点示意的裕度接近九十度，不能替代真实器件模型。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch12-phase-cross-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch12-animation-2026-11-08/review.md
+    asset_sha256: ef64c67c6c1dedcf2f241fc9b93fec0387fd329d13ff83a92c3a9cfa05670f4b
+- id: ch12-riso-step-v2
+  chapter: 12
+  kind: animation
+  type: A2
+  anchor: 12.9a
+  purpose: 隔离电阻前后取反馈，阶跃不同
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-02-ch12.md#12.9a
+  prompt_file: docs/superpowers/visual/prompts/ch12-riso-step-v2.md
+  output: assets/svg-v2/ch12-riso-step-v2.svg
+  print_fallback: assets/svg-v2/ch12-riso-step-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch12-riso-step-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch12-riso-step-v2-static.svg
+  alt: 隔离电阻前后取反馈，阶跃不同。无隔离电阻，输出强烈振铃但最终收敛。移到电阻之后取反馈会失去零点，振铃更大。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 无隔离电阻，输出强烈振铃但最终收敛。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 在电阻之前取反馈，运放输出端迅速稳定。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 负载端有 RC 延迟，须与运放端一起观察。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 移到电阻之后取反馈会失去零点，振铃更大。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch12-riso-step-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch12-animation-2026-11-08/review.md
+    asset_sha256: 3294ea8da5f09966da24b4267b19d9491aeed9be9676573e18ba04bb4dc4b0e4
+- id: ch12-tia-noise-gain-v2
+  chapter: 12
+  kind: animation
+  type: A2
+  anchor: '12.10'
+  purpose: 结电容抬高噪声增益，不直接给信号带宽
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-02-ch12.md#12.10
+  prompt_file: docs/superpowers/visual/prompts/ch12-tia-noise-gain-v2.md
+  output: assets/svg-v2/ch12-tia-noise-gain-v2.svg
+  print_fallback: assets/svg-v2/ch12-tia-noise-gain-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch12-tia-noise-gain-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch12-tia-noise-gain-v2-static.svg
+  alt: 结电容抬高噪声增益，不直接给信号带宽。低频噪声增益接近一。有限开环增益使求和节点不再严格保持零电压。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 低频噪声增益接近一。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 这个拐点是噪声增益开始上升，不是信号截止。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 两条幅值曲线相交，需同时检查相位。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 有限开环增益使求和节点不再严格保持零电压。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch12-tia-noise-gain-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch12-animation-2026-11-08/review.md
+    asset_sha256: 3d62d0c706712635f870cce03a9062d416c6a9be3231e0070d93252ca48785cd
+- id: ch12-tia-compensation-v2
+  chapter: 12
+  kind: animation
+  type: A3
+  anchor: 12.10a
+  purpose: 反馈电容改变闭环阻尼与速度
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-02-ch12.md#12.10a
+  prompt_file: docs/superpowers/visual/prompts/ch12-tia-compensation-v2.md
+  output: assets/svg-v2/ch12-tia-compensation-v2.svg
+  print_fallback: assets/svg-v2/ch12-tia-compensation-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch12-tia-compensation-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch12-tia-compensation-v2-static.svg
+  alt: 反馈电容改变闭环阻尼与速度。未补偿的二阶模型强烈振铃，不能仅凭它宣布持续振荡。一皮法响应更慢；最终值按噪声、速度与裕度选择。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters:
+  - name: Cf
+    values:
+    - 0
+    - 0.3989422804014327
+    - 0.6
+    - 1
+    unit: pF
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 未补偿的二阶模型强烈振铃，不能仅凭它宣布持续振荡。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 平方根初估给出一个起点，仍有可见过冲。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 增大到零点六皮法，本模型的阻尼进一步增加。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 一皮法响应更慢；最终值按噪声、速度与裕度选择。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch12-tia-compensation-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch12-animation-2026-11-08/review.md
+    asset_sha256: a0d9a00e26b38872a7e1578e44f0f8f47c43ba6d62e2c786094258811d5af501
+- id: ch12-integrator-cycle-v2
+  chapter: 12
+  kind: animation
+  type: A2
+  anchor: '12.11'
+  purpose: 恒流改变斜率，初值决定直流中心
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-02-ch12.md#12.11
+  prompt_file: docs/superpowers/visual/prompts/ch12-integrator-cycle-v2.md
+  output: assets/svg-v2/ch12-integrator-cycle-v2.svg
+  print_fallback: assets/svg-v2/ch12-integrator-cycle-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch12-integrator-cycle-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch12-integrator-cycle-v2-static.svg
+  alt: 恒流改变斜率，初值决定直流中心。正输入产生负的输出斜率。初值零给出零到负五伏；零均值时应为正负二点五伏。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 正输入产生负的输出斜率。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 五百微秒后下降五伏，这是峰峰值。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 输入反号，斜率反向，输出沿直线回升。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 初值零给出零到负五伏；零均值时应为正负二点五伏。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch12-integrator-cycle-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch12-animation-2026-11-08/review.md
+    asset_sha256: 918c5485f289667bd787dc73760fa62df79760bc7f5ae7cdbd553e373b7e7081
+- id: ch12-sc-charge-v2
+  chapter: 12
+  kind: animation
+  type: A2
+  anchor: 12.12a
+  purpose: 平均电流来自每周期搬运的电荷
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-02-ch12.md#12.12a
+  prompt_file: docs/superpowers/visual/prompts/ch12-sc-charge-v2.md
+  output: assets/svg-v2/ch12-sc-charge-v2.svg
+  print_fallback: assets/svg-v2/ch12-sc-charge-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch12-sc-charge-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch12-sc-charge-v2-static.svg
+  alt: 平均电流来自每周期搬运的电荷。完成一次两相切换，净搬运一皮库仑。四周期四皮库仑对应十兆欧平均等效电阻。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 完成一次两相切换，净搬运一皮库仑。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 两周期累计两皮库仑，阶梯不是连续电流。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 三个周期的平均搬运率仍为一百纳安。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 四周期四皮库仑对应十兆欧平均等效电阻。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch12-sc-charge-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch12-animation-2026-11-08/review.md
+    asset_sha256: ba9a5dfef85e542f08446ce000f0fe99b8e7066d715b6b712870844c4099cd2b
+- id: ch12-sc-settling-v2
+  chapter: 12
+  kind: animation
+  type: A2
+  anchor: 12.12b
+  purpose: 半 LSB 要比一 LSB 多一个 ln2
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-02-ch12.md#12.12b
+  prompt_file: docs/superpowers/visual/prompts/ch12-sc-settling-v2.md
+  output: assets/svg-v2/ch12-sc-settling-v2.svg
+  print_fallback: assets/svg-v2/ch12-sc-settling-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch12-sc-settling-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch12-sc-settling-v2-static.svg
+  alt: 半 LSB 要比一 LSB 多一个 ln2。几倍时间常数还不足以满足十二位精度。半 LSB 要十三乘 ln2，且还没包括其他误差。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 几倍时间常数还不足以满足十二位精度。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 接近八倍时间常数，残差仍高于半 LSB。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 十二乘 ln2 只达到一 LSB。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 半 LSB 要十三乘 ln2，且还没包括其他误差。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch12-sc-settling-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch12-animation-2026-11-08/review.md
+    asset_sha256: 44a8248286e777a6bf21ce565ca12b3fecd01a1e5403eb8cf5815cf906b32121
+- id: ch12-source-noise-v2
+  chapter: 12
+  kind: animation
+  type: A2
+  anchor: 12.13a
+  purpose: 源阻改变电压噪声与电流噪声的权重
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-02-ch12.md#12.13a
+  prompt_file: docs/superpowers/visual/prompts/ch12-source-noise-v2.md
+  output: assets/svg-v2/ch12-source-noise-v2.svg
+  print_fallback: assets/svg-v2/ch12-source-noise-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch12-source-noise-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch12-source-noise-v2-static.svg
+  alt: 源阻改变电压噪声与电流噪声的权重。低源阻时，较低电压噪声可能占优。高阻源仍要比较总噪声，不能只看直流偏置误差。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 低源阻时，较低电压噪声可能占优。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 源电阻热噪声与电流噪声已需要共同计入。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 源阻继续上升，实线的电流噪声项逐渐主导。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 高阻源仍要比较总噪声，不能只看直流偏置误差。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch12-source-noise-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch12-animation-2026-11-08/review.md
+    asset_sha256: 7d645f0797de8a0a9ef89ef92b71e4445c781a43763ea45b92b121d1b69fcb46
+- id: ch12-bias-offset-v2
+  chapter: 12
+  kind: animation
+  type: A2
+  anchor: '12.13'
+  purpose: 偏置误差先按电阻源模型计算
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-02-ch12.md#12.13
+  prompt_file: docs/superpowers/visual/prompts/ch12-bias-offset-v2.md
+  output: assets/svg-v2/ch12-bias-offset-v2.svg
+  print_fallback: assets/svg-v2/ch12-bias-offset-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch12-bias-offset-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch12-bias-offset-v2-static.svg
+  alt: 偏置误差先按电阻源模型计算。输入电流流经源阻，产生直流电压误差。一兆欧下分别为二十毫伏与一微伏；不是器件家族保证。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 输入电流流经源阻，产生直流电压误差。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 源阻十倍增加，误差也十倍增加。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 还要叠加失调、漏电与温度范围内的变化。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 一兆欧下分别为二十毫伏与一微伏；不是器件家族保证。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch12-bias-offset-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch12-animation-2026-11-08/review.md
+    asset_sha256: d2f444f4ccb6a11acb0d4803395be29741842ceba55875dfb90940298caa3a85
+- id: ch12-midpoint-v2
+  chapter: 12
+  kind: animation
+  type: A2
+  anchor: '12.8'
+  purpose: 中点偏置要按阻抗与启动一起算
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-02-ch12.md#12.8
+  prompt_file: docs/superpowers/visual/prompts/ch12-midpoint-v2.md
+  output: assets/svg-v2/ch12-midpoint-v2.svg
+  print_fallback: assets/svg-v2/ch12-midpoint-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch12-midpoint-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch12-midpoint-v2-static.svg
+  alt: 中点偏置要按阻抗与启动一起算。电容初始未充电，中点并不会立刻到六伏。启动时间、偏置电流误差与交流噪声要共同预算。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 电容初始未充电，中点并不会立刻到六伏。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 等效源阻五十千欧，五十毫秒后到终值约六成。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 三个时间常数仍有约百分之五的残差。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 启动时间、偏置电流误差与交流噪声要共同预算。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch12-midpoint-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch12-animation-2026-11-08/review.md
+    asset_sha256: 16880765276920304f5b1f2671dd9334ebf83a8a1402cc535678ffb7d01f70b5

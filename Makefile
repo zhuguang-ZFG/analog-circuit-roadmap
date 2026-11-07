@@ -115,6 +115,7 @@ visual-check:
 	$(PY) -B -m unittest discover -s scripts -p "test_ch09_animations.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_ch10_animations.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_ch11_animations.py" -v
+	$(PY) -B -m unittest discover -s scripts -p "test_ch12_animations.py" -v
 	$(PY) -B -m unittest discover -s analog-book/tests -p "test_visual_v2_assets.py" -v
 
 visual-ship: visual-check

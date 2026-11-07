@@ -226,3 +226,8 @@ SCENES['ch06-741-four-blocks'] = _ch06_corrected['ch06-741-four-blocks']
 # Corrected chapter 11 model and visual contract.
 from scripts.visuals.scenes.ch11_reference_figures import SCENES as _ch11_corrected
 SCENES['ch11-phase-margin-table'] = _ch11_corrected['ch11-phase-margin-table']
+
+# Corrected chapter 12 models and source conditions.
+from scripts.visuals.scenes.ch12_reference_figures import SCENES as _ch12_corrected
+SCENES['ch12-switched-cap-equivalent'] = _ch12_corrected['ch12-switched-cap-equivalent']
+SCENES['ch12-input-stage-source-z'] = _ch12_corrected['ch12-input-stage-source-z']

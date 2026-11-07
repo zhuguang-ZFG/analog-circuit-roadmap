@@ -93,22 +93,31 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 }
 </style>
 
-<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">输入级选型只看源阻抗</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">1MΩ 源：BJT 20nA → 20mV；CMOS 1pA → 1µV。差四个数量级。</text>
-<rect x="50" y="150" width="420" height="190" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
-<text x="74" y="192" font-size="24" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">BJT 输入</text>
-<text x="74" y="234" font-size="23" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">20nA × 1MΩ</text>
-<text x="74" y="292" font-size="42" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">20mV</text>
-<text x="74" y="326" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">每升 10°C，Ib 约翻倍</text>
-<rect x="530" y="150" width="420" height="190" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
-<text x="554" y="192" font-size="24" fill="#3d6b4a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">CMOS 输入</text>
-<text x="554" y="234" font-size="23" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">1pA × 1MΩ</text>
-<text x="554" y="292" font-size="42" fill="#3d6b4a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">1µV</text>
-<text x="554" y="326" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">差四个数量级</text>
-<rect x="50" y="380" width="900" height="180" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
-<text x="76" y="422" font-size="23" fill="#1f5d7a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">低源阻抗 &lt;10kΩ</text>
-<text x="76" y="454" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">挑 en 小的 BJT</text>
-<text x="420" y="422" font-size="23" fill="#3d6b4a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">高源阻抗 &gt;100kΩ</text>
-<text x="420" y="454" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">挑 Ib 小的 CMOS / JFET</text>
-<text x="76" y="510" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">中间地带：比 en 与 in×Rs 谁大；先算 Ib×Rs，再谈“低噪声”。</text>
-<text x="500" y="620" font-size="22" fill="#a4630f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">选型只看源阻抗，不看“低噪声”三个字。</text>
+<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">读输入级结构，最后仍要回到器件保证条件</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">左侧为结构示意，不按电压比例；RRIO 的输入与输出条件分别核对。</text>
+<text x="170" y="175" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">互补输入对</text>
+<text x="350" y="190" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">共模变化时两组输入对交接</text>
+<text x="350" y="243" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">交接点、gm、失调与失真由具体实现决定</text>
+<path d="M50 220 L290 220" fill="none" stroke="#16202b" stroke-width="3"/>
+<path d="M50 254 L290 254" fill="none" stroke="#16202b" stroke-width="3"/>
+<rect x="50" y="205" width="150" height="27" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<rect x="145" y="239" width="145" height="27" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<text x="125" y="227" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">输入对一</text>
+<text x="217" y="261" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">输入对二</text>
+<text x="170" y="335" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">内部电荷泵</text>
+<text x="350" y="350" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">扩展内部输入级供电范围</text>
+<text x="350" y="403" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">同时检查开关纹波、带宽和电流噪声</text>
+<rect x="50" y="363" width="90" height="55" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<text x="95" y="399" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">时钟</text>
+<path d="M150 390 Q177.50 389.91 205 390" fill="none" stroke="#16202b" stroke-width="2.5" stroke-dasharray=""/><polygon points="205,390 195,395 195,385" fill="#16202b"/>
+<rect x="215" y="363" width="90" height="55" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<text x="260" y="399" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">抬压</text>
+<text x="170" y="495" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">非轨到轨输入</text>
+<text x="350" y="510" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">在允许共模范围内使用</text>
+<text x="350" y="563" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">并不自动具有最好的线性或最低噪声</text>
+<path d="M50 555 L305 555" fill="none" stroke="#16202b" stroke-width="3"/>
+<path d="M50 544 L50 566" fill="none" stroke="#16202b" stroke-width="3"/>
+<path d="M305 544 L305 566" fill="none" stroke="#16202b" stroke-width="3"/>
+<rect x="100" y="540" width="155" height="29" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<text x="177" y="562" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">允许共模</text>
+<text x="45" y="660" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">检查 Vos 对 Vcm、温度与频率的曲线，再用实际信号摆幅测 THD 和建立。</text>
 </svg>
