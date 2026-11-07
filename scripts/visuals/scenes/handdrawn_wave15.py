@@ -245,3 +245,7 @@ SCENES = {
                '底部写偏置管必须贴散热器与功率管热耦合，否则温升推高偏置电流，直接热失控。',
     },
 }
+
+# Corrected chapter 11 model and visual contract.
+from scripts.visuals.scenes.ch11_reference_figures import SCENES as _ch11_corrected
+SCENES['ch11-noise-three-taxes'] = _ch11_corrected['ch11-noise-three-taxes']

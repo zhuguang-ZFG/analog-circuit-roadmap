@@ -222,3 +222,7 @@ SCENES = {
 # Keep historical batch entry points aligned with corrected chapter models.
 from scripts.visuals.scenes.ch06_reference_figures import SCENES as _ch06_corrected
 SCENES['ch06-741-four-blocks'] = _ch06_corrected['ch06-741-four-blocks']
+
+# Corrected chapter 11 model and visual contract.
+from scripts.visuals.scenes.ch11_reference_figures import SCENES as _ch11_corrected
+SCENES['ch11-phase-margin-table'] = _ch11_corrected['ch11-phase-margin-table']

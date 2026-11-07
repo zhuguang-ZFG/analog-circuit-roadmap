@@ -1,5 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
-<title id="title">米勒电容把带宽压到 15.8kHz</title><desc id="desc">手绘米勒效应两栏：左栏画跨接在输入与输出之间的 10 皮法电容，增益 100 把它放大为 1 加 A 倍，等效 1.01 纳法；右栏画低通曲线，10 千欧源阻抗与 1.01 纳法把 3 分贝点压到 15.8 千赫。底部写以为能到兆赫，16 千赫就开始滚降；共基把电容一端接地，拆掉米勒桥。</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>
@@ -94,30 +93,17 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 }
 </style>
 
-<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">10pF 跨在增益两端，变成 1nF</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">Ceff = (1+A)Cbc；A=100 时 10pF 变 1.01nF，10kΩ 源阻抗把带宽压到 15.8kHz。</text>
-<rect x="50" y="150" width="430" height="270" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
-<text x="74" y="192" font-size="24" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">跨接电容被增益撬动</text>
-<path d="M100 250 Q166.00 250.13 232 250" fill="none" stroke="#37424e" stroke-width="2.5"/>
-<path d="M258 250 Q339.00 249.85 420 250" fill="none" stroke="#37424e" stroke-width="2.5"/>
-<path d="M238 220 Q238.13 250.00 238 280" fill="none" stroke="#1f5d7a" stroke-width="4"/>
-<path d="M252 220 Q252.19 250.00 252 280" fill="none" stroke="#1f5d7a" stroke-width="4"/>
-<text x="350" y="215" font-size="22" fill="#1f5d7a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">Cbc 10pF</text>
-<text x="100" y="290" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">输入</text>
-<text x="420" y="290" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">输出</text>
-<text x="245" y="330" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">A = 100</text>
-<text x="245" y="378" font-size="38" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">× (1+A)</text>
-<text x="245" y="410" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">10pF → 1.01nF</text>
-<rect x="520" y="150" width="430" height="270" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
-<text x="544" y="192" font-size="24" fill="#3d6b4a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">带宽收据</text>
-<path d="M570 380 Q745.00 381.40 920 380" fill="none" stroke="#37424e" stroke-width="2.5"/>
-<path d="M570 380 Q569.39 295.00 570 210" fill="none" stroke="#37424e" stroke-width="2.5"/>
-<path d="M580,220 L700,224 C760,226 780,250 810,300 C830,334 850,355 900,366" fill="none" stroke="#3d6b4a" stroke-width="4"/>
-<path d="M790 380 Q790.04 327.50 790 275" fill="none" stroke="#a4630f" stroke-width="2" stroke-dasharray="6,5"/>
-<text x="790" y="405" font-size="22" fill="#a4630f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">15.8kHz</text>
-<text x="700" y="245" font-size="22" fill="#a4630f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">−3dB</text>
-<text x="544" y="410" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">10kΩ × 1.01nF</text>
-<rect x="50" y="450" width="900" height="100" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
-<text x="76" y="490" font-size="24" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">你以为能放到 MHz；16kHz 就开始滚降。</text>
-<text x="76" y="524" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">共基把 Cbc 一端接地，拆掉米勒桥；代价是输入阻抗只剩 re。</text>
-<text x="500" y="620" font-size="22" fill="#a4630f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">增益越高，米勒电容越大；带宽是借来的，要还。</text>
+<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">电荷账决定输入等效电容</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">示意 A=100、Cbc=10 pF、有效驱动电阻 10 kΩ，忽略其他电容。</text>
+<rect x="80" y="180" width="260" height="135" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<text x="210" y="230" font-size="27" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">输入 +1 mV</text>
+<text x="210" y="280" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">q = Cbc(vi−vo)</text>
+<path d="M350 245 Q455.00 244.16 560 245" fill="none" stroke="#1f5d7a" stroke-width="2.5" stroke-dasharray=""/><polygon points="560,245 550,250 550,240" fill="#1f5d7a"/>
+<rect x="570" y="180" width="310" height="135" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<text x="725" y="230" font-size="27" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">输出 −100 mV</text>
+<text x="725" y="280" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">跨电容 +101 mV</text>
+<text x="60" y="390" font-size="27" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">Δq = 1.01 pC → Cin = 1.01 nF → fp ≈ 15.76 kHz。</text>
+<text x="60" y="455" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">有效驱动电阻要包括源阻与输入支路，不能总取开路源阻。</text>
+<text x="60" y="525" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">MOS 三电容：Ciss=Cgs+Cgd，Coss=Cds+Cgd，Crss=Cgd。</text>
+<text x="60" y="595" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">fT/β0 是单极点电流增益模型的 fβ 近似，不是放大器通用上限。</text>
+<text x="60" y="650" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">GBW/噪声增益只适用于相应单主极点模型，不能推广所有反馈电路。</text>
 </svg>

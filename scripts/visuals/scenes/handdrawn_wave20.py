@@ -205,3 +205,7 @@ SCENES = {
                'VBE 为 0 V 说明尚未正偏，应查驱动或 B-E 短路，不能直接判开路。底部两条边界：'
                'BVCEO 40 V 是失效边界不是第四区；截止漏流每升 8~10 °C 翻倍，85 °C 高阻负载要重算。'},
 }
+
+# Corrected chapter 11 model and visual contract.
+from scripts.visuals.scenes.ch11_reference_figures import SCENES as _ch11_corrected
+SCENES['ch11-noise-identify'] = _ch11_corrected['ch11-noise-identify']

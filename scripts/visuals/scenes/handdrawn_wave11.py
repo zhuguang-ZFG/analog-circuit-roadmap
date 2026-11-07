@@ -117,3 +117,7 @@ SCENES = {
         'alt': '手绘分流电阻两栏：额定 5 安时，10 毫欧上压降 50 毫伏、功耗 0.25 瓦，选 1 瓦 2512 封装；堵转 20 安时，压降 200 毫伏、功耗 4 瓦，热时间常数必须算。底部写 1% 精度总误差预算 0.5 毫伏；12 伏共模压到 0.2 毫伏需要 CMRR 大于 96 分贝；LM358 只有 70 分贝，3.8 毫伏误差等于 7.6%。',
     },
 }
+
+# Corrected chapter 11 model and visual contract.
+from scripts.visuals.scenes.ch11_reference_figures import SCENES as _ch11_corrected
+SCENES['ch11-miller-bandwidth'] = _ch11_corrected['ch11-miller-bandwidth']

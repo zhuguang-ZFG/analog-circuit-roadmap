@@ -253,3 +253,7 @@ SCENES = {
                '底部写三件事按顺序走，大多数故障不用猜。',
     },
 }
+
+# Corrected chapter 11 model and visual contract.
+from scripts.visuals.scenes.ch11_reference_figures import SCENES as _ch11_corrected
+SCENES['ch11-diffpair-four-beats'] = _ch11_corrected['ch11-diffpair-four-beats']

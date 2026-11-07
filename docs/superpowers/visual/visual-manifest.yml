@@ -8486,7 +8486,7 @@ assets:
   kind: figure
   type: V4
   anchor: '11.3'
-  purpose: 电流镜的三笔误差
+  purpose: 电流镜三项误差账
   style_id: FA-029
   layout_id: IG-013
   color_ids:
@@ -8499,8 +8499,7 @@ assets:
   output: assets/figures-v2/ch11-mirror-three-errors.svg
   print_fallback: assets/figures-v2/ch11-mirror-three-errors-print.svg
   preview: assets/figures-v2/ch11-mirror-three-errors.webp
-  alt: 手绘三张误差卡：第一张写贝塔分流，参考支路先被基极电流分走一份，贝塔越大越准；第二张写 Early 效应，输出管 VCE 一变复制电流跟着变，Wilson 镜改进；第三张写有源负载，用电流镜替
-    Rc 可把单级增益推到 100 分贝以上。
+  alt: 参考电流包含两份基流，Early 效应使不同输出电压下复制比改变，器件匹配与温度构成独立误差。
   status: accepted
   status_history:
   - planned
@@ -8510,24 +8509,23 @@ assets:
   review_scores:
     教学必要性: 5
     事实精度: 5
-    构图层级: 5
+    构图层级: 4
+    风格一致性: 4
     印刷可读性: 4
-    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch11-mirror-three-errors.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_method: calculation-and-render-review
   review_record:
     reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
+    method: calculation-and-render-review
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 05edd457bfb3f813c24136345ca85ff4ea41e43ad8a4b7fcd95c9a7c4830728c
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
+    asset_sha256: 2f3c1f8de866b9e1ea4063f6b013f4fca15151d9e2f4dde1e652292fb7132e51
 - id: ch12-tia-three-way
   chapter: 12
   kind: figure
@@ -9138,7 +9136,7 @@ assets:
   kind: figure
   type: V4
   anchor: '11.5'
-  purpose: 米勒电容把带宽压到 15.8kHz
+  purpose: 米勒电荷与频率定义
   style_id: FA-029
   layout_id: IG-013
   color_ids:
@@ -9151,8 +9149,7 @@ assets:
   output: assets/figures-v2/ch11-miller-bandwidth.svg
   print_fallback: assets/figures-v2/ch11-miller-bandwidth-print.svg
   preview: assets/figures-v2/ch11-miller-bandwidth.webp
-  alt: 手绘米勒效应两栏：左栏画跨接在输入与输出之间的 10 皮法电容，增益 100 把它放大为 1 加 A 倍，等效 1.01 纳法；右栏画低通曲线，10 千欧源阻抗与 1.01 纳法把 3 分贝点压到
-    15.8 千赫。底部写以为能到兆赫，16 千赫就开始滚降；共基把电容一端接地，拆掉米勒桥。
+  alt: 输入一毫伏、输出负一百毫伏在十皮法电容上产生一点零一皮库仑电荷，列出 MOS 三电容和电流增益带宽的正确定义。
   status: accepted
   status_history:
   - planned
@@ -9162,24 +9159,23 @@ assets:
   review_scores:
     教学必要性: 5
     事实精度: 5
-    构图层级: 5
+    构图层级: 4
+    风格一致性: 4
     印刷可读性: 4
-    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch11-miller-bandwidth.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_method: calculation-and-render-review
   review_record:
     reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
+    method: calculation-and-render-review
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: be038ac260b025531ae5e19ba76a3113e03120a5d42ca5b2638f66b916131491
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
+    asset_sha256: 012fd2030a70ebff6b1b06fd04b3b53f28b385f7dc85571c31308624853d918c
 - id: ch13-compliance-ceiling
   chapter: 13
   kind: figure
@@ -9781,7 +9777,7 @@ assets:
   kind: figure
   type: V4
   anchor: '11.11'
-  purpose: 两级放大器四项指标的余量对账
+  purpose: 原候选与修订候选的预算
   style_id: FA-029
   layout_id: IG-013
   color_ids:
@@ -9794,9 +9790,7 @@ assets:
   output: assets/figures-v2/ch11-two-stage-margin.svg
   print_fallback: assets/figures-v2/ch11-two-stage-margin-print.svg
   preview: assets/figures-v2/ch11-two-stage-margin.webp
-  alt: 手绘四行对账表：电压增益要求大于等于 60 分贝即 1000 倍，实得 1037 倍即 60.3 分贝，余量只有正 0.3 分贝；输入电阻要求大于等于 10 千欧，实得 13.0 千欧并联
-    110 千欧等于 11.6 千欧，余量正 1.6 千欧；输出电阻要求小于等于 100 欧，射随器给到约 29 欧，富余；带宽要求大于等于 100 千赫，两极点叠加约 110 千赫，刚过线。底部写最薄的是增益与带宽，β
-    一漂移两项可能齐破；源阻真是 10 千欧且没有偏置电阻分流时第一极点掉到约 75 千赫，要么第一级改 cascode 拆掉米勒桥，要么降第一级增益分给第二级。
+  alt: 原候选在一百欧负载下增益和驱动失败，修订候选仅按列出的标称模型通过，低贝塔输入电阻仍不合格。
   status: accepted
   status_history:
   - planned
@@ -9806,24 +9800,23 @@ assets:
   review_scores:
     教学必要性: 5
     事实精度: 5
-    构图层级: 5
+    构图层级: 4
+    风格一致性: 4
     印刷可读性: 4
-    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch11-two-stage-margin.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_method: calculation-and-render-review
   review_record:
     reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
+    method: calculation-and-render-review
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 4b7f3a6f8f100ee0a8d98c5fcbf7cf748e7b1d4c305c5f5a9ae15431179bc74b
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
+    asset_sha256: 9d976b4ae47987048e89702991b4c2dd83930e1bdfcfc2325feb883a5f9e83c9
 - id: ch12-switched-cap-equivalent
   chapter: 12
   kind: figure
@@ -9926,7 +9919,7 @@ assets:
   kind: figure
   type: V4
   anchor: '11.5'
-  purpose: 相位裕度与阻尼比过冲的换算
+  purpose: 指定二阶环路的阻尼换算
   style_id: FA-029
   layout_id: IG-013
   color_ids:
@@ -9939,9 +9932,7 @@ assets:
   output: assets/figures-v2/ch11-phase-margin-table.svg
   print_fallback: assets/figures-v2/ch11-phase-margin-table-print.svg
   preview: assets/figures-v2/ch11-phase-margin-table.webp
-  alt: 手绘三行换算表，列为相位裕度、阻尼比、闭环过冲与评价：相位裕度 45 度对阻尼比 0.42、过冲 23%，评价过冲偏大；60 度对 0.59、过冲 10%，评价设计目标；65 度对 0.71、过冲
-    4%，评价 Butterworth。左下红框写极点数决定能不能稳：1 个极点相移负 90 度，永不振荡但慢；2 个极点时次极点越近、相移越多；3 个极点可逼近负 180 度，振荡。右下蓝框写每个极点收两笔税：高频贡献负
-    20 分贝每十倍频斜率，并吃掉 90 度相位，裕度就是交点处还剩多少相位。
+  alt: 给出四十五、六十、六十五度在指定环路中的阻尼和过冲，禁止按极点数量直接判定稳定性。
   status: accepted
   status_history:
   - planned
@@ -9951,24 +9942,23 @@ assets:
   review_scores:
     教学必要性: 5
     事实精度: 5
-    构图层级: 5
+    构图层级: 4
+    风格一致性: 4
     印刷可读性: 4
-    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch11-phase-margin-table.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_method: calculation-and-render-review
   review_record:
     reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
+    method: calculation-and-render-review
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 0f6433c00344b5eb7f55df0488d0392274aee3540440c6df6cb02bf092ae5e43
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
+    asset_sha256: 24d1a102c112f80a8f42792f972c12c28f7270744cca1daf0a572c9e20cf5a7f
 - id: ch06-741-four-blocks
   chapter: 6
   kind: figure
@@ -10162,7 +10152,7 @@ assets:
   kind: figure
   type: V4
   anchor: '11.10'
-  purpose: 三种噪声税与信噪比算例
+  purpose: 同一信号口径下的噪声预算
   style_id: FA-029
   layout_id: IG-013
   color_ids:
@@ -10175,10 +10165,7 @@ assets:
   output: assets/figures-v2/ch11-noise-three-taxes.svg
   print_fallback: assets/figures-v2/ch11-noise-three-taxes-print.svg
   preview: assets/figures-v2/ch11-noise-three-taxes.webp
-  alt: 手绘噪声预算两栏。左侧蓝框三种税的来历：热噪声任何电阻都有，10 千欧配 300 开给出 12.9 纳伏每根号赫兹；散粒噪声是电流越过结，1 毫安给出 17.9 皮安每根号赫兹；1 比 f
-    噪声在拐角处与白噪声相等。右侧绿框算一笔，源阻 10 千欧、信号 1 毫伏有效值：噪声带宽 1 兆赫时噪声 12.9 微伏有效值，信噪比只有 37.8 分贝；带宽压到 10 千赫、噪声 1.29
-    微伏，信噪比 57.8 分贝；源阻降到 1 千欧、噪声 4.07 微伏，信噪比 47.8 分贝。中段琥珀框写噪声带宽不是信号带宽，一阶低通的等效噪声带宽是 1.57 倍截止频率，拿截止频率代入会低估。底部红框写合账按均方值相加、不按电压相加，四个等量且互不相关的项合起来是单项的
-    2 倍、约 6.02 分贝，不是 4 倍。
+  alt: 三组源阻和等效噪声带宽分别计算热噪声与信噪比，长度表示有效值，说明不能靠衰减信号报告降噪。
   status: accepted
   status_history:
   - planned
@@ -10188,24 +10175,23 @@ assets:
   review_scores:
     教学必要性: 5
     事实精度: 5
-    构图层级: 5
+    构图层级: 4
+    风格一致性: 4
     印刷可读性: 4
-    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch11-noise-three-taxes.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_method: calculation-and-render-review
   review_record:
     reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
+    method: calculation-and-render-review
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 87f0ebfde12b91deb6858be4b7379afb52bc66227940f3bacea8cccc25981a95
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
+    asset_sha256: 90abfed7268ac30ef5897e058567a8de692403487d7eefd438b2b2e1037dbc00
 - id: ch12-riso-feedback-point
   chapter: 12
   kind: figure
@@ -10307,7 +10293,7 @@ assets:
   kind: figure
   type: V4
   anchor: '11.7'
-  purpose: 差分对的四拍：尾电流只准重新分配
+  purpose: 差分对的守恒与非线性
   style_id: FA-029
   layout_id: IG-013
   color_ids:
@@ -10320,10 +10306,7 @@ assets:
   output: assets/figures-v2/ch11-diffpair-four-beats.svg
   print_fallback: assets/figures-v2/ch11-diffpair-four-beats-print.svg
   preview: assets/figures-v2/ch11-diffpair-four-beats.webp
-  alt: 手绘差分对四拍。四行横框自上而下：第一行两边同升是共模，尾电流锁死在 1 毫安，谁也多拿不走，输出差为零；第二行一升一降是差模，各正负 10 毫伏，总量仍是 1 毫安，只在两管之间重新分配，输出差约等于
-    2 倍电流增量乘集电极电阻；第三行尾节点自举，一只管子想抬、另一只想压，正好抵消，尾电流源上没有交流，对差模隐身；第四行共模的真实泄漏，尾电流源有限、两管不可能完全匹配，失配 1% 就把共模抑制比拉到
-    60 分贝。底部红框算账：尾电流 1 毫安、集电极电阻 10 千欧、发射极小信号电阻 26 毫伏除 0.5 毫安得 52 欧，差模增益 10 千欧除 104 欧约 96、约 40 分贝；尾电流源
-    1 兆欧时共模增益约 0.005，共模抑制比约 86 分贝，提到 10 兆欧再涨 20 分贝。
+  alt: 共模不改变理想尾电流，差模二十毫伏按双曲正切分配，单端与差分增益分开列，提醒线性误差与工作区。
   status: accepted
   status_history:
   - planned
@@ -10333,24 +10316,23 @@ assets:
   review_scores:
     教学必要性: 5
     事实精度: 5
-    构图层级: 5
+    构图层级: 4
+    风格一致性: 4
     印刷可读性: 4
-    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch11-diffpair-four-beats.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_method: calculation-and-render-review
   review_record:
     reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
+    method: calculation-and-render-review
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: d45c24d7594dfda66d4da03e35d624491b9f457407e5970df9c9bb9715f4bb20
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
+    asset_sha256: 7bda707f103963aeb4380c2f74ec0101171057711fc29e7fdd5788d218492bd3
 - id: ch02-bridge-junction-ledger
   chapter: 2
   kind: figure
@@ -11154,8 +11136,8 @@ assets:
   chapter: 11
   kind: figure
   type: V4
-  anchor: 11.6 噪声：放大器躲不掉的"本底"
-  purpose: 噪声现场辨认表
+  anchor: '11.6'
+  purpose: 噪声症状与核验路径
   style_id: FA-029
   layout_id: IG-013
   color_ids:
@@ -11163,13 +11145,12 @@ assets:
   - C-31
   - C-29
   source_facts:
-  - docs/p2-01-ch11.md#11.6 噪声：放大器躲不掉的"本底"
+  - docs/p2-01-ch11.md#11.6
   prompt_file: docs/superpowers/visual/prompts/ch11-noise-identify.md
   output: assets/figures-v2/ch11-noise-identify.svg
   print_fallback: assets/figures-v2/ch11-noise-identify-print.svg
   preview: assets/figures-v2/ch11-noise-identify.webp
-  alt: 五症状对照表：宽带嘶声先怀疑白噪与热噪，看带宽与预算大头；低频起伏慢漂查 1/f、温漂与干扰，比较 e_n(f) 与 i_n(f)；50 Hz 及谐波查地环、纹波与耦合，先查屏蔽与接地；随偏置电流变查散粒噪声，连带重算增益与失真；随源阻变区分热噪声与输入电流噪声，注意并电阻会加载信号源。底部一条地图：白噪看带宽、1/f
-    看频谱与工况、工频看地。
+  alt: 五种症状各配一个频谱或工况检查，再决定改带宽、源阻或器件，保留信号与稳定性约束。
   status: accepted
   status_history:
   - planned
@@ -11179,24 +11160,23 @@ assets:
   review_scores:
     教学必要性: 5
     事实精度: 5
-    构图层级: 5
+    构图层级: 4
+    风格一致性: 4
     印刷可读性: 4
-    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch11-noise-identify.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_method: calculation-and-render-review
   review_record:
     reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
+    method: calculation-and-render-review
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: dd370bfcba32862631539e74c1322997d01a498a57b7b05b3271db7f9ec160c0
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
+    asset_sha256: cda60c65568351596b552c7327f22006aaae4b8e1fcf7842be1719bd1d0eea42
 - id: ch04-channel-formation
   chapter: 4
   kind: figure
@@ -15420,3 +15400,1302 @@ assets:
     reviewed_on: '2026-11-08'
     record: docs/superpowers/visual/reviews/ch10-animation-2026-11-08/review.md
     asset_sha256: fa66cd167c28010747d75da8db0ac09a96412d3f2060888ec79ef435d89cacc0
+- id: ch11-diff-steer-v2
+  chapter: 11
+  kind: animation
+  type: A1
+  anchor: '11.2'
+  purpose: 差分电压重新分配同一份尾电流
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-01-ch11.md#11.2
+  prompt_file: docs/superpowers/visual/prompts/ch11-diff-steer-v2.md
+  output: assets/svg-v2/ch11-diff-steer-v2.svg
+  print_fallback: assets/svg-v2/ch11-diff-steer-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch11-diff-steer-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch11-diff-steer-v2-static.svg
+  alt: 差分电压重新分配同一份尾电流。负差模把电流分给右管，总量仍是 1 mA。 零差模时两管各得 0.5 mA。 各输入 ±10 mV 对应差模 20 mV，已偏离直线近似。 大差模让一边接近独占，不能无限线性放大。
+    示意匹配 BJT，集电流和 1 mA，VT=26 mV；忽略基流与 Early 效应。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 负差模把电流分给右管，总量仍是 1 mA。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 零差模时两管各得 0.5 mA。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 各输入 ±10 mV 对应差模 20 mV，已偏离直线近似。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 大差模让一边接近独占，不能无限线性放大。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch11-diff-steer-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
+    asset_sha256: da512527d5a5d175a9a4124ea576243848a49681edb01f8eb6fdd60d59c23b3a
+- id: ch11-mirror-beta-v2
+  chapter: 11
+  kind: animation
+  type: A3
+  anchor: '11.3'
+  purpose: 参考电流还要供给两只管子的基流
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-01-ch11.md#11.3
+  prompt_file: docs/superpowers/visual/prompts/ch11-mirror-beta-v2.md
+  output: assets/svg-v2/ch11-mirror-beta-v2.svg
+  print_fallback: assets/svg-v2/ch11-mirror-beta-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch11-mirror-beta-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch11-mirror-beta-v2-static.svg
+  alt: 参考电流还要供给两只管子的基流。β=20 时，参考支路的基流占比不可忽略。 β=50 时，忽略 Early 的复制比约 96.15%。 β=100 时，复制比为 100/102。 β 增大只缩小基流误差；VCE
+    差仍会改变复制比。 示意匹配 β、同 VBE；实线忽略 Early，虚线 VA=100 V、输出 5 V。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters:
+  - name: β
+    values:
+    - 20
+    - 50
+    - 100
+    - 300
+    unit: 倍
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: β=20 时，参考支路的基流占比不可忽略。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: β=50 时，忽略 Early 的复制比约 96.15%。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: β=100 时，复制比为 100/102。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: β 增大只缩小基流误差；VCE 差仍会改变复制比。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch11-mirror-beta-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
+    asset_sha256: ce0fdb208259e386827fd75d36e673f1491ec42645dbbc6446627c65433f0284
+- id: ch11-crossover-v2
+  chapter: 11
+  kind: animation
+  type: A1
+  anchor: '11.4'
+  purpose: 预偏置逐渐缩小理想推挽死区
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-01-ch11.md#11.4
+  prompt_file: docs/superpowers/visual/prompts/ch11-crossover-v2.md
+  output: assets/svg-v2/ch11-crossover-v2.svg
+  print_fallback: assets/svg-v2/ch11-crossover-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch11-crossover-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch11-crossover-v2-static.svg
+  alt: 预偏置逐渐缩小理想推挽死区。无预偏置，过零附近两支路都不导通。 基极间加 0.6 V，剩余死区缩小。 偏置增至 1 V，过零缺口进一步缩小。 1.3 V 在此模型中恰好消除死区；实物须测静态电流与温漂。
+    示意固定 VBE=0.65 V、输入峰值 1 V；恒压降模型不计算静态电流。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 无预偏置，过零附近两支路都不导通。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 基极间加 0.6 V，剩余死区缩小。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 偏置增至 1 V，过零缺口进一步缩小。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 1.3 V 在此模型中恰好消除死区；实物须测静态电流与温漂。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch11-crossover-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
+    asset_sha256: 816a06d7dbf8e06181e66a974b7d450fe552497d48c1dad0fa61a26b0c2f11cc
+- id: ch11-miller-charge-v2
+  chapter: 11
+  kind: animation
+  type: A1
+  anchor: '11.5'
+  purpose: 电荷随两端压差变化，电容本身没变
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-01-ch11.md#11.5
+  prompt_file: docs/superpowers/visual/prompts/ch11-miller-charge-v2.md
+  output: assets/svg-v2/ch11-miller-charge-v2.svg
+  print_fallback: assets/svg-v2/ch11-miller-charge-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch11-miller-charge-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch11-miller-charge-v2-static.svg
+  alt: 电荷随两端压差变化，电容本身没变。A=0，电容输出端固定，电荷只随输入变化。 A=10，输出反相，电容两端摆幅增加。 A=50，同一输入需搬运更多电荷。 A=100，等效输入电容为 1.01
+    nF。 示意 Cbc=10 pF；输入 ±1 mV，输出增益为 −A；低频电压增益近似。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: A=0，电容输出端固定，电荷只随输入变化。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: A=10，输出反相，电容两端摆幅增加。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: A=50，同一输入需搬运更多电荷。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: A=100，等效输入电容为 1.01 nF。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch11-miller-charge-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
+    asset_sha256: a8423705e735d46741691f18f9cebe7b6f30d394169cc04d97a73ad89d5aceb5
+- id: ch11-pm-step-v2
+  chapter: 11
+  kind: animation
+  type: A3
+  anchor: '11.5'
+  purpose: 相位裕度与过冲的换算依赖环路模型
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-01-ch11.md#11.5
+  prompt_file: docs/superpowers/visual/prompts/ch11-pm-step-v2.md
+  output: assets/svg-v2/ch11-pm-step-v2.svg
+  print_fallback: assets/svg-v2/ch11-pm-step-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch11-pm-step-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch11-pm-step-v2-static.svg
+  alt: 相位裕度与过冲的换算依赖环路模型。PM=30°，标准二阶闭环有较强振铃。 PM=45°，ζ≈0.420，过冲约 23.32%。 PM=60°，ζ≈0.612，过冲约 8.77%。 PM=65°，ζ≈0.697，过冲约
+    4.72%；并非通用换算。 示意单位反馈 L(s)=ωn²/[s(s+2ζωn)]；时间按 ωn 归一化。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters:
+  - name: PM
+    values:
+    - 30
+    - 45
+    - 60
+    - 65
+    unit: °
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: PM=30°，标准二阶闭环有较强振铃。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: PM=45°，ζ≈0.420，过冲约 23.32%。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: PM=60°，ζ≈0.612，过冲约 8.77%。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: PM=65°，ζ≈0.697，过冲约 4.72%；并非通用换算。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch11-pm-step-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
+    asset_sha256: fb0341f3c156adc39e932a5981ad5ebe20dcfdff47fc8bcca9b8c0317e9e4e0e
+- id: ch11-pole-split-v2
+  chapter: 11
+  kind: animation
+  type: A3
+  anchor: '11.5'
+  purpose: 补偿电容改变两个极点的位置
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-01-ch11.md#11.5
+  prompt_file: docs/superpowers/visual/prompts/ch11-pole-split-v2.md
+  output: assets/svg-v2/ch11-pole-split-v2.svg
+  print_fallback: assets/svg-v2/ch11-pole-split-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch11-pole-split-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch11-pole-split-v2-static.svg
+  alt: 补偿电容改变两个极点的位置。Cc=0 时，两个节点各有自己的 RC 极点。 跨接 2 pF 后，慢极点下降、快极点上移。 Cc=10 pF 时，极点约 1.411 kHz 与 855.0 kHz。
+    继续加 Cc，不能只看极点；还须计入右半平面零点。 示意 R1=R2=100 kΩ、C1=10 pF、C2=100 pF、gm2=1 mS。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters:
+  - name: Cc
+    values:
+    - 0
+    - 2
+    - 10
+    - 30
+    unit: pF
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: Cc=0 时，两个节点各有自己的 RC 极点。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 跨接 2 pF 后，慢极点下降、快极点上移。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: Cc=10 pF 时，极点约 1.411 kHz 与 855.0 kHz。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 继续加 Cc，不能只看极点；还须计入右半平面零点。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch11-pole-split-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
+    asset_sha256: e4bad3a61fddf47e6e5e0a44dd51e3c26d9d4cd8cf582bcdbaaf63afa4b9acd2
+- id: ch11-noise-spectrum-v2
+  chapter: 11
+  kind: animation
+  type: A3
+  anchor: '11.6'
+  purpose: 1/f 的斜率要分清功率谱与幅度谱
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-01-ch11.md#11.6
+  prompt_file: docs/superpowers/visual/prompts/ch11-noise-spectrum-v2.md
+  output: assets/svg-v2/ch11-noise-spectrum-v2.svg
+  print_fallback: assets/svg-v2/ch11-noise-spectrum-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch11-noise-spectrum-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch11-noise-spectrum-v2-static.svg
+  alt: 1/f 的斜率要分清功率谱与幅度谱。低频闪烁项占优，相对 ASD 的斜率趋近 −10 dB/dec。 到实线的 100 Hz 拐角，两项功率相等。 虚线到 1 kHz 才到同样的拐角。 高频逐渐靠近共同地板，不是突然变平。
+    示意共同白噪声地板；实线 fc=100 Hz、虚线 fc=1 kHz，不代表器件排名。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters:
+  - name: f
+    values:
+    - 1
+    - 100
+    - 1000
+    - 100000
+    unit: Hz
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 低频闪烁项占优，相对 ASD 的斜率趋近 −10 dB/dec。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 到实线的 100 Hz 拐角，两项功率相等。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 虚线到 1 kHz 才到同样的拐角。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 高频逐渐靠近共同地板，不是突然变平。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch11-noise-spectrum-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
+    asset_sha256: 5120ead5ba9a11448ffc8b67d5d8078328efab593694a7dbae7154de33695fc0
+- id: ch11-noise-bandwidth-v2
+  chapter: 11
+  kind: animation
+  type: A3
+  anchor: '11.10'
+  purpose: 截止频率之外的噪声仍在积分
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-01-ch11.md#11.10
+  prompt_file: docs/superpowers/visual/prompts/ch11-noise-bandwidth-v2.md
+  output: assets/svg-v2/ch11-noise-bandwidth-v2.svg
+  print_fallback: assets/svg-v2/ch11-noise-bandwidth-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch11-noise-bandwidth-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch11-noise-bandwidth-v2-static.svg
+  alt: 截止频率之外的噪声仍在积分。积分到 fH，只收齐全部白噪声均方值的一半。 到 2fH，累计约 70.48%。 到 5fH，仍未收齐高频尾部。 积分到无穷才得到等效噪声带宽 πfH/2。 示意白噪声经过一阶低通，fH
+    为 −3 dB 点；按均方值累计。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters:
+  - name: F/fH
+    values:
+    - 1
+    - 2
+    - 5
+    - 10
+    unit: 倍
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 积分到 fH，只收齐全部白噪声均方值的一半。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 到 2fH，累计约 70.48%。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 到 5fH，仍未收齐高频尾部。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 积分到无穷才得到等效噪声带宽 πfH/2。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch11-noise-bandwidth-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
+    asset_sha256: d3f2384915c608806a5b8a518c891bf51aeec28b14741ce33688c60dd2f650b1
+- id: ch11-diff-cm-v2
+  chapter: 11
+  kind: animation
+  type: A3
+  anchor: '11.7'
+  purpose: 同一输出口径内比较差模与共模
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-01-ch11.md#11.7
+  prompt_file: docs/superpowers/visual/prompts/ch11-diff-cm-v2.md
+  output: assets/svg-v2/ch11-diff-cm-v2.svg
+  print_fallback: assets/svg-v2/ch11-diff-cm-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch11-diff-cm-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch11-diff-cm-v2-static.svg
+  alt: 同一输出口径内比较差模与共模。尾阻 10 kΩ，单端共模泄漏明显。 尾阻增至 100 kΩ，单端 CMRR 约 65.69 dB。 到 1 MΩ，单端 CMRR 约 85.68 dB。 差分输出会抵消对称泄漏；不能混用两个输出口径。
+    示意尾电流 1 mA、Rc=10 kΩ；虚线仅含 Rc 两侧 ±1% 失配。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters:
+  - name: Rtail
+    values:
+    - 10000.0
+    - 100000.0
+    - 1000000.0
+    - 10000000.0
+    unit: Ω
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 尾阻 10 kΩ，单端共模泄漏明显。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 尾阻增至 100 kΩ，单端 CMRR 约 65.69 dB。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 到 1 MΩ，单端 CMRR 约 85.68 dB。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 差分输出会抵消对称泄漏；不能混用两个输出口径。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch11-diff-cm-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
+    asset_sha256: c56fe5a10450b93c61ceb90ce0250928c61bc74c190f7d404553be5a3c811aaa
+- id: ch11-active-load-v2
+  chapter: 11
+  kind: animation
+  type: A3
+  anchor: '11.8'
+  purpose: 有源负载的高增益仍会被后级分流
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-01-ch11.md#11.8
+  prompt_file: docs/superpowers/visual/prompts/ch11-active-load-v2.md
+  output: assets/svg-v2/ch11-active-load-v2.svg
+  print_fallback: assets/svg-v2/ch11-active-load-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch11-active-load-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch11-active-load-v2-static.svg
+  alt: 有源负载的高增益仍会被后级分流。1 kΩ 外负载同时限制两种方案的增益。 10 kΩ 负载下，有源负载增益只有约 286。 外负载变大，有源负载方案才接近空载增益。 空载极限为 1000，但实线电阻方案仅约
+    84.3。 示意 gm=40 mS、两管 ro 各 50 kΩ；电阻方案 Rc=2.2 kΩ。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters:
+  - name: RL
+    values:
+    - 1000.0
+    - 10000.0
+    - 100000.0
+    - 1000000.0
+    unit: Ω
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 1 kΩ 外负载同时限制两种方案的增益。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 10 kΩ 负载下，有源负载增益只有约 286。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 外负载变大，有源负载方案才接近空载增益。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 空载极限为 1000，但实线电阻方案仅约 84.3。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch11-active-load-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
+    asset_sha256: 9cec5da7b373fb21c0940692c82c0d502799ede2eb5efbadb95217f8f6b1c84a
+- id: ch11-cascode-resistance-v2
+  chapter: 11
+  kind: animation
+  type: A3
+  anchor: '11.8'
+  purpose: BJT 的有限 β 会限制叠管增阻
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-01-ch11.md#11.8
+  prompt_file: docs/superpowers/visual/prompts/ch11-cascode-resistance-v2.md
+  output: assets/svg-v2/ch11-cascode-resistance-v2.svg
+  print_fallback: assets/svg-v2/ch11-cascode-resistance-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch11-cascode-resistance-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch11-cascode-resistance-v2-static.svg
+  alt: BJT 的有限 β 会限制叠管增阻。β=50 时，上管 rπ 分流内部节点。 β=100 时，输出电阻提高但远低于无限 β 模型。 β=200 时，算得约 19.15 MΩ。 增加 β 继续改善；高输出电阻也可能降低输出极点。
+    示意两管 ro=100 kΩ、上管 gm=40 mS；基极理想交流接地。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters:
+  - name: β
+    values:
+    - 50
+    - 100
+    - 200
+    - 300
+    unit: 倍
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: β=50 时，上管 rπ 分流内部节点。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: β=100 时，输出电阻提高但远低于无限 β 模型。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: β=200 时，算得约 19.15 MΩ。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 增加 β 继续改善；高输出电阻也可能降低输出极点。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch11-cascode-resistance-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
+    asset_sha256: 68bcb3e4c1da32dc59535ea570e42ff47448fc91876226cbc262994212c808b0
+- id: ch11-psrr-ripple-v2
+  chapter: 11
+  kind: animation
+  type: A3
+  anchor: '11.9'
+  purpose: 同样的纹波，抑制比随频率变化
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-01-ch11.md#11.9
+  prompt_file: docs/superpowers/visual/prompts/ch11-psrr-ripple-v2.md
+  output: assets/svg-v2/ch11-psrr-ripple-v2.svg
+  print_fallback: assets/svg-v2/ch11-psrr-ripple-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch11-psrr-ripple-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch11-psrr-ripple-v2-static.svg
+  alt: 同样的纹波，抑制比随频率变化。100 Hz 的 80 dB 抑制把纹波折为 10 µVrms。 1 kHz 仍在本例的低频平台。 100 kHz 已降到 40 dB，输入等效纹波为 1 mVrms。
+    1 MHz 时为 20 dB；不能拿 DC 数字外推。 示意电源纹波 100 mVrms；PSRR 在 1 kHz 前 80 dB，随后每十倍频降 20 dB。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters:
+  - name: f
+    values:
+    - 100
+    - 1000
+    - 100000
+    - 1000000
+    unit: Hz
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 100 Hz 的 80 dB 抑制把纹波折为 10 µVrms。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 1 kHz 仍在本例的低频平台。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 100 kHz 已降到 40 dB，输入等效纹波为 1 mVrms。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 1 MHz 时为 20 dB；不能拿 DC 数字外推。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch11-psrr-ripple-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
+    asset_sha256: 4a678b904cf6cbae8ec1955640bb99b5af8252910bf7a6cd09000e8557305b0d
+- id: ch11-cascade-loading-v2
+  chapter: 11
+  kind: animation
+  type: A3
+  anchor: '11.11'
+  purpose: 输出负载会逐级传回增益预算
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-01-ch11.md#11.11
+  prompt_file: docs/superpowers/visual/prompts/ch11-cascade-loading-v2.md
+  output: assets/svg-v2/ch11-cascade-loading-v2.svg
+  print_fallback: assets/svg-v2/ch11-cascade-loading-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch11-cascade-loading-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch11-cascade-loading-v2-static.svg
+  alt: 输出负载会逐级传回增益预算。100 Ω 与射随器的 1 kΩ 电阻并联，增益约 807。 负载变为 300 Ω，输出电压跟随能力改善。 1 kΩ 仍不是空载，输入阻抗与增益都受影响。 接近空载才回到原来的约千倍；还未检查大信号驱动。
+    原候选：β=200、IC1=0.4 mA、IC2=IC3=1 mA，RE3=1 kΩ。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters:
+  - name: RL
+    values:
+    - 100
+    - 300
+    - 1000
+    - 100000
+    unit: Ω
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 100 Ω 与射随器的 1 kΩ 电阻并联，增益约 807。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 负载变为 300 Ω，输出电压跟随能力改善。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 1 kΩ 仍不是空载，输入阻抗与增益都受影响。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 接近空载才回到原来的约千倍；还未检查大信号驱动。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch11-cascade-loading-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
+    asset_sha256: b7da06bea08867e3de50941b36e5c89837ee657cb6eca27802e5a6a34f1952ee
+- id: ch11-beta-budget-v2
+  chapter: 11
+  kind: animation
+  type: A3
+  anchor: '11.11'
+  purpose: 标称通过后，还要重算 β 与偏置
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-01-ch11.md#11.11
+  prompt_file: docs/superpowers/visual/prompts/ch11-beta-budget-v2.md
+  output: assets/svg-v2/ch11-beta-budget-v2.svg
+  print_fallback: assets/svg-v2/ch11-beta-budget-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch11-beta-budget-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch11-beta-budget-v2-static.svg
+  alt: 标称通过后，还要重算 β 与偏置。β=100，输入电阻约 8.76 kΩ，低于目标。 β=150 时输入电阻恢复，但还需看其他指标。 β=200 标称输入电阻约 13.13 kΩ。 β=300
+    输入电阻更高，带宽却下降；不能只挑一个指标。 修订候选按正文完整偏置模型，扫共同 β；温度与器件电容未扫描。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters:
+  - name: β
+    values:
+    - 100
+    - 150
+    - 200
+    - 300
+    unit: 倍
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: β=100，输入电阻约 8.76 kΩ，低于目标。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: β=150 时输入电阻恢复，但还需看其他指标。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: β=200 标称输入电阻约 13.13 kΩ。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: β=300 输入电阻更高，带宽却下降；不能只挑一个指标。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch11-beta-budget-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
+    asset_sha256: 888919f08b151e2d410f5fe8b2afb983c17a78227aa3ec4ffefc92cac0de47ee
+- id: ch11-source-loading-v2
+  chapter: 11
+  kind: animation
+  type: A3
+  anchor: '11.11'
+  purpose: 端口增益与源到负载增益是两笔账
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-01-ch11.md#11.11
+  prompt_file: docs/superpowers/visual/prompts/ch11-source-loading-v2.md
+  output: assets/svg-v2/ch11-source-loading-v2.svg
+  print_fallback: assets/svg-v2/ch11-source-loading-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch11-source-loading-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch11-source-loading-v2-static.svg
+  alt: 端口增益与源到负载增益是两笔账。低频时 10 kΩ 源阻已经造成输入分压。 到 100 kHz，寄生电容开始进一步影响信号。 本例源到负载 −3 dB 高频截止约 138.3 kHz。 源阻改变时，输入分压与频率响应都要重新求。
+    修订候选 β=200，完整 hybrid-π；实线 Rs=10 kΩ，虚线 Rs=0.1 Ω。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters:
+  - name: f
+    values:
+    - 1000
+    - 100000
+    - 138310.87402359274
+    - 1000000
+    unit: Hz
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 低频时 10 kΩ 源阻已经造成输入分压。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 到 100 kHz，寄生电容开始进一步影响信号。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 本例源到负载 −3 dB 高频截止约 138.3 kHz。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 源阻改变时，输入分压与频率响应都要重新求。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch11-source-loading-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
+    asset_sha256: 734289d5a67652fce5d0d0ceba976d1e3d3fb7e002e6bff49cc8241d7fd44335
+- id: ch11-topology-ports
+  chapter: 11
+  kind: figure
+  type: V4
+  anchor: '11.1'
+  purpose: 三种组态的端口条件
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p2-01-ch11.md#11.1
+  prompt_file: docs/superpowers/visual/prompts/ch11-topology-ports.md
+  output: assets/figures-v2/ch11-topology-ports.svg
+  print_fallback: assets/figures-v2/ch11-topology-ports-print.svg
+  preview: assets/figures-v2/ch11-topology-ports.webp
+  alt: 三行端口示意对照输入输出与交流公共端，标明共射反相、共集跟随、共基低输入阻抗，并说明阻抗随偏置与负载变化。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 4
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch11-topology-ports.json
+  quant_rules:
+    layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
+    asset_sha256: d8ccdd043e6c107de580020db1d85240ae1d28d2de443a2925109fc913c83f61
+- id: ch11-noise-input-budget
+  chapter: 11
+  kind: figure
+  type: V4
+  anchor: '11.6'
+  purpose: 输入参考噪声的均方贡献
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p2-01-ch11.md#11.6
+  prompt_file: docs/superpowers/visual/prompts/ch11-noise-input-budget.md
+  output: assets/figures-v2/ch11-noise-input-budget.svg
+  print_fallback: assets/figures-v2/ch11-noise-input-budget-print.svg
+  preview: assets/figures-v2/ch11-noise-input-budget.webp
+  alt: 一兆欧源的热噪声占本例总均方值约百分之九十九点四，横条按功率比例绘制，三项有效值分别列出后再做平方和开方。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 4
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch11-noise-input-budget.json
+  quant_rules:
+    layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
+    asset_sha256: 2d8fdd479f22cd6fbf4eca07185d91f5cb9db8ed2c5dfed723b7cc7cd345ba19
+- id: ch11-cascode-headroom
+  chapter: 11
+  kind: figure
+  type: V4
+  anchor: '11.8'
+  purpose: 有源负载与叠管的电压约束
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p2-01-ch11.md#11.8
+  prompt_file: docs/superpowers/visual/prompts/ch11-cascode-headroom.md
+  output: assets/figures-v2/ch11-cascode-headroom.svg
+  print_fallback: assets/figures-v2/ch11-cascode-headroom-print.svg
+  preview: assets/figures-v2/ch11-cascode-headroom.webp
+  alt: 三种负载分别显示电源到输出的电压预算，强调合规电压不同于实际直流压降，高输出电阻可降低输出极点。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 4
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch11-cascode-headroom.json
+  quant_rules:
+    layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
+    asset_sha256: 5f96e04a201ec20998e3bfadcfb4be03b81d553e5ef334e3239ba40100d87171
+- id: ch11-cmrr-definitions
+  chapter: 11
+  kind: figure
+  type: V4
+  anchor: '11.9'
+  purpose: 一致端口下的共模抑制比
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p2-01-ch11.md#11.9
+  prompt_file: docs/superpowers/visual/prompts/ch11-cmrr-definitions.md
+  output: assets/figures-v2/ch11-cmrr-definitions.svg
+  print_fallback: assets/figures-v2/ch11-cmrr-definitions-print.svg
+  preview: assets/figures-v2/ch11-cmrr-definitions.webp
+  alt: 单端与差分输出分别列差模增益和共模增益，只有分子分母使用同一输出端口才可相除。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 4
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch11-cmrr-definitions.json
+  quant_rules:
+    layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
+    asset_sha256: b5405eb87a1552c674b74546319d01038f0eefb3baf2afa831c5aae63dbf75ee
+- id: ch11-design-dc
+  chapter: 11
+  kind: figure
+  type: V4
+  anchor: '11.11'
+  purpose: 修订候选的偏置闭合
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p2-01-ch11.md#11.11
+  prompt_file: docs/superpowers/visual/prompts/ch11-design-dc.md
+  output: assets/figures-v2/ch11-design-dc.svg
+  print_fallback: assets/figures-v2/ch11-design-dc-print.svg
+  preview: assets/figures-v2/ch11-design-dc.webp
+  alt: 三个模块列出偏置分压、发射极和集电极电阻、直流节点与耦合关系，输出管基流计入第二级集电极电阻。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 4
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch11-design-dc.json
+  quant_rules:
+    layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
+    asset_sha256: b16b5e64e9fef67ba593c0c013cd80b47a051cedb9d50880739317bc7b703719

@@ -204,3 +204,7 @@ SCENES['ch06-bias-balance'] = _ch06_corrected['ch06-bias-balance']
 from scripts.visuals.scenes.ch10_reference_figures import SCENES as _ch10_corrected
 for _aid in ['ch10-monostable-budget', 'ch10-recovery-gap']:
     SCENES[_aid] = _ch10_corrected[_aid]
+
+# Corrected chapter 11 model and visual contract.
+from scripts.visuals.scenes.ch11_reference_figures import SCENES as _ch11_corrected
+SCENES['ch11-mirror-three-errors'] = _ch11_corrected['ch11-mirror-three-errors']

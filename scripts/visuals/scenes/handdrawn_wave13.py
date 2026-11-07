@@ -226,3 +226,7 @@ from scripts.visuals.scenes.ch10_reference_figures import SCENES as _ch10_correc
 for _aid in ['ch10-astable-reverse-design', 'ch10-duty-fifty-paths']:
     SCENES[_aid] = _ch10_corrected[_aid]
 SCENES['ch09-ldo-four-accounts'] = _ch09_corrected['ch09-ldo-four-accounts']
+
+# Corrected chapter 11 model and visual contract.
+from scripts.visuals.scenes.ch11_reference_figures import SCENES as _ch11_corrected
+SCENES['ch11-two-stage-margin'] = _ch11_corrected['ch11-two-stage-margin']
