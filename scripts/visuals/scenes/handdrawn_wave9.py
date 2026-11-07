@@ -200,3 +200,7 @@ SCENES = {
 # Keep historical batch entry points aligned with corrected chapter models.
 from scripts.visuals.scenes.ch06_reference_figures import SCENES as _ch06_corrected
 SCENES['ch06-bias-balance'] = _ch06_corrected['ch06-bias-balance']
+
+from scripts.visuals.scenes.ch10_reference_figures import SCENES as _ch10_corrected
+for _aid in ['ch10-monostable-budget', 'ch10-recovery-gap']:
+    SCENES[_aid] = _ch10_corrected[_aid]

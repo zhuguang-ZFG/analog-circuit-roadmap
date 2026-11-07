@@ -156,3 +156,8 @@ SCENES = {
                '底部写 Q 点偏置的任务就是把两份余量尽量平分，先站回直流窗口再用信号说话。',
     },
 }
+
+# Share corrected timer diagrams with historical batches.
+from scripts.visuals.scenes.ch10_reference_figures import SCENES as _ch10_corrected
+for _aid in ['ch10-555-fault-tree', 'ch10-555-threshold-clamp']:
+    SCENES[_aid] = _ch10_corrected[_aid]

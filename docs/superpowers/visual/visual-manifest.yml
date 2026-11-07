@@ -8396,7 +8396,7 @@ assets:
   kind: figure
   type: V4
   anchor: '10.5'
-  purpose: 单稳态 1.1RC 的误差预算
+  purpose: 单稳态精度的角点预算
   style_id: FA-029
   layout_id: IG-013
   color_ids:
@@ -8409,8 +8409,7 @@ assets:
   output: assets/figures-v2/ch10-monostable-budget.svg
   print_fallback: assets/figures-v2/ch10-monostable-budget-print.svg
   preview: assets/figures-v2/ch10-monostable-budget.webp
-  alt: 手绘左右两栏：左栏写 t 等于 1.1 乘 R 乘 C，100 千欧乘 10 微法约 1.1 秒；右栏逐项列电阻正负 1%、薄膜电容正负 5%、阈值散差正负 2 到 4%，最坏同向正负 8
-    到 10%。底部写要正负 1% 需 COG、0.1% 电阻与修调。
+  alt: 示意电阻电容和门限范围取角点相乘，最短约标称八十九点八七百分比，最长约一百零九点九九百分比。
   status: accepted
   status_history:
   - planned
@@ -8420,30 +8419,29 @@ assets:
   review_scores:
     教学必要性: 5
     事实精度: 5
-    构图层级: 5
+    构图层级: 4
+    风格一致性: 4
     印刷可读性: 4
-    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch10-monostable-budget.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_method: calculation-and-render-review
   review_record:
     reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
+    method: calculation-and-render-review
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 024210a5b1c87cdc3b37af98b86226b86f28775c4d5fc3689f7653e477a56c1b
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch10-animation-2026-11-08/review.md
+    asset_sha256: 7922871f24f6076d7640a0ef340173391f085c2c3c094afbea636ff4d36bae2d
 - id: ch10-recovery-gap
   chapter: 10
   kind: figure
   type: V4
   anchor: '10.5'
-  purpose: 单稳态恢复时间与连发触发
+  purpose: 恢复残压与第二拍
   style_id: FA-029
   layout_id: IG-013
   color_ids:
@@ -8456,7 +8454,7 @@ assets:
   output: assets/figures-v2/ch10-recovery-gap.svg
   print_fallback: assets/figures-v2/ch10-recovery-gap-print.svg
   preview: assets/figures-v2/ch10-recovery-gap.webp
-  alt: 手绘两行脉冲时序：正常行等电容归零后再触发，第二拍脉宽不变；太早行在恢复期内触发，第二拍从半满电容起算而变短。右侧写放电管把电容从三分之二电源放空需微秒到几十微秒，大于 10 微法可到百微秒，触发间隔要大于脉宽加恢复时间。
+  alt: 放电等效电阻模型中保留电源馈入，一毫秒后残压一点二二八伏，五毫秒后二十七点三毫伏，下一拍各自重新计算。
   status: accepted
   status_history:
   - planned
@@ -8466,24 +8464,23 @@ assets:
   review_scores:
     教学必要性: 5
     事实精度: 5
-    构图层级: 5
+    构图层级: 4
+    风格一致性: 4
     印刷可读性: 4
-    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch10-recovery-gap.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_method: calculation-and-render-review
   review_record:
     reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
+    method: calculation-and-render-review
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: b22a4f86cfa4a8f1191cd084aa9daa29c19baa79223e316a182046bfae7e9f39
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch10-animation-2026-11-08/review.md
+    asset_sha256: d53185cebfc4cfd4dc6f88effbf1c60964eb72ad1a04c168c8a425c0b6407e4a
 - id: ch11-mirror-three-errors
   chapter: 11
   kind: figure
@@ -9559,7 +9556,7 @@ assets:
   kind: figure
   type: V4
   anchor: '10.4'
-  purpose: 按 38kHz 目标反推 555 元件值
+  purpose: 载波频率反算与回算
   style_id: FA-029
   layout_id: IG-013
   color_ids:
@@ -9572,9 +9569,7 @@ assets:
   output: assets/figures-v2/ch10-astable-reverse-design.svg
   print_fallback: assets/figures-v2/ch10-astable-reverse-design-print.svg
   preview: assets/figures-v2/ch10-astable-reverse-design.webp
-  alt: 手绘 555 反推两栏：左栏列五步，目标 38 千赫载波占空比约 50%，取电容 1 纳法 COG，解总电阻 R1 加 2R2 约 37.9 千欧，近 50% 要求 R1 远小于 R2 故取
-    R1 等于 1 千欧，则 R2 约 18.4 千欧取 18 千欧，并注明 R1 的下限由放电管电流定；右栏回算实际频率 38.9 千赫、实际占空比 51.4%，并写接收头带宽 ±2 千赫级、对占空比更不敏感，所以遥控器敢用
-    RC 振荡器。底部写超窗了把 18 千欧换 16.9 千欧加 1.5 千欧串联，或上一只多圈电位器修调，式子给的是起点、E 系列与回算才是落地手续。
+  alt: 三十八千赫和一纳法反求电阻和约三十七点九六六千欧，再用实际阻值重新核算频率与协议窗口。
   status: accepted
   status_history:
   - planned
@@ -9584,30 +9579,29 @@ assets:
   review_scores:
     教学必要性: 5
     事实精度: 5
-    构图层级: 5
+    构图层级: 4
+    风格一致性: 4
     印刷可读性: 4
-    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch10-astable-reverse-design.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_method: calculation-and-render-review
   review_record:
     reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
+    method: calculation-and-render-review
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 8a947d8c7227281f1440838d42ab49d1688243f2152cb71af79c71a8126a56a3
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch10-animation-2026-11-08/review.md
+    asset_sha256: 0fc50afd7d34586d9ba08b7557acee814111a9340dbc1ebe1f0a334822782ebb
 - id: ch10-duty-fifty-paths
   chapter: 10
   kind: figure
   type: V4
   anchor: '10.4'
-  purpose: 准 50% 占空比的三条路与两个极端
+  purpose: 对称占空比的条件
   style_id: FA-029
   layout_id: IG-013
   color_ids:
@@ -9620,9 +9614,7 @@ assets:
   output: assets/figures-v2/ch10-duty-fifty-paths.svg
   print_fallback: assets/figures-v2/ch10-duty-fifty-paths-print.svg
   preview: assets/figures-v2/ch10-duty-fifty-paths.webp
-  alt: 手绘三行对照：第一行二极管抄近路，R2 两端并一只二极管充电只走 R1、放电走 R2，取 R1 等于 R2 即 50%，代价是约 0.6 伏正向压降缩窄摆幅；第二行单电阻回授，去掉 R1 用
-    R 从输出脚直接给电容充放电，充放时间常数天然相等，双极版高电平低 1.4 伏是隐患；第三行干脆换拓扑，高一倍频率振荡再 D 触发器二分频，占空比由结构保证与 RC 无关。底部红框写两个极端的代价是同一条教训：逼近
-    100% 时 R2 顶着放电管电流下限、R1 受漏电流上限，99% 已是实用极限；逼近 50% 时 R1 等于 100 欧、12 伏时峰值 120 毫安直灌放电管，芯片发热、频率漂移。
+  alt: 二极管路径计入压降，输出反馈计入受载电平，数字分频计入连续有效时钟；单端方波平均电压不为零。
   status: accepted
   status_history:
   - planned
@@ -9632,24 +9624,23 @@ assets:
   review_scores:
     教学必要性: 5
     事实精度: 5
-    构图层级: 5
+    构图层级: 4
+    风格一致性: 4
     印刷可读性: 4
-    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch10-duty-fifty-paths.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_method: calculation-and-render-review
   review_record:
     reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
+    method: calculation-and-render-review
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: ecbc2dcac76cbc8197663b3e96c08902cd11adc997068403ac6f5527193baa05
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch10-animation-2026-11-08/review.md
+    asset_sha256: 8bc9d8b54c541f8aaea0b8553c29a76514dca56e4328905019747109e6e257b8
 - id: ch05-shoot-through-ledger
   chapter: 5
   kind: figure
@@ -10793,7 +10784,7 @@ assets:
   kind: figure
   type: V4
   anchor: '10.3'
-  purpose: 555 故障图谱五站定位
+  purpose: 555 的测量排故入口
   style_id: FA-029
   layout_id: IG-013
   color_ids:
@@ -10806,10 +10797,7 @@ assets:
   output: assets/figures-v2/ch10-555-fault-tree.svg
   print_fallback: assets/figures-v2/ch10-555-fault-tree-print.svg
   preview: assets/figures-v2/ch10-555-fault-tree.webp
-  alt: 手绘 555 故障图谱。顶部蓝框写 5 脚直接接在内部 2/3 Vcc 的抽头上，悬空等于给高阻抽头接天线，改的正是挡块高度；标准做法接 10 纳法到地。中间框列五站：①输出常高、6 脚电压不动，判据是放电管没工作，7
-    脚虚焊或 R2 开路；②频率对、占空比漂，判据是 R1 或 R2 变值，或 5 脚电容漏电；③频率随温度狂漂，判据是热风一吹变化超过 5% 就是元件介质问题；④起振迟缓、偶发停振，判据是电源爬升太慢，4
-    脚加 RC 延时；⑤面包板行、焊到板上不行，判据是寄生 2 到 5 皮法参与定时，按板上实测重算。琥珀框写先量 5 脚直流电压、应恰好 2/3 Vcc，偏离就是外因，指标合格才轮到怀疑芯片。底部绿框处方三件套：就近
-    100 纳法加 10 微法、续流路径独立、走线不进继电器回路。
+  alt: 输出常高先查触发，常低先查复位；漂移测实际电容漏电与控制节点，启动测供电和复位时序。
   status: accepted
   status_history:
   - planned
@@ -10819,30 +10807,29 @@ assets:
   review_scores:
     教学必要性: 5
     事实精度: 5
-    构图层级: 5
+    构图层级: 4
+    风格一致性: 4
     印刷可读性: 4
-    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch10-555-fault-tree.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_method: calculation-and-render-review
   review_record:
     reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
+    method: calculation-and-render-review
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: f7eced25e57039fcf70dd97c83233960d4ffd196e4151df315b331746e5134cb
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch10-animation-2026-11-08/review.md
+    asset_sha256: 3d7e44ddf346c5c5c94449ad9dfe17168e76e141f3447da4ce0dc5854c7075a5
 - id: ch10-555-threshold-clamp
   chapter: 10
   kind: figure
   type: V4
   anchor: '10.1'
-  purpose: 555 的两条门限与占空比
+  purpose: 555 内部状态路径
   style_id: FA-029
   layout_id: IG-013
   color_ids:
@@ -10855,9 +10842,7 @@ assets:
   output: assets/figures-v2/ch10-555-threshold-clamp.svg
   print_fallback: assets/figures-v2/ch10-555-threshold-clamp-print.svg
   preview: assets/figures-v2/ch10-555-threshold-clamp.webp
-  alt: 手绘 555 门限账。顶部蓝框写三只 5 千欧电阻串在电源与地之间抽出两条门限，2/3 Vcc 进比较器 A、1/3 Vcc 进比较器 B，这就是 555 这个名字的由来。左绿框「撞上限：按住」：电容升到
-    2/3 Vcc，比较器 A 翻转，触发器复位、放电管导通。右红框「落下限：松手」：电容降到 1/3 Vcc，比较器 B 翻转，触发器置位、放电管截止。琥珀框写所以占空比永远大于 50%：充电走 R1
-    加 R2、放电只走 R2，进得慢出得快；R1 只出现在充电支路，所以这个比值压不到 50%。底部写触发器只锁状态、不产生振荡，秋千自己会停，能量一路向电源讨。
+  alt: 三只等值电阻形成两门限，阈值比较器和触发比较器进入锁存器，RESET 具有最高优先级，OUT 与放电开关状态对应。
   status: accepted
   status_history:
   - planned
@@ -10867,24 +10852,23 @@ assets:
   review_scores:
     教学必要性: 5
     事实精度: 5
-    构图层级: 5
+    构图层级: 4
+    风格一致性: 4
     印刷可读性: 4
-    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch10-555-threshold-clamp.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_method: calculation-and-render-review
   review_record:
     reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
+    method: calculation-and-render-review
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 6c4aaa51da2d5202619c2d4771149c6e4be1620dd5949cb66039057864241444
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch10-animation-2026-11-08/review.md
+    asset_sha256: 63c5f83763781acd881ea32559879da3ffc4e34953451b44f937ccbaf27c67fb
 - id: ch03-ce-swing-budget
   chapter: 3
   kind: figure
@@ -14516,3 +14500,923 @@ assets:
     reviewed_on: '2026-11-08'
     record: docs/superpowers/visual/reviews/ch09-animation-2026-11-08/review.md
     asset_sha256: d96560c7eb5bc8d14ac06cafb7738cdc86d5ac6234d7c57603d6cabb3fa81efa
+- id: ch10-threshold-memory-v2
+  chapter: 10
+  kind: animation
+  type: A1
+  anchor: '10.1'
+  purpose: RESET、TRIG、THRES 按优先级改变状态
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-11-ch10.md#10.1
+  prompt_file: docs/superpowers/visual/prompts/ch10-threshold-memory-v2.md
+  output: assets/svg-v2/ch10-threshold-memory-v2.svg
+  print_fallback: assets/svg-v2/ch10-threshold-memory-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch10-threshold-memory-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch10-threshold-memory-v2-static.svg
+  alt: RESET、TRIG、THRES 按优先级改变状态。RESET 有效时，即使 TRIG 低，输出也保持低。 释放 RESET；TRIG 低于 3 V，优先置位输出。 TRIG 与 THRES
+    都在非动作区，锁存器保留高态。 TRIG 已释放，THRES 超过 6 V，输出复位并放电。 示意 9 V、标称 3/6 V 门限；不在相等边界判定保证状态。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: RESET 有效时，即使 TRIG 低，输出也保持低。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 释放 RESET；TRIG 低于 3 V，优先置位输出。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: TRIG 与 THRES 都在非动作区，锁存器保留高态。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: TRIG 已释放，THRES 超过 6 V，输出复位并放电。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch10-threshold-memory-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch10-animation-2026-11-08/review.md
+    asset_sha256: bc43fa52190c8150bead74ba6f96e487c2291ed0da5d9414392fedbaf652bd08
+- id: ch10-astable-cycle-v2
+  chapter: 10
+  kind: animation
+  type: A1
+  anchor: '10.4'
+  purpose: 电容连续变化，输出在门限处切换
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-11-ch10.md#10.4
+  prompt_file: docs/superpowers/visual/prompts/ch10-astable-cycle-v2.md
+  output: assets/svg-v2/ch10-astable-cycle-v2.svg
+  print_fallback: assets/svg-v2/ch10-astable-cycle-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch10-astable-cycle-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch10-astable-cycle-v2-static.svg
+  alt: 电容连续变化，输出在门限处切换。稳态从 3 V 起，RA 与 RB 一起给电容充电。 约 540.65 µs 到 6 V，输出转低、放电管导通。 经 RB 放电约 471.34 µs 后回到
+    3 V。 周期约 1.012 ms；输出高占 53.42%，并非对称。 示意 9 V、RA=1 kΩ、RB=6.8 kΩ、C=100 nF，理想开关。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 稳态从 3 V 起，RA 与 RB 一起给电容充电。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 约 540.65 µs 到 6 V，输出转低、放电管导通。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 经 RB 放电约 471.34 µs 后回到 3 V。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 周期约 1.012 ms；输出高占 53.42%，并非对称。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch10-astable-cycle-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch10-animation-2026-11-08/review.md
+    asset_sha256: ad0e3074f41e8328126bfb0c2db957b45fd57ddfece35d08fd1026518fb1926d
+- id: ch10-first-pulse-v2
+  chapter: 10
+  kind: animation
+  type: A2
+  anchor: '10.2'
+  purpose: 首次从零起充，比稳态高脉冲更长
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-11-ch10.md#10.2
+  prompt_file: docs/superpowers/visual/prompts/ch10-first-pulse-v2.md
+  output: assets/svg-v2/ch10-first-pulse-v2.svg
+  print_fallback: assets/svg-v2/ch10-first-pulse-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch10-first-pulse-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch10-first-pulse-v2-static.svg
+  alt: 首次从零起充，比稳态高脉冲更长。首次从 0 V 起充，目标电压仍是 9 V。 稳态从 3 V 起充，到 6 V 约 540.65 µs。 首次到 6 V 则需约 856.92 µs。 比值
+    ln3/ln2≈1.585；残留电荷和慢上电会改变首拍。 示意 9 V、RA+RB=7.8 kΩ、C=100 nF；电源已经稳定。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 首次从 0 V 起充，目标电压仍是 9 V。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 稳态从 3 V 起充，到 6 V 约 540.65 µs。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 首次到 6 V 则需约 856.92 µs。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 比值 ln3/ln2≈1.585；残留电荷和慢上电会改变首拍。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch10-first-pulse-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch10-animation-2026-11-08/review.md
+    asset_sha256: e6f738dfebe7a5b8138fad8d9e8f58a5ae872570d5676554af1cbed6c517865c
+- id: ch10-discharge-floor-v2
+  chapter: 10
+  kind: animation
+  type: A3
+  anchor: '10.3'
+  purpose: 放电低点抬高，放到下门限反而更慢
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-11-ch10.md#10.3
+  prompt_file: docs/superpowers/visual/prompts/ch10-discharge-floor-v2.md
+  output: assets/svg-v2/ch10-discharge-floor-v2.svg
+  print_fallback: assets/svg-v2/ch10-discharge-floor-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch10-discharge-floor-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch10-discharge-floor-v2-static.svg
+  alt: 放电低点抬高，放到下门限反而更慢。VD=0 时，从 6 V 放到 3 V 需 471.34 µs。 VD=0.15 V 时，放电目标抬高，电流减小。 VD 继续增大，达到相同 3 V 门限需要更久。
+    VD 接近下阈时无法正常复位；不是压降越大频率越高。 示意 9 V、RB=6.8 kΩ、C=100 nF；固定放电压降 VD。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters:
+  - name: VD
+    values:
+    - 0
+    - 0.15
+    - 1
+    - 2
+    unit: V
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: VD=0 时，从 6 V 放到 3 V 需 471.34 µs。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: VD=0.15 V 时，放电目标抬高，电流减小。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: VD 继续增大，达到相同 3 V 门限需要更久。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: VD 接近下阈时无法正常复位；不是压降越大频率越高。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch10-discharge-floor-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch10-animation-2026-11-08/review.md
+    asset_sha256: 7a94f633f4956045a61894a1c91b19a8644a2712bc6b0285af42e723e88e9e7a
+- id: ch10-diode-duty-v2
+  chapter: 10
+  kind: animation
+  type: A3
+  anchor: '10.4'
+  purpose: 二极管有压降，等电阻也不等于 50%
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-11-ch10.md#10.4
+  prompt_file: docs/superpowers/visual/prompts/ch10-diode-duty-v2.md
+  output: assets/svg-v2/ch10-diode-duty-v2.svg
+  print_fallback: assets/svg-v2/ch10-diode-duty-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch10-diode-duty-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch10-diode-duty-v2-static.svg
+  alt: 二极管有压降，等电阻也不等于 50%。理想二极管绕过 RB，等电阻给出对称充放时间。 VF=0.3 V 时，充电目标降到 4.7 V，高段变长。 VF=0.6 V 时，门限仍不变，充电目标只有
+    4.4 V。 这段扫描中二极管一直导通；压降更大需分段求解。 示意 5 V、RA=RB=10 kΩ、C=100 nF；VD=0、恒定 VF。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters:
+  - name: VF
+    values:
+    - 0
+    - 0.3
+    - 0.6
+    - 0.8
+    unit: V
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 理想二极管绕过 RB，等电阻给出对称充放时间。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: VF=0.3 V 时，充电目标降到 4.7 V，高段变长。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: VF=0.6 V 时，门限仍不变，充电目标只有 4.4 V。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 这段扫描中二极管一直导通；压降更大需分段求解。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch10-diode-duty-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch10-animation-2026-11-08/review.md
+    asset_sha256: 71114c760bade0eb6c5bd7b67c7b01344fda418c417d47376cdeec8f827aed55
+- id: ch10-output-feedback-v2
+  chapter: 10
+  kind: animation
+  type: A3
+  anchor: '10.4'
+  purpose: 从输出脚充电，负载会改变计时时间
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-11-ch10.md#10.4
+  prompt_file: docs/superpowers/visual/prompts/ch10-output-feedback-v2.md
+  output: assets/svg-v2/ch10-output-feedback-v2.svg
+  print_fallback: assets/svg-v2/ch10-output-feedback-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch10-output-feedback-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch10-output-feedback-v2-static.svg
+  alt: 从输出脚充电，负载会改变计时时间。VOH=5 V 时，高段约 499 µs；低段由 VOL 决定。 VOH 降到 4 V，充电电流减小，高段变长。 VOH 接近 3.333 V 上阈，高段迅速增长。
+    VOH 不高于上阈便无法起振，等时间常数不保证对称。 示意 5 V、R=72 kΩ、C=10 nF、VOL=0.1 V；VOH 单独扫描。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters:
+  - name: VOH
+    values:
+    - 5
+    - 4
+    - 3.4
+    - 3.4
+    unit: V
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: VOH=5 V 时，高段约 499 µs；低段由 VOL 决定。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: VOH 降到 4 V，充电电流减小，高段变长。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: VOH 接近 3.333 V 上阈，高段迅速增长。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: VOH 不高于上阈便无法起振，等时间常数不保证对称。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch10-output-feedback-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch10-animation-2026-11-08/review.md
+    asset_sha256: 4ecf4d14ecc37ea7ee1e98dfbefb5634ba3afa5066fbaa14120595ddaebbae3a
+- id: ch10-control-sweep-v2
+  chapter: 10
+  kind: animation
+  type: A3
+  anchor: '10.4'
+  purpose: CTRL 改变门限，频率响应不是直线
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-11-ch10.md#10.4
+  prompt_file: docs/superpowers/visual/prompts/ch10-control-sweep-v2.md
+  output: assets/svg-v2/ch10-control-sweep-v2.svg
+  print_fallback: assets/svg-v2/ch10-control-sweep-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch10-control-sweep-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch10-control-sweep-v2-static.svg
+  alt: CTRL 改变门限，频率响应不是直线。CTRL=3 V 时，下阈为 1.5 V，充电行程较短。 升到 4.5 V，充电时间增长，频率下降。 CTRL=6 V 时，频率约 988.1 Hz。
+    趋近电源时充电更慢；理想低段仍为 ln2·RB·C。 示意 9 V、RA=1 kΩ、RB=6.8 kΩ、C=100 nF，理想放电。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters:
+  - name: CONT
+    values:
+    - 3
+    - 4.5
+    - 6
+    - 8
+    unit: V
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: CTRL=3 V 时，下阈为 1.5 V，充电行程较短。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 升到 4.5 V，充电时间增长，频率下降。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: CTRL=6 V 时，频率约 988.1 Hz。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 趋近电源时充电更慢；理想低段仍为 ln2·RB·C。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch10-control-sweep-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch10-animation-2026-11-08/review.md
+    asset_sha256: b5c93c3d7efacefe935dc8c84fa2ccb095bfc9e84c5769e2cd2f2aec2bdaead0
+- id: ch10-monostable-leakage-v2
+  chapter: 10
+  kind: animation
+  type: A3
+  anchor: '10.5'
+  purpose: 漏电先拉长脉宽，过大时永远达不到上阈
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-11-ch10.md#10.5
+  prompt_file: docs/superpowers/visual/prompts/ch10-monostable-leakage-v2.md
+  output: assets/svg-v2/ch10-monostable-leakage-v2.svg
+  print_fallback: assets/svg-v2/ch10-monostable-leakage-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch10-monostable-leakage-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch10-monostable-leakage-v2-static.svg
+  alt: 漏电先拉长脉宽，过大时永远达不到上阈。无漏电，从零充到 6 V 的脉宽约 28.92 s。 漏电 1 µA，目标变为 8.44 V，脉宽约 32.66 s。 漏电继续增大，末段充电电流越来越小。
+    达到约 5.357 µA 时，目标不高于上阈，不再结束。 示意 9 V、R=560 kΩ、C=47 µF；恒流漏电流出电容节点。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters:
+  - name: Ileak
+    values:
+    - 0
+    - 1
+    - 4
+    - 5.2
+    unit: µA
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 无漏电，从零充到 6 V 的脉宽约 28.92 s。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 漏电 1 µA，目标变为 8.44 V，脉宽约 32.66 s。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 漏电继续增大，末段充电电流越来越小。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 达到约 5.357 µA 时，目标不高于上阈，不再结束。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch10-monostable-leakage-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch10-animation-2026-11-08/review.md
+    asset_sha256: c84e86b7d88ab4fd378eb160bd48372f35a0bfa98e759d90e032de40b3bce18d
+- id: ch10-recovery-gap-v2
+  chapter: 10
+  kind: animation
+  type: A2
+  anchor: '10.5'
+  purpose: 下一次触发，要继承电容尚未放完的电压
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-11-ch10.md#10.5
+  prompt_file: docs/superpowers/visual/prompts/ch10-recovery-gap-v2.md
+  output: assets/svg-v2/ch10-recovery-gap-v2.svg
+  print_fallback: assets/svg-v2/ch10-recovery-gap-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch10-recovery-gap-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch10-recovery-gap-v2-static.svg
+  alt: 下一次触发，要继承电容尚未放完的电压。输出回低后电容经放电路径衰减，不能瞬间清零。 恢复仅 1 ms 后仍有约 1.228 V，下一拍被缩短。 等 5 ms 后残压约 27.3 mV，下一拍约
+    1.093 s。 图的后两拍切换为下一拍脉宽；用允许误差反推最小间隔。 示意 5 V、R=100 kΩ、C=10 µF；放电等效 100 Ω，保留电源馈入。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 输出回低后电容经放电路径衰减，不能瞬间清零。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 恢复仅 1 ms 后仍有约 1.228 V，下一拍被缩短。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 等 5 ms 后残压约 27.3 mV，下一拍约 1.093 s。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 图的后两拍切换为下一拍脉宽；用允许误差反推最小间隔。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch10-recovery-gap-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch10-animation-2026-11-08/review.md
+    asset_sha256: 9a9b47ad1af7e90e63411d9935800f94a660fe66ef0a1c569340579bb4f9e19d
+- id: ch10-reset-ramp-v2
+  chapter: 10
+  kind: animation
+  type: A2
+  anchor: '10.5'
+  purpose: RESET 门限低，RC 常数不是复位保持时间
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-11-ch10.md#10.5
+  prompt_file: docs/superpowers/visual/prompts/ch10-reset-ramp-v2.md
+  output: assets/svg-v2/ch10-reset-ramp-v2.svg
+  print_fallback: assets/svg-v2/ch10-reset-ramp-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch10-reset-ramp-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch10-reset-ramp-v2-static.svg
+  alt: RESET 门限低，RC 常数不是复位保持时间。RC=0.47 s，但复位门限并不是 63.2% 的电源。 越过 0.3 V 只需约 11.9 ms。 越过 0.7 V 约 28.3 ms，越过
+    1 V 约 40.9 ms。 双极 RESET 不是理想高阻；精确延时还须考虑脚电流与慢沿。 示意理想高阻 RESET：12 V、100 kΩ、4.7 µF；真实脚电流另计。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: RC=0.47 s，但复位门限并不是 63.2% 的电源。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 越过 0.3 V 只需约 11.9 ms。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 越过 0.7 V 约 28.3 ms，越过 1 V 约 40.9 ms。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 双极 RESET 不是理想高阻；精确延时还须考虑脚电流与慢沿。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch10-reset-ramp-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch10-animation-2026-11-08/review.md
+    asset_sha256: ee05d108f8e33b83085cb1c7627509e208d008a2a12f0b6889dd6488b677aa6d
+- id: ch10-555-modes
+  chapter: 10
+  kind: figure
+  type: V4
+  anchor: '10.2'
+  purpose: 三种模式的连接与输出
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p1-11-ch10.md#10.2
+  prompt_file: docs/superpowers/visual/prompts/ch10-555-modes.md
+  output: assets/figures-v2/ch10-555-modes.svg
+  print_fallback: assets/figures-v2/ch10-555-modes-print.svg
+  preview: assets/figures-v2/ch10-555-modes.webp
+  alt: 无稳态将触发与阈值并到定时电容，单稳态另接触发，双稳态分别接受置位复位；各自连接和输出波形并列。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 4
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch10-555-modes.json
+  quant_rules:
+    layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch10-animation-2026-11-08/review.md
+    asset_sha256: 32fb728d5db5fc3c3c9d4d29f31c82a111654ccfccff9452c01a0679c68b1c70
+- id: ch10-discharge-current
+  chapter: 10
+  kind: figure
+  type: V4
+  anchor: '10.1'
+  purpose: 放电脚两条电流支路
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p1-11-ch10.md#10.1
+  prompt_file: docs/superpowers/visual/prompts/ch10-discharge-current.md
+  output: assets/figures-v2/ch10-discharge-current.svg
+  print_fallback: assets/figures-v2/ch10-discharge-current-print.svg
+  preview: assets/figures-v2/ch10-discharge-current.webp
+  alt: 电源经 RA 与电容经 RB 的电流一起进入七脚，示意八点八五与零点八六毫安相加，不能漏算电源电流。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 4
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch10-discharge-current.json
+  quant_rules:
+    layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch10-animation-2026-11-08/review.md
+    asset_sha256: f80a71f93fa6d4786713b423b7b3fc5b1d3d1103c808ab20c0e5c7c58194f08a
+- id: ch10-logic-margin
+  chapter: 10
+  kind: figure
+  type: V4
+  anchor: '10.3'
+  purpose: 受载输出与逻辑门限
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p1-11-ch10.md#10.3
+  prompt_file: docs/superpowers/visual/prompts/ch10-logic-margin.md
+  output: assets/figures-v2/ch10-logic-margin.svg
+  print_fallback: assets/figures-v2/ch10-logic-margin-print.svg
+  preview: assets/figures-v2/ch10-logic-margin.webp
+  alt: 特定五伏和一百毫安条件下，NE555 最低高电平二点七五伏，对示意三点五伏输入门限没有保证裕量。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 4
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch10-logic-margin.json
+  quant_rules:
+    layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch10-animation-2026-11-08/review.md
+    asset_sha256: 9e3ff2ff38c43bb96c78369927dd5768469b3d8c3861ae4f43fc2005bc4d0182
+- id: ch10-timer-leakage
+  chapter: 10
+  kind: figure
+  type: V4
+  anchor: '10.5'
+  purpose: 定时末段的充电电流预算
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p1-11-ch10.md#10.5
+  prompt_file: docs/superpowers/visual/prompts/ch10-timer-leakage.md
+  output: assets/figures-v2/ch10-timer-leakage.svg
+  print_fallback: assets/figures-v2/ch10-timer-leakage-print.svg
+  preview: assets/figures-v2/ch10-timer-leakage.webp
+  alt: 电容电压越高，电阻充电电流越小；到上门限只剩五点三五七微安，漏电预算必须在此端点检查。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 4
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch10-timer-leakage.json
+  quant_rules:
+    layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch10-animation-2026-11-08/review.md
+    asset_sha256: b7cd6574f0b66c9076c6f9a0fee741446241c83b931025b1a55060282b575d12
+- id: ch10-clock-gating
+  chapter: 10
+  kind: figure
+  type: V4
+  anchor: '10.4'
+  purpose: 异步门控的短脉冲
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p1-11-ch10.md#10.4
+  prompt_file: docs/superpowers/visual/prompts/ch10-clock-gating.md
+  output: assets/figures-v2/ch10-clock-gating.svg
+  print_fallback: assets/figures-v2/ch10-clock-gating-print.svg
+  preview: assets/figures-v2/ch10-clock-gating.webp
+  alt: 关闭命令在高脉冲中段到达时，RESET 会把输出提前截断；关闭和重启都须按时钟接收器要求验收。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 4
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch10-clock-gating.json
+  quant_rules:
+    layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch10-animation-2026-11-08/review.md
+    asset_sha256: fa66cd167c28010747d75da8db0ac09a96412d3f2060888ec79ef435d89cacc0

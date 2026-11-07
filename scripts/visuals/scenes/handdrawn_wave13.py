@@ -221,4 +221,8 @@ SCENES = {
 
 # Use source-bound reference/regulator models for historical batch rebuilds.
 from scripts.visuals.scenes.ch09_reference_figures import SCENES as _ch09_corrected
+
+from scripts.visuals.scenes.ch10_reference_figures import SCENES as _ch10_corrected
+for _aid in ['ch10-astable-reverse-design', 'ch10-duty-fifty-paths']:
+    SCENES[_aid] = _ch10_corrected[_aid]
 SCENES['ch09-ldo-four-accounts'] = _ch09_corrected['ch09-ldo-four-accounts']
