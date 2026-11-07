@@ -3161,3 +3161,458 @@ assets:
     reviewed_on: '2026-11-08'
     record: docs/superpowers/visual/reviews/ch04-animation-2026-11-08/review.md
     asset_sha256: 62dd9d58dcada3a9dc9dfadf4b8a263d4a13c91f1fa04c3c173e2adac8c03434
+- id: ch05-capacitive-energy-v2
+  chapter: 5
+  kind: animation
+  type: A1
+  anchor: '5.1'
+  purpose: 一次充放电，能量去了哪里
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-06-ch5.md#5.1
+  prompt_file: docs/superpowers/visual/prompts/ch05-capacitive-energy-v2.md
+  output: assets/svg-v2/ch05-capacitive-energy-v2.svg
+  print_fallback: assets/svg-v2/ch05-capacitive-energy-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch05-capacitive-energy-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch05-capacitive-energy-v2-static.svg
+  alt: RC 充电中的电源能量、储能与热量共用能量轴；二十皮法、五伏一完整充放电周期耗零点五纳焦，十兆赫为五毫瓦。放电只消耗此前存下的能量。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 20 pF、5 V：完整充电从电源取 0.5 nJ。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 电容储能 0.25 nJ，充电路径已耗 0.25 nJ。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 放电再耗 0.25 nJ；一周期共耗 0.5 nJ。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 10 MHz 完整周期为 5 mW；3.3 V 为 2.178 mW。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch05-capacitive-energy-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch05-animation-2026-11-08/review.md
+    asset_sha256: 9c1916439a0ebabd1e04535ad0c98cf9429d40b292070e7b4e5198fa41873b0c
+- id: ch05-ground-bounce-v2
+  chapter: 5
+  kind: animation
+  type: A2
+  anchor: '5.1'
+  purpose: 电流升得越快，共用地线弹得越高
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-06-ch5.md#5.1
+  prompt_file: docs/superpowers/visual/prompts/ch05-ground-bounce-v2.md
+  output: assets/svg-v2/ch05-ground-bounce-v2.svg
+  print_fallback: assets/svg-v2/ch05-ground-bounce-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch05-ground-bounce-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch05-ground-bounce-v2-static.svg
+  alt: 同一时间轴的总回流和地电压。五纳亨共用电感上，八路共一百六十毫安在两纳秒内上升产生零点四伏，单路零点零五伏；恒流段理想电感压降为零。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 每路 20 mA；八路共同回流为 160 mA。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 从零上升用 2 ns，共用电感取 5 nH。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 八路同翻为 0.4 V；单路同速度为 0.05 V。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 电流恒定后电感压降为零，真实回路还会振铃。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch05-ground-bounce-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch05-animation-2026-11-08/review.md
+    asset_sha256: 9907cb208e8a92ea0f6427c01df0687cd11804b12d3195104c7248695c65b4c9
+- id: ch05-pullup-window-v2
+  chapter: 5
+  kind: animation
+  type: A2
+  anchor: '5.2'
+  purpose: 上拉电阻：先找到不为空的区间
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-06-ch5.md#5.2
+  prompt_file: docs/superpowers/visual/prompts/ch05-pullup-window-v2.md
+  output: assets/svg-v2/ch05-pullup-window-v2.svg
+  print_fallback: assets/svg-v2/ch05-pullup-window-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch05-pullup-window-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch05-pullup-window-v2-static.svg
+  alt: 同一电阻坐标轴上求灌电流下限和上升时间上限的交集。三点三伏、一百皮法可取九百六十七至三千五百四十一欧；四百皮法时上限八百八十五欧，区间为空。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 3.3 V、0.4 V、3 mA：下限约 967 Ω。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 100 pF、300 ns：上限约 3541 Ω。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 400 pF 的上限约 885 Ω，已小于下限。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 改电容、模式或驱动能力；不是硬塞一只 820 Ω。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch05-pullup-window-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch05-animation-2026-11-08/review.md
+    asset_sha256: df894af1e5d0478dfc67b8f26b05f1bfe9b7083583304fb92105b743b80f8d3d
+- id: ch05-open-drain-sharing-v2
+  chapter: 5
+  kind: animation
+  type: A1
+  anchor: '5.2'
+  purpose: 两个开漏拉低，共用同一份上拉电流
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-06-ch5.md#5.2
+  prompt_file: docs/superpowers/visual/prompts/ch05-open-drain-sharing-v2.md
+  output: assets/svg-v2/ch05-open-drain-sharing-v2.svg
+  print_fallback: assets/svg-v2/ch05-open-drain-sharing-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch05-open-drain-sharing-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch05-open-drain-sharing-v2-static.svg
+  alt: 一只上拉给两个开漏输出供电。第二个下拉导通后总电流约三点二六毫安，由两条相等支路分担；另并一只上拉时总电流才升至约六点四四毫安。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 3.3 V、1 kΩ、下拉 25 Ω：一管约 3.22 mA。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 第二只下拉导通：总电流约 3.26 mA。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 相等支路各约 1.63 mA；实际不保证均分。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 另并上拉才增供流：两只 1 kΩ 时约 6.44 mA。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch05-open-drain-sharing-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch05-animation-2026-11-08/review.md
+    asset_sha256: 4f9353c805e31a798ec61bc6262948428ddfec7ed4553bfbc3a27ef8695054b2
+- id: ch05-backpower-v2
+  chapter: 5
+  kind: animation
+  type: A1
+  anchor: '5.3'
+  purpose: 掉电的电源轨，也可能被信号线充起来
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-06-ch5.md#5.3
+  prompt_file: docs/superpowers/visual/prompts/ch05-backpower-v2.md
+  output: assets/svg-v2/ch05-backpower-v2.svg
+  print_fallback: assets/svg-v2/ch05-backpower-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch05-backpower-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch05-backpower-v2-static.svg
+  alt: 外部上拉通过输入钳位给掉电轨充电。示意三点三伏经十千欧和零点三伏钳位，轨上并一微法与十千欧，电压以五毫秒时间常数趋向一点五伏。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 外部 3.3 V 经 10 kΩ，输入钳位压降取 0.3 V。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 掉电轨上并联 1 µF 和 10 kΩ 等效负载。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 终值 1.5 V；等效 RC 为 5 ms。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 核对 Ioff / 掉电高阻；名称 fail-safe 不能代替它。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch05-backpower-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch05-animation-2026-11-08/review.md
+    asset_sha256: e783073f79c49bcc419fd4db580a262dc5745ff06bb864ca423bbd0d242e2618
+- id: ch05-tristate-timing-v2
+  chapter: 5
+  kind: animation
+  type: A2
+  anchor: '5.4'
+  purpose: 三态交接，比较真正开始与停止驱动的时刻
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-06-ch5.md#5.4
+  prompt_file: docs/superpowers/visual/prompts/ch05-tristate-timing-v2.md
+  output: assets/svg-v2/ch05-tristate-timing-v2.svg
+  print_fallback: assets/svg-v2/ch05-tristate-timing-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch05-tristate-timing-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch05-tristate-timing-v2-static.svg
+  alt: 三态驱动条共用纳秒轴。旧器件最晚三十纳秒释放，新器件使能最小十纳秒；指令间隔五纳秒可重叠十五纳秒，间隔三十纳秒则留十纳秒空档。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: A 在零时刻收到禁用，最晚 30 ns 才高阻。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: B 的使能延迟最小 10 ns，不是命令到即驱动。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 命令只晚 5 ns → B 在 15 ns 驱动，重叠 15 ns。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 命令晚 30 ns → B 最早 40 ns 驱动，空档 10 ns。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch05-tristate-timing-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch05-animation-2026-11-08/review.md
+    asset_sha256: 650b351ef6dd6b14b7cd6a3d37f8b8d67afbe673b1ed4ab97da5043cd1fb9e05
+- id: ch05-class-b-dissipation-v2
+  chapter: 5
+  kind: animation
+  type: A2
+  anchor: '5.6'
+  purpose: B 类管耗最大，发生在满幅之前
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-06-ch5.md#5.6
+  prompt_file: docs/superpowers/visual/prompts/ch05-class-b-dissipation-v2.md
+  output: assets/svg-v2/ch05-class-b-dissipation-v2.svg
+  print_fallback: assets/svg-v2/ch05-class-b-dissipation-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch05-class-b-dissipation-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch05-class-b-dissipation-v2-static.svg
+  alt: 同一输出幅度轴上比较负载功率和每管平均耗散。正负十二伏、八欧的理想 B 类，在输出峰值七点六四伏时每管最热约一点八二四瓦，满幅时反而约一点二三瓦。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: ±12 V、8 Ω；满幅 12 V 的负载功率为 9 W。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 每管 PT = VCC·Vp/(πRL) − Vp²/(4RL)。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: Vp = 2VCC/π = 7.64 V 时，每管约 1.824 W。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 65 °C/W、25 °C 环境：最大结温约 143.6 °C。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch05-class-b-dissipation-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch05-animation-2026-11-08/review.md
+    asset_sha256: 0aaf4f4c1c32d3e514b04ccbea0784f337c020c8b7434299d7a6bdbb11874b54

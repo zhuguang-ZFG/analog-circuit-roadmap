@@ -69,8 +69,8 @@ def duty_cycle_fifty():
 
 
 def shoot_through_ledger():
-    parts = [header('推挽的第四拍：正常与直通差了两个数量级',
-                    '同一只管子，值班表写错一次，电流账从 1.5A 跳到 24A。')]
+    parts = [header('受控 AB 偏置，不等于异常贯通',
+                    '正常负载与故障回路分别建模；短路电阻仅为量级示意。')]
     parts.append(box(50, 130, 430, 300, fill=PAPER, stroke=GREEN))
     parts.append(text(74, 172, '正常半周：轮流值班', 24, colour=GREEN, weight='700'))
     parts.append(text(74, 214, '8Ω 负载、±12V，理想峰值 12V', 22, colour=INK2))
@@ -82,21 +82,21 @@ def shoot_through_ledger():
     parts.append(text(456, 352, '78.5%', 28, colour=GREEN, anchor='end', weight='700'))
     parts.append(text(74, 408, '电流只流过一只管子与负载', 22, colour=INK2))
     parts.append(box(520, 130, 430, 300, fill=PAPER, stroke=RED))
-    parts.append(text(544, 172, '直通：两只同时导通', 24, colour=RED, weight='700'))
+    parts.append(text(544, 172, '异常贯通：回路假设 1 Ω', 24, colour=RED, weight='700'))
     parts.append(text(544, 214, '+12V 经 Q1→Q2→−12V 直接短路', 22, colour=INK2))
-    parts.append(text(544, 258, '两管饱和电阻之和按 1Ω 估', 22, colour=INK2))
+    parts.append(text(544, 258, '假定两管各分担 0.5 Ω', 22, colour=INK2))
     parts.append(text(544, 304, '短路电流', 22, colour=INK2))
     parts.append(text(926, 306, '24A', 28, colour=RED, anchor='end', weight='700'))
-    parts.append(text(544, 350, '瞬时功耗', 22, colour=INK2))
+    parts.append(text(544, 350, '每管示意功耗', 22, colour=INK2))
     parts.append(text(926, 352, '288W', 28, colour=RED, anchor='end', weight='700'))
     parts.append(text(544, 408, '偏置错、时序错、上电瞬间都会触发', 22, colour=INK2))
     parts.append(arrow(486, 280, 514, 280, colour=RED))
     parts.append(box(50, 456, 900, 170, fill=PAPER))
-    parts.append(text(76, 498, '288W 远超 TO-220 的 60W 极限，几十毫秒就冒烟。', 26,
+    parts.append(text(76, 498, '总计 24 V × 24 A = 576 W；若均分，每管 288 W。', 26,
                       colour=RED, weight='700'))
-    parts.append(text(76, 540, '电流只受饱和电阻与走线电阻限制——没有任何保护来得及动作。', 22,
+    parts.append(text(76, 540, '实际电流按驱动、器件特性与保护计算；用 SOA 校核持续时间。', 22,
                       colour=INK2))
-    parts.append(text(76, 582, 'AB 类偏置的两条硬要求：够小不交越，够稳不直通。', 24,
+    parts.append(text(76, 582, 'AB 允许受控静态重叠；防的是偏置过大与热失控。', 24,
                       colour=GREEN, weight='700'))
     return parts
 
@@ -107,33 +107,33 @@ def ab_bias_thermal():
     parts.append(box(50, 130, 430, 330, fill=PAPER))
     parts.append(text(74, 172, '偏置账：可调电池 + 热耦合', 24, colour=BLUE, weight='700'))
     parts.append(text(74, 212, '一只晶体管配两个电阻', 22, colour=INK2))
-    parts.append(text(74, 248, '接在两管基极之间', 22, colour=INK2))
-    parts.append(text(74, 284, '电阻比取 3 时给', 22, colour=INK2))
-    parts.append(text(456, 286, '2.4V', 28, colour=BLUE, anchor='end', weight='700'))
-    parts.append(text(74, 320, '正好顶开上下管各一个结还留余量', 22, colour=INK2))
+    parts.append(text(74, 320, '基极间偏置', 22, colour=INK2))
+    parts.append(text(74, 248, '两只 0.6 V 结加射极压降', 22, colour=INK2))
+    parts.append(text(456, 320, '约 1.213V', 28, colour=BLUE, anchor='end', weight='700'))
+    parts.append(text(74, 284, '20 mA；每管射极串 0.33 Ω', 22, colour=INK2))
     parts.append(f'<line x1="80" y1="348" x2="450" y2="348" stroke="{RULE}" stroke-width="2"/>')
     parts.append(text(74, 384, '倍增管贴在功率管散热器上', 22, colour=INK2))
-    parts.append(text(74, 418, '温度系数', 22, colour=INK2))
+    parts.append(text(74, 418, '单结温度系数', 22, colour=INK2))
     parts.append(text(456, 420, '−2mV/℃', 28, colour=GREEN, anchor='end', weight='700'))
     parts.append(text(74, 452, '功率管一热，偏置自动收紧', 22, colour=GREEN, weight='700'))
     parts.append(box(520, 130, 430, 330, fill=PAPER))
     parts.append(text(544, 172, '散热账：按结温倒推热阻', 24, colour=RED, weight='700'))
-    parts.append(text(544, 214, 'B 类每管最大耗散约 0.2 倍输出功率', 22, colour=INK2))
-    parts.append(text(544, 252, '9W 输出即每管', 22, colour=INK2))
-    parts.append(text(926, 254, '1.8W', 28, colour=AMBER, anchor='end', weight='700'))
-    parts.append(text(544, 292, 'TO-220 不装散热器热阻约 65℃/W', 22, colour=INK2))
-    parts.append(text(544, 330, '温升 117℃，25℃ 环境下结温', 22, colour=INK2))
-    parts.append(text(926, 332, '142℃', 28, colour=RED, anchor='end', weight='700'))
-    parts.append(f'<line x1="550" y1="358" x2="920" y2="358" stroke="{RULE}" stroke-width="2"/>')
+    parts.append(text(544, 214, '理想 B 类：每管最大平均耗散', 22, colour=INK2))
+    parts.append(text(544, 252, '±12 V、8 Ω 时', 22, colour=INK2))
+    parts.append(text(926, 254, '1.824W', 28, colour=AMBER, anchor='end', weight='700'))
+    parts.append(text(544, 292, '教学总热阻取 65℃/W', 22, colour=INK2))
+    parts.append(text(544, 330, '温升 118.6℃，环境 25℃', 22, colour=INK2))
+    parts.append(text(926, 356, '143.6℃', 28, colour=RED, anchor='end', weight='700'))
+    parts.append(f'<line x1="550" y1="368" x2="920" y2="368" stroke="{RULE}" stroke-width="2"/>')
     parts.append(text(544, 388, '允许结温 105℃、环境 40℃', 22, colour=INK2))
-    parts.append(text(544, 424, '热阻须 ≤36℃/W', 26, colour=GREEN, weight='700'))
-    parts.append(text(544, 452, '一片小型散热器即可满足', 22, colour=GREEN))
+    parts.append(text(544, 424, '总热阻须 ≤35.6℃/W', 26, colour=GREEN, weight='700'))
+    parts.append(text(544, 452, '还须扣结壳及界面热阻', 22, colour=GREEN))
     parts.append(box(50, 486, 900, 130, fill=PAPER))
-    parts.append(text(76, 528, '没有热耦合的偏置是定时炸弹：升温→阈值下降→静态电流增大→更热。', 24,
+    parts.append(text(76, 528, '热耦合与射极反馈共同限制静态电流；冷态和热态都须实测。', 24,
                       colour=RED, weight='700'))
     parts.append(text(76, 566, '静态电流量级是经验值：中小功率每管 20~50mA，让交接处轻微重叠导通。', 22,
                       colour=INK2))
-    parts.append(text(76, 602, '射极各串 0.22~0.47Ω：既是直流负反馈也是限流，0.33Ω 约吃掉 4% 摆幅。',
+    parts.append(text(76, 602, '射极各串 0.22~0.47Ω 提供反馈和电流检测，不能单独保护短路。',
                       22, colour=INK2))
     return parts
 
@@ -200,12 +200,12 @@ SCENES = {
     'ch05-shoot-through-ledger': {
         'draw': shoot_through_ledger, 'title': '推挽正常半周与直通的电流功率对账',
         'anchor': '5.6', 'chapter': 5, 'source': 'docs/p1-06-ch5.md',
-        'alt': '手绘推挽两栏对照：左栏绿框写正常半周轮流值班，8 欧负载、正负 12 伏、理想峰值 12 伏，峰值电流 1.5 安、输出功率 9 瓦、B 类效率上限 78.5%，电流只流过一只管子与负载；右栏红框写直通时两只管子同时导通，正 12 伏经 Q1 到 Q2 到负 12 伏直接短路，两管饱和电阻之和按 1 欧估，短路电流 24 安、瞬时功耗 288 瓦，偏置错、时序错、上电瞬间都会触发。底部写 288 瓦远超 TO-220 的 60 瓦极限、几十毫秒就冒烟，电流只受饱和电阻与走线电阻限制、没有任何保护来得及动作，AB 类偏置的两条硬要求是够小不交越、够稳不直通。',
+        'alt': '正常理想 B 类输出峰值一点五安、负载九瓦；故障假设二十四伏跨在一欧回路上，二十四安，总功率五百七十六瓦。若两管均分，每管二百八十八瓦，实际按驱动、保护和 SOA 核查。AB 类允许受控静态重叠。',
     },
     'ch05-ab-bias-thermal': {
         'draw': ab_bias_thermal, 'title': 'AB 类偏置的热耦合与散热器两笔账',
         'anchor': '5.6', 'chapter': 5, 'source': 'docs/p1-06-ch5.md',
-        'alt': '手绘两栏：左栏偏置账写一只晶体管配两个电阻接在两管基极之间，电阻比取 3 时给 2.4 伏，正好顶开上下管各一个结还留余量；倍增管贴在功率管散热器上，温度系数负 2 毫伏每摄氏度，功率管一热偏置自动收紧。右栏散热账写 B 类每管最大耗散约 0.2 倍输出功率，9 瓦输出即每管 1.8 瓦，TO-220 不装散热器热阻约 65 摄氏度每瓦，温升 117 摄氏度、25 摄氏度环境下结温 142 摄氏度；允许结温 105 摄氏度、环境 40 摄氏度时热阻须小于等于 36 摄氏度每瓦，一片小型散热器即可满足。底部写没有热耦合的偏置是定时炸弹，升温到阈值下降到静态电流增大到更热；静态电流中小功率每管 20 到 50 毫安；射极各串 0.22 到 0.47 欧既是直流负反馈也是限流，0.33 欧约吃掉 4% 摆幅。',
+        'alt': '单结互补射随器的偏置为两只零点六伏结压降加射极电阻压降，二十毫安、两只零点三三欧合计约一点二一三伏。正负十二伏、八欧理想 B 类每管最大耗散一点八二四瓦；热阻六十五摄氏度每瓦、环境二十五度，结温约一百四十三点六度。',
     },
     'ch09-ldo-four-accounts': {
         'draw': ldo_four_accounts, 'title': '7805 四种死法对应的四本账',

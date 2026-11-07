@@ -94,20 +94,20 @@ def deadtime_ledger():
 
 def rp_power():
     parts = [header('上拉电阻自己也会发热',
-                    '3.3 V / 1 kΩ = 11 mW；5 V / 100 Ω = 250 mW，0402 的 1/16 W 已超。')]
+                    'P = V² / R；低电平压降可忽略时，用上拉电压平方计算。')]
     parts.append(box(50, 150, 420, 240, fill=PAPER))
-    parts.append(text(74, 192, '3.3 V × 1 kΩ', 24, colour=GREEN, weight='700'))
+    parts.append(text(74, 192, '3.3² V² / 1 kΩ', 24, colour=GREEN, weight='700'))
     parts.append(text(74, 232, 'P = V² / R', 22, colour=INK2))
     parts.append(text(74, 300, '11 mW', 46, colour=GREEN, weight='700'))
-    parts.append(text(74, 350, '0603 随便扛', 22, colour=INK2))
+    parts.append(text(74, 350, '仍按封装与温度降额', 22, colour=INK2))
     parts.append(box(530, 150, 420, 240, fill=PAPER))
-    parts.append(text(554, 192, '5 V × 100 Ω', 24, colour=RED, weight='700'))
+    parts.append(text(554, 192, '5² V² / 100 Ω', 24, colour=RED, weight='700'))
     parts.append(text(554, 232, 'P = V² / R', 22, colour=INK2))
     parts.append(text(554, 300, '250 mW', 46, colour=RED, weight='700'))
-    parts.append(text(554, 350, '0402 已超 1/16 W', 22, colour=RED, weight='700'))
+    parts.append(text(554, 350, '超过示例额定 1/16 W', 22, colour=RED, weight='700'))
     parts.append(box(50, 430, 900, 120, fill=PAPER))
-    parts.append(text(76, 474, '总线被拉低时，全部电压落在电阻上。', 24, weight='700'))
-    parts.append(text(76, 510, '长亮指示灯按连续功率算；脉冲总线按占空比折算。', 22, colour=INK2))
+    parts.append(text(76, 474, '准确式：P = (VDD − VOL)² / Rp。', 24, weight='700'))
+    parts.append(text(76, 510, '脉冲还须核对脉冲负荷；不能只按占空比算平均。', 22, colour=INK2))
     parts.append(text(500, 620, '强上拉先核封装功率，别让电阻成为新的发热点。', 22,
                       colour=AMBER, anchor='middle', weight='700'))
     return parts
@@ -118,10 +118,10 @@ def tristate_handover():
                     '释放到高阻要 tDIS，使能要 tEN；窗口重叠 10 ns 就是一次微型对撞。')]
     parts.append(box(60, 220, 260, 110, fill=PAPER))
     parts.append(text(80, 264, '驱动器 A', 24, weight='700'))
-    parts.append(text(80, 300, '释放 / 进入高阻', 22, colour=INK2))
+    parts.append(text(80, 300, '撤销使能命令', 22, colour=INK2))
     parts.append(box(340, 220, 300, 110, fill=PAPER))
-    parts.append(text(360, 264, '空档：tDIS 10–30 ns', 23, colour=AMBER, weight='700'))
-    parts.append(text(360, 300, '没人驱动，总线靠电容保持', 22, colour=INK2))
+    parts.append(text(360, 264, '等待禁用传播完成', 23, colour=AMBER, weight='700'))
+    parts.append(text(360, 300, 'tDIS 10–30 ns 仅作示例', 22, colour=INK2))
     parts.append(box(660, 220, 280, 110, fill=PAPER))
     parts.append(text(680, 264, '驱动器 B', 24, weight='700'))
     parts.append(text(680, 300, '使能 / 开始驱动', 22, colour=INK2))
@@ -129,9 +129,9 @@ def tristate_handover():
     parts.append(arrow(644, 275, 656, 275))
     parts.append(box(60, 390, 880, 100, fill=PAPER))
     parts.append(text(84, 432, '重叠 10 ns：A 还没退，B 已开口', 23, colour=RED, weight='700'))
-    parts.append(text(84, 464, '结果不是“晚一点”，而是一串微秒级电流尖峰。', 22, colour=INK2))
+    parts.append(text(84, 464, '冲突持续时间由实际重叠决定，不能直接说成微秒级。', 22, colour=INK2))
     parts.append(box(60, 530, 880, 76, fill=PAPER))
-    parts.append(text(84, 578, '示波器开余辉，看总线低电平上有没有叠出来的细毛刺。', 23,
+    parts.append(text(84, 578, '同时看 OE、总线和电源电流；毛刺不是冲突的唯一证据。', 23,
                       weight='700'))
     parts.append(text(500, 650, '先撤销 OE，再转身，后开口。', 22, colour=AMBER,
                       anchor='middle'))
@@ -242,12 +242,12 @@ SCENES = {
     'ch05-rp-power': {
         'draw': rp_power, 'title': '上拉电阻自己的功耗', 'anchor': '5.2',
         'chapter': 5, 'source': 'docs/p1-06-ch5.md',
-        'alt': '手绘左右两张功率卡：3.3 伏乘 1 千欧为 11 毫瓦，0603 随便扛；5 伏乘 100 欧为 250 毫瓦，0402 已超 1/16 瓦。底部写总线被拉低时全部电压落在电阻上，强上拉先核封装功率。',
+        'alt': '上拉电阻功率用电压平方除以电阻。低电平近零时三点三伏、一千欧约十一毫瓦；五伏、一百欧为二百五十毫瓦，超过示例四零二封装的十六分之一瓦额定。核对温度和脉冲负荷。',
     },
     'ch05-tristate-handover': {
         'draw': tristate_handover, 'title': '三态总线的交接时序', 'anchor': '5.4',
         'chapter': 5, 'source': 'docs/p1-06-ch5.md',
-        'alt': '手绘三段时间轴：驱动器 A 释放进入高阻，空档 tDIS 为 10 到 30 纳秒，驱动器 B 使能开始驱动；下方写重叠 10 纳秒会让两个驱动器同时开口，产生微秒级电流尖峰。底部写先撤销 OE 再转身后开口。',
+        'alt': '先禁用 A，等待实际禁用传播完成，再切方向和使能 B。禁用传播不等于无驱动空档；重叠十纳秒表示两路同时驱动十纳秒，须同时测使能、总线和电源电流。',
     },
     'ch07-hysteresis-window': {
         'draw': hysteresis_window, 'title': '迟滞窗口与两个阈值', 'anchor': '7.3',
