@@ -51,18 +51,18 @@
 | id | 章 | 类型 | 必要性 | 事实 | 构图 | 风格 | 印刷 | 叙事 | 节奏 | 合计 |
 |---|---:|---|---:|---:|---:|---:|---:|---:|---:|---:|
 | `ch17-virtual-short-test` | 17 | V3 | 5 | 5 | 5 | 5 | 4 | — | — | 24 |
-| `ch17-symptom-four-fields` | 17 | A5 | 5 | 5 | 5 | 5 | 5 | 5 | 4 | 9 |
-| `ch17-esr-sweep` | 17 | A3 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 10 |
-| `ch17-virtual-short-probe` | 17 | A5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 10 |
-| `ch17-subharmonic-edge` | 17 | A4 | 5 | 5 | 5 | 5 | 5 | 5 | 4 | 9 |
-| `ch00-current-loop-v2` | 0 | A1 | 4 | 5 | 5 | 5 | 5 | 5 | 5 | 10 |
-| `ch00-divider-derivation-v2` | 0 | A2 | 4 | 5 | 5 | 5 | 5 | 5 | 5 | 10 |
-| `ch00-divider-loading-v2` | 0 | A4 | 4 | 5 | 5 | 5 | 5 | 5 | 5 | 10 |
-| `ch00-source-types-v2` | 0 | A1 | 4 | 5 | 5 | 5 | 5 | 5 | 5 | 10 |
-| `ch08-transfer-gate-v2` | 8 | A1 | 4 | 5 | 5 | 5 | 5 | 5 | 5 | 10 |
-| `ch08-mux-address-glitch-v2` | 8 | A4 | 4 | 5 | 5 | 5 | 5 | 5 | 5 | 10 |
-| `ch08-charge-injection-v2` | 8 | A4 | 4 | 5 | 5 | 5 | 5 | 5 | 5 | 10 |
-| `ch08-sample-hold-v2` | 8 | A1 | 4 | 5 | 5 | 5 | 5 | 5 | 5 | 10 |
+| `ch17-symptom-four-fields` | 17 | A5 | 5 | 5 | 5 | 5 | 5 | 5 | 4 | 34 |
+| `ch17-esr-sweep` | 17 | A3 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 35 |
+| `ch17-virtual-short-probe` | 17 | A5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 35 |
+| `ch17-subharmonic-edge` | 17 | A4 | 5 | 5 | 5 | 5 | 5 | 5 | 4 | 34 |
+| `ch00-current-loop-v2` | 0 | A1 | 4 | 5 | 5 | 5 | 5 | 5 | 5 | 34 |
+| `ch00-divider-derivation-v2` | 0 | A2 | 4 | 5 | 5 | 5 | 5 | 5 | 5 | 34 |
+| `ch00-divider-loading-v2` | 0 | A4 | 4 | 5 | 5 | 5 | 5 | 5 | 5 | 34 |
+| `ch00-source-types-v2` | 0 | A1 | 4 | 5 | 5 | 5 | 5 | 5 | 5 | 34 |
+| `ch08-transfer-gate-v2` | 8 | A1 | 4 | 5 | 5 | 5 | 5 | 5 | 5 | 34 |
+| `ch08-mux-address-glitch-v2` | 8 | A4 | 4 | 5 | 5 | 5 | 5 | 5 | 5 | 34 |
+| `ch08-charge-injection-v2` | 8 | A4 | 4 | 5 | 5 | 5 | 5 | 5 | 5 | 34 |
+| `ch08-sample-hold-v2` | 8 | A1 | 4 | 5 | 5 | 5 | 5 | 5 | 5 | 34 |
 | `ch18-power-three-touchpoints` | 18 | V4 | 5 | 5 | 5 | 5 | 4 | — | — | 24 |
 | `ch18-dmm-averaging` | 18 | V4 | 5 | 5 | 5 | 5 | 4 | — | — | 24 |
 | `ch18-probe-loading` | 18 | V4 | 5 | 5 | 5 | 5 | 4 | — | — | 24 |
@@ -179,3 +179,5 @@
 | `ch04-channel-formation` | 4 | V4 | 5 | 5 | 5 | 5 | 4 | — | — | 24 |
 | `ch03-region-check` | 3 | V4 | 5 | 5 | 5 | 5 | 4 | — | — | 24 |
 | `ch18-williams-workbench` | 18 | V1 | 5 | 5 | 5 | 5 | 4 | — | — | 24 |
+
+2026-11-07 算术勘误：动画合计改为五项通用分加两项动画分；原始逐维分数保持不变。本次仅修正合计，不代表重新审图。

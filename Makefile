@@ -91,6 +91,7 @@ visual-gray:
 
 visual-check:
 	$(PY) -B scripts/check_visual_manifest.py
+	$(PY) -B -m unittest discover -s scripts -p "test_visual_release.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_visual_calculations.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_visual_density.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_visual_distribution.py" -v
@@ -108,6 +109,7 @@ visual-check:
 	$(PY) -B -m unittest discover -s analog-book/tests -p "test_visual_v2_assets.py" -v
 
 visual-ship: visual-check
+	$(PY) -B scripts/check_visual_release.py
 	$(PY) -B scripts/audit_visual_density.py --gate
 
 test-browser:

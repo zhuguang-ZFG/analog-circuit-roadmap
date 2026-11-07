@@ -123,6 +123,11 @@ def _duration(asset: dict) -> float:
         return 0.0
 
 
+def score_total(kind: str, scores: dict) -> int:
+    dimensions = manifest.SCORE_DIMS + (manifest.ANIM_DIMS if kind == 'animation' else [])
+    return sum(scores[d] for d in dimensions)
+
+
 def asset_digest(asset: dict) -> str:
     raw = (ROOT / asset["output"]).read_bytes().replace(b"\r\n", b"\n")
     return hashlib.sha256(raw).hexdigest()
@@ -180,8 +185,7 @@ def main(argv: list[str] | None = None) -> int:
             "id": asset["id"], "chapter": asset.get("chapter"),
             "kind": asset.get("kind"), "type": asset.get("type"),
             **{dim: scores.get(dim, "—") for dim in DIMS},
-            "total": sum(scores[d] for d in DIMS
-                         if d in (manifest.ANIM_DIMS if asset.get("kind") == "animation" else manifest.SCORE_DIMS)),
+            "total": score_total(asset.get("kind"), scores),
             "blockers": "；".join(blockers),
         })
         if blockers:
