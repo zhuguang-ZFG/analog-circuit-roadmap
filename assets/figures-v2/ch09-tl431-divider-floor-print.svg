@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">TL431 分压电阻的下限</title><desc id="desc">手绘 TL431 分压账。顶部蓝框写 TL431 强制参考端等于 2.5 伏，外接两只电阻分压。左绿框算目标 5 伏：分压电流取 250 微安，两电阻之和 20 千欧，各 10 千欧、1% 金属膜；参考端的 2 微安流过 10 千欧，偏 20 毫伏。右红框抬到 100 千欧档：同一支 2 微安压降变大到 0.2 伏，输出直接崩 4%，省下的电全变成输出误差，不如直接买固定基准。琥珀框写另外三笔账：最小阴极电流 0.4 到 1 毫安、动态阻抗约 0.2 欧、阴极电容 0.01 到 1 微法有振荡窗口。底部写耐压不是分压电阻的问题而是 R1 的问题：输出 24 伏时 R1 扛 21.5 伏，0805 单颗耐压 150 伏没问题，上百伏就要串两颗分担。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">准 50% 占空比的三条路与两个极端</title><desc id="desc">手绘三行对照：第一行二极管抄近路，R2 两端并一只二极管充电只走 R1、放电走 R2，取 R1 等于 R2 即 50%，代价是约 0.6 伏正向压降缩窄摆幅；第二行单电阻回授，去掉 R1 用 R 从输出脚直接给电容充放电，充放时间常数天然相等，双极版高电平低 1.4 伏是隐患；第三行干脆换拓扑，高一倍频率振荡再 D 触发器二分频，占空比由结构保证与 RC 无关。底部红框写两个极端的代价是同一条教训：逼近 100% 时 R2 顶着放电管电流下限、R1 受漏电流上限，99% 已是实用极限；逼近 50% 时 R1 等于 100 欧、12 伏时峰值 120 毫安直灌放电管，芯片发热、频率漂移。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

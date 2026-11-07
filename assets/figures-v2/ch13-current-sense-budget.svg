@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">10mΩ 分流电阻的两笔账</title><desc id="desc">手绘分流电阻两栏：额定 5 安时，10 毫欧上压降 50 毫伏、功耗 0.25 瓦，选 1 瓦 2512 封装；堵转 20 安时，压降 200 毫伏、功耗 4 瓦，热时间常数必须算。底部写 1% 精度总误差预算 0.5 毫伏；12 伏共模压到 0.2 毫伏需要 CMRR 大于 96 分贝；LM358 只有 70 分贝，3.8 毫伏误差等于 7.6%。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

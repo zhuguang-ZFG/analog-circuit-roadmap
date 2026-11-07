@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">PT100 的误差预算与比率测量</title><desc id="desc">手绘误差预算两栏。顶部蓝框写误差预算先统一单位，再列六项：传感、激励、放大、滤波、ADC、基准，六项都折到同一个单位上才加得起来。左绿框比率测量能约掉两项：激励电流的绝对误差与基准的初始误差，原因是两者同源、一起变一起消。右红框约不掉的那几项：传感本身的容差与自热、放大增益的 0.1% 电阻、基准温漂 10 ppm 每摄氏度。琥珀框写温漂预算只有 0.04 摄氏度，低压差稳压器与开关电源都是热源，基准要靠远离热源来保精度。底部写设计从后往前推、调试从前往后查：后面是 ADC 满量程到增益到噪声预算，前面是激励到放大到滤波到转换；测试不回填，预算就还只是假设。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

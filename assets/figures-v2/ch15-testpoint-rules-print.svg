@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1448 1086">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1448 1086" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">测试点三条规矩</title><desc id="desc">四步流程：每个网络至少一个测试点，测试点直径至少 1.0 毫米，放在元件面并避开散热器与屏蔽罩阴影，每片区域至少两个地测试点让回流就近走。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">相位裕度与阻尼比过冲的换算</title><desc id="desc">手绘三行换算表，列为相位裕度、阻尼比、闭环过冲与评价：相位裕度 45 度对阻尼比 0.42、过冲 23%，评价过冲偏大；60 度对 0.59、过冲 10%，评价设计目标；65 度对 0.71、过冲 4%，评价 Butterworth。左下红框写极点数决定能不能稳：1 个极点相移负 90 度，永不振荡但慢；2 个极点时次极点越近、相移越多；3 个极点可逼近负 180 度，振荡。右下蓝框写每个极点收两笔税：高频贡献负 20 分贝每十倍频斜率，并吃掉 90 度相位，裕度就是交点处还剩多少相位。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

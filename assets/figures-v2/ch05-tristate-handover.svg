@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">三态总线的交接时序</title><desc id="desc">手绘三段时间轴：驱动器 A 释放进入高阻，空档 tDIS 为 10 到 30 纳秒，驱动器 B 使能开始驱动；下方写重叠 10 纳秒会让两个驱动器同时开口，产生微秒级电流尖峰。底部写先撤销 OE 再转身后开口。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

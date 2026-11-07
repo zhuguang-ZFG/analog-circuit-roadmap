@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">隔离电阻的反馈取点与相位裕度</title><desc id="desc">手绘三行对照表，同一只隔离电阻换反馈取点。顶部写教学模型：开环增益 10 的 5 次方、主极点 10 赫兹、输出阻抗 50 欧，驱动 100 纳法，阶跃 10 毫伏。第一行红框不加隔离电阻，相位裕度 10.2 度，明显欠阻尼、输出过冲超过 70%；第二行绿框加 50 欧并把反馈取在 A 点也就是电阻之前，相位裕度 88.2 度，此模型中运放端与负载端过冲都小于 5%；第三行琥珀框加 50 欧但反馈取在 B 点也就是负载端，相位裕度只剩 7.2 度，比不加电阻时振铃更严重，因为零点不再出现在反馈里。底部蓝框写 50 欧配 100 纳法对应约 31.8 千赫的极点，但稳不稳要在环路穿越 0 分贝处判。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

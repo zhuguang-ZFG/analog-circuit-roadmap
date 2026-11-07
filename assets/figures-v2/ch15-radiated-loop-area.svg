@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">回路面积决定辐射等级</title><desc id="desc">手绘辐射分账。顶部蓝框写电磁兼容三要素：干扰源、耦合路径、敏感设备或天线，模拟工程师能掌控的是后两个。左红框回路面积 15 平方厘米，开槽让回流绕路、环路变成天线，远场估算 660 微伏每米，换成对数 56 分贝微伏每米，限值 40、超 16 分贝。右绿框回路面积 0.5 平方厘米，回流贴着地平面正下方走，面积掉 30 倍也就是负 29.5 分贝，换算成场强 26 分贝微伏每米，限值 40、余量充足。琥珀框写为什么先动布局：面积是线性项、布局阶段免费，滤波器与屏蔽罩是整改阶段的钱。底部红框写辐射超标的发射十有八九是电缆当天线，1 米电缆在 30 到 300 兆赫是高效天线。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

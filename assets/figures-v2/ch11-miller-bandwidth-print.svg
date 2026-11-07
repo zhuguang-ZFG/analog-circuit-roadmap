@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">米勒电容把带宽压到 15.8kHz</title><desc id="desc">手绘米勒效应两栏：左栏画跨接在输入与输出之间的 10 皮法电容，增益 100 把它放大为 1 加 A 倍，等效 1.01 纳法；右栏画低通曲线，10 千欧源阻抗与 1.01 纳法把 3 分贝点压到 15.8 千赫。底部写以为能到兆赫，16 千赫就开始滚降；共基把电容一端接地，拆掉米勒桥。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

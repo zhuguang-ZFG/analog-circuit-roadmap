@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1448 1086">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1448 1086" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">信号注入与二分</title><desc id="desc">五步流程：在链路中点注入已知好信号；看输出正常或异常，分别把故障缩小到前半或后半；每轮只改一个变量并对半再分；逼近最小电路；最后解剖复制件，原系统留对照。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

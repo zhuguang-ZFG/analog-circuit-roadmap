@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">电流镜的三笔误差</title><desc id="desc">手绘三张误差卡：第一张写贝塔分流，参考支路先被基极电流分走一份，贝塔越大越准；第二张写 Early 效应，输出管 VCE 一变复制电流跟着变，Wilson 镜改进；第三张写有源负载，用电流镜替 Rc 可把单级增益推到 100 分贝以上。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

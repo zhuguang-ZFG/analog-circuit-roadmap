@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1448 1086">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1448 1086" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">晶振布局三不</title><desc id="desc">左右两栏：左栏三不是不穿晶振下方、不贴板边、外壳不悬空、XI/XO 不走板边；右栏要求负载电容贴晶振且总距离小于 10 mm、不与高速线平行超过 5 mm、不用探头直量、先保负阻裕度。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

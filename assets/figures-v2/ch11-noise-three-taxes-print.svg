@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">三种噪声税与信噪比算例</title><desc id="desc">手绘噪声预算两栏。左侧蓝框三种税的来历：热噪声任何电阻都有，10 千欧配 300 开给出 12.9 纳伏每根号赫兹；散粒噪声是电流越过结，1 毫安给出 17.9 皮安每根号赫兹；1 比 f 噪声在拐角处与白噪声相等。右侧绿框算一笔，源阻 10 千欧、信号 1 毫伏有效值：噪声带宽 1 兆赫时噪声 12.9 微伏有效值，信噪比只有 37.8 分贝；带宽压到 10 千赫、噪声 1.29 微伏，信噪比 57.8 分贝；源阻降到 1 千欧、噪声 4.07 微伏，信噪比 47.8 分贝。中段琥珀框写噪声带宽不是信号带宽，一阶低通的等效噪声带宽是 1.57 倍截止频率，拿截止频率代入会低估。底部红框写合账按均方值相加、不按电压相加，四个等量且互不相关的项合起来是单项的 2 倍、约 6.02 分贝，不是 4 倍。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

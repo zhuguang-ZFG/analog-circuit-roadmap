@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1448 1086">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1448 1086" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">翻车案例分诊</title><desc id="desc">分诊图：板子不对时先看症状，再分四支——ADC 读数跳查数字回流与去耦距离，无线距离短查天线净空区铺铜，上电发烫查电源地接反并先限流，EMC 辐射超标查地平面开槽、晶振贴边与电缆。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

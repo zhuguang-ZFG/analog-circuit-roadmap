@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1448 1086">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1448 1086" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">低侧与高侧电流检测</title><desc id="desc">左右两栏：低侧检测共模接近 0 V、会把负载地抬高 100 mV、测不到对地短路，适合精度优先的单路负载；高侧检测共模为 12 或 24 或 48 V、地完整、能测对地短路，适合保护优先的多路共地负载。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>
