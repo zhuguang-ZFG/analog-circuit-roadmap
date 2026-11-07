@@ -1,21 +1,22 @@
-# 待审图清单（120 张 generated）
+# 待审图清单（124 张 generated）
 
-本页索引 120 张 `status: generated` 的手绘资产，分为未插候选、已插动画和已插旧图返审三类：
+本页索引 124 张 `status: generated` 的手绘资产，分为未插候选、已插动画和已插旧图返审三类：
 
-**终审工作台（2026-11-07 生成）**：[接触表 · 全部新图 165 张，含状态徽章与七项评分栏、灰度对照](../pending-2026-11-07/index.html)（`python scripts/build_visual_contact_sheet.py --out docs/superpowers/visual/reviews/pending-2026-11-07/index.html --grayscale --page-size 18` 可重建）。
+**终审工作台（2026-11-07 生成）**：[接触表 · 全部新图 169 张，含状态徽章与七项评分栏、灰度对照](../pending-2026-11-07/index.html)（`python scripts/build_visual_contact_sheet.py --out docs/superpowers/visual/reviews/pending-2026-11-07/index.html --grayscale --page-size 18` 可重建）。
 
 | 子集 | 张数 | 是否已在正文里 |
 |---|---:|---|
-| `kind: figure`（figures-v2） | 107 | **未插入**。`content.py:_asset_path` 要求 `accepted`/`published`，否则抛 `BookError: V2 插图尚未通过审图` |
+| `kind: figure`（figures-v2） | 111 | **未插入**。`content.py:_asset_path` 要求 `accepted`/`published`，否则抛 `BookError: V2 插图尚未通过审图` |
 | `kind: animation`（svg-v2） | 12 | **已插入且读者可见**（`docs/` 里已有 `assets/svg-v2/<id>.svg` 的 `<img>`）。动画不校验状态，只要求 `storyboard` 回退存在——12 张都满足 |
 | `kind: figure`（figures，旧图返审） | 1 | **已插入**。`ch17-virtual-short-test` 的条件判据与版面已重绘，原签核仅绑定旧 SHA；原评分、状态历程和审图记录完整保存在 `review_history`，当前改后字节须重新人工审图 |
 
-107 张候选的分数决定它们能否进书；12 张动画已经可见，仍待人工评分；新增的 1 张是已插旧图的返审，不是又一张待上线候选。当前有效 `accepted` 为 45 张，不得把旧图归档的审批算作改后字节已获批准。
+111 张候选的分数决定它们能否进书；12 张动画已经可见，仍待人工评分；新增的 1 张是已插旧图的返审，不是又一张待上线候选。当前有效 `accepted` 为 45 张，不得把旧图归档的审批算作改后字节已获批准。
 
 ## 近期修订（会改变已发布字节，审图请以本页下方清单为准）
 
 | 日期 | 资产 | 改了什么 | 证据 |
 |---|---|---|---|
+| 2026-11-07 | `ch15-return-mirror` 等 4 张（wave19，见清单 121–124） | 新注册而非改旧字节：ch15 §15.2「接地——模拟工程师的终极命题」是全书最后一个零图大空档（14002 字符无插图），补 4 张纸墨手绘——高频回流镜像电流剖面（完整平面 vs 开槽绕路）、地弹与精度三笔账（回路电感/总线量级/基准 LSB）、接地策略频段分工（单点/混合/多点 + 1/20 波长判据）、叠层与跨分割补救（四层/六层剖面 + 桥接纪律）。图内每个数字逐字取自 §15.2 原文 | 发射器逐图预览：`bounds` 全 pass、最小印刷字号 8.606pt（阈值 8.5）；字体覆盖闸无 <8.5pt 文本；`check_visual_manifest.py` PASS（0 项）；`make visual-check` 等价 13 套 + `analog-book/tests/test_visual_v2_assets.py` 全绿；`test_figures.py` 5 项全绿；接触表 165→169 张 |
 | 2026-11-07 | `ch10-555-fault-tree` | ③行判据原被截成半句「热风一吹 >5% 即介质」，改为完整句「热风一吹变化 >5%：元件介质问题」（对应正文 §10.3 原句）；底部绿框原高 40、贴画布底缘只剩 6px，重排中/琥珀/绿三框（312/88@542/48@642），框间距 8–14px、底缘留 10px | `measure_svg.py` 24 字 OVERFLOW/OCCLUDED/OVERLAP 0；`probe_lines_edges.py` 贴边最小 6.3px 与全库已审风格一致；`check_visual_manifest.py` PASS；alt 同步 |
 | 2026-11-07 | 印刷管线 `svg_refine.is_legacy_svg` | handraw 纸墨皮肤的静态手绘图（带 `page-grain`、无 SMIL）不再误判为旧模板：PDF/EPUB 印刷保留纸面渐变、颗粒、暗角与楷体手写体，不再剥皮换成黑体；带 SMIL 的旧动画判定不变 | `test_svg_refine.py` 新增 2 项夹具（皮肤静态图豁免 / 皮肤动画仍净化）全绿；`test_storyboard.py` 通过 |
 | 2026-11-07 | 194 张 figures-v2 handraw 草图（含 -print） | 仅元数据：根元素补 `data-composition="python-handraw-v1"`、`<title>`/`<desc>`（取自各图 composition JSON，与 manifest 同源），图面字节未动；波次重建后需重跑 `scripts/label_handraw_figures.py` | `test_figures.py` 5 项全绿；`make visual-check` 等价 13 套全绿；manifest 闸 PASS |
@@ -44,17 +45,17 @@
 
 | 检查 | 覆盖 | 结论 |
 |---|---|---|
-| 数字双向溯源（图内数字 ⊆ anchor 原文、alt/prompt 数字 ⊆ 图面数字） | **全部 120 张** | `check_visual_manifest.py` 对每条带 `prompt_file` 的资产都跑 `number_gaps` 与 `visible_number_gaps`，PASS（0 项） |
-| 登记齐全 / prompt id 与中英文本 / status_history 与评分区间 | **全部 120 张** | 同上，manifest 闸 PASS；返审旧图的有效状态历程重新为 planned / generated，原完整审批在 `review_history` |
-| 出画布、文字互压、后画矩形盖字 | **107 张 figures-v2**（`audit_visual_geometry.py` 全库 361 张、缺陷 0） | 见下注① |
+| 数字双向溯源（图内数字 ⊆ anchor 原文、alt/prompt 数字 ⊆ 图面数字） | **全部 124 张** | `check_visual_manifest.py` 对每条带 `prompt_file` 的资产都跑 `number_gaps` 与 `visible_number_gaps`，PASS（0 项） |
+| 登记齐全 / prompt id 与中英文本 / status_history 与评分区间 | **全部 124 张** | 同上，manifest 闸 PASS；返审旧图的有效状态历程重新为 planned / generated，原完整审批在 `review_history` |
+| 出画布、文字互压、后画矩形盖字 | **111 张 figures-v2**（`audit_visual_geometry.py` 全库 365 张、缺陷 0） | 见下注① |
 | 出画布（字框出 viewBox） | 12 张 svg-v2 动画：一次性脚本补测，**全部 0 处** | 该项与显示状态无关；这 12 张已在正文显示，故该结论直接对读者可见面成立 |
 | 文字互压 / 后画矩形盖字 | 12 张 svg-v2 动画：**不作缺陷判定** | 这些 SVG 按 `data-beat` 分组做 opacity 动画，不同节拍互斥显示；静态 DOM 度量无法区分，须动态审图 |
-| 16K/138mm 最小印刷字号 ≥ 8.5pt 与版面 `bounds` | **107 张 figures-v2**：逐图 `*.audit.json` | 最小值 **8.606 pt**（阈值 8.5），`bounds` 全部 pass；该证据只覆盖 figures-v2 |
+| 16K/138mm 最小印刷字号 ≥ 8.5pt 与版面 `bounds` | **111 张 figures-v2**：逐图 `*.audit.json` | 最小值 **8.606 pt**（阈值 8.5），`bounds` 全部 pass；该证据只覆盖 figures-v2 |
 | 同上 | 12 张 svg-v2 动画：**无 `*.audit.json`** | 未记录，本包不作该项声明 |
-| 返审旧图的字形与最小名义印刷字号 | `ch17-virtual-short-test`，138mm 宽 | 最小 SVG 字号 22px，按 960 单位画布换算约 8.96pt；字形检查通过。版面另以浏览器实测，不归入 107 张 figures-v2 的 `*.audit.json` 覆盖 |
+| 返审旧图的字形与最小名义印刷字号 | `ch17-virtual-short-test`，138mm 宽 | 最小 SVG 字号 22px，按 960 单位画布换算约 8.96pt；字形检查通过。版面另以浏览器实测，不归入 111 张 figures-v2 的 `*.audit.json` 覆盖 |
 
-① 该 361 张的统计口径是 `figures-v2`/`figures`/`svg` 三个目录，`svg-v2` 不在其中；
-因此 107 张 `figures-v2` 候选的几何检查由这一次全库运行覆盖；12 张 `svg-v2` 动画的出画布另有补测（0 处），互压/遮字则因分节拍互斥无法静态判定。
+① 该 365 张的统计口径是 `figures-v2`/`figures`/`svg` 三个目录，`svg-v2` 不在其中；
+因此 111 张 `figures-v2` 候选的几何检查由这一次全库运行覆盖；12 张 `svg-v2` 动画的出画布另有补测（0 处），互压/遮字则因分节拍互斥无法静态判定。
 
 人工审图仍未完成。本页中的浏览器截图、拓扑与几何测量是技术校样证据，不代替教学必要性、事实精度或风格的人工评分。
 
@@ -75,7 +76,7 @@
 4. `asset_sha256` 必须按**当前 SVG 字节**重算（CRLF→LF 归一），不得沿用旧签核的值。
 5. 任何一张重绘后 SHA 变化，签核作废，必须退回 `generated` 并重新逐级迁移。
 
-## 清单（原 119 个编号保留；返审项追加为 120）
+## 清单（原 120 个编号保留；wave19 四张追加为 121–124）
 
 | # | 章 | anchor | id | 类型 | 用途 | 源事实数 |
 |---:|---:|---|---|---|---|---:|
@@ -199,6 +200,10 @@
 | 118 | 18 | 18.3 | `ch18-assumption-tree` | V4 | 假设树与互斥分支 | 1 |
 | 119 | 18 | 18.3 | `ch18-two-way-validation` | V4 | 正向、反向与边界验证 | 1 |
 | 120 | 17 | 17.2 | `ch17-virtual-short-test` | V3 | 已插旧图返审：核前提、按误差预算读压差、再验证输出；原审批归档保留 | 1 |
+| 121 | 15 | 15.2 | `ch15-return-mirror` | V4 | 高频回流镜像电流：完整地平面 vs 开槽绕路 | 1 |
+| 122 | 15 | 15.2 | `ch15-ground-bounce-ledger` | V4 | 地弹三笔账：回路电感、总线 di/dt、基准 LSB | 1 |
+| 123 | 15 | 15.2 | `ch15-ground-freq-split` | V4 | 接地策略频段分工与 1/20 波长判据 | 1 |
+| 124 | 15 | 15.2 | `ch15-stackup-bridge` | V4 | 四层/六层叠层参考面与跨分割桥接纪律 | 1 |
 
 ## 分布
 
@@ -219,17 +224,17 @@
 | 12 | 6 |
 | 13 | 8 |
 | 14 | 7 |
-| 15 | 15 |
+| 15 | 19 |
 | 16 | 7 |
 | 17 | 5 |
 | 18 | 15 |
-| **合计** | **120** |
+| **合计** | **124** |
 
 | 类型 | 张数 | 说明 |
 |---|---:|---|
-| V4 | 100 | 静态手绘主图 |
+| V4 | 104 | 静态手绘主图 |
 | V5 | 4 | 流程／决策图 |
 | V3 | 4 | 定量／条件判读图，含 1 张已插旧图返审 |
 | A1–A5 | 12 | 动画（需动态入口才能评「运动叙事／交互节奏」） |
-| **合计** | **120** | figures-v2 107 张、svg-v2 12 张、figures 返审 1 张 |
+| **合计** | **124** | figures-v2 111 张、svg-v2 12 张、figures 返审 1 张 |
 

@@ -8540,3 +8540,110 @@ assets:
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch03-ce-swing-budget.json
   quant_rules:
     layer_encodes_value: false
+- id: ch15-return-mirror
+  chapter: 15
+  kind: figure
+  type: V4
+  anchor: 15.2 接地——模拟工程师的终极命题
+  purpose: 高频回流的镜像路
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids: &id018
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p3-02-ch15.md#15.2 接地——模拟工程师的终极命题
+  prompt_file: docs/superpowers/visual/prompts/ch15-return-mirror.md
+  output: assets/figures-v2/ch15-return-mirror.svg
+  print_fallback: assets/figures-v2/ch15-return-mirror-print.svg
+  preview: assets/figures-v2/ch15-return-mirror.webp
+  alt: 剖面对照：完整地平面时回流电流紧贴信号线正下方（离地 0.2mm 集中在 ±1mm 内、离地 1mm 铺开 ±5mm）；地平面开槽后回流被迫绕槽端走，环路撑大成为辐射天线。底部给出反焊盘奶酪缝的铜通道规则与
+    1000pF–10nF 跨分割桥接电容的补救定位。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-return-mirror.json
+  quant_rules:
+    layer_encodes_value: false
+- id: ch15-ground-bounce-ledger
+  chapter: 15
+  kind: figure
+  type: V4
+  anchor: 15.2 接地——模拟工程师的终极命题
+  purpose: 地弹与精度三笔账
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids: *id018
+  source_facts:
+  - docs/p3-02-ch15.md#15.2 接地——模拟工程师的终极命题
+  prompt_file: docs/superpowers/visual/prompts/ch15-ground-bounce-ledger.md
+  output: assets/figures-v2/ch15-ground-bounce-ledger.svg
+  print_fallback: assets/figures-v2/ch15-ground-bounce-ledger-print.svg
+  preview: assets/figures-v2/ch15-ground-bounce-ledger.webp
+  alt: 三张账卡：0.25mm 线宽离地 1mm 的回路电感 300~400nH/m，5cm 约 15~20nH，2ns 摆 3.3V 时 V=L×di/dt 约 125mV；32 位总线同翻转共享
+    1nH 即上百 mV 晃动；16 bit 3.3V 满量程 1 LSB=50µV，10mΩ 共享铜上 5mA 脉冲刚好吃掉一格。下方说明 0.3×VDD 阈值被 200mV 地弹咬穿的链条与三条板级对策。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-ground-bounce-ledger.json
+  quant_rules:
+    layer_encodes_value: false
+- id: ch15-ground-freq-split
+  chapter: 15
+  kind: figure
+  type: V4
+  anchor: 15.2 接地——模拟工程师的终极命题
+  purpose: 接地策略的频段分工
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids: *id018
+  source_facts:
+  - docs/p3-02-ch15.md#15.2 接地——模拟工程师的终极命题
+  prompt_file: docs/superpowers/visual/prompts/ch15-ground-freq-split.md
+  output: assets/figures-v2/ch15-ground-freq-split.svg
+  print_fallback: assets/figures-v2/ch15-ground-freq-split-print.svg
+  preview: assets/figures-v2/ch15-ground-freq-split.webp
+  alt: 频段横条：1MHz 以下单点星形有效、1MHz 到 10MHz 电源走单点信号走平面、10MHz 以上只剩多点平面，100kHz 起星形隔离度快速退化。下方四条判据：板长小于波长的 1/20
+    才当集总（10cm 板在 150MHz 恰为 1/20）、缝合过孔板边晶振 5~10mm 空旷区 20mm、首板量最远两地测试点交流压。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-ground-freq-split.json
+  quant_rules:
+    layer_encodes_value: false
+- id: ch15-stackup-bridge
+  chapter: 15
+  kind: figure
+  type: V4
+  anchor: 15.2 接地——模拟工程师的终极命题
+  purpose: 叠层与跨分割补救
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids: *id018
+  source_facts:
+  - docs/p3-02-ch15.md#15.2 接地——模拟工程师的终极命题
+  prompt_file: docs/superpowers/visual/prompts/ch15-stackup-bridge.md
+  output: assets/figures-v2/ch15-stackup-bridge.svg
+  print_fallback: assets/figures-v2/ch15-stackup-bridge-print.svg
+  preview: assets/figures-v2/ch15-stackup-bridge.webp
+  alt: 两种常见叠层剖面：四层信号-地-电源-信号，跨层回流经去耦电容换平面、电容贴换层过孔；六层信号-地-信号-电源-地-信号，每个信号层配相邻参考面是高速甜点。下方给出分割纪律：信号不许跨缝，隔离两侧通信并
+    1000pF–10nF 桥、选 Y 电容安规件。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-stackup-bridge.json
+  quant_rules:
+    layer_encodes_value: false
