@@ -66,6 +66,7 @@ remake-ship: remake-check
 	$(PY) scripts/build_readme.py --check
 
 test-static:
+	$(PY) -B -m unittest discover -s scripts -p "test_epub.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_svg_assets.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_readme_links.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_a11y.py" -v

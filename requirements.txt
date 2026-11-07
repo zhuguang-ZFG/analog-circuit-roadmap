@@ -6,3 +6,5 @@ mkdocs-material>=9.5
 jieba>=0.42
 # SVG 一致性测试
 numpy>=1.26
+# EPUB XHTML/SVG 结构与包内锚点校验
+lxml>=5.3
