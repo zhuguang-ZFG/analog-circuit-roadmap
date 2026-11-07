@@ -117,7 +117,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <path d="M90 384 Q500.00 384.09 910 384" fill="none" stroke="#c9bb9d" stroke-width="1"/>
 <text x="90" y="418" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">随源阻变</text>
 <text x="350" y="418" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">热噪声√R 或 i_n·Z_s</text>
-<text x="640" y="418" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">并电阻会吃掉信号</text>
+<text x="640" y="418" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">并电阻会加载信号源</text>
 <rect x="56" y="500" width="888" height="170" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
 <text x="500" y="534" font-size="26" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">一句话地图</text>
 <path d="M90 554 Q500.00 554.78 910 554" fill="none" stroke="#c9bb9d" stroke-width="1.5"/>
