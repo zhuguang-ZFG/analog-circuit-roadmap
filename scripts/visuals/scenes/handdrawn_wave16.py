@@ -50,19 +50,19 @@ def diffpair_four_beats():
 
 def bridge_junction_ledger():
     parts = [header('桥堆与整流管：四个数，一本热账',
-                    '1 A 时结温 122 °C，离 125 °C 只剩 3 °C。降流、换肖特基，都是在买余量。')]
+                    '单管连续 1 A：结温 122 °C，余量 3 °C；桥堆四管损耗另算。')]
 
     parts.append(box(50, 130, 430, 300, fill=PAPER, stroke=BLUE))
     parts.append(text(74, 170, '桥堆看四个数', 24, colour=BLUE, weight='700'))
     parts.append(text(74, 212, 'V_RRM：至少 2 倍峰值反压', 22, colour=INK2))
-    parts.append(text(74, 244, '市电 230 Vrms 峰值 325 V，选 600~1000 V', 22, colour=INK2))
+    parts.append(text(74, 244, '230 Vrms → 325 V；选 800~1000 V', 22, colour=INK2))
     parts.append(text(74, 290, 'I_F(AV)：按壳温降额，常见标 100 °C', 22, colour=INK2))
     parts.append(text(74, 336, 'I_FSM：8.3 ms 半正弦的单次值', 22, colour=INK2))
     parts.append(text(74, 382, '热阻：按封装整体看，不能乘四', 22, colour=INK2))
     parts.append(text(74, 414, '四只封一起，互相加热', 22, colour=AMBER, weight='700'))
 
     parts.append(box(520, 130, 430, 300, fill=PAPER, stroke=GREEN))
-    parts.append(text(544, 170, '结温账：R_θJA = 80 °C/W', 24, colour=GREEN, weight='700'))
+    parts.append(text(544, 170, '单管：R_θJA = 80 °C/W', 24, colour=GREEN, weight='700'))
     parts.append(text(544, 212, 'P = 0.9 V × 1 A = 0.9 W', 22, colour=INK2))
     parts.append(text(544, 244, 'T_j = 50 + 0.9 × 80', 22, colour=INK2))
     parts.append(text(926, 246, '122 °C', 24, colour=RED, anchor='end', weight='700'))
@@ -76,7 +76,7 @@ def bridge_junction_ledger():
 
     parts.append(box(50, 450, 900, 104, fill=PAPER, stroke=AMBER))
     parts.append(text(76, 488, '桥式里每只管子的平均电流只有负载的一半', 24, colour=AMBER, weight='700'))
-    parts.append(text(76, 526, '1 A 负载、每只导通半周，平均 0.5 A；两只各 0.45 W，总损耗约 0.9 W',
+    parts.append(text(76, 526, '1 A 负载、每只平均 0.5 A；四只各 0.45 W，总损耗为 1.8 W',
                       22, colour=INK2))
 
     parts.append(box(50, 574, 900, 100, fill=PAPER, stroke=RED))
@@ -205,13 +205,13 @@ SCENES = {
         'draw': bridge_junction_ledger, 'title': '桥堆与整流管的四个数与结温账',
         'anchor': '2.12', 'chapter': 2, 'source': 'docs/p1-03-ch2.md',
         'alt': '手绘桥堆两栏加热账。左蓝框桥堆看四个数：反向耐压至少 2 倍峰值反压，'
-               '市电 230 伏有效值峰值 325 伏所以选 600 到 1000 伏；平均电流要按壳温降额，常见标 100 摄氏度；'
+               '市电 230 伏有效值峰值 325 伏，所以按两倍余量选 800 到 1000 伏；平均电流要按壳温降额，常见标 100 摄氏度；'
                '浪涌电流是 8.3 毫秒半正弦的单次值；热阻要按封装整体看，不能拿单只乘四，四只封在一起互相加热。'
-               '右绿框结温账，热阻按 80 摄氏度每瓦：功耗 0.9 伏乘 1 安得 0.9 瓦，结温 50 加 0.9 乘 80 得 122 摄氏度；'
+               '右绿框单管连续导通的结温账，热阻按 80 摄氏度每瓦：功耗 0.9 伏乘 1 安得 0.9 瓦，结温 50 加 0.9 乘 80 得 122 摄氏度；'
                '降到 0.6 安功耗 0.54 瓦，结温 93 摄氏度；换 0.5 伏肖特基，90 摄氏度；'
                '环境升到 60 摄氏度仍 1 安，132 摄氏度已经超限。'
                '下方琥珀框写桥式里每只管子的平均电流只有负载的一半：1 安负载每只导通半周、平均 0.5 安，'
-               '两只各 0.45 瓦、总损耗约 0.9 瓦。底部红框写别把单只管子的热阻套到桥堆上，'
+               '四只各 0.45 瓦、总损耗为 1.8 瓦。底部红框写别把单只管子的热阻套到桥堆上，'
                '25 摄氏度下标称的 1 安装进封闭机箱不成立。',
     },
     'ch04-thermal-chain-ledger': {

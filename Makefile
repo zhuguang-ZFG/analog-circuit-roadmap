@@ -91,6 +91,7 @@ visual-gray:
 
 visual-check:
 	$(PY) -B scripts/check_visual_manifest.py
+	$(PY) -B -m unittest discover -s scripts -p "test_visual_calculations.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_visual_density.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_visual_distribution.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_visual_manifest.py" -v

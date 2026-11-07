@@ -8744,8 +8744,8 @@ assets:
   output: assets/figures-v2/ch02-esd-chain.svg
   print_fallback: assets/figures-v2/ch02-esd-chain-print.svg
   preview: assets/figures-v2/ch02-esd-chain.webp
-  alt: 手绘 IEC 8 千伏 ESD 分账：330 欧、150 皮法源，TVS 钳到 9.2 伏，峰值电流 24.2 安、223 瓦；经 100 欧后残压仍向芯片灌 35 毫安。右侧写要压到 10
-    毫安需电阻至少 350 欧，取 330 欧。底部写先 TVS 后限流，100 欧挪到前面要扛 24 安与 57.6 千瓦；地回路 1 纳亨乘 24 安每纳秒约 24 伏，钳位形同虚设。
+  alt: 8 千伏简化 RC 源：330 欧、150 皮法，不代替 IEC 校准波形；TVS 钳到 9.2 伏，估算 24.2 安、223 瓦。100 欧后向芯片注入 35 毫安；10 毫安目标需至少
+    350 欧，选 470 欧。100 欧前移时总源阻 430 欧，约 18.6 安、34.6 千瓦。地回路 1 纳亨乘 24 安每纳秒产生 24 伏压降。
   status: accepted
   status_history:
   - planned
@@ -8753,26 +8753,25 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 5
-    印刷可读性: 4
+    构图层级: 4
     风格一致性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch02-esd-chain.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_method: calculation-and-render-review
   review_record:
     reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
+    method: calculation-and-render-review
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: bbaba48e4dbf22950869ade49175e8ea0d04424cae59cce3e0bf44e0100553cd
+    record: docs/superpowers/visual/reviews/ch02-calculation-correction.md
+    asset_sha256: f92d82286be7de6c4c8a6b32e22c071309b7d7ebdd898f65dd960afe2e99b38e
 - id: ch02-zener-budget
   chapter: 2
   kind: figure
@@ -10413,10 +10412,10 @@ assets:
   output: assets/figures-v2/ch02-bridge-junction-ledger.svg
   print_fallback: assets/figures-v2/ch02-bridge-junction-ledger-print.svg
   preview: assets/figures-v2/ch02-bridge-junction-ledger.webp
-  alt: 手绘桥堆两栏加热账。左蓝框桥堆看四个数：反向耐压至少 2 倍峰值反压，市电 230 伏有效值峰值 325 伏所以选 600 到 1000 伏；平均电流要按壳温降额，常见标 100 摄氏度；浪涌电流是
-    8.3 毫秒半正弦的单次值；热阻要按封装整体看，不能拿单只乘四，四只封在一起互相加热。右绿框结温账，热阻按 80 摄氏度每瓦：功耗 0.9 伏乘 1 安得 0.9 瓦，结温 50 加 0.9 乘
-    80 得 122 摄氏度；降到 0.6 安功耗 0.54 瓦，结温 93 摄氏度；换 0.5 伏肖特基，90 摄氏度；环境升到 60 摄氏度仍 1 安，132 摄氏度已经超限。下方琥珀框写桥式里每只管子的平均电流只有负载的一半：1
-    安负载每只导通半周、平均 0.5 安，两只各 0.45 瓦、总损耗约 0.9 瓦。底部红框写别把单只管子的热阻套到桥堆上，25 摄氏度下标称的 1 安装进封闭机箱不成立。
+  alt: 手绘桥堆两栏加热账。左蓝框桥堆看四个数：反向耐压至少 2 倍峰值反压，市电 230 伏有效值峰值 325 伏，所以按两倍余量选 800 到 1000 伏；平均电流要按壳温降额，常见标 100
+    摄氏度；浪涌电流是 8.3 毫秒半正弦的单次值；热阻要按封装整体看，不能拿单只乘四，四只封在一起互相加热。右绿框单管连续导通的结温账，热阻按 80 摄氏度每瓦：功耗 0.9 伏乘 1 安得 0.9
+    瓦，结温 50 加 0.9 乘 80 得 122 摄氏度；降到 0.6 安功耗 0.54 瓦，结温 93 摄氏度；换 0.5 伏肖特基，90 摄氏度；环境升到 60 摄氏度仍 1 安，132 摄氏度已经超限。下方琥珀框写桥式里每只管子的平均电流只有负载的一半：1
+    安负载每只导通半周、平均 0.5 安，四只各 0.45 瓦、总损耗为 1.8 瓦。底部红框写别把单只管子的热阻套到桥堆上，25 摄氏度下标称的 1 安装进封闭机箱不成立。
   status: accepted
   status_history:
   - planned
@@ -10424,26 +10423,25 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 5
-    印刷可读性: 4
+    构图层级: 4
     风格一致性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch02-bridge-junction-ledger.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_method: calculation-and-render-review
   review_record:
     reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
+    method: calculation-and-render-review
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 078132a22a379eea08c5f12494ea63f2cf648445f918aa23900400813a3d0c90
+    record: docs/superpowers/visual/reviews/ch02-calculation-correction.md
+    asset_sha256: f02bab429cd4960e5a64a64185c82fef1c2cb71adb5e300fb9c223b7a0d36e8d
 - id: ch04-thermal-chain-ledger
   chapter: 4
   kind: figure
