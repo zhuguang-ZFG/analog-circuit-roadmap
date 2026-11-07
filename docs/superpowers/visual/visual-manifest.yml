@@ -8647,3 +8647,110 @@ assets:
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-stackup-bridge.json
   quant_rules:
     layer_encodes_value: false
+- id: ch16-record-card
+  chapter: 16
+  kind: figure
+  type: V4
+  anchor: 16.9 一页纸排故记录表
+  purpose: 一页纸排故记录表
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids: &id019
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p4-01-ch16.md#16.9 一页纸排故记录表
+  prompt_file: docs/superpowers/visual/prompts/ch16-record-card.md
+  output: assets/figures-v2/ch16-record-card.svg
+  print_fallback: assets/figures-v2/ch16-record-card-print.svg
+  preview: assets/figures-v2/ch16-record-card.webp
+  alt: 三栏记录卡：现场栏列编号日期板号、客观现象、复现率与条件、环境与版本、电源与静态测量、动态测量与波形附件编号；推演栏列假设链逐条判决（已证实/已证伪）、证伪的也要留、单变量实验每次只改一项；收口栏列根因、修复、回归、防呆，并强调根因回归不能空。底部三条边界：附件与防呆可后补、一页纸也是交接文档。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch16-record-card.json
+  quant_rules:
+    layer_encodes_value: false
+- id: ch11-noise-identify
+  chapter: 11
+  kind: figure
+  type: V4
+  anchor: 11.6 噪声：放大器躲不掉的"本底"
+  purpose: 噪声现场辨认表
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids: *id019
+  source_facts:
+  - docs/p2-01-ch11.md#11.6 噪声：放大器躲不掉的"本底"
+  prompt_file: docs/superpowers/visual/prompts/ch11-noise-identify.md
+  output: assets/figures-v2/ch11-noise-identify.svg
+  print_fallback: assets/figures-v2/ch11-noise-identify-print.svg
+  preview: assets/figures-v2/ch11-noise-identify.webp
+  alt: 五症状对照表：宽带嘶声先怀疑白噪与热噪，看带宽与预算大头；低频起伏慢漂查 1/f、温漂与干扰，比较 e_n(f) 与 i_n(f)；50 Hz 及谐波查地环、纹波与耦合，先查屏蔽与接地；随偏置电流变查散粒噪声，连带重算增益与失真；随源阻变区分热噪声与输入电流噪声，注意并电阻会吃掉信号。底部一条地图：白噪看带宽、1/f
+    看频谱与工况、工频看地。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch11-noise-identify.json
+  quant_rules:
+    layer_encodes_value: false
+- id: ch04-channel-formation
+  chapter: 4
+  kind: figure
+  type: V4
+  anchor: 4.1 沟道形成原理（N 沟道增强型）
+  purpose: 沟道形成三步
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids: *id019
+  source_facts:
+  - docs/p1-05-ch4.md#4.1 沟道形成原理（N 沟道增强型）
+  prompt_file: docs/superpowers/visual/prompts/ch04-channel-formation.md
+  output: assets/figures-v2/ch04-channel-formation.svg
+  print_fallback: assets/figures-v2/ch04-channel-formation-print.svg
+  preview: assets/figures-v2/ch04-channel-formation.webp
+  alt: 三幅 N 沟道增强型 MOSFET 剖面：VGS=0 时两个 N+ 区被 P 型衬底隔开、两个背靠背 PN 结不导通；VGS>VTH 时氧化层下形成蓝色反型层，把源漏连起来；VGS 更大时沟道更厚、RDS(on)
+    更低。底部三条电容账：栅氧几纳米、栅源额定常见 ±20 V；VTH 随温度下降 −2~−5 mV/°C；3.3 V 驱动要看输出曲线，不能只看 VTH(max)。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch04-channel-formation.json
+  quant_rules:
+    layer_encodes_value: false
+- id: ch03-region-check
+  chapter: 3
+  kind: figure
+  type: V4
+  anchor: 3.2 三个工作区（判断方法是看两个 PN 结的偏置）
+  purpose: 三区判读流程
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids: *id019
+  source_facts:
+  - docs/p1-04-ch3.md#3.2 三个工作区（判断方法是看两个 PN 结的偏置）
+  prompt_file: docs/superpowers/visual/prompts/ch03-region-check.md
+  output: assets/figures-v2/ch03-region-check.svg
+  print_fallback: assets/figures-v2/ch03-region-check-print.svg
+  preview: assets/figures-v2/ch03-region-check.webp
+  alt: 判读流程：先量 VBE 与 VCE，再分四路——VBE 约 0.7 V、VCE 大于 1 V 是放大区；VBE 约 0.8 V、VCE 约 0.1~0.3 V 是饱和区；VBE 小于 0.5
+    V、VCE 接近 VCC 是截止区；基极有电压而 VBE 为 0 V 是发射结开路、管子已死。底部两条边界：BVCEO 40 V 是失效边界不是第四区；截止漏流每升 8~10 °C 翻倍，85 °C
+    高阻负载要重算。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch03-region-check.json
+  quant_rules:
+    layer_encodes_value: false
