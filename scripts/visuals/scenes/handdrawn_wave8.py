@@ -265,3 +265,7 @@ SCENES = {
         'alt': '手绘五级精度阶梯：稳压二极管 5% 级、LM385 带隙 1 到 3%、TL431 0.5 到 2%、REF50xx 或 ADR45xx 0.05 到 0.1% 且 3 到 10 ppm 每摄氏度、LM399 埋入齐纳 0.3 到 2 ppm 每摄氏度。底部写 12 位配 REF50xx 是浪费，20 位配 TL431 是事故。',
     },
 }
+
+# Preserve corrected comparator models in historical batch entry points.
+from scripts.visuals.scenes.ch07_reference_figures import SCENES as _ch07_corrected
+SCENES['ch07-hysteresis-window'] = _ch07_corrected['ch07-hysteresis-window']

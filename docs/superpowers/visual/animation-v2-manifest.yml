@@ -4078,3 +4078,465 @@ assets:
     reviewed_on: '2026-11-08'
     record: docs/superpowers/visual/reviews/ch06-animation-2026-11-08/review.md
     asset_sha256: a1c46d777258f01506eb9886a6df85abab9e3f82e9d8b0ff5a5564134152620e
+- id: ch07-release-timing-v2
+  chapter: 7
+  kind: animation
+  type: A2
+  anchor: '7.1'
+  purpose: 响应时间的终点，先看手册怎样定义
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-08-ch7.md#7.1
+  prompt_file: docs/superpowers/visual/prompts/ch07-release-timing-v2.md
+  output: assets/svg-v2/ch07-release-timing-v2.svg
+  print_fallback: assets/svg-v2/ch07-release-timing-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch07-release-timing-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch07-release-timing-v2-static.svg
+  alt: 响应时间的终点，先看手册怎样定义。输出管在示意的 1 µs 释放，随后才按 RC 上升。 越过 1.4 V 约在 1.077 µs；不同于 50% 终点。 50% 约 1.163 µs，70%
+    约 1.283 µs。 10%→90% 耗 0.516 µs；不能重复加进已测响应。 独立 RC 示意：5 V、4.7 kΩ、50 pF，1 µs 时输出管释放。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 输出管在示意的 1 µs 释放，随后才按 RC 上升。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 越过 1.4 V 约在 1.077 µs；不同于 50% 终点。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 50% 约 1.163 µs，70% 约 1.283 µs。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 10%→90% 耗 0.516 µs；不能重复加进已测响应。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch07-release-timing-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch07-animation-2026-11-08/review.md
+    asset_sha256: 28813c8fa76d7549e671d1229f42fa41013213f26c651f12c7cb78af77fb5c7a
+- id: ch07-threshold-tolerance-v2
+  chapter: 7
+  kind: animation
+  type: A2
+  anchor: '7.2'
+  purpose: 电阻比差 2%，分压电压不一定差 2%
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-08-ch7.md#7.2
+  prompt_file: docs/superpowers/visual/prompts/ch07-threshold-tolerance-v2.md
+  output: assets/svg-v2/ch07-threshold-tolerance-v2.svg
+  print_fallback: assets/svg-v2/ch07-threshold-tolerance-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch07-threshold-tolerance-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch07-threshold-tolerance-v2-static.svg
+  alt: 电阻比差 2%，分压电压不一定差 2%。两只标称相等的电阻，基准为 2.5 V。 上电阻 −1%、下电阻 +1%：得到 2.525 V。 反向极限给 2.475 V，基准误差为 ±25 mV。
+    5 mV 失调与 1.225 mV 偏流仅作量级比较，另查保证。 5 V 精确供电；100 kΩ 等值分压，两电阻反向取容差极限。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 两只标称相等的电阻，基准为 2.5 V。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 上电阻 −1%、下电阻 +1%：得到 2.525 V。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 反向极限给 2.475 V，基准误差为 ±25 mV。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 5 mV 失调与 1.225 mV 偏流仅作量级比较，另查保证。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch07-threshold-tolerance-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch07-animation-2026-11-08/review.md
+    asset_sha256: d8ed362d24d9c9dbc776489f398e4a0d46152f0722f9873a96f0660bc6030414
+- id: ch07-window-logic-v2
+  chapter: 7
+  kind: animation
+  type: A1
+  anchor: '7.2'
+  purpose: 窗口内放行，要先接对两路比较极性
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-08-ch7.md#7.2
+  prompt_file: docs/superpowers/visual/prompts/ch07-window-logic-v2.md
+  output: assets/svg-v2/ch07-window-logic-v2.svg
+  print_fallback: assets/svg-v2/ch07-window-logic-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch07-window-logic-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch07-window-logic-v2-static.svg
+  alt: 窗口内放行，要先接对两路比较极性。欠压路：被测电压进正端，1.5 V 基准进负端。 过压路：1.8 V 基准进正端，被测电压进负端。 欠压或过压时，任一路输出管都能拉低公共节点。 只有两路都松手，上拉才能给出窗口内的高电平。
+    电池减半分压；理想门限 3.0 / 3.6 V，等于门限时不保证状态。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 欠压路：被测电压进正端，1.5 V 基准进负端。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 过压路：1.8 V 基准进正端，被测电压进负端。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 欠压或过压时，任一路输出管都能拉低公共节点。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 只有两路都松手，上拉才能给出窗口内的高电平。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch07-window-logic-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch07-animation-2026-11-08/review.md
+    asset_sha256: 8bd8aebcb5817cfb97a0632f7dcae7c9a654ffe73e105d67ffe8aaf184a44f90
+- id: ch07-feedback-loading-v2
+  chapter: 7
+  kind: animation
+  type: A2
+  anchor: '7.3'
+  purpose: 开集电极的高电平也会被反馈网络拉低
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-08-ch7.md#7.3
+  prompt_file: docs/superpowers/visual/prompts/ch07-feedback-loading-v2.md
+  output: assets/svg-v2/ch07-feedback-loading-v2.svg
+  print_fallback: assets/svg-v2/ch07-feedback-loading-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch07-feedback-loading-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch07-feedback-loading-v2-static.svg
+  alt: 开集电极的高电平也会被反馈网络拉低。先把上拉与反馈网络一起列节点电流方程。 Rp=4.7 kΩ 时 VOH≈4.898 V，上阈值约 2.718 V。 Rp=47 kΩ 时 VOH≈4.252
+    V，上阈值约 2.659 V。 下阈值为 2.291 V；两态分别求解才得到实际窗口。 5 V 上拉，2.5 V 理想基准，Rref 10 kΩ、Rf 100 kΩ、VOL 0.2 V。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 先把上拉与反馈网络一起列节点电流方程。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: Rp=4.7 kΩ 时 VOH≈4.898 V，上阈值约 2.718 V。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: Rp=47 kΩ 时 VOH≈4.252 V，上阈值约 2.659 V。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 下阈值为 2.291 V；两态分别求解才得到实际窗口。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch07-feedback-loading-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch07-animation-2026-11-08/review.md
+    asset_sha256: 9de530c041e0465b842679569b4acfae13c74b0a41048df90f1f927196ff8847
+- id: ch07-oscillator-delay-v2
+  chapter: 7
+  kind: animation
+  type: A2
+  anchor: '7.3'
+  purpose: 传播等待期间，电容还在继续充放电
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-08-ch7.md#7.3
+  prompt_file: docs/superpowers/visual/prompts/ch07-oscillator-delay-v2.md
+  output: assets/svg-v2/ch07-oscillator-delay-v2.svg
+  print_fallback: assets/svg-v2/ch07-oscillator-delay-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch07-oscillator-delay-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch07-oscillator-delay-v2-static.svg
+  alt: 传播等待期间，电容还在继续充放电。无延迟时 T=2RC ln3，约 21.972 µs。 越过门限后再等 1.3 µs，电容继续向电源轨运动。 实际峰谷越过 3/4 与 1/4，下半周期路程也改变。
+    T=2[d+RC ln(4−exp(−d/RC))]，不能只加 2d。 理想推挽；阈值 1/4、3/4 电源，RC=10 µs，双向延迟 1.3 µs。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 无延迟时 T=2RC ln3，约 21.972 µs。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 越过门限后再等 1.3 µs，电容继续向电源轨运动。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 实际峰谷越过 3/4 与 1/4，下半周期路程也改变。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: T=2[d+RC ln(4−exp(−d/RC))]，不能只加 2d。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch07-oscillator-delay-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch07-animation-2026-11-08/review.md
+    asset_sha256: e9386570fb384017e285eb3463e164d826d10993407a376edd95fd56f48ad036
+- id: ch07-glitch-memory-v2
+  chapter: 7
+  kind: animation
+  type: A2
+  anchor: '7.5'
+  purpose: 毛刺会不会触发，要看离当前门限多远
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-08-ch7.md#7.5
+  prompt_file: docs/superpowers/visual/prompts/ch07-glitch-memory-v2.md
+  output: assets/svg-v2/ch07-glitch-memory-v2.svg
+  print_fallback: assets/svg-v2/ch07-glitch-memory-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch07-glitch-memory-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch07-glitch-memory-v2-static.svg
+  alt: 毛刺会不会触发，要看离当前门限多远。输入基线 2.4 V；200 mV 毛刺顶到 2.6 V。 300 mV 毛刺到 2.7 V，仍比上阈值低约 27 mV。 400 mV 毛刺到 2.8
+    V，输出翻低且回到基线仍保持。 输入再跌到下阈以下才翻高；窗口不是任意毛刺保证。 反相迟滞理想状态模型；上阈 2.727 V、下阈 2.273 V，初始高。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 输入基线 2.4 V；200 mV 毛刺顶到 2.6 V。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 300 mV 毛刺到 2.7 V，仍比上阈值低约 27 mV。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 400 mV 毛刺到 2.8 V，输出翻低且回到基线仍保持。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 输入再跌到下阈以下才翻高；窗口不是任意毛刺保证。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch07-glitch-memory-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch07-animation-2026-11-08/review.md
+    asset_sha256: 552fd02b28d590b70b038a746b326378ae4314338ae9c7481e5fe92ed0365b8d
+- id: ch07-hysteresis-timing-v2
+  chapter: 7
+  kind: animation
+  type: A2
+  anchor: '7.5'
+  purpose: 相对中点的延时，只跨半个对称窗口
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-08-ch7.md#7.5
+  prompt_file: docs/superpowers/visual/prompts/ch07-hysteresis-timing-v2.md
+  output: assets/svg-v2/ch07-hysteresis-timing-v2.svg
+  print_fallback: assets/svg-v2/ch07-hysteresis-timing-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch07-hysteresis-timing-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch07-hysteresis-timing-v2-static.svg
+  alt: 相对中点的延时，只跨半个对称窗口。无迟滞参考门限 2.5 V，输入在 200 s 到达。 迟滞上阈值 2.727 V，在约 427.3 s 才翻转。 相对 2.5 V 的推迟是 227.3
+    s，不是 454.5 s。 只有拿下阈值作起点，时间差才对应整个窗口。 初态输出高；输入由 2.3 V 以 1 mV/s 上行，忽略传播与 RC 延迟。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 无迟滞参考门限 2.5 V，输入在 200 s 到达。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 迟滞上阈值 2.727 V，在约 427.3 s 才翻转。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 相对 2.5 V 的推迟是 227.3 s，不是 454.5 s。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 只有拿下阈值作起点，时间差才对应整个窗口。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch07-hysteresis-timing-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch07-animation-2026-11-08/review.md
+    asset_sha256: abf6cef0f33982449daa5c9bd16686bb745a642fb14413648def987159c1c45c

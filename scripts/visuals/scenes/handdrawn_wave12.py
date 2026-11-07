@@ -221,3 +221,8 @@ SCENES = {
 # Keep historical batch entry points aligned with corrected chapter models.
 from scripts.visuals.scenes.ch06_reference_figures import SCENES as _ch06_corrected
 SCENES['ch06-slew-vs-gbw'] = _ch06_corrected['ch06-slew-vs-gbw']
+
+# Preserve corrected comparator models in historical batch entry points.
+from scripts.visuals.scenes.ch07_reference_figures import SCENES as _ch07_corrected
+SCENES['ch07-pullup-three-accounts'] = _ch07_corrected['ch07-pullup-three-accounts']
+SCENES['ch07-threshold-budget'] = _ch07_corrected['ch07-threshold-budget']
