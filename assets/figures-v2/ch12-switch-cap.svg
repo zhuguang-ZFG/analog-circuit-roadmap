@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">开关电容的等效电阻</title><desc id="desc">手绘左右两栏：左栏写等效电阻等于 1 除以时钟频率乘电容，1 皮法乘 100 千赫等于 10 兆欧；右栏写电容比值匹配到 0.1%、时钟准到 ppm、精度来源从元件转到时钟。底部写采样会混叠、开关会注入电荷，时钟取信号带宽 50 到 100 倍。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

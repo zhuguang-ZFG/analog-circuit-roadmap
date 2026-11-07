@@ -2,6 +2,8 @@
 
 本页索引 120 张 `status: generated` 的手绘资产，分为未插候选、已插动画和已插旧图返审三类：
 
+**终审工作台（2026-11-07 生成）**：[接触表 · 全部新图 165 张，含状态徽章与七项评分栏、灰度对照](../pending-2026-11-07/index.html)（`python scripts/build_visual_contact_sheet.py --out docs/superpowers/visual/reviews/pending-2026-11-07/index.html --grayscale --page-size 18` 可重建）。
+
 | 子集 | 张数 | 是否已在正文里 |
 |---|---:|---|
 | `kind: figure`（figures-v2） | 107 | **未插入**。`content.py:_asset_path` 要求 `accepted`/`published`，否则抛 `BookError: V2 插图尚未通过审图` |
@@ -16,6 +18,8 @@
 |---|---|---|---|
 | 2026-11-07 | `ch10-555-fault-tree` | ③行判据原被截成半句「热风一吹 >5% 即介质」，改为完整句「热风一吹变化 >5%：元件介质问题」（对应正文 §10.3 原句）；底部绿框原高 40、贴画布底缘只剩 6px，重排中/琥珀/绿三框（312/88@542/48@642），框间距 8–14px、底缘留 10px | `measure_svg.py` 24 字 OVERFLOW/OCCLUDED/OVERLAP 0；`probe_lines_edges.py` 贴边最小 6.3px 与全库已审风格一致；`check_visual_manifest.py` PASS；alt 同步 |
 | 2026-11-07 | 印刷管线 `svg_refine.is_legacy_svg` | handraw 纸墨皮肤的静态手绘图（带 `page-grain`、无 SMIL）不再误判为旧模板：PDF/EPUB 印刷保留纸面渐变、颗粒、暗角与楷体手写体，不再剥皮换成黑体；带 SMIL 的旧动画判定不变 | `test_svg_refine.py` 新增 2 项夹具（皮肤静态图豁免 / 皮肤动画仍净化）全绿；`test_storyboard.py` 通过 |
+| 2026-11-07 | 194 张 figures-v2 handraw 草图（含 -print） | 仅元数据：根元素补 `data-composition="python-handraw-v1"`、`<title>`/`<desc>`（取自各图 composition JSON，与 manifest 同源），图面字节未动；波次重建后需重跑 `scripts/label_handraw_figures.py` | `test_figures.py` 5 项全绿；`make visual-check` 等价 13 套全绿；manifest 闸 PASS |
+| 2026-11-07 | 测试快照三处（需人审口径，不改 runner/policy/评分） | ① `test_figures.py` data-composition 断言改为已授权血统集合 {technical-overlay-v1, python-handraw-v1}，估宽探针白名单收录 ch11-noise-three-taxes 一句（Chromium 实测零越界，楷体拉丁窄于等宽估计）；② `test_svg_refine.py` 库存围栏 118→153（exp-* 35 张逐张过印刷循环全部通过）；③ `test_wave1_chapters.py` ch0 figures 7→17、ch16 6→7（正文实数，17 张全非空图注） | 三套测试文件本地全绿；证据见各行 |
 | 2026-11-06 | `ch17-symptom-four-fields` | 结论帧原本四行全空：每拍只画当拍一行、且不保留，播完右侧仍是「（待填写）」。改为累积重画前 N 行，未填行才画占位；结论帧四行全留 | 浏览器 `setCurrentTime(9.5)`：修前已填 0 行、占位 4；修后已填 4、占位 0。逐拍实测 0→1→2→3→4 行、占位 4→3→2→1→0。静态回退与分镜同步重建，分镜逐格 0/1/2/3/4 |
 | 2026-11-06 | `ch00-source-types-v2` 与动画中心 `source-types.svg` | 上轮补回结论曲线后，仍沿用了错误方向：横轴 I、纵轴 V，却把恒压画竖线、恒流画水平线。本轮统一新旧图的坐标约定，恒压水平、恒流竖直，负斜率的绝对值对应输出阻抗；正文、速查、动画中心、字幕与 alt 同步，旧图改生成器后重建 | V2 旧版 8 个视图回归失败，修后通过；关联旧图回归修前因恒压端点 120≠290 失败，修后通过；生成一致性与库存检查通过 |
 | 2026-11-06 | `ch00-divider-loading-v2` | 结论拍只剩一根虚线加「RL」二字，负载电阻本身没画出来，「下臂被并联」在图上无证据。改为结论拍保留负载支路与 `RL 10kΩ` 标注 | 静态回退含 `RL 10kΩ` 与电阻矩形；截图可见完整负载支路 |

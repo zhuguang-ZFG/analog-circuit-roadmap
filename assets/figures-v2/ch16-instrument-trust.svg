@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">仪器信任链</title><desc id="desc">手绘仪器检查单：探头负载先用乘十档、测完电流立刻插回电压孔、首次上电串限流灯泡或限 50 毫安、地夹最后接；右侧两个坑是自动量程在跳变信号上反复换档，以及微安档约 100 欧姆、毫安档约 2 欧姆的 burden 压降。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

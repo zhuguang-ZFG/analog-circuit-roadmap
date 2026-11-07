@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">TIA 的增益带宽稳定三角</title><desc id="desc">手绘三角关系图：顶点是增益，10 兆欧乘 1 纳安等于 10 毫伏；左下是带宽，10 皮法加 1 兆欧得到 15.9 千赫；右下是稳定，补偿电容至少 0.4 皮法、实装 1 到 2 皮法；中心写三者互相拉扯。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1448 1086">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1448 1086" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">V-cut 与邮票孔</title><desc id="desc">左右两栏：V-cut 两侧各切三分之一板厚、槽边 0.5 毫米无铜无件、分板应力大，适合矩形小板；邮票孔用窄桥小孔拼异形边、应力小但要打磨毛刺，适合贴板边 3 毫米内有陶瓷电容或要过跌落的板。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

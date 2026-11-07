@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">单稳态恢复时间与连发触发</title><desc id="desc">手绘两行脉冲时序：正常行等电容归零后再触发，第二拍脉宽不变；太早行在恢复期内触发，第二拍从半满电容起算而变短。右侧写放电管把电容从三分之二电源放空需微秒到几十微秒，大于 10 微法可到百微秒，触发间隔要大于脉宽加恢复时间。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

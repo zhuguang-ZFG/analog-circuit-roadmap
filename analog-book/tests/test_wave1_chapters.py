@@ -18,7 +18,7 @@ CHAPTER_CONTRACTS = {
         "floor": 15000,
         "sections": ("### 0.7", "### 0.8", "### 0.9", "### 0.10"),
         "examples": 3,
-        "figures": 7,
+        "figures": 17,  # wave1 快照 7；后续波次已签核 V2 图逐批插入正文后实数
         "tables": 6,
         "quiz": 10,
         "figure_assets": (
@@ -79,7 +79,7 @@ CHAPTER_CONTRACTS = {
         "floor": 16000,
         "sections": ("### 16.6", "### 16.7", "### 16.8", "### 16.9"),
         "examples": 3,
-        "figures": 6,
+        "figures": 7,  # wave1 快照 6；后续波次插入后正文实数
         "tables": 12,
         "quiz": 9,
         "figure_assets": (

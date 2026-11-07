@@ -174,7 +174,7 @@ class RefineCaptionTests(unittest.TestCase):
 class RefineBookAssetsTests(unittest.TestCase):
     def test_all_legacy_assets_are_print_clean(self):
         files = sorted((ROOT / "assets" / "svg").glob("*.svg"))
-        self.assertEqual(118, len(files))
+        self.assertEqual(153, len(files))  # v3.81 记 118；实验包 35 张 exp-* 入库后逐张过下方印刷闸
         for path in files:
             with self.subTest(path.name):
                 source = path.read_text(encoding="utf-8")

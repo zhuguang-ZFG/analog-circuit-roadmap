@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">两级放大器四项指标的余量对账</title><desc id="desc">手绘四行对账表：电压增益要求大于等于 60 分贝即 1000 倍，实得 1037 倍即 60.3 分贝，余量只有正 0.3 分贝；输入电阻要求大于等于 10 千欧，实得 13.0 千欧并联 110 千欧等于 11.6 千欧，余量正 1.6 千欧；输出电阻要求小于等于 100 欧，射随器给到约 29 欧，富余；带宽要求大于等于 100 千赫，两极点叠加约 110 千赫，刚过线。底部写最薄的是增益与带宽，β 一漂移两项可能齐破；源阻真是 10 千欧且没有偏置电阻分流时第一极点掉到约 75 千赫，要么第一级改 cascode 拆掉米勒桥，要么降第一级增益分给第二级。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

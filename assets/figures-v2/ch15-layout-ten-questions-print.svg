@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1448 1086">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1448 1086" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">布局十问</title><desc id="desc">左右两栏列布局十问：摆放四问是 100 nF 贴脸且过孔就近、储能靠近负载、晶振环路最小且下方无走线、四区分团；收尾六问是发热件远离温敏件、结构图叠图核对、芯片朝向顺走线、测试点丝印与板边 5 mm 禁布。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

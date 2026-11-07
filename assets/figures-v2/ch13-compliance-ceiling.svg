@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">恒流源的合规电压天花板</title><desc id="desc">手绘三张恒流源负载上限卡：1 毫安恒流、采样 100 欧、调整管 0.7 伏；2.8 伏供电时最大负载 2.0 千欧，5 伏时 4.2 千欧，12 伏时 11.2 千欧。底部算 4 到 20 毫安环：环路 20 毫安乘 500 欧为 10 伏，采样 250 欧乘 20 毫安为 5 伏，加发射器裕量约 7 伏，合计约 22 伏小于 24 伏。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

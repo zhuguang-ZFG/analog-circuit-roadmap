@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1448 1086">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1448 1086" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">三个案例的分诊</title><desc id="desc">左右两栏：左栏三个案例是低温 150 kHz 自激因换低 ESR 电容、装壳后 68 摄氏度复位因晶振线与开关节点平行 6 毫米、2% 批次随机复位因 BGA 虚焊；右栏对应先问最近改过什么、开盖与关盖差在哪、拍桌子能否复现。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

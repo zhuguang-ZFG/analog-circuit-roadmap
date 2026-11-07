@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">LDO 的 ESR 稳定窗口</title><desc id="desc">手绘 ESR 数轴：老式 NPN 准 LDO 的稳定区是 0.3 到 22 欧；左侧 5 毫欧的 MLCC 因零点太远而振荡，右侧大于 22 欧因零点太近而响应慢。底部写容量一样不等于环路还稳。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

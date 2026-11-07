@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">压摆率与全功率带宽的两套物理</title><desc id="desc">手绘运放阶跃两栏：左栏把 0.5 伏每微秒的直线爬坡与只受增益带宽限制的灰色虚线画在一起，2 微秒压摆段把总建立时间从约 1.1 微秒拖到 2.6 微秒；右栏算全功率带宽，输出 10 伏峰峰值正弦时 741 只有 16 千赫，NE5532 的 9 伏每微秒给到 286 千赫，收尾段时间常数 0.16 微秒，进 0.1% 要 6.9 倍时间常数约 1.1 微秒、12 位要 8.3 倍。底部写压摆期输入级饱和、环路增益归零，负反馈不在岗；过冲是免费的相位裕度读数，60 度几乎无过冲、30 度已剧烈振铃。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

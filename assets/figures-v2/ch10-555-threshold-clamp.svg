@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">555 的两条门限与占空比</title><desc id="desc">手绘 555 门限账。顶部蓝框写三只 5 千欧电阻串在电源与地之间抽出两条门限，2/3 Vcc 进比较器 A、1/3 Vcc 进比较器 B，这就是 555 这个名字的由来。左绿框「撞上限：按住」：电容升到 2/3 Vcc，比较器 A 翻转，触发器复位、放电管导通。右红框「落下限：松手」：电容降到 1/3 Vcc，比较器 B 翻转，触发器置位、放电管截止。琥珀框写所以占空比永远大于 50%：充电走 R1 加 R2、放电只走 R2，进得慢出得快；R1 只出现在充电支路，所以这个比值压不到 50%。底部写触发器只锁状态、不产生振荡，秋千自己会停，能量一路向电源讨。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

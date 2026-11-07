@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">三种组态共用一条阻抗折算律</title><desc id="desc">手绘三张组态卡片围着中心折算律：共射 B 进 C 出、增益高反相；共集 B 进 E 出、电压约 1 同相；共基 E 进 C 出、高频同相。中心写从发射极看阻抗除以贝塔加一，从基极看阻抗乘以贝塔加一。底部算例：10 千欧源、贝塔 100、IE 1 毫安，rπ 约 2.6 千欧，射随输出约 150 欧。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

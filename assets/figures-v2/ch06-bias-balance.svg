@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">输入偏置电流与平衡电阻</title><desc id="desc">手绘两张误差卡：20 纳安流过 1 千欧只有 20 微伏；流过 100 千欧就是 2 毫伏。下方写平衡电阻法 R3 等于 R1 并联 R2，两输入端直流电阻相等时偏置电流压降对消，只剩失调电流；边界是偏流随温度漂，FET 输入偏置电流是皮安级。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

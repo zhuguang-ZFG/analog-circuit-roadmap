@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">按源阻抗选输入级</title><desc id="desc">手绘两张输入级卡片：BJT 输入 20 纳安乘 1 兆欧为 20 毫伏，且每升 10 摄氏度偏置电流约翻倍；CMOS 输入 1 皮安乘 1 兆欧为 1 微伏，差四个数量级。底部写低源阻抗小于 10 千欧挑 en 小的 BJT，高源阻抗大于 100 千欧挑 Ib 小的 CMOS 或 JFET。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

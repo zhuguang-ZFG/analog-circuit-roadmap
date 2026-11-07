@@ -46,6 +46,15 @@ def _text_width(text, size):
     return w * 1.045
 
 
+# 估宽探针误报白名单，键为 (去掉 -print 的文件名, 文本前 14 字)。
+# 收录条件：Chromium getBoundingClientRect 实测该文本框未越界，仅线性估宽超限——
+# 楷体拉丁字形明显窄于 0.58×size 的等宽估计。2026-11-07 实测 ch11-noise-three-taxes
+# 全库唯一命中，浏览器量得 right ≤ 1000。
+ESTIMATE_FALSE_POSITIVES = {
+    ("ch11-noise-three-taxes", "datasheet 给的是每"),
+}
+
+
 def _extent_violations(path):
     """未旋转载体内的 <text> 不许越过画布 2px 以上。
 
@@ -72,6 +81,9 @@ def _extent_violations(path):
             continue
         size = float(el.get("font-size", "12"))
         content = "".join(el.itertext())
+        stem = re.sub(r"-print$", "", path.stem)
+        if (stem, content[:14]) in ESTIMATE_FALSE_POSITIVES:
+            continue
         anchor = el.get("text-anchor", "start")
         w = _text_width(content, size)
         left = x - (w / 2 if anchor == "middle"
@@ -84,13 +96,18 @@ def _extent_violations(path):
     return issues
 
 
+# 两条已授权血统：Task 5 overlay 双层合成；2026-11-05 起 python-handraw-v1 手绘整图
+# （标记由 scripts/label_handraw_figures.py 从 composition JSON 补齐，波次重建后需重跑）。
+COMPOSITIONS = {"technical-overlay-v1", "python-handraw-v1"}
+
+
 class FigureTests(unittest.TestCase):
     def test_v2_figures_are_labelled_and_have_vector_print_fallbacks(self):
         for path in sorted((ROOT / "assets/figures-v2").glob("*.svg")):
             with self.subTest(path=path.name):
                 raw = path.read_text(encoding="utf-8")
                 tree = ET.fromstring(raw)
-                self.assertEqual("technical-overlay-v1", tree.get("data-composition"))
+                self.assertIn(tree.get("data-composition"), COMPOSITIONS)
                 self.assertRegex(raw, r"<title[^>]*>.+?</title>")
                 self.assertRegex(raw, r"<desc[^>]*>.+?</desc>")
                 self.assertEqual([], EXTERNAL_REF.findall(raw))

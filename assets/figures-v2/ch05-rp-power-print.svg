@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">上拉电阻自己的功耗</title><desc id="desc">手绘左右两张功率卡：3.3 伏乘 1 千欧为 11 毫瓦，0603 随便扛；5 伏乘 100 欧为 250 毫瓦，0402 已超 1/16 瓦。底部写总线被拉低时全部电压落在电阻上，强上拉先核封装功率。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

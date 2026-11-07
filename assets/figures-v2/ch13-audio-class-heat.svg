@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">B 类与 D 类推同一只喇叭的热账</title><desc id="desc">手绘功放热账。顶部蓝框先把 8 欧喇叭要的 10 瓦换成电压电流：有效值 8.94 伏、电流 1.12 安，峰值 12.6 伏；推挽要留管压降，所以电源至少正负 15 伏。左下红框用 B 类，理论效率 78.5%、实际按 60% 算，电源要提供 16.7 瓦，其余全变热 6.7 瓦；右下绿框换 D 类，效率 90%，同样的音质，指甲盖大的芯片就够，只发热 1.1 瓦。琥珀框写省下的热不是白给的：D 类的 PWM 边沿是强干扰源，输出要加 LC 滤波、必须过 EMI。底部写偏置管必须贴散热器与功率管热耦合，否则温升推高偏置电流，直接热失控。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

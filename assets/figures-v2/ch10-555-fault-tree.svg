@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">555 故障图谱五站定位</title><desc id="desc">手绘 555 故障图谱。顶部蓝框写 5 脚直接接在内部 2/3 Vcc 的抽头上，悬空等于给高阻抽头接天线，改的正是挡块高度；标准做法接 10 纳法到地。中间框列五站：①输出常高、6 脚电压不动，判据是放电管没工作，7 脚虚焊或 R2 开路；②频率对、占空比漂，判据是 R1 或 R2 变值，或 5 脚电容漏电；③频率随温度狂漂，判据是热风一吹变化超过 5% 就是元件介质问题；④起振迟缓、偶发停振，判据是电源爬升太慢，4 脚加 RC 延时；⑤面包板行、焊到板上不行，判据是寄生 2 到 5 皮法参与定时，按板上实测重算。琥珀框写先量 5 脚直流电压、应恰好 2/3 Vcc，偏离就是外因，指标合格才轮到怀疑芯片。底部绿框处方三件套：就近 100 纳法加 10 微法、续流路径独立、走线不进继电器回路。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

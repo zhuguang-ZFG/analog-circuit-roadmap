@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">741 内部四级的分工与补偿代价</title><desc id="desc">手绘 741 四级框图。左侧四块：差分输入级是长尾对加电流镜负载，决定失调电压、偏置电流与输入阻抗；中间增益级是共射放大加密勒补偿，开环增益约 200,000 倍；输出级是互补推挽加 AB 类偏置，决定带载能力与失真指标。实心箭头自上而下穿过这三级，表示信号通路。第四块标着偏置网络（不在信号通路），是电流镜阵列，给全芯片供稳定偏流，它下方不接箭头，以此与前三级区分。一条红色箭头从中间增益级指向右侧红框，表示补偿电容只属于这一级：补偿电容 30 皮法，把主极点压到 10 赫兹量级，定增益带宽积，定压摆率，741 只有 0.5 伏每微秒，这是稳定的代价。底部写增益按级相乘：输入级几百倍乘中间级几百到上千倍等于 741 的 20 万倍。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

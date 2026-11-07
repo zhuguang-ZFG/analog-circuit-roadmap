@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">推挽正常半周与直通的电流功率对账</title><desc id="desc">手绘推挽两栏对照：左栏绿框写正常半周轮流值班，8 欧负载、正负 12 伏、理想峰值 12 伏，峰值电流 1.5 安、输出功率 9 瓦、B 类效率上限 78.5%，电流只流过一只管子与负载；右栏红框写直通时两只管子同时导通，正 12 伏经 Q1 到 Q2 到负 12 伏直接短路，两管饱和电阻之和按 1 欧估，短路电流 24 安、瞬时功耗 288 瓦，偏置错、时序错、上电瞬间都会触发。底部写 288 瓦远超 TO-220 的 60 瓦极限、几十毫秒就冒烟，电流只受饱和电阻与走线电阻限制、没有任何保护来得及动作，AB 类偏置的两条硬要求是够小不交越、够稳不直通。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

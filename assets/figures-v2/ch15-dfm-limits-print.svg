@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1448 1086">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1448 1086" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">DFM 四个数</title><desc id="desc">左右两栏：左栏几何下限是线宽间距常规 0.15 毫米、机械钻孔 0.3 毫米起步、丝印字高至少 1.0 毫米、铜到板边 V-cut 至少 0.5 毫米；右栏设计动作是过孔配 0.6 毫米焊盘、细间距器件集中放并逐颗查阻焊开窗、底层丝印镜像查看、钻孔文件与外形层对齐。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>
