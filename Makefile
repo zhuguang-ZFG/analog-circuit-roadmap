@@ -100,6 +100,7 @@ visual-check:
 	$(PY) -B -m unittest discover -s scripts -p "test_visual_contact_sheet.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_backlog_layout.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_visual_builder_review.py" -v
+	$(PY) -B -m unittest discover -s scripts -p "test_visual_text_replacement.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_animation_v2.py" -v
 	$(PY) -B -m unittest discover -s analog-book/tests -p "test_visual_v2_assets.py" -v
 

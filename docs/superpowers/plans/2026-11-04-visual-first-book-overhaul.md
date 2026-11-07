@@ -335,14 +335,16 @@ scripts/test_visual_player.py
 - Modify: 19 章 docs
 - Create: `scripts/test_visual_text_replacement.py`
 
-- [ ] 每张标为 `replaces-text` 的图必须有被删段落记录与精炼导读。
-- [ ] 检测图注是否复制正文完整句子。
+- [x] 每张标为 `replaces-text` 的图必须有被删段落记录与精炼导读。
+- [x] 检测图注是否复制正文完整句子。
 - [ ] 检测同一公式是否在相邻正文、图注、字幕三次重复。
 - [ ] 保留公式、量化判据、典型值/保证值区分和来源。
 - [ ] 全书正文字符原则上下降 10%–20%，不能靠删知识点完成。
 - [ ] 人工抽检每章首、中、尾三段，防止“前密后空”。
 
 **Exit:** 图真正替代文字，而不是让书更厚。
+
+**Progress 2026-11-07:** `scripts/test_visual_text_replacement.py` 已接入 `make visual-check`。它把每条 `replaces-text` 记录与其正文小节、figure 图注、实际非空白字符差逐项对齐；记录漂移即失败。图注整句复制正文、同一公式出现在图前正文/图注/图后正文时给出警告。动画字幕侧尚未接入，公式三次重复项保持未勾。
 
 **Commit:** `edit: 全书图替繁文与重复说明瘦身`
 
