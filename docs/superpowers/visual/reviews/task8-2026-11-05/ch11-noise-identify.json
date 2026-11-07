@@ -1,0 +1,15 @@
+{
+  "id": "ch11-noise-identify",
+  "title": "噪声现场辨认表",
+  "alt": "五症状对照表：宽带嘶声先怀疑白噪与热噪，看带宽与预算大头；低频起伏慢漂查 1/f、温漂与干扰，比较 e_n(f) 与 i_n(f)；50 Hz 及谐波查地环、纹波与耦合，先查屏蔽与接地；随偏置电流变查散粒噪声，连带重算增益与失真；随源阻变区分热噪声与输入电流噪声，注意并电阻会加载信号源。底部一条地图：白噪看带宽、1/f 看频谱与工况、工频看地。",
+  "anchor": "11.6 噪声：放大器躲不掉的\"本底\"",
+  "source": "docs/p2-01-ch11.md",
+  "canvas": [
+    1000,
+    700
+  ],
+  "print_width_mm": 138,
+  "generator": "python-handraw-v1",
+  "output": "assets/figures-v2/ch11-noise-identify.svg",
+  "print_fallback": "assets/figures-v2/ch11-noise-identify-print.svg"
+}
