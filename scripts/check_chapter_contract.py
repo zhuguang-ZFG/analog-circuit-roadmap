@@ -19,7 +19,7 @@ SLOT_TITLE_HINTS = {
     "lab": ("动手", "验证"),
     "selfcheck": ("自检",),
 }
-ASSET_REF = re.compile(r"assets/(?:figures|svg)/[^\s\"')\]]+")
+ASSET_REF = re.compile(r"assets/(?:figures|svg)(?:-v2)?/[^\s\"')\]]+")
 UNIT_NUM = re.compile(
     r"\d[\d.,]*\s*(?:[kKMmµunp]?(?:Ω|ohm|Ohm|V|A|F|H|Hz|s|W|%)|kHz|MHz|ms|µs|us|ns|kΩ|MΩ|mV|mA|µA|µF|nF|pF)"
 )

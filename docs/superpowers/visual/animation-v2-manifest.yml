@@ -4540,3 +4540,531 @@ assets:
     reviewed_on: '2026-11-08'
     record: docs/superpowers/visual/reviews/ch07-animation-2026-11-08/review.md
     asset_sha256: abf6cef0f33982449daa5c9bd16686bb745a642fb14413648def987159c1c45c
+- id: ch09-bandgap-balance-v2
+  chapter: 9
+  kind: animation
+  type: A2
+  anchor: '9.1'
+  purpose: 带隙的一阶补偿，要把电流密度比算进去
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-10-ch9.md#9.1
+  prompt_file: docs/superpowers/visual/prompts/ch09-bandgap-balance-v2.md
+  output: assets/svg-v2/ch09-bandgap-balance-v2.svg
+  print_fallback: assets/svg-v2/ch09-bandgap-balance-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch09-bandgap-balance-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch09-bandgap-balance-v2-static.svg
+  alt: 带隙的一阶补偿，要把电流密度比算进去。先看 VBE：温度上升时，示意电压线性下降。 ΔVBE=(kT/q)ln8，乘合适比例后斜率相反。 令两条斜率相消，本例总电压为 1.2463 V。 一阶平直不等于实际零漂；曲率、修调和应力另计。
+    线性示意：25°C 的 VBE 为 0.65 V，斜率 −2 mV/°C，N=8。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 先看 VBE：温度上升时，示意电压线性下降。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: ΔVBE=(kT/q)ln8，乘合适比例后斜率相反。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 令两条斜率相消，本例总电压为 1.2463 V。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 一阶平直不等于实际零漂；曲率、修调和应力另计。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch09-bandgap-balance-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch09-animation-2026-11-08/review.md
+    asset_sha256: 4d72474464bea40aac6bdd336cb827191d4893fc5440e39c26cf9431315e320b
+- id: ch09-shunt-corners-v2
+  chapter: 9
+  kind: animation
+  type: A2
+  anchor: '9.1'
+  purpose: 分流稳压，最小电流和最大功耗不在同一角
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-10-ch9.md#9.1
+  prompt_file: docs/superpowers/visual/prompts/ch09-shunt-corners-v2.md
+  output: assets/svg-v2/ch09-shunt-corners-v2.svg
+  print_fallback: assets/svg-v2/ch09-shunt-corners-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch09-shunt-corners-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch09-shunt-corners-v2-static.svg
+  alt: 分流稳压，最小电流和最大功耗不在同一角。输入最低、负载最重：留给分流器约 5.83 mA。 输入升到 12 V，电阻电流分给负载和分流器。 输入最高、负载为零：分流电流约 22.5 mA。
+    此角分流器约 115 mW，电阻约 182 mW；分别查降额。 示意恒定 5.1 V 分流器，R=360 Ω，输入 10.8–13.2 V，负载 0–10 mA。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 输入最低、负载最重：留给分流器约 5.83 mA。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 输入升到 12 V，电阻电流分给负载和分流器。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 输入最高、负载为零：分流电流约 22.5 mA。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 此角分流器约 115 mW，电阻约 182 mW；分别查降额。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch09-shunt-corners-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch09-animation-2026-11-08/review.md
+    asset_sha256: ba50e081411b7c4160e82ff26faa3f2fd8b550d793d0cbda1f6631769bcf8996
+- id: ch09-tl431-bias-v2
+  chapter: 9
+  kind: animation
+  type: A2
+  anchor: '9.2'
+  purpose: TL431 偏流流入 REF，输出误差是加号
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-10-ch9.md#9.2
+  prompt_file: docs/superpowers/visual/prompts/ch09-tl431-bias-v2.md
+  output: assets/svg-v2/ch09-tl431-bias-v2.svg
+  print_fallback: assets/svg-v2/ch09-tl431-bias-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch09-tl431-bias-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch09-tl431-bias-v2-static.svg
+  alt: TL431 偏流流入 REF，输出误差是加号。REF 节点：上电阻电流等于下电阻电流加偏流。 Vout=Vref(1+R1/R2)+Iref·R1，符号为正。 各 10 kΩ 时输出为 5.020
+    V，不是 4.980 V。 各 100 kΩ 时输出为 5.200 V；阻值上限由预算反推。 示意 Vref=2.5 V、Iref=2 µA，两电阻相等；忽略其余误差。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: REF 节点：上电阻电流等于下电阻电流加偏流。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: Vout=Vref(1+R1/R2)+Iref·R1，符号为正。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 各 10 kΩ 时输出为 5.020 V，不是 4.980 V。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 各 100 kΩ 时输出为 5.200 V；阻值上限由预算反推。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch09-tl431-bias-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch09-animation-2026-11-08/review.md
+    asset_sha256: 67479e4fd5d6f4b070b2d81bfbaa93b473e46ec4c25ef59dc2a077e7bea3ec74
+- id: ch09-dropout-ripple-v2
+  chapter: 9
+  kind: animation
+  type: A2
+  anchor: '9.3'
+  purpose: 稳压余量看输入谷值，不只看平均值
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-10-ch9.md#9.3
+  prompt_file: docs/superpowers/visual/prompts/ch09-dropout-ripple-v2.md
+  output: assets/svg-v2/ch09-dropout-ripple-v2.svg
+  print_fallback: assets/svg-v2/ch09-dropout-ripple-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch09-dropout-ripple-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch09-dropout-ripple-v2-static.svg
+  alt: 稳压余量看输入谷值，不只看平均值。输入为 3.5 V 加 0.2 V 正弦，平均值看似足够。 最高点 3.7 V，目标输出仍为 3.3 V。 输入谷值 3.3 V，扣去 0.15 V 压差只能输出
+    3.15 V。 谷值须覆盖输出加压差；实际还查动态 PSRR 与温度。 准静态示意：目标 3.3 V，负载 0.5 A，Ron=0.3 Ω，输入正弦 1 kHz。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 输入为 3.5 V 加 0.2 V 正弦，平均值看似足够。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 最高点 3.7 V，目标输出仍为 3.3 V。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 输入谷值 3.3 V，扣去 0.15 V 压差只能输出 3.15 V。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 谷值须覆盖输出加压差；实际还查动态 PSRR 与温度。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch09-dropout-ripple-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch09-animation-2026-11-08/review.md
+    asset_sha256: 59d4ebec71043da2eaeb6292eb8e1d67c7480a23c487407c46d21c34dbe739a8
+- id: ch09-thermal-budget-v2
+  chapter: 9
+  kind: animation
+  type: A2
+  anchor: '9.3'
+  purpose: 热预算把地脚电流和环境温度一起算
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-10-ch9.md#9.3
+  prompt_file: docs/superpowers/visual/prompts/ch09-thermal-budget-v2.md
+  output: assets/svg-v2/ch09-thermal-budget-v2.svg
+  print_fallback: assets/svg-v2/ch09-thermal-budget-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch09-thermal-budget-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch09-thermal-budget-v2-static.svg
+  alt: 热预算把地脚电流和环境温度一起算。输入功率减负载功率：P=(12−5)I+12·IQ。 300 mA 时耗散 2.16 W；50°C/W 给结温 153°C。 热阻降到 21°C/W，同样条件约为
+    90.4°C。 以 125°C 为设计上限，两路径限流约 220 / 536 mA。 示意 12→5 V、IQ=5 mA、环境 45°C；热阻 50 或 21°C/W。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 输入功率减负载功率：P=(12−5)I+12·IQ。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 300 mA 时耗散 2.16 W；50°C/W 给结温 153°C。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 热阻降到 21°C/W，同样条件约为 90.4°C。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 以 125°C 为设计上限，两路径限流约 220 / 536 mA。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch09-thermal-budget-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch09-animation-2026-11-08/review.md
+    asset_sha256: 2dfa76bdeec8d564132889ec5336917624a7ac95325323236e7243832ba00c18
+- id: ch09-light-load-efficiency-v2
+  chapter: 9
+  kind: animation
+  type: A2
+  anchor: '9.3'
+  purpose: 轻载效率，要用完整输入功率作分母
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-10-ch9.md#9.3
+  prompt_file: docs/superpowers/visual/prompts/ch09-light-load-efficiency-v2.md
+  output: assets/svg-v2/ch09-light-load-efficiency-v2.svg
+  print_fallback: assets/svg-v2/ch09-light-load-efficiency-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch09-light-load-efficiency-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch09-light-load-efficiency-v2-static.svg
+  alt: 轻载效率，要用完整输入功率作分母。忽略 IQ 的理想上限为 3.3/5，即 66%。 10 mA 负载、5 mA IQ：效率只有 44%。 同一负载改为 50 µA IQ，效率约 65.67%。
+    到 300 mA 负载，两者都接近上限；仍需核对热预算。 示意 5→3.3 V；恒定 IQ 分别为 5 mA 和 50 µA，不对应特定型号。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 忽略 IQ 的理想上限为 3.3/5，即 66%。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 10 mA 负载、5 mA IQ：效率只有 44%。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 同一负载改为 50 µA IQ，效率约 65.67%。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 到 300 mA 负载，两者都接近上限；仍需核对热预算。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch09-light-load-efficiency-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch09-animation-2026-11-08/review.md
+    asset_sha256: 50d92999dc2daefa426f954c4483f9f869bd8f594d83930bf6dc9f2e18a15a2a
+- id: ch09-load-transient-v2
+  chapter: 9
+  kind: animation
+  type: A2
+  anchor: '9.5'
+  purpose: 控制开始恢复时，电容仍可能继续放电
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-10-ch9.md#9.5
+  prompt_file: docs/superpowers/visual/prompts/ch09-load-transient-v2.md
+  output: assets/svg-v2/ch09-load-transient-v2.svg
+  print_fallback: assets/svg-v2/ch09-load-transient-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch09-load-transient-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch09-load-transient-v2-static.svg
+  alt: 控制开始恢复时，电容仍可能继续放电。负载加阶跃时，电容电流先给出 −24.5 mV ESR 台阶。 5 µs 时电容电压降 245 mV，总偏差 −269.5 mV。 恢复开始后电流缺口仍在，最深跌落还在后面。
+    本例临界阻尼回稳；反向阶跃镜像过冲，须分别验上下限。 示意 ΔI=0.49 A、C=10 µF、ESR=50 mΩ；延迟 5 µs，恢复 τ=5 µs。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 负载加阶跃时，电容电流先给出 −24.5 mV ESR 台阶。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 5 µs 时电容电压降 245 mV，总偏差 −269.5 mV。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 恢复开始后电流缺口仍在，最深跌落还在后面。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 本例临界阻尼回稳；反向阶跃镜像过冲，须分别验上下限。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch09-load-transient-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch09-animation-2026-11-08/review.md
+    asset_sha256: d35863dd4d69b504d7432f3c48c6064a852fbca0e08dbed930a2ef411c7a58c4
+- id: ch09-reference-pulses-v2
+  chapter: 9
+  kind: animation
+  type: A2
+  anchor: '9.1'
+  purpose: 基准电容反复取走电荷，补电不完会累积偏差
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-10-ch9.md#9.1
+  prompt_file: docs/superpowers/visual/prompts/ch09-reference-pulses-v2.md
+  output: assets/svg-v2/ch09-reference-pulses-v2.svg
+  print_fallback: assets/svg-v2/ch09-reference-pulses-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch09-reference-pulses-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch09-reference-pulses-v2-static.svg
+  alt: 基准电容反复取走电荷，补电不完会累积偏差。一次抽走 1 nC，1 µF 电容立刻下降 1 mV。 10 µs 后只恢复一部分，下一次又下降 1 mV。 经过多次采样，形成重复的补电与放电周期。
+    稳态最大偏差约 1.582 mV；平均补电电流为 100 µA。 示意每 10 µs 抽取 1 nC；缓冲等效 R=10 Ω、C=1 µF。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 一次抽走 1 nC，1 µF 电容立刻下降 1 mV。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 10 µs 后只恢复一部分，下一次又下降 1 mV。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 经过多次采样，形成重复的补电与放电周期。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 稳态最大偏差约 1.582 mV；平均补电电流为 100 µA。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch09-reference-pulses-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch09-animation-2026-11-08/review.md
+    asset_sha256: 5ef1679171e6e56c2c4861b3b03169a85a25b1c49a521eef925df795b1e23b2b

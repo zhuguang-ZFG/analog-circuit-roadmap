@@ -8261,7 +8261,7 @@ assets:
   kind: figure
   type: V4
   anchor: '9.3'
-  purpose: LDO 的 ESR 稳定窗口
+  purpose: 特定 LM1117 的电容条件
   style_id: FA-029
   layout_id: IG-013
   color_ids:
@@ -8274,7 +8274,7 @@ assets:
   output: assets/figures-v2/ch09-esr-window.svg
   print_fallback: assets/figures-v2/ch09-esr-window-print.svg
   preview: assets/figures-v2/ch09-esr-window.webp
-  alt: 手绘 ESR 数轴：老式 NPN 准 LDO 的稳定区是 0.3 到 22 欧；左侧 5 毫欧的 MLCC 因零点太远而振荡，右侧大于 22 欧因零点太近而响应慢。底部写容量一样不等于环路还稳。
+  alt: 零点三至二十二欧姆 ESR 区间明确绑定 TI LM1117 与钽电容条件，不能泛化为所有稳压器。
   status: accepted
   status_history:
   - planned
@@ -8284,24 +8284,23 @@ assets:
   review_scores:
     教学必要性: 5
     事实精度: 5
-    构图层级: 5
+    构图层级: 4
+    风格一致性: 4
     印刷可读性: 4
-    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch09-esr-window.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_method: calculation-and-render-review
   review_record:
     reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
+    method: calculation-and-render-review
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 6b5f7f829cfc098ae93a3095cb822b429a481f78bad76c9b92d5354c2de8c76f
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch09-animation-2026-11-08/review.md
+    asset_sha256: 7e9314027e12184db3e8c004c5c8e0121aa53a964110850f8697f66448adecad
 - id: ch05-rp-power
   chapter: 5
   kind: figure
@@ -8352,7 +8351,7 @@ assets:
   kind: figure
   type: V4
   anchor: '9.1'
-  purpose: 基准选型的精度阶梯
+  purpose: 基准误差预算
   style_id: FA-029
   layout_id: IG-013
   color_ids:
@@ -8365,8 +8364,7 @@ assets:
   output: assets/figures-v2/ch09-reference-ladder.svg
   print_fallback: assets/figures-v2/ch09-reference-ladder-print.svg
   preview: assets/figures-v2/ch09-reference-ladder.webp
-  alt: 手绘五级精度阶梯：稳压二极管 5% 级、LM385 带隙 1 到 3%、TL431 0.5 到 2%、REF50xx 或 ADR45xx 0.05 到 0.1% 且 3 到 10 ppm 每摄氏度、LM399
-    埋入齐纳 0.3 到 2 ppm 每摄氏度。底部写 12 位配 REF50xx 是浪费，20 位配 TL431 是事故。
+  alt: 三点三伏十二位的一个 LSB 为零点八零六毫伏，基准分配零点二毫伏；初始误差、温漂、噪声与长期漂移分别列项。
   status: accepted
   status_history:
   - planned
@@ -8376,24 +8374,23 @@ assets:
   review_scores:
     教学必要性: 5
     事实精度: 5
-    构图层级: 5
+    构图层级: 4
+    风格一致性: 4
     印刷可读性: 4
-    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch09-reference-ladder.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_method: calculation-and-render-review
   review_record:
     reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
+    method: calculation-and-render-review
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 797e131a2676c257471928b75e5dddfb66bc7277a563b48a89f7454ed5b44dd7
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch09-animation-2026-11-08/review.md
+    asset_sha256: 8b218f7be420b627e946386d7a2acd24fda477a95d5c1c64b5f3aa039865c61f
 - id: ch10-monostable-budget
   chapter: 10
   kind: figure
@@ -9748,7 +9745,7 @@ assets:
   kind: figure
   type: V4
   anchor: '9.4'
-  purpose: 7805 四种死法对应的四本账
+  purpose: 稳压器排故测量入口
   style_id: FA-029
   layout_id: IG-013
   color_ids:
@@ -9761,9 +9758,7 @@ assets:
   output: assets/figures-v2/ch09-ldo-four-accounts.svg
   print_fallback: assets/figures-v2/ch09-ldo-four-accounts-print.svg
   preview: assets/figures-v2/ch09-ldo-four-accounts.webp
-  alt: 手绘四行账：热账写功耗等于输入减 5 伏再乘电流，12 伏降 5 伏带 300 毫安是 2.1 瓦，无散热片必热关断；纹波账写输入谷值必须大于等于输出加压差，100 赫兹纹波跌破压差线就下垂；稳定性账写
-    AMS1117 的环路补偿依赖输出电容 ESR，出窗口就振荡；上电账写大压差加快上电时调整管未及时响应，过冲超过 10% 且持续微秒级。底部一行写升级路径与经验分界：降输入 Buck 到 7.5
-    伏功耗减三分之二，换 DCDC 效率 85% 到 95%、2.1 瓦变 0.3 瓦；压差乘电流大于 1 瓦就别让线性稳压硬扛，小于 0.3 瓦时线性全面占优。
+  alt: 依次检查输入谷值、结温、稳定性和启动掉电，各项都写出可验证条件和测量对象。
   status: accepted
   status_history:
   - planned
@@ -9773,24 +9768,23 @@ assets:
   review_scores:
     教学必要性: 5
     事实精度: 5
-    构图层级: 5
+    构图层级: 4
+    风格一致性: 4
     印刷可读性: 4
-    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch09-ldo-four-accounts.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_method: calculation-and-render-review
   review_record:
     reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
+    method: calculation-and-render-review
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 57d469deb1fa11d9099601756c5a47e9e50fd2084cec8a2056586c3cec6428da
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch09-animation-2026-11-08/review.md
+    asset_sha256: c1ebb48801b318bfa8eeb84ef430bbe7a8ab7f810ae8fe4179e9c23da44ac790
 - id: ch11-two-stage-margin
   chapter: 11
   kind: figure
@@ -10609,7 +10603,7 @@ assets:
   kind: figure
   type: V4
   anchor: '9.2'
-  purpose: TL431 分压电阻的下限
+  purpose: TL431 参考偏流符号
   style_id: FA-029
   layout_id: IG-013
   color_ids:
@@ -10622,10 +10616,7 @@ assets:
   output: assets/figures-v2/ch09-tl431-divider-floor.svg
   print_fallback: assets/figures-v2/ch09-tl431-divider-floor-print.svg
   preview: assets/figures-v2/ch09-tl431-divider-floor.webp
-  alt: 手绘 TL431 分压账。顶部蓝框写 TL431 强制参考端等于 2.5 伏，外接两只电阻分压。左绿框算目标 5 伏：分压电流取 250 微安，两电阻之和 20 千欧，各 10 千欧、1%
-    金属膜；参考端的 2 微安流过 10 千欧，偏 20 毫伏。右红框抬到 100 千欧档：同一支 2 微安压降变大到 0.2 伏，输出直接崩 4%，省下的电全变成输出误差，不如直接买固定基准。琥珀框写另外三笔账：最小阴极电流
-    0.4 到 1 毫安、动态阻抗约 0.2 欧、阴极电容 0.01 到 1 微法有振荡窗口。底部写耐压不是分压电阻的问题而是 R1 的问题：输出 24 伏时 R1 扛 21.5 伏，0805 单颗耐压
-    150 伏没问题，上百伏就要串两颗分担。
+  alt: 参考端偏流流入芯片，上电阻电流为下电阻电流加偏流；示意两只十千欧给五点零二伏，百千欧给五点二伏。
   status: accepted
   status_history:
   - planned
@@ -10635,24 +10626,23 @@ assets:
   review_scores:
     教学必要性: 5
     事实精度: 5
-    构图层级: 5
+    构图层级: 4
+    风格一致性: 4
     印刷可读性: 4
-    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch09-tl431-divider-floor.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_method: calculation-and-render-review
   review_record:
     reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
+    method: calculation-and-render-review
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 56af843ad412805259348f0a9fae2a0d22cefc0134878af245788e6c97d480d3
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch09-animation-2026-11-08/review.md
+    asset_sha256: 3a5770717218153a5482ef7e523ecfa244b25f9e8759e65e76eaf8a0f69fa672
 - id: ch13-crystal-neg-resistance
   chapter: 13
   kind: figure
@@ -13773,3 +13763,756 @@ assets:
     reviewed_on: '2026-11-08'
     record: docs/superpowers/visual/reviews/ch07-animation-2026-11-08/review.md
     asset_sha256: 0a2c39c99e1b6523cd1bcd546c6bdb473ee015affe68853310c8e01143ec3adb
+- id: ch09-bandgap-balance-v2
+  chapter: 9
+  kind: animation
+  type: A2
+  anchor: '9.1'
+  purpose: 带隙的一阶补偿，要把电流密度比算进去
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-10-ch9.md#9.1
+  prompt_file: docs/superpowers/visual/prompts/ch09-bandgap-balance-v2.md
+  output: assets/svg-v2/ch09-bandgap-balance-v2.svg
+  print_fallback: assets/svg-v2/ch09-bandgap-balance-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch09-bandgap-balance-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch09-bandgap-balance-v2-static.svg
+  alt: 带隙的一阶补偿，要把电流密度比算进去。先看 VBE：温度上升时，示意电压线性下降。 ΔVBE=(kT/q)ln8，乘合适比例后斜率相反。 令两条斜率相消，本例总电压为 1.2463 V。 一阶平直不等于实际零漂；曲率、修调和应力另计。
+    线性示意：25°C 的 VBE 为 0.65 V，斜率 −2 mV/°C，N=8。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 先看 VBE：温度上升时，示意电压线性下降。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: ΔVBE=(kT/q)ln8，乘合适比例后斜率相反。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 令两条斜率相消，本例总电压为 1.2463 V。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 一阶平直不等于实际零漂；曲率、修调和应力另计。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch09-bandgap-balance-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch09-animation-2026-11-08/review.md
+    asset_sha256: 4d72474464bea40aac6bdd336cb827191d4893fc5440e39c26cf9431315e320b
+- id: ch09-shunt-corners-v2
+  chapter: 9
+  kind: animation
+  type: A2
+  anchor: '9.1'
+  purpose: 分流稳压，最小电流和最大功耗不在同一角
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-10-ch9.md#9.1
+  prompt_file: docs/superpowers/visual/prompts/ch09-shunt-corners-v2.md
+  output: assets/svg-v2/ch09-shunt-corners-v2.svg
+  print_fallback: assets/svg-v2/ch09-shunt-corners-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch09-shunt-corners-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch09-shunt-corners-v2-static.svg
+  alt: 分流稳压，最小电流和最大功耗不在同一角。输入最低、负载最重：留给分流器约 5.83 mA。 输入升到 12 V，电阻电流分给负载和分流器。 输入最高、负载为零：分流电流约 22.5 mA。
+    此角分流器约 115 mW，电阻约 182 mW；分别查降额。 示意恒定 5.1 V 分流器，R=360 Ω，输入 10.8–13.2 V，负载 0–10 mA。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 输入最低、负载最重：留给分流器约 5.83 mA。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 输入升到 12 V，电阻电流分给负载和分流器。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 输入最高、负载为零：分流电流约 22.5 mA。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 此角分流器约 115 mW，电阻约 182 mW；分别查降额。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch09-shunt-corners-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch09-animation-2026-11-08/review.md
+    asset_sha256: ba50e081411b7c4160e82ff26faa3f2fd8b550d793d0cbda1f6631769bcf8996
+- id: ch09-tl431-bias-v2
+  chapter: 9
+  kind: animation
+  type: A2
+  anchor: '9.2'
+  purpose: TL431 偏流流入 REF，输出误差是加号
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-10-ch9.md#9.2
+  prompt_file: docs/superpowers/visual/prompts/ch09-tl431-bias-v2.md
+  output: assets/svg-v2/ch09-tl431-bias-v2.svg
+  print_fallback: assets/svg-v2/ch09-tl431-bias-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch09-tl431-bias-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch09-tl431-bias-v2-static.svg
+  alt: TL431 偏流流入 REF，输出误差是加号。REF 节点：上电阻电流等于下电阻电流加偏流。 Vout=Vref(1+R1/R2)+Iref·R1，符号为正。 各 10 kΩ 时输出为 5.020
+    V，不是 4.980 V。 各 100 kΩ 时输出为 5.200 V；阻值上限由预算反推。 示意 Vref=2.5 V、Iref=2 µA，两电阻相等；忽略其余误差。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: REF 节点：上电阻电流等于下电阻电流加偏流。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: Vout=Vref(1+R1/R2)+Iref·R1，符号为正。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 各 10 kΩ 时输出为 5.020 V，不是 4.980 V。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 各 100 kΩ 时输出为 5.200 V；阻值上限由预算反推。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch09-tl431-bias-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch09-animation-2026-11-08/review.md
+    asset_sha256: 67479e4fd5d6f4b070b2d81bfbaa93b473e46ec4c25ef59dc2a077e7bea3ec74
+- id: ch09-dropout-ripple-v2
+  chapter: 9
+  kind: animation
+  type: A2
+  anchor: '9.3'
+  purpose: 稳压余量看输入谷值，不只看平均值
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-10-ch9.md#9.3
+  prompt_file: docs/superpowers/visual/prompts/ch09-dropout-ripple-v2.md
+  output: assets/svg-v2/ch09-dropout-ripple-v2.svg
+  print_fallback: assets/svg-v2/ch09-dropout-ripple-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch09-dropout-ripple-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch09-dropout-ripple-v2-static.svg
+  alt: 稳压余量看输入谷值，不只看平均值。输入为 3.5 V 加 0.2 V 正弦，平均值看似足够。 最高点 3.7 V，目标输出仍为 3.3 V。 输入谷值 3.3 V，扣去 0.15 V 压差只能输出
+    3.15 V。 谷值须覆盖输出加压差；实际还查动态 PSRR 与温度。 准静态示意：目标 3.3 V，负载 0.5 A，Ron=0.3 Ω，输入正弦 1 kHz。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 输入为 3.5 V 加 0.2 V 正弦，平均值看似足够。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 最高点 3.7 V，目标输出仍为 3.3 V。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 输入谷值 3.3 V，扣去 0.15 V 压差只能输出 3.15 V。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 谷值须覆盖输出加压差；实际还查动态 PSRR 与温度。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch09-dropout-ripple-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch09-animation-2026-11-08/review.md
+    asset_sha256: 59d4ebec71043da2eaeb6292eb8e1d67c7480a23c487407c46d21c34dbe739a8
+- id: ch09-thermal-budget-v2
+  chapter: 9
+  kind: animation
+  type: A2
+  anchor: '9.3'
+  purpose: 热预算把地脚电流和环境温度一起算
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-10-ch9.md#9.3
+  prompt_file: docs/superpowers/visual/prompts/ch09-thermal-budget-v2.md
+  output: assets/svg-v2/ch09-thermal-budget-v2.svg
+  print_fallback: assets/svg-v2/ch09-thermal-budget-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch09-thermal-budget-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch09-thermal-budget-v2-static.svg
+  alt: 热预算把地脚电流和环境温度一起算。输入功率减负载功率：P=(12−5)I+12·IQ。 300 mA 时耗散 2.16 W；50°C/W 给结温 153°C。 热阻降到 21°C/W，同样条件约为
+    90.4°C。 以 125°C 为设计上限，两路径限流约 220 / 536 mA。 示意 12→5 V、IQ=5 mA、环境 45°C；热阻 50 或 21°C/W。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 输入功率减负载功率：P=(12−5)I+12·IQ。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 300 mA 时耗散 2.16 W；50°C/W 给结温 153°C。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 热阻降到 21°C/W，同样条件约为 90.4°C。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 以 125°C 为设计上限，两路径限流约 220 / 536 mA。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch09-thermal-budget-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch09-animation-2026-11-08/review.md
+    asset_sha256: 2dfa76bdeec8d564132889ec5336917624a7ac95325323236e7243832ba00c18
+- id: ch09-light-load-efficiency-v2
+  chapter: 9
+  kind: animation
+  type: A2
+  anchor: '9.3'
+  purpose: 轻载效率，要用完整输入功率作分母
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-10-ch9.md#9.3
+  prompt_file: docs/superpowers/visual/prompts/ch09-light-load-efficiency-v2.md
+  output: assets/svg-v2/ch09-light-load-efficiency-v2.svg
+  print_fallback: assets/svg-v2/ch09-light-load-efficiency-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch09-light-load-efficiency-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch09-light-load-efficiency-v2-static.svg
+  alt: 轻载效率，要用完整输入功率作分母。忽略 IQ 的理想上限为 3.3/5，即 66%。 10 mA 负载、5 mA IQ：效率只有 44%。 同一负载改为 50 µA IQ，效率约 65.67%。
+    到 300 mA 负载，两者都接近上限；仍需核对热预算。 示意 5→3.3 V；恒定 IQ 分别为 5 mA 和 50 µA，不对应特定型号。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 忽略 IQ 的理想上限为 3.3/5，即 66%。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 10 mA 负载、5 mA IQ：效率只有 44%。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 同一负载改为 50 µA IQ，效率约 65.67%。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 到 300 mA 负载，两者都接近上限；仍需核对热预算。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch09-light-load-efficiency-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch09-animation-2026-11-08/review.md
+    asset_sha256: 50d92999dc2daefa426f954c4483f9f869bd8f594d83930bf6dc9f2e18a15a2a
+- id: ch09-load-transient-v2
+  chapter: 9
+  kind: animation
+  type: A2
+  anchor: '9.5'
+  purpose: 控制开始恢复时，电容仍可能继续放电
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-10-ch9.md#9.5
+  prompt_file: docs/superpowers/visual/prompts/ch09-load-transient-v2.md
+  output: assets/svg-v2/ch09-load-transient-v2.svg
+  print_fallback: assets/svg-v2/ch09-load-transient-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch09-load-transient-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch09-load-transient-v2-static.svg
+  alt: 控制开始恢复时，电容仍可能继续放电。负载加阶跃时，电容电流先给出 −24.5 mV ESR 台阶。 5 µs 时电容电压降 245 mV，总偏差 −269.5 mV。 恢复开始后电流缺口仍在，最深跌落还在后面。
+    本例临界阻尼回稳；反向阶跃镜像过冲，须分别验上下限。 示意 ΔI=0.49 A、C=10 µF、ESR=50 mΩ；延迟 5 µs，恢复 τ=5 µs。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 负载加阶跃时，电容电流先给出 −24.5 mV ESR 台阶。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 5 µs 时电容电压降 245 mV，总偏差 −269.5 mV。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 恢复开始后电流缺口仍在，最深跌落还在后面。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 本例临界阻尼回稳；反向阶跃镜像过冲，须分别验上下限。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch09-load-transient-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch09-animation-2026-11-08/review.md
+    asset_sha256: d35863dd4d69b504d7432f3c48c6064a852fbca0e08dbed930a2ef411c7a58c4
+- id: ch09-reference-pulses-v2
+  chapter: 9
+  kind: animation
+  type: A2
+  anchor: '9.1'
+  purpose: 基准电容反复取走电荷，补电不完会累积偏差
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-10-ch9.md#9.1
+  prompt_file: docs/superpowers/visual/prompts/ch09-reference-pulses-v2.md
+  output: assets/svg-v2/ch09-reference-pulses-v2.svg
+  print_fallback: assets/svg-v2/ch09-reference-pulses-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch09-reference-pulses-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch09-reference-pulses-v2-static.svg
+  alt: 基准电容反复取走电荷，补电不完会累积偏差。一次抽走 1 nC，1 µF 电容立刻下降 1 mV。 10 µs 后只恢复一部分，下一次又下降 1 mV。 经过多次采样，形成重复的补电与放电周期。
+    稳态最大偏差约 1.582 mV；平均补电电流为 100 µA。 示意每 10 µs 抽取 1 nC；缓冲等效 R=10 Ω、C=1 µF。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 一次抽走 1 nC，1 µF 电容立刻下降 1 mV。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 10 µs 后只恢复一部分，下一次又下降 1 mV。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 经过多次采样，形成重复的补电与放电周期。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 稳态最大偏差约 1.582 mV；平均补电电流为 100 µA。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch09-reference-pulses-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch09-animation-2026-11-08/review.md
+    asset_sha256: 5ef1679171e6e56c2c4861b3b03169a85a25b1c49a521eef925df795b1e23b2b
+- id: ch09-shunt-corners
+  chapter: 9
+  kind: figure
+  type: V4
+  anchor: '9.1'
+  purpose: 分流器两个最坏角
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p1-10-ch9.md#9.1
+  prompt_file: docs/superpowers/visual/prompts/ch09-shunt-corners.md
+  output: assets/figures-v2/ch09-shunt-corners.svg
+  print_fallback: assets/figures-v2/ch09-shunt-corners-print.svg
+  preview: assets/figures-v2/ch09-shunt-corners.webp
+  alt: 限流电阻后电流分给负载与分流器；最低输入满载看最小分流电流，最高输入空载看器件与电阻功耗。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 4
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch09-shunt-corners.json
+  quant_rules:
+    layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch09-animation-2026-11-08/review.md
+    asset_sha256: 204069adff74d4dc05cb4148da295d6683765b00e8434d39ffb410ec2fe9a518
+- id: ch09-reference-charge
+  chapter: 9
+  kind: figure
+  type: V4
+  anchor: '9.1'
+  purpose: 参考脉冲电荷与补电
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p1-10-ch9.md#9.1
+  prompt_file: docs/superpowers/visual/prompts/ch09-reference-charge.md
+  output: assets/figures-v2/ch09-reference-charge.svg
+  print_fallback: assets/figures-v2/ch09-reference-charge-print.svg
+  preview: assets/figures-v2/ch09-reference-charge.webp
+  alt: 参考缓冲串联十欧姆给一微法补电，ADC 每十微秒取一纳库仑；单次一毫伏的下降会因未完全恢复而累积。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 4
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch09-reference-charge.json
+  quant_rules:
+    layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch09-animation-2026-11-08/review.md
+    asset_sha256: eb0b69b803c6885826573f4c0e23587c4a8bbf341a60a64c88e579ac3def7f29
+- id: ch09-thermal-path
+  chapter: 9
+  kind: figure
+  type: V4
+  anchor: '9.3'
+  purpose: 实际热路径
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p1-10-ch9.md#9.3
+  prompt_file: docs/superpowers/visual/prompts/ch09-thermal-path.md
+  output: assets/figures-v2/ch09-thermal-path.svg
+  print_fallback: assets/figures-v2/ch09-thermal-path-print.svg
+  preview: assets/figures-v2/ch09-thermal-path.webp
+  alt: 结到壳、界面和散热片三个热阻串联为二十一度每瓦，完整功耗二点一六瓦，在四十五度环境得到约九十点三六度结温。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 4
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch09-thermal-path.json
+  quant_rules:
+    layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch09-animation-2026-11-08/review.md
+    asset_sha256: d7c438047b433716b94de98db29febe75fc212efc2656c5b003a080a1d0035f8
+- id: ch09-load-transient
+  chapter: 9
+  kind: figure
+  type: V4
+  anchor: '9.5'
+  purpose: 负载瞬态的电流积分
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p1-10-ch9.md#9.5
+  prompt_file: docs/superpowers/visual/prompts/ch09-load-transient.md
+  output: assets/figures-v2/ch09-load-transient.svg
+  print_fallback: assets/figures-v2/ch09-load-transient-print.svg
+  preview: assets/figures-v2/ch09-load-transient.webp
+  alt: 总输出偏差与电容电压分开画，五微秒控制接管时尚未达到最大跌落，后续恢复从同一电容电流继续积分。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 4
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch09-load-transient.json
+  quant_rules:
+    layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch09-animation-2026-11-08/review.md
+    asset_sha256: 8f717db85a8e82913305451c13088f5a50b13e5ffafe68734d6e1944e20ec8ea
+- id: ch09-transient-budget
+  chapter: 9
+  kind: figure
+  type: V4
+  anchor: '9.5'
+  purpose: 双向瞬态预算
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p1-10-ch9.md#9.5
+  prompt_file: docs/superpowers/visual/prompts/ch09-transient-budget.md
+  output: assets/figures-v2/ch09-transient-budget.svg
+  print_fallback: assets/figures-v2/ch09-transient-budget-print.svg
+  preview: assets/figures-v2/ch09-transient-budget.webp
+  alt: 三点三伏的上下各百分之五窗口分别核对；下降九十九毫伏预算分为 ESR 二十、缺口电荷六十、余项十九毫伏，后续恢复仍要计入。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 4
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch09-transient-budget.json
+  quant_rules:
+    layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch09-animation-2026-11-08/review.md
+    asset_sha256: d96560c7eb5bc8d14ac06cafb7738cdc86d5ac6234d7c57603d6cabb3fa81efa

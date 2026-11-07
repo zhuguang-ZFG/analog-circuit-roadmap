@@ -269,3 +269,8 @@ SCENES = {
 # Preserve corrected comparator models in historical batch entry points.
 from scripts.visuals.scenes.ch07_reference_figures import SCENES as _ch07_corrected
 SCENES['ch07-hysteresis-window'] = _ch07_corrected['ch07-hysteresis-window']
+
+# Use source-bound reference/regulator models for historical batch rebuilds.
+from scripts.visuals.scenes.ch09_reference_figures import SCENES as _ch09_corrected
+SCENES['ch09-esr-window'] = _ch09_corrected['ch09-esr-window']
+SCENES['ch09-reference-ladder'] = _ch09_corrected['ch09-reference-ladder']

@@ -58,6 +58,15 @@ class ChapterContractTests(unittest.TestCase):
             result = check_chapter_contract.scan_chapter(p)
             self.assertFalse(any(result.values()), result)
 
+    def test_v2_chapter_hero_counts_but_photos_alone_do_not(self):
+        with tempfile.TemporaryDirectory() as d:
+            p=Path(d)/'ch.md'
+            for directory in ['figures-v2','svg-v2']:
+                p.write_text(VALID.replace('assets/figures/',f'assets/{directory}/'),encoding='utf-8')
+                self.assertTrue(check_chapter_contract.scan_chapter(p)['hero_fig'])
+            p.write_text(VALID.replace('assets/figures/','assets/photos/'),encoding='utf-8')
+            self.assertFalse(check_chapter_contract.scan_chapter(p)['hero_fig'])
+
     def test_curriculum_map_lists_all_19_chapter_files(self):
         root = Path(__file__).resolve().parents[1]
         text = (root / "docs/superpowers/curriculum/2026-11-03-zero-to-engineer-map.md").read_text(encoding="utf-8")

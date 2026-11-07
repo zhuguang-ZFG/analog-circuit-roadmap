@@ -264,3 +264,7 @@ SCENES = {
                '前面是激励到放大到滤波到转换；测试不回填，预算就还只是假设。',
     },
 }
+
+# Use source-bound reference/regulator models for historical batch rebuilds.
+from scripts.visuals.scenes.ch09_reference_figures import SCENES as _ch09_corrected
+SCENES['ch09-tl431-divider-floor'] = _ch09_corrected['ch09-tl431-divider-floor']
