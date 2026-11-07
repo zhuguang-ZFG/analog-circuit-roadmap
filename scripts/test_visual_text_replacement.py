@@ -2,9 +2,10 @@
 # -*- coding: utf-8 -*-
 """图文职责审计：replaces-text 记录须与正文、图注和实际字数一致。
 
-同时报告两类文体问题（不阻断）：
+同时报告三类文体问题（不阻断）：
 - 图注整句复制正文；
-- 同一公式出现在图前正文、图注、图后正文三处。
+- 同一公式出现在图前正文、图注、图后正文三处；
+- 同一公式出现在同节正文、图注、动画字幕三处。
 """
 from __future__ import annotations
 
@@ -12,6 +13,7 @@ import html
 import re
 import tempfile
 import unittest
+import xml.etree.ElementTree as ET
 from pathlib import Path
 
 import yaml
@@ -53,10 +55,11 @@ def load_records(root: Path) -> list[tuple[str, str, dict]]:
     return rows
 
 
-def manifest_outputs(root: Path) -> dict[str, str]:
+def manifest_outputs(root: Path) -> dict[str, tuple[str, str]]:
     path = root / "docs" / "superpowers" / "visual" / "visual-manifest.yml"
     data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
-    return {asset["id"]: str(asset.get("output") or "")
+    return {asset["id"]: (str(asset.get("output") or ""),
+                          str(asset.get("kind") or ""))
             for asset in data.get("assets") or [] if asset.get("id")}
 
 
@@ -79,6 +82,44 @@ def _paragraphs(text: str) -> list[str]:
     return [part.strip() for part in PARAGRAPH.split(text) if part.strip()]
 
 
+def canonical_math(item: str) -> str:
+    """LaTeX 公式归一化成可与 SVG 渲染文字比较的纯文本。"""
+    s = item.strip("$")
+    for cmd, char in (("\\times", "×"), ("\\cdot", "·"), ("\\pm", "±"),
+                      ("\\approx", "≈"), ("\\leq", "≤"), ("\\geq", "≥"),
+                      ("\\Omega", "Ω"), ("\\theta", "θ"), ("\\pi", "π"),
+                      ("\\Delta", "Δ"), ("\\propto", "∝"), ("\\infty", "∞"),
+                      ("\\rightarrow", "→"), ("\\Rightarrow", "⇒")):
+        s = s.replace(cmd, char)
+    s = re.sub(r"\\(?:text|mathrm|mathbf)\{([^{}]*)\}", r"\1", s)
+    s = re.sub(r"\\[,;!]", "", s)
+    s = re.sub(r"[_^]\{([^{}]*)\}", r"\1", s)
+    s = re.sub(r"[_^]([A-Za-z0-9])", r"\1", s)
+    return re.sub(r"\s+", "", s)
+
+
+def animation_subtitles(path: Path) -> list[str]:
+    """提取动画字幕：g[data-caption] 内文字与 metadata（含节拍 JSON）。"""
+    out = []
+    for el in ET.parse(path).iter():
+        tag = el.tag.rsplit("}", 1)[-1] if isinstance(el.tag, str) else ""
+        if tag == "g" and el.get("data-caption"):
+            for child in el.iter():
+                child_tag = (child.tag.rsplit("}", 1)[-1]
+                             if isinstance(child.tag, str) else "")
+                if child_tag == "text":
+                    out.append("".join(child.itertext()))
+        elif tag == "metadata":
+            out.append("".join(el.itertext()))
+    return out
+
+
+def contains_math(text: str, needle: str) -> bool:
+    """操作数边界匹配：R2 不得命中 R20。"""
+    return bool(re.search(r"(?<![A-Za-z0-9])" + re.escape(needle)
+                          + r"(?![A-Za-z0-9])", re.sub(r"\s+", "", text)))
+
+
 def audit(root: Path = ROOT) -> tuple[list[str], list[str]]:
     errors: list[str] = []
     warnings: list[str] = []
@@ -96,10 +137,23 @@ def audit(root: Path = ROOT) -> tuple[list[str], list[str]]:
         if record["relationship"] != "replaces-text":
             errors.append(f"{tag}: relationship 须为 replaces-text")
         asset_id = str(record["id"])
-        output = outputs.get(asset_id)
-        if not output:
+        entry = outputs.get(asset_id)
+        if not entry or not entry[0]:
             errors.append(f"{tag}: manifest 中没有该 id 或缺少 output")
             continue
+        output, kind = entry
+        subtitles = None
+        if kind == "animation":
+            asset_path = (root / output).resolve()
+            if not asset_path.is_relative_to(root.resolve()):
+                errors.append(f"{tag}: 动画字幕源越出仓库 {output}")
+            elif not asset_path.is_file():
+                errors.append(f"{tag}: 动画字幕源不存在 {output}")
+            else:
+                try:
+                    subtitles = animation_subtitles(asset_path)
+                except ET.ParseError:
+                    errors.append(f"{tag}: 动画字幕源 XML 解析失败 {output}")
         reference = str(record["source"])
         filename = reference.partition("#")[0]
         try:
@@ -137,7 +191,8 @@ def audit(root: Path = ROOT) -> tuple[list[str], list[str]]:
         caption_key = squash(caption)
         copied = sorted({squash(item) for item in SENTENCE.findall(body)
                          if len(squash(item)) >= 14
-                         and squash(item) in caption_key})
+                         and squash(item) in caption_key
+                         and len(squash(FORMULA.sub("", item))) >= 14})
         for item in copied:
             warnings.append(f"{tag}: 图注整句复制正文「{item[:24]}…」")
 
@@ -151,6 +206,14 @@ def audit(root: Path = ROOT) -> tuple[list[str], list[str]]:
             repeated = formulas(caption) & left & right
             for item in sorted(repeated):
                 warnings.append(f"{tag}: 公式在图前、图注、图后各出现一次 {item}")
+
+        if subtitles is not None:
+            prose = formulas(FIGURE.sub("", excerpt))
+            for item in sorted(formulas(caption) & prose):
+                needle = canonical_math(item)
+                if needle and any(contains_math(s, needle) for s in subtitles):
+                    warnings.append(
+                        f"{tag}: 公式在正文、图注、动画字幕各出现一次 {item}")
     return errors, warnings
 
 
@@ -263,6 +326,88 @@ class TextReplacementFixtureTests(unittest.TestCase):
             self.valid_record(caption=f"图注说明 {formula}。"))
         _, warnings = audit(self.root)
         self.assertTrue(any("公式" in item for item in warnings))
+
+    def animation_case(self, prose, caption, svg, *, kind="animation",
+                       output="assets/svg-v2/demo.svg", prefix=""):
+        self.write(
+            prefix + "## 1.0 演示\n\n新导读一句话。" + prose + "\n\n"
+            f'<figure><img src="{output}"><figcaption>{caption}</figcaption>'
+            "</figure>\n", self.valid_record(caption=caption), output=output)
+        manifest = {"assets": [{"id": "demo", "kind": kind, "output": output}]}
+        (self.root / "docs/superpowers/visual/visual-manifest.yml").write_text(
+            yaml.safe_dump(manifest, allow_unicode=True), encoding="utf-8")
+        path = self.root / output
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(svg, encoding="utf-8")
+
+    def test_formula_in_prose_caption_subtitle_warns_once(self):
+        formula = r"$V_{out}=I\times R_2$"
+        self.animation_case(formula, "图注 " + formula,
+                            '<svg><g data-caption="推导"><text>'
+                            'Vout = I × R2</text></g></svg>')
+        errors, warnings = audit(self.root)
+        self.assertEqual([], errors)
+        self.assertEqual(1, len([w for w in warnings if "字幕" in w]))
+
+    def test_formula_in_only_caption_and_subtitle_does_not_warn(self):
+        self.animation_case("先看输出。", r"图注 $V_{out}=I\times R_2$",
+                            '<svg><g data-caption="推导"><text>'
+                            'Vout = I × R2</text></g></svg>')
+        self.assertEqual(([], []), audit(self.root))
+
+    def test_static_figure_and_noncaption_labels_are_not_subtitles(self):
+        formula = r"$V_{out}=I\times R_2$"
+        for kind, svg in (
+            ("figure", '<svg><g data-caption="推导"><text>'
+             'Vout=I×R2</text></g></svg>'),
+            ("animation", '<svg><text>Vout=I×R2</text></svg>'),
+        ):
+            with self.subTest(kind=kind):
+                self.animation_case(formula, "图注 " + formula, svg, kind=kind)
+                self.assertEqual(([], []), audit(self.root))
+
+    def test_subtitle_operand_boundaries_are_preserved(self):
+        formula = r"$V_{out}=I\times R_2$"
+        self.animation_case(formula, "图注 " + formula,
+                            '<svg><g data-caption="推导"><text>'
+                            'Vout=I×R20</text></g></svg>')
+        self.assertEqual(([], []), audit(self.root))
+
+    def test_formula_in_another_section_is_not_adjacent_prose(self):
+        formula = r"$V_{out}=I\times R_2$"
+        self.animation_case("先看输出。", "图注 " + formula,
+                            '<svg><g data-caption="推导"><text>'
+                            'Vout=I×R2</text></g></svg>',
+                            prefix="## 0.0 另一节\n\n" + formula + "\n\n")
+        self.assertEqual(([], []), audit(self.root))
+
+    def test_repeated_visible_and_metadata_subtitles_warn_once(self):
+        formula = r"$V_{out}=I\times R_2$"
+        self.animation_case(formula, "图注 " + formula,
+                            '<svg><metadata>Vout=I×R2</metadata>'
+                            '<g data-caption="一"><text>Vout=I×R2</text></g>'
+                            '<g data-caption="二"><text>Vout=I×R2</text></g></svg>')
+        errors, warnings = audit(self.root)
+        self.assertEqual([], errors)
+        self.assertEqual(1, len([w for w in warnings if "字幕" in w]))
+
+    def test_missing_or_malformed_animation_is_an_audit_error(self):
+        for svg in (None, "<svg>"):
+            with self.subTest(svg=svg):
+                self.animation_case("正文。", "图注。", svg or "<svg/>")
+                if svg is None:
+                    (self.root / "assets/svg-v2/demo.svg").unlink()
+                errors, _ = audit(self.root)
+                self.assertTrue(any("动画字幕" in e for e in errors), errors)
+
+    def test_animation_output_cannot_escape_repository(self):
+        self.animation_case("正文。", "图注。", "<svg/>")
+        manifest_path = self.root / "docs/superpowers/visual/visual-manifest.yml"
+        data = yaml.safe_load(manifest_path.read_text(encoding="utf-8"))
+        data["assets"][0]["output"] = "../outside.svg"
+        manifest_path.write_text(yaml.safe_dump(data), encoding="utf-8")
+        errors, _ = audit(self.root)
+        self.assertTrue(any("动画字幕" in e for e in errors), errors)
 
 
 class RepositoryRecordTests(unittest.TestCase):
