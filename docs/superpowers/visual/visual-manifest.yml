@@ -9071,8 +9071,8 @@ assets:
   output: assets/figures-v2/ch03-config-impedance.svg
   print_fallback: assets/figures-v2/ch03-config-impedance-print.svg
   preview: assets/figures-v2/ch03-config-impedance.webp
-  alt: 手绘三张组态卡片围着中心折算律：共射 B 进 C 出、增益高反相；共集 B 进 E 出、电压约 1 同相；共基 E 进 C 出、高频同相。中心写从发射极看阻抗除以贝塔加一，从基极看阻抗乘以贝塔加一。底部算例：10
-    千欧源、贝塔 100、IE 1 毫安，rπ 约 2.6 千欧，射随输出约 150 欧。
+  alt: 手绘三种组态与阻抗折算律：共射反相放大，共集同相缓冲，共基输入阻抗低。从发射极看，基极回路阻抗除以贝塔加一。10 千欧源、贝塔 100、IE 1 毫安、rπ 约 2.6 千欧，从发射极看入管内约
+    125 欧，端口还须并联发射极电阻。
   status: accepted
   status_history:
   - planned
@@ -9080,26 +9080,25 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 5
-    印刷可读性: 4
+    构图层级: 4
     风格一致性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch03-config-impedance.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_method: calculation-and-render-review
   review_record:
     reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
+    method: calculation-and-render-review
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: ba42fc5f8ffd33d80f4a537165519ab5ba10764f6c8c5f631e4e29635515c4f6
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch03-animation-2026-11-08/review.md
+    asset_sha256: 43a4100a4a9a461cbfe796a63e8664e52a55ff9d63762bf788f206e121ea1072
 - id: ch03-early-effect
   chapter: 3
   kind: figure
@@ -10942,7 +10941,7 @@ assets:
   print_fallback: assets/figures-v2/ch03-ce-swing-budget-print.svg
   preview: assets/figures-v2/ch03-ce-swing-budget.webp
   alt: 手绘共射摆幅预算。左蓝框先立地基：集电极 6 伏、发射极 1.8 伏、基极约 2.5 伏、集电极电流 3 毫安、管压降约 4.2 伏，这是安静时的 Q 点。右绿框再数余量：向上到 12 伏是
-    6 伏，向下到发射极加 0.2 伏是 4 伏，取小的那份。琥珀框写最大不失真摆幅等于 2 乘最小余量、即 8.0 Vpp；增益 230，想推满 8 Vpp 输入上限约 35 mVpp。红框写削波方向就是诊断方向：输出底部削平是撞饱和、Q
+    6 伏，向下到发射极加 0.2 伏是 4 伏，取小的那份。琥珀框写线性外推削波界等于 2 乘最小余量、即 8.0 Vpp；增益 230，线性估计输入约 35 mVpp；指数非线性更早出现，失真须另验。红框写削波方向就是诊断方向：输出底部削平是撞饱和、Q
     点偏高，查发射极电压或集电极电阻偏大；顶部削平是撞截止、Q 点偏低，把基极电压往上挪。底部写 Q 点偏置的任务就是把两份余量尽量平分，先站回直流窗口再用信号说话。
   status: accepted
   status_history:
@@ -10951,26 +10950,25 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 5
-    印刷可读性: 4
+    构图层级: 4
     风格一致性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch03-ce-swing-budget.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_method: calculation-and-render-review
   review_record:
     reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
+    method: calculation-and-render-review
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: f1b9f3289ffde3897ce4a6dcaca735f6cde1c453b09e2d5b21721ec2a5fa946c
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch03-animation-2026-11-08/review.md
+    asset_sha256: bb4110b7a6b8474b6d40ece96a6544cbca70241d7283d0a251ab9d68bcdb1706
 - id: ch15-return-mirror
   chapter: 15
   kind: figure
@@ -11318,8 +11316,8 @@ assets:
   print_fallback: assets/figures-v2/ch03-region-check-print.svg
   preview: assets/figures-v2/ch03-region-check.webp
   alt: 判读流程：先量 VBE 与 VCE，再分四路——VBE 约 0.7 V、VCE 大于 1 V 是放大区；VBE 约 0.8 V、VCE 约 0.1~0.3 V 是饱和区；VBE 小于 0.5
-    V、VCE 接近 VCC 是截止区；基极有电压而 VBE 为 0 V 是发射结开路、管子已死。底部两条边界：BVCEO 40 V 是失效边界不是第四区；截止漏流每升 8~10 °C 翻倍，85 °C
-    高阻负载要重算。
+    V、VCE 接近 VCC 是截止区；VBE 为 0 V 说明尚未正偏，应查驱动或 B-E 短路，不能直接判开路。底部两条边界：BVCEO 40 V 是失效边界不是第四区；截止漏流每升 8~10 °C
+    翻倍，85 °C 高阻负载要重算。
   status: accepted
   status_history:
   - planned
@@ -11327,26 +11325,25 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 5
-    印刷可读性: 4
+    构图层级: 4
     风格一致性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch03-region-check.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_method: calculation-and-render-review
   review_record:
     reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
+    method: calculation-and-render-review
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 5cfe3f09d15badc854fe081f26895e50e62b208ec823a6cbff4a61e0c574c868
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch03-animation-2026-11-08/review.md
+    asset_sha256: 7d7f0fbc43972ccf1872c93fd69be58750a0a09dcbd54288aab1e50127984a00
 - id: ch18-williams-workbench
   chapter: 18
   kind: figure
@@ -11531,3 +11528,207 @@ assets:
     reviewed_on: '2026-11-08'
     record: docs/superpowers/visual/reviews/ch02-animation-2026-11-07/review.md
     asset_sha256: b8d1198da4b8b639e1fb7d82f826dc1b49496515aca51a8a1cde31420680d3bd
+- id: ch03-bias-sweep-v2
+  chapter: 3
+  kind: animation
+  type: A2
+  anchor: '3.4'
+  purpose: 同轴比较两种偏置的 β 灵敏度
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-04-ch3.md#3.4
+  prompt_file: docs/superpowers/visual/prompts/ch03-bias-sweep-v2.md
+  output: assets/svg-v2/ch03-bias-sweep-v2.svg
+  print_fallback: assets/svg-v2/ch03-bias-sweep-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch03-bias-sweep-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch03-bias-sweep-v2-static.svg
+  alt: 贝塔从 100 扫到 600，共用电流刻度：固定偏置从 1 毫安升至 5.9 毫安的饱和限流；分压偏置从 0.866 升至 0.919 毫安。贝塔 300 时分别为 3 与 0.908 毫安。温漂另算。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 固定偏置
+    start: 0
+    end: 3
+    caption: 固定偏置：β 增加，IC 上升，最终受负载限流。
+  - name: 分压反馈
+    start: 3
+    end: 6
+    caption: 分压偏置：基流加载与 RE 反馈一起进入计算。
+  - name: 同轴比较
+    start: 6
+    end: 9
+    caption: 同一组 β，同一根电流刻度；不能各自放大纵轴。
+  - name: 保留边界
+    start: 9
+    end: 12
+    caption: β 从 100 到 300：0.866 → 0.908 mA，约增 4.8%。
+  conclusion_frame:
+    beat: 保留边界
+    output: assets/svg-v2/ch03-bias-sweep-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch03-animation-2026-11-08/review.md
+    asset_sha256: 19c605d021d8841780eed4312ace71e8f7f764869b671a80f2cd943418301f48
+- id: ch03-forced-beta-v2
+  chapter: 3
+  kind: animation
+  type: A2
+  anchor: '3.5'
+  purpose: 明确强制 β 与基流、过驱动的反向关系
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-04-ch3.md#3.5
+  prompt_file: docs/superpowers/visual/prompts/ch03-forced-beta-v2.md
+  output: assets/svg-v2/ch03-forced-beta-v2.svg
+  print_fallback: assets/svg-v2/ch03-forced-beta-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch03-forced-beta-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch03-forced-beta-v2-static.svg
+  alt: 固定 70 毫安负载，强制贝塔 10、2、50 分别要求 7、35、1.4 毫安基流；三条基流条按同一比例绘制。减小强制贝塔增加过驱动，增大强制贝塔降低饱和余量，仍须验证手册条件与 GPIO
+    能力。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 固定负载
+    start: 0
+    end: 3
+    caption: 保持 IC = 70 mA，强制 β 是 IC / IB 的设计比值。
+  - name: 常用起点
+    start: 3
+    end: 6
+    caption: 强制 β = 10：需要 7 mA 基流，先查 GPIO 能力。
+  - name: 增加过驱动
+    start: 6
+    end: 9
+    caption: 改成 2：基流升到 35 mA，过驱动增加。
+  - name: 减少基流
+    start: 9
+    end: 12
+    caption: 改成 50：基流降到 1.4 mA，饱和余量减小。
+  conclusion_frame:
+    beat: 减少基流
+    output: assets/svg-v2/ch03-forced-beta-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch03-animation-2026-11-08/review.md
+    asset_sha256: 5e58fb4b23a6f2dfca4ac4d5f6487b4b4068a6f7757b0ce9e3a473a5bcd962ed
+- id: ch03-ce-linearity-v2
+  chapter: 3
+  kind: animation
+  type: A3
+  anchor: '3.9'
+  purpose: 区分削波余量与低失真输入范围
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-04-ch3.md#3.9
+  prompt_file: docs/superpowers/visual/prompts/ch03-ce-linearity-v2.md
+  output: assets/svg-v2/ch03-ce-linearity-v2.svg
+  print_fallback: assets/svg-v2/ch03-ce-linearity-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch03-ce-linearity-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch03-ce-linearity-v2-static.svg
+  alt: 相同电压轴比较 10 与 35 毫伏峰峰输入；虚线为小信号线性化，实线为指数模型。指数模型输出不对称，35 毫伏时下沿已碰到 2 伏。8 伏峰峰轨道余量不能保证低失真。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters:
+  - name: input_pp_mv
+    label: 输入峰峰值
+    unit: mVpp
+    min: 10
+    max: 35
+    values:
+    - 10
+    - 35
+  beats:
+  - name: 小信号
+    start: 0
+    end: 3
+    caption: 输入 10 mVpp：线性化与指数模型已经略有差别。
+  - name: 增大输入
+    start: 3
+    end: 6
+    caption: 输入 35 mVpp：指数模型下沿先碰到 2 V。
+  - name: 比较模型
+    start: 6
+    end: 9
+    caption: 线性外推的 8 Vpp 余量，不是失真指标的保证。
+  - name: 验收失真
+    start: 9
+    end: 12
+    caption: 按失真要求减小输入或增加负反馈，再实测。
+  conclusion_frame:
+    beat: 验收失真
+    output: assets/svg-v2/ch03-ce-linearity-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch03-animation-2026-11-08/review.md
+    asset_sha256: ced134e3590802f2e55077f9b8bdb7fef8d107a4afa4f24ff5b5940e82726653

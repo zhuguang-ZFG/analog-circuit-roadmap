@@ -113,6 +113,6 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <path d="M670 260 Q630.10 280.20 590 300" fill="none" stroke="#c9bb9d" stroke-width="2"/>
 <path d="M500 390 Q499.99 410.00 500 430" fill="none" stroke="#c9bb9d" stroke-width="2"/>
 <rect x="50" y="560" width="900" height="70" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
-<text x="76" y="600" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">10kΩ 源、β=100、IE=1mA：rπ≈2.6kΩ；射随输出 ≈150Ω。</text>
+<text x="76" y="600" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">10kΩ 源、β=100、IE=1mA：rπ≈2.6kΩ；管内看入 ≈125Ω。</text>
 <text x="500" y="660" font-size="22" fill="#a4630f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">共射出增益、共集出电流、共基出频率。</text>
 </svg>

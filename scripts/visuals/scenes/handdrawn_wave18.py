@@ -83,7 +83,7 @@ def threes_five_threshold():
 
 def ce_swing_budget():
     parts = [header('摆幅由更小的那份余量决定',
-                    '12 V 供电、Q 点 6 V：上行余量 6 V、下行余量 4 V，最大不失真 8.0 Vpp。')]
+                    '12 V 供电、Q 点 6 V：上行余量 6 V、下行余量 4 V，近似削波界 8.0 Vpp。')]
 
     parts.append(box(50, 126, 430, 176, fill=PAPER, stroke=BLUE))
     parts.append(text(74, 166, '先立地基', 24, colour=BLUE, weight='700'))
@@ -100,8 +100,8 @@ def ce_swing_budget():
     parts.append(text(544, 276, '取小的那份，来回一趟', 22, colour=INK2))
 
     parts.append(box(50, 316, 900, 96, fill=PAPER, stroke=AMBER))
-    parts.append(text(76, 354, '最大不失真摆幅 = 2 × min(6 V, 4 V) = 8.0 Vpp', 24, colour=AMBER, weight='700'))
-    parts.append(text(76, 388, '增益 230（R_C / r_e = 2 kΩ / 8.7 Ω）→ 想推满 8 Vpp，输入上限约 35 mVpp',
+    parts.append(text(76, 354, '线性外推削波界 = 2 × min(6 V, 4 V) = 8.0 Vpp', 24, colour=AMBER, weight='700'))
+    parts.append(text(76, 388, '增益 230 → 线性估计输入约 35 mVpp；指数非线性会更早出现，失真须另验',
                       22, colour=INK2))
 
     parts.append(box(50, 426, 900, 146, fill=PAPER, stroke=RED))
@@ -149,8 +149,8 @@ SCENES = {
         'alt': '手绘共射摆幅预算。左蓝框先立地基：集电极 6 伏、发射极 1.8 伏、基极约 2.5 伏、'
                '集电极电流 3 毫安、管压降约 4.2 伏，这是安静时的 Q 点。'
                '右绿框再数余量：向上到 12 伏是 6 伏，向下到发射极加 0.2 伏是 4 伏，取小的那份。'
-               '琥珀框写最大不失真摆幅等于 2 乘最小余量、即 8.0 Vpp；增益 230，'
-               '想推满 8 Vpp 输入上限约 35 mVpp。'
+               '琥珀框写线性外推削波界等于 2 乘最小余量、即 8.0 Vpp；增益 230，'
+               '线性估计输入约 35 mVpp；指数非线性更早出现，失真须另验。'
                '红框写削波方向就是诊断方向：输出底部削平是撞饱和、Q 点偏高，'
                '查发射极电压或集电极电阻偏大；顶部削平是撞截止、Q 点偏低，把基极电压往上挪。'
                '底部写 Q 点偏置的任务就是把两份余量尽量平分，先站回直流窗口再用信号说话。',

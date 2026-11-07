@@ -277,7 +277,7 @@ def config_impedance():
     parts.append(f'<line x1="670" y1="260" x2="590" y2="300" stroke="{RULE}" stroke-width="2"/>')
     parts.append(f'<line x1="500" y1="390" x2="500" y2="430" stroke="{RULE}" stroke-width="2"/>')
     parts.append(box(50, 560, 900, 70, fill=PAPER))
-    parts.append(text(76, 600, '10kΩ 源、β=100、IE=1mA：rπ≈2.6kΩ；射随输出 ≈150Ω。', 22,
+    parts.append(text(76, 600, '10kΩ 源、β=100、IE=1mA：rπ≈2.6kΩ；管内看入 ≈125Ω。', 22,
                       weight='700'))
     parts.append(text(500, 660, '共射出增益、共集出电流、共基出频率。', 22,
                       colour=AMBER, anchor='middle', weight='700'))
@@ -358,7 +358,7 @@ SCENES = {
     'ch03-config-impedance': {
         'draw': config_impedance, 'title': '三种组态共用一条阻抗折算律', 'anchor': '3.3',
         'chapter': 3, 'source': 'docs/p1-04-ch3.md',
-        'alt': '手绘三张组态卡片围着中心折算律：共射 B 进 C 出、增益高反相；共集 B 进 E 出、电压约 1 同相；共基 E 进 C 出、高频同相。中心写从发射极看阻抗除以贝塔加一，从基极看阻抗乘以贝塔加一。底部算例：10 千欧源、贝塔 100、IE 1 毫安，rπ 约 2.6 千欧，射随输出约 150 欧。',
+        'alt': '手绘三种组态与阻抗折算律：共射反相放大，共集同相缓冲，共基输入阻抗低。从发射极看，基极回路阻抗除以贝塔加一。10 千欧源、贝塔 100、IE 1 毫安、rπ 约 2.6 千欧，从发射极看入管内约 125 欧，端口还须并联发射极电阻。',
     },
     'ch03-early-effect': {
         'draw': early_effect, 'title': '厄利效应与输出阻抗', 'anchor': '3.1',
