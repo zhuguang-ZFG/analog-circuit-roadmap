@@ -2831,3 +2831,333 @@ assets:
     reviewed_on: '2026-11-08'
     record: docs/superpowers/visual/reviews/ch03-animation-2026-11-08/review.md
     asset_sha256: ced134e3590802f2e55077f9b8bdb7fef8d107a4afa4f24ff5b5940e82726653
+- id: ch04-transconductance-v2
+  chapter: 4
+  kind: animation
+  type: A2
+  anchor: '4.2'
+  purpose: 纠正平台估算中把局部跨导当成割线的错误
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-05-ch4.md#4.2
+  prompt_file: docs/superpowers/visual/prompts/ch04-transconductance-v2.md
+  output: assets/svg-v2/ch04-transconductance-v2.svg
+  print_fallback: assets/svg-v2/ch04-transconductance-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch04-transconductance-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch04-transconductance-v2-static.svg
+  alt: 平方律转移曲线上的 3 伏、5 安工作点，局部切线跨导为 10 西门子，外推截距为 2.5 伏；实际阈值是 2 伏。过驱动为两倍漏电流除以跨导，即 1 伏。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 转移曲线
+    start: 0
+    end: 3
+    caption: 示意平方律：ID = 5 (VGS − 2)²，电流单位 A。
+  - name: 局部切线
+    start: 3
+    end: 6
+    caption: Q 点为 3 V / 5 A；局部导数 gm = 10 S。
+  - name: 阈值割线
+    start: 6
+    end: 9
+    caption: 切线延长交在 2.5 V，不是阈值 2 V。
+  - name: 回代平方律
+    start: 9
+    end: 12
+    caption: VGS = VTH + 2ID/gm = 3 V；真实器件查曲线。
+  conclusion_frame:
+    beat: 回代平方律
+    output: assets/svg-v2/ch04-transconductance-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch04-animation-2026-11-08/review.md
+    asset_sha256: f3a8868ea1b083ae36526a465f7e3daf6f4daedd934614dd81936d4312244979
+- id: ch04-gate-transient-v2
+  chapter: 4
+  kind: animation
+  type: A3
+  anchor: '4.3'
+  purpose: 区分栅极瞬态响应与电阻、电容分压上界
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-05-ch4.md#4.3
+  prompt_file: docs/superpowers/visual/prompts/ch04-gate-transient-v2.md
+  output: assets/svg-v2/ch04-gate-transient-v2.svg
+  print_fallback: assets/svg-v2/ch04-gate-transient-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch04-gate-transient-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch04-gate-transient-v2-static.svg
+  alt: 400 伏漏压在 20 纳秒上升，50 皮法向总计 1050 皮法的栅节点注入 1 安。10 欧下拉的示意峰值约 8.5 伏，1 欧约 1 伏；随后指数放电。跨过阈值后模型需加入沟道导通。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters:
+  - name: Roff
+    values:
+    - 10
+    - 1
+    unit: Ω
+  beats:
+  - name: 漏压斜坡
+    start: 0
+    end: 3
+    caption: 400 V / 20 ns；50 pF 注入 1 A 位移电流。
+  - name: 十欧关断
+    start: 3
+    end: 6
+    caption: 10 Ω 与 1050 pF：τ = 10.5 ns，20 ns 约 8.5 V。
+  - name: 一欧关断
+    start: 6
+    end: 9
+    caption: 1 Ω 同条件峰值约 1 V；低阻下拉降低栅压。
+  - name: 模型边界
+    start: 9
+    end: 12
+    caption: 跨过实际阈值后沟道参与，须用非线性模型复核。
+  conclusion_frame:
+    beat: 模型边界
+    output: assets/svg-v2/ch04-gate-transient-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch04-animation-2026-11-08/review.md
+    asset_sha256: 9697c95aa573ece9d12533c42c46e16e3ad97cbd3beaf96c345bc8a2d7fc73bb
+- id: ch04-deadtime-energy-v2
+  chapter: 4
+  kind: animation
+  type: A1
+  anchor: '4.4'
+  purpose: 按完整周期核算死区能量与平均损耗
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-05-ch4.md#4.4
+  prompt_file: docs/superpowers/visual/prompts/ch04-deadtime-energy-v2.md
+  output: assets/svg-v2/ch04-deadtime-energy-v2.svg
+  print_fallback: assets/svg-v2/ch04-deadtime-energy-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch04-deadtime-energy-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch04-deadtime-energy-v2-static.svg
+  alt: 十微秒周期内两段死区各五十纳秒，体二极管承受零点八伏、五安；每周期零点四微焦，乘一百千赫为零点零四瓦，即四十毫瓦。放大的单次换流图标明独立尺度。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 完整周期
+    start: 0
+    end: 3
+    caption: 一个 10 µs 周期，两段死区合计 100 ns。
+  - name: 换流路径
+    start: 3
+    end: 6
+    caption: 死区由体二极管续流；开通后沟道接管。
+  - name: 每次能量
+    start: 6
+    end: 9
+    caption: 0.8 V × 5 A × 100 ns = 0.4 µJ / 周期。
+  - name: 平均损耗
+    start: 9
+    end: 12
+    caption: 0.4 µJ × 100 kHz = 0.04 W，即 40 mW。
+  conclusion_frame:
+    beat: 平均损耗
+    output: assets/svg-v2/ch04-deadtime-energy-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch04-animation-2026-11-08/review.md
+    asset_sha256: 0e8a6f2575b96f0ccaf16076da5eeb2f6e2eab454befd640c055ae9c34c9d622
+- id: ch04-thermal-pulse-v2
+  chapter: 4
+  kind: animation
+  type: A2
+  anchor: '4.5'
+  purpose: 用响应叠加区分孤立短脉冲和重复脉冲温升
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-05-ch4.md#4.5
+  prompt_file: docs/superpowers/visual/prompts/ch04-thermal-pulse-v2.md
+  output: assets/svg-v2/ch04-thermal-pulse-v2.svg
+  print_fallback: assets/svg-v2/ch04-thermal-pulse-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch04-thermal-pulse-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch04-thermal-pulse-v2-static.svg
+  alt: 归一化单极点热模型，持续加热逐渐趋近二百五十五摄氏度温升，孤立半个时间常数脉冲随后冷却，每两个时间常数重复的脉冲叠加余热。实际按器件瞬态热阻和冷却边界校核。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 稳态上界
+    start: 0
+    end: 3
+    caption: 恒功率持续施加：温升逐渐趋向 P × Rθ。
+  - name: 孤立脉冲
+    start: 3
+    end: 6
+    caption: 孤立 0.5τ 脉冲：停止发热后逐渐冷却。
+  - name: 重复脉冲
+    start: 6
+    end: 9
+    caption: 每 2τ 重复一次：上次余热仍在，温升会累积。
+  - name: 核对热边界
+    start: 9
+    end: 12
+    caption: 示意单极点；实际用器件曲线及相同冷却边界。
+  conclusion_frame:
+    beat: 核对热边界
+    output: assets/svg-v2/ch04-thermal-pulse-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch04-animation-2026-11-08/review.md
+    asset_sha256: 572f4819cc0fa7af05ee56fff9bb8cd763c31edbba799f6ecee3ae224de88a7d
+- id: ch04-gate-power-v2
+  chapter: 4
+  kind: animation
+  type: A1
+  anchor: '4.6'
+  purpose: 分清峰值驱动能力、平均供电与驱动功率的归属
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p1-05-ch4.md#4.6
+  prompt_file: docs/superpowers/visual/prompts/ch04-gate-power-v2.md
+  output: assets/svg-v2/ch04-gate-power-v2.svg
+  print_fallback: assets/svg-v2/ch04-gate-power-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch04-gate-power-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch04-gate-power-v2-static.svg
+  alt: 每周期七纳库栅电荷，一百千赫时平均供电零点七毫安；十伏、十欧回路初始峰值约一安；平均驱动功率七毫瓦，分布在驱动器及栅极回路中，不全在 MOSFET 内。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 4
+    风格一致性: 4
+    印刷可读性: 5
+    运动叙事: 4
+    交互节奏: 4
+  duration: 12
+  parameters: []
+  beats:
+  - name: 搬运电荷
+    start: 0
+    end: 3
+    caption: 每周期搬运 Qg = 7 nC；由近旁去耦提供瞬态电荷。
+  - name: 平均供电
+    start: 3
+    end: 6
+    caption: 7 nC × 100 kHz = 0.7 mA，属于平均供电账。
+  - name: 峰值驱动
+    start: 6
+    end: 9
+    caption: 10 V / 10 Ω = 1 A，只是初始峰值估计。
+  - name: 功率归属
+    start: 9
+    end: 12
+    caption: Qg × Vdrv × f = 7 mW，分散耗在驱动回路。
+  conclusion_frame:
+    beat: 功率归属
+    output: assets/svg-v2/ch04-gate-power-v2-static.svg
+  reviewed_by: agent-proxy
+  review_method: calculation-and-render-review
+  review_record:
+    reviewer: agent-proxy
+    method: calculation-and-render-review
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-08'
+    record: docs/superpowers/visual/reviews/ch04-animation-2026-11-08/review.md
+    asset_sha256: 62dd9d58dcada3a9dc9dfadf4b8a263d4a13c91f1fa04c3c173e2adac8c03434

@@ -98,17 +98,17 @@ def thermal_chain_ledger():
                       22, colour=INK2))
 
     parts.append(box(50, 272, 900, 86, fill=PAPER, stroke=BLUE))
-    parts.append(text(76, 310, '两条降额线（纪律，不是保守癖）', 24, colour=BLUE, weight='700'))
+    parts.append(text(76, 310, '两条降额示例（按产品要求另定）', 24, colour=BLUE, weight='700'))
     parts.append(text(76, 344, '持续结温压在 125 °C 以下；V_DS 峰值压在额定的 80% 以内', 22, colour=INK2))
 
     parts.append(box(50, 372, 900, 150, fill=PAPER, stroke=AMBER))
     parts.append(text(76, 410, '测量环节也会骗你：四个自欺现场', 24, colour=AMBER, weight='700'))
-    parts.append(text(76, 446, '长地线探头在 di/dt 里就是环形天线，20 mm 环路足以把振铃夸大数倍', 22, colour=INK2))
+    parts.append(text(76, 446, '20 mm 探头地线环路可能引入振铃，先缩短回路后复测', 22, colour=INK2))
     parts.append(text(76, 478, '电流探头与电压通道的延迟差，让损耗积分偏大或偏小', 22, colour=INK2))
-    parts.append(text(76, 510, '万用表电阻挡测不出 R_DS(on)；关断尖峰要与该结温的 V_TH 比', 22, colour=INK2))
+    parts.append(text(76, 510, 'R_DS(on) 要通已知电流四线测；误导通看 V_GS，耐压看 V_DS', 22, colour=INK2))
 
     parts.append(box(50, 536, 900, 72, fill=PAPER, stroke=GREEN))
-    parts.append(text(76, 578, '脉冲看瞬态热阻 Z_θJC(t)，稳态值套短脉冲是保守，套长脉冲是危险',
+    parts.append(text(76, 578, '孤立短脉冲用 Z_θJC(t)；重复脉冲还须累计热量，边界条件保持一致',
                       22, colour=GREEN, weight='700'))
 
     parts.append(box(50, 622, 900, 62, fill=PAPER))
@@ -220,11 +220,11 @@ SCENES = {
         'alt': '手绘热失效账。顶部红框写结温等于环境温度加功耗乘三级热阻之和；'
                '导通 0.75 瓦加开关 3.5 瓦共 4.25 瓦，只靠电路板敷铜、热阻按 60 摄氏度每瓦估，'
                '温升 255 摄氏度，150 或 175 摄氏度的额定都挡不住。'
-               '蓝框两条降额线：持续结温压在 125 摄氏度以下，漏源峰值压在额定的 80% 以内。'
-               '琥珀框列四个测量自欺：长地线探头在电流变化率环境里就是环形天线，20 毫米环路足以把振铃夸大数倍；'
-               '电流探头与电压通道的延迟差让损耗积分偏大或偏小；万用表电阻挡测不出导通电阻；'
-               '关断尖峰要与该结温下的阈值电压比。'
-               '绿框写脉冲要看瞬态热阻曲线，稳态值套短脉冲是保守、套长脉冲是危险。'
+               '蓝框两条降额示例：结温 125 摄氏度以下、漏源峰值在额定 80% 以内，具体按产品要求另定。'
+               '琥珀框列测量边界：20 毫米探头地线环路可能引入振铃，先缩短后复测；'
+               '电流探头与电压通道的延迟差让损耗积分偏大或偏小；导通电阻要通已知电流四线测；'
+               '误导通看栅源电压与热态阈值，耐压看漏源峰值。'
+               '绿框写孤立短脉冲看瞬态热阻，重复脉冲还须累计热量，保持相同热边界条件。'
                '底部写雪崩不是免费保险：100 纳亨乘 0.5 安每纳秒就是 50 伏，直接叠在母线上。',
     },
     'ch01-q-selectivity-map': {

@@ -118,16 +118,16 @@ def channel_formation():
                          f'fill="{BLUE}" stroke="{INK}" stroke-width="1.2"/>')
         parts.append(text(x + 134, 354, gtext, 22, anchor='middle', colour=BLUE, weight='700'))
         note = '两个背靠背 PN 结' if stage == 0 else ('反型层连起源漏' if stage == 1 else '沟道更厚')
-        note2 = '不导通' if stage == 0 else ('沟道导通' if stage == 1 else 'RDS(on) 更低')
+        note2 = '体二极管另看' if stage == 0 else ('沟道导通' if stage == 1 else 'RDS(on) 更低')
         parts.append(text(x + 134, 384, note, 22, anchor='middle'))
         parts.append(text(x + 134, 412, note2, 22, anchor='middle', colour=INK2))
     parts.append(box(56, 440, 888, 230, fill=PAPER, stroke=INK2))
     parts.append(text(500, 474, '栅极这只电容：开关瞬间的账', 26, anchor='middle', weight='700'))
     parts.append(f'<line x1="90" y1="494" x2="910" y2="494" stroke="{RULE}" stroke-width="1.5"/>')
     parts.extend(_rows(90, 528, 40, [
-        '栅氧只有几纳米：理论耐压几十伏，栅源额定常见 ±20 V',
+        '栅氧厚度与工艺有关；栅源额定常见 ±20 V，必须查具体型号',
         'VTH 随温度下降 −2~−5 mV/°C：热管更容易被 dv/dt 误导通',
-        '看 VGS=3.3 V 的输出曲线，别把 VTH(max) 小于 3.3 V 当成全开',
+        '3.3 V 驱动应查对应栅压的 RDS(on) 保证，不只看 VTH',
     ]))
     return parts
 
@@ -191,10 +191,10 @@ SCENES = {
         'title': '沟道形成三步',
         'anchor': '4.1 沟道形成原理（N 沟道增强型）', 'chapter': 4,
         'source': 'docs/p1-05-ch4.md',
-        'alt': '三幅 N 沟道增强型 MOSFET 剖面：VGS=0 时两个 N+ 区被 P 型衬底隔开、两个背靠背 PN 结不导通；'
+        'alt': '三幅 N 沟道增强型 MOSFET 剖面：VGS=0 时两个 N+ 区被 P 型衬底隔开、增强沟道关闭，体二极管另看极性；'
                'VGS>VTH 时氧化层下形成蓝色反型层，把源漏连起来；VGS 更大时沟道更厚、RDS(on) 更低。'
-               '底部三条电容账：栅氧几纳米、栅源额定常见 ±20 V；VTH 随温度下降 −2~−5 mV/°C；'
-               '3.3 V 驱动要看输出曲线，不能只看 VTH(max)。'},
+               '底部三条电容账：栅氧厚度取决于工艺，栅源额定常见 ±20 V、须查型号；VTH 随温度下降 −2~−5 mV/°C；'
+               '3.3 V 驱动要查对应栅压的 RDS(on) 保证，不能只看 VTH(max)。'},
     'ch03-region-check': {
         'draw': region_check,
         'title': '三区判读流程',

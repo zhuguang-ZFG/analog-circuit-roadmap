@@ -73,7 +73,7 @@ def deadtime_ledger():
             'P_dt ≈ V_SD × I_D',
             '× (t_d,on + t_d,off) × f_sw',
             '= 0.8 V × 5 A × 100 ns × 100 kHz',
-            '≈ 0.4 W']):
+            '≈ 0.04 W（40 mW）']):
         parts.append(text(76, 194 + i * 62, line, 25 if i < 2 else 23,
                           weight='700' if i == 3 else '400',
                           colour=AMBER if i == 3 else INK))
@@ -86,7 +86,7 @@ def deadtime_ledger():
     parts.append(text(604, 404, '差的那截压降全是热。', 22, colour=INK2))
     parts.append(box(50, 480, 900, 100, fill=PAPER))
     parts.append(text(76, 524, '死区压到几十纳秒，但不能压到零；', 23, weight='700'))
-    parts.append(text(76, 556, '压到零就是上下管直通，4.5 节的炸管行。', 22, colour=INK2))
+    parts.append(text(76, 556, '须覆盖实际关断延迟与传播差，避免上下管直通。', 22, colour=INK2))
     parts.append(text(500, 650, '死区用损耗买安全，价格要算清。', 22, colour=AMBER,
                       anchor='middle'))
     return parts
@@ -237,7 +237,7 @@ SCENES = {
     'ch04-deadtime-ledger': {
         'draw': deadtime_ledger, 'title': '死区损耗的明账', 'anchor': '4.4',
         'chapter': 4, 'source': 'docs/p1-05-ch4.md',
-        'alt': '手绘公式与对照：死区损耗约等于 0.8 伏乘 5 安乘 100 纳秒乘 100 千赫，约 0.4 瓦；同一只管子沟道压降 5 安乘 30 毫欧为 0.15 伏，体二极管为 0.8 伏。底部写死区压到几十纳秒但不能压到零。',
+        'alt': '手绘公式与对照：每周期两段死区合计 100 纳秒，死区损耗等于 0.8 伏乘 5 安乘 100 纳秒乘 100 千赫，约 0.04 瓦即 40 毫瓦；同一只管子沟道压降 5 安乘 30 毫欧为 0.15 伏，体二极管为 0.8 伏。死区须覆盖实际关断延迟，不能按零设置。',
     },
     'ch05-rp-power': {
         'draw': rp_power, 'title': '上拉电阻自己的功耗', 'anchor': '5.2',
