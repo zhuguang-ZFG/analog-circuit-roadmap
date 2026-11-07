@@ -4,6 +4,8 @@
 
 **终审工作台（2026-11-07 生成）**：[接触表 · 全部新图 173 张，含状态徽章与七项评分栏、灰度对照](../pending-2026-11-07/index.html)（`python scripts/build_visual_contact_sheet.py --out docs/superpowers/visual/reviews/pending-2026-11-07/index.html --grayscale --page-size 18` 可重建）。
 
+**分章审阅包（2026-11-07）**：`ch00`–`ch18` 各一张章级接触表（含已 accepted 卡作对照，待审卡以 `generated` 徽章区分）——[ch00](../pending-2026-11-07/chapters/ch00.html) · [ch01](../pending-2026-11-07/chapters/ch01.html) · [ch02](../pending-2026-11-07/chapters/ch02.html) · [ch03](../pending-2026-11-07/chapters/ch03.html) · [ch04](../pending-2026-11-07/chapters/ch04.html) · [ch05](../pending-2026-11-07/chapters/ch05.html) · [ch06](../pending-2026-11-07/chapters/ch06.html) · [ch07](../pending-2026-11-07/chapters/ch07.html) · [ch08](../pending-2026-11-07/chapters/ch08.html) · [ch09](../pending-2026-11-07/chapters/ch09.html) · [ch10](../pending-2026-11-07/chapters/ch10.html) · [ch11](../pending-2026-11-07/chapters/ch11.html) · [ch12](../pending-2026-11-07/chapters/ch12.html) · [ch13](../pending-2026-11-07/chapters/ch13.html) · [ch14](../pending-2026-11-07/chapters/ch14.html) · [ch15](../pending-2026-11-07/chapters/ch15.html) · [ch16](../pending-2026-11-07/chapters/ch16.html) · [ch17](../pending-2026-11-07/chapters/ch17.html) · [ch18](../pending-2026-11-07/chapters/ch18.html)。评分回填模板：[scores-template.csv](../pending-2026-11-07/scores-template.csv)（128 行，仅 `generated`；静态图后两列填 `N/A`，动画七项全填且合计 ≥30）。
+
 | 子集 | 张数 | 是否已在正文里 |
 |---|---:|---|
 | `kind: figure`（figures-v2） | 115 | **未插入**。`content.py:_asset_path` 要求 `accepted`/`published`，否则抛 `BookError: V2 插图尚未通过审图` |
