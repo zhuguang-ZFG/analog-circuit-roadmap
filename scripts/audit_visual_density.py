@@ -7,6 +7,8 @@ docs/superpowers/visual/baseline-2026-11-04.json）：
 - 视觉锚点 = 正文里实际内嵌的 `<img src="assets/...">` 或 Markdown 图片
   `![alt](assets/...)`。链接、表格、公式、计算器不算锚点。
 - 字符 = 章节文件原文的非空白字符（含图片标签、标记符、表格竖线）。
+- 正文字符 = 再剥掉 `<figure>` 整块与独立 `<img>` 标签后的非空白字符；
+  规格要压的是这一项，`chars` 会随插图增多而变大，两者分开报。
 - 无图段 = 相邻两个锚点之间（含章首到首锚点、末锚点到章尾）的非空白字符；
   锚点标签本身不计——量的是读者要读的字，不是标签。
 
@@ -50,6 +52,8 @@ ANCHOR = re.compile(
 H2 = re.compile(r"^## ", re.M)
 H3 = re.compile(r"^### ", re.M)
 HEAD = re.compile(r"^#{2,3} [^\n]*", re.M)
+FIGURE_BLOCK = re.compile(r"<figure\b.*?</figure>", re.S | re.I)
+IMG_TAG = re.compile(r"<img\b[^>]*>", re.I)
 
 
 def chapters() -> list[Path]:
@@ -66,6 +70,15 @@ def chapter_no(path: Path) -> int:
 
 def nonws(text: str) -> int:
     return sum(1 for ch in text if not ch.isspace())
+
+
+def prose_chars(text: str) -> int:
+    """读者要读的正文字符：剥掉 `<figure>` 整块与独立 `<img>` 标签。
+
+    `chars` 含 alt、figcaption 与标签语法，插图越多它越大；规格要压的是正文，
+    两个口径分开报，才不会出现「图替了文字、闸反而更红」。
+    """
+    return nonws(IMG_TAG.sub("", FIGURE_BLOCK.sub("", text)))
 
 
 def _blank(match: re.Match) -> str:
@@ -101,14 +114,17 @@ def mask(raw: str) -> str:
     return "".join(out)
 
 
+def scan(raw: str) -> tuple[str, list[tuple[int, str]], int]:
+    return (mask(raw), [(start, src) for start, _end, src in anchor_matches(raw)],
+            nonws(raw))
+
+
 def load(path: Path) -> tuple[str, list[tuple[int, str]], int]:
     """返回 (哨兵化原文, 锚点[(原文偏移, 资源路径)], 原文非空白字符数)。
 
     字符数另按整份原文统计，与 `baseline-2026-11-04.json` 的冻结口径一致。
     """
-    raw = path.read_text(encoding="utf-8")
-    return (mask(raw), [(start, src) for start, _end, src in anchor_matches(raw)],
-            nonws(raw))
+    return scan(path.read_text(encoding="utf-8"))
 
 
 def gaps(text: str) -> list[int]:
@@ -222,13 +238,15 @@ def h2_coverage(text: str) -> list[dict]:
 
 def audit(path: Path, detailed: bool = False) -> dict:
     """detailed=False 保持冻结基线口径逐位一致；断层偏移等只在需要时附加。"""
-    text, anchors, chars = load(path)
+    raw = path.read_text(encoding="utf-8")
+    text, anchors, chars = scan(raw)
     seg = gaps(text)
     n = chapter_no(path)
     out = {
         "file": label(path),
         "chapter": n,
         "chars": chars,
+        "prose_chars": prose_chars(raw),
         "visuals": len(anchors),
         "budget": BUDGETS[n],
         "longest_gap": max(seg) if seg else 0,
@@ -298,7 +316,8 @@ def main(argv: list[str] | None = None) -> int:
                       f"  {c['from_asset']} → {c['to_asset']}")
     total = sum(r["visuals"] for r in rows)
     print(f"合计：{len(rows)} 章 视觉 {total} 字符 "
-          f"{sum(r['chars'] for r in rows)}")
+          f"{sum(r['chars'] for r in rows)} 正文 "
+          f"{sum(r['prose_chars'] for r in rows)}")
     if args.json:
         args.json.parent.mkdir(parents=True, exist_ok=True)
         args.json.write_text(json.dumps({"chapters": rows}, ensure_ascii=False,

@@ -19,7 +19,7 @@
 
 **Goal:** 把当前“文字为主、图作为补充”的教材改造成“图承担推理、文字负责精确补充”的视觉教材；使用 `yang0/handraw-style` 规划并生成静态视觉底图，以模块化 SVG 动画 V2 承担动态机理，最终在站点、离线书、PDF、视频和社媒五线保持一致。
 
-**Current baseline:** 452,536 正文字符；54 静态分析图、32 照片、114 个正文内嵌动画实例；200 个正文视觉锚点；153 个独立 SVG；19/19 章最长无图段 >3000 字；旧生成器 9589 行。
+**Current baseline:** 452,536 原文字符（含 alt、figcaption 与标签语法）／420,573 正文字符（剥掉 `<figure>` 整块与独立 `<img>`）；54 静态分析图、32 照片、114 个正文内嵌动画实例；200 个正文视觉锚点；153 个独立 SVG；19/19 章最长无图段 >3000 字；旧生成器 9589 行。
 
 **Exit:** ≥390 个正文视觉锚点、≥220 个独立动画、19/19 章最长无图段 ≤1500 字、所有视觉资产有 handraw-style 记录与事实来源、A4/16K/网页/无障碍全绿。
 
@@ -345,6 +345,14 @@ scripts/test_visual_player.py
 **Exit:** 图真正替代文字，而不是让书更厚。
 
 **Progress 2026-11-07:** `scripts/test_visual_text_replacement.py` 已接入 `make visual-check`。它把每条 `replaces-text` 记录与其正文小节、figure 图注、实际非空白字符差逐项对齐；记录漂移即失败。图注整句复制正文、同一公式出现在图前正文/图注/图后正文时给出警告。动画字幕侧已接入：同节正文∩图注∩字幕三重命中按公式各警告一次，字幕源缺失/越界/坏损直接失败；公式三次重复项已勾。
+
+**Progress 2026-11-08（字符口径根因修正）:** 发布闸原先拿 `chars`（章节原文非空白字符，含 alt、figcaption 与 `<img>` 标签语法）判「下降 10%」，实测只有 −4.3% 而红；但同一冻结 head 8961d38 对比下**正文已 −19.6%**（420,573 → 338,275），落在规格要求的 10%–20% 内。红的原因是口径不是作品：新增 232 张图带来 62,749 字符图注 chrome，把原文总量顶了上去。继续压原文到 −10% 需再删 25,704 字符，会把正文推到 −25.7%，超出规格区间并伤及知识点；削 alt 又会破坏无障碍与 `visible_number_gaps` 的数值来源（部分图内数字如今只存在于 alt）。故按根因修口径，不降下限、不改作品迎合：
+
+- `audit_visual_density.py` 新增 `prose_chars()`（剥 `<figure>` 整块与独立 `<img>`）与 `audit()` 的 `prose_chars` 键；`chars` 口径一字未动。
+- `capture_visual_baseline.py --enrich-prose` 从**同一冻结 head** 补录 19 章 `prose_chars` 与 `meta.prose_convention`/`prose_provenance`；已逐项断言原有 `chars`/`visuals`/`gaps`/`assets`/`inventory`/`meta` 值与 HEAD 完全相同。
+- `check_visual_release.py` 拆出 `character_reduction()`/`reduction_errors()`，改判正文、原文量仍以 `raw_character_reduction` 如实报告。判闸用整数交叉相乘——`1 - 900/1000` 浮点是 `0.0999…`，正好压到 10% 会被误判为失败。
+- 证据：9 项新测试先红（含真实误报 `reduction: -100.0% < 10%`）后绿；`test_convention_reproduces_frozen_baseline` 在冻结 head 上逐位复现新键；4 个变异（原文量冒充正文／图注算进正文／下限归零／冻结基线正文数 +1）全部被抓，未改坏时全绿。发布闸 329 → 328 项，剩下的全是 Task 11 旧动画处置与验收。
+- 仍未勾的原因：「不能靠删知识点」还依赖 ch13 的 12 项 `check_prose_safety` 失败（在制 worker 资产）与下一行人工抽检。
 
 **Commit:** `edit: 全书图替繁文与重复说明瘦身`
 

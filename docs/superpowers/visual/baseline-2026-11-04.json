@@ -31,7 +31,8 @@
     "assets/svg/source-types.svg",
     "assets/figures/ch00-source-personality.svg",
     "assets/figures/ch00-controlled-sources.svg"
-   ]
+   ],
+   "prose_chars": 17958
   },
   {
    "file": "docs/p1-02-ch1.md",
@@ -76,7 +77,8 @@
     "assets/svg/rc-charge.svg",
     "assets/figures/ch01-hero-parasitics.svg",
     "assets/photos/capacitors.jpg"
-   ]
+   ],
+   "prose_chars": 19775
   },
   {
    "file": "docs/p1-03-ch2.md",
@@ -117,7 +119,8 @@
     "assets/svg/clipper-clamper.svg",
     "assets/figures/ch02-operating-map.svg",
     "assets/figures/ch02-tvs-clamp.svg"
-   ]
+   ],
+   "prose_chars": 23133
   },
   {
    "file": "docs/p1-04-ch3.md",
@@ -164,7 +167,8 @@
     "assets/figures/ch03-thermal-runaway.svg",
     "assets/svg/bjt-diagnosis.svg",
     "assets/svg/ce-dynamic.svg"
-   ]
+   ],
+   "prose_chars": 25598
   },
   {
    "file": "docs/p1-05-ch4.md",
@@ -197,7 +201,8 @@
     "assets/svg/body-diode.svg",
     "assets/figures/ch04-mosfet-switching-loss.svg",
     "assets/svg/mosfet-four-beats.svg"
-   ]
+   ],
+   "prose_chars": 19134
   },
   {
    "file": "docs/p1-06-ch5.md",
@@ -230,7 +235,8 @@
     "assets/svg/tristate-bus.svg",
     "assets/figures/ch05-output-stage-compare.svg",
     "assets/svg/pushpull-stage.svg"
-   ]
+   ],
+   "prose_chars": 19024
   },
   {
    "file": "docs/p1-07-ch6.md",
@@ -269,7 +275,8 @@
     "assets/svg/opamp-pitfalls.svg",
     "assets/figures/ch06-fault-triage.svg",
     "assets/svg/opamp-slew.svg"
-   ]
+   ],
+   "prose_chars": 18908
   },
   {
    "file": "docs/p1-08-ch7.md",
@@ -306,7 +313,8 @@
     "assets/svg/comparator-pitfalls.svg",
     "assets/figures/ch07-comparator-hysteresis.svg",
     "assets/svg/comparator-hysteresis.svg"
-   ]
+   ],
+   "prose_chars": 21767
   },
   {
    "file": "docs/p1-09-ch8.md",
@@ -347,7 +355,8 @@
     "assets/figures/ch08-sample-hold-error.svg",
     "assets/figures/ch08-fault-triage.svg",
     "assets/svg/analog-switch-beats.svg"
-   ]
+   ],
+   "prose_chars": 36440
   },
   {
    "file": "docs/p1-10-ch9.md",
@@ -384,7 +393,8 @@
     "assets/svg/ldo-failures.svg",
     "assets/figures/ch09-ldo-load-transient.svg",
     "assets/svg/ldo-transient-beats.svg"
-   ]
+   ],
+   "prose_chars": 19959
   },
   {
    "file": "docs/p1-11-ch10.md",
@@ -421,7 +431,8 @@
     "assets/figures/ch10-555-internal.svg",
     "assets/svg/555-astable-beats.svg",
     "assets/svg/ne555-monostable.svg"
-   ]
+   ],
+   "prose_chars": 26524
   },
   {
    "file": "docs/p2-01-ch11.md",
@@ -466,7 +477,8 @@
     "assets/figures/ch11-cmrr-psrr-walls.svg",
     "assets/figures/ch11-two-stage-chain.svg",
     "assets/figures/ch11-miller-charge.svg"
-   ]
+   ],
+   "prose_chars": 26646
   },
   {
    "file": "docs/p2-02-ch12.md",
@@ -511,7 +523,8 @@
     "assets/photos/web/oscilloscope-front-panel.png",
     "assets/svg/virtual-ground.svg",
     "assets/svg/integrator.svg"
-   ]
+   ],
+   "prose_chars": 19684
   },
   {
    "file": "docs/p2-03-ch13.md",
@@ -558,7 +571,8 @@
     "assets/svg/sar-adc.svg",
     "assets/svg/h-bridge.svg",
     "assets/figures/ch13-crystal-load-cap.svg"
-   ]
+   ],
+   "prose_chars": 18847
   },
   {
    "file": "docs/p3-01-ch14.md",
@@ -595,7 +609,8 @@
     "assets/figures/ch14-error-budget.svg",
     "assets/figures/ch14-test-plan.svg",
     "assets/figures/ch14-pt100-layout.svg"
-   ]
+   ],
+   "prose_chars": 24758
   },
   {
    "file": "docs/p3-02-ch15.md",
@@ -632,7 +647,8 @@
     "assets/figures/ch15-interface-defense.svg",
     "assets/figures/ch15-return-path.svg",
     "assets/svg/pcb-return-path.svg"
-   ]
+   ],
+   "prose_chars": 25384
   },
   {
    "file": "docs/p4-01-ch16.md",
@@ -671,7 +687,8 @@
     "assets/figures/ch16-probe-model.svg",
     "assets/photos/web/scope-waveform.jpg",
     "assets/figures/ch16-signal-injection.svg"
-   ]
+   ],
+   "prose_chars": 18881
   },
   {
    "file": "docs/p4-02-ch17.md",
@@ -696,7 +713,8 @@
     "assets/photos/web/scanned-multimeter-gossen.jpg",
     "assets/figures/ch17-contact-resistance-creep.svg",
     "assets/figures/ch17-fault-triage.svg"
-   ]
+   ],
+   "prose_chars": 20069
   },
   {
    "file": "docs/p4-03-ch18.md",
@@ -721,7 +739,8 @@
     "assets/photos/web/printed-circuit-board.jpg",
     "assets/figures/ch18-review-checklist.svg",
     "assets/figures/ch18-four-gates.svg"
-   ]
+   ],
+   "prose_chars": 18084
   }
  ],
  "meta": {
@@ -729,7 +748,13 @@
   "frozen": "2026-11-04",
   "convention": "chars = 章节原文非空白字符；锚点 = <img src=\"assets/…\"> 与 Markdown 图片",
   "reproduce": "python -m unittest discover -s scripts -p test_visual_distribution.py; python scripts/capture_visual_baseline.py --enrich",
-  "head": "8961d38"
+  "head": "8961d38",
+  "prose_convention": "prose_chars = 章节原文剥掉 <figure> 整块与独立 <img> 标签后的非空白字符；chars 口径不变，仍含 alt、figcaption 与标签语法",
+  "prose_provenance": {
+   "source_head": "8961d38",
+   "measured_on": "2026-11-08",
+   "method": "Recomputed from the same frozen head as chars; no live-tree input. Reproduced bit-for-bit by test_convention_reproduces_frozen_baseline."
+  }
  },
  "inventory": {
   "svg_animations": {

@@ -20,6 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 BASELINE = ROOT / 'docs/superpowers/visual/baseline-2026-11-04.json'
 ACCEPTED = {'accepted', 'published'}
 MOTION_TAGS = {'animate', 'animateMotion', 'animateTransform'}
+REDUCTION_FLOOR_PCT = 10
 
 
 def digest(path: Path) -> str:
@@ -94,6 +95,31 @@ def legacy_errors(data: dict, baseline: dict, root: Path) -> list[str]:
     return errors
 
 
+def character_reduction(baseline: dict, rows: list[dict]) -> dict:
+    """两个口径分别算：prose 是规格要压的正文，raw 含 alt/图注/标签，只作参考。
+
+    插图替代文字时 raw 会因图注变多而上升，拿它判闸会把「图真的替了字」误报成失败。
+    """
+    measured = {}
+    for key, name in (('prose_chars', 'prose'), ('chars', 'raw')):
+        before = sum(r[key] for r in baseline['chapters'])
+        after = sum(r[key] for r in rows)
+        measured[name] = 1 - after / before
+    return measured
+
+
+def reduction_errors(baseline: dict, rows: list[dict]) -> tuple[list[str], dict]:
+    measured = character_reduction(baseline, rows)
+    before = sum(r['prose_chars'] for r in baseline['chapters'])
+    after = sum(r['prose_chars'] for r in rows)
+    errors = []
+    # 整数交叉相乘判闸：1 - 900/1000 在浮点下是 0.0999…，正好压到 10% 会被误判。
+    if after * 100 > before * (100 - REDUCTION_FLOOR_PCT):
+        errors.append(f'chapter prose character reduction: '
+                      f'{measured["prose"]:.1%} < {REDUCTION_FLOOR_PCT}%')
+    return errors, measured
+
+
 def check(data: dict, baseline: dict, rows: list[dict], root: Path = ROOT) -> dict:
     accepted, errors = inventory(data, root)
     errors += legacy_errors(data, baseline, root)
@@ -125,13 +151,12 @@ def check(data: dict, baseline: dict, rows: list[dict], root: Path = ROOT) -> di
             v2 = {p for p in paths & accepted['animation'] if p.startswith('assets/svg-v2/')}
             if len(v2) < 4 or len(paths & (accepted['figure'] | accepted['photo'])) < 6:
                 errors.append(f'ch{ch}: pilot needs 4 V2 animations and 6 static assets')
-    baseline_chars = sum(r['chars'] for r in baseline['chapters'])
-    current_chars = sum(r['chars'] for r in rows)
-    reduction = 1 - current_chars / baseline_chars
-    if reduction < .10:
-        errors.append(f'chapter source character reduction: {reduction:.1%} < 10%')
+    reduction_failures, measured = reduction_errors(baseline, rows)
+    errors += reduction_failures
     return {'inline_visuals': total, 'accepted_animations': animations,
-            'accepted_static_assets': statics, 'source_character_reduction': reduction,
+            'accepted_static_assets': statics,
+            'source_character_reduction': measured['prose'],
+            'raw_character_reduction': measured['raw'],
             'errors': errors}
 
 
