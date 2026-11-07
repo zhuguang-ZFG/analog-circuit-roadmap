@@ -10510,9 +10510,9 @@ assets:
   output: assets/figures-v2/ch01-q-selectivity-map.svg
   print_fallback: assets/figures-v2/ch01-q-selectivity-map-print.svg
   preview: assets/figures-v2/ch01-q-selectivity-map.webp
-  alt: 手绘品质因数两栏。顶部蓝框给定义：Q 等于谐振频率除以半功率带宽，峰又尖又窄是高 Q；Q 还能实测，扫频找谐振峰与两个下降 3 分贝的点。左绿框选台要多窄：中波载波 1 兆赫、带宽 5 千赫，需要
-    Q 约 100；调频载波 100 兆赫、带宽 150 千赫，Q 只要个位数；频率越高做出高 Q 越难，损耗与寄生随频率一起涨。右红框峰值阻抗也是有限的：电感 10 微亨、电容 100 皮法、电阻
-    1 欧，谐振频率 5.0 兆赫，峰值阻抗 100 千欧；理想并联回路阻抗无穷大，实际被电感电阻压成电感除电阻乘电容。下方琥珀框写谐振网络里谁最差谁定 Q，电感的直流电阻与磁芯损耗通常是短板。底部写调谐用可变电容不用可变电感：电容可做多联同轴、磨损小、Q
+  alt: 手绘品质因数两栏。顶部蓝框给定义：Q 等于谐振频率除以半功率带宽，峰又尖又窄是高 Q；Q 还能实测，扫频找谐振峰与两个下降 3 分贝的点。左绿框按给定半功率带宽计算：中波载波 1 兆赫、带宽
+    5 千赫，Q 等于 200；调频载波 100 兆赫、带宽 150 千赫，Q 约 667；频率越高做出高 Q 越难，损耗与寄生随频率一起涨。右红框峰值阻抗也是有限的：电感 10 微亨、电容 100
+    皮法、电阻 1 欧，谐振频率 5.0 兆赫，峰值阻抗 100 千欧；理想并联回路阻抗无穷大，实际被电感电阻压成电感除电阻乘电容。下方琥珀框写谐振网络里谁最差谁定 Q，电感的直流电阻与磁芯损耗通常是短板。底部写调谐用可变电容不用可变电感：电容可做多联同轴、磨损小、Q
     高。
   status: accepted
   status_history:
@@ -10521,7 +10521,7 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
     构图层级: 5
     印刷可读性: 4
@@ -10531,16 +10531,15 @@ assets:
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_method: calculation-and-render-review
   review_record:
     reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
+    method: calculation-and-render-review
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 2bb8f5abcc1d608c0697126e85b9ba91012f33c7dcec6852276de20d5a092b20
+    record: docs/superpowers/visual/reviews/q-selectivity-correction.md
+    asset_sha256: 8cbb7af95a21e7a8ed1501f2540cb9d21127944a763d54a3fff37ca6df4b8bf9
 - id: ch02-diode-fault-order
   chapter: 2
   kind: figure

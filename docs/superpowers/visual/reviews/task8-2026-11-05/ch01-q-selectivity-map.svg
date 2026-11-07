@@ -100,9 +100,9 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <rect x="50" y="228" width="430" height="272" rx="6" fill="#f6eedb" stroke="#3d6b4a" stroke-width="2"/>
 <text x="74" y="268" font-size="24" fill="#3d6b4a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">选台要多窄</text>
 <text x="74" y="306" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">中波：载波 1 MHz、带宽 5 kHz</text>
-<text x="456" y="340" font-size="24" fill="#3d6b4a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="end">→ Q 约 100</text>
+<text x="456" y="340" font-size="24" fill="#3d6b4a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="end">→ Q = 200</text>
 <text x="74" y="382" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">FM：载波 100 MHz、带宽 150 kHz</text>
-<text x="456" y="416" font-size="24" fill="#3d6b4a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="end">Q 只要个位数</text>
+<text x="456" y="416" font-size="24" fill="#3d6b4a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="end">→ Q ≈ 667</text>
 <path d="M82 438 Q265.00 439.28 448 438" fill="none" stroke="#c9bb9d" stroke-width="2"/>
 <text x="74" y="474" font-size="22" fill="#a4630f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">频率越高，高 Q 越难做</text>
 <rect x="520" y="228" width="430" height="272" rx="6" fill="#f6eedb" stroke="#a8321f" stroke-width="2"/>
