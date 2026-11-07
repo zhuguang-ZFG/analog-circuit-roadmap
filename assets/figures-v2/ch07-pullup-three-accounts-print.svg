@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+<defs>
+<linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>
+</linearGradient>
+<linearGradient id="bgD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#141310"/><stop offset="1" stop-color="#1d1a14"/>
+</linearGradient>
+<radialGradient id="vig" cx="0.5" cy="0.44" r="0.78">
+<stop offset="0.55" stop-color="#16202b" stop-opacity="0"/>
+<stop offset="1" stop-color="#16202b" stop-opacity="0.055"/>
+</radialGradient>
+<linearGradient id="hdr" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#a4630f" stop-opacity="0.10"/>
+<stop offset="0.55" stop-color="#a4630f" stop-opacity="0.028"/>
+<stop offset="1" stop-color="#a4630f" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="hdrD" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#dcab63" stop-opacity="0.13"/>
+<stop offset="0.55" stop-color="#dcab63" stop-opacity="0.04"/>
+<stop offset="1" stop-color="#dcab63" stop-opacity="0"/>
+</linearGradient>
+<pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+<circle cx="2.5" cy="3.5" r="0.9" fill="#c9bb9d"/>
+<circle cx="19" cy="11" r="0.55" fill="#c9bb9d" opacity="0.7"/>
+<circle cx="11.5" cy="22" r="0.6" fill="#c9bb9d" opacity="0.55"/>
+</pattern>
+<filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+<feDropShadow dx="0" dy="1.4" stdDeviation="2" flood-color="#16202b" flood-opacity="0.13"/>
+</filter>
+<filter id="pglow" x="-70%" y="-70%" width="240%" height="240%">
+<feGaussianBlur stdDeviation="1.7" result="b"/>
+<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs>
+<rect class="page-bg" width="1000" height="700" fill="url(#bgL)"/>
+<rect class="page-grain" width="1000" height="700" fill="url(#dots)"/>
+<rect class="page-vig" width="1000" height="700" fill="url(#vig)"/>
+<rect class="page-hdr" width="1000" height="72" fill="url(#hdr)"/>
+<style>
+text{font-family:"Segoe UI","Microsoft YaHei","PingFang SC","Hiragino Sans GB","Noto Sans CJK SC","Source Han Sans SC","Noto Sans SC",sans-serif;}
+line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
+.page-bg{fill:url(#bgL)}
+.page-grain{opacity:.5}
+.page-vig{opacity:1}
+.page-hdr{fill:url(#hdr)}
+@media (prefers-color-scheme: dark){
+.page-bg{fill:url(#bgD)}
+.page-grain{opacity:.34}
+.page-vig{opacity:.5}
+.page-hdr{fill:url(#hdrD)}
+[fill="#fdf8ea"]{fill:#141310}
+[stroke="#fdf8ea"]{stroke:#141310}
+[fill="#f6eedb"]{fill:#1d1a14}
+[stroke="#f6eedb"]{stroke:#1d1a14}
+[fill="#e0d3b8"]{fill:#3b3529}
+[stroke="#e0d3b8"]{stroke:#3b3529}
+[fill="#c9bb9d"]{fill:#4a4436}
+[stroke="#c9bb9d"]{stroke:#4a4436}
+[fill="#16202b"]{fill:#ece4d3}
+[stroke="#16202b"]{stroke:#ece4d3}
+[fill="#37424e"]{fill:#cfc6b4}
+[stroke="#37424e"]{stroke:#cfc6b4}
+[fill="#5b666f"]{fill:#a79e8b}
+[stroke="#5b666f"]{stroke:#a79e8b}
+[fill="#8b8272"]{fill:#857c6c}
+[stroke="#8b8272"]{stroke:#857c6c}
+text[fill="#fdf8ea"]{fill:#f9f3e3}
+[fill="#e6eff3"]{fill:#17262e}
+[fill="#e4f1f3"]{fill:#15262a}
+[fill="#e8efe6"]{fill:#182418}
+[fill="#f6e7e1"]{fill:#281a16}
+[fill="#f7eedb"]{fill:#292114}
+[fill="#efe8ee"]{fill:#241c22}
+text[fill="#1f5d7a"]{fill:#7fb7cf}
+:is(rect,circle,path,line,polygon,polyline,ellipse,g)[fill="#1f5d7a"]{fill:#2b4d5f}
+[stroke="#1f5d7a"]{stroke:#6fa3b9}
+text[fill="#2f7f96"]{fill:#8ac9d8}
+:is(rect,circle,path,line,polygon,polyline,ellipse,g)[fill="#2f7f96"]{fill:#2b5660}
+[stroke="#2f7f96"]{stroke:#77b2c1}
+text[fill="#3d6b4a"]{fill:#98c096}
+:is(rect,circle,path,line,polygon,polyline,ellipse,g)[fill="#3d6b4a"]{fill:#2f4a33}
+[stroke="#3d6b4a"]{stroke:#7aa87c}
+text[fill="#a8321f"]{fill:#e0907a}
+:is(rect,circle,path,line,polygon,polyline,ellipse,g)[fill="#a8321f"]{fill:#55231b}
+[stroke="#a8321f"]{stroke:#c07a63}
+text[fill="#a4630f"]{fill:#dcab63}
+:is(rect,circle,path,line,polygon,polyline,ellipse,g)[fill="#a4630f"]{fill:#553a17}
+[stroke="#a4630f"]{stroke:#c08a45}
+text[fill="#6b3f63"]{fill:#c4a2bf}
+:is(rect,circle,path,line,polygon,polyline,ellipse,g)[fill="#6b3f63"]{fill:#452c40}
+[stroke="#6b3f63"]{stroke:#a17c9b}
+}
+</style>
+
+<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">开集电极上拉：一只电阻挂在三本账上</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">速度、低电平、噪声同时被它定；先定窗口，再取值，最后回代。</text>
+<rect x="50" y="126" width="900" height="196" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<text x="86" y="168" font-size="26" fill="#3d6b4a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">速度账</text>
+<text x="86" y="212" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">上升沿充总线与负载电容</text>
+<text x="86" y="246" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">tr ≈ 2.2RC</text>
+<text x="86" y="280" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">R 越小沿越快</text>
+<text x="386" y="168" font-size="26" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">低电平账</text>
+<text x="386" y="212" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">IOL = Vpullup / R</text>
+<text x="386" y="246" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">电流全进输出管，下限 6mA</text>
+<text x="386" y="280" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">灌得越多 VOL 越高</text>
+<text x="686" y="168" font-size="26" fill="#1f5d7a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">噪声账</text>
+<text x="686" y="212" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">R 越小节点阻抗越低</text>
+<text x="686" y="246" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">抗串扰越好</text>
+<text x="686" y="280" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">高速开漏总线用强上拉</text>
+<path d="M366 140 Q366.39 224.00 366 308" fill="none" stroke="#c9bb9d" stroke-width="2"/>
+<path d="M666 140 Q665.59 224.00 666 308" fill="none" stroke="#c9bb9d" stroke-width="2"/>
+<rect x="50" y="342" width="430" height="180" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<text x="74" y="382" font-size="24" fill="#a4630f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">两个取值的对照</text>
+<text x="74" y="424" font-size="22" fill="#3d6b4a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">4.7kΩ 上拉到 5V</text>
+<text x="74" y="456" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">灌 1.06mA，VOL 约 0.1~0.2V</text>
+<text x="74" y="488" font-size="22" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">330Ω 上拉到 12V：灌 36mA</text>
+<text x="74" y="516" font-size="22" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">VOL 可能接近 1V</text>
+<rect x="520" y="342" width="430" height="180" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<text x="544" y="382" font-size="22" fill="#3d6b4a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">三步定值（5V、50pF、沿快于 1µs）</text>
+<text x="544" y="420" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">① 由沿定上限　R ≤ 9.1kΩ</text>
+<text x="544" y="454" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">② 由灌电流定下限　R ≥ 2.5kΩ</text>
+<text x="544" y="488" font-size="22" fill="#a4630f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">③ 取 4.7kΩ 回代　tr ≈ 0.52µs</text>
+<text x="500" y="580" font-size="24" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">沿是快了，低电平却脏了——三本账不能只记一本。</text>
+<text x="500" y="626" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">开集电极输出管是逻辑器件，不是功率器件。</text>
+</svg>

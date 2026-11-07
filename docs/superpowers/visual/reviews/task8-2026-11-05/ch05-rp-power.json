@@ -1,0 +1,15 @@
+{
+  "id": "ch05-rp-power",
+  "title": "上拉电阻自己的功耗",
+  "alt": "手绘左右两张功率卡：3.3 伏乘 1 千欧为 11 毫瓦，0603 随便扛；5 伏乘 100 欧为 250 毫瓦，0402 已超 1/16 瓦。底部写总线被拉低时全部电压落在电阻上，强上拉先核封装功率。",
+  "anchor": "5.2",
+  "source": "docs/p1-06-ch5.md",
+  "canvas": [
+    1000,
+    700
+  ],
+  "print_width_mm": 138,
+  "generator": "python-handraw-v1",
+  "output": "assets/figures-v2/ch05-rp-power.svg",
+  "print_fallback": "assets/figures-v2/ch05-rp-power-print.svg"
+}

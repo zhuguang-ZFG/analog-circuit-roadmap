@@ -1,0 +1,15 @@
+{
+  "id": "ch12-switch-cap",
+  "title": "开关电容的等效电阻",
+  "alt": "手绘左右两栏：左栏写等效电阻等于 1 除以时钟频率乘电容，1 皮法乘 100 千赫等于 10 兆欧；右栏写电容比值匹配到 0.1%、时钟准到 ppm、精度来源从元件转到时钟。底部写采样会混叠、开关会注入电荷，时钟取信号带宽 50 到 100 倍。",
+  "anchor": "12.12",
+  "source": "docs/p2-02-ch12.md",
+  "canvas": [
+    1000,
+    700
+  ],
+  "print_width_mm": 138,
+  "generator": "python-handraw-v1",
+  "output": "assets/figures-v2/ch12-switch-cap.svg",
+  "print_fallback": "assets/figures-v2/ch12-switch-cap-print.svg"
+}

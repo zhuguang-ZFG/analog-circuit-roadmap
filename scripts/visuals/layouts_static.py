@@ -220,10 +220,12 @@ def waveform(title, subtitle, series, x_label, y_label, callouts, takeaway):
     labels = header(title, subtitle)
     labels.append(text(760, 884, x_label, 32, colour=SHADE, anchor='middle', background=PANEL))
     labels.append(text(132, 520, y_label, 32, colour=SHADE, anchor='middle', background=PANEL))
+    drawn = 0
     for points, colour, dash, label in series:
         base.append(f'<polyline points="{points}" fill="none" stroke="{colour}" stroke-width="5" stroke-dasharray="{dash}"/>')
         if label:
-            labels.append(text(1070, 250, label, 32, colour=colour, background=PANEL))
+            labels.append(text(1020, 250 + drawn * 44, label, 32, colour=colour, background=PANEL))
+            drawn += 1
     for x, y, value in callouts:
         labels.append(text(x, y, value, 32, weight='700', colour=ACCENT, background=PANEL))
     labels += footer(takeaway)

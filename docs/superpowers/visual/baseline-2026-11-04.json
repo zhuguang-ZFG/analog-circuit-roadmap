@@ -728,7 +728,7 @@
   "spec": "docs/superpowers/specs/2026-11-04-visual-first-book-overhaul-design.md",
   "frozen": "2026-11-04",
   "convention": "chars = 章节原文非空白字符；锚点 = <img src=\"assets/…\"> 与 Markdown 图片",
-  "reproduce": "python scripts/audit_visual_density.py --json docs/superpowers/visual/baseline-2026-11-04.json",
+  "reproduce": "python -m unittest discover -s scripts -p test_visual_distribution.py; python scripts/capture_visual_baseline.py --enrich",
   "head": "8961d38"
  },
  "inventory": {
@@ -888,6 +888,2070 @@
     "water-analogy.svg": "d888f9b299698be68fe4bfae955ea46623912ad0b37dcd7801636e984a0eb0be",
     "wien-bridge.svg": "2f463027f5774fec10df1a04c98b239c949d448996c629ceea7fc91331534c3a",
     "zener-regulator.svg": "bbe7f303a4a874d8d4aa88a5ef9a2261f309cba16fed76a2a5defa37d076a9dc"
+   },
+   "details": [
+    {
+     "path": "assets/svg/555-astable-beats.svg",
+     "git_sha256": "2a875a113945521cafd909fef740f7512bfa3a11f87f5ce98fee52c0ee3db588",
+     "body_references": 1,
+     "chapters": [
+      10
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 2,
+      "sha256": "fa220089a884beaaff7ae80bcf23498b8d31a980485cc76643dcd6d52a05cc31",
+      "viewBox": "0 0 960 1224"
+     }
+    },
+    {
+     "path": "assets/svg/555-modes.svg",
+     "git_sha256": "ac9da9b19c45b9610702fa9f9c43e32ddaefa37a80915a89276a897a692fecb5",
+     "body_references": 1,
+     "chapters": [
+      10
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "deef0fc6af8bbf1e0b8761866cc75484ef01688cb6e8587809ab79d309a54805",
+      "viewBox": "0 0 960 1426"
+     }
+    },
+    {
+     "path": "assets/svg/analog-switch-beats.svg",
+     "git_sha256": "7825070728ca383409de167134109a33a732c3f06ade6c31ddb4975018e4c1a2",
+     "body_references": 1,
+     "chapters": [
+      8
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 2,
+      "sha256": "b06f2edc10a94b9ef494260316ec206fa09eb54db34284febc756feeb0047e9b",
+      "viewBox": "0 0 960 1224"
+     }
+    },
+    {
+     "path": "assets/svg/analog-switch.svg",
+     "git_sha256": "bfec9633633ffa9dce55df3c23d7fafecc6eadb9e1bab729fd24d3d4290d6604",
+     "body_references": 1,
+     "chapters": [
+      8
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "dc9812f2e22fb79c0bcee43df621a2bb4f2cb3c0ff4b6809116193c279f06088",
+      "viewBox": "0 0 960 964"
+     }
+    },
+    {
+     "path": "assets/svg/bandgap.svg",
+     "git_sha256": "236f3079812c7c2ba9b031b1cacc7804578dbbc822c295a811034d1890f7ef72",
+     "body_references": 1,
+     "chapters": [
+      9
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "8c26f442c98c7765bccd6370c05e1d6d24c27c75a665b74b2ef12f6e815ee8aa",
+      "viewBox": "0 0 960 1026"
+     }
+    },
+    {
+     "path": "assets/svg/bjt-amplify.svg",
+     "git_sha256": "ed11b4fd5e64b8a0220b97575acdf2e174ca1d1c282e1ddc2558183ceb57a61c",
+     "body_references": 1,
+     "chapters": [
+      3
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "3c825291bc714fa983c98d15978866e36efb367a8fffcea8929bca1e3e694b93",
+      "viewBox": "0 0 960 1220"
+     }
+    },
+    {
+     "path": "assets/svg/bjt-configs.svg",
+     "git_sha256": "744b1dcb631eff1cb401ea9046e99df73ecf94751496221a68478acde6c597df",
+     "body_references": 2,
+     "chapters": [
+      3,
+      11
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "345223f94b16aa631c94cc2ed276c212e71fbb94a959fed57723e7dc08b204b0",
+      "viewBox": "0 0 960 1426"
+     }
+    },
+    {
+     "path": "assets/svg/bjt-diagnosis.svg",
+     "git_sha256": "96c13b1393b7790e80ba6ca64d0e4478eda66328dd20a0a4407872444a9479b1",
+     "body_references": 1,
+     "chapters": [
+      3
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "0aee47c4ee11bb5a16e0db1ee5423eba0635a88777d2b8b6cb70797c849614a5",
+      "viewBox": "0 0 960 1478"
+     }
+    },
+    {
+     "path": "assets/svg/bjt-regions.svg",
+     "git_sha256": "95a1d282e7cefda1a26bab4b0ded98f93d7dd759c984291bfb78fecbbdb5bf06",
+     "body_references": 1,
+     "chapters": [
+      3
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "46b3d55abe4b1962aad8d5b1411f293802f194d4409a99c7f12381d706f91778",
+      "viewBox": "0 0 960 1310"
+     }
+    },
+    {
+     "path": "assets/svg/bjt-switch.svg",
+     "git_sha256": "8e6554f2a1eb159bd8eb141695aa29f065ab6f9ae5e176c17e1e3aaebc9f27ed",
+     "body_references": 1,
+     "chapters": [
+      3
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "2c509e15732841c9de5acabc1180f0b4698207f3002364159c1ffd9c6ed4af43",
+      "viewBox": "0 0 960 1452"
+     }
+    },
+    {
+     "path": "assets/svg/bjt-transport.svg",
+     "git_sha256": "7e3306df9ae8ec3e740b657259550da7090157ea5102958781e7cb14e6f5504d",
+     "body_references": 1,
+     "chapters": [
+      3
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "b8d891e3a6e5258fe6ae8f816c3d454e78df7ee9bd94ab7c5d5542ecd4d5f440",
+      "viewBox": "0 0 960 1426"
+     }
+    },
+    {
+     "path": "assets/svg/body-diode.svg",
+     "git_sha256": "3fac864b3c3f1be01ff6bcbf1de5fbf360aed55fd999c9d6e49d398bf78535f5",
+     "body_references": 1,
+     "chapters": [
+      4
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "37ddc1f55a88b31cfcdfbc9ca05917015d00f93c7663b542c9318ea688930ad0",
+      "viewBox": "0 0 960 1426"
+     }
+    },
+    {
+     "path": "assets/svg/boost-converter.svg",
+     "git_sha256": "61b5821c25ef6aff9a1ae06e2287c8646a20176cc1f61eb9e459218bffbfa1f4",
+     "body_references": 1,
+     "chapters": [
+      13
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "51b5e26ddcfcfe7a5e549bd5d72efadabc46f16fc91b250af96c8da98bb3f430",
+      "viewBox": "0 0 960 1052"
+     }
+    },
+    {
+     "path": "assets/svg/bridge-rectifier.svg",
+     "git_sha256": "49ceb47861f1312eb40d39726f2e05a5e7b4771b47f6d0d6b07a15665e31b50e",
+     "body_references": 1,
+     "chapters": [
+      2
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 5,
+      "sha256": "60dfcca85118d751b08a26247ee6ea9f22596ed17302d05dbc8ab1638e17f6ff",
+      "viewBox": "0 0 960 1557"
+     }
+    },
+    {
+     "path": "assets/svg/buck-converter.svg",
+     "git_sha256": "f3795d8a227d438fcd34c43a71c1bb5257ccccedf60b5b7c858c97f950320a44",
+     "body_references": 1,
+     "chapters": [
+      13
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "d6bdb12385f1ee3d5ae3443da5862362cca22b41ff71c9bd69b8fb898dd8b9ec",
+      "viewBox": "0 0 960 1026"
+     }
+    },
+    {
+     "path": "assets/svg/cap-decoupling.svg",
+     "git_sha256": "16b86f775161ddeabb13e819ca52110c2679edde33940d6b1704998793841335",
+     "body_references": 1,
+     "chapters": [
+      15
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "2ec4b3920aef6788239b64bb90281022c34715cf255c147a02a19de4d5936f08",
+      "viewBox": "0 0 960 1156"
+     }
+    },
+    {
+     "path": "assets/svg/cap-derating.svg",
+     "git_sha256": "953833207500b3e7887aaf7920062dc3b4c3446dc75965c842c8f0b986217ad3",
+     "body_references": 1,
+     "chapters": [
+      1
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "0182ee6e3fa0010575566df288ca7ab1f3e217db7f91d54ba11ca2ba13a113b8",
+      "viewBox": "0 0 960 1368"
+     }
+    },
+    {
+     "path": "assets/svg/capacitor-parasitics.svg",
+     "git_sha256": "327ad22f4d72ecc47e8d0f6e18e9ec3272eed0fb2ed24ce498ef42e6fe47857a",
+     "body_references": 1,
+     "chapters": [
+      1
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "7aa39c054dc970fb2ec56514ac3557874d1a5abe0f7914c0dba3298d3bc9bd70",
+      "viewBox": "0 0 960 1507"
+     }
+    },
+    {
+     "path": "assets/svg/ce-dynamic.svg",
+     "git_sha256": "fedba4d64df76eb99650230c7b772579872f04a740c166835e455a5e1588c0ab",
+     "body_references": 1,
+     "chapters": [
+      3
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "f5360379719087b378f51156817e35d27c00350b4c3ac89173d938378b0296d6",
+      "viewBox": "0 0 960 1541"
+     }
+    },
+    {
+     "path": "assets/svg/charge-pump.svg",
+     "git_sha256": "d60b821fc81e00fbc4491fb6498dc84555f243082e2331b26585379b13daace3",
+     "body_references": 1,
+     "chapters": [
+      13
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "d7a80c95306546d98ed6c35b969fb328571975b9c641905d41dd5b483bb2c2eb",
+      "viewBox": "0 0 960 1082"
+     }
+    },
+    {
+     "path": "assets/svg/class-b-crossover.svg",
+     "git_sha256": "9ee9bb5a684ab90d6bfe00ae94ee2620286496ccda4fb47ef80e5de3ee49c05b",
+     "body_references": 1,
+     "chapters": [
+      11
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "b8696f3c1f84057dfe699764900591ef4e7223a432295d5a6c685f763ed9f5b9",
+      "viewBox": "0 0 960 1194"
+     }
+    },
+    {
+     "path": "assets/svg/clipper-clamper.svg",
+     "git_sha256": "c72110f6e79780b8b2932936aa9d96dbd3355d5b6bc480e0c9871e0c97fa8023",
+     "body_references": 1,
+     "chapters": [
+      2
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "7c4e99c73b236aef67608f5f295efc9094ec649edeccc1e7c42cb90517c64c0b",
+      "viewBox": "0 0 960 1144"
+     }
+    },
+    {
+     "path": "assets/svg/comparator-hysteresis.svg",
+     "git_sha256": "cc3b1865dbaf9fbc9d2e70e39fcc1e5b2578556b5afb6f5b56ff7b028e262094",
+     "body_references": 2,
+     "chapters": [
+      7
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "036aa1d43322ca6ed4a900164b82b659cebf054a927896e91de795edc5582b58",
+      "viewBox": "0 0 960 1137"
+     }
+    },
+    {
+     "path": "assets/svg/comparator-opamp.svg",
+     "git_sha256": "13c2c552aab93f8dad38bcc0851c539504de0ba5eb76530944f4518e745fb4b1",
+     "body_references": 1,
+     "chapters": [
+      7
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "e91f872e9f64ea150ecbf34dd279e397060a98edccf03e367bf6e06a98e9006d",
+      "viewBox": "0 0 960 1464"
+     }
+    },
+    {
+     "path": "assets/svg/comparator-pitfalls.svg",
+     "git_sha256": "8d3b27be999c44ba1c07193bfefaa5c539376166f152d9f47f468e0b3181c4bf",
+     "body_references": 1,
+     "chapters": [
+      7
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "55ed7910b542cb09bc1b11978787d049101682ab393dec273f6d3b2a84493ccb",
+      "viewBox": "0 0 960 1641"
+     }
+    },
+    {
+     "path": "assets/svg/compliance-voltage.svg",
+     "git_sha256": "bed09e5051e1b95c03a5b482e1899ce3afe42097f465c8162c9f13e19e08d095",
+     "body_references": 1,
+     "chapters": [
+      13
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "800cb3aa563a748f0a5b778a9bf439ea73cc0b6c1a14f92952ff9175abfa1ecb",
+      "viewBox": "0 0 960 1464"
+     }
+    },
+    {
+     "path": "assets/svg/constant-current.svg",
+     "git_sha256": "940cf697a98bf58f3c5b19c7040ea97b66dc2c7b0a82d46bcdd81f5cc972078c",
+     "body_references": 1,
+     "chapters": [
+      13
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "c5240a4512407b73a8d65644d12390342c4d840c1039b725815a7dcd954f6b92",
+      "viewBox": "0 0 960 1021"
+     }
+    },
+    {
+     "path": "assets/svg/crystal-pierce.svg",
+     "git_sha256": "88cda5cdfb63c97669aa76380f03017b73dbde4959b7ce2dc5f243533d30e822",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "ce200f3c64d1e595916ac9e492b8d60ff5aade66179fd0684d6da6ef1d8f5726",
+      "viewBox": "0 0 960 1311"
+     }
+    },
+    {
+     "path": "assets/svg/current-mirror.svg",
+     "git_sha256": "9273464df860fb2b133cab282fc12574063e6ddea555c0f47792bfc686ffa668",
+     "body_references": 1,
+     "chapters": [
+      11
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "e80f30312205acaefa5603eb6a7d7e2564bc6230661a4e2af92b27ec44e41c3d",
+      "viewBox": "0 0 960 1021"
+     }
+    },
+    {
+     "path": "assets/svg/darlington.svg",
+     "git_sha256": "4250ebb41639ec0d6bb6c3fcbd90a92c83a1056af3039e4a56589f5756504eb8",
+     "body_references": 1,
+     "chapters": [
+      3
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "7099faff2c5cbc7cf8b52e1a4cf26074ee96288582b01f8fa72809f28adac774",
+      "viewBox": "0 0 960 1478"
+     }
+    },
+    {
+     "path": "assets/svg/datasheet-params.svg",
+     "git_sha256": "6102a72d83133b573c732942c4fcfce4354c0a2d7a1a273da3e63fd3c5c88d54",
+     "body_references": 1,
+     "chapters": [
+      6
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "1f876cf816ef9652a8435bf1b70b4d26e45beee0c5fbc598fc37c2e46392cb44",
+      "viewBox": "0 0 960 1641"
+     }
+    },
+    {
+     "path": "assets/svg/debug-flow.svg",
+     "git_sha256": "5d894e57f75980a50e4c11b93f910521ff9265b16b7f9c3395f83aaf1a948993",
+     "body_references": 1,
+     "chapters": [
+      16
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 5,
+      "sha256": "8388dbc749e688cf8734dec251f3891d5504c2aeffde8011a9f2a02b93ca77b7",
+      "viewBox": "0 0 960 1374"
+     }
+    },
+    {
+     "path": "assets/svg/derive-buck.svg",
+     "git_sha256": "3878a6a3e39ecfa0548d6b049067589b71b83f9c941cb9f787034b71bc2789a0",
+     "body_references": 1,
+     "chapters": [
+      13
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "4f6922303cb4cfac5f1dc4fa4f29926cb928dc182dd4e64a186b446bf9fef23f",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/derive-divider.svg",
+     "git_sha256": "883cf7909e8eadfa67d78744cc5cff2da936ab2296d79d4af0d5096a92fadff5",
+     "body_references": 1,
+     "chapters": [
+      0
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "aa884ba5d2b47609450000313257c32edca0591659927499c8d285b0604b3f13",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/derive-feedback.svg",
+     "git_sha256": "1216a12fcc0b4e78ddf39a846fba091cfb2f4e29eaf14bf6c22f8540164bc914",
+     "body_references": 1,
+     "chapters": [
+      6
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "27fa2e962e588f3d34be927c5dbc2eb97b91f1e4706d0b1946756abf4d91ae55",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/derive-gain.svg",
+     "git_sha256": "19609aa41373f21b412bc666962b1d0695240338fb43ce568219ed59edf0e015",
+     "body_references": 1,
+     "chapters": [
+      11
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "fa892dd8d9398af056f085121d7821f7c3ae2a536398e18a18bade4ac163a6d2",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/derive-miller.svg",
+     "git_sha256": "58ba5c660f483b0893b6bdc2804ea8627da2750e2ff952a3b9b8b728368dbe0a",
+     "body_references": 1,
+     "chapters": [
+      11
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "321edda77ec792095aff946b6731c9dfdcb66f49ae387346faad1eb7e9c9eff9",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/derive-ripple.svg",
+     "git_sha256": "a635db53440c1769d01a307c0c0d149b8093e4a7cba8234a90729151c0512ae1",
+     "body_references": 1,
+     "chapters": [
+      2
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "18f356d966d62906851cfbb11c4ff8e6f74d322ebcdc6819c5193c2e58ddb217",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/design-flow.svg",
+     "git_sha256": "84add3d031499a4272f8b8421d1c1e89204a0ef6b6279e81e2c0cbe1e0f1777a",
+     "body_references": 1,
+     "chapters": [
+      14
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "017a89f74a8f2c88a2bfa62873ce348a19b0cf9ba0b4742badaf2a8e65bf194d",
+      "viewBox": "0 0 960 1060"
+     }
+    },
+    {
+     "path": "assets/svg/diagnosis-tree.svg",
+     "git_sha256": "aa641cd25dba46120b5629311ec2c8c19a973f51f8c608d98bba94ea6f82aff8",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 5,
+      "sha256": "16531e8720899955bc5c513df2a057c27de1ad01e66f2dcede2652ca25ae9898",
+      "viewBox": "0 0 960 1643"
+     }
+    },
+    {
+     "path": "assets/svg/diff-pair.svg",
+     "git_sha256": "b048d5339643126c6001f3f04efcaf1b967e68bb4d5e6a80def59e0dab31731b",
+     "body_references": 1,
+     "chapters": [
+      11
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 5,
+      "sha256": "f2338786d2b1a633f9f5da8f41ffa5ffd351d89a35ae8f9984fc7a0294f4d23a",
+      "viewBox": "0 0 960 1562"
+     }
+    },
+    {
+     "path": "assets/svg/diode-family.svg",
+     "git_sha256": "34469b7947453ec78f125e048f65ad262aa8461398d8cac394307c9ce9cd6431",
+     "body_references": 1,
+     "chapters": [
+      2
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "79ad67d1d1f7be4e586de812cbb25ad9baae1e3a74ccdde534529cc68b75492e",
+      "viewBox": "0 0 960 1426"
+     }
+    },
+    {
+     "path": "assets/svg/diode-iv.svg",
+     "git_sha256": "204d51468d27a229776fb7e867af35ca506fbc8f21546881939f7cad86ad973c",
+     "body_references": 1,
+     "chapters": [
+      2
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "c43fb97f1562d4060ab4b5150f045dd16bd9b543a9639841622470d2a59c5961",
+      "viewBox": "0 0 960 1387"
+     }
+    },
+    {
+     "path": "assets/svg/discrete-ldo.svg",
+     "git_sha256": "e44b3741b831101155ab5e04ecef6a0cad578e1eba32216a740006c126d2b492",
+     "body_references": 1,
+     "chapters": [
+      13
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "20f2284dc215f72e45302b1e929a92fe395e962814c88cd7391463bb7437dd5d",
+      "viewBox": "0 0 960 1478"
+     }
+    },
+    {
+     "path": "assets/svg/divider-loading.svg",
+     "git_sha256": "ef8c575a1d9a14b162513aeb3f6a6fd70190d41623af7c34f97416cb27da483c",
+     "body_references": 1,
+     "chapters": [
+      0
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "f587a9e15955e0ff9246f21e6f3fe218beefe2dbd911ec45a2e481207de925c2",
+      "viewBox": "0 0 960 1126"
+     }
+    },
+    {
+     "path": "assets/svg/error-budget.svg",
+     "git_sha256": "ea41075080f71b807bbbbdf177757f7d36dec8c5ce9117f7d7b7909c5faa4572",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "6e2367db3e52859665e72c5ea923d2d7f3c2cbfe48f4bf562c58990cf307ffa5",
+      "viewBox": "0 0 960 1201"
+     }
+    },
+    {
+     "path": "assets/svg/exp-555-duty.svg",
+     "git_sha256": "a0614ef8d40d149f203c8d8b0e9e24a23ac22bb2ef4165e9ae7c1de573bf7811",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "523179b72baa83edd747ad722cad5464e8ae9fe7668f82b92bdb4eeb268add3a",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/exp-555-mono-train.svg",
+     "git_sha256": "9a1fed1079985fe09b878960659d0524efe88995f7c8810e8ac6a2b1bee9e7ca",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "8d11aff49fbf4ef6d61a22fe0322faf1c1145bc7a5009cb8f32485753d83dbdc",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/exp-avalanche-edge.svg",
+     "git_sha256": "9311708ea16c996d18f7aed8a4f441bd739996edd8363bc052e9e0ca1c9d11fb",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "9bf4834c899ca5dde1406897a65969438c4133ab834496aeb7638c4ce8cc7dd1",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/exp-beta-drift.svg",
+     "git_sha256": "9755888c257fe3c79de52a24ae4635f0a6be1af71a36ee7b660c0f157d1a075b",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "405e6670e50c023bbdacf613790593d4e44817a6c4f328de95da61e967b50c02",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/exp-cap-life.svg",
+     "git_sha256": "517b8b990345173f80c98070a51306ce7ac04fed572bdf68a132ed59b0294308",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "ff732a333acd0af773ba1ffe1d57fbe282faebcf454ce3b8e96a64a1d7f89b16",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/exp-cload-isolate.svg",
+     "git_sha256": "30bd566e70f0c987e03eaa23dd260e0f661c1a7ea11acee1b3d343ea21902dac",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "680fca37aa6fa1830e2d66972fbd53bff29cbdb15c2d7c47983e0edb0b259838",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/exp-conduction-angle.svg",
+     "git_sha256": "ca733932dc72fc20896d70b7916ba62e613d41590d45276fdc61c2bc275789ce",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "3797ed4f98ad18f6b5ca44545e829352b41ba367fcc3d2ece713e06f89d3ee6f",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/exp-contact-creep.svg",
+     "git_sha256": "6f5940d10848fbb04f0d1d26bf1056ce2d169a2a4fcc0c60cdc2fef66a0185d4",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "ca1660ba448a6887d4e547cd2bd66d1113b440db0db30b28180c906778131185",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/exp-cost-ladder.svg",
+     "git_sha256": "ac4cbb46a5c74cd186902f3a3dd170436bf45ef9715b0bb00c32adf2c4ef5d7a",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "4753ae324d6e6a72c03f61e608ff089edb7264e8dddde9fa3d2142a91f56a6e8",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/exp-crystal-pull.svg",
+     "git_sha256": "490ffe49adeed1291de263d39e4ed94e4abfd288ac0161c0147fd11d05a4c5c8",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "a96858a9f4ebd5d95d8a7820bf79c963e64f87f816aad0d8ffe43941cb3e4210",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/exp-dead-time.svg",
+     "git_sha256": "8c2170860a3425c63276c0b27df1410d9f9707590febbe432a29d53a095a5b6c",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "f642d70e8214807308cf526eb35899db207efb8ea1655d3785fa39798a7189b7",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/exp-delay-budget.svg",
+     "git_sha256": "fdde2afc6af492090b286238746f3509e21bce3de745e60005354fa003932f83",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "6b0a54f5a6a6fa7f0ea3276b8dc078ccbf78aec5a4d8088fbda663d78d510802",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/exp-derate-chain.svg",
+     "git_sha256": "ddd18ff67f7aa463ee98c843786f1bc285bd14709d28c9f6e4057e5453676bd2",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "145d289abafd92e0d03142ab49a778b83e005dbe0aa63d3142fcc6dfbe466264",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/exp-droop-budget.svg",
+     "git_sha256": "bc269e9d3f352fe76829fb46875835e9c2566352f7367459c97138f50a6e9346",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "93754892b3ecff3d93900e70d93b0de2ccbfb1287ca5e05d9e254199a757e3b2",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/exp-esr-ripple-split.svg",
+     "git_sha256": "48ddc37756bdb036a1bdfb804bf559b69211e28572c7b07c2d02871f5db6c4dc",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "19139320f9ae51d276745519f663b3e59033c80fefcccc27e06de12ef0319f28",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/exp-gate-charge.svg",
+     "git_sha256": "f58f3f65688075f505e406b0c881f8182ee1954a1e2ee31022e381936d1bdaae",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "4f2acf70c496b2ff62f0e52b27256473cedf459a705bce31f0f01f0cf4fe0159",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/exp-gbw-swap.svg",
+     "git_sha256": "097b76dea963ddd4b0e12827f24b29d3d8de8f2280e05af74be450af06fcfb60",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "d0d225637d3378a047a071a06aa6ebfef3adc82e0ca3dcedab4bab4f9f25812d",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/exp-hyst-window.svg",
+     "git_sha256": "6d39982297a693f730d1431c765a636cb563e43e86001289ddc26c26237e3c6d",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "82a8a02682d32a0a96cb2dd288823b79fa3b969350858f1b54edf24b5645118f",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/exp-inject-harmonic.svg",
+     "git_sha256": "a151ad499470dfd613695083fc7d26c6c4ba30aff99bdb7997418b832a4aaa9c",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "d9ba43edac770687835b532ce4922a2a55773348481dd83b7ff51627c56f91c9",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/exp-integrator-drift.svg",
+     "git_sha256": "ca13b9c2a110e5044a4463e5c3dc9ce95fa6bc096e0db97660b297cbf1d3923c",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "86b2c4917e550c059fe32a577834d0daaa5dc93c90c266264be5fa75f7ae914e",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/exp-ldo-zero.svg",
+     "git_sha256": "48ffb8403f51ce99df6f418c5d687ef04bdb70596ebe5378792da6a0a568425a",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "094a6ae366cbc1f3e8a1f8a12218bd7d5bb79a44bc53e5fc20094173ec06375b",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/exp-log2-split.svg",
+     "git_sha256": "d444c6e3c0748db7e3a6e01f8e2e60d912e78d7bab24e604f304bde913bdbeee",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "dfed2275513661a8b268b04a65f897888d7b0636ef93bbe284735a2513e2fe60",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/exp-miller-mult.svg",
+     "git_sha256": "48942afa931fa318381608bb33f94861af6bc067537eb5563455db898a1d4ed4",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "b3e912615b479746eaeac4a58a5ed64b43fc6e11c29368325e55373bd24d9375",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/exp-noise-ladder.svg",
+     "git_sha256": "6186a661bf9284f49e8ca8730af54929d4bbfe2b8937e45b05c38883f916720f",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "9ee057f6616ef24d7956ca19cbb82f1c25208ecc59f7ca65d40a49d68c216e27",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/exp-psrr-roll.svg",
+     "git_sha256": "f5b00017223d4a64a48ce08da94f4a156195ec4f6e93e3cc24f31d4c59c12848",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "a642819e0e7515a0f261542cc8bdc7c4d583bd2ff7c7d89ce9c914c09dfce996",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/exp-pullup-trade.svg",
+     "git_sha256": "772fa72484c7eb0c7adc7b30ff99fbb43ba5a2cb4a8fa8101d09c89869896094",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "5473108ba4b8ba02ffc5e2b79fb2590de32fc21d1c151053ebaff2d38843e90f",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/exp-return-cut.svg",
+     "git_sha256": "4f0fca27ad025f96519a3e3dcade52d66dc17dfc6610126cd44fc23f03adc839",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "bcc3733329fb7e44b2e5c94db39732c4eac5e123f47747faa9b6c6e0287712ef",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/exp-slew-wall.svg",
+     "git_sha256": "f581471e186890bbdbc1228b80cecb20242e3ebd0a39b86a3b3765c14249462e",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "3e95cf97ab081d86ff92ebbdedb00bd903bfc5274d99a19a8411953e660fb000",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/exp-source-sag.svg",
+     "git_sha256": "9e902c32fa6b00f5bd4a051161373e94a8b571639abe922cb971e33ee49decd2",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "e10a8eec631326b9d9aa660627db8838367019446e1805e6fae3f9d453fb3d29",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/exp-thermal-loop.svg",
+     "git_sha256": "7352b0ae4901b27a6f8df62cf45485890a711bdc51cf29ee47852c61a87bcf4b",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "981c220a19f252fd99b118ec46c64545d5561993450ca6cb8119d229b62867b4",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/exp-tvs-ladder.svg",
+     "git_sha256": "69194ddad859f390c9d1d76619624ea8ad5c2af728255a452a2f3b91239617b3",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "97bcf8936a8751c3d994598faf4203d263014550560abf7560d078879250096c",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/exp-unit-guard.svg",
+     "git_sha256": "81b58cebec2563c315c6a3b4dae075184e7637d7421a299b011c955574f7689c",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "5a610b14604289287109dc644bf20a33cda221dfab9453b40438f901e9501178",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/exp-via-stack.svg",
+     "git_sha256": "d55a4d65fdcf2f3080b444040d9e5762fb47459bd2c1bbcc7b9e816b4665b3a8",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "5155133b947270eaf9bd98f3517472573d7610603724a25648d94f713d2d1363",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/exp-volt-second.svg",
+     "git_sha256": "ce2f264e263b18b2e2a87782323772e79211dbfa3117d5e05e8cd99171423a28",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "2bd7e528e73db49c378357f1f8122d8c41a55c9ad1b5ae0e4a7dadefc71cde9c",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/exp-wc-rss.svg",
+     "git_sha256": "6074dbc0e40131fbf89c4307e352c09c227d013be3ff3c38b0444a49ab827071",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "09c9ead4ae1f67d59c5633d13e2605b6eda5c8e62a540c62402f13b745799f57",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/fault-lookup.svg",
+     "git_sha256": "7425e2d0833b4c85f450659615c331b772741d2055f3fcdc003023a542513d83",
+     "body_references": 1,
+     "chapters": [
+      17
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "04313bb761396b2303385c6d42d98e987727f11b3e2661f3ccea92ac390d8a11",
+      "viewBox": "0 0 960 1310"
+     }
+    },
+    {
+     "path": "assets/svg/feedback-topo.svg",
+     "git_sha256": "7347e58f64f41478ed6114411c6c6301db221ddc782aa9bebc404e3a33cdd1f0",
+     "body_references": 1,
+     "chapters": [
+      12
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "df422127965a55e1bc48e9fb8f09916f17a18a3b17b488776bac67c47587a0ff",
+      "viewBox": "0 0 960 1426"
+     }
+    },
+    {
+     "path": "assets/svg/ground-bounce.svg",
+     "git_sha256": "04bac9535f16d33df997c5af22a3ac89c8e325f8ae86e91a61df37435646ec00",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "187471c52341867c44ead6e7d9b1adef537ec8efdd1270c91c1e5420b582a617",
+      "viewBox": "0 0 960 1387"
+     }
+    },
+    {
+     "path": "assets/svg/ground-star.svg",
+     "git_sha256": "eb1df2551508f52daddf578279fb0520dc42483d6189ba67d10c66f200157dd5",
+     "body_references": 1,
+     "chapters": [
+      15
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "d0e90b20ebad43ea34c4a7c68435b7f939db420ca7397e6818b8ee0eda050c01",
+      "viewBox": "0 0 960 1194"
+     }
+    },
+    {
+     "path": "assets/svg/h-bridge.svg",
+     "git_sha256": "0e9126d3c2dccfe0be9e016d3f36e6f00473d08cabd05f78e45f73fd9f99a636",
+     "body_references": 1,
+     "chapters": [
+      13
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "6df50347444d92d5fa70b01c772cf35f689e624bd5e96c3120bfd5a81bf158db",
+      "viewBox": "0 0 960 1208"
+     }
+    },
+    {
+     "path": "assets/svg/impedance-freq.svg",
+     "git_sha256": "457c066b16c42017ed1ae4a45b0298c7bf2b3b27d8075faee0c7c76041282631",
+     "body_references": 2,
+     "chapters": [
+      1
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "a5d8d184e618147f2b2fc69ea34504da66b70b097c7d7215dfc68299b4979bbb",
+      "viewBox": "0 0 960 1156"
+     }
+    },
+    {
+     "path": "assets/svg/instrumentation-amp.svg",
+     "git_sha256": "db69e0bb1072cccfb2ee6b9d666c3f56cb796e221da7b99490e527da58361c3e",
+     "body_references": 1,
+     "chapters": [
+      12
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "db692313940a6c8be424b924b83bd870f9c6f5b27fba373d3837d72e57c4316e",
+      "viewBox": "0 0 960 1259"
+     }
+    },
+    {
+     "path": "assets/svg/integrator.svg",
+     "git_sha256": "35d692a5be62e6e70d9b85ad12abc0d86eeb153311ae9387179565dd4029fad2",
+     "body_references": 2,
+     "chapters": [
+      12
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "41b4612db6aa9fc8cf9d0288f1c5eb108c70a7b87dd7ff406294d7551d9c3781",
+      "viewBox": "0 0 960 1267"
+     }
+    },
+    {
+     "path": "assets/svg/intermittent-forcing.svg",
+     "git_sha256": "2bb1012cc6d9138e1f4579eef7d24bc422e62318cc5e4fd98fe2db6191581eb0",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "53411b4328d8664809be2ee3f12f6450a6dee1cb03ad3209d2a46dd792de3c55",
+      "viewBox": "0 0 960 1272"
+     }
+    },
+    {
+     "path": "assets/svg/inverting-buckboost.svg",
+     "git_sha256": "2e85f8ecb790175b8583013620443e3e41d3e7e2d0954465139f41b631874de0",
+     "body_references": 1,
+     "chapters": [
+      13
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "8c4c64fe939a000962b76ab465596e52aadc575fa4d3b1cefd0748cc8ab54956",
+      "viewBox": "0 0 960 1087"
+     }
+    },
+    {
+     "path": "assets/svg/ldo-failures.svg",
+     "git_sha256": "480c871257873b1132ee2c1852c86f31dad01e0a200df8d1e825f4e915fb4099",
+     "body_references": 1,
+     "chapters": [
+      9
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "b4808fc630eaa738982505c568e4c672d5a152087803d512d98b6c17d9a277fe",
+      "viewBox": "0 0 960 1686"
+     }
+    },
+    {
+     "path": "assets/svg/ldo-feedback.svg",
+     "git_sha256": "d4d64d4674251e494a3e1b460e124a41a6ed154c667af3c67d53d0753b5f3342",
+     "body_references": 1,
+     "chapters": [
+      9
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "5e971dc8f0a48bf21942b2691b21bda52805784d77a31cb505a102ab1fb71536",
+      "viewBox": "0 0 960 922"
+     }
+    },
+    {
+     "path": "assets/svg/ldo-transient-beats.svg",
+     "git_sha256": "a6180c9e99fd8da577125af0a7816fc3c7bb4586735ef3abe3d2a516731aaf37",
+     "body_references": 1,
+     "chapters": [
+      9
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "dcfa03ce521b71e45d38056f262d1a7f8127333344811b3e2e60ed5c961b072b",
+      "viewBox": "0 0 960 1541"
+     }
+    },
+    {
+     "path": "assets/svg/lm358-dual.svg",
+     "git_sha256": "80256090fa8e68e10faffe437b96b2957989d8f2752ff57be30227c602d9eff8",
+     "body_references": 1,
+     "chapters": [
+      6
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "2d0f0c51d17c95397977dd6c379a34b343d838de6d42dbf36c283295d99214e7",
+      "viewBox": "0 0 960 1452"
+     }
+    },
+    {
+     "path": "assets/svg/lm393-inside.svg",
+     "git_sha256": "10c3edb19781e9c948a8b40b57f2f675d812c89a10c795543548e0d51e2f1173",
+     "body_references": 1,
+     "chapters": [
+      7
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "7fcbdb3dada3f8941a34ae8b8e8d99572570656eee93fe265d9120a4b5f902d4",
+      "viewBox": "0 0 960 1426"
+     }
+    },
+    {
+     "path": "assets/svg/master-wisdom.svg",
+     "git_sha256": "daa1f1eea8ddb8ec8588ff447536eb4ebdf689f35440ce9f95e1f261dc607257",
+     "body_references": 1,
+     "chapters": [
+      18
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "8e1c16a65006742696e9d2a3895d44e91442ee197537e6af9b9961fa0992c80d",
+      "viewBox": "0 0 960 1233"
+     }
+    },
+    {
+     "path": "assets/svg/miller-effect.svg",
+     "git_sha256": "7bed5a9469ed03280820b57e6d3dda7b4c400db651ec35b22f9b4df582df66fd",
+     "body_references": 1,
+     "chapters": [
+      11
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "4df39a32e6c2ae2e0fea532474883dd0bddf4d80571ca070e85e15aeb55f2fea",
+      "viewBox": "0 0 960 995"
+     }
+    },
+    {
+     "path": "assets/svg/miller-plateau.svg",
+     "git_sha256": "d0c2222df5bebfea9aa9db24cd3337179806bb4e854ec2165bcb8168bb6adadb",
+     "body_references": 1,
+     "chapters": [
+      4
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "f931c550c2ed8bd94b4977857f6e59595ac49451ab05f51a0d299c58ea154d59",
+      "viewBox": "0 0 960 1452"
+     }
+    },
+    {
+     "path": "assets/svg/mosfet-curves.svg",
+     "git_sha256": "c5181a45e80538806d8cf0beaa5d4480e7317a47345213c40b8116e65bc82126",
+     "body_references": 1,
+     "chapters": [
+      4
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "daf51261f7f3009f4a1d53d5f5a0858c6d0d57b7b13e86ce86b749f29293c647",
+      "viewBox": "0 0 960 1426"
+     }
+    },
+    {
+     "path": "assets/svg/mosfet-four-beats.svg",
+     "git_sha256": "e33e12190c4f5644a4ce86b0d5ab21861e4cbd5a7a1e07d32f64a0c7d93c6fe1",
+     "body_references": 1,
+     "chapters": [
+      4
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "bd530310d5fe3f28a2466ac9709e77c5bb37b78b9d409780d0a8c1ad424259a7",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/mosfet-switch.svg",
+     "git_sha256": "9b896d1ec29b73cf77ac4b129ef0966ed86067d06eb2f09b25e11abad7e3cb0d",
+     "body_references": 1,
+     "chapters": [
+      4
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "021501ab46f3f4f166ade90a84908e005665b418dac1f570b217f9ab834a2e8c",
+      "viewBox": "0 0 960 1163"
+     }
+    },
+    {
+     "path": "assets/svg/mux-4051.svg",
+     "git_sha256": "d740dfc2590d353099760f03586ed93d3a678a20e724aed4b440d57e50718241",
+     "body_references": 1,
+     "chapters": [
+      8
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "407d6ac2dee1508ff7b55d74966ad8a3bc11fe1f66f3ba0139532a16aac860da",
+      "viewBox": "0 0 960 1667"
+     }
+    },
+    {
+     "path": "assets/svg/ne555-astable.svg",
+     "git_sha256": "7676fbe4aa32db33b8e9d09109ff11f32b49fd6e3a0ab5a20af933d9c95016ad",
+     "body_references": 1,
+     "chapters": [
+      10
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 2,
+      "sha256": "7451a57566e088b17002a88049bb0f26b989ccd36d2e78cb1da1172ae4a280bf",
+      "viewBox": "0 0 960 1063"
+     }
+    },
+    {
+     "path": "assets/svg/ne555-monostable.svg",
+     "git_sha256": "032a4ba8e670b664a152b5e1387c64770ae493d47fea496b200156759acca37b",
+     "body_references": 1,
+     "chapters": [
+      10
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "302ea568a9fce1d40526bb53c602bc53a5d2c02892d098bfc62a1c5330daf953",
+      "viewBox": "0 0 960 1156"
+     }
+    },
+    {
+     "path": "assets/svg/ne555-params.svg",
+     "git_sha256": "89c0dcce1670efad09e7c00472a8c324257539619c388d187975ca37bc7858d1",
+     "body_references": 1,
+     "chapters": [
+      10
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "253f529db2e33f8264cd35fffe25eafacbe27100db7b6eec641f1e32f995dbdf",
+      "viewBox": "0 0 960 1426"
+     }
+    },
+    {
+     "path": "assets/svg/neg-feedback.svg",
+     "git_sha256": "b83318390e8065ba3381e02f8236a4cd0f40b26b91914d5a9cd14a7d99cbc159",
+     "body_references": 1,
+     "chapters": [
+      12
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "a43be50e80196872d5afc3c44d9874d78d6d82b2a769ed377888b276d1fa325f",
+      "viewBox": "0 0 960 1206"
+     }
+    },
+    {
+     "path": "assets/svg/noise-budget.svg",
+     "git_sha256": "dae0c390befb16e94e60d8ac85d6f3b687df5ace8fa257fcfcdea1e6d8a7ac15",
+     "body_references": 1,
+     "chapters": [
+      11
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "4fd4cccff2c93f150f936b613d754486b688e649f5e8ea315e9380a2cc125301",
+      "viewBox": "0 0 960 1464"
+     }
+    },
+    {
+     "path": "assets/svg/opamp-input-stage.svg",
+     "git_sha256": "adbf0d47e4f90d2cbd8d5950a5edd154120fc0bc6acffdef929d8386d39c7336",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "8e8f52a75673015914867b8cc7461d92695c9c9abe72e42c798c47c787e8995e",
+      "viewBox": "0 0 960 1420"
+     }
+    },
+    {
+     "path": "assets/svg/opamp-internals.svg",
+     "git_sha256": "950118afd9934c5fde48cc606702259973af5f65634b27814582dc04b599f9ac",
+     "body_references": 1,
+     "chapters": [
+      6
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "ff07a1a987f5b1603ecaa3cd8743be3cbb6a8554f24de2b2586834e558111b63",
+      "viewBox": "0 0 960 1156"
+     }
+    },
+    {
+     "path": "assets/svg/opamp-inverting.svg",
+     "git_sha256": "7efbd9f99d350a7ee5dee7432956849275235008dca526e4ee67c5b246eda9a1",
+     "body_references": 1,
+     "chapters": [
+      6
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "f743b7563bb1c58986b0ccec9503c9e9b65557d99422c89029c41bbef524a7f3",
+      "viewBox": "0 0 960 1182"
+     }
+    },
+    {
+     "path": "assets/svg/opamp-map.svg",
+     "git_sha256": "8fab45681bf0409ef820050014685d615a333cff01544181240a2e633b3456f7",
+     "body_references": 1,
+     "chapters": [
+      6
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "b213dd34a060af296d91de6b6b1ed0a896147dcd84d22ea4db6401bb80d70598",
+      "viewBox": "0 0 960 1452"
+     }
+    },
+    {
+     "path": "assets/svg/opamp-pitfalls.svg",
+     "git_sha256": "efdbe15c051f588cfba62b7f1f74f8b50b5eea2f20ba8d60378fee67138a16ab",
+     "body_references": 1,
+     "chapters": [
+      6
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "2e693b802c871e3649b3cf8fcaee802923ce4748a1520506af61f13e5cd6b8ce",
+      "viewBox": "0 0 960 1699"
+     }
+    },
+    {
+     "path": "assets/svg/opamp-slew.svg",
+     "git_sha256": "21bda4ae0e297da41e41f4ae2b7aeb51915de41d96963d557e128c3c93a58111",
+     "body_references": 1,
+     "chapters": [
+      6
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "fc6139c461a23fe58296f441dda2cad68bf23aa603c719b44a29f8202d823449",
+      "viewBox": "0 0 960 1413"
+     }
+    },
+    {
+     "path": "assets/svg/optocoupler-ctr.svg",
+     "git_sha256": "c48894eae0aa2002d87d8d372655fb67e1e99724a688f790ccc31100ddaa2f81",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "1557a7286c4bd86b57342f3cede4b3906d79fe08a74333a43cf9db4f9e3bfed0",
+      "viewBox": "0 0 960 1220"
+     }
+    },
+    {
+     "path": "assets/svg/pcb-return-path.svg",
+     "git_sha256": "6489414eff3bdf20a11d30edb53ae230dcbfb28c8dce5d85cc162c78eb393127",
+     "body_references": 2,
+     "chapters": [
+      15
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "d56451bf4160f7d593c07f89103043ac2012f24123bd3cc6984a2ecf1525b2cf",
+      "viewBox": "0 0 960 954"
+     }
+    },
+    {
+     "path": "assets/svg/pcb-routing.svg",
+     "git_sha256": "c47c964c90ab70fbf795dc5eb108c9ff1984c3f7ca953ff04641f7c713f36ea7",
+     "body_references": 1,
+     "chapters": [
+      15
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "0cfd19904e55e3ba8c40270a9bd416040e988cb21017e5f882e0a5b7b028d242",
+      "viewBox": "0 0 960 1011"
+     }
+    },
+    {
+     "path": "assets/svg/peak-detector.svg",
+     "git_sha256": "5a9580bac712569e2c1b4fd0da4cecfb3cbcf0f6b2566d4c3913e4ec74b6d3ee",
+     "body_references": 1,
+     "chapters": [
+      12
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "74c9119291b68e71ada78e45244b35f2b5bab2eeb62c2e5267b81efacbd8b3d4",
+      "viewBox": "0 0 960 1030"
+     }
+    },
+    {
+     "path": "assets/svg/pn-junction.svg",
+     "git_sha256": "90054d45c1f1f430e6f5d8c240f097687fa193a2955110d913ab096c7b510fe5",
+     "body_references": 1,
+     "chapters": [
+      2
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "976e3dc0b878986601784f13581c000b78b9767761de74872b3250c102948ac4",
+      "viewBox": "0 0 960 1426"
+     }
+    },
+    {
+     "path": "assets/svg/power-tree.svg",
+     "git_sha256": "c261a576561a5f2b905a432a9d4bac3341c3efbe6cea5c804e59e71db7518d8b",
+     "body_references": 1,
+     "chapters": [
+      14
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "b0a468702bfb2a47e87eae77ec608538e3bfda60bc64fc32957474a0f183224c",
+      "viewBox": "0 0 960 917"
+     }
+    },
+    {
+     "path": "assets/svg/precision-rectifier.svg",
+     "git_sha256": "02081430f5c19a3277c3bf17d7ea8eb8fb0f606471e6d607beb1040439d97c2c",
+     "body_references": 1,
+     "chapters": [
+      12
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "fee43e4a413cf579a62e0607b54c4e50d9b2bb9d84e146adf00db7041af4f5c8",
+      "viewBox": "0 0 960 1014"
+     }
+    },
+    {
+     "path": "assets/svg/predict-measure.svg",
+     "git_sha256": "a8c4607cb88c685a884fb3d962a34b1d2cbb22630b6a93ff3adb184329c93e91",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "44f730883fe2275d1fb9c587550d666150cec0c1bcd4e634c7e68653b7c3bb53",
+      "viewBox": "0 0 960 1272"
+     }
+    },
+    {
+     "path": "assets/svg/probe-ground-loop.svg",
+     "git_sha256": "b6c3c449c92eb01f48e362bb3cf946b2ea7722bc418c32a951c12a0e4d81b39c",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "cd5c708d3fe977f5ce29b3d37d1c75b771ebe018fda47357413c828eba1b3888",
+      "viewBox": "0 0 960 1194"
+     }
+    },
+    {
+     "path": "assets/svg/probe-loading.svg",
+     "git_sha256": "0e7f56c54efa835cecb066d9ab157fff79eb645188e9cd0de9249a80fe4eecda",
+     "body_references": 1,
+     "chapters": [
+      16
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "a39cd731c3f0b2f6a4c854b4113db1ebd2220a2dc1969afb2f3c5b72f9965e86",
+      "viewBox": "0 0 960 1490"
+     }
+    },
+    {
+     "path": "assets/svg/pullup-sizing.svg",
+     "git_sha256": "0466377e23b0b76e4287db917a981f2ea54cd274f9c528dc53072886e6b5fe2b",
+     "body_references": 1,
+     "chapters": [
+      5
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "ac714b1e2749c5a8cd86e695e794ae7ef6457c283d21dd4437d7be1c461ec2ce",
+      "viewBox": "0 0 960 1452"
+     }
+    },
+    {
+     "path": "assets/svg/pushpull-opendrain.svg",
+     "git_sha256": "f903ec03eb4c8296d07702dd89044e955ed517ad8fd77af6caede51a97456845",
+     "body_references": 1,
+     "chapters": [
+      5
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "e0857d53a651d29a0644803ced08952be2cc24cacac57c52cf99557f3caf30f5",
+      "viewBox": "0 0 960 907"
+     }
+    },
+    {
+     "path": "assets/svg/pushpull-stage.svg",
+     "git_sha256": "0598a3eac41c366d93f27430e49dfb84bef6c930069cfa6417e6d7cb616f7228",
+     "body_references": 2,
+     "chapters": [
+      5
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "5cbdd1a561edbd8bbf6016831504fccfbe21797cac6c98c92bc164fe8f188c36",
+      "viewBox": "0 0 960 1426"
+     }
+    },
+    {
+     "path": "assets/svg/rc-charge.svg",
+     "git_sha256": "1113e06f6b8ddb59bfbeb913e2d8de4b58d8cf6cf34fcce5410283be942f53fd",
+     "body_references": 1,
+     "chapters": [
+      1
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "3384900d9d253564061868699d81ed24f67acbc5451dd301dac6e63f2c8775de",
+      "viewBox": "0 0 960 907"
+     }
+    },
+    {
+     "path": "assets/svg/rc-lowpass.svg",
+     "git_sha256": "2fe9cabe2214526fe40f2641159795a8623cb5f6eda471a26254dd49f9cd11b2",
+     "body_references": 1,
+     "chapters": [
+      12
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "35e1077d7d4bc02a2970b42f403daac40cbb2344c04499b436a7eb74fd463718",
+      "viewBox": "0 0 960 1026"
+     }
+    },
+    {
+     "path": "assets/svg/rectifier-filter-beats.svg",
+     "git_sha256": "06c55bd89c05793521669a12bfeb85c9e5b6a4a03e93272c95da3b99556ce5e5",
+     "body_references": 1,
+     "chapters": [
+      2
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "abf8353ee4a094540cc48c37227a81038c48ad988822e1f0629c947ec80b4f1b",
+      "viewBox": "0 0 960 1198"
+     }
+    },
+    {
+     "path": "assets/svg/ref-showdown.svg",
+     "git_sha256": "80708a007e6d4c5c847e4227a0a00f7404f967b64e10661f459fc1359e21ee06",
+     "body_references": 1,
+     "chapters": [
+      9
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "84db1b1aa19cd761b707166a0ceb39f40defd6f5d350cc85d65eb47ba18205d8",
+      "viewBox": "0 0 960 1552"
+     }
+    },
+    {
+     "path": "assets/svg/resistor-model.svg",
+     "git_sha256": "ddbf1d78a9f993d84775a34823d2eebad90c0bb0cbb364aaa8dddd6f68e2b1d6",
+     "body_references": 1,
+     "chapters": [
+      1
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "c6cdf699a1c3d3eca0f7409b7f89a75c3509ab37edc011f32cc5d658feb5a08f",
+      "viewBox": "0 0 960 1479"
+     }
+    },
+    {
+     "path": "assets/svg/rlc-resonance.svg",
+     "git_sha256": "129d194c18d4ad11cd4201d0ddab8024cc5fb9d67da158a1187fb96de2f3b494",
+     "body_references": 1,
+     "chapters": [
+      13
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "8fc0fd5f5b3185c9086c911afe773fd1fcc8af1edfdd29b0fe4f09ce78cb44eb",
+      "viewBox": "0 0 960 969"
+     }
+    },
+    {
+     "path": "assets/svg/sallen-key.svg",
+     "git_sha256": "59333d987c08efed7d116cb1e7b517589172cb4beb0896c9b95a2d8056daacb0",
+     "body_references": 1,
+     "chapters": [
+      12
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "d63acfbdc1e7182830cfacc360b569890db79631a13e1949663ad118d7c21209",
+      "viewBox": "0 0 960 1233"
+     }
+    },
+    {
+     "path": "assets/svg/sample-hold.svg",
+     "git_sha256": "6cbaa562a55e99226aeab1935d135f453b8c3b0b9f7492bcf7b4ba110e0d6dfd",
+     "body_references": 1,
+     "chapters": [
+      8
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "fbd46a389c81c7a6a8d9f8fb043d774ff90c3d91eaf9cc5070f7da1445ced904",
+      "viewBox": "0 0 960 995"
+     }
+    },
+    {
+     "path": "assets/svg/sar-adc.svg",
+     "git_sha256": "69806b34f0fd8ddd722795d9df512526cfb7221e0e6a3b504bfd48b70f3c4ac9",
+     "body_references": 1,
+     "chapters": [
+      13
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "ccfb9426467932eecff6d48e3ff9fc48bdc2a7b5e9ebd2eae674a89a40291ace",
+      "viewBox": "0 0 960 1259"
+     }
+    },
+    {
+     "path": "assets/svg/schmitt-osc.svg",
+     "git_sha256": "5540789ba38b634c26321c6eb25c8a82a1cdb33426cdeeef772f0ac50a894239",
+     "body_references": 1,
+     "chapters": [
+      7
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "627b8b9388627130c8e28e444342e599b83a0519cbab7dbaf1066688736f68ba",
+      "viewBox": "0 0 960 1232"
+     }
+    },
+    {
+     "path": "assets/svg/signal-chain.svg",
+     "git_sha256": "6d1634e44469356bfb3cd02d8ddcfc11c17a8de65be080ef3eae55a2d89eea68",
+     "body_references": 1,
+     "chapters": [
+      14
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "fcba9f8a8f8ba9f33e42b782b7d8f876c275f2ab61ef33427e1cbcc151540402",
+      "viewBox": "0 0 960 1439"
+     }
+    },
+    {
+     "path": "assets/svg/source-types.svg",
+     "git_sha256": "061347a26d5adbd76c7d6addda97602b87fe76a5d2db7ba34dce7dc0fa967ef5",
+     "body_references": 1,
+     "chapters": [
+      0
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "0874289174fb50075fd4567e9de0fe1963f3affc90f041ce98d8539650e904a5",
+      "viewBox": "0 0 960 1464"
+     }
+    },
+    {
+     "path": "assets/svg/thermal-runaway.svg",
+     "git_sha256": "759b5df867087a3c95bfdae83d7cd8c18e9349b0dc1387d1b7b30106bd4d89c3",
+     "body_references": 1,
+     "chapters": [
+      3
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "38233b7c42ed1fccae14887d6fc6f37524c2b6ab35a00b309ad03effe65ca34c",
+      "viewBox": "0 0 960 1464"
+     }
+    },
+    {
+     "path": "assets/svg/thevenin-norton.svg",
+     "git_sha256": "451d4d29701b8e636664f795ff4433a6db2093f4954e74e9db19109e503db987",
+     "body_references": 1,
+     "chapters": [
+      1
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "bf62d40bb9ab289348f7dabe0639125ef3843ad55ddee6556472fa7a43033eec",
+      "viewBox": "0 0 960 1516"
+     }
+    },
+    {
+     "path": "assets/svg/thinking-toolbox.svg",
+     "git_sha256": "8793e4f84f40ffd6dec1f4c591371577154ae1bf305bc0582b57fc9b29586c0b",
+     "body_references": 1,
+     "chapters": [
+      16
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "7d719ea94e88807ccf289e1ff5639b6df80d304435c2805e5a537b650360a756",
+      "viewBox": "0 0 960 1194"
+     }
+    },
+    {
+     "path": "assets/svg/three-probe-audit.svg",
+     "git_sha256": "28d2a15d6ef4d7cff823e166fc74cd734f702561dec1c2a232b9b92b18af36b3",
+     "body_references": 0,
+     "chapters": [],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 5,
+      "sha256": "733eb0d92c936d8dd24cb3da201fd26876cf5fac232da218d103da19c55e80a6",
+      "viewBox": "0 0 960 1557"
+     }
+    },
+    {
+     "path": "assets/svg/three-topologies.svg",
+     "git_sha256": "9137e43ceceeb3a2d4b91bf3e40d25ce002b26c83306c62e566cd009dc2abbf5",
+     "body_references": 1,
+     "chapters": [
+      12
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "1f4ad2c597edc90e93017f546129492ba095834f5574863ae056236acad2c9db",
+      "viewBox": "0 0 960 1478"
+     }
+    },
+    {
+     "path": "assets/svg/tl431.svg",
+     "git_sha256": "ec3e35804a161ff8844503c7942f5e149a8702f6cd7db6864c217a756f4a5d08",
+     "body_references": 1,
+     "chapters": [
+      9
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "91b85a3f3dba76d7d1cb5dc916d43b79d150d3577c36c7ed8158ea8b5cfb0b1e",
+      "viewBox": "0 0 960 1047"
+     }
+    },
+    {
+     "path": "assets/svg/transfer-gate.svg",
+     "git_sha256": "b2d8431426a74d4c0ce3e440c36dd1d8dcb04d89744af8c07a6ea0d497d05ae3",
+     "body_references": 1,
+     "chapters": [
+      8
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "be7552b8f9332248896d4c65ddc9a35a290aedfffa0cdbc0d3e886697737df62",
+      "viewBox": "0 0 960 1516"
+     }
+    },
+    {
+     "path": "assets/svg/transformer.svg",
+     "git_sha256": "449f5074b65894c5b981089717253d8675cd1a22a72549af66126357bd4a7129",
+     "body_references": 1,
+     "chapters": [
+      1
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "43102111d1336a283f38210e45386d28cf7c5dc2914f6afffe87a902a91e613d",
+      "viewBox": "0 0 960 1259"
+     }
+    },
+    {
+     "path": "assets/svg/tristate-bus.svg",
+     "git_sha256": "3744db4da4779495152d603961a94357a725fda9ddfa8f3ada6c3b025654a4c4",
+     "body_references": 1,
+     "chapters": [
+      5
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "ae60bb2855475529f5e01646fb4acfe771666af5201569b11f047b4bcefa8ad1",
+      "viewBox": "0 0 960 1426"
+     }
+    },
+    {
+     "path": "assets/svg/virtual-ground.svg",
+     "git_sha256": "288819e3b4b8043271e763cbcc7c0ee21089401ffa1cec9d056786b1f49e3566",
+     "body_references": 1,
+     "chapters": [
+      12
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 4,
+      "sha256": "4581f661f5e4ed72c53fe7226fd39c3daf3dd7898a6da2abc3c0a5de01ffec84",
+      "viewBox": "0 0 960 1206"
+     }
+    },
+    {
+     "path": "assets/svg/voltage-drop.svg",
+     "git_sha256": "d21541cd7718d28f4135e91424dfc4f477313cae80692c8e58eb2045f8660532",
+     "body_references": 1,
+     "chapters": [
+      0
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "c1c3aea756d806a60a781b3ac505d835a7d04bdd6b6c339a6658d89b3438699e",
+      "viewBox": "0 0 960 948"
+     }
+    },
+    {
+     "path": "assets/svg/water-analogy.svg",
+     "git_sha256": "ecd8b4b7cfcfbfe345acabfa6640652a8a795a75b8c9bff6740511e2c32949eb",
+     "body_references": 1,
+     "chapters": [
+      0
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "2f3a8e771e7eda60c951cb46aabe0635ffb3d16679656db4cee8dc472a0ed77c",
+      "viewBox": "0 0 960 1105"
+     }
+    },
+    {
+     "path": "assets/svg/wien-bridge.svg",
+     "git_sha256": "c758ab6baa7fc7513100313deefdee1b2544cd0b462497322b19a1defb0b43f0",
+     "body_references": 1,
+     "chapters": [
+      13
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "1963f9c8b9fe80cb0fb79e72e5a58cffe326cc0956e06d5b20b6cdae0a595a9b",
+      "viewBox": "0 0 960 995"
+     }
+    },
+    {
+     "path": "assets/svg/zener-regulator.svg",
+     "git_sha256": "adc94bab3137084a5a1f24ee2448dd371727452c4f3cddc19084ad24d142b2fd",
+     "body_references": 1,
+     "chapters": [
+      9
+     ],
+     "print_storyboard": {
+      "status": "pass",
+      "frames": 3,
+      "sha256": "64193c53302e4347196ac63f037e4e8721c877ebc93c1ebeda04e21af5710d0c",
+      "viewBox": "0 0 960 995"
+     }
+    }
+   ],
+   "details_provenance": {
+    "source_head": "8961d38",
+    "measured_on": "2026-11-05",
+    "method": "Frozen source rendered in memory by the recorded print pipeline; not a claim about an archived PDF.",
+    "pipeline_sha256": {
+     "analog-book/book/storyboard.py": "6269226bf6b97bd4c8263d0811ba0acdd0eece0a5fd832695b0efc2a82e19908",
+     "analog-book/book/svg_refine.py": "fd01ceac01afe2677931b12df458f33f02c752495358d463bf1c7b4233fc579a"
+    }
    }
   },
   "figures": {

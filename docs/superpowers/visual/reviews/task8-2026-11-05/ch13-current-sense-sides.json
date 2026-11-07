@@ -1,0 +1,15 @@
+{
+  "id": "ch13-current-sense-sides",
+  "title": "低侧与高侧电流检测",
+  "alt": "左右两栏：低侧检测共模接近 0 V、会把负载地抬高 100 mV、测不到对地短路，适合精度优先的单路负载；高侧检测共模为 12 或 24 或 48 V、地完整、能测对地短路，适合保护优先的多路共地负载。",
+  "anchor": "13.8",
+  "source": "docs/p2-03-ch13.md",
+  "canvas": [
+    1448,
+    1086
+  ],
+  "print_width_mm": 138,
+  "generator": "python-svg-papercut-v1",
+  "output": "assets/figures-v2/ch13-current-sense-sides.svg",
+  "print_fallback": "assets/figures-v2/ch13-current-sense-sides-print.svg"
+}

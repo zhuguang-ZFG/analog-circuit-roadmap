@@ -25,14 +25,13 @@
 <line x1="420" y1="182" x2="900" y2="182" stroke="#0f766e" stroke-width="2"/>
 <line x1="420" y1="210" x2="900" y2="210" stroke="#0f766e" stroke-width="2"/>
 <text x="200" y="200" font-size="14" fill="#0f766e">011（CH3）</text>
-<text x="345" y="200" font-size="12" fill="#b42318">111/010·几十ns</text>
+<text x="345" y="172" font-size="12" fill="#b42318">111/010·几十ns</text>
 <text x="640" y="200" font-size="14" fill="#0f766e">100（CH4）</text>
 
 <!-- 旧通道 CH3 -->
 <text x="14" y="276" font-size="15" fill="#0f766e">旧通道 CH3</text>
 <polyline points="100,258 250,258 250,288 900,288" fill="none" stroke="#0f766e" stroke-width="2.5"/>
 <text x="110" y="248" font-size="12" fill="#0f766e">导通</text>
-<text x="300" y="306" font-size="12" fill="#52606d">t_OFF 几百 ns 后才算真断开</text>
 
 <!-- 新通道 CH4 -->
 <text x="14" y="356" font-size="15" fill="#b45309">新通道 CH4</text>
@@ -44,6 +43,7 @@
 <line x1="250" y1="240" x2="250" y2="380" stroke="#b45309" stroke-width="1.5" stroke-dasharray="5 4"/>
 <line x1="590" y1="240" x2="590" y2="380" stroke="#b45309" stroke-width="1.5" stroke-dasharray="5 4"/>
 <text x="420" y="252" font-size="14" fill="#b45309" text-anchor="middle">死区 ≥ t_OFF + 余量</text>
+<text x="300" y="306" font-size="12" fill="#52606d">t_OFF 几百 ns 后才算真断开</text>
 <text x="420" y="396" font-size="14" fill="#b45309" text-anchor="middle">死区 500 ns ≈ 5 µs 采集窗的 10%</text>
 
 <!-- 全程预算 -->
@@ -56,6 +56,6 @@
 <polyline points="330,556 460,556 460,528 700,528 700,556 860,556" fill="none" stroke="#0f766e" stroke-width="2"/>
 <polyline points="330,556 520,556 520,528 760,528 760,556 860,556" fill="none" stroke="#b45309" stroke-width="2"/>
 <rect x="520" y="516" width="180" height="50" fill="#b42318" opacity="0.14"/>
-<text x="610" y="546" font-size="12" fill="#b42318" text-anchor="middle">同时为低阻：两路信号源短路互怼</text>
+<text x="610" y="508" font-size="12" fill="#b42318" text-anchor="middle">同时为低阻：两路信号源短路互怼</text>
 <text x="114" y="552" font-size="12" fill="#52606d">冲击电流只受 R_ON 与源阻限制</text>
 </svg>

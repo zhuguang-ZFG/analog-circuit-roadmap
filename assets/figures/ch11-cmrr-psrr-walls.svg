@@ -18,7 +18,7 @@
 <rect x="30" y="122" width="440" height="14" fill="#fdf3e3"/>
 <text x="48" y="126" font-family="'Book Sans','Noto Sans SC',sans-serif" font-size="14" font-weight="700" fill="#b45309">防线 ① CMRR：共模想混进来，尾巴不许</text>
 
-<text x="50" y="164" font-family="'Book Sans','Noto Sans SC',sans-serif" font-size="11" fill="#52606d">共模输入：两线同升同降（50 Hz 工频）</text>
+<text x="50" y="142" font-family="'Book Sans','Noto Sans SC',sans-serif" font-size="11" fill="#52606d">共模输入：两线同升同降（50 Hz 工频）</text>
 <line x1="56" y1="190" x2="198" y2="190" stroke="#14213d" stroke-width="2" marker-end="url(#arrD)"/>
 <text x="56" y="182" font-family="'Book Sans','Noto Sans SC',sans-serif" font-size="10" fill="#14213d">v_i1</text>
 <path d="M114 196 L120 186 L126 196" fill="none" stroke="#0f766e" stroke-width="1.6"/>
@@ -60,7 +60,7 @@
 <text x="48" y="530" font-family="'Book Sans','Noto Sans SC',sans-serif" font-size="13" font-weight="700" fill="#0f766e">CMRR ≈ 86 dB</text>
 <text x="48" y="550" font-family="'Book Sans','Noto Sans SC',sans-serif" font-size="10" fill="#52606d">A_vd = 200，A_cm = 0.01</text>
 
-<text x="252" y="380" font-family="'Book Sans','Noto Sans SC',sans-serif" font-size="11" font-weight="700" fill="#b45309">尾巴一软，墙矮 20 dB</text>
+<text x="252" y="370" font-family="'Book Sans','Noto Sans SC',sans-serif" font-size="11" font-weight="700" fill="#b45309">尾巴一软，墙矮 20 dB</text>
 <rect x="268" y="396" width="38" height="96" fill="#e6f6f2" stroke="#0f766e" stroke-width="2"/>
 <text x="287" y="390" font-family="'Book Sans','Noto Sans SC',sans-serif" font-size="10" font-weight="700" fill="#0f766e" text-anchor="middle">86 dB</text>
 <rect x="352" y="419" width="38" height="73" fill="#fdf3e3" stroke="#b45309" stroke-width="2"/>

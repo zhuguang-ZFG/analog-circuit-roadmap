@@ -1,0 +1,15 @@
+{
+  "id": "ch02-esd-chain",
+  "title": "IEC 8kV 的 24A 分账",
+  "alt": "手绘 IEC 8 千伏 ESD 分账：330 欧、150 皮法源，TVS 钳到 9.2 伏，峰值电流 24.2 安、223 瓦；经 100 欧后残压仍向芯片灌 35 毫安。右侧写要压到 10 毫安需电阻至少 350 欧，取 330 欧。底部写先 TVS 后限流，100 欧挪到前面要扛 24 安与 57.6 千瓦；地回路 1 纳亨乘 24 安每纳秒约 24 伏，钳位形同虚设。",
+  "anchor": "2.11.3",
+  "source": "docs/p1-03-ch2.md",
+  "canvas": [
+    1000,
+    700
+  ],
+  "print_width_mm": 138,
+  "generator": "python-handraw-v1",
+  "output": "assets/figures-v2/ch02-esd-chain.svg",
+  "print_fallback": "assets/figures-v2/ch02-esd-chain-print.svg"
+}

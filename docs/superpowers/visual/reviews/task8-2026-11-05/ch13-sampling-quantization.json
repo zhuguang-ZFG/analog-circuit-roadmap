@@ -1,0 +1,15 @@
+{
+  "id": "ch13-sampling-quantization",
+  "title": "采样率与量化台阶的两道账",
+  "alt": "手绘采样与量化两栏。左上蓝框采样是时间离散化：每隔一个采样周期抓一次瞬时值，采样率必须大于信号最高频率的 2 倍，否则高频伪装成低频就是混叠。右上绿框量化是幅度离散化：台阶等于满量程除以 2 的 N 次方，3.3 伏量程、12 位得 0.8 毫伏，读数末位抖动就是量化噪声。琥珀框算 1 ksps 够不够：读 50 赫兹工频，1 ksps 大于 2 倍，可以；直接读 1 千赫音频，1 ksps 小于 2 倍，混叠失真；对策是提到 10 ksps 以上或前置 500 赫兹低通。底部红框三种架构：逐次逼近约 1 Msps、12 到 18 位；过采样不到 1 ksps、16 到 24 位；并行比较 Gsps 级、低于 8 位。",
+  "anchor": "13.6",
+  "source": "docs/p2-03-ch13.md",
+  "canvas": [
+    1000,
+    700
+  ],
+  "print_width_mm": 138,
+  "generator": "python-handraw-v1",
+  "output": "assets/figures-v2/ch13-sampling-quantization.svg",
+  "print_fallback": "assets/figures-v2/ch13-sampling-quantization-print.svg"
+}

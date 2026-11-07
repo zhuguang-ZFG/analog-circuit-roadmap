@@ -1,0 +1,15 @@
+{
+  "id": "ch07-pullup-three-accounts",
+  "title": "上拉电阻同时挂在三本账上",
+  "alt": "手绘开集电极上拉三栏：速度账写上升沿约 2.2RC、电阻越小沿越快；低电平账写灌电流等于上拉电压除以电阻、手册保证下限 6 毫安、灌得越多低电平越高；噪声账写电阻越小节点阻抗越低、抗串扰越好。下排左栏对照 4.7 千欧上拉到 5 伏灌 1.06 毫安、低电平约 0.1 到 0.2 伏，330 欧上拉到 12 伏灌 36 毫安、低电平可能接近 1 伏；右栏给三步定值：由沿定上限不超过 9.1 千欧、由灌电流定下限不低于 2.5 千欧、取 4.7 千欧回代上升沿约 0.52 微秒。",
+  "anchor": "7.2",
+  "source": "docs/p1-08-ch7.md",
+  "canvas": [
+    1000,
+    700
+  ],
+  "print_width_mm": 138,
+  "generator": "python-handraw-v1",
+  "output": "assets/figures-v2/ch07-pullup-three-accounts.svg",
+  "print_fallback": "assets/figures-v2/ch07-pullup-three-accounts-print.svg"
+}

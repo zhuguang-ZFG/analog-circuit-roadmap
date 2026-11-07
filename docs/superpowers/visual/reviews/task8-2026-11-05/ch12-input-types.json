@@ -1,0 +1,15 @@
+{
+  "id": "ch12-input-types",
+  "title": "按源阻抗选输入级",
+  "alt": "手绘两张输入级卡片：BJT 输入 20 纳安乘 1 兆欧为 20 毫伏，且每升 10 摄氏度偏置电流约翻倍；CMOS 输入 1 皮安乘 1 兆欧为 1 微伏，差四个数量级。底部写低源阻抗小于 10 千欧挑 en 小的 BJT，高源阻抗大于 100 千欧挑 Ib 小的 CMOS 或 JFET。",
+  "anchor": "12.13",
+  "source": "docs/p2-02-ch12.md",
+  "canvas": [
+    1000,
+    700
+  ],
+  "print_width_mm": 138,
+  "generator": "python-handraw-v1",
+  "output": "assets/figures-v2/ch12-input-types.svg",
+  "print_fallback": "assets/figures-v2/ch12-input-types-print.svg"
+}

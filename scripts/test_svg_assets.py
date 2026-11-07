@@ -4,6 +4,7 @@ Run: python -B -m unittest discover -s scripts -p test_svg_assets.py -v
 Requires the generator's existing NumPy dependency. No repository file is written.
 """
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import sys
@@ -51,6 +52,22 @@ class SvgAssetTests(unittest.TestCase):
                 expected = self.expected[name].read_text(encoding="utf-8")
                 self.assertEqual(actual, expected,
                                  "Regenerate the SVG after changing its source")
+
+    def test_source_types_share_current_horizontal_voltage_vertical_axes(self):
+        root = ET.parse(self.actual['source-types.svg']).getroot()
+        # 手绘皮肤会把 line 转成轻微弯曲的 path，物理方向检查名义端点。
+        curves = []
+        for path in root.findall('.//{http://www.w3.org/2000/svg}path'):
+            if path.get('stroke-width') == '3.5':
+                values = [float(value) for value in re.findall(
+                    r'-?\d+(?:\.\d+)?', path.get('d'))]
+                curves.append((values[0], values[1], values[-2], values[-1]))
+        self.assertEqual(2, len(curves), '两栏都须有一条理想源特性曲线')
+        voltage, current = sorted(curves)
+        self.assertEqual(voltage[1], voltage[3], '恒压：纵轴端电压必须保持不变')
+        self.assertNotEqual(voltage[0], voltage[2])
+        self.assertEqual(current[0], current[2], '恒流：横轴负载电流必须保持不变')
+        self.assertNotEqual(current[1], current[3])
 
     def test_svg_documents(self):
         for name, path in sorted(self.actual.items()):

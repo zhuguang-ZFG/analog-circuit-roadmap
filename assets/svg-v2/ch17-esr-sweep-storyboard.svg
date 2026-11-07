@@ -99,7 +99,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <text x="480" y="34" text-anchor="middle" font-size="18" font-weight="bold" fill="#16202b">ESR 扫描：纹波、发热与容量蒸发·分镜</text>
 <text x="480" y="56" text-anchor="middle" font-size="12" fill="#5b666f">ESR 从 0.1Ω 扫到 3Ω（扫描端点为示意值）——先问纹波频率，再问幅度</text>
 <rect x="20" y="70" width="450" height="300" rx="10" fill="#fdf8ea" stroke="#c9bb9d" stroke-width="1.2"/>
-<g data-storyboard-beat="扫描对象" transform="translate(47 84) scale(0.4129)"><rect x="60" y="90" width="300" height="240" rx="12" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/>
+<g data-storyboard-beat="扫描对象" transform="translate(59 84) scale(0.3879)"><rect x="60" y="90" width="300" height="240" rx="12" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/>
 <line x1="120" y1="210" x2="196" y2="210" stroke="#16202b" stroke-width="2.4"/>
 <line x1="204" y1="180" x2="204" y2="240" stroke="#16202b" stroke-width="3.2"/>
 <line x1="218" y1="180" x2="218" y2="240" stroke="#16202b" stroke-width="3.2"/>
@@ -117,7 +117,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <text x="210" y="132" text-anchor="middle" font-size="14" font-weight="bold" fill="#1f5d7a">扫描 ESR：0.1Ω → 3Ω</text></g></g>
 <text x="32" y="348" font-size="12" font-weight="bold" fill="#1f5d7a">1. 扫描对象</text>
 <rect x="490" y="70" width="450" height="300" rx="10" fill="#fdf8ea" stroke="#c9bb9d" stroke-width="1.2"/>
-<g data-storyboard-beat="纹波爬升" transform="translate(517 84) scale(0.4129)"><rect x="60" y="90" width="300" height="240" rx="12" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/>
+<g data-storyboard-beat="纹波爬升" transform="translate(529 84) scale(0.3879)"><rect x="60" y="90" width="300" height="240" rx="12" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/>
 <line x1="120" y1="210" x2="196" y2="210" stroke="#16202b" stroke-width="2.4"/>
 <line x1="204" y1="180" x2="204" y2="240" stroke="#16202b" stroke-width="3.2"/>
 <line x1="218" y1="180" x2="218" y2="240" stroke="#16202b" stroke-width="3.2"/>
@@ -136,7 +136,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <text x="836" y="188" font-size="12.5" font-weight="bold" fill="#a8321f">400mV</text></g></g>
 <text x="502" y="348" font-size="12" font-weight="bold" fill="#a8321f">2. 纹波爬升</text>
 <rect x="20" y="388" width="450" height="300" rx="10" fill="#fdf8ea" stroke="#c9bb9d" stroke-width="1.2"/>
-<g data-storyboard-beat="内部生热" transform="translate(47 402) scale(0.4129)"><rect x="60" y="90" width="300" height="240" rx="12" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/>
+<g data-storyboard-beat="内部生热" transform="translate(59 402) scale(0.3879)"><rect x="60" y="90" width="300" height="240" rx="12" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/>
 <line x1="120" y1="210" x2="196" y2="210" stroke="#16202b" stroke-width="2.4"/>
 <line x1="204" y1="180" x2="204" y2="240" stroke="#16202b" stroke-width="3.2"/>
 <line x1="218" y1="180" x2="218" y2="240" stroke="#16202b" stroke-width="3.2"/>
@@ -156,7 +156,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <text x="344" y="230" font-size="12.5" font-weight="bold" fill="#a8321f">内部生热</text></g></g>
 <text x="32" y="666" font-size="12" font-weight="bold" fill="#a4630f">3. 内部生热</text>
 <rect x="490" y="388" width="450" height="300" rx="10" fill="#fdf8ea" stroke="#c9bb9d" stroke-width="1.2"/>
-<g data-storyboard-beat="容量蒸发" transform="translate(517 402) scale(0.4129)"><rect x="60" y="90" width="300" height="240" rx="12" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/>
+<g data-storyboard-beat="容量蒸发" transform="translate(529 402) scale(0.3879)"><rect x="60" y="90" width="300" height="240" rx="12" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/>
 <line x1="120" y1="210" x2="196" y2="210" stroke="#16202b" stroke-width="2.4"/>
 <line x1="204" y1="180" x2="204" y2="240" stroke="#16202b" stroke-width="3.2"/>
 <line x1="218" y1="180" x2="218" y2="240" stroke="#16202b" stroke-width="3.2"/>
@@ -174,7 +174,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <text x="236" y="436" font-size="12.5" font-weight="bold" fill="#6b3f63">只剩标称三成</text></g></g>
 <text x="502" y="666" font-size="12" font-weight="bold" fill="#6b3f63">4. 容量蒸发</text>
 <rect x="20" y="706" width="450" height="300" rx="10" fill="#fdf8ea" stroke="#c9bb9d" stroke-width="1.2"/>
-<g data-storyboard-beat="闭环" transform="translate(47 720) scale(0.4129)"><rect x="60" y="90" width="300" height="240" rx="12" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/>
+<g data-storyboard-beat="闭环" transform="translate(59 720) scale(0.3879)"><rect x="60" y="90" width="300" height="240" rx="12" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.4"/>
 <line x1="120" y1="210" x2="196" y2="210" stroke="#16202b" stroke-width="2.4"/>
 <line x1="204" y1="180" x2="204" y2="240" stroke="#16202b" stroke-width="3.2"/>
 <line x1="218" y1="180" x2="218" y2="240" stroke="#16202b" stroke-width="3.2"/>
@@ -188,7 +188,9 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <rect x="60" y="356" width="640" height="30" rx="8" fill="#fdf8ea" stroke="#c9bb9d" stroke-width="1.2"/>
 <text x="60" y="412" font-size="12" fill="#5b666f">实测容量 / 标称容量</text>
 <text x="716" y="376" font-size="12" fill="#5b666f">100%</text>
-<g transform="translate(0 -4)"><rect x="60" y="452" width="840" height="120" rx="12" fill="#e8efe6" stroke="#3d6b4a" stroke-width="1.8"/>
+<g transform="translate(0 -4)"><rect x="64" y="360" width="192" height="22" rx="5" fill="#6b3f63" opacity="0.85"/>
+<text x="236" y="436" font-size="12.5" font-weight="bold" fill="#6b3f63">只剩标称三成</text>
+<rect x="60" y="452" width="840" height="120" rx="12" fill="#e8efe6" stroke="#3d6b4a" stroke-width="1.8"/>
 <text x="84" y="484" font-size="13" font-weight="bold" fill="#3d6b4a">闭环：量 100Hz 纹波幅度 = 免费的 ESR 表</text>
 <text x="84" y="512" font-size="12" fill="#16202b">纹波电流生热 → 热又推高 ESR → ESR 再抬纹波 → 更热</text>
 <text x="84" y="536" font-size="12" font-weight="bold" fill="#a4630f">先问频率，再问幅度——测量必须能区分候选假设</text>

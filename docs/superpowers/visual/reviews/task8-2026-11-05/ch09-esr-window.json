@@ -1,0 +1,15 @@
+{
+  "id": "ch09-esr-window",
+  "title": "LDO 的 ESR 稳定窗口",
+  "alt": "手绘 ESR 数轴：老式 NPN 准 LDO 的稳定区是 0.3 到 22 欧；左侧 5 毫欧的 MLCC 因零点太远而振荡，右侧大于 22 欧因零点太近而响应慢。底部写容量一样不等于环路还稳。",
+  "anchor": "9.3",
+  "source": "docs/p1-10-ch9.md",
+  "canvas": [
+    1000,
+    700
+  ],
+  "print_width_mm": 138,
+  "generator": "python-handraw-v1",
+  "output": "assets/figures-v2/ch09-esr-window.svg",
+  "print_fallback": "assets/figures-v2/ch09-esr-window-print.svg"
+}

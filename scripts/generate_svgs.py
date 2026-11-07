@@ -4350,14 +4350,14 @@ def make_opamp_slew():
 <text x="{px(2)-8:.0f}" y="{py(0.35):.0f}" text-anchor="end" font-size="10.5" fill="#64748b">若只有 GBW=1MHz 的小信号速度</text>
 <text x="{px(2.02):.0f}" y="{py(0.45):.0f}" font-size="11.5" font-weight="bold" fill="#dc2626">2µs 直线爬坡</text>
 <text x="{px(0.15):.0f}" y="{py(0.12):.0f}" font-size="11" fill="#475569">斜率 = 0.5V/µs（SR）</text>
-<text x="{px(2.42):.0f}" y="{py(0.86):.0f}" font-size="11" fill="#475569">指数收尾 τ≈0.16µs</text>
+<text x="{px(2.22):.0f}" y="{py(0.86):.0f}" font-size="11" fill="#475569">指数收尾 τ≈0.16µs</text>
 <text x="{px(1.35):.0f}" y="{py(0.62):.0f}" text-anchor="middle" font-size="11" font-weight="bold" fill="#b45309">建立时间≈2.6µs</text>
 <circle r="6" fill="#2563eb" stroke="#ffffff" stroke-width="2">
 <animateMotion dur="{DW}s" repeatCount="indefinite" path="{slew_path(2.0, 0.16)}" keyPoints="0;1" keyTimes="0;1"/></circle>
 <rect x="446" y="470" width="330" height="70" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="1.5"/>
 <text x="462" y="494" font-size="11.5" font-weight="bold" fill="#b45309">全功率带宽（同一个运放）</text>
-<text x="462" y="516" font-size="11" fill="#475569">f_max = SR / (2π·V_p) = 0.5 / (2π×0.5) ≈ 159kHz（1Vpp）</text>
-<text x="462" y="534" font-size="11" fill="#475569">10Vpp（V_p=5V）时只剩 ≈16kHz——GBW 1MHz 是个纸面数字</text>
+<text x="452" y="516" font-size="10" fill="#475569">f_max = SR / (2π·V_p) = 0.5 / (2π×0.5) ≈ 159kHz（1Vpp）</text>
+<text x="452" y="534" font-size="10" fill="#475569">10Vpp（V_p=5V）时只剩 ≈16kHz——GBW 1MHz 是个纸面数字</text>
 <circle r="5" fill="#f59e0b"><animateMotion dur="{DW}s" begin="-0.4s" repeatCount="indefinite" path="M90,150 L160,150"/></circle>
 <circle r="5" fill="#64748b"><animateMotion dur="{DW}s" begin="-1.1s" repeatCount="indefinite" path="{slew_path(0.0, 0.16)}" keyPoints="0;1" keyTimes="0;1"/></circle>
 <circle cx="{px(2.0):.0f}" cy="{py(1.0):.0f}" r="5" fill="none" stroke="#dc2626" stroke-width="2.4">
@@ -6578,7 +6578,7 @@ def make_source_types():
     DS = 11
     svg = svg_open('恒压源与恒流源：电源的两种性格', h=640)
     svg += f'''
-<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">看 V-I 曲线：竖直是恒压、水平是恒流——斜率就是「内阻」</text>
+<text x="400" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">横轴 I、纵轴 V：恒压水平、恒流竖直；斜率幅值对应输出阻抗</text>
 <text x="200" y="82" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb">① 电压源：I 怎么变，V 都不动</text>
 <line x1="70" y1="290" x2="330" y2="290" stroke="#64748b" stroke-width="1.6"/>
 <line x1="70" y1="110" x2="70" y2="290" stroke="#64748b" stroke-width="1.6"/>
@@ -6587,36 +6587,38 @@ def make_source_types():
 <text x="62" y="220" text-anchor="end" font-size="10.5" fill="#475569">4.8V</text>
 <line x1="70" y1="120" x2="330" y2="120" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
 <line x1="70" y1="220" x2="330" y2="220" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
-<line x1="200" y1="120" x2="200" y2="290" stroke="#059669" stroke-width="3.5"/>
-<text x="212" y="164" font-size="10.5" font-weight="bold" fill="#059669">理想：竖线</text>
-<line x1="200" y1="120" x2="330" y2="220" stroke="#dc2626" stroke-width="3"/>
+<line x1="70" y1="120" x2="330" y2="120" stroke="#059669" stroke-width="3.5"/>
+<text x="82" y="148" font-size="10.5" font-weight="bold" fill="#059669">理想：水平线</text>
+<line x1="70" y1="120" x2="330" y2="220" stroke="#dc2626" stroke-width="3"/>
 <text x="238" y="212" font-size="11" font-weight="bold" fill="#dc2626">实际：斜线</text>
-<text x="238" y="230" font-size="10.5" fill="#475569">斜率 = 输出阻抗</text>
+<text x="202" y="244" font-size="10.5" fill="#475569">斜率绝对值 = 输出阻抗</text>
 <text x="70" y="266" font-size="10.5" fill="#475569">0A</text>
 <text x="330" y="266" text-anchor="end" font-size="10.5" fill="#475569">2A</text>
-<circle r="5" fill="#f59e0b"><animateMotion dur="{DS}s" repeatCount="indefinite" path="M202,140 L202,286" keyPoints="0;1" keyTimes="0;1"/></circle>
-<circle r="5" fill="#dc2626"><animateMotion dur="{DS}s" begin="-1.4s" repeatCount="indefinite" path="M202,121 L328,219" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#f59e0b"><animateMotion dur="{DS}s" repeatCount="indefinite" path="M74,120 L326,120" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="{DS}s" begin="-1.4s" repeatCount="indefinite" path="M72,121 L328,219" keyPoints="0;1" keyTimes="0;1"/></circle>
 <line x1="420" y1="76" x2="420" y2="356" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="6,5"/>
 <text x="600" y="82" text-anchor="middle" font-size="13" font-weight="bold" fill="#7c3aed">② 电流源：V 怎么变，I 都不动</text>
 <line x1="470" y1="290" x2="730" y2="290" stroke="#64748b" stroke-width="1.6"/>
 <line x1="470" y1="110" x2="470" y2="290" stroke="#64748b" stroke-width="1.6"/>
-<text x="730" y="310" text-anchor="end" font-size="10.5" fill="#475569">负载电压 V →</text>
-<text x="462" y="124" text-anchor="end" font-size="10.5" fill="#475569">1.00mA</text>
-<text x="462" y="204" text-anchor="end" font-size="10.5" fill="#475569">0.99mA</text>
+<text x="730" y="330" text-anchor="end" font-size="10.5" fill="#475569">负载电流 I →</text>
+<text x="462" y="124" text-anchor="end" font-size="10.5" fill="#475569">10V</text>
+<text x="462" y="294" text-anchor="end" font-size="10.5" fill="#475569">0V</text>
+<text x="470" y="310" font-size="10.5" fill="#475569">0.99mA</text>
+<text x="730" y="310" text-anchor="end" font-size="10.5" fill="#475569">1.00mA</text>
 <line x1="470" y1="120" x2="730" y2="120" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
 <line x1="470" y1="200" x2="730" y2="200" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
-<line x1="470" y1="120" x2="730" y2="120" stroke="#059669" stroke-width="3.5"/>
-<text x="478" y="112" font-size="11" font-weight="bold" fill="#059669">理想：水平线（任何电压都 1mA）</text>
-<line x1="470" y1="120" x2="730" y2="200" stroke="#dc2626" stroke-width="3" stroke-dasharray="8,4"/>
-<text x="478" y="240" font-size="10.5" font-weight="bold" fill="#dc2626">实际：几乎水平（Ro=10MΩ，几乎不掉）</text>
-<circle r="5" fill="#f59e0b"><animateMotion dur="{DS}s" begin="-0.7s" repeatCount="indefinite" path="M474,120 L726,120" keyPoints="0;1" keyTimes="0;1"/></circle>
-<circle r="5" fill="#dc2626"><animateMotion dur="{DS}s" begin="-2.1s" repeatCount="indefinite" path="M474,120 L726,198" keyPoints="0;1" keyTimes="0;1"/></circle>
-<circle r="5" fill="#059669"><animateMotion dur="{DS}s" begin="-2.8s" repeatCount="indefinite" path="M202,286 L202,122" keyPoints="0;1" keyTimes="0;1"/></circle>
-<circle r="5" fill="#2563eb"><animateMotion dur="{DS}s" begin="-3.5s" repeatCount="indefinite" path="M726,120 L474,120" keyPoints="0;1" keyTimes="0;1"/></circle>
+<line x1="730" y1="120" x2="730" y2="290" stroke="#059669" stroke-width="3.5"/>
+<text x="478" y="104" font-size="11" font-weight="bold" fill="#059669">理想：竖线（任何电压都 1mA）</text>
+<line x1="730" y1="290" x2="704" y2="120" stroke="#dc2626" stroke-width="3" stroke-dasharray="8,4"/>
+<text x="478" y="246" font-size="10.5" font-weight="bold" fill="#dc2626">实际：近竖直（Ro=10MΩ，电流微降）</text>
+<circle r="5" fill="#f59e0b"><animateMotion dur="{DS}s" begin="-0.7s" repeatCount="indefinite" path="M730,286 L730,124" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#dc2626"><animateMotion dur="{DS}s" begin="-2.1s" repeatCount="indefinite" path="M730,288 L704,122" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#059669"><animateMotion dur="{DS}s" begin="-2.8s" repeatCount="indefinite" path="M326,120 L74,120" keyPoints="0;1" keyTimes="0;1"/></circle>
+<circle r="5" fill="#2563eb"><animateMotion dur="{DS}s" begin="-3.5s" repeatCount="indefinite" path="M730,124 L730,286" keyPoints="0;1" keyTimes="0;1"/></circle>
 {pulse(66,112,268,182,'#2563eb',2.4,10)}
 {pulse(466,112,268,182,'#7c3aed',2.4,10)}
-<text x="200" y="348" text-anchor="middle" font-size="12" font-weight="bold" fill="#059669">斜率越小 = 内阻越小 = 越「恒压」</text>
-<text x="600" y="348" text-anchor="middle" font-size="12" font-weight="bold" fill="#7c3aed">斜率越大 = 输出阻抗越大 = 越「恒流」</text>
+<text x="200" y="348" text-anchor="middle" font-size="12" font-weight="bold" fill="#059669">斜率幅值越小 = 内阻越小 = 越「恒压」</text>
+<text x="600" y="348" text-anchor="middle" font-size="12" font-weight="bold" fill="#7c3aed">斜率幅值越大 = 输出阻抗越大 = 越「恒流」</text>
 <line x1="40" y1="372" x2="760" y2="372" stroke="#cbd5e1" stroke-width="1"/>
 <text x="400" y="400" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#334155">算一笔：内阻怎么毁掉「恒压」</text>
 <rect x="40" y="416" width="352" height="70" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.6"/>
@@ -6632,9 +6634,9 @@ def make_source_types():
 <text x="56" y="546" font-size="11" fill="#475569">电压源：短路是灾难 / 开路正常 / 负载<b>并联</b>接（各自取电流）　‖　电流源：开路是灾难 / 短路正常 / 负载<b>串联</b>接（同一电流穿过）</text>
 <text x="56" y="566" font-size="11.5" font-weight="bold" fill="#059669">实际元件：温度传感器激励、LED 驱动要「恒流」；供电、基准要「恒压」——同一套元件，两种用法</text>
 '''
-    svg += caption("① 电压源的 V-I 是竖线：电流怎么变，电压都不动——斜率就是输出阻抗", "#2563eb", DS,
+    svg += caption("① 横 I 纵 V：电压源是水平线，电流变化时端电压不动", "#2563eb", DS,
                    "0;1;1;0;0", "0;0.03;0.2;0.25;1", y=612)
-    svg += caption("② 电流源的 V-I 是水平线：电压怎么变，电流都不动——要的是「高输出阻抗」", "#7c3aed", DS,
+    svg += caption("② 横 I 纵 V：电流源是竖线，电压变化时电流不动——输出阻抗高", "#7c3aed", DS,
                    "0;0;1;1;0;0", "0;0.25;0.3;0.5;0.55;1", y=612)
     svg += caption("③ 内阻是唯一变量：1mΩ 是恒压源、100mΩ 就是「会塌的电源」——两个都能现场算", "#dc2626", DS,
                    "0;0;1;1;0;0", "0;0.55;0.6;0.8;0.85;1", y=612)

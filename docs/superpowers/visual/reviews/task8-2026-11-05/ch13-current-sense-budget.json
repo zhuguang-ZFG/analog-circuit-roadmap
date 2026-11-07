@@ -1,0 +1,15 @@
+{
+  "id": "ch13-current-sense-budget",
+  "title": "10mΩ 分流电阻的两笔账",
+  "alt": "手绘分流电阻两栏：额定 5 安时，10 毫欧上压降 50 毫伏、功耗 0.25 瓦，选 1 瓦 2512 封装；堵转 20 安时，压降 200 毫伏、功耗 4 瓦，热时间常数必须算。底部写 1% 精度总误差预算 0.5 毫伏；12 伏共模压到 0.2 毫伏需要 CMRR 大于 96 分贝；LM358 只有 70 分贝，3.8 毫伏误差等于 7.6%。",
+  "anchor": "13.8",
+  "source": "docs/p2-03-ch13.md",
+  "canvas": [
+    1000,
+    700
+  ],
+  "print_width_mm": 138,
+  "generator": "python-handraw-v1",
+  "output": "assets/figures-v2/ch13-current-sense-budget.svg",
+  "print_fallback": "assets/figures-v2/ch13-current-sense-budget-print.svg"
+}

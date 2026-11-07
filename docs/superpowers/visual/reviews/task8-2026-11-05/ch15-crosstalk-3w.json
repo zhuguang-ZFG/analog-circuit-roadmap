@@ -1,0 +1,15 @@
+{
+  "id": "ch15-crosstalk-3w",
+  "title": "串扰三招与包地边界",
+  "alt": "左右两栏：左栏三招是拉开间距使容性耦合减半、3W 规则把串扰压到 5% 以下、缩短平行长度并用 5 到 10 毫米间距的地孔栅栏包地；右栏边界是地线必须低阻、线宽至少为被保护线两倍、包地只防电场耦合，磁场耦合要靠缩环路或拉距离。",
+  "anchor": "15.3",
+  "source": "docs/p3-02-ch15.md",
+  "canvas": [
+    1448,
+    1086
+  ],
+  "print_width_mm": 138,
+  "generator": "python-svg-papercut-v1",
+  "output": "assets/figures-v2/ch15-crosstalk-3w.svg",
+  "print_fallback": "assets/figures-v2/ch15-crosstalk-3w-print.svg"
+}

@@ -509,7 +509,7 @@ Falstad 交互：`Circuits → 555 Timer Chip → Astable Multivibrator`
 
 <p align="center"><img src="assets/svg/source-types.svg" width="720" alt="恒压源与恒流源SVG动画"></p>
 
-**看点**：竖直=恒压、水平=恒流，斜率就是内阻；1mΩ 与 100mΩ 两台电源的账一目了然。→ 正文 [0.6 恒压源与恒流源](p1-01-ch0.md#ch0)
+**看点**：两栏均为横轴 I、纵轴 V：水平是恒压，竖直是恒流，斜率的绝对值对应输出阻抗；1mΩ 与 100mΩ 两台电源的账一目了然。→ 正文 [0.6 恒压源与恒流源](p1-01-ch0.md#ch0)
 
 ## 5.79 戴维南与诺顿：两个数定性格 <a id="demo79"></a>
 

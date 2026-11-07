@@ -20,7 +20,7 @@
 <text x="237" y="336" text-anchor="middle" font-family="'Book Mono',monospace" font-size="13" fill="#b45309">Rs</text>
 <line x1="278" y1="330" x2="350" y2="330" stroke="#14213d" stroke-width="2"/>
 <circle cx="350" cy="330" r="5" fill="#b42318"/>
-<text x="350" y="306" text-anchor="middle" font-family="'KaiTi','STKaiti','Kaiti SC','Noto Serif SC',serif" font-size="15" fill="#b42318">被测节点</text>
+<text x="314" y="306" text-anchor="middle" font-family="'KaiTi','STKaiti','Kaiti SC','Noto Serif SC',serif" font-size="15" fill="#b42318">被测节点</text>
 
 <line x1="350" y1="335" x2="350" y2="390" stroke="#14213d" stroke-width="2"/>
 <rect x="330" y="390" width="40" height="66" fill="#fffdf8" stroke="#14213d" stroke-width="2"/>
@@ -41,8 +41,8 @@
 <text x="424" y="214" font-family="'Book Sans','Noto Sans SC',sans-serif" font-size="13" fill="#b45309">探头</text>
 
 <path d="M462 300 q-60 70 -104 156" fill="none" stroke="#b45309" stroke-width="2" stroke-dasharray="6 5"/>
-<text x="470" y="446" font-family="'KaiTi','STKaiti','Kaiti SC','Noto Serif SC',serif" font-size="15" fill="#b45309">地夹回路</text>
-<text x="470" y="468" font-family="'Book Sans','Noto Sans SC',sans-serif" font-size="12" fill="#52606d">越长，越像天线和电感</text>
+<text x="176" y="430" font-family="'KaiTi','STKaiti','Kaiti SC','Noto Serif SC',serif" font-size="15" fill="#b45309">地夹回路</text>
+<text x="176" y="452" font-family="'Book Sans','Noto Sans SC',sans-serif" font-size="12" fill="#52606d">越长，越像天线和电感</text>
 </g>
 
 <g transform="rotate(0.5 710 300)">

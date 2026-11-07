@@ -1794,7 +1794,7 @@ assets:
   kind: animation
   type: A5
   anchor: '17.2'
-  purpose: 虚短探针操作演示——量V−、量V+、压差 8mV、判读移交嫌疑
+  purpose: 虚短探针操作演示——核对负反馈路径、量两端压差，再核工作前提与输出响应
   style_id: FA-029
   layout_id: IG-004
   color_ids:
@@ -1830,7 +1830,7 @@ assets:
   status_history:
   - planned
   - generated
-  alt: 两输入端压差 8mV——虚短成立，问题不在运放
+  alt: 反相级输出经 Rf 回到反相端；同一工况下测得 2.500V 与 2.508V，压差 8mV。读数须对照供电、共模、输出摆幅、反馈通断与器件误差预算，再核输出响应，不能单凭小压差判运放合格。
   parameters: []
   conclusion_frame:
     beat: 判读
@@ -2070,7 +2070,7 @@ assets:
   status_history:
   - planned
   - generated
-  alt: 恒压源 V-I 是竖线、恒流源是水平线；真实源斜率是输出阻抗；恒压并联、恒流串联
+  alt: 横轴电流 I、纵轴电压 V：恒压源水平线、恒流源竖线；真实源负斜率的绝对值对应输出阻抗；恒压并联、恒流串联
   review_scores: {}
   production_role: engine-prototype
 - id: ch08-transfer-gate-v2
@@ -2115,7 +2115,8 @@ assets:
   status_history:
   - planned
   - generated
-  alt: N 管在 4V 附近截止、P 管接管高段，并联包络 20→26.7→20Ω；下游门限 2.5V 决定 4V 够不够，源漏对称所以双向。
+  alt: 同一横轴 VIN 与线性电阻刻度下，N 管在 4V 截止、P 管接管高段；并联包络为 20→26.7→20Ω，在 1~4V 为平台。末拍分开单 N 的阈值损失与并联传输门的 0~5V 摆幅，下游逻辑门限示例为
+    2.5V；双头箭头表示双向。
   review_scores: {}
   production_role: engine-prototype
 - id: ch08-mux-address-glitch-v2

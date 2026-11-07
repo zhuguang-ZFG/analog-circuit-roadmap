@@ -42,22 +42,31 @@ def scene():
         f'<text x="80" y="180" font-size="11" fill="{MUTED}">2.000V</text>',
         f'<line x1="110" y1="180" x2="864" y2="180" stroke="{GREEN}" stroke-width="1.2" stroke-dasharray="5,5"/>',
     ))
+    rise = f'<path d="M110,400 C180,400 220,300 300,240 C360,200 430,184 520,180" fill="none" stroke="{BLUE}" stroke-width="3.4"/>'
+    hold = f'<path d="M520,180 L700,180" fill="none" stroke="{GREEN}" stroke-width="3.4"/>'
+    droop = f'<path d="M700,180 L864,220" fill="none" stroke="{AMBER}" stroke-width="3.4"/>'
+
+    def trace(*segments):
+        # 波形必须累积：每拍只画自己那一段，结论帧就只剩空坐标轴。
+        return "\n".join(segments)
+
     layers = [
         Layer(None, persistent),
         Layer("采样", "\n".join((
-            f'<path d="M110,400 C180,400 220,300 300,240 C360,200 430,184 520,180" fill="none" stroke="{BLUE}" stroke-width="3.4"/>',
+            trace(rise),
             f'<text x="310" y="250" font-size="12.5" font-weight="bold" fill="{BLUE}">8.3τ 后到 12 位</text>',
         )), (0, -4)),
         Layer("保持", "\n".join((
-            f'<path d="M520,180 L700,180" stroke="{GREEN}" stroke-width="3.4"/>',
+            trace(rise, hold),
             f'<line x1="520" y1="160" x2="520" y2="210" stroke="{GREEN}" stroke-width="2"/>',
             f'<text x="540" y="160" font-size="12" fill="{GREEN}">断开：冻结</text>',
         )), (0, -4)),
         Layer("下垂", "\n".join((
-            f'<path d="M700,180 L864,220" stroke="{AMBER}" stroke-width="3.4"/>',
+            trace(rise, hold, droop),
             f'<text x="730" y="246" font-size="12" fill="{AMBER}">droop = I/C</text>',
         )), (0, -4)),
         Layer("再采样", "\n".join((
+            trace(rise, hold, droop),
             f'<line x1="864" y1="150" x2="864" y2="400" stroke="{RED}" stroke-width="1.6" stroke-dasharray="4,4"/>',
             f'<rect x="96" y="474" width="816" height="94" rx="10" fill="{RED_T}" stroke="{RED}" stroke-width="1.6"/>',
             f'<text x="120" y="506" font-size="13" font-weight="bold" fill="{RED}">一个电容，三笔账</text>',

@@ -549,7 +549,7 @@
   title: 恒压源与恒流源：看 V-I 曲线认性格
   chapter: 0
   anchor: demo78
-  one_line: 竖直=恒压、水平=恒流，斜率就是内阻；1mΩ 与 100mΩ 两台电源的账一目了然。→ 正文 0.6 恒压源与恒流源
+  one_line: 两栏均为横轴 I、纵轴 V：水平是恒压，竖直是恒流，斜率的绝对值对应输出阻抗；1mΩ 与 100mΩ 两台电源的账一目了然。→ 正文 0.6 恒压源与恒流源
   static_svg: assets/svg/source-types.svg
 - id: anim-079
   file: p5-00-part5.md

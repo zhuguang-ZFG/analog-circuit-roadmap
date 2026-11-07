@@ -1,0 +1,15 @@
+{
+  "id": "ch13-h-bridge-states",
+  "title": "H 桥四拍",
+  "alt": "左右两栏：左栏四拍是正转 Q1 与 Q4 导通、反转 Q2 与 Q3 导通、全关滑行时电感电流经体二极管回电源、同臂 Q1 与 Q2 齐开会毫秒级烧管；右栏是 1 到 2 微秒死区、体二极管兜底、高侧自举、DRV8833 或 L298 集成驱动。",
+  "anchor": "13.7",
+  "source": "docs/p2-03-ch13.md",
+  "canvas": [
+    1448,
+    1086
+  ],
+  "print_width_mm": 138,
+  "generator": "python-svg-papercut-v1",
+  "output": "assets/figures-v2/ch13-h-bridge-states.svg",
+  "print_fallback": "assets/figures-v2/ch13-h-bridge-states-print.svg"
+}

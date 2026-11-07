@@ -71,8 +71,18 @@ PRINT_STYLE = (
 
 
 def is_legacy_svg(text: str) -> bool:
-    """旧模板同时带 bgL 渐变和 prefers-color-scheme，手绘图不会误判。"""
-    return 'id="bgL"' in text and "prefers-color-scheme" in text
+    """旧模板同时带 bgL 渐变和 prefers-color-scheme。
+
+    handraw 纸墨皮肤的静态手绘图（`class="page-grain"` 颗粒层、无 SMIL）
+    不算旧模板：印刷保留纸面渐变、颗粒与楷体手写体，剥掉它们等于把
+    手绘图重画成机械矢量图。旧动画虽然也带皮肤，但含 `<animate`，
+    仍走净化与分镜管线。
+    """
+    if 'id="bgL"' not in text or "prefers-color-scheme" not in text:
+        return False
+    if 'class="page-grain"' in text and "<animate" not in text.lower():
+        return False
+    return True
 
 
 def is_animated_svg(text: str) -> bool:
