@@ -3,7 +3,8 @@
 """把 manifest 中已验收但正文未引用的插图落到对应小节。
 
 按图内标题与副题做语义就近放置，落点用密度闸自己的口径复验：图两侧的阅读间距
-不小于 MIN_GAP，且插入不会把某一段无图文字顶过硬上限。默认只报告，`--write` 才改正文。
+不小于 MIN_GAP，合法段不许被顶过硬上限，已经断层的长段必须被切得更短。相关度同档
+的落点里挑把洞切得最匀的那个。默认只报告，`--write` 才改正文。
 """
 from __future__ import annotations
 
@@ -174,26 +175,30 @@ def sides(cand: str, src: str) -> tuple[int, int, int, int | None, int | None] |
             marks[i + 1][0] if i + 1 < len(marks) else None)
 
 
-def placement_ok(text: str, pos: int, asset: dict) -> bool:
-    """插入这张图之后，它左右两段读数仍然过堆图与断层两关。
+def placement(text: str, pos: int, asset: dict) -> int | None:
+    """落点合法就返回插入后较长那一侧的字数，否则返回 None。
 
     说明文字记在图的右侧，所以段落末尾插入等于把 figcaption 全压进右段账上。
+    本来就读到断层的长段，只要这一刀把它切短了就算进步，不能要求一张图补完一整节。
     """
     host = host_gap(text, pos)
+    ceiling = MAX_GAP if host <= MAX_GAP else host - 1
     cand = text[:pos] + "\n" + figure_block(asset) + text[pos:]
     span = sides(cand, str(asset["output"]))
     if span is None:
-        return False
+        return None
     start, end, _size, left, right = span
+    worst = 0
     for seg, bounded in ((cand[(left or 0):start], left is not None),
                          (cand[end:(right if right is not None else len(cand))],
                           right is not None)):
         chars = avd.nonws(seg)
-        if chars > MAX_GAP or (host > MAX_GAP and chars >= host):
-            return False
+        if chars > ceiling:
+            return None
         if bounded and chars < MIN_GAP and not avd.H3.search(seg):
-            return False
-    return True
+            return None
+        worst = max(worst, chars)
+    return worst
 
 
 def host_gap(text: str, pos: int) -> int:
@@ -216,16 +221,24 @@ def best_insertion(text: str, asset: dict) -> int | None:
             continue
         body = re.sub(r"[^\u4e00-\u9fffA-Za-z0-9]", "", block["text"])
         grams = {body[i:i + 2] for i in range(max(0, len(body) - 1))}
-        overlap = len(want & grams)
-        score = overlap / (1 + len(body) / 900)
+        score = len(want & grams) / (1 + len(body) / 900)
         pos = block["end"]
-        candidates.append((score, host_gap(text, pos),
-                           1 / (1 + abs(pos - start) / 2500), pos))
-    candidates.sort(reverse=True)
-    for _overlap, _gap, _near, pos in candidates:
-        if placement_ok(text, pos, asset):
-            return pos
-    return None
+        candidates.append((score, 1 / (1 + abs(pos - start) / 2500), pos))
+    if not candidates:
+        return None
+    top = max(item[0] for item in candidates)
+    # 相关度分三档：先把「最像在讲这件事」的段落当作首选，同一档里再挑把无图段
+    # 切得最匀的落点。首选档全非法时自动退到下一档，而不是整章放弃。
+    best = None
+    for score, near, pos in candidates:
+        worst = placement(text, pos, asset)
+        if worst is None:
+            continue
+        tier = min(2, int(score / top * 3)) if top else 0
+        key = (-tier, worst, -near)
+        if best is None or key < best[0]:
+            best = (key, pos)
+    return best[1] if best else None
 
 
 def figure_block(asset: dict) -> str:

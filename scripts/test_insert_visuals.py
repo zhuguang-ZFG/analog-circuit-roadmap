@@ -95,6 +95,20 @@ class PlacementTests(unittest.TestCase):
         self.assertIsNotNone(cand)
         self.assertEqual([], violations(cand))
 
+    def test_cuts_an_oversized_gap_instead_of_giving_up(self):
+        """一整节 5000 字没图：一张图补不平，但必须切短，而且切得最匀。"""
+        text = ("### 1.1 引子\n\n" + figure(OLD, cap=50) + "\n\n"
+                + "字" * 1000 + "\n\n" + "文" * 1000 + "\n\n" + "号" * 1000 + "\n\n"
+                + "码" * 1000 + "\n\n" + "图" * 1000 + "\n\n"
+                + figure(TAIL, cap=50) + "\n")
+        cand = place(text, asset("表"))
+        self.assertIsNotNone(cand, "切短也是进步，不能因为一张图补不完就整节放弃")
+        self.assertEqual([], [v for v in violations(cand) if v.startswith("堆图")])
+        # 五段各 1000 字：随便插都能变短，切在 2|3 处才算真的会挑落点。
+        before = max(avd.gaps(avd.mask(text)))
+        self.assertLess(max(avd.gaps(avd.mask(cand))), before * 0.65,
+                        "同一档里要挑把长段切得最匀的落点")
+
     def test_returns_none_when_every_spot_is_illegal(self):
         """整节只剩一个短段落，硬插必然堆图——宁可报告不可落点。"""
         text = "### 1.1 引子\n\n" + figure(OLD, cap=100) + "\n\n" + "字" * 200 + "\n"
