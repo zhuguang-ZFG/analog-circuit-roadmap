@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """皮肤管线：finalize 注入纸面层、标题装饰，且幂等；产物过底稿闸。"""
+import re
 import sys
 import tempfile
 import unittest
@@ -10,6 +11,7 @@ SCRIPTS = Path(__file__).resolve().parents[1]
 if str(SCRIPTS) not in sys.path:
     sys.path.insert(0, str(SCRIPTS))
 
+import handraw  # noqa: E402
 from visuals import static_fig  # noqa: E402
 
 DRAFT = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 680" role="img"
@@ -68,6 +70,67 @@ class FinalizeTests(unittest.TestCase):
     def test_missing_viewbox_raises(self):
         with self.assertRaises(ValueError):
             self.out("<svg></svg>", None)
+
+    def test_static_cards_get_one_ink_echo(self):
+        """静态图给带描边的卡片补一条错位重影墨线；只补一次。"""
+        out = self.out(DRAFT, None)
+        self.assertEqual(1, out.count('class="ink-echo"'))
+
+    def test_echo_skips_transformed_rect(self):
+        """摆放坐标在 transform 里的矩形不补重影，否则会落回未旋转原点。"""
+        svg = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">'
+               '<rect x="10" y="10" width="200" height="100" fill="#fff" '
+               'stroke="#333" transform="rotate(6 110 60)"/></svg>')
+        self.assertNotIn("ink-echo", handraw.echo_containers(svg))
+
+    def test_static_page_gets_fiber_and_title_wash(self):
+        plain = self.out(DRAFT, None)
+        self.assertIn('class="page-fiber"', plain)
+        self.assertNotIn('marker-wash', plain)
+        decor = self.out(DRAFT, "标题行")
+        self.assertIn('class="marker-wash"', decor)
+
+
+HEADER = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 680">
+<text x="52" y="58" font-size="38" fill="#16202b" font-family="serif" font-weight="700" text-anchor="start">标题行</text>
+<text x="52" y="94" font-size="22" fill="#37424e" font-weight="400" text-anchor="start">副标题</text>
+</svg>'''
+
+
+class HeaderDecorTests(unittest.TestCase):
+    """场景页眉几何（52/58/38px）与动画标题不同，必须单独装饰。"""
+
+    def test_scene_header_gets_hand_font_and_wash(self):
+        out = static_fig.finalize(HEADER, "标题行")
+        self.assertIn('class="marker-wash"', out)
+        self.assertIn("KaiTi", out)
+        twice = static_fig.finalize(out, "标题行")
+        self.assertEqual(out, twice)
+        self.assertEqual(1, twice.count('class="marker-wash"'))
+
+
+class HandrawSkinTests(unittest.TestCase):
+    """动画皮肤（handraw.apply）必须与静态装饰隔离。"""
+
+    LINE = ('<line x1="100" y1="200" x2="860" y2="200" '
+            'stroke="#16202b" stroke-width="2"/>')
+
+    def mid_y(self, markup: str) -> float:
+        match = re.search(r'Q[\d.-]+ ([\d.-]+)', markup)
+        self.assertIsNotNone(match, markup)
+        return float(match.group(1))
+
+    def test_bow_strength_scales_midpoint(self):
+        soft = handraw.bow_lines(self.LINE)
+        strong = handraw.bow_lines(self.LINE, strength=1.9)
+        self.assertNotEqual(soft, strong)
+        self.assertGreater(abs(self.mid_y(strong) - 200),
+                           abs(self.mid_y(soft) - 200))
+
+    def test_animation_apply_has_no_static_decor(self):
+        out = handraw.apply(DRAFT, 960, "标题行")
+        for marker in ('ink-echo', 'page-fiber', 'marker-wash'):
+            self.assertNotIn(marker, out)
 
 
 if __name__ == "__main__":

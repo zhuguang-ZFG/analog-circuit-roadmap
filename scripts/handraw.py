@@ -265,8 +265,12 @@ def _seed(*numbers: float) -> float:
     return (int(digest[:8], 16) / 0xFFFFFFFF) * 2 - 1  # -1 .. 1
 
 
-def bow_lines(text: str) -> str:
-    """`<line>` → 微微内收的二次贝塞尔；短刻度线保持笔直（手绘也不抖机械刻线）。"""
+def bow_lines(text: str, strength: float = 1.0) -> str:
+    """`<line>` → 微微内收的二次贝塞尔；短刻度线保持笔直（手绘也不抖机械刻线）。
+
+    `strength` 只给静态图放大弯度用；动画必须留在 1.0——每帧重算的
+    位移滤镜会让 108 张动画在低端机上抖成幻灯片，几何微弯才零成本。
+    """
     def repl(match: re.Match) -> str:
         attrs = dict(ATTR.findall(match.group(1)))
         try:
@@ -279,7 +283,7 @@ def bow_lines(text: str) -> str:
         length = ((x2 - x1) ** 2 + (y2 - y1) ** 2) ** 0.5
         if length < 14:
             return match.group(0)
-        wobble = min(1.5, length * 0.0045) * _seed(x1, y1, x2, y2)
+        wobble = min(1.5, length * 0.0045) * strength * _seed(x1, y1, x2, y2)
         mx = (x1 + x2) / 2 - (y2 - y1) / length * wobble
         my = (y1 + y2) / 2 + (x2 - x1) / length * wobble
         rest = " ".join(f'{k}="{v}"' for k, v in attrs.items())
@@ -312,6 +316,118 @@ def stroke_only(text: str) -> str:
 
 
 # ---------------------------------------------------------------------------
+# 3b. 静态图专用：卡片重影墨线 + 纸纤维。动画走 apply()，碰不到这两层。
+# ---------------------------------------------------------------------------
+RECT_TAG = re.compile(r'<rect\b([^>]*?)/>')
+
+
+def echo_containers(text: str, strength: float = 1.0) -> str:
+    """给带描边的卡片补一条错位重影墨线，做出手绘复描的观感。
+
+    只偏移重影，不动原 rect 的坐标与属性：卡片里的文字因此一个像素都不挪。
+    小格子（表格、图例）跳过——密排矩形双描边会糊成重影噪声。
+    """
+    def repl(match: re.Match) -> str:
+        attrs = dict(ATTR.findall(match.group(1)))
+        if attrs.get("stroke", "none") in ("none", "transparent"):
+            return match.group(0)
+        if attrs.get("class", "").startswith("page-"):
+            return match.group(0)
+        if "transform" in attrs:
+            # 摆放坐标在 transform 里，照抄 attrs 会把重影放回未旋转原点。
+            return match.group(0)
+        try:
+            x = float(attrs.get("x", "0"))
+            y = float(attrs.get("y", "0"))
+            w = float(attrs["width"])
+            h = float(attrs["height"])
+        except (KeyError, ValueError):
+            return match.group(0)
+        if w < 60 or h < 36:
+            return match.group(0)
+        sx = _seed(x, y, w, h)
+        sy = _seed(y, x, h, w)
+        dx = (1.0 + 0.6 * abs(sx)) * strength * (1 if sx >= 0 else -1)
+        dy = (0.6 + 0.4 * abs(sy)) * strength * (1 if sy >= 0 else -1)
+        rot = 0.12 * _seed(x + w, y + h, w, h) * strength
+        clone = " ".join(f'{k}="{v}"' for k, v in attrs.items()
+                         if k not in ("fill", "opacity", "class", "transform"))
+        return (f'{match.group(0)}\n<rect class="ink-echo" {clone} fill="none" '
+                f'opacity="0.32" transform="translate({dx:.2f} {dy:.2f}) '
+                f'rotate({rot:.2f} {x + w / 2:.1f} {y + h / 2:.1f})"/>')
+    return RECT_TAG.sub(repl, text)
+
+
+def fiber_defs() -> str:
+    """纸纤维：一小组确定性的短笔触，叠在点阵纸纹之上。"""
+    rule = LIGHT["rule"]
+    return f'''<defs>
+<pattern id="fiber" width="96" height="96" patternUnits="userSpaceOnUse" patternTransform="rotate(-6)">
+<path d="M8 18 q16 -2.2 36 -0.4" stroke="{rule}" stroke-width="0.55" fill="none" stroke-opacity="0.55"/>
+<path d="M54 12 q10 1.4 22 0.2" stroke="{rule}" stroke-width="0.45" fill="none" stroke-opacity="0.4"/>
+<path d="M20 52 q14 1.8 30 -0.6" stroke="{rule}" stroke-width="0.5" fill="none" stroke-opacity="0.45"/>
+<path d="M62 66 q12 -1.6 24 0.4" stroke="{rule}" stroke-width="0.45" fill="none" stroke-opacity="0.38"/>
+<path d="M14 84 q18 1.4 34 -0.2" stroke="{rule}" stroke-width="0.5" fill="none" stroke-opacity="0.42"/>
+</pattern>
+</defs>'''
+
+
+def fiber_layer(width: float, height: float) -> str:
+    w, h = int(float(width)), int(float(height))
+    return (f'\n{fiber_defs()}\n'
+            f'<rect class="page-fiber" width="{w}" height="{h}" '
+            f'fill="url(#fiber)" opacity="0.55"/>\n')
+
+
+TEXT_ELEMENT = re.compile(r'(<text\b[^>]*>)(.*?)(</text>)', re.S)
+
+
+def text_width(plain: str, size: float) -> float:
+    """粗略字宽：汉字与全角标点按 1em，拉丁/数字按 0.56em，空格 0.3em。"""
+    total = 0.0
+    for ch in plain:
+        if ch == " ":
+            total += 0.30 * size
+        elif ord(ch) < 0x2E80:
+            total += 0.56 * size
+        else:
+            total += size
+    return total
+
+
+def header_decor(text: str, canvas_width: int = 1000) -> str:
+    """静态场景页眉：左对齐 38px 标题换手写体，背后铺马克笔淡染。
+
+    场景由 `header()` 生成 x=52 / y=58 / 38px 的标题，几何与动画标题
+    （y=29 / 19px 居中）不同；`title_decor` 的正则匹配不到它，所以此前
+    117 张静态图的标题装饰从未生效。内联 style 才能压过 token_css 里
+    `text{font-family:...}` 的全局规则（CSS 规则优先于 presentation 属性）。
+    幂等：已带 style 的标题不再加工。
+    """
+    done = False
+
+    def repl(match: re.Match) -> str:
+        nonlocal done
+        tag, content, close = match.group(1), match.group(2), match.group(3)
+        attrs = dict(ATTR.findall(tag))
+        if (done or attrs.get("y") != "58"
+                or attrs.get("font-size") != "38" or "style" in attrs):
+            return match.group(0)
+        done = True
+        x = float(attrs.get("x", "52"))
+        size = 38.0
+        plain = re.sub(r'<[^>]+>', '', content)
+        right = min(canvas_width - 14.0,
+                    x + text_width(plain, size) + 9)
+        wash = marker_wash(x - 8.0, right, 23.5, 64.0,
+                           seed=x + len(plain))
+        style = f'font-family:{HAND_FONT};font-weight:400'
+        return f'{wash}{tag[:-1]} style="{style}">{content}{close}'
+
+    return TEXT_ELEMENT.sub(repl, text)
+
+
+# ---------------------------------------------------------------------------
 # 4. 标题：手写体 + 赭石马克笔下划线
 # ---------------------------------------------------------------------------
 TITLE_TEXT = re.compile(
@@ -322,11 +438,33 @@ SWASH = (r'<path d="M{x0:.0f} {y:.0f} c {q1:.0f} 3.4 {q2:.0f} -2.6 {q3:.0f} 0.4"
          r'opacity="0.5"/>')
 
 
-def title_decor(text: str, width: int, title: str) -> str:
+def marker_wash(x0: float, x1: float, top: float, bot: float,
+                seed: float) -> str:
+    """标题背后的赭石马克笔淡染：多边形六点带确定性抖动，像手涂的荧光条。
+
+    填充用 token 浅档，深色主题由 token_css 的 `[fill=...]` 规则自动换档。
+    """
+    cx = (x0 + x1) / 2
+    j = _seed
+    pts = [
+        (x0 + 2.6 * j(seed, x0, 1), top + 2.0 * j(seed, top, 2)),
+        (cx + (cx - x0) * 0.48 * j(seed, cx, 3), top - 1.4 + 1.6 * j(seed, cx, 4)),
+        (x1 - 2.2 * j(seed, x1, 5), top + 2.4 * j(seed, x1, 6)),
+        (x1 + 1.6 * j(seed, x1, 7), bot - 2.2 * j(seed, x1, 8)),
+        (cx + (cx - x0) * 0.36 * j(seed, cx, 9), bot + 1.8 * j(seed, cx, 10)),
+        (x0 - 1.3 * j(seed, x0, 11), bot - 2.0 * j(seed, x0, 12)),
+    ]
+    points = " ".join(f"{x:.1f},{y:.1f}" for x, y in pts)
+    return (f'<polygon class="marker-wash" points="{points}" '
+            f'fill="{LIGHT["amber"]}" opacity="0.13"/>\n')
+
+
+def title_decor(text: str, width: int, title: str, wash: bool = False) -> str:
     """标题改手写体，并在其下方补一道马克笔划线（长度按标题估算，居中收窄）。
 
     划线必须画在 `<text>` **之前**：它是同一坐标系的兄弟图元，塞进 `<text>` 里
     不会渲染（`<text>` 只认字符内容与 tspan），而且会被读屏当作标题的一部分。
+    `wash` 只给静态图用：先在标题背后铺一条淡染，动画不得出现（apply 不传）。
     """
     # 有副标题的图（标题 y=29、副标题 y≈46）不画划线：那道笔触会横穿副标题。
     head = re.findall(r'<text\b[^>]*>', text)
@@ -334,16 +472,20 @@ def title_decor(text: str, width: int, title: str) -> str:
         (m := re.search(r'\by="(\d+)"', tag))
         and 31 <= int(m.group(1)) < 65 and 'text-anchor="middle"' in tag
         for tag in head)
-    swash = ""
+    decor = ""
     if not crowded:
         half = min(width * 0.40, max(60.0, len(title) * 9.6))
-        swash = SWASH.format(x0=width / 2 - half, y=38.0, q1=half * 0.5,
-                             q2=half * 1.2, q3=half * 2, color=LIGHT["amber"]) + "\n"
+        if wash:
+            decor += marker_wash(width / 2 - half, width / 2 + half,
+                                 10.5, 36.0, seed=width)
+        decor += SWASH.format(x0=width / 2 - half, y=38.0, q1=half * 0.5,
+                              q2=half * 1.2, q3=half * 2,
+                              color=LIGHT["amber"]) + "\n"
     # 楷体没有真正的粗体字重：font-weight:bold 会让 Chrome 合成假粗，笔画被抹平成
     # 黑体观感。这里显式回到 400，手写笔锋才留得住。
     style = f'font-family:{HAND_FONT};font-weight:400'
     return TITLE_TEXT.sub(
-        lambda m: f'{swash}{m.group(1)} style="{style}">', text, count=1)
+        lambda m: f'{decor}{m.group(1)} style="{style}">', text, count=1)
 
 
 def apply(text: str, width: int = 800, title: str | None = None) -> str:
