@@ -93,37 +93,29 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 }
 </style>
 
-<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">解剖一只 741：四级各管一件事</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">约 20 只晶体管分四级。知道哪一级决定哪个参数，datasheet 就不用背了。</text>
-<rect x="50" y="146" width="560" height="80" rx="6" fill="#f6eedb" stroke="#1f5d7a" stroke-width="2"/>
-<text x="74" y="182" font-size="26" fill="#1f5d7a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">① 差分输入级</text>
-<text x="74" y="214" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">长尾对 + 电流镜负载</text>
-<text x="330" y="214" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">决定 V_OS、I_B、输入阻抗</text>
-<rect x="50" y="250" width="560" height="80" rx="6" fill="#f6eedb" stroke="#3d6b4a" stroke-width="2"/>
-<text x="74" y="286" font-size="26" fill="#3d6b4a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">② 中间增益级</text>
-<text x="74" y="318" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">共射放大 + 密勒补偿</text>
-<text x="330" y="318" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">开环增益约 200,000 倍</text>
-<rect x="50" y="354" width="560" height="80" rx="6" fill="#f6eedb" stroke="#a4630f" stroke-width="2"/>
-<text x="74" y="390" font-size="26" fill="#a4630f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">③ 输出级</text>
-<text x="74" y="422" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">互补推挽 + AB 类偏置</text>
-<text x="330" y="422" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">带载能力与失真指标</text>
-<rect x="50" y="458" width="560" height="80" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
-<text x="74" y="494" font-size="26" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">④ 偏置网络（不在信号通路）</text>
-<text x="74" y="526" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">电流镜阵列</text>
-<text x="330" y="526" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">给全芯片供稳定偏流</text>
-<path d="M120 226 Q120.03 233.00 120 240" fill="none" stroke="#37424e" stroke-width="3" stroke-linecap="round"/>
-<polygon points="120,250 114,238 126,238" fill="#37424e"/>
-<path d="M120 330 Q119.97 337.00 120 344" fill="none" stroke="#37424e" stroke-width="3" stroke-linecap="round"/>
-<polygon points="120,354 114,342 126,342" fill="#37424e"/>
-<path d="M616 290 Q632.00 289.99 648 290" fill="none" stroke="#a8321f" stroke-width="2.5" stroke-linecap="round"/><polygon points="648,290 638,285 638,295" fill="#a8321f"/>
-<rect x="656" y="146" width="294" height="312" rx="6" fill="#f6eedb" stroke="#a8321f" stroke-width="2"/>
-<text x="680" y="186" font-size="24" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">一颗电容定三件事</text>
-<text x="680" y="228" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">补偿电容 30 pF</text>
-<path d="M686 252 Q803.00 251.85 920 252" fill="none" stroke="#c9bb9d" stroke-width="2"/>
-<text x="680" y="292" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">把主极点压到 10 Hz 量级</text>
-<text x="680" y="328" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">定增益带宽积</text>
-<text x="680" y="364" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">定压摆率</text>
-<text x="680" y="404" font-size="26" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">741 只有 0.5 V/µs</text>
-<text x="680" y="440" font-size="22" fill="#a4630f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">稳定的代价</text>
-<rect x="50" y="580" width="900" height="46" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
-<text x="76" y="612" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">增益按级相乘：输入级几百倍 × 中间级几百到上千倍 = 741 的 20 万倍</text>
+<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">运放的三个信号级与偏置网络</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">以双极型两级补偿结构理解分工；现代器件的实现可能不同。</text>
+<rect x="50" y="130" width="500" height="98" rx="6" fill="#f6eedb" stroke="#1f5d7a" stroke-width="2"/>
+<text x="76" y="167" font-size="25" fill="#1f5d7a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">差分输入</text>
+<text x="76" y="205" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">失调、偏流、输入范围</text>
+<path d="M285 230 Q284.94 241.00 285 252" fill="none" stroke="#16202b" stroke-width="2.5" stroke-dasharray=""/><polygon points="285,252 280,242 290,242" fill="#16202b"/>
+<rect x="50" y="255" width="500" height="98" rx="6" fill="#f6eedb" stroke="#3d6b4a" stroke-width="2"/>
+<text x="76" y="292" font-size="25" fill="#3d6b4a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">中间增益与补偿</text>
+<text x="76" y="330" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">电压增益、GBW、SR</text>
+<path d="M285 355 Q285.08 366.00 285 377" fill="none" stroke="#16202b" stroke-width="2.5" stroke-dasharray=""/><polygon points="285,377 280,367 290,367" fill="#16202b"/>
+<rect x="50" y="380" width="500" height="98" rx="6" fill="#f6eedb" stroke="#a8321f" stroke-width="2"/>
+<text x="76" y="417" font-size="25" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">输出缓冲</text>
+<text x="76" y="455" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">带载、摆幅、失真</text>
+<rect x="610" y="130" width="340" height="348" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<text x="635" y="176" font-size="26" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">偏置网络</text>
+<text x="635" y="221" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">为各级设置工作电流</text>
+<text x="635" y="271" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">补偿示意：30 pF</text>
+<text x="635" y="309" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">15 µA → 0.5 V/µs</text>
+<text x="635" y="358" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">A0 = 200000</text>
+<text x="635" y="396" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">GBW = 1 MHz</text>
+<text x="635" y="434" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">单极点 fp ≈ 5 Hz</text>
+<path d="M605 178 Q580.00 178.19 555 178" fill="none" stroke="#37424e" stroke-width="2.5" stroke-dasharray=""/><polygon points="555,178 565,173 565,183" fill="#37424e"/>
+<path d="M605 303 Q580.00 302.87 555 303" fill="none" stroke="#37424e" stroke-width="2.5" stroke-dasharray=""/><polygon points="555,303 565,298 565,308" fill="#37424e"/>
+<path d="M605 428 Q580.00 427.87 555 428" fill="none" stroke="#37424e" stroke-width="2.5" stroke-dasharray=""/><polygon points="555,428 565,423 565,433" fill="#37424e"/>
+<text x="50" y="552" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">CMRR 与 PSRR 受多个内部级影响，不能一项只归一个方框。</text>
+<text x="50" y="600" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">尾电流不一定等于补偿电容可用电流；限流不等于不限功耗。</text>
 </svg>

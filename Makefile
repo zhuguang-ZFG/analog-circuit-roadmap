@@ -66,6 +66,7 @@ remake-ship: remake-check
 	$(PY) scripts/build_readme.py --check
 
 test-static:
+	$(PY) -B -m unittest discover -s scripts -p "test_epub.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_svg_assets.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_readme_links.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_a11y.py" -v
@@ -90,6 +91,8 @@ visual-gray:
 
 visual-check:
 	$(PY) -B scripts/check_visual_manifest.py
+	$(PY) -B -m unittest discover -s scripts -p "test_visual_release.py" -v
+	$(PY) -B -m unittest discover -s scripts -p "test_visual_calculations.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_visual_density.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_visual_distribution.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_visual_manifest.py" -v
@@ -101,10 +104,22 @@ visual-check:
 	$(PY) -B -m unittest discover -s scripts -p "test_backlog_layout.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_visual_builder_review.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_visual_text_replacement.py" -v
+	$(PY) -B -m unittest discover -s scripts -p "test_insert_visuals.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_animation_v2.py" -v
+	$(PY) -B -m unittest discover -s scripts -p "test_ch02_animations.py" -v
+	$(PY) -B -m unittest discover -s scripts -p "test_ch03_animations.py" -v
+	$(PY) -B -m unittest discover -s scripts -p "test_ch04_animations.py" -v
+	$(PY) -B -m unittest discover -s scripts -p "test_ch05_animations.py" -v
+	$(PY) -B -m unittest discover -s scripts -p "test_ch06_animations.py" -v
+	$(PY) -B -m unittest discover -s scripts -p "test_ch07_animations.py" -v
+	$(PY) -B -m unittest discover -s scripts -p "test_ch09_animations.py" -v
+	$(PY) -B -m unittest discover -s scripts -p "test_ch10_animations.py" -v
+	$(PY) -B -m unittest discover -s scripts -p "test_ch11_animations.py" -v
+	$(PY) -B -m unittest discover -s scripts -p "test_ch12_animations.py" -v
 	$(PY) -B -m unittest discover -s analog-book/tests -p "test_visual_v2_assets.py" -v
 
 visual-ship: visual-check
+	$(PY) -B scripts/check_visual_release.py
 	$(PY) -B scripts/audit_visual_density.py --gate
 
 test-browser:

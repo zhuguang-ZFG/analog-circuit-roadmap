@@ -93,32 +93,22 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 }
 </style>
 
-<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">基准选型是一张精度阶梯</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">从 5% 稳压管到 0.3–2 ppm/°C 恒温齐纳；每往下一档，价格与功耗各涨约一个数量级。</text>
-<path d="M40 150 Q41.26 365.00 40 580" fill="none" stroke="#c9bb9d" stroke-width="3"/>
-<path d="M40 189 Q50.00 188.94 60 189" fill="none" stroke="#c9bb9d" stroke-width="3"/>
-<rect x="60" y="150" width="560" height="78" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
-<text x="84" y="182" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">稳压二极管</text>
-<text x="84" y="210" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">粗放场合</text>
-<text x="650" y="200" font-size="30" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">5% 级</text>
-<path d="M40 277 Q50.00 276.99 60 277" fill="none" stroke="#c9bb9d" stroke-width="3"/>
-<rect x="60" y="238" width="560" height="78" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
-<text x="84" y="270" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">LM385 带隙</text>
-<text x="84" y="298" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">10 µA 级</text>
-<text x="650" y="288" font-size="30" fill="#3d6b4a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">1–3%</text>
-<path d="M40 365 Q50.00 364.98 60 365" fill="none" stroke="#c9bb9d" stroke-width="3"/>
-<rect x="60" y="326" width="560" height="78" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
-<text x="84" y="358" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">TL431</text>
-<text x="84" y="386" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">可调，分级</text>
-<text x="650" y="376" font-size="30" fill="#3d6b4a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">0.5–2%</text>
-<path d="M40 453 Q50.00 453.04 60 453" fill="none" stroke="#c9bb9d" stroke-width="3"/>
-<rect x="60" y="414" width="560" height="78" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
-<text x="84" y="446" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">REF50xx / ADR45xx</text>
-<text x="84" y="474" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">3–10 ppm/°C</text>
-<text x="650" y="464" font-size="30" fill="#1f5d7a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">0.05–0.1%</text>
-<path d="M40 541 Q50.00 540.96 60 541" fill="none" stroke="#c9bb9d" stroke-width="3"/>
-<rect x="60" y="502" width="560" height="78" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
-<text x="84" y="534" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">LM399 埋入齐纳</text>
-<text x="84" y="562" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">台表专用</text>
-<text x="650" y="552" font-size="30" fill="#a4630f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">0.3–2 ppm/°C</text>
-<text x="500" y="640" font-size="23" fill="#a4630f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">12 位配 REF50xx 是浪费，20 位配 TL431 是事故。</text>
+<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">基准选型先分误差，不能只按 ADC 位数排档</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">示意：3.3 V、12 位；基准误差分配 0.2 mV，系统其余项另计。</text>
+<text x="45" y="204" font-size="26" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">1 LSB</text>
+<rect x="205" y="170" width="644.53125" height="52" rx="6" fill="#f6eedb" stroke="#1f5d7a" stroke-width="2"/>
+<text x="864.53125" y="206" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">0.806 mV</text>
+<text x="45" y="299" font-size="26" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">基准分配</text>
+<rect x="205" y="265" width="160.0" height="52" rx="6" fill="#f6eedb" stroke="#1f5d7a" stroke-width="2"/>
+<text x="380.0" y="301" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">0.2 mV</text>
+<text x="50" y="385" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">0.2 mV / 3.3 V ≈ 60.6 ppm，不能在多项里重复花。</text>
+<rect x="50" y="435" width="210" height="90" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<text x="155" y="488" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">初始误差</text>
+<rect x="285" y="435" width="210" height="90" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<text x="390" y="488" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">温区漂移</text>
+<rect x="520" y="435" width="210" height="90" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<text x="625" y="488" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">带内噪声</text>
+<rect x="755" y="435" width="210" height="90" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<text x="860" y="488" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">长期漂移</text>
+<text x="50" y="580" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">能否校准、是否比例式测量，都会改变各项分配。</text>
+<text x="50" y="630" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">串联 / 分流是结构分类；带隙 / 齐纳是参考机制。</text>
 </svg>

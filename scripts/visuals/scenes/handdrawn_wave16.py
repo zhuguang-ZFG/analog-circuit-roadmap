@@ -50,19 +50,19 @@ def diffpair_four_beats():
 
 def bridge_junction_ledger():
     parts = [header('桥堆与整流管：四个数，一本热账',
-                    '1 A 时结温 122 °C，离 125 °C 只剩 3 °C。降流、换肖特基，都是在买余量。')]
+                    '单管连续 1 A：结温 122 °C，余量 3 °C；桥堆四管损耗另算。')]
 
     parts.append(box(50, 130, 430, 300, fill=PAPER, stroke=BLUE))
     parts.append(text(74, 170, '桥堆看四个数', 24, colour=BLUE, weight='700'))
     parts.append(text(74, 212, 'V_RRM：至少 2 倍峰值反压', 22, colour=INK2))
-    parts.append(text(74, 244, '市电 230 Vrms 峰值 325 V，选 600~1000 V', 22, colour=INK2))
+    parts.append(text(74, 244, '230 Vrms → 325 V；选 800~1000 V', 22, colour=INK2))
     parts.append(text(74, 290, 'I_F(AV)：按壳温降额，常见标 100 °C', 22, colour=INK2))
     parts.append(text(74, 336, 'I_FSM：8.3 ms 半正弦的单次值', 22, colour=INK2))
     parts.append(text(74, 382, '热阻：按封装整体看，不能乘四', 22, colour=INK2))
     parts.append(text(74, 414, '四只封一起，互相加热', 22, colour=AMBER, weight='700'))
 
     parts.append(box(520, 130, 430, 300, fill=PAPER, stroke=GREEN))
-    parts.append(text(544, 170, '结温账：R_θJA = 80 °C/W', 24, colour=GREEN, weight='700'))
+    parts.append(text(544, 170, '单管：R_θJA = 80 °C/W', 24, colour=GREEN, weight='700'))
     parts.append(text(544, 212, 'P = 0.9 V × 1 A = 0.9 W', 22, colour=INK2))
     parts.append(text(544, 244, 'T_j = 50 + 0.9 × 80', 22, colour=INK2))
     parts.append(text(926, 246, '122 °C', 24, colour=RED, anchor='end', weight='700'))
@@ -76,7 +76,7 @@ def bridge_junction_ledger():
 
     parts.append(box(50, 450, 900, 104, fill=PAPER, stroke=AMBER))
     parts.append(text(76, 488, '桥式里每只管子的平均电流只有负载的一半', 24, colour=AMBER, weight='700'))
-    parts.append(text(76, 526, '1 A 负载、每只导通半周，平均 0.5 A；两只各 0.45 W，总损耗约 0.9 W',
+    parts.append(text(76, 526, '1 A 负载、每只平均 0.5 A；四只各 0.45 W，总损耗为 1.8 W',
                       22, colour=INK2))
 
     parts.append(box(50, 574, 900, 100, fill=PAPER, stroke=RED))
@@ -98,17 +98,17 @@ def thermal_chain_ledger():
                       22, colour=INK2))
 
     parts.append(box(50, 272, 900, 86, fill=PAPER, stroke=BLUE))
-    parts.append(text(76, 310, '两条降额线（纪律，不是保守癖）', 24, colour=BLUE, weight='700'))
+    parts.append(text(76, 310, '两条降额示例（按产品要求另定）', 24, colour=BLUE, weight='700'))
     parts.append(text(76, 344, '持续结温压在 125 °C 以下；V_DS 峰值压在额定的 80% 以内', 22, colour=INK2))
 
     parts.append(box(50, 372, 900, 150, fill=PAPER, stroke=AMBER))
     parts.append(text(76, 410, '测量环节也会骗你：四个自欺现场', 24, colour=AMBER, weight='700'))
-    parts.append(text(76, 446, '长地线探头在 di/dt 里就是环形天线，20 mm 环路足以把振铃夸大数倍', 22, colour=INK2))
+    parts.append(text(76, 446, '20 mm 探头地线环路可能引入振铃，先缩短回路后复测', 22, colour=INK2))
     parts.append(text(76, 478, '电流探头与电压通道的延迟差，让损耗积分偏大或偏小', 22, colour=INK2))
-    parts.append(text(76, 510, '万用表电阻挡测不出 R_DS(on)；关断尖峰要与该结温的 V_TH 比', 22, colour=INK2))
+    parts.append(text(76, 510, 'R_DS(on) 要通已知电流四线测；误导通看 V_GS，耐压看 V_DS', 22, colour=INK2))
 
     parts.append(box(50, 536, 900, 72, fill=PAPER, stroke=GREEN))
-    parts.append(text(76, 578, '脉冲看瞬态热阻 Z_θJC(t)，稳态值套短脉冲是保守，套长脉冲是危险',
+    parts.append(text(76, 578, '孤立短脉冲用 Z_θJC(t)；重复脉冲还须累计热量，边界条件保持一致',
                       22, colour=GREEN, weight='700'))
 
     parts.append(box(50, 622, 900, 62, fill=PAPER))
@@ -129,9 +129,9 @@ def q_selectivity_map():
     parts.append(box(50, 228, 430, 272, fill=PAPER, stroke=GREEN))
     parts.append(text(74, 268, '选台要多窄', 24, colour=GREEN, weight='700'))
     parts.append(text(74, 306, '中波：载波 1 MHz、带宽 5 kHz', 22, colour=INK2))
-    parts.append(text(456, 340, '→ Q 约 100', 24, colour=GREEN, anchor='end', weight='700'))
+    parts.append(text(456, 340, '→ Q = 200', 24, colour=GREEN, anchor='end', weight='700'))
     parts.append(text(74, 382, 'FM：载波 100 MHz、带宽 150 kHz', 22, colour=INK2))
-    parts.append(text(456, 416, 'Q 只要个位数', 24, colour=GREEN, anchor='end', weight='700'))
+    parts.append(text(456, 416, '→ Q ≈ 667', 24, colour=GREEN, anchor='end', weight='700'))
     parts.append(f'<line x1="82" y1="438" x2="448" y2="438" stroke="{RULE}" stroke-width="2"/>')
     parts.append(text(74, 474, '频率越高，高 Q 越难做', 22, colour=AMBER, weight='700'))
 
@@ -205,13 +205,13 @@ SCENES = {
         'draw': bridge_junction_ledger, 'title': '桥堆与整流管的四个数与结温账',
         'anchor': '2.12', 'chapter': 2, 'source': 'docs/p1-03-ch2.md',
         'alt': '手绘桥堆两栏加热账。左蓝框桥堆看四个数：反向耐压至少 2 倍峰值反压，'
-               '市电 230 伏有效值峰值 325 伏所以选 600 到 1000 伏；平均电流要按壳温降额，常见标 100 摄氏度；'
+               '市电 230 伏有效值峰值 325 伏，所以按两倍余量选 800 到 1000 伏；平均电流要按壳温降额，常见标 100 摄氏度；'
                '浪涌电流是 8.3 毫秒半正弦的单次值；热阻要按封装整体看，不能拿单只乘四，四只封在一起互相加热。'
-               '右绿框结温账，热阻按 80 摄氏度每瓦：功耗 0.9 伏乘 1 安得 0.9 瓦，结温 50 加 0.9 乘 80 得 122 摄氏度；'
+               '右绿框单管连续导通的结温账，热阻按 80 摄氏度每瓦：功耗 0.9 伏乘 1 安得 0.9 瓦，结温 50 加 0.9 乘 80 得 122 摄氏度；'
                '降到 0.6 安功耗 0.54 瓦，结温 93 摄氏度；换 0.5 伏肖特基，90 摄氏度；'
                '环境升到 60 摄氏度仍 1 安，132 摄氏度已经超限。'
                '下方琥珀框写桥式里每只管子的平均电流只有负载的一半：1 安负载每只导通半周、平均 0.5 安，'
-               '两只各 0.45 瓦、总损耗约 0.9 瓦。底部红框写别把单只管子的热阻套到桥堆上，'
+               '四只各 0.45 瓦、总损耗为 1.8 瓦。底部红框写别把单只管子的热阻套到桥堆上，'
                '25 摄氏度下标称的 1 安装进封闭机箱不成立。',
     },
     'ch04-thermal-chain-ledger': {
@@ -220,11 +220,11 @@ SCENES = {
         'alt': '手绘热失效账。顶部红框写结温等于环境温度加功耗乘三级热阻之和；'
                '导通 0.75 瓦加开关 3.5 瓦共 4.25 瓦，只靠电路板敷铜、热阻按 60 摄氏度每瓦估，'
                '温升 255 摄氏度，150 或 175 摄氏度的额定都挡不住。'
-               '蓝框两条降额线：持续结温压在 125 摄氏度以下，漏源峰值压在额定的 80% 以内。'
-               '琥珀框列四个测量自欺：长地线探头在电流变化率环境里就是环形天线，20 毫米环路足以把振铃夸大数倍；'
-               '电流探头与电压通道的延迟差让损耗积分偏大或偏小；万用表电阻挡测不出导通电阻；'
-               '关断尖峰要与该结温下的阈值电压比。'
-               '绿框写脉冲要看瞬态热阻曲线，稳态值套短脉冲是保守、套长脉冲是危险。'
+               '蓝框两条降额示例：结温 125 摄氏度以下、漏源峰值在额定 80% 以内，具体按产品要求另定。'
+               '琥珀框列测量边界：20 毫米探头地线环路可能引入振铃，先缩短后复测；'
+               '电流探头与电压通道的延迟差让损耗积分偏大或偏小；导通电阻要通已知电流四线测；'
+               '误导通看栅源电压与热态阈值，耐压看漏源峰值。'
+               '绿框写孤立短脉冲看瞬态热阻，重复脉冲还须累计热量，保持相同热边界条件。'
                '底部写雪崩不是免费保险：100 纳亨乘 0.5 安每纳秒就是 50 伏，直接叠在母线上。',
     },
     'ch01-q-selectivity-map': {
@@ -232,8 +232,8 @@ SCENES = {
         'anchor': '1.5', 'chapter': 1, 'source': 'docs/p1-02-ch1.md',
         'alt': '手绘品质因数两栏。顶部蓝框给定义：Q 等于谐振频率除以半功率带宽，峰又尖又窄是高 Q；'
                'Q 还能实测，扫频找谐振峰与两个下降 3 分贝的点。'
-               '左绿框选台要多窄：中波载波 1 兆赫、带宽 5 千赫，需要 Q 约 100；'
-               '调频载波 100 兆赫、带宽 150 千赫，Q 只要个位数；频率越高做出高 Q 越难，损耗与寄生随频率一起涨。'
+               '左绿框按给定半功率带宽计算：中波载波 1 兆赫、带宽 5 千赫，Q 等于 200；'
+               '调频载波 100 兆赫、带宽 150 千赫，Q 约 667；频率越高做出高 Q 越难，损耗与寄生随频率一起涨。'
                '右红框峰值阻抗也是有限的：电感 10 微亨、电容 100 皮法、电阻 1 欧，谐振频率 5.0 兆赫，'
                '峰值阻抗 100 千欧；理想并联回路阻抗无穷大，实际被电感电阻压成电感除电阻乘电容。'
                '下方琥珀框写谐振网络里谁最差谁定 Q，电感的直流电阻与磁芯损耗通常是短板。'
@@ -253,3 +253,7 @@ SCENES = {
                '底部写三件事按顺序走，大多数故障不用猜。',
     },
 }
+
+# Corrected chapter 11 model and visual contract.
+from scripts.visuals.scenes.ch11_reference_figures import SCENES as _ch11_corrected
+SCENES['ch11-diffpair-four-beats'] = _ch11_corrected['ch11-diffpair-four-beats']

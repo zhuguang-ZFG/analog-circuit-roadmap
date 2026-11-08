@@ -1,5 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
-<title id="title">共射级的摆幅预算与削波方向</title><desc id="desc">手绘共射摆幅预算。左蓝框先立地基：集电极 6 伏、发射极 1.8 伏、基极约 2.5 伏、集电极电流 3 毫安、管压降约 4.2 伏，这是安静时的 Q 点。右绿框再数余量：向上到 12 伏是 6 伏，向下到发射极加 0.2 伏是 4 伏，取小的那份。琥珀框写最大不失真摆幅等于 2 乘最小余量、即 8.0 Vpp；增益 230，想推满 8 Vpp 输入上限约 35 mVpp。红框写削波方向就是诊断方向：输出底部削平是撞饱和、Q 点偏高，查发射极电压或集电极电阻偏大；顶部削平是撞截止、Q 点偏低，把基极电压往上挪。底部写 Q 点偏置的任务就是把两份余量尽量平分，先站回直流窗口再用信号说话。</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>
@@ -94,7 +93,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 }
 </style>
 
-<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">摆幅由更小的那份余量决定</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">12 V 供电、Q 点 6 V：上行余量 6 V、下行余量 4 V，最大不失真 8.0 Vpp。</text>
+<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">摆幅由更小的那份余量决定</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">12 V 供电、Q 点 6 V：上行余量 6 V、下行余量 4 V，近似削波界 8.0 Vpp。</text>
 <rect x="50" y="126" width="430" height="176" rx="6" fill="#f6eedb" stroke="#1f5d7a" stroke-width="2"/>
 <text x="74" y="166" font-size="24" fill="#1f5d7a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">先立地基</text>
 <text x="74" y="204" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">V_C = 6 V、V_E = 1.8 V</text>
@@ -108,8 +107,8 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <text x="926" y="242" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="end">4 V</text>
 <text x="544" y="276" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">取小的那份，来回一趟</text>
 <rect x="50" y="316" width="900" height="96" rx="6" fill="#f6eedb" stroke="#a4630f" stroke-width="2"/>
-<text x="76" y="354" font-size="24" fill="#a4630f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">最大不失真摆幅 = 2 × min(6 V, 4 V) = 8.0 Vpp</text>
-<text x="76" y="388" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">增益 230（R_C / r_e = 2 kΩ / 8.7 Ω）→ 想推满 8 Vpp，输入上限约 35 mVpp</text>
+<text x="76" y="354" font-size="24" fill="#a4630f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">线性外推削波界 = 2 × min(6 V, 4 V) = 8.0 Vpp</text>
+<text x="76" y="388" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">增益 230 → 线性估计输入约 35 mVpp；指数非线性会更早出现，失真须另验</text>
 <rect x="50" y="426" width="900" height="146" rx="6" fill="#f6eedb" stroke="#a8321f" stroke-width="2"/>
 <text x="76" y="464" font-size="24" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">削波方向就是诊断方向</text>
 <text x="76" y="502" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">输出底部削平 = 撞饱和 = Q 点偏高</text>

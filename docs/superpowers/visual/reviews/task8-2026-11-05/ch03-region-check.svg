@@ -124,11 +124,11 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <text x="485" y="484" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">漏流随温度翻倍</text>
 <path d="M306 411 Q321.00 410.95 336 411" fill="none" stroke="#37424e" stroke-width="2.5" stroke-linecap="round"/><polygon points="336,411 346,406 346,416" fill="#37424e"/>
 <rect x="650" y="326" width="290" height="170" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
-<text x="795" y="360" font-size="25" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">发射结开路</text>
+<text x="795" y="360" font-size="25" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">尚未正偏</text>
 <path d="M672 380 Q795.00 379.39 918 380" fill="none" stroke="#c9bb9d" stroke-width="1.5"/>
-<text x="795" y="416" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">基极有电压</text>
-<text x="795" y="450" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">VBE = 0 V</text>
-<text x="795" y="484" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">管子已死</text>
+<text x="795" y="416" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">VBE = 0 V</text>
+<text x="795" y="450" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">查驱动 / B-E 短路</text>
+<text x="795" y="484" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">不能直接判开路</text>
 <path d="M630 411 Q638.00 411.01 646 411" fill="none" stroke="#37424e" stroke-width="2.5" stroke-linecap="round"/><polygon points="646,411 656,406 656,416" fill="#37424e"/>
 <rect x="56" y="520" width="888" height="150" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
 <text x="500" y="552" font-size="26" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">两条边界不能忘</text>

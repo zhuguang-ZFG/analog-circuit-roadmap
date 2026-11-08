@@ -1,6 +1,7 @@
 """可复用 SVG 图元和动作；每个动作带确定性静态版本，打印不残留 SMIL。"""
 from dataclasses import dataclass
 from html import escape
+import math
 
 from .tokens import APPROVED, BODY_SIZE, EASE_IN_OUT
 
@@ -19,6 +20,17 @@ def text(x, y, value, size=BODY_SIZE, colour=APPROVED.ink, anchor='start'):
 def line(x1, y1, x2, y2, colour=APPROVED.ink, width=4, dash=''):
     return (f'<line x1="{x1:g}" y1="{y1:g}" x2="{x2:g}" y2="{y2:g}" '
             f'stroke="{colour}" stroke-width="{width:g}" stroke-dasharray="{dash}"/>')
+
+
+def directed_arrow(x1, y1, x2, y2, colour=APPROVED.ink, width=2.5):
+    """Follow the actual shaft, including left and vertical paths."""
+    length=math.hypot(x2-x1,y2-y1)
+    if not length:
+        raise ValueError('An arrow needs distinct endpoints')
+    ux,uy=(x2-x1)/length,(y2-y1)/length
+    bx,by=x2-10*ux,y2-10*uy
+    return (line(x1,y1,x2,y2,colour,width)+
+            f'<polygon points="{x2:g},{y2:g} {bx-5*uy:g},{by+5*ux:g} {bx+5*uy:g},{by-5*ux:g}" fill="{colour}"/>')
 
 
 def resistor(x, y, width=150, height=54, label='R'):

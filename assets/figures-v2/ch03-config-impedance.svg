@@ -1,5 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
-<title id="title">三种组态共用一条阻抗折算律</title><desc id="desc">手绘三张组态卡片围着中心折算律：共射 B 进 C 出、增益高反相；共集 B 进 E 出、电压约 1 同相；共基 E 进 C 出、高频同相。中心写从发射极看阻抗除以贝塔加一，从基极看阻抗乘以贝塔加一。底部算例：10 千欧源、贝塔 100、IE 1 毫安，rπ 约 2.6 千欧，射随输出约 150 欧。</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>
@@ -114,6 +113,6 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <path d="M670 260 Q630.10 280.20 590 300" fill="none" stroke="#c9bb9d" stroke-width="2"/>
 <path d="M500 390 Q499.99 410.00 500 430" fill="none" stroke="#c9bb9d" stroke-width="2"/>
 <rect x="50" y="560" width="900" height="70" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
-<text x="76" y="600" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">10kΩ 源、β=100、IE=1mA：rπ≈2.6kΩ；射随输出 ≈150Ω。</text>
+<text x="76" y="600" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">10kΩ 源、β=100、IE=1mA：rπ≈2.6kΩ；管内看入 ≈125Ω。</text>
 <text x="500" y="660" font-size="22" fill="#a4630f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">共射出增益、共集出电流、共基出频率。</text>
 </svg>

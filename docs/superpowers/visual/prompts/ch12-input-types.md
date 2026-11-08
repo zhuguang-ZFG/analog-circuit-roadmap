@@ -10,11 +10,11 @@ color_ids:
 - C-29
 numbers: []
 source_facts:
-- docs/p2-02-ch12.md#12.13
+- docs/p2-02-ch12.md#12.13c
 authorization: 2026-11-05 用户要求增加手绘插图
 composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch12-input-types.json
-zh_prompt: 风格名称：手绘纸墨草图。主题：按源阻抗选输入级。象牙纸、佩恩灰墨线、赭石标记；线条略带手绘弯曲，中文标签保持印刷可读，几何不编码虚假量值。
-en_prompt: 'Style name: hand-drawn paper-and-ink sketch. Subject: 按源阻抗选输入级. Ivory paper, Payne grey ink,
-  ochre accents; slightly bowed hand-drawn lines with print-readable Chinese labels. Geometry never encodes
-  values.'
+zh_prompt: 风格名称：手绘纸墨草图。主题：输入结构的条件与代价。象牙纸、佩恩灰墨线、赭石标记；线条略带手绘弯曲，中文标签保持印刷可读，几何不编码虚假量值。
+en_prompt: 'Style name: hand-drawn paper-and-ink sketch. Subject: 输入结构的条件与代价. Ivory paper, Payne grey
+  ink, ochre accents; slightly bowed hand-drawn lines with print-readable Chinese labels. Geometry never
+  encodes values.'
 ---

@@ -1,5 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
-<title id="title">热失效的热阻链与四种测量自欺</title><desc id="desc">手绘热失效账。顶部红框写结温等于环境温度加功耗乘三级热阻之和；导通 0.75 瓦加开关 3.5 瓦共 4.25 瓦，只靠电路板敷铜、热阻按 60 摄氏度每瓦估，温升 255 摄氏度，150 或 175 摄氏度的额定都挡不住。蓝框两条降额线：持续结温压在 125 摄氏度以下，漏源峰值压在额定的 80% 以内。琥珀框列四个测量自欺：长地线探头在电流变化率环境里就是环形天线，20 毫米环路足以把振铃夸大数倍；电流探头与电压通道的延迟差让损耗积分偏大或偏小；万用表电阻挡测不出导通电阻；关断尖峰要与该结温下的阈值电压比。绿框写脉冲要看瞬态热阻曲线，稳态值套短脉冲是保守、套长脉冲是危险。底部写雪崩不是免费保险：100 纳亨乘 0.5 安每纳秒就是 50 伏，直接叠在母线上。</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>
@@ -101,15 +100,15 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <text x="926" y="204" font-size="26" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="end">4.25 W</text>
 <text x="76" y="238" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">只靠 PCB 敷铜，R_θJA 按 60 °C/W 估 → 温升 255 °C，150 或 175 °C 都挡不住</text>
 <rect x="50" y="272" width="900" height="86" rx="6" fill="#f6eedb" stroke="#1f5d7a" stroke-width="2"/>
-<text x="76" y="310" font-size="24" fill="#1f5d7a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">两条降额线（纪律，不是保守癖）</text>
+<text x="76" y="310" font-size="24" fill="#1f5d7a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">两条降额示例（按产品要求另定）</text>
 <text x="76" y="344" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">持续结温压在 125 °C 以下；V_DS 峰值压在额定的 80% 以内</text>
 <rect x="50" y="372" width="900" height="150" rx="6" fill="#f6eedb" stroke="#a4630f" stroke-width="2"/>
 <text x="76" y="410" font-size="24" fill="#a4630f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">测量环节也会骗你：四个自欺现场</text>
-<text x="76" y="446" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">长地线探头在 di/dt 里就是环形天线，20 mm 环路足以把振铃夸大数倍</text>
+<text x="76" y="446" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">20 mm 探头地线环路可能引入振铃，先缩短回路后复测</text>
 <text x="76" y="478" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">电流探头与电压通道的延迟差，让损耗积分偏大或偏小</text>
-<text x="76" y="510" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">万用表电阻挡测不出 R_DS(on)；关断尖峰要与该结温的 V_TH 比</text>
+<text x="76" y="510" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">R_DS(on) 要通已知电流四线测；误导通看 V_GS，耐压看 V_DS</text>
 <rect x="50" y="536" width="900" height="72" rx="6" fill="#f6eedb" stroke="#3d6b4a" stroke-width="2"/>
-<text x="76" y="578" font-size="22" fill="#3d6b4a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">脉冲看瞬态热阻 Z_θJC(t)，稳态值套短脉冲是保守，套长脉冲是危险</text>
+<text x="76" y="578" font-size="22" fill="#3d6b4a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">孤立短脉冲用 Z_θJC(t)；重复脉冲还须累计热量，边界条件保持一致</text>
 <rect x="50" y="622" width="900" height="62" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
 <text x="76" y="660" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">雪崩不是免费保险：100 nH × 0.5 A/ns 就是 50 V，直接叠在母线上</text>
 </svg>

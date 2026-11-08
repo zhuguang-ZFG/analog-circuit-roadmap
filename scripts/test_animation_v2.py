@@ -336,7 +336,8 @@ class AnimationV2Tests(unittest.TestCase):
             tl, layers = module.scene()
             for suffix, build in [('', scene_svg), ('-static', static_svg), ('-storyboard', storyboard_svg)]:
                 output = root / 'assets/svg-v2' / (source.stem.replace('_', '-') + suffix + '.svg')
-                self.assertEqual(build(tl, layers), output.read_text(encoding='utf-8'), str(output))
+                expected = module.storyboard() if suffix == '-storyboard' and hasattr(module, 'storyboard') else build(tl, layers)
+                self.assertEqual(expected, output.read_text(encoding='utf-8'), str(output))
 
     def test_moving_primitives_have_static_print_snapshots(self):
         tl, _ = fixture()

@@ -1,5 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
-<title id="title">迟滞窗口与两个阈值</title><desc id="desc">手绘迟滞回环：上行阈值 6.15 伏、下行阈值 5.85 伏，窗口 305 毫伏，覆盖现场 120 毫伏噪声；右侧列出窗口至少为噪声峰峰两倍、R2 比 R1 为 100 比 1、窗口约电源 1%。底部写先量噪声再定电阻。</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>
@@ -94,26 +93,20 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 }
 </style>
 
-<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">迟滞：把判决点拆成两个</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">上行 6.15 V 才报，下行 5.85 V 才解；305 mV 窗口盖住 120 mV 噪声。</text>
-<path d="M100 470 Q360.00 468.94 620 470" fill="none" stroke="#37424e" stroke-width="2"/>
-<path d="M100 470 Q100.28 325.00 100 180" fill="none" stroke="#37424e" stroke-width="2"/>
-<text x="600" y="500" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="end">VIN</text>
-<text x="120" y="170" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">VOUT</text>
-<path d="M140,430 L480,430 L480,230 L580,230" fill="none" stroke="#1f5d7a" stroke-width="5"/>
-<path d="M580,230 L360,230 L360,430 L140,430" fill="none" stroke="#1f5d7a" stroke-width="5"/>
-<path d="M250 430 Q280.00 429.78 310 430" fill="none" stroke="#1f5d7a" stroke-width="2.5" stroke-linecap="round"/><polygon points="310,430 300,425 300,435" fill="#1f5d7a"/>
-<path d="M540 230 Q510.00 230.01 480 230" fill="none" stroke="#1f5d7a" stroke-width="2.5" stroke-linecap="round"/><polygon points="480,230 490,225 490,235" fill="#1f5d7a"/>
-<text x="486" y="222" font-size="22" fill="#1f5d7a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">VTH+ 6.15 V</text>
-<text x="330" y="456" font-size="22" fill="#1f5d7a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="end">VTH− 5.85 V</text>
-<path fill="none" d="M360,360 L480,360" stroke="#a4630f" stroke-width="2" stroke-dasharray="4,4"/>
-<text x="420" y="398" font-size="22" fill="#a4630f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">305 mV</text>
-<rect x="650" y="140" width="300" height="360" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
-<text x="674" y="186" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">ΔV ≥ 2× 噪声峰峰</text>
-<text x="674" y="248" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">现场噪声 120 mV</text>
-<text x="674" y="310" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">R2/R1 100:1</text>
-<text x="674" y="372" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">窗口约电源 1%</text>
-<text x="674" y="434" font-size="22" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">窗口也是判决盲区</text>
-<rect x="50" y="530" width="900" height="76" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
-<text x="74" y="578" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">先量噪声，再定电阻；窗口不是越大越安全。</text>
-<text x="500" y="650" font-size="22" fill="#a4630f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">小窗口抗扰，大窗口锁存；量变到质变。</text>
+<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">迟滞回环，先写输出极性与参考条件</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">同相示意：独立 6 V 基准，VOH=12 V、VOL=0.1 V，R1/R2=10/390。</text>
+<text x="82" y="442.0" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="end">0</text>
+<path d="M100 435 Q425.00 435.49 750 435" fill="none" stroke="#c9bb9d" stroke-dasharray="3 5"/>
+<text x="82" y="322.0" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="end">6</text>
+<path d="M100 315 Q425.00 314.24 750 315" fill="none" stroke="#c9bb9d" stroke-dasharray="3 5"/>
+<text x="82" y="202.0" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="end">12</text>
+<path d="M100 195 Q425.00 195.46 750 195" fill="none" stroke="#c9bb9d" stroke-dasharray="3 5"/>
+<path d="M100.0,433.0 H588.8888888888881 V195.0 H749.9999999999997 M749.9999999999997,195.0 H258.3333333333328 V433.0 H100.0" fill="none" stroke="#1f5d7a" stroke-width="3"/>
+<path d="M262.5 433 Q343.75 433.11 425 433" fill="none" stroke="#1f5d7a" stroke-width="2.5" stroke-dasharray=""/><polygon points="425,433 415,438 415,428" fill="#1f5d7a"/>
+<path d="M587.5 195 Q506.25 194.35 425 195" fill="none" stroke="#a8321f" stroke-width="2.5" stroke-dasharray=""/><polygon points="425,195 435,190 435,200" fill="#a8321f"/>
+<text x="258.3333333333328" y="480" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">5.846</text>
+<text x="588.8888888888881" y="480" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">6.151</text>
+<text x="50" y="162" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">输出 / V</text>
+<text x="750" y="518" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="end">输入 / V</text>
+<text x="50" y="566" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">窗口约 305 mV；120 mVpp 噪声仍需结合门限距离验证。</text>
+<text x="50" y="609" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">实际开集电极输出须重算加载，电池绝对电压要用独立参考。</text>
 </svg>

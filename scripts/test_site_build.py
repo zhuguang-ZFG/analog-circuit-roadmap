@@ -762,7 +762,9 @@ class SiteBuildTests(unittest.TestCase):
                     continue
                 if pattern.match(s.rstrip()):
                     expected += 1
-        self.assertGreater(expected, 100, f"docs/ 里只数到 {expected} 行动画链接，扫描器坏了")
+        # 改写后的 ch9-ch11 把动画入口并入正文的“旧入口”行内链接，不再独占整行，
+        # 独立药丸页随之减少；这条下限只防扫描器坏掉归零，不规定内容该有多少颗。
+        self.assertGreater(expected, 60, f"docs/ 里只数到 {expected} 行动画链接，扫描器坏了")
         got = sum(p.read_text(encoding="utf-8").count('<div class="demo-link" markdown="1">')
                   for p in self.out.glob("*.md"))
         self.assertEqual(expected, got, "药丸数与 docs/ 的动画链接行数不一致（漏包或多包）")

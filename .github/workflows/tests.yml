@@ -20,7 +20,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: pip install PyYAML Pillow fonttools brotli
+      - run: pip install PyYAML Pillow fonttools brotli numpy
       - run: make visual-check
 
   svg-assets:
@@ -73,6 +73,8 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install -r requirements.txt
+      - name: EPUB 导航、公式资源与阅读顺序
+        run: python -B -m unittest discover -s scripts -p test_epub.py -v
       - run: python -B -m unittest discover -s scripts -p test_release_gate.py -v
       - run: python -B -m unittest discover -s scripts -p test_publish_a4_book.py -v
       - name: 站点源自洽性（画廊卡片/章节筛选/导航/侧栏去重/SEO/共建页脚/标题层级/提示卡/JSON-LD）

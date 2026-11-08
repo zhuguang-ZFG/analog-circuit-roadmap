@@ -1,5 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
-<title id="title">三区判读流程</title><desc id="desc">判读流程：先量 VBE 与 VCE，再分四路——VBE 约 0.7 V、VCE 大于 1 V 是放大区；VBE 约 0.8 V、VCE 约 0.1~0.3 V 是饱和区；VBE 小于 0.5 V、VCE 接近 VCC 是截止区；基极有电压而 VBE 为 0 V 是发射结开路、管子已死。底部两条边界：BVCEO 40 V 是失效边界不是第四区；截止漏流每升 8~10 °C 翻倍，85 °C 高阻负载要重算。</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>
@@ -125,11 +124,11 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <text x="485" y="484" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">漏流随温度翻倍</text>
 <path d="M306 411 Q321.00 410.95 336 411" fill="none" stroke="#37424e" stroke-width="2.5" stroke-linecap="round"/><polygon points="336,411 346,406 346,416" fill="#37424e"/>
 <rect x="650" y="326" width="290" height="170" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
-<text x="795" y="360" font-size="25" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">发射结开路</text>
+<text x="795" y="360" font-size="25" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">尚未正偏</text>
 <path d="M672 380 Q795.00 379.39 918 380" fill="none" stroke="#c9bb9d" stroke-width="1.5"/>
-<text x="795" y="416" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">基极有电压</text>
-<text x="795" y="450" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">VBE = 0 V</text>
-<text x="795" y="484" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">管子已死</text>
+<text x="795" y="416" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">VBE = 0 V</text>
+<text x="795" y="450" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">查驱动 / B-E 短路</text>
+<text x="795" y="484" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">不能直接判开路</text>
 <path d="M630 411 Q638.00 411.01 646 411" fill="none" stroke="#37424e" stroke-width="2.5" stroke-linecap="round"/><polygon points="646,411 656,406 656,416" fill="#37424e"/>
 <rect x="56" y="520" width="888" height="150" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
 <text x="500" y="552" font-size="26" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">两条边界不能忘</text>

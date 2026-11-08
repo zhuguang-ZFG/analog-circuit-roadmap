@@ -155,26 +155,8 @@ def input_types():
 
 
 def bias_balance():
-    parts = [header('偏置电流的账，先看源阻抗',
-                    '20nA 流过 1kΩ 只有 20µV；流过 100kΩ 就是 2mV。')]
-    parts.append(box(50, 150, 420, 180, fill=PAPER))
-    parts.append(text(74, 192, '源阻抗 1kΩ', 24, colour=GREEN, weight='700'))
-    parts.append(text(74, 230, '20nA × 1kΩ', 22, colour=INK2))
-    parts.append(text(74, 294, '20µV', 42, colour=GREEN, weight='700'))
-    parts.append(box(530, 150, 420, 180, fill=PAPER))
-    parts.append(text(554, 192, '源阻抗 100kΩ', 24, colour=RED, weight='700'))
-    parts.append(text(554, 230, '20nA × 100kΩ', 22, colour=INK2))
-    parts.append(text(554, 294, '2mV', 42, colour=RED, weight='700'))
-    parts.append(box(50, 370, 900, 180, fill=PAPER))
-    parts.append(text(76, 412, '平衡电阻法', 24, weight='700'))
-    parts.append(text(76, 452, 'R3 = R1 ∥ R2', 30, colour=BLUE, weight='700'))
-    parts.append(text(76, 492, '两输入端直流电阻相等 → Ib 压降对消，只剩 Ios。', 22,
-                      colour=INK2))
-    parts.append(text(76, 524, '边界：偏流随温度漂；FET 输入 Ib 是 pA 级，直接选型更干净。', 22,
-                      colour=INK2))
-    parts.append(text(500, 620, '高阻源先选型，别硬凑平衡电阻。', 22,
-                      colour=AMBER, anchor='middle', weight='700'))
-    return parts
+    from scripts.visuals.scenes.ch06_reference_figures import SCENES as corrected
+    return corrected['ch06-bias-balance']['draw']()
 
 
 SCENES = {
@@ -214,3 +196,21 @@ SCENES = {
         'alt': '手绘两张误差卡：20 纳安流过 1 千欧只有 20 微伏；流过 100 千欧就是 2 毫伏。下方写平衡电阻法 R3 等于 R1 并联 R2，两输入端直流电阻相等时偏置电流压降对消，只剩失调电流；边界是偏流随温度漂，FET 输入偏置电流是皮安级。',
     },
 }
+
+# Keep historical batch entry points aligned with corrected chapter models.
+from scripts.visuals.scenes.ch06_reference_figures import SCENES as _ch06_corrected
+SCENES['ch06-bias-balance'] = _ch06_corrected['ch06-bias-balance']
+
+from scripts.visuals.scenes.ch10_reference_figures import SCENES as _ch10_corrected
+for _aid in ['ch10-monostable-budget', 'ch10-recovery-gap']:
+    SCENES[_aid] = _ch10_corrected[_aid]
+
+# Corrected chapter 11 model and visual contract.
+from scripts.visuals.scenes.ch11_reference_figures import SCENES as _ch11_corrected
+SCENES['ch11-mirror-three-errors'] = _ch11_corrected['ch11-mirror-three-errors']
+
+# Corrected chapter 12 models and source conditions.
+from scripts.visuals.scenes.ch12_reference_figures import SCENES as _ch12_corrected
+SCENES['ch12-tia-three-way'] = _ch12_corrected['ch12-tia-three-way']
+SCENES['ch12-switch-cap'] = _ch12_corrected['ch12-switch-cap']
+SCENES['ch12-input-types'] = _ch12_corrected['ch12-input-types']

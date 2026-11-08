@@ -1,5 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
-<title id="title">噪声现场辨认表</title><desc id="desc">五症状对照表：宽带嘶声先怀疑白噪与热噪，看带宽与预算大头；低频起伏慢漂查 1/f、温漂与干扰，比较 e_n(f) 与 i_n(f)；50 Hz 及谐波查地环、纹波与耦合，先查屏蔽与接地；随偏置电流变查散粒噪声，连带重算增益与失真；随源阻变区分热噪声与输入电流噪声，注意并电阻会加载信号源。底部一条地图：白噪看带宽、1/f 看频谱与工况、工频看地。</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>
@@ -94,34 +93,25 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 }
 </style>
 
-<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">噪声现场辨认：先对症状，再核频谱与工况</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">先把信号和噪声放在同一测量条件下，再决定动哪只旋钮。</text>
-<rect x="56" y="126" width="888" height="356" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
-<text x="90" y="162" font-size="24" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">听 / 看</text>
-<text x="350" y="162" font-size="24" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">先怀疑</text>
-<text x="640" y="162" font-size="24" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">下一步</text>
-<path d="M90 180 Q500.00 179.13 910 180" fill="none" stroke="#c9bb9d" stroke-width="1.5"/>
-<text x="90" y="218" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">宽带「嘶——」</text>
-<text x="350" y="218" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">白噪声/热噪声</text>
-<text x="640" y="218" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">看带宽与预算大头</text>
-<path d="M90 234 Q500.00 235.25 910 234" fill="none" stroke="#c9bb9d" stroke-width="1"/>
-<text x="90" y="268" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">低频起伏慢漂</text>
-<text x="350" y="268" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">1/f＋温漂＋干扰</text>
-<text x="640" y="268" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">比 e_n(f) 与 i_n(f)</text>
-<path d="M90 284 Q500.00 282.93 910 284" fill="none" stroke="#c9bb9d" stroke-width="1"/>
-<text x="90" y="318" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">50 Hz 及谐波</text>
-<text x="350" y="318" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">地环/纹波/耦合</text>
-<text x="640" y="318" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">先查屏蔽与接地</text>
-<path d="M90 334 Q500.00 333.51 910 334" fill="none" stroke="#c9bb9d" stroke-width="1"/>
-<text x="90" y="368" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">随偏置电流变</text>
-<text x="350" y="368" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">散粒噪声一项</text>
-<text x="640" y="368" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">重算增益与失真</text>
-<path d="M90 384 Q500.00 384.09 910 384" fill="none" stroke="#c9bb9d" stroke-width="1"/>
-<text x="90" y="418" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">随源阻变</text>
-<text x="350" y="418" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">热噪声√R 或 i_n·Z_s</text>
-<text x="640" y="418" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">并电阻会加载信号源</text>
-<rect x="56" y="500" width="888" height="170" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
-<text x="500" y="534" font-size="26" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">一句话地图</text>
-<path d="M90 554 Q500.00 554.78 910 554" fill="none" stroke="#c9bb9d" stroke-width="1.5"/>
-<text x="90" y="588" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">白噪看带宽与各项来源；1/f 看实际频谱与工况；工频看接地与电源</text>
-<text x="90" y="628" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">不能凭听感给 1/f 定案：先对症状，再用频谱与工况核账</text>
+<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">症状只能给线索，不能单凭一个旋钮定案</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">保持信号传递、负载、带宽与参考点一致，记录改变前后的频谱。</text>
+<text x="45" y="170" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">宽带嘶声</text>
+<path d="M225 162 Q250.00 161.96 275 162" fill="none" stroke="#16202b" stroke-width="2.5" stroke-dasharray=""/><polygon points="275,162 265,167 265,157" fill="#16202b"/>
+<text x="295" y="170" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">测白噪声地板与 ENBW</text>
+<text x="295" y="208" font-size="23" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">列源阻、en、in 各项功率</text>
+<text x="45" y="270" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">低频起伏</text>
+<path d="M225 262 Q250.00 261.79 275 262" fill="none" stroke="#16202b" stroke-width="2.5" stroke-dasharray=""/><polygon points="275,262 265,267 265,257" fill="#16202b"/>
+<text x="295" y="270" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">区分 1/f、温漂和外部干扰</text>
+<text x="295" y="308" font-size="23" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">斩波还查纹波与输入电流</text>
+<text x="45" y="370" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">50 Hz 及谐波</text>
+<path d="M225 362 Q250.00 362.10 275 362" fill="none" stroke="#16202b" stroke-width="2.5" stroke-dasharray=""/><polygon points="275,362 265,367 265,357" fill="#16202b"/>
+<text x="295" y="370" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">查接地、屏蔽与电源路径</text>
+<text x="295" y="408" font-size="23" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">同测共模、供电和输出</text>
+<text x="45" y="470" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">随偏置变化</text>
+<path d="M225 462 Q250.00 461.86 275 462" fill="none" stroke="#16202b" stroke-width="2.5" stroke-dasharray=""/><polygon points="275,462 265,467 265,457" fill="#16202b"/>
+<text x="295" y="470" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">查散粒项，也查 gm 与带宽</text>
+<text x="295" y="508" font-size="23" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">改变电流后重新核对失真</text>
+<text x="45" y="570" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">随源阻变化</text>
+<path d="M225 562 Q250.00 562.16 275 562" fill="none" stroke="#16202b" stroke-width="2.5" stroke-dasharray=""/><polygon points="275,562 265,567 265,557" fill="#16202b"/>
+<text x="295" y="570" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">分开热噪声和 in·|Zs|</text>
+<text x="295" y="608" font-size="23" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">并电阻可能同时削弱信号</text>
 </svg>

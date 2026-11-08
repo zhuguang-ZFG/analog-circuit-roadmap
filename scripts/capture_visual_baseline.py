@@ -17,6 +17,8 @@ sys.path.insert(0, str(ROOT / "analog-book"))
 from book.storyboard import build_storyboard, caption_beats
 from book.svg_refine import is_animated_svg, refine_svg
 
+from audit_visual_density import prose_chars
+
 
 def frozen_file(head: str, path: str) -> bytes:
     return subprocess.run(["git", "show", f"{head}:{path}"], cwd=ROOT,
@@ -53,6 +55,21 @@ def enrich(data: dict) -> None:
                             for name in ("analog-book/book/storyboard.py", "analog-book/book/svg_refine.py")}}
 
 
+def enrich_prose(data: dict) -> None:
+    """按同一冻结 head 补录正文口径；原有 chars 与 inventory 明细一字不动。"""
+    head = data["meta"]["head"]
+    for chapter in data["chapters"]:
+        text = frozen_file(head, chapter["file"]).decode("utf-8")
+        chapter["prose_chars"] = prose_chars(text)
+    data["meta"]["prose_convention"] = (
+        "prose_chars = 章节原文剥掉 <figure> 整块与独立 <img> 标签后的非空白字符；"
+        "chars 口径不变，仍含 alt、figcaption 与标签语法")
+    data["meta"]["prose_provenance"] = {
+        "source_head": head, "measured_on": "2026-11-08",
+        "method": "Recomputed from the same frozen head as chars; no live-tree input. "
+                  "Reproduced bit-for-bit by test_convention_reproduces_frozen_baseline."}
+
+
 def pdf_record(path: Path) -> dict:
     from pypdf import PdfReader
     reader = PdfReader(path)
@@ -67,8 +84,16 @@ def pdf_record(path: Path) -> dict:
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--enrich", action="store_true", help="补充原基线；原有章节统计与 SHA 不动")
+    ap.add_argument("--enrich-prose", action="store_true",
+                    help="按冻结 head 补录每章 prose_chars；chars 与 inventory 不动")
     ap.add_argument("--pdf-out", type=Path, default=ROOT / "build/visual-baseline/pdf-baseline-2026-11-05.json")
     args = ap.parse_args(argv)
+    if args.enrich_prose:
+        data = json.loads(BASELINE.read_text(encoding="utf-8"))
+        enrich_prose(data)
+        BASELINE.write_text(json.dumps(data, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+        print(f"补录 {len(data['chapters'])} 章正文口径（head {data['meta']['head']}）")
+        return 0
     if args.enrich:
         data = json.loads(BASELINE.read_text(encoding="utf-8"))
         enrich(data)

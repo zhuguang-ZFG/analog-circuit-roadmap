@@ -66,7 +66,7 @@ def register(asset_id: str, meta: dict, data: dict) -> None:
     record = {
         'id': asset_id, 'generator': 'python-handraw-v1',
         'reference_policy': 'name+style+traits', 'style_id': STYLE,
-        'layout_id': 'IG-013', 'color_ids': COLORS, 'numbers': [],
+        'layout_id': 'IG-013', 'color_ids': COLORS, 'numbers': meta.get('numbers', []),
         'source_facts': [f'{meta["source"]}#{meta["anchor"]}'],
         'authorization': '2026-11-05 用户要求增加手绘插图',
         'composition': f'docs/superpowers/visual/reviews/task8-2026-11-05/{asset_id}.json',

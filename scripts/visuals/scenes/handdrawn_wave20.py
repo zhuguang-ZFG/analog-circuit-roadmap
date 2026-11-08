@@ -118,16 +118,16 @@ def channel_formation():
                          f'fill="{BLUE}" stroke="{INK}" stroke-width="1.2"/>')
         parts.append(text(x + 134, 354, gtext, 22, anchor='middle', colour=BLUE, weight='700'))
         note = '两个背靠背 PN 结' if stage == 0 else ('反型层连起源漏' if stage == 1 else '沟道更厚')
-        note2 = '不导通' if stage == 0 else ('沟道导通' if stage == 1 else 'RDS(on) 更低')
+        note2 = '体二极管另看' if stage == 0 else ('沟道导通' if stage == 1 else 'RDS(on) 更低')
         parts.append(text(x + 134, 384, note, 22, anchor='middle'))
         parts.append(text(x + 134, 412, note2, 22, anchor='middle', colour=INK2))
     parts.append(box(56, 440, 888, 230, fill=PAPER, stroke=INK2))
     parts.append(text(500, 474, '栅极这只电容：开关瞬间的账', 26, anchor='middle', weight='700'))
     parts.append(f'<line x1="90" y1="494" x2="910" y2="494" stroke="{RULE}" stroke-width="1.5"/>')
     parts.extend(_rows(90, 528, 40, [
-        '栅氧只有几纳米：理论耐压几十伏，栅源额定常见 ±20 V',
+        '栅氧厚度与工艺有关；栅源额定常见 ±20 V，必须查具体型号',
         'VTH 随温度下降 −2~−5 mV/°C：热管更容易被 dv/dt 误导通',
-        '看 VGS=3.3 V 的输出曲线，别把 VTH(max) 小于 3.3 V 当成全开',
+        '3.3 V 驱动应查对应栅压的 RDS(on) 保证，不只看 VTH',
     ]))
     return parts
 
@@ -147,7 +147,7 @@ def region_check():
         (340, 136, '放大区', GREEN, ['VBE ≈ 0.7 V', 'VCE > 1 V', '信号全程留这里']),
         (650, 136, '饱和区', AMBER, ['VBE ≈ 0.8 V', 'VCE ≈ 0.1~0.3 V', '开关才故意进来']),
         (340, 326, '截止区', BLUE, ['VBE < 0.5 V', 'VCE ≈ VCC', '漏流随温度翻倍']),
-        (650, 326, '发射结开路', RED, ['基极有电压', 'VBE = 0 V', '管子已死']),
+        (650, 326, '尚未正偏', RED, ['VBE = 0 V', '查驱动 / B-E 短路', '不能直接判开路']),
     ]
     for x, y, title, colour, lines in cards:
         parts.append(box(x, y, 290, 170, fill=PAPER))
@@ -191,10 +191,10 @@ SCENES = {
         'title': '沟道形成三步',
         'anchor': '4.1 沟道形成原理（N 沟道增强型）', 'chapter': 4,
         'source': 'docs/p1-05-ch4.md',
-        'alt': '三幅 N 沟道增强型 MOSFET 剖面：VGS=0 时两个 N+ 区被 P 型衬底隔开、两个背靠背 PN 结不导通；'
+        'alt': '三幅 N 沟道增强型 MOSFET 剖面：VGS=0 时两个 N+ 区被 P 型衬底隔开、增强沟道关闭，体二极管另看极性；'
                'VGS>VTH 时氧化层下形成蓝色反型层，把源漏连起来；VGS 更大时沟道更厚、RDS(on) 更低。'
-               '底部三条电容账：栅氧几纳米、栅源额定常见 ±20 V；VTH 随温度下降 −2~−5 mV/°C；'
-               '3.3 V 驱动要看输出曲线，不能只看 VTH(max)。'},
+               '底部三条电容账：栅氧厚度取决于工艺，栅源额定常见 ±20 V、须查型号；VTH 随温度下降 −2~−5 mV/°C；'
+               '3.3 V 驱动要查对应栅压的 RDS(on) 保证，不能只看 VTH(max)。'},
     'ch03-region-check': {
         'draw': region_check,
         'title': '三区判读流程',
@@ -202,6 +202,10 @@ SCENES = {
         'source': 'docs/p1-04-ch3.md',
         'alt': '判读流程：先量 VBE 与 VCE，再分四路——VBE 约 0.7 V、VCE 大于 1 V 是放大区；'
                'VBE 约 0.8 V、VCE 约 0.1~0.3 V 是饱和区；VBE 小于 0.5 V、VCE 接近 VCC 是截止区；'
-               '基极有电压而 VBE 为 0 V 是发射结开路、管子已死。底部两条边界：'
+               'VBE 为 0 V 说明尚未正偏，应查驱动或 B-E 短路，不能直接判开路。底部两条边界：'
                'BVCEO 40 V 是失效边界不是第四区；截止漏流每升 8~10 °C 翻倍，85 °C 高阻负载要重算。'},
 }
+
+# Corrected chapter 11 model and visual contract.
+from scripts.visuals.scenes.ch11_reference_figures import SCENES as _ch11_corrected
+SCENES['ch11-noise-identify'] = _ch11_corrected['ch11-noise-identify']

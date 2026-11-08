@@ -47,7 +47,7 @@ def rectifier_voltage_ledger():
 
     parts.append(box(520, 506, 430, 118, fill=PAPER, stroke=RED))
     parts.append(text(544, 546, '平均 1 A 不等于管子只过 1 A', 24, colour=RED, weight='700'))
-    parts.append(text(544, 584, '导通只占 3 ms，峰值约 3.3 A', 22, colour=INK2))
+    parts.append(text(544, 584, '3 ms 内平均 3.3 A；峰值另查', 22, colour=INK2))
     return parts
 
 
@@ -194,7 +194,7 @@ SCENES = {
                '现有 4700 微法配 50 赫兹，纹波等于 1 除以 2 乘 50 乘 4700 微法得 2.13 伏，'
                '17.0 减 1.8 再减半个纹波，平均输出 14.1 伏。'
                '左下琥珀框写想把纹波压到 1 伏，电容要 10,000 微法、耐压至少 25 伏；'
-               '右下红框写平均 1 安不等于管子只过 1 安，导通只占 3 毫秒，峰值约 3.3 安。',
+               '右下红框写负载平均 1 安不等于管子只过 1 安，导通只占 3 毫秒，窗口平均 3.3 安；实际峰值须另查脉形。',
     },
     'ch02-protection-order': {
         'draw': protection_order, 'title': '接口保护三件套的先后次序',
@@ -245,3 +245,11 @@ SCENES = {
                '底部写偏置管必须贴散热器与功率管热耦合，否则温升推高偏置电流，直接热失控。',
     },
 }
+
+# Corrected chapter 11 model and visual contract.
+from scripts.visuals.scenes.ch11_reference_figures import SCENES as _ch11_corrected
+SCENES['ch11-noise-three-taxes'] = _ch11_corrected['ch11-noise-three-taxes']
+
+# Corrected chapter 12 models and source conditions.
+from scripts.visuals.scenes.ch12_reference_figures import SCENES as _ch12_corrected
+SCENES['ch12-riso-feedback-point'] = _ch12_corrected['ch12-riso-feedback-point']

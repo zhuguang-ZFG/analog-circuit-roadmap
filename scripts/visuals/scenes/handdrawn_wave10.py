@@ -7,8 +7,8 @@ from scripts.visuals.scenes.handdrawn_wave2 import (
 
 
 def esd_chain():
-    parts = [header('IEC 8kV 进来，24A 从 TVS 走',
-                    '330Ω/150pF 源，TVS 钳到 9.2V：峰值 24.2A、223W；100Ω 后残压仍灌 35mA。')]
+    parts = [header('8kV 简化源：先分流，再限流',
+                    '330Ω/150pF 近似：24.2A、223W；不代替 IEC 校准波形，100Ω 后仍灌 35mA。')]
     parts.append(text(52, 138, '8kV → TVS 9.2V → 100Ω → 芯片 5.7V', 22, colour=INK2))
     parts.append(box(50, 170, 430, 230, fill=PAPER))
     parts.append(text(74, 210, 'TVS 这一跳', 24, colour=RED, weight='700'))
@@ -21,9 +21,9 @@ def esd_chain():
     parts.append(text(544, 250, 'Iinj = (9.2 − 5.7) / 100', 22))
     parts.append(text(544, 306, '= 35mA', 40, colour=AMBER, weight='700'))
     parts.append(text(544, 346, '要 10mA：R ≥ (9.2 − 5.7) / 0.01', 22, colour=INK2))
-    parts.append(text(544, 380, '= 350Ω → 取 330Ω', 24, colour=GREEN, weight='700'))
+    parts.append(text(544, 380, '≥350Ω → 取 470Ω', 24, colour=GREEN, weight='700'))
     parts.append(box(50, 430, 900, 120, fill=PAPER))
-    parts.append(text(76, 468, '先 TVS、后限流：100Ω 挪到前面，要扛 24A 与 57.6kW。', 22,
+    parts.append(text(76, 468, '100Ω 前移：总源阻 430Ω，约 18.6A、34.6kW（简化模型）。', 22,
                       colour=RED, weight='700'))
     parts.append(text(76, 504, '地回路 1nH × 24A/ns ≈ 24V，钳位形同虚设。', 22,
                       colour=INK2))
@@ -277,7 +277,7 @@ def config_impedance():
     parts.append(f'<line x1="670" y1="260" x2="590" y2="300" stroke="{RULE}" stroke-width="2"/>')
     parts.append(f'<line x1="500" y1="390" x2="500" y2="430" stroke="{RULE}" stroke-width="2"/>')
     parts.append(box(50, 560, 900, 70, fill=PAPER))
-    parts.append(text(76, 600, '10kΩ 源、β=100、IE=1mA：rπ≈2.6kΩ；射随输出 ≈150Ω。', 22,
+    parts.append(text(76, 600, '10kΩ 源、β=100、IE=1mA：rπ≈2.6kΩ；管内看入 ≈125Ω。', 22,
                       weight='700'))
     parts.append(text(500, 660, '共射出增益、共集出电流、共基出频率。', 22,
                       colour=AMBER, anchor='middle', weight='700'))
@@ -323,7 +323,7 @@ SCENES = {
     'ch02-esd-chain': {
         'draw': esd_chain, 'title': 'IEC 8kV 的 24A 分账', 'anchor': '2.11.3',
         'chapter': 2, 'source': 'docs/p1-03-ch2.md',
-        'alt': '手绘 IEC 8 千伏 ESD 分账：330 欧、150 皮法源，TVS 钳到 9.2 伏，峰值电流 24.2 安、223 瓦；经 100 欧后残压仍向芯片灌 35 毫安。右侧写要压到 10 毫安需电阻至少 350 欧，取 330 欧。底部写先 TVS 后限流，100 欧挪到前面要扛 24 安与 57.6 千瓦；地回路 1 纳亨乘 24 安每纳秒约 24 伏，钳位形同虚设。',
+        'alt': '8 千伏简化 RC 源：330 欧、150 皮法，不代替 IEC 校准波形；TVS 钳到 9.2 伏，估算 24.2 安、223 瓦。100 欧后向芯片注入 35 毫安；10 毫安目标需至少 350 欧，选 470 欧。100 欧前移时总源阻 430 欧，约 18.6 安、34.6 千瓦。地回路 1 纳亨乘 24 安每纳秒产生 24 伏压降。',
     },
     'ch02-zener-budget': {
         'draw': zener_budget, 'title': '稳压管的限流电阻与最坏功耗', 'anchor': '2.9',
@@ -358,7 +358,7 @@ SCENES = {
     'ch03-config-impedance': {
         'draw': config_impedance, 'title': '三种组态共用一条阻抗折算律', 'anchor': '3.3',
         'chapter': 3, 'source': 'docs/p1-04-ch3.md',
-        'alt': '手绘三张组态卡片围着中心折算律：共射 B 进 C 出、增益高反相；共集 B 进 E 出、电压约 1 同相；共基 E 进 C 出、高频同相。中心写从发射极看阻抗除以贝塔加一，从基极看阻抗乘以贝塔加一。底部算例：10 千欧源、贝塔 100、IE 1 毫安，rπ 约 2.6 千欧，射随输出约 150 欧。',
+        'alt': '手绘三种组态与阻抗折算律：共射反相放大，共集同相缓冲，共基输入阻抗低。从发射极看，基极回路阻抗除以贝塔加一。10 千欧源、贝塔 100、IE 1 毫安、rπ 约 2.6 千欧，从发射极看入管内约 125 欧，端口还须并联发射极电阻。',
     },
     'ch03-early-effect': {
         'draw': early_effect, 'title': '厄利效应与输出阻抗', 'anchor': '3.1',

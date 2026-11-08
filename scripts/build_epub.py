@@ -20,6 +20,7 @@ import hashlib
 import re
 import sys
 import zipfile
+import uuid
 from pathlib import Path
 from xml.sax.saxutils import escape
 
@@ -32,7 +33,8 @@ import build_book as bb  # noqa: E402
 SITE = ROOT / "build" / "site"
 DIST = BOOK_DIR / "dist"
 OUTPUT = "analog-circuit-book.epub"
-UID = "urn:uuid:" + "analog-circuit-roadmap-" + OUTPUT.replace(".epub", "epub")
+UID = 'urn:uuid:' + str(uuid.uuid5(uuid.NAMESPACE_URL,
+    'https://github.com/zhuguang-ZFG/analog-circuit-roadmap/book'))
 MIME_TEXT = {".svg": "image/svg+xml", ".png": "image/png", ".gif": "image/gif",
              ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".webp": "image/webp",
              ".woff2": "font/woff2", ".txt": "text/plain"}
@@ -114,8 +116,8 @@ def flatten_pages(parts: list[dict]) -> list[dict]:
 def rewrite_book_links(fragment: str, files: dict[str, str]) -> str:
     """整书内锚点 `#page-{stem}` / `#{stem}--{anchor}` 改为跨文件链接。"""
     def repl(match: re.Match) -> str:
-        href = match.group(1)
-        target = href[1:]
+        target = match.group(1)
+        href = '#' + target
         if target == "book-toc":
             return 'href="../nav.xhtml#toc"'
         if target.startswith("page-"):
@@ -273,8 +275,10 @@ def opf(meta: dict, pages: list[dict], assets: dict[str, bytes]) -> str:
 <package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="uid" xml:lang="{meta['language']}">
   <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
     <dc:identifier id="uid">{UID}</dc:identifier>
-    <dc:title>{escape(meta['title'])}</dc:title>
-    <dc:subtitle>{escape(meta['subtitle'])}</dc:subtitle>
+    <dc:title id="main-title">{escape(meta['title'])}</dc:title>
+    <meta refines="#main-title" property="title-type">main</meta>
+    <dc:title id="subtitle">{escape(meta['subtitle'])}</dc:title>
+    <meta refines="#subtitle" property="title-type">subtitle</meta>
     <dc:language>{meta['language']}</dc:language>
     <dc:creator>{escape(meta['author'])}</dc:creator>
     <dc:date>{meta['date']}</dc:date>
@@ -339,7 +343,7 @@ h1{font-size:88px;line-height:1.3;margin:0;}
 def package(out_path: Path, meta: dict, parts: list[dict], pages: list[dict],
             assets: dict[str, bytes], cover: bytes) -> None:
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    with zipfile.ZipFile(out_path, "w") as zf:
+    with zipfile.ZipFile(out_path, "w", compression=zipfile.ZIP_DEFLATED) as zf:
         zf.writestr("mimetype", "application/epub+zip",
                     compress_type=zipfile.ZIP_STORED)
         zf.writestr("META-INF/container.xml",
@@ -362,33 +366,13 @@ def package(out_path: Path, meta: dict, parts: list[dict], pages: list[dict],
 
 
 def validate(out_path: Path) -> None:
-    import lxml.etree as ET
+    from epub_validation import EpubError, validate_epub
 
-    with zipfile.ZipFile(out_path) as zf:
-        names = set(zf.namelist())
-        first = zf.infolist()[0]
-        if first.filename != "mimetype" or first.compress_type != zipfile.ZIP_STORED:
-            raise bb.BookError("mimetype 必须是首个条目且 STORED")
-        ns = {"opf": "http://www.idpf.org/2007/opf"}
-        root = ET.fromstring(zf.read("OEBPS/content.opf"))
-        for item in root.findall(".//opf:manifest/opf:item", ns):
-            path = "OEBPS/" + item.get("href")
-            if path not in names:
-                raise bb.BookError(f"OPF 引用缺失: {path}")
-        for name in sorted(names):
-            if not name.endswith((".xhtml", ".opf", ".ncx")):
-                continue
-            ET.fromstring(zf.read(name))
-        # 内部引用解析（相对各条目所在目录）
-        for name in sorted(names):
-            if not name.endswith(".xhtml"):
-                continue
-            base = name.rsplit("/", 1)[0] + "/"
-            text = zf.read(name).decode("utf-8")
-            for ref in re.findall(r'(?:href|src)="((?!https?:|mailto:|tel:|urn:|#)[^"#]+)(?:#[^"]*)?"', text):
-                resolved = posix_normalize(base + ref)
-                if resolved not in names:
-                    raise bb.BookError(f"{name}: 内部引用缺失 {ref} -> {resolved}")
+    try:
+        report = validate_epub(out_path)
+    except EpubError as exc:
+        raise bb.BookError(str(exc)) from exc
+    print(f'epub audit {report}')
 
 
 def posix_normalize(path: str) -> str:

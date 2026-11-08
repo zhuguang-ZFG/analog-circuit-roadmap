@@ -115,43 +115,8 @@ def dvdt_false_turnon():
 
 
 def slew_vs_gbw():
-    parts = [header('GBW 看着宽，大信号 16kHz 就三角波化',
-                    '压摆段与收尾段是两套物理；谁大听谁的。')]
-    parts.append(box(50, 130, 430, 300, fill=PAPER))
-    parts.append(text(74, 172, '741 跟随器吃 1V 阶跃', 24, colour=BLUE, weight='700'))
-    parts.append(f'<line x1="100" y1="390" x2="450" y2="390" stroke="{INK2}" stroke-width="2.5"/>')
-    parts.append(f'<line x1="100" y1="390" x2="100" y2="210" stroke="{INK2}" stroke-width="2.5"/>')
-    parts.append(f'<path d="M100,390 L300,250 C330,232 350,226 420,222" fill="none" '
-                 f'stroke="{RED}" stroke-width="4"/>')
-    parts.append(f'<path d="M100,390 C150,268 200,232 420,222" fill="none" '
-                 f'stroke="{RULE}" stroke-width="3" stroke-dasharray="7,6"/>')
-    parts.append(text(188, 318, '0.5V/µs 直线', 22, colour=RED, weight='700'))
-    parts.append(text(236, 212, '只受 GBW 限制', 22, colour=INK2))
-    parts.append(f'<line x1="300" y1="390" x2="300" y2="256" stroke="{AMBER}" stroke-width="2" '
-                 f'stroke-dasharray="6,5"/>')
-    parts.append(text(300, 414, '2µs', 22, colour=AMBER, anchor='middle', weight='700'))
-    parts.append(text(74, 414, '压摆段 2µs', 22, colour=INK2))
-    parts.append(box(520, 130, 430, 300, fill=PAPER))
-    parts.append(text(544, 172, '全功率带宽才是选型依据', 24, colour=GREEN, weight='700'))
-    parts.append(text(544, 212, '输出 10Vpp 正弦，Vp = 5V', 22, colour=INK2))
-    parts.append(f'<line x1="544" y1="232" x2="926" y2="232" stroke="{RULE}" stroke-width="2"/>')
-    parts.append(text(544, 274, '741　SR 0.5V/µs', 22, colour=INK2))
-    parts.append(text(900, 274, '16kHz', 26, colour=RED, anchor='end', weight='700'))
-    parts.append(text(544, 320, 'NE5532　SR 9V/µs', 22, colour=INK2))
-    parts.append(text(900, 320, '286kHz', 26, colour=GREEN, anchor='end', weight='700'))
-    parts.append(text(544, 364, '收尾段按一阶收敛：τ = 0.16µs', 22, colour=INK2))
-    parts.append(text(544, 398, '进 0.1% 要 6.9τ；12bit 要 8.3τ', 22, colour=AMBER,
-                      weight='700'))
-    parts.append(box(50, 440, 900, 120, fill=PAPER))
-    parts.append(text(76, 480, '2µs 爬坡把总建立时间从约 1.1µs 拖到 2.6µs。', 24,
-                      colour=RED, weight='700'))
-    parts.append(text(76, 516, '压摆期输入级饱和、环路增益归零，负反馈此刻根本不在岗。', 22,
-                      colour=INK2))
-    parts.append(text(76, 548, '过冲是相位裕度读数：60° 几乎无过冲，30° 已剧烈振铃。', 22,
-                      colour=INK2))
-    parts.append(text(500, 622, '建立时间要连阶跃幅度一起给；跨条件引用是取样系统翻车点。', 22,
-                      colour=AMBER, anchor='middle', weight='700'))
-    return parts
+    from scripts.visuals.scenes.ch06_reference_figures import SCENES as corrected
+    return corrected['ch06-slew-vs-gbw']['draw']()
 
 
 def pullup_three_accounts():
@@ -252,3 +217,12 @@ SCENES = {
         'alt': '手绘阈值误差预算条形图：电阻容差让分压比最坏偏差正负 2%、基准偏正负 50 毫伏，条形最长；器件失调手册保证最大正负 5 毫伏；偏流失调 25 纳安乘 49 千欧约 1.2 毫伏，条形最短。下排左栏写 PNP 输入级偏流从管脚流出来，基准侧源阻 50 千欧、信号侧 1 千欧，进误差的是差值不是绝对值；右栏给两条修法：让两侧源阻尽量相等，或换 CMOS 输入比较器让偏流降到皮安级。底部写常见误设计是挑低失调器件却用 5% 分压电阻。',
     },
 }
+
+# Keep historical batch entry points aligned with corrected chapter models.
+from scripts.visuals.scenes.ch06_reference_figures import SCENES as _ch06_corrected
+SCENES['ch06-slew-vs-gbw'] = _ch06_corrected['ch06-slew-vs-gbw']
+
+# Preserve corrected comparator models in historical batch entry points.
+from scripts.visuals.scenes.ch07_reference_figures import SCENES as _ch07_corrected
+SCENES['ch07-pullup-three-accounts'] = _ch07_corrected['ch07-pullup-three-accounts']
+SCENES['ch07-threshold-budget'] = _ch07_corrected['ch07-threshold-budget']
