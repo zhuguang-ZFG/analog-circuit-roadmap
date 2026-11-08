@@ -4,12 +4,15 @@ import argparse
 import base64
 import hashlib
 import html
+import io
 import json
 import re
 import shutil
 import subprocess
 import sys
 from pathlib import Path
+
+from PIL import Image
 
 from book.content import strip_visual_players, _asset_path as visual_asset_path
 
@@ -275,6 +278,26 @@ def _asset_path(rel: str, site_dir: Path = SITE_DIR) -> Path:
     raise BookError(f"图片不存在: {rel}")
 
 
+JPEG_MAX_SIDE = 900
+
+
+def _shrink_jpeg(raw: bytes) -> bytes:
+    """书内照片按显示宽度降采样，长边 900 px 已足够屏幕与 A4 印刷。
+
+    原图多为 713–960 px 宽的手机/扫描件，按原字节 base64 内联会把整书
+    推过 20 MB 上限；只在压缩后更小时采用，不改变公式、电路与 SVG。
+    """
+    with Image.open(io.BytesIO(raw)) as image:
+        scale = min(1.0, JPEG_MAX_SIDE / max(image.size))
+        if scale < 1.0:
+            size = (round(image.width * scale), round(image.height * scale))
+            image = image.resize(size, Image.Resampling.LANCZOS)
+        output = io.BytesIO()
+        image.convert("RGB").save(output, "JPEG", quality=80, optimize=True, progressive=True)
+    compressed = output.getvalue()
+    return compressed if len(compressed) < len(raw) else raw
+
+
 def _data_uri(path: Path) -> str:
     resolved = path.resolve()
     if not resolved.is_file():
@@ -284,7 +307,10 @@ def _data_uri(path: Path) -> str:
     mime = MIME.get(resolved.suffix.lower())
     if mime is None:
         raise BookError(f"不支持的图片类型: {path}")
-    return f"data:{mime};base64," + base64.b64encode(resolved.read_bytes()).decode("ascii")
+    raw = resolved.read_bytes()
+    if mime == "image/jpeg":
+        raw = _shrink_jpeg(raw)
+    return f"data:{mime};base64," + base64.b64encode(raw).decode("ascii")
 
 
 def _use_reduced_motion_picture(fragment: str) -> str:

@@ -39,8 +39,10 @@ def player_html(asset: dict, root: Path) -> str:
     if metadata is None or not isinstance(beats, list) or not beats:
         raise ValueError(f"播放器缺时间轴: {source}")
     timeline = json.loads(metadata.text)
-    recorded_beats = [{k: b[k] for k in ("name", "start", "end")} for b in timeline["beats"]]
-    if timeline["duration"] != duration or recorded_beats != beats:
+    keys = ("name", "start", "end")
+    recorded_beats = [{k: b[k] for k in keys} for b in timeline["beats"]]
+    manifest_beats = [{k: b[k] for k in keys} for b in beats]
+    if timeline["duration"] != duration or recorded_beats != manifest_beats:
         raise ValueError(f"动画 metadata 与 manifest 节拍不一致: {source}")
     config = escape(json.dumps({"duration": duration, "beats": beats}, ensure_ascii=False), quote=True)
     alt = escape(asset["alt"], quote=True)
