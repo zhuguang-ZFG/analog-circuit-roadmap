@@ -32,7 +32,7 @@ CHAPTER_CONTRACTS = {
         "floor": 16000,
         "sections": ("### 2.9", "### 2.10", "### 2.11", "### 2.12", "### 2.13"),
         "examples": 3,
-        "figures": 10,
+        "figures": 21,  # wave1 快照 10；后续波次逐批插入 V2 图后的正文实数
         "tables": 5,
         "quiz": 9,
         "figure_assets": (
@@ -47,8 +47,8 @@ CHAPTER_CONTRACTS = {
         "floor": 18000,
         "sections": ("### 11.8", "### 11.9", "### 11.10", "### 11.11"),
         "examples": 3,
-        "figures": 13,
-        "tables": 6,
+        "figures": 28,  # 改写后原编号表全部改为图卡；快照 13 是旧结构
+        "tables": 0,
         "quiz": 10,
         "figure_assets": (
             "assets/figures/ch11-cascode.svg",
