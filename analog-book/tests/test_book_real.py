@@ -128,7 +128,10 @@ class RealBookTests(unittest.TestCase):
         self.assertIn('href="#p1-01-ch0--q-q-ch0-01"', self.document)
 
     def test_wave1_chapter_visible_char_floors(self):
-        floors = {"0": 13500, "2": 15000, "11": 17000, "14": 17000,
+        # 2026-11 可读性改写签核后重定 ch0/ch11 的基线：源头契约
+        # （test_wave1_chapters 的 15000/18000 字）仍生效，这里只防印刷稿
+        # 相对源稿二次缩水，不再卡改写前含重复铺垫的旧长度。
+        floors = {"0": 13200, "2": 15000, "11": 16500, "14": 17000,
                   "16": 13000}
         chapters = self.model["stats"]["chapters"]
         for chapter, floor in floors.items():
