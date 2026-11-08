@@ -35,6 +35,17 @@
 </defs>
 <rect class="page-bg" width="1000" height="700" fill="url(#bgL)"/>
 <rect class="page-grain" width="1000" height="700" fill="url(#dots)"/>
+<defs>
+<pattern id="fiber" width="96" height="96" patternUnits="userSpaceOnUse" patternTransform="rotate(-6)">
+<path d="M8 18 q16 -2.2 36 -0.4" stroke="#c9bb9d" stroke-width="0.55" fill="none" stroke-opacity="0.55"/>
+<path d="M54 12 q10 1.4 22 0.2" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.4"/>
+<path d="M20 52 q14 1.8 30 -0.6" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.45"/>
+<path d="M62 66 q12 -1.6 24 0.4" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.38"/>
+<path d="M14 84 q18 1.4 34 -0.2" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.42"/>
+</pattern>
+</defs>
+<rect class="page-fiber" width="1000" height="700" fill="url(#fiber)" opacity="0.55"/>
+
 <rect class="page-vig" width="1000" height="700" fill="url(#vig)"/>
 <rect class="page-hdr" width="1000" height="72" fill="url(#hdr)"/>
 <style>
@@ -93,7 +104,8 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 }
 </style>
 
-<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">Sallen-Key 的电容位置决定 Q 公式</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">串联 R1、R2：输入 → 中间节点 X → 运放正输入 Y；下图 K=1。</text>
+<polygon class="marker-wash" points="42.0,24.5 258.2,23.5 671.9,21.8 671.4,64.5 466.4,63.9 42.8,65.1" fill="#a4630f" opacity="0.13"/>
+<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">Sallen-Key 的电容位置决定 Q 公式</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">串联 R1、R2：输入 → 中间节点 X → 运放正输入 Y；下图 K=1。</text>
 <text x="30" y="275" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">Vin</text>
 <path d="M80 270 L120 270" fill="none" stroke="#16202b" stroke-width="3"/>
 <path d="M120 270 L135 270" fill="none" stroke="#16202b" stroke-width="3"/><rect x="135" y="258" width="65" height="24" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/><path d="M200 270 L215 270" fill="none" stroke="#16202b" stroke-width="3"/><text x="167" y="242" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">R1</text>

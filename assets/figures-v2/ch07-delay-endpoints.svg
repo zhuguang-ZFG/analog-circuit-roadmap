@@ -35,6 +35,17 @@
 </defs>
 <rect class="page-bg" width="1000" height="700" fill="url(#bgL)"/>
 <rect class="page-grain" width="1000" height="700" fill="url(#dots)"/>
+<defs>
+<pattern id="fiber" width="96" height="96" patternUnits="userSpaceOnUse" patternTransform="rotate(-6)">
+<path d="M8 18 q16 -2.2 36 -0.4" stroke="#c9bb9d" stroke-width="0.55" fill="none" stroke-opacity="0.55"/>
+<path d="M54 12 q10 1.4 22 0.2" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.4"/>
+<path d="M20 52 q14 1.8 30 -0.6" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.45"/>
+<path d="M62 66 q12 -1.6 24 0.4" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.38"/>
+<path d="M14 84 q18 1.4 34 -0.2" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.42"/>
+</pattern>
+</defs>
+<rect class="page-fiber" width="1000" height="700" fill="url(#fiber)" opacity="0.55"/>
+
 <rect class="page-vig" width="1000" height="700" fill="url(#vig)"/>
 <rect class="page-hdr" width="1000" height="72" fill="url(#hdr)"/>
 <style>
@@ -93,16 +104,17 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 }
 </style>
 
-<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">输出跨哪个门限，决定响应时间量到哪里</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">示意 RC 输出：5 V、4.7 kΩ、50 pF；输出管在 1 µs 释放。</text>
-<path d="M100 435 Q365.00 434.36 630 435" fill="none" stroke="#c9bb9d" stroke-dasharray="3 5"/>
+<polygon class="marker-wash" points="46.2,22.2 439.4,21.3 743.0,23.3 745.4,62.1 420.0,64.3 43.0,62.9" fill="#a4630f" opacity="0.13"/>
+<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">输出跨哪个门限，决定响应时间量到哪里</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">示意 RC 输出：5 V、4.7 kΩ、50 pF；输出管在 1 µs 释放。</text>
+<path d="M100 435 Q365.00 433.78 630 435" fill="none" stroke="#c9bb9d" stroke-dasharray="3 5"/>
 <text x="85" y="442.0" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="end">0</text>
-<path d="M100 362.2 Q365.00 362.76 630 362.2" fill="none" stroke="#c9bb9d" stroke-dasharray="3 5"/>
+<path d="M100 362.2 Q365.00 363.27 630 362.2" fill="none" stroke="#c9bb9d" stroke-dasharray="3 5"/>
 <text x="85" y="369.2" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="end">1.4</text>
-<path d="M100 305 Q365.00 304.28 630 305" fill="none" stroke="#c9bb9d" stroke-dasharray="3 5"/>
+<path d="M100 305 Q365.00 303.64 630 305" fill="none" stroke="#c9bb9d" stroke-dasharray="3 5"/>
 <text x="85" y="312.0" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="end">2.5</text>
-<path d="M100 253 Q365.00 252.14 630 253" fill="none" stroke="#c9bb9d" stroke-dasharray="3 5"/>
+<path d="M100 253 Q365.00 251.36 630 253" fill="none" stroke="#c9bb9d" stroke-dasharray="3 5"/>
 <text x="85" y="260.0" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="end">3.5</text>
-<path d="M100 175 Q365.00 174.19 630 175" fill="none" stroke="#c9bb9d" stroke-dasharray="3 5"/>
+<path d="M100 175 Q365.00 173.45 630 175" fill="none" stroke="#c9bb9d" stroke-dasharray="3 5"/>
 <text x="85" y="182.0" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="end">5</text>
 <text x="50" y="150" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">输出 / V</text>
 <text x="630" y="505" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="end">时间 / µs</text>

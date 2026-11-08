@@ -35,6 +35,17 @@
 </defs>
 <rect class="page-bg" width="1000" height="700" fill="url(#bgL)"/>
 <rect class="page-grain" width="1000" height="700" fill="url(#dots)"/>
+<defs>
+<pattern id="fiber" width="96" height="96" patternUnits="userSpaceOnUse" patternTransform="rotate(-6)">
+<path d="M8 18 q16 -2.2 36 -0.4" stroke="#c9bb9d" stroke-width="0.55" fill="none" stroke-opacity="0.55"/>
+<path d="M54 12 q10 1.4 22 0.2" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.4"/>
+<path d="M20 52 q14 1.8 30 -0.6" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.45"/>
+<path d="M62 66 q12 -1.6 24 0.4" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.38"/>
+<path d="M14 84 q18 1.4 34 -0.2" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.42"/>
+</pattern>
+</defs>
+<rect class="page-fiber" width="1000" height="700" fill="url(#fiber)" opacity="0.55"/>
+
 <rect class="page-vig" width="1000" height="700" fill="url(#vig)"/>
 <rect class="page-hdr" width="1000" height="72" fill="url(#hdr)"/>
 <style>
@@ -93,14 +104,15 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 }
 </style>
 
-<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">越接近上门限，可用充电电流越小</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">示意 9 V、R=560 kΩ；上阈 6 V。漏电会占用这条电流预算。</text>
-<path d="M120 440 Q500.00 441.46 880 440" fill="none" stroke="#c9bb9d" stroke-width="1.2" stroke-dasharray="3 5"/>
+<polygon class="marker-wash" points="42.4,23.9 293.8,21.8 633.0,24.3 630.0,65.7 270.9,64.8 44.4,65.7" fill="#a4630f" opacity="0.13"/>
+<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">越接近上门限，可用充电电流越小</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">示意 9 V、R=560 kΩ；上阈 6 V。漏电会占用这条电流预算。</text>
+<path d="M120 440 Q500.00 442.77 880 440" fill="none" stroke="#c9bb9d" stroke-width="1.2" stroke-dasharray="3 5"/>
 <text x="105" y="447.0" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="end">0</text>
 <path d="M120 370.556 Q500.00 370.56 880 370.556" fill="none" stroke="#c9bb9d" stroke-width="1.2" stroke-dasharray="3 5"/>
 <text x="105" y="377.55555555555554" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="end">5</text>
-<path d="M120 301.111 Q500.00 301.93 880 301.111" fill="none" stroke="#c9bb9d" stroke-width="1.2" stroke-dasharray="3 5"/>
+<path d="M120 301.111 Q500.00 302.67 880 301.111" fill="none" stroke="#c9bb9d" stroke-width="1.2" stroke-dasharray="3 5"/>
 <text x="105" y="308.1111111111111" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="end">10</text>
-<path d="M120 231.667 Q500.00 231.72 880 231.667" fill="none" stroke="#c9bb9d" stroke-width="1.2" stroke-dasharray="3 5"/>
+<path d="M120 231.667 Q500.00 231.76 880 231.667" fill="none" stroke="#c9bb9d" stroke-width="1.2" stroke-dasharray="3 5"/>
 <text x="105" y="238.66666666666666" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="end">15</text>
 <polyline points="120,216.786 132.667,219.266 145.333,221.746 158,224.226 170.667,226.706 183.333,229.187 196,231.667 208.667,234.147 221.333,236.627 234,239.107 246.667,241.587 259.333,244.067 272,246.548 284.667,249.028 297.333,251.508 310,253.988 322.667,256.468 335.333,258.948 348,261.429 360.667,263.909 373.333,266.389 386,268.869 398.667,271.349 411.333,273.829 424,276.31 436.667,278.79 449.333,281.27 462,283.75 474.667,286.23 487.333,288.71 500,291.19 512.667,293.671 525.333,296.151 538,298.631 550.667,301.111 563.333,303.591 576,306.071 588.667,308.552 601.333,311.032 614,313.512 626.667,315.992 639.333,318.472 652,320.952 664.667,323.433 677.333,325.913 690,328.393 702.667,330.873 715.333,333.353 728,335.833 740.667,338.313 753.333,340.794 766,343.274 778.667,345.754 791.333,348.234 804,350.714 816.667,353.194 829.333,355.675 842,358.155 854.667,360.635 867.333,363.115 880,365.595" fill="none" stroke="#1f5d7a" stroke-width="3" stroke-dasharray=""/>
 <polyline points="120,426.111 880,426.111" fill="none" stroke="#37424e" stroke-width="3" stroke-dasharray="6 5"/>

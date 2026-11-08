@@ -35,6 +35,17 @@
 </defs>
 <rect class="page-bg" width="1000" height="700" fill="url(#bgL)"/>
 <rect class="page-grain" width="1000" height="700" fill="url(#dots)"/>
+<defs>
+<pattern id="fiber" width="96" height="96" patternUnits="userSpaceOnUse" patternTransform="rotate(-6)">
+<path d="M8 18 q16 -2.2 36 -0.4" stroke="#c9bb9d" stroke-width="0.55" fill="none" stroke-opacity="0.55"/>
+<path d="M54 12 q10 1.4 22 0.2" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.4"/>
+<path d="M20 52 q14 1.8 30 -0.6" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.45"/>
+<path d="M62 66 q12 -1.6 24 0.4" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.38"/>
+<path d="M14 84 q18 1.4 34 -0.2" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.42"/>
+</pattern>
+</defs>
+<rect class="page-fiber" width="1000" height="700" fill="url(#fiber)" opacity="0.55"/>
+
 <rect class="page-vig" width="1000" height="700" fill="url(#vig)"/>
 <rect class="page-hdr" width="1000" height="72" fill="url(#hdr)"/>
 <style>
@@ -93,9 +104,11 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 }
 </style>
 
-<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">噪声按均方值合账，先找占比最大的项</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">示意 1 MΩ、300 K、en=10 nV/√Hz、in=1 fA/√Hz，一阶低通 fH=10 kHz。</text>
+<polygon class="marker-wash" points="43.2,23.3 390.3,23.6 705.1,24.7 706.2,63.6 458.8,64.5 43.9,64.6" fill="#a4630f" opacity="0.13"/>
+<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">噪声按均方值合账，先找占比最大的项</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">示意 1 MΩ、300 K、en=10 nV/√Hz、in=1 fA/√Hz，一阶低通 fH=10 kHz。</text>
 <text x="45" y="190" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">源电阻</text>
 <rect x="230" y="165" width="546.6674241702515" height="36" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<rect class="ink-echo" x="230" y="165" width="546.6674241702515" height="36" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(1.02 -0.75) rotate(0.09 503.3 183.0)"/>
 <text x="820" y="190" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">99.394%</text>
 <text x="230" y="237" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">单项 RMS = 16.132 µV</text>
 <text x="45" y="310" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">运放电压项</text>

@@ -1,5 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
-<title id="title">探头补偿三种方波</title><desc id="desc">手绘三种校准方波：过补偿顶角过冲、欠补偿顶角圆塌、正确方角平顶；提示补偿没调对时，看到的过冲或塌陷可能来自探头而不是电路。</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>
@@ -36,6 +35,17 @@
 </defs>
 <rect class="page-bg" width="1000" height="700" fill="url(#bgL)"/>
 <rect class="page-grain" width="1000" height="700" fill="url(#dots)"/>
+<defs>
+<pattern id="fiber" width="96" height="96" patternUnits="userSpaceOnUse" patternTransform="rotate(-6)">
+<path d="M8 18 q16 -2.2 36 -0.4" stroke="#c9bb9d" stroke-width="0.55" fill="none" stroke-opacity="0.55"/>
+<path d="M54 12 q10 1.4 22 0.2" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.4"/>
+<path d="M20 52 q14 1.8 30 -0.6" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.45"/>
+<path d="M62 66 q12 -1.6 24 0.4" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.38"/>
+<path d="M14 84 q18 1.4 34 -0.2" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.42"/>
+</pattern>
+</defs>
+<rect class="page-fiber" width="1000" height="700" fill="url(#fiber)" opacity="0.55"/>
+
 <rect class="page-vig" width="1000" height="700" fill="url(#vig)"/>
 <rect class="page-hdr" width="1000" height="72" fill="url(#hdr)"/>
 <style>
@@ -94,26 +104,31 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 }
 </style>
 
-<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">探头补偿：先看方波，再信波形</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">机身校准方波的顶角，是探头在撒谎时最先暴露的地方。</text>
+<polygon class="marker-wash" points="43.4,22.4 215.2,20.5 592.7,22.1 591.7,63.1 258.4,62.5 44.7,64.9" fill="#a4630f" opacity="0.13"/>
+<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">探头补偿：先看方波，再信波形</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">机身校准方波的顶角，是探头在撒谎时最先暴露的地方。</text>
 <rect x="60" y="140" width="280" height="300" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<rect class="ink-echo" x="60" y="140" width="280" height="300" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(1.36 0.79) rotate(0.03 200.0 290.0)"/>
 <text x="84" y="184" font-size="26" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">过补偿</text>
 <text x="84" y="224" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">顶角过冲</text>
-<path d="M90 330 Q200.00 330.14 310 330" fill="none" stroke="#c9bb9d" stroke-width="1.4"/>
+<path d="M90 330 Q200.00 330.26 310 330" fill="none" stroke="#c9bb9d" stroke-width="1.4"/>
 <path d="M100,330 L150,330 L150,250 L170,250 L170,330 L240,330 L240,250 L265,250 L265,330 L310,330" fill="none" stroke="#a8321f" stroke-width="4"/>
 <text x="200" y="392" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">尖角翘起</text>
 <rect x="365" y="140" width="280" height="300" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<rect class="ink-echo" x="365" y="140" width="280" height="300" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(-1.19 -0.79) rotate(0.11 505.0 290.0)"/>
 <text x="389" y="184" font-size="26" fill="#a4630f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">欠补偿</text>
 <text x="389" y="224" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">顶角圆塌</text>
-<path d="M395 330 Q505.00 329.30 615 330" fill="none" stroke="#c9bb9d" stroke-width="1.4"/>
+<path d="M395 330 Q505.00 328.68 615 330" fill="none" stroke="#c9bb9d" stroke-width="1.4"/>
 <path d="M405,330 C445,330 455,330 470,275 C485,235 505,250 525,275 C540,330 565,330 615,330" fill="none" stroke="#a4630f" stroke-width="4"/>
 <text x="505" y="392" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">边沿变圆</text>
 <rect x="670" y="140" width="280" height="300" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<rect class="ink-echo" x="670" y="140" width="280" height="300" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(1.39 0.95) rotate(-0.01 810.0 290.0)"/>
 <text x="694" y="184" font-size="26" fill="#3d6b4a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">正确</text>
 <text x="694" y="224" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">方角平顶</text>
-<path d="M700 330 Q810.00 329.72 920 330" fill="none" stroke="#c9bb9d" stroke-width="1.4"/>
+<path d="M700 330 Q810.00 329.47 920 330" fill="none" stroke="#c9bb9d" stroke-width="1.4"/>
 <path d="M710,330 L760,330 L760,250 L850,250 L850,330 L920,330" fill="none" stroke="#3d6b4a" stroke-width="4"/>
 <text x="810" y="392" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">平直才能测</text>
 <rect x="60" y="490" width="872" height="100" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<rect class="ink-echo" x="60" y="490" width="872" height="100" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(1.51 -0.67) rotate(-0.06 496.0 540.0)"/>
 <text x="88" y="528" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">补偿没调对，看到的过冲/塌陷可能是探头自己的。</text>
 <text x="88" y="566" font-size="23" fill="#3d6b4a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">先把方波调成方角平顶，再讨论电路。</text>
 <text x="60" y="646" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">每个读数先报档位与补偿状态，再报数值。</text>
