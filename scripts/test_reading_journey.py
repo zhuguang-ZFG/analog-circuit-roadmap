@@ -559,7 +559,8 @@ class ReadingJourneyTests(unittest.TestCase):
         answer.get_by_role('link', name='12.9', exact=True).click()
         expect(self.page).to_have_url(self.base + 'p2-02-ch12.html#sec129')
         # §12.9 是 `###`，归一后升一级变 h2（见 test_page_structure.py）。
-        expect(self.page.locator('p:has(> #sec129) + h2')).to_contain_text('稳定性实战')
+        # 只断言节号：小节标题会随改写调整，节号才是题库回链的契约。
+        expect(self.page.locator('p:has(> #sec129) + h2')).to_contain_text(re.compile(r'^12\.9\s'))
         self.page.goto(self.base + 'p1-01-ch0.html#ch0')
         item = self.page.locator('.md-content li').filter(has_text='实验室电源')
         expect(item).to_have_count(1)
