@@ -6325,7 +6325,7 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
     构图层级: 5
     印刷可读性: 4
@@ -6344,7 +6344,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: eaac60e5da9eb6747d671a8b6de8abf9d495bddfce85dff844250337f1404c66
+    asset_sha256: becd62a7a503e2b2a23ce02083f5296c03ccc835bb6320e111bbb2630f3b2183
 - id: ch18-fault-record
   chapter: 18
   kind: figure
@@ -6371,7 +6371,7 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
     构图层级: 5
     印刷可读性: 4
@@ -6390,7 +6390,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 948e4796d29d285b857081fc0a5355ad8da8c78ae3b85311b00e2e50d82c1be8
+    asset_sha256: 681e303f1e4ba8474db1f8f719c0559d2739e47ef20449d8e731602807b7ff00
 - id: ch18-two-way-validation
   chapter: 18
   kind: figure
@@ -6417,7 +6417,7 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
     构图层级: 5
     印刷可读性: 4
@@ -6436,7 +6436,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 4bbd9550c89fd6de0a34ec3e696be59d57bcb3e50df148e5c4681c77f01452d7
+    asset_sha256: fe87a4522004301ff2584c887f5087c1b2de5670240c0ed89d985608ccfc496a
 - id: ch14-derating-margin
   chapter: 14
   kind: figure
@@ -6483,7 +6483,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: a9b7c415f7b07695d1584e362bc32559d194c9790db7669027d0ac3da1ca1a6c
+    asset_sha256: f2875093e4fc436e8e5d10c8d3ad187da413fb9f1415f998a5c210e346246f8f
 - id: ch15-trace-drop
   chapter: 15
   kind: figure
@@ -6529,7 +6529,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 7be40c064a4f93d78a2c21535f3080b1995f5b800cec684c8ffa09273279f53e
+    asset_sha256: 4a21e969c7392b5c24a9161cafa2a745aa32882d9a83d5f4d30e55429fcdc6be
 - id: ch13-h-bridge-states
   chapter: 13
   kind: figure
@@ -6991,7 +6991,7 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
     构图层级: 5
     印刷可读性: 4
@@ -7010,7 +7010,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 3139ee1fa65855f6a540c2df4331ef104761f15d96bcf46ff99e33096745923b
+    asset_sha256: 0f9ec7b8feeba4039f6dcf81314c4bab201ae46620f70cce6739cac5cb7b53a6
 - id: ch18-first-minute
   chapter: 18
   kind: figure
@@ -7037,7 +7037,7 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
     构图层级: 5
     印刷可读性: 4
@@ -7056,7 +7056,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 87bfe2e9bc67bc9c090bc075f36f63a03e5d085fe7702a6d97a058041406eeb0
+    asset_sha256: 12d8b299a32c3b9574a4895d0a590cd463cc149585f2d2b41032cbeba9dfbd62
 - id: ch18-four-wire
   chapter: 18
   kind: figure
@@ -7083,7 +7083,7 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
     构图层级: 5
     印刷可读性: 4
@@ -7102,7 +7102,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 3eb20c63c4291014db8397e5b0a8425c8f505ac66d1828c38486185c7387dc64
+    asset_sha256: 8d69fefa6d4d9f255500fe82166711748b6d0378a2c03a17b4aa9cd31966b32d
 - id: ch14-arrhenius-ten-degree
   chapter: 14
   kind: figure
@@ -7148,7 +7148,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: c21147cb6b610973f0169c892fa26b93bcc8e87c9ec7880af10a147f47ca10cc
+    asset_sha256: daae874d33b6d19aeb77809f32c62d711afdeae9632b36132f3d0367541d9c9a
 - id: ch18-swap-discipline
   chapter: 18
   kind: figure
@@ -7175,7 +7175,7 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
     构图层级: 5
     印刷可读性: 4
@@ -7194,7 +7194,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 4e3bbda9397cc27ccebcc795f57c5b949b6c3f05724461ba3fcb8f89e796690d
+    asset_sha256: f1fb7004c205d6b4089cff3dc742705b1d5069cfe11d1422b6aeabaf53d2a1a9
 - id: ch18-component-signatures
   chapter: 18
   kind: figure
@@ -7221,7 +7221,7 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
     构图层级: 5
     印刷可读性: 4
@@ -7240,7 +7240,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 2d4969acb5297879293f029e08ebefd479b63c30e7c93eeed703e25fe1840667
+    asset_sha256: adc534c074fa2ac65f563d12076dd2c3ce790e771dff65c0b62dc26a80e45a3f
 - id: ch18-temp-spray
   chapter: 18
   kind: figure
@@ -7267,7 +7267,7 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
     构图层级: 5
     印刷可读性: 4
@@ -7286,7 +7286,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 18ccc99d7867a16ae488fa1a3c91b8f142ab21ca312002854ef8cfcb93fc89e4
+    asset_sha256: 379e55d19eca0bac15777063f3520d3d5a6495e0175c90ff9b215160bd39e193
 - id: ch16-instrument-trust
   chapter: 16
   kind: figure
@@ -7333,7 +7333,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 6a7986fb708170674b8e75de693396b721bf08dbecdb0ee3b2c66ef5d924d79e
+    asset_sha256: 925ef5117b53de60aac04eded6da98278b5b05a36a7fca3bc3adba72f90584dc
 - id: ch16-postmortem-split
   chapter: 16
   kind: figure
@@ -7379,7 +7379,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: a715af2edb2545915d11c546a6e70ead60142c3047a53a5b7b77d7a5db1fb2f3
+    asset_sha256: c06d8be09152dd43feb6d7eef508f0213d7256f0a05ef45dd60b858ce2624337
 - id: ch15-thermal-relief
   chapter: 15
   kind: figure
@@ -7425,7 +7425,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: a5215af72398770e9f0f1c88f3a06c098c62cf9bcbcd4e9853c3c66596c0011f
+    asset_sha256: c898c1379267a3eef6f8bc1151de95aa078ab2c4eb2cb8ca8f89f3326406946e
 - id: ch15-via-parallel
   chapter: 15
   kind: figure
@@ -7795,7 +7795,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: f86b83c049e981de5ba5568c6efdcd79c6f763006e2bc7837d0120c2bbbd31d4
+    asset_sha256: f6a88e4e6e6c3f939279d8885bfa9192c894e00da414f2454d177c96ccfa4e0f
 - id: ch16-probe-compensation
   chapter: 16
   kind: figure
@@ -7841,7 +7841,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 758d6bea502d6384d0e2d2ad7810720c2a3aca3616ee84157353d0d9505b2f6f
+    asset_sha256: c7500576c9e5899cd96079021f0d765c6b72b49dd80785528bc7f3e668d05dd6
 - id: ch15-adc-straddle
   chapter: 15
   kind: figure
@@ -7887,7 +7887,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: c1843798eff078f9d31856f2f09ee71bdc8ff7176c830a25adbb9d9b07116ee4
+    asset_sha256: ef69e27c2bad5e4a0d0a1b61f306448d590065bf085674260c4f5b4a450e0ad4
 - id: ch15-return-review
   chapter: 15
   kind: figure
@@ -7933,7 +7933,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 0bbed9b12f4d43f576091eec6d781917366c25d9be60af573851a7fd08d02638
+    asset_sha256: 9a978f5db48cf55dc14bcdd18f3ca491998d0e498c266e909bb5d9521646cdd8
 - id: ch15-ground-grid
   chapter: 15
   kind: figure
@@ -7979,7 +7979,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 151737506d470c0f973e48fef633a91ded788736416873c5bd5e01b82b21ef96
+    asset_sha256: 85e7adfd2d1043d981e0e993022eaabd3e32d52e1cde9cd82baa2720b5e53e7d
 - id: ch16-bandwidth-five
   chapter: 16
   kind: figure
@@ -8025,7 +8025,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: d3d53aa9f8d2eaa2ba345f285e84dc3e236ba12911ed92883d40b7dec1e54e41
+    asset_sha256: 4f214f399a95470cebbd2bbb2c09097b15fe846074b11ec4ecd7f87b532d76bf
 - id: ch01-e24-ladder
   chapter: 1
   kind: figure
@@ -8053,7 +8053,7 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
     构图层级: 5
     印刷可读性: 4
@@ -8072,7 +8072,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 24e68259cb7c5b17fd62bcbd1f40a4ec927ac51655e9ab0b919947bfb725ca46
+    asset_sha256: b318b27a84b9b6927acdcf60decb0578b4b73d512cbd4b4c0d460661929fa54f
 - id: ch04-gate-window
   chapter: 4
   kind: figure
@@ -8100,7 +8100,7 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
     构图层级: 5
     印刷可读性: 4
@@ -8119,7 +8119,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 6acb499347c53fabd697d432f308c6475591a92fcbcf1fdb8a59b9439dc393d0
+    asset_sha256: 13cf1daa0f8c624e44c0e35ad3713fe67daffa5f3c97c4db5eb2b934a09fcda4
 - id: ch04-deadtime-ledger
   chapter: 4
   kind: figure
@@ -8149,23 +8149,24 @@ assets:
   review_scores:
     教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 5
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch04-deadtime-ledger.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch04-animation-2026-11-08/review.md
-    asset_sha256: d622af758a37ecc7c33c0a7a8359e284e3f027e609434421fc52ad7cdb0903a9
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 02901a29f0da4d0acbc1fb972d2d1fdb04d4bb2bbeab811fd0468a467f6db497
 - id: ch05-tristate-handover
   chapter: 5
   kind: figure
@@ -8194,23 +8195,24 @@ assets:
   review_scores:
     教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 5
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch05-tristate-handover.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch05-animation-2026-11-08/review.md
-    asset_sha256: e115549d063c942cd301d27911f75572bbfd993f206a3d1cea8a25beb15c68a9
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: a03154ebd34445037ae8054850fce5403de24dc7e1a641d175eb8744821d168f
 - id: ch07-hysteresis-window
   chapter: 7
   kind: figure
@@ -8237,25 +8239,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch07-hysteresis-window.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch07-animation-2026-11-08/review.md
-    asset_sha256: 8a5795515c49ac7fe9b3b5ac6d023f76aa464757053f24bea390dfe110f87ead
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: ef047aa1ca8e5e054616d5773681545bf5888ed76139514a632259b079f8e959
 - id: ch09-esr-window
   chapter: 9
   kind: figure
@@ -8282,25 +8285,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch09-esr-window.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch09-animation-2026-11-08/review.md
-    asset_sha256: 7e9314027e12184db3e8c004c5c8e0121aa53a964110850f8697f66448adecad
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 69862e2f578c6de15e055284580748c0490922c724cfdb9f9713f4bdc907700e
 - id: ch05-rp-power
   chapter: 5
   kind: figure
@@ -8329,23 +8333,24 @@ assets:
   review_scores:
     教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 5
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch05-rp-power.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch05-animation-2026-11-08/review.md
-    asset_sha256: b935289d3406b995def784f829a08ba2a1ee16eee42287d960e7a79ad028962a
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 70e8a4f06823278479699a0db4372dc6033a01ffa5ad5428f1e6f5b56aa8af76
 - id: ch09-reference-ladder
   chapter: 9
   kind: figure
@@ -8372,25 +8377,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch09-reference-ladder.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch09-animation-2026-11-08/review.md
-    asset_sha256: 8b218f7be420b627e946386d7a2acd24fda477a95d5c1c64b5f3aa039865c61f
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: e543b3dd970ec94b0c80dc30bbcbe588e8ee01fa3f713e1e4cd67b1c58f53ff5
 - id: ch10-monostable-budget
   chapter: 10
   kind: figure
@@ -8417,25 +8423,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch10-monostable-budget.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch10-animation-2026-11-08/review.md
-    asset_sha256: 7922871f24f6076d7640a0ef340173391f085c2c3c094afbea636ff4d36bae2d
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 45a160ee76f2a1393bb60b876f6dea5a09fa676ab6a7b2de187b895c941f0c7d
 - id: ch10-recovery-gap
   chapter: 10
   kind: figure
@@ -8462,25 +8469,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch10-recovery-gap.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch10-animation-2026-11-08/review.md
-    asset_sha256: d53185cebfc4cfd4dc6f88effbf1c60964eb72ad1a04c168c8a425c0b6407e4a
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 40bb29be11d15cd5fb4aafe9c5d4d6859be8c165eecd22a1e4a9e63739a1ec25
 - id: ch11-mirror-three-errors
   chapter: 11
   kind: figure
@@ -8507,25 +8515,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch11-mirror-three-errors.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
-    asset_sha256: 2f3c1f8de866b9e1ea4063f6b013f4fca15151d9e2f4dde1e652292fb7132e51
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 6aa2d0efb93611e3a0ca5cbdcf0ba84d1a27586e860b8d0f8aa57e31fb612b56
 - id: ch12-tia-three-way
   chapter: 12
   kind: figure
@@ -8552,25 +8561,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch12-tia-three-way.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch12-animation-2026-11-08/review.md
-    asset_sha256: 2ccd314859b54f13d84dc135786721b0437672abc159394b5928abdfcae0def9
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 5cd667ed9d9c7054c91e94d7cda5e733925e91650edc53ef53f183f3ce924475
 - id: ch12-switch-cap
   chapter: 12
   kind: figure
@@ -8597,25 +8607,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch12-switch-cap.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch12-animation-2026-11-08/review.md
-    asset_sha256: f32cf973a68f8fc7985afbc9a2378262a555ed72f640ef5e305a6c90e4d3d6a9
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 1a091bcd6045b2ac29672207341b15cba5aa5fe7f67122fb7f6ff4ba6e2ebb30
 - id: ch12-input-types
   chapter: 12
   kind: figure
@@ -8642,25 +8653,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch12-input-types.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch12-animation-2026-11-08/review.md
-    asset_sha256: 6de7a8ece2515db651b27697eb1b52d804a804d140e5eb7efcf3415f7fc6c361
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: bfc4cddd7769ab289450eb9be2e5fde09ae5c528bbfd09aa3d2334aed4544da1
 - id: ch06-bias-balance
   chapter: 6
   kind: figure
@@ -8689,23 +8701,24 @@ assets:
   review_scores:
     教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 5
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch06-bias-balance.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch06-animation-2026-11-08/review.md
-    asset_sha256: 0d7e1067ce8cafa9f2c439415c80a0663331f51610811e018c2fea30b1412188
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 7f73bd7749e4573259f3ec95e1c99a628caa65da7e047b23a73737c532567487
 - id: ch02-esd-chain
   chapter: 2
   kind: figure
@@ -8735,23 +8748,24 @@ assets:
   review_scores:
     教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 5
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch02-esd-chain.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/ch02-calculation-correction.md
-    asset_sha256: f92d82286be7de6c4c8a6b32e22c071309b7d7ebdd898f65dd960afe2e99b38e
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 567617515887825b3097a36f4208b9536305b93f8b986f1597602d6eb892e3d0
 - id: ch02-zener-budget
   chapter: 2
   kind: figure
@@ -8779,7 +8793,7 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
     构图层级: 5
     印刷可读性: 4
@@ -8798,7 +8812,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: d2bbe2081a9ee3ca7ec4e8211edc43db98fa1b4db5294801a512991b2e2995f8
+    asset_sha256: 489cafef97ff0de8c1fe41be1ca85c8f8dd5490476d7819fcc641cae88a15ad0
 - id: ch02-junction-margin
   chapter: 2
   kind: figure
@@ -8826,7 +8840,7 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
     构图层级: 5
     印刷可读性: 4
@@ -8845,7 +8859,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 49b0b0d36b94ea778145322039de16c2d453a2921559b80060933abb52a09e62
+    asset_sha256: eb28432891f0e71a810772120cc5e51e37cfdad69b7bcd813fa1ceb8322580f0
 - id: ch02-parallel-hog
   chapter: 2
   kind: figure
@@ -8872,7 +8886,7 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
     构图层级: 5
     印刷可读性: 4
@@ -8891,7 +8905,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: ee38e15d7d05c7e3f747b011e4cc5427ef7b2d51f5052965c7869898adb70ebf
+    asset_sha256: 8886d41e161a58432e2ef5eda1ed35e8222ce1caf5716ea535df77d0a35d99ef
 - id: ch03-switch-budget
   chapter: 3
   kind: figure
@@ -8919,7 +8933,7 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
     构图层级: 5
     印刷可读性: 4
@@ -8938,7 +8952,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 355c8447472cd64872ac008d1fd5c45a8e2aed6df114de9dfe554b54e692b7db
+    asset_sha256: 514afcd4e1f331efd2975a108fdee41d1b46952bc8272ab796850697379b14e2
 - id: ch03-low-high-side
   chapter: 3
   kind: figure
@@ -8966,7 +8980,7 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
     构图层级: 5
     印刷可读性: 4
@@ -8985,7 +8999,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 47dd04d661168257783f3e0358107d77400c0683d0cf100a7632d04c5f8269f9
+    asset_sha256: c0b36f4b712e46f8aa4a0af1d4b55399ae30873a53ba32f0a2919df00ac4768e
 - id: ch03-reverse-beta
   chapter: 3
   kind: figure
@@ -9013,7 +9027,7 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
     构图层级: 5
     印刷可读性: 4
@@ -9032,7 +9046,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: b1268500ab8f52af4bbea90b6e64e0d7364d81f3a28a592dcafd28a846dac29b
+    asset_sha256: c8e95b187c2c1d1f5d2bf76e7e91fbd6d344367f97de547250ebb15178aec4c8
 - id: ch03-config-impedance
   chapter: 3
   kind: figure
@@ -9062,23 +9076,24 @@ assets:
   review_scores:
     教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 5
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch03-config-impedance.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch03-animation-2026-11-08/review.md
-    asset_sha256: 43a4100a4a9a461cbfe796a63e8664e52a55ff9d63762bf788f206e121ea1072
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: cf5d78a42dca5e55f67f2e9c19503c794762a84077834b9fb7e714b74387316d
 - id: ch03-early-effect
   chapter: 3
   kind: figure
@@ -9106,7 +9121,7 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
     构图层级: 5
     印刷可读性: 4
@@ -9125,7 +9140,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: c0027e4dd54fe03fee1daca19a17e87f6f3bcddbb4eae09229d02e1ad5653a4c
+    asset_sha256: 9d62c47059a1ce6c16d5cb045a1d34dd44285b77cff3c2641810045df1442cfe
 - id: ch11-miller-bandwidth
   chapter: 11
   kind: figure
@@ -9152,25 +9167,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch11-miller-bandwidth.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
-    asset_sha256: 012fd2030a70ebff6b1b06fd04b3b53f28b385f7dc85571c31308624853d918c
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: c885dfe653c61dec153d7382f29bd25edccdb297d6203c5718df29975c3888d1
 - id: ch13-compliance-ceiling
   chapter: 13
   kind: figure
@@ -9217,7 +9233,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: cafdb84599d6a1c699bd4696dff8034d3d35474936b40bfc5deabe5ef647bf49
+    asset_sha256: c25b05231320501d374c1c60a6a956241f1c6bc5820fd74432b499e155658df6
 - id: ch13-current-sense-budget
   chapter: 13
   kind: figure
@@ -9264,7 +9280,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: cb8ca6cb671791fc6aacf3948b8f19bc2eba174266e86a0f36736f4037728839
+    asset_sha256: 4096d2ee625a0c9e3aa074fff467c6f775452f709f53e9ec2a5bb06f510f24a6
 - id: ch01-electrolytic-life
   chapter: 1
   kind: figure
@@ -9293,7 +9309,7 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
     构图层级: 5
     印刷可读性: 4
@@ -9312,7 +9328,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: f3d338c18bdd18341ef404a2dcce6c65ca7cf60d6b190626833fff947f3ba6f1
+    asset_sha256: 75d870271f325eff417db709f517fb44147301b6a0b1bfc3638e953af4af19c6
 - id: ch01-derating-product
   chapter: 1
   kind: figure
@@ -9340,7 +9356,7 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
     构图层级: 5
     印刷可读性: 4
@@ -9359,7 +9375,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 7c9b6e5d4c157ede95f966874272de208de066557946cfc5b669906b469d748f
+    asset_sha256: 9d08f8da43b29255f9dcf2ce17c5f4cbf7091da45678b1fd071faafed01f2a66
 - id: ch04-dvdt-false-turnon
   chapter: 4
   kind: figure
@@ -9387,7 +9403,7 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
     构图层级: 5
     印刷可读性: 4
@@ -9406,7 +9422,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 6d8b8baaebeb762763f23b1e54d85f5ca3952d40e23d4c3856050c0f2f9111b9
+    asset_sha256: 9934970a5e6695c9148afffb4916c6adc9c5a93701e5d497a614cbd8537e1b89
 - id: ch06-slew-vs-gbw
   chapter: 6
   kind: figure
@@ -9435,23 +9451,24 @@ assets:
   review_scores:
     教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 5
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch06-slew-vs-gbw.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch06-animation-2026-11-08/review.md
-    asset_sha256: f917174566d5df56406d2964d7dee2dbc779f39a0d605ef8851429d1c11f1528
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 1162327aeb68dfeb21d94e13e1f21e4f33f2a516d33c5adb3c5409f3c7644ba0
 - id: ch07-pullup-three-accounts
   chapter: 7
   kind: figure
@@ -9478,25 +9495,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch07-pullup-three-accounts.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch07-animation-2026-11-08/review.md
-    asset_sha256: 03957ee529940f8862e570ebf796564f136cbc2f89dff0032745cc0c41bce0b3
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 33206431c66b086146fba197ad138c8cb391dc0681c73bc95b4f411e04d2f7e8
 - id: ch07-threshold-budget
   chapter: 7
   kind: figure
@@ -9523,25 +9541,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch07-threshold-budget.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch07-animation-2026-11-08/review.md
-    asset_sha256: b0d799fd84b2b953fd18f06db338787d7487d8bd4b8a4b303cfcadc52abd3af7
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: a21f41cb956248d4040a84270e1792fce295a5a36e9f4af6e26aaf18c6a521b3
 - id: ch10-astable-reverse-design
   chapter: 10
   kind: figure
@@ -9568,25 +9587,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch10-astable-reverse-design.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch10-animation-2026-11-08/review.md
-    asset_sha256: 0fc50afd7d34586d9ba08b7557acee814111a9340dbc1ebe1f0a334822782ebb
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 5b7d9a47135dfb3196ff283e67b038159a55bab82e0c19a75a9ef56068efe9d8
 - id: ch10-duty-fifty-paths
   chapter: 10
   kind: figure
@@ -9613,25 +9633,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch10-duty-fifty-paths.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch10-animation-2026-11-08/review.md
-    asset_sha256: 8bc9d8b54c541f8aaea0b8553c29a76514dca56e4328905019747109e6e257b8
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: c2ea6584cb12c36173cae78f41b65cd1c45a54d959852b83b5edf85f03dd9470
 - id: ch05-shoot-through-ledger
   chapter: 5
   kind: figure
@@ -9660,23 +9681,24 @@ assets:
   review_scores:
     教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 5
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch05-shoot-through-ledger.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch05-animation-2026-11-08/review.md
-    asset_sha256: 9c819f3074af04d7665f1d0e2c480b8b5a1a7d703f1f26d02fd09e03673cb287
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: f81b42578a9a60738e24d4283e91e4142df2c6f6a4058e4d939be5eeecc9dd4d
 - id: ch05-ab-bias-thermal
   chapter: 5
   kind: figure
@@ -9705,23 +9727,24 @@ assets:
   review_scores:
     教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 5
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch05-ab-bias-thermal.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch05-animation-2026-11-08/review.md
-    asset_sha256: 044068f3d13a87b4b7934de74ed7b01b7699b7b4acec282a0c82b0bbb316226d
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 6c151bf631992b828c685ab494e54afacd982bdb751f033263911761c5c65612
 - id: ch09-ldo-four-accounts
   chapter: 9
   kind: figure
@@ -9748,25 +9771,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch09-ldo-four-accounts.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch09-animation-2026-11-08/review.md
-    asset_sha256: c1ebb48801b318bfa8eeb84ef430bbe7a8ab7f810ae8fe4179e9c23da44ac790
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 0c3c69c661cd1af298417a3c12af858d2de5e754be9682ce82ecb07131a6b0a7
 - id: ch11-two-stage-margin
   chapter: 11
   kind: figure
@@ -9793,25 +9817,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch11-two-stage-margin.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
-    asset_sha256: 9d976b4ae47987048e89702991b4c2dd83930e1bdfcfc2325feb883a5f9e83c9
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 72eb54411350670a23996e2c38278673dbe51a9b71a2c87cee43ae82a610a341
 - id: ch12-switched-cap-equivalent
   chapter: 12
   kind: figure
@@ -9838,25 +9863,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch12-switched-cap-equivalent.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch12-animation-2026-11-08/review.md
-    asset_sha256: d91d5884406f2589719929f4a418a3e2460b9ed14744a1b9102862dc0d69f667
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: cdcc926f4a80b0dc8db5d4a5ac2dd488b6539a23c430f894a659dedbd7fcf6ce
 - id: ch12-input-stage-source-z
   chapter: 12
   kind: figure
@@ -9883,25 +9909,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch12-input-stage-source-z.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch12-animation-2026-11-08/review.md
-    asset_sha256: e156a71315c7f1c9c2a2cfd3f9a93c22c4c64e99e6d7ff92db592f40dc1c629a
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 6bb179ac45a6f0037f735e3e0a1bda09c4ad83e672e2de1861a6d03e820947b9
 - id: ch11-phase-margin-table
   chapter: 11
   kind: figure
@@ -9928,25 +9955,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch11-phase-margin-table.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
-    asset_sha256: 24d1a102c112f80a8f42792f972c12c28f7270744cca1daf0a572c9e20cf5a7f
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: f0c00a8fb58d728bf7d6e06ad014493899ac7603b7f0048af4e8564c505cb5ee
 - id: ch06-741-four-blocks
   chapter: 6
   kind: figure
@@ -9975,23 +10003,24 @@ assets:
   review_scores:
     教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 5
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch06-741-four-blocks.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch06-animation-2026-11-08/review.md
-    asset_sha256: be2bfc00a6f16badabff4ec7f937aa9c0eeac949d233fc59f3cfe4920453a2c2
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 6b5103397b47d2418df66824325ee9b5c1be934deeb4d7b0d94c685a62cf6fd9
 - id: ch01-thevenin-two-load
   chapter: 1
   kind: figure
@@ -10020,7 +10049,7 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
     构图层级: 5
     印刷可读性: 4
@@ -10039,7 +10068,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: a2e21d036507dd67a3a70b36bb94fa8be4f5a363a9735b434e30915531205c91
+    asset_sha256: b694e339cb425ea8389e3624e75f77ef10ad65f3a1ed7cb942feed6d30dedfdc
 - id: ch02-rectifier-voltage-ledger
   chapter: 2
   kind: figure
@@ -10070,23 +10099,24 @@ assets:
   review_scores:
     教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 5
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch02-rectifier-voltage-ledger.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch02-animation-2026-11-07/review.md
-    asset_sha256: 96906f62464add7ade6c6a04757f81964b919324bbdccc23cfc05d2aa59d2393
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 9ad84b0f596053a51a81475905bd6b80cc223165a1670677872078563fafcfff
 - id: ch02-protection-order
   chapter: 2
   kind: figure
@@ -10115,7 +10145,7 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
     构图层级: 5
     印刷可读性: 4
@@ -10134,7 +10164,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 8713051d78af71c580f41912e3e06e3df585ba790ac4fdf4057de4c1917ff9a4
+    asset_sha256: 262dcf30873dafa76aaa86ff31914823431c01066504876c1e6dcc67bdf7f8a6
 - id: ch11-noise-three-taxes
   chapter: 11
   kind: figure
@@ -10161,25 +10191,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch11-noise-three-taxes.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
-    asset_sha256: 90abfed7268ac30ef5897e058567a8de692403487d7eefd438b2b2e1037dbc00
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 675a31710527dc66dab772b3ed22240c78fea5d34f0c5bf1d378aeb02bc8cfea
 - id: ch12-riso-feedback-point
   chapter: 12
   kind: figure
@@ -10206,25 +10237,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch12-riso-feedback-point.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch12-animation-2026-11-08/review.md
-    asset_sha256: 7add9b811333881a01dc5edb632085ab66bf98485b0cf2668615494b7ddb95b3
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 3da702c9fa54993d76c6ada83af4be9b5eb0607a71602b2eb359508aacd820e5
 - id: ch13-audio-class-heat
   chapter: 13
   kind: figure
@@ -10272,7 +10304,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 226a2110cd1db0198e33c3ca9bbe720cc25e8973cd99d440e8ef13ee571a5734
+    asset_sha256: b99a8d58bc90cee65f0d72b1770341d065bb48e743627e47fb7545ee1db622ce
 - id: ch11-diffpair-four-beats
   chapter: 11
   kind: figure
@@ -10299,25 +10331,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch11-diffpair-four-beats.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
-    asset_sha256: 7bda707f103963aeb4380c2f74ec0101171057711fc29e7fdd5788d218492bd3
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: f5c2b6f93efaac3844b8cdba940fbf1935c4201ee3ca6a7da414fda6a04a6057
 - id: ch02-bridge-junction-ledger
   chapter: 2
   kind: figure
@@ -10349,23 +10382,24 @@ assets:
   review_scores:
     教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 5
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch02-bridge-junction-ledger.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/ch02-calculation-correction.md
-    asset_sha256: f02bab429cd4960e5a64a64185c82fef1c2cb71adb5e300fb9c223b7a0d36e8d
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 2d19c4ad93729a69d1f1f7ef4d166621c47e078dcc1697475d727f6056f0b986
 - id: ch04-thermal-chain-ledger
   chapter: 4
   kind: figure
@@ -10396,23 +10430,24 @@ assets:
   review_scores:
     教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 5
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch04-thermal-chain-ledger.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch04-animation-2026-11-08/review.md
-    asset_sha256: 91dd9c8ad2ea976bbefff098862816c383919496d7b207d6cf3e95d831eb79d4
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: cd12950a9b502c48af50151cbcef50e1c15269798532bd1c67f1f1a5c99d5453
 - id: ch01-q-selectivity-map
   chapter: 1
   kind: figure
@@ -10452,15 +10487,16 @@ assets:
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/q-selectivity-correction.md
-    asset_sha256: 8cbb7af95a21e7a8ed1501f2540cb9d21127944a763d54a3fff37ca6df4b8bf9
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: bd6dc1bec7f3e9cb0b8f086d6606cf03c6d7e5349933b9b6ef1c71b6a424d3aa
 - id: ch02-diode-fault-order
   chapter: 2
   kind: figure
@@ -10488,7 +10524,7 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
     构图层级: 5
     印刷可读性: 4
@@ -10507,7 +10543,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 2b308db301f0d2ca0b2445a86ac01929d0bd0e22b4d6cd29fe407afb60abb8de
+    asset_sha256: 6cff2ce8515d3dd242af23e149a47b203ef36460dc0ea8d0235048bd37f0a73e
 - id: ch15-radiated-loop-area
   chapter: 15
   kind: figure
@@ -10555,7 +10591,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 6f14403b3dd9ae6e6a4dfe2b04c937cfea8714fba71e3595b0e5b2678a1ba80f
+    asset_sha256: d3ffc773a0858be36d754cd9ef5b0fe663e5171b744b8cac0438a728f357fff0
 - id: ch09-tl431-divider-floor
   chapter: 9
   kind: figure
@@ -10582,25 +10618,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch09-tl431-divider-floor.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch09-animation-2026-11-08/review.md
-    asset_sha256: 3a5770717218153a5482ef7e523ecfa244b25f9e8759e65e76eaf8a0f69fa672
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 00d9c5f73e0bfc563e96775e253e8b43333daf283100a9e6bc3da3b421bf29af
 - id: ch13-crystal-neg-resistance
   chapter: 13
   kind: figure
@@ -10648,7 +10685,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: e352c89b38972e5631a5bbe5b4c21fdc85080b777366982a2ca642e98a3ade98
+    asset_sha256: d1364e42d2a77d41a3a1816663d222ef2a2d03a1bbc8b53eccc939199720d78f
 - id: ch13-sampling-quantization
   chapter: 13
   kind: figure
@@ -10697,7 +10734,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 71ba05c2da47f06e86ae643b10a23f5d83916d80517c36081a6a663bc76815c4
+    asset_sha256: 16efa651f281dca47b28ec1a468ec7de5bbb8df506423de541cfd5d06010526c
 - id: ch14-pt100-error-budget
   chapter: 14
   kind: figure
@@ -10745,7 +10782,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 959ca9c0823b944214ca14cd70949dba4c223a948f03e5b9983441f90df883ed
+    asset_sha256: 2fb8bf4504b7fad06c55a5753999f080d762739d93e1d42942929f2831563cba
 - id: ch10-555-fault-tree
   chapter: 10
   kind: figure
@@ -10772,25 +10809,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch10-555-fault-tree.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch10-animation-2026-11-08/review.md
-    asset_sha256: 3d7e44ddf346c5c5c94449ad9dfe17168e76e141f3447da4ce0dc5854c7075a5
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 884c97a206cfc4379d8189b89de23c037b42d8fa03ef8004cd22788f4fb82427
 - id: ch10-555-threshold-clamp
   chapter: 10
   kind: figure
@@ -10817,25 +10855,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch10-555-threshold-clamp.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch10-animation-2026-11-08/review.md
-    asset_sha256: 63c5f83763781acd881ea32559879da3ffc4e34953451b44f937ccbaf27c67fb
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 8d256700fd1c9039f6de3e92da4592e6f27008c95c3fe2538243efae6cd4904d
 - id: ch03-ce-swing-budget
   chapter: 3
   kind: figure
@@ -10866,23 +10905,24 @@ assets:
   review_scores:
     教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 5
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch03-ce-swing-budget.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch03-animation-2026-11-08/review.md
-    asset_sha256: bb4110b7a6b8474b6d40ece96a6544cbca70241d7283d0a251ab9d68bcdb1706
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 971688f90cfaa6aba095225ffff566ad257a5ba45466e4cef7c5ed995936c0b2
 - id: ch15-return-mirror
   chapter: 15
   kind: figure
@@ -10929,7 +10969,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 87d3ea6a3fbb6e508b64dc4b77d83d39edece3b1fed5540db2453c0e967ecfe1
+    asset_sha256: f06ca87d4c1dc068a5f0efe3dc6f105572bc2ef6c275574a04952cb09d74a533
 - id: ch15-ground-bounce-ledger
   chapter: 15
   kind: figure
@@ -10976,7 +11016,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: d709b79f100716bf42dd10fd6f81a5d9c37f7e78cb010f09705e94e9dff4ebbe
+    asset_sha256: 7647d70d5bcc270b504801214ee2b2d15c75c459422dc80aac07d1c9898c7e00
 - id: ch15-ground-freq-split
   chapter: 15
   kind: figure
@@ -11023,7 +11063,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 56818e142eaf07df5bbf441f750811f004427093e8a4480ad4001d37d3c3f7ee
+    asset_sha256: e3f02b1f212f1cbd096fe7df9235a7acc9a7d14aa9ed7090c6c05fa99d2ac4e3
 - id: ch15-stackup-bridge
   chapter: 15
   kind: figure
@@ -11070,7 +11110,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 43a6c82c702b8f8a6343693cec7af1dbb07c47db4b3e4ad54b981e5a9518ffb9
+    asset_sha256: baa3bfd540f8fbf50dac405273d26a523cf6ea9fc4182a531c32f4608a161fce
 - id: ch16-record-card
   chapter: 16
   kind: figure
@@ -11116,7 +11156,7 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 3b63b49fe0b6baadad5dbbd2863ce473a6dad58c191ec908a1b357fd0d10939b
+    asset_sha256: b76c75bdfe90e325fb046364a64184ffe02f464251ee1e304882ddb345d8f726
 - id: ch11-noise-identify
   chapter: 11
   kind: figure
@@ -11143,25 +11183,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch11-noise-identify.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
-    asset_sha256: cda60c65568351596b552c7327f22006aaae4b8e1fcf7842be1719bd1d0eea42
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 15fa6f431f6b0a4216732fe004db93ab4fd7d8411804ad091d3047683647fdcf
 - id: ch04-channel-formation
   chapter: 4
   kind: figure
@@ -11191,23 +11232,24 @@ assets:
   review_scores:
     教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 5
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch04-channel-formation.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch04-animation-2026-11-08/review.md
-    asset_sha256: 2566afa32a5999924ceb2b3faae360ba4530330ba0a9517d9fe9ccd3c632863f
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 41ed9a11685424d72229830c91f5967a6eacf8673ecd8cc8e644f1265ddc4ebc
 - id: ch03-region-check
   chapter: 3
   kind: figure
@@ -11238,23 +11280,24 @@ assets:
   review_scores:
     教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 5
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch03-region-check.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch03-animation-2026-11-08/review.md
-    asset_sha256: 7d7f0fbc43972ccf1872c93fd69be58750a0a09dcbd54288aab1e50127984a00
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: e9575a350099c8534c7d200b9a251a2e64ac6f316d79808dc62f79d9295e19c0
 - id: ch18-williams-workbench
   chapter: 18
   kind: figure
@@ -12001,23 +12044,24 @@ assets:
   review_scores:
     教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 5
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch04-output-regions.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch04-animation-2026-11-08/review.md
-    asset_sha256: 79cc1b552de77c98466fdf1186834190102d5ee1744e595f60ca4f0c55f5bd94
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 9414b547069141e3a2f97cd2fd228dc32d4091cf84cd3dc3c6e55770acc644f6
 - id: ch04-switching-energy-ledger
   chapter: 4
   kind: figure
@@ -12046,23 +12090,24 @@ assets:
   review_scores:
     教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 5
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch04-switching-energy-ledger.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch04-animation-2026-11-08/review.md
-    asset_sha256: f7c97bd2112b3f69d2c5d5b2aff582f7b2ae9910652dd363587290e5caccea4a
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 5e7449dbed9961edc618c2781e899cf711d4c23e073ae79b742395c93c0b2269
 - id: ch05-capacitive-energy-v2
   chapter: 5
   kind: animation
@@ -12546,23 +12591,24 @@ assets:
   review_scores:
     教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 5
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch05-open-drain-rise.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch05-animation-2026-11-08/review.md
-    asset_sha256: 9cfd5490fb4f85ce0254ea39d25ae5a783c1f43645753ca9936da4d2e98c7971
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 5c41d910a31b5c98e9089d5a39c601b1d67431204503c0c0a640d5aa8fe55e3d
 - id: ch06-compensation-v2
   chapter: 6
   kind: animation
@@ -13053,23 +13099,24 @@ assets:
   review_scores:
     教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 5
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch06-opamp-conditions.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch06-animation-2026-11-08/review.md
-    asset_sha256: c15be4cdb4f675d1d098513e195eff7b95190cd01c4ea6da004dd269d936061b
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 35b6b1680e25681d4f62522ae0677defb9c4df252cee32d5073171a6f64a7e95
 - id: ch06-fault-conditions
   chapter: 6
   kind: figure
@@ -13098,23 +13145,24 @@ assets:
   review_scores:
     教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 5
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch06-fault-conditions.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch06-animation-2026-11-08/review.md
-    asset_sha256: aed25f6d7aa02b3429719335fabf04430462ba9cb73fb213c20dd0011d134606
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 1d1f1f7583a8d925ffc3421b52571a42375663eaf8ace531932addeb9bd4ce08
 - id: ch07-release-timing-v2
   chapter: 7
   kind: animation
@@ -13603,25 +13651,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch07-window-logic.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch07-animation-2026-11-08/review.md
-    asset_sha256: 4571dce7a3165677c1b06c40229716ce15585de6615a31de1391a89a95b4e2ff
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: fb4a28034083427ecb034e41cf6290237da4f9af5a16e4be1d3ddeadae2e8e81
 - id: ch07-delay-endpoints
   chapter: 7
   kind: figure
@@ -13648,25 +13697,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch07-delay-endpoints.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch07-animation-2026-11-08/review.md
-    asset_sha256: 7a7941f917ee1f455aec6862643322ca603c78f88d29131334773bb90b01dfaa
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 8ee35ba302ba509d153e495e73c84123dc56e1bc4d095c5de57f3a6db4ebfa9e
 - id: ch07-glitch-margin
   chapter: 7
   kind: figure
@@ -13693,25 +13743,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch07-glitch-margin.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch07-animation-2026-11-08/review.md
-    asset_sha256: 0a2c39c99e1b6523cd1bcd546c6bdb473ee015affe68853310c8e01143ec3adb
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 52491f1e7b643437a7fa3392758c50d0fa0a468c6333d23dd77578ad935ca69f
 - id: ch09-bandgap-balance-v2
   chapter: 9
   kind: animation
@@ -14266,25 +14317,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch09-shunt-corners.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch09-animation-2026-11-08/review.md
-    asset_sha256: 204069adff74d4dc05cb4148da295d6683765b00e8434d39ffb410ec2fe9a518
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 51fd2d8068b24da39240006816db8d26ab2b61cb818d04120c663b5b129a9d8e
 - id: ch09-reference-charge
   chapter: 9
   kind: figure
@@ -14311,25 +14363,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch09-reference-charge.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch09-animation-2026-11-08/review.md
-    asset_sha256: eb0b69b803c6885826573f4c0e23587c4a8bbf341a60a64c88e579ac3def7f29
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 146e305f19c9ba358789e83498af2b021a2ba91da892486cc58510a553396806
 - id: ch09-thermal-path
   chapter: 9
   kind: figure
@@ -14356,25 +14409,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch09-thermal-path.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch09-animation-2026-11-08/review.md
-    asset_sha256: d7c438047b433716b94de98db29febe75fc212efc2656c5b003a080a1d0035f8
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: d73299da3f8f8170b7c02c90521be5a1a5dabbb9cce6e95a6c471596700dacd6
 - id: ch09-load-transient
   chapter: 9
   kind: figure
@@ -14401,25 +14455,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch09-load-transient.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch09-animation-2026-11-08/review.md
-    asset_sha256: 8f717db85a8e82913305451c13088f5a50b13e5ffafe68734d6e1944e20ec8ea
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: b3e62e17f36fbb9b15ad631867f44dd2b9756c9dceee20616b022c74887cf2bd
 - id: ch09-transient-budget
   chapter: 9
   kind: figure
@@ -14446,25 +14501,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch09-transient-budget.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch09-animation-2026-11-08/review.md
-    asset_sha256: d96560c7eb5bc8d14ac06cafb7738cdc86d5ac6234d7c57603d6cabb3fa81efa
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 61090979f0a6f41c1c4f20c6cc34fc6abdf7d56bf0fc882e4119b30fa51ba52b
 - id: ch10-threshold-memory-v2
   chapter: 10
   kind: animation
@@ -15186,25 +15242,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch10-555-modes.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch10-animation-2026-11-08/review.md
-    asset_sha256: 32fb728d5db5fc3c3c9d4d29f31c82a111654ccfccff9452c01a0679c68b1c70
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 370201ee773910eb77d38014a9a600fdafed1a8f1d34ab2dd09081062cb74eab
 - id: ch10-discharge-current
   chapter: 10
   kind: figure
@@ -15231,25 +15288,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch10-discharge-current.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch10-animation-2026-11-08/review.md
-    asset_sha256: f80a71f93fa6d4786713b423b7b3fc5b1d3d1103c808ab20c0e5c7c58194f08a
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: c48ddebf048acac1f80fe9ad29a894b81a3d07fa02f9899cabfcf12ddad94bd6
 - id: ch10-logic-margin
   chapter: 10
   kind: figure
@@ -15276,25 +15334,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch10-logic-margin.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch10-animation-2026-11-08/review.md
-    asset_sha256: 9e3ff2ff38c43bb96c78369927dd5768469b3d8c3861ae4f43fc2005bc4d0182
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 96712ba1828cd871158b60ed96af867668b0d3cd9a4c12c858ca03f3bdb49bd9
 - id: ch10-timer-leakage
   chapter: 10
   kind: figure
@@ -15321,25 +15380,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch10-timer-leakage.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch10-animation-2026-11-08/review.md
-    asset_sha256: b7cd6574f0b66c9076c6f9a0fee741446241c83b931025b1a55060282b575d12
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: d266563b3087aae146b8889c7e3ef728b0bca7207657a1723d0ba604c3f38064
 - id: ch10-clock-gating
   chapter: 10
   kind: figure
@@ -15366,25 +15426,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch10-clock-gating.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch10-animation-2026-11-08/review.md
-    asset_sha256: fa66cd167c28010747d75da8db0ac09a96412d3f2060888ec79ef435d89cacc0
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 366084420aa1cc6f8a87809c0d303c876ad9add2f763f0b062bffd0edbfbfeb1
 - id: ch11-diff-steer-v2
   chapter: 11
   kind: animation
@@ -16485,25 +16546,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch11-topology-ports.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
-    asset_sha256: d8ccdd043e6c107de580020db1d85240ae1d28d2de443a2925109fc913c83f61
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: fbb2973a568c98de58684c0c2c60e8b3b1167262605e9425cce877c8e075b47a
 - id: ch11-noise-input-budget
   chapter: 11
   kind: figure
@@ -16530,25 +16592,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch11-noise-input-budget.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
-    asset_sha256: 2d8fdd479f22cd6fbf4eca07185d91f5cb9db8ed2c5dfed723b7cc7cd345ba19
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 6037746ae2af8108ff9ba05f0b1fc7d17aa51a3b76f7bd2aba7973e88f590f93
 - id: ch11-cascode-headroom
   chapter: 11
   kind: figure
@@ -16575,25 +16638,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch11-cascode-headroom.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
-    asset_sha256: 5f96e04a201ec20998e3bfadcfb4be03b81d553e5ef334e3239ba40100d87171
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: f2a37e5b89852f235f2d4bb7398502e44ba98ad0a69b3244323cc36031912698
 - id: ch11-cmrr-definitions
   chapter: 11
   kind: figure
@@ -16620,25 +16684,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch11-cmrr-definitions.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
-    asset_sha256: b5405eb87a1552c674b74546319d01038f0eefb3baf2afa831c5aae63dbf75ee
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 24eaf9c3aade6b652c6541c8065ef19729c2721e97452ab1ccfc55f9375a24e3
 - id: ch11-design-dc
   chapter: 11
   kind: figure
@@ -16665,25 +16730,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch11-design-dc.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch11-animation-2026-11-08/review.md
-    asset_sha256: b16b5e64e9fef67ba593c0c013cd80b47a051cedb9d50880739317bc7b703719
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 3559aced7ecceb565708a657c2839cb0cb6f5db083be724108ba24606f7b805c
 - id: ch12-loop-error-v2
   chapter: 12
   kind: animation
@@ -17894,25 +17960,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch12-sallen-key-network.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch12-animation-2026-11-08/review.md
-    asset_sha256: 204353ed5960ec43d3f9a75235d03bf6d51db9e209593f3bd5c520d32742b9aa
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: ba7d3c634c0527257f9c673bee68ee4453d147bc091407a8f17015fec3c56b99
 - id: ch12-feedback-ports
   chapter: 12
   kind: figure
@@ -17939,25 +18006,26 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch12-feedback-ports.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch12-animation-2026-11-08/review.md
-    asset_sha256: ef4cb20c6a016630041f274e61dc4ba1be348f362633d14dbee5612d37caf42b
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 6be1d639b17a6a345f9ae6499e8490aa0b55c4ffe69dbf459d34d39de30fdea6
 - id: ch12-phase-crossing
   chapter: 12
   kind: figure
@@ -17984,22 +18052,23 @@ assets:
   - reviewed
   - accepted
   review_scores:
-    教学必要性: 5
+    教学必要性: 4
     事实精度: 5
-    构图层级: 4
-    风格一致性: 4
+    构图层级: 5
     印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch12-phase-crossing.json
   quant_rules:
     layer_encodes_value: false
   reviewed_by: agent-proxy
-  review_method: calculation-and-render-review
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
   review_record:
     reviewer: agent-proxy
-    method: calculation-and-render-review
+    method: machine-assisted-rubric-v1
     scope: all pending visual assets
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-08'
-    record: docs/superpowers/visual/reviews/ch12-animation-2026-11-08/review.md
-    asset_sha256: ff6ebfeb0d171bf030ce2e8ba4394647c28421ea7343750d6b82ccdfc069c788
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 1f993a8d90129b3a60be7b1c0c27e54ebdd2a1c1ed1c2f445e0f41f1eba92115

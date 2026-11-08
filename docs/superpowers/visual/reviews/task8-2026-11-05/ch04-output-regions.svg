@@ -35,6 +35,17 @@
 </defs>
 <rect class="page-bg" width="1000" height="700" fill="url(#bgL)"/>
 <rect class="page-grain" width="1000" height="700" fill="url(#dots)"/>
+<defs>
+<pattern id="fiber" width="96" height="96" patternUnits="userSpaceOnUse" patternTransform="rotate(-6)">
+<path d="M8 18 q16 -2.2 36 -0.4" stroke="#c9bb9d" stroke-width="0.55" fill="none" stroke-opacity="0.55"/>
+<path d="M54 12 q10 1.4 22 0.2" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.4"/>
+<path d="M20 52 q14 1.8 30 -0.6" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.45"/>
+<path d="M62 66 q12 -1.6 24 0.4" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.38"/>
+<path d="M14 84 q18 1.4 34 -0.2" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.42"/>
+</pattern>
+</defs>
+<rect class="page-fiber" width="1000" height="700" fill="url(#fiber)" opacity="0.55"/>
+
 <rect class="page-vig" width="1000" height="700" fill="url(#vig)"/>
 <rect class="page-hdr" width="1000" height="72" fill="url(#hdr)"/>
 <style>
@@ -93,28 +104,29 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 }
 </style>
 
-<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">同一组模型，画出欧姆段与饱和段</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">示意长沟道；每条曲线固定过驱动电压；截止是另一组栅压条件。</text>
+<polygon class="marker-wash" points="42.4,23.9 293.8,21.8 633.0,24.3 630.0,65.7 270.9,64.8 44.4,65.7" fill="#a4630f" opacity="0.13"/>
+<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">同一组模型，画出欧姆段与饱和段</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">示意长沟道；每条曲线固定过驱动电压；截止是另一组栅压条件。</text>
 <text x="50" y="148" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">ID / A</text>
 <text x="620" y="518" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="end">VDS / V</text>
-<path d="M100 166 Q99.32 313.00 100 460" fill="none" stroke="#c9bb9d" stroke-dasharray="4 6"/>
+<path d="M100 166 Q98.70 313.00 100 460" fill="none" stroke="#c9bb9d" stroke-dasharray="4 6"/>
 <text x="100" y="490" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">0</text>
-<path d="M200 166 Q199.08 313.00 200 460" fill="none" stroke="#c9bb9d" stroke-dasharray="4 6"/>
+<path d="M200 166 Q198.25 313.00 200 460" fill="none" stroke="#c9bb9d" stroke-dasharray="4 6"/>
 <text x="200" y="490" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">1</text>
-<path d="M300 166 Q299.55 313.00 300 460" fill="none" stroke="#c9bb9d" stroke-dasharray="4 6"/>
+<path d="M300 166 Q299.14 313.00 300 460" fill="none" stroke="#c9bb9d" stroke-dasharray="4 6"/>
 <text x="300" y="490" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">2</text>
-<path d="M400 166 Q400.30 313.00 400 460" fill="none" stroke="#c9bb9d" stroke-dasharray="4 6"/>
+<path d="M400 166 Q400.57 313.00 400 460" fill="none" stroke="#c9bb9d" stroke-dasharray="4 6"/>
 <text x="400" y="490" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">3</text>
-<path d="M500 166 Q500.50 313.00 500 460" fill="none" stroke="#c9bb9d" stroke-dasharray="4 6"/>
+<path d="M500 166 Q500.94 313.00 500 460" fill="none" stroke="#c9bb9d" stroke-dasharray="4 6"/>
 <text x="500" y="490" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">4</text>
-<path d="M600 166 Q599.17 313.00 600 460" fill="none" stroke="#c9bb9d" stroke-dasharray="4 6"/>
+<path d="M600 166 Q598.42 313.00 600 460" fill="none" stroke="#c9bb9d" stroke-dasharray="4 6"/>
 <text x="600" y="490" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">5</text>
-<path d="M100 460 Q350.00 458.56 600 460" fill="none" stroke="#c9bb9d" stroke-dasharray="4 6"/>
+<path d="M100 460 Q350.00 457.26 600 460" fill="none" stroke="#c9bb9d" stroke-dasharray="4 6"/>
 <text x="83" y="466" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="end">0</text>
-<path d="M100 370 Q350.00 370.65 600 370" fill="none" stroke="#c9bb9d" stroke-dasharray="4 6"/>
+<path d="M100 370 Q350.00 371.24 600 370" fill="none" stroke="#c9bb9d" stroke-dasharray="4 6"/>
 <text x="83" y="376" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="end">3</text>
-<path d="M100 280 Q350.00 280.10 600 280" fill="none" stroke="#c9bb9d" stroke-dasharray="4 6"/>
+<path d="M100 280 Q350.00 280.19 600 280" fill="none" stroke="#c9bb9d" stroke-dasharray="4 6"/>
 <text x="83" y="286" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="end">6</text>
-<path d="M100 190 Q350.00 189.17 600 190" fill="none" stroke="#c9bb9d" stroke-dasharray="4 6"/>
+<path d="M100 190 Q350.00 188.42 600 190" fill="none" stroke="#c9bb9d" stroke-dasharray="4 6"/>
 <text x="83" y="196" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="end">9</text>
 <polyline data-overdrive="1" points="100,460.0000 102.5,458.5188 105,457.0750 107.5,455.6687 110,454.3000 112.5,452.9688 115,451.6750 117.5,450.4187 120,449.2000 122.5,448.0188 125,446.8750 127.5,445.7688 130,444.7000 132.5,443.6687 135,442.6750 137.5,441.7188 140,440.8000 142.5,439.9187 145,439.0750 147.5,438.2688 150,437.5000 152.5,436.7688 155,436.0750 157.5,435.4187 160,434.8000 162.5,434.2188 165,433.6750 167.5,433.1687 170,432.7000 172.5,432.2688 175,431.8750 177.5,431.5188 180,431.2000 182.5,430.9187 185,430.6750 187.5,430.4688 190,430.3000 192.5,430.1687 195,430.0750 197.5,430.0188 200,430.0000 202.5,430.0000 205,430.0000 207.5,430.0000 210,430.0000 212.5,430.0000 215,430.0000 217.5,430.0000 220,430.0000 222.5,430.0000 225,430.0000 227.5,430.0000 230,430.0000 232.5,430.0000 235,430.0000 237.5,430.0000 240,430.0000 242.5,430.0000 245,430.0000 247.5,430.0000 250,430.0000 252.5,430.0000 255,430.0000 257.5,430.0000 260,430.0000 262.5,430.0000 265,430.0000 267.5,430.0000 270,430.0000 272.5,430.0000 275,430.0000 277.5,430.0000 280,430.0000 282.5,430.0000 285,430.0000 287.5,430.0000 290,430.0000 292.5,430.0000 295,430.0000 297.5,430.0000 300,430.0000 302.5,430.0000 305,430.0000 307.5,430.0000 310,430.0000 312.5,430.0000 315,430.0000 317.5,430.0000 320,430.0000 322.5,430.0000 325,430.0000 327.5,430.0000 330,430.0000 332.5,430.0000 335,430.0000 337.5,430.0000 340,430.0000 342.5,430.0000 345,430.0000 347.5,430.0000 350,430.0000 352.5,430.0000 355,430.0000 357.5,430.0000 360,430.0000 362.5,430.0000 365,430.0000 367.5,430.0000 370,430.0000 372.5,430.0000 375,430.0000 377.5,430.0000 380,430.0000 382.5,430.0000 385,430.0000 387.5,430.0000 390,430.0000 392.5,430.0000 395,430.0000 397.5,430.0000 400,430.0000 402.5,430.0000 405,430.0000 407.5,430.0000 410,430.0000 412.5,430.0000 415,430.0000 417.5,430.0000 420,430.0000 422.5,430.0000 425,430.0000 427.5,430.0000 430,430.0000 432.5,430.0000 435,430.0000 437.5,430.0000 440,430.0000 442.5,430.0000 445,430.0000 447.5,430.0000 450,430.0000 452.5,430.0000 455,430.0000 457.5,430.0000 460,430.0000 462.5,430.0000 465,430.0000 467.5,430.0000 470,430.0000 472.5,430.0000 475,430.0000 477.5,430.0000 480,430.0000 482.5,430.0000 485,430.0000 487.5,430.0000 490,430.0000 492.5,430.0000 495,430.0000 497.5,430.0000 500,430.0000 502.5,430.0000 505,430.0000 507.5,430.0000 510,430.0000 512.5,430.0000 515,430.0000 517.5,430.0000 520,430.0000 522.5,430.0000 525,430.0000 527.5,430.0000 530,430.0000 532.5,430.0000 535,430.0000 537.5,430.0000 540,430.0000 542.5,430.0000 545,430.0000 547.5,430.0000 550,430.0000 552.5,430.0000 555,430.0000 557.5,430.0000 560,430.0000 562.5,430.0000 565,430.0000 567.5,430.0000 570,430.0000 572.5,430.0000 575,430.0000 577.5,430.0000 580,430.0000 582.5,430.0000 585,430.0000 587.5,430.0000 590,430.0000 592.5,430.0000 595,430.0000 597.5,430.0000 600,430.0000" stroke="#1f5d7a" stroke-width="3" stroke-dasharray="4 5" fill="none"/>
 <text x="610" y="436" font-size="22" fill="#1f5d7a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">1 V</text>
@@ -126,6 +138,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <text x="610" y="196" font-size="22" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">3 V</text>
 <circle cx="400" cy="190" r="6" fill="#a8321f"/>
 <rect x="690" y="130" width="260" height="355" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<rect class="ink-echo" x="690" y="130" width="260" height="355" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(1.52 0.96) rotate(-0.02 820.0 307.5)"/>
 <text x="714" y="169" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">每个圆点：</text>
 <text x="714" y="207" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">VDS = VGS − VTH</text>
 <text x="714" y="248" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">圆点左侧：欧姆段</text>

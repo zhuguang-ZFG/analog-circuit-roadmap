@@ -44,7 +44,9 @@ def build_one(asset_id: str, meta: dict) -> None:
     }
     outputs['composite'].write_text(svg, encoding='utf-8')
     outputs['print'].write_text(svg, encoding='utf-8')
-    report = preview(review_svg, {'canvas': list(CANVAS), 'print_width_mm': PRINT_MM})
+    # 2x 预览：网页/画廊里缩小显示时不糊；SVG 本身仍是矢量，印刷不受影响。
+    report = preview(review_svg, {'canvas': list(CANVAS), 'print_width_mm': PRINT_MM,
+                                  'scale': 2})
     for name, path in outputs.items():
         print(asset_id, name, report)
     webp = review_svg.with_suffix('.webp')
@@ -111,8 +113,15 @@ def register(asset_id: str, meta: dict, data: dict) -> None:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--scenes", default="scripts.visuals.scenes.handdrawn_wave2")
+    ap.add_argument("--only", help="逗号分隔的资产 id；只重出这些，防止误建模块里的旧场景")
     args = ap.parse_args()
     scenes = importlib.import_module(args.scenes).SCENES
+    if args.only:
+        wanted = [item.strip() for item in args.only.split(",") if item.strip()]
+        missing = [item for item in wanted if item not in scenes]
+        if missing:
+            raise SystemExit(f"{args.scenes} 不含: {', '.join(missing)}")
+        scenes = {item: scenes[item] for item in wanted}
     data = manifest.load()
     for asset_id, meta in scenes.items():
         build_one(asset_id, meta)

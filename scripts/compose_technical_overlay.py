@@ -150,10 +150,13 @@ def preview(path: Path, spec: dict) -> dict:
     """真实浏览器测量中文边界与变换后的印刷字号，再导出 WebP/灰度。"""
     from playwright.sync_api import sync_playwright
     width, height = spec.get("canvas", [1448, 1086])
+    # scale 只影响位图预览的像素密度；文字边界与字号仍按 CSS px 测量，闸不变。
+    scale = int(spec.get("scale", 1))
     with sync_playwright() as pw:
         browser = pw.chromium.launch(channel="chrome", headless=True)
         try:
-            page = browser.new_page(viewport={"width": width, "height": height}, device_scale_factor=1)
+            page = browser.new_page(viewport={"width": width, "height": height},
+                                    device_scale_factor=scale)
             markup = path.read_text(encoding="utf-8")
             page.set_content('<style>body{margin:0}svg{display:block;width:100%;height:auto}text{font-family:"Microsoft YaHei",sans-serif}</style>' + markup)
             page.evaluate("document.fonts.ready")
@@ -174,9 +177,18 @@ def preview(path: Path, spec: dict) -> dict:
             page.screenshot(path=str(png))
         finally:
             browser.close()
-    with Image.open(png) as image:
-        image.convert("RGB").save(path.with_suffix(".webp"), lossless=True)
-        image.convert("L").save(path.with_stem(path.stem + "-gray").with_suffix(".png"))
+    with Image.open(png) as opened:
+        full = opened.convert("RGB")
+        if scale > 1:
+            # 2x 预览用有损 q93：线条图在显示尺寸下与无损无差，体积约为 1/3。
+            # 印刷与正文始终用 SVG，预览不承担像素级复现，仓库不该为它翻倍。
+            full.save(path.with_suffix(".webp"), quality=93, method=6)
+            review = full.resize((width, height), Image.LANCZOS)
+        else:
+            full.save(path.with_suffix(".webp"), lossless=True)
+            review = full
+        review.save(png)
+        review.convert("L").save(path.with_stem(path.stem + "-gray").with_suffix(".png"))
     report = {"texts": len(measurements), "min_print_pt": min(
         m["size"] / width * spec.get("print_width_mm", 138) * 72 / 25.4 for m in measurements),
         "bounds": "pass", "human_review": "pending"}

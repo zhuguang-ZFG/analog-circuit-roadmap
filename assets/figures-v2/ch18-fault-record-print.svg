@@ -1,5 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
-<title id="title">可复用的故障档案字段</title><desc id="desc">手绘故障档案卡：日期与批次、用户语言的现象、复现条件、带预测的假设、一次只改一个变量的实验记录、证据链根因、修复动作、原条件加边界拉偏的反向回归；每行右侧一个待勾选圆圈。</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>
@@ -36,6 +35,17 @@
 </defs>
 <rect class="page-bg" width="1000" height="700" fill="url(#bgL)"/>
 <rect class="page-grain" width="1000" height="700" fill="url(#dots)"/>
+<defs>
+<pattern id="fiber" width="96" height="96" patternUnits="userSpaceOnUse" patternTransform="rotate(-6)">
+<path d="M8 18 q16 -2.2 36 -0.4" stroke="#c9bb9d" stroke-width="0.55" fill="none" stroke-opacity="0.55"/>
+<path d="M54 12 q10 1.4 22 0.2" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.4"/>
+<path d="M20 52 q14 1.8 30 -0.6" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.45"/>
+<path d="M62 66 q12 -1.6 24 0.4" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.38"/>
+<path d="M14 84 q18 1.4 34 -0.2" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.42"/>
+</pattern>
+</defs>
+<rect class="page-fiber" width="1000" height="700" fill="url(#fiber)" opacity="0.55"/>
+
 <rect class="page-vig" width="1000" height="700" fill="url(#vig)"/>
 <rect class="page-hdr" width="1000" height="72" fill="url(#hdr)"/>
 <style>
@@ -94,37 +104,39 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 }
 </style>
 
-<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">一份能复用的故障档案</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">症状写用户语言，假设带可检验的预测；归档后才能按根因归类。</text>
+<polygon class="marker-wash" points="44.5,24.6 171.0,20.7 441.7,22.8 440.0,64.6 303.7,62.5 45.2,65.1" fill="#a4630f" opacity="0.13"/>
+<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">一份能复用的故障档案</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">症状写用户语言，假设带可检验的预测；归档后才能按根因归类。</text>
 <rect x="60" y="112" width="880" height="540" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
-<path d="M86 186 Q500.00 187.11 914 186" fill="none" stroke="#c9bb9d" stroke-width="1.4"/>
+<rect class="ink-echo" x="60" y="112" width="880" height="540" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(1.37 -0.84) rotate(-0.05 500.0 382.0)"/>
+<path d="M86 186 Q500.00 188.12 914 186" fill="none" stroke="#c9bb9d" stroke-width="1.4"/>
 <text x="92" y="168" font-size="24" fill="#a4630f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">日期 / 批次</text>
 <text x="300" y="168" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">当天 / 批次 A</text>
 <circle cx="886" cy="160" r="10" fill="none" stroke="#3d6b4a" stroke-width="2"/>
-<path d="M86 246 Q500.00 246.16 914 246" fill="none" stroke="#c9bb9d" stroke-width="1.4"/>
+<path d="M86 246 Q500.00 246.31 914 246" fill="none" stroke="#c9bb9d" stroke-width="1.4"/>
 <text x="92" y="228" font-size="24" fill="#a4630f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">现象</text>
 <text x="300" y="228" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">用户原话，不写猜测</text>
 <circle cx="886" cy="220" r="10" fill="none" stroke="#3d6b4a" stroke-width="2"/>
-<path d="M86 306 Q500.00 304.89 914 306" fill="none" stroke="#c9bb9d" stroke-width="1.4"/>
+<path d="M86 306 Q500.00 303.89 914 306" fill="none" stroke="#c9bb9d" stroke-width="1.4"/>
 <text x="92" y="288" font-size="24" fill="#a4630f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">复现条件</text>
 <text x="300" y="288" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">温度、负载、第几次上电</text>
 <circle cx="886" cy="280" r="10" fill="none" stroke="#3d6b4a" stroke-width="2"/>
-<path d="M86 366 Q500.00 365.77 914 366" fill="none" stroke="#c9bb9d" stroke-width="1.4"/>
+<path d="M86 366 Q500.00 365.57 914 366" fill="none" stroke="#c9bb9d" stroke-width="1.4"/>
 <text x="92" y="348" font-size="24" fill="#a4630f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">假设 + 预测</text>
 <text x="300" y="348" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">若为真，哪个读数应为多少</text>
 <circle cx="886" cy="340" r="10" fill="none" stroke="#3d6b4a" stroke-width="2"/>
-<path d="M86 426 Q500.00 425.21 914 426" fill="none" stroke="#c9bb9d" stroke-width="1.4"/>
+<path d="M86 426 Q500.00 424.49 914 426" fill="none" stroke="#c9bb9d" stroke-width="1.4"/>
 <text x="92" y="408" font-size="24" fill="#a4630f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">实验记录</text>
 <text x="300" y="408" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">一次只改一个变量，无效回退</text>
 <circle cx="886" cy="400" r="10" fill="none" stroke="#3d6b4a" stroke-width="2"/>
-<path d="M86 486 Q500.00 485.19 914 486" fill="none" stroke="#c9bb9d" stroke-width="1.4"/>
+<path d="M86 486 Q500.00 484.47 914 486" fill="none" stroke="#c9bb9d" stroke-width="1.4"/>
 <text x="92" y="468" font-size="24" fill="#a4630f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">根因</text>
 <text x="300" y="468" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">证据链，不是“可能”</text>
 <circle cx="886" cy="460" r="10" fill="none" stroke="#3d6b4a" stroke-width="2"/>
-<path d="M86 546 Q500.00 546.73 914 546" fill="none" stroke="#c9bb9d" stroke-width="1.4"/>
+<path d="M86 546 Q500.00 547.38 914 546" fill="none" stroke="#c9bb9d" stroke-width="1.4"/>
 <text x="92" y="528" font-size="24" fill="#a4630f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">修复</text>
 <text x="300" y="528" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">改了什么，为什么</text>
 <circle cx="886" cy="520" r="10" fill="none" stroke="#3d6b4a" stroke-width="2"/>
-<path d="M86 606 Q500.00 606.02 914 606" fill="none" stroke="#c9bb9d" stroke-width="1.4"/>
+<path d="M86 606 Q500.00 606.03 914 606" fill="none" stroke="#c9bb9d" stroke-width="1.4"/>
 <text x="92" y="588" font-size="24" fill="#a4630f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">回归验证</text>
 <text x="300" y="588" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">原条件 + 边界拉偏 + 反向装回</text>
 <circle cx="886" cy="580" r="10" fill="none" stroke="#3d6b4a" stroke-width="2"/>

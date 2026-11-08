@@ -35,6 +35,17 @@
 </defs>
 <rect class="page-bg" width="1000" height="700" fill="url(#bgL)"/>
 <rect class="page-grain" width="1000" height="700" fill="url(#dots)"/>
+<defs>
+<pattern id="fiber" width="96" height="96" patternUnits="userSpaceOnUse" patternTransform="rotate(-6)">
+<path d="M8 18 q16 -2.2 36 -0.4" stroke="#c9bb9d" stroke-width="0.55" fill="none" stroke-opacity="0.55"/>
+<path d="M54 12 q10 1.4 22 0.2" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.4"/>
+<path d="M20 52 q14 1.8 30 -0.6" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.45"/>
+<path d="M62 66 q12 -1.6 24 0.4" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.38"/>
+<path d="M14 84 q18 1.4 34 -0.2" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.42"/>
+</pattern>
+</defs>
+<rect class="page-fiber" width="1000" height="700" fill="url(#fiber)" opacity="0.55"/>
+
 <rect class="page-vig" width="1000" height="700" fill="url(#vig)"/>
 <rect class="page-hdr" width="1000" height="72" fill="url(#hdr)"/>
 <style>
@@ -93,22 +104,28 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 }
 </style>
 
-<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">排故第一问：最近改过什么？</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">先问变更，再拆机；换料、改版、换环境都比“芯片坏了”更常见。</text>
+<polygon class="marker-wash" points="41.7,24.5 272.1,22.0 554.3,21.9 556.3,65.4 230.4,64.5 43.6,62.8" fill="#a4630f" opacity="0.13"/>
+<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">排故第一问：最近改过什么？</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">先问变更，再拆机；换料、改版、换环境都比“芯片坏了”更常见。</text>
 <rect x="110" y="132" width="780" height="108" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<rect class="ink-echo" x="110" y="132" width="780" height="108" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(1.10 0.94) rotate(0.00 500.0 186.0)"/>
 <text x="500" y="198" font-size="32" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">“这块板，最近动过哪里？”</text>
 <rect x="64" y="318" width="280" height="150" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<rect class="ink-echo" x="64" y="318" width="280" height="150" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(1.50 -0.72) rotate(-0.01 204.0 393.0)"/>
 <text x="88" y="366" font-size="25" fill="#a4630f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">换料 / 换厂</text>
 <text x="88" y="412" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">电容、晶振、连接器</text>
-<path d="M500 244 Q351.86 276.36 204 310" fill="none" stroke="#a4630f" stroke-width="2.5" stroke-linecap="round"/><polygon points="204,310 214.62423628104503,302.5082976938131 216.80052304252538,312.2686140786341" fill="#a4630f"/>
+<path d="M500 244 Q351.73 275.79 204 310" fill="none" stroke="#a4630f" stroke-width="2.5" stroke-linecap="round"/><polygon points="204,310 214.62423628104503,302.5082976938131 216.80052304252538,312.2686140786341" fill="#a4630f"/>
 <rect x="364" y="318" width="280" height="150" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<rect class="ink-echo" x="364" y="318" width="280" height="150" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(-1.27 0.86) rotate(-0.05 504.0 393.0)"/>
 <text x="388" y="366" font-size="25" fill="#1f5d7a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">改版 / 改参数</text>
 <text x="388" y="412" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">钢网、走线、固件</text>
-<path d="M500 244 Q502.02 277.00 504 310" fill="none" stroke="#1f5d7a" stroke-width="2.5" stroke-linecap="round"/><polygon points="504,310 498.28321679202134,298.32445334243516 508.2649017583333,297.7195027384163" fill="#1f5d7a"/>
+<path d="M500 244 Q502.04 277.00 504 310" fill="none" stroke="#1f5d7a" stroke-width="2.5" stroke-linecap="round"/><polygon points="504,310 498.28321679202134,298.32445334243516 508.2649017583333,297.7195027384163" fill="#1f5d7a"/>
 <rect x="664" y="318" width="280" height="150" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<rect class="ink-echo" x="664" y="318" width="280" height="150" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(1.29 0.84) rotate(0.05 804.0 393.0)"/>
 <text x="688" y="366" font-size="25" fill="#3d6b4a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">环境 / 负载</text>
 <text x="688" y="412" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">温度、机箱、供电</text>
-<path d="M500 244 Q652.26 275.81 804 310" fill="none" stroke="#3d6b4a" stroke-width="2.5" stroke-linecap="round"/><polygon points="804,310 791.212374163676,312.34021910730115 793.3340013763391,302.5678755823074" fill="#3d6b4a"/>
+<path d="M500 244 Q652.49 274.74 804 310" fill="none" stroke="#3d6b4a" stroke-width="2.5" stroke-linecap="round"/><polygon points="804,310 791.212374163676,312.34021910730115 793.3340013763391,302.5678755823074" fill="#3d6b4a"/>
 <rect x="64" y="520" width="872" height="96" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<rect class="ink-echo" x="64" y="520" width="872" height="96" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(1.46 0.79) rotate(0.06 500.0 568.0)"/>
 <text x="88" y="558" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">案例 A 的答案：为降成本把钽电容换成 MLCC。</text>
 <text x="88" y="594" font-size="22" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">一问就命中，绕两小时的拆焊本来可以省掉。</text>
 <text x="64" y="662" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">问变更不是聊天：把“什么时候、谁、改了什么”记进故障单。</text>

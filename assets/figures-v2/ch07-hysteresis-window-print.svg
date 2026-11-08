@@ -35,6 +35,17 @@
 </defs>
 <rect class="page-bg" width="1000" height="700" fill="url(#bgL)"/>
 <rect class="page-grain" width="1000" height="700" fill="url(#dots)"/>
+<defs>
+<pattern id="fiber" width="96" height="96" patternUnits="userSpaceOnUse" patternTransform="rotate(-6)">
+<path d="M8 18 q16 -2.2 36 -0.4" stroke="#c9bb9d" stroke-width="0.55" fill="none" stroke-opacity="0.55"/>
+<path d="M54 12 q10 1.4 22 0.2" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.4"/>
+<path d="M20 52 q14 1.8 30 -0.6" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.45"/>
+<path d="M62 66 q12 -1.6 24 0.4" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.38"/>
+<path d="M14 84 q18 1.4 34 -0.2" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.42"/>
+</pattern>
+</defs>
+<rect class="page-fiber" width="1000" height="700" fill="url(#fiber)" opacity="0.55"/>
+
 <rect class="page-vig" width="1000" height="700" fill="url(#vig)"/>
 <rect class="page-hdr" width="1000" height="72" fill="url(#hdr)"/>
 <style>
@@ -93,16 +104,17 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 }
 </style>
 
-<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">迟滞回环，先写输出极性与参考条件</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">同相示意：独立 6 V 基准，VOH=12 V、VOL=0.1 V，R1/R2=10/390。</text>
+<polygon class="marker-wash" points="45.1,23.4 259.7,23.5 670.0,24.5 667.9,63.9 370.1,62.9 43.2,62.3" fill="#a4630f" opacity="0.13"/>
+<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">迟滞回环，先写输出极性与参考条件</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">同相示意：独立 6 V 基准，VOH=12 V、VOL=0.1 V，R1/R2=10/390。</text>
 <text x="82" y="442.0" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="end">0</text>
-<path d="M100 435 Q425.00 435.49 750 435" fill="none" stroke="#c9bb9d" stroke-dasharray="3 5"/>
+<path d="M100 435 Q425.00 435.93 750 435" fill="none" stroke="#c9bb9d" stroke-dasharray="3 5"/>
 <text x="82" y="322.0" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="end">6</text>
-<path d="M100 315 Q425.00 314.24 750 315" fill="none" stroke="#c9bb9d" stroke-dasharray="3 5"/>
+<path d="M100 315 Q425.00 313.56 750 315" fill="none" stroke="#c9bb9d" stroke-dasharray="3 5"/>
 <text x="82" y="202.0" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="end">12</text>
-<path d="M100 195 Q425.00 195.46 750 195" fill="none" stroke="#c9bb9d" stroke-dasharray="3 5"/>
+<path d="M100 195 Q425.00 195.88 750 195" fill="none" stroke="#c9bb9d" stroke-dasharray="3 5"/>
 <path d="M100.0,433.0 H588.8888888888881 V195.0 H749.9999999999997 M749.9999999999997,195.0 H258.3333333333328 V433.0 H100.0" fill="none" stroke="#1f5d7a" stroke-width="3"/>
-<path d="M262.5 433 Q343.75 433.11 425 433" fill="none" stroke="#1f5d7a" stroke-width="2.5" stroke-dasharray=""/><polygon points="425,433 415,438 415,428" fill="#1f5d7a"/>
-<path d="M587.5 195 Q506.25 194.35 425 195" fill="none" stroke="#a8321f" stroke-width="2.5" stroke-dasharray=""/><polygon points="425,195 435,190 435,200" fill="#a8321f"/>
+<path d="M262.5 433 Q343.75 433.21 425 433" fill="none" stroke="#1f5d7a" stroke-width="2.5" stroke-dasharray=""/><polygon points="425,433 415,438 415,428" fill="#1f5d7a"/>
+<path d="M587.5 195 Q506.25 193.77 425 195" fill="none" stroke="#a8321f" stroke-width="2.5" stroke-dasharray=""/><polygon points="425,195 435,190 435,200" fill="#a8321f"/>
 <text x="258.3333333333328" y="480" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">5.846</text>
 <text x="588.8888888888881" y="480" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">6.151</text>
 <text x="50" y="162" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">输出 / V</text>

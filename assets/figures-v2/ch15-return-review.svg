@@ -1,5 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
-<title id="title">回流审查五步</title><desc id="desc">手绘回流审查单：高亮网络、沿走线想象正下方回流、到换层过孔查伴生地孔、遇槽或隔离带查回流是否被挤开、不许用“应该能绕”含糊过去；右侧对比紧贴回流与绕远形成天线。</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>
@@ -36,6 +35,17 @@
 </defs>
 <rect class="page-bg" width="1000" height="700" fill="url(#bgL)"/>
 <rect class="page-grain" width="1000" height="700" fill="url(#dots)"/>
+<defs>
+<pattern id="fiber" width="96" height="96" patternUnits="userSpaceOnUse" patternTransform="rotate(-6)">
+<path d="M8 18 q16 -2.2 36 -0.4" stroke="#c9bb9d" stroke-width="0.55" fill="none" stroke-opacity="0.55"/>
+<path d="M54 12 q10 1.4 22 0.2" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.4"/>
+<path d="M20 52 q14 1.8 30 -0.6" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.45"/>
+<path d="M62 66 q12 -1.6 24 0.4" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.38"/>
+<path d="M14 84 q18 1.4 34 -0.2" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.42"/>
+</pattern>
+</defs>
+<rect class="page-fiber" width="1000" height="700" fill="url(#fiber)" opacity="0.55"/>
+
 <rect class="page-vig" width="1000" height="700" fill="url(#vig)"/>
 <rect class="page-hdr" width="1000" height="72" fill="url(#hdr)"/>
 <style>
@@ -94,28 +104,30 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 }
 </style>
 
-<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">回流审查：每网一分钟</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">高亮、沿走线、查换层、查槽、不留模糊地带。</text>
+<polygon class="marker-wash" points="44.5,24.6 171.0,20.7 441.7,22.8 440.0,64.6 303.7,62.5 45.2,65.1" fill="#a4630f" opacity="0.13"/>
+<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">回流审查：每网一分钟</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">高亮、沿走线、查换层、查槽、不留模糊地带。</text>
 <rect x="64" y="126" width="26" height="26" rx="3" fill="none" stroke="#37424e" stroke-width="2"/>
 <text x="108" y="150" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">① 高亮网络</text>
 <text x="108" y="182" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">在编辑器里只亮这一根</text>
-<path d="M64 200 Q312.00 198.79 560 200" fill="none" stroke="#c9bb9d" stroke-width="1.2"/>
+<path d="M64 200 Q312.00 197.71 560 200" fill="none" stroke="#c9bb9d" stroke-width="1.2"/>
 <rect x="64" y="212" width="26" height="26" rx="3" fill="none" stroke="#37424e" stroke-width="2"/>
 <text x="108" y="236" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">② 沿走线看</text>
 <text x="108" y="268" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">想象正下方地平面的回流</text>
-<path d="M64 286 Q312.00 284.73 560 286" fill="none" stroke="#c9bb9d" stroke-width="1.2"/>
+<path d="M64 286 Q312.00 283.58 560 286" fill="none" stroke="#c9bb9d" stroke-width="1.2"/>
 <rect x="64" y="298" width="26" height="26" rx="3" fill="none" stroke="#37424e" stroke-width="2"/>
 <text x="108" y="322" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">③ 到换层过孔</text>
 <text x="108" y="354" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">旁边有没有地孔陪跑</text>
-<path d="M64 372 Q312.00 373.30 560 372" fill="none" stroke="#c9bb9d" stroke-width="1.2"/>
+<path d="M64 372 Q312.00 374.46 560 372" fill="none" stroke="#c9bb9d" stroke-width="1.2"/>
 <rect x="64" y="384" width="26" height="26" rx="3" fill="none" stroke="#37424e" stroke-width="2"/>
 <text x="108" y="408" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">④ 遇槽/隔离带</text>
 <text x="108" y="440" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">回流会不会被挤开</text>
-<path d="M64 458 Q312.00 458.51 560 458" fill="none" stroke="#c9bb9d" stroke-width="1.2"/>
+<path d="M64 458 Q312.00 458.98 560 458" fill="none" stroke="#c9bb9d" stroke-width="1.2"/>
 <rect x="64" y="470" width="26" height="26" rx="3" fill="none" stroke="#37424e" stroke-width="2"/>
 <text x="108" y="494" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">⑤ 不许“应该能绕”</text>
 <text x="108" y="526" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">模糊地带就是辐射源</text>
-<path d="M64 544 Q312.00 543.69 560 544" fill="none" stroke="#c9bb9d" stroke-width="1.2"/>
+<path d="M64 544 Q312.00 543.41 560 544" fill="none" stroke="#c9bb9d" stroke-width="1.2"/>
 <rect x="610" y="150" width="340" height="420" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<rect class="ink-echo" x="610" y="150" width="340" height="420" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(-1.52 0.71) rotate(0.11 780.0 360.0)"/>
 <text x="636" y="194" font-size="23" fill="#a4630f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">看一眼回路面积</text>
 <path d="M660,460 L660,270 L820,270 L820,460" fill="none" stroke="#3d6b4a" stroke-width="3"/>
 <path d="M680,480 L680,310 L900,310 L900,480" fill="none" stroke="#a8321f" stroke-width="3" stroke-dasharray="8,6"/>

@@ -35,6 +35,17 @@
 </defs>
 <rect class="page-bg" width="1000" height="700" fill="url(#bgL)"/>
 <rect class="page-grain" width="1000" height="700" fill="url(#dots)"/>
+<defs>
+<pattern id="fiber" width="96" height="96" patternUnits="userSpaceOnUse" patternTransform="rotate(-6)">
+<path d="M8 18 q16 -2.2 36 -0.4" stroke="#c9bb9d" stroke-width="0.55" fill="none" stroke-opacity="0.55"/>
+<path d="M54 12 q10 1.4 22 0.2" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.4"/>
+<path d="M20 52 q14 1.8 30 -0.6" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.45"/>
+<path d="M62 66 q12 -1.6 24 0.4" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.38"/>
+<path d="M14 84 q18 1.4 34 -0.2" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.42"/>
+</pattern>
+</defs>
+<rect class="page-fiber" width="1000" height="700" fill="url(#fiber)" opacity="0.55"/>
+
 <rect class="page-vig" width="1000" height="700" fill="url(#vig)"/>
 <rect class="page-hdr" width="1000" height="72" fill="url(#hdr)"/>
 <style>
@@ -93,16 +104,18 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 }
 </style>
 
-<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">ESR 窗口必须写出器件和电容条件</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">TI LM1117，SNOS412Q §9.2.2.1.3；不是所有 1117 的共同保证。</text>
+<polygon class="marker-wash" points="43.2,23.3 243.8,21.7 630.8,25.1 631.0,65.9 360.7,62.2 43.9,64.6" fill="#a4630f" opacity="0.13"/>
+<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">ESR 窗口必须写出器件和电容条件</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">TI LM1117，SNOS412Q §9.2.2.1.3；不是所有 1117 的共同保证。</text>
 <text x="50" y="170" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">最低 10 µF 钽电容；可调版加 CADJ 时改用 22 µF。</text>
 <rect x="496.1563707929034" y="260" width="313.37063958522725" height="95" rx="6" fill="#f6eedb" stroke="#3d6b4a" stroke-width="2"/>
+<rect class="ink-echo" x="496.1563707929034" y="260" width="313.37063958522725" height="95" rx="6" stroke="#3d6b4a" stroke-width="2" fill="none" opacity="0.32" transform="translate(-1.46 -0.85) rotate(-0.05 652.8 307.5)"/>
 <text x="652.841690585517" y="318" font-size="26" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">该手册的 ESR 区间</text>
-<path d="M80 400 Q500.00 399.46 920 400" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
-<path d="M197.427 390 Q197.35 401.00 197.427 412" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
+<path d="M80 400 Q500.00 398.97 920 400" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
+<path d="M197.427 390 Q197.27 401.00 197.427 412" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
 <text x="197.42696072845115" y="451" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">5 mΩ</text>
 <path d="M496.156 390 Q496.15 401.00 496.156 412" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
 <text x="496.1563707929034" y="451" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">0.3 Ω</text>
-<path d="M809.527 390 Q809.52 401.00 809.527 412" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
+<path d="M809.527 390 Q809.51 401.00 809.527 412" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
 <text x="809.5270103781306" y="451" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">22 Ω</text>
 <text x="920" y="493" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="end">ESR（对数轴）</text>
 <text x="50" y="548" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">5 mΩ 不满足本表条件；不能继续引用这份稳定保证。</text>

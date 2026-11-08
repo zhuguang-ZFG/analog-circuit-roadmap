@@ -35,6 +35,17 @@
 </defs>
 <rect class="page-bg" width="1000" height="700" fill="url(#bgL)"/>
 <rect class="page-grain" width="1000" height="700" fill="url(#dots)"/>
+<defs>
+<pattern id="fiber" width="96" height="96" patternUnits="userSpaceOnUse" patternTransform="rotate(-6)">
+<path d="M8 18 q16 -2.2 36 -0.4" stroke="#c9bb9d" stroke-width="0.55" fill="none" stroke-opacity="0.55"/>
+<path d="M54 12 q10 1.4 22 0.2" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.4"/>
+<path d="M20 52 q14 1.8 30 -0.6" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.45"/>
+<path d="M62 66 q12 -1.6 24 0.4" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.38"/>
+<path d="M14 84 q18 1.4 34 -0.2" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.42"/>
+</pattern>
+</defs>
+<rect class="page-fiber" width="1000" height="700" fill="url(#fiber)" opacity="0.55"/>
+
 <rect class="page-vig" width="1000" height="700" fill="url(#vig)"/>
 <rect class="page-hdr" width="1000" height="72" fill="url(#hdr)"/>
 <style>
@@ -93,14 +104,15 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 }
 </style>
 
-<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">5 µs 的跌落还不是最大跌落</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">示意 ΔI=0.49 A、10 µF、50 mΩ；延迟 5 µs，临界恢复 τ=5 µs。</text>
-<path d="M120 394.286 Q510.00 394.87 900 394.286" fill="none" stroke="#c9bb9d" stroke-width="1.2" stroke-dasharray="3 5"/>
+<polygon class="marker-wash" points="42.4,23.9 220.4,22.4 525.6,22.5 526.1,65.5 262.8,63.1 44.4,65.7" fill="#a4630f" opacity="0.13"/>
+<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">5 µs 的跌落还不是最大跌落</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">示意 ΔI=0.49 A、10 µF、50 mΩ；延迟 5 µs，临界恢复 τ=5 µs。</text>
+<path d="M120 394.286 Q510.00 395.39 900 394.286" fill="none" stroke="#c9bb9d" stroke-width="1.2" stroke-dasharray="3 5"/>
 <text x="105" y="401.2857142857143" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="end">-0.3</text>
-<path d="M120 322.857 Q510.00 323.69 900 322.857" fill="none" stroke="#c9bb9d" stroke-width="1.2" stroke-dasharray="3 5"/>
+<path d="M120 322.857 Q510.00 324.45 900 322.857" fill="none" stroke="#c9bb9d" stroke-width="1.2" stroke-dasharray="3 5"/>
 <text x="105" y="329.8571428571429" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="end">-0.2</text>
-<path d="M120 251.429 Q510.00 252.38 900 251.429" fill="none" stroke="#c9bb9d" stroke-width="1.2" stroke-dasharray="3 5"/>
+<path d="M120 251.429 Q510.00 253.24 900 251.429" fill="none" stroke="#c9bb9d" stroke-width="1.2" stroke-dasharray="3 5"/>
 <text x="105" y="258.42857142857144" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="end">-0.1</text>
-<path d="M120 180 Q510.00 179.01 900 180" fill="none" stroke="#c9bb9d" stroke-width="1.2" stroke-dasharray="3 5"/>
+<path d="M120 180 Q510.00 178.13 900 180" fill="none" stroke="#c9bb9d" stroke-width="1.2" stroke-dasharray="3 5"/>
 <text x="105" y="186.99999999999997" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="end">0</text>
 <text x="157.14285714285714" y="470" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">0</text>
 <text x="250.0" y="470" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">5</text>

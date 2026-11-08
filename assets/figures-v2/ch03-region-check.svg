@@ -35,6 +35,17 @@
 </defs>
 <rect class="page-bg" width="1000" height="700" fill="url(#bgL)"/>
 <rect class="page-grain" width="1000" height="700" fill="url(#dots)"/>
+<defs>
+<pattern id="fiber" width="96" height="96" patternUnits="userSpaceOnUse" patternTransform="rotate(-6)">
+<path d="M8 18 q16 -2.2 36 -0.4" stroke="#c9bb9d" stroke-width="0.55" fill="none" stroke-opacity="0.55"/>
+<path d="M54 12 q10 1.4 22 0.2" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.4"/>
+<path d="M20 52 q14 1.8 30 -0.6" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.45"/>
+<path d="M62 66 q12 -1.6 24 0.4" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.38"/>
+<path d="M14 84 q18 1.4 34 -0.2" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.42"/>
+</pattern>
+</defs>
+<rect class="page-fiber" width="1000" height="700" fill="url(#fiber)" opacity="0.55"/>
+
 <rect class="page-vig" width="1000" height="700" fill="url(#vig)"/>
 <rect class="page-hdr" width="1000" height="72" fill="url(#hdr)"/>
 <style>
@@ -93,46 +104,53 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 }
 </style>
 
-<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">三区判读：不拆焊，先量两个电压</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">判区看两个 PN 结的偏置：量出 VBE 与 VCE，工作区自己会报名字。</text>
+<polygon class="marker-wash" points="42.4,23.9 293.8,21.8 633.0,24.3 630.0,65.7 270.9,64.8 44.4,65.7" fill="#a4630f" opacity="0.13"/>
+<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">三区判读：不拆焊，先量两个电压</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">判区看两个 PN 结的偏置：量出 VBE 与 VCE，工作区自己会报名字。</text>
 <rect x="56" y="150" width="230" height="200" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<rect class="ink-echo" x="56" y="150" width="230" height="200" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(1.53 -0.82) rotate(-0.05 171.0 250.0)"/>
 <text x="171" y="186" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">先量</text>
 <text x="171" y="232" font-size="34" fill="#1f5d7a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">VBE</text>
 <text x="171" y="272" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">与 VCE</text>
 <text x="171" y="318" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">基极有电压？</text>
-<path d="M306 200 Q306.08 325.00 306 450" fill="none" stroke="#37424e" stroke-width="2.5"/>
-<path d="M630 200 Q631.07 325.00 630 450" fill="none" stroke="#37424e" stroke-width="2.5"/>
-<path d="M286 250 Q296.00 249.96 306 250" fill="none" stroke="#37424e" stroke-width="2.5" stroke-linecap="round"/><polygon points="306,250 316,245 316,255" fill="#37424e"/>
+<path d="M306 200 Q306.16 325.00 306 450" fill="none" stroke="#37424e" stroke-width="2.5"/>
+<path d="M630 200 Q632.03 325.00 630 450" fill="none" stroke="#37424e" stroke-width="2.5"/>
+<path d="M286 250 Q296.00 249.93 306 250" fill="none" stroke="#37424e" stroke-width="2.5" stroke-linecap="round"/><polygon points="306,250 316,245 316,255" fill="#37424e"/>
 <rect x="340" y="136" width="290" height="170" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<rect class="ink-echo" x="340" y="136" width="290" height="170" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(-1.48 0.90) rotate(-0.08 485.0 221.0)"/>
 <text x="485" y="170" font-size="25" fill="#3d6b4a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">放大区</text>
-<path d="M362 190 Q485.00 190.13 608 190" fill="none" stroke="#c9bb9d" stroke-width="1.5"/>
+<path d="M362 190 Q485.00 190.26 608 190" fill="none" stroke="#c9bb9d" stroke-width="1.5"/>
 <text x="485" y="226" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">VBE ≈ 0.7 V</text>
 <text x="485" y="260" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">VCE &gt; 1 V</text>
 <text x="485" y="294" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">信号全程留这里</text>
 <path d="M306 221 Q321.00 220.99 336 221" fill="none" stroke="#37424e" stroke-width="2.5" stroke-linecap="round"/><polygon points="336,221 346,216 346,226" fill="#37424e"/>
 <rect x="650" y="136" width="290" height="170" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<rect class="ink-echo" x="650" y="136" width="290" height="170" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(-1.21 -0.89) rotate(-0.05 795.0 221.0)"/>
 <text x="795" y="170" font-size="25" fill="#a4630f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">饱和区</text>
-<path d="M672 190 Q795.00 189.87 918 190" fill="none" stroke="#c9bb9d" stroke-width="1.5"/>
+<path d="M672 190 Q795.00 189.75 918 190" fill="none" stroke="#c9bb9d" stroke-width="1.5"/>
 <text x="795" y="226" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">VBE ≈ 0.8 V</text>
 <text x="795" y="260" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">VCE ≈ 0.1~0.3 V</text>
 <text x="795" y="294" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">开关才故意进来</text>
-<path d="M630 221 Q638.00 220.97 646 221" fill="none" stroke="#37424e" stroke-width="2.5" stroke-linecap="round"/><polygon points="646,221 656,216 656,226" fill="#37424e"/>
+<path d="M630 221 Q638.00 220.93 646 221" fill="none" stroke="#37424e" stroke-width="2.5" stroke-linecap="round"/><polygon points="646,221 656,216 656,226" fill="#37424e"/>
 <rect x="340" y="326" width="290" height="170" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<rect class="ink-echo" x="340" y="326" width="290" height="170" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(1.41 -0.93) rotate(0.11 485.0 411.0)"/>
 <text x="485" y="360" font-size="25" fill="#1f5d7a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">截止区</text>
-<path d="M362 380 Q485.00 380.77 608 380" fill="none" stroke="#c9bb9d" stroke-width="1.5"/>
+<path d="M362 380 Q485.00 381.46 608 380" fill="none" stroke="#c9bb9d" stroke-width="1.5"/>
 <text x="485" y="416" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">VBE &lt; 0.5 V</text>
 <text x="485" y="450" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">VCE ≈ VCC</text>
 <text x="485" y="484" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">漏流随温度翻倍</text>
-<path d="M306 411 Q321.00 410.95 336 411" fill="none" stroke="#37424e" stroke-width="2.5" stroke-linecap="round"/><polygon points="336,411 346,406 346,416" fill="#37424e"/>
+<path d="M306 411 Q321.00 410.90 336 411" fill="none" stroke="#37424e" stroke-width="2.5" stroke-linecap="round"/><polygon points="336,411 346,406 346,416" fill="#37424e"/>
 <rect x="650" y="326" width="290" height="170" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<rect class="ink-echo" x="650" y="326" width="290" height="170" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(-1.10 0.65) rotate(-0.07 795.0 411.0)"/>
 <text x="795" y="360" font-size="25" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">尚未正偏</text>
-<path d="M672 380 Q795.00 379.39 918 380" fill="none" stroke="#c9bb9d" stroke-width="1.5"/>
+<path d="M672 380 Q795.00 378.83 918 380" fill="none" stroke="#c9bb9d" stroke-width="1.5"/>
 <text x="795" y="416" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">VBE = 0 V</text>
 <text x="795" y="450" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">查驱动 / B-E 短路</text>
 <text x="795" y="484" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">不能直接判开路</text>
-<path d="M630 411 Q638.00 411.01 646 411" fill="none" stroke="#37424e" stroke-width="2.5" stroke-linecap="round"/><polygon points="646,411 656,406 656,416" fill="#37424e"/>
+<path d="M630 411 Q638.00 411.02 646 411" fill="none" stroke="#37424e" stroke-width="2.5" stroke-linecap="round"/><polygon points="646,411 656,406 656,416" fill="#37424e"/>
 <rect x="56" y="520" width="888" height="150" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<rect class="ink-echo" x="56" y="520" width="888" height="150" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(1.06 -0.62) rotate(-0.11 500.0 595.0)"/>
 <text x="500" y="552" font-size="26" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">两条边界不能忘</text>
-<path d="M90 570 Q500.00 568.86 910 570" fill="none" stroke="#c9bb9d" stroke-width="1.5"/>
+<path d="M90 570 Q500.00 567.83 910 570" fill="none" stroke="#c9bb9d" stroke-width="1.5"/>
 <text x="90" y="602" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">击穿不是第四区：BVCEO 40 V（2N2222A）是失效边界，不是设计空间</text>
 <text x="90" y="640" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">截止漏流每升 8~10 °C 翻倍：85 °C 高阻负载要按微安级重算</text>
 </svg>

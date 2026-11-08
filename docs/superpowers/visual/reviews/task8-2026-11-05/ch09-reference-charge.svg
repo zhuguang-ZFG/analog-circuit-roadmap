@@ -35,6 +35,17 @@
 </defs>
 <rect class="page-bg" width="1000" height="700" fill="url(#bgL)"/>
 <rect class="page-grain" width="1000" height="700" fill="url(#dots)"/>
+<defs>
+<pattern id="fiber" width="96" height="96" patternUnits="userSpaceOnUse" patternTransform="rotate(-6)">
+<path d="M8 18 q16 -2.2 36 -0.4" stroke="#c9bb9d" stroke-width="0.55" fill="none" stroke-opacity="0.55"/>
+<path d="M54 12 q10 1.4 22 0.2" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.4"/>
+<path d="M20 52 q14 1.8 30 -0.6" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.45"/>
+<path d="M62 66 q12 -1.6 24 0.4" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.38"/>
+<path d="M14 84 q18 1.4 34 -0.2" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.42"/>
+</pattern>
+</defs>
+<rect class="page-fiber" width="1000" height="700" fill="url(#fiber)" opacity="0.55"/>
+
 <rect class="page-vig" width="1000" height="700" fill="url(#vig)"/>
 <rect class="page-hdr" width="1000" height="72" fill="url(#hdr)"/>
 <style>
@@ -93,20 +104,21 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 }
 </style>
 
-<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">参考端抽电荷，缓冲器在两次采样间补回</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">示意每 10 µs 抽走 1 nC；R=10 Ω、C=1 µF，忽略其他寄生。</text>
+<polygon class="marker-wash" points="46.2,22.2 439.4,21.3 743.0,23.3 745.4,62.1 420.0,64.3 43.0,62.9" fill="#a4630f" opacity="0.13"/>
+<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">参考端抽电荷，缓冲器在两次采样间补回</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">示意每 10 µs 抽走 1 nC；R=10 Ω、C=1 µF，忽略其他寄生。</text>
 <text x="70" y="200" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">理想基准</text>
-<path d="M80 235 Q172.50 235.41 265 235" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
+<path d="M80 235 Q172.50 235.78 265 235" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
 <rect x="265" y="222" width="75" height="26" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
 <text x="300" y="198" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">10 Ω</text>
-<path d="M340 235 Q570.00 233.90 800 235" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
-<path d="M500 235 Q499.86 282.50 500 330" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
-<path d="M465 330 Q500.00 330.21 535 330" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
-<path d="M465 345 Q500.00 345.00 535 345" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
-<path d="M500 345 Q500.17 377.50 500 410" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
-<path d="M480 410 Q500.00 410.04 520 410" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
+<path d="M340 235 Q570.00 232.91 800 235" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
+<path d="M500 235 Q499.74 282.50 500 330" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
+<path d="M465 330 Q500.00 330.39 535 330" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
+<path d="M465 345 Q500.00 344.99 535 345" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
+<path d="M500 345 Q500.33 377.50 500 410" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
+<path d="M480 410 Q500.00 410.08 520 410" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
 <text x="565" y="348" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">1 µF</text>
 <text x="770" y="202" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">ADC 参考端</text>
-<path d="M800 260 Q800.16 312.50 800 365" fill="none" stroke="#a8321f" stroke-width="2.5" stroke-dasharray=""/><polygon points="800,365 795,355 805,355" fill="#a8321f"/>
+<path d="M800 260 Q800.30 312.50 800 365" fill="none" stroke="#a8321f" stroke-width="2.5" stroke-dasharray=""/><polygon points="800,365 795,355 805,355" fill="#a8321f"/>
 <text x="800" y="410" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">每拍取 1 nC</text>
 <path d="M365 285 Q407.50 285.00 450 285" fill="none" stroke="#1f5d7a" stroke-width="2.5" stroke-dasharray=""/><polygon points="450,285 440,290 440,280" fill="#1f5d7a"/>
 <text x="300" y="330" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">补电</text>

@@ -1,5 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
-<title id="title">根因与触发条件</title><desc id="desc">手绘复盘分栏：左栏根因分别是环路相位裕度不足、晶振线与开关节点平行 6 毫米、BGA 焊球虚焊；右栏触发条件分别是低温让 MLCC 容值再降、关盖温升 23 摄氏度与高 dV/dt、热循环振动与拍桌子。</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>
@@ -36,6 +35,17 @@
 </defs>
 <rect class="page-bg" width="1000" height="700" fill="url(#bgL)"/>
 <rect class="page-grain" width="1000" height="700" fill="url(#dots)"/>
+<defs>
+<pattern id="fiber" width="96" height="96" patternUnits="userSpaceOnUse" patternTransform="rotate(-6)">
+<path d="M8 18 q16 -2.2 36 -0.4" stroke="#c9bb9d" stroke-width="0.55" fill="none" stroke-opacity="0.55"/>
+<path d="M54 12 q10 1.4 22 0.2" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.4"/>
+<path d="M20 52 q14 1.8 30 -0.6" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.45"/>
+<path d="M62 66 q12 -1.6 24 0.4" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.38"/>
+<path d="M14 84 q18 1.4 34 -0.2" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.42"/>
+</pattern>
+</defs>
+<rect class="page-fiber" width="1000" height="700" fill="url(#fiber)" opacity="0.55"/>
+
 <rect class="page-vig" width="1000" height="700" fill="url(#vig)"/>
 <rect class="page-hdr" width="1000" height="72" fill="url(#hdr)"/>
 <style>
@@ -94,25 +104,33 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 }
 </style>
 
-<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">复盘先把“根因”和“触发条件”分开</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">根因是本来就存在的缺陷；触发条件只是把它暴露出来的那阵风。</text>
+<polygon class="marker-wash" points="43.2,23.3 299.2,21.0 642.3,22.8 640.0,63.1 253.0,63.2 43.9,64.6" fill="#a4630f" opacity="0.13"/>
+<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">复盘先把“根因”和“触发条件”分开</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">根因是本来就存在的缺陷；触发条件只是把它暴露出来的那阵风。</text>
 <text x="72" y="150" font-size="24" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">根因（设计 / 工艺缺陷）</text>
 <text x="548" y="150" font-size="24" fill="#1f5d7a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">触发条件（那阵风）</text>
 <rect x="60" y="190" width="440" height="100" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<rect class="ink-echo" x="60" y="190" width="440" height="100" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(1.07 0.65) rotate(-0.04 280.0 240.0)"/>
 <rect x="520" y="190" width="420" height="100" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<rect class="ink-echo" x="520" y="190" width="420" height="100" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(1.40 -0.78) rotate(0.04 730.0 240.0)"/>
 <text x="84" y="232" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">A 环路相位裕度不足</text>
 <text x="544" y="232" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">低温让 MLCC 容值再降</text>
-<path d="M500 240 Q508.00 239.96 516 240" fill="none" stroke="#a4630f" stroke-width="2.5" stroke-linecap="round"/><polygon points="516,240 504.0,245.0 504.0,235.0" fill="#a4630f"/>
+<path d="M500 240 Q508.00 239.92 516 240" fill="none" stroke="#a4630f" stroke-width="2.5" stroke-linecap="round"/><polygon points="516,240 504.0,245.0 504.0,235.0" fill="#a4630f"/>
 <rect x="60" y="318" width="440" height="100" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<rect class="ink-echo" x="60" y="318" width="440" height="100" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(-1.17 0.80) rotate(-0.01 280.0 368.0)"/>
 <rect x="520" y="318" width="420" height="100" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<rect class="ink-echo" x="520" y="318" width="420" height="100" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(1.23 0.79) rotate(0.11 730.0 368.0)"/>
 <text x="84" y="360" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">B 晶振线与 SW 平行 6 mm</text>
 <text x="544" y="360" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">关盖温升 23 °C + 高 dV/dt</text>
-<path d="M500 368 Q508.00 368.07 516 368" fill="none" stroke="#a4630f" stroke-width="2.5" stroke-linecap="round"/><polygon points="516,368 504.0,373.0 504.0,363.0" fill="#a4630f"/>
+<path d="M500 368 Q508.00 368.13 516 368" fill="none" stroke="#a4630f" stroke-width="2.5" stroke-linecap="round"/><polygon points="516,368 504.0,373.0 504.0,363.0" fill="#a4630f"/>
 <rect x="60" y="446" width="440" height="100" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<rect class="ink-echo" x="60" y="446" width="440" height="100" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(1.40 -0.63) rotate(0.09 280.0 496.0)"/>
 <rect x="520" y="446" width="420" height="100" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<rect class="ink-echo" x="520" y="446" width="420" height="100" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(1.44 -0.73) rotate(-0.08 730.0 496.0)"/>
 <text x="84" y="488" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">C BGA 焊球虚焊</text>
 <text x="544" y="488" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">热循环、振动、拍桌子</text>
-<path d="M500 496 Q508.00 495.93 516 496" fill="none" stroke="#a4630f" stroke-width="2.5" stroke-linecap="round"/><polygon points="516,496 504.0,501.0 504.0,491.0" fill="#a4630f"/>
+<path d="M500 496 Q508.00 495.87 516 496" fill="none" stroke="#a4630f" stroke-width="2.5" stroke-linecap="round"/><polygon points="516,496 504.0,501.0 504.0,491.0" fill="#a4630f"/>
 <rect x="60" y="590" width="880" height="76" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<rect class="ink-echo" x="60" y="590" width="880" height="76" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(1.30 -0.92) rotate(0.09 500.0 628.0)"/>
 <text x="88" y="622" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">把老化温度从 -20 °C 改成 0 °C，板子“好了”，缺陷还在。</text>
 <text x="88" y="652" font-size="22" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">根因不改，换个触发条件它还会回来。</text>
 </svg>
