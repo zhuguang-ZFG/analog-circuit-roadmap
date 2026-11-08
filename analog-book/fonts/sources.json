@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "generated_by": "scripts/subset_fonts.py",
-  "required_text_characters": 2288,
+  "required_text_characters": 2207,
   "sources": [
     {
       "family": "NotoSerifSC",
@@ -57,33 +57,33 @@
       "name": "NotoSerifSC-Regular.woff2",
       "family": "NotoSerifSC",
       "weight": 400,
-      "characters": 2288,
-      "bytes": 391004,
-      "sha256": "f75ed10d89da4c6a23caa8c9f171317d205ee35cd3041ce256a6c3cf605ad9b5"
+      "characters": 2207,
+      "bytes": 375896,
+      "sha256": "7b7d29895a9fd8d48bddbadda00176ac468fd587726b70090f464e2e2a042c6f"
     },
     {
       "name": "NotoSerifSC-Bold.woff2",
       "family": "NotoSerifSC",
       "weight": 700,
-      "characters": 2288,
-      "bytes": 403796,
-      "sha256": "965cd63de0b201ce025ccf94957225858f528c3a0c008e9311d9273d0b09ca1f"
+      "characters": 2207,
+      "bytes": 388048,
+      "sha256": "e522e7c35fcf414776e1daefa29a1e8065e919b48c3d687064a5b92b21934f18"
     },
     {
       "name": "NotoSansSC-Regular.woff2",
       "family": "NotoSansSC",
       "weight": 400,
-      "characters": 2288,
-      "bytes": 305236,
-      "sha256": "85222f90db56861d38669aff1efe16fafc7164d2181827cda848c20cef622fbb"
+      "characters": 2207,
+      "bytes": 293996,
+      "sha256": "fa179574d3f6bb91c12d91af0383f09409b2ded535f80cd5e463d81ed213cc61"
     },
     {
       "name": "NotoSansSC-Bold.woff2",
       "family": "NotoSansSC",
       "weight": 700,
-      "characters": 2288,
-      "bytes": 312860,
-      "sha256": "8b598203d9b28ee49c79a688b0460ea5db7e5b5240acbf53ccc73db139f1e18f"
+      "characters": 2207,
+      "bytes": 300568,
+      "sha256": "08577813fa89bacc218d8399b540ceaa4555ab4b1bede534b78bf7315c5be11f"
     },
     {
       "name": "JetBrainsMono-Regular.woff2",
@@ -98,9 +98,9 @@
     "name": "BookSans-Stamp.ttf",
     "family": "NotoSansSC",
     "weight": 700,
-    "characters": 938,
-    "bytes": 243308,
-    "sha256": "8335d53334726fd65e2f5eb4ffc5c97317a8556856aa7b5a4767181d9c5d48b8"
+    "characters": 964,
+    "bytes": 250908,
+    "sha256": "22de9ad8d34e1a310496e668b54eb9084d56eba53387edeb0a1b21039e52ac8c"
   },
   "licenses": [
     {
@@ -121,8 +121,8 @@
       "name": "OFL-JetBrainsMono.txt",
       "family": "JetBrainsMono",
       "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/jetbrainsmono/OFL.txt",
-      "bytes": 4399,
-      "sha256": "b2fe5e8987594e9ffd1d2ca52a2f5d73eb8335243893c5d6254b5ad69269591d"
+      "bytes": 4492,
+      "sha256": "ef2870fd9ccb5f68d6b89aba72c3b30a27ab66f317b41d8c2c048693236bee01"
     },
     {
       "name": "OFL-NotoSerif.txt",
