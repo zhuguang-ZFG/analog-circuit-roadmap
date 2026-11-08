@@ -35,6 +35,17 @@
 </defs>
 <rect class="page-bg" width="1000" height="700" fill="url(#bgL)"/>
 <rect class="page-grain" width="1000" height="700" fill="url(#dots)"/>
+<defs>
+<pattern id="fiber" width="96" height="96" patternUnits="userSpaceOnUse" patternTransform="rotate(-6)">
+<path d="M8 18 q16 -2.2 36 -0.4" stroke="#c9bb9d" stroke-width="0.55" fill="none" stroke-opacity="0.55"/>
+<path d="M54 12 q10 1.4 22 0.2" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.4"/>
+<path d="M20 52 q14 1.8 30 -0.6" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.45"/>
+<path d="M62 66 q12 -1.6 24 0.4" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.38"/>
+<path d="M14 84 q18 1.4 34 -0.2" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.42"/>
+</pattern>
+</defs>
+<rect class="page-fiber" width="1000" height="700" fill="url(#fiber)" opacity="0.55"/>
+
 <rect class="page-vig" width="1000" height="700" fill="url(#vig)"/>
 <rect class="page-hdr" width="1000" height="72" fill="url(#hdr)"/>
 <style>
@@ -93,22 +104,27 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 }
 </style>
 
-<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">上下电压窗口，各自从标称值计预算</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">示意 3.3 V、±5%：下限 3.135 V，上限 3.465 V；不能把两边合花。</text>
+<polygon class="marker-wash" points="45.1,23.4 259.7,23.5 670.0,24.5 667.9,63.9 370.1,62.9 43.2,62.3" fill="#a4630f" opacity="0.13"/>
+<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">上下电压窗口，各自从标称值计预算</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">示意 3.3 V、±5%：下限 3.135 V，上限 3.465 V；不能把两边合花。</text>
 <rect x="161.74999999999937" y="190" width="676.5" height="80" rx="6" fill="#f6eedb" stroke="#3d6b4a" stroke-width="2"/>
-<path d="M90 305 Q500.00 305.57 910 305" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
-<path d="M161.75 180 Q161.64 247.50 161.75 315" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
+<rect class="ink-echo" x="161.74999999999937" y="190" width="676.5" height="80" rx="6" stroke="#3d6b4a" stroke-width="2" fill="none" opacity="0.32" transform="translate(1.14 0.83) rotate(0.10 500.0 230.0)"/>
+<path d="M90 305 Q500.00 306.08 910 305" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
+<path d="M161.75 180 Q161.54 247.50 161.75 315" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
 <text x="161.74999999999937" y="355" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">3.135 V</text>
-<path d="M500 180 Q500.13 247.50 500 315" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
+<path d="M500 180 Q500.24 247.50 500 315" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
 <text x="499.99999999999943" y="355" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">3.3 V</text>
-<path d="M838.25 180 Q838.29 247.50 838.25 315" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
+<path d="M838.25 180 Q838.33 247.50 838.25 315" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
 <text x="838.2499999999994" y="355" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">3.465 V</text>
 <text x="500" y="240" font-size="26" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">允许电压窗口</text>
 <text x="50" y="420" font-size="26" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">若下降目标为 99 mV，可分配为：</text>
 <rect x="60" y="460" width="160" height="70" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<rect class="ink-echo" x="60" y="460" width="160" height="70" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(1.05 -0.66) rotate(0.06 140.0 495.0)"/>
 <text x="140" y="570" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">ESR 20 mV</text>
 <rect x="220" y="460" width="480" height="70" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<rect class="ink-echo" x="220" y="460" width="480" height="70" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(1.21 0.80) rotate(0.04 460.0 495.0)"/>
 <text x="460" y="570" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">缺口电荷 60 mV</text>
 <rect x="700" y="460" width="152" height="70" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<rect class="ink-echo" x="700" y="460" width="152" height="70" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(-1.46 -0.82) rotate(0.11 776.0 495.0)"/>
 <text x="776" y="570" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">余项 19 mV</text>
 <text x="50" y="635" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">控制接管后仍可能放电；恢复段缺口也必须纳入 99 mV 总预算。</text>
 </svg>

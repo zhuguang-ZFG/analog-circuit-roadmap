@@ -35,6 +35,17 @@
 </defs>
 <rect class="page-bg" width="1000" height="700" fill="url(#bgL)"/>
 <rect class="page-grain" width="1000" height="700" fill="url(#dots)"/>
+<defs>
+<pattern id="fiber" width="96" height="96" patternUnits="userSpaceOnUse" patternTransform="rotate(-6)">
+<path d="M8 18 q16 -2.2 36 -0.4" stroke="#c9bb9d" stroke-width="0.55" fill="none" stroke-opacity="0.55"/>
+<path d="M54 12 q10 1.4 22 0.2" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.4"/>
+<path d="M20 52 q14 1.8 30 -0.6" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.45"/>
+<path d="M62 66 q12 -1.6 24 0.4" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.38"/>
+<path d="M14 84 q18 1.4 34 -0.2" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.42"/>
+</pattern>
+</defs>
+<rect class="page-fiber" width="1000" height="700" fill="url(#fiber)" opacity="0.55"/>
+
 <rect class="page-vig" width="1000" height="700" fill="url(#vig)"/>
 <rect class="page-hdr" width="1000" height="72" fill="url(#hdr)"/>
 <style>
@@ -93,30 +104,34 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 }
 </style>
 
-<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">高频回流是镜像电流</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">它不认识 GND 符号，只认电感最小的路：布线前先问这条信号的回家路通不通。</text>
+<polygon class="marker-wash" points="43.2,21.6 192.6,23.6 403.4,25.5 402.7,64.9 237.1,63.6 45.2,63.6" fill="#a4630f" opacity="0.13"/>
+<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">高频回流是镜像电流</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">它不认识 GND 符号，只认电感最小的路：布线前先问这条信号的回家路通不通。</text>
 <rect x="56" y="126" width="424" height="304" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<rect class="ink-echo" x="56" y="126" width="424" height="304" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(-1.44 -0.73) rotate(0.10 268.0 278.0)"/>
 <text x="268" y="162" font-size="26" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">完整地平面</text>
 <rect x="120" y="200" width="300" height="14" rx="3" fill="#1f5d7a" stroke="#16202b" stroke-width="1.4"/>
 <text x="470" y="214" font-size="24" fill="#1f5d7a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="end">信号</text>
-<path d="M150 190 Q275.00 190.08 400 190" fill="none" stroke="#1f5d7a" stroke-width="2" stroke-linecap="round"/><polygon points="400,190 390,185 390,195" fill="#1f5d7a"/>
+<path d="M150 190 Q275.00 190.15 400 190" fill="none" stroke="#1f5d7a" stroke-width="2" stroke-linecap="round"/><polygon points="400,190 390,185 390,195" fill="#1f5d7a"/>
 <rect x="100" y="330" width="340" height="16" rx="3" fill="#16202b" stroke="#16202b" stroke-width="1.4"/>
-<path d="M400 312 Q275.00 312.59 150 312" fill="none" stroke="#3d6b4a" stroke-width="2.5" stroke-linecap="round"/><polygon points="150,312 160,307 160,317" fill="#3d6b4a"/>
+<path d="M400 312 Q275.00 313.11 150 312" fill="none" stroke="#3d6b4a" stroke-width="2.5" stroke-linecap="round"/><polygon points="150,312 160,307 160,317" fill="#3d6b4a"/>
 <text x="268" y="292" font-size="22" fill="#3d6b4a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">回流紧贴正下方</text>
 <text x="268" y="372" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">离地 0.2mm：集中在 ±1mm 内</text>
 <text x="268" y="408" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">介质越薄，贴得越紧</text>
 <rect x="520" y="126" width="424" height="304" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<rect class="ink-echo" x="520" y="126" width="424" height="304" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(-1.46 -0.81) rotate(0.06 732.0 278.0)"/>
 <text x="732" y="162" font-size="26" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">地平面开槽：桥被拆了</text>
 <rect x="570" y="200" width="250" height="14" rx="3" fill="#1f5d7a" stroke="#16202b" stroke-width="1.4"/>
 <rect x="570" y="330" width="150" height="16" rx="3" fill="#16202b" stroke="#16202b" stroke-width="1.4"/>
 <rect x="790" y="330" width="130" height="16" rx="3" fill="#16202b" stroke="#16202b" stroke-width="1.4"/>
 <text x="745" y="348" font-size="24" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">槽</text>
 <path d="M700,224 L700,318 Q700,392 745,392 Q790,392 790,318 L790,224" stroke="#a8321f" stroke-width="2.5" fill="none" stroke-dasharray="7 5" stroke-linecap="round"/>
-<path d="M748 398 Q767.00 397.94 786 398" fill="none" stroke="#a8321f" stroke-width="2" stroke-linecap="round"/><polygon points="786,398 776,393 776,403" fill="#a8321f"/>
+<path d="M748 398 Q767.00 397.89 786 398" fill="none" stroke="#a8321f" stroke-width="2" stroke-linecap="round"/><polygon points="786,398 776,393 776,403" fill="#a8321f"/>
 <text x="732" y="268" font-size="24" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">绕路 = 大环路 = 天线</text>
 <text x="732" y="412" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">离地 1mm 时回流铺开 ±5mm</text>
 <rect x="56" y="456" width="888" height="214" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<rect class="ink-echo" x="56" y="456" width="888" height="214" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(-1.54 -0.61) rotate(-0.11 500.0 563.0)"/>
 <text x="500" y="492" font-size="26" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">判据是回路围了多大，不是地通不通</text>
-<path d="M90 512 Q500.00 512.44 910 512" fill="none" stroke="#c9bb9d" stroke-width="1.5"/>
+<path d="M90 512 Q500.00 512.85 910 512" fill="none" stroke="#c9bb9d" stroke-width="1.5"/>
 <text x="90" y="546" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">低频拐弯省电阻，高频拐弯省电感</text>
 <text x="90" y="588" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">反焊盘挤成奶酪缝：过孔排之间留横向铜通道，宽度至少等于孔距</text>
 <text x="90" y="630" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">万不得已跨分割：缝上并 1000pF–10nF，环路缩到电容两侧——补救不是方案</text>

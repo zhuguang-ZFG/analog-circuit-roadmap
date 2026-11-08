@@ -35,6 +35,17 @@
 </defs>
 <rect class="page-bg" width="1000" height="700" fill="url(#bgL)"/>
 <rect class="page-grain" width="1000" height="700" fill="url(#dots)"/>
+<defs>
+<pattern id="fiber" width="96" height="96" patternUnits="userSpaceOnUse" patternTransform="rotate(-6)">
+<path d="M8 18 q16 -2.2 36 -0.4" stroke="#c9bb9d" stroke-width="0.55" fill="none" stroke-opacity="0.55"/>
+<path d="M54 12 q10 1.4 22 0.2" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.4"/>
+<path d="M20 52 q14 1.8 30 -0.6" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.45"/>
+<path d="M62 66 q12 -1.6 24 0.4" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.38"/>
+<path d="M14 84 q18 1.4 34 -0.2" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.42"/>
+</pattern>
+</defs>
+<rect class="page-fiber" width="1000" height="700" fill="url(#fiber)" opacity="0.55"/>
+
 <rect class="page-vig" width="1000" height="700" fill="url(#vig)"/>
 <rect class="page-hdr" width="1000" height="72" fill="url(#hdr)"/>
 <style>
@@ -93,24 +104,29 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 }
 </style>
 
-<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">假设树：一个现象，两条互斥分支</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">先写“结果为 A 则排除 B”，再下探头；写不出判据就不做实验。</text>
+<polygon class="marker-wash" points="42.4,23.9 293.8,21.8 633.0,24.3 630.0,65.7 270.9,64.8 44.4,65.7" fill="#a4630f" opacity="0.13"/>
+<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">假设树：一个现象，两条互斥分支</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">先写“结果为 A 则排除 B”，再下探头；写不出判据就不做实验。</text>
 <rect x="300" y="120" width="400" height="64" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<rect class="ink-echo" x="300" y="120" width="400" height="64" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(1.34 -0.74) rotate(0.09 500.0 152.0)"/>
 <text x="500" y="160" font-size="26" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">现象：输出缓慢漂移</text>
-<path d="M430 184 Q350.02 218.04 270 252" fill="none" stroke="#37424e" stroke-width="2.5" stroke-linecap="round"/><polygon points="270,252 260,247 260,257" fill="#37424e"/>
-<path d="M570 184 Q650.25 217.40 730 252" fill="none" stroke="#37424e" stroke-width="2.5" stroke-linecap="round"/><polygon points="730,252 720,247 720,257" fill="#37424e"/>
+<path d="M430 184 Q350.03 218.08 270 252" fill="none" stroke="#37424e" stroke-width="2.5" stroke-linecap="round"/><polygon points="270,252 260,247 260,257" fill="#37424e"/>
+<path d="M570 184 Q650.48 216.87 730 252" fill="none" stroke="#37424e" stroke-width="2.5" stroke-linecap="round"/><polygon points="730,252 720,247 720,257" fill="#37424e"/>
 <rect x="70" y="260" width="350" height="190" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<rect class="ink-echo" x="70" y="260" width="350" height="190" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(1.31 0.87) rotate(-0.02 245.0 355.0)"/>
 <text x="90" y="300" font-size="24" fill="#a4630f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">假设 A：电源轨在动</text>
 <text x="90" y="338" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">预测：VCC 随负载跌</text>
 <text x="90" y="374" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">实验：带载测 VCC</text>
 <text x="90" y="410" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">判据：跌幅超过规格</text>
 <rect x="580" y="260" width="350" height="190" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<rect class="ink-echo" x="580" y="260" width="350" height="190" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(1.29 0.96) rotate(-0.10 755.0 355.0)"/>
 <text x="600" y="300" font-size="24" fill="#1f5d7a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">假设 B：测量链在漂</text>
 <text x="600" y="338" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">预测：短接输入仍漂</text>
 <text x="600" y="374" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">实验：短接看零点</text>
 <text x="600" y="410" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">判据：零点自己会走</text>
-<path d="M245 450 Q312.62 479.73 380 510" fill="none" stroke="#37424e" stroke-width="2.5" stroke-linecap="round"/><polygon points="380,510 370,505 370,515" fill="#37424e"/>
-<path d="M755 450 Q687.29 479.53 620 510" fill="none" stroke="#37424e" stroke-width="2.5" stroke-linecap="round"/><polygon points="620,510 610,505 610,515" fill="#37424e"/>
+<path d="M245 450 Q312.73 479.49 380 510" fill="none" stroke="#37424e" stroke-width="2.5" stroke-linecap="round"/><polygon points="380,510 370,505 370,515" fill="#37424e"/>
+<path d="M755 450 Q687.10 479.10 620 510" fill="none" stroke="#37424e" stroke-width="2.5" stroke-linecap="round"/><polygon points="620,510 610,505 610,515" fill="#37424e"/>
 <rect x="160" y="510" width="680" height="96" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<rect class="ink-echo" x="160" y="510" width="680" height="96" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(-1.31 0.85) rotate(0.03 500.0 558.0)"/>
 <text x="500" y="548" font-size="26" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">结果为 A → 排除 B；结果为 B → 排除 A</text>
 <text x="500" y="582" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">两个实验必须能区分至少两条分支</text>
 <text x="52" y="660" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">一次只改一个变量；无效就回退，再改下一个。</text>

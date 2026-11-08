@@ -35,6 +35,17 @@
 </defs>
 <rect class="page-bg" width="1000" height="700" fill="url(#bgL)"/>
 <rect class="page-grain" width="1000" height="700" fill="url(#dots)"/>
+<defs>
+<pattern id="fiber" width="96" height="96" patternUnits="userSpaceOnUse" patternTransform="rotate(-6)">
+<path d="M8 18 q16 -2.2 36 -0.4" stroke="#c9bb9d" stroke-width="0.55" fill="none" stroke-opacity="0.55"/>
+<path d="M54 12 q10 1.4 22 0.2" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.4"/>
+<path d="M20 52 q14 1.8 30 -0.6" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.45"/>
+<path d="M62 66 q12 -1.6 24 0.4" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.38"/>
+<path d="M14 84 q18 1.4 34 -0.2" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.42"/>
+</pattern>
+</defs>
+<rect class="page-fiber" width="1000" height="700" fill="url(#fiber)" opacity="0.55"/>
+
 <rect class="page-vig" width="1000" height="700" fill="url(#vig)"/>
 <rect class="page-hdr" width="1000" height="72" fill="url(#hdr)"/>
 <style>
@@ -93,26 +104,27 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 }
 </style>
 
-<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">分流电流怎么分，先画两条支路</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">示意恒压 5.1 V、R=360 Ω；输入 10.8–13.2 V，负载 0–10 mA。</text>
+<polygon class="marker-wash" points="43.4,22.4 215.2,20.5 592.7,22.1 591.7,63.1 258.4,62.5 44.7,64.9" fill="#a4630f" opacity="0.13"/>
+<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">分流电流怎么分，先画两条支路</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">示意恒压 5.1 V、R=360 Ω；输入 10.8–13.2 V，负载 0–10 mA。</text>
 <text x="300" y="160" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">VIN</text>
-<path d="M300 170 Q300.09 182.50 300 195" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
+<path d="M300 170 Q300.16 182.50 300 195" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
 <rect x="286" y="195" width="28" height="60" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
 <text x="345" y="234" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">360 Ω</text>
-<path d="M300 255 Q299.50 322.50 300 390" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
-<path d="M300 300 Q445.00 301.04 590 300" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
+<path d="M300 255 Q299.05 322.50 300 390" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
+<path d="M300 300 Q445.00 301.97 590 300" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
 <text x="605" y="308" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">5.1 V</text>
-<path d="M590 300 Q589.71 345.00 590 390" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
+<path d="M590 300 Q589.44 345.00 590 390" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
 <rect x="576" y="390" width="28" height="65" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
 <text x="635" y="430" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">负载</text>
 <path d="M590 455 Q590.00 472.50 590 490" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
-<path d="M300 440 Q299.80 465.00 300 490" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
-<path d="M270 490 Q445.00 491.48 620 490" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
+<path d="M300 440 Q299.61 465.00 300 490" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
+<path d="M270 490 Q445.00 492.80 620 490" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
 <path d="M280,420 L300,390 L320,420 Z M278,382 V390 H322 V398" fill="none" stroke="#16202b" stroke-width="3"/>
-<path d="M300 420 Q299.94 430.00 300 440" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
+<path d="M300 420 Q299.88 430.00 300 440" fill="none" stroke="#16202b" stroke-width="3" stroke-dasharray=""/>
 <text x="180" y="423" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">分流器</text>
-<path d="M370 330 Q369.79 360.00 370 390" fill="none" stroke="#1f5d7a" stroke-width="2.5" stroke-dasharray=""/><polygon points="370,390 365,380 375,380" fill="#1f5d7a"/>
+<path d="M370 330 Q369.60 360.00 370 390" fill="none" stroke="#1f5d7a" stroke-width="2.5" stroke-dasharray=""/><polygon points="370,390 365,380 375,380" fill="#1f5d7a"/>
 <text x="400" y="370" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">IZ</text>
-<path d="M660 330 Q660.06 360.00 660 390" fill="none" stroke="#a8321f" stroke-width="2.5" stroke-dasharray=""/><polygon points="660,390 655,380 665,380" fill="#a8321f"/>
+<path d="M660 330 Q660.11 360.00 660 390" fill="none" stroke="#a8321f" stroke-width="2.5" stroke-dasharray=""/><polygon points="660,390 655,380 665,380" fill="#a8321f"/>
 <text x="50" y="555" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">最低输入 + 满载：IZ ≈ 5.83 mA。</text>
 <text x="50" y="600" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">最高输入 + 空载：IZ = 22.5 mA，分流约 115 mW。</text>
 <text x="50" y="645" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">电阻约 182 mW；实物须重算电压曲线、容差与降额。</text>

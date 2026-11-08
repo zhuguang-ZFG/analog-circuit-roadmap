@@ -35,6 +35,17 @@
 </defs>
 <rect class="page-bg" width="1000" height="700" fill="url(#bgL)"/>
 <rect class="page-grain" width="1000" height="700" fill="url(#dots)"/>
+<defs>
+<pattern id="fiber" width="96" height="96" patternUnits="userSpaceOnUse" patternTransform="rotate(-6)">
+<path d="M8 18 q16 -2.2 36 -0.4" stroke="#c9bb9d" stroke-width="0.55" fill="none" stroke-opacity="0.55"/>
+<path d="M54 12 q10 1.4 22 0.2" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.4"/>
+<path d="M20 52 q14 1.8 30 -0.6" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.45"/>
+<path d="M62 66 q12 -1.6 24 0.4" stroke="#c9bb9d" stroke-width="0.45" fill="none" stroke-opacity="0.38"/>
+<path d="M14 84 q18 1.4 34 -0.2" stroke="#c9bb9d" stroke-width="0.5" fill="none" stroke-opacity="0.42"/>
+</pattern>
+</defs>
+<rect class="page-fiber" width="1000" height="700" fill="url(#fiber)" opacity="0.55"/>
+
 <rect class="page-vig" width="1000" height="700" fill="url(#vig)"/>
 <rect class="page-hdr" width="1000" height="72" fill="url(#hdr)"/>
 <style>
@@ -93,41 +104,42 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 }
 </style>
 
-<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">降额不是口号：把工作点压进绿区</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">表 14-2 的建议工作上限；横轴是额定值的百分比，100% 不是工作点。</text>
-<path d="M300 560 Q600.00 560.00 900 560" fill="none" stroke="#37424e" stroke-width="2"/>
-<path d="M600 552 Q600.06 560.00 600 568" fill="none" stroke="#37424e" stroke-width="2"/>
+<polygon class="marker-wash" points="42.4,23.9 293.8,21.8 633.0,24.3 630.0,65.7 270.9,64.8 44.4,65.7" fill="#a4630f" opacity="0.13"/>
+<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">降额不是口号：把工作点压进绿区</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">表 14-2 的建议工作上限；横轴是额定值的百分比，100% 不是工作点。</text>
+<path d="M300 560 Q600.00 559.99 900 560" fill="none" stroke="#37424e" stroke-width="2"/>
+<path d="M600 552 Q600.11 560.00 600 568" fill="none" stroke="#37424e" stroke-width="2"/>
 <text x="600.0" y="596" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">50%</text>
-<path d="M900 552 Q899.99 560.00 900 568" fill="none" stroke="#37424e" stroke-width="2"/>
+<path d="M900 552 Q899.98 560.00 900 568" fill="none" stroke="#37424e" stroke-width="2"/>
 <text x="900.0" y="596" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">100%</text>
 <text x="72" y="200" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">电阻功率</text>
 <rect x="300" y="170" width="600" height="34" rx="4" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.2"/>
 <rect x="300" y="170" width="360" height="34" rx="4" fill="#3d6b4a" opacity=".55"/>
-<path d="M660 166 Q660.12 187.00 660 208" fill="none" stroke="#a8321f" stroke-width="2.6"/>
+<path d="M660 166 Q660.22 187.00 660 208" fill="none" stroke="#a8321f" stroke-width="2.6"/>
 <text x="912" y="196" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="end">50–60%</text>
 <text x="72" y="264" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">陶瓷电容</text>
 <rect x="300" y="234" width="600" height="34" rx="4" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.2"/>
 <rect x="300" y="234" width="480" height="34" rx="4" fill="#3d6b4a" opacity=".55"/>
-<path d="M780 230 Q780.10 251.00 780 272" fill="none" stroke="#a8321f" stroke-width="2.6"/>
+<path d="M780 230 Q780.19 251.00 780 272" fill="none" stroke="#a8321f" stroke-width="2.6"/>
 <text x="912" y="260" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="end">50–80%</text>
 <text x="72" y="328" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">电解电容</text>
 <rect x="300" y="298" width="600" height="34" rx="4" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.2"/>
 <rect x="300" y="298" width="480" height="34" rx="4" fill="#3d6b4a" opacity=".55"/>
-<path d="M780 294 Q779.87 315.00 780 336" fill="none" stroke="#a8321f" stroke-width="2.6"/>
+<path d="M780 294 Q779.75 315.00 780 336" fill="none" stroke="#a8321f" stroke-width="2.6"/>
 <text x="912" y="324" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="end">≤80%</text>
 <text x="72" y="392" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">二极管</text>
 <rect x="300" y="362" width="600" height="34" rx="4" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.2"/>
 <rect x="300" y="362" width="480" height="34" rx="4" fill="#3d6b4a" opacity=".55"/>
-<path d="M780 358 Q779.94 379.00 780 400" fill="none" stroke="#a8321f" stroke-width="2.6"/>
+<path d="M780 358 Q779.88 379.00 780 400" fill="none" stroke="#a8321f" stroke-width="2.6"/>
 <text x="912" y="388" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="end">70–80%</text>
 <text x="72" y="456" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">MOSFET</text>
 <rect x="300" y="426" width="600" height="34" rx="4" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.2"/>
 <rect x="300" y="426" width="480" height="34" rx="4" fill="#3d6b4a" opacity=".55"/>
-<path d="M780 422 Q779.82 443.00 780 464" fill="none" stroke="#a8321f" stroke-width="2.6"/>
+<path d="M780 422 Q779.66 443.00 780 464" fill="none" stroke="#a8321f" stroke-width="2.6"/>
 <text x="912" y="452" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="end">60–80%</text>
 <text x="72" y="520" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">连接器</text>
 <rect x="300" y="490" width="600" height="34" rx="4" fill="#f6eedb" stroke="#c9bb9d" stroke-width="1.2"/>
 <rect x="300" y="490" width="420" height="34" rx="4" fill="#3d6b4a" opacity=".55"/>
-<path d="M720 486 Q720.17 507.00 720 528" fill="none" stroke="#a8321f" stroke-width="2.6"/>
+<path d="M720 486 Q720.33 507.00 720 528" fill="none" stroke="#a8321f" stroke-width="2.6"/>
 <text x="912" y="516" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="end">50–70%</text>
 <text x="300" y="646" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">上限值取表中区间的高端；具体项目以公司降额规范为准。</text>
 </svg>
