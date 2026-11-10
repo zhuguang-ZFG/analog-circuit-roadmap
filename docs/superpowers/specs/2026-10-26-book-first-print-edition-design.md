@@ -274,6 +274,7 @@ analog-book/build_print_book.py   # CLI
 ### 5.5 旧 A4 1.0
 
 - `analog-book/build_book.py` 与 `manifest-a4.json` 冻结：A4 构建器的 `MANIFEST_PATH` 改指 `manifest-a4.json`，正文仍从新 `build_site.py` 生成的 `build/site` 旧页面读取。
+- 修订（2026-11-10，spec owner 批准）：A4 HTML 体积上限 20→24 MB。V4/V2 图 wave 合并入正文后整书实测 21.46MB，超原上限 1.46MB；构建器与 manifest 其余冻结内容不变，A4 仍不取 16K 线的 60/80MB。
 - 线上 `/book/`、Pages 与镜像继续发布 A4 1.0；新 16K 书在 Phase 0 只上传 CI artifact。
 - 2.0 稳定版发布时再切换 `/book/`，删除或归档 A4 管线。
 

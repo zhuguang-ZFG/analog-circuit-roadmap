@@ -29,7 +29,7 @@ Windows 上装了 GNU Make 时可用 `make book` / `make book-pdf` / `make book-
 - Mermaid 路线图使用 `static/roadmap.svg`；改 `docs/p0-06-roadmap.md` 后必须重新生成 `roadmap.source.txt` / `roadmap.svg`。
 - 缺 Playwright/PyMuPDF 时 HTML 仍可构建；PDF 相关测试自动 skip。
 - PDF 默认优先本机 Edge/Chrome，找不到时回退 Playwright 自带 Chromium；可用 `--browser <path>` 指定浏览器。
-- 审计会检查远程资源、重复 ID、跨页锚点、页面数与 20 MB 体积上限；`--check` 不重新构建。
+- 审计会检查远程资源、重复 ID、跨页锚点、页面数与 24 MB 体积上限（2026-11-10 印规修订：20→24，V4 wave 合并后实测 21.46MB，owner 批准）；`--check` 不重新构建。
 
 ## 16K 印刷版
 
