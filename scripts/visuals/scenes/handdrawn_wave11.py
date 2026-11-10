@@ -121,3 +121,8 @@ SCENES = {
 # Corrected chapter 11 model and visual contract.
 from scripts.visuals.scenes.ch11_reference_figures import SCENES as _ch11_corrected
 SCENES['ch11-miller-bandwidth'] = _ch11_corrected['ch11-miller-bandwidth']
+
+# Chapter 13 reviewed model overrides.
+from scripts.visuals.scenes.ch13_reference_figures import SCENES as _CH13_REVIEWED
+for _aid in ['ch13-compliance-ceiling', 'ch13-current-sense-budget']:
+    SCENES[_aid] = _CH13_REVIEWED[_aid]

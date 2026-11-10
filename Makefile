@@ -93,6 +93,7 @@ visual-check:
 	$(PY) -B scripts/check_visual_manifest.py
 	$(PY) -B -m unittest discover -s scripts -p "test_visual_release.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_visual_calculations.py" -v
+	$(PY) -B -m pytest scripts/test_pcb_visual_units.py scripts/test_design_visual_models.py -q
 	$(PY) -B -m unittest discover -s scripts -p "test_visual_density.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_visual_distribution.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_visual_manifest.py" -v
@@ -106,6 +107,8 @@ visual-check:
 	$(PY) -B -m unittest discover -s scripts -p "test_visual_text_replacement.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_insert_visuals.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_animation_v2.py" -v
+	$(PY) -B -m unittest discover -s scripts -p "test_animation_review.py" -v
+	$(PY) -B -m unittest discover -s scripts -p "test_label_handraw_figures.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_ch02_animations.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_ch03_animations.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_ch04_animations.py" -v
@@ -116,6 +119,7 @@ visual-check:
 	$(PY) -B -m unittest discover -s scripts -p "test_ch10_animations.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_ch11_animations.py" -v
 	$(PY) -B -m unittest discover -s scripts -p "test_ch12_animations.py" -v
+	$(PY) -B -m unittest discover -s scripts -p "test_ch13_animations.py" -v
 	$(PY) -B -m unittest discover -s analog-book/tests -p "test_visual_v2_assets.py" -v
 
 visual-ship: visual-check

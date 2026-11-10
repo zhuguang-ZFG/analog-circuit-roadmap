@@ -1,6 +1,8 @@
 """Wave 5 手绘草图：第一问与探头补偿。"""
 from __future__ import annotations
 
+import math
+
 from scripts.visuals.scenes.handdrawn_wave2 import (
     AMBER, BLUE, GREEN, INK2, PAPER, RED, RULE, arrow, box, header, text,
 )
@@ -45,12 +47,20 @@ def probe_compensation():
         parts.append(text(x + 24, 184, head, 26, colour=colour, weight='700'))
         parts.append(text(x + 24, 224, note, 22, colour=INK2))
         parts.append(f'<line x1="{x + 30}" y1="330" x2="{x + 250}" y2="330" stroke="{RULE}" stroke-width="1.4"/>')
-        if i == 0:
-            d = f'M{x + 40},330 L{x + 90},330 L{x + 90},250 L{x + 110},250 L{x + 110},330 L{x + 180},330 L{x + 180},250 L{x + 205},250 L{x + 205},330 L{x + 250},330'
-        elif i == 1:
-            d = f'M{x + 40},330 C{x + 80},330 {x + 90},330 {x + 105},275 C{x + 120},235 {x + 140},250 {x + 160},275 C{x + 175},330 {x + 200},330 {x + 250},330'
-        else:
-            d = f'M{x + 40},330 L{x + 90},330 L{x + 90},250 L{x + 180},250 L{x + 180},330 L{x + 250},330'
+        # Same input edges and settled levels in every panel. The transient
+        # residue changes sign: over-compensation overshoots, under-compensation
+        # approaches the plateau monotonically. Qualitative model, no time scale.
+        residue = (0.3, -0.7, 0.0)[i]
+        points: list[tuple[float, float]] = [(x + 40, 330), (x + 90, 330)]
+        for step in range(61):
+            t = step / 60
+            points.append((x + 90 + 90 * t,
+                           330 - 70 * (1 + residue * math.exp(-7 * t))))
+        for step in range(61):
+            t = step / 60
+            points.append((x + 180 + 70 * t,
+                           330 + 70 * residue * math.exp(-7 * t)))
+        d = 'M' + ' L'.join(f'{px:.2f},{py:.2f}' for px, py in points)
         parts.append(f'<path d="{d}" fill="none" stroke="{colour}" stroke-width="4"/>')
         parts.append(text(x + 140, 392, shape, 22, anchor='middle', weight='700'))
 
@@ -68,7 +78,7 @@ SCENES = {
         'alt': '手绘第一问：这块板最近动过哪里；三条分支是换料换厂、改版改参数、环境负载；案例 A 的答案是降成本把钽电容换成 MLCC，一问就命中。',
     },
     'ch16-probe-compensation': {
-        'draw': probe_compensation, 'title': '探头补偿三种方波', 'anchor': '16.3',
+        'draw': probe_compensation, 'title': '探头补偿三种方波', 'anchor': '16.6',
         'chapter': 16, 'source': 'docs/p4-01-ch16.md',
         'alt': '手绘三种校准方波：过补偿顶角过冲、欠补偿顶角圆塌、正确方角平顶；提示补偿没调对时，看到的过冲或塌陷可能来自探头而不是电路。',
     },

@@ -1,15 +1,15 @@
 {
   "id": "ch15-via-parallel",
-  "title": "过孔并联与电感",
-  "alt": "纸层量级图：单个 0.3 毫米过孔约 1.3 纳亨，四个并联约 0.25 纳亨，3 安培换层至少 3 只；信号过孔每孔都带寄生，应少打并成对打。",
+  "title": "过孔并联与互感",
+  "alt": "四支路并联示意：1.6mm 长、0.3mm 孔径的单孔经验电感约 1.299nH。均匀分流且忽略互感时四并约 0.325nH，示意每对互感为自感一半时约 0.812nH；载流能力另核。",
   "anchor": "15.3",
   "source": "docs/p3-02-ch15.md",
   "canvas": [
-    1448,
-    1086
+    1000,
+    700
   ],
   "print_width_mm": 138,
-  "generator": "python-svg-papercut-v1",
+  "generator": "python-handraw-v1",
   "output": "assets/figures-v2/ch15-via-parallel.svg",
   "print_fallback": "assets/figures-v2/ch15-via-parallel-print.svg"
 }

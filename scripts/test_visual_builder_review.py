@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """登记器重跑时的审图数据保全：底图字节未变才允许带过人工评分。
 
 背景：`build_handdrawn_wave2.py` / `build_backlog_wave3.py` 的 `register()` 会整条
@@ -12,14 +11,16 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-import build_backlog_wave3 as backlog_builder
-import build_handdrawn_wave2 as handdrawn_builder
-from scripts.visuals import font_gate as gate
+import build_backlog_wave3 as backlog_builder  # noqa: E402
+import build_handdrawn_wave2 as handdrawn_builder  # noqa: E402
+
+from scripts.visuals import font_gate as gate  # noqa: E402
 
 SVG = '<svg xmlns="http://www.w3.org/2000/svg"><text>示意</text></svg>\n'
 META = {
@@ -88,6 +89,25 @@ class BuilderReviewCarryOver(unittest.TestCase):
                 self.assertEqual('generated', asset['status'])
                 self.assertEqual({}, asset['review_scores'])
                 self.assertNotIn('review_record', asset)
+
+
+class Chapter13BuilderRouting(unittest.TestCase):
+    def test_legacy_entry_points_use_current_renderer_and_metadata(self):
+        """Old wave commands must not revive the incorrect papercut diagrams."""
+        from scripts.visuals.scenes.ch13_reference_figures import SCENES
+        for asset_id in ('ch13-h-bridge-states', 'ch13-current-sense-sides',
+                         'ch13-opto-ctr'):
+            with self.subTest(asset=asset_id):
+                meta = backlog_builder.CH13[asset_id]
+                self.assertIs(meta['draw'], SCENES[asset_id]['draw'])
+                self.assertEqual(meta['anchor'], SCENES[asset_id]['anchor'])
+                data = {'assets': []}
+                with patch.object(handdrawn_builder, 'build_one') as build, \
+                     patch.object(handdrawn_builder, 'register') as register:
+                    backlog_builder.build_one(asset_id, meta)
+                    backlog_builder.register(asset_id, meta, data)
+                    build.assert_called_once_with(asset_id, meta)
+                    register.assert_called_once_with(asset_id, meta, data)
 
 
 class FontCoverageGate(unittest.TestCase):

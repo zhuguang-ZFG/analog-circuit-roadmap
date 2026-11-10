@@ -105,3 +105,10 @@ FIGURES = {
         'alt': '左右两栏：左栏三条隔离路线是光耦、数字隔离器、隔离放大器，共同点是没有欧姆通路；右栏 CTR 三个坑是分档 50% 到 600% 要按最小值、100 摄氏度与 20 毫安下十年可能掉一半、驱动至少留 2 倍余量，设计式为集电极电流等于正向电流乘 CTR。',
     },
 }
+
+# Chapter 13 reviewed model overrides.
+from scripts.visuals.scenes.ch13_reference_figures import SCENES as _CH13_REVIEWED
+for _aid in ['ch13-h-bridge-states', 'ch13-current-sense-sides', 'ch13-opto-ctr']:
+    # The legacy builder consumes FIGURES, and these replacements use the
+    # 1000×700 paper-and-ink renderer rather than its 1448×1086 papercut canvas.
+    FIGURES[_aid] = {**_CH13_REVIEWED[_aid], 'renderer': 'handdrawn'}

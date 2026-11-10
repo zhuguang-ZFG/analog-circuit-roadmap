@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">三区判读流程</title><desc id="desc">判读流程：先量 VBE 与 VCE，再分四路——VBE 约 0.7 V、VCE 大于 1 V 是放大区；VBE 约 0.8 V、VCE 约 0.1~0.3 V 是饱和区；VBE 小于 0.5 V、VCE 接近 VCC 是截止区；VBE 为 0 V 说明尚未正偏，应查驱动或 B-E 短路，不能直接判开路。底部两条边界：BVCEO 40 V 是失效边界不是第四区；截止漏流每升 8~10 °C 翻倍，85 °C 高阻负载要重算。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

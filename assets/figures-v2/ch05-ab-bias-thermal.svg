@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">AB 类偏置的热耦合与散热器两笔账</title><desc id="desc">单结互补射随器的偏置为两只零点六伏结压降加射极电阻压降，二十毫安、两只零点三三欧合计约一点二一三伏。正负十二伏、八欧理想 B 类每管最大耗散一点八二四瓦；热阻六十五摄氏度每瓦、环境二十五度，结温约一百四十三点六度。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

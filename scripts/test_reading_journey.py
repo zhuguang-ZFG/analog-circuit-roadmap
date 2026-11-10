@@ -22,7 +22,7 @@ from site_build_inputs import copy_build_inputs  # noqa: E402
 
 
 class QuietHandler(SimpleHTTPRequestHandler):
-    def log_message(self, *_):
+    def log_message(self, format: str, *args):
         pass
 
     def copyfile(self, source, outputfile):
@@ -254,7 +254,9 @@ class ReadingJourneyTests(unittest.TestCase):
                         self.assertFalse(page.evaluate('document.documentElement.scrollWidth > innerWidth'))
                         links = page.locator('.reading-nav a' if path else '.learning-actions a')
                         for link in links.all():
-                            self.assertGreaterEqual(link.bounding_box()['height'], 44)
+                            box = link.bounding_box()
+                            assert box is not None, '阅读导航链接没有可见边界'
+                            self.assertGreaterEqual(box['height'], 44)
                         links.first.focus()
                         expect(links.first).to_be_focused()
                         if not path:
@@ -262,7 +264,9 @@ class ReadingJourneyTests(unittest.TestCase):
                             expect(page.locator('.learning-chapters a')).to_have_count(19)
                             self.assertFalse(page.evaluate('document.documentElement.scrollWidth > innerWidth'))
                             for chapter in page.locator('.learning-chapters a').all():
-                                self.assertGreaterEqual(chapter.bounding_box()['height'], 44)
+                                box = chapter.bounding_box()
+                                assert box is not None, '章节链接没有可见边界'
+                                self.assertGreaterEqual(box['height'], 44)
 
     def test_real_search_returns_relevant_chinese_and_model_number_results(self):
         self.page.goto(self.base)
@@ -499,6 +503,7 @@ class ReadingJourneyTests(unittest.TestCase):
         self.page.locator('.chapter-done-button').click()
         self.page.goto(self.base)
         resume = self.page.locator('.learning-resume').get_attribute('href')
+        assert resume is not None, '继续阅读链接缺少 href'
         payload['completed'] += ['unknown', 'ch0']
         payload['title'] = '<img src=x onerror=alert(1)>'
         payload['url'] = 'https://example.invalid/'
@@ -559,8 +564,7 @@ class ReadingJourneyTests(unittest.TestCase):
         answer.get_by_role('link', name='12.9', exact=True).click()
         expect(self.page).to_have_url(self.base + 'p2-02-ch12.html#sec129')
         # §12.9 是 `###`，归一后升一级变 h2（见 test_page_structure.py）。
-        # 只断言节号：小节标题会随改写调整，节号才是题库回链的契约。
-        expect(self.page.locator('p:has(> #sec129) + h2')).to_contain_text(re.compile(r'^12\.9\s'))
+        expect(self.page.locator('p:has(> #sec129) + h2')).to_contain_text('12.9 容性负载')
         self.page.goto(self.base + 'p1-01-ch0.html#ch0')
         item = self.page.locator('.md-content li').filter(has_text='实验室电源')
         expect(item).to_have_count(1)

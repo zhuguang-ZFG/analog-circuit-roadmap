@@ -10,7 +10,7 @@ color_ids:
 - C-29
 numbers: []
 source_facts:
-- docs/p4-01-ch16.md#16.3
+- docs/p4-01-ch16.md#16.6
 authorization: 2026-11-05 用户要求增加手绘插图
 composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch16-bandwidth-five.json
 zh_prompt: 风格名称：手绘纸墨草图。主题：示波器带宽五倍规则。象牙纸、佩恩灰墨线、赭石标记；线条略带手绘弯曲，中文标签保持印刷可读，几何不编码虚假量值。

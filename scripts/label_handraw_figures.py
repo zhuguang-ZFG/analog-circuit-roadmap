@@ -13,12 +13,14 @@ manifest 同源）把这些标记补进 SVG 根元素，只动元数据、不动
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import sys
-import xml.etree.ElementTree as ET
 from html import escape
 from pathlib import Path
+
+from defusedxml import ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
 FIGURES = ROOT / "assets" / "figures-v2"
@@ -65,17 +67,41 @@ def label(raw: str, spec: dict) -> str:
     return raw[:open_tag.start()] + new_tag + raw[open_tag.end():]
 
 
+def preserve_review_for_labels(asset: dict, before: str, after: str, spec: dict) -> bool:
+    """Carry a review only across the exact nonvisual label() transformation."""
+    record = asset.get('review_record') or {}
+    old_hash = hashlib.sha256(before.replace('\r\n', '\n').encode()).hexdigest()
+    if asset.get('status') not in {'accepted', 'published'} or record.get('asset_sha256') != old_hash:
+        return False
+    expected = label(before, spec)
+    if expected != after:
+        return False
+    new_hash = hashlib.sha256(after.replace('\r\n', '\n').encode()).hexdigest()
+    record.setdefault('metadata_amendments', []).append({
+        'before_sha256': old_hash, 'after_sha256': new_hash,
+        'method': 'label_handraw_figures.label: exact title/desc/root-attribute insertion; drawing bytes unchanged',
+    })
+    record['asset_sha256'] = new_hash
+    return True
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--check", action="store_true", help="只报告待标定文件，不写入")
     args = ap.parse_args(argv)
 
     specs = load_specs()
+    import check_visual_manifest as manifest
+    data = manifest.load()
+    by_output = {a['output']: a for a in data['assets']}
+    amended = 0
     changed: list[Path] = []
     unlabelled: list[Path] = []
     missing: list[str] = []
     for path in sorted(FIGURES.glob("*.svg")):
         root = ET.parse(path).getroot()
+        if root is None:
+            raise ValueError(f"SVG 缺少根元素: {path}")
         if root.get("data-composition"):
             continue
         stem = re.sub(r"-print$", "", path.stem)
@@ -93,8 +119,14 @@ def main(argv: list[str] | None = None) -> int:
         assert probe.find(f"{SVG_NS}desc") is not None
         changed.append(path)
         if not args.check:
+            asset = by_output.get(path.relative_to(ROOT).as_posix())
+            if asset is not None:
+                amended += preserve_review_for_labels(asset, raw, out, spec)
             path.write_text(out, encoding="utf-8")
 
+    if amended:
+        manifest.dump(data)
+        print(f"保留 {amended} 份原图审阅；逐项记录仅元数据变更的前后哈希。")
     print(f"handraw 标定：{len(changed)} 个文件"
           f"{'（--check 未落盘）' if args.check else ''}")
     if missing:

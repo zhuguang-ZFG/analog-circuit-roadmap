@@ -229,7 +229,8 @@ def reverse_beta():
         (350, 'E：重掺杂 N+', GREEN),
     ]
     for y, label, colour in layers:
-        parts.append(box(100, y, 300, 56, fill=PAPER, stroke=colour, width=2.5))
+        parts.append(box(100, y, 300, 56, fill=PAPER,
+                         stroke=colour, width=2.5))
         parts.append(text(116, y + 36, label, 22, colour=colour, weight='700'))
     parts.append(f'<line x1="430" y1="370" x2="430" y2="250" stroke="{GREEN}" stroke-width="2.5"/>')
     parts.append(f'<polygon points="430,240 424,252 436,252" fill="{GREEN}"/>')
@@ -242,7 +243,8 @@ def reverse_beta():
         (350, 'C（当 E 用）', RED),
     ]
     for y, label, colour in layers:
-        parts.append(box(570, y, 300, 56, fill=PAPER, stroke=colour, width=2.5))
+        parts.append(box(570, y, 300, 56, fill=PAPER,
+                         stroke=colour, width=2.5))
         parts.append(text(586, y + 36, label, 22, colour=colour, weight='700'))
     parts.append(text(544, 440, '反向 β 只有 2–10；BVEBO 只有 5–7V', 22, colour=INK2))
     parts.append(box(50, 500, 900, 100, fill=PAPER))

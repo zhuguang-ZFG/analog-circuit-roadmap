@@ -66,8 +66,8 @@ def instrument_trust():
     rows = [
         ('探头负载', '高阻节点先用 ×10'),
         ('电流档', '测完立刻插回电压孔'),
-        ('首次上电', '串限流灯泡或限 50 mA'),
-        ('地线', '地夹最后接；市电用隔离'),
+        ('首次上电', '低压板按负载设置限流'),
+        ('接地探头', '确认参考地，先地夹后探针'),
     ]
     for i, (head, note) in enumerate(rows):
         y = 226 + i * 86
@@ -83,8 +83,8 @@ def instrument_trust():
 
     parts.append(box(558, 382, 394, 224, fill=PAPER))
     parts.append(text(584, 426, '坑二：电流档压降', 24, colour=RED, weight='700'))
-    parts.append(text(584, 468, 'µA 档内阻约 100 Ω', 22, colour=INK2))
-    parts.append(text(584, 506, 'mA 档约 2 Ω', 22, colour=INK2))
+    parts.append(text(584, 468, '示例：µA 档内阻 100 Ω', 22, colour=INK2))
+    parts.append(text(584, 506, '示例：mA 档内阻 2 Ω', 22, colour=INK2))
     parts.append(text(584, 548, '测 100 mA 吃掉近 0.2 V', 22, weight='700'))
 
     parts.append(box(140, 632, 720, 42, fill=PAPER))
@@ -154,7 +154,7 @@ SCENES = {
     'ch16-instrument-trust': {
         'draw': instrument_trust, 'title': '仪器信任链', 'anchor': '16.3',
         'chapter': 16, 'source': 'docs/p4-01-ch16.md',
-        'alt': '手绘仪器检查单：探头负载先用乘十档、测完电流立刻插回电压孔、首次上电串限流灯泡或限 50 毫安、地夹最后接；右侧两个坑是自动量程在跳变信号上反复换档，以及微安档约 100 欧姆、毫安档约 2 欧姆的 burden 压降。',
+        'alt': '仪器检查单：高阻节点先用乘十档、测完电流插回电压孔、低压板按负载设置限流；普通接地探头确认参考地后先地夹后探针。右栏示例内阻为微安档 100 欧姆、毫安档 2 欧姆；100 毫安流过 2 欧姆会产生 0.2 伏压降，实际值查仪表手册。',
     },
     'ch16-postmortem-split': {
         'draw': postmortem_split, 'title': '根因与触发条件', 'anchor': '16.8',

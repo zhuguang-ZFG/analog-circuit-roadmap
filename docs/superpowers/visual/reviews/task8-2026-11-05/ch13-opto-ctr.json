@@ -1,15 +1,15 @@
 {
   "id": "ch13-opto-ctr",
-  "title": "隔离三条路线与 CTR",
-  "alt": "左右两栏：左栏三条隔离路线是光耦、数字隔离器、隔离放大器，共同点是没有欧姆通路；右栏 CTR 三个坑是分档 50% 到 600% 要按最小值、100 摄氏度与 20 毫安下十年可能掉一半、驱动至少留 2 倍余量，设计式为集电极电流等于正向电流乘 CTR。",
+  "title": "光耦电流与隔离屏障",
+  "alt": "光箭头跨屏障而地不连通；CTR 百分数与计算比例分开，并区分饱和保证和绝缘指标。",
   "anchor": "13.11",
   "source": "docs/p2-03-ch13.md",
   "canvas": [
-    1448,
-    1086
+    1000,
+    700
   ],
   "print_width_mm": 138,
-  "generator": "python-svg-papercut-v1",
+  "generator": "python-handraw-v1",
   "output": "assets/figures-v2/ch13-opto-ctr.svg",
   "print_fallback": "assets/figures-v2/ch13-opto-ctr-print.svg"
 }

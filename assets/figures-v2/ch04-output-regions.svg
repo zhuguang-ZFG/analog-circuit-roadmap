@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">输出特性与原点导通电阻</title><desc id="desc">同一长沟道模型的三条输出曲线，过驱动一、二、三伏，夹断点分别在漏压一、二、三伏。过驱动三伏时原点斜率六安每伏，对应约零点一七欧；欧姆段并非全程直线，饱和电流分别为一、四、九安。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

@@ -8021,3 +8021,1128 @@ assets:
     reviewed_on: '2026-11-08'
     record: docs/superpowers/visual/reviews/ch12-animation-2026-11-08/review.md
     asset_sha256: 16880765276920304f5b1f2671dd9334ebf83a8a1402cc535678ffb7d01f70b5
+- id: ch13-zener-budget-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: '13.1'
+  purpose: 先扣基流，再看齐纳管还能否稳压
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.1
+  prompt_file: docs/superpowers/visual/prompts/ch13-zener-budget-v2.md
+  output: assets/svg-v2/ch13-zener-budget-v2.svg
+  print_fallback: assets/svg-v2/ch13-zener-budget-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-zener-budget-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-zener-budget-v2-static.svg
+  alt: 先扣基流，再看齐纳管还能否稳压；空载至负载 500 mA。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 串联电阻电流全部流入齐纳管。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 负载增加，基流从同一支路分走电流。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 还要与齐纳规定的最小工作电流比较。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 接近零并不表示稳压仍好；须重算非理想工作点。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-zener-budget-v2-static.svg
+- id: ch13-buck-cycle-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: '13.2'
+  purpose: 同一电感电流，开关与二极管轮流接管
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.2
+  prompt_file: docs/superpowers/visual/prompts/ch13-buck-cycle-v2.md
+  output: assets/svg-v2/ch13-buck-cycle-v2.svg
+  print_fallback: assets/svg-v2/ch13-buck-cycle-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-buck-cycle-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-buck-cycle-v2-static.svg
+  alt: 同一电感电流，开关与二极管轮流接管；导通初段至周期回到谷值。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 电感两端七伏，电流以正斜率上升。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 峰值到达后关开关，电流保持连续。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 二极管接管，负五伏使电流逐渐下降。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 回到同一电流才满足稳态伏秒平衡。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-buck-cycle-v2-static.svg
+- id: ch13-buck-charge-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: 13.2a
+  purpose: 纹波看电荷的峰谷差，整周期净电荷为零
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.2a
+  prompt_file: docs/superpowers/visual/prompts/ch13-buck-charge-v2.md
+  output: assets/svg-v2/ch13-buck-charge-v2.svg
+  print_fallback: assets/svg-v2/ch13-buck-charge-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-buck-charge-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-buck-charge-v2-static.svg
+  alt: 纹波看电荷的峰谷差，整周期净电荷为零；先给负载放电至净电荷回到零。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 电感电流低于负载时，电容提供差额。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 电容电流第一次过零，电压到谷值。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 正电流面积给出峰谷间的充电量。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 全周期正负面积相消，不是每周期净收到电荷。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-buck-charge-v2-static.svg
+- id: ch13-buck-dcm-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: 13.2b
+  purpose: 固定占空比进入 DCM 后，输出随负载变化
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.2b
+  prompt_file: docs/superpowers/visual/prompts/ch13-buck-dcm-v2.md
+  output: assets/svg-v2/ch13-buck-dcm-v2.svg
+  print_fallback: assets/svg-v2/ch13-buck-dcm-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-buck-dcm-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-buck-dcm-v2-static.svg
+  alt: 固定占空比进入 DCM 后，输出随负载变化；RL=5 Ω至RL=100 Ω。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 较重负载保持 CCM，电压为五伏。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 电流谷值触零，来到两种模式的边界。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 轻载出现零电流区间，固定 D 输出升高。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 闭环会调占空比；同步强制 CCM 则可能允许负电流。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-buck-dcm-v2-static.svg
+- id: ch13-boost-cycle-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: '13.3'
+  purpose: 升压的关断阶段才把电感电流送往输出
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.3
+  prompt_file: docs/superpowers/visual/prompts/ch13-boost-cycle-v2.md
+  output: assets/svg-v2/ch13-boost-cycle-v2.svg
+  print_fallback: assets/svg-v2/ch13-boost-cycle-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-boost-cycle-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-boost-cycle-v2-static.svg
+  alt: 升压的关断阶段才把电感电流送往输出；导通储能至回到周期起点。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 开关导通，输出电容单独向负载供电。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 电感电流升至峰值，但输出二极管仍截止。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 开关断开后，输入与电感经二极管向输出供电。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 输入平均电流大于输出，理想输入输出功率相等。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-boost-cycle-v2-static.svg
+- id: ch13-boost-stress-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: 13.3a
+  purpose: 占空比越接近一，升压电流代价越大
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.3a
+  prompt_file: docs/superpowers/visual/prompts/ch13-boost-stress-v2.md
+  output: assets/svg-v2/ch13-boost-stress-v2.svg
+  print_fallback: assets/svg-v2/ch13-boost-stress-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-boost-stress-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-boost-stress-v2-static.svg
+  alt: 占空比越接近一，升压电流代价越大；D=0.2至D=0.8。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 平均输入电流已高于输出电流。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 二倍升压对应二倍输入电流。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 更短的供能窗口要求更大的电感电流。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 五倍只是理想变换比，不能保证真实电压或效率。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-boost-stress-v2-static.svg
+- id: ch13-pump-load-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: 13.3b
+  purpose: 飞跨电容的搬运速率限制带载电压
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.3b
+  prompt_file: docs/superpowers/visual/prompts/ch13-pump-load-v2.md
+  output: assets/svg-v2/ch13-pump-load-v2.svg
+  print_fallback: assets/svg-v2/ch13-pump-load-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-pump-load-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-pump-load-v2-static.svg
+  alt: 飞跨电容的搬运速率限制带载电压；空载至负载 20 mA。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 理想空载幅值接近输入电压。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 每秒搬运电荷有限，带载开始压降。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 本慢开关等效模型下降一伏。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 开关电阻、频率区间和输出电容纹波仍须另计。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-pump-load-v2-static.svg
+- id: ch13-inverting-ratio-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: 13.3c
+  purpose: 反相 Buck-Boost 的极性来自放电连接
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.3c
+  prompt_file: docs/superpowers/visual/prompts/ch13-inverting-ratio-v2.md
+  output: assets/svg-v2/ch13-inverting-ratio-v2.svg
+  print_fallback: assets/svg-v2/ch13-inverting-ratio-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-inverting-ratio-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-inverting-ratio-v2-static.svg
+  alt: 反相 Buck-Boost 的极性来自放电连接；D=0.2至D=0.7。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 小占空比产生幅值较小的负电压。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 提高占空比，负压幅值继续增大。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 一半占空比时理想输出为负五伏。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 高占空比增大电流与耐压应力，不能据此保证带载能力。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-inverting-ratio-v2-static.svg
+- id: ch13-wien-select-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: '13.4'
+  purpose: 文氏桥只在一个频率兼有零相位与三分之一增益
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.4
+  prompt_file: docs/superpowers/visual/prompts/ch13-wien-select-v2.md
+  output: assets/svg-v2/ch13-wien-select-v2.svg
+  print_fallback: assets/svg-v2/ch13-wien-select-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-wien-select-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-wien-select-v2-static.svg
+  alt: 文氏桥只在一个频率兼有零相位与三分之一增益；f=0.1f0至f=10f0。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 低频反馈较弱，且带有相位超前。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 靠近选频点，反馈幅值增加。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 在自然频率处相位为零，幅值为三分之一。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 高频再次衰减且相位滞后，仍需考虑放大器自身响应。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-wien-select-v2-static.svg
+- id: ch13-wien-amplitude-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: 13.4a
+  purpose: 起振增长与稳幅是两件事
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.4a
+  prompt_file: docs/superpowers/visual/prompts/ch13-wien-amplitude-v2.md
+  output: assets/svg-v2/ch13-wien-amplitude-v2.svg
+  print_fallback: assets/svg-v2/ch13-wien-amplitude-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-wien-amplitude-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-wien-amplitude-v2-static.svg
+  alt: 起振增长与稳幅是两件事；小噪声种子至趋向稳态幅度。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 零初值在理想方程里不会自行起振。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 小幅度增长来自足够的环路余量。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 幅度增加后，需要限制机制降低有效增益。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 只有大于一的增益条件不足以保证所需的稳定正弦。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-wien-amplitude-v2-static.svg
+- id: ch13-lc-energy-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: 13.4b
+  purpose: 电场能与磁场能交替，理想总能量不变
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.4b
+  prompt_file: docs/superpowers/visual/prompts/ch13-lc-energy-v2.md
+  output: assets/svg-v2/ch13-lc-energy-v2.svg
+  print_fallback: assets/svg-v2/ch13-lc-energy-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-lc-energy-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-lc-energy-v2-static.svg
+  alt: 电场能与磁场能交替，理想总能量不变；电容全储能至能量返回电容。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 初始电压最大，电感电流为零。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 电容放电，磁场能随电流增长。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 四分之一周期后电压为零，电流最大。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 实际损耗使自由振荡衰减，有源维持须补足能量。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-lc-energy-v2-static.svg
+- id: ch13-current-compliance-v2
+  chapter: 13
+  kind: animation
+  type: A3
+  anchor: 13.5.1
+  purpose: 负载电压用尽余量后，电流再也保持不了
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.5.1
+  prompt_file: docs/superpowers/visual/prompts/ch13-current-compliance-v2.md
+  output: assets/svg-v2/ch13-current-compliance-v2.svg
+  print_fallback: assets/svg-v2/ch13-current-compliance-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-current-compliance-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-current-compliance-v2-static.svg
+  alt: 负载电压用尽余量后，电流再也保持不了；供电 2.8 V至回查输出级边界。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters:
+  - name: Vs
+    values:
+    - 2.8
+    - 5
+    - 12
+    - 12
+    unit: V
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 两千欧负载已经用尽本例电压预算。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 提高供电到五伏，最大负载变为四点二千欧。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 十二伏下，预算允许十一点二千欧。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 还要检查运放共模、驱动与管子耗散，曲线不是器件保证。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-current-compliance-v2-static.svg
+- id: ch13-sar-trials-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: 13.6a
+  purpose: 逐位试探时保持输入不变
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.6a
+  prompt_file: docs/superpowers/visual/prompts/ch13-sar-trials-v2.md
+  output: assets/svg-v2/ch13-sar-trials-v2.svg
+  print_fallback: assets/svg-v2/ch13-sar-trials-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-sar-trials-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-sar-trials-v2-static.svg
+  alt: 逐位试探时保持输入不变；试 0.5：保留至试 0.6875：撤回。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 先决定最高位，比较器只给一次大小判断。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 试探超过输入，清掉第二位。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 第三位试探仍不超过输入，保留。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 最终码十，对应零点六二五；静态输入并不必然抖码。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-sar-trials-v2-static.svg
+- id: ch13-alias-samples-v2
+  chapter: 13
+  kind: animation
+  type: A3
+  anchor: 13.6b
+  purpose: 相干采样把一千赫兹折成相位相关直流
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.6b
+  prompt_file: docs/superpowers/visual/prompts/ch13-alias-samples-v2.md
+  output: assets/svg-v2/ch13-alias-samples-v2.svg
+  print_fallback: assets/svg-v2/ch13-alias-samples-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-alias-samples-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-alias-samples-v2-static.svg
+  alt: 相干采样把一千赫兹折成相位相关直流；输入 50 Hz至输入 1001 Hz。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters:
+  - name: fin
+    values:
+    - 50
+    - 950
+    - 1000
+    - 1001
+    unit: Hz
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 五十赫兹在本例中可还原，但须先限制带外输入。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 九百五十赫兹折回五十赫兹，样本无法分辨来源。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 恰好同频采样，每次都是同一相位，得到固定半幅值。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 仅偏离一赫兹便出现慢拍；不能把精确同频也称作慢漂。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-alias-samples-v2-static.svg
+- id: ch13-quantization-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: 13.6c
+  purpose: 量化是固定台阶，不会凭空产生随机抖动
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.6c
+  prompt_file: docs/superpowers/visual/prompts/ch13-quantization-v2.md
+  output: assets/svg-v2/ch13-quantization-v2.svg
+  print_fallback: assets/svg-v2/ch13-quantization-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-quantization-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-quantization-v2-static.svg
+  alt: 量化是固定台阶，不会凭空产生随机抖动；输入 0.1至输入 0.8。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 输入落在同一量化区间时输出固定。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 跨过阈值才跳到下一个台阶。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 均匀误差模型需要输入或噪声满足相应统计条件。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: q 除以根号十二是该模型的 RMS，不是所有直流读数的随机性。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-quantization-v2-static.svg
+- id: ch13-jitter-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: 13.6d
+  purpose: 同样的时间抖动，高频信号付出更多噪声
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.6d
+  prompt_file: docs/superpowers/visual/prompts/ch13-jitter-v2.md
+  output: assets/svg-v2/ch13-jitter-v2.svg
+  print_fallback: assets/svg-v2/ch13-jitter-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-jitter-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-jitter-v2-static.svg
+  alt: 同样的时间抖动，高频信号付出更多噪声；输入 100 kHz至输入 10 MHz。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 低频正弦斜率较小，时间误差造成的电压误差小。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 一兆赫兹时，抖动上限约八十四分贝。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 输入频率提高，噪声上限持续下降。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 十兆赫兹只剩约六十四分贝；总 SINAD 还含其他误差。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-jitter-v2-static.svg
+- id: ch13-acquisition-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: 13.6e
+  purpose: 采集时间固定时，源阻会留下指数残差
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.6e
+  prompt_file: docs/superpowers/visual/prompts/ch13-acquisition-v2.md
+  output: assets/svg-v2/ch13-acquisition-v2.svg
+  print_fallback: assets/svg-v2/ch13-acquisition-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-acquisition-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-acquisition-v2-static.svg
+  alt: 采集时间固定时，源阻会留下指数残差；Rtotal=2 kΩ至Rtotal=5 kΩ。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 两千欧时，本一阶模型低于半 LSB。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 约二点七七四千欧用尽建立误差预算。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 超过后只是残差变大，不能泛称必定丢码。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 增采集时间、降源阻或改善驱动均可；还须扣开关电阻。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-acquisition-v2-static.svg
+- id: ch13-hbridge-reverse-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: 13.7a
+  purpose: 电压可以换向，电感电流必须连续
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.7a
+  prompt_file: docs/superpowers/visual/prompts/ch13-hbridge-reverse-v2.md
+  output: assets/svg-v2/ch13-hbridge-reverse-v2.svg
+  print_fallback: assets/svg-v2/ch13-hbridge-reverse-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-hbridge-reverse-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-hbridge-reverse-v2-static.svg
+  alt: 电压可以换向，电感电流必须连续；刚换向至负电流逐步建立。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 电流不能随电压跳变，初始仍为正两安。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 电压为负而电流为正，桥侧短时接收能量。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 约一点四四毫秒后才穿越零点。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 真实电机还有反电势与机械惯性，转速不会按此曲线瞬间翻转。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-hbridge-reverse-v2-static.svg
+- id: ch13-sense-cmr-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: 13.8b
+  purpose: 共模误差预算随抑制比分贝换算
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.8b
+  prompt_file: docs/superpowers/visual/prompts/ch13-sense-cmr-v2.md
+  output: assets/svg-v2/ch13-sense-cmr-v2.svg
+  print_fallback: assets/svg-v2/ch13-sense-cmr-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-sense-cmr-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-sense-cmr-v2-static.svg
+  alt: 共模误差预算随抑制比分贝换算；CMRR=70 dB至CMRR=110 dB。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 七十分贝只是假设，在本例产生约三点八毫伏。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 八十分贝仍超过分配给共模的误差。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 达到约九十五点五六分贝，才压到零点二毫伏。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 更高抑制不替代允许共模范围，也不保证 PWM 边沿恢复。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-sense-cmr-v2-static.svg
+- id: ch13-audio-heat-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: 13.9a
+  purpose: 效率与发热必须对应同一输出摆幅
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.9a
+  prompt_file: docs/superpowers/visual/prompts/ch13-audio-heat-v2.md
+  output: assets/svg-v2/ch13-audio-heat-v2.svg
+  print_fallback: assets/svg-v2/ch13-audio-heat-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-audio-heat-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-audio-heat-v2-static.svg
+  alt: 效率与发热必须对应同一输出摆幅；输出 1 W至接近最大摆幅。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 小输出下，B 类效率低于其理论最大值。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 热耗随输出改变，不是额定功率乘固定比例。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 十瓦时理想 B 类热耗约五点一瓦，D 类假设约一点一一瓦。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: B 类最高效率只在最大不削顶正弦附近达到。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-audio-heat-v2-static.svg
+- id: ch13-crystal-pull-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: 13.10a
+  purpose: 大步长负载偏移要直接算两个谐振频率
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.10a
+  prompt_file: docs/superpowers/visual/prompts/ch13-crystal-pull-v2.md
+  output: assets/svg-v2/ch13-crystal-pull-v2.svg
+  print_fallback: assets/svg-v2/ch13-crystal-pull-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-crystal-pull-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-crystal-pull-v2-static.svg
+  alt: 大步长负载偏移要直接算两个谐振频率；CL=12 pF至CL=15 pF。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 参考负载处相对频偏为零。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 增加负载电容使并联谐振频率降低。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 牵引斜率随负载变化，不能用终点斜率乘整个步长。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 十五皮法约慢六十七点三 ppm，即每天约慢五点八一秒。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-crystal-pull-v2-static.svg
+- id: ch13-crystal-start-v2
+  chapter: 13
+  kind: animation
+  type: A3
+  anchor: 13.10b
+  purpose: 决定增长速度的是净负阻余量
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.10b
+  prompt_file: docs/superpowers/visual/prompts/ch13-crystal-start-v2.md
+  output: assets/svg-v2/ch13-crystal-start-v2.svg
+  print_fallback: assets/svg-v2/ch13-crystal-start-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-crystal-start-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-crystal-start-v2-static.svg
+  alt: 决定增长速度的是净负阻余量；|Rneg|=25 kΩ至|Rneg|=150 kΩ。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters:
+  - name: '|Rneg|'
+    values:
+    - 25
+    - 50
+    - 100
+    - 150
+    unit: kΩ
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 负阻小于损耗，初始扰动衰减。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 负阻刚好抵消损耗，线性模型没有增长。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 净负阻为五万欧，包络指数增长。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 更大余量增长更快，但稳态驱动与限幅必须另验。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-crystal-start-v2-static.svg
+- id: ch13-opto-ctr-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: 13.11a
+  purpose: 降额后的 CTR 还要能拉动输出负载
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.11a
+  prompt_file: docs/superpowers/visual/prompts/ch13-opto-ctr-v2.md
+  output: assets/svg-v2/ch13-opto-ctr-v2.svg
+  print_fallback: assets/svg-v2/ch13-opto-ctr-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-opto-ctr-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-opto-ctr-v2-static.svg
+  alt: 降额后的 CTR 还要能拉动输出负载；CTR=100%至核对饱和条件。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 先按规定工作点计算可用集电极电流。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 百分之五十下，一千欧方案估算有余量。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 降至百分之二十五时，一千欧方案低于所需零点六三八毫安。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 较小电阻增加驱动，但还须验证低输出电压时的饱和曲线。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-opto-ctr-v2-static.svg
+- id: ch13-iso-displacement-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: 13.11b
+  purpose: 无直流通路仍会有跨屏障位移电流
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.11b
+  prompt_file: docs/superpowers/visual/prompts/ch13-iso-displacement-v2.md
+  output: assets/svg-v2/ch13-iso-displacement-v2.svg
+  print_fallback: assets/svg-v2/ch13-iso-displacement-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-iso-displacement-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-iso-displacement-v2-static.svg
+  alt: 无直流通路仍会有跨屏障位移电流；1 kV/µs至100 kV/µs。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 寄生电容让快速电压变化产生短暂电流。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 斜率十倍增加，位移电流也十倍增加。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 回流路径与接口承受能力会影响误触发。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 耐压、工作电压与 CMTI 是不同指标，必须分别核对。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-iso-displacement-v2-static.svg

@@ -1,7 +1,7 @@
 """Wave 2 手绘草图：纸墨 token + 微弯线条，几何是手工 SVG。
 
 每张图的数字只来自对应章节正文；`ch14-derating-margin` 取表 14-2，
-`ch15-trace-drop` 取 15.2 的 1 mΩ/cm 算例。
+`ch15-trace-drop` 取 15.1 的铜电阻率与几何尺寸，统一用 SI 计算。
 """
 from __future__ import annotations
 
@@ -26,7 +26,7 @@ def text(x, y, value, size=24, colour=INK, anchor='start', weight='400'):
             f'{escape(str(value))}</text>')
 
 
-def box(x, y, w, h, fill=PAPER, stroke=INK2, width=2):
+def box(x, y, w, h, fill=PAPER, stroke=INK2, width: float = 2):
     return (f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="6" '
             f'fill="{fill}" stroke="{stroke}" stroke-width="{width}"/>')
 
@@ -142,26 +142,36 @@ def derating_margin():
     return parts
 
 
+def trace_resistance(length_m: float, width_m: float, thickness_m: float,
+                     resistivity: float = 1.7e-8) -> float:
+    """Uniform copper trace, constant temperature; excludes vias and contacts."""
+    if min(length_m, width_m, thickness_m, resistivity) <= 0:
+        raise ValueError('走线尺寸与电阻率必须大于零')
+    return resistivity * length_m / (width_m * thickness_m)
+
+
 def trace_drop():
-    parts = [header('8 cm 走线：2.4 mV 的静态账，8 mV 的瞬态账',
-                    '0.5 mm 宽、1 oz 铜，工程上记 1 mΩ/cm；按瞬态电流定线宽。')]
+    per_cm_mohm = trace_resistance(0.01, 0.5e-3, 35e-6) * 1000
+    total_mohm = trace_resistance(0.08, 0.5e-3, 35e-6) * 1000
+    parts = [header('走线压降：先把毫米换成米',
+                    '0.5 mm 宽、35 µm 厚；ρ = 1.7×10⁻⁸ Ω·m，忽略温升与过孔。')]
     parts.append(box(70, 150, 860, 210, fill=PAPER))
     parts.append(f'<path d="M120,270 L220,200 L320,270 L420,200 L520,270 L620,200 L820,200" '
                  f'fill="none" stroke="{AMBER}" stroke-width="6" stroke-linejoin="round"/>')
     parts.append(text(120, 320, '8 cm 长、0.5 mm 宽、1 oz 铜', 24, colour=INK2))
-    parts.append(text(700, 180, '1 mΩ/cm', 26, colour=AMBER, weight='700'))
+    parts.append(text(680, 180, f'{per_cm_mohm:.2f} mΩ/cm', 26, colour=AMBER, weight='700'))
     parts.append(arrow(760, 240, 820, 240, RED))
     parts.append(text(790, 282, '300 mA', 22, colour=RED, anchor='middle'))
     parts.append(box(70, 400, 400, 150))
     parts.append(text(96, 440, '静态：300 mA', 24, weight='700'))
-    parts.append(text(96, 480, '8 cm × 1 mΩ/cm = 8 mΩ', 22, colour=INK2))
-    parts.append(text(96, 516, '8 mΩ × 0.3 A = 2.4 mV', 24, colour=GREEN, weight='700'))
+    parts.append(text(96, 480, f'8 cm 总电阻 {total_mohm:.2f} mΩ', 22, colour=INK2))
+    parts.append(text(96, 516, f'压降 = {total_mohm * 0.3:.2f} mV', 24, colour=GREEN, weight='700'))
     parts.append(box(530, 400, 400, 150))
-    parts.append(text(556, 440, '瞬态：1 A', 24, weight='700'))
-    parts.append(text(556, 480, '同一条 8 mΩ 路径', 22, colour=INK2))
-    parts.append(text(556, 516, '8 mΩ × 1 A = 8 mV', 24, colour=RED, weight='700'))
-    parts.append(text(70, 620, '压降叠在地和电源两侧；参考电压敏感的电路直接损失精度。', 22, colour=INK2))
-    parts.append(text(70, 654, '超过 1 A 的路径改铺铜，不靠加宽细线硬扛。', 22, colour=INK2))
+    parts.append(text(556, 440, '电流升至：1 A', 24, weight='700'))
+    parts.append(text(556, 480, f'同一条 {total_mohm:.2f} mΩ 路径', 22, colour=INK2))
+    parts.append(text(556, 516, f'电阻压降 = {total_mohm:.2f} mV', 24, colour=RED, weight='700'))
+    parts.append(text(70, 620, '这是单程电阻压降；地回路压降要另算。', 22, colour=INK2))
+    parts.append(text(70, 654, '快速电流变化还叠加 L·di/dt；线宽同时核压降与温升。', 22, colour=INK2))
     return parts
 
 
@@ -189,6 +199,6 @@ SCENES = {
     'ch15-trace-drop': {
         'draw': trace_drop, 'title': '电源走线的压降账', 'anchor': '15.1',
         'chapter': 15, 'source': 'docs/p3-02-ch15.md',
-        'alt': '手绘走线示意：8 cm 长、0.5 mm 宽、1 oz 铜的路径按 1 mΩ/cm 记共 8 mΩ；静态 300 mA 压降 2.4 mV，瞬态 1 A 压降 8 mV，提示按瞬态电流定线宽。',
+        'alt': '走线电阻按电阻率乘长度除截面积计算：0.5 毫米宽、35 微米厚、8 厘米长，单程电阻 77.71 毫欧；300 毫安压降 23.31 毫伏、1 安培压降 77.71 毫伏。示例忽略温升、过孔与接触电阻，快速瞬态另加电感压降。',
     },
 }

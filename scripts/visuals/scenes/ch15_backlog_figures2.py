@@ -1,22 +1,14 @@
 """§15 布线、DFM 与翻车案例的第二批静态插图（事实取 15.3–15.5）。"""
 from __future__ import annotations
 
-from scripts.visuals.layouts_static import fanout, ledger, steps, two_col
+from scripts.visuals.layouts_static import fanout, steps, two_col
+from scripts.visuals.scenes.ch15_reference_figures import SCENES as REFERENCES
 
 
 def via_parallel():
-    return ledger(
-        '过孔不是“一个孔”：电源地要并联',
-        '一个 0.3 mm 过孔约 1.3 nH，量级等于 3 mm 走线；换层电流靠并联分。',
-        [
-            ('单个过孔', '1.6 mm 板厚、0.3 mm 钻孔', 1.0, '≈1.3 nH'),
-            ('四个并联', '电感按并联下降', 0.2, '≈0.25 nH'),
-            ('3 A 换层', '单孔按 1~1.5 A 记', 0.6, '至少 3 只'),
-            ('信号过孔', '每孔都带寄生', 0.4, '少打/成对'),
-        ],
-        '电源与地“能并则并”；高速信号过孔旁放地孔陪跑。',
-        value_head='量级',
-    )
+    # Compatibility entry: the old papercut wave must not revive 0.25 nH.
+    from scripts.visuals.scenes.ch15_reference_figures import via_parallel as draw
+    return draw()
 
 
 def crosstalk_3w():
@@ -26,20 +18,20 @@ def crosstalk_3w():
         {
             'head': '三条对策',
             'items': [
-                ('拉开间距', ('间距加倍，容性耦合减半', '感性耦合约降 6 dB')),
-                ('3W 规则', ('中心距 ≥ 3 倍线宽', '串扰压到 5% 以下')),
+                ('拉开间距', ('通常减小互容与互感', '不承诺固定衰减倍数')),
+                ('3W 规则', ('中心距 ≥ 3 倍线宽', '仅作初筛，须看叠层')),
                 ('缩短平行', ('垂直交叉比长距离平行干净', '耦合面积最小')),
-                ('包地', ('两侧地线 + 地孔栅栏', '间距 5~10 mm')),
+                ('包地', ('连接连续参考面', '孔距按频率与几何核对')),
             ],
             'note': '先改几何，再谈屏蔽。',
         },
         {
             'head': '包地的边界',
             'items': [
-                ('地线要低阻', ('每隔 5~10 mm 打过孔', '只在两端接地等于悬空')),
-                ('线宽要够', ('≥ 被保护线宽的 2 倍', '细线自己先感应')),
+                ('地线要低阻', ('5~10 mm 孔距只是示例', '高频须核整条回流路径')),
+                ('线宽与间距', ('两倍线宽只是布局起点', '核对对目标线阻抗的影响')),
                 ('防的是电场', ('高 dV/dt 邻居', '容性耦合')),
-                ('磁场耦合', ('包地无效', '缩环路或拉开距离')),
+                ('磁场耦合', ('不能单靠包地保证', '缩环路或拉开距离')),
             ],
             'note': '保护线悬空，会变成注入线。',
         },
@@ -141,7 +133,7 @@ FIGURES = {
     'ch15-crosstalk-3w': {
         'draw': crosstalk_3w, 'title': '串扰三招与包地边界', 'anchor': '15.3',
         'layout': 'IG-004', 'type': 'V4', 'chapter': 15, 'source': 'docs/p3-02-ch15.md',
-        'alt': '左右两栏：左栏三招是拉开间距使容性耦合减半、3W 规则把串扰压到 5% 以下、缩短平行长度并用 5 到 10 毫米间距的地孔栅栏包地；右栏边界是地线必须低阻、线宽至少为被保护线两倍、包地只防电场耦合，磁场耦合要靠缩环路或拉距离。',
+        'alt': '串扰先拉间距、缩短平行段，再评估接地保护线。3W 指中心距三倍线宽，只作初筛，不保证百分之五串扰；5到10mm 地孔间距和两倍线宽也只作布局起点，须核叠层、频率、端接与回流。',
     },
     'ch15-testpoint-rules': {
         'draw': testpoint_rules, 'title': '测试点三条规矩', 'anchor': '15.4',
@@ -164,3 +156,6 @@ FIGURES = {
         'alt': '分诊图：板子不对时先看症状，再分四支——ADC 读数跳查数字回流与去耦距离，无线距离短查天线净空区铺铜，上电发烫查电源地接反并先限流，EMC 辐射超标查地平面开槽、晶振贴边与电缆。',
     },
 }
+
+# Preserve old wave commands while routing this corrected diagram to its canvas.
+FIGURES['ch15-via-parallel'].update(REFERENCES['ch15-via-parallel'])
