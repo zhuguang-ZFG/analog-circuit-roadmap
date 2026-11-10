@@ -1,8 +1,8 @@
-# 105 张待审图签核包 · consolidation-2026-11-10（原 28 + CI 捕获 77）
+# 36 张待审图签核包 · consolidation-2026-11-10（28 + 内容漂移 8）
 
 **闸事实**（analog-book/book/content.py:201-209）：仅 kind=figure 且 status∉{accepted,published} 阻断书构建；动画另有其闸，不挡构建。
 
-**更新（CI 修复后）**：挡构建图增至 **105 = 28 + 77**。77 张纸墨图因 WIP 重渲未重审被 `test_papercut_figures` sha 闸捕获，已回落 generated（见 [review-queue-77.md](review-queue-77.md)，C1 文本未变 71 / C2 文本有变 6，均附签名版并置预览）。
+**更新（CI sha 闸后）**：曾捕获 77 张字节与签核不符。**69 张 handraw 经 `label()` 精确变换测试，已按 `preserve_review_for_labels` 依法继承原签核**（metadata_amendments 记录 before/after sha）；剩 **8 张 papercut 真内容漂移**维持 generated（见 [review-queue-77.md](review-queue-77.md)）。当前挡构建图 = **36 = 28 + 8**。
 **本包不代签**。签核方式：把 ☐ 改 ✓ 或回列 accepted id；代理据指示翻转 manifest status 并记录 review。
 
 ## 分流结论（代理预审，降低签核成本）
@@ -13,7 +13,7 @@
 | A2 精度化/去 slop 重渲 | 9 | 数值集变化与数字保全审计记录逐项一致（见各条） | 对照审计条过目 |
 | A3 图内新增算例 | 1 | ch15-trace-drop 新增 77.71/23.31/9.71 算例，已与散文 p3-02-ch15.md:108/:116 核对一致 | 扫一眼即可 |
 | B 新图 | 17 | 7c82b1f 无前置版本 | 全量目审 |
-| C 签名失效回落 | 77 | WIP 重渲未重审被 sha 闸捕获（CI 视觉作业红）；已回落 generated | review-queue-77.md 分流过目 |
+| C 内容漂移 | 8 | papercut 签名版与当前版文本实质不符（69 张 handraw 已依法继承签核） | review-queue-77.md 逐张目审 |
 
 A2 清单：ch13-audio-class-heat, ch13-compliance-ceiling, ch13-crystal-neg-resistance, ch13-current-sense-budget, ch13-sampling-quantization, ch14-pt100-error-budget, ch15-radiated-loop-area, ch16-bandwidth-five, ch16-instrument-trust
 

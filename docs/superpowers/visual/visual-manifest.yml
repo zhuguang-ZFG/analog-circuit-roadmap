@@ -7917,14 +7917,38 @@ assets:
   preview: assets/figures-v2/ch04-deadtime-ledger.webp
   alt: 手绘公式与对照：每周期两段死区合计 100 纳秒，死区损耗等于 0.8 伏乘 5 安乘 100 纳秒乘 100 千赫，约 0.04 瓦即 40 毫瓦；同一只管子沟道压降 5 安乘 30 毫欧为
     0.15 伏，体二极管为 0.8 伏。死区须覆盖实际关断延迟，不能按零设置。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch04-deadtime-ledger.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: a214a45186ee5e7ca198fa6404c8b08c42a3010457db2dbf2f8aea4495368353
+    metadata_amendments:
+    - before_sha256: 02901a29f0da4d0acbc1fb972d2d1fdb04d4bb2bbeab811fd0468a467f6db497
+      after_sha256: a214a45186ee5e7ca198fa6404c8b08c42a3010457db2dbf2f8aea4495368353
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch05-tristate-handover
   chapter: 5
   kind: figure
@@ -7944,14 +7968,38 @@ assets:
   print_fallback: assets/figures-v2/ch05-tristate-handover-print.svg
   preview: assets/figures-v2/ch05-tristate-handover.webp
   alt: 先禁用 A，等待实际禁用传播完成，再切方向和使能 B。禁用传播不等于无驱动空档；重叠十纳秒表示两路同时驱动十纳秒，须同时测使能、总线和电源电流。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch05-tristate-handover.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 0aee8ac285df788f12235b5b434df4a6fe84e07fd0923151a8cdfe7d84e0dcff
+    metadata_amendments:
+    - before_sha256: a03154ebd34445037ae8054850fce5403de24dc7e1a641d175eb8744821d168f
+      after_sha256: 0aee8ac285df788f12235b5b434df4a6fe84e07fd0923151a8cdfe7d84e0dcff
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch07-hysteresis-window
   chapter: 7
   kind: figure
@@ -7971,14 +8019,38 @@ assets:
   print_fallback: assets/figures-v2/ch07-hysteresis-window-print.svg
   preview: assets/figures-v2/ch07-hysteresis-window.webp
   alt: 独立六伏基准、理想输出十二伏与零点一伏，同相输入上行六点一五一伏翻高，下行五点八四六伏翻低；窗口约三百零五毫伏，非电池自身比例参考。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch07-hysteresis-window.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: a8ca04bbb104c753b36b8858cd95ceefb7fc74f224ae4c81d37048d98afc7561
+    metadata_amendments:
+    - before_sha256: ef047aa1ca8e5e054616d5773681545bf5888ed76139514a632259b079f8e959
+      after_sha256: a8ca04bbb104c753b36b8858cd95ceefb7fc74f224ae4c81d37048d98afc7561
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch09-esr-window
   chapter: 9
   kind: figure
@@ -7998,14 +8070,38 @@ assets:
   print_fallback: assets/figures-v2/ch09-esr-window-print.svg
   preview: assets/figures-v2/ch09-esr-window.webp
   alt: 零点三至二十二欧姆 ESR 区间明确绑定 TI LM1117 与钽电容条件，不能泛化为所有稳压器。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch09-esr-window.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: cafb00a8ef283ca485ace005ea4d2258a6272642670a4bc1ae354b28391234ef
+    metadata_amendments:
+    - before_sha256: 69862e2f578c6de15e055284580748c0490922c724cfdb9f9713f4bdc907700e
+      after_sha256: cafb00a8ef283ca485ace005ea4d2258a6272642670a4bc1ae354b28391234ef
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch05-rp-power
   chapter: 5
   kind: figure
@@ -8025,14 +8121,38 @@ assets:
   print_fallback: assets/figures-v2/ch05-rp-power-print.svg
   preview: assets/figures-v2/ch05-rp-power.webp
   alt: 上拉电阻功率用电压平方除以电阻。低电平近零时三点三伏、一千欧约十一毫瓦；五伏、一百欧为二百五十毫瓦，超过示例四零二封装的十六分之一瓦额定。核对温度和脉冲负荷。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch05-rp-power.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 00260814d1d6971205976af075b16006bab759860da3ee117d4bfcaee95f3389
+    metadata_amendments:
+    - before_sha256: 70e8a4f06823278479699a0db4372dc6033a01ffa5ad5428f1e6f5b56aa8af76
+      after_sha256: 00260814d1d6971205976af075b16006bab759860da3ee117d4bfcaee95f3389
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch09-reference-ladder
   chapter: 9
   kind: figure
@@ -8052,14 +8172,38 @@ assets:
   print_fallback: assets/figures-v2/ch09-reference-ladder-print.svg
   preview: assets/figures-v2/ch09-reference-ladder.webp
   alt: 三点三伏十二位的一个 LSB 为零点八零六毫伏，基准分配零点二毫伏；初始误差、温漂、噪声与长期漂移分别列项。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch09-reference-ladder.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 3074a8085766c0ccae6ebbe35a34ed17338f142cd2ca34debfb21ba32d456104
+    metadata_amendments:
+    - before_sha256: e543b3dd970ec94b0c80dc30bbcbe588e8ee01fa3f713e1e4cd67b1c58f53ff5
+      after_sha256: 3074a8085766c0ccae6ebbe35a34ed17338f142cd2ca34debfb21ba32d456104
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch10-monostable-budget
   chapter: 10
   kind: figure
@@ -8079,14 +8223,38 @@ assets:
   print_fallback: assets/figures-v2/ch10-monostable-budget-print.svg
   preview: assets/figures-v2/ch10-monostable-budget.webp
   alt: 示意电阻电容和门限范围取角点相乘，最短约标称八十九点八七百分比，最长约一百零九点九九百分比。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch10-monostable-budget.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 181ead1106983234c6a3261be1a0c6fa601d023d52d3dec9a49b87a3827ff3a5
+    metadata_amendments:
+    - before_sha256: 45a160ee76f2a1393bb60b876f6dea5a09fa676ab6a7b2de187b895c941f0c7d
+      after_sha256: 181ead1106983234c6a3261be1a0c6fa601d023d52d3dec9a49b87a3827ff3a5
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch10-recovery-gap
   chapter: 10
   kind: figure
@@ -8106,14 +8274,38 @@ assets:
   print_fallback: assets/figures-v2/ch10-recovery-gap-print.svg
   preview: assets/figures-v2/ch10-recovery-gap.webp
   alt: 放电等效电阻模型中保留电源馈入，一毫秒后残压一点二二八伏，五毫秒后二十七点三毫伏，下一拍各自重新计算。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch10-recovery-gap.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: e44783d7b5bbf9885828faa4409a8318bb448c3ddd1c31e463024e4c9ba86c5c
+    metadata_amendments:
+    - before_sha256: 40bb29be11d15cd5fb4aafe9c5d4d6859be8c165eecd22a1e4a9e63739a1ec25
+      after_sha256: e44783d7b5bbf9885828faa4409a8318bb448c3ddd1c31e463024e4c9ba86c5c
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch11-mirror-three-errors
   chapter: 11
   kind: figure
@@ -8133,14 +8325,38 @@ assets:
   print_fallback: assets/figures-v2/ch11-mirror-three-errors-print.svg
   preview: assets/figures-v2/ch11-mirror-three-errors.webp
   alt: 参考电流包含两份基流，Early 效应使不同输出电压下复制比改变，器件匹配与温度构成独立误差。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch11-mirror-three-errors.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 9d9d933229cf034850b39ce1509872718fae03f41d403f1f4bedcbc4c212f128
+    metadata_amendments:
+    - before_sha256: 6aa2d0efb93611e3a0ca5cbdcf0ba84d1a27586e860b8d0f8aa57e31fb612b56
+      after_sha256: 9d9d933229cf034850b39ce1509872718fae03f41d403f1f4bedcbc4c212f128
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch12-tia-three-way
   chapter: 12
   kind: figure
@@ -8160,14 +8376,38 @@ assets:
   print_fallback: assets/figures-v2/ch12-tia-three-way-print.svg
   preview: assets/figures-v2/ch12-tia-three-way.webp
   alt: 分开直流跨阻、噪声增益拐点与补偿初估，不再把十五点九千赫兹当信号截止或振荡频率。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch12-tia-three-way.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: ff6f944dffd1c47274f370243afc10252cf8913b2e207deb8e5f09d59f743c14
+    metadata_amendments:
+    - before_sha256: 5cd667ed9d9c7054c91e94d7cda5e733925e91650edc53ef53f183f3ce924475
+      after_sha256: ff6f944dffd1c47274f370243afc10252cf8913b2e207deb8e5f09d59f743c14
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch12-switch-cap
   chapter: 12
   kind: figure
@@ -8187,14 +8427,38 @@ assets:
   print_fallback: assets/figures-v2/ch12-switch-cap-print.svg
   preview: assets/figures-v2/ch12-switch-cap.webp
   alt: 完整周期分成两次建立与非重叠段，半 LSB 比一 LSB 多一个 ln2 时间常数，同时计噪声、注入与混叠。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch12-switch-cap.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: aaad27c58c6d5c16395c9429cd4c025bbda2b09614fc2bf6e1f605db57ecc943
+    metadata_amendments:
+    - before_sha256: 1a091bcd6045b2ac29672207341b15cba5aa5fe7f67122fb7f6ff4ba6e2ebb30
+      after_sha256: aaad27c58c6d5c16395c9429cd4c025bbda2b09614fc2bf6e1f605db57ecc943
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch12-input-types
   chapter: 12
   kind: figure
@@ -8214,14 +8478,38 @@ assets:
   print_fallback: assets/figures-v2/ch12-input-types-print.svg
   preview: assets/figures-v2/ch12-input-types.webp
   alt: 互补输入、电荷泵与非轨到轨输入按具体器件曲线评估，避免把固定失真或温漂数字归给整个家族。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch12-input-types.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 219231797a55b9f7d0524de4407b7f88a897edb79eb0dd1e2f22f23c48d67114
+    metadata_amendments:
+    - before_sha256: bfc4cddd7769ab289450eb9be2e5fde09ae5c528bbfd09aa3d2334aed4544da1
+      after_sha256: 219231797a55b9f7d0524de4407b7f88a897edb79eb0dd1e2f22f23c48d67114
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch06-bias-balance
   chapter: 6
   kind: figure
@@ -8241,14 +8529,38 @@ assets:
   print_fallback: assets/figures-v2/ch06-bias-balance-print.svg
   preview: assets/figures-v2/ch06-bias-balance.webp
   alt: 二十纳安流过一千欧为二十微伏，十万欧为二毫伏。反相输入电阻十千欧、反馈九十千欧，平衡九千欧时匹配偏流抵消；二纳安失配留下零点一八毫伏。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch06-bias-balance.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 66a6c0516b4543f3435150ded669701be6cbc26f9236f6ec99b1c619246d3165
+    metadata_amendments:
+    - before_sha256: 7f73bd7749e4573259f3ec95e1c99a628caa65da7e047b23a73737c532567487
+      after_sha256: 66a6c0516b4543f3435150ded669701be6cbc26f9236f6ec99b1c619246d3165
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch02-esd-chain
   chapter: 2
   kind: figure
@@ -8269,14 +8581,38 @@ assets:
   preview: assets/figures-v2/ch02-esd-chain.webp
   alt: 8 千伏简化 RC 源：330 欧、150 皮法，不代替 IEC 校准波形；TVS 钳到 9.2 伏，估算 24.2 安、223 瓦。100 欧后向芯片注入 35 毫安；10 毫安目标需至少
     350 欧，选 470 欧。100 欧前移时总源阻 430 欧，约 18.6 安、34.6 千瓦。地回路 1 纳亨乘 24 安每纳秒产生 24 伏压降。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch02-esd-chain.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 48f780364c2c1fc4bd2f2b9d3da98097c9ed33691b4f5f7ac02233d7911dd192
+    metadata_amendments:
+    - before_sha256: 567617515887825b3097a36f4208b9536305b93f8b986f1597602d6eb892e3d0
+      after_sha256: 48f780364c2c1fc4bd2f2b9d3da98097c9ed33691b4f5f7ac02233d7911dd192
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch02-zener-budget
   chapter: 2
   kind: figure
@@ -8578,14 +8914,38 @@ assets:
   preview: assets/figures-v2/ch03-config-impedance.webp
   alt: 手绘三种组态与阻抗折算律：共射反相放大，共集同相缓冲，共基输入阻抗低。从发射极看，基极回路阻抗除以贝塔加一。10 千欧源、贝塔 100、IE 1 毫安、rπ 约 2.6 千欧，从发射极看入管内约
     125 欧，端口还须并联发射极电阻。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch03-config-impedance.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: be02b5960d7ad4c1bd1b0ac025af75562130fa947fe23642b2cb95babec2fa6e
+    metadata_amendments:
+    - before_sha256: cf5d78a42dca5e55f67f2e9c19503c794762a84077834b9fb7e714b74387316d
+      after_sha256: be02b5960d7ad4c1bd1b0ac025af75562130fa947fe23642b2cb95babec2fa6e
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch03-early-effect
   chapter: 3
   kind: figure
@@ -8652,14 +9012,38 @@ assets:
   print_fallback: assets/figures-v2/ch11-miller-bandwidth-print.svg
   preview: assets/figures-v2/ch11-miller-bandwidth.webp
   alt: 输入一毫伏、输出负一百毫伏在十皮法电容上产生一点零一皮库仑电荷，列出 MOS 三电容和电流增益带宽的正确定义。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch11-miller-bandwidth.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 7731ce588964e28d2c034fd40779c88133c26d00abc6c768a808232283d4c224
+    metadata_amendments:
+    - before_sha256: c885dfe653c61dec153d7382f29bd25edccdb297d6203c5718df29975c3888d1
+      after_sha256: 7731ce588964e28d2c034fd40779c88133c26d00abc6c768a808232283d4c224
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch13-compliance-ceiling
   chapter: 13
   kind: figure
@@ -8874,14 +9258,38 @@ assets:
   print_fallback: assets/figures-v2/ch06-slew-vs-gbw-print.svg
   preview: assets/figures-v2/ch06-slew-vs-gbw.webp
   alt: 限速实线和仅线性虚线共享时间电压轴；一伏阶跃在一点八四一微秒交接，剩余误差零点零七九六伏；千分之一建立时间约二点五三七微秒。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch06-slew-vs-gbw.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 8854baf07d92fc4580519b0211d25122b30f0becd3b248694610e35dce8868ff
+    metadata_amendments:
+    - before_sha256: 1162327aeb68dfeb21d94e13e1f21e4f33f2a516d33c5adb3c5409f3c7644ba0
+      after_sha256: 8854baf07d92fc4580519b0211d25122b30f0becd3b248694610e35dce8868ff
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch07-pullup-three-accounts
   chapter: 7
   kind: figure
@@ -8901,14 +9309,38 @@ assets:
   print_fallback: assets/figures-v2/ch07-pullup-three-accounts-print.svg
   preview: assets/figures-v2/ch07-pullup-three-accounts.webp
   alt: 五伏、五十皮法、上升小于一微秒且电流不超过二毫安，上拉取值区间约二点五到九点一千欧；四点七千欧回代合格还须核对低电平保证。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch07-pullup-three-accounts.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 3e550129cedbdeef887cd9322f236541be06060939500251d2ddb144465bb0fc
+    metadata_amendments:
+    - before_sha256: 33206431c66b086146fba197ad138c8cb391dc0681c73bc95b4f411e04d2f7e8
+      after_sha256: 3e550129cedbdeef887cd9322f236541be06060939500251d2ddb144465bb0fc
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch07-threshold-budget
   chapter: 7
   kind: figure
@@ -8928,14 +9360,38 @@ assets:
   print_fallback: assets/figures-v2/ch07-threshold-budget-print.svg
   preview: assets/figures-v2/ch07-threshold-budget.webp
   alt: 五伏等值分压，两只百分之一电阻反向极限产生正负二十五毫伏；与五毫伏室温失调上限和一点二二五毫伏典型偏流示意分别比较。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch07-threshold-budget.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 9e5b4260424a1f222a56fb0161b114b98a11f80f00b786c01b3f05f203b0b8ab
+    metadata_amendments:
+    - before_sha256: a21f41cb956248d4040a84270e1792fce295a5a36e9f4af6e26aaf18c6a521b3
+      after_sha256: 9e5b4260424a1f222a56fb0161b114b98a11f80f00b786c01b3f05f203b0b8ab
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch10-astable-reverse-design
   chapter: 10
   kind: figure
@@ -8955,14 +9411,38 @@ assets:
   print_fallback: assets/figures-v2/ch10-astable-reverse-design-print.svg
   preview: assets/figures-v2/ch10-astable-reverse-design.webp
   alt: 三十八千赫和一纳法反求电阻和约三十七点九六六千欧，再用实际阻值重新核算频率与协议窗口。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch10-astable-reverse-design.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 7276e0f68674e0c97853a2d982ec82e13e8d0cbaeebe3d6c9731cb4db08903e8
+    metadata_amendments:
+    - before_sha256: 5b7d9a47135dfb3196ff283e67b038159a55bab82e0c19a75a9ef56068efe9d8
+      after_sha256: 7276e0f68674e0c97853a2d982ec82e13e8d0cbaeebe3d6c9731cb4db08903e8
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch10-duty-fifty-paths
   chapter: 10
   kind: figure
@@ -8982,14 +9462,38 @@ assets:
   print_fallback: assets/figures-v2/ch10-duty-fifty-paths-print.svg
   preview: assets/figures-v2/ch10-duty-fifty-paths.webp
   alt: 二极管路径计入压降，输出反馈计入受载电平，数字分频计入连续有效时钟；单端方波平均电压不为零。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch10-duty-fifty-paths.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 9e2bb72f24b57647e1139c8fb4c58b286b14ca4f1b3ffd9b71d41f005d86c98a
+    metadata_amendments:
+    - before_sha256: c2ea6584cb12c36173cae78f41b65cd1c45a54d959852b83b5edf85f03dd9470
+      after_sha256: 9e2bb72f24b57647e1139c8fb4c58b286b14ca4f1b3ffd9b71d41f005d86c98a
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch05-shoot-through-ledger
   chapter: 5
   kind: figure
@@ -9009,14 +9513,38 @@ assets:
   print_fallback: assets/figures-v2/ch05-shoot-through-ledger-print.svg
   preview: assets/figures-v2/ch05-shoot-through-ledger.webp
   alt: 正常理想 B 类输出峰值一点五安、负载九瓦；故障假设二十四伏跨在一欧回路上，二十四安，总功率五百七十六瓦。若两管均分，每管二百八十八瓦，实际按驱动、保护和 SOA 核查。AB 类允许受控静态重叠。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch05-shoot-through-ledger.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: f60f9e136c9245726203646994d1bf542b252b0aca30ca4a6ee078cd633c9763
+    metadata_amendments:
+    - before_sha256: f81b42578a9a60738e24d4283e91e4142df2c6f6a4058e4d939be5eeecc9dd4d
+      after_sha256: f60f9e136c9245726203646994d1bf542b252b0aca30ca4a6ee078cd633c9763
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch05-ab-bias-thermal
   chapter: 5
   kind: figure
@@ -9036,14 +9564,38 @@ assets:
   print_fallback: assets/figures-v2/ch05-ab-bias-thermal-print.svg
   preview: assets/figures-v2/ch05-ab-bias-thermal.webp
   alt: 单结互补射随器的偏置为两只零点六伏结压降加射极电阻压降，二十毫安、两只零点三三欧合计约一点二一三伏。正负十二伏、八欧理想 B 类每管最大耗散一点八二四瓦；热阻六十五摄氏度每瓦、环境二十五度，结温约一百四十三点六度。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch05-ab-bias-thermal.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 53fc367b466448c64133aea97108c7bafa647e967d9f1840230ab153b0aed03a
+    metadata_amendments:
+    - before_sha256: 6c151bf631992b828c685ab494e54afacd982bdb751f033263911761c5c65612
+      after_sha256: 53fc367b466448c64133aea97108c7bafa647e967d9f1840230ab153b0aed03a
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch09-ldo-four-accounts
   chapter: 9
   kind: figure
@@ -9063,14 +9615,38 @@ assets:
   print_fallback: assets/figures-v2/ch09-ldo-four-accounts-print.svg
   preview: assets/figures-v2/ch09-ldo-four-accounts.webp
   alt: 依次检查输入谷值、结温、稳定性和启动掉电，各项都写出可验证条件和测量对象。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch09-ldo-four-accounts.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 68e9b9dea842db7f130f60d0f78e9d3dfe51dc0250f91db7a4fa6066d82daa2b
+    metadata_amendments:
+    - before_sha256: 0c3c69c661cd1af298417a3c12af858d2de5e754be9682ce82ecb07131a6b0a7
+      after_sha256: 68e9b9dea842db7f130f60d0f78e9d3dfe51dc0250f91db7a4fa6066d82daa2b
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch11-two-stage-margin
   chapter: 11
   kind: figure
@@ -9090,14 +9666,38 @@ assets:
   print_fallback: assets/figures-v2/ch11-two-stage-margin-print.svg
   preview: assets/figures-v2/ch11-two-stage-margin.webp
   alt: 原候选在一百欧负载下增益和驱动失败，修订候选仅按列出的标称模型通过，低贝塔输入电阻仍不合格。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch11-two-stage-margin.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 5e0ccafbcff5e7921f879c09eccd2374fb61c1ce35e4d652eb4d79bebbb8b906
+    metadata_amendments:
+    - before_sha256: 72eb54411350670a23996e2c38278673dbe51a9b71a2c87cee43ae82a610a341
+      after_sha256: 5e0ccafbcff5e7921f879c09eccd2374fb61c1ce35e4d652eb4d79bebbb8b906
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch12-switched-cap-equivalent
   chapter: 12
   kind: figure
@@ -9117,14 +9717,38 @@ assets:
   print_fallback: assets/figures-v2/ch12-switched-cap-equivalent-print.svg
   preview: assets/figures-v2/ch12-switched-cap-equivalent.webp
   alt: 两相把同一只电容轮流连接 V1 和 V2，每周期净搬运量由电压差决定，绝对电阻与电容比时间常数分别列式。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch12-switched-cap-equivalent.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: c4a79689147b344c1c21ac5ffa878880f37b8904e3a27dde5293ab28cca238f9
+    metadata_amendments:
+    - before_sha256: cdcc926f4a80b0dc8db5d4a5ac2dd488b6539a23c430f894a659dedbd7fcf6ce
+      after_sha256: c4a79689147b344c1c21ac5ffa878880f37b8904e3a27dde5293ab28cca238f9
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch12-input-stage-source-z
   chapter: 12
   kind: figure
@@ -9144,14 +9768,38 @@ assets:
   print_fallback: assets/figures-v2/ch12-input-stage-source-z-print.svg
   preview: assets/figures-v2/ch12-input-stage-source-z.webp
   alt: 两候选只代表给定参数，偏置电流乘源阻后分别为二十毫伏与一微伏；噪声包含电压、电流与热噪声。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch12-input-stage-source-z.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 47870f78ffa6551a5eb492c6ff8464fae065933c022719107c58c50ee6149b18
+    metadata_amendments:
+    - before_sha256: 6bb179ac45a6f0037f735e3e0a1bda09c4ad83e672e2de1861a6d03e820947b9
+      after_sha256: 47870f78ffa6551a5eb492c6ff8464fae065933c022719107c58c50ee6149b18
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch11-phase-margin-table
   chapter: 11
   kind: figure
@@ -9171,14 +9819,38 @@ assets:
   print_fallback: assets/figures-v2/ch11-phase-margin-table-print.svg
   preview: assets/figures-v2/ch11-phase-margin-table.webp
   alt: 给出四十五、六十、六十五度在指定环路中的阻尼和过冲，禁止按极点数量直接判定稳定性。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch11-phase-margin-table.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 8f201edbc8b9497695a0e3b61777677a0293ea1b80b4bdee267e8a6d0f54b358
+    metadata_amendments:
+    - before_sha256: f0c00a8fb58d728bf7d6e06ad014493899ac7603b7f0048af4e8564c505cb5ee
+      after_sha256: 8f201edbc8b9497695a0e3b61777677a0293ea1b80b4bdee267e8a6d0f54b358
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch06-741-four-blocks
   chapter: 6
   kind: figure
@@ -9198,14 +9870,38 @@ assets:
   print_fallback: assets/figures-v2/ch06-741-four-blocks-print.svg
   preview: assets/figures-v2/ch06-741-four-blocks.webp
   alt: 三个信号级的箭头依次连接输入、中间和输出。偏置网络从侧面供给电流；补偿单极点教学数值互相一致。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch06-741-four-blocks.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 356446be9e193d8d7125b22ea98b3f576eefa3009d5552dd13e9f0ecb2bab35f
+    metadata_amendments:
+    - before_sha256: 6b5103397b47d2418df66824325ee9b5c1be934deeb4d7b0d94c685a62cf6fd9
+      after_sha256: 356446be9e193d8d7125b22ea98b3f576eefa3009d5552dd13e9f0ecb2bab35f
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch01-thevenin-two-load
   chapter: 1
   kind: figure
@@ -9275,14 +9971,38 @@ assets:
   alt: 手绘桥式整流电压分账。上面蓝框空载：副边峰值 12 乘根号 2 得 17.0 伏，两只管子各约 0.6 到 0.7 伏、串联扣 1.3 伏，剩 15.7 伏。中间绿框带载 1 安：管压降升到
     0.9 伏、两只串联扣 1.8 伏，现有 4700 微法配 50 赫兹，纹波等于 1 除以 2 乘 50 乘 4700 微法得 2.13 伏，17.0 减 1.8 再减半个纹波，平均输出 14.1
     伏。左下琥珀框写想把纹波压到 1 伏，电容要 10,000 微法、耐压至少 25 伏；右下红框写负载平均 1 安不等于管子只过 1 安，导通只占 3 毫秒，窗口平均 3.3 安；实际峰值须另查脉形。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch02-rectifier-voltage-ledger.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: a1bc1d6574e3706e14bc5d54233e76b11f77c6d82ab58b1a7b6b8aa05cac80b6
+    metadata_amendments:
+    - before_sha256: 9ad84b0f596053a51a81475905bd6b80cc223165a1670677872078563fafcfff
+      after_sha256: a1bc1d6574e3706e14bc5d54233e76b11f77c6d82ab58b1a7b6b8aa05cac80b6
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch02-protection-order
   chapter: 2
   kind: figure
@@ -9350,14 +10070,38 @@ assets:
   print_fallback: assets/figures-v2/ch11-noise-three-taxes-print.svg
   preview: assets/figures-v2/ch11-noise-three-taxes.webp
   alt: 三组源阻和等效噪声带宽分别计算热噪声与信噪比，长度表示有效值，说明不能靠衰减信号报告降噪。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch11-noise-three-taxes.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: ac9e93045ec5aa05321c09436542db35dcac1e4ee219cc79bc5a6e74d97085df
+    metadata_amendments:
+    - before_sha256: 675a31710527dc66dab772b3ed22240c78fea5d34f0c5bf1d378aeb02bc8cfea
+      after_sha256: ac9e93045ec5aa05321c09436542db35dcac1e4ee219cc79bc5a6e74d97085df
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch12-riso-feedback-point
   chapter: 12
   kind: figure
@@ -9377,14 +10121,38 @@ assets:
   print_fallback: assets/figures-v2/ch12-riso-feedback-point-print.svg
   preview: assets/figures-v2/ch12-riso-feedback-point.webp
   alt: 输出阻抗后标记 A，隔离电阻后标记 B，电容从 B 接地；三种连接分别给出相位裕度，并提醒低裕度模型仍收敛。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch12-riso-feedback-point.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: a41099f0872ecc0874069a3e9924379232291302d178e3f56d3a8505d831e8ce
+    metadata_amendments:
+    - before_sha256: 3da702c9fa54993d76c6ada83af4be9b5eb0607a71602b2eb359508aacd820e5
+      after_sha256: a41099f0872ecc0874069a3e9924379232291302d178e3f56d3a8505d831e8ce
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch13-audio-class-heat
   chapter: 13
   kind: figure
@@ -9432,14 +10200,38 @@ assets:
   print_fallback: assets/figures-v2/ch11-diffpair-four-beats-print.svg
   preview: assets/figures-v2/ch11-diffpair-four-beats.webp
   alt: 共模不改变理想尾电流，差模二十毫伏按双曲正切分配，单端与差分增益分开列，提醒线性误差与工作区。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch11-diffpair-four-beats.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: c047c4455e6ec7583ad58caec3587443ac68d5d71d033df1df4bce9ccc984879
+    metadata_amendments:
+    - before_sha256: f5c2b6f93efaac3844b8cdba940fbf1935c4201ee3ca6a7da414fda6a04a6057
+      after_sha256: c047c4455e6ec7583ad58caec3587443ac68d5d71d033df1df4bce9ccc984879
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch02-bridge-junction-ledger
   chapter: 2
   kind: figure
@@ -9462,14 +10254,38 @@ assets:
     摄氏度；浪涌电流是 8.3 毫秒半正弦的单次值；热阻要按封装整体看，不能拿单只乘四，四只封在一起互相加热。右绿框单管连续导通的结温账，热阻按 80 摄氏度每瓦：功耗 0.9 伏乘 1 安得 0.9
     瓦，结温 50 加 0.9 乘 80 得 122 摄氏度；降到 0.6 安功耗 0.54 瓦，结温 93 摄氏度；换 0.5 伏肖特基，90 摄氏度；环境升到 60 摄氏度仍 1 安，132 摄氏度已经超限。下方琥珀框写桥式里每只管子的平均电流只有负载的一半：1
     安负载每只导通半周、平均 0.5 安，四只各 0.45 瓦、总损耗为 1.8 瓦。底部红框写别把单只管子的热阻套到桥堆上，25 摄氏度下标称的 1 安装进封闭机箱不成立。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch02-bridge-junction-ledger.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 7a92fb1e859e4d741981fff30806151a4c496c63875f8f730133b6c19289ecbe
+    metadata_amendments:
+    - before_sha256: 2d19c4ad93729a69d1f1f7ef4d166621c47e078dcc1697475d727f6056f0b986
+      after_sha256: 7a92fb1e859e4d741981fff30806151a4c496c63875f8f730133b6c19289ecbe
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch04-thermal-chain-ledger
   chapter: 4
   kind: figure
@@ -9491,14 +10307,38 @@ assets:
   alt: 手绘热失效账。顶部红框写结温等于环境温度加功耗乘三级热阻之和；导通 0.75 瓦加开关 3.5 瓦共 4.25 瓦，只靠电路板敷铜、热阻按 60 摄氏度每瓦估，温升 255 摄氏度，150
     或 175 摄氏度的额定都挡不住。蓝框两条降额示例：结温 125 摄氏度以下、漏源峰值在额定 80% 以内，具体按产品要求另定。琥珀框列测量边界：20 毫米探头地线环路可能引入振铃，先缩短后复测；电流探头与电压通道的延迟差让损耗积分偏大或偏小；导通电阻要通已知电流四线测；误导通看栅源电压与热态阈值，耐压看漏源峰值。绿框写孤立短脉冲看瞬态热阻，重复脉冲还须累计热量，保持相同热边界条件。底部写雪崩不是免费保险：100
     纳亨乘 0.5 安每纳秒就是 50 伏，直接叠在母线上。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch04-thermal-chain-ledger.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: c149474d1d01245e3f6fa225b9768ef0f664e550c145f1ff7a06db1355a0caee
+    metadata_amendments:
+    - before_sha256: cd12950a9b502c48af50151cbcef50e1c15269798532bd1c67f1f1a5c99d5453
+      after_sha256: c149474d1d01245e3f6fa225b9768ef0f664e550c145f1ff7a06db1355a0caee
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch01-q-selectivity-map
   chapter: 1
   kind: figure
@@ -9521,14 +10361,38 @@ assets:
     5 千赫，Q 等于 200；调频载波 100 兆赫、带宽 150 千赫，Q 约 667；频率越高做出高 Q 越难，损耗与寄生随频率一起涨。右红框峰值阻抗也是有限的：电感 10 微亨、电容 100
     皮法、电阻 1 欧，谐振频率 5.0 兆赫，峰值阻抗 100 千欧；理想并联回路阻抗无穷大，实际被电感电阻压成电感除电阻乘电容。下方琥珀框写谐振网络里谁最差谁定 Q，电感的直流电阻与磁芯损耗通常是短板。底部写调谐用可变电容不用可变电感：电容可做多联同轴、磨损小、Q
     高。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch01-q-selectivity-map.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: de2db9c59c90dd2fda177e3384307e04e6521be868614ca4ec7966af8754be83
+    metadata_amendments:
+    - before_sha256: bd6dc1bec7f3e9cb0b8f086d6606cf03c6d7e5349933b9b6ef1c71b6a424d3aa
+      after_sha256: de2db9c59c90dd2fda177e3384307e04e6521be868614ca4ec7966af8754be83
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch02-diode-fault-order
   chapter: 2
   kind: figure
@@ -9624,14 +10488,38 @@ assets:
   print_fallback: assets/figures-v2/ch09-tl431-divider-floor-print.svg
   preview: assets/figures-v2/ch09-tl431-divider-floor.webp
   alt: 参考端偏流流入芯片，上电阻电流为下电阻电流加偏流；示意两只十千欧给五点零二伏，百千欧给五点二伏。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch09-tl431-divider-floor.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 36b0815b9c7b0f9b0220b2aaff6e06026830e1c49e328921358a523d58345e7f
+    metadata_amendments:
+    - before_sha256: 00d9c5f73e0bfc563e96775e253e8b43333daf283100a9e6bc3da3b421bf29af
+      after_sha256: 36b0815b9c7b0f9b0220b2aaff6e06026830e1c49e328921358a523d58345e7f
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch13-crystal-neg-resistance
   chapter: 13
   kind: figure
@@ -9726,14 +10614,38 @@ assets:
   print_fallback: assets/figures-v2/ch10-555-fault-tree-print.svg
   preview: assets/figures-v2/ch10-555-fault-tree.webp
   alt: 输出常高先查触发，常低先查复位；漂移测实际电容漏电与控制节点，启动测供电和复位时序。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch10-555-fault-tree.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: bdc3f872b8ac0558c28a63596c55006fae3ac5d5eaece277512d3d79291bca54
+    metadata_amendments:
+    - before_sha256: 884c97a206cfc4379d8189b89de23c037b42d8fa03ef8004cd22788f4fb82427
+      after_sha256: bdc3f872b8ac0558c28a63596c55006fae3ac5d5eaece277512d3d79291bca54
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch10-555-threshold-clamp
   chapter: 10
   kind: figure
@@ -9753,14 +10665,38 @@ assets:
   print_fallback: assets/figures-v2/ch10-555-threshold-clamp-print.svg
   preview: assets/figures-v2/ch10-555-threshold-clamp.webp
   alt: 三只等值电阻形成两门限，阈值比较器和触发比较器进入锁存器，RESET 具有最高优先级，OUT 与放电开关状态对应。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch10-555-threshold-clamp.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: f2cfe9d6c67eed18882460cc5a378eeb54ce6a01ce547c0b0ba0e03ae0b08828
+    metadata_amendments:
+    - before_sha256: 8d256700fd1c9039f6de3e92da4592e6f27008c95c3fe2538243efae6cd4904d
+      after_sha256: f2cfe9d6c67eed18882460cc5a378eeb54ce6a01ce547c0b0ba0e03ae0b08828
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch03-ce-swing-budget
   chapter: 3
   kind: figure
@@ -9782,14 +10718,38 @@ assets:
   alt: 手绘共射摆幅预算。左蓝框先立地基：集电极 6 伏、发射极 1.8 伏、基极约 2.5 伏、集电极电流 3 毫安、管压降约 4.2 伏，这是安静时的 Q 点。右绿框再数余量：向上到 12 伏是
     6 伏，向下到发射极加 0.2 伏是 4 伏，取小的那份。琥珀框写线性外推削波界等于 2 乘最小余量、即 8.0 Vpp；增益 230，线性估计输入约 35 mVpp；指数非线性更早出现，失真须另验。红框写削波方向就是诊断方向：输出底部削平是撞饱和、Q
     点偏高，查发射极电压或集电极电阻偏大；顶部削平是撞截止、Q 点偏低，把基极电压往上挪。底部写 Q 点偏置的任务就是把两份余量尽量平分，先站回直流窗口再用信号说话。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch03-ce-swing-budget.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 7b09d00955f977ab8020ad84e760f56a850afacc508ed2c6b69a00b8f8d41a45
+    metadata_amendments:
+    - before_sha256: 971688f90cfaa6aba095225ffff566ad257a5ba45466e4cef7c5ed995936c0b2
+      after_sha256: 7b09d00955f977ab8020ad84e760f56a850afacc508ed2c6b69a00b8f8d41a45
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch15-return-mirror
   chapter: 15
   kind: figure
@@ -10043,14 +11003,38 @@ assets:
   print_fallback: assets/figures-v2/ch11-noise-identify-print.svg
   preview: assets/figures-v2/ch11-noise-identify.webp
   alt: 五种症状各配一个频谱或工况检查，再决定改带宽、源阻或器件，保留信号与稳定性约束。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch11-noise-identify.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 7d1edbaaaa2168a16e205182fa0d8b9b283195e8ac826b1af431f3f5d92f7bba
+    metadata_amendments:
+    - before_sha256: 15fa6f431f6b0a4216732fe004db93ab4fd7d8411804ad091d3047683647fdcf
+      after_sha256: 7d1edbaaaa2168a16e205182fa0d8b9b283195e8ac826b1af431f3f5d92f7bba
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch04-channel-formation
   chapter: 4
   kind: figure
@@ -10071,14 +11055,38 @@ assets:
   preview: assets/figures-v2/ch04-channel-formation.webp
   alt: 三幅 N 沟道增强型 MOSFET 剖面：VGS=0 时两个 N+ 区被 P 型衬底隔开、增强沟道关闭，体二极管另看极性；VGS>VTH 时氧化层下形成蓝色反型层，把源漏连起来；VGS 更大时沟道更厚、RDS(on)
     更低。底部三条电容账：栅氧厚度取决于工艺，栅源额定常见 ±20 V、须查型号；VTH 随温度下降 −2~−5 mV/°C；3.3 V 驱动要查对应栅压的 RDS(on) 保证，不能只看 VTH(max)。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch04-channel-formation.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 1c8e3b20d0c91e58c2b2026e7ae9d06bc58b19c450a2e79ce8f0ba7a2bfe905f
+    metadata_amendments:
+    - before_sha256: 41ed9a11685424d72229830c91f5967a6eacf8673ecd8cc8e644f1265ddc4ebc
+      after_sha256: 1c8e3b20d0c91e58c2b2026e7ae9d06bc58b19c450a2e79ce8f0ba7a2bfe905f
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch03-region-check
   chapter: 3
   kind: figure
@@ -10100,14 +11108,38 @@ assets:
   alt: 判读流程：先量 VBE 与 VCE，再分四路——VBE 约 0.7 V、VCE 大于 1 V 是放大区；VBE 约 0.8 V、VCE 约 0.1~0.3 V 是饱和区；VBE 小于 0.5
     V、VCE 接近 VCC 是截止区；VBE 为 0 V 说明尚未正偏，应查驱动或 B-E 短路，不能直接判开路。底部两条边界：BVCEO 40 V 是失效边界不是第四区；截止漏流每升 8~10 °C
     翻倍，85 °C 高阻负载要重算。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch03-region-check.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 05c46e9fade9e98dd527a801d612e13d5453e185e7fc197b4db9b23e8709466d
+    metadata_amendments:
+    - before_sha256: e9575a350099c8534c7d200b9a251a2e64ac6f316d79808dc62f79d9295e19c0
+      after_sha256: 05c46e9fade9e98dd527a801d612e13d5453e185e7fc197b4db9b23e8709466d
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch18-williams-workbench
   chapter: 18
   kind: figure
@@ -10845,14 +11877,38 @@ assets:
   print_fallback: assets/figures-v2/ch04-output-regions-print.svg
   preview: assets/figures-v2/ch04-output-regions.webp
   alt: 同一长沟道模型的三条输出曲线，过驱动一、二、三伏，夹断点分别在漏压一、二、三伏。过驱动三伏时原点斜率六安每伏，对应约零点一七欧；欧姆段并非全程直线，饱和电流分别为一、四、九安。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch04-output-regions.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: d522f2e354f3857d7b60c9e5030a4e86fe293fe150bf1df052cdf301af3e311d
+    metadata_amendments:
+    - before_sha256: 9414b547069141e3a2f97cd2fd228dc32d4091cf84cd3dc3c6e55770acc644f6
+      after_sha256: d522f2e354f3857d7b60c9e5030a4e86fe293fe150bf1df052cdf301af3e311d
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch04-switching-energy-ledger
   chapter: 4
   kind: figure
@@ -10872,14 +11928,38 @@ assets:
   print_fallback: assets/figures-v2/ch04-switching-energy-ledger-print.svg
   preview: assets/figures-v2/ch04-switching-energy-ledger.webp
   alt: 四条波形共用纳秒时间轴。电流在一百五十至四百纳秒上升，漏压在四百至五百六十纳秒下降；开通重叠四百一十纳秒，三角近似二十点五微焦，一百千赫下约二点零五瓦，仅是开通部分。导通末态仍有零点七五瓦。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch04-switching-energy-ledger.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 8e683c715363550ee410ce4ab40beb71310750ea7ecdd4177bf9b5858063dd2b
+    metadata_amendments:
+    - before_sha256: 5e7449dbed9961edc618c2781e899cf711d4c23e073ae79b742395c93c0b2269
+      after_sha256: 8e683c715363550ee410ce4ab40beb71310750ea7ecdd4177bf9b5858063dd2b
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch05-capacitive-energy-v2
   chapter: 5
   kind: animation
@@ -11354,14 +12434,38 @@ assets:
   print_fallback: assets/figures-v2/ch05-open-drain-rise-print.svg
   preview: assets/figures-v2/ch05-open-drain-rise.webp
   alt: 三点三伏、一百皮法的 RC 充电曲线，分别使用一千欧、二点二千欧和四点七千欧。上升时间从百分之三十到百分之七十测量，约八十五、一百八十六和三百九十八纳秒；二点二千欧曲线标出两个交点。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch05-open-drain-rise.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: d2b8f7bd5c7b0a577d159795ab1d99dab25c72c7ab639f9f33812d79a010e3a5
+    metadata_amendments:
+    - before_sha256: 5c41d910a31b5c98e9089d5a39c601b1d67431204503c0c0a640d5aa8fe55e3d
+      after_sha256: d2b8f7bd5c7b0a577d159795ab1d99dab25c72c7ab639f9f33812d79a010e3a5
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch06-compensation-v2
   chapter: 6
   kind: animation
@@ -11843,14 +12947,38 @@ assets:
   print_fallback: assets/figures-v2/ch06-opamp-conditions-print.svg
   preview: assets/figures-v2/ch06-opamp-conditions.webp
   alt: 五伏供电下，经典 LM358 输入共模范围在二十五摄氏度上限为三点五伏，零到七十摄氏度留到三伏。两条范围条共享电压轴；输出摆幅另查负载与温度条件，不能照搬输入范围。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch06-opamp-conditions.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 2cf50b0bc5d3697c1f78e49c4ca0e59b0fd29e1ad8fbbdd8321aa5042dd0ab52
+    metadata_amendments:
+    - before_sha256: 35b6b1680e25681d4f62522ae0677defb9c4df252cee32d5073171a6f64a7e95
+      after_sha256: 2cf50b0bc5d3697c1f78e49c4ca0e59b0fd29e1ad8fbbdd8321aa5042dd0ab52
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch06-fault-conditions
   chapter: 6
   kind: figure
@@ -11870,14 +12998,38 @@ assets:
   print_fallback: assets/figures-v2/ch06-fault-conditions-print.svg
   preview: assets/figures-v2/ch06-fault-conditions.webp
   alt: 三步流程检查供电共模负载、反馈通路和修复验证。另用正负十二伏供电，同相十倍把零点八伏放大到八伏；大压差不能唯一归因于反馈断路。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch06-fault-conditions.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 6a084ca2e5a55a5ffeb57dc052bb94a180d303e9dfb1d6f4a5e34b936a3d7a12
+    metadata_amendments:
+    - before_sha256: 1d1f1f7583a8d925ffc3421b52571a42375663eaf8ace531932addeb9bd4ce08
+      after_sha256: 6a084ca2e5a55a5ffeb57dc052bb94a180d303e9dfb1d6f4a5e34b936a3d7a12
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch07-release-timing-v2
   chapter: 7
   kind: animation
@@ -12359,14 +13511,38 @@ assets:
   print_fallback: assets/figures-v2/ch07-window-logic-print.svg
   preview: assets/figures-v2/ch07-window-logic.webp
   alt: 欠压路被测进正端，过压路基准进正端；任一路越界都能拉低公共输出，窗口内两路松手。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch07-window-logic.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: dfe87f3958526193486c9ef10d2a612afde08227a6bd4f99962795e42f0c51d0
+    metadata_amendments:
+    - before_sha256: fb4a28034083427ecb034e41cf6290237da4f9af5a16e4be1d3ddeadae2e8e81
+      after_sha256: dfe87f3958526193486c9ef10d2a612afde08227a6bd4f99962795e42f0c51d0
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch07-delay-endpoints
   chapter: 7
   kind: figure
@@ -12386,14 +13562,38 @@ assets:
   print_fallback: assets/figures-v2/ch07-delay-endpoints-print.svg
   preview: assets/figures-v2/ch07-delay-endpoints.webp
   alt: 示意 RC 充电曲线上，输出越过一点四伏、二点五伏和三点五伏的时刻不同；手册指定的响应终点不能再加完整上升区间。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch07-delay-endpoints.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: ec8ccf91536257f45134eb3b4f62568e53c674f41859382a0a54f3a7b0dae9b6
+    metadata_amendments:
+    - before_sha256: 8ee35ba302ba509d153e495e73c84123dc56e1bc4d095c5de57f3a6db4ebfa9e
+      after_sha256: ec8ccf91536257f45134eb3b4f62568e53c674f41859382a0a54f3a7b0dae9b6
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch07-glitch-margin
   chapter: 7
   kind: figure
@@ -12413,14 +13613,38 @@ assets:
   print_fallback: assets/figures-v2/ch07-glitch-margin-print.svg
   preview: assets/figures-v2/ch07-glitch-margin.webp
   alt: 同样二百毫伏毛刺，基线二点四伏时不超过二点七二七伏门限，基线二点六伏时越阈翻转；是否触发取决于当前状态和门限距离。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch07-glitch-margin.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 614342d1072c0f79a32b9cea2221e306d158396cc4324b43ab1b46108715e67e
+    metadata_amendments:
+    - before_sha256: 52491f1e7b643437a7fa3392758c50d0fa0a468c6333d23dd77578ad935ca69f
+      after_sha256: 614342d1072c0f79a32b9cea2221e306d158396cc4324b43ab1b46108715e67e
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch09-bandgap-balance-v2
   chapter: 9
   kind: animation
@@ -12968,14 +14192,38 @@ assets:
   print_fallback: assets/figures-v2/ch09-shunt-corners-print.svg
   preview: assets/figures-v2/ch09-shunt-corners.webp
   alt: 限流电阻后电流分给负载与分流器；最低输入满载看最小分流电流，最高输入空载看器件与电阻功耗。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch09-shunt-corners.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: e5cd0f4f7752241984ed121bf9e58a8503615642ab1b3645bdfd8852dc47b415
+    metadata_amendments:
+    - before_sha256: 51fd2d8068b24da39240006816db8d26ab2b61cb818d04120c663b5b129a9d8e
+      after_sha256: e5cd0f4f7752241984ed121bf9e58a8503615642ab1b3645bdfd8852dc47b415
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch09-reference-charge
   chapter: 9
   kind: figure
@@ -12995,14 +14243,38 @@ assets:
   print_fallback: assets/figures-v2/ch09-reference-charge-print.svg
   preview: assets/figures-v2/ch09-reference-charge.webp
   alt: 参考缓冲串联十欧姆给一微法补电，ADC 每十微秒取一纳库仑；单次一毫伏的下降会因未完全恢复而累积。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch09-reference-charge.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 757e3c3080170e39db2e39ae10979236caf217336e1793a7b28a8cbab76f6ec0
+    metadata_amendments:
+    - before_sha256: 146e305f19c9ba358789e83498af2b021a2ba91da892486cc58510a553396806
+      after_sha256: 757e3c3080170e39db2e39ae10979236caf217336e1793a7b28a8cbab76f6ec0
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch09-thermal-path
   chapter: 9
   kind: figure
@@ -13022,14 +14294,38 @@ assets:
   print_fallback: assets/figures-v2/ch09-thermal-path-print.svg
   preview: assets/figures-v2/ch09-thermal-path.webp
   alt: 结到壳、界面和散热片三个热阻串联为二十一度每瓦，完整功耗二点一六瓦，在四十五度环境得到约九十点三六度结温。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch09-thermal-path.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 3a256e2c0b5bbad8b79ca48629fabe897c2f5d0158e402cf6526c35a7ce2863c
+    metadata_amendments:
+    - before_sha256: d73299da3f8f8170b7c02c90521be5a1a5dabbb9cce6e95a6c471596700dacd6
+      after_sha256: 3a256e2c0b5bbad8b79ca48629fabe897c2f5d0158e402cf6526c35a7ce2863c
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch09-load-transient
   chapter: 9
   kind: figure
@@ -13049,14 +14345,38 @@ assets:
   print_fallback: assets/figures-v2/ch09-load-transient-print.svg
   preview: assets/figures-v2/ch09-load-transient.webp
   alt: 总输出偏差与电容电压分开画，五微秒控制接管时尚未达到最大跌落，后续恢复从同一电容电流继续积分。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch09-load-transient.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: a40287231d8e19353f84674818a94f41ed836c9f51f5d527481d50e10951e497
+    metadata_amendments:
+    - before_sha256: b3e62e17f36fbb9b15ad631867f44dd2b9756c9dceee20616b022c74887cf2bd
+      after_sha256: a40287231d8e19353f84674818a94f41ed836c9f51f5d527481d50e10951e497
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch09-transient-budget
   chapter: 9
   kind: figure
@@ -13076,14 +14396,38 @@ assets:
   print_fallback: assets/figures-v2/ch09-transient-budget-print.svg
   preview: assets/figures-v2/ch09-transient-budget.webp
   alt: 三点三伏的上下各百分之五窗口分别核对；下降九十九毫伏预算分为 ESR 二十、缺口电荷六十、余项十九毫伏，后续恢复仍要计入。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch09-transient-budget.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 6358d3b6f63ad30668ae05458e1323b5cbf4a3f90bd36c055d7d53bbc9c44feb
+    metadata_amendments:
+    - before_sha256: 61090979f0a6f41c1c4f20c6cc34fc6abdf7d56bf0fc882e4119b30fa51ba52b
+      after_sha256: 6358d3b6f63ad30668ae05458e1323b5cbf4a3f90bd36c055d7d53bbc9c44feb
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch10-threshold-memory-v2
   chapter: 10
   kind: animation
@@ -13798,14 +15142,38 @@ assets:
   print_fallback: assets/figures-v2/ch10-555-modes-print.svg
   preview: assets/figures-v2/ch10-555-modes.webp
   alt: 无稳态将触发与阈值并到定时电容，单稳态另接触发，双稳态分别接受置位复位；各自连接和输出波形并列。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch10-555-modes.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 915b4268ae87430db567c8c108b0675759fbb7ccd27c494e2530f1d4ecf3c421
+    metadata_amendments:
+    - before_sha256: 370201ee773910eb77d38014a9a600fdafed1a8f1d34ab2dd09081062cb74eab
+      after_sha256: 915b4268ae87430db567c8c108b0675759fbb7ccd27c494e2530f1d4ecf3c421
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch10-discharge-current
   chapter: 10
   kind: figure
@@ -13825,14 +15193,38 @@ assets:
   print_fallback: assets/figures-v2/ch10-discharge-current-print.svg
   preview: assets/figures-v2/ch10-discharge-current.webp
   alt: 电源经 RA 与电容经 RB 的电流一起进入七脚，示意八点八五与零点八六毫安相加，不能漏算电源电流。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch10-discharge-current.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 5a5baf723adcfdd22c4f300dedf620fc0c3d6b6907ed7d97cfdb0eb615a51a32
+    metadata_amendments:
+    - before_sha256: c48ddebf048acac1f80fe9ad29a894b81a3d07fa02f9899cabfcf12ddad94bd6
+      after_sha256: 5a5baf723adcfdd22c4f300dedf620fc0c3d6b6907ed7d97cfdb0eb615a51a32
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch10-logic-margin
   chapter: 10
   kind: figure
@@ -13852,14 +15244,38 @@ assets:
   print_fallback: assets/figures-v2/ch10-logic-margin-print.svg
   preview: assets/figures-v2/ch10-logic-margin.webp
   alt: 特定五伏和一百毫安条件下，NE555 最低高电平二点七五伏，对示意三点五伏输入门限没有保证裕量。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch10-logic-margin.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: d04a00759f8a0df6773f750369dbfeb58546eea7ed096b887e160acd0e1e05fb
+    metadata_amendments:
+    - before_sha256: 96712ba1828cd871158b60ed96af867668b0d3cd9a4c12c858ca03f3bdb49bd9
+      after_sha256: d04a00759f8a0df6773f750369dbfeb58546eea7ed096b887e160acd0e1e05fb
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch10-timer-leakage
   chapter: 10
   kind: figure
@@ -13879,14 +15295,38 @@ assets:
   print_fallback: assets/figures-v2/ch10-timer-leakage-print.svg
   preview: assets/figures-v2/ch10-timer-leakage.webp
   alt: 电容电压越高，电阻充电电流越小；到上门限只剩五点三五七微安，漏电预算必须在此端点检查。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch10-timer-leakage.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: fe150b7bb81a06801be2676da022ebcba4b3429885b5794c8095c59c60ee3f35
+    metadata_amendments:
+    - before_sha256: d266563b3087aae146b8889c7e3ef728b0bca7207657a1723d0ba604c3f38064
+      after_sha256: fe150b7bb81a06801be2676da022ebcba4b3429885b5794c8095c59c60ee3f35
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch10-clock-gating
   chapter: 10
   kind: figure
@@ -13906,14 +15346,38 @@ assets:
   print_fallback: assets/figures-v2/ch10-clock-gating-print.svg
   preview: assets/figures-v2/ch10-clock-gating.webp
   alt: 关闭命令在高脉冲中段到达时，RESET 会把输出提前截断；关闭和重启都须按时钟接收器要求验收。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch10-clock-gating.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 4afcfbc9505c04954a77c19b209550e84515985afb19074d87e4ae52170176bc
+    metadata_amendments:
+    - before_sha256: 366084420aa1cc6f8a87809c0d303c876ad9add2f763f0b062bffd0edbfbfeb1
+      after_sha256: 4afcfbc9505c04954a77c19b209550e84515985afb19074d87e4ae52170176bc
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch11-diff-steer-v2
   chapter: 11
   kind: animation
@@ -15007,14 +16471,38 @@ assets:
   print_fallback: assets/figures-v2/ch11-topology-ports-print.svg
   preview: assets/figures-v2/ch11-topology-ports.webp
   alt: 三行端口示意对照输入输出与交流公共端，标明共射反相、共集跟随、共基低输入阻抗，并说明阻抗随偏置与负载变化。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch11-topology-ports.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 897e236de989fde35d66549f4d16545a248b46215e1a541f98e724a1c6311ee0
+    metadata_amendments:
+    - before_sha256: fbb2973a568c98de58684c0c2c60e8b3b1167262605e9425cce877c8e075b47a
+      after_sha256: 897e236de989fde35d66549f4d16545a248b46215e1a541f98e724a1c6311ee0
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch11-noise-input-budget
   chapter: 11
   kind: figure
@@ -15034,14 +16522,38 @@ assets:
   print_fallback: assets/figures-v2/ch11-noise-input-budget-print.svg
   preview: assets/figures-v2/ch11-noise-input-budget.webp
   alt: 一兆欧源的热噪声占本例总均方值约百分之九十九点四，横条按功率比例绘制，三项有效值分别列出后再做平方和开方。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch11-noise-input-budget.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: ab6261b1ea101945687774517f4a1c71d589ccb38c2ce67b03ac99255e03eca9
+    metadata_amendments:
+    - before_sha256: 6037746ae2af8108ff9ba05f0b1fc7d17aa51a3b76f7bd2aba7973e88f590f93
+      after_sha256: ab6261b1ea101945687774517f4a1c71d589ccb38c2ce67b03ac99255e03eca9
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch11-cascode-headroom
   chapter: 11
   kind: figure
@@ -15061,14 +16573,38 @@ assets:
   print_fallback: assets/figures-v2/ch11-cascode-headroom-print.svg
   preview: assets/figures-v2/ch11-cascode-headroom.webp
   alt: 三种负载分别显示电源到输出的电压预算，强调合规电压不同于实际直流压降，高输出电阻可降低输出极点。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch11-cascode-headroom.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 4b4d84de80425e320e9d7ef32af59b859312a5b6bb91d96c3862d11347804685
+    metadata_amendments:
+    - before_sha256: f2a37e5b89852f235f2d4bb7398502e44ba98ad0a69b3244323cc36031912698
+      after_sha256: 4b4d84de80425e320e9d7ef32af59b859312a5b6bb91d96c3862d11347804685
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch11-cmrr-definitions
   chapter: 11
   kind: figure
@@ -15088,14 +16624,38 @@ assets:
   print_fallback: assets/figures-v2/ch11-cmrr-definitions-print.svg
   preview: assets/figures-v2/ch11-cmrr-definitions.webp
   alt: 单端与差分输出分别列差模增益和共模增益，只有分子分母使用同一输出端口才可相除。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch11-cmrr-definitions.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 9fa484667373bc438560908382269171281fa717b6f8b1762fb400da8b37b272
+    metadata_amendments:
+    - before_sha256: 24eaf9c3aade6b652c6541c8065ef19729c2721e97452ab1ccfc55f9375a24e3
+      after_sha256: 9fa484667373bc438560908382269171281fa717b6f8b1762fb400da8b37b272
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch11-design-dc
   chapter: 11
   kind: figure
@@ -15115,14 +16675,38 @@ assets:
   print_fallback: assets/figures-v2/ch11-design-dc-print.svg
   preview: assets/figures-v2/ch11-design-dc.webp
   alt: 三个模块列出偏置分压、发射极和集电极电阻、直流节点与耦合关系，输出管基流计入第二级集电极电阻。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch11-design-dc.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: a0d83e9199922c2fed984575a4fb73b861ba244c87a8975076f832382e0ad90b
+    metadata_amendments:
+    - before_sha256: 3559aced7ecceb565708a657c2839cb0cb6f5db083be724108ba24606f7b805c
+      after_sha256: a0d83e9199922c2fed984575a4fb73b861ba244c87a8975076f832382e0ad90b
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch12-loop-error-v2
   chapter: 12
   kind: animation
@@ -16326,14 +17910,38 @@ assets:
   print_fallback: assets/figures-v2/ch12-sallen-key-network-print.svg
   preview: assets/figures-v2/ch12-sallen-key-network.webp
   alt: R1、R2 串联，C1 由两电阻中点连接输出，C2 从运放正输入接地；跟随反馈接负端，列出 Butterworth 电容比。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch12-sallen-key-network.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 54239b19cb01546938006c13b829df02ac29a0e2c94a54fc47e5ade1abcde7a6
+    metadata_amendments:
+    - before_sha256: ba7d3c634c0527257f9c673bee68ee4453d147bc091407a8f17015fec3c56b99
+      after_sha256: 54239b19cb01546938006c13b829df02ac29a0e2c94a54fc47e5ade1abcde7a6
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch12-feedback-ports
   chapter: 12
   kind: figure
@@ -16353,14 +17961,38 @@ assets:
   print_fallback: assets/figures-v2/ch12-feedback-ports-print.svg
   preview: assets/figures-v2/ch12-feedback-ports.webp
   alt: 四行比较受控量、输入混合、输出采样带来的阻抗方向，强调环路增益无量纲与模型适用条件。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch12-feedback-ports.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: d52f92f6896c49086b11717ac0806f867dcbf30c5a8384aa2fb64ee911ec5769
+    metadata_amendments:
+    - before_sha256: 6be1d639b17a6a345f9ae6499e8490aa0b55c4ffe69dbf459d34d39de30fdea6
+      after_sha256: d52f92f6896c49086b11717ac0806f867dcbf30c5a8384aa2fb64ee911ec5769
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch12-phase-crossing
   chapter: 12
   kind: figure
@@ -16380,14 +18012,38 @@ assets:
   print_fallback: assets/figures-v2/ch12-phase-crossing-print.svg
   preview: assets/figures-v2/ch12-phase-crossing.webp
   alt: 原 A 一千乘零点一不是单位交越，改用 A 十倍乘零点一，再分别读取负一百二十与负一百七十度。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 4
+    事实精度: 5
+    构图层级: 5
+    印刷可读性: 4
+    风格一致性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch12-phase-crossing.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: agent-proxy
+  review_method: machine-assisted-rubric-v1
+  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  review_record:
+    reviewer: agent-proxy
+    method: machine-assisted-rubric-v1
+    scope: all pending visual assets
+    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
+    reviewed_on: '2026-11-07'
+    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+    asset_sha256: 0b58118b664b7db0d7042b493c117f4ce8cdf99224eb964b4198d55e5418a437
+    metadata_amendments:
+    - before_sha256: 1f993a8d90129b3a60be7b1c0c27e54ebdd2a1c1ed1c2f445e0f41f1eba92115
+      after_sha256: 0b58118b664b7db0d7042b493c117f4ce8cdf99224eb964b4198d55e5418a437
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch13-zener-budget-v2
   chapter: 13
   kind: animation
