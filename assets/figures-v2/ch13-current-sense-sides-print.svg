@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1448 1086" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
-<title id="title">低侧与高侧电流检测</title><desc id="desc">左右两栏：低侧检测共模接近 0 V、会把负载地抬高 100 mV、测不到对地短路，适合精度优先的单路负载；高侧检测共模为 12 或 24 或 48 V、地完整、能测对地短路，适合保护优先的多路共地负载。</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">沿分流路径判断故障可见性</title><desc id="desc">低侧和高侧各画电源、分流与负载，说明地抬升与共模范围，故障是否可见取决于流经路径。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>
@@ -34,10 +34,10 @@
 <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
 </filter>
 </defs>
-<rect class="page-bg" width="1448" height="1086" fill="url(#bgL)"/>
-<rect class="page-grain" width="1448" height="1086" fill="url(#dots)"/>
-<rect class="page-vig" width="1448" height="1086" fill="url(#vig)"/>
-<rect class="page-hdr" width="1448" height="72" fill="url(#hdr)"/>
+<rect class="page-bg" width="1000" height="700" fill="url(#bgL)"/>
+<rect class="page-grain" width="1000" height="700" fill="url(#dots)"/>
+<rect class="page-vig" width="1000" height="700" fill="url(#vig)"/>
+<rect class="page-hdr" width="1000" height="72" fill="url(#hdr)"/>
 <style>
 text{font-family:"Segoe UI","Microsoft YaHei","PingFang SC","Hiragino Sans GB","Noto Sans CJK SC","Source Han Sans SC","Noto Sans SC",sans-serif;}
 line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
@@ -94,49 +94,26 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 }
 </style>
 
-<path data-paper-shadow="true" transform="translate(8 12)" d="M68,206 L330.6,204 L681,207 L684,605.28 L681,906 L299.6,908 L64,904 Z" fill="#535453" opacity="0.08"/><path data-paper-shadow="true" transform="translate(4 7)" d="M68,206 L330.6,204 L681,207 L684,605.28 L681,906 L299.6,908 L64,904 Z" fill="#535453" opacity="0.12"/><path data-paper-shadow="true" transform="translate(2 3)" d="M68,206 L330.6,204 L681,207 L684,605.28 L681,906 L299.6,908 L64,904 Z" fill="#535453" opacity="0.15"/><path d="M68,206 L330.6,204 L681,207 L684,605.28 L681,906 L299.6,908 L64,904 Z" fill="#efe7dc" stroke="#c4b9ab" stroke-width="1.4"/><path d="M70,208L677,209" fill="none" stroke="#fdf8ea" stroke-width="2" opacity=".7"/><path d="M82,218 L668,220 L670,892 L84,894 Z" fill="none" stroke="#c4b9ab" stroke-width="2" opacity=".55"/>
-<path data-paper-shadow="true" transform="translate(8 12)" d="M768,206 L1030.6,204 L1381,207 L1384,605.28 L1381,906 L999.6,908 L764,904 Z" fill="#535453" opacity="0.08"/><path data-paper-shadow="true" transform="translate(4 7)" d="M768,206 L1030.6,204 L1381,207 L1384,605.28 L1381,906 L999.6,908 L764,904 Z" fill="#535453" opacity="0.12"/><path data-paper-shadow="true" transform="translate(2 3)" d="M768,206 L1030.6,204 L1381,207 L1384,605.28 L1381,906 L999.6,908 L764,904 Z" fill="#535453" opacity="0.15"/><path d="M768,206 L1030.6,204 L1381,207 L1384,605.28 L1381,906 L999.6,908 L764,904 Z" fill="#f6f2ed" stroke="#c4b9ab" stroke-width="1.4"/><path d="M770,208L1377,209" fill="none" stroke="#fdf8ea" stroke-width="2" opacity=".7"/><path d="M782,218 L1368,220 L1370,892 L784,894 Z" fill="none" stroke="#c4b9ab" stroke-width="2" opacity=".55"/>
-<path fill="none" d="M714,536 L754,536" stroke="#a4441d" stroke-width="3" stroke-dasharray="8,6"/>
-<rect x="98" y="320" width="8" height="42" fill="#a4441d"/>
-<rect x="98" y="448" width="8" height="42" fill="#a4441d"/>
-<rect x="98" y="576" width="8" height="42" fill="#a4441d"/>
-<rect x="98" y="704" width="8" height="42" fill="#a4441d"/>
-<rect x="798" y="320" width="8" height="42" fill="#535453"/>
-<rect x="798" y="448" width="8" height="42" fill="#535453"/>
-<rect x="798" y="576" width="8" height="42" fill="#535453"/>
-<rect x="798" y="704" width="8" height="42" fill="#535453"/>
-<text x="72" y="92" fill="#2a2927" font-size="50" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#e2d9cf">电流检测：低侧还是高侧，先看地</text>
-<text x="74" y="146" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#e2d9cf">分流电阻把电流变成压降；位置选错，共模与地参考会同时找麻烦。</text>
-<text x="98" y="268" fill="#a4441d" font-size="42" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#efe7dc">低侧检测</text>
-<path d="M98 292 Q374.00 291.07 650 292" fill="none" stroke="#c4b9ab" stroke-width="2" stroke-dasharray=""/>
-<text x="122" y="350" fill="#2a2927" font-size="34" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#efe7dc">电阻在负载与地之间</text>
-<text x="122" y="390" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#efe7dc">共模≈0 V</text>
-<text x="122" y="426" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#efe7dc">运放随便选</text>
-<text x="122" y="478" fill="#2a2927" font-size="34" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#efe7dc">破坏地参考</text>
-<text x="122" y="518" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#efe7dc">负载地被抬高 100 mV</text>
-<text x="122" y="554" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#efe7dc">与其它电路不共地</text>
-<text x="122" y="606" fill="#2a2927" font-size="34" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#efe7dc">测不到对地短路</text>
-<text x="122" y="646" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#efe7dc">电流绕过电阻走地</text>
-<text x="122" y="682" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#efe7dc">保护有盲区</text>
-<text x="122" y="734" fill="#2a2927" font-size="34" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#efe7dc">适用</text>
-<text x="122" y="774" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#efe7dc">精度优先、单路负载</text>
-<text x="122" y="810" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#efe7dc">负载不接地</text>
-<text x="98" y="856" fill="#535453" font-size="32" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#efe7dc">便宜，但地不再干净。</text>
-<text x="798" y="268" fill="#2a2927" font-size="42" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">高侧检测</text>
-<path d="M798 292 Q1074.00 292.14 1350 292" fill="none" stroke="#c4b9ab" stroke-width="2" stroke-dasharray=""/>
-<text x="822" y="350" fill="#2a2927" font-size="34" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">电阻在电源与负载之间</text>
-<text x="822" y="390" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">共模=12/24/48 V</text>
-<text x="822" y="426" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">需高共模器件</text>
-<text x="822" y="478" fill="#2a2927" font-size="34" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">地完整</text>
-<text x="822" y="518" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">负载地就是系统地</text>
-<text x="822" y="554" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">通信不抬高</text>
-<text x="822" y="606" fill="#2a2927" font-size="34" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">能测对地短路</text>
-<text x="822" y="646" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">短路电流仍经过电阻</text>
-<text x="822" y="682" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">保护无盲区</text>
-<text x="822" y="734" fill="#2a2927" font-size="34" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">适用</text>
-<text x="822" y="774" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">保护优先、多路共地</text>
-<text x="822" y="810" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">汽车/工业 12~48 V</text>
-<text x="798" y="856" fill="#535453" font-size="32" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">贵一点，换来完整的地。</text>
-<path data-paper-shadow="true" transform="translate(8 12)" d="M68,988 L631.6,986 L1381,989 L1384,1030.46 L1381,1062 L565.6,1064 L64,1060 Z" fill="#535453" opacity="0.08"/><path data-paper-shadow="true" transform="translate(4 7)" d="M68,988 L631.6,986 L1381,989 L1384,1030.46 L1381,1062 L565.6,1064 L64,1060 Z" fill="#535453" opacity="0.12"/><path data-paper-shadow="true" transform="translate(2 3)" d="M68,988 L631.6,986 L1381,989 L1384,1030.46 L1381,1062 L565.6,1064 L64,1060 Z" fill="#535453" opacity="0.15"/><path d="M68,988 L631.6,986 L1381,989 L1384,1030.46 L1381,1062 L565.6,1064 L64,1060 Z" fill="#f6f2ed" stroke="#c4b9ab" stroke-width="1.4"/><path d="M70,990L1377,991" fill="none" stroke="#fdf8ea" stroke-width="2" opacity=".7"/>
-<text x="92" y="1036" fill="#2a2927" font-size="33" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">只要负载与系统共地，就必须走高侧；低侧的 100 mV 会变成逻辑电平的误差源。</text>
+<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">分流位置：沿真实电流路径判断能否测到</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">高侧与低侧都只看流经自身分流的电流；不能按“对地短路”四字一概判断。</text>
+<text x="250" y="160" font-size="28" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">低侧分流</text>
+<text x="250" y="205" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">电源</text>
+<path d="M250 215 L250 240" fill="none" stroke="#16202b" stroke-width="3"/>
+<rect x="140" y="240" width="220" height="50" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/><text x="250.0" y="273" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">负载</text>
+<path d="M250 290 L250 360" fill="none" stroke="#16202b" stroke-width="3"/>
+<path d="M250 360 L250 385" fill="none" stroke="#16202b" stroke-width="3"/>
+<rect x="140" y="385" width="220" height="50" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/><text x="250.0" y="418" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">分流 Rs</text>
+<path d="M250 435 L250 505" fill="none" stroke="#16202b" stroke-width="3"/>
+<text x="250" y="555" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">系统地</text>
+<text x="60" y="610" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">负载地抬高 IRs，检查接口地预算。</text>
+<text x="740" y="160" font-size="28" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">高侧分流</text>
+<text x="740" y="205" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">电源</text>
+<path d="M740 215 L740 240" fill="none" stroke="#16202b" stroke-width="3"/>
+<rect x="630" y="240" width="220" height="50" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/><text x="740.0" y="273" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">分流 Rs</text>
+<path d="M740 290 L740 360" fill="none" stroke="#16202b" stroke-width="3"/>
+<path d="M740 360 L740 385" fill="none" stroke="#16202b" stroke-width="3"/>
+<rect x="630" y="385" width="220" height="50" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/><text x="740.0" y="418" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">负载</text>
+<path d="M740 435 L740 505" fill="none" stroke="#16202b" stroke-width="3"/>
+<text x="740" y="555" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">系统地</text>
+<text x="550" y="610" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">保留负载地，放大器需承受高共模。</text>
+<text x="45" y="665" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">低侧还须查近地输入范围与负瞬态；高侧还须查共模边沿与恢复时间。</text>
 </svg>

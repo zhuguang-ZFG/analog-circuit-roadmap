@@ -984,6 +984,8 @@ def build_html(out_dir: Path, site_dir: Path, data_dir: Path, docs_dir: Path,
         used_sources |= data.used_source_ids(page["html"])
         if page["kind"] == "chapter":
             match = CHAPTER_NUMBER_RE.search(desc["stem"])
+            if match is None:
+                raise BookError(f"章节文件名缺章号: {desc['stem']}")
             chapter_stats[str(int(match.group(1)))] = {"chars": page["chars"]}
         pages.append(page)
     for index, page in enumerate(pages):
@@ -1050,7 +1052,7 @@ def build_html(out_dir: Path, site_dir: Path, data_dir: Path, docs_dir: Path,
         "version": manifest["version"],
         "date": manifest["date"],
         "volume": volume,
-        "volume_label": VOLUME_LABELS.get(volume),
+        "volume_label": VOLUME_LABELS.get(volume) if volume is not None else None,
         "expected_pages": len(pages),
         "pages": pages,
         "toc": toc,

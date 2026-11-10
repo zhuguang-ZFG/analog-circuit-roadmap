@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1448 1086" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
-<title id="title">H 桥四拍</title><desc id="desc">左右两栏：左栏四拍是正转 Q1 与 Q4 导通、反转 Q2 与 Q3 导通、全关滑行时电感电流经体二极管回电源、同臂 Q1 与 Q2 齐开会毫秒级烧管；右栏是 1 到 2 微秒死区、体二极管兜底、高侧自举、DRV8833 或 L298 集成驱动。</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">H 桥的电压极性与制动状态</title><desc id="desc">明确四开关的位置，对角决定电压极性，同臂禁止直通，并区分全关、短接和受控回灌。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>
@@ -34,10 +34,10 @@
 <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
 </filter>
 </defs>
-<rect class="page-bg" width="1448" height="1086" fill="url(#bgL)"/>
-<rect class="page-grain" width="1448" height="1086" fill="url(#dots)"/>
-<rect class="page-vig" width="1448" height="1086" fill="url(#vig)"/>
-<rect class="page-hdr" width="1448" height="72" fill="url(#hdr)"/>
+<rect class="page-bg" width="1000" height="700" fill="url(#bgL)"/>
+<rect class="page-grain" width="1000" height="700" fill="url(#dots)"/>
+<rect class="page-vig" width="1000" height="700" fill="url(#vig)"/>
+<rect class="page-hdr" width="1000" height="72" fill="url(#hdr)"/>
 <style>
 text{font-family:"Segoe UI","Microsoft YaHei","PingFang SC","Hiragino Sans GB","Noto Sans CJK SC","Source Han Sans SC","Noto Sans SC",sans-serif;}
 line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
@@ -94,49 +94,33 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 }
 </style>
 
-<path data-paper-shadow="true" transform="translate(8 12)" d="M68,206 L330.6,204 L681,207 L684,605.28 L681,906 L299.6,908 L64,904 Z" fill="#535453" opacity="0.08"/><path data-paper-shadow="true" transform="translate(4 7)" d="M68,206 L330.6,204 L681,207 L684,605.28 L681,906 L299.6,908 L64,904 Z" fill="#535453" opacity="0.12"/><path data-paper-shadow="true" transform="translate(2 3)" d="M68,206 L330.6,204 L681,207 L684,605.28 L681,906 L299.6,908 L64,904 Z" fill="#535453" opacity="0.15"/><path d="M68,206 L330.6,204 L681,207 L684,605.28 L681,906 L299.6,908 L64,904 Z" fill="#efe7dc" stroke="#c4b9ab" stroke-width="1.4"/><path d="M70,208L677,209" fill="none" stroke="#fdf8ea" stroke-width="2" opacity=".7"/><path d="M82,218 L668,220 L670,892 L84,894 Z" fill="none" stroke="#c4b9ab" stroke-width="2" opacity=".55"/>
-<path data-paper-shadow="true" transform="translate(8 12)" d="M768,206 L1030.6,204 L1381,207 L1384,605.28 L1381,906 L999.6,908 L764,904 Z" fill="#535453" opacity="0.08"/><path data-paper-shadow="true" transform="translate(4 7)" d="M768,206 L1030.6,204 L1381,207 L1384,605.28 L1381,906 L999.6,908 L764,904 Z" fill="#535453" opacity="0.12"/><path data-paper-shadow="true" transform="translate(2 3)" d="M768,206 L1030.6,204 L1381,207 L1384,605.28 L1381,906 L999.6,908 L764,904 Z" fill="#535453" opacity="0.15"/><path d="M768,206 L1030.6,204 L1381,207 L1384,605.28 L1381,906 L999.6,908 L764,904 Z" fill="#f6f2ed" stroke="#c4b9ab" stroke-width="1.4"/><path d="M770,208L1377,209" fill="none" stroke="#fdf8ea" stroke-width="2" opacity=".7"/><path d="M782,218 L1368,220 L1370,892 L784,894 Z" fill="none" stroke="#c4b9ab" stroke-width="2" opacity=".55"/>
-<path fill="none" d="M714,536 L754,536" stroke="#a4441d" stroke-width="3" stroke-dasharray="8,6"/>
-<rect x="98" y="320" width="8" height="42" fill="#a4441d"/>
-<rect x="98" y="448" width="8" height="42" fill="#a4441d"/>
-<rect x="98" y="576" width="8" height="42" fill="#a4441d"/>
-<rect x="98" y="704" width="8" height="42" fill="#a4441d"/>
-<rect x="798" y="320" width="8" height="42" fill="#535453"/>
-<rect x="798" y="448" width="8" height="42" fill="#535453"/>
-<rect x="798" y="576" width="8" height="42" fill="#535453"/>
-<rect x="798" y="704" width="8" height="42" fill="#535453"/>
-<text x="72" y="92" fill="#2a2927" font-size="50" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#e2d9cf">H 桥四拍：两个状态位决定电流方向</text>
-<text x="74" y="146" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#e2d9cf">四只开关组成两个半桥；同臂齐开就是电源直通，换向必须先插死区。</text>
-<text x="98" y="268" fill="#a4441d" font-size="42" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#efe7dc">四拍</text>
-<path d="M98 292 Q374.00 291.07 650 292" fill="none" stroke="#c4b9ab" stroke-width="2" stroke-dasharray=""/>
-<text x="122" y="350" fill="#2a2927" font-size="34" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#efe7dc">正转</text>
-<text x="122" y="390" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#efe7dc">Q1 + Q4 导通</text>
-<text x="122" y="426" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#efe7dc">电流 +12 V→电机→GND</text>
-<text x="122" y="478" fill="#2a2927" font-size="34" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#efe7dc">反转</text>
-<text x="122" y="518" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#efe7dc">Q2 + Q3 导通</text>
-<text x="122" y="554" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#efe7dc">电流整体掉头</text>
-<text x="122" y="606" fill="#2a2927" font-size="34" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#efe7dc">全关滑行</text>
-<text x="122" y="646" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#efe7dc">电感电流经体二极管回电源</text>
-<text x="122" y="682" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#efe7dc">动能回收，就是刹车</text>
-<text x="122" y="734" fill="#2a2927" font-size="34" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#efe7dc">致命错误</text>
-<text x="122" y="774" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#efe7dc">同臂 Q1 + Q2 齐开</text>
-<text x="122" y="810" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#efe7dc">毫秒级烧管</text>
-<text x="98" y="856" fill="#535453" font-size="32" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#efe7dc">四个开关，只有两个状态位。</text>
-<text x="798" y="268" fill="#2a2927" font-size="42" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">死区与驱动</text>
-<path d="M798 292 Q1074.00 292.14 1350 292" fill="none" stroke="#c4b9ab" stroke-width="2" stroke-dasharray=""/>
-<text x="822" y="350" fill="#2a2927" font-size="34" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">死区 1~2 µs</text>
-<text x="822" y="390" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">先关再开</text>
-<text x="822" y="426" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">驱动芯片替你管</text>
-<text x="822" y="478" fill="#2a2927" font-size="34" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">体二极管</text>
-<text x="822" y="518" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">死区里电流不肯等</text>
-<text x="822" y="554" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">搭桥先接住</text>
-<text x="822" y="606" fill="#2a2927" font-size="34" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">高侧自举</text>
-<text x="822" y="646" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">源极悬在电机电压上</text>
-<text x="822" y="682" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">栅极要举起来才开得动</text>
-<text x="822" y="734" fill="#2a2927" font-size="34" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">集成驱动</text>
-<text x="822" y="774" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">DRV8833/L298 打包</text>
-<text x="822" y="810" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">死区/自举/过流保护</text>
-<text x="798" y="856" fill="#535453" font-size="32" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">空挡留给二极管，不留给直通。</text>
-<path data-paper-shadow="true" transform="translate(8 12)" d="M68,988 L631.6,986 L1381,989 L1384,1030.46 L1381,1062 L565.6,1064 L64,1060 Z" fill="#535453" opacity="0.08"/><path data-paper-shadow="true" transform="translate(4 7)" d="M68,988 L631.6,986 L1381,989 L1384,1030.46 L1381,1062 L565.6,1064 L64,1060 Z" fill="#535453" opacity="0.12"/><path data-paper-shadow="true" transform="translate(2 3)" d="M68,988 L631.6,986 L1381,989 L1384,1030.46 L1381,1062 L565.6,1064 L64,1060 Z" fill="#535453" opacity="0.15"/><path d="M68,988 L631.6,986 L1381,989 L1384,1030.46 L1381,1062 L565.6,1064 L64,1060 Z" fill="#f6f2ed" stroke="#c4b9ab" stroke-width="1.4"/><path d="M70,990L1377,991" fill="none" stroke="#fdf8ea" stroke-width="2" opacity=".7"/>
-<text x="92" y="1036" fill="#2a2927" font-size="33" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">H 桥不是四个开关随便开：同臂直通是毫秒级故障，死区是换向的必经空挡。</text>
+<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">H 桥：先定义开关，再分开滑行与制动</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">Q1 左上、Q2 左下、Q3 右上、Q4 右下；电机电流不能瞬间反向。</text>
+<path d="M180 150 L790 150" fill="none" stroke="#16202b" stroke-width="3"/>
+<text x="480" y="135" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">母线正端</text>
+<path d="M180 150 L180 190" fill="none" stroke="#16202b" stroke-width="3"/>
+<rect x="130" y="190" width="100" height="50" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/><text x="180.0" y="223" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">Q1</text>
+<path d="M180 240 L180 310" fill="none" stroke="#16202b" stroke-width="3"/>
+<circle cx="180" cy="310" r="5" fill="#16202b"/>
+<path d="M790 150 L790 190" fill="none" stroke="#16202b" stroke-width="3"/>
+<rect x="740" y="190" width="100" height="50" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/><text x="790.0" y="223" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">Q3</text>
+<path d="M790 240 L790 310" fill="none" stroke="#16202b" stroke-width="3"/>
+<circle cx="790" cy="310" r="5" fill="#16202b"/>
+<path d="M180 310 L410 310" fill="none" stroke="#16202b" stroke-width="3"/>
+<rect x="410" y="285" width="150" height="50" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/><text x="485.0" y="318" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">电机</text>
+<path d="M560 310 L790 310" fill="none" stroke="#16202b" stroke-width="3"/>
+<path d="M180 310 L180 380" fill="none" stroke="#16202b" stroke-width="3"/>
+<rect x="130" y="380" width="100" height="50" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/><text x="180.0" y="413" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">Q2</text>
+<path d="M790 310 L790 380" fill="none" stroke="#16202b" stroke-width="3"/>
+<rect x="740" y="380" width="100" height="50" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/><text x="790.0" y="413" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">Q4</text>
+<path d="M180 430 L180 470" fill="none" stroke="#16202b" stroke-width="3"/>
+<path d="M790 430 L790 470" fill="none" stroke="#16202b" stroke-width="3"/>
+<path d="M180 470 L790 470" fill="none" stroke="#16202b" stroke-width="3"/>
+<text x="480" y="505" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">母线负端</text>
+<path d="M290 265 Q470.00 265.58 650 265" fill="none" stroke="#1f5d7a" stroke-width="2.5" stroke-dasharray=""/><polygon points="650,265 640,270 640,260" fill="#1f5d7a"/>
+<text x="470" y="240" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">Q1+Q4：左端电压较高</text>
+<path d="M650 355 Q470.00 356.14 290 355" fill="none" stroke="#a8321f" stroke-width="2.5" stroke-dasharray=""/><polygon points="290,355 300,350 300,360" fill="#a8321f"/>
+<text x="470" y="400" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">Q2+Q3：右端电压较高</text>
+<text x="45" y="555" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">同臂同开：直通。全关：先续流，可能回灌，再随电流与反电势变化。</text>
+<text x="45" y="605" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">两低侧导通：短路制动。受控回灌：再生，先确认母线能吸收能量。</text>
+<text x="45" y="655" font-size="23" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">死区按实际延迟、关断与米勒条件设计；图省略续流器件，不能用于直接接线。</text>
 </svg>

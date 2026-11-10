@@ -80,19 +80,20 @@ def check_no_parallel_tree(root: Path = ROOT, names: tuple = ("book-manuscript",
 def check_five_line_sample(ep_dir: Path = ROOT / "video" / "shots") -> list[str]:
     """抽检 ch1 / ch12 / ch16：章内口诀与总表、EP 分镜、社媒样例一致。"""
     registry = (ROOT / "docs/p8-11-s8-11.md").read_text(encoding="utf-8")
-    mottos = {
-        "ch1": "寄生是真实价——元件都\"夹带私货\"：线有电感、电容有 ESR/ESL——高频下它们才是主角",
-        "ch12": "增益由电阻定——虚短虚断三行推一切——增益是外接电阻之比，与运放内部无关",
-        "ch16": "一次只改一个变量——排故像做实验：单变量对照，否则永远不知道是谁修好的",
-    }
     issues = []
-    for ch, motto in mottos.items():
+    for ch, number in CHAPTER_NUM.items():
         doc = (ROOT / next(f for f in CHAPTER_FILES if f.endswith(f"-{ch}.md"))).read_text(encoding="utf-8")
-        if f"> **口诀**：{motto}" not in doc:
+        motto = re.search(r'^> \*\*口诀\*\*：(.+)$', doc, re.M)
+        row = re.search(
+            rf"\|\s*\[第 {number} 章\]\(p[\d-]+-{ch}\.md#{ch}\)\s*\|([^|]+)\|([^|]+)\|",
+            registry)
+        if not motto or not row:
+            issues.append(f"{ch}: 缺少章内口诀或总表行")
+            continue
+        title, sentence = (cell.strip() for cell in row.groups())
+        if motto.group(1).strip().rstrip('。') not in {
+                sentence.rstrip('。'), (title + '——' + sentence).rstrip('。')}:
             issues.append(f"{ch}: 章内口诀与总表不同源")
-        row = re.search(r"\|\s*\[第 %d 章\]\(p[\d-]+-%s\.md#%s\)\s*\|([^|]+)\|" % (CHAPTER_NUM[ch], ch, ch), registry)
-        if not row or motto.split("——")[0] not in row.group(1):
-            issues.append(f"{ch}: 总表口诀行与章内不一致")
     social = (ROOT / "docs/superpowers/examples/social/ch16-debug.md").read_text(encoding="utf-8")
     if "一次只改一个变量" not in social:
         issues.append("社媒样例 ch16 未引用口诀卡")

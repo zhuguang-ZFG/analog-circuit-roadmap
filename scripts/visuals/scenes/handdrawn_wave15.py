@@ -253,3 +253,8 @@ SCENES['ch11-noise-three-taxes'] = _ch11_corrected['ch11-noise-three-taxes']
 # Corrected chapter 12 models and source conditions.
 from scripts.visuals.scenes.ch12_reference_figures import SCENES as _ch12_corrected
 SCENES['ch12-riso-feedback-point'] = _ch12_corrected['ch12-riso-feedback-point']
+
+# Chapter 13 reviewed model overrides.
+from scripts.visuals.scenes.ch13_reference_figures import SCENES as _CH13_REVIEWED
+for _aid in ['ch13-audio-class-heat']:
+    SCENES[_aid] = _CH13_REVIEWED[_aid]

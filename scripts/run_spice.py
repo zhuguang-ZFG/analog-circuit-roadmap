@@ -142,7 +142,8 @@ def run_case(case: Case, ngspice: Path,
     started = time.monotonic()
     result = subprocess.run(
         [str(ngspice), "-b", deck_copy.name],
-        cwd=directory, capture_output=True, text=True, timeout=timeout)
+        cwd=directory, capture_output=True, text=True,
+        encoding="utf-8", errors="replace", timeout=timeout)
     log = (result.stdout or "") + (result.stderr or "")
     problems = []
     if result.returncode != 0:
@@ -176,8 +177,9 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--timeout", type=int, default=120)
     args = parser.parse_args(argv)
     for stream in (sys.stdout, sys.stderr):
-        if hasattr(stream, "reconfigure"):
-            stream.reconfigure(encoding="utf-8")
+        reconfigure = getattr(stream, "reconfigure", None)
+        if callable(reconfigure):
+            reconfigure(encoding="utf-8")
     try:
         cases = discover_cases(args.root)
     except ValueError as exc:

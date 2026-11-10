@@ -10,3 +10,5 @@ numpy>=1.26
 lxml>=5.3
 # build_epub 复用 analog-book/build_book，后者内联照片时用 Pillow 降采样
 Pillow>=10,<13
+# SVG 无障碍标记器解析项目内图稿
+defusedxml>=0.7.1

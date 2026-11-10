@@ -23,6 +23,7 @@ Python 侧的测试按同一张表核对。数据只能有一份，否则迟早�
 from __future__ import annotations
 
 import argparse
+import importlib
 import re
 import sys
 from pathlib import Path
@@ -33,7 +34,9 @@ BOOK = ROOT / "analog-book"
 if str(BOOK) not in sys.path:            # 与测试同一套 sys.path 约定
     sys.path.insert(0, str(BOOK))
 
-from book.intuition import CHAPTER_LEADS  # noqa: E402
+# The book package lives below analog-book (not an importable package name).
+# Resolve it after adding that directory, matching the book build entry points.
+CHAPTER_LEADS: dict[int, str] = importlib.import_module("book.intuition").CHAPTER_LEADS
 
 # 难度分级：按「读懂需要的前置」而不是按篇来分。同一篇里也会跨级
 # （第 6 章运放是 L2，第 7 章比较器又是 L1：它只用到第 0 章的阈值直觉）。
@@ -60,7 +63,7 @@ CHAPTER_META: dict[int, tuple[str, str, int]] = {
     10: ("p1-11-ch10.md", "L1", 45),
     11: ("p2-01-ch11.md", "L2", 35),
     12: ("p2-02-ch12.md", "L2", 15),
-    13: ("p2-03-ch13.md", "L3", 15),
+    13: ("p2-03-ch13.md", "L3", 30),
     14: ("p3-01-ch14.md", "L2", 20),
     15: ("p3-02-ch15.md", "L2", 45),
     16: ("p4-01-ch16.md", "L2", 35),

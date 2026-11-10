@@ -15,6 +15,7 @@ if str(ROOT) not in sys.path:
 
 import check_visual_manifest as manifest
 from compose_technical_overlay import preview
+from label_handraw_figures import label  # noqa: E402
 from scripts.visuals import static_fig
 from scripts.visuals.font_gate import assert_covered
 from scripts.visuals.scenes.ch13_backlog_figures import FIGURES as CH13
@@ -39,10 +40,14 @@ def render(meta: dict) -> str:
     inner = '\n'.join(parts)
     svg = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {CANVAS[0]} {CANVAS[1]}">'
            f'\n{inner}\n</svg>\n')
-    return static_fig.finalize(svg, meta['title'])
+    return label(static_fig.finalize(svg, meta['title']), meta)
 
 
 def build_one(asset_id: str, meta: dict) -> None:
+    if meta.get('renderer') == 'handdrawn':
+        import build_handdrawn_wave2
+        build_handdrawn_wave2.build_one(asset_id, meta)
+        return
     svg = render(meta)
     assert_covered(svg, asset_id)
     REVIEW.mkdir(parents=True, exist_ok=True)
@@ -66,6 +71,10 @@ def build_one(asset_id: str, meta: dict) -> None:
 
 
 def register(asset_id: str, meta: dict, data: dict) -> None:
+    if meta.get('renderer') == 'handdrawn':
+        import build_handdrawn_wave2
+        build_handdrawn_wave2.register(asset_id, meta, data)
+        return
     prompt = PROMPTS / f'{asset_id}.md'
     record = {
         'id': asset_id, 'generator': GENERATOR,

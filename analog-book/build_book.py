@@ -25,7 +25,10 @@ DIST_DIR = BOOK_DIR / "dist"
 MANIFEST_PATH = BOOK_DIR / "manifest-a4.json"
 OUTPUT_NAME = "analog-circuit-book.html"
 PDF_NAME = "analog-circuit-book.pdf"
-MAX_HTML_BYTES = 20 * 1024 * 1024
+# 2026-11-10 印规修订（spec owner 批准）：A4 HTML 上限 20→24 MB。
+# 背景：V4/V2 图 wave 合并入正文后实测 21.46MB，超原 20MB 冻结线 1.46MB；
+# A4 仍为独立受治理输出（README + 印规 spec §5.5），不取 16K 线的 60/80MB。
+MAX_HTML_BYTES = 24 * 1024 * 1024
 PREFACE_LABEL = "本篇导读"
 
 ARTICLE_RE = re.compile(
@@ -623,7 +626,7 @@ def audit_html(document: str, manifest: dict, parts: list[dict]) -> dict:
     if document.count('class="book-page"') != len(pages):
         problems.append("页面数量与清单不一致")
     if len(document.encode("utf-8")) >= MAX_HTML_BYTES:
-        problems.append("HTML 超过 20 MB")
+        problems.append(f"HTML 超过上限 {MAX_HTML_BYTES // 1024 // 1024} MB")
     images = markup.count("<img ")
     formulas = markup.count('class="arithmatex"')
     report = {"pages": len(pages), "images": images, "formulas": formulas,

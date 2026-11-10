@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">上拉电阻自己的功耗</title><desc id="desc">上拉电阻功率用电压平方除以电阻。低电平近零时三点三伏、一千欧约十一毫瓦；五伏、一百欧为二百五十毫瓦，超过示例四零二封装的十六分之一瓦额定。核对温度和脉冲负荷。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

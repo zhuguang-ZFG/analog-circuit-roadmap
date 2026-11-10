@@ -6165,8 +6165,8 @@ assets:
     教学必要性: 5
     事实精度: 5
     构图层级: 5
-    印刷可读性: 4
     风格一致性: 5
+    印刷可读性: 4
   generator: python-svg-papercut-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-ltspice-five.json
   quant_rules:
@@ -6179,17 +6179,17 @@ assets:
     - label
     - dash
   preview: assets/figures-v2/ch14-ltspice-five.webp
-  reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
   review_record:
-    reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
-    scope: all pending visual assets
-    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 180d7017bbe8965710a06576ff11c797ec67d85cc8fe2f1c2ee4c2e467ff4619
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」；内容漂移复核（对照签名版）
+    scores_by: agent-proxy
+    scores_note: 沿用 2026-11-07 机辅分项评分（有据）
+    asset_sha256: 429f41a448ae2a8d3b9e45fa1822c1a38d2c8c33c0d96a154df3f94bc2ee28ba
 - id: ch14-tolerance-three
   chapter: 14
   kind: figure
@@ -6219,8 +6219,8 @@ assets:
     教学必要性: 5
     事实精度: 5
     构图层级: 5
-    印刷可读性: 4
     风格一致性: 5
+    印刷可读性: 4
   generator: python-svg-papercut-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-tolerance-three.json
   quant_rules:
@@ -6233,17 +6233,17 @@ assets:
     - label
     - dash
   preview: assets/figures-v2/ch14-tolerance-three.webp
-  reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
   review_record:
-    reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
-    scope: all pending visual assets
-    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: da0e385b1cd1a959fdec30a857b847dcee689f9134404de474848d4300b46bc9
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」；内容漂移复核（对照签名版）
+    scores_by: agent-proxy
+    scores_note: 沿用 2026-11-07 机辅分项评分（有据）
+    asset_sha256: 68cd7c100d10bc02492e9a81436ca9fe741fb4c443fdb3c5e66f4f4d4ba11939
 - id: ch14-dft-testpoints
   chapter: 14
   kind: figure
@@ -6274,8 +6274,8 @@ assets:
     教学必要性: 5
     事实精度: 5
     构图层级: 5
-    印刷可读性: 4
     风格一致性: 5
+    印刷可读性: 4
   generator: python-svg-papercut-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-dft-testpoints.json
   quant_rules:
@@ -6288,17 +6288,17 @@ assets:
     - label
     - dash
   preview: assets/figures-v2/ch14-dft-testpoints.webp
-  reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
   review_record:
-    reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
-    scope: all pending visual assets
-    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 395103851b8f456706d4a2422d6ebcb296580ca6bc383216845c2f86a0159cea
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」；内容漂移复核（对照签名版）
+    scores_by: agent-proxy
+    scores_note: 沿用 2026-11-07 机辅分项评分（有据）
+    asset_sha256: 897f46dfc22b26153bdd3942edff9a319e269108d69dadbe19a6df538e48cd9e
 - id: ch18-assumption-tree
   chapter: 18
   kind: figure
@@ -6502,7 +6502,7 @@ assets:
   output: assets/figures-v2/ch15-trace-drop.svg
   print_fallback: assets/figures-v2/ch15-trace-drop-print.svg
   preview: assets/figures-v2/ch15-trace-drop.webp
-  alt: 手绘走线示意：8 cm 长、0.5 mm 宽、1 oz 铜的路径按 1 mΩ/cm 记共 8 mΩ；静态 300 mA 压降 2.4 mV，瞬态 1 A 压降 8 mV，提示按瞬态电流定线宽。
+  alt: 走线电阻按电阻率乘长度除截面积计算：0.5 毫米宽、35 微米厚、8 厘米长，单程电阻 77.71 毫欧；300 毫安压降 23.31 毫伏、1 安培压降 77.71 毫伏。示例忽略温升、过孔与接触电阻，快速瞬态另加电感压降。
   status: accepted
   status_history:
   - planned
@@ -6513,23 +6513,23 @@ assets:
     教学必要性: 5
     事实精度: 5
     构图层级: 5
-    印刷可读性: 4
     风格一致性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-trace-drop.json
   quant_rules:
     layer_encodes_value: false
-  reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
   review_record:
-    reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
-    scope: all pending visual assets
-    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 4a21e969c7392b5c24a9161cafa2a745aa32882d9a83d5f4d30e55429fcdc6be
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 沿用 2026-11-07 机辅分项评分（有据）
+    asset_sha256: a1a51d73ed806eaf955975dd103050ffde57f30a5a8aa8f7e9040068c830db8f
 - id: ch13-h-bridge-states
   chapter: 13
   kind: figure
@@ -6561,8 +6561,8 @@ assets:
     教学必要性: 5
     事实精度: 5
     构图层级: 5
-    印刷可读性: 4
     风格一致性: 5
+    印刷可读性: 4
   generator: python-svg-papercut-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch13-h-bridge-states.json
   quant_rules:
@@ -6574,17 +6574,17 @@ assets:
     - marker
     - label
     - dash
-  reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
   review_record:
-    reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
-    scope: all pending visual assets
-    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 67c24603e874326bba5125040a4e708a34073886e72e112e966c87089682a199
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」；内容漂移复核（对照签名版）
+    scores_by: agent-proxy
+    scores_note: 沿用 2026-11-07 机辅分项评分（有据）
+    asset_sha256: 56d2bea4b4548d052465513986adeeaf0890f36de8cd9fabd67e877c88a53224
 - id: ch13-current-sense-sides
   chapter: 13
   kind: figure
@@ -6615,8 +6615,8 @@ assets:
     教学必要性: 5
     事实精度: 5
     构图层级: 5
-    印刷可读性: 4
     风格一致性: 5
+    印刷可读性: 4
   generator: python-svg-papercut-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch13-current-sense-sides.json
   quant_rules:
@@ -6628,17 +6628,17 @@ assets:
     - marker
     - label
     - dash
-  reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
   review_record:
-    reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
-    scope: all pending visual assets
-    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: c6c5be00cdff3648c3f69e73db1b24678c82ab96f672b4bcca78bc8549fc6450
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」；内容漂移复核（对照签名版）
+    scores_by: agent-proxy
+    scores_note: 沿用 2026-11-07 机辅分项评分（有据）
+    asset_sha256: 09bee2386adb2b5fd581788c2df822f3714b24afe50d504975bbcf71927b4c18
 - id: ch13-opto-ctr
   chapter: 13
   kind: figure
@@ -6654,6 +6654,7 @@ assets:
   - C-26
   source_facts:
   - docs/p2-03-ch13.md#13.11
+  - docs/p2-03-ch13.md#13.11a
   prompt_file: docs/superpowers/visual/prompts/ch13-opto-ctr.md
   output: assets/figures-v2/ch13-opto-ctr.svg
   print_fallback: assets/figures-v2/ch13-opto-ctr-print.svg
@@ -6670,8 +6671,8 @@ assets:
     教学必要性: 5
     事实精度: 5
     构图层级: 5
-    印刷可读性: 4
     风格一致性: 5
+    印刷可读性: 4
   generator: python-svg-papercut-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch13-opto-ctr.json
   quant_rules:
@@ -6683,17 +6684,17 @@ assets:
     - marker
     - label
     - dash
-  reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
   review_record:
-    reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
-    scope: all pending visual assets
-    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 0aeed5daebae56edb64448515086267606ff77dec94e77747fd99c8c4ff99916
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」；内容漂移复核（对照签名版）
+    scores_by: agent-proxy
+    scores_note: 沿用 2026-11-07 机辅分项评分（有据）
+    asset_sha256: a081583a9c7266c88443b3fd2e4713f56934ebdc3e4daf934162312502ca289e
 - id: ch15-layout-ten-questions
   chapter: 15
   kind: figure
@@ -7305,8 +7306,8 @@ assets:
   output: assets/figures-v2/ch16-instrument-trust.svg
   print_fallback: assets/figures-v2/ch16-instrument-trust-print.svg
   preview: assets/figures-v2/ch16-instrument-trust.webp
-  alt: 手绘仪器检查单：探头负载先用乘十档、测完电流立刻插回电压孔、首次上电串限流灯泡或限 50 毫安、地夹最后接；右侧两个坑是自动量程在跳变信号上反复换档，以及微安档约 100 欧姆、毫安档约 2
-    欧姆的 burden 压降。
+  alt: 仪器检查单：高阻节点先用乘十档、测完电流插回电压孔、低压板按负载设置限流；普通接地探头确认参考地后先地夹后探针。右栏示例内阻为微安档 100 欧姆、毫安档 2 欧姆；100 毫安流过 2 欧姆会产生
+    0.2 伏压降，实际值查仪表手册。
   status: accepted
   status_history:
   - planned
@@ -7317,23 +7318,23 @@ assets:
     教学必要性: 5
     事实精度: 5
     构图层级: 5
-    印刷可读性: 4
     风格一致性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch16-instrument-trust.json
   quant_rules:
     layer_encodes_value: false
-  reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
   review_record:
-    reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
-    scope: all pending visual assets
-    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 925ef5117b53de60aac04eded6da98278b5b05a36a7fca3bc3adba72f90584dc
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 沿用 2026-11-07 机辅分项评分（有据）
+    asset_sha256: 28fb173be46e74fa0ee7d26010e55a96c6391fb8f94fc4e453f98488792c1991
 - id: ch16-postmortem-split
   chapter: 16
   kind: figure
@@ -7456,8 +7457,8 @@ assets:
     教学必要性: 5
     事实精度: 5
     构图层级: 5
-    印刷可读性: 4
     风格一致性: 5
+    印刷可读性: 4
   generator: python-svg-papercut-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-via-parallel.json
   quant_rules:
@@ -7469,17 +7470,17 @@ assets:
     - marker
     - label
     - dash
-  reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
   review_record:
-    reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
-    scope: all pending visual assets
-    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: ed3af776107cddf3419c512ab3fc3d9ae58c18a57d3d468132a3679d9f5e0877
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」；内容漂移复核（对照签名版）
+    scores_by: agent-proxy
+    scores_note: 沿用 2026-11-07 机辅分项评分（有据）
+    asset_sha256: a70c8c9b553f6aa6d1b401fb69188d066dc878f3605a94c157f0c0b7a998916f
 - id: ch15-crosstalk-3w
   chapter: 15
   kind: figure
@@ -7510,8 +7511,8 @@ assets:
     教学必要性: 5
     事实精度: 5
     构图层级: 5
-    印刷可读性: 4
     风格一致性: 5
+    印刷可读性: 4
   generator: python-svg-papercut-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-crosstalk-3w.json
   quant_rules:
@@ -7523,17 +7524,17 @@ assets:
     - marker
     - label
     - dash
-  reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
   review_record:
-    reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
-    scope: all pending visual assets
-    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 0193ad6ab4dcb929d1e5f4710e68ef3cf8f596d2fa4ffe22d0d93a6deca8d351
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」；内容漂移复核（对照签名版）
+    scores_by: agent-proxy
+    scores_note: 沿用 2026-11-07 机辅分项评分（有据）
+    asset_sha256: c725b49ee2f20f54ce8d384fd1f1037227f0c12eb0936e5257b3405d6c7bb755
 - id: ch15-testpoint-rules
   chapter: 15
   kind: figure
@@ -7800,7 +7801,7 @@ assets:
   chapter: 16
   kind: figure
   type: V4
-  anchor: '16.3'
+  anchor: '16.6'
   purpose: 探头补偿三种方波
   style_id: FA-029
   layout_id: IG-013
@@ -7809,7 +7810,7 @@ assets:
   - C-31
   - C-29
   source_facts:
-  - docs/p4-01-ch16.md#16.3
+  - docs/p4-01-ch16.md#16.6
   prompt_file: docs/superpowers/visual/prompts/ch16-probe-compensation.md
   output: assets/figures-v2/ch16-probe-compensation.svg
   print_fallback: assets/figures-v2/ch16-probe-compensation-print.svg
@@ -7825,23 +7826,23 @@ assets:
     教学必要性: 5
     事实精度: 5
     构图层级: 5
-    印刷可读性: 4
     风格一致性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch16-probe-compensation.json
   quant_rules:
     layer_encodes_value: false
-  reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
   review_record:
-    reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
-    scope: all pending visual assets
-    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: c7500576c9e5899cd96079021f0d765c6b72b49dd80785528bc7f3e668d05dd6
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 沿用 2026-11-07 机辅分项评分（有据）
+    asset_sha256: 4d851474a592582a3e5b566eb4297e427dc28ccfda64fc81daad173beebed993
 - id: ch15-adc-straddle
   chapter: 15
   kind: figure
@@ -7984,7 +7985,7 @@ assets:
   chapter: 16
   kind: figure
   type: V4
-  anchor: '16.3'
+  anchor: '16.6'
   purpose: 示波器带宽五倍规则
   style_id: FA-029
   layout_id: IG-013
@@ -7993,12 +7994,12 @@ assets:
   - C-31
   - C-29
   source_facts:
-  - docs/p4-01-ch16.md#16.3
+  - docs/p4-01-ch16.md#16.6
   prompt_file: docs/superpowers/visual/prompts/ch16-bandwidth-five.md
   output: assets/figures-v2/ch16-bandwidth-five.svg
   print_fallback: assets/figures-v2/ch16-bandwidth-five-print.svg
   preview: assets/figures-v2/ch16-bandwidth-five.webp
-  alt: 手绘两种边沿：带宽不足时边沿变圆、振铃被吃掉；五倍带宽时边沿与过冲保得住。底部写先算最高频率分量乘五，再看电源纹波可先开 20 兆赫限制，读数前先报档位。
+  alt: 一阶低通正弦幅值比较：测量链带宽与信号频率之比为 1 时幅值比 0.7071，为 5 时幅值比 0.9806，误差约 1.94%。虚线输入、实线测得，已对齐相位仅比较幅值；20 MHz 限带不代表高频尖峰消失。
   status: accepted
   status_history:
   - planned
@@ -8009,23 +8010,23 @@ assets:
     教学必要性: 5
     事实精度: 5
     构图层级: 5
-    印刷可读性: 4
     风格一致性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch16-bandwidth-five.json
   quant_rules:
     layer_encodes_value: false
-  reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
   review_record:
-    reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
-    scope: all pending visual assets
-    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 4f214f399a95470cebbd2bbb2c09097b15fe846074b11ec4ecd7f87b532d76bf
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 沿用 2026-11-07 机辅分项评分（有据）
+    asset_sha256: ab73cb4ccf8f4021ef6421ec387af0de586bf3941ecf8c436e4862415f6bc8d1
 - id: ch01-e24-ladder
   chapter: 1
   kind: figure
@@ -8166,7 +8167,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 02901a29f0da4d0acbc1fb972d2d1fdb04d4bb2bbeab811fd0468a467f6db497
+    asset_sha256: a214a45186ee5e7ca198fa6404c8b08c42a3010457db2dbf2f8aea4495368353
+    metadata_amendments:
+    - before_sha256: 02901a29f0da4d0acbc1fb972d2d1fdb04d4bb2bbeab811fd0468a467f6db497
+      after_sha256: a214a45186ee5e7ca198fa6404c8b08c42a3010457db2dbf2f8aea4495368353
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch05-tristate-handover
   chapter: 5
   kind: figure
@@ -8212,7 +8218,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: a03154ebd34445037ae8054850fce5403de24dc7e1a641d175eb8744821d168f
+    asset_sha256: 0aee8ac285df788f12235b5b434df4a6fe84e07fd0923151a8cdfe7d84e0dcff
+    metadata_amendments:
+    - before_sha256: a03154ebd34445037ae8054850fce5403de24dc7e1a641d175eb8744821d168f
+      after_sha256: 0aee8ac285df788f12235b5b434df4a6fe84e07fd0923151a8cdfe7d84e0dcff
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch07-hysteresis-window
   chapter: 7
   kind: figure
@@ -8258,7 +8269,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: ef047aa1ca8e5e054616d5773681545bf5888ed76139514a632259b079f8e959
+    asset_sha256: a8ca04bbb104c753b36b8858cd95ceefb7fc74f224ae4c81d37048d98afc7561
+    metadata_amendments:
+    - before_sha256: ef047aa1ca8e5e054616d5773681545bf5888ed76139514a632259b079f8e959
+      after_sha256: a8ca04bbb104c753b36b8858cd95ceefb7fc74f224ae4c81d37048d98afc7561
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch09-esr-window
   chapter: 9
   kind: figure
@@ -8304,7 +8320,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 69862e2f578c6de15e055284580748c0490922c724cfdb9f9713f4bdc907700e
+    asset_sha256: cafb00a8ef283ca485ace005ea4d2258a6272642670a4bc1ae354b28391234ef
+    metadata_amendments:
+    - before_sha256: 69862e2f578c6de15e055284580748c0490922c724cfdb9f9713f4bdc907700e
+      after_sha256: cafb00a8ef283ca485ace005ea4d2258a6272642670a4bc1ae354b28391234ef
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch05-rp-power
   chapter: 5
   kind: figure
@@ -8350,7 +8371,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 70e8a4f06823278479699a0db4372dc6033a01ffa5ad5428f1e6f5b56aa8af76
+    asset_sha256: 00260814d1d6971205976af075b16006bab759860da3ee117d4bfcaee95f3389
+    metadata_amendments:
+    - before_sha256: 70e8a4f06823278479699a0db4372dc6033a01ffa5ad5428f1e6f5b56aa8af76
+      after_sha256: 00260814d1d6971205976af075b16006bab759860da3ee117d4bfcaee95f3389
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch09-reference-ladder
   chapter: 9
   kind: figure
@@ -8396,7 +8422,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: e543b3dd970ec94b0c80dc30bbcbe588e8ee01fa3f713e1e4cd67b1c58f53ff5
+    asset_sha256: 3074a8085766c0ccae6ebbe35a34ed17338f142cd2ca34debfb21ba32d456104
+    metadata_amendments:
+    - before_sha256: e543b3dd970ec94b0c80dc30bbcbe588e8ee01fa3f713e1e4cd67b1c58f53ff5
+      after_sha256: 3074a8085766c0ccae6ebbe35a34ed17338f142cd2ca34debfb21ba32d456104
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch10-monostable-budget
   chapter: 10
   kind: figure
@@ -8442,7 +8473,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 45a160ee76f2a1393bb60b876f6dea5a09fa676ab6a7b2de187b895c941f0c7d
+    asset_sha256: 181ead1106983234c6a3261be1a0c6fa601d023d52d3dec9a49b87a3827ff3a5
+    metadata_amendments:
+    - before_sha256: 45a160ee76f2a1393bb60b876f6dea5a09fa676ab6a7b2de187b895c941f0c7d
+      after_sha256: 181ead1106983234c6a3261be1a0c6fa601d023d52d3dec9a49b87a3827ff3a5
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch10-recovery-gap
   chapter: 10
   kind: figure
@@ -8488,7 +8524,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 40bb29be11d15cd5fb4aafe9c5d4d6859be8c165eecd22a1e4a9e63739a1ec25
+    asset_sha256: e44783d7b5bbf9885828faa4409a8318bb448c3ddd1c31e463024e4c9ba86c5c
+    metadata_amendments:
+    - before_sha256: 40bb29be11d15cd5fb4aafe9c5d4d6859be8c165eecd22a1e4a9e63739a1ec25
+      after_sha256: e44783d7b5bbf9885828faa4409a8318bb448c3ddd1c31e463024e4c9ba86c5c
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch11-mirror-three-errors
   chapter: 11
   kind: figure
@@ -8534,7 +8575,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 6aa2d0efb93611e3a0ca5cbdcf0ba84d1a27586e860b8d0f8aa57e31fb612b56
+    asset_sha256: 9d9d933229cf034850b39ce1509872718fae03f41d403f1f4bedcbc4c212f128
+    metadata_amendments:
+    - before_sha256: 6aa2d0efb93611e3a0ca5cbdcf0ba84d1a27586e860b8d0f8aa57e31fb612b56
+      after_sha256: 9d9d933229cf034850b39ce1509872718fae03f41d403f1f4bedcbc4c212f128
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch12-tia-three-way
   chapter: 12
   kind: figure
@@ -8580,7 +8626,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 5cd667ed9d9c7054c91e94d7cda5e733925e91650edc53ef53f183f3ce924475
+    asset_sha256: ff6f944dffd1c47274f370243afc10252cf8913b2e207deb8e5f09d59f743c14
+    metadata_amendments:
+    - before_sha256: 5cd667ed9d9c7054c91e94d7cda5e733925e91650edc53ef53f183f3ce924475
+      after_sha256: ff6f944dffd1c47274f370243afc10252cf8913b2e207deb8e5f09d59f743c14
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch12-switch-cap
   chapter: 12
   kind: figure
@@ -8626,7 +8677,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 1a091bcd6045b2ac29672207341b15cba5aa5fe7f67122fb7f6ff4ba6e2ebb30
+    asset_sha256: aaad27c58c6d5c16395c9429cd4c025bbda2b09614fc2bf6e1f605db57ecc943
+    metadata_amendments:
+    - before_sha256: 1a091bcd6045b2ac29672207341b15cba5aa5fe7f67122fb7f6ff4ba6e2ebb30
+      after_sha256: aaad27c58c6d5c16395c9429cd4c025bbda2b09614fc2bf6e1f605db57ecc943
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch12-input-types
   chapter: 12
   kind: figure
@@ -8672,7 +8728,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: bfc4cddd7769ab289450eb9be2e5fde09ae5c528bbfd09aa3d2334aed4544da1
+    asset_sha256: 219231797a55b9f7d0524de4407b7f88a897edb79eb0dd1e2f22f23c48d67114
+    metadata_amendments:
+    - before_sha256: bfc4cddd7769ab289450eb9be2e5fde09ae5c528bbfd09aa3d2334aed4544da1
+      after_sha256: 219231797a55b9f7d0524de4407b7f88a897edb79eb0dd1e2f22f23c48d67114
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch06-bias-balance
   chapter: 6
   kind: figure
@@ -8718,7 +8779,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 7f73bd7749e4573259f3ec95e1c99a628caa65da7e047b23a73737c532567487
+    asset_sha256: 66a6c0516b4543f3435150ded669701be6cbc26f9236f6ec99b1c619246d3165
+    metadata_amendments:
+    - before_sha256: 7f73bd7749e4573259f3ec95e1c99a628caa65da7e047b23a73737c532567487
+      after_sha256: 66a6c0516b4543f3435150ded669701be6cbc26f9236f6ec99b1c619246d3165
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch02-esd-chain
   chapter: 2
   kind: figure
@@ -8765,7 +8831,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 567617515887825b3097a36f4208b9536305b93f8b986f1597602d6eb892e3d0
+    asset_sha256: 48f780364c2c1fc4bd2f2b9d3da98097c9ed33691b4f5f7ac02233d7911dd192
+    metadata_amendments:
+    - before_sha256: 567617515887825b3097a36f4208b9536305b93f8b986f1597602d6eb892e3d0
+      after_sha256: 48f780364c2c1fc4bd2f2b9d3da98097c9ed33691b4f5f7ac02233d7911dd192
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch02-zener-budget
   chapter: 2
   kind: figure
@@ -9093,7 +9164,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: cf5d78a42dca5e55f67f2e9c19503c794762a84077834b9fb7e714b74387316d
+    asset_sha256: be02b5960d7ad4c1bd1b0ac025af75562130fa947fe23642b2cb95babec2fa6e
+    metadata_amendments:
+    - before_sha256: cf5d78a42dca5e55f67f2e9c19503c794762a84077834b9fb7e714b74387316d
+      after_sha256: be02b5960d7ad4c1bd1b0ac025af75562130fa947fe23642b2cb95babec2fa6e
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch03-early-effect
   chapter: 3
   kind: figure
@@ -9186,16 +9262,21 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: c885dfe653c61dec153d7382f29bd25edccdb297d6203c5718df29975c3888d1
+    asset_sha256: 7731ce588964e28d2c034fd40779c88133c26d00abc6c768a808232283d4c224
+    metadata_amendments:
+    - before_sha256: c885dfe653c61dec153d7382f29bd25edccdb297d6203c5718df29975c3888d1
+      after_sha256: 7731ce588964e28d2c034fd40779c88133c26d00abc6c768a808232283d4c224
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch13-compliance-ceiling
   chapter: 13
   kind: figure
   type: V4
   anchor: 13.5.1
-  purpose: 恒流源的合规电压天花板
+  purpose: 恒流源的电压余量
   style_id: FA-029
   layout_id: IG-013
-  color_ids:
+  color_ids: &id001
   - C-30
   - C-31
   - C-29
@@ -9205,8 +9286,7 @@ assets:
   output: assets/figures-v2/ch13-compliance-ceiling.svg
   print_fallback: assets/figures-v2/ch13-compliance-ceiling-print.svg
   preview: assets/figures-v2/ch13-compliance-ceiling.webp
-  alt: 手绘三张恒流源负载上限卡：1 毫安恒流、采样 100 欧、调整管 0.7 伏；2.8 伏供电时最大负载 2.0 千欧，5 伏时 4.2 千欧，12 伏时 11.2 千欧。底部算 4 到 20
-    毫安环：环路 20 毫安乘 500 欧为 10 伏，采样 250 欧乘 20 毫安为 5 伏，加发射器裕量约 7 伏，合计约 22 伏小于 24 伏。
+  alt: 三种供电扣除采样和指定调整管余量后得到不同的最大负载，不把余量当器件通用压差。
   status: accepted
   status_history:
   - planned
@@ -9217,43 +9297,39 @@ assets:
     教学必要性: 5
     事实精度: 5
     构图层级: 5
-    印刷可读性: 4
     风格一致性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch13-compliance-ceiling.json
   quant_rules:
     layer_encodes_value: false
-  reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
   review_record:
-    reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
-    scope: all pending visual assets
-    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: c25b05231320501d374c1c60a6a956241f1c6bc5820fd74432b499e155658df6
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 沿用 2026-11-07 机辅分项评分（有据）
+    asset_sha256: 4db9219f83388de2f53d77663815f52a40ca6e6f4023b45c8b2c5321b6fc6150
 - id: ch13-current-sense-budget
   chapter: 13
   kind: figure
   type: V4
-  anchor: '13.8'
-  purpose: 10mΩ 分流电阻的两笔账
+  anchor: 13.8a
+  purpose: 分流功耗与 Kelvin 误差
   style_id: FA-029
   layout_id: IG-013
-  color_ids:
-  - C-30
-  - C-31
-  - C-29
+  color_ids: *id001
   source_facts:
-  - docs/p2-03-ch13.md#13.8
+  - docs/p2-03-ch13.md#13.8a
   prompt_file: docs/superpowers/visual/prompts/ch13-current-sense-budget.md
   output: assets/figures-v2/ch13-current-sense-budget.svg
   print_fallback: assets/figures-v2/ch13-current-sense-budget-print.svg
   preview: assets/figures-v2/ch13-current-sense-budget.webp
-  alt: 手绘分流电阻两栏：额定 5 安时，10 毫欧上压降 50 毫伏、功耗 0.25 瓦，选 1 瓦 2512 封装；堵转 20 安时，压降 200 毫伏、功耗 4 瓦，热时间常数必须算。底部写
-    1% 精度总误差预算 0.5 毫伏；12 伏共模压到 0.2 毫伏需要 CMRR 大于 96 分贝；LM358 只有 70 分贝，3.8 毫伏误差等于 7.6%。
+  alt: 额定与堵转电流四倍、热耗十六倍，封装额定不能替代瞬态热预算，并核差分滤波的两只串阻。
   status: accepted
   status_history:
   - planned
@@ -9264,23 +9340,23 @@ assets:
     教学必要性: 5
     事实精度: 5
     构图层级: 5
-    印刷可读性: 4
     风格一致性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch13-current-sense-budget.json
   quant_rules:
     layer_encodes_value: false
-  reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
   review_record:
-    reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
-    scope: all pending visual assets
-    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 4096d2ee625a0c9e3aa074fff467c6f775452f709f53e9ec2a5bb06f510f24a6
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 沿用 2026-11-07 机辅分项评分（有据）
+    asset_sha256: cacf295c9da31717b35e4a409b9c1865612737f2d0bfd85490a8c4cdc92e2eb6
 - id: ch01-electrolytic-life
   chapter: 1
   kind: figure
@@ -9468,7 +9544,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 1162327aeb68dfeb21d94e13e1f21e4f33f2a516d33c5adb3c5409f3c7644ba0
+    asset_sha256: 8854baf07d92fc4580519b0211d25122b30f0becd3b248694610e35dce8868ff
+    metadata_amendments:
+    - before_sha256: 1162327aeb68dfeb21d94e13e1f21e4f33f2a516d33c5adb3c5409f3c7644ba0
+      after_sha256: 8854baf07d92fc4580519b0211d25122b30f0becd3b248694610e35dce8868ff
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch07-pullup-three-accounts
   chapter: 7
   kind: figure
@@ -9514,7 +9595,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 33206431c66b086146fba197ad138c8cb391dc0681c73bc95b4f411e04d2f7e8
+    asset_sha256: 3e550129cedbdeef887cd9322f236541be06060939500251d2ddb144465bb0fc
+    metadata_amendments:
+    - before_sha256: 33206431c66b086146fba197ad138c8cb391dc0681c73bc95b4f411e04d2f7e8
+      after_sha256: 3e550129cedbdeef887cd9322f236541be06060939500251d2ddb144465bb0fc
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch07-threshold-budget
   chapter: 7
   kind: figure
@@ -9560,7 +9646,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: a21f41cb956248d4040a84270e1792fce295a5a36e9f4af6e26aaf18c6a521b3
+    asset_sha256: 9e5b4260424a1f222a56fb0161b114b98a11f80f00b786c01b3f05f203b0b8ab
+    metadata_amendments:
+    - before_sha256: a21f41cb956248d4040a84270e1792fce295a5a36e9f4af6e26aaf18c6a521b3
+      after_sha256: 9e5b4260424a1f222a56fb0161b114b98a11f80f00b786c01b3f05f203b0b8ab
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch10-astable-reverse-design
   chapter: 10
   kind: figure
@@ -9606,7 +9697,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 5b7d9a47135dfb3196ff283e67b038159a55bab82e0c19a75a9ef56068efe9d8
+    asset_sha256: 7276e0f68674e0c97853a2d982ec82e13e8d0cbaeebe3d6c9731cb4db08903e8
+    metadata_amendments:
+    - before_sha256: 5b7d9a47135dfb3196ff283e67b038159a55bab82e0c19a75a9ef56068efe9d8
+      after_sha256: 7276e0f68674e0c97853a2d982ec82e13e8d0cbaeebe3d6c9731cb4db08903e8
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch10-duty-fifty-paths
   chapter: 10
   kind: figure
@@ -9652,7 +9748,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: c2ea6584cb12c36173cae78f41b65cd1c45a54d959852b83b5edf85f03dd9470
+    asset_sha256: 9e2bb72f24b57647e1139c8fb4c58b286b14ca4f1b3ffd9b71d41f005d86c98a
+    metadata_amendments:
+    - before_sha256: c2ea6584cb12c36173cae78f41b65cd1c45a54d959852b83b5edf85f03dd9470
+      after_sha256: 9e2bb72f24b57647e1139c8fb4c58b286b14ca4f1b3ffd9b71d41f005d86c98a
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch05-shoot-through-ledger
   chapter: 5
   kind: figure
@@ -9698,7 +9799,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: f81b42578a9a60738e24d4283e91e4142df2c6f6a4058e4d939be5eeecc9dd4d
+    asset_sha256: f60f9e136c9245726203646994d1bf542b252b0aca30ca4a6ee078cd633c9763
+    metadata_amendments:
+    - before_sha256: f81b42578a9a60738e24d4283e91e4142df2c6f6a4058e4d939be5eeecc9dd4d
+      after_sha256: f60f9e136c9245726203646994d1bf542b252b0aca30ca4a6ee078cd633c9763
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch05-ab-bias-thermal
   chapter: 5
   kind: figure
@@ -9744,7 +9850,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 6c151bf631992b828c685ab494e54afacd982bdb751f033263911761c5c65612
+    asset_sha256: 53fc367b466448c64133aea97108c7bafa647e967d9f1840230ab153b0aed03a
+    metadata_amendments:
+    - before_sha256: 6c151bf631992b828c685ab494e54afacd982bdb751f033263911761c5c65612
+      after_sha256: 53fc367b466448c64133aea97108c7bafa647e967d9f1840230ab153b0aed03a
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch09-ldo-four-accounts
   chapter: 9
   kind: figure
@@ -9790,7 +9901,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 0c3c69c661cd1af298417a3c12af858d2de5e754be9682ce82ecb07131a6b0a7
+    asset_sha256: 68e9b9dea842db7f130f60d0f78e9d3dfe51dc0250f91db7a4fa6066d82daa2b
+    metadata_amendments:
+    - before_sha256: 0c3c69c661cd1af298417a3c12af858d2de5e754be9682ce82ecb07131a6b0a7
+      after_sha256: 68e9b9dea842db7f130f60d0f78e9d3dfe51dc0250f91db7a4fa6066d82daa2b
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch11-two-stage-margin
   chapter: 11
   kind: figure
@@ -9836,7 +9952,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 72eb54411350670a23996e2c38278673dbe51a9b71a2c87cee43ae82a610a341
+    asset_sha256: 5e0ccafbcff5e7921f879c09eccd2374fb61c1ce35e4d652eb4d79bebbb8b906
+    metadata_amendments:
+    - before_sha256: 72eb54411350670a23996e2c38278673dbe51a9b71a2c87cee43ae82a610a341
+      after_sha256: 5e0ccafbcff5e7921f879c09eccd2374fb61c1ce35e4d652eb4d79bebbb8b906
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch12-switched-cap-equivalent
   chapter: 12
   kind: figure
@@ -9882,7 +10003,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: cdcc926f4a80b0dc8db5d4a5ac2dd488b6539a23c430f894a659dedbd7fcf6ce
+    asset_sha256: c4a79689147b344c1c21ac5ffa878880f37b8904e3a27dde5293ab28cca238f9
+    metadata_amendments:
+    - before_sha256: cdcc926f4a80b0dc8db5d4a5ac2dd488b6539a23c430f894a659dedbd7fcf6ce
+      after_sha256: c4a79689147b344c1c21ac5ffa878880f37b8904e3a27dde5293ab28cca238f9
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch12-input-stage-source-z
   chapter: 12
   kind: figure
@@ -9928,7 +10054,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 6bb179ac45a6f0037f735e3e0a1bda09c4ad83e672e2de1861a6d03e820947b9
+    asset_sha256: 47870f78ffa6551a5eb492c6ff8464fae065933c022719107c58c50ee6149b18
+    metadata_amendments:
+    - before_sha256: 6bb179ac45a6f0037f735e3e0a1bda09c4ad83e672e2de1861a6d03e820947b9
+      after_sha256: 47870f78ffa6551a5eb492c6ff8464fae065933c022719107c58c50ee6149b18
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch11-phase-margin-table
   chapter: 11
   kind: figure
@@ -9974,7 +10105,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: f0c00a8fb58d728bf7d6e06ad014493899ac7603b7f0048af4e8564c505cb5ee
+    asset_sha256: 8f201edbc8b9497695a0e3b61777677a0293ea1b80b4bdee267e8a6d0f54b358
+    metadata_amendments:
+    - before_sha256: f0c00a8fb58d728bf7d6e06ad014493899ac7603b7f0048af4e8564c505cb5ee
+      after_sha256: 8f201edbc8b9497695a0e3b61777677a0293ea1b80b4bdee267e8a6d0f54b358
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch06-741-four-blocks
   chapter: 6
   kind: figure
@@ -10020,7 +10156,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 6b5103397b47d2418df66824325ee9b5c1be934deeb4d7b0d94c685a62cf6fd9
+    asset_sha256: 356446be9e193d8d7125b22ea98b3f576eefa3009d5552dd13e9f0ecb2bab35f
+    metadata_amendments:
+    - before_sha256: 6b5103397b47d2418df66824325ee9b5c1be934deeb4d7b0d94c685a62cf6fd9
+      after_sha256: 356446be9e193d8d7125b22ea98b3f576eefa3009d5552dd13e9f0ecb2bab35f
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch01-thevenin-two-load
   chapter: 1
   kind: figure
@@ -10116,7 +10257,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 9ad84b0f596053a51a81475905bd6b80cc223165a1670677872078563fafcfff
+    asset_sha256: a1bc1d6574e3706e14bc5d54233e76b11f77c6d82ab58b1a7b6b8aa05cac80b6
+    metadata_amendments:
+    - before_sha256: 9ad84b0f596053a51a81475905bd6b80cc223165a1670677872078563fafcfff
+      after_sha256: a1bc1d6574e3706e14bc5d54233e76b11f77c6d82ab58b1a7b6b8aa05cac80b6
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch02-protection-order
   chapter: 2
   kind: figure
@@ -10210,7 +10356,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 675a31710527dc66dab772b3ed22240c78fea5d34f0c5bf1d378aeb02bc8cfea
+    asset_sha256: ac9e93045ec5aa05321c09436542db35dcac1e4ee219cc79bc5a6e74d97085df
+    metadata_amendments:
+    - before_sha256: 675a31710527dc66dab772b3ed22240c78fea5d34f0c5bf1d378aeb02bc8cfea
+      after_sha256: ac9e93045ec5aa05321c09436542db35dcac1e4ee219cc79bc5a6e74d97085df
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch12-riso-feedback-point
   chapter: 12
   kind: figure
@@ -10256,13 +10407,18 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 3da702c9fa54993d76c6ada83af4be9b5eb0607a71602b2eb359508aacd820e5
+    asset_sha256: a41099f0872ecc0874069a3e9924379232291302d178e3f56d3a8505d831e8ce
+    metadata_amendments:
+    - before_sha256: 3da702c9fa54993d76c6ada83af4be9b5eb0607a71602b2eb359508aacd820e5
+      after_sha256: a41099f0872ecc0874069a3e9924379232291302d178e3f56d3a8505d831e8ce
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch13-audio-class-heat
   chapter: 13
   kind: figure
   type: V4
   anchor: '13.9'
-  purpose: B 类与 D 类推同一只喇叭的热账
+  purpose: 功放摆幅与效率假设
   style_id: FA-029
   layout_id: IG-013
   color_ids:
@@ -10275,9 +10431,7 @@ assets:
   output: assets/figures-v2/ch13-audio-class-heat.svg
   print_fallback: assets/figures-v2/ch13-audio-class-heat-print.svg
   preview: assets/figures-v2/ch13-audio-class-heat.webp
-  alt: 手绘功放热账。顶部蓝框先把 8 欧喇叭要的 10 瓦换成电压电流：有效值 8.94 伏、电流 1.12 安，峰值 12.6 伏；推挽要留管压降，所以电源至少正负 15 伏。左下红框用 B 类，理论效率
-    78.5%、实际按 60% 算，电源要提供 16.7 瓦，其余全变热 6.7 瓦；右下绿框换 D 类，效率 90%，同样的音质，指甲盖大的芯片就够，只发热 1.1 瓦。琥珀框写省下的热不是白给的：D
-    类的 PWM 边沿是强干扰源，输出要加 LC 滤波、必须过 EMI。底部写偏置管必须贴散热器与功率管热耦合，否则温升推高偏置电流，直接热失控。
+  alt: 先算负载电压电流，再在两种明确假定效率下比较热耗，不保证同音质或封装大小。
   status: accepted
   status_history:
   - planned
@@ -10288,23 +10442,23 @@ assets:
     教学必要性: 5
     事实精度: 5
     构图层级: 5
-    印刷可读性: 4
     风格一致性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch13-audio-class-heat.json
   quant_rules:
     layer_encodes_value: false
-  reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
   review_record:
-    reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
-    scope: all pending visual assets
-    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: b99a8d58bc90cee65f0d72b1770341d065bb48e743627e47fb7545ee1db622ce
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 沿用 2026-11-07 机辅分项评分（有据）
+    asset_sha256: a7810a15896b66a696cbcf178686ff6ac55cc4ab74320f0de86d7e73be72a9e8
 - id: ch11-diffpair-four-beats
   chapter: 11
   kind: figure
@@ -10350,7 +10504,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: f5c2b6f93efaac3844b8cdba940fbf1935c4201ee3ca6a7da414fda6a04a6057
+    asset_sha256: c047c4455e6ec7583ad58caec3587443ac68d5d71d033df1df4bce9ccc984879
+    metadata_amendments:
+    - before_sha256: f5c2b6f93efaac3844b8cdba940fbf1935c4201ee3ca6a7da414fda6a04a6057
+      after_sha256: c047c4455e6ec7583ad58caec3587443ac68d5d71d033df1df4bce9ccc984879
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch02-bridge-junction-ledger
   chapter: 2
   kind: figure
@@ -10399,7 +10558,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 2d19c4ad93729a69d1f1f7ef4d166621c47e078dcc1697475d727f6056f0b986
+    asset_sha256: 7a92fb1e859e4d741981fff30806151a4c496c63875f8f730133b6c19289ecbe
+    metadata_amendments:
+    - before_sha256: 2d19c4ad93729a69d1f1f7ef4d166621c47e078dcc1697475d727f6056f0b986
+      after_sha256: 7a92fb1e859e4d741981fff30806151a4c496c63875f8f730133b6c19289ecbe
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch04-thermal-chain-ledger
   chapter: 4
   kind: figure
@@ -10447,7 +10611,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: cd12950a9b502c48af50151cbcef50e1c15269798532bd1c67f1f1a5c99d5453
+    asset_sha256: c149474d1d01245e3f6fa225b9768ef0f664e550c145f1ff7a06db1355a0caee
+    metadata_amendments:
+    - before_sha256: cd12950a9b502c48af50151cbcef50e1c15269798532bd1c67f1f1a5c99d5453
+      after_sha256: c149474d1d01245e3f6fa225b9768ef0f664e550c145f1ff7a06db1355a0caee
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch01-q-selectivity-map
   chapter: 1
   kind: figure
@@ -10496,7 +10665,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: bd6dc1bec7f3e9cb0b8f086d6606cf03c6d7e5349933b9b6ef1c71b6a424d3aa
+    asset_sha256: de2db9c59c90dd2fda177e3384307e04e6521be868614ca4ec7966af8754be83
+    metadata_amendments:
+    - before_sha256: bd6dc1bec7f3e9cb0b8f086d6606cf03c6d7e5349933b9b6ef1c71b6a424d3aa
+      after_sha256: de2db9c59c90dd2fda177e3384307e04e6521be868614ca4ec7966af8754be83
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch02-diode-fault-order
   chapter: 2
   kind: figure
@@ -10552,7 +10726,7 @@ assets:
   purpose: 回路面积决定辐射等级
   style_id: FA-029
   layout_id: IG-013
-  color_ids:
+  color_ids: &id002
   - C-30
   - C-31
   - C-29
@@ -10562,9 +10736,8 @@ assets:
   output: assets/figures-v2/ch15-radiated-loop-area.svg
   print_fallback: assets/figures-v2/ch15-radiated-loop-area-print.svg
   preview: assets/figures-v2/ch15-radiated-loop-area.webp
-  alt: 手绘辐射分账。顶部蓝框写电磁兼容三要素：干扰源、耦合路径、敏感设备或天线，模拟工程师能掌控的是后两个。左红框回路面积 15 平方厘米，开槽让回流绕路、环路变成天线，远场估算 660 微伏每米，换成对数
-    56 分贝微伏每米，限值 40、超 16 分贝。右绿框回路面积 0.5 平方厘米，回流贴着地平面正下方走，面积掉 30 倍也就是负 29.5 分贝，换算成场强 26 分贝微伏每米，限值 40、余量充足。琥珀框写为什么先动布局：面积是线性项、布局阶段免费，滤波器与屏蔽罩是整改阶段的钱。底部红框写辐射超标的发射十有八九是电缆当天线，1
-    米电缆在 30 到 300 兆赫是高效天线。
+  alt: 自由空间小环最大方向远场估算：100MHz、10mA、3m，面积 15 平方厘米时 658 微伏每米、56.36dBµV/m；面积降到 0.5 平方厘米且电流不变时约 21.93 微伏每米、26.82dBµV/m，下降
+    29.54dB。40dBµV/m 只是比较线，不是所有标准的限值。忽略地面、机壳与电缆，模型不能代替认证。
   status: accepted
   status_history:
   - planned
@@ -10575,23 +10748,23 @@ assets:
     教学必要性: 5
     事实精度: 5
     构图层级: 5
-    印刷可读性: 4
     风格一致性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-radiated-loop-area.json
   quant_rules:
     layer_encodes_value: false
-  reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
   review_record:
-    reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
-    scope: all pending visual assets
-    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: d3ffc773a0858be36d754cd9ef5b0fe663e5171b744b8cac0438a728f357fff0
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 沿用 2026-11-07 机辅分项评分（有据）
+    asset_sha256: 61d4b7e1910a8125673d280ef20d6db87ca55712db34851fecdee1844b24f457
 - id: ch09-tl431-divider-floor
   chapter: 9
   kind: figure
@@ -10637,28 +10810,28 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 00d9c5f73e0bfc563e96775e253e8b43333daf283100a9e6bc3da3b421bf29af
+    asset_sha256: 36b0815b9c7b0f9b0220b2aaff6e06026830e1c49e328921358a523d58345e7f
+    metadata_amendments:
+    - before_sha256: 00d9c5f73e0bfc563e96775e253e8b43333daf283100a9e6bc3da3b421bf29af
+      after_sha256: 36b0815b9c7b0f9b0220b2aaff6e06026830e1c49e328921358a523d58345e7f
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch13-crystal-neg-resistance
   chapter: 13
   kind: figure
   type: V4
-  anchor: '13.10'
-  purpose: 晶振起振的负阻裕度
+  anchor: 13.10c
+  purpose: 起振跨导与驱动功率
   style_id: FA-029
   layout_id: IG-013
-  color_ids:
-  - C-30
-  - C-31
-  - C-29
+  color_ids: *id002
   source_facts:
-  - docs/p2-03-ch13.md#13.10
+  - docs/p2-03-ch13.md#13.10c
   prompt_file: docs/superpowers/visual/prompts/ch13-crystal-neg-resistance.md
   output: assets/figures-v2/ch13-crystal-neg-resistance.svg
   print_fallback: assets/figures-v2/ch13-crystal-neg-resistance-print.svg
   preview: assets/figures-v2/ch13-crystal-neg-resistance.webp
-  alt: 手绘晶振负阻两笔账。顶部蓝框写工程要求负阻大于等于 5 倍最大等效串联电阻，余量不足会起振慢甚至低温不启振。左绿框 8 兆赫晶体：等效串联电阻 80 欧、静态电容 3 皮法、负载电容 15
-    皮法，临界跨导 0.26 毫安每伏；单片机内部反相器有几毫安每伏，裕度 20 倍以上很稳。右红框 32.768 千赫晶体：等效串联电阻天然巨大、35 到 90 千欧，临界跨导反而极小、1.7 微安每伏，所以实时时钟振荡器功耗能做到微安级。琥珀框写两个数差得很远方向却一致：临界跨导与等效串联电阻成正比、与频率的平方成正比。底部红框写先确认起振再谈频率准不准：负载电容配错只让走时慢一点，负阻裕度不够是根本不起振；军规
-    ④ 说起振时间与负阻裕度成反比、裕度越小醒得越慢。
+  alt: 五组指定模型参数分别算跨导，负阻取绝对值，驱动功率使用动态支路电流。
   status: accepted
   status_history:
   - planned
@@ -10669,45 +10842,39 @@ assets:
     教学必要性: 5
     事实精度: 5
     构图层级: 5
-    印刷可读性: 4
     风格一致性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch13-crystal-neg-resistance.json
   quant_rules:
     layer_encodes_value: false
-  reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
   review_record:
-    reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
-    scope: all pending visual assets
-    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: d1364e42d2a77d41a3a1816663d222ef2a2d03a1bbc8b53eccc939199720d78f
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 沿用 2026-11-07 机辅分项评分（有据）
+    asset_sha256: c79bd09b3fb5af7b239d59c1e6dd20e9120927e6ceeb047ec580dbba3f3b1a88
 - id: ch13-sampling-quantization
   chapter: 13
   kind: figure
   type: V4
   anchor: '13.6'
-  purpose: 采样率与量化台阶的两道账
+  purpose: 采样与量化分别预算
   style_id: FA-029
   layout_id: IG-013
-  color_ids:
-  - C-30
-  - C-31
-  - C-29
+  color_ids: *id002
   source_facts:
   - docs/p2-03-ch13.md#13.6
   prompt_file: docs/superpowers/visual/prompts/ch13-sampling-quantization.md
   output: assets/figures-v2/ch13-sampling-quantization.svg
   print_fallback: assets/figures-v2/ch13-sampling-quantization-print.svg
   preview: assets/figures-v2/ch13-sampling-quantization.webp
-  alt: 手绘采样与量化两栏。左上蓝框采样是时间离散化：每隔一个采样周期抓一次瞬时值，采样率必须大于信号最高频率的 2 倍，否则高频伪装成低频就是混叠。右上绿框量化是幅度离散化：台阶等于满量程除以 2
-    的 N 次方，3.3 伏量程、12 位得 0.8 毫伏，读数末位抖动就是量化噪声。琥珀框算 1 ksps 够不够：读 50 赫兹工频，1 ksps 大于 2 倍，可以；直接读 1 千赫音频，1 ksps
-    小于 2 倍，混叠失真；对策是提到 10 ksps 以上或前置 500 赫兹低通。底部红框三种架构：逐次逼近约 1 Msps、12 到 18 位；过采样不到 1 ksps、16 到 24 位；并行比较
-    Gsps 级、低于 8 位。
+  alt: 流程把时间采样和幅度量化分开，指出恒定输入可以输出固定码，位数不保证直流或动态精度。
   status: accepted
   status_history:
   - planned
@@ -10718,23 +10885,23 @@ assets:
     教学必要性: 5
     事实精度: 5
     构图层级: 5
-    印刷可读性: 4
     风格一致性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch13-sampling-quantization.json
   quant_rules:
     layer_encodes_value: false
-  reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
   review_record:
-    reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
-    scope: all pending visual assets
-    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 16efa651f281dca47b28ec1a468ec7de5bbb8df506423de541cfd5d06010526c
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 沿用 2026-11-07 机辅分项评分（有据）
+    asset_sha256: d6c8ea411680cf13192ae75ce9e504a42a79558e47212a575034f483dcea3a33
 - id: ch14-pt100-error-budget
   chapter: 14
   kind: figure
@@ -10743,19 +10910,14 @@ assets:
   purpose: PT100 的误差预算与比率测量
   style_id: FA-029
   layout_id: IG-013
-  color_ids:
-  - C-30
-  - C-31
-  - C-29
+  color_ids: *id002
   source_facts:
   - docs/p3-01-ch14.md#14.12
   prompt_file: docs/superpowers/visual/prompts/ch14-pt100-error-budget.md
   output: assets/figures-v2/ch14-pt100-error-budget.svg
   print_fallback: assets/figures-v2/ch14-pt100-error-budget-print.svg
   preview: assets/figures-v2/ch14-pt100-error-budget.webp
-  alt: 手绘误差预算两栏。顶部蓝框写误差预算先统一单位，再列六项：传感、激励、放大、滤波、ADC、基准，六项都折到同一个单位上才加得起来。左绿框比率测量能约掉两项：激励电流的绝对误差与基准的初始误差，原因是两者同源、一起变一起消。右红框约不掉的那几项：传感本身的容差与自热、放大增益的
-    0.1% 电阻、基准温漂 10 ppm 每摄氏度。琥珀框写温漂预算只有 0.04 摄氏度，低压差稳压器与开关电源都是热源，基准要靠远离热源来保精度。底部写设计从后往前推、调试从前往后查：后面是 ADC
-    满量程到增益到噪声预算，前面是激励到放大到滤波到转换；测试不回填，预算就还只是假设。
+  alt: 先统一误差单位：同源参考的初始误差和共同温漂可以约掉，传感自热、放大误差及独立路径残差仍需预算。演示两项0.04摄氏度不得重复代表同一共同基准温漂；设计从ADC量程倒推，测试从激励开始逐级验证。
   status: accepted
   status_history:
   - planned
@@ -10766,23 +10928,23 @@ assets:
     教学必要性: 5
     事实精度: 5
     构图层级: 5
-    印刷可读性: 4
     风格一致性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-pt100-error-budget.json
   quant_rules:
     layer_encodes_value: false
-  reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
   review_record:
-    reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
-    scope: all pending visual assets
-    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 2fb8bf4504b7fad06c55a5753999f080d762739d93e1d42942929f2831563cba
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 沿用 2026-11-07 机辅分项评分（有据）
+    asset_sha256: a3875274849f50d1285e243d3742e3129a78a1c240dbe7860879b0196b85e79c
 - id: ch10-555-fault-tree
   chapter: 10
   kind: figure
@@ -10828,7 +10990,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 884c97a206cfc4379d8189b89de23c037b42d8fa03ef8004cd22788f4fb82427
+    asset_sha256: bdc3f872b8ac0558c28a63596c55006fae3ac5d5eaece277512d3d79291bca54
+    metadata_amendments:
+    - before_sha256: 884c97a206cfc4379d8189b89de23c037b42d8fa03ef8004cd22788f4fb82427
+      after_sha256: bdc3f872b8ac0558c28a63596c55006fae3ac5d5eaece277512d3d79291bca54
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch10-555-threshold-clamp
   chapter: 10
   kind: figure
@@ -10874,7 +11041,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 8d256700fd1c9039f6de3e92da4592e6f27008c95c3fe2538243efae6cd4904d
+    asset_sha256: f2cfe9d6c67eed18882460cc5a378eeb54ce6a01ce547c0b0ba0e03ae0b08828
+    metadata_amendments:
+    - before_sha256: 8d256700fd1c9039f6de3e92da4592e6f27008c95c3fe2538243efae6cd4904d
+      after_sha256: f2cfe9d6c67eed18882460cc5a378eeb54ce6a01ce547c0b0ba0e03ae0b08828
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch03-ce-swing-budget
   chapter: 3
   kind: figure
@@ -10922,7 +11094,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 971688f90cfaa6aba095225ffff566ad257a5ba45466e4cef7c5ed995936c0b2
+    asset_sha256: 7b09d00955f977ab8020ad84e760f56a850afacc508ed2c6b69a00b8f8d41a45
+    metadata_amendments:
+    - before_sha256: 971688f90cfaa6aba095225ffff566ad257a5ba45466e4cef7c5ed995936c0b2
+      after_sha256: 7b09d00955f977ab8020ad84e760f56a850afacc508ed2c6b69a00b8f8d41a45
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch15-return-mirror
   chapter: 15
   kind: figure
@@ -11202,7 +11379,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 15fa6f431f6b0a4216732fe004db93ab4fd7d8411804ad091d3047683647fdcf
+    asset_sha256: 7d1edbaaaa2168a16e205182fa0d8b9b283195e8ac826b1af431f3f5d92f7bba
+    metadata_amendments:
+    - before_sha256: 15fa6f431f6b0a4216732fe004db93ab4fd7d8411804ad091d3047683647fdcf
+      after_sha256: 7d1edbaaaa2168a16e205182fa0d8b9b283195e8ac826b1af431f3f5d92f7bba
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch04-channel-formation
   chapter: 4
   kind: figure
@@ -11249,7 +11431,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 41ed9a11685424d72229830c91f5967a6eacf8673ecd8cc8e644f1265ddc4ebc
+    asset_sha256: 1c8e3b20d0c91e58c2b2026e7ae9d06bc58b19c450a2e79ce8f0ba7a2bfe905f
+    metadata_amendments:
+    - before_sha256: 41ed9a11685424d72229830c91f5967a6eacf8673ecd8cc8e644f1265ddc4ebc
+      after_sha256: 1c8e3b20d0c91e58c2b2026e7ae9d06bc58b19c450a2e79ce8f0ba7a2bfe905f
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch03-region-check
   chapter: 3
   kind: figure
@@ -11297,7 +11484,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: e9575a350099c8534c7d200b9a251a2e64ac6f316d79808dc62f79d9295e19c0
+    asset_sha256: 05c46e9fade9e98dd527a801d612e13d5453e185e7fc197b4db9b23e8709466d
+    metadata_amendments:
+    - before_sha256: e9575a350099c8534c7d200b9a251a2e64ac6f316d79808dc62f79d9295e19c0
+      after_sha256: 05c46e9fade9e98dd527a801d612e13d5453e185e7fc197b4db9b23e8709466d
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch18-williams-workbench
   chapter: 18
   kind: figure
@@ -12061,7 +12253,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 9414b547069141e3a2f97cd2fd228dc32d4091cf84cd3dc3c6e55770acc644f6
+    asset_sha256: d522f2e354f3857d7b60c9e5030a4e86fe293fe150bf1df052cdf301af3e311d
+    metadata_amendments:
+    - before_sha256: 9414b547069141e3a2f97cd2fd228dc32d4091cf84cd3dc3c6e55770acc644f6
+      after_sha256: d522f2e354f3857d7b60c9e5030a4e86fe293fe150bf1df052cdf301af3e311d
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch04-switching-energy-ledger
   chapter: 4
   kind: figure
@@ -12107,7 +12304,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 5e7449dbed9961edc618c2781e899cf711d4c23e073ae79b742395c93c0b2269
+    asset_sha256: 8e683c715363550ee410ce4ab40beb71310750ea7ecdd4177bf9b5858063dd2b
+    metadata_amendments:
+    - before_sha256: 5e7449dbed9961edc618c2781e899cf711d4c23e073ae79b742395c93c0b2269
+      after_sha256: 8e683c715363550ee410ce4ab40beb71310750ea7ecdd4177bf9b5858063dd2b
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch05-capacitive-energy-v2
   chapter: 5
   kind: animation
@@ -12608,7 +12810,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 5c41d910a31b5c98e9089d5a39c601b1d67431204503c0c0a640d5aa8fe55e3d
+    asset_sha256: d2b8f7bd5c7b0a577d159795ab1d99dab25c72c7ab639f9f33812d79a010e3a5
+    metadata_amendments:
+    - before_sha256: 5c41d910a31b5c98e9089d5a39c601b1d67431204503c0c0a640d5aa8fe55e3d
+      after_sha256: d2b8f7bd5c7b0a577d159795ab1d99dab25c72c7ab639f9f33812d79a010e3a5
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch06-compensation-v2
   chapter: 6
   kind: animation
@@ -13116,7 +13323,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 35b6b1680e25681d4f62522ae0677defb9c4df252cee32d5073171a6f64a7e95
+    asset_sha256: 2cf50b0bc5d3697c1f78e49c4ca0e59b0fd29e1ad8fbbdd8321aa5042dd0ab52
+    metadata_amendments:
+    - before_sha256: 35b6b1680e25681d4f62522ae0677defb9c4df252cee32d5073171a6f64a7e95
+      after_sha256: 2cf50b0bc5d3697c1f78e49c4ca0e59b0fd29e1ad8fbbdd8321aa5042dd0ab52
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch06-fault-conditions
   chapter: 6
   kind: figure
@@ -13162,7 +13374,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 1d1f1f7583a8d925ffc3421b52571a42375663eaf8ace531932addeb9bd4ce08
+    asset_sha256: 6a084ca2e5a55a5ffeb57dc052bb94a180d303e9dfb1d6f4a5e34b936a3d7a12
+    metadata_amendments:
+    - before_sha256: 1d1f1f7583a8d925ffc3421b52571a42375663eaf8ace531932addeb9bd4ce08
+      after_sha256: 6a084ca2e5a55a5ffeb57dc052bb94a180d303e9dfb1d6f4a5e34b936a3d7a12
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch07-release-timing-v2
   chapter: 7
   kind: animation
@@ -13670,7 +13887,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: fb4a28034083427ecb034e41cf6290237da4f9af5a16e4be1d3ddeadae2e8e81
+    asset_sha256: dfe87f3958526193486c9ef10d2a612afde08227a6bd4f99962795e42f0c51d0
+    metadata_amendments:
+    - before_sha256: fb4a28034083427ecb034e41cf6290237da4f9af5a16e4be1d3ddeadae2e8e81
+      after_sha256: dfe87f3958526193486c9ef10d2a612afde08227a6bd4f99962795e42f0c51d0
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch07-delay-endpoints
   chapter: 7
   kind: figure
@@ -13716,7 +13938,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 8ee35ba302ba509d153e495e73c84123dc56e1bc4d095c5de57f3a6db4ebfa9e
+    asset_sha256: ec8ccf91536257f45134eb3b4f62568e53c674f41859382a0a54f3a7b0dae9b6
+    metadata_amendments:
+    - before_sha256: 8ee35ba302ba509d153e495e73c84123dc56e1bc4d095c5de57f3a6db4ebfa9e
+      after_sha256: ec8ccf91536257f45134eb3b4f62568e53c674f41859382a0a54f3a7b0dae9b6
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch07-glitch-margin
   chapter: 7
   kind: figure
@@ -13762,7 +13989,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 52491f1e7b643437a7fa3392758c50d0fa0a468c6333d23dd77578ad935ca69f
+    asset_sha256: 614342d1072c0f79a32b9cea2221e306d158396cc4324b43ab1b46108715e67e
+    metadata_amendments:
+    - before_sha256: 52491f1e7b643437a7fa3392758c50d0fa0a468c6333d23dd77578ad935ca69f
+      after_sha256: 614342d1072c0f79a32b9cea2221e306d158396cc4324b43ab1b46108715e67e
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch09-bandgap-balance-v2
   chapter: 9
   kind: animation
@@ -14336,7 +14568,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 51fd2d8068b24da39240006816db8d26ab2b61cb818d04120c663b5b129a9d8e
+    asset_sha256: e5cd0f4f7752241984ed121bf9e58a8503615642ab1b3645bdfd8852dc47b415
+    metadata_amendments:
+    - before_sha256: 51fd2d8068b24da39240006816db8d26ab2b61cb818d04120c663b5b129a9d8e
+      after_sha256: e5cd0f4f7752241984ed121bf9e58a8503615642ab1b3645bdfd8852dc47b415
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch09-reference-charge
   chapter: 9
   kind: figure
@@ -14382,7 +14619,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 146e305f19c9ba358789e83498af2b021a2ba91da892486cc58510a553396806
+    asset_sha256: 757e3c3080170e39db2e39ae10979236caf217336e1793a7b28a8cbab76f6ec0
+    metadata_amendments:
+    - before_sha256: 146e305f19c9ba358789e83498af2b021a2ba91da892486cc58510a553396806
+      after_sha256: 757e3c3080170e39db2e39ae10979236caf217336e1793a7b28a8cbab76f6ec0
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch09-thermal-path
   chapter: 9
   kind: figure
@@ -14428,7 +14670,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: d73299da3f8f8170b7c02c90521be5a1a5dabbb9cce6e95a6c471596700dacd6
+    asset_sha256: 3a256e2c0b5bbad8b79ca48629fabe897c2f5d0158e402cf6526c35a7ce2863c
+    metadata_amendments:
+    - before_sha256: d73299da3f8f8170b7c02c90521be5a1a5dabbb9cce6e95a6c471596700dacd6
+      after_sha256: 3a256e2c0b5bbad8b79ca48629fabe897c2f5d0158e402cf6526c35a7ce2863c
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch09-load-transient
   chapter: 9
   kind: figure
@@ -14474,7 +14721,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: b3e62e17f36fbb9b15ad631867f44dd2b9756c9dceee20616b022c74887cf2bd
+    asset_sha256: a40287231d8e19353f84674818a94f41ed836c9f51f5d527481d50e10951e497
+    metadata_amendments:
+    - before_sha256: b3e62e17f36fbb9b15ad631867f44dd2b9756c9dceee20616b022c74887cf2bd
+      after_sha256: a40287231d8e19353f84674818a94f41ed836c9f51f5d527481d50e10951e497
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch09-transient-budget
   chapter: 9
   kind: figure
@@ -14520,7 +14772,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 61090979f0a6f41c1c4f20c6cc34fc6abdf7d56bf0fc882e4119b30fa51ba52b
+    asset_sha256: 6358d3b6f63ad30668ae05458e1323b5cbf4a3f90bd36c055d7d53bbc9c44feb
+    metadata_amendments:
+    - before_sha256: 61090979f0a6f41c1c4f20c6cc34fc6abdf7d56bf0fc882e4119b30fa51ba52b
+      after_sha256: 6358d3b6f63ad30668ae05458e1323b5cbf4a3f90bd36c055d7d53bbc9c44feb
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch10-threshold-memory-v2
   chapter: 10
   kind: animation
@@ -15261,7 +15518,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 370201ee773910eb77d38014a9a600fdafed1a8f1d34ab2dd09081062cb74eab
+    asset_sha256: 915b4268ae87430db567c8c108b0675759fbb7ccd27c494e2530f1d4ecf3c421
+    metadata_amendments:
+    - before_sha256: 370201ee773910eb77d38014a9a600fdafed1a8f1d34ab2dd09081062cb74eab
+      after_sha256: 915b4268ae87430db567c8c108b0675759fbb7ccd27c494e2530f1d4ecf3c421
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch10-discharge-current
   chapter: 10
   kind: figure
@@ -15307,7 +15569,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: c48ddebf048acac1f80fe9ad29a894b81a3d07fa02f9899cabfcf12ddad94bd6
+    asset_sha256: 5a5baf723adcfdd22c4f300dedf620fc0c3d6b6907ed7d97cfdb0eb615a51a32
+    metadata_amendments:
+    - before_sha256: c48ddebf048acac1f80fe9ad29a894b81a3d07fa02f9899cabfcf12ddad94bd6
+      after_sha256: 5a5baf723adcfdd22c4f300dedf620fc0c3d6b6907ed7d97cfdb0eb615a51a32
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch10-logic-margin
   chapter: 10
   kind: figure
@@ -15353,7 +15620,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 96712ba1828cd871158b60ed96af867668b0d3cd9a4c12c858ca03f3bdb49bd9
+    asset_sha256: d04a00759f8a0df6773f750369dbfeb58546eea7ed096b887e160acd0e1e05fb
+    metadata_amendments:
+    - before_sha256: 96712ba1828cd871158b60ed96af867668b0d3cd9a4c12c858ca03f3bdb49bd9
+      after_sha256: d04a00759f8a0df6773f750369dbfeb58546eea7ed096b887e160acd0e1e05fb
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch10-timer-leakage
   chapter: 10
   kind: figure
@@ -15399,7 +15671,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: d266563b3087aae146b8889c7e3ef728b0bca7207657a1723d0ba604c3f38064
+    asset_sha256: fe150b7bb81a06801be2676da022ebcba4b3429885b5794c8095c59c60ee3f35
+    metadata_amendments:
+    - before_sha256: d266563b3087aae146b8889c7e3ef728b0bca7207657a1723d0ba604c3f38064
+      after_sha256: fe150b7bb81a06801be2676da022ebcba4b3429885b5794c8095c59c60ee3f35
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch10-clock-gating
   chapter: 10
   kind: figure
@@ -15445,7 +15722,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 366084420aa1cc6f8a87809c0d303c876ad9add2f763f0b062bffd0edbfbfeb1
+    asset_sha256: 4afcfbc9505c04954a77c19b209550e84515985afb19074d87e4ae52170176bc
+    metadata_amendments:
+    - before_sha256: 366084420aa1cc6f8a87809c0d303c876ad9add2f763f0b062bffd0edbfbfeb1
+      after_sha256: 4afcfbc9505c04954a77c19b209550e84515985afb19074d87e4ae52170176bc
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch11-diff-steer-v2
   chapter: 11
   kind: animation
@@ -16565,7 +16847,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: fbb2973a568c98de58684c0c2c60e8b3b1167262605e9425cce877c8e075b47a
+    asset_sha256: 897e236de989fde35d66549f4d16545a248b46215e1a541f98e724a1c6311ee0
+    metadata_amendments:
+    - before_sha256: fbb2973a568c98de58684c0c2c60e8b3b1167262605e9425cce877c8e075b47a
+      after_sha256: 897e236de989fde35d66549f4d16545a248b46215e1a541f98e724a1c6311ee0
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch11-noise-input-budget
   chapter: 11
   kind: figure
@@ -16611,7 +16898,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 6037746ae2af8108ff9ba05f0b1fc7d17aa51a3b76f7bd2aba7973e88f590f93
+    asset_sha256: ab6261b1ea101945687774517f4a1c71d589ccb38c2ce67b03ac99255e03eca9
+    metadata_amendments:
+    - before_sha256: 6037746ae2af8108ff9ba05f0b1fc7d17aa51a3b76f7bd2aba7973e88f590f93
+      after_sha256: ab6261b1ea101945687774517f4a1c71d589ccb38c2ce67b03ac99255e03eca9
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch11-cascode-headroom
   chapter: 11
   kind: figure
@@ -16657,7 +16949,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: f2a37e5b89852f235f2d4bb7398502e44ba98ad0a69b3244323cc36031912698
+    asset_sha256: 4b4d84de80425e320e9d7ef32af59b859312a5b6bb91d96c3862d11347804685
+    metadata_amendments:
+    - before_sha256: f2a37e5b89852f235f2d4bb7398502e44ba98ad0a69b3244323cc36031912698
+      after_sha256: 4b4d84de80425e320e9d7ef32af59b859312a5b6bb91d96c3862d11347804685
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch11-cmrr-definitions
   chapter: 11
   kind: figure
@@ -16703,7 +17000,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 24eaf9c3aade6b652c6541c8065ef19729c2721e97452ab1ccfc55f9375a24e3
+    asset_sha256: 9fa484667373bc438560908382269171281fa717b6f8b1762fb400da8b37b272
+    metadata_amendments:
+    - before_sha256: 24eaf9c3aade6b652c6541c8065ef19729c2721e97452ab1ccfc55f9375a24e3
+      after_sha256: 9fa484667373bc438560908382269171281fa717b6f8b1762fb400da8b37b272
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch11-design-dc
   chapter: 11
   kind: figure
@@ -16749,7 +17051,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 3559aced7ecceb565708a657c2839cb0cb6f5db083be724108ba24606f7b805c
+    asset_sha256: a0d83e9199922c2fed984575a4fb73b861ba244c87a8975076f832382e0ad90b
+    metadata_amendments:
+    - before_sha256: 3559aced7ecceb565708a657c2839cb0cb6f5db083be724108ba24606f7b805c
+      after_sha256: a0d83e9199922c2fed984575a4fb73b861ba244c87a8975076f832382e0ad90b
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch12-loop-error-v2
   chapter: 12
   kind: animation
@@ -17979,7 +18286,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: ba7d3c634c0527257f9c673bee68ee4453d147bc091407a8f17015fec3c56b99
+    asset_sha256: 54239b19cb01546938006c13b829df02ac29a0e2c94a54fc47e5ade1abcde7a6
+    metadata_amendments:
+    - before_sha256: ba7d3c634c0527257f9c673bee68ee4453d147bc091407a8f17015fec3c56b99
+      after_sha256: 54239b19cb01546938006c13b829df02ac29a0e2c94a54fc47e5ade1abcde7a6
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch12-feedback-ports
   chapter: 12
   kind: figure
@@ -18025,7 +18337,12 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 6be1d639b17a6a345f9ae6499e8490aa0b55c4ffe69dbf459d34d39de30fdea6
+    asset_sha256: d52f92f6896c49086b11717ac0806f867dcbf30c5a8384aa2fb64ee911ec5769
+    metadata_amendments:
+    - before_sha256: 6be1d639b17a6a345f9ae6499e8490aa0b55c4ffe69dbf459d34d39de30fdea6
+      after_sha256: d52f92f6896c49086b11717ac0806f867dcbf30c5a8384aa2fb64ee911ec5769
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
 - id: ch12-phase-crossing
   chapter: 12
   kind: figure
@@ -18071,4 +18388,1918 @@ assets:
     user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 1f993a8d90129b3a60be7b1c0c27e54ebdd2a1c1ed1c2f445e0f41f1eba92115
+    asset_sha256: 0b58118b664b7db0d7042b493c117f4ce8cdf99224eb964b4198d55e5418a437
+    metadata_amendments:
+    - before_sha256: 1f993a8d90129b3a60be7b1c0c27e54ebdd2a1c1ed1c2f445e0f41f1eba92115
+      after_sha256: 0b58118b664b7db0d7042b493c117f4ce8cdf99224eb964b4198d55e5418a437
+      method: 'label_handraw_figures.label: exact title/desc/root-attribute insertion;
+        drawing bytes unchanged'
+- id: ch13-zener-budget-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: '13.1'
+  purpose: 先扣基流，再看齐纳管还能否稳压
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.1
+  prompt_file: docs/superpowers/visual/prompts/ch13-zener-budget-v2.md
+  output: assets/svg-v2/ch13-zener-budget-v2.svg
+  print_fallback: assets/svg-v2/ch13-zener-budget-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-zener-budget-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-zener-budget-v2-static.svg
+  alt: 先扣基流，再看齐纳管还能否稳压；空载至负载 500 mA。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 串联电阻电流全部流入齐纳管。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 负载增加，基流从同一支路分走电流。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 还要与齐纳规定的最小工作电流比较。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 接近零并不表示稳压仍好；须重算非理想工作点。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-zener-budget-v2-static.svg
+- id: ch13-buck-cycle-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: '13.2'
+  purpose: 同一电感电流，开关与二极管轮流接管
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.2
+  prompt_file: docs/superpowers/visual/prompts/ch13-buck-cycle-v2.md
+  output: assets/svg-v2/ch13-buck-cycle-v2.svg
+  print_fallback: assets/svg-v2/ch13-buck-cycle-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-buck-cycle-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-buck-cycle-v2-static.svg
+  alt: 同一电感电流，开关与二极管轮流接管；导通初段至周期回到谷值。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 电感两端七伏，电流以正斜率上升。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 峰值到达后关开关，电流保持连续。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 二极管接管，负五伏使电流逐渐下降。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 回到同一电流才满足稳态伏秒平衡。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-buck-cycle-v2-static.svg
+- id: ch13-buck-charge-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: 13.2a
+  purpose: 纹波看电荷的峰谷差，整周期净电荷为零
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.2a
+  prompt_file: docs/superpowers/visual/prompts/ch13-buck-charge-v2.md
+  output: assets/svg-v2/ch13-buck-charge-v2.svg
+  print_fallback: assets/svg-v2/ch13-buck-charge-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-buck-charge-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-buck-charge-v2-static.svg
+  alt: 纹波看电荷的峰谷差，整周期净电荷为零；先给负载放电至净电荷回到零。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 电感电流低于负载时，电容提供差额。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 电容电流第一次过零，电压到谷值。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 正电流面积给出峰谷间的充电量。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 全周期正负面积相消，不是每周期净收到电荷。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-buck-charge-v2-static.svg
+- id: ch13-buck-dcm-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: 13.2b
+  purpose: 固定占空比进入 DCM 后，输出随负载变化
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.2b
+  prompt_file: docs/superpowers/visual/prompts/ch13-buck-dcm-v2.md
+  output: assets/svg-v2/ch13-buck-dcm-v2.svg
+  print_fallback: assets/svg-v2/ch13-buck-dcm-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-buck-dcm-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-buck-dcm-v2-static.svg
+  alt: 固定占空比进入 DCM 后，输出随负载变化；RL=5 Ω至RL=100 Ω。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 较重负载保持 CCM，电压为五伏。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 电流谷值触零，来到两种模式的边界。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 轻载出现零电流区间，固定 D 输出升高。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 闭环会调占空比；同步强制 CCM 则可能允许负电流。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-buck-dcm-v2-static.svg
+- id: ch13-boost-cycle-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: '13.3'
+  purpose: 升压的关断阶段才把电感电流送往输出
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.3
+  prompt_file: docs/superpowers/visual/prompts/ch13-boost-cycle-v2.md
+  output: assets/svg-v2/ch13-boost-cycle-v2.svg
+  print_fallback: assets/svg-v2/ch13-boost-cycle-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-boost-cycle-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-boost-cycle-v2-static.svg
+  alt: 升压的关断阶段才把电感电流送往输出；导通储能至回到周期起点。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 开关导通，输出电容单独向负载供电。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 电感电流升至峰值，但输出二极管仍截止。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 开关断开后，输入与电感经二极管向输出供电。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 输入平均电流大于输出，理想输入输出功率相等。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-boost-cycle-v2-static.svg
+- id: ch13-boost-stress-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: 13.3a
+  purpose: 占空比越接近一，升压电流代价越大
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.3a
+  prompt_file: docs/superpowers/visual/prompts/ch13-boost-stress-v2.md
+  output: assets/svg-v2/ch13-boost-stress-v2.svg
+  print_fallback: assets/svg-v2/ch13-boost-stress-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-boost-stress-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-boost-stress-v2-static.svg
+  alt: 占空比越接近一，升压电流代价越大；D=0.2至D=0.8。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 平均输入电流已高于输出电流。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 二倍升压对应二倍输入电流。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 更短的供能窗口要求更大的电感电流。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 五倍只是理想变换比，不能保证真实电压或效率。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-boost-stress-v2-static.svg
+- id: ch13-pump-load-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: 13.3b
+  purpose: 飞跨电容的搬运速率限制带载电压
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.3b
+  prompt_file: docs/superpowers/visual/prompts/ch13-pump-load-v2.md
+  output: assets/svg-v2/ch13-pump-load-v2.svg
+  print_fallback: assets/svg-v2/ch13-pump-load-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-pump-load-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-pump-load-v2-static.svg
+  alt: 飞跨电容的搬运速率限制带载电压；空载至负载 20 mA。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 理想空载幅值接近输入电压。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 每秒搬运电荷有限，带载开始压降。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 本慢开关等效模型下降一伏。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 开关电阻、频率区间和输出电容纹波仍须另计。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-pump-load-v2-static.svg
+- id: ch13-inverting-ratio-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: 13.3c
+  purpose: 反相 Buck-Boost 的极性来自放电连接
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.3c
+  prompt_file: docs/superpowers/visual/prompts/ch13-inverting-ratio-v2.md
+  output: assets/svg-v2/ch13-inverting-ratio-v2.svg
+  print_fallback: assets/svg-v2/ch13-inverting-ratio-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-inverting-ratio-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-inverting-ratio-v2-static.svg
+  alt: 反相 Buck-Boost 的极性来自放电连接；D=0.2至D=0.7。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 小占空比产生幅值较小的负电压。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 提高占空比，负压幅值继续增大。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 一半占空比时理想输出为负五伏。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 高占空比增大电流与耐压应力，不能据此保证带载能力。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-inverting-ratio-v2-static.svg
+- id: ch13-wien-select-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: '13.4'
+  purpose: 文氏桥只在一个频率兼有零相位与三分之一增益
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.4
+  prompt_file: docs/superpowers/visual/prompts/ch13-wien-select-v2.md
+  output: assets/svg-v2/ch13-wien-select-v2.svg
+  print_fallback: assets/svg-v2/ch13-wien-select-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-wien-select-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-wien-select-v2-static.svg
+  alt: 文氏桥只在一个频率兼有零相位与三分之一增益；f=0.1f0至f=10f0。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 低频反馈较弱，且带有相位超前。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 靠近选频点，反馈幅值增加。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 在自然频率处相位为零，幅值为三分之一。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 高频再次衰减且相位滞后，仍需考虑放大器自身响应。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-wien-select-v2-static.svg
+- id: ch13-wien-amplitude-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: 13.4a
+  purpose: 起振增长与稳幅是两件事
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.4a
+  prompt_file: docs/superpowers/visual/prompts/ch13-wien-amplitude-v2.md
+  output: assets/svg-v2/ch13-wien-amplitude-v2.svg
+  print_fallback: assets/svg-v2/ch13-wien-amplitude-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-wien-amplitude-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-wien-amplitude-v2-static.svg
+  alt: 起振增长与稳幅是两件事；小噪声种子至趋向稳态幅度。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 零初值在理想方程里不会自行起振。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 小幅度增长来自足够的环路余量。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 幅度增加后，需要限制机制降低有效增益。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 只有大于一的增益条件不足以保证所需的稳定正弦。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-wien-amplitude-v2-static.svg
+- id: ch13-lc-energy-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: 13.4b
+  purpose: 电场能与磁场能交替，理想总能量不变
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.4b
+  prompt_file: docs/superpowers/visual/prompts/ch13-lc-energy-v2.md
+  output: assets/svg-v2/ch13-lc-energy-v2.svg
+  print_fallback: assets/svg-v2/ch13-lc-energy-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-lc-energy-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-lc-energy-v2-static.svg
+  alt: 电场能与磁场能交替，理想总能量不变；电容全储能至能量返回电容。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 初始电压最大，电感电流为零。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 电容放电，磁场能随电流增长。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 四分之一周期后电压为零，电流最大。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 实际损耗使自由振荡衰减，有源维持须补足能量。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-lc-energy-v2-static.svg
+- id: ch13-current-compliance-v2
+  chapter: 13
+  kind: animation
+  type: A3
+  anchor: 13.5.1
+  purpose: 负载电压用尽余量后，电流再也保持不了
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.5.1
+  prompt_file: docs/superpowers/visual/prompts/ch13-current-compliance-v2.md
+  output: assets/svg-v2/ch13-current-compliance-v2.svg
+  print_fallback: assets/svg-v2/ch13-current-compliance-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-current-compliance-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-current-compliance-v2-static.svg
+  alt: 负载电压用尽余量后，电流再也保持不了；供电 2.8 V至回查输出级边界。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters:
+  - name: Vs
+    values:
+    - 2.8
+    - 5
+    - 12
+    - 12
+    unit: V
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 两千欧负载已经用尽本例电压预算。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 提高供电到五伏，最大负载变为四点二千欧。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 十二伏下，预算允许十一点二千欧。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 还要检查运放共模、驱动与管子耗散，曲线不是器件保证。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-current-compliance-v2-static.svg
+- id: ch13-sar-trials-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: 13.6a
+  purpose: 逐位试探时保持输入不变
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.6a
+  prompt_file: docs/superpowers/visual/prompts/ch13-sar-trials-v2.md
+  output: assets/svg-v2/ch13-sar-trials-v2.svg
+  print_fallback: assets/svg-v2/ch13-sar-trials-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-sar-trials-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-sar-trials-v2-static.svg
+  alt: 逐位试探时保持输入不变；试 0.5：保留至试 0.6875：撤回。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 先决定最高位，比较器只给一次大小判断。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 试探超过输入，清掉第二位。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 第三位试探仍不超过输入，保留。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 最终码十，对应零点六二五；静态输入并不必然抖码。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-sar-trials-v2-static.svg
+- id: ch13-alias-samples-v2
+  chapter: 13
+  kind: animation
+  type: A3
+  anchor: 13.6b
+  purpose: 相干采样把一千赫兹折成相位相关直流
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.6b
+  prompt_file: docs/superpowers/visual/prompts/ch13-alias-samples-v2.md
+  output: assets/svg-v2/ch13-alias-samples-v2.svg
+  print_fallback: assets/svg-v2/ch13-alias-samples-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-alias-samples-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-alias-samples-v2-static.svg
+  alt: 相干采样把一千赫兹折成相位相关直流；输入 50 Hz至输入 1001 Hz。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters:
+  - name: fin
+    values:
+    - 50
+    - 950
+    - 1000
+    - 1001
+    unit: Hz
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 五十赫兹在本例中可还原，但须先限制带外输入。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 九百五十赫兹折回五十赫兹，样本无法分辨来源。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 恰好同频采样，每次都是同一相位，得到固定半幅值。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 仅偏离一赫兹便出现慢拍；不能把精确同频也称作慢漂。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-alias-samples-v2-static.svg
+- id: ch13-quantization-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: 13.6c
+  purpose: 量化是固定台阶，不会凭空产生随机抖动
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.6c
+  prompt_file: docs/superpowers/visual/prompts/ch13-quantization-v2.md
+  output: assets/svg-v2/ch13-quantization-v2.svg
+  print_fallback: assets/svg-v2/ch13-quantization-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-quantization-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-quantization-v2-static.svg
+  alt: 量化是固定台阶，不会凭空产生随机抖动；输入 0.1至输入 0.8。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 输入落在同一量化区间时输出固定。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 跨过阈值才跳到下一个台阶。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 均匀误差模型需要输入或噪声满足相应统计条件。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: q 除以根号十二是该模型的 RMS，不是所有直流读数的随机性。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-quantization-v2-static.svg
+- id: ch13-jitter-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: 13.6d
+  purpose: 同样的时间抖动，高频信号付出更多噪声
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.6d
+  prompt_file: docs/superpowers/visual/prompts/ch13-jitter-v2.md
+  output: assets/svg-v2/ch13-jitter-v2.svg
+  print_fallback: assets/svg-v2/ch13-jitter-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-jitter-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-jitter-v2-static.svg
+  alt: 同样的时间抖动，高频信号付出更多噪声；输入 100 kHz至输入 10 MHz。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 低频正弦斜率较小，时间误差造成的电压误差小。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 一兆赫兹时，抖动上限约八十四分贝。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 输入频率提高，噪声上限持续下降。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 十兆赫兹只剩约六十四分贝；总 SINAD 还含其他误差。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-jitter-v2-static.svg
+- id: ch13-acquisition-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: 13.6e
+  purpose: 采集时间固定时，源阻会留下指数残差
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.6e
+  prompt_file: docs/superpowers/visual/prompts/ch13-acquisition-v2.md
+  output: assets/svg-v2/ch13-acquisition-v2.svg
+  print_fallback: assets/svg-v2/ch13-acquisition-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-acquisition-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-acquisition-v2-static.svg
+  alt: 采集时间固定时，源阻会留下指数残差；Rtotal=2 kΩ至Rtotal=5 kΩ。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 两千欧时，本一阶模型低于半 LSB。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 约二点七七四千欧用尽建立误差预算。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 超过后只是残差变大，不能泛称必定丢码。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 增采集时间、降源阻或改善驱动均可；还须扣开关电阻。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-acquisition-v2-static.svg
+- id: ch13-hbridge-reverse-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: 13.7a
+  purpose: 电压可以换向，电感电流必须连续
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.7a
+  prompt_file: docs/superpowers/visual/prompts/ch13-hbridge-reverse-v2.md
+  output: assets/svg-v2/ch13-hbridge-reverse-v2.svg
+  print_fallback: assets/svg-v2/ch13-hbridge-reverse-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-hbridge-reverse-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-hbridge-reverse-v2-static.svg
+  alt: 电压可以换向，电感电流必须连续；刚换向至负电流逐步建立。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 电流不能随电压跳变，初始仍为正两安。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 电压为负而电流为正，桥侧短时接收能量。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 约一点四四毫秒后才穿越零点。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 真实电机还有反电势与机械惯性，转速不会按此曲线瞬间翻转。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-hbridge-reverse-v2-static.svg
+- id: ch13-sense-cmr-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: 13.8b
+  purpose: 共模误差预算随抑制比分贝换算
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.8b
+  prompt_file: docs/superpowers/visual/prompts/ch13-sense-cmr-v2.md
+  output: assets/svg-v2/ch13-sense-cmr-v2.svg
+  print_fallback: assets/svg-v2/ch13-sense-cmr-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-sense-cmr-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-sense-cmr-v2-static.svg
+  alt: 共模误差预算随抑制比分贝换算；CMRR=70 dB至CMRR=110 dB。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 七十分贝只是假设，在本例产生约三点八毫伏。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 八十分贝仍超过分配给共模的误差。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 达到约九十五点五六分贝，才压到零点二毫伏。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 更高抑制不替代允许共模范围，也不保证 PWM 边沿恢复。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-sense-cmr-v2-static.svg
+- id: ch13-audio-heat-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: 13.9a
+  purpose: 效率与发热必须对应同一输出摆幅
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.9a
+  prompt_file: docs/superpowers/visual/prompts/ch13-audio-heat-v2.md
+  output: assets/svg-v2/ch13-audio-heat-v2.svg
+  print_fallback: assets/svg-v2/ch13-audio-heat-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-audio-heat-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-audio-heat-v2-static.svg
+  alt: 效率与发热必须对应同一输出摆幅；输出 1 W至接近最大摆幅。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 小输出下，B 类效率低于其理论最大值。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 热耗随输出改变，不是额定功率乘固定比例。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 十瓦时理想 B 类热耗约五点一瓦，D 类假设约一点一一瓦。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: B 类最高效率只在最大不削顶正弦附近达到。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-audio-heat-v2-static.svg
+- id: ch13-crystal-pull-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: 13.10a
+  purpose: 大步长负载偏移要直接算两个谐振频率
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.10a
+  prompt_file: docs/superpowers/visual/prompts/ch13-crystal-pull-v2.md
+  output: assets/svg-v2/ch13-crystal-pull-v2.svg
+  print_fallback: assets/svg-v2/ch13-crystal-pull-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-crystal-pull-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-crystal-pull-v2-static.svg
+  alt: 大步长负载偏移要直接算两个谐振频率；CL=12 pF至CL=15 pF。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 参考负载处相对频偏为零。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 增加负载电容使并联谐振频率降低。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 牵引斜率随负载变化，不能用终点斜率乘整个步长。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 十五皮法约慢六十七点三 ppm，即每天约慢五点八一秒。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-crystal-pull-v2-static.svg
+- id: ch13-crystal-start-v2
+  chapter: 13
+  kind: animation
+  type: A3
+  anchor: 13.10b
+  purpose: 决定增长速度的是净负阻余量
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.10b
+  prompt_file: docs/superpowers/visual/prompts/ch13-crystal-start-v2.md
+  output: assets/svg-v2/ch13-crystal-start-v2.svg
+  print_fallback: assets/svg-v2/ch13-crystal-start-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-crystal-start-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-crystal-start-v2-static.svg
+  alt: 决定增长速度的是净负阻余量；|Rneg|=25 kΩ至|Rneg|=150 kΩ。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters:
+  - name: '|Rneg|'
+    values:
+    - 25
+    - 50
+    - 100
+    - 150
+    unit: kΩ
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 负阻小于损耗，初始扰动衰减。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 负阻刚好抵消损耗，线性模型没有增长。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 净负阻为五万欧，包络指数增长。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 更大余量增长更快，但稳态驱动与限幅必须另验。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-crystal-start-v2-static.svg
+- id: ch13-opto-ctr-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: 13.11a
+  purpose: 降额后的 CTR 还要能拉动输出负载
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.11a
+  prompt_file: docs/superpowers/visual/prompts/ch13-opto-ctr-v2.md
+  output: assets/svg-v2/ch13-opto-ctr-v2.svg
+  print_fallback: assets/svg-v2/ch13-opto-ctr-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-opto-ctr-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-opto-ctr-v2-static.svg
+  alt: 降额后的 CTR 还要能拉动输出负载；CTR=100%至核对饱和条件。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 先按规定工作点计算可用集电极电流。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 百分之五十下，一千欧方案估算有余量。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 降至百分之二十五时，一千欧方案低于所需零点六三八毫安。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 较小电阻增加驱动，但还须验证低输出电压时的饱和曲线。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-opto-ctr-v2-static.svg
+- id: ch13-iso-displacement-v2
+  chapter: 13
+  kind: animation
+  type: A2
+  anchor: 13.11b
+  purpose: 无直流通路仍会有跨屏障位移电流
+  style_id: FA-029
+  layout_id: IG-015
+  color_ids:
+  - C-34
+  - C-32
+  source_facts:
+  - docs/p2-03-ch13.md#13.11b
+  prompt_file: docs/superpowers/visual/prompts/ch13-iso-displacement-v2.md
+  output: assets/svg-v2/ch13-iso-displacement-v2.svg
+  print_fallback: assets/svg-v2/ch13-iso-displacement-v2-storyboard.svg
+  storyboard: assets/svg-v2/ch13-iso-displacement-v2-storyboard.svg
+  reduced_motion: assets/svg-v2/ch13-iso-displacement-v2-static.svg
+  alt: 无直流通路仍会有跨屏障位移电流；1 kV/µs至100 kV/µs。
+  status: generated
+  status_history:
+  - planned
+  - generated
+  review_scores: {}
+  duration: 12
+  parameters: []
+  beats:
+  - name: 条件
+    start: 0
+    end: 3
+    caption: 寄生电容让快速电压变化产生短暂电流。
+  - name: 变化
+    start: 3
+    end: 6
+    caption: 斜率十倍增加，位移电流也十倍增加。
+  - name: 比较
+    start: 6
+    end: 9
+    caption: 回流路径与接口承受能力会影响误触发。
+  - name: 结论
+    start: 9
+    end: 12
+    caption: 耐压、工作电压与 CMTI 是不同指标，必须分别核对。
+  conclusion_frame:
+    beat: 结论
+    output: assets/svg-v2/ch13-iso-displacement-v2-static.svg
+- id: ch13-buck-ripple
+  chapter: 13
+  kind: figure
+  type: V4
+  anchor: 13.2c
+  purpose: Buck 的连接与电流预算
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p2-03-ch13.md#13.2c
+  prompt_file: docs/superpowers/visual/prompts/ch13-buck-ripple.md
+  output: assets/figures-v2/ch13-buck-ripple.svg
+  print_fallback: assets/figures-v2/ch13-buck-ripple-print.svg
+  preview: assets/figures-v2/ch13-buck-ripple.webp
+  alt: 导通与续流共享电感，列出同一算例的峰谷电流，说明理想模型之外还须核寄生与热耗。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 4
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch13-buck-ripple.json
+  quant_rules:
+    layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 本次代理分派评估；用户仅二元签署（同意签署）未供分项；印刷可读性 4 = 印刷样张未复验
+    asset_sha256: 95275f8a95ad8675555dfd0812ae315ecef97eb807d6120497c1812e3be7d4f1
+- id: ch13-crystal-load-cap
+  chapter: 13
+  kind: figure
+  type: V4
+  anchor: '13.10'
+  purpose: Pierce 连接与负载电容
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p2-03-ch13.md#13.10
+  prompt_file: docs/superpowers/visual/prompts/ch13-crystal-load-cap.md
+  output: assets/figures-v2/ch13-crystal-load-cap.svg
+  print_fallback: assets/figures-v2/ch13-crystal-load-cap-print.svg
+  preview: assets/figures-v2/ch13-crystal-load-cap.webp
+  alt: 外部 Ca、Cb 与动态 Cm 分开命名，两只二十二皮法及四皮法寄生合成十五皮法，须匹配指定晶体。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 4
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch13-crystal-load-cap.json
+  quant_rules:
+    layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 本次代理分派评估；用户仅二元签署（同意签署）未供分项；印刷可读性 4 = 印刷样张未复验
+    asset_sha256: 63f5e41f4effd23bd93150d7d7f305a6bbc9df27a222c2c1e644dc7c1763f575
+- id: ch15-decap-resonance-v2
+  chapter: 15
+  kind: figure
+  type: V4
+  anchor: '15.1'
+  purpose: 去耦支路的谐振频率
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p3-02-ch15.md#15.1
+  prompt_file: docs/superpowers/visual/prompts/ch15-decap-resonance-v2.md
+  output: assets/figures-v2/ch15-decap-resonance-v2.svg
+  print_fallback: assets/figures-v2/ch15-decap-resonance-v2-print.svg
+  preview: assets/figures-v2/ch15-decap-resonance-v2.webp
+  alt: 同一 100nF 电容，串联电感 1、5、8、10nH 的理想谐振频率分别约 15.92、7.12、5.63、5.03MHz；轴从零起，实际去耦还需比较 ESR 与目标阻抗。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 4
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-decap-resonance-v2.json
+  quant_rules:
+    layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 本次代理分派评估；用户仅二元签署（同意签署）未供分项；印刷可读性 4 = 印刷样张未复验
+    asset_sha256: f39af101eda7be9e00217da2a871524b0566ffad479e6a4a563f420b50e8ef11
+- id: ch15-line-flight-v2
+  chapter: 15
+  kind: figure
+  type: V4
+  anchor: '15.3'
+  purpose: 边沿与传播延迟
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p3-02-ch15.md#15.3
+  prompt_file: docs/superpowers/visual/prompts/ch15-line-flight-v2.md
+  output: assets/figures-v2/ch15-line-flight-v2.svg
+  print_fallback: assets/figures-v2/ch15-line-flight-v2-print.svg
+  preview: assets/figures-v2/ch15-line-flight-v2.webp
+  alt: 传播速度示意 15cm/ns，1ns 与 20ns 边沿的六分之一传播长度分别为 2.5cm、50cm；两条归一时间轴显示同样的六分之一比例，不作为协议合规保证。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 4
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-line-flight-v2.json
+  quant_rules:
+    layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 本次代理分派评估；用户仅二元签署（同意签署）未供分项；印刷可读性 4 = 印刷样张未复验
+    asset_sha256: aca03cb8ac9ff3e998492f3fc9d12e45d8a5d9540b1046c88c8ac92dbf3060e9
+- id: ch15-filter-modes-v2
+  chapter: 15
+  kind: figure
+  type: V4
+  anchor: '15.6'
+  purpose: 共模与差模的电流路径
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p3-02-ch15.md#15.6
+  prompt_file: docs/superpowers/visual/prompts/ch15-filter-modes-v2.md
+  output: assets/figures-v2/ch15-filter-modes-v2.svg
+  print_fallback: assets/figures-v2/ch15-filter-modes-v2-print.svg
+  preview: assets/figures-v2/ch15-filter-modes-v2.webp
+  alt: 左图差模两线电流反向，右图共模同向经寄生或机壳路径返回。两线同向穿过电流钳测到代数和等于两倍共模分量；不同模态使用不同滤波和回流设计。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 4
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-filter-modes-v2.json
+  quant_rules:
+    layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 本次代理分派评估；用户仅二元签署（同意签署）未供分项；印刷可读性 4 = 印刷样张未复验
+    asset_sha256: 23464227049df7baf4771a48c1313fc4957cc076cbf856b750e8cc97fb1d3b6e
+- id: ch15-impedance-geometry-v2
+  chapter: 15
+  kind: figure
+  type: V4
+  anchor: '15.3'
+  purpose: 微带线宽与叠层
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p3-02-ch15.md#15.3
+  prompt_file: docs/superpowers/visual/prompts/ch15-impedance-geometry-v2.md
+  output: assets/figures-v2/ch15-impedance-geometry-v2.svg
+  print_fallback: assets/figures-v2/ch15-impedance-geometry-v2-print.svg
+  preview: assets/figures-v2/ch15-impedance-geometry-v2.webp
+  alt: 同一 50 欧姆微带近似式，介电常数 4.2、铜厚 0.035mm；参考面距离 1.6mm 与 0.2mm 时线宽约 3.022mm 与 0.339mm。剖面不按比例；双层板可控阻抗，差分阻抗需另算耦合。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 4
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-impedance-geometry-v2.json
+  quant_rules:
+    layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 本次代理分派评估；用户仅二元签署（同意签署）未供分项；印刷可读性 4 = 印刷样张未复验
+    asset_sha256: 7a61b57f54b33b256fc82a172ad7780a67fb7aa50bc1b0dac3c598cb4a917e08
+- id: ch15-input-filter-v2
+  chapter: 15
+  kind: figure
+  type: V4
+  anchor: '15.6'
+  purpose: Buck 输入滤波的验证边界
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p3-02-ch15.md#15.6
+  prompt_file: docs/superpowers/visual/prompts/ch15-input-filter-v2.md
+  output: assets/figures-v2/ch15-input-filter-v2.svg
+  print_fallback: assets/figures-v2/ch15-input-filter-v2-print.svg
+  preview: assets/figures-v2/ch15-input-filter-v2.webp
+  alt: 电源经 C-L-C 滤波接 Buck，两只电容各 10µF、电感 1µH；理想低源阻时 L 与输出侧电容谐振约 50.33kHz。500kHz 衰减至少 40dB 是待验证目标，不是 LC
+    选值的保证。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 4
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-input-filter-v2.json
+  quant_rules:
+    layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 本次代理分派评估；用户仅二元签署（同意签署）未供分项；印刷可读性 4 = 印刷样张未复验
+    asset_sha256: cdba9e0f3d712377cedc5affd146344388373252b9ccb3676defb4e5db9de478
+- id: ch15-esd-path-v2
+  chapter: 15
+  kind: figure
+  type: V4
+  anchor: '15.6'
+  purpose: 放电路径的电感压降
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p3-02-ch15.md#15.6
+  prompt_file: docs/superpowers/visual/prompts/ch15-esd-path-v2.md
+  output: assets/figures-v2/ch15-esd-path-v2.svg
+  print_fallback: assets/figures-v2/ch15-esd-path-v2-print.svg
+  preview: assets/figures-v2/ch15-esd-path-v2.webp
+  alt: 固定电流变化率 30A/ns，串联电感 50、5、1nH 对应 1500、150、30V 压降；柱长按电感比例。此模型不等于芯片残压或通过认证的保证。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 4
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-esd-path-v2.json
+  quant_rules:
+    layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 本次代理分派评估；用户仅二元签署（同意签署）未供分项；印刷可读性 4 = 印刷样张未复验
+    asset_sha256: 4edd0e76f6f474a3c2a1c2faa8415e055b699fb3c791b0057b62361e42b7b244
+- id: ch15-return-area-v2
+  chapter: 15
+  kind: figure
+  type: V4
+  anchor: '15.7'
+  purpose: 回流面积与小环远场
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p3-02-ch15.md#15.7
+  prompt_file: docs/superpowers/visual/prompts/ch15-return-area-v2.md
+  output: assets/figures-v2/ch15-return-area-v2.svg
+  print_fallback: assets/figures-v2/ch15-return-area-v2-print.svg
+  preview: assets/figures-v2/ch15-return-area-v2.webp
+  alt: 同一条 5cm 走线，回程距离示意 1mm 或 3cm，矩形面积为 0.5或15平方厘米。固定频率和电流的小环远场幅值比30，即29.54dB；不据此推算电感或近场探头读数。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 4
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-return-area-v2.json
+  quant_rules:
+    layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 本次代理分派评估；用户仅二元签署（同意签署）未供分项；印刷可读性 4 = 印刷样张未复验
+    asset_sha256: ba98ddcb95cb222599039ce032a2efa76f0fd3f87bc24efb478916f1851d5a2c
+- id: ch14-pt100-zero-v2
+  chapter: 14
+  kind: figure
+  type: V4
+  anchor: '14.4'
+  purpose: PT100 零点与增量
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p3-01-ch14.md#14.4
+  prompt_file: docs/superpowers/visual/prompts/ch14-pt100-zero-v2.md
+  output: assets/figures-v2/ch14-pt100-zero-v2.svg
+  print_fallback: assets/figures-v2/ch14-pt100-zero-v2-print.svg
+  preview: assets/figures-v2/ch14-pt100-zero-v2.webp
+  alt: 1mA 激励下 100至138.5mV 直接乘40得4至5.54V，超出2.048V量程；先扣100mV再放大得0至1.54V理想增量，实际须加基线偏置并核共模与输出余量。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 4
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-pt100-zero-v2.json
+  quant_rules:
+    layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 本次代理分派评估；用户仅二元签署（同意签署）未供分项；印刷可读性 4 = 印刷样张未复验
+    asset_sha256: e6739e8c76e5ac9b1dbdb10b1b08283fa35acddaabba5f506676609372cfa58a
+- id: ch14-meas-window-v2
+  chapter: 14
+  kind: figure
+  type: V4
+  anchor: '14.6'
+  purpose: 仿真测量的时间窗口
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p3-01-ch14.md#14.6
+  prompt_file: docs/superpowers/visual/prompts/ch14-meas-window-v2.md
+  output: assets/figures-v2/ch14-meas-window-v2.svg
+  print_fallback: assets/figures-v2/ch14-meas-window-v2-print.svg
+  preview: assets/figures-v2/ch14-meas-window-v2.webp
+  alt: 阶跃时刻后的窗口包含峰值和稳定区域；峰值与稳态测量区间分开，建立时间要求进入并留在容差带，AC线性化不能验证大信号饱和。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 4
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-meas-window-v2.json
+  quant_rules:
+    layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 本次代理分派评估；用户仅二元签署（同意签署）未供分项；印刷可读性 4 = 印刷样张未复验
+    asset_sha256: 0126b6384f5694bbf47002b6354ffa813cc175b2959f9af83cee89f1686d71be
+- id: ch14-buck-budget-v2
+  chapter: 14
+  kind: figure
+  type: V4
+  anchor: '14.8'
+  purpose: 反馈分压误差的统计假设
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p3-01-ch14.md#14.8
+  prompt_file: docs/superpowers/visual/prompts/ch14-buck-budget-v2.md
+  output: assets/figures-v2/ch14-buck-budget-v2.svg
+  print_fallback: assets/figures-v2/ch14-buck-budget-v2-print.svg
+  preview: assets/figures-v2/ch14-buck-budget-v2.webp
+  alt: 电阻比为一时两只电阻相对灵敏度分别正负二分之一；限值按3sigma且独立的演示模型，电阻、参考初始、温漂、负载贡献为0.2357、0.3333、0.0667、0.1667%，总sigma约0.4460%，一阶WC为2.7%。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 4
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-buck-budget-v2.json
+  quant_rules:
+    layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 本次代理分派评估；用户仅二元签署（同意签署）未供分项；印刷可读性 4 = 印刷样张未复验
+    asset_sha256: f2de7859aa3e889d4e083499851626a5087b64acdcf64faa4538d49015ba6de2
+- id: ch14-ratio-cancel-v2
+  chapter: 14
+  kind: figure
+  type: V4
+  anchor: '14.9'
+  purpose: 比率测量抵消共同因子
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p3-01-ch14.md#14.9
+  prompt_file: docs/superpowers/visual/prompts/ch14-ratio-cancel-v2.md
+  output: assets/figures-v2/ch14-ratio-cancel-v2.svg
+  print_fallback: assets/figures-v2/ch14-ratio-cancel-v2-print.svg
+  preview: assets/figures-v2/ch14-ratio-cancel-v2.webp
+  alt: 共同参考电压用于激励和ADC参考，理想归一化码等于RPT除以Rset；共同电压因子约掉，设定电阻、引线、自热、失调及独立噪声仍须预算。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 4
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-ratio-cancel-v2.json
+  quant_rules:
+    layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 本次代理分派评估；用户仅二元签署（同意签署）未供分项；印刷可读性 4 = 印刷样张未复验
+    asset_sha256: 700397282d141b008de1f17faeed30337130f8de9bddb954fa2687e151b7b902
+- id: ch14-error-budget-v2
+  chapter: 14
+  kind: figure
+  type: V4
+  anchor: '14.9'
+  purpose: PT100 预算统计口径
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p3-01-ch14.md#14.9
+  prompt_file: docs/superpowers/visual/prompts/ch14-error-budget-v2.md
+  output: assets/figures-v2/ch14-error-budget-v2.svg
+  print_fallback: assets/figures-v2/ch14-error-budget-v2-print.svg
+  preview: assets/figures-v2/ch14-error-budget-v2.webp
+  alt: 六项0.03、0.04、0.05、0.005、0.01、0.04摄氏度按独立1sigma解释时RSS为0.082006，3sigma为0.246018；若改作误差上限则WC为0.175，不能混用。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 4
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-error-budget-v2.json
+  quant_rules:
+    layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 本次代理分派评估；用户仅二元签署（同意签署）未供分项；印刷可读性 4 = 印刷样张未复验
+    asset_sha256: 42e08e4c500c032b47f9d1a738c7f604c196a214d829f54bf481cfbf955a78ba
+- id: ch14-uniform-sum-v2
+  chapter: 14
+  kind: figure
+  type: V4
+  anchor: '14.10'
+  purpose: 三个均匀误差的覆盖率
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p3-01-ch14.md#14.10
+  prompt_file: docs/superpowers/visual/prompts/ch14-uniform-sum-v2.md
+  output: assets/figures-v2/ch14-uniform-sum-v2.svg
+  print_fallback: assets/figures-v2/ch14-uniform-sum-v2-print.svg
+  preview: assets/figures-v2/ch14-uniform-sum-v2.webp
+  alt: 三个独立正负1%均匀误差之和的概率密度，范围正负3%，sigma为1%；正负2%内概率23/24约95.83%，正负4%目标下WC和3sigma都通过。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 4
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-uniform-sum-v2.json
+  quant_rules:
+    layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 本次代理分派评估；用户仅二元签署（同意签署）未供分项；印刷可读性 4 = 印刷样张未复验
+    asset_sha256: e97fb485b03340cc8478f7960eff5ae7dc2362f59e9630498b13af6f54b2095d
+- id: ch14-bom-trace-v2
+  chapter: 14
+  kind: figure
+  type: V4
+  anchor: '14.12'
+  purpose: BOM 预算与测试追溯
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p3-01-ch14.md#14.12
+  prompt_file: docs/superpowers/visual/prompts/ch14-bom-trace-v2.md
+  output: assets/figures-v2/ch14-bom-trace-v2.svg
+  print_fallback: assets/figures-v2/ch14-bom-trace-v2-print.svg
+  preview: assets/figures-v2/ch14-bom-trace-v2.webp
+  alt: 三行对应：0.1%增益电阻到40倍增益及校准，10ppm每摄氏度参考链到残差预算及温箱测试，保护器件到钳位回流及板级ESD测试；封装和替代料一起核对。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 4
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-bom-trace-v2.json
+  quant_rules:
+    layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 本次代理分派评估；用户仅二元签署（同意签署）未供分项；印刷可读性 4 = 印刷样张未复验
+    asset_sha256: 8afc2bb7261909b5b00e2100e94a6c105db323569cc28401ae055a2cf1354470
+- id: ch14-design-evidence-v2
+  chapter: 14
+  kind: figure
+  type: V4
+  anchor: 设计说明作业（精通出口）
+  purpose: 设计说明的五项证据
+  style_id: FA-029
+  layout_id: IG-013
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
+  source_facts:
+  - docs/p3-01-ch14.md#设计说明作业（精通出口）
+  prompt_file: docs/superpowers/visual/prompts/ch14-design-evidence-v2.md
+  output: assets/figures-v2/ch14-design-evidence-v2.svg
+  print_fallback: assets/figures-v2/ch14-design-evidence-v2-print.svg
+  preview: assets/figures-v2/ch14-design-evidence-v2.webp
+  alt: 指标、选型、极限工况、测试、失败预案五项逐行对应验证材料；至少三个corner；PT100练习0到100摄氏度、0.1摄氏度分辨力和3.3伏供电，不把分辨力当准确度。
+  status: accepted
+  status_history:
+  - planned
+  - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 4
+  generator: python-handraw-v1
+  composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-design-evidence-v2.json
+  quant_rules:
+    layer_encodes_value: false
+
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 本次代理分派评估；用户仅二元签署（同意签署）未供分项；印刷可读性 4 = 印刷样张未复验
+    asset_sha256: a0e10bf8137a0c8eea60ab441674cb3c6f6fbda92fb954832587f8cb40b77237

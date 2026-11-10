@@ -2,8 +2,9 @@
 """静态技术插图：离线、配色、标题/描述，以及正文中的 figure + 图注。"""
 import re
 import unittest
-import xml.etree.ElementTree as ET
 from pathlib import Path
+
+from defusedxml import ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
 FIGURES = ROOT / "assets" / "figures"
@@ -146,18 +147,18 @@ class FigureTests(unittest.TestCase):
         docs = "\n".join(path.read_text(encoding="utf-8")
                          for path in sorted(DOCS.glob("*.md")))
         blocks = re.findall(r"<figure\b.*?</figure>", docs, re.S)
-        for path in sorted(FIGURES.glob("*.svg")):
-            name = path.name
-            matches = [block for block in blocks
-                       if f"assets/figures/{name}" in block]
-            self.assertEqual(1, len(matches), f"{name} 应恰好出现一次")
-            self.assertRegex(matches[0], r"<figcaption>\s*\S",
-                             f"{name} 缺少非空图注")
+        # V2 migration keeps historical files for old links and comparison.
+        # Validate every figure actually referenced by the current manuscript,
+        # including V2, rather than requiring retired files back in the prose.
         referenced = set(re.findall(
-            r"assets/figures/([A-Za-z0-9._-]+\.svg)", docs))
-        self.assertEqual(set(), referenced - {path.name for path in
-                                              FIGURES.glob("*.svg")},
-                        "正文引用了不存在的图")
+            r"assets/figures(?:-v2)?/[A-Za-z0-9._-]+\.svg", docs))
+        self.assertGreater(len(referenced), 100, "正文静态图扫描异常")
+        for source in sorted(referenced):
+            matches = [block for block in blocks if f'"{source}"' in block]
+            self.assertEqual(1, len(matches), f"{source} 应恰好出现一次且放入 figure")
+            self.assertRegex(matches[0], r"<figcaption>\s*\S",
+                             f"{source} 缺少非空图注")
+            self.assertTrue((ROOT / source).is_file(), f"正文引用了不存在的图: {source}")
 
 
 if __name__ == "__main__":

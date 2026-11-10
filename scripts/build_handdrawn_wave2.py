@@ -17,6 +17,8 @@ if str(ROOT) not in sys.path:
 
 import check_visual_manifest as manifest
 from compose_technical_overlay import preview
+from label_handraw_figures import label
+
 from scripts.visuals import static_fig
 from scripts.visuals.font_gate import assert_covered
 
@@ -33,7 +35,7 @@ def build_one(asset_id: str, meta: dict) -> None:
     inner = '\n'.join(meta['draw']())
     svg = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {CANVAS[0]} {CANVAS[1]}">'
            f'\n{inner}\n</svg>\n')
-    svg = static_fig.finalize(svg, meta['title'])
+    svg = label(static_fig.finalize(svg, meta['title']), meta)
     assert_covered(svg, asset_id)
     REVIEW.mkdir(parents=True, exist_ok=True)
     review_svg = REVIEW / f'{asset_id}.svg'

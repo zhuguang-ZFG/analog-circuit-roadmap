@@ -11,33 +11,42 @@ from scripts.visuals.scenes.handdrawn_wave2 import (
 )
 
 
+def small_loop_field_v_m(area_m2: float, frequency_hz: float,
+                         current_a: float, distance_m: float) -> float:
+    """Electrically small loop, far field, broadside maximum; same amplitude convention."""
+    if min(area_m2, frequency_hz, current_a, distance_m) <= 0:
+        raise ValueError('小环算例的面积、频率、电流与距离必须为正')
+    return 1.316e-14 * area_m2 * frequency_hz**2 * current_a / distance_m
+
+
 def radiated_loop_area():
-    parts = [header('回路面积决定辐射，改布局比加滤波器便宜',
-                    '回路 15 cm² 给出 56 dBµV/m、超限 16 dB；缩到 0.5 cm² 只剩 26。')]
+    large_uv = small_loop_field_v_m(15e-4, 100e6, .01, 3) * 1e6
+    parts = [header('固定频率和电流，缩小回路能降低辐射',
+                    '示意自由空间小环：100 MHz、10 mA、3 m；比较最大方向远场。')]
 
     parts.append(box(50, 126, 900, 84, fill=PAPER, stroke=BLUE))
     parts.append(text(76, 164, 'EMC 三要素：干扰源 → 耦合路径 → 敏感设备（或天线）', 24, colour=BLUE, weight='700'))
-    parts.append(text(76, 196, '模拟工程师能掌控的是后两个：掐断路径，缩小天线', 22, colour=INK2))
+    parts.append(text(76, 196, '源、路径与天线都可整改；此图只比较面积项', 22, colour=INK2))
 
     parts.append(box(50, 224, 430, 218, fill=PAPER, stroke=RED))
     parts.append(text(74, 264, '回路面积 15 cm²', 24, colour=RED, weight='700'))
     parts.append(text(74, 304, '开槽让回流绕路，环变成天线', 22, colour=INK2))
     parts.append(text(74, 344, '远场估算', 22, colour=INK2))
-    parts.append(text(456, 346, '660 µV/m', 22, colour=INK, anchor='end', weight='700'))
+    parts.append(text(456, 346, f'{large_uv:.0f} µV/m', 22, colour=INK, anchor='end', weight='700'))
     parts.append(text(74, 386, '换成对数', 22, colour=INK2))
-    parts.append(text(456, 388, '56 dBµV/m', 24, colour=RED, anchor='end', weight='700'))
+    parts.append(text(456, 388, '56.36 dBµV/m', 24, colour=RED, anchor='end', weight='700'))
     parts.append(f'<line x1="82" y1="406" x2="448" y2="406" stroke="{RULE}" stroke-width="2"/>')
-    parts.append(text(74, 428, '限值 40，超 16 dB', 22, colour=RED, weight='700'))
+    parts.append(text(74, 428, '若比较线为 40，高出 16.36 dB', 22, colour=RED, weight='700'))
 
     parts.append(box(520, 224, 430, 218, fill=PAPER, stroke=GREEN))
     parts.append(text(544, 264, '回路面积 0.5 cm²', 24, colour=GREEN, weight='700'))
     parts.append(text(544, 304, '回流贴着地平面正下方走', 22, colour=INK2))
     parts.append(text(544, 344, '面积掉 30 倍', 22, colour=INK2))
-    parts.append(text(926, 346, '−29.5 dB', 22, colour=INK, anchor='end', weight='700'))
+    parts.append(text(926, 346, '−29.54 dB', 22, colour=INK, anchor='end', weight='700'))
     parts.append(text(544, 386, '换算成场强', 22, colour=INK2))
-    parts.append(text(926, 388, '26 dBµV/m', 24, colour=GREEN, anchor='end', weight='700'))
+    parts.append(text(926, 388, '26.82 dBµV/m', 24, colour=GREEN, anchor='end', weight='700'))
     parts.append(f'<line x1="550" y1="406" x2="920" y2="406" stroke="{RULE}" stroke-width="2"/>')
-    parts.append(text(544, 428, '限值 40，余量充足', 22, colour=GREEN, weight='700'))
+    parts.append(text(544, 428, '模型值不等于认证测量值', 22, colour=GREEN, weight='700'))
 
     parts.append(box(50, 450, 900, 104, fill=PAPER, stroke=AMBER))
     parts.append(text(76, 488, '为什么先动布局', 24, colour=AMBER, weight='700'))
@@ -45,8 +54,8 @@ def radiated_loop_area():
                       22, colour=INK2))
 
     parts.append(box(50, 570, 900, 104, fill=PAPER, stroke=RED))
-    parts.append(text(76, 608, '辐射超标的发射，十有八九是电缆当天线', 24, colour=RED, weight='700'))
-    parts.append(text(76, 646, '1 m 电缆在 30~300 MHz 是高效天线；地平面被割开形成的缝隙也是天线',
+    parts.append(text(76, 608, '模型有边界，认证要按适用标准测量', 24, colour=RED, weight='700'))
+    parts.append(text(76, 646, '忽略地面反射、机壳与电缆；电流幅值约定、距离和检波方式须一致',
                       22, colour=INK2))
     return parts
 
@@ -167,8 +176,8 @@ def sampling_quantization():
 
 
 def pt100_error_budget():
-    parts = [header('比率测量约掉两项，剩下四项自己扛',
-                    '激励与 ADC 基准同源，电流绝对误差和基准初始误差一起约掉。温漂预算只有 0.04 °C。')]
+    parts = [header('比率测量抵消共同项，独立残差仍要预算',
+                    '同源因子可约掉；两项 0.04 °C 仅表示演示预算中的独立路径残差。')]
 
     parts.append(box(50, 126, 900, 96, fill=PAPER, stroke=BLUE))
     parts.append(text(76, 164, '误差预算先统一单位，再列六项', 24, colour=BLUE, weight='700'))
@@ -178,7 +187,7 @@ def pt100_error_budget():
     parts.append(box(50, 236, 430, 180, fill=PAPER, stroke=GREEN))
     parts.append(text(74, 276, '比率测量能约掉', 24, colour=GREEN, weight='700'))
     parts.append(text(74, 316, '激励电流的绝对误差', 22, colour=INK2))
-    parts.append(text(74, 352, '基准的初始误差', 22, colour=INK2))
+    parts.append(text(74, 352, '共同基准的初始误差与温漂', 22, colour=INK2))
     parts.append(f'<line x1="82" y1="374" x2="448" y2="374" stroke="{RULE}" stroke-width="2"/>')
     parts.append(text(74, 406, '约掉的原因：两者同源，一起变一起消', 22, colour=INK2))
 
@@ -186,11 +195,11 @@ def pt100_error_budget():
     parts.append(text(544, 276, '约不掉的那几项', 24, colour=RED, weight='700'))
     parts.append(text(544, 316, '传感本身的容差与自热', 22, colour=INK2))
     parts.append(text(544, 352, '放大增益的 0.1% 电阻', 22, colour=INK2))
-    parts.append(text(544, 388, '基准温漂 10 ppm/°C', 22, colour=INK2))
+    parts.append(text(544, 388, '独立参考路径残差须另计', 22, colour=INK2))
 
     parts.append(box(50, 430, 900, 104, fill=PAPER, stroke=AMBER))
-    parts.append(text(76, 468, '温漂预算只有 0.04 °C，别让布局吃掉它', 24, colour=AMBER, weight='700'))
-    parts.append(text(76, 506, 'LDO、Buck、功率电阻都是热源；基准要靠远离热源、靠同源来保精度',
+    parts.append(text(76, 468, '不要把同一基准温漂重复作为独立项', 24, colour=AMBER, weight='700'))
+    parts.append(text(76, 506, '热源影响仍要测量；共同因子抵消不保证消除自热、失调和失配',
                       22, colour=INK2))
 
     parts.append(box(50, 548, 900, 146, fill=PAPER))
@@ -205,13 +214,9 @@ SCENES = {
     'ch15-radiated-loop-area': {
         'draw': radiated_loop_area, 'title': '回路面积决定辐射等级',
         'anchor': '15.6', 'chapter': 15, 'source': 'docs/p3-02-ch15.md',
-        'alt': '手绘辐射分账。顶部蓝框写电磁兼容三要素：干扰源、耦合路径、敏感设备或天线，'
-               '模拟工程师能掌控的是后两个。左红框回路面积 15 平方厘米，开槽让回流绕路、环路变成天线，'
-               '远场估算 660 微伏每米，换成对数 56 分贝微伏每米，限值 40、超 16 分贝。'
-               '右绿框回路面积 0.5 平方厘米，回流贴着地平面正下方走，面积掉 30 倍也就是负 29.5 分贝，'
-               '换算成场强 26 分贝微伏每米，限值 40、余量充足。'
-               '琥珀框写为什么先动布局：面积是线性项、布局阶段免费，滤波器与屏蔽罩是整改阶段的钱。'
-               '底部红框写辐射超标的发射十有八九是电缆当天线，1 米电缆在 30 到 300 兆赫是高效天线。',
+        'alt': '自由空间小环最大方向远场估算：100MHz、10mA、3m，面积 15 平方厘米时 658 微伏每米、56.36dBµV/m；'
+               '面积降到 0.5 平方厘米且电流不变时约 21.93 微伏每米、26.82dBµV/m，下降 29.54dB。'
+               '40dBµV/m 只是比较线，不是所有标准的限值。忽略地面、机壳与电缆，模型不能代替认证。',
     },
     'ch09-tl431-divider-floor': {
         'draw': tl431_divider_floor, 'title': 'TL431 分压电阻的下限',
@@ -254,17 +259,16 @@ SCENES = {
     'ch14-pt100-error-budget': {
         'draw': pt100_error_budget, 'title': 'PT100 的误差预算与比率测量',
         'anchor': '14.12', 'chapter': 14, 'source': 'docs/p3-01-ch14.md',
-        'alt': '手绘误差预算两栏。顶部蓝框写误差预算先统一单位，再列六项：'
-               '传感、激励、放大、滤波、ADC、基准，六项都折到同一个单位上才加得起来。'
-               '左绿框比率测量能约掉两项：激励电流的绝对误差与基准的初始误差，'
-               '原因是两者同源、一起变一起消。'
-               '右红框约不掉的那几项：传感本身的容差与自热、放大增益的 0.1% 电阻、基准温漂 10 ppm 每摄氏度。'
-               '琥珀框写温漂预算只有 0.04 摄氏度，低压差稳压器与开关电源都是热源，基准要靠远离热源来保精度。'
-               '底部写设计从后往前推、调试从前往后查：后面是 ADC 满量程到增益到噪声预算，'
-               '前面是激励到放大到滤波到转换；测试不回填，预算就还只是假设。',
+        'alt': '先统一误差单位：同源参考的初始误差和共同温漂可以约掉，传感自热、放大误差及独立路径残差仍需预算。'
+               '演示两项0.04摄氏度不得重复代表同一共同基准温漂；设计从ADC量程倒推，测试从激励开始逐级验证。',
     },
 }
 
 # Use source-bound reference/regulator models for historical batch rebuilds.
 from scripts.visuals.scenes.ch09_reference_figures import SCENES as _ch09_corrected
 SCENES['ch09-tl431-divider-floor'] = _ch09_corrected['ch09-tl431-divider-floor']
+
+# Chapter 13 reviewed model overrides.
+from scripts.visuals.scenes.ch13_reference_figures import SCENES as _CH13_REVIEWED
+for _aid in ['ch13-crystal-neg-resistance', 'ch13-sampling-quantization']:
+    SCENES[_aid] = _CH13_REVIEWED[_aid]

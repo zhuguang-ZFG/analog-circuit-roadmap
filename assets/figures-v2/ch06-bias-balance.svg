@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">偏流抵消的符号与残余</title><desc id="desc">二十纳安流过一千欧为二十微伏，十万欧为二毫伏。反相输入电阻十千欧、反馈九十千欧，平衡九千欧时匹配偏流抵消；二纳安失配留下零点一八毫伏。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>

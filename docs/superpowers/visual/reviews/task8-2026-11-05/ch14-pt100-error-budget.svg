@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">PT100 的误差预算与比率测量</title><desc id="desc">先统一误差单位：同源参考的初始误差和共同温漂可以约掉，传感自热、放大误差及独立路径残差仍需预算。演示两项0.04摄氏度不得重复代表同一共同基准温漂；设计从ADC量程倒推，测试从激励开始逐级验证。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>
@@ -104,8 +105,8 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 }
 </style>
 
-<polygon class="marker-wash" points="45.1,23.4 259.7,23.5 670.0,24.5 667.9,63.9 370.1,62.9 43.2,62.3" fill="#a4630f" opacity="0.13"/>
-<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">比率测量约掉两项，剩下四项自己扛</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">激励与 ADC 基准同源，电流绝对误差和基准初始误差一起约掉。温漂预算只有 0.04 °C。</text>
+<polygon class="marker-wash" points="46.2,22.2 439.4,21.3 743.0,23.3 745.4,62.1 420.0,64.3 43.0,62.9" fill="#a4630f" opacity="0.13"/>
+<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">比率测量抵消共同项，独立残差仍要预算</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">同源因子可约掉；两项 0.04 °C 仅表示演示预算中的独立路径残差。</text>
 <rect x="50" y="126" width="900" height="96" rx="6" fill="#f6eedb" stroke="#1f5d7a" stroke-width="2"/>
 <rect class="ink-echo" x="50" y="126" width="900" height="96" rx="6" stroke="#1f5d7a" stroke-width="2" fill="none" opacity="0.32" transform="translate(1.32 -0.97) rotate(-0.06 500.0 174.0)"/>
 <text x="76" y="164" font-size="24" fill="#1f5d7a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">误差预算先统一单位，再列六项</text>
@@ -114,7 +115,7 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <rect class="ink-echo" x="50" y="236" width="430" height="180" rx="6" stroke="#3d6b4a" stroke-width="2" fill="none" opacity="0.32" transform="translate(1.46 -0.89) rotate(0.08 265.0 326.0)"/>
 <text x="74" y="276" font-size="24" fill="#3d6b4a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">比率测量能约掉</text>
 <text x="74" y="316" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">激励电流的绝对误差</text>
-<text x="74" y="352" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">基准的初始误差</text>
+<text x="74" y="352" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">共同基准的初始误差与温漂</text>
 <path d="M82 374 Q265.00 374.02 448 374" fill="none" stroke="#c9bb9d" stroke-width="2"/>
 <text x="74" y="406" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">约掉的原因：两者同源，一起变一起消</text>
 <rect x="520" y="236" width="430" height="180" rx="6" fill="#f6eedb" stroke="#a8321f" stroke-width="2"/>
@@ -122,11 +123,11 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 <text x="544" y="276" font-size="24" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">约不掉的那几项</text>
 <text x="544" y="316" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">传感本身的容差与自热</text>
 <text x="544" y="352" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">放大增益的 0.1% 电阻</text>
-<text x="544" y="388" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">基准温漂 10 ppm/°C</text>
+<text x="544" y="388" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">独立参考路径残差须另计</text>
 <rect x="50" y="430" width="900" height="104" rx="6" fill="#f6eedb" stroke="#a4630f" stroke-width="2"/>
 <rect class="ink-echo" x="50" y="430" width="900" height="104" rx="6" stroke="#a4630f" stroke-width="2" fill="none" opacity="0.32" transform="translate(-1.45 0.66) rotate(-0.10 500.0 482.0)"/>
-<text x="76" y="468" font-size="24" fill="#a4630f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">温漂预算只有 0.04 °C，别让布局吃掉它</text>
-<text x="76" y="506" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">LDO、Buck、功率电阻都是热源；基准要靠远离热源、靠同源来保精度</text>
+<text x="76" y="468" font-size="24" fill="#a4630f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">不要把同一基准温漂重复作为独立项</text>
+<text x="76" y="506" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">热源影响仍要测量；共同因子抵消不保证消除自热、失调和失配</text>
 <rect x="50" y="548" width="900" height="146" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
 <rect class="ink-echo" x="50" y="548" width="900" height="146" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(1.54 -0.65) rotate(0.08 500.0 621.0)"/>
 <text x="76" y="586" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">设计从后往前推，调试从前往后查</text>

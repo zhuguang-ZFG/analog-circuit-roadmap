@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1448 1086" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
-<title id="title">过孔并联与电感</title><desc id="desc">纸层量级图：单个 0.3 毫米过孔约 1.3 纳亨，四个并联约 0.25 纳亨，3 安培换层至少 3 只；信号过孔每孔都带寄生，应少打并成对打。</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">过孔并联与互感</title><desc id="desc">四支路并联示意：1.6mm 长、0.3mm 孔径的单孔经验电感约 1.299nH。均匀分流且忽略互感时四并约 0.325nH，示意每对互感为自感一半时约 0.812nH；载流能力另核。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>
@@ -34,10 +34,10 @@
 <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
 </filter>
 </defs>
-<rect class="page-bg" width="1448" height="1086" fill="url(#bgL)"/>
-<rect class="page-grain" width="1448" height="1086" fill="url(#dots)"/>
-<rect class="page-vig" width="1448" height="1086" fill="url(#vig)"/>
-<rect class="page-hdr" width="1448" height="72" fill="url(#hdr)"/>
+<rect class="page-bg" width="1000" height="700" fill="url(#bgL)"/>
+<rect class="page-grain" width="1000" height="700" fill="url(#dots)"/>
+<rect class="page-vig" width="1000" height="700" fill="url(#vig)"/>
+<rect class="page-hdr" width="1000" height="72" fill="url(#hdr)"/>
 <style>
 text{font-family:"Segoe UI","Microsoft YaHei","PingFang SC","Hiragino Sans GB","Noto Sans CJK SC","Source Han Sans SC","Noto Sans SC",sans-serif;}
 line,path,polyline,polygon{stroke-linecap:round;stroke-linejoin:round}
@@ -94,31 +94,29 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 }
 </style>
 
-<path data-paper-shadow="true" transform="translate(8 12)" d="M68,206 L631.6,204 L1381,207 L1384,605.28 L1381,906 L565.6,908 L64,904 Z" fill="#535453" opacity="0.08"/><path data-paper-shadow="true" transform="translate(4 7)" d="M68,206 L631.6,204 L1381,207 L1384,605.28 L1381,906 L565.6,908 L64,904 Z" fill="#535453" opacity="0.12"/><path data-paper-shadow="true" transform="translate(2 3)" d="M68,206 L631.6,204 L1381,207 L1384,605.28 L1381,906 L565.6,908 L64,904 Z" fill="#535453" opacity="0.15"/><path d="M68,206 L631.6,204 L1381,207 L1384,605.28 L1381,906 L565.6,908 L64,904 Z" fill="#f6f2ed" stroke="#c4b9ab" stroke-width="1.4"/><path d="M70,208L1377,209" fill="none" stroke="#fdf8ea" stroke-width="2" opacity=".7"/><path d="M82,218 L1368,220 L1370,892 L84,894 Z" fill="none" stroke="#c4b9ab" stroke-width="2" opacity=".55"/>
-<rect x="620" y="340" width="560" height="34" rx="8" fill="#e2d9cf" stroke="#c4b9ab" stroke-width="1.4"/>
-<rect x="620" y="340" width="5600.0" height="34" rx="8" fill="#a4441d" opacity=".78"/>
-<rect x="620" y="464" width="560" height="34" rx="8" fill="#e2d9cf" stroke="#c4b9ab" stroke-width="1.4"/>
-<rect x="620" y="464" width="5600.0" height="34" rx="8" fill="#a4441d" opacity=".78"/>
-<rect x="620" y="588" width="560" height="34" rx="8" fill="#e2d9cf" stroke="#c4b9ab" stroke-width="1.4"/>
-<rect x="620" y="588" width="5600.0" height="34" rx="8" fill="#a4441d" opacity=".78"/>
-<rect x="620" y="712" width="560" height="34" rx="8" fill="#e2d9cf" stroke="#c4b9ab" stroke-width="1.4"/>
-<rect x="620" y="712" width="5600.0" height="34" rx="8" fill="#a4441d" opacity=".78"/>
-<text x="72" y="92" fill="#2a2927" font-size="50" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#e2d9cf">过孔不是“一个孔”：电源地要并联</text>
-<text x="74" y="146" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#e2d9cf">一个 0.3 mm 过孔约 1.3 nH，量级等于 3 mm 走线；换层电流靠并联分。</text>
-<text x="620" y="268" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">相对量级（定性条带）</text>
-<text x="1200" y="268" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">量级</text>
-<text x="92" y="360" fill="#2a2927" font-size="34" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">单个过孔</text>
-<text x="92" y="400" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">1.6 mm 板厚、0.3 mm 钻孔</text>
-<text x="1200" y="366" fill="#2a2927" font-size="34" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">≈1.3 nH</text>
-<text x="92" y="484" fill="#2a2927" font-size="34" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">四个并联</text>
-<text x="92" y="524" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">电感按并联下降</text>
-<text x="1200" y="490" fill="#2a2927" font-size="34" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">≈0.25 nH</text>
-<text x="92" y="608" fill="#2a2927" font-size="34" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">3 A 换层</text>
-<text x="92" y="648" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">单孔按 1~1.5 A 记</text>
-<text x="1200" y="614" fill="#2a2927" font-size="34" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">至少 3 只</text>
-<text x="92" y="732" fill="#2a2927" font-size="34" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">信号过孔</text>
-<text x="92" y="772" fill="#535453" font-size="32" font-weight="400" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">每孔都带寄生</text>
-<text x="1200" y="738" fill="#2a2927" font-size="34" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">少打/成对</text>
-<path data-paper-shadow="true" transform="translate(8 12)" d="M68,988 L631.6,986 L1381,989 L1384,1030.46 L1381,1062 L565.6,1064 L64,1060 Z" fill="#535453" opacity="0.08"/><path data-paper-shadow="true" transform="translate(4 7)" d="M68,988 L631.6,986 L1381,989 L1384,1030.46 L1381,1062 L565.6,1064 L64,1060 Z" fill="#535453" opacity="0.12"/><path data-paper-shadow="true" transform="translate(2 3)" d="M68,988 L631.6,986 L1381,989 L1384,1030.46 L1381,1062 L565.6,1064 L64,1060 Z" fill="#535453" opacity="0.15"/><path d="M68,988 L631.6,986 L1381,989 L1384,1030.46 L1381,1062 L565.6,1064 L64,1060 Z" fill="#f6f2ed" stroke="#c4b9ab" stroke-width="1.4"/><path d="M70,990L1377,991" fill="none" stroke="#fdf8ea" stroke-width="2" opacity=".7"/>
-<text x="92" y="1036" fill="#2a2927" font-size="33" font-weight="700" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" text-anchor="start" data-background="#f6f2ed">电源与地“能并则并”；高速信号过孔旁放地孔陪跑。</text>
+<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">四个过孔并联，不能只背四分之一</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">示意 h = 1.6 mm、d = 0.3 mm；经验式算单孔 L ≈ 1.299 nH。</text>
+<text x="60" y="145" font-size="23" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">相同支路、均匀分流；每对过孔互感均为 M</text>
+<path d="M120 210 Q500.00 208.60 880 210" fill="none" stroke="#37424e" stroke-width="3"/>
+<path d="M120 410 Q500.00 410.71 880 410" fill="none" stroke="#37424e" stroke-width="3"/>
+<path d="M200 220 Q200.02 245.00 200 270" fill="none" stroke="#1f5d7a" stroke-width="3" stroke-linecap="round"/><polygon points="200,270 195.0,258.0 205.0,258.0" fill="#1f5d7a"/>
+<rect x="146" y="280" width="108" height="72" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<text x="200" y="326" font-size="28" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">L</text>
+<path d="M200 352 Q199.90 381.00 200 410" fill="none" stroke="#37424e" stroke-width="3"/>
+<path d="M400 220 Q399.91 245.00 400 270" fill="none" stroke="#1f5d7a" stroke-width="3" stroke-linecap="round"/><polygon points="400,270 395.0,258.0 405.0,258.0" fill="#1f5d7a"/>
+<rect x="346" y="280" width="108" height="72" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<text x="400" y="326" font-size="28" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">L</text>
+<path d="M400 352 Q400.13 381.00 400 410" fill="none" stroke="#37424e" stroke-width="3"/>
+<path d="M600 220 Q600.18 245.00 600 270" fill="none" stroke="#1f5d7a" stroke-width="3" stroke-linecap="round"/><polygon points="600,270 595.0,258.0 605.0,258.0" fill="#1f5d7a"/>
+<rect x="546" y="280" width="108" height="72" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<text x="600" y="326" font-size="28" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">L</text>
+<path d="M600 352 Q600.12 381.00 600 410" fill="none" stroke="#37424e" stroke-width="3"/>
+<path d="M800 220 Q799.98 245.00 800 270" fill="none" stroke="#1f5d7a" stroke-width="3" stroke-linecap="round"/><polygon points="800,270 795.0,258.0 805.0,258.0" fill="#1f5d7a"/>
+<rect x="746" y="280" width="108" height="72" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<text x="800" y="326" font-size="28" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">L</text>
+<path d="M800 352 Q800.19 381.00 800 410" fill="none" stroke="#37424e" stroke-width="3"/>
+<text x="500" y="460" font-size="26" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">L等效 = [L + (N−1)M] / N，N = 4</text>
+<text x="70" y="522" font-size="24" fill="#3d6b4a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">忽略互感 M = 0 → 0.325 nH</text>
+<text x="70" y="568" font-size="24" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">示意 M = L/2 → 0.812 nH</text>
+<text x="60" y="628" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">实际电感取决于孔间距和回流几何；载流能力另核孔铜、温升与分流。</text>
+<text x="60" y="668" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">信号换层同时安排参考面的连接，不能只数信号过孔。</text>
 </svg>

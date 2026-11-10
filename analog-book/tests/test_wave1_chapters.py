@@ -49,6 +49,11 @@ CHAPTER_CONTRACTS = {
         "examples": 3,
         "figures": 28,  # 改写后原编号表全部改为图卡；快照 13 是旧结构
         "tables": 0,
+        # 六张 Wave 1 表的知识主题在 V2 中改为具名图，不恢复已纠错的旧表。
+        "table_replacements": (
+            "ch11-topology-ports", "ch11-phase-margin-table", "ch11-noise-identify",
+            "ch11-cascode-headroom", "ch11-cmrr-definitions", "ch11-two-stage-margin",
+        ),
         "quiz": 10,
         "figure_assets": (
             "assets/figures/ch11-cascode.svg",
@@ -129,16 +134,21 @@ class ChapterContractTests(unittest.TestCase):
             for heading in contract["sections"]:
                 self.assertIn(heading, text,
                               f"第 {chapter} 章缺少小节 {heading}")
+            # Wave 1 是内容最低合同；后续视觉波次允许增加图，不能恢复旧的
+            # 精确张数快照。图注数仍须与当前正文逐张相等。
+            self.assertGreaterEqual(
+                text.count("<figure>"), contract["figures"],
+                f"第 {chapter} 章 <figure> 少于 Wave 1 基线")
             self.assertEqual(
-                contract["figures"], text.count("<figure>"),
-                f"第 {chapter} 章 <figure> 数量不符")
-            self.assertEqual(
-                contract["figures"], text.count("<figcaption>"),
+                text.count("<figure>"), text.count("<figcaption>"),
                 f"第 {chapter} 章有图无题注")
             self.assertEqual(
                 contract["tables"],
                 len(re.findall(rf"\*\*表 {chapter}-\d+", text)),
                 f"第 {chapter} 章表题数量不符")
+            for asset_id in contract.get("table_replacements", ()):
+                self.assertIn(f'assets/figures-v2/{asset_id}.svg', text,
+                              f"第 {chapter} 章缺旧表的视觉替代 {asset_id}")
             self.assertEqual(
                 contract["examples"],
                 text.count('class="example-title"'),
