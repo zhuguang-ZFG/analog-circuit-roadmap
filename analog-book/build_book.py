@@ -25,7 +25,11 @@ DIST_DIR = BOOK_DIR / "dist"
 MANIFEST_PATH = BOOK_DIR / "manifest-a4.json"
 OUTPUT_NAME = "analog-circuit-book.html"
 PDF_NAME = "analog-circuit-book.pdf"
-MAX_HTML_BYTES = 20 * 1024 * 1024
+from book import config as _book_config
+
+# 体积上限以 book.config 为唯一事实源（f09c8a5 schema-2：目标 60 MB / 硬上限 80 MB）；
+# 本模块 2026-10-24 初始链路的 20 MB 局部常量系同日被取代的残留，不再另立口径。
+MAX_HTML_BYTES = _book_config.MAX_HTML_BYTES
 PREFACE_LABEL = "本篇导读"
 
 ARTICLE_RE = re.compile(
@@ -623,7 +627,7 @@ def audit_html(document: str, manifest: dict, parts: list[dict]) -> dict:
     if document.count('class="book-page"') != len(pages):
         problems.append("页面数量与清单不一致")
     if len(document.encode("utf-8")) >= MAX_HTML_BYTES:
-        problems.append("HTML 超过 20 MB")
+        problems.append(f"HTML 超过硬上限 {MAX_HTML_BYTES // 1024 // 1024} MB")
     images = markup.count("<img ")
     formulas = markup.count('class="arithmatex"')
     report = {"pages": len(pages), "images": images, "formulas": formulas,
