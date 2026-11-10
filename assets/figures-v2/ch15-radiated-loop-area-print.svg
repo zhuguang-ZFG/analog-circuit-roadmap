@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">回路面积决定辐射等级</title><desc id="desc">自由空间小环最大方向远场估算：100MHz、10mA、3m，面积 15 平方厘米时 658 微伏每米、56.36dBµV/m；面积降到 0.5 平方厘米且电流不变时约 21.93 微伏每米、26.82dBµV/m，下降 29.54dB。40dBµV/m 只是比较线，不是所有标准的限值。忽略地面、机壳与电缆，模型不能代替认证。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>
@@ -104,38 +105,38 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 }
 </style>
 
-<polygon class="marker-wash" points="42.6,22.7 350.4,21.4 780.9,21.3 782.0,64.9 430.5,64.3 44.1,64.7" fill="#a4630f" opacity="0.13"/>
-<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">回路面积决定辐射，改布局比加滤波器便宜</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">回路 15 cm² 给出 56 dBµV/m、超限 16 dB；缩到 0.5 cm² 只剩 26。</text>
+<polygon class="marker-wash" points="43.2,23.3 390.3,23.6 705.1,24.7 706.2,63.6 458.8,64.5 43.9,64.6" fill="#a4630f" opacity="0.13"/>
+<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">固定频率和电流，缩小回路能降低辐射</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">示意自由空间小环：100 MHz、10 mA、3 m；比较最大方向远场。</text>
 <rect x="50" y="126" width="900" height="84" rx="6" fill="#f6eedb" stroke="#1f5d7a" stroke-width="2"/>
 <rect class="ink-echo" x="50" y="126" width="900" height="84" rx="6" stroke="#1f5d7a" stroke-width="2" fill="none" opacity="0.32" transform="translate(-1.25 -0.97) rotate(-0.11 500.0 168.0)"/>
 <text x="76" y="164" font-size="24" fill="#1f5d7a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">EMC 三要素：干扰源 → 耦合路径 → 敏感设备（或天线）</text>
-<text x="76" y="196" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">模拟工程师能掌控的是后两个：掐断路径，缩小天线</text>
+<text x="76" y="196" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">源、路径与天线都可整改；此图只比较面积项</text>
 <rect x="50" y="224" width="430" height="218" rx="6" fill="#f6eedb" stroke="#a8321f" stroke-width="2"/>
 <rect class="ink-echo" x="50" y="224" width="430" height="218" rx="6" stroke="#a8321f" stroke-width="2" fill="none" opacity="0.32" transform="translate(1.42 -0.94) rotate(-0.12 265.0 333.0)"/>
 <text x="74" y="264" font-size="24" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">回路面积 15 cm²</text>
 <text x="74" y="304" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">开槽让回流绕路，环变成天线</text>
 <text x="74" y="344" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">远场估算</text>
-<text x="456" y="346" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="end">660 µV/m</text>
+<text x="456" y="346" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="end">658 µV/m</text>
 <text x="74" y="386" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">换成对数</text>
-<text x="456" y="388" font-size="24" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="end">56 dBµV/m</text>
+<text x="456" y="388" font-size="24" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="end">56.36 dBµV/m</text>
 <path d="M82 406 Q265.00 404.72 448 406" fill="none" stroke="#c9bb9d" stroke-width="2"/>
-<text x="74" y="428" font-size="22" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">限值 40，超 16 dB</text>
+<text x="74" y="428" font-size="22" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">若比较线为 40，高出 16.36 dB</text>
 <rect x="520" y="224" width="430" height="218" rx="6" fill="#f6eedb" stroke="#3d6b4a" stroke-width="2"/>
 <rect class="ink-echo" x="520" y="224" width="430" height="218" rx="6" stroke="#3d6b4a" stroke-width="2" fill="none" opacity="0.32" transform="translate(-1.37 0.90) rotate(0.10 735.0 333.0)"/>
 <text x="544" y="264" font-size="24" fill="#3d6b4a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">回路面积 0.5 cm²</text>
 <text x="544" y="304" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">回流贴着地平面正下方走</text>
 <text x="544" y="344" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">面积掉 30 倍</text>
-<text x="926" y="346" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="end">−29.5 dB</text>
+<text x="926" y="346" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="end">−29.54 dB</text>
 <text x="544" y="386" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">换算成场强</text>
-<text x="926" y="388" font-size="24" fill="#3d6b4a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="end">26 dBµV/m</text>
+<text x="926" y="388" font-size="24" fill="#3d6b4a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="end">26.82 dBµV/m</text>
 <path d="M550 406 Q735.00 405.08 920 406" fill="none" stroke="#c9bb9d" stroke-width="2"/>
-<text x="544" y="428" font-size="22" fill="#3d6b4a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">限值 40，余量充足</text>
+<text x="544" y="428" font-size="22" fill="#3d6b4a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">模型值不等于认证测量值</text>
 <rect x="50" y="450" width="900" height="104" rx="6" fill="#f6eedb" stroke="#a4630f" stroke-width="2"/>
 <rect class="ink-echo" x="50" y="450" width="900" height="104" rx="6" stroke="#a4630f" stroke-width="2" fill="none" opacity="0.32" transform="translate(-1.17 0.97) rotate(-0.06 500.0 502.0)"/>
 <text x="76" y="488" font-size="24" fill="#a4630f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">为什么先动布局</text>
 <text x="76" y="526" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">面积是线性项，布局阶段免费；滤波器、屏蔽罩是整改阶段的钱</text>
 <rect x="50" y="570" width="900" height="104" rx="6" fill="#f6eedb" stroke="#a8321f" stroke-width="2"/>
 <rect class="ink-echo" x="50" y="570" width="900" height="104" rx="6" stroke="#a8321f" stroke-width="2" fill="none" opacity="0.32" transform="translate(-1.05 0.67) rotate(-0.01 500.0 622.0)"/>
-<text x="76" y="608" font-size="24" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">辐射超标的发射，十有八九是电缆当天线</text>
-<text x="76" y="646" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">1 m 电缆在 30~300 MHz 是高效天线；地平面被割开形成的缝隙也是天线</text>
+<text x="76" y="608" font-size="24" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">模型有边界，认证要按适用标准测量</text>
+<text x="76" y="646" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">忽略地面反射、机壳与电缆；电流幅值约定、距离和检波方式须一致</text>
 </svg>

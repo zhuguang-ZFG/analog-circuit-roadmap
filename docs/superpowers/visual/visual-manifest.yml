@@ -6502,34 +6502,16 @@ assets:
   output: assets/figures-v2/ch15-trace-drop.svg
   print_fallback: assets/figures-v2/ch15-trace-drop-print.svg
   preview: assets/figures-v2/ch15-trace-drop.webp
-  alt: 手绘走线示意：8 cm 长、0.5 mm 宽、1 oz 铜的路径按 1 mΩ/cm 记共 8 mΩ；静态 300 mA 压降 2.4 mV，瞬态 1 A 压降 8 mV，提示按瞬态电流定线宽。
-  status: accepted
+  alt: 走线电阻按电阻率乘长度除截面积计算：0.5 毫米宽、35 微米厚、8 厘米长，单程电阻 77.71 毫欧；300 毫安压降 23.31 毫伏、1 安培压降 77.71 毫伏。示例忽略温升、过孔与接触电阻，快速瞬态另加电感压降。
+  status: generated
   status_history:
   - planned
   - generated
-  - reviewed
-  - accepted
-  review_scores:
-    教学必要性: 5
-    事实精度: 5
-    构图层级: 5
-    印刷可读性: 4
-    风格一致性: 5
+  review_scores: {}
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-trace-drop.json
   quant_rules:
     layer_encodes_value: false
-  reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-  review_record:
-    reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
-    scope: all pending visual assets
-    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 4a21e969c7392b5c24a9161cafa2a745aa32882d9a83d5f4d30e55429fcdc6be
 - id: ch13-h-bridge-states
   chapter: 13
   kind: figure
@@ -6654,6 +6636,7 @@ assets:
   - C-26
   source_facts:
   - docs/p2-03-ch13.md#13.11
+  - docs/p2-03-ch13.md#13.11a
   prompt_file: docs/superpowers/visual/prompts/ch13-opto-ctr.md
   output: assets/figures-v2/ch13-opto-ctr.svg
   print_fallback: assets/figures-v2/ch13-opto-ctr-print.svg
@@ -7305,35 +7288,17 @@ assets:
   output: assets/figures-v2/ch16-instrument-trust.svg
   print_fallback: assets/figures-v2/ch16-instrument-trust-print.svg
   preview: assets/figures-v2/ch16-instrument-trust.webp
-  alt: 手绘仪器检查单：探头负载先用乘十档、测完电流立刻插回电压孔、首次上电串限流灯泡或限 50 毫安、地夹最后接；右侧两个坑是自动量程在跳变信号上反复换档，以及微安档约 100 欧姆、毫安档约 2
-    欧姆的 burden 压降。
-  status: accepted
+  alt: 仪器检查单：高阻节点先用乘十档、测完电流插回电压孔、低压板按负载设置限流；普通接地探头确认参考地后先地夹后探针。右栏示例内阻为微安档 100 欧姆、毫安档 2 欧姆；100 毫安流过 2 欧姆会产生
+    0.2 伏压降，实际值查仪表手册。
+  status: generated
   status_history:
   - planned
   - generated
-  - reviewed
-  - accepted
-  review_scores:
-    教学必要性: 5
-    事实精度: 5
-    构图层级: 5
-    印刷可读性: 4
-    风格一致性: 5
+  review_scores: {}
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch16-instrument-trust.json
   quant_rules:
     layer_encodes_value: false
-  reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-  review_record:
-    reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
-    scope: all pending visual assets
-    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 925ef5117b53de60aac04eded6da98278b5b05a36a7fca3bc3adba72f90584dc
 - id: ch16-postmortem-split
   chapter: 16
   kind: figure
@@ -7800,7 +7765,7 @@ assets:
   chapter: 16
   kind: figure
   type: V4
-  anchor: '16.3'
+  anchor: '16.6'
   purpose: 探头补偿三种方波
   style_id: FA-029
   layout_id: IG-013
@@ -7809,39 +7774,21 @@ assets:
   - C-31
   - C-29
   source_facts:
-  - docs/p4-01-ch16.md#16.3
+  - docs/p4-01-ch16.md#16.6
   prompt_file: docs/superpowers/visual/prompts/ch16-probe-compensation.md
   output: assets/figures-v2/ch16-probe-compensation.svg
   print_fallback: assets/figures-v2/ch16-probe-compensation-print.svg
   preview: assets/figures-v2/ch16-probe-compensation.webp
   alt: 手绘三种校准方波：过补偿顶角过冲、欠补偿顶角圆塌、正确方角平顶；提示补偿没调对时，看到的过冲或塌陷可能来自探头而不是电路。
-  status: accepted
+  status: generated
   status_history:
   - planned
   - generated
-  - reviewed
-  - accepted
-  review_scores:
-    教学必要性: 5
-    事实精度: 5
-    构图层级: 5
-    印刷可读性: 4
-    风格一致性: 5
+  review_scores: {}
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch16-probe-compensation.json
   quant_rules:
     layer_encodes_value: false
-  reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-  review_record:
-    reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
-    scope: all pending visual assets
-    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: c7500576c9e5899cd96079021f0d765c6b72b49dd80785528bc7f3e668d05dd6
 - id: ch15-adc-straddle
   chapter: 15
   kind: figure
@@ -7984,7 +7931,7 @@ assets:
   chapter: 16
   kind: figure
   type: V4
-  anchor: '16.3'
+  anchor: '16.6'
   purpose: 示波器带宽五倍规则
   style_id: FA-029
   layout_id: IG-013
@@ -7993,39 +7940,21 @@ assets:
   - C-31
   - C-29
   source_facts:
-  - docs/p4-01-ch16.md#16.3
+  - docs/p4-01-ch16.md#16.6
   prompt_file: docs/superpowers/visual/prompts/ch16-bandwidth-five.md
   output: assets/figures-v2/ch16-bandwidth-five.svg
   print_fallback: assets/figures-v2/ch16-bandwidth-five-print.svg
   preview: assets/figures-v2/ch16-bandwidth-five.webp
-  alt: 手绘两种边沿：带宽不足时边沿变圆、振铃被吃掉；五倍带宽时边沿与过冲保得住。底部写先算最高频率分量乘五，再看电源纹波可先开 20 兆赫限制，读数前先报档位。
-  status: accepted
+  alt: 一阶低通正弦幅值比较：测量链带宽与信号频率之比为 1 时幅值比 0.7071，为 5 时幅值比 0.9806，误差约 1.94%。虚线输入、实线测得，已对齐相位仅比较幅值；20 MHz 限带不代表高频尖峰消失。
+  status: generated
   status_history:
   - planned
   - generated
-  - reviewed
-  - accepted
-  review_scores:
-    教学必要性: 5
-    事实精度: 5
-    构图层级: 5
-    印刷可读性: 4
-    风格一致性: 5
+  review_scores: {}
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch16-bandwidth-five.json
   quant_rules:
     layer_encodes_value: false
-  reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-  review_record:
-    reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
-    scope: all pending visual assets
-    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 4f214f399a95470cebbd2bbb2c09097b15fe846074b11ec4ecd7f87b532d76bf
 - id: ch01-e24-ladder
   chapter: 1
   kind: figure
@@ -9192,10 +9121,10 @@ assets:
   kind: figure
   type: V4
   anchor: 13.5.1
-  purpose: 恒流源的合规电压天花板
+  purpose: 恒流源的电压余量
   style_id: FA-029
   layout_id: IG-013
-  color_ids:
+  color_ids: &id001
   - C-30
   - C-31
   - C-29
@@ -9205,82 +9134,41 @@ assets:
   output: assets/figures-v2/ch13-compliance-ceiling.svg
   print_fallback: assets/figures-v2/ch13-compliance-ceiling-print.svg
   preview: assets/figures-v2/ch13-compliance-ceiling.webp
-  alt: 手绘三张恒流源负载上限卡：1 毫安恒流、采样 100 欧、调整管 0.7 伏；2.8 伏供电时最大负载 2.0 千欧，5 伏时 4.2 千欧，12 伏时 11.2 千欧。底部算 4 到 20
-    毫安环：环路 20 毫安乘 500 欧为 10 伏，采样 250 欧乘 20 毫安为 5 伏，加发射器裕量约 7 伏，合计约 22 伏小于 24 伏。
-  status: accepted
+  alt: 三种供电扣除采样和指定调整管余量后得到不同的最大负载，不把余量当器件通用压差。
+  status: generated
   status_history:
   - planned
   - generated
-  - reviewed
-  - accepted
-  review_scores:
-    教学必要性: 5
-    事实精度: 5
-    构图层级: 5
-    印刷可读性: 4
-    风格一致性: 5
+  review_scores: {}
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch13-compliance-ceiling.json
   quant_rules:
     layer_encodes_value: false
-  reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-  review_record:
-    reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
-    scope: all pending visual assets
-    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: c25b05231320501d374c1c60a6a956241f1c6bc5820fd74432b499e155658df6
 - id: ch13-current-sense-budget
   chapter: 13
   kind: figure
   type: V4
-  anchor: '13.8'
-  purpose: 10mΩ 分流电阻的两笔账
+  anchor: 13.8a
+  purpose: 分流功耗与 Kelvin 误差
   style_id: FA-029
   layout_id: IG-013
-  color_ids:
-  - C-30
-  - C-31
-  - C-29
+  color_ids: *id001
   source_facts:
-  - docs/p2-03-ch13.md#13.8
+  - docs/p2-03-ch13.md#13.8a
   prompt_file: docs/superpowers/visual/prompts/ch13-current-sense-budget.md
   output: assets/figures-v2/ch13-current-sense-budget.svg
   print_fallback: assets/figures-v2/ch13-current-sense-budget-print.svg
   preview: assets/figures-v2/ch13-current-sense-budget.webp
-  alt: 手绘分流电阻两栏：额定 5 安时，10 毫欧上压降 50 毫伏、功耗 0.25 瓦，选 1 瓦 2512 封装；堵转 20 安时，压降 200 毫伏、功耗 4 瓦，热时间常数必须算。底部写
-    1% 精度总误差预算 0.5 毫伏；12 伏共模压到 0.2 毫伏需要 CMRR 大于 96 分贝；LM358 只有 70 分贝，3.8 毫伏误差等于 7.6%。
-  status: accepted
+  alt: 额定与堵转电流四倍、热耗十六倍，封装额定不能替代瞬态热预算，并核差分滤波的两只串阻。
+  status: generated
   status_history:
   - planned
   - generated
-  - reviewed
-  - accepted
-  review_scores:
-    教学必要性: 5
-    事实精度: 5
-    构图层级: 5
-    印刷可读性: 4
-    风格一致性: 5
+  review_scores: {}
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch13-current-sense-budget.json
   quant_rules:
     layer_encodes_value: false
-  reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-  review_record:
-    reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
-    scope: all pending visual assets
-    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 4096d2ee625a0c9e3aa074fff467c6f775452f709f53e9ec2a5bb06f510f24a6
 - id: ch01-electrolytic-life
   chapter: 1
   kind: figure
@@ -10262,7 +10150,7 @@ assets:
   kind: figure
   type: V4
   anchor: '13.9'
-  purpose: B 类与 D 类推同一只喇叭的热账
+  purpose: 功放摆幅与效率假设
   style_id: FA-029
   layout_id: IG-013
   color_ids:
@@ -10275,36 +10163,16 @@ assets:
   output: assets/figures-v2/ch13-audio-class-heat.svg
   print_fallback: assets/figures-v2/ch13-audio-class-heat-print.svg
   preview: assets/figures-v2/ch13-audio-class-heat.webp
-  alt: 手绘功放热账。顶部蓝框先把 8 欧喇叭要的 10 瓦换成电压电流：有效值 8.94 伏、电流 1.12 安，峰值 12.6 伏；推挽要留管压降，所以电源至少正负 15 伏。左下红框用 B 类，理论效率
-    78.5%、实际按 60% 算，电源要提供 16.7 瓦，其余全变热 6.7 瓦；右下绿框换 D 类，效率 90%，同样的音质，指甲盖大的芯片就够，只发热 1.1 瓦。琥珀框写省下的热不是白给的：D
-    类的 PWM 边沿是强干扰源，输出要加 LC 滤波、必须过 EMI。底部写偏置管必须贴散热器与功率管热耦合，否则温升推高偏置电流，直接热失控。
-  status: accepted
+  alt: 先算负载电压电流，再在两种明确假定效率下比较热耗，不保证同音质或封装大小。
+  status: generated
   status_history:
   - planned
   - generated
-  - reviewed
-  - accepted
-  review_scores:
-    教学必要性: 5
-    事实精度: 5
-    构图层级: 5
-    印刷可读性: 4
-    风格一致性: 5
+  review_scores: {}
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch13-audio-class-heat.json
   quant_rules:
     layer_encodes_value: false
-  reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-  review_record:
-    reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
-    scope: all pending visual assets
-    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: b99a8d58bc90cee65f0d72b1770341d065bb48e743627e47fb7545ee1db622ce
 - id: ch11-diffpair-four-beats
   chapter: 11
   kind: figure
@@ -10552,7 +10420,7 @@ assets:
   purpose: 回路面积决定辐射等级
   style_id: FA-029
   layout_id: IG-013
-  color_ids:
+  color_ids: &id002
   - C-30
   - C-31
   - C-29
@@ -10562,36 +10430,17 @@ assets:
   output: assets/figures-v2/ch15-radiated-loop-area.svg
   print_fallback: assets/figures-v2/ch15-radiated-loop-area-print.svg
   preview: assets/figures-v2/ch15-radiated-loop-area.webp
-  alt: 手绘辐射分账。顶部蓝框写电磁兼容三要素：干扰源、耦合路径、敏感设备或天线，模拟工程师能掌控的是后两个。左红框回路面积 15 平方厘米，开槽让回流绕路、环路变成天线，远场估算 660 微伏每米，换成对数
-    56 分贝微伏每米，限值 40、超 16 分贝。右绿框回路面积 0.5 平方厘米，回流贴着地平面正下方走，面积掉 30 倍也就是负 29.5 分贝，换算成场强 26 分贝微伏每米，限值 40、余量充足。琥珀框写为什么先动布局：面积是线性项、布局阶段免费，滤波器与屏蔽罩是整改阶段的钱。底部红框写辐射超标的发射十有八九是电缆当天线，1
-    米电缆在 30 到 300 兆赫是高效天线。
-  status: accepted
+  alt: 自由空间小环最大方向远场估算：100MHz、10mA、3m，面积 15 平方厘米时 658 微伏每米、56.36dBµV/m；面积降到 0.5 平方厘米且电流不变时约 21.93 微伏每米、26.82dBµV/m，下降
+    29.54dB。40dBµV/m 只是比较线，不是所有标准的限值。忽略地面、机壳与电缆，模型不能代替认证。
+  status: generated
   status_history:
   - planned
   - generated
-  - reviewed
-  - accepted
-  review_scores:
-    教学必要性: 5
-    事实精度: 5
-    构图层级: 5
-    印刷可读性: 4
-    风格一致性: 5
+  review_scores: {}
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-radiated-loop-area.json
   quant_rules:
     layer_encodes_value: false
-  reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-  review_record:
-    reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
-    scope: all pending visual assets
-    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: d3ffc773a0858be36d754cd9ef5b0fe663e5171b744b8cac0438a728f357fff0
 - id: ch09-tl431-divider-floor
   chapter: 9
   kind: figure
@@ -10642,99 +10491,52 @@ assets:
   chapter: 13
   kind: figure
   type: V4
-  anchor: '13.10'
-  purpose: 晶振起振的负阻裕度
+  anchor: 13.10c
+  purpose: 起振跨导与驱动功率
   style_id: FA-029
   layout_id: IG-013
-  color_ids:
-  - C-30
-  - C-31
-  - C-29
+  color_ids: *id002
   source_facts:
-  - docs/p2-03-ch13.md#13.10
+  - docs/p2-03-ch13.md#13.10c
   prompt_file: docs/superpowers/visual/prompts/ch13-crystal-neg-resistance.md
   output: assets/figures-v2/ch13-crystal-neg-resistance.svg
   print_fallback: assets/figures-v2/ch13-crystal-neg-resistance-print.svg
   preview: assets/figures-v2/ch13-crystal-neg-resistance.webp
-  alt: 手绘晶振负阻两笔账。顶部蓝框写工程要求负阻大于等于 5 倍最大等效串联电阻，余量不足会起振慢甚至低温不启振。左绿框 8 兆赫晶体：等效串联电阻 80 欧、静态电容 3 皮法、负载电容 15
-    皮法，临界跨导 0.26 毫安每伏；单片机内部反相器有几毫安每伏，裕度 20 倍以上很稳。右红框 32.768 千赫晶体：等效串联电阻天然巨大、35 到 90 千欧，临界跨导反而极小、1.7 微安每伏，所以实时时钟振荡器功耗能做到微安级。琥珀框写两个数差得很远方向却一致：临界跨导与等效串联电阻成正比、与频率的平方成正比。底部红框写先确认起振再谈频率准不准：负载电容配错只让走时慢一点，负阻裕度不够是根本不起振；军规
-    ④ 说起振时间与负阻裕度成反比、裕度越小醒得越慢。
-  status: accepted
+  alt: 五组指定模型参数分别算跨导，负阻取绝对值，驱动功率使用动态支路电流。
+  status: generated
   status_history:
   - planned
   - generated
-  - reviewed
-  - accepted
-  review_scores:
-    教学必要性: 5
-    事实精度: 5
-    构图层级: 5
-    印刷可读性: 4
-    风格一致性: 5
+  review_scores: {}
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch13-crystal-neg-resistance.json
   quant_rules:
     layer_encodes_value: false
-  reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-  review_record:
-    reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
-    scope: all pending visual assets
-    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: d1364e42d2a77d41a3a1816663d222ef2a2d03a1bbc8b53eccc939199720d78f
 - id: ch13-sampling-quantization
   chapter: 13
   kind: figure
   type: V4
   anchor: '13.6'
-  purpose: 采样率与量化台阶的两道账
+  purpose: 采样与量化分别预算
   style_id: FA-029
   layout_id: IG-013
-  color_ids:
-  - C-30
-  - C-31
-  - C-29
+  color_ids: *id002
   source_facts:
   - docs/p2-03-ch13.md#13.6
   prompt_file: docs/superpowers/visual/prompts/ch13-sampling-quantization.md
   output: assets/figures-v2/ch13-sampling-quantization.svg
   print_fallback: assets/figures-v2/ch13-sampling-quantization-print.svg
   preview: assets/figures-v2/ch13-sampling-quantization.webp
-  alt: 手绘采样与量化两栏。左上蓝框采样是时间离散化：每隔一个采样周期抓一次瞬时值，采样率必须大于信号最高频率的 2 倍，否则高频伪装成低频就是混叠。右上绿框量化是幅度离散化：台阶等于满量程除以 2
-    的 N 次方，3.3 伏量程、12 位得 0.8 毫伏，读数末位抖动就是量化噪声。琥珀框算 1 ksps 够不够：读 50 赫兹工频，1 ksps 大于 2 倍，可以；直接读 1 千赫音频，1 ksps
-    小于 2 倍，混叠失真；对策是提到 10 ksps 以上或前置 500 赫兹低通。底部红框三种架构：逐次逼近约 1 Msps、12 到 18 位；过采样不到 1 ksps、16 到 24 位；并行比较
-    Gsps 级、低于 8 位。
-  status: accepted
+  alt: 流程把时间采样和幅度量化分开，指出恒定输入可以输出固定码，位数不保证直流或动态精度。
+  status: generated
   status_history:
   - planned
   - generated
-  - reviewed
-  - accepted
-  review_scores:
-    教学必要性: 5
-    事实精度: 5
-    构图层级: 5
-    印刷可读性: 4
-    风格一致性: 5
+  review_scores: {}
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch13-sampling-quantization.json
   quant_rules:
     layer_encodes_value: false
-  reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-  review_record:
-    reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
-    scope: all pending visual assets
-    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 16efa651f281dca47b28ec1a468ec7de5bbb8df506423de541cfd5d06010526c
 - id: ch14-pt100-error-budget
   chapter: 14
   kind: figure
@@ -10743,46 +10545,23 @@ assets:
   purpose: PT100 的误差预算与比率测量
   style_id: FA-029
   layout_id: IG-013
-  color_ids:
-  - C-30
-  - C-31
-  - C-29
+  color_ids: *id002
   source_facts:
   - docs/p3-01-ch14.md#14.12
   prompt_file: docs/superpowers/visual/prompts/ch14-pt100-error-budget.md
   output: assets/figures-v2/ch14-pt100-error-budget.svg
   print_fallback: assets/figures-v2/ch14-pt100-error-budget-print.svg
   preview: assets/figures-v2/ch14-pt100-error-budget.webp
-  alt: 手绘误差预算两栏。顶部蓝框写误差预算先统一单位，再列六项：传感、激励、放大、滤波、ADC、基准，六项都折到同一个单位上才加得起来。左绿框比率测量能约掉两项：激励电流的绝对误差与基准的初始误差，原因是两者同源、一起变一起消。右红框约不掉的那几项：传感本身的容差与自热、放大增益的
-    0.1% 电阻、基准温漂 10 ppm 每摄氏度。琥珀框写温漂预算只有 0.04 摄氏度，低压差稳压器与开关电源都是热源，基准要靠远离热源来保精度。底部写设计从后往前推、调试从前往后查：后面是 ADC
-    满量程到增益到噪声预算，前面是激励到放大到滤波到转换；测试不回填，预算就还只是假设。
-  status: accepted
+  alt: 先统一误差单位：同源参考的初始误差和共同温漂可以约掉，传感自热、放大误差及独立路径残差仍需预算。演示两项0.04摄氏度不得重复代表同一共同基准温漂；设计从ADC量程倒推，测试从激励开始逐级验证。
+  status: generated
   status_history:
   - planned
   - generated
-  - reviewed
-  - accepted
-  review_scores:
-    教学必要性: 5
-    事实精度: 5
-    构图层级: 5
-    印刷可读性: 4
-    风格一致性: 5
+  review_scores: {}
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-pt100-error-budget.json
   quant_rules:
     layer_encodes_value: false
-  reviewed_by: agent-proxy
-  review_method: machine-assisted-rubric-v1
-  review_evidence: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-  review_record:
-    reviewer: agent-proxy
-    method: machine-assisted-rubric-v1
-    scope: all pending visual assets
-    user_chapter_acceptance: 2026-11-07 用户授权代理审图，保留抽检与否决权
-    reviewed_on: '2026-11-07'
-    record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
-    asset_sha256: 2fb8bf4504b7fad06c55a5753999f080d762739d93e1d42942929f2831563cba
 - id: ch10-555-fault-tree
   chapter: 10
   kind: figure
@@ -18072,7 +17851,6 @@ assets:
     reviewed_on: '2026-11-07'
     record: docs/superpowers/visual/reviews/agent-review-2026-11-07.md
     asset_sha256: 1f993a8d90129b3a60be7b1c0c27e54ebdd2a1c1ed1c2f445e0f41f1eba92115
-
 - id: ch13-zener-budget-v2
   chapter: 13
   kind: animation
@@ -19206,7 +18984,10 @@ assets:
   purpose: Buck 的连接与电流预算
   style_id: FA-029
   layout_id: IG-013
-  color_ids: *id001
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
   source_facts:
   - docs/p2-03-ch13.md#13.2c
   prompt_file: docs/superpowers/visual/prompts/ch13-buck-ripple.md
@@ -19231,7 +19012,10 @@ assets:
   purpose: Pierce 连接与负载电容
   style_id: FA-029
   layout_id: IG-013
-  color_ids: *id001
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
   source_facts:
   - docs/p2-03-ch13.md#13.10
   prompt_file: docs/superpowers/visual/prompts/ch13-crystal-load-cap.md
@@ -19256,7 +19040,10 @@ assets:
   purpose: 去耦支路的谐振频率
   style_id: FA-029
   layout_id: IG-013
-  color_ids: *id004
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
   source_facts:
   - docs/p3-02-ch15.md#15.1
   prompt_file: docs/superpowers/visual/prompts/ch15-decap-resonance-v2.md
@@ -19281,7 +19068,10 @@ assets:
   purpose: 边沿与传播延迟
   style_id: FA-029
   layout_id: IG-013
-  color_ids: *id004
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
   source_facts:
   - docs/p3-02-ch15.md#15.3
   prompt_file: docs/superpowers/visual/prompts/ch15-line-flight-v2.md
@@ -19306,7 +19096,10 @@ assets:
   purpose: 共模与差模的电流路径
   style_id: FA-029
   layout_id: IG-013
-  color_ids: *id004
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
   source_facts:
   - docs/p3-02-ch15.md#15.6
   prompt_file: docs/superpowers/visual/prompts/ch15-filter-modes-v2.md
@@ -19331,7 +19124,10 @@ assets:
   purpose: 微带线宽与叠层
   style_id: FA-029
   layout_id: IG-013
-  color_ids: *id004
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
   source_facts:
   - docs/p3-02-ch15.md#15.3
   prompt_file: docs/superpowers/visual/prompts/ch15-impedance-geometry-v2.md
@@ -19356,7 +19152,10 @@ assets:
   purpose: Buck 输入滤波的验证边界
   style_id: FA-029
   layout_id: IG-013
-  color_ids: *id004
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
   source_facts:
   - docs/p3-02-ch15.md#15.6
   prompt_file: docs/superpowers/visual/prompts/ch15-input-filter-v2.md
@@ -19382,7 +19181,10 @@ assets:
   purpose: 放电路径的电感压降
   style_id: FA-029
   layout_id: IG-013
-  color_ids: *id004
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
   source_facts:
   - docs/p3-02-ch15.md#15.6
   prompt_file: docs/superpowers/visual/prompts/ch15-esd-path-v2.md
@@ -19407,7 +19209,10 @@ assets:
   purpose: 回流面积与小环远场
   style_id: FA-029
   layout_id: IG-013
-  color_ids: *id004
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
   source_facts:
   - docs/p3-02-ch15.md#15.7
   prompt_file: docs/superpowers/visual/prompts/ch15-return-area-v2.md
@@ -19432,7 +19237,7 @@ assets:
   purpose: PT100 零点与增量
   style_id: FA-029
   layout_id: IG-013
-  color_ids: &id005
+  color_ids:
   - C-30
   - C-31
   - C-29
@@ -19460,7 +19265,10 @@ assets:
   purpose: 仿真测量的时间窗口
   style_id: FA-029
   layout_id: IG-013
-  color_ids: *id005
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
   source_facts:
   - docs/p3-01-ch14.md#14.6
   prompt_file: docs/superpowers/visual/prompts/ch14-meas-window-v2.md
@@ -19485,7 +19293,10 @@ assets:
   purpose: 反馈分压误差的统计假设
   style_id: FA-029
   layout_id: IG-013
-  color_ids: *id005
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
   source_facts:
   - docs/p3-01-ch14.md#14.8
   prompt_file: docs/superpowers/visual/prompts/ch14-buck-budget-v2.md
@@ -19510,7 +19321,10 @@ assets:
   purpose: 比率测量抵消共同因子
   style_id: FA-029
   layout_id: IG-013
-  color_ids: *id005
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
   source_facts:
   - docs/p3-01-ch14.md#14.9
   prompt_file: docs/superpowers/visual/prompts/ch14-ratio-cancel-v2.md
@@ -19535,7 +19349,10 @@ assets:
   purpose: PT100 预算统计口径
   style_id: FA-029
   layout_id: IG-013
-  color_ids: *id005
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
   source_facts:
   - docs/p3-01-ch14.md#14.9
   prompt_file: docs/superpowers/visual/prompts/ch14-error-budget-v2.md
@@ -19560,7 +19377,10 @@ assets:
   purpose: 三个均匀误差的覆盖率
   style_id: FA-029
   layout_id: IG-013
-  color_ids: *id005
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
   source_facts:
   - docs/p3-01-ch14.md#14.10
   prompt_file: docs/superpowers/visual/prompts/ch14-uniform-sum-v2.md
@@ -19585,7 +19405,10 @@ assets:
   purpose: BOM 预算与测试追溯
   style_id: FA-029
   layout_id: IG-013
-  color_ids: *id005
+  color_ids:
+  - C-30
+  - C-31
+  - C-29
   source_facts:
   - docs/p3-01-ch14.md#14.12
   prompt_file: docs/superpowers/visual/prompts/ch14-bom-trace-v2.md

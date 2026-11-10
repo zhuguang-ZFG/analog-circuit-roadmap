@@ -2,7 +2,7 @@
   "id": "ch13-compliance-ceiling",
   "title": "恒流源的电压余量",
   "alt": "三种供电扣除采样和指定调整管余量后得到不同的最大负载，不把余量当器件通用压差。",
-  "anchor": "13.5",
+  "anchor": "13.5.1",
   "source": "docs/p2-03-ch13.md",
   "canvas": [
     1000,

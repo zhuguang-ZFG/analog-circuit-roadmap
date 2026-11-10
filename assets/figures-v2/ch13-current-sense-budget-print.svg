@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" data-composition="python-handraw-v1" role="img" aria-labelledby="title desc">
+<title id="title">分流功耗与 Kelvin 误差</title><desc id="desc">额定与堵转电流四倍、热耗十六倍，封装额定不能替代瞬态热预算，并核差分滤波的两只串阻。</desc>
 <defs>
 <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#fdf8ea"/><stop offset="1" stop-color="#f6eedb"/>
@@ -104,29 +105,21 @@ text[fill="#6b3f63"]{fill:#c4a2bf}
 }
 </style>
 
-<polygon class="marker-wash" points="46.6,24.2 215.9,21.6 602.1,23.7 601.5,64.7 330.2,64.2 43.1,64.9" fill="#a4630f" opacity="0.13"/>
-<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">10mΩ 分流：5A 与 20A 是两笔账</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">5A → 50mV、0.25W；堵转 20A → 200mV、4W。精度 1% 还要 CMRR &gt;96dB。</text>
-<rect x="50" y="150" width="430" height="240" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
-<rect class="ink-echo" x="50" y="150" width="430" height="240" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(-1.21 0.66) rotate(0.01 265.0 270.0)"/>
-<text x="74" y="192" font-size="24" fill="#3d6b4a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">额定 5A</text>
-<text x="74" y="232" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">Vshunt = 5A × 10mΩ</text>
-<text x="74" y="300" font-size="44" fill="#3d6b4a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">= 50mV</text>
-<text x="74" y="340" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">P = 5² × 0.01 = 0.25W</text>
-<text x="74" y="372" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">选 1W 的 2512 封装</text>
-<rect x="520" y="150" width="430" height="240" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
-<rect class="ink-echo" x="520" y="150" width="430" height="240" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(-1.10 0.98) rotate(-0.04 735.0 270.0)"/>
-<text x="544" y="192" font-size="24" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">堵转 20A</text>
-<text x="544" y="232" font-size="22" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">Vshunt = 20A × 10mΩ</text>
-<text x="544" y="300" font-size="44" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">= 200mV</text>
-<text x="544" y="340" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">P = 20² × 0.01 = 4W</text>
-<text x="544" y="372" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">热时间常数必须算</text>
-<rect x="50" y="420" width="900" height="140" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
-<rect class="ink-echo" x="50" y="420" width="900" height="140" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(1.29 0.65) rotate(-0.04 500.0 490.0)"/>
-<text x="76" y="456" font-size="22" fill="#3d6b4a" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">1% 精度</text>
-<text x="420" y="456" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">总误差预算 0.5mV</text>
-<text x="76" y="490" font-size="22" fill="#a4630f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">12V 共模压到 0.2mV</text>
-<text x="420" y="490" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">需要 CMRR &gt; 96dB</text>
-<text x="76" y="524" font-size="22" fill="#a8321f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start">LM358 只有 70dB</text>
-<text x="420" y="524" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">3.8mV 误差 = 7.6%</text>
-<text x="500" y="620" font-size="22" fill="#a4630f" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="middle">先问负载要不要共地、要不要测短路，再问精度。</text>
+<polygon class="marker-wash" points="43.2,23.3 390.3,23.6 705.1,24.7 706.2,63.6 458.8,64.5 43.9,64.6" fill="#a4630f" opacity="0.13"/>
+<text x="52" y="58" font-size="38" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="700" text-anchor="start" style="font-family:'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif;font-weight:400">同一分流，额定与堵转的热耗差十六倍</text><text x="52" y="94" font-size="22" fill="#37424e" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">示意 10 mΩ，额定 5 A、堵转 20 A；时间、PCB 散热与降额决定可承受程度。</text>
+<rect x="45" y="160" width="420" height="330" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<rect class="ink-echo" x="45" y="160" width="420" height="330" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(-1.51 0.64) rotate(-0.02 255.0 325.0)"/>
+<text x="255" y="210" font-size="30" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">额定</text>
+<text x="255" y="280" font-size="34" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">5 A</text>
+<path d="M255 300 Q254.79 325.00 255 350" fill="none" stroke="#1f5d7a" stroke-width="2.5" stroke-dasharray=""/><polygon points="255,350 250,340 260,340" fill="#1f5d7a"/>
+<text x="255" y="400" font-size="30" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">50 mV / 0.25 W</text>
+<rect x="535" y="160" width="420" height="330" rx="6" fill="#f6eedb" stroke="#37424e" stroke-width="2"/>
+<rect class="ink-echo" x="535" y="160" width="420" height="330" rx="6" stroke="#37424e" stroke-width="2" fill="none" opacity="0.32" transform="translate(1.20 0.95) rotate(0.06 745.0 325.0)"/>
+<text x="745" y="210" font-size="30" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">堵转</text>
+<text x="745" y="280" font-size="34" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">20 A</text>
+<path d="M745 300 Q744.64 325.00 745 350" fill="none" stroke="#1f5d7a" stroke-width="2.5" stroke-dasharray=""/><polygon points="745,350 740,340 750,340" fill="#1f5d7a"/>
+<text x="745" y="400" font-size="30" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="middle">200 mV / 4 W</text>
+<text x="45" y="550" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">V=IR，P=I²R；不能只凭 1 W 或 2512 封装判定能承受堵转。</text>
+<text x="45" y="605" font-size="25" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">Kelvin 示例：多取进 50 µΩ / 10 mΩ = 0.5% 误差。</text>
+<text x="45" y="660" font-size="24" fill="#16202b" font-family="'KaiTi','STKaiti','Kaiti SC','LXGW WenKai','Noto Serif CJK SC','Source Han Serif SC','Songti SC','SimSun','Noto Serif SC',serif" font-weight="400" text-anchor="start">双输入各 100 Ω，跨输入 100 nF：差模极点约 7.96 kHz。</text>
 </svg>
