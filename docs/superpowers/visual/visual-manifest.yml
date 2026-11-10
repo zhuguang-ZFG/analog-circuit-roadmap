@@ -6166,7 +6166,7 @@ assets:
     事实精度: 5
     构图层级: 5
     风格一致性: 5
-    印刷可读性: 5
+    印刷可读性: 4
   generator: python-svg-papercut-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-ltspice-five.json
   quant_rules:
@@ -6187,6 +6187,8 @@ assets:
     method: user-review-via-packet
     scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
     user_chapter_acceptance: 2026-11-10 用户「同意签署」；内容漂移复核（对照签名版）
+    scores_by: agent-proxy
+    scores_note: 沿用 2026-11-07 机辅分项评分（有据）
     asset_sha256: 429f41a448ae2a8d3b9e45fa1822c1a38d2c8c33c0d96a154df3f94bc2ee28ba
 - id: ch14-tolerance-three
   chapter: 14
@@ -6218,7 +6220,7 @@ assets:
     事实精度: 5
     构图层级: 5
     风格一致性: 5
-    印刷可读性: 5
+    印刷可读性: 4
   generator: python-svg-papercut-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-tolerance-three.json
   quant_rules:
@@ -6239,6 +6241,8 @@ assets:
     method: user-review-via-packet
     scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
     user_chapter_acceptance: 2026-11-10 用户「同意签署」；内容漂移复核（对照签名版）
+    scores_by: agent-proxy
+    scores_note: 沿用 2026-11-07 机辅分项评分（有据）
     asset_sha256: 68cd7c100d10bc02492e9a81436ca9fe741fb4c443fdb3c5e66f4f4d4ba11939
 - id: ch14-dft-testpoints
   chapter: 14
@@ -6271,7 +6275,7 @@ assets:
     事实精度: 5
     构图层级: 5
     风格一致性: 5
-    印刷可读性: 5
+    印刷可读性: 4
   generator: python-svg-papercut-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-dft-testpoints.json
   quant_rules:
@@ -6292,6 +6296,8 @@ assets:
     method: user-review-via-packet
     scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
     user_chapter_acceptance: 2026-11-10 用户「同意签署」；内容漂移复核（对照签名版）
+    scores_by: agent-proxy
+    scores_note: 沿用 2026-11-07 机辅分项评分（有据）
     asset_sha256: 897f46dfc22b26153bdd3942edff9a319e269108d69dadbe19a6df538e48cd9e
 - id: ch18-assumption-tree
   chapter: 18
@@ -6508,7 +6514,7 @@ assets:
     事实精度: 5
     构图层级: 5
     风格一致性: 5
-    印刷可读性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-trace-drop.json
   quant_rules:
@@ -6521,6 +6527,8 @@ assets:
     method: user-review-via-packet
     scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
     user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 沿用 2026-11-07 机辅分项评分（有据）
     asset_sha256: a1a51d73ed806eaf955975dd103050ffde57f30a5a8aa8f7e9040068c830db8f
 - id: ch13-h-bridge-states
   chapter: 13
@@ -6554,7 +6562,7 @@ assets:
     事实精度: 5
     构图层级: 5
     风格一致性: 5
-    印刷可读性: 5
+    印刷可读性: 4
   generator: python-svg-papercut-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch13-h-bridge-states.json
   quant_rules:
@@ -6574,6 +6582,8 @@ assets:
     method: user-review-via-packet
     scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
     user_chapter_acceptance: 2026-11-10 用户「同意签署」；内容漂移复核（对照签名版）
+    scores_by: agent-proxy
+    scores_note: 沿用 2026-11-07 机辅分项评分（有据）
     asset_sha256: 56d2bea4b4548d052465513986adeeaf0890f36de8cd9fabd67e877c88a53224
 - id: ch13-current-sense-sides
   chapter: 13
@@ -6606,7 +6616,7 @@ assets:
     事实精度: 5
     构图层级: 5
     风格一致性: 5
-    印刷可读性: 5
+    印刷可读性: 4
   generator: python-svg-papercut-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch13-current-sense-sides.json
   quant_rules:
@@ -6626,6 +6636,8 @@ assets:
     method: user-review-via-packet
     scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
     user_chapter_acceptance: 2026-11-10 用户「同意签署」；内容漂移复核（对照签名版）
+    scores_by: agent-proxy
+    scores_note: 沿用 2026-11-07 机辅分项评分（有据）
     asset_sha256: 09bee2386adb2b5fd581788c2df822f3714b24afe50d504975bbcf71927b4c18
 - id: ch13-opto-ctr
   chapter: 13
@@ -6660,7 +6672,7 @@ assets:
     事实精度: 5
     构图层级: 5
     风格一致性: 5
-    印刷可读性: 5
+    印刷可读性: 4
   generator: python-svg-papercut-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch13-opto-ctr.json
   quant_rules:
@@ -6680,6 +6692,8 @@ assets:
     method: user-review-via-packet
     scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
     user_chapter_acceptance: 2026-11-10 用户「同意签署」；内容漂移复核（对照签名版）
+    scores_by: agent-proxy
+    scores_note: 沿用 2026-11-07 机辅分项评分（有据）
     asset_sha256: a081583a9c7266c88443b3fd2e4713f56934ebdc3e4daf934162312502ca289e
 - id: ch15-layout-ten-questions
   chapter: 15
@@ -7305,7 +7319,7 @@ assets:
     事实精度: 5
     构图层级: 5
     风格一致性: 5
-    印刷可读性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch16-instrument-trust.json
   quant_rules:
@@ -7318,6 +7332,8 @@ assets:
     method: user-review-via-packet
     scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
     user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 沿用 2026-11-07 机辅分项评分（有据）
     asset_sha256: 28fb173be46e74fa0ee7d26010e55a96c6391fb8f94fc4e453f98488792c1991
 - id: ch16-postmortem-split
   chapter: 16
@@ -7442,7 +7458,7 @@ assets:
     事实精度: 5
     构图层级: 5
     风格一致性: 5
-    印刷可读性: 5
+    印刷可读性: 4
   generator: python-svg-papercut-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-via-parallel.json
   quant_rules:
@@ -7462,6 +7478,8 @@ assets:
     method: user-review-via-packet
     scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
     user_chapter_acceptance: 2026-11-10 用户「同意签署」；内容漂移复核（对照签名版）
+    scores_by: agent-proxy
+    scores_note: 沿用 2026-11-07 机辅分项评分（有据）
     asset_sha256: a70c8c9b553f6aa6d1b401fb69188d066dc878f3605a94c157f0c0b7a998916f
 - id: ch15-crosstalk-3w
   chapter: 15
@@ -7494,7 +7512,7 @@ assets:
     事实精度: 5
     构图层级: 5
     风格一致性: 5
-    印刷可读性: 5
+    印刷可读性: 4
   generator: python-svg-papercut-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-crosstalk-3w.json
   quant_rules:
@@ -7514,6 +7532,8 @@ assets:
     method: user-review-via-packet
     scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
     user_chapter_acceptance: 2026-11-10 用户「同意签署」；内容漂移复核（对照签名版）
+    scores_by: agent-proxy
+    scores_note: 沿用 2026-11-07 机辅分项评分（有据）
     asset_sha256: c725b49ee2f20f54ce8d384fd1f1037227f0c12eb0936e5257b3405d6c7bb755
 - id: ch15-testpoint-rules
   chapter: 15
@@ -7807,7 +7827,7 @@ assets:
     事实精度: 5
     构图层级: 5
     风格一致性: 5
-    印刷可读性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch16-probe-compensation.json
   quant_rules:
@@ -7820,6 +7840,8 @@ assets:
     method: user-review-via-packet
     scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
     user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 沿用 2026-11-07 机辅分项评分（有据）
     asset_sha256: 4d851474a592582a3e5b566eb4297e427dc28ccfda64fc81daad173beebed993
 - id: ch15-adc-straddle
   chapter: 15
@@ -7989,7 +8011,7 @@ assets:
     事实精度: 5
     构图层级: 5
     风格一致性: 5
-    印刷可读性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch16-bandwidth-five.json
   quant_rules:
@@ -8002,6 +8024,8 @@ assets:
     method: user-review-via-packet
     scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
     user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 沿用 2026-11-07 机辅分项评分（有据）
     asset_sha256: ab73cb4ccf8f4021ef6421ec387af0de586bf3941ecf8c436e4862415f6bc8d1
 - id: ch01-e24-ladder
   chapter: 1
@@ -9274,7 +9298,7 @@ assets:
     事实精度: 5
     构图层级: 5
     风格一致性: 5
-    印刷可读性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch13-compliance-ceiling.json
   quant_rules:
@@ -9287,6 +9311,8 @@ assets:
     method: user-review-via-packet
     scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
     user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 沿用 2026-11-07 机辅分项评分（有据）
     asset_sha256: 4db9219f83388de2f53d77663815f52a40ca6e6f4023b45c8b2c5321b6fc6150
 - id: ch13-current-sense-budget
   chapter: 13
@@ -9315,7 +9341,7 @@ assets:
     事实精度: 5
     构图层级: 5
     风格一致性: 5
-    印刷可读性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch13-current-sense-budget.json
   quant_rules:
@@ -9328,6 +9354,8 @@ assets:
     method: user-review-via-packet
     scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
     user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 沿用 2026-11-07 机辅分项评分（有据）
     asset_sha256: cacf295c9da31717b35e4a409b9c1865612737f2d0bfd85490a8c4cdc92e2eb6
 - id: ch01-electrolytic-life
   chapter: 1
@@ -10415,7 +10443,7 @@ assets:
     事实精度: 5
     构图层级: 5
     风格一致性: 5
-    印刷可读性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch13-audio-class-heat.json
   quant_rules:
@@ -10428,6 +10456,8 @@ assets:
     method: user-review-via-packet
     scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
     user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 沿用 2026-11-07 机辅分项评分（有据）
     asset_sha256: a7810a15896b66a696cbcf178686ff6ac55cc4ab74320f0de86d7e73be72a9e8
 - id: ch11-diffpair-four-beats
   chapter: 11
@@ -10719,7 +10749,7 @@ assets:
     事实精度: 5
     构图层级: 5
     风格一致性: 5
-    印刷可读性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-radiated-loop-area.json
   quant_rules:
@@ -10732,6 +10762,8 @@ assets:
     method: user-review-via-packet
     scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
     user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 沿用 2026-11-07 机辅分项评分（有据）
     asset_sha256: 61d4b7e1910a8125673d280ef20d6db87ca55712db34851fecdee1844b24f457
 - id: ch09-tl431-divider-floor
   chapter: 9
@@ -10811,7 +10843,7 @@ assets:
     事实精度: 5
     构图层级: 5
     风格一致性: 5
-    印刷可读性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch13-crystal-neg-resistance.json
   quant_rules:
@@ -10824,6 +10856,8 @@ assets:
     method: user-review-via-packet
     scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
     user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 沿用 2026-11-07 机辅分项评分（有据）
     asset_sha256: c79bd09b3fb5af7b239d59c1e6dd20e9120927e6ceeb047ec580dbba3f3b1a88
 - id: ch13-sampling-quantization
   chapter: 13
@@ -10852,7 +10886,7 @@ assets:
     事实精度: 5
     构图层级: 5
     风格一致性: 5
-    印刷可读性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch13-sampling-quantization.json
   quant_rules:
@@ -10865,6 +10899,8 @@ assets:
     method: user-review-via-packet
     scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
     user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 沿用 2026-11-07 机辅分项评分（有据）
     asset_sha256: d6c8ea411680cf13192ae75ce9e504a42a79558e47212a575034f483dcea3a33
 - id: ch14-pt100-error-budget
   chapter: 14
@@ -10893,7 +10929,7 @@ assets:
     事实精度: 5
     构图层级: 5
     风格一致性: 5
-    印刷可读性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-pt100-error-budget.json
   quant_rules:
@@ -10906,6 +10942,8 @@ assets:
     method: user-review-via-packet
     scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
     user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 沿用 2026-11-07 机辅分项评分（有据）
     asset_sha256: a3875274849f50d1285e243d3742e3129a78a1c240dbe7860879b0196b85e79c
 - id: ch10-555-fault-tree
   chapter: 10
@@ -19511,7 +19549,7 @@ assets:
     事实精度: 5
     构图层级: 5
     风格一致性: 5
-    印刷可读性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch13-buck-ripple.json
   quant_rules:
@@ -19524,6 +19562,8 @@ assets:
     method: user-review-via-packet
     scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
     user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 本次代理分派评估；用户仅二元签署（同意签署）未供分项；印刷可读性 4 = 印刷样张未复验
     asset_sha256: 95275f8a95ad8675555dfd0812ae315ecef97eb807d6120497c1812e3be7d4f1
 - id: ch13-crystal-load-cap
   chapter: 13
@@ -19555,7 +19595,7 @@ assets:
     事实精度: 5
     构图层级: 5
     风格一致性: 5
-    印刷可读性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch13-crystal-load-cap.json
   quant_rules:
@@ -19568,6 +19608,8 @@ assets:
     method: user-review-via-packet
     scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
     user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 本次代理分派评估；用户仅二元签署（同意签署）未供分项；印刷可读性 4 = 印刷样张未复验
     asset_sha256: 63f5e41f4effd23bd93150d7d7f305a6bbc9df27a222c2c1e644dc7c1763f575
 - id: ch15-decap-resonance-v2
   chapter: 15
@@ -19599,7 +19641,7 @@ assets:
     事实精度: 5
     构图层级: 5
     风格一致性: 5
-    印刷可读性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-decap-resonance-v2.json
   quant_rules:
@@ -19612,6 +19654,8 @@ assets:
     method: user-review-via-packet
     scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
     user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 本次代理分派评估；用户仅二元签署（同意签署）未供分项；印刷可读性 4 = 印刷样张未复验
     asset_sha256: f39af101eda7be9e00217da2a871524b0566ffad479e6a4a563f420b50e8ef11
 - id: ch15-line-flight-v2
   chapter: 15
@@ -19643,7 +19687,7 @@ assets:
     事实精度: 5
     构图层级: 5
     风格一致性: 5
-    印刷可读性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-line-flight-v2.json
   quant_rules:
@@ -19656,6 +19700,8 @@ assets:
     method: user-review-via-packet
     scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
     user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 本次代理分派评估；用户仅二元签署（同意签署）未供分项；印刷可读性 4 = 印刷样张未复验
     asset_sha256: aca03cb8ac9ff3e998492f3fc9d12e45d8a5d9540b1046c88c8ac92dbf3060e9
 - id: ch15-filter-modes-v2
   chapter: 15
@@ -19687,7 +19733,7 @@ assets:
     事实精度: 5
     构图层级: 5
     风格一致性: 5
-    印刷可读性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-filter-modes-v2.json
   quant_rules:
@@ -19700,6 +19746,8 @@ assets:
     method: user-review-via-packet
     scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
     user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 本次代理分派评估；用户仅二元签署（同意签署）未供分项；印刷可读性 4 = 印刷样张未复验
     asset_sha256: 23464227049df7baf4771a48c1313fc4957cc076cbf856b750e8cc97fb1d3b6e
 - id: ch15-impedance-geometry-v2
   chapter: 15
@@ -19731,7 +19779,7 @@ assets:
     事实精度: 5
     构图层级: 5
     风格一致性: 5
-    印刷可读性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-impedance-geometry-v2.json
   quant_rules:
@@ -19744,6 +19792,8 @@ assets:
     method: user-review-via-packet
     scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
     user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 本次代理分派评估；用户仅二元签署（同意签署）未供分项；印刷可读性 4 = 印刷样张未复验
     asset_sha256: 7a61b57f54b33b256fc82a172ad7780a67fb7aa50bc1b0dac3c598cb4a917e08
 - id: ch15-input-filter-v2
   chapter: 15
@@ -19776,7 +19826,7 @@ assets:
     事实精度: 5
     构图层级: 5
     风格一致性: 5
-    印刷可读性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-input-filter-v2.json
   quant_rules:
@@ -19789,6 +19839,8 @@ assets:
     method: user-review-via-packet
     scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
     user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 本次代理分派评估；用户仅二元签署（同意签署）未供分项；印刷可读性 4 = 印刷样张未复验
     asset_sha256: cdba9e0f3d712377cedc5affd146344388373252b9ccb3676defb4e5db9de478
 - id: ch15-esd-path-v2
   chapter: 15
@@ -19820,7 +19872,7 @@ assets:
     事实精度: 5
     构图层级: 5
     风格一致性: 5
-    印刷可读性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-esd-path-v2.json
   quant_rules:
@@ -19833,6 +19885,8 @@ assets:
     method: user-review-via-packet
     scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
     user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 本次代理分派评估；用户仅二元签署（同意签署）未供分项；印刷可读性 4 = 印刷样张未复验
     asset_sha256: 4edd0e76f6f474a3c2a1c2faa8415e055b699fb3c791b0057b62361e42b7b244
 - id: ch15-return-area-v2
   chapter: 15
@@ -19864,7 +19918,7 @@ assets:
     事实精度: 5
     构图层级: 5
     风格一致性: 5
-    印刷可读性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-return-area-v2.json
   quant_rules:
@@ -19877,6 +19931,8 @@ assets:
     method: user-review-via-packet
     scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
     user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 本次代理分派评估；用户仅二元签署（同意签署）未供分项；印刷可读性 4 = 印刷样张未复验
     asset_sha256: ba98ddcb95cb222599039ce032a2efa76f0fd3f87bc24efb478916f1851d5a2c
 - id: ch14-pt100-zero-v2
   chapter: 14
@@ -19908,7 +19964,7 @@ assets:
     事实精度: 5
     构图层级: 5
     风格一致性: 5
-    印刷可读性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-pt100-zero-v2.json
   quant_rules:
@@ -19921,6 +19977,8 @@ assets:
     method: user-review-via-packet
     scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
     user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 本次代理分派评估；用户仅二元签署（同意签署）未供分项；印刷可读性 4 = 印刷样张未复验
     asset_sha256: e6739e8c76e5ac9b1dbdb10b1b08283fa35acddaabba5f506676609372cfa58a
 - id: ch14-meas-window-v2
   chapter: 14
@@ -19952,7 +20010,7 @@ assets:
     事实精度: 5
     构图层级: 5
     风格一致性: 5
-    印刷可读性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-meas-window-v2.json
   quant_rules:
@@ -19965,6 +20023,8 @@ assets:
     method: user-review-via-packet
     scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
     user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 本次代理分派评估；用户仅二元签署（同意签署）未供分项；印刷可读性 4 = 印刷样张未复验
     asset_sha256: 0126b6384f5694bbf47002b6354ffa813cc175b2959f9af83cee89f1686d71be
 - id: ch14-buck-budget-v2
   chapter: 14
@@ -19996,7 +20056,7 @@ assets:
     事实精度: 5
     构图层级: 5
     风格一致性: 5
-    印刷可读性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-buck-budget-v2.json
   quant_rules:
@@ -20009,6 +20069,8 @@ assets:
     method: user-review-via-packet
     scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
     user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 本次代理分派评估；用户仅二元签署（同意签署）未供分项；印刷可读性 4 = 印刷样张未复验
     asset_sha256: f2de7859aa3e889d4e083499851626a5087b64acdcf64faa4538d49015ba6de2
 - id: ch14-ratio-cancel-v2
   chapter: 14
@@ -20040,7 +20102,7 @@ assets:
     事实精度: 5
     构图层级: 5
     风格一致性: 5
-    印刷可读性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-ratio-cancel-v2.json
   quant_rules:
@@ -20053,6 +20115,8 @@ assets:
     method: user-review-via-packet
     scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
     user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 本次代理分派评估；用户仅二元签署（同意签署）未供分项；印刷可读性 4 = 印刷样张未复验
     asset_sha256: 700397282d141b008de1f17faeed30337130f8de9bddb954fa2687e151b7b902
 - id: ch14-error-budget-v2
   chapter: 14
@@ -20084,7 +20148,7 @@ assets:
     事实精度: 5
     构图层级: 5
     风格一致性: 5
-    印刷可读性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-error-budget-v2.json
   quant_rules:
@@ -20097,6 +20161,8 @@ assets:
     method: user-review-via-packet
     scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
     user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 本次代理分派评估；用户仅二元签署（同意签署）未供分项；印刷可读性 4 = 印刷样张未复验
     asset_sha256: 42e08e4c500c032b47f9d1a738c7f604c196a214d829f54bf481cfbf955a78ba
 - id: ch14-uniform-sum-v2
   chapter: 14
@@ -20128,7 +20194,7 @@ assets:
     事实精度: 5
     构图层级: 5
     风格一致性: 5
-    印刷可读性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-uniform-sum-v2.json
   quant_rules:
@@ -20141,6 +20207,8 @@ assets:
     method: user-review-via-packet
     scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
     user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 本次代理分派评估；用户仅二元签署（同意签署）未供分项；印刷可读性 4 = 印刷样张未复验
     asset_sha256: e97fb485b03340cc8478f7960eff5ae7dc2362f59e9630498b13af6f54b2095d
 - id: ch14-bom-trace-v2
   chapter: 14
@@ -20172,7 +20240,7 @@ assets:
     事实精度: 5
     构图层级: 5
     风格一致性: 5
-    印刷可读性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-bom-trace-v2.json
   quant_rules:
@@ -20185,6 +20253,8 @@ assets:
     method: user-review-via-packet
     scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
     user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 本次代理分派评估；用户仅二元签署（同意签署）未供分项；印刷可读性 4 = 印刷样张未复验
     asset_sha256: 8afc2bb7261909b5b00e2100e94a6c105db323569cc28401ae055a2cf1354470
 - id: ch14-design-evidence-v2
   chapter: 14
@@ -20216,7 +20286,7 @@ assets:
     事实精度: 5
     构图层级: 5
     风格一致性: 5
-    印刷可读性: 5
+    印刷可读性: 4
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-design-evidence-v2.json
   quant_rules:
@@ -20230,4 +20300,6 @@ assets:
     method: user-review-via-packet
     scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
     user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    scores_by: agent-proxy
+    scores_note: 本次代理分派评估；用户仅二元签署（同意签署）未供分项；印刷可读性 4 = 印刷样张未复验
     asset_sha256: a0e10bf8137a0c8eea60ab441674cb3c6f6fbda92fb954832587f8cb40b77237
