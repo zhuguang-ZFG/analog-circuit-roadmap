@@ -3,7 +3,7 @@
 **闸事实**（analog-book/book/content.py:201-209）：仅 kind=figure 且 status∉{accepted,published} 阻断书构建；动画另有其闸，不挡构建。
 
 **更新（CI sha 闸后）**：曾捕获 77 张字节与签核不符。**69 张 handraw 经 `label()` 精确变换测试，已按 `preserve_review_for_labels` 依法继承原签核**（metadata_amendments 记录 before/after sha）；剩 **8 张 papercut 真内容漂移**维持 generated（见 [review-queue-77.md](review-queue-77.md)）。当前挡构建图 = **36 = 28 + 8**。
-**本包不代签**。签核方式：把 ☐ 改 ✓ 或回列 accepted id；代理据指示翻转 manifest status 并记录 review。
+**本包不代签**。签核方式：把 ✅ 已签 2026-11-10 改 ✓ 或回列 accepted id；代理据指示翻转 manifest status 并记录 review。
 
 ## 分流结论（代理预审，降低签核成本）
 
@@ -18,7 +18,7 @@
 A2 清单：ch13-audio-class-heat, ch13-compliance-ceiling, ch13-crystal-neg-resistance, ch13-current-sense-budget, ch13-sampling-quantization, ch14-pt100-error-budget, ch15-radiated-loop-area, ch16-bandwidth-five, ch16-instrument-trust
 
 ## A1 文本未变·图形待目审
-### 1. ch16-probe-compensation  ☐
+### 1. ch16-probe-compensation  ✅ 已签 2026-11-10
 
 当前（合并后场景重出）：
 
@@ -35,7 +35,7 @@ A2 清单：ch13-audio-class-heat, ch13-compliance-ceiling, ch13-crystal-neg-res
 
 
 ## A2 精度化/去 slop 重渲（对照数字保全审计）
-### 2. ch13-audio-class-heat  ☐
+### 2. ch13-audio-class-heat  ✅ 已签 2026-11-10
 
 ![ch13-audio-class-heat](ch13-audio-class-heat.webp)
 
@@ -44,7 +44,7 @@ A2 清单：ch13-audio-class-heat, ch13-compliance-ceiling, ch13-crystal-neg-res
 - source_facts：docs/p2-03-ch13.md#13.9
 - 像素 diff vs 7c82b1f：18.78% ｜ 精度化：1.12→1.118、16.7→16.667、6.7→6.667、8.94→8.944；−78.5（改散文 π/4）
 
-### 3. ch13-compliance-ceiling  ☐
+### 3. ch13-compliance-ceiling  ✅ 已签 2026-11-10
 
 ![ch13-compliance-ceiling](ch13-compliance-ceiling.webp)
 
@@ -53,7 +53,7 @@ A2 清单：ch13-audio-class-heat, ch13-compliance-ceiling, ch13-crystal-neg-res
 - source_facts：docs/p2-03-ch13.md#13.5.1
 - 像素 diff vs 7c82b1f：15.55% ｜ 明细行收缩 19→13 文本（0.1V/0.7V 保留，审计已验）
 
-### 4. ch13-crystal-neg-resistance  ☐
+### 4. ch13-crystal-neg-resistance  ✅ 已签 2026-11-10
 
 ![ch13-crystal-neg-resistance](ch13-crystal-neg-resistance.webp)
 
@@ -62,7 +62,7 @@ A2 清单：ch13-audio-class-heat, ch13-compliance-ceiling, ch13-crystal-neg-res
 - source_facts：docs/p2-03-ch13.md#13.10c
 - 像素 diff vs 7c82b1f：20.01% ｜ 表格扩充 22→29 文本（13.10c 五行表入图），审计已验
 
-### 5. ch13-current-sense-budget  ☐
+### 5. ch13-current-sense-budget  ✅ 已签 2026-11-10
 
 ![ch13-current-sense-budget](ch13-current-sense-budget.webp)
 
@@ -71,7 +71,7 @@ A2 清单：ch13-audio-class-heat, ch13-compliance-ceiling, ch13-crystal-neg-res
 - source_facts：docs/p2-03-ch13.md#13.8a
 - 像素 diff vs 7c82b1f：14.99% ｜ 去 slop：−3.8/7.6/70/96（LM358 断言撤出，审计项 #3）；+7.96/100
 
-### 6. ch13-sampling-quantization  ☐
+### 6. ch13-sampling-quantization  ✅ 已签 2026-11-10
 
 ![ch13-sampling-quantization](ch13-sampling-quantization.webp)
 
@@ -80,7 +80,7 @@ A2 清单：ch13-audio-class-heat, ch13-compliance-ceiling, ch13-crystal-neg-res
 - source_facts：docs/p2-03-ch13.md#13.6
 - 像素 diff vs 7c82b1f：21.65% ｜ 去 slop：位深例（10/16/18/24/50/500/8）撤出；0.8→0.8057 精确化
 
-### 7. ch14-pt100-error-budget  ☐
+### 7. ch14-pt100-error-budget  ✅ 已签 2026-11-10
 
 ![ch14-pt100-error-budget](ch14-pt100-error-budget.webp)
 
@@ -89,7 +89,7 @@ A2 清单：ch13-audio-class-heat, ch13-compliance-ceiling, ch13-crystal-neg-res
 - source_facts：docs/p3-01-ch14.md#14.12
 - 像素 diff vs 7c82b1f：13.57% ｜ 仅 −10，文本 18→18
 
-### 8. ch15-radiated-loop-area  ☐
+### 8. ch15-radiated-loop-area  ✅ 已签 2026-11-10
 
 ![ch15-radiated-loop-area](ch15-radiated-loop-area.webp)
 
@@ -98,7 +98,7 @@ A2 清单：ch13-audio-class-heat, ch13-compliance-ceiling, ch13-crystal-neg-res
 - source_facts：docs/p3-02-ch15.md#15.6
 - 像素 diff vs 7c82b1f：13.75% ｜ 精度化：29.5→29.54、56→56.36、660→658；审计已验 56.36dBµV/m
 
-### 9. ch16-bandwidth-five  ☐
+### 9. ch16-bandwidth-five  ✅ 已签 2026-11-10
 
 ![ch16-bandwidth-five](ch16-bandwidth-five.webp)
 
@@ -107,7 +107,7 @@ A2 清单：ch13-audio-class-heat, ch13-compliance-ceiling, ch13-crystal-neg-res
 - source_facts：docs/p4-01-ch16.md#16.6
 - 像素 diff vs 7c82b1f：15.87% ｜ +0.7071/0.9806/1.94（−3dB/带宽积精确值，散文 p4-01-ch16 命中 2 处），−10
 
-### 10. ch16-instrument-trust  ☐
+### 10. ch16-instrument-trust  ✅ 已签 2026-11-10
 
 ![ch16-instrument-trust](ch16-instrument-trust.webp)
 
@@ -118,7 +118,7 @@ A2 清单：ch13-audio-class-heat, ch13-compliance-ceiling, ch13-crystal-neg-res
 
 
 ## A3 图内新增算例（散文一致性已核）
-### 11. ch15-trace-drop  ☐
+### 11. ch15-trace-drop  ✅ 已签 2026-11-10
 
 ![ch15-trace-drop](ch15-trace-drop.webp)
 
@@ -129,7 +129,7 @@ A2 清单：ch13-audio-class-heat, ch13-compliance-ceiling, ch13-crystal-neg-res
 
 
 ## B 新图（无前置，全量目审）
-### 12. ch13-buck-ripple  ☐
+### 12. ch13-buck-ripple  ✅ 已签 2026-11-10
 
 ![ch13-buck-ripple](ch13-buck-ripple.webp)
 
@@ -138,7 +138,7 @@ A2 清单：ch13-audio-class-heat, ch13-compliance-ceiling, ch13-crystal-neg-res
 - source_facts：docs/p2-03-ch13.md#13.2c
 - 像素 diff vs 7c82b1f：（无前置） ｜ 新图
 
-### 13. ch13-crystal-load-cap  ☐
+### 13. ch13-crystal-load-cap  ✅ 已签 2026-11-10
 
 ![ch13-crystal-load-cap](ch13-crystal-load-cap.webp)
 
@@ -147,7 +147,7 @@ A2 清单：ch13-audio-class-heat, ch13-compliance-ceiling, ch13-crystal-neg-res
 - source_facts：docs/p2-03-ch13.md#13.10
 - 像素 diff vs 7c82b1f：（无前置） ｜ 新图
 
-### 14. ch14-bom-trace-v2  ☐
+### 14. ch14-bom-trace-v2  ✅ 已签 2026-11-10
 
 ![ch14-bom-trace-v2](ch14-bom-trace-v2.webp)
 
@@ -156,7 +156,7 @@ A2 清单：ch13-audio-class-heat, ch13-compliance-ceiling, ch13-crystal-neg-res
 - source_facts：docs/p3-01-ch14.md#14.12
 - 像素 diff vs 7c82b1f：（无前置） ｜ 新图
 
-### 15. ch14-buck-budget-v2  ☐
+### 15. ch14-buck-budget-v2  ✅ 已签 2026-11-10
 
 ![ch14-buck-budget-v2](ch14-buck-budget-v2.webp)
 
@@ -165,7 +165,7 @@ A2 清单：ch13-audio-class-heat, ch13-compliance-ceiling, ch13-crystal-neg-res
 - source_facts：docs/p3-01-ch14.md#14.8
 - 像素 diff vs 7c82b1f：（无前置） ｜ 新图
 
-### 16. ch14-design-evidence-v2  ☐
+### 16. ch14-design-evidence-v2  ✅ 已签 2026-11-10
 
 ![ch14-design-evidence-v2](ch14-design-evidence-v2.webp)
 
@@ -174,7 +174,7 @@ A2 清单：ch13-audio-class-heat, ch13-compliance-ceiling, ch13-crystal-neg-res
 - source_facts：docs/p3-01-ch14.md#设计说明作业（精通出口）
 - 像素 diff vs 7c82b1f：（无前置） ｜ 新图
 
-### 17. ch14-error-budget-v2  ☐
+### 17. ch14-error-budget-v2  ✅ 已签 2026-11-10
 
 ![ch14-error-budget-v2](ch14-error-budget-v2.webp)
 
@@ -183,7 +183,7 @@ A2 清单：ch13-audio-class-heat, ch13-compliance-ceiling, ch13-crystal-neg-res
 - source_facts：docs/p3-01-ch14.md#14.9
 - 像素 diff vs 7c82b1f：（无前置） ｜ 新图
 
-### 18. ch14-meas-window-v2  ☐
+### 18. ch14-meas-window-v2  ✅ 已签 2026-11-10
 
 ![ch14-meas-window-v2](ch14-meas-window-v2.webp)
 
@@ -192,7 +192,7 @@ A2 清单：ch13-audio-class-heat, ch13-compliance-ceiling, ch13-crystal-neg-res
 - source_facts：docs/p3-01-ch14.md#14.6
 - 像素 diff vs 7c82b1f：（无前置） ｜ 新图
 
-### 19. ch14-pt100-zero-v2  ☐
+### 19. ch14-pt100-zero-v2  ✅ 已签 2026-11-10
 
 ![ch14-pt100-zero-v2](ch14-pt100-zero-v2.webp)
 
@@ -201,7 +201,7 @@ A2 清单：ch13-audio-class-heat, ch13-compliance-ceiling, ch13-crystal-neg-res
 - source_facts：docs/p3-01-ch14.md#14.4
 - 像素 diff vs 7c82b1f：（无前置） ｜ 新图
 
-### 20. ch14-ratio-cancel-v2  ☐
+### 20. ch14-ratio-cancel-v2  ✅ 已签 2026-11-10
 
 ![ch14-ratio-cancel-v2](ch14-ratio-cancel-v2.webp)
 
@@ -210,7 +210,7 @@ A2 清单：ch13-audio-class-heat, ch13-compliance-ceiling, ch13-crystal-neg-res
 - source_facts：docs/p3-01-ch14.md#14.9
 - 像素 diff vs 7c82b1f：（无前置） ｜ 新图
 
-### 21. ch14-uniform-sum-v2  ☐
+### 21. ch14-uniform-sum-v2  ✅ 已签 2026-11-10
 
 ![ch14-uniform-sum-v2](ch14-uniform-sum-v2.webp)
 
@@ -219,7 +219,7 @@ A2 清单：ch13-audio-class-heat, ch13-compliance-ceiling, ch13-crystal-neg-res
 - source_facts：docs/p3-01-ch14.md#14.10
 - 像素 diff vs 7c82b1f：（无前置） ｜ 新图
 
-### 22. ch15-decap-resonance-v2  ☐
+### 22. ch15-decap-resonance-v2  ✅ 已签 2026-11-10
 
 ![ch15-decap-resonance-v2](ch15-decap-resonance-v2.webp)
 
@@ -228,7 +228,7 @@ A2 清单：ch13-audio-class-heat, ch13-compliance-ceiling, ch13-crystal-neg-res
 - source_facts：docs/p3-02-ch15.md#15.1
 - 像素 diff vs 7c82b1f：（无前置） ｜ 新图
 
-### 23. ch15-esd-path-v2  ☐
+### 23. ch15-esd-path-v2  ✅ 已签 2026-11-10
 
 ![ch15-esd-path-v2](ch15-esd-path-v2.webp)
 
@@ -237,7 +237,7 @@ A2 清单：ch13-audio-class-heat, ch13-compliance-ceiling, ch13-crystal-neg-res
 - source_facts：docs/p3-02-ch15.md#15.6
 - 像素 diff vs 7c82b1f：（无前置） ｜ 新图
 
-### 24. ch15-filter-modes-v2  ☐
+### 24. ch15-filter-modes-v2  ✅ 已签 2026-11-10
 
 ![ch15-filter-modes-v2](ch15-filter-modes-v2.webp)
 
@@ -246,7 +246,7 @@ A2 清单：ch13-audio-class-heat, ch13-compliance-ceiling, ch13-crystal-neg-res
 - source_facts：docs/p3-02-ch15.md#15.6
 - 像素 diff vs 7c82b1f：（无前置） ｜ 新图
 
-### 25. ch15-impedance-geometry-v2  ☐
+### 25. ch15-impedance-geometry-v2  ✅ 已签 2026-11-10
 
 ![ch15-impedance-geometry-v2](ch15-impedance-geometry-v2.webp)
 
@@ -255,7 +255,7 @@ A2 清单：ch13-audio-class-heat, ch13-compliance-ceiling, ch13-crystal-neg-res
 - source_facts：docs/p3-02-ch15.md#15.3
 - 像素 diff vs 7c82b1f：（无前置） ｜ 新图
 
-### 26. ch15-input-filter-v2  ☐
+### 26. ch15-input-filter-v2  ✅ 已签 2026-11-10
 
 ![ch15-input-filter-v2](ch15-input-filter-v2.webp)
 
@@ -264,7 +264,7 @@ A2 清单：ch13-audio-class-heat, ch13-compliance-ceiling, ch13-crystal-neg-res
 - source_facts：docs/p3-02-ch15.md#15.6
 - 像素 diff vs 7c82b1f：（无前置） ｜ 新图
 
-### 27. ch15-line-flight-v2  ☐
+### 27. ch15-line-flight-v2  ✅ 已签 2026-11-10
 
 ![ch15-line-flight-v2](ch15-line-flight-v2.webp)
 
@@ -273,7 +273,7 @@ A2 清单：ch13-audio-class-heat, ch13-compliance-ceiling, ch13-crystal-neg-res
 - source_facts：docs/p3-02-ch15.md#15.3
 - 像素 diff vs 7c82b1f：（无前置） ｜ 新图
 
-### 28. ch15-return-area-v2  ☐
+### 28. ch15-return-area-v2  ✅ 已签 2026-11-10
 
 ![ch15-return-area-v2](ch15-return-area-v2.webp)
 

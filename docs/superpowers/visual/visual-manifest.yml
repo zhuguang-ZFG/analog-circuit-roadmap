@@ -6155,10 +6155,18 @@ assets:
   output: assets/figures-v2/ch14-ltspice-five.svg
   print_fallback: assets/figures-v2/ch14-ltspice-five-print.svg
   alt: 五步卡：.op 先看直流工作点，.dc 扫传输特性，.tran 看时域波形，.ac 量频域裕度，.step 扫参数与温度极限；顺序是先工作点后动态、先理想后真实。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 5
   generator: python-svg-papercut-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-ltspice-five.json
   quant_rules:
@@ -6171,6 +6179,15 @@ assets:
     - label
     - dash
   preview: assets/figures-v2/ch14-ltspice-five.webp
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」；内容漂移复核（对照签名版）
+    asset_sha256: 429f41a448ae2a8d3b9e45fa1822c1a38d2c8c33c0d96a154df3f94bc2ee28ba
 - id: ch14-tolerance-three
   chapter: 14
   kind: figure
@@ -6190,10 +6207,18 @@ assets:
   output: assets/figures-v2/ch14-tolerance-three.svg
   print_fallback: assets/figures-v2/ch14-tolerance-three-print.svg
   alt: 左右两栏：WC 把三个 ±1% 同向相加得 3%，适合车规医疗；RSS 把 ±1% 按均匀分布折成 σ=0.577%，三项合成 1σ=1.0%、3σ=3.0%，适合消费类良率。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 5
   generator: python-svg-papercut-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-tolerance-three.json
   quant_rules:
@@ -6206,6 +6231,15 @@ assets:
     - label
     - dash
   preview: assets/figures-v2/ch14-tolerance-three.webp
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」；内容漂移复核（对照签名版）
+    asset_sha256: 68cd7c100d10bc02492e9a81436ca9fe741fb4c443fdb3c5e66f4f4d4ba11939
 - id: ch14-dft-testpoints
   chapter: 14
   kind: figure
@@ -6226,10 +6260,18 @@ assets:
   print_fallback: assets/figures-v2/ch14-dft-testpoints-print.svg
   alt: 左右两栏：左栏列应留测试点的位置与机械要求（TP 直径至少 1 mm、间距至少 2.54 mm、沉金）；右栏区分 ICT 抓连接、FCT 抓功能，高速节点改用测试过孔，量产用 50 到 100
     块小批看分布。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 5
   generator: python-svg-papercut-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-dft-testpoints.json
   quant_rules:
@@ -6242,6 +6284,15 @@ assets:
     - label
     - dash
   preview: assets/figures-v2/ch14-dft-testpoints.webp
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」；内容漂移复核（对照签名版）
+    asset_sha256: 897f46dfc22b26153bdd3942edff9a319e269108d69dadbe19a6df538e48cd9e
 - id: ch18-assumption-tree
   chapter: 18
   kind: figure
@@ -6446,15 +6497,31 @@ assets:
   print_fallback: assets/figures-v2/ch15-trace-drop-print.svg
   preview: assets/figures-v2/ch15-trace-drop.webp
   alt: 走线电阻按电阻率乘长度除截面积计算：0.5 毫米宽、35 微米厚、8 厘米长，单程电阻 77.71 毫欧；300 毫安压降 23.31 毫伏、1 安培压降 77.71 毫伏。示例忽略温升、过孔与接触电阻，快速瞬态另加电感压降。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-trace-drop.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    asset_sha256: a1a51d73ed806eaf955975dd103050ffde57f30a5a8aa8f7e9040068c830db8f
 - id: ch13-h-bridge-states
   chapter: 13
   kind: figure
@@ -6476,10 +6543,18 @@ assets:
   preview: assets/figures-v2/ch13-h-bridge-states.webp
   alt: 左右两栏：左栏四拍是正转 Q1 与 Q4 导通、反转 Q2 与 Q3 导通、全关滑行时电感电流经体二极管回电源、同臂 Q1 与 Q2 齐开会毫秒级烧管；右栏是 1 到 2 微秒死区、体二极管兜底、高侧自举、DRV8833
     或 L298 集成驱动。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 5
   generator: python-svg-papercut-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch13-h-bridge-states.json
   quant_rules:
@@ -6491,6 +6566,15 @@ assets:
     - marker
     - label
     - dash
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」；内容漂移复核（对照签名版）
+    asset_sha256: 56d2bea4b4548d052465513986adeeaf0890f36de8cd9fabd67e877c88a53224
 - id: ch13-current-sense-sides
   chapter: 13
   kind: figure
@@ -6511,10 +6595,18 @@ assets:
   print_fallback: assets/figures-v2/ch13-current-sense-sides-print.svg
   preview: assets/figures-v2/ch13-current-sense-sides.webp
   alt: 左右两栏：低侧检测共模接近 0 V、会把负载地抬高 100 mV、测不到对地短路，适合精度优先的单路负载；高侧检测共模为 12 或 24 或 48 V、地完整、能测对地短路，适合保护优先的多路共地负载。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 5
   generator: python-svg-papercut-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch13-current-sense-sides.json
   quant_rules:
@@ -6526,6 +6618,15 @@ assets:
     - marker
     - label
     - dash
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」；内容漂移复核（对照签名版）
+    asset_sha256: 09bee2386adb2b5fd581788c2df822f3714b24afe50d504975bbcf71927b4c18
 - id: ch13-opto-ctr
   chapter: 13
   kind: figure
@@ -6548,10 +6649,18 @@ assets:
   preview: assets/figures-v2/ch13-opto-ctr.webp
   alt: 左右两栏：左栏三条隔离路线是光耦、数字隔离器、隔离放大器，共同点是没有欧姆通路；右栏 CTR 三个坑是分档 50% 到 600% 要按最小值、100 摄氏度与 20 毫安下十年可能掉一半、驱动至少留
     2 倍余量，设计式为集电极电流等于正向电流乘 CTR。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 5
   generator: python-svg-papercut-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch13-opto-ctr.json
   quant_rules:
@@ -6563,6 +6672,15 @@ assets:
     - marker
     - label
     - dash
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」；内容漂移复核（对照签名版）
+    asset_sha256: a081583a9c7266c88443b3fd2e4713f56934ebdc3e4daf934162312502ca289e
 - id: ch15-layout-ten-questions
   chapter: 15
   kind: figure
@@ -7176,15 +7294,31 @@ assets:
   preview: assets/figures-v2/ch16-instrument-trust.webp
   alt: 仪器检查单：高阻节点先用乘十档、测完电流插回电压孔、低压板按负载设置限流；普通接地探头确认参考地后先地夹后探针。右栏示例内阻为微安档 100 欧姆、毫安档 2 欧姆；100 毫安流过 2 欧姆会产生
     0.2 伏压降，实际值查仪表手册。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch16-instrument-trust.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    asset_sha256: 28fb173be46e74fa0ee7d26010e55a96c6391fb8f94fc4e453f98488792c1991
 - id: ch16-postmortem-split
   chapter: 16
   kind: figure
@@ -7297,10 +7431,18 @@ assets:
   print_fallback: assets/figures-v2/ch15-via-parallel-print.svg
   preview: assets/figures-v2/ch15-via-parallel.webp
   alt: 纸层量级图：单个 0.3 毫米过孔约 1.3 纳亨，四个并联约 0.25 纳亨，3 安培换层至少 3 只；信号过孔每孔都带寄生，应少打并成对打。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 5
   generator: python-svg-papercut-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-via-parallel.json
   quant_rules:
@@ -7312,6 +7454,15 @@ assets:
     - marker
     - label
     - dash
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」；内容漂移复核（对照签名版）
+    asset_sha256: a70c8c9b553f6aa6d1b401fb69188d066dc878f3605a94c157f0c0b7a998916f
 - id: ch15-crosstalk-3w
   chapter: 15
   kind: figure
@@ -7332,10 +7483,18 @@ assets:
   print_fallback: assets/figures-v2/ch15-crosstalk-3w-print.svg
   preview: assets/figures-v2/ch15-crosstalk-3w.webp
   alt: 左右两栏：左栏三招是拉开间距使容性耦合减半、3W 规则把串扰压到 5% 以下、缩短平行长度并用 5 到 10 毫米间距的地孔栅栏包地；右栏边界是地线必须低阻、线宽至少为被保护线两倍、包地只防电场耦合，磁场耦合要靠缩环路或拉距离。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 5
   generator: python-svg-papercut-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-crosstalk-3w.json
   quant_rules:
@@ -7347,6 +7506,15 @@ assets:
     - marker
     - label
     - dash
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」；内容漂移复核（对照签名版）
+    asset_sha256: c725b49ee2f20f54ce8d384fd1f1037227f0c12eb0936e5257b3405d6c7bb755
 - id: ch15-testpoint-rules
   chapter: 15
   kind: figure
@@ -7628,15 +7796,31 @@ assets:
   print_fallback: assets/figures-v2/ch16-probe-compensation-print.svg
   preview: assets/figures-v2/ch16-probe-compensation.webp
   alt: 手绘三种校准方波：过补偿顶角过冲、欠补偿顶角圆塌、正确方角平顶；提示补偿没调对时，看到的过冲或塌陷可能来自探头而不是电路。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch16-probe-compensation.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    asset_sha256: 4d851474a592582a3e5b566eb4297e427dc28ccfda64fc81daad173beebed993
 - id: ch15-adc-straddle
   chapter: 15
   kind: figure
@@ -7794,15 +7978,31 @@ assets:
   print_fallback: assets/figures-v2/ch16-bandwidth-five-print.svg
   preview: assets/figures-v2/ch16-bandwidth-five.webp
   alt: 一阶低通正弦幅值比较：测量链带宽与信号频率之比为 1 时幅值比 0.7071，为 5 时幅值比 0.9806，误差约 1.94%。虚线输入、实线测得，已对齐相位仅比较幅值；20 MHz 限带不代表高频尖峰消失。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch16-bandwidth-five.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    asset_sha256: ab73cb4ccf8f4021ef6421ec387af0de586bf3941ecf8c436e4862415f6bc8d1
 - id: ch01-e24-ladder
   chapter: 1
   kind: figure
@@ -9063,15 +9263,31 @@ assets:
   print_fallback: assets/figures-v2/ch13-compliance-ceiling-print.svg
   preview: assets/figures-v2/ch13-compliance-ceiling.webp
   alt: 三种供电扣除采样和指定调整管余量后得到不同的最大负载，不把余量当器件通用压差。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch13-compliance-ceiling.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    asset_sha256: 4db9219f83388de2f53d77663815f52a40ca6e6f4023b45c8b2c5321b6fc6150
 - id: ch13-current-sense-budget
   chapter: 13
   kind: figure
@@ -9088,15 +9304,31 @@ assets:
   print_fallback: assets/figures-v2/ch13-current-sense-budget-print.svg
   preview: assets/figures-v2/ch13-current-sense-budget.webp
   alt: 额定与堵转电流四倍、热耗十六倍，封装额定不能替代瞬态热预算，并核差分滤波的两只串阻。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch13-current-sense-budget.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    asset_sha256: cacf295c9da31717b35e4a409b9c1865612737f2d0bfd85490a8c4cdc92e2eb6
 - id: ch01-electrolytic-life
   chapter: 1
   kind: figure
@@ -10172,15 +10404,31 @@ assets:
   print_fallback: assets/figures-v2/ch13-audio-class-heat-print.svg
   preview: assets/figures-v2/ch13-audio-class-heat.webp
   alt: 先算负载电压电流，再在两种明确假定效率下比较热耗，不保证同音质或封装大小。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch13-audio-class-heat.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    asset_sha256: a7810a15896b66a696cbcf178686ff6ac55cc4ab74320f0de86d7e73be72a9e8
 - id: ch11-diffpair-four-beats
   chapter: 11
   kind: figure
@@ -10460,15 +10708,31 @@ assets:
   preview: assets/figures-v2/ch15-radiated-loop-area.webp
   alt: 自由空间小环最大方向远场估算：100MHz、10mA、3m，面积 15 平方厘米时 658 微伏每米、56.36dBµV/m；面积降到 0.5 平方厘米且电流不变时约 21.93 微伏每米、26.82dBµV/m，下降
     29.54dB。40dBµV/m 只是比较线，不是所有标准的限值。忽略地面、机壳与电缆，模型不能代替认证。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-radiated-loop-area.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    asset_sha256: 61d4b7e1910a8125673d280ef20d6db87ca55712db34851fecdee1844b24f457
 - id: ch09-tl431-divider-floor
   chapter: 9
   kind: figure
@@ -10536,15 +10800,31 @@ assets:
   print_fallback: assets/figures-v2/ch13-crystal-neg-resistance-print.svg
   preview: assets/figures-v2/ch13-crystal-neg-resistance.webp
   alt: 五组指定模型参数分别算跨导，负阻取绝对值，驱动功率使用动态支路电流。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch13-crystal-neg-resistance.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    asset_sha256: c79bd09b3fb5af7b239d59c1e6dd20e9120927e6ceeb047ec580dbba3f3b1a88
 - id: ch13-sampling-quantization
   chapter: 13
   kind: figure
@@ -10561,15 +10841,31 @@ assets:
   print_fallback: assets/figures-v2/ch13-sampling-quantization-print.svg
   preview: assets/figures-v2/ch13-sampling-quantization.webp
   alt: 流程把时间采样和幅度量化分开，指出恒定输入可以输出固定码，位数不保证直流或动态精度。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch13-sampling-quantization.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    asset_sha256: d6c8ea411680cf13192ae75ce9e504a42a79558e47212a575034f483dcea3a33
 - id: ch14-pt100-error-budget
   chapter: 14
   kind: figure
@@ -10586,15 +10882,31 @@ assets:
   print_fallback: assets/figures-v2/ch14-pt100-error-budget-print.svg
   preview: assets/figures-v2/ch14-pt100-error-budget.webp
   alt: 先统一误差单位：同源参考的初始误差和共同温漂可以约掉，传感自热、放大误差及独立路径残差仍需预算。演示两项0.04摄氏度不得重复代表同一共同基准温漂；设计从ADC量程倒推，测试从激励开始逐级验证。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-pt100-error-budget.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    asset_sha256: a3875274849f50d1285e243d3742e3129a78a1c240dbe7860879b0196b85e79c
 - id: ch10-555-fault-tree
   chapter: 10
   kind: figure
@@ -19188,15 +19500,31 @@ assets:
   print_fallback: assets/figures-v2/ch13-buck-ripple-print.svg
   preview: assets/figures-v2/ch13-buck-ripple.webp
   alt: 导通与续流共享电感，列出同一算例的峰谷电流，说明理想模型之外还须核寄生与热耗。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch13-buck-ripple.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    asset_sha256: 95275f8a95ad8675555dfd0812ae315ecef97eb807d6120497c1812e3be7d4f1
 - id: ch13-crystal-load-cap
   chapter: 13
   kind: figure
@@ -19216,15 +19544,31 @@ assets:
   print_fallback: assets/figures-v2/ch13-crystal-load-cap-print.svg
   preview: assets/figures-v2/ch13-crystal-load-cap.webp
   alt: 外部 Ca、Cb 与动态 Cm 分开命名，两只二十二皮法及四皮法寄生合成十五皮法，须匹配指定晶体。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch13-crystal-load-cap.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    asset_sha256: 63f5e41f4effd23bd93150d7d7f305a6bbc9df27a222c2c1e644dc7c1763f575
 - id: ch15-decap-resonance-v2
   chapter: 15
   kind: figure
@@ -19244,15 +19588,31 @@ assets:
   print_fallback: assets/figures-v2/ch15-decap-resonance-v2-print.svg
   preview: assets/figures-v2/ch15-decap-resonance-v2.webp
   alt: 同一 100nF 电容，串联电感 1、5、8、10nH 的理想谐振频率分别约 15.92、7.12、5.63、5.03MHz；轴从零起，实际去耦还需比较 ESR 与目标阻抗。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-decap-resonance-v2.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    asset_sha256: f39af101eda7be9e00217da2a871524b0566ffad479e6a4a563f420b50e8ef11
 - id: ch15-line-flight-v2
   chapter: 15
   kind: figure
@@ -19272,15 +19632,31 @@ assets:
   print_fallback: assets/figures-v2/ch15-line-flight-v2-print.svg
   preview: assets/figures-v2/ch15-line-flight-v2.webp
   alt: 传播速度示意 15cm/ns，1ns 与 20ns 边沿的六分之一传播长度分别为 2.5cm、50cm；两条归一时间轴显示同样的六分之一比例，不作为协议合规保证。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-line-flight-v2.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    asset_sha256: aca03cb8ac9ff3e998492f3fc9d12e45d8a5d9540b1046c88c8ac92dbf3060e9
 - id: ch15-filter-modes-v2
   chapter: 15
   kind: figure
@@ -19300,15 +19676,31 @@ assets:
   print_fallback: assets/figures-v2/ch15-filter-modes-v2-print.svg
   preview: assets/figures-v2/ch15-filter-modes-v2.webp
   alt: 左图差模两线电流反向，右图共模同向经寄生或机壳路径返回。两线同向穿过电流钳测到代数和等于两倍共模分量；不同模态使用不同滤波和回流设计。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-filter-modes-v2.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    asset_sha256: 23464227049df7baf4771a48c1313fc4957cc076cbf856b750e8cc97fb1d3b6e
 - id: ch15-impedance-geometry-v2
   chapter: 15
   kind: figure
@@ -19328,15 +19720,31 @@ assets:
   print_fallback: assets/figures-v2/ch15-impedance-geometry-v2-print.svg
   preview: assets/figures-v2/ch15-impedance-geometry-v2.webp
   alt: 同一 50 欧姆微带近似式，介电常数 4.2、铜厚 0.035mm；参考面距离 1.6mm 与 0.2mm 时线宽约 3.022mm 与 0.339mm。剖面不按比例；双层板可控阻抗，差分阻抗需另算耦合。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-impedance-geometry-v2.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    asset_sha256: 7a61b57f54b33b256fc82a172ad7780a67fb7aa50bc1b0dac3c598cb4a917e08
 - id: ch15-input-filter-v2
   chapter: 15
   kind: figure
@@ -19357,15 +19765,31 @@ assets:
   preview: assets/figures-v2/ch15-input-filter-v2.webp
   alt: 电源经 C-L-C 滤波接 Buck，两只电容各 10µF、电感 1µH；理想低源阻时 L 与输出侧电容谐振约 50.33kHz。500kHz 衰减至少 40dB 是待验证目标，不是 LC
     选值的保证。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-input-filter-v2.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    asset_sha256: cdba9e0f3d712377cedc5affd146344388373252b9ccb3676defb4e5db9de478
 - id: ch15-esd-path-v2
   chapter: 15
   kind: figure
@@ -19385,15 +19809,31 @@ assets:
   print_fallback: assets/figures-v2/ch15-esd-path-v2-print.svg
   preview: assets/figures-v2/ch15-esd-path-v2.webp
   alt: 固定电流变化率 30A/ns，串联电感 50、5、1nH 对应 1500、150、30V 压降；柱长按电感比例。此模型不等于芯片残压或通过认证的保证。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-esd-path-v2.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    asset_sha256: 4edd0e76f6f474a3c2a1c2faa8415e055b699fb3c791b0057b62361e42b7b244
 - id: ch15-return-area-v2
   chapter: 15
   kind: figure
@@ -19413,15 +19853,31 @@ assets:
   print_fallback: assets/figures-v2/ch15-return-area-v2-print.svg
   preview: assets/figures-v2/ch15-return-area-v2.webp
   alt: 同一条 5cm 走线，回程距离示意 1mm 或 3cm，矩形面积为 0.5或15平方厘米。固定频率和电流的小环远场幅值比30，即29.54dB；不据此推算电感或近场探头读数。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch15-return-area-v2.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    asset_sha256: ba98ddcb95cb222599039ce032a2efa76f0fd3f87bc24efb478916f1851d5a2c
 - id: ch14-pt100-zero-v2
   chapter: 14
   kind: figure
@@ -19441,15 +19897,31 @@ assets:
   print_fallback: assets/figures-v2/ch14-pt100-zero-v2-print.svg
   preview: assets/figures-v2/ch14-pt100-zero-v2.webp
   alt: 1mA 激励下 100至138.5mV 直接乘40得4至5.54V，超出2.048V量程；先扣100mV再放大得0至1.54V理想增量，实际须加基线偏置并核共模与输出余量。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-pt100-zero-v2.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    asset_sha256: e6739e8c76e5ac9b1dbdb10b1b08283fa35acddaabba5f506676609372cfa58a
 - id: ch14-meas-window-v2
   chapter: 14
   kind: figure
@@ -19469,15 +19941,31 @@ assets:
   print_fallback: assets/figures-v2/ch14-meas-window-v2-print.svg
   preview: assets/figures-v2/ch14-meas-window-v2.webp
   alt: 阶跃时刻后的窗口包含峰值和稳定区域；峰值与稳态测量区间分开，建立时间要求进入并留在容差带，AC线性化不能验证大信号饱和。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-meas-window-v2.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    asset_sha256: 0126b6384f5694bbf47002b6354ffa813cc175b2959f9af83cee89f1686d71be
 - id: ch14-buck-budget-v2
   chapter: 14
   kind: figure
@@ -19497,15 +19985,31 @@ assets:
   print_fallback: assets/figures-v2/ch14-buck-budget-v2-print.svg
   preview: assets/figures-v2/ch14-buck-budget-v2.webp
   alt: 电阻比为一时两只电阻相对灵敏度分别正负二分之一；限值按3sigma且独立的演示模型，电阻、参考初始、温漂、负载贡献为0.2357、0.3333、0.0667、0.1667%，总sigma约0.4460%，一阶WC为2.7%。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-buck-budget-v2.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    asset_sha256: f2de7859aa3e889d4e083499851626a5087b64acdcf64faa4538d49015ba6de2
 - id: ch14-ratio-cancel-v2
   chapter: 14
   kind: figure
@@ -19525,15 +20029,31 @@ assets:
   print_fallback: assets/figures-v2/ch14-ratio-cancel-v2-print.svg
   preview: assets/figures-v2/ch14-ratio-cancel-v2.webp
   alt: 共同参考电压用于激励和ADC参考，理想归一化码等于RPT除以Rset；共同电压因子约掉，设定电阻、引线、自热、失调及独立噪声仍须预算。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-ratio-cancel-v2.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    asset_sha256: 700397282d141b008de1f17faeed30337130f8de9bddb954fa2687e151b7b902
 - id: ch14-error-budget-v2
   chapter: 14
   kind: figure
@@ -19553,15 +20073,31 @@ assets:
   print_fallback: assets/figures-v2/ch14-error-budget-v2-print.svg
   preview: assets/figures-v2/ch14-error-budget-v2.webp
   alt: 六项0.03、0.04、0.05、0.005、0.01、0.04摄氏度按独立1sigma解释时RSS为0.082006，3sigma为0.246018；若改作误差上限则WC为0.175，不能混用。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-error-budget-v2.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    asset_sha256: 42e08e4c500c032b47f9d1a738c7f604c196a214d829f54bf481cfbf955a78ba
 - id: ch14-uniform-sum-v2
   chapter: 14
   kind: figure
@@ -19581,15 +20117,31 @@ assets:
   print_fallback: assets/figures-v2/ch14-uniform-sum-v2-print.svg
   preview: assets/figures-v2/ch14-uniform-sum-v2.webp
   alt: 三个独立正负1%均匀误差之和的概率密度，范围正负3%，sigma为1%；正负2%内概率23/24约95.83%，正负4%目标下WC和3sigma都通过。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-uniform-sum-v2.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    asset_sha256: e97fb485b03340cc8478f7960eff5ae7dc2362f59e9630498b13af6f54b2095d
 - id: ch14-bom-trace-v2
   chapter: 14
   kind: figure
@@ -19609,15 +20161,31 @@ assets:
   print_fallback: assets/figures-v2/ch14-bom-trace-v2-print.svg
   preview: assets/figures-v2/ch14-bom-trace-v2.webp
   alt: 三行对应：0.1%增益电阻到40倍增益及校准，10ppm每摄氏度参考链到残差预算及温箱测试，保护器件到钳位回流及板级ESD测试；封装和替代料一起核对。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-bom-trace-v2.json
   quant_rules:
     layer_encodes_value: false
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    asset_sha256: 8afc2bb7261909b5b00e2100e94a6c105db323569cc28401ae055a2cf1354470
 - id: ch14-design-evidence-v2
   chapter: 14
   kind: figure
@@ -19637,12 +20205,29 @@ assets:
   print_fallback: assets/figures-v2/ch14-design-evidence-v2-print.svg
   preview: assets/figures-v2/ch14-design-evidence-v2.webp
   alt: 指标、选型、极限工况、测试、失败预案五项逐行对应验证材料；至少三个corner；PT100练习0到100摄氏度、0.1摄氏度分辨力和3.3伏供电，不把分辨力当准确度。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    教学必要性: 5
+    事实精度: 5
+    构图层级: 5
+    风格一致性: 5
+    印刷可读性: 5
   generator: python-handraw-v1
   composition: docs/superpowers/visual/reviews/task8-2026-11-05/ch14-design-evidence-v2.json
   quant_rules:
     layer_encodes_value: false
+
+  reviewed_by: zhuguang-ZFG
+  review_method: user-review-via-packet
+  review_evidence: docs/superpowers/visual/reviews/consolidation-2026-11-10/index.md
+  review_record:
+    reviewer: zhuguang-ZFG
+    method: user-review-via-packet
+    scope: consolidation-2026-11-10 36 图签核包（A1/A2/A3/B/C 全组）
+    user_chapter_acceptance: 2026-11-10 用户「同意签署」
+    asset_sha256: a0e10bf8137a0c8eea60ab441674cb3c6f6fbda92fb954832587f8cb40b77237
