@@ -15,7 +15,10 @@ jobs:
     runs-on: ubuntu-latest
     # 整书已长到 60 页 / 393 张内嵌图，装配与审计在共享 runner 上 25–35 分钟
     # 属正常波动；30 分钟会把慢 runner 的正常构建掐成 cancelled。
-    timeout-minutes: 60
+    # 2026-11-10 两次实测：与 book-print 同刻开跑时整条 book 作业到 60 分钟
+    # 被 cancelled（pages 的 build/deploy 因此 skipped）；单独重跑 36.5 分钟
+    # 通过。上限留到 90 分钟，覆盖并发慢 runner，不改变任何产物契约。
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
