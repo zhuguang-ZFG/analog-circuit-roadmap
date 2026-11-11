@@ -50,6 +50,21 @@ class AnimationTests(unittest.TestCase):
         with self.assertRaisesRegex(BookError, "不存在"):
             data.validate_animations(broken, static_root=root)
 
+    def test_accepts_svg_v2_assets(self):
+        items, _, root = fixture_data()
+        v2 = root / "assets" / "svg-v2"
+        v2.mkdir()
+        (v2 / "fixture.svg").write_text("<svg/>", encoding="utf-8")
+        items[0]["static_svg"] = "assets/svg-v2/fixture.svg"
+        data.validate_animations(items, static_root=root)
+
+    def test_generator_parses_svg_v2_img(self):
+        import build_book_data
+        line = '<img src="assets/svg-v2/ch09-bandgap-balance-v2.svg" width="720" alt="x">'
+        match = build_book_data.DEMO_IMG.search(line)
+        self.assertIsNotNone(match)
+        self.assertEqual("svg-v2/ch09-bandgap-balance-v2.svg", match.group(1))
+
     def test_real_generator_matches_committed_yaml(self):
         import build_book_data
         generated = build_book_data.build_animations()
