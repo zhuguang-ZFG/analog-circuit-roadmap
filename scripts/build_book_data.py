@@ -18,7 +18,8 @@ DOCS = ROOT / "docs"
 DATA = BOOK / "data"
 
 DEMO_HEAD = re.compile(r'^## (5\.\d+)\s+(.+?)\s*<a id="(demo\d+)"')
-DEMO_IMG = re.compile(r'<img src="assets/svg/([\w\-]+\.svg)"[^>]*alt="([^"]*)"')
+# 存去 assets/ 前缀的相对路径（svg/ 或 svg-v2/），与 build_site.DEMO_IMG 同口径。
+DEMO_IMG = re.compile(r'<img src="assets/(svg(?:-v2)?/[\w\-]+\.svg)"[^>]*alt="([^"]*)"')
 DEMO_LINK = re.compile(r"\[(5\.\d+)\]\((?:[\w\-]+\.md)?#(demo\d+)\)")
 CHAPTER_ROW = re.compile(r"^\|\s*§(\d+)\s+(第\s*\d+\s*章[^|]*?)\s*\|")
 LOOK_RE = re.compile(r"\*\*看点\*\*[：:]\s*(.+)")
@@ -107,7 +108,7 @@ def build_animations():
             "chapter": chapter,
             "anchor": current["anchor"],
             "one_line": summarize(look),
-            "static_svg": "assets/svg/" + current["svg"],
+            "static_svg": "assets/" + current["svg"],
         })
         current, body = None, []
 
