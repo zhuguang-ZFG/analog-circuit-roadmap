@@ -76,8 +76,10 @@ def validate_animations(items: list[dict], static_root: Path = config.ROOT) -> N
             raise BookError(f"{where}: chapter 必须是 0–18")
         if not re.fullmatch(r"demo\d+", item["anchor"]):
             raise BookError(f"{where}: anchor 必须形如 demo12")
-        if not item["static_svg"].startswith("assets/svg/"):
-            raise BookError(f"{where}: static_svg 必须位于 assets/svg/")
+        # 与 build_site/build_book_data 同口径：legacy 在 assets/svg/，
+        # 批次换图后的 V2 在 assets/svg-v2/；仍限动画目录、仍验文件存在。
+        if not re.fullmatch(r"assets/svg(?:-v2)?/[\w\-]+\.svg", item["static_svg"]):
+            raise BookError(f"{where}: static_svg 必须位于 assets/svg/ 或 assets/svg-v2/")
         if not (static_root / item["static_svg"]).is_file():
             raise BookError(f"{where}: 静态图不存在 {item['static_svg']}")
     covered = {item["chapter"] for item in items}

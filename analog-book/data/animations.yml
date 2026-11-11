@@ -140,23 +140,24 @@
   title: 带隙基准：一正一负凑直线
   chapter: 9
   anchor: demo20
-  one_line: 红线 V_BE 下坡、绿线 K·ΔV_BE 上坡，给绿线配好权重，两斜率恰好抵消，蓝线 1.25V 全温区纹丝不动。基准芯片的全部物理就这三条线。→ 正文 9.1 带隙基准
-  static_svg: assets/svg/bandgap.svg
+  one_line: V_BE 随温度线性下降（25°C 约 0.65 V、斜率 −2 mV/°C），ΔV_BE=(kT/q)·lnN 反向爬坡；配好权重令两斜率相消，总电压 1.2463 V 一阶平直。注意一阶平直
+    ≠ 实际零漂——曲率、修调和应力另计。
+  static_svg: assets/svg-v2/ch09-bandgap-balance-v2.svg
 - id: anim-021
   file: p5-00-part5.md
   title: TL431：自带标尺的比较器
   chapter: 9
   anchor: demo21
-  one_line: REF 高过 2.5V 一瞬，红粒子从阴极猛灌。"会变身"的全貌也就是内部带隙当标尺、运放当裁判、NPN 当执行。分压采样一接，Vout=2.5×(1+R1/R2)。→ 正文 9.2
-    TL431
-  static_svg: assets/svg/tl431.svg
+  one_line: 别忘偏流 I_ref 流入 REF 节点，输出误差是加号：Vout=Vref(1+R1/R2)+I_ref·R1。各 10 kΩ 时输出 5.020 V（不是 4.980 V）…
+  static_svg: assets/svg-v2/ch09-tl431-bias-v2.svg
 - id: anim-022
   file: p5-00-part5.md
   title: 采样保持：给 SAR 按下暂停键
   chapter: 8
   anchor: demo22
-  one_line: 绿粒子充电追踪（采样相）→ 开关断开电容记住（保持相）；阶梯波形微微下垂，那就是 droop，漏电正在偷走你记住的电压。→ 正文 8.4 采样保持
-  static_svg: assets/svg/sample-hold.svg
+  one_line: 采样相追踪输入（2.000 V），保持相冻结记忆；漏流按 I/C 匀速下斜（droop），再采样时重新追上。加大 C_hold 能同时摊平注入电荷、压低 kT/C 噪声、减缓 droop——代价是采集时间变长。→
+    正文 8.4 采样保持
+  static_svg: assets/svg-v2/ch08-sample-hold-v2.svg
 - id: anim-023
   file: p5-00-part5.md
   title: 电荷泵：电容斗提机
@@ -275,8 +276,9 @@
   title: 分压器：带载就塌的三分之一
   chapter: 0
   anchor: demo39
-  one_line: 空载指针到中点 6V，接上 RL 后指针矮到 4V。分压公式只在空载时成立。→ 正文 0.3 分压器
-  static_svg: assets/svg/divider-loading.svg
+  one_line: 空载 6.000 V，挂上 10 kΩ 后跌到 4.000 V（误差 −33.3%）。分压公式只在空载时成立——输出电阻 5 kΩ 与后级输入阻抗分压，后级输入至少高一个数量级才算"没
+    load 垮"。→ 正文 0.3 分压器
+  static_svg: assets/svg-v2/ch00-divider-loading-v2.svg
 - id: anim-040
   file: p5-00-part5.md
   title: BJT 三个工作区：负载线切过哪里
@@ -352,8 +354,8 @@
   title: 传输门：一只管子总有一段使不上劲
   chapter: 8
   anchor: demo50
-  one_line: 红线上翘（N 管高端罢工）、蓝线左端翘（P 管低端罢工）。绿线并联后全程平坦 20~27Ω，这就是「N 管送低、P 管送高」。→ 正文 8.1 传输门原理
-  static_svg: assets/svg/transfer-gate.svg
+  one_line: N 管在 4 V 截止、P 管接管高段，单管总有一段使不上劲；并联包络 20→26.7→20 Ω，1~4 V 平坦平台就是「N 管送低、P 管送高」。
+  static_svg: assets/svg-v2/ch08-transfer-gate-v2.svg
 - id: anim-051
   file: p5-00-part5.md
   title: 三态总线：谁说话，谁闭嘴
@@ -549,8 +551,8 @@
   title: 恒压源与恒流源：看 V-I 曲线认性格
   chapter: 0
   anchor: demo78
-  one_line: 两栏均为横轴 I、纵轴 V：水平是恒压，竖直是恒流，斜率的绝对值对应输出阻抗；1mΩ 与 100mΩ 两台电源的账一目了然。→ 正文 0.6 恒压源与恒流源
-  static_svg: assets/svg/source-types.svg
+  one_line: 横轴 I、纵轴 V：水平线是恒压源，竖直线是恒流源；真实源的负斜率的绝对值就是输出阻抗——越平越接近理想恒压。恒压源并联、恒流源串联。→ 正文 0.6 恒压源与恒流源
+  static_svg: assets/svg-v2/ch00-source-types-v2.svg
 - id: anim-079
   file: p5-00-part5.md
   title: 戴维南与诺顿：两个数定性格
@@ -834,8 +836,8 @@
   title: 地弹：8 路同翻，把"地"弹起来
   chapter: 5
   anchor: demo117
-  one_line: 8 路驱动同时点亮（每路 20mA），160mA 瞬时电流涌进公共地引脚；走线电感的 L·di/dt 在上升沿顶出正尖、下降沿拽出负尖，没翻转的那路输出电平照样跟着抖。对策：大电流翻转分散开、地脚多给几只、低速信号别配高档驱动。
-  static_svg: assets/svg/ground-bounce.svg
+  one_line: 8 路同翻（每路 20 mA、共 160 mA）在 2 ns 内挤过 5 nH 共用地电感，L·di/dt 顶出 0.4 V 地弹（单路折算 0.05 V），没翻转的那路输出照样跟着抖；恒流段理想电感压降为零，尖峰只在边沿。
+  static_svg: assets/svg-v2/ch05-ground-bounce-v2.svg
 - id: anim-118
   file: p5-00-part5.md
   title: 三触点对账：160mV 去了哪里
