@@ -29,7 +29,7 @@ OUT = BUILD / "docs"
 SVG_SRC = ROOT / "assets" / "svg"
 
 DEMO_HEAD = re.compile(r'^## (5\.\d+)\s+(.+?)\s*<a id="(demo\d+)"')
-DEMO_IMG = re.compile(r'<img src="assets/svg/([\w\-]+\.svg)"[^>]*alt="([^"]*)"')
+DEMO_IMG = re.compile(r'<img src="assets/(svg(?:-v2)?/[\w\-]+\.svg)"[^>]*alt="([^"]*)"')
 # docs 迁移后锚点链接写作 p5-00-part5.md#demoN，拼回 README 时才是 #demoN——两种都要认
 DEMO_LINK = re.compile(r"\[(5\.\d+)\]\((?:[\w\-]+\.md)?#(demo\d+)\)")
 CHAPTER_ROW = re.compile(r"^\|\s*§(\d+)\s+(第\s*\d+\s*章[^|]*?)\s*\|")
@@ -40,12 +40,19 @@ def svg_size(name):
     """读出 SVG 的画布尺寸，给 <img> 写 width/height 预留空间（消除画廊的布局抖动）。"""
     if not name:
         return 800, 460
+    # name 既可能是纯文件名（wrap_picture 链，目录固定 assets/svg/），
+    # 也可能是 parse_demos 捕获的带目录相对路径（svg/ 或 svg-v2/ 开头）。
+    path = (ROOT / "assets" / name) if "/" in name else (SVG_SRC / name)
     try:
-        head = (SVG_SRC / name).read_text(encoding="utf-8", errors="replace")[:600]
+        head = path.read_text(encoding="utf-8", errors="replace")[:600]
     except OSError:
         return 800, 460
     m = SVG_SIZE.search(head)
-    return (int(m.group(1)), int(m.group(2))) if m else (800, 460)
+    if m:
+        return int(m.group(1)), int(m.group(2))
+    # V2 SVG 只有 viewBox 没有 width/height 属性（handraw/papercut 渲染器输出）。
+    vb = re.search(r'viewBox="[\d.\-]+\s+[\d.\-]+\s+(\d+(?:\.\d+)?)\s+(\d+(?:\.\d+)?)"', head)
+    return (int(float(vb.group(1))), int(float(vb.group(2)))) if vb else (800, 460)
 
 
 IMG_TAG = re.compile(r'<img\s+src="assets/svg/([\w\-]+\.svg)"([^>]*)>')
@@ -1342,28 +1349,37 @@ def render_gallery(items):
     for it in items:
         title = it["title"].replace('"', "&quot;")
         href = "p5-00-part5.html#%s" % it["anchor"]
+        full = "assets/" + it["svg"]
+        # legacy（svg/ 开头）有 .reduce.svg 静止版，包 <picture> 降级；
+        # svg-v2 尚无 reduce 变体，与全书 wrap_picture 的既有 v2 行为一致：直出 <img>。
+        if it["svg"].startswith("svg/"):
+            media = ('<picture><source srcset="assets/%s" '
+                     'media="(prefers-reduced-motion: reduce)">'
+                     '<img src="%s" alt="%s" width="%d" height="%d" '
+                     'loading="lazy" decoding="async"></picture>'
+                     % (reduce_variant(it["svg"]), full, it["alt"], it["w"], it["h"]))
+        else:
+            media = ('<img src="%s" alt="%s" width="%d" height="%d" '
+                     'loading="lazy" decoding="async">'
+                     % (full, it["alt"], it["w"], it["h"]))
         cards.append(
             '<div class="gal-card" data-ch="%s" data-title="%s" data-file="%s">\n'
             '  <a href="%s" title="%s">\n'
-            '    <picture><source srcset="assets/svg/%s" '
-            'media="(prefers-reduced-motion: reduce)">'
-            '<img src="assets/svg/%s" alt="%s" width="%d" height="%d" '
-            'loading="lazy" decoding="async"></picture>\n'
+            '    %s\n'
             '    <div class="gal-meta">\n'
             '      <div class="gal-title">%s %s</div>\n'
             '      <div class="gal-tag">%s</div>\n'
             '    </div>\n'
             '  </a>\n'
             '  <div class="gal-actions">\n'
-            '    <button class="gal-play" type="button" data-svg="assets/svg/%s" '
+            '    <button class="gal-play" type="button" data-svg="%s" '
             'data-title="%s %s" data-href="%s"><svg class="gal-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.1 5.3 L18.6 12 L8.4 18.7 Z"/></svg> 放大播放</button>\n'
             '  </div>\n'
             '</div>'
-            % (it["ch"], title.lower(), it["svg"], href, title,
-               reduce_variant(it["svg"]), it["svg"], it["alt"], it["w"], it["h"],
+            % (it["ch"], title.lower(), it["svg"], href, title, media,
                it["num"], it["title"],
                CHAPTER_LABEL.get(it["ch"], "动画"),
-               it["svg"], it["num"], title, href)
+               full, it["num"], title, href)
         )
 
     return "\n".join([
