@@ -57,6 +57,11 @@ assets:
   output: assets/svg/bandgap.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 已由 accepted V2 替代，索引页换图+看点按签核 alt 重写（批次1）
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch1-2026-11-11.md
+    replacement: assets/svg-v2/ch09-bandgap-balance-v2.svg
 - id: legacy-svg-bjt-amplify
   chapter: 3
   kind: animation
@@ -497,6 +502,11 @@ assets:
   output: assets/svg/divider-loading.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 已由 accepted V2 替代，索引页换图+看点按签核 alt 重写（批次1）
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch1-2026-11-11.md
+    replacement: assets/svg-v2/ch00-divider-loading-v2.svg
 - id: legacy-svg-error-budget
   chapter: 0
   kind: animation
@@ -926,6 +936,11 @@ assets:
   output: assets/svg/ground-bounce.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 已由 accepted V2 替代，索引页换图+看点按签核 alt 重写（批次1）
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch1-2026-11-11.md
+    replacement: assets/svg-v2/ch05-ground-bounce-v2.svg
 - id: legacy-svg-ground-star
   chapter: 15
   kind: animation
@@ -1487,6 +1502,11 @@ assets:
   output: assets/svg/sample-hold.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 已由 accepted V2 替代，索引页换图+看点按签核 alt 重写（批次1）
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch1-2026-11-11.md
+    replacement: assets/svg-v2/ch08-sample-hold-v2.svg
 - id: legacy-svg-sar-adc
   chapter: 13
   kind: animation
@@ -1531,6 +1551,11 @@ assets:
   output: assets/svg/source-types.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 已由 accepted V2 替代，索引页换图+看点按签核 alt 重写（批次1）
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch1-2026-11-11.md
+    replacement: assets/svg-v2/ch00-source-types-v2.svg
 - id: legacy-svg-thermal-runaway
   chapter: 3
   kind: animation
@@ -1597,6 +1622,11 @@ assets:
   output: assets/svg/tl431.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 已由 accepted V2 替代，索引页换图+看点按签核 alt 重写（批次1）
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch1-2026-11-11.md
+    replacement: assets/svg-v2/ch09-tl431-bias-v2.svg
 - id: legacy-svg-transfer-gate
   chapter: 8
   kind: animation
@@ -1608,6 +1638,11 @@ assets:
   output: assets/svg/transfer-gate.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 已由 accepted V2 替代，索引页换图+看点按签核 alt 重写（批次1）
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch1-2026-11-11.md
+    replacement: assets/svg-v2/ch08-transfer-gate-v2.svg
 - id: legacy-svg-transformer
   chapter: 1
   kind: animation

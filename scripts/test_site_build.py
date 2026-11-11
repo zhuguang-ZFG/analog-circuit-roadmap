@@ -160,8 +160,8 @@ class SiteBuildTests(unittest.TestCase):
         for ch, _t, f, _h, img, *_ in self.cards:
             with self.subTest(card=f):
                 self.assertTrue(f, "data-file 为空")
-                self.assertEqual("assets/svg/%s" % f, img, "data-file 与 img src 不一致")
-                self.assertTrue((self.out / "assets" / "svg" / f).is_file(),
+                self.assertEqual("assets/%s" % f, img, "data-file 与 img src 不一致")
+                self.assertTrue((self.out / "assets" / f).is_file(),
                                 "卡片引用的 SVG 不存在：%s" % f)
 
     def test_every_card_anchor_exists(self):
@@ -179,7 +179,7 @@ class SiteBuildTests(unittest.TestCase):
         self.assertEqual(len(self.cards), len(plays))
         for ch, _t, f, href, _img, *_rest in self.cards:
             with self.subTest(card=f):
-                self.assertEqual("assets/svg/%s" % f, plays[[c[2] for c in self.cards].index(f)])
+                self.assertEqual("assets/%s" % f, plays[[c[2] for c in self.cards].index(f)])
 
     def test_lightbox_is_wired(self):
         for needle in ('id="gal-modal"', 'id="gal-modal-img"', 'id="gal-modal-title"',
@@ -207,7 +207,7 @@ class SiteBuildTests(unittest.TestCase):
 
     def test_card_images_reserve_space(self):
         """<img> 必须带真实 width/height（否则 102 张图会让画廊疯狂抖动）。"""
-        pat = re.compile(r'<img src="(assets/svg/[\w\-]+\.svg)"[^>]*?width="(\d+)" height="(\d+)"')
+        pat = re.compile(r'<img src="(assets/svg(?:-v2)?/[\w\-]+\.svg)"[^>]*?width="(\d+)" height="(\d+)"')
         found = pat.findall(self.gallery)
         self.assertEqual(len(self.cards), len(found),
                          "有卡片图片没写 width/height")
@@ -215,9 +215,17 @@ class SiteBuildTests(unittest.TestCase):
             with self.subTest(svg=src):
                 head = (self.out / src).read_text(encoding="utf-8", errors="replace")[:600]
                 m = re.search(r'<svg[^>]*\bwidth="(\d+)"\s+height="(\d+)"', head)
-                if m is None:
-                    self.fail("SVG 里读不到画布尺寸")
-                self.assertEqual((w, h), (m.group(1), m.group(2)),
+                if m:
+                    fw, fh = m.group(1), m.group(2)
+                else:
+                    # V2 SVG 只有 viewBox（与 build_site.svg_size 的回退口径一致）。
+                    vb = re.search(
+                        r'viewBox="[\d.\-]+\s+[\d.\-]+\s+(\d+(?:\.\d+)?)\s+(\d+(?:\.\d+)?)"', head)
+                    if vb is None:
+                        self.fail("SVG 里读不到画布尺寸")
+                    fw = str(int(float(vb.group(1))))
+                    fh = str(int(float(vb.group(2))))
+                self.assertEqual((w, h), (fw, fh),
                                  "卡片上的 width/height 与 SVG 画布不一致")
 
     def test_animation_images_are_lazy_and_reserve_space(self):
