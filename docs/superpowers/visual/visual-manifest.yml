@@ -156,6 +156,11 @@ assets:
   output: assets/svg/boost-converter.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 主题对应 accepted V2，p5 换图+看点按签核 alt 重写（批次2）
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch13-boost-cycle-v2.svg
 - id: legacy-svg-bridge-rectifier
   chapter: 2
   kind: animation
@@ -178,6 +183,11 @@ assets:
   output: assets/svg/buck-converter.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 伏秒平衡同主题
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch13-buck-cycle-v2.svg
 - id: legacy-svg-cap-decoupling
   chapter: 15
   kind: animation
@@ -233,6 +243,11 @@ assets:
   output: assets/svg/charge-pump.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 主题对应 accepted V2，p5 换图+看点按签核 alt 重写（批次2）
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch13-pump-load-v2.svg
 - id: legacy-svg-class-b-crossover
   chapter: 11
   kind: animation
@@ -244,6 +259,11 @@ assets:
   output: assets/svg/class-b-crossover.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 预偏置死区
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch11-crossover-v2.svg
 - id: legacy-svg-clipper-clamper
   chapter: 2
   kind: animation
@@ -266,6 +286,11 @@ assets:
   output: assets/svg/comparator-hysteresis.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 5.4 抗噪演示
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch07-hysteresis-timing-v2.svg
 - id: legacy-svg-comparator-opamp
   chapter: 7
   kind: animation
@@ -299,6 +324,11 @@ assets:
   output: assets/svg/compliance-voltage.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 主题对应 accepted V2，p5 换图+看点按签核 alt 重写（批次2）
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch13-current-compliance-v2.svg
 - id: legacy-svg-constant-current
   chapter: 13
   kind: animation
@@ -310,6 +340,11 @@ assets:
   output: assets/svg/constant-current.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 恒流源主题近
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch13-current-compliance-v2.svg
 - id: legacy-svg-crystal-pierce
   chapter: 0
   kind: animation
@@ -332,6 +367,11 @@ assets:
   output: assets/svg/current-mirror.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 电流镜 β 误差
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch11-mirror-beta-v2.svg
 - id: legacy-svg-darlington
   chapter: 3
   kind: animation
@@ -376,6 +416,11 @@ assets:
   output: assets/svg/derive-buck.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 推导节；V2 为波形演示
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch13-buck-cycle-v2.svg
 - id: legacy-svg-derive-divider
   chapter: 0
   kind: animation
@@ -464,6 +509,11 @@ assets:
   output: assets/svg/diff-pair.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 尾电流分配
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch11-diff-steer-v2.svg
 - id: legacy-svg-diode-family
   chapter: 2
   kind: animation
@@ -497,6 +547,11 @@ assets:
   output: assets/svg/discrete-ldo.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: LDO 主题
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch09-dropout-ripple-v2.svg
 - id: legacy-svg-divider-loading
   chapter: 0
   kind: animation
@@ -535,6 +590,11 @@ assets:
   output: assets/svg/exp-555-duty.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 占空比非对称
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch10-diode-duty-v2.svg
 - id: legacy-svg-exp-555-mono-train
   chapter: 0
   kind: animation
@@ -546,6 +606,11 @@ assets:
   output: assets/svg/exp-555-mono-train.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 单稳态漏电
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch10-monostable-leakage-v2.svg
 - id: legacy-svg-exp-avalanche-edge
   chapter: 0
   kind: animation
@@ -568,6 +633,11 @@ assets:
   output: assets/svg/exp-beta-drift.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: β 与偏置预算
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch11-beta-budget-v2.svg
 - id: legacy-svg-exp-cap-life
   chapter: 0
   kind: animation
@@ -590,6 +660,11 @@ assets:
   output: assets/svg/exp-cload-isolate.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 隔离电阻阶跃
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch12-riso-step-v2.svg
 - id: legacy-svg-exp-conduction-angle
   chapter: 0
   kind: animation
@@ -601,6 +676,11 @@ assets:
   output: assets/svg/exp-conduction-angle.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 电荷窗口/峰值
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch02-charge-window-v2.svg
 - id: legacy-svg-exp-contact-creep
   chapter: 0
   kind: animation
@@ -634,6 +714,11 @@ assets:
   output: assets/svg/exp-crystal-pull.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 主题对应 accepted V2，p5 换图+看点按签核 alt 重写（批次2）
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch13-crystal-pull-v2.svg
 - id: legacy-svg-exp-dead-time
   chapter: 0
   kind: animation
@@ -645,6 +730,11 @@ assets:
   output: assets/svg/exp-dead-time.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 死区能量
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch04-deadtime-energy-v2.svg
 - id: legacy-svg-exp-delay-budget
   chapter: 0
   kind: animation
@@ -656,6 +746,11 @@ assets:
   output: assets/svg/exp-delay-budget.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 响应时间定义
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch07-release-timing-v2.svg
 - id: legacy-svg-exp-derate-chain
   chapter: 0
   kind: animation
@@ -678,6 +773,11 @@ assets:
   output: assets/svg/exp-droop-budget.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 采样保持
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch08-sample-hold-v2.svg
 - id: legacy-svg-exp-esr-ripple-split
   chapter: 0
   kind: animation
@@ -689,6 +789,11 @@ assets:
   output: assets/svg/exp-esr-ripple-split.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: ESR 纹波扫描
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch17-esr-sweep.svg
 - id: legacy-svg-exp-gate-charge
   chapter: 0
   kind: animation
@@ -700,6 +805,11 @@ assets:
   output: assets/svg/exp-gate-charge.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 栅电荷/驱动功率
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch04-gate-power-v2.svg
 - id: legacy-svg-exp-gbw-swap
   chapter: 0
   kind: animation
@@ -722,6 +832,11 @@ assets:
   output: assets/svg/exp-hyst-window.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 迟滞窗口
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch07-hysteresis-timing-v2.svg
 - id: legacy-svg-exp-inject-harmonic
   chapter: 0
   kind: animation
@@ -733,6 +848,11 @@ assets:
   output: assets/svg/exp-inject-harmonic.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 电荷注入（技术原型）
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch08-charge-injection-v2.svg
 - id: legacy-svg-exp-integrator-drift
   chapter: 0
   kind: animation
@@ -744,6 +864,11 @@ assets:
   output: assets/svg/exp-integrator-drift.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 泄放极点（频域）——主题对应
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch12-leaky-integrator-v2.svg
 - id: legacy-svg-exp-ldo-zero
   chapter: 0
   kind: animation
@@ -777,6 +902,11 @@ assets:
   output: assets/svg/exp-miller-mult.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 米勒电荷
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch11-miller-charge-v2.svg
 - id: legacy-svg-exp-noise-ladder
   chapter: 0
   kind: animation
@@ -788,6 +918,11 @@ assets:
   output: assets/svg/exp-noise-ladder.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 噪声积分
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch11-noise-bandwidth-v2.svg
 - id: legacy-svg-exp-psrr-roll
   chapter: 0
   kind: animation
@@ -799,6 +934,11 @@ assets:
   output: assets/svg/exp-psrr-roll.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: PSRR 随频率
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch11-psrr-ripple-v2.svg
 - id: legacy-svg-exp-pullup-trade
   chapter: 0
   kind: animation
@@ -810,6 +950,11 @@ assets:
   output: assets/svg/exp-pullup-trade.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 上拉窗口
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch05-pullup-window-v2.svg
 - id: legacy-svg-exp-return-cut
   chapter: 0
   kind: animation
@@ -832,6 +977,11 @@ assets:
   output: assets/svg/exp-slew-wall.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 大信号斜率边界
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch06-speed-envelope-v2.svg
 - id: legacy-svg-exp-source-sag
   chapter: 0
   kind: animation
@@ -843,6 +993,11 @@ assets:
   output: assets/svg/exp-source-sag.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 内阻/输出电阻
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch00-divider-loading-v2.svg
 - id: legacy-svg-exp-thermal-loop
   chapter: 0
   kind: animation
@@ -898,6 +1053,11 @@ assets:
   output: assets/svg/exp-volt-second.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 伏秒平衡
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch13-buck-cycle-v2.svg
 - id: legacy-svg-exp-wc-rss
   chapter: 0
   kind: animation
@@ -969,6 +1129,11 @@ assets:
   output: assets/svg/h-bridge.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 主题对应 accepted V2，p5 换图+看点按签核 alt 重写（批次2）
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch13-hbridge-reverse-v2.svg
 - id: legacy-svg-impedance-freq
   chapter: 1
   kind: animation
@@ -1002,6 +1167,11 @@ assets:
   output: assets/svg/integrator.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 时域斜率演示——原 5.33 遗留项的正确替代
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch12-integrator-cycle-v2.svg
 - id: legacy-svg-intermittent-forcing
   chapter: 0
   kind: animation
@@ -1024,6 +1194,11 @@ assets:
   output: assets/svg/inverting-buckboost.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 主题对应 accepted V2，p5 换图+看点按签核 alt 重写（批次2）
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch13-inverting-ratio-v2.svg
 - id: legacy-svg-ldo-failures
   chapter: 9
   kind: animation
@@ -1101,6 +1276,11 @@ assets:
   output: assets/svg/miller-effect.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 5.16 频率响应演示
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch11-miller-charge-v2.svg
 - id: legacy-svg-miller-plateau
   chapter: 4
   kind: animation
@@ -1167,6 +1347,11 @@ assets:
   output: assets/svg/ne555-astable.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 主题对应 accepted V2，p5 换图+看点按签核 alt 重写（批次2）
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch10-astable-cycle-v2.svg
 - id: legacy-svg-ne555-monostable
   chapter: 10
   kind: animation
@@ -1178,6 +1363,11 @@ assets:
   output: assets/svg/ne555-monostable.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 主题对应 accepted V2，p5 换图+看点按签核 alt 重写（批次2）
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch10-monostable-leakage-v2.svg
 - id: legacy-svg-ne555-params
   chapter: 10
   kind: animation
@@ -1409,6 +1599,11 @@ assets:
   output: assets/svg/pushpull-opendrain.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 主题对应 accepted V2，p5 换图+看点按签核 alt 重写（批次2）
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch05-open-drain-sharing-v2.svg
 - id: legacy-svg-pushpull-stage
   chapter: 5
   kind: animation
@@ -1486,6 +1681,11 @@ assets:
   output: assets/svg/rlc-resonance.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 主题对应 accepted V2，p5 换图+看点按签核 alt 重写（批次2）
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch13-lc-energy-v2.svg
 - id: legacy-svg-sallen-key
   chapter: 12
   kind: animation
@@ -1497,6 +1697,11 @@ assets:
   output: assets/svg/sallen-key.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: Q 与阶跃形状
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch12-filter-q-v2.svg
 - id: legacy-svg-sample-hold
   chapter: 8
   kind: animation
@@ -1524,6 +1729,11 @@ assets:
   output: assets/svg/sar-adc.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 主题对应 accepted V2，p5 换图+看点按签核 alt 重写（批次2）
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch13-sar-trials-v2.svg
 - id: legacy-svg-schmitt-osc
   chapter: 7
   kind: animation
@@ -1671,6 +1881,11 @@ assets:
   output: assets/svg/tristate-bus.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 主题对应 accepted V2，p5 换图+看点按签核 alt 重写（批次2）
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch05-tristate-timing-v2.svg
 - id: legacy-svg-virtual-ground
   chapter: 12
   kind: animation
@@ -1715,6 +1930,11 @@ assets:
   output: assets/svg/wien-bridge.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 主题对应 accepted V2，p5 换图+看点按签核 alt 重写（批次2）
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch13-wien-select-v2.svg
 - id: legacy-svg-zener-regulator
   chapter: 9
   kind: animation
@@ -1726,6 +1946,11 @@ assets:
   output: assets/svg/zener-regulator.svg
   print_fallback: ''
   status: legacy-unreviewed
+  legacy_disposition:
+    action: rebuild
+    reason: 主题对应 accepted V2，p5 换图+看点按签核 alt 重写（批次2）
+    record: docs/superpowers/visual/reviews/legacy-rebuild-batch2-proposal-2026-11-11.md
+    replacement: assets/svg-v2/ch13-zener-budget-v2.svg
 - id: legacy-figures-ai-copilot-loop
   chapter: 0
   kind: figure
