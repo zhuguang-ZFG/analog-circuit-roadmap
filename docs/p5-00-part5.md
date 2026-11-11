@@ -159,21 +159,21 @@ Falstad 交互：`Circuits → 555 Timer Chip → Astable Multivibrator`
 
 ## 5.20 带隙基准：一正一负凑直线 <a id="demo20"></a>
 
-<p align="center"><img src="assets/svg/bandgap.svg" width="720" alt="带隙基准SVG动画"></p>
+<p align="center"><img src="assets/svg-v2/ch09-bandgap-balance-v2.svg" width="720" alt="带隙的一阶补偿，要把电流密度比算进去。先看 VBE：温度上升时，示意电压线性下降。ΔVBE=(kT/q)ln8，乘合适比例后斜率相反。令两条斜率相消，本例总电压为 1.2463 V。一阶平直不等于实际零漂；曲率、修调和应力另计。"></p>
 
-**看点**：红线 V_BE 下坡、绿线 K·ΔV_BE 上坡，给绿线配好权重，两斜率恰好抵消，蓝线 1.25V 全温区纹丝不动。基准芯片的全部物理就这三条线。→ 正文 [9.1 带隙基准](p1-10-ch9.md#ch9)
+**看点**：V_BE 随温度线性下降（25°C 约 0.65 V、斜率 −2 mV/°C），ΔV_BE=(kT/q)·lnN 反向爬坡；配好权重令两斜率相消，总电压 1.2463 V 一阶平直。注意一阶平直 ≠ 实际零漂——曲率、修调和应力另计。→ 正文 [9.1 带隙基准](p1-10-ch9.md#ch9)
 
 ## 5.21 TL431：自带标尺的比较器 <a id="demo21"></a>
 
-<p align="center"><img src="assets/svg/tl431.svg" width="720" alt="TL431 SVG动画"></p>
+<p align="center"><img src="assets/svg-v2/ch09-tl431-bias-v2.svg" width="720" alt="TL431 偏流流入 REF，输出误差是加号。REF 节点：上电阻电流等于下电阻电流加偏流。Vout=Vref(1+R1/R2)+Iref·R1，符号为正。各 10 kΩ 时输出为 5.020 V，不是 4.980 V。各 100 kΩ 时输出为 5.200 V；阻值上限由预算反推。"></p>
 
-**看点**：REF 高过 2.5V 一瞬，红粒子从阴极猛灌。"会变身"的全貌也就是内部带隙当标尺、运放当裁判、NPN 当执行。分压采样一接，Vout=2.5×(1+R1/R2)。→ 正文 [9.2 TL431](p1-10-ch9.md#ch9)
+**看点**：别忘偏流 I_ref 流入 REF 节点，输出误差是**加号**：Vout=Vref(1+R1/R2)+I_ref·R1。各 10 kΩ 时输出 5.020 V（不是 4.980 V）；各 100 kΩ 时 5.200 V——阻值上限由误差预算反推，不是越大越好。→ 正文 [9.2 TL431](p1-10-ch9.md#ch9)
 
 ## 5.22 采样保持：给 SAR 按下暂停键 <a id="demo22"></a>
 
-<p align="center"><img src="assets/svg/sample-hold.svg" width="720" alt="采样保持SVG动画"></p>
+<p align="center"><img src="assets/svg-v2/ch08-sample-hold-v2.svg" width="720" alt="采样相追踪 2.000V、保持相冻结、漏流按 I/C 下斜、再采样；加大 Chold 同时摊注入、压 kT/C、缓 droop，代价是采集时间。"></p>
 
-**看点**：绿粒子充电追踪（采样相）→ 开关断开电容记住（保持相）；阶梯波形微微下垂，那就是 droop，漏电正在偷走你记住的电压。→ 正文 [8.4 采样保持](p1-09-ch8.md#ch8)
+**看点**：采样相追踪输入（2.000 V），保持相冻结记忆；漏流按 I/C 匀速下斜（droop），再采样时重新追上。加大 C_hold 能同时摊平注入电荷、压低 kT/C 噪声、减缓 droop——代价是采集时间变长。→ 正文 [8.4 采样保持](p1-09-ch8.md#ch8)
 
 ## 5.23 电荷泵：电容斗提机 <a id="demo23"></a>
 
@@ -273,9 +273,9 @@ Falstad 交互：`Circuits → 555 Timer Chip → Astable Multivibrator`
 
 ## 5.39 分压器：带载就塌的三分之一 <a id="demo39"></a>
 
-<p align="center"><img src="assets/svg/divider-loading.svg" width="720" alt="分压器带载塌陷SVG动画"></p>
+<p align="center"><img src="assets/svg-v2/ch00-divider-loading-v2.svg" width="720" alt="空载 6.000V、挂 10kΩ 后 4.000V、误差 −33.3%；输出电阻 5kΩ，后级输入至少高一个数量级"></p>
 
-**看点**：空载指针到中点 6V，接上 RL 后指针矮到 4V。分压公式只在空载时成立。→ 正文 [0.3 分压器](p1-01-ch0.md#ch0)
+**看点**：空载 6.000 V，挂上 10 kΩ 后跌到 4.000 V（误差 −33.3%）。分压公式只在空载时成立——输出电阻 5 kΩ 与后级输入阻抗分压，后级输入至少高一个数量级才算"没 load 垮"。→ 正文 [0.3 分压器](p1-01-ch0.md#ch0)
 
 ## 5.40 BJT 三个工作区：负载线切过哪里 <a id="demo40"></a>
 
@@ -339,9 +339,9 @@ Falstad 交互：`Circuits → 555 Timer Chip → Astable Multivibrator`
 
 ## 5.50 传输门：一只管子总有一段使不上劲 <a id="demo50"></a>
 
-<p align="center"><img src="assets/svg/transfer-gate.svg" width="720" alt="CMOS传输门SVG动画"></p>
+<p align="center"><img src="assets/svg-v2/ch08-transfer-gate-v2.svg" width="720" alt="同一横轴 VIN 与线性电阻刻度下，N 管在 4V 截止、P 管接管高段；并联包络为 20→26.7→20Ω，在 1~4V 为平台。末拍分开单 N 的阈值损失与并联传输门的 0~5V 摆幅，下游逻辑门限示例为 2.5V；双头箭头表示双向。"></p>
 
-**看点**：红线上翘（N 管高端罢工）、蓝线左端翘（P 管低端罢工）。绿线并联后全程平坦 20~27Ω，这就是「N 管送低、P 管送高」。→ 正文 [8.1 传输门原理](p1-09-ch8.md#ch8)
+**看点**：N 管在 4 V 截止、P 管接管高段，单管总有一段使不上劲；并联包络 20→26.7→20 Ω，1~4 V 平坦平台就是「N 管送低、P 管送高」。末拍对比单 N 管的阈值损失与并联后 0~5 V 满摆幅——下游逻辑门限 2.5 V 下裕量充足。双头箭头表示双向。→ 正文 [8.1 传输门原理](p1-09-ch8.md#ch8)
 
 ## 5.51 三态总线：谁说话，谁闭嘴 <a id="demo51"></a>
 
@@ -507,9 +507,9 @@ Falstad 交互：`Circuits → 555 Timer Chip → Astable Multivibrator`
 
 ## 5.78 恒压源与恒流源：看 V-I 曲线认性格 <a id="demo78"></a>
 
-<p align="center"><img src="assets/svg/source-types.svg" width="720" alt="恒压源与恒流源SVG动画"></p>
+<p align="center"><img src="assets/svg-v2/ch00-source-types-v2.svg" width="720" alt="横轴电流 I、纵轴电压 V：恒压源水平线、恒流源竖线；真实源负斜率的绝对值对应输出阻抗；恒压并联、恒流串联"></p>
 
-**看点**：两栏均为横轴 I、纵轴 V：水平是恒压，竖直是恒流，斜率的绝对值对应输出阻抗；1mΩ 与 100mΩ 两台电源的账一目了然。→ 正文 [0.6 恒压源与恒流源](p1-01-ch0.md#ch0)
+**看点**：横轴 I、纵轴 V：水平线是恒压源，竖直线是恒流源；真实源的负斜率的绝对值就是输出阻抗——越平越接近理想恒压。恒压源并联、恒流源串联。→ 正文 [0.6 恒压源与恒流源](p1-01-ch0.md#ch0)
 
 ## 5.79 戴维南与诺顿：两个数定性格 <a id="demo79"></a>
 
@@ -751,9 +751,9 @@ Falstad 交互：`Circuits → 555 Timer Chip → Astable Multivibrator`
 
 ## 5.117 地弹：8 路同翻，把"地"弹起来 <a id="demo117"></a>
 
-<p align="center"><img src="assets/svg/ground-bounce.svg" width="720" alt="地弹动画：8 路输出同时翻转，160mA 瞬时电流挤过地脚电感，地弹尖峰让安静输出跟着抖"></p>
+<p align="center"><img src="assets/svg-v2/ch05-ground-bounce-v2.svg" width="720" alt="同一时间轴的总回流和地电压。五纳亨共用电感上，八路共一百六十毫安在两纳秒内上升产生零点四伏，单路零点零五伏；恒流段理想电感压降为零。"></p>
 
-**看点**：8 路驱动同时点亮（每路 20mA），160mA 瞬时电流涌进公共地引脚；走线电感的 L·di/dt 在上升沿顶出正尖、下降沿拽出负尖，没翻转的那路输出电平照样跟着抖。**对策：大电流翻转分散开、地脚多给几只、低速信号别配高档驱动。** → 正文 [5.1 推挽输出](p1-06-ch5.md#sec-5-1)
+**看点**：8 路同翻（每路 20 mA、共 160 mA）在 2 ns 内挤过 5 nH 共用地电感，L·di/dt 顶出 0.4 V 地弹（单路折算 0.05 V），没翻转的那路输出照样跟着抖；恒流段理想电感压降为零，尖峰只在边沿。**对策：大电流翻转分散开、地脚多给几只、低速信号别配高档驱动。** → 正文 [5.1 推挽输出](p1-06-ch5.md#sec-5-1)
 
 ## 5.118 三触点对账：160mV 去了哪里 <a id="demo118"></a>
 
