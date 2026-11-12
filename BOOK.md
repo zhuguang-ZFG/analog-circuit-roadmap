@@ -2040,7 +2040,7 @@ $$P=VI=12\times0.012=0.144\,\text{W}=144\,\text{mW}$$
 - 100µF 电解（ESR 约 200mΩ）：容性纹波降到约 1.5mV，ESR 纹波却冲到 120mV，**ESR 说了算**。
 
 <figure>
-<img src="assets/svg/exp-esr-ripple-split.svg" width="720" alt="22µF 陶瓷与 100µF 电解的纹波预算：分别计算容性项与 ESR 项，再比较哪一项主导。">
+<img src="assets/svg-v2/ch17-esr-sweep.svg" width="720" alt="ESR 从 0.1Ω 扫到 3Ω（扫描端点为示意值）——先问纹波频率，再问幅度">
 <figcaption>两笔纹波预算分别比较：陶瓷的 6.8mV 容性项大于 1.8mV ESR 项，电解的 120mV ESR 项大于 1.5mV 容性项。先判主因，再决定增容还是降 ESR。</figcaption>
 </figure>
 
@@ -2222,7 +2222,7 @@ Q 也能实测：扫频找到谐振峰 $f_0$，再找到幅度跌到峰值 $1/\s
 [在线演示：临界阻尼](https://www.falstad.com/circuit/e-lrc-critical.html)：拖动电阻找到临界那一档，看电压一步到位、恰好不回摆——这就是上一节"低 Q 压过冲"的尽头。
 
 <figure>
-<img src="assets/svg/rlc-resonance.svg" width="720" alt="LC 谐振动画：电容电场能与电感磁场能来回交换，电阻耗散使振幅衰减；减小电阻提高 Q 并收窄谐振峰。">
+<img src="assets/svg-v2/ch13-lc-energy-v2.svg" width="720" alt="电场能与磁场能交替，理想总能量不变；电容全储能至能量返回电容。">
 <figcaption>跟随电场能与磁场能的交换看损耗：R 越小，能量衰减越慢、Q 越高。下一步用容差和信号源内阻检验理想回路能否保留这个 Q。</figcaption>
 </figure>
 
@@ -4328,7 +4328,7 @@ BOOT/模式脚要在规定采样窗口内达到有效电平。上下拉、供电
 <a id="sec-5-2"></a>
 ### 5.2 开漏输出（Open-Drain）
 
-<p align="center"><img src="assets/svg/pushpull-opendrain.svg" width="720" alt="推挽vs开漏动画：为什么I2C选慢的"></p>
+<p align="center"><img src="assets/svg-v2/ch05-open-drain-sharing-v2.svg" width="720" alt="一只上拉给两个开漏输出供电。第二个下拉导通后总电流约三点二六毫安，由两条相等支路分担；另并一只上拉时总电流才升至约六点四四毫安。"></p>
 
 [动画演示 5.5](#demo5)
 
@@ -4504,7 +4504,7 @@ I²C 标准模式（100kHz）要求 $t_r<1000ns$ → $R_p\le11.8kΩ$；快速模
 
 ### 5.4 三态（Tri-State）与高阻态
 
-<p align="center"><img src="assets/svg/tristate-bus.svg" width="720" alt="三态总线SVG动画：谁说话谁闭嘴"></p>
+<p align="center"><img src="assets/svg-v2/ch05-tristate-timing-v2.svg" width="720" alt="三态驱动条共用纳秒轴。旧器件最晚三十纳秒释放，新器件使能最小十纳秒；指令间隔五纳秒可重叠十五纳秒，间隔三十纳秒则留十纳秒空档。"></p>
 
 [动画演示 5.51](#demo51)
 
@@ -5349,7 +5349,7 @@ $$\Delta V_{OS} \approx I_B \times \left| R_{S+} - R_{S-} \right|$$
 <a id="sec-7-3"></a>
 ### 7.3 迟滞（Hysteresis）：噪声免疫的数学
 
-<p align="center"><img src="assets/svg/comparator-hysteresis.svg" width="720" alt="比较器迟滞动画：回滞环"></p>
+<p align="center"><img src="assets/svg-v2/ch07-hysteresis-timing-v2.svg" width="720" alt="相对中点的延时，只跨半个对称窗口。无迟滞参考门限 2.5 V，输入在 200 s 到达。 迟滞上阈值 2.727 V，在约 427.3 s 才翻转。 相对 2.5 V 的推迟是 227.3 s，不是 454.5 s。 只有拿下阈值作起点，时间差才对应整个窗口。 初态输出高；输入由 2.3 V 以 1 mV/s 上行，忽略传播与 RC 延迟。"></p>
 
 无迟滞比较器在阈值附近遇到噪声 → 输出多次抖动（见第五篇 [迟滞动画](#demo4)）。
 
@@ -5493,7 +5493,7 @@ RC=10µs（10kΩ×1nF）、d=1.3µs 时，理想周期 21.972µs，完整模型 
 
 投板前逐项验证输入高、输入低、上电与断电状态。给定明确越过门限的合法输入，检查输出极性与预期真值表是否一致。
 
-<p align="center"><img src="assets/svg/comparator-hysteresis.svg" width="720" alt="比较器迟滞SVG动画"></p>
+<p align="center"><img src="assets/svg-v2/ch07-hysteresis-timing-v2.svg" width="720" alt="相对中点的延时，只跨半个对称窗口。无迟滞参考门限 2.5 V，输入在 200 s 到达。 迟滞上阈值 2.727 V，在约 427.3 s 才翻转。 相对 2.5 V 的推迟是 227.3 s，不是 454.5 s。 只有拿下阈值作起点，时间差才对应整个窗口。 初态输出高；输入由 2.3 V 以 1 mV/s 上行，忽略传播与 RC 延迟。"></p>
 
 **表外第八坑：地弹挪阈值。** 输出级灌电流突变（驱动 LED、继电器线圈时尤其狠）在共享地线上产生瞬时压降，输入侧的"地"跟着晃，等于阈值在晃。
 
@@ -11694,23 +11694,23 @@ Falstad 交互：`Circuits → Transistors → Common-Emitter Amp`
 
 ## 5.4 比较器迟滞 <a id="demo4"></a>
 
-<p align="center"><img src="assets/svg/comparator-hysteresis.svg" width="720" alt="比较器迟滞SVG动画"></p>
+<p align="center"><img src="assets/svg-v2/ch07-hysteresis-timing-v2.svg" width="720" alt="相对中点的延时，只跨半个对称窗口。无迟滞参考门限 2.5 V，输入在 200 s 到达。 迟滞上阈值 2.727 V，在约 427.3 s 才翻转。 相对 2.5 V 的推迟是 227.3 s，不是 454.5 s。 只有拿下阈值作起点，时间差才对应整个窗口。 初态输出高；输入由 2.3 V 以 1 mV/s 上行，忽略传播与 RC 延迟。"></p>
 
-**看点**：同一路带噪信号，红色无迟滞输出在阈值附近疯狂抖动；绿色施密特输出干净利落。**正反馈不是振荡的代名词，用得对就是抗噪利器。**
+**看点**：相对中点的延时，只跨半个对称窗口。无迟滞参考门限 2.5 V，输入在 200 s 到达。迟滞上阈值 2.727 V，在约 427.3 s 才翻转。相对 2.5 V 的推迟是 227.3 s，不是 454.5 s。
 
 Falstad 交互：`Circuits → Op-Amps → Comparator → Hysteresis`
 
 ## 5.5 推挽 vs 开漏 <a id="demo5"></a>
 
-<p align="center"><img src="assets/svg/pushpull-opendrain.svg" width="720" alt="推挽开漏SVG动画"></p>
+<p align="center"><img src="assets/svg-v2/ch05-open-drain-sharing-v2.svg" width="720" alt="一只上拉给两个开漏输出供电。第二个下拉导通后总电流约三点二六毫安，由两条相等支路分担；另并一只上拉时总电流才升至约六点四四毫安。"></p>
 
-**看点**：推挽上升沿陡峭（上管主动驱动）；开漏上升沿是 RC 充电曲线（上拉电阻对总线电容充电）。这就是 I2C 高速模式要减小上拉电阻的原因。
+**看点**：一只上拉给两个开漏输出供电。第二个下拉导通后总电流约三点二六毫安，由两条相等支路分担；另并一只上拉时总电流才升至约六点四四毫安。
 
 ## 5.6 555 无稳态振荡 <a id="demo6"></a>
 
-<p align="center"><img src="assets/svg/ne555-astable.svg" width="720" alt="555无稳态SVG动画"></p>
+<p align="center"><img src="assets/svg-v2/ch10-astable-cycle-v2.svg" width="720" alt="电容连续变化，输出在门限处切换。稳态从 3 V 起，RA 与 RB 一起给电容充电。 约 540.65 µs 到 6 V，输出转低、放电管导通。 经 RB 放电约 471.34 µs 后回到 3 V。 周期约 1.012 ms；输出高占 53.42%，并非对称。 示意 9 V、RA=1 kΩ、RB=6.8 kΩ、C=100 nF，理想开关。"></p>
 
-**看点**：电容电压（青色）在 1/3 与 2/3 Vcc 两条紫色阈值线之间荡秋千；输出（绿色）同步翻转。充电经 R1+R2、放电只经 R2 → 占空比永远 >50%。
+**看点**：电容连续变化，输出在门限处切换。稳态从 3 V 起，RA 与 RB 一起给电容充电。约 540.65 µs 到 6 V，输出转低、放电管导通。经 RB 放电约 471.34 µs 后回到 3 V。
 
 Falstad 交互：`Circuits → 555 Timer Chip → Astable Multivibrator`
 
@@ -11723,45 +11723,45 @@ Falstad 交互：`Circuits → 555 Timer Chip → Astable Multivibrator`
 
 ## 5.8 差分对：差模放大、共模抑制 <a id="demo8"></a>
 
-<p align="center"><img src="assets/svg/diff-pair.svg" width="720" alt="差分对SVG动画"></p>
+<p align="center"><img src="assets/svg-v2/ch11-diff-steer-v2.svg" width="720" alt="差分电压重新分配同一份尾电流。负差模把电流分给右管，总量仍是 1 mA。 零差模时两管各得 0.5 mA。 各输入 ±10 mV 对应差模 20 mV，已偏离直线近似。 大差模让一边接近独占，不能无限线性放大。 示意匹配 BJT，集电流和 1 mA，VT=26 mV；忽略基流与 Early 效应。"></p>
 
-**看点**：幕 1 差模，绿粒子左管多吃、灰粒子右管挨饿，两集电极一升一降拉开输出；幕 2 共模，蓝粒子两边同涨，尾电流源"总量钉死"，谁也多吃不了。底部红绿分配条就是 CMRR 的物理图像。→ 正文 [第 11 章](#ch11)
+**看点**：差分电压重新分配同一份尾电流。负差模把电流分给右管，总量仍是 1 mA。零差模时两管各得 0.5 mA。各输入 ±10 mV 对应差模 20 mV，已偏离直线近似。大差模让一边接近独占，不能无限线性放大。→ 正文 [第 11 章](#ch11)
 
 ## 5.9 乙类推挽与交越失真 <a id="demo9"></a>
 
-<p align="center"><img src="assets/svg/class-b-crossover.svg" width="720" alt="乙类推挽SVG动画"></p>
+<p align="center"><img src="assets/svg-v2/ch11-crossover-v2.svg" width="720" alt="预偏置逐渐缩小理想推挽死区。无预偏置，过零附近两支路都不导通。 基极间加 0.6 V，剩余死区缩小。 偏置增至 1 V，过零缺口进一步缩小。 1.3 V 在此模型中恰好消除死区；实物须测静态电流与温漂。 示意固定 VBE=0.65 V、输入峰值 1 V；恒压降模型不计算静态电流。"></p>
 
-**看点**：正半周绿粒子 NPN 推、负半周红粒子 PNP 拉。交接区 ±0.7V 两管全关，输出波形过零处摔出一个豁口。甲乙类偏置就是给两管"预热身"。→ 正文 [11.4 推挽输出级](#ch11)
+**看点**：预偏置逐渐缩小理想推挽死区。无预偏置，过零附近两支路都不导通。基极间加 0.6 V，剩余死区缩小。偏置增至 1 V，过零缺口进一步缩小。1.3 V 在此模型中恰好消除死区；实物须测静态电流与温漂。→ 正文 [11.4 推挽输出级](#ch11)
 
 ## 5.10 Sallen-Key 二阶低通 <a id="demo10"></a>
 
-<p align="center"><img src="assets/svg/sallen-key.svg" width="720" alt="Sallen-Key SVG动画"></p>
+<p align="center"><img src="assets/svg-v2/ch12-filter-q-v2.svg" width="720" alt="同一自然频率，阶跃形状随 Q 变化。临界阻尼单调到达终值。更高 Q 增加振铃；比较响应前须说明频率归一化。"></p>
 
-**看点**：绿线 Q=0.707 最平坦，红虚线 Q=3 在 fc 处鼓包。同一张电路，Q 值决定"平"还是"峰"。C1 顶帽正反馈是峰化的来源，Q 再大就变振荡器。→ 正文 [12.5 有源滤波](#ch12)
+**看点**：同一自然频率，阶跃形状随 Q 变化。临界阻尼单调到达终值。更高 Q 增加振铃；比较响应前须说明频率归一化。→ 正文 [12.5 有源滤波](#ch12)
 
 ## 5.11 Buck 降压：伏秒平衡 <a id="demo11"></a>
 
-<p align="center"><img src="assets/svg/buck-converter.svg" width="720" alt="Buck 降压SVG动画"></p>
+<p align="center"><img src="assets/svg-v2/ch13-buck-cycle-v2.svg" width="720" alt="同一电感电流，开关与二极管轮流接管；导通初段至周期回到谷值。"></p>
 
-**看点**：开关闭合绿粒子灌能、断开红粒子经二极管续流；开关节点方波被电感惯性碾成三角电流、再被电容碾成直流。占空比 42% × 12V = 5V，一个字，伏秒平衡。→ 正文 [13.2 Buck](#ch13)
+**看点**：同一电感电流，开关与二极管轮流接管；导通初段至周期回到谷值。→ 正文 [13.2 Buck](#ch13)
 
 ## 5.12 文氏桥振荡器：起振与稳幅 <a id="demo12"></a>
 
-<p align="center"><img src="assets/svg/wien-bridge.svg" width="720" alt="文氏桥SVG动画"></p>
+<p align="center"><img src="assets/svg-v2/ch13-wien-select-v2.svg" width="720" alt="文氏桥只在一个频率兼有零相位与三分之一增益；f=0.1f0至f=10f0。"></p>
 
-**看点**：右侧波形从噪声种子指数长大、到包络线封顶，也就是 f₀ 处 RC 网络相移 0°、衰减 1/3，增益=3 恰好补平；幅度停在哪儿？灯泡发热升阻把增益自动摁回 3。→ 正文 [13.4 文氏桥](#ch13)
+**看点**：文氏桥只在一个频率兼有零相位与三分之一增益；f=0.1f0至f=10f0。→ 正文 [13.4 文氏桥](#ch13)
 
 ## 5.13 电流镜：共用 V_BE 的复印机 <a id="demo13"></a>
 
-<p align="center"><img src="assets/svg/current-mirror.svg" width="720" alt="电流镜SVG动画"></p>
+<p align="center"><img src="assets/svg-v2/ch11-mirror-beta-v2.svg" width="720" alt="参考电流还要供给两只管子的基流。β=20 时，参考支路的基流占比不可忽略。 β=50 时，忽略 Early 的复制比约 96.15%。 β=100 时，复制比为 100/102。 β 增大只缩小基流误差；VCE 差仍会改变复制比。 示意匹配 β、同 VBE；实线忽略 Early，虚线 VA=100 V、输出 5 V。"></p>
 
-**看点**：绿粒子经 R_SET 流入二极管接法的 Q1，自动建立 V_BE；幕 2 蓝粒子从负载侧流入 Q2。同一根基极线把 V_BE 一送二，电流被原样复印。→ 正文 [11.3 电流镜](#ch11)
+**看点**：参考电流还要供给两只管子的基流。β=20 时，参考支路的基流占比不可忽略。β=50 时，忽略 Early 的复制比约 96.15%。β=100 时，复制比为 100/102。β 增大只缩小基流误差；→ 正文 [11.3 电流镜](#ch11)
 
 ## 5.14 Boost 升压：电感叠罗汉 <a id="demo14"></a>
 
-<p align="center"><img src="assets/svg/boost-converter.svg" width="720" alt="Boost升压SVG动画"></p>
+<p align="center"><img src="assets/svg-v2/ch13-boost-cycle-v2.svg" width="720" alt="升压的关断阶段才把电感电流送往输出；导通储能至回到周期起点。"></p>
 
-**看点**：开关闭合绿粒子给电感"打气"（输出靠电容撑）；断开瞬间电感极性翻转与 12V 串联叠加，红粒子顶开二极管直灌 24V。伏秒平衡，即 Vout=Vin/(1−D)。→ 正文 [13.3 Boost](#ch13)
+**看点**：升压的关断阶段才把电感电流送往输出；导通储能至回到周期起点。→ 正文 [13.3 Boost](#ch13)
 
 ## 5.15 精密整流：借增益消灭 0.7V <a id="demo15"></a>
 
@@ -11771,9 +11771,9 @@ Falstad 交互：`Circuits → 555 Timer Chip → Astable Multivibrator`
 
 ## 5.16 米勒效应：10pF 变身 1nF <a id="demo16"></a>
 
-<p align="center"><img src="assets/svg/miller-effect.svg" width="720" alt="米勒效应SVG动画"></p>
+<p align="center"><img src="assets/svg-v2/ch11-miller-charge-v2.svg" width="720" alt="电荷随两端压差变化，电容本身没变。A=0，电容输出端固定，电荷只随输入变化。 A=10，输出反相，电容两端摆幅增加。 A=50，同一输入需搬运更多电荷。 A=100，等效输入电容为 1.01 nF。 示意 Cbc=10 pF；输入 ±1 mV，输出增益为 −A；低频电压增益近似。"></p>
 
-**看点**：IN 只摆 1mV、OUT 反相摆 100mV。跨接电容两端实际承受 101 倍摆幅，输入源仿佛对着 1nF 充电。高频滚降的元凶，也是密勒补偿的原理。→ 正文 [11.5 频率响应](#ch11)
+**看点**：电荷随两端压差变化，电容本身没变。A=0，电容输出端固定，电荷只随输入变化。A=10，输出反相，电容两端摆幅增加。A=50，同一输入需搬运更多电荷。A=100，等效输入电容为 1.01 nF。示意 Cbc=10 pF；→ 正文 [11.5 频率响应](#ch11)
 
 ## 5.17 仪表放大器：三道防线挡共模 <a id="demo17"></a>
 
@@ -11783,15 +11783,15 @@ Falstad 交互：`Circuits → 555 Timer Chip → Astable Multivibrator`
 
 ## 5.18 LC 谐振：电场磁场荡秋千 <a id="demo18"></a>
 
-<p align="center"><img src="assets/svg/rlc-resonance.svg" width="720" alt="LC谐振SVG动画"></p>
+<p align="center"><img src="assets/svg-v2/ch13-lc-energy-v2.svg" width="720" alt="电场能与磁场能交替，理想总能量不变；电容全储能至能量返回电容。"></p>
 
-**看点**：底部两条能量条此消彼长，也就是磁场能 ½LI² 与电场能 ½CV² 每秒倒腾 2f₀ 次；右侧 Q 高峰尖 vs Q 低峰胖，f₀ 处感抗容抗正负抵消电流冲顶。→ 正文 [13.4 的延伸阅读段](#ch13)
+**看点**：电场能与磁场能交替，理想总能量不变；电容全储能至能量返回电容。→ 正文 [13.4 的延伸阅读段](#ch13)
 
 ## 5.19 SAR ADC：四位天平 <a id="demo19"></a>
 
-<p align="center"><img src="assets/svg/sar-adc.svg" width="720" alt="SAR ADC SVG动画"></p>
+<p align="center"><img src="assets/svg-v2/ch13-sar-trials-v2.svg" width="720" alt="逐位试探时保持输入不变；试 0.5：保留至试 0.6875：撤回。"></p>
 
-**看点**：紫阶梯四拍逼近蓝输入线，试 8 太沉退、试 4 太轻留、试 6 太沉退、试 5 留下，即 0101。二分查找的硬件版，N 位只要 N 拍。→ 正文 [13.6 ADC](#ch13)
+**看点**：逐位试探时保持输入不变；试 0.5：保留至试 0.6875：撤回。→ 正文 [13.6 ADC](#ch13)
 
 ## 5.20 带隙基准：一正一负凑直线 <a id="demo20"></a>
 
@@ -11813,9 +11813,9 @@ Falstad 交互：`Circuits → 555 Timer Chip → Astable Multivibrator`
 
 ## 5.23 电荷泵：电容斗提机 <a id="demo23"></a>
 
-<p align="center"><img src="assets/svg/charge-pump.svg" width="720" alt="电荷泵SVG动画"></p>
+<p align="center"><img src="assets/svg-v2/ch13-pump-load-v2.svg" width="720" alt="飞跨电容的搬运速率限制带载电压；空载至负载 20 mA。"></p>
 
-**看点**：相1 绿粒子灌满 C1（下端接地），相2 下端被抬到 Vin、上端 2Vin 红粒子倒进 C2 水库；几轮之后输出爬满 2Vin。不用电感的升压。→ 正文 [13.3 电荷泵](#ch13)
+**看点**：飞跨电容的搬运速率限制带载电压；空载至负载 20 mA。→ 正文 [13.3 电荷泵](#ch13)
 
 ## 5.24 一阶 RC 低通与波特图 <a id="demo24"></a>
 
@@ -11825,15 +11825,15 @@ Falstad 交互：`Circuits → 555 Timer Chip → Astable Multivibrator`
 
 ## 5.25 齐纳稳压：电压溢流阀 <a id="demo25"></a>
 
-<p align="center"><img src="assets/svg/zener-regulator.svg" width="720" alt="齐纳稳压SVG动画"></p>
+<p align="center"><img src="assets/svg-v2/ch13-zener-budget-v2.svg" width="720" alt="先扣基流，再看齐纳管还能否稳压；空载至负载 500 mA。"></p>
 
-**看点**：输入正弦抖、输出一根直线，水位到顶开闸，多余的压降全落在 Rs 上。负载抢流？齐纳少吸让位。→ 正文 [9.1 齐纳](#ch9)
+**看点**：先扣基流，再看齐纳管还能否稳压；空载至负载 500 mA。→ 正文 [9.1 齐纳](#ch9)
 
 ## 5.26 恒流源：电压横扫，电流平躺 <a id="demo26"></a>
 
-<p align="center"><img src="assets/svg/constant-current.svg" width="720" alt="恒流源SVG动画"></p>
+<p align="center"><img src="assets/svg-v2/ch13-current-compliance-v2.svg" width="720" alt="负载电压用尽余量后，电流再也保持不了；供电 2.8 V至回查输出级边界。"></p>
 
-**看点**：V_CE 扫过全程，I 线纹丝平躺，斜率≈0 就是"输出阻抗极高"的图形化。基准钉 V_B、R_E 钉电流、管子吸收全部波动。→ 正文 [13.5 恒流源](#ch13)
+**看点**：负载电压用尽余量后，电流再也保持不了；供电 2.8 V至回查输出级边界。→ 正文 [13.5 恒流源](#ch13)
 
 ## 5.27 峰值检测：单向记忆 <a id="demo27"></a>
 
@@ -11843,21 +11843,21 @@ Falstad 交互：`Circuits → 555 Timer Chip → Astable Multivibrator`
 
 ## 5.28 反相 Buck-Boost：正进负出 <a id="demo28"></a>
 
-<p align="center"><img src="assets/svg/inverting-buckboost.svg" width="720" alt="反相Buck-Boost SVG动画"></p>
+<p align="center"><img src="assets/svg-v2/ch13-inverting-ratio-v2.svg" width="720" alt="反相 Buck-Boost 的极性来自放电连接；D=0.2至D=0.7。"></p>
 
-**看点**：闭合时电感从 +12V 储能（绿粒子下灌）。断开瞬间电感把节点拽向负压、经朝左二极管倒向负输出（红粒子）。输出电容下极板才是地。→ 正文 [13.3 Buck-Boost](#ch13)
+**看点**：反相 Buck-Boost 的极性来自放电连接；D=0.2至D=0.7。→ 正文 [13.3 Buck-Boost](#ch13)
 
 ## 5.29 H 桥：电流听指挥掉头 <a id="demo29"></a>
 
-<p align="center"><img src="assets/svg/h-bridge.svg" width="720" alt="H桥SVG动画"></p>
+<p align="center"><img src="assets/svg-v2/ch13-hbridge-reverse-v2.svg" width="720" alt="电压可以换向，电感电流必须连续；刚换向至负电流逐步建立。"></p>
 
-**看点**：绿粒子沿 +12V→Q1→电机→Q4→GND 对角线走；红帧整体掉头；警示帧同臂直通；紫帧电感电流经体二极管流回电源（D3 出 +12V、D2 进地，方向分毫不差）。→ 正文 [13.7 H 桥](#ch13)
+**看点**：电压可以换向，电感电流必须连续；刚换向至负电流逐步建立。→ 正文 [13.7 H 桥](#ch13)
 
 ## 5.30 555 单稳态：一触发，亮一拍 <a id="demo30"></a>
 
-<p align="center"><img src="assets/svg/ne555-monostable.svg" width="720" alt="555单稳态SVG动画"></p>
+<p align="center"><img src="assets/svg-v2/ch10-monostable-leakage-v2.svg" width="720" alt="漏电先拉长脉宽，过大时永远达不到上阈。无漏电，从零充到 6 V 的脉宽约 28.92 s。 漏电 1 µA，目标变为 8.44 V，脉宽约 32.66 s。 漏电继续增大，末段充电电流越来越小。 达到约 5.357 µA 时，目标不高于上阈，不再结束。 示意 9 V、R=560 kΩ、C=47 µF；恒流漏电流出电容节点。"></p>
 
-**看点**：按下触发按钮，OUT 拉高一整个 t=1.1·RC≈1.1s。右边波形里 OUT 高台与 Vc 指数爬升严格对齐，2Vcc/3 虚线正好压在充电终点。→ 正文 [10.5 单稳态](#ch10)
+**看点**：漏电先拉长脉宽，过大时永远达不到上阈。无漏电，从零充到 6 V 的脉宽约 28.92 s。漏电 1 µA，目标变为 8.44 V，脉宽约 32.66 s。漏电继续增大，末段充电电流越来越小。→ 正文 [10.5 单稳态](#ch10)
 
 ## 5.31 削波与钳位：闸门与垫脚石 <a id="demo31"></a>
 
@@ -11873,9 +11873,9 @@ Falstad 交互：`Circuits → 555 Timer Chip → Astable Multivibrator`
 
 ## 5.33 积分器：方波换三角波 <a id="demo33"></a>
 
-<p align="center"><img src="assets/svg/integrator.svg" width="720" alt="积分器SVG动画"></p>
+<p align="center"><img src="assets/svg-v2/ch12-integrator-cycle-v2.svg" width="720" alt="恒流改变斜率，初值决定直流中心。正输入产生负的输出斜率。初值零给出零到负五伏；零均值时应为正负二点五伏。"></p>
 
-**看点**：恒定电压灌进 RC，输出匀速爬坡。方波的两个电平正好对应三角波的上坡与下坡。→ 正文 [12.4 积分器与微分器](#ch12)
+**看点**：恒流改变斜率，初值决定直流中心。正输入产生负的输出斜率。初值零给出零到负五伏；零均值时应为正负二点五伏。→ 正文 [12.4 积分器与微分器](#ch12)
 
 ## 5.34 单电源虚地：给信号造一个假地 <a id="demo34"></a>
 
@@ -11981,9 +11981,9 @@ Falstad 交互：`Circuits → 555 Timer Chip → Astable Multivibrator`
 
 ## 5.51 三态总线：谁说话，谁闭嘴 <a id="demo51"></a>
 
-<p align="center"><img src="assets/svg/tristate-bus.svg" width="720" alt="三态总线SVG动画"></p>
+<p align="center"><img src="assets/svg-v2/ch05-tristate-timing-v2.svg" width="720" alt="三态驱动条共用纳秒轴。旧器件最晚三十纳秒释放，新器件使能最小十纳秒；指令间隔五纳秒可重叠十五纳秒，间隔三十纳秒则留十纳秒空档。"></p>
 
-**看点**：两个驱动器共享一根总线，粒子显示谁在推电流；两个同时驱动就是直通电流（第四格）。→ 正文 [5.4 三态与高阻](#ch5)
+**看点**：三态驱动条共用纳秒轴。旧器件最晚三十纳秒释放，新器件使能最小十纳秒；指令间隔五纳秒可重叠十五纳秒，间隔三十纳秒则留十纳秒空档。→ 正文 [5.4 三态与高阻](#ch5)
 
 ## 5.52 三种基本拓扑：同一只运放的三条路 <a id="demo52"></a>
 
@@ -12065,9 +12065,9 @@ Falstad 交互：`Circuits → 555 Timer Chip → Astable Multivibrator`
 
 ## 5.65 分立串联稳压：LDO 的祖爷爷 <a id="demo65"></a>
 
-<p align="center"><img src="assets/svg/discrete-ldo.svg" width="720" alt="分立串联稳压SVG动画"></p>
+<p align="center"><img src="assets/svg-v2/ch09-dropout-ripple-v2.svg" width="720" alt="稳压余量看输入谷值，不只看平均值。输入为 3.5 V 加 0.2 V 正弦，平均值看似足够。 最高点 3.7 V，目标输出仍为 3.3 V。 输入谷值 3.3 V，扣去 0.15 V 压差只能输出 3.15 V。 谷值须覆盖输出加压差；实际还查动态 PSRR 与温度。 准静态示意：目标 3.3 V，负载 0.5 A，Ron=0.3 Ω，输入正弦 1 kHz。"></p>
 
-**看点**：齐纳基准 + 射随器调整管 + 顺带负反馈；Vout=V_Z−0.7V 的直流账与双重温漂。→ 正文 [13.1 分立串联稳压](#ch13)
+**看点**：稳压余量看输入谷值，不只看平均值。输入为 3.5 V 加 0.2 V 正弦，平均值看似足够。最高点 3.7 V，目标输出仍为 3.3 V。输入谷值 3.3 V，扣去 0.15 V 压差只能输出 3.15 V。→ 正文 [13.1 分立串联稳压](#ch13)
 
 ## 5.66 BJT 放大原理：99% 的电子成了 I_C <a id="demo66"></a>
 
@@ -12155,9 +12155,9 @@ Falstad 交互：`Circuits → 555 Timer Chip → Astable Multivibrator`
 
 ## 5.80 恒流源的合规电压 <a id="demo80"></a>
 
-<p align="center"><img src="assets/svg/compliance-voltage.svg" width="720" alt="恒流源合规电压SVG动画"></p>
+<p align="center"><img src="assets/svg-v2/ch13-current-compliance-v2.svg" width="720" alt="负载电压用尽余量后，电流再也保持不了；供电 2.8 V至回查输出级边界。"></p>
 
-**看点**：2.0V + 0.1V + 0.7V = 2.8V 的合规账；负载超过 R_L,max 电流就塌，这就是 4~20mA 环流用 24V 的原因。→ 正文 [13.5 恒流源家族](#ch13)
+**看点**：负载电压用尽余量后，电流再也保持不了；供电 2.8 V至回查输出级边界。→ 正文 [13.5 恒流源家族](#ch13)
 
 ## 5.81 共射放大器四拍：输入升、输出降 <a id="demo81"></a>
 
@@ -12369,9 +12369,9 @@ Falstad 交互：`Circuits → 555 Timer Chip → Astable Multivibrator`
 
 ## 5.114 降压纹波六步推导：那个 8 是三角波的面积 <a id="demo114"></a>
 
-<p align="center"><img src="assets/svg/derive-buck.svg" width="720" alt="降压纹波六步推导动画：电感三角波面积摊成 1/8"></p>
+<p align="center"><img src="assets/svg-v2/ch13-buck-cycle-v2.svg" width="720" alt="同一电感电流，开关与二极管轮流接管；导通初段至周期回到谷值。"></p>
 
-**看点**：电感电流是三角波，电容每周期只收三角波围出的那点面积；面积 $=\tfrac12\cdot\tfrac{\Delta I_L}{2}\cdot\tfrac{T}{2}$ 化简后正好是 $\Delta I_L/(8f_{sw})$，所以 $\Delta V=\Delta I_L/(8f_{sw}C)$ 里的 **8 不是怪数，是几何**。代 0.884A、150kHz、100µF 得 7.4mV，与 §13.2 的算例同一组数。→ 正文 [13.2 Buck 降压](#sec-13-2)
+**看点**：同一电感电流，开关与二极管轮流接管；导通初段至周期回到谷值。→ 正文 [13.2 Buck 降压](#sec-13-2)
 
 ## 5.115 预测对实测：对不上的地方才是线索 <a id="demo115"></a>
 
@@ -12413,9 +12413,9 @@ Falstad 交互：`Circuits → 555 Timer Chip → Astable Multivibrator`
 
 ## 5.119 源的两次测量法：内阻一笔算出（失效边界） <a id="demo119"></a>
 
-<p align="center"><img src="assets/svg/exp-source-sag.svg" width="720" alt="源的两次测量法：内阻一笔算出（失效边界）动画：四步节拍推导"></p>
+<p align="center"><img src="assets/svg-v2/ch00-divider-loading-v2.svg" width="720" alt="空载 6.000V、挂 10kΩ 后 4.000V、误差 −33.3%；输出电阻 5kΩ，后级输入至少高一个数量级"></p>
 
-**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [0.6 恒压源与恒流源](#sec-0-6)
+**看点**：空载 6.000V、挂 10kΩ 后 4.000V、误差 −33.3%；输出电阻 5kΩ，后级输入至少高一个数量级→ 正文 [0.6 恒压源与恒流源](#sec-0-6)
 
 
 ## 5.120 单位错档一千倍：数量级先钉死 <a id="demo120"></a>
@@ -12434,9 +12434,9 @@ Falstad 交互：`Circuits → 555 Timer Chip → Astable Multivibrator`
 
 ## 5.122 纹波的两本账：容性与 ESR 谁说了算 <a id="demo122"></a>
 
-<p align="center"><img src="assets/svg/exp-esr-ripple-split.svg" width="720" alt="纹波的两本账：容性与 ESR 谁说了算动画：四步节拍推导"></p>
+<p align="center"><img src="assets/svg-v2/ch17-esr-sweep.svg" width="720" alt="ESR 从 0.1Ω 扫到 3Ω（扫描端点为示意值）——先问纹波频率，再问幅度"></p>
 
-**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [1.2 ESR 与纹波](#ch1)
+**看点**：ESR 从 0.1Ω 扫到 3Ω（扫描端点为示意值）——先问纹波频率，再问幅度→ 正文 [1.2 ESR 与纹波](#ch1)
 
 
 ## 5.123 电解电容寿命账：10°C 翻倍（失效边界） <a id="demo123"></a>
@@ -12455,9 +12455,9 @@ Falstad 交互：`Circuits → 555 Timer Chip → Astable Multivibrator`
 
 ## 5.125 导通角与峰值电流：窄窗里的猛冲 <a id="demo125"></a>
 
-<p align="center"><img src="assets/svg/exp-conduction-angle.svg" width="720" alt="导通角与峰值电流：窄窗里的猛冲动画：四步节拍推导"></p>
+<p align="center"><img src="assets/svg-v2/ch02-charge-window-v2.svg" width="720" alt="相同坐标轴上的三种电流：1 安负载持续 10 毫秒耗电 10 毫库；3 毫秒矩形脉冲平均 3.3 安，三角脉冲峰值 6.7 安，两者补回同一份电荷。示意脉形，不能替代实际整流仿真。"></p>
 
-**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [2.6 导通角](#ch2)
+**看点**：相同坐标轴上的三种电流：1 安负载持续 10 毫秒耗电 10 毫库；3 毫秒矩形脉冲平均 3.3 安，三角脉冲峰值 6.7 安，两者补回同一份电荷。示意脉形，不能替代实际整流仿真。→ 正文 [2.6 导通角](#ch2)
 
 
 ## 5.126 接口防护三级削减：TVS → 电阻 → 钳位 <a id="demo126"></a>
@@ -12469,9 +12469,9 @@ Falstad 交互：`Circuits → 555 Timer Chip → Astable Multivibrator`
 
 ## 5.127 β 漂移冲击工作点：偏置的失效边界 <a id="demo127"></a>
 
-<p align="center"><img src="assets/svg/exp-beta-drift.svg" width="720" alt="β 漂移冲击工作点：偏置的失效边界动画：四步节拍推导"></p>
+<p align="center"><img src="assets/svg-v2/ch11-beta-budget-v2.svg" width="720" alt="标称通过后，还要重算 β 与偏置。β=100，输入电阻约 8.76 kΩ，低于目标。 β=150 时输入电阻恢复，但还需看其他指标。 β=200 标称输入电阻约 13.13 kΩ。 β=300 输入电阻更高，带宽却下降；不能只挑一个指标。 修订候选按正文完整偏置模型，扫共同 β；温度与器件电容未扫描。"></p>
 
-**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [3.4 分压偏置](#ch3)
+**看点**：标称通过后，还要重算 β 与偏置。β=100，输入电阻约 8.76 kΩ，低于目标。β=150 时输入电阻恢复，但还需看其他指标。β=200 标称输入电阻约 13.13 kΩ。β=300 输入电阻更高，带宽却下降；→ 正文 [3.4 分压偏置](#ch3)
 
 
 ## 5.128 热失控：一条闭合的正反馈环（失效边界） <a id="demo128"></a>
@@ -12483,23 +12483,23 @@ Falstad 交互：`Circuits → 555 Timer Chip → Astable Multivibrator`
 
 ## 5.129 米勒平台的栅电荷账：驱动电流是挤压器 <a id="demo129"></a>
 
-<p align="center"><img src="assets/svg/exp-gate-charge.svg" width="720" alt="米勒平台的栅电荷账：驱动电流是挤压器动画：四步节拍推导"></p>
+<p align="center"><img src="assets/svg-v2/ch04-gate-power-v2.svg" width="720" alt="每周期七纳库栅电荷，一百千赫时平均供电零点七毫安；十伏、十欧回路初始峰值约一安；平均驱动功率七毫瓦，分布在驱动器及栅极回路中，不全在 MOSFET 内。"></p>
 
-**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [4.3 与 4.6 平台与四拍](#ch4)
+**看点**：每周期七纳库栅电荷，一百千赫时平均供电零点七毫安；十伏、十欧回路初始峰值约一安；平均驱动功率七毫瓦，分布在驱动器及栅极回路中，不全在 MOSFET 内。→ 正文 [4.3 与 4.6 平台与四拍](#ch4)
 
 
 ## 5.130 上拉取值：上升沿与功耗的双边权衡 <a id="demo130"></a>
 
-<p align="center"><img src="assets/svg/exp-pullup-trade.svg" width="720" alt="上拉取值：上升沿与功耗的双边权衡动画：四步节拍推导"></p>
+<p align="center"><img src="assets/svg-v2/ch05-pullup-window-v2.svg" width="720" alt="同一电阻坐标轴上求灌电流下限和上升时间上限的交集。三点三伏、一百皮法可取九百六十七至三千五百四十一欧；四百皮法时上限八百八十五欧，区间为空。"></p>
 
-**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [5.3 上拉取值](#ch5)
+**看点**：同一电阻坐标轴上求灌电流下限和上升时间上限的交集。三点三伏、一百皮法可取九百六十七至三千五百四十一欧；四百皮法时上限八百八十五欧，区间为空。→ 正文 [5.3 上拉取值](#ch5)
 
 
 ## 5.131 直通窗口与死区：换向瞬间谁在岗 <a id="demo131"></a>
 
-<p align="center"><img src="assets/svg/exp-dead-time.svg" width="720" alt="直通窗口与死区：换向瞬间谁在岗动画：四步节拍推导"></p>
+<p align="center"><img src="assets/svg-v2/ch04-deadtime-energy-v2.svg" width="720" alt="十微秒周期内两段死区各五十纳秒，体二极管承受零点八伏、五安；每周期零点四微焦，乘一百千赫为零点零四瓦，即四十毫瓦。放大的单次换流图标明独立尺度。"></p>
 
-**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [5.1 推挽直通](#ch5)
+**看点**：十微秒周期内两段死区各五十纳秒，体二极管承受零点八伏、五安；每周期零点四微焦，乘一百千赫为零点零四瓦，即四十毫瓦。放大的单次换流图标明独立尺度。→ 正文 [5.1 推挽直通](#ch5)
 
 
 ## 5.132 增益带宽交换：GBW 是一笔守恒的预算 <a id="demo132"></a>
@@ -12511,37 +12511,37 @@ Falstad 交互：`Circuits → 555 Timer Chip → Astable Multivibrator`
 
 ## 5.133 压摆率墙：大信号的失效边界 <a id="demo133"></a>
 
-<p align="center"><img src="assets/svg/exp-slew-wall.svg" width="720" alt="压摆率墙：大信号的失效边界动画：四步节拍推导"></p>
+<p align="center"><img src="assets/svg-v2/ch06-speed-envelope-v2.svg" width="720" alt="小信号幅频与大信号斜率分别核算。小信号闭环极点 7 kHz，直流增益 100。 10 kHz 增益约 57.35，已经明显衰减。 若要求输出仍达 5 V 峰值，另算正弦最大斜率。 15.9 kHz 时所需斜率达到 SR；供电摆幅也须满足。 独立教学参数 GBW 0.7 MHz、NG 100、SR 0.5 V/µs、Vp 5 V。"></p>
 
-**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [6.7 压摆率](#ch6)
+**看点**：小信号幅频与大信号斜率分别核算。小信号闭环极点 7 kHz，直流增益 100。10 kHz 增益约 57.35，已经明显衰减。若要求输出仍达 5 V 峰值，另算正弦最大斜率。15.9 kHz 时所需斜率达到 SR；→ 正文 [6.7 压摆率](#ch6)
 
 
 ## 5.134 迟滞窗口：抗噪护城河的宽与窄 <a id="demo134"></a>
 
-<p align="center"><img src="assets/svg/exp-hyst-window.svg" width="720" alt="迟滞窗口：抗噪护城河的宽与窄动画：四步节拍推导"></p>
+<p align="center"><img src="assets/svg-v2/ch07-hysteresis-timing-v2.svg" width="720" alt="相对中点的延时，只跨半个对称窗口。无迟滞参考门限 2.5 V，输入在 200 s 到达。 迟滞上阈值 2.727 V，在约 427.3 s 才翻转。 相对 2.5 V 的推迟是 227.3 s，不是 454.5 s。 只有拿下阈值作起点，时间差才对应整个窗口。 初态输出高；输入由 2.3 V 以 1 mV/s 上行，忽略传播与 RC 延迟。"></p>
 
-**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [7.3 迟滞](#ch7)
+**看点**：相对中点的延时，只跨半个对称窗口。无迟滞参考门限 2.5 V，输入在 200 s 到达。迟滞上阈值 2.727 V，在约 427.3 s 才翻转。相对 2.5 V 的推迟是 227.3 s，不是 454.5 s。→ 正文 [7.3 迟滞](#ch7)
 
 
 ## 5.135 判决延迟预算：运放兼职的代价 <a id="demo135"></a>
 
-<p align="center"><img src="assets/svg/exp-delay-budget.svg" width="720" alt="判决延迟预算：运放兼职的代价动画：四步节拍推导"></p>
+<p align="center"><img src="assets/svg-v2/ch07-release-timing-v2.svg" width="720" alt="响应时间的终点，先看手册怎样定义。输出管在示意的 1 µs 释放，随后才按 RC 上升。 越过 1.4 V 约在 1.077 µs；不同于 50% 终点。 50% 约 1.163 µs，70% 约 1.283 µs。 10%→90% 耗 0.516 µs；不能重复加进已测响应。 独立 RC 示意：5 V、4.7 kΩ、50 pF，1 µs 时输出管释放。"></p>
 
-**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [7.5 延迟账](#ch7)
+**看点**：响应时间的终点，先看手册怎样定义。输出管在示意的 1 µs 释放，随后才按 RC 上升。越过 1.4 V 约在 1.077 µs；不同于 50% 终点。50% 约 1.163 µs，70% 约 1.283 µs。→ 正文 [7.5 延迟账](#ch7)
 
 
 ## 5.136 电荷注入的信号相关性：从台阶到谐波 <a id="demo136"></a>
 
-<p align="center"><img src="assets/svg/exp-inject-harmonic.svg" width="720" alt="电荷注入的信号相关性：从台阶到谐波动画：四步节拍推导"></p>
+<p align="center"><img src="assets/svg-v2/ch08-charge-injection-v2.svg" width="720" alt="沟道电荷 0.2pC 在关断瞬间分成源侧与 Chold 两路；一半落到 10pF 得 10mV，即 2.048V/12 位的 20 个 LSB。"></p>
 
-**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [8.3 注入分账](#ch8)
+**看点**：沟道电荷 0.2pC 在关断瞬间分成源侧与 Chold 两路；一半落到 10pF 得 10mV，即 2.048V/12 位的 20 个 LSB。→ 正文 [8.3 注入分账](#ch8)
 
 
 ## 5.137 采样保持的 droop 预算：时间维度的税 <a id="demo137"></a>
 
-<p align="center"><img src="assets/svg/exp-droop-budget.svg" width="720" alt="采样保持的 droop 预算：时间维度的税动画：四步节拍推导"></p>
+<p align="center"><img src="assets/svg-v2/ch08-sample-hold-v2.svg" width="720" alt="采样相追踪 2.000V、保持相冻结、漏流按 I/C 下斜、再采样；加大 Chold 同时摊注入、压 kT/C、缓 droop，代价是采集时间。"></p>
 
-**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [8.4 端到端例](#ch8)
+**看点**：采样相追踪 2.000V、保持相冻结、漏流按 I/C 下斜、再采样；加大 Chold 同时摊注入、压 kT/C、缓 droop，代价是采集时间。→ 正文 [8.4 端到端例](#ch8)
 
 
 ## 5.138 LDO 换料的隐性账：ESR 零点与稳定（失效边界） <a id="demo138"></a>
@@ -12553,65 +12553,65 @@ Falstad 交互：`Circuits → 555 Timer Chip → Astable Multivibrator`
 
 ## 5.139 PSRR 随频率滚降：电源抑制是分段防守 <a id="demo139"></a>
 
-<p align="center"><img src="assets/svg/exp-psrr-roll.svg" width="720" alt="PSRR 随频率滚降：电源抑制是分段防守动画：四步节拍推导"></p>
+<p align="center"><img src="assets/svg-v2/ch11-psrr-ripple-v2.svg" width="720" alt="同样的纹波，抑制比随频率变化。100 Hz 的 80 dB 抑制把纹波折为 10 µVrms。 1 kHz 仍在本例的低频平台。 100 kHz 已降到 40 dB，输入等效纹波为 1 mVrms。 1 MHz 时为 20 dB；不能拿 DC 数字外推。 示意电源纹波 100 mVrms；PSRR 在 1 kHz 前 80 dB，随后每十倍频降 20 dB。"></p>
 
-**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [9.3 PSRR](#ch9)
+**看点**：同样的纹波，抑制比随频率变化。100 Hz 的 80 dB 抑制把纹波折为 10 µVrms。1 kHz 仍在本例的低频平台。100 kHz 已降到 40 dB，输入等效纹波为 1 mVrms。→ 正文 [9.3 PSRR](#ch9)
 
 
 ## 5.140 单稳态触发链：一触发，亮一拍 <a id="demo140"></a>
 
-<p align="center"><img src="assets/svg/exp-555-mono-train.svg" width="720" alt="单稳态触发链：一触发，亮一拍动画：四步节拍推导"></p>
+<p align="center"><img src="assets/svg-v2/ch10-monostable-leakage-v2.svg" width="720" alt="漏电先拉长脉宽，过大时永远达不到上阈。无漏电，从零充到 6 V 的脉宽约 28.92 s。 漏电 1 µA，目标变为 8.44 V，脉宽约 32.66 s。 漏电继续增大，末段充电电流越来越小。 达到约 5.357 µA 时，目标不高于上阈，不再结束。 示意 9 V、R=560 kΩ、C=47 µF；恒流漏电流出电容节点。"></p>
 
-**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [10.5 单稳态](#ch10)
+**看点**：漏电先拉长脉宽，过大时永远达不到上阈。无漏电，从零充到 6 V 的脉宽约 28.92 s。漏电 1 µA，目标变为 8.44 V，脉宽约 32.66 s。漏电继续增大，末段充电电流越来越小。→ 正文 [10.5 单稳态](#ch10)
 
 
 ## 5.141 555 占空比：充放两条路各管一段 <a id="demo141"></a>
 
-<p align="center"><img src="assets/svg/exp-555-duty.svg" width="720" alt="555 占空比：充放两条路各管一段动画：四步节拍推导"></p>
+<p align="center"><img src="assets/svg-v2/ch10-diode-duty-v2.svg" width="720" alt="二极管有压降，等电阻也不等于 50%。理想二极管绕过 RB，等电阻给出对称充放时间。 VF=0.3 V 时，充电目标降到 4.7 V，高段变长。 VF=0.6 V 时，门限仍不变，充电目标只有 4.4 V。 这段扫描中二极管一直导通；压降更大需分段求解。 示意 5 V、RA=RB=10 kΩ、C=100 nF；VD=0、恒定 VF。"></p>
 
-**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [10.2 三种模式](#ch10)
+**看点**：二极管有压降，等电阻也不等于 50%。理想二极管绕过 RB，等电阻给出对称充放时间。VF=0.3 V 时，充电目标降到 4.7 V，高段变长。VF=0.6 V 时，门限仍不变，充电目标只有 4.4 V。→ 正文 [10.2 三种模式](#ch10)
 
 
 ## 5.142 米勒倍增：一只电容被增益放大 <a id="demo142"></a>
 
-<p align="center"><img src="assets/svg/exp-miller-mult.svg" width="720" alt="米勒倍增：一只电容被增益放大动画：四步节拍推导"></p>
+<p align="center"><img src="assets/svg-v2/ch11-miller-charge-v2.svg" width="720" alt="电荷随两端压差变化，电容本身没变。A=0，电容输出端固定，电荷只随输入变化。 A=10，输出反相，电容两端摆幅增加。 A=50，同一输入需搬运更多电荷。 A=100，等效输入电容为 1.01 nF。 示意 Cbc=10 pF；输入 ±1 mV，输出增益为 −A；低频电压增益近似。"></p>
 
-**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [11.5 米勒效应](#ch11)
+**看点**：电荷随两端压差变化，电容本身没变。A=0，电容输出端固定，电荷只随输入变化。A=10，输出反相，电容两端摆幅增加。A=50，同一输入需搬运更多电荷。A=100，等效输入电容为 1.01 nF。示意 Cbc=10 pF；→ 正文 [11.5 米勒效应](#ch11)
 
 
 ## 5.143 噪声三税：一张预算表收口 <a id="demo143"></a>
 
-<p align="center"><img src="assets/svg/exp-noise-ladder.svg" width="720" alt="噪声三税：一张预算表收口动画：四步节拍推导"></p>
+<p align="center"><img src="assets/svg-v2/ch11-noise-bandwidth-v2.svg" width="720" alt="截止频率之外的噪声仍在积分。积分到 fH，只收齐全部白噪声均方值的一半。 到 2fH，累计约 70.48%。 到 5fH，仍未收齐高频尾部。 积分到无穷才得到等效噪声带宽 πfH/2。 示意白噪声经过一阶低通，fH 为 −3 dB 点；按均方值累计。"></p>
 
-**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [11.6 噪声预算](#ch11)
+**看点**：截止频率之外的噪声仍在积分。积分到 fH，只收齐全部白噪声均方值的一半。到 2fH，累计约 70.48%。到 5fH，仍未收齐高频尾部。积分到无穷才得到等效噪声带宽 πfH/2。→ 正文 [11.6 噪声预算](#ch11)
 
 
 ## 5.144 积分器漂移与泄放电阻（失效边界） <a id="demo144"></a>
 
-<p align="center"><img src="assets/svg/exp-integrator-drift.svg" width="720" alt="积分器漂移与泄放电阻（失效边界）动画：四步节拍推导"></p>
+<p align="center"><img src="assets/svg-v2/ch12-leaky-integrator-v2.svg" width="720" alt="泄放把无限 DC 增益变成有限平台。低频输出趋向有限的负一百倍。虚线是理想积分幅值，高频真实环路仍有限制。"></p>
 
-**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [12.4 与 12.11 积分器](#ch12)
+**看点**：泄放把无限 DC 增益变成有限平台。低频输出趋向有限的负一百倍。虚线是理想积分幅值，高频真实环路仍有限制。→ 正文 [12.4 与 12.11 积分器](#ch12)
 
 
 ## 5.145 容性负载自激与隔离电阻（失效边界） <a id="demo145"></a>
 
-<p align="center"><img src="assets/svg/exp-cload-isolate.svg" width="720" alt="容性负载自激与隔离电阻（失效边界）动画：四步节拍推导"></p>
+<p align="center"><img src="assets/svg-v2/ch12-riso-step-v2.svg" width="720" alt="隔离电阻前后取反馈，阶跃不同。无隔离电阻，输出强烈振铃但最终收敛。移到电阻之后取反馈会失去零点，振铃更大。"></p>
 
-**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [12.9 稳定性实战](#ch12)
+**看点**：隔离电阻前后取反馈，阶跃不同。无隔离电阻，输出强烈振铃但最终收敛。移到电阻之后取反馈会失去零点，振铃更大。→ 正文 [12.9 稳定性实战](#ch12)
 
 
 ## 5.146 伏秒平衡：电感稳态的入场券 <a id="demo146"></a>
 
-<p align="center"><img src="assets/svg/exp-volt-second.svg" width="720" alt="伏秒平衡：电感稳态的入场券动画：四步节拍推导"></p>
+<p align="center"><img src="assets/svg-v2/ch13-buck-cycle-v2.svg" width="720" alt="同一电感电流，开关与二极管轮流接管；导通初段至周期回到谷值。"></p>
 
-**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [13.2 Buck](#ch13)
+**看点**：同一电感电流，开关与二极管轮流接管；导通初段至周期回到谷值。→ 正文 [13.2 Buck](#ch13)
 
 
 ## 5.147 晶振牵引灵敏度：3pF 偏差值多少秒 <a id="demo147"></a>
 
-<p align="center"><img src="assets/svg/exp-crystal-pull.svg" width="720" alt="晶振牵引灵敏度：3pF 偏差值多少秒动画：四步节拍推导"></p>
+<p align="center"><img src="assets/svg-v2/ch13-crystal-pull-v2.svg" width="720" alt="大步长负载偏移要直接算两个谐振频率；CL=12 pF至CL=15 pF。"></p>
 
-**看点**：左侧图元随拍点亮、右侧算式逐行推进；每一步的数字都能回对正文。→ 正文 [13.10 晶振](#ch13)
+**看点**：大步长负载偏移要直接算两个谐振频率；CL=12 pF至CL=15 pF。→ 正文 [13.10 晶振](#ch13)
 
 
 ## 5.148 最坏情况 vs RSS：误差预算的两把尺 <a id="demo148"></a>
