@@ -18486,11 +18486,31 @@ assets:
   storyboard: assets/svg-v2/ch13-zener-budget-v2-storyboard.svg
   reduced_motion: assets/svg-v2/ch13-zener-budget-v2-static.svg
   alt: 先扣基流，再看齐纳管还能否稳压；空载至负载 500 mA。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    事实精度: 5
+    交互节奏: 4
+    印刷可读性: 5
+    教学必要性: 5
+    构图层级: 5
+    运动叙事: 4
+    风格一致性: 5
+  review_record:
+    asset_sha256: bdd5b59429f9d33c233ff5fd985ab8fad0bc509ae18b5ba7c60650ed195cf24d
+    method: user-signoff-packet-v1
+    record: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
+    reviewed_on: '2026-11-11'
+    reviewer: user-signed
+    scope: ch13 24 个 generated 动画签核包（PR #61）
+    user_chapter_acceptance: 2026-11-11 用户回复"同意签核"全数签署
+  reviewed_by: user-signed
+  review_method: user-signoff-packet-v1
+  review_evidence: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
   duration: 12
   parameters: []
   beats:
@@ -18532,11 +18552,31 @@ assets:
   storyboard: assets/svg-v2/ch13-buck-cycle-v2-storyboard.svg
   reduced_motion: assets/svg-v2/ch13-buck-cycle-v2-static.svg
   alt: 同一电感电流，开关与二极管轮流接管；导通初段至周期回到谷值。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    事实精度: 5
+    交互节奏: 4
+    印刷可读性: 5
+    教学必要性: 5
+    构图层级: 5
+    运动叙事: 4
+    风格一致性: 5
+  review_record:
+    asset_sha256: 3d6f25dd83b3ef88b535d8eee09e840a819e4ee04db34c58601742d85b6a9d43
+    method: user-signoff-packet-v1
+    record: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
+    reviewed_on: '2026-11-11'
+    reviewer: user-signed
+    scope: ch13 24 个 generated 动画签核包（PR #61）
+    user_chapter_acceptance: 2026-11-11 用户回复"同意签核"全数签署
+  reviewed_by: user-signed
+  review_method: user-signoff-packet-v1
+  review_evidence: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
   duration: 12
   parameters: []
   beats:
@@ -18578,11 +18618,31 @@ assets:
   storyboard: assets/svg-v2/ch13-buck-charge-v2-storyboard.svg
   reduced_motion: assets/svg-v2/ch13-buck-charge-v2-static.svg
   alt: 纹波看电荷的峰谷差，整周期净电荷为零；先给负载放电至净电荷回到零。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    事实精度: 5
+    交互节奏: 4
+    印刷可读性: 5
+    教学必要性: 5
+    构图层级: 5
+    运动叙事: 4
+    风格一致性: 5
+  review_record:
+    asset_sha256: 110872209b0f76614154a02b3011178c6268ad9d90ccfdceab77405ab3cbd2a8
+    method: user-signoff-packet-v1
+    record: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
+    reviewed_on: '2026-11-11'
+    reviewer: user-signed
+    scope: ch13 24 个 generated 动画签核包（PR #61）
+    user_chapter_acceptance: 2026-11-11 用户回复"同意签核"全数签署
+  reviewed_by: user-signed
+  review_method: user-signoff-packet-v1
+  review_evidence: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
   duration: 12
   parameters: []
   beats:
@@ -18624,11 +18684,31 @@ assets:
   storyboard: assets/svg-v2/ch13-buck-dcm-v2-storyboard.svg
   reduced_motion: assets/svg-v2/ch13-buck-dcm-v2-static.svg
   alt: 固定占空比进入 DCM 后，输出随负载变化；RL=5 Ω至RL=100 Ω。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    事实精度: 5
+    交互节奏: 4
+    印刷可读性: 5
+    教学必要性: 5
+    构图层级: 5
+    运动叙事: 4
+    风格一致性: 5
+  review_record:
+    asset_sha256: 6b88d20c0f1d5ebe4b6e6f3af184b79193d89c0bd97cf86e0db0b2f861ced247
+    method: user-signoff-packet-v1
+    record: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
+    reviewed_on: '2026-11-11'
+    reviewer: user-signed
+    scope: ch13 24 个 generated 动画签核包（PR #61）
+    user_chapter_acceptance: 2026-11-11 用户回复"同意签核"全数签署
+  reviewed_by: user-signed
+  review_method: user-signoff-packet-v1
+  review_evidence: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
   duration: 12
   parameters: []
   beats:
@@ -18670,11 +18750,31 @@ assets:
   storyboard: assets/svg-v2/ch13-boost-cycle-v2-storyboard.svg
   reduced_motion: assets/svg-v2/ch13-boost-cycle-v2-static.svg
   alt: 升压的关断阶段才把电感电流送往输出；导通储能至回到周期起点。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    事实精度: 5
+    交互节奏: 4
+    印刷可读性: 5
+    教学必要性: 5
+    构图层级: 5
+    运动叙事: 4
+    风格一致性: 5
+  review_record:
+    asset_sha256: 546469b09ce8bbf62e41679ed106b4bac0ea2932375db51cd7b1a5540c03b486
+    method: user-signoff-packet-v1
+    record: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
+    reviewed_on: '2026-11-11'
+    reviewer: user-signed
+    scope: ch13 24 个 generated 动画签核包（PR #61）
+    user_chapter_acceptance: 2026-11-11 用户回复"同意签核"全数签署
+  reviewed_by: user-signed
+  review_method: user-signoff-packet-v1
+  review_evidence: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
   duration: 12
   parameters: []
   beats:
@@ -18716,11 +18816,31 @@ assets:
   storyboard: assets/svg-v2/ch13-boost-stress-v2-storyboard.svg
   reduced_motion: assets/svg-v2/ch13-boost-stress-v2-static.svg
   alt: 占空比越接近一，升压电流代价越大；D=0.2至D=0.8。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    事实精度: 5
+    交互节奏: 4
+    印刷可读性: 5
+    教学必要性: 5
+    构图层级: 5
+    运动叙事: 4
+    风格一致性: 5
+  review_record:
+    asset_sha256: 7ef11ec3ea819ba47de684f4747e6ed824719219aaac9303c531a18c73bd0fae
+    method: user-signoff-packet-v1
+    record: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
+    reviewed_on: '2026-11-11'
+    reviewer: user-signed
+    scope: ch13 24 个 generated 动画签核包（PR #61）
+    user_chapter_acceptance: 2026-11-11 用户回复"同意签核"全数签署
+  reviewed_by: user-signed
+  review_method: user-signoff-packet-v1
+  review_evidence: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
   duration: 12
   parameters: []
   beats:
@@ -18762,11 +18882,31 @@ assets:
   storyboard: assets/svg-v2/ch13-pump-load-v2-storyboard.svg
   reduced_motion: assets/svg-v2/ch13-pump-load-v2-static.svg
   alt: 飞跨电容的搬运速率限制带载电压；空载至负载 20 mA。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    事实精度: 5
+    交互节奏: 4
+    印刷可读性: 5
+    教学必要性: 5
+    构图层级: 5
+    运动叙事: 4
+    风格一致性: 5
+  review_record:
+    asset_sha256: 74897ee7eb3276cf92fce28e51eb4798caf39a7947291d1feca550309d4f3c7c
+    method: user-signoff-packet-v1
+    record: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
+    reviewed_on: '2026-11-11'
+    reviewer: user-signed
+    scope: ch13 24 个 generated 动画签核包（PR #61）
+    user_chapter_acceptance: 2026-11-11 用户回复"同意签核"全数签署
+  reviewed_by: user-signed
+  review_method: user-signoff-packet-v1
+  review_evidence: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
   duration: 12
   parameters: []
   beats:
@@ -18808,11 +18948,31 @@ assets:
   storyboard: assets/svg-v2/ch13-inverting-ratio-v2-storyboard.svg
   reduced_motion: assets/svg-v2/ch13-inverting-ratio-v2-static.svg
   alt: 反相 Buck-Boost 的极性来自放电连接；D=0.2至D=0.7。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    事实精度: 5
+    交互节奏: 4
+    印刷可读性: 5
+    教学必要性: 5
+    构图层级: 5
+    运动叙事: 4
+    风格一致性: 5
+  review_record:
+    asset_sha256: f8769b87e16e023f564f973989cacb88c78efd0dd0252be422552aecd5f65ba1
+    method: user-signoff-packet-v1
+    record: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
+    reviewed_on: '2026-11-11'
+    reviewer: user-signed
+    scope: ch13 24 个 generated 动画签核包（PR #61）
+    user_chapter_acceptance: 2026-11-11 用户回复"同意签核"全数签署
+  reviewed_by: user-signed
+  review_method: user-signoff-packet-v1
+  review_evidence: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
   duration: 12
   parameters: []
   beats:
@@ -18854,11 +19014,31 @@ assets:
   storyboard: assets/svg-v2/ch13-wien-select-v2-storyboard.svg
   reduced_motion: assets/svg-v2/ch13-wien-select-v2-static.svg
   alt: 文氏桥只在一个频率兼有零相位与三分之一增益；f=0.1f0至f=10f0。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    事实精度: 5
+    交互节奏: 4
+    印刷可读性: 5
+    教学必要性: 5
+    构图层级: 5
+    运动叙事: 4
+    风格一致性: 5
+  review_record:
+    asset_sha256: 7237b1f6d9c8fcd52a48c07feb3f067a11324df6871b589658738d0215a8e94a
+    method: user-signoff-packet-v1
+    record: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
+    reviewed_on: '2026-11-11'
+    reviewer: user-signed
+    scope: ch13 24 个 generated 动画签核包（PR #61）
+    user_chapter_acceptance: 2026-11-11 用户回复"同意签核"全数签署
+  reviewed_by: user-signed
+  review_method: user-signoff-packet-v1
+  review_evidence: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
   duration: 12
   parameters: []
   beats:
@@ -18900,11 +19080,31 @@ assets:
   storyboard: assets/svg-v2/ch13-wien-amplitude-v2-storyboard.svg
   reduced_motion: assets/svg-v2/ch13-wien-amplitude-v2-static.svg
   alt: 起振增长与稳幅是两件事；小噪声种子至趋向稳态幅度。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    事实精度: 5
+    交互节奏: 4
+    印刷可读性: 5
+    教学必要性: 5
+    构图层级: 5
+    运动叙事: 4
+    风格一致性: 5
+  review_record:
+    asset_sha256: 492e4b08e015355613c0b3001fd10a067664a534771b65910c019eb95d32e6bc
+    method: user-signoff-packet-v1
+    record: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
+    reviewed_on: '2026-11-11'
+    reviewer: user-signed
+    scope: ch13 24 个 generated 动画签核包（PR #61）
+    user_chapter_acceptance: 2026-11-11 用户回复"同意签核"全数签署
+  reviewed_by: user-signed
+  review_method: user-signoff-packet-v1
+  review_evidence: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
   duration: 12
   parameters: []
   beats:
@@ -18946,11 +19146,31 @@ assets:
   storyboard: assets/svg-v2/ch13-lc-energy-v2-storyboard.svg
   reduced_motion: assets/svg-v2/ch13-lc-energy-v2-static.svg
   alt: 电场能与磁场能交替，理想总能量不变；电容全储能至能量返回电容。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    事实精度: 5
+    交互节奏: 4
+    印刷可读性: 5
+    教学必要性: 5
+    构图层级: 5
+    运动叙事: 4
+    风格一致性: 5
+  review_record:
+    asset_sha256: cd9c854c980ea343fb26e5199e2433c328a9b80d97c281912e0bab485e477116
+    method: user-signoff-packet-v1
+    record: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
+    reviewed_on: '2026-11-11'
+    reviewer: user-signed
+    scope: ch13 24 个 generated 动画签核包（PR #61）
+    user_chapter_acceptance: 2026-11-11 用户回复"同意签核"全数签署
+  reviewed_by: user-signed
+  review_method: user-signoff-packet-v1
+  review_evidence: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
   duration: 12
   parameters: []
   beats:
@@ -18992,11 +19212,31 @@ assets:
   storyboard: assets/svg-v2/ch13-current-compliance-v2-storyboard.svg
   reduced_motion: assets/svg-v2/ch13-current-compliance-v2-static.svg
   alt: 负载电压用尽余量后，电流再也保持不了；供电 2.8 V至回查输出级边界。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    事实精度: 5
+    交互节奏: 4
+    印刷可读性: 5
+    教学必要性: 5
+    构图层级: 5
+    运动叙事: 4
+    风格一致性: 5
+  review_record:
+    asset_sha256: 7b290f15ba535f5f699eddcca53784af52808fbb46bb52bc0a65f14b694d52b6
+    method: user-signoff-packet-v1
+    record: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
+    reviewed_on: '2026-11-11'
+    reviewer: user-signed
+    scope: ch13 24 个 generated 动画签核包（PR #61）
+    user_chapter_acceptance: 2026-11-11 用户回复"同意签核"全数签署
+  reviewed_by: user-signed
+  review_method: user-signoff-packet-v1
+  review_evidence: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
   duration: 12
   parameters:
   - name: Vs
@@ -19045,11 +19285,31 @@ assets:
   storyboard: assets/svg-v2/ch13-sar-trials-v2-storyboard.svg
   reduced_motion: assets/svg-v2/ch13-sar-trials-v2-static.svg
   alt: 逐位试探时保持输入不变；试 0.5：保留至试 0.6875：撤回。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    事实精度: 5
+    交互节奏: 4
+    印刷可读性: 5
+    教学必要性: 5
+    构图层级: 5
+    运动叙事: 4
+    风格一致性: 5
+  review_record:
+    asset_sha256: 65861b2a72cf0196edee14477eac2b201cbb1296c211ad1b0e3e70d62737899a
+    method: user-signoff-packet-v1
+    record: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
+    reviewed_on: '2026-11-11'
+    reviewer: user-signed
+    scope: ch13 24 个 generated 动画签核包（PR #61）
+    user_chapter_acceptance: 2026-11-11 用户回复"同意签核"全数签署
+  reviewed_by: user-signed
+  review_method: user-signoff-packet-v1
+  review_evidence: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
   duration: 12
   parameters: []
   beats:
@@ -19091,11 +19351,31 @@ assets:
   storyboard: assets/svg-v2/ch13-alias-samples-v2-storyboard.svg
   reduced_motion: assets/svg-v2/ch13-alias-samples-v2-static.svg
   alt: 相干采样把一千赫兹折成相位相关直流；输入 50 Hz至输入 1001 Hz。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    事实精度: 5
+    交互节奏: 4
+    印刷可读性: 5
+    教学必要性: 5
+    构图层级: 5
+    运动叙事: 4
+    风格一致性: 5
+  review_record:
+    asset_sha256: c0c4690d959a19b7c29ae708972695da81aff4bdb3f5a7d40a30a5adbaa8412c
+    method: user-signoff-packet-v1
+    record: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
+    reviewed_on: '2026-11-11'
+    reviewer: user-signed
+    scope: ch13 24 个 generated 动画签核包（PR #61）
+    user_chapter_acceptance: 2026-11-11 用户回复"同意签核"全数签署
+  reviewed_by: user-signed
+  review_method: user-signoff-packet-v1
+  review_evidence: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
   duration: 12
   parameters:
   - name: fin
@@ -19144,11 +19424,31 @@ assets:
   storyboard: assets/svg-v2/ch13-quantization-v2-storyboard.svg
   reduced_motion: assets/svg-v2/ch13-quantization-v2-static.svg
   alt: 量化是固定台阶，不会凭空产生随机抖动；输入 0.1至输入 0.8。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    事实精度: 5
+    交互节奏: 4
+    印刷可读性: 5
+    教学必要性: 5
+    构图层级: 5
+    运动叙事: 4
+    风格一致性: 5
+  review_record:
+    asset_sha256: bca67bcdb34ae833a482fd542535df16552c822dfa18138a2e3a5b934fc9134e
+    method: user-signoff-packet-v1
+    record: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
+    reviewed_on: '2026-11-11'
+    reviewer: user-signed
+    scope: ch13 24 个 generated 动画签核包（PR #61）
+    user_chapter_acceptance: 2026-11-11 用户回复"同意签核"全数签署
+  reviewed_by: user-signed
+  review_method: user-signoff-packet-v1
+  review_evidence: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
   duration: 12
   parameters: []
   beats:
@@ -19190,11 +19490,31 @@ assets:
   storyboard: assets/svg-v2/ch13-jitter-v2-storyboard.svg
   reduced_motion: assets/svg-v2/ch13-jitter-v2-static.svg
   alt: 同样的时间抖动，高频信号付出更多噪声；输入 100 kHz至输入 10 MHz。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    事实精度: 5
+    交互节奏: 4
+    印刷可读性: 5
+    教学必要性: 5
+    构图层级: 5
+    运动叙事: 4
+    风格一致性: 5
+  review_record:
+    asset_sha256: c3fe3a9852852dd3b3de55ac4e236c3ee3aa5765a7ae07f1704570b35e2c5ff5
+    method: user-signoff-packet-v1
+    record: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
+    reviewed_on: '2026-11-11'
+    reviewer: user-signed
+    scope: ch13 24 个 generated 动画签核包（PR #61）
+    user_chapter_acceptance: 2026-11-11 用户回复"同意签核"全数签署
+  reviewed_by: user-signed
+  review_method: user-signoff-packet-v1
+  review_evidence: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
   duration: 12
   parameters: []
   beats:
@@ -19236,11 +19556,31 @@ assets:
   storyboard: assets/svg-v2/ch13-acquisition-v2-storyboard.svg
   reduced_motion: assets/svg-v2/ch13-acquisition-v2-static.svg
   alt: 采集时间固定时，源阻会留下指数残差；Rtotal=2 kΩ至Rtotal=5 kΩ。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    事实精度: 5
+    交互节奏: 4
+    印刷可读性: 5
+    教学必要性: 5
+    构图层级: 5
+    运动叙事: 4
+    风格一致性: 5
+  review_record:
+    asset_sha256: 69e7c523c04b48ac7ab05a64d5b8c135056997d8a50358e672700e4e7f738af6
+    method: user-signoff-packet-v1
+    record: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
+    reviewed_on: '2026-11-11'
+    reviewer: user-signed
+    scope: ch13 24 个 generated 动画签核包（PR #61）
+    user_chapter_acceptance: 2026-11-11 用户回复"同意签核"全数签署
+  reviewed_by: user-signed
+  review_method: user-signoff-packet-v1
+  review_evidence: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
   duration: 12
   parameters: []
   beats:
@@ -19282,11 +19622,31 @@ assets:
   storyboard: assets/svg-v2/ch13-hbridge-reverse-v2-storyboard.svg
   reduced_motion: assets/svg-v2/ch13-hbridge-reverse-v2-static.svg
   alt: 电压可以换向，电感电流必须连续；刚换向至负电流逐步建立。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    事实精度: 5
+    交互节奏: 4
+    印刷可读性: 5
+    教学必要性: 5
+    构图层级: 5
+    运动叙事: 4
+    风格一致性: 5
+  review_record:
+    asset_sha256: 02ecfb0238c14ace71f0b6401e42a654ebf405b4c4b5c6e4047a83e3785679e1
+    method: user-signoff-packet-v1
+    record: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
+    reviewed_on: '2026-11-11'
+    reviewer: user-signed
+    scope: ch13 24 个 generated 动画签核包（PR #61）
+    user_chapter_acceptance: 2026-11-11 用户回复"同意签核"全数签署
+  reviewed_by: user-signed
+  review_method: user-signoff-packet-v1
+  review_evidence: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
   duration: 12
   parameters: []
   beats:
@@ -19328,11 +19688,31 @@ assets:
   storyboard: assets/svg-v2/ch13-sense-cmr-v2-storyboard.svg
   reduced_motion: assets/svg-v2/ch13-sense-cmr-v2-static.svg
   alt: 共模误差预算随抑制比分贝换算；CMRR=70 dB至CMRR=110 dB。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    事实精度: 5
+    交互节奏: 4
+    印刷可读性: 5
+    教学必要性: 5
+    构图层级: 5
+    运动叙事: 4
+    风格一致性: 5
+  review_record:
+    asset_sha256: 90897b7642b535b5d3330f4058d67664f28e94ea1b71199b53b0c718378d755b
+    method: user-signoff-packet-v1
+    record: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
+    reviewed_on: '2026-11-11'
+    reviewer: user-signed
+    scope: ch13 24 个 generated 动画签核包（PR #61）
+    user_chapter_acceptance: 2026-11-11 用户回复"同意签核"全数签署
+  reviewed_by: user-signed
+  review_method: user-signoff-packet-v1
+  review_evidence: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
   duration: 12
   parameters: []
   beats:
@@ -19374,11 +19754,31 @@ assets:
   storyboard: assets/svg-v2/ch13-audio-heat-v2-storyboard.svg
   reduced_motion: assets/svg-v2/ch13-audio-heat-v2-static.svg
   alt: 效率与发热必须对应同一输出摆幅；输出 1 W至接近最大摆幅。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    事实精度: 5
+    交互节奏: 4
+    印刷可读性: 5
+    教学必要性: 5
+    构图层级: 5
+    运动叙事: 4
+    风格一致性: 5
+  review_record:
+    asset_sha256: 6ea72e0de864a5f2053f09efee3fce94573abe03df97bdd9ea4ed3b89f871864
+    method: user-signoff-packet-v1
+    record: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
+    reviewed_on: '2026-11-11'
+    reviewer: user-signed
+    scope: ch13 24 个 generated 动画签核包（PR #61）
+    user_chapter_acceptance: 2026-11-11 用户回复"同意签核"全数签署
+  reviewed_by: user-signed
+  review_method: user-signoff-packet-v1
+  review_evidence: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
   duration: 12
   parameters: []
   beats:
@@ -19420,11 +19820,31 @@ assets:
   storyboard: assets/svg-v2/ch13-crystal-pull-v2-storyboard.svg
   reduced_motion: assets/svg-v2/ch13-crystal-pull-v2-static.svg
   alt: 大步长负载偏移要直接算两个谐振频率；CL=12 pF至CL=15 pF。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    事实精度: 5
+    交互节奏: 4
+    印刷可读性: 5
+    教学必要性: 5
+    构图层级: 5
+    运动叙事: 4
+    风格一致性: 5
+  review_record:
+    asset_sha256: 0195eb3ff060385bfd32795013c01fd47b40d78e42bfc0f212512f7ec5f2dac5
+    method: user-signoff-packet-v1
+    record: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
+    reviewed_on: '2026-11-11'
+    reviewer: user-signed
+    scope: ch13 24 个 generated 动画签核包（PR #61）
+    user_chapter_acceptance: 2026-11-11 用户回复"同意签核"全数签署
+  reviewed_by: user-signed
+  review_method: user-signoff-packet-v1
+  review_evidence: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
   duration: 12
   parameters: []
   beats:
@@ -19466,11 +19886,31 @@ assets:
   storyboard: assets/svg-v2/ch13-crystal-start-v2-storyboard.svg
   reduced_motion: assets/svg-v2/ch13-crystal-start-v2-static.svg
   alt: 决定增长速度的是净负阻余量；|Rneg|=25 kΩ至|Rneg|=150 kΩ。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    事实精度: 5
+    交互节奏: 4
+    印刷可读性: 5
+    教学必要性: 5
+    构图层级: 5
+    运动叙事: 4
+    风格一致性: 5
+  review_record:
+    asset_sha256: 7cb389cc40b97acec6d220349325feb079022874b0d98504798d32c5a4e36b39
+    method: user-signoff-packet-v1
+    record: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
+    reviewed_on: '2026-11-11'
+    reviewer: user-signed
+    scope: ch13 24 个 generated 动画签核包（PR #61）
+    user_chapter_acceptance: 2026-11-11 用户回复"同意签核"全数签署
+  reviewed_by: user-signed
+  review_method: user-signoff-packet-v1
+  review_evidence: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
   duration: 12
   parameters:
   - name: '|Rneg|'
@@ -19519,11 +19959,31 @@ assets:
   storyboard: assets/svg-v2/ch13-opto-ctr-v2-storyboard.svg
   reduced_motion: assets/svg-v2/ch13-opto-ctr-v2-static.svg
   alt: 降额后的 CTR 还要能拉动输出负载；CTR=100%至核对饱和条件。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    事实精度: 5
+    交互节奏: 4
+    印刷可读性: 5
+    教学必要性: 5
+    构图层级: 5
+    运动叙事: 4
+    风格一致性: 5
+  review_record:
+    asset_sha256: 99abb7c14afc8fd70d55c7bf980500fb5035ca40246d5d973b059c600f7b35ff
+    method: user-signoff-packet-v1
+    record: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
+    reviewed_on: '2026-11-11'
+    reviewer: user-signed
+    scope: ch13 24 个 generated 动画签核包（PR #61）
+    user_chapter_acceptance: 2026-11-11 用户回复"同意签核"全数签署
+  reviewed_by: user-signed
+  review_method: user-signoff-packet-v1
+  review_evidence: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
   duration: 12
   parameters: []
   beats:
@@ -19565,11 +20025,31 @@ assets:
   storyboard: assets/svg-v2/ch13-iso-displacement-v2-storyboard.svg
   reduced_motion: assets/svg-v2/ch13-iso-displacement-v2-static.svg
   alt: 无直流通路仍会有跨屏障位移电流；1 kV/µs至100 kV/µs。
-  status: generated
+  status: accepted
   status_history:
   - planned
   - generated
-  review_scores: {}
+  - reviewed
+  - accepted
+  review_scores:
+    事实精度: 5
+    交互节奏: 4
+    印刷可读性: 5
+    教学必要性: 5
+    构图层级: 5
+    运动叙事: 4
+    风格一致性: 5
+  review_record:
+    asset_sha256: 277de3f73035ba86b980e80c264fc8f2ceae7fc270515172b9b1f3696221febd
+    method: user-signoff-packet-v1
+    record: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
+    reviewed_on: '2026-11-11'
+    reviewer: user-signed
+    scope: ch13 24 个 generated 动画签核包（PR #61）
+    user_chapter_acceptance: 2026-11-11 用户回复"同意签核"全数签署
+  reviewed_by: user-signed
+  review_method: user-signoff-packet-v1
+  review_evidence: docs/superpowers/visual/reviews/generated-ch13-2026-11-11.md
   duration: 12
   parameters: []
   beats:
