@@ -1,3 +1,5 @@
+> **归档公告（2026-11-12）**：本仓库已并入两卷本《从模拟电路到 BMS》——[新站 https://zhuguang-zfg.github.io/BMS-Z/](https://zhuguang-zfg.github.io/BMS-Z/)，卷一内容不变并新增卷二《BMS 实战》；离线件见[新下载页](https://zhuguang-zfg.github.io/BMS-Z/downloads/)（`volume-1.html/.pdf/.epub`）。本仓库归档只读，历史 release 与提交保留。
+
 # 通往模拟电路之路
 
 [仓库入口](#readme-portal)
